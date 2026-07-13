@@ -1,11 +1,11 @@
 <script setup lang="ts">
 
-import Register from "../../feature/auth/Register.vue";
+import RegisterBuyer from "../../feature/auth/RegisterBuyer.vue";
 </script>
 
 <template>
   <div class="bg-[#F5F5F5] h-screen">
-    <Register />
+    <RegisterBuyer />
   </div>
 </template>
 

@@ -1,79 +1,64 @@
 <script setup lang="ts">
-import catalog from '../../app/assets/icons/catalog.png'
-import logo from '../../app/assets/icons/logo.png'
-import cart_cart from '../../app/assets/icons/cart-cart.png'
-import liked from '../../app/assets/icons/liked.png'
-import cart from '../../app/assets/icons/cart.png'
-import profile from '../../app/assets/icons/profile.png'
-import search from '../../app/assets/icons/search.png'
+import catalog from "../../app/assets/icons/catalog.png";
+import logo from "../../app/assets/icons/logo.png";
+import liked from "../../app/assets/icons/liked.png";
+import cart from "../../app/assets/icons/cart.png";
+import profile from "../../app/assets/icons/profile.png";
+import search from "../../app/assets/icons/search.png";
 </script>
 
 <template>
-  <nav>
-    <div class="xl:flex xl:items-center xl:justify-between xl:p-12
-          lg:flex lg:items-center lg:justify-between lg:p-12
-          md:flex md:items-center md:justify-between md:p-8
-          sm:flex sm:items-center sm:justify-between sm:p-6
-          flex items-center justify-between p-6">
-      <div class="xl:flex xl:gap-10
-          lg:flex lg:gap-10
-          md:flex md:gap-10
-          sm:flex sm:gap-10
-          flex gap-10">
-        <img :src=catalog alt="">
+  <nav class="xl:px-12 xl:mt-12 lg:px-12 lg:mt-12 md:px-8 md:mt-8 sm:px-6 sm:mt-6 px-6 mt-6">
+    <div class="flex items-center justify-between">
+      <div class="flex gap-10">
+        <img :src=catalog alt="" class="cursor-pointer">
         <div class="xl:flex xl:gap-10
             lg:flex lg:gap-10
-            md:hidden sm:hidden hidden">
-          <span class="xl:font-bold lg:font-bold">
+            md:flex md:gap-3
+            sm:hidden hidden">
+          <span class="xl:font-bold lg:font-bold cursor-pointer">
             Home
           </span>
-          <span>Collections</span>
-          <span>New</span>
+          <span class="cursor-pointer">Collections</span>
+          <span class="cursor-pointer">New</span>
         </div>
       </div>
       <div>
-        <img :src=logo alt="">
+        <img :src=logo alt="" class="w-[45px]" />
       </div>
       <div class="xl:flex xl:gap-10
           lg:flex lg:gap-10
           md:flex md:gap-5
-          sm:flex sm:gap-2
-          flex">
-        <div class="xl:flex lg:flex md:hidden sm:hidden hidden">
-          <img :src=liked alt="">
+          sm:flex sm:gap-3
+          flex gap-3">
+        <div class="xl:flex lg:flex md:flex sm:hidden hidden">
+          <img :src=liked alt="" class="cursor-pointer">
         </div>
-        <div class="xl:flex lg:flex md:hidden sm:hidden hidden">
-          <div class="xl:relative lg:relative">
-            <img :src=cart_cart alt="" class="xl:relative lg:relative">
-            <span class="xl:absolute xl:right-7 xl:top-1/2 xl:-translate-y-1/2 xl:w-6 xl:h-6 xl:text-white
-                 lg:absolute lg:right-7 lg:top-1/2 lg:-translate-y-1/2 lg:w-6 lg:h-6 lg:text-white">
+        <div class="xl:flex xl:items-center lg:flex md:flex sm:hidden hidden cursor-pointer">
+            <span class="px-7 py-3.5 bg-black rounded-4xl text-white items-center">
               Cart
             </span>
-          </div>
-        <img :src=cart alt="" class="">
+          <img :src=cart alt="" class="">
         </div>
-        <img :src=profile alt="">
+        <img :src=profile alt="" class="cursor-pointer">
       </div>
     </div>
-  </nav>
-  <main>
-    <div class="xl:flex xl:flex-col xl:px-12 xl:gap-5">
-      <div class="xl:flex xl:flex-col">
+    <div class="flex flex-col py-12 gap-5">
+      <div class="flex flex-col">
         <span>MEN</span>
         <span>WOMEN</span>
         <span>KIDS</span>
       </div>
-      <div class="xl:flex">
-        <div class="xl:relative">
-          <input type="text" class="bg-[#D9D9D9] xl:h-[50px] xl:w-[370px] xl:border-none xl:outline-none">
-          <img :src=search alt="" class="xl:absolute xl:left-4 xl:top-1/2 xl:-translate-y-1/2 ">
+      <div class="flex">
+        <div class="relative">
+          <input type="text" class="bg-[#D9D9D9] h-[50px] w-[300px] sm:w-[400px] placeholder:px-45 xl:border-none xl:outline-none px-10 sm:placeholder:px-70" placeholder="Search">
+          <img :src=search alt="" class="absolute left-4 top-1/2 -translate-y-1/2">
         </div>
       </div>
     </div>
-  </main>
+  </nav>
 </template>
 
 <style scoped>
-
 
 </style>
