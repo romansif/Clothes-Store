@@ -1,4 +1,4 @@
-import { userForms } from "../users.forms.ts";
+import { userForms } from "../forms/users.forms.ts";
 import { userFormsErrors } from "../forms-errors/users.errors.ts";
 
 const {

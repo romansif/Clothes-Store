@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { watch } from "vue";
-import { useProfileProducts } from "../../../profile-composables/useProfileProducts.ts";
-import { checkoutForms } from "../../../../../shared/composables/forms-composables/forms/checkout.forms.ts";
-import { checkoutErrors } from "../../../../../shared/composables/forms-composables/forms-errors/checkout.errors.ts";
+import { useProfileProducts } from "../../profile-composables/useProfileProducts.ts";
+import { checkoutForms } from "../../../../shared/composables/forms-composables/forms/checkout.forms.ts";
+import { checkoutErrors } from "../../../../shared/composables/forms-composables/forms-errors/checkout.errors.ts";
 
-import square from '../../../../../app/assets/icons/square.png';
-import check_square from '../../../../../app/assets/icons/check-square.png';
-import BaseButton from "../../../../../shared/ui/button/BaseButton.vue";
+import square from '../../../../app/assets/icons/square.png';
+import check_square from '../../../../app/assets/icons/check-square.png';
+import BaseButton from "../../../../shared/ui/button/BaseButton.vue";
 
 const { isAgreeForm } = checkoutForms();
 const { isAgreeFormError } = checkoutErrors();
@@ -20,7 +20,7 @@ watch(() => isAgreeFormError.value.agreeError, (agreeError) => {
 </script>
 
 <template>
-<div class="flex flex-col mt-5 gap-4 font-medium">
+<div class="flex flex-col mt-20 gap-4 font-medium w-[400px]">
   <div class="flex flex-col gap-2 sm:pb-3">
     <span class="text-lg xl:text-xl">
       ORDER SUMMARY

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { watch } from "vue";
-import { useAuth } from "./auth-composables/auth.ts";
-import { authForms } from "../../shared/composables/forms/auth.forms.ts";
-import { authFormsErrors } from "../../shared/composables/forms/forms-errors/auth.errors.ts";
-import { clearAuthForms } from "../../shared/composables/forms/clear-forms/clear.auth.ts";
+import { useAuth } from "./auth-composables/useAuth.ts";
+import { authForms } from "../../shared/composables/forms-composables/forms/auth.forms.ts";
+import { authFormsErrors } from "../../shared/composables/forms-composables/forms-errors/auth.errors.ts";
+import { clearAuthForms } from "../../shared/composables/forms-composables/clear-forms/clear.auth.ts";
 import { authStore} from "../../shared/composables/stores/auth.store.ts";
 
 import opened from "../../app/assets/icons/auth/opened.png";
@@ -11,7 +11,7 @@ import closed from "../../app/assets/icons/auth/closed.png";
 import maki_arrow from "../../app/assets/icons/arrows/maki--arrow.svg";
 import BaseButton from "../../shared/ui/button/BaseButton.vue";
 
-const { register } = useAuth()
+const { signUp } = useAuth()
 const { showPassword, showSection } = authStore()
 const { clearRegisterSellerForm, clearRegisterBuyerForm } = clearAuthForms()
 const { registerFormErrors } = authFormsErrors()
@@ -57,12 +57,12 @@ const toggleRegister = () => {
   <section v-if="showSection.section === true" class='fixed font-[Montserrat] inset-0 flex items-center justify-center' >
     <div class="bg-white w-[350px] sm:w-[600px] shadow-xl rounded-lg px-8 py-8">
       <div class="flex items-center justify-center">
-        <div class="w-[235px] sm:w-[415px]">
+        <div class="w-[235px] sm:w-[300px]">
           <div class="font-medium flex items-center justify-between">
-            <router-link :to="{name: 'login'}" @click=clearRegisterSellerForm>
-              <span class="text-[#A3A3A3]">LOGIN</span>
+            <router-link :to="{name: '/auth/LoginPage'}" @click=clearRegisterSellerForm>
+              <span class="text-[#A3A3A3]">SIGN IN</span>
             </router-link>
-            <span class="">REGISTRATION</span>
+            <span class="">SIGN UP</span>
           </div>
         </div>
       </div>
@@ -70,7 +70,7 @@ const toggleRegister = () => {
         <span>WELCOME TO</span>
         <span class="text-[#A3A3A3]">THE STORE</span>
       </div>
-      <form @keydown.enter="register('Seller')" action="" class="flex flex-col gap-6 mt-10">
+      <form @keydown.enter="signUp('Seller')" action="" class="flex flex-col gap-6 mt-10">
         <div class="flex gap-3">
           <div class="flex flex-col gap-2 w-full">
             <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">NAME</label>
@@ -131,10 +131,10 @@ const toggleRegister = () => {
       </form>
       <div class="flex flex-col gap-3">
         <div class="relative">
-          <BaseButton @click="register('Seller')" name="REGISTRATION BY SELLER" variant="register"/>
+          <BaseButton @click="signUp('Seller')" name="SIGN UP BY SELLER" variant="register"/>
           <img :src=maki_arrow alt="" class="absolute w-[25px] top-13.5 left-58 sm:left-121">
         </div>
-        <BaseButton @click=toggleRegister name="Registration by buyer" variant="changeRegister" />
+        <BaseButton @click=toggleRegister name="Sign up by buyer" variant="changeRegister" />
       </div>
     </div>
   </section>

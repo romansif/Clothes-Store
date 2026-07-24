@@ -1,59 +1,67 @@
 <script setup lang="ts">
-import catalog from "../../app/assets/icons/catalog.png";
-import logo from "../../app/assets/icons/logo.png";
-import liked from "../../app/assets/icons/liked.png";
-import cart from "../../app/assets/icons/cart.png";
-import profile from "../../app/assets/icons/profile.png";
-import search from "../../app/assets/icons/search.png";
+import { computed } from "vue";
+import { useRoute } from "vue-router";
+import { productsStore } from "../../shared/composables/stores/products.store.ts";
+
+import liked from "../../app/assets/icons/nav/favorite.png";
+import cartImg from "../../app/assets/icons/nav/cart.png";
+import profile from "../../app/assets/icons/nav/profile.png";
+import catalog from "../../app/assets/icons/nav/catalog.png";
+
+const { unreadCount } = productsStore();
+
+const route = useRoute();
+
+const isProducts = computed(() => route.name === "/products/ProductsPage");
+const isProfile = computed(() => route.name !== "/profile/ProfilePage");
 </script>
 
 <template>
-  <nav class="xl:px-12 xl:mt-12 lg:px-12 lg:mt-12 md:px-8 md:mt-8 sm:px-6 sm:mt-6 px-6 mt-6">
-    <div class="flex items-center justify-between">
-      <div class="flex gap-10">
-        <img :src=catalog alt="" class="cursor-pointer">
+  <nav class="font-[Montserrat]">
+    <div class="flex justify-between items-center md:justify-between">
+      <div class="flex items-center gap-5 lg:gap-10">
+        <router-link :to="{name: '/home/HomePage'}">
+          <img :src=catalog alt="" class=" w-[30px]">
+        </router-link>
         <div class="xl:flex xl:gap-10
             lg:flex lg:gap-10
-            md:flex md:gap-3
+            md:flex md:gap-5
             sm:hidden hidden">
-          <span class="xl:font-bold lg:font-bold cursor-pointer">
-            Home
+          <span class="text-[#A3A3A3]">
+            Collections
           </span>
-          <span class="cursor-pointer">Collections</span>
-          <span class="cursor-pointer">New</span>
+          <router-link :to="{name: '/products/ProductsPage'}">
+            <span :class="isProducts ? 'font-semibold' : 'text-[#A3A3A3]'">Products</span>
+          </router-link>
+          <span class="text-[#A3A3A3]">New</span>
         </div>
-      </div>
-      <div>
-        <img :src=logo alt="" class="w-[45px]" />
       </div>
       <div class="xl:flex xl:gap-10
           lg:flex lg:gap-10
           md:flex md:gap-5
           sm:flex sm:gap-3
           flex gap-3">
-        <div class="xl:flex lg:flex md:flex sm:hidden hidden">
-          <img :src=liked alt="" class="cursor-pointer">
-        </div>
-        <div class="xl:flex xl:items-center lg:flex md:flex sm:hidden hidden cursor-pointer">
-            <span class="px-7 py-3.5 bg-black rounded-4xl text-white items-center">
-              Cart
+        <router-link :to="{name: '/profile/profile-products/FavoriteProductsPage'}">
+          <div class="xl:flex lg:flex md:flex sm:hidden hidden">
+            <img :src=liked alt="" class="">
+          </div>
+        </router-link>
+        <router-link :to="{name: '/profile/profile-products/ProductsCartPage'}">
+          <div class="xl:flex xl:items-center lg:flex md:flex ">
+            <span class="px-7 py-3.5 bg-black rounded-3xl text-white items-center md:flex hidden">
+                Cart
             </span>
-          <img :src=cart alt="" class="">
-        </div>
-        <img :src=profile alt="" class="cursor-pointer">
-      </div>
-    </div>
-    <div class="flex flex-col py-12 gap-5">
-      <div class="flex flex-col">
-        <span>MEN</span>
-        <span>WOMEN</span>
-        <span>KIDS</span>
-      </div>
-      <div class="flex">
-        <div class="relative">
-          <input type="text" class="bg-[#D9D9D9] h-[50px] w-[300px] sm:w-[400px] placeholder:px-45 xl:border-none xl:outline-none px-10 sm:placeholder:px-70" placeholder="Search">
-          <img :src=search alt="" class="absolute left-4 top-1/2 -translate-y-1/2">
-        </div>
+            <div class="relative">
+              <img :src=cartImg alt="" class="">
+              <div v-if="unreadCount > 0" class='absolute bottom-7 left-8 bg-black px-3 py-0.5 rounded-full'>
+                <span class="text-white text-lg">{{ unreadCount }}</span>
+              </div>
+            </div>
+          </div>
+        </router-link>
+        <router-link v-if="isProfile" :to="{name: '/profile/ProfilePage'}">
+          <img :src=profile alt="" class="">
+        </router-link>
       </div>
     </div>
   </nav>

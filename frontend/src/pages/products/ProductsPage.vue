@@ -3,7 +3,7 @@ import MainProducts from "../../feature/products/MainProducts.vue";
 </script>
 
 <template>
-  <div class="bg-[#FFF5EE]">
+  <div class="bg-[#F0F0F0] h-screen">
     <MainProducts />
   </div>
 </template>

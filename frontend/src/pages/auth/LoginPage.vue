@@ -1,11 +1,11 @@
 <script setup lang="ts">
 
-import Login from "../../feature/auth/Login.vue";
+import SignIn from "../../feature/auth/SignIn.vue";
 </script>
 
 <template>
   <div class="bg-[#F5F5F5] h-screen">
-    <Login />
+    <SignIn />
   </div>
 </template>
 

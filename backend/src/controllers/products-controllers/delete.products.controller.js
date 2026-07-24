@@ -1,6 +1,20 @@
 import { dbService } from "../../config/db.service.js";
 
-export const productsDeleteController = {
+export const deleteProductsController = {
+    async deleteProduct (req, res) {
+        try{
+            const db = dbService.readDB();
+
+            const productIndex = db.products.findIndex(p => p.id === req.params.id);
+            if (productIndex === -1) return res.status(404).json({ message: "Product not found" });
+            const [deletedProduct] = db.products.splice(productIndex, 1);
+
+            dbService.writeDB(db);
+            res.json(deletedProduct);
+        }catch (err){
+            res.status(500).json({error: err.message})
+        }
+    },
     async deleteCartItem (req, res) {
         try{
             const db = dbService.readDB();
@@ -36,20 +50,6 @@ export const productsDeleteController = {
             const orderIndex = db.order.findIndex(p => p.id === req.params.id);
             if (orderIndex === -1) return res.status(404).json({ message: "Order Product not found" });
             const [deletedProduct] = db.products.splice(orderIndex, 1);
-
-            dbService.writeDB(db);
-            res.json(deletedProduct);
-        }catch (err){
-            res.status(500).json({error: err.message})
-        }
-    },
-    async deleteProduct (req, res) {
-        try{
-            const db = dbService.readDB();
-
-            const productIndex = db.products.findIndex(p => p.id === req.params.id);
-            if (productIndex === -1) return res.status(404).json({ message: "Product not found" });
-            const [deletedProduct] = db.products.splice(productIndex, 1);
 
             dbService.writeDB(db);
             res.json(deletedProduct);

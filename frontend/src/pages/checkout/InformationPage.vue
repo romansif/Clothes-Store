@@ -1,11 +1,10 @@
 <script setup lang="ts">
-
-import MainInformation from "../../feature/checkout/information/MainInformation.vue";
+import Checkout from "../../feature/checkout/Checkout.vue";
 </script>
 
 <template>
-  <div class="bg-[#FFF5EE] h-screen">
-    <MainInformation />
+  <div class="bg-[#F0F0F0] lg:h-screen">
+    <Checkout />
   </div>
 </template>
 

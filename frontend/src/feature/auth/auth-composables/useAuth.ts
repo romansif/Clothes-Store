@@ -1,8 +1,8 @@
 import router from '../../../app/router/index.ts'
 import { handler, ApiError } from "../../../shared/api/http.ts"
-import { authForms } from "../../../shared/composables/forms/auth.forms.ts";
-import { authFormsErrors } from "../../../shared/composables/forms/forms-errors/auth.errors.ts";
-import { clearAuthForms } from "../../../shared/composables/forms/clear-forms/clear.auth.ts"
+import { authForms } from "../../../shared/composables/forms-composables/forms/auth.forms.ts";
+import { authFormsErrors } from "../../../shared/composables/forms-composables/forms-errors/auth.errors.ts";
+import { clearAuthForms } from "../../../shared/composables/forms-composables/clear-forms/clear.auth.ts"
 import { usersStore } from "../../../shared/composables/stores/users.store.ts";
 
 const { users, user } = usersStore()
@@ -48,7 +48,7 @@ export const useAuth = () => {
 
             (role === 'Buyer' ? clearRegisterBuyerForm() : clearRegisterSellerForm())
 
-            await router.push({ path: "/my/profile" })
+            await router.push({ path: "/profile/ProfilePage" })
         }catch(err){
             if(err instanceof ApiError){
                 const errors = err.response as Record<string, string> | undefined;
@@ -98,7 +98,7 @@ export const useAuth = () => {
             user.value = foundedUser.user
 
             clearLoginForm()
-            await router.push({ path: "/my/profile" })
+            await router.push({ path: "/profile/ProfilePage" })
         }catch(err){
             if(err instanceof ApiError){
                 const errors = err.response as Record<string, string> | undefined;
@@ -124,7 +124,7 @@ export const useAuth = () => {
             console.log('Не удалось выйти из аккаунта')
         }finally {
             localStorage.clear()
-            await router.replace({ name: 'signIn' })
+            await router.replace({ name: '/auth/LoginPage' })
         }
     };
 

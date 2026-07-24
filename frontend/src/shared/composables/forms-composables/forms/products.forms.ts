@@ -7,6 +7,8 @@ interface ProductForm {
     material: string,
     description: string,
     price: string,
+    gender: string,
+    quantity: number,
 }
 
 const createProductForm = ref<ProductForm>({
@@ -16,6 +18,8 @@ const createProductForm = ref<ProductForm>({
     material: '',
     description: '',
     price: '',
+    gender: '',
+    quantity: 0,
 })
 
 const moreCreateItem = reactive({
@@ -32,6 +36,8 @@ interface ProductFormMessage {
     priceMessage: string,
     colorMessage: string,
     sizeMessage: string,
+    genderMessage: string,
+    quantityMessage: string,
 }
 
 
@@ -44,6 +50,8 @@ const createProductFormMessages = ref<ProductFormMessage>({
     priceMessage: '',
     colorMessage: '',
     sizeMessage: '',
+    genderMessage: '',
+    quantityMessage: '',
 })
 
 interface AddForm {

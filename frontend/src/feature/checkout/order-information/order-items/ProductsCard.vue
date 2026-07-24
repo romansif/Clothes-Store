@@ -1,66 +1,62 @@
 <script setup lang="ts">
-import shirt_2 from '../../../app/assets/photos/home/shirt-2.png'
+const BASE_URL = 'http://localhost:3000';
+
+import { computed } from "vue";
+import { productsStore } from "../../../../shared/composables/stores/products.store.ts";
+
+const { items } = productsStore();
+
+
+const productPreview = computed(() => {
+  return(id: string) => {
+    if(!id){
+      console.log('Id не найден')
+      return
+    }
+
+    const product = items.value.find(p => p.id === id)
+    if(product && Array.isArray(product.images) && product.images[0]){
+      return `${BASE_URL}/${product.images[0]}`
+    }
+  }
+});
+
 </script>
 
 <template>
-  <li class="flex justify-between gap-3 w-full">
-    <div class="flex gap-3 font-medium text-xs">
-      <img :src="shirt_2" alt="" class="w-[113px]">
-      <div class="flex flex-col gap-3 mt-3">
-        <span class="">Basic Heavy T-shirt</span>
-        <span class="text-gray-400">Black/L</span>
-        <span class="mt-8">(<span class="text-blue-700 font-medium">1</span>)</span>
+  <TransitionGroup name="list">
+    <li v-for="product in items" :key="product?.id" class="flex justify-between gap-3 border border-gray-300 w-full">
+      <div class="flex items-center gap-3 font-medium text-xs">
+        <img :src="productPreview(product?.id)" alt="" class="w-[113px]">
+        <div class="flex flex-col gap-3 mt-3">
+          <div class="flex items-center gap-35">
+            <span class="">{{ product?.title }} {{ product?.category }}</span>
+            <span class="">$ {{product?.price }}</span>
+          </div>
+          <span class="text-gray-400">{{ product?.color }}/{{ product?.size }}</span>
+          <span class="mt-8">(<span class="text-blue-700 font-medium">{{ product?.quantity }}</span>)</span>
+        </div>
       </div>
-    </div>
-    <div class="flex flex-col gap-18 mt-3 font-medium text-xs">
-      <span class="">Change</span>
-      <span class="ml-auto">$ 90</span>
-    </div>
-  </li>
-  <li class="flex justify-between gap-3 w-full">
-    <div class="flex gap-3 font-medium text-xs">
-      <img :src="shirt_2" alt="" class="w-[113px]">
-      <div class="flex flex-col gap-3 mt-3">
-        <span class="">Basic Heavy T-shirt</span>
-        <span class="text-gray-400">Black/L</span>
-        <span class="mt-8">(<span class="text-blue-700 font-medium">1</span>)</span>
-      </div>
-    </div>
-    <div class="flex flex-col gap-18 mt-3 font-medium text-xs">
-      <span class="">Change</span>
-      <span class="ml-auto">$ 90</span>
-    </div>
-  </li>
-  <li class="flex justify-between gap-3 w-full">
-    <div class="flex gap-3 font-medium text-xs">
-      <img :src="shirt_2" alt="" class="w-[113px]">
-      <div class="flex flex-col gap-3 mt-3">
-        <span class="">Basic Heavy T-shirt</span>
-        <span class="text-gray-400">Black/L</span>
-        <span class="mt-8">(<span class="text-blue-700 font-medium">1</span>)</span>
-      </div>
-    </div>
-    <div class="flex flex-col gap-18 mt-3 font-medium text-xs">
-      <span class="">Change</span>
-      <span class="ml-auto">$ 90</span>
-    </div>
-  </li>
-  <li class="flex justify-between gap-3 w-full">
-    <div class="flex gap-3 font-medium text-xs">
-      <img :src="shirt_2" alt="" class="w-[113px]">
-      <div class="flex flex-col gap-3 mt-3">
-        <span class="">Basic Heavy T-shirt</span>
-        <span class="text-gray-400">Black/L</span>
-        <span class="mt-8">(<span class="text-blue-700 font-medium">1</span>)</span>
-      </div>
-    </div>
-    <div class="flex flex-col gap-18 mt-3 font-medium text-xs">
-      <span class="">Change</span>
-      <span class="ml-auto">$ 90</span>
-    </div>
-  </li>
+    </li>
+  </TransitionGroup>
 </template>
 
 <style scoped>
+.list-move, /* apply transition to moving elements */
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
 
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+/* ensure leaving items are taken out of layout flow so that moving
+   animations can be calculated correctly. */
+.list-leave-active {
+  position: absolute;
+}
 </style>

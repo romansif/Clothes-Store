@@ -3,7 +3,7 @@ import MainProfileProducts from "../../../feature/profile/profile-products/MainP
 </script>
 
 <template>
-  <div class="bg-[#FFF5EE] h-screen">
+  <div class="bg-[#F0F0F0] h-screen">
     <MainProfileProducts />
   </div>
 </template>

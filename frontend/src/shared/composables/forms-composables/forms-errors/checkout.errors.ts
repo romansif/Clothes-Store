@@ -36,14 +36,14 @@ const shippingErrors = ref<ShippingError>({
 interface PaymentError {
     cardNumberError: boolean,
     expiryDateError: boolean,
-    cvvError: boolean,
+    cardCvvError: boolean,
     paymentMethodError: boolean,
 }
 
 const paymentErrors = ref<PaymentError>({
     cardNumberError: false,
     expiryDateError: false,
-    cvvError: false,
+    cardCvvError: false,
     paymentMethodError: false,
 })
 

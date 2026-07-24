@@ -4,7 +4,7 @@ import MainInfo from "../../feature/products/products-info/MainInfo.vue";
 </script>
 
 <template>
-  <div class="bg-[#FFF5EE] h-screen">
+  <div class="bg-[#F0F0F0] h-screen">
     <MainInfo />
   </div>
 </template>

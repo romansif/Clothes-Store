@@ -1,6 +1,7 @@
 import { ref } from 'vue'
 
 interface Information {
+    addressName: string
     email: string,
     phone: string,
     firstName: string,
@@ -9,10 +10,11 @@ interface Information {
     stateRegion: string,
     address: string,
     city: string,
-    postalCode: number,
+    postalCode: string,
 }
 
 const information = ref<Information>({
+    addressName: '',
     email: '',
     phone: '',
     firstName: '',
@@ -21,7 +23,7 @@ const information = ref<Information>({
     stateRegion: '',
     address: '',
     city: '',
-    postalCode: 0,
+    postalCode: '',
 })
 
 interface InformationMessages {
@@ -37,15 +39,15 @@ interface InformationMessages {
 }
 
 const informationMessages = ref<InformationMessages>({
-    emailMessage: '',
-    phoneMessage: '',
-    firstNameMessage: '',
-    lastNameMessage: '',
-    countryMessage: '',
-    stateRegionMessage: '',
-    addressMessage: '',
-    cityMessage: '',
-    postalCodeMessage: '',
+    emailMessage: 'example@gmail.com',
+    phoneMessage: '+000 (00) 000-00-00',
+    firstNameMessage: 'FirstName',
+    lastNameMessage: 'LastName',
+    countryMessage: 'Country',
+    stateRegionMessage: 'State/Region',
+    addressMessage: 'Address',
+    cityMessage: 'City',
+    postalCodeMessage: 'Postal Code',
 })
 
 interface Shipping {
@@ -65,30 +67,32 @@ const shippingMessages = ref<ShippingMessage>({
 })
 
 interface Payment {
+    cardName: string,
     cardNumber: string,
     expiryDate: string,
-    cvv: number,
+    cardCvv: string,
     paymentMethod: string,
 }
 
 const payment = ref<Payment>({
+    cardName: '',
     cardNumber: '',
     expiryDate: '',
-    cvv: 0,
+    cardCvv: '',
     paymentMethod: '',
 })
 
 interface PaymentMessage {
     cardNumberMessage: string,
     expiryDateMessage: string,
-    cvvMessage: string,
+    cardCvvMessage: string,
     paymentMethodMessage: string,
-};
+}
 
 const paymentMessages = ref<PaymentMessage>({
     cardNumberMessage: '',
     expiryDateMessage: '',
-    cvvMessage: '',
+    cardCvvMessage: '',
     paymentMethodMessage: '',
 })
 

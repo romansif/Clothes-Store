@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import { Menu, MenuItems, MenuItem, MenuButton} from "@headlessui/vue";
 import { useAuth } from "../../auth/auth-composables/useAuth.ts";
-import { useProfile } from "../profile-composables/useProfile.ts";
+import { useDeleteProfile } from "../profile-composables/useDeleteProfile.ts";
 import { usersStore } from "../../../shared/composables/stores/users.store.ts";
-import { useProductsModals } from "../../../shared/composables/modals/products/productsModals.ts";
 
 const { logout } = useAuth();
 const { user } = usersStore();
-const { deleteAccount } = useProfile();
-const { toggleCreateProductModal } = useProductsModals();
+const { deleteAccount } = useDeleteProfile();
 </script>
 
 <template>
@@ -54,14 +52,6 @@ const { toggleCreateProductModal } = useProductsModals();
                 Become a seller
               </button>
             </router-link>
-          </MenuItem>
-        </div>
-        <div class="py-1" v-if="user.role === 'Seller'">
-          <MenuItem v-slot="{ active }">
-            <button  @click="toggleCreateProductModal" :class="[active ? 'bg-white/5 text-black outline-hidden' :
-                'text-[#A3A3A3]', 'block px-4 py-2 text-sm']">
-              Create product cover
-            </button>
           </MenuItem>
         </div>
       </MenuItems>

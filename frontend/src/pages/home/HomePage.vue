@@ -4,7 +4,7 @@ import Home from "../../feature/home/Home.vue";
 </script>
 
 <template>
-  <div class="bg-[#] h-screen">
+  <div class="bg-[#F0F0F0]">
     <Home />
   </div>
 </template>

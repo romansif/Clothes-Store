@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { usersStore } from "../../../../shared/composables/stores/users.store.ts";
 
-const { userCheckout } = usersStore();
+const { userAddress } = usersStore();
 </script>
 
 <template>
@@ -11,12 +11,12 @@ const { userCheckout } = usersStore();
         <span class="font-semibold">
           SHIP TO
         </span>
-        <router-link :to="{name: 'information'}" class="text-xs text-gray-500">
+        <router-link :to="{name: '/checkout/InformationPage'}" class="text-xs text-gray-500">
           Change
         </router-link>
       </div>
       <span class="text-xs text-gray-500">
-        {{ userCheckout.country }}, {{ userCheckout.city }}, {{ userCheckout.address }}
+        {{ userAddress?.country }}, {{ userAddress?.address }}
       </span>
     </div>
   </div>

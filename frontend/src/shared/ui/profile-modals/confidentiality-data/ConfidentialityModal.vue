@@ -1,16 +1,15 @@
 <script setup lang="ts">
 import { useProfileModals } from "../../../composables/modals/profile/profileModals.ts";
-import { usersStore } from "../../../composables/stores/users.store.ts";
 
-import ProfileForm from "../../../../feature/profile/profile-items/ProfileForm.vue";
+import ConfidentialityForm from "./ConfidentialityForm.vue";
+import UserData from "./UserData.vue";
 
-const { user } = usersStore();
 const { toggleConfidentialityData } = useProfileModals();
 </script>
 
 <template>
   <div class="font-[Montserrat] fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)]
-                                flex items-center justify-center py-8 ">
+                                flex items-center justify-center py-14 ">
     <div class="flex flex-col bg-white w-[1100px] h-full p-5 rounded-xl">
       <div class="flex flex-col gap-2 border-b pb-4">
         <div class="flex items-center">
@@ -22,33 +21,10 @@ const { toggleConfidentialityData } = useProfileModals();
         </div>
         <span class="text-sm text-[#A3A3A3]">You can view or change your confidential data.</span>
       </div>
-      <div class="flex justify-between border-b pb-4">
-        <div class="flex flex-col gap-4 mt-4 w-full">
-          <div v-if="user.publicPhone" class="flex gap-2 w-84">
-            <span class="font-semibold text-lg">Public Phone:</span>
-            <span class="font-medium text-lg text-[#A3A3A3]">{{ user.publicPhone }}</span>
-          </div>
-          <div v-if="!user.publicPhone" class="flex gap-2 w-84">
-            <span class="font-semibold text-lg">Private Phone:</span>
-            <span class="font-medium text-lg text-[#A3A3A3]">{{ user.privatePhone }}</span>
-          </div>
-          <div class="flex gap-2">
-            <span class="font-semibold text-lg">Email:</span>
-            <span class="font-medium text-lg text-[#A3A3A3]">{{ user.email }}</span>
-          </div>
-        </div>
-        <div class="flex flex-col gap-4 mt-4 w-full">
-          <div class="flex gap-2">
-            <span class="font-semibold text-lg">Company Name:</span>
-            <span class="font-medium text-lg text-[#A3A3A3]">{{ user.companyName }}</span>
-          </div>
-          <div class="flex gap-2">
-            <span class="font-semibold text-lg">Current Password:</span>
-            <span class="font-medium text-lg text-[#A3A3A3]">••••••••••••</span>
-          </div>
-        </div>
+      <div class="flex flex-col overflow-y-auto no-scrollbar h-[600px]">
+        <UserData />
+        <ConfidentialityForm />
       </div>
-      <ProfileForm />
     </div>
   </div>
 </template>

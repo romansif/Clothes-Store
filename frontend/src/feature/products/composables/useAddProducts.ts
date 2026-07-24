@@ -1,26 +1,25 @@
-import router from '../../../app/router/index.ts'
-import { ApiError, handler } from "../../../shared/api/http.ts";
-import { useGetProducts } from "./getProducts.ts";
-import { productsForms } from "../../../shared/composables/forms/products.forms.ts";
-import { checkoutForms } from "../../../shared/composables/forms/checkout.forms.ts";
-import { productsStore } from "../../../shared/composables/stores/products.store.ts";
-import { checkoutErrors } from "../../../shared/composables/forms/forms-errors/checkout.errors.ts";
-import { productsFormErrors } from "../../../shared/composables/forms/forms-errors/products.errors.ts";
-import { useProductsModals } from "../../../shared/composables/modals/products/productsModals.ts";
-import { clearProductsForms } from "../../../shared/composables/forms/clear-forms/clear.products.ts";
+import router from "../../../app/router";
 
-const { isAgreeForm } = checkoutForms();
-const { isAgreeFormError } = checkoutErrors();
-const { clearProductForm } = clearProductsForms();
-const { toggleCreateProductModal } = useProductsModals();
+import { useGetProducts } from "./getProducts.ts";
+import { ApiError, handler } from "../../../shared/api/http.ts";
+import { productsForms } from "../../../shared/composables/forms-composables/forms/products.forms.ts";
+import { productsStore } from "../../../shared/composables/stores/products.store.ts";
+import { productsFormErrors } from "../../../shared/composables/forms-composables/forms-errors/products.errors.ts";
+import { useProductsModals } from "../../../shared/composables/modals/products/productsModals.ts";
+import { clearProductsForms } from "../../../shared/composables/forms-composables/clear-forms/clear.products.ts";
+import { useCheckout } from "../../checkout/composables/useCheckout.ts";
+
+const { totalPrice } = useCheckout();
+const { toggleCreateProductModal, openNotify } = useProductsModals();
+const { clearProductForm, clearAddToCartForm } = clearProductsForms();
 const { createProductFormErrors, addCartFormErrors } = productsFormErrors();
-const { getCartProducts, getFavoriteProducts, getOrder } = useGetProducts();
+const { getFilteredProducts, getCartProducts, getFavoriteProducts } = useGetProducts();
 const { createProductForm, moreCreateItem, createProductFormMessages,
     addToCartForm, addToCartFormMessages } = productsForms();
-const { products, cart, favorite, order, product, orderItems, currentFile,
-    productFiles, productsPreview, unreadCount } = productsStore();
+const { products, cart, product, items, orders,
+    currentFile, productFiles, productsPreview, unreadCount } = productsStore();
 
-export const useProducts = () => {
+export const useAddProducts = () => {
     const onFilesSelected = (event: Event) => {
         const target = event.target as HTMLInputElement;
         if (!target.files || target.files.length === 0 || currentFile.value === null) {
@@ -61,12 +60,15 @@ export const useProducts = () => {
             moreCreateItem.size.forEach((size) => {
                 formData.append('size', String(size))
             });
+            formData.append('gender', createProductForm.value.gender);
+            formData.append('quantity', String(createProductForm.value.quantity));
+            formData.append('status', 'Availability');
 
             productFiles.value.forEach((file) => {
                 if(file){
                     formData.append('images', file)
                 }else{
-                    console.log('Product photo not found')
+                    console.log('Product photo not found.')
                     return
                 }
             });
@@ -92,6 +94,7 @@ export const useProducts = () => {
                     createProductFormErrors.value.descriptionError = !!errors.description;
                     createProductFormErrors.value.colorError = !!errors.color;
                     createProductFormErrors.value.sizeError = !!errors.size;
+                    createProductFormErrors.value.quantityError = !!errors.quantity;
 
                     createProductFormMessages.value.titleMessage = errors.title || '';
                     createProductFormMessages.value.categoryMessage = errors.category || '';
@@ -100,9 +103,10 @@ export const useProducts = () => {
                     createProductFormMessages.value.descriptionMessage = errors.description || '';
                     createProductFormMessages.value.colorMessage = errors.color || '';
                     createProductFormMessages.value.sizeMessage = errors.size || '';
+                    createProductFormMessages.value.quantityMessage = errors.quantity    || '';
                 }
             }
-            console.log('Не удалось создать обложку нового товара', err);
+            console.log('Не удалось создать обложку нового товара.', err);
         }
     };
 
@@ -126,6 +130,7 @@ export const useProducts = () => {
                     color: addToCartForm.value.color,
                     size: addToCartForm.value.size,
                     favorite: currentProduct.favorite,
+                    checked: currentProduct.checked,
                     quantity: 1,
                 })
             });
@@ -133,8 +138,12 @@ export const useProducts = () => {
 
             unreadCount.value += 1
 
+            clearAddToCartForm()
+            openNotify('You have successfully added the item to your cart.',
+                'You can click the button to the left of the "X" to go to the cart.',
+                '/profile/profile-products/ProductsCartPage')
+
             await getCartProducts()
-            alert('Product added successfully.')
         }catch(err){
             if(err instanceof ApiError){
                 const errors = err.response as Record<string, string>;
@@ -146,194 +155,121 @@ export const useProducts = () => {
                     addToCartFormMessages.value.sizeMessage = errors.size || '';
                 }
             }
-            console.log('Не удалось добавить товар в корзину', err);
+            console.log('Не удалось добавить товар в корзину.', err);
         }
     };
 
-    const addToFavorite = async (id: string) => {
+    const toggleToFavorite = async (id: string, type: string, productId: string) => {
+        const userId = localStorage.getItem("userId");
         try{
-            const userId = localStorage.getItem("userId");
+            const sourceList = type === 'cart' ? cart.value : products.value;
+            const currentProduct = sourceList?.find(item => item.id === id);
+            if(currentProduct) product.value = currentProduct
 
-            const currentProduct = product.value;
+            const isFavorite = product.value.favorite
+            const newStatus = !isFavorite
 
-            await handler(`/products/${id}`, {
-                method: "PATCH",
-                body: JSON.stringify({
-                    favorite: true
+            if(!isFavorite){
+                await handler(`/favorites`, {
+                    method: "POST",
+                    body: JSON.stringify({
+                        userId: userId,
+                        productId: product.value.id,
+                        // productId: product.value.productId,
+                        images: product.value.images,
+                        title: product.value.title,
+                        category: product.value.category,
+                        material: product.value.material,
+                        price: product.value.price,
+                        description: product.value.description,
+                        color: product.value.color,
+                        size: product.value.size,
+                        favorite: true,
+                        quantity: 1
+                    })
+                });
+                openNotify('You have successfully added the item to your favorite.',
+                    'You can click the button to the left of the "X" to go to the favorite.',
+                    '/profile/profile-products/FavoriteProductsPage')
+
+                await getFavoriteProducts();
+            }else{
+                await handler(`/favorites/${productId}`, {
+                    method: "DELETE",
                 })
-            });
 
-            const newFavoriteProduct = await handler(`/favorites`, {
-                method: "POST",
-                body: JSON.stringify({
-                    userId: userId,
-                    productId: currentProduct.id,
-                    images: currentProduct.images,
-                    title: currentProduct.title,
-                    category: currentProduct.category,
-                    material: currentProduct.material,
-                    price: currentProduct.price,
-                    description: currentProduct.description,
-                    color: currentProduct.color,
-                    size: currentProduct.size,
-                    favorite: true,
-                    quantity: 1,
-                })
-            });
-            favorite.value = newFavoriteProduct;
-
-            await getFavoriteProducts();
-            alert('Product added successfully.');
-        }catch(err){
-            console.log('Не удалось добавить товар в любимое', err);
-        }
-    };
-
-    const addToOrder = async () => {
-        try{
-            const userId = localStorage.getItem("userId");
-
-            if(!isAgreeFormError.value.agreeError) {
-                isAgreeForm.value.agreeMessage = 'You must agree to the Terms and Conditions to continue.';
-                return
+                await getFavoriteProducts();
             }
 
-            const newOrder = await handler(`/order`, {
-                method: "POST",
-                body: JSON.stringify({
-                    userId: userId,
-                    orderProducts: orderItems.value
-                })
-            });
+            await Promise.all([
+                await handler(`/cart/${id}`, {
+                    method: "PATCH",
+                    body: JSON.stringify({
+                        favorite: newStatus,
+                    })
+                }),
+                await getCartProducts(),
 
-            order.value = newOrder;
-
-            await getOrder();
-
-            alert('Product ordered successfully.')
-            await router.push({ path: '/checkout/information' });
+                await handler(`/products/${productId}`, {
+                    method: "PATCH",
+                    body: JSON.stringify({
+                        favorite: newStatus,
+                    })
+                }),
+                await getFilteredProducts('ALL', 'ALL'),
+            ])
         }catch(err){
-            console.log('Не удалось добавить товар в заказ', err);
+            console.log('Не удалось добавить товар в любимое.', err);
         }
     };
 
-    const checkedCartItem = async (id: string, product: any) => {
+    const addOrder = async () => {
+        const userId = localStorage.getItem("userId");
         try{
-            const productCart = cart.value?.find(c => c.id === id);
+            const date = new Date();
 
-            await handler(`/cart/${id}`, {
-                method: "PATCH",
+            const dateCreated = date.toLocaleDateString();
+
+            const time = date.toLocaleTimeString("ru-RU", {
+                hour: "2-digit",
+                minute: "2-digit",
+            });
+
+            const newOrder = await handler(`/orders`, {
+                method: "POST",
                 body: JSON.stringify({
-                    checked: true
+                    userId: userId,
+                    orderItems: items.value,
+                    orderTotal: Number(totalPrice.value),
+                    dateCreatedOrder: dateCreated,
+                    timeCreatedOrder: time,
+                    status: 'Convene'
                 })
             })
-            if(productCart){
-                productCart.checked = !productCart.checked;
-                const index = orderItems.value.findIndex(item => item.id === product.id);
-                if(index === -1) {
-                    orderItems.value.push(product);
-                }else{
-                    orderItems.value.splice(index, 1);
-                }
+            orders.value = newOrder;
+
+            const cartItems = await handler(`/cart/${userId}`, {
+                method: "GET",
+            })
+
+            const checkedItems = cartItems.filter((item: any) => item.checked === true);
+            for(const item of checkedItems) {
+                await handler(`/cart/${item.id}`, {
+                    method: "DELETE",
+                })
             }
+
+            await router.push({ name: '/profile/ProfilePage' })
         }catch(err){
-            console.log('Не удалось добавить товар к заказу', err)
+            console.log('Не удалось сделать заказ.', err);
         }
     }
-
-    const updateCartItem = async (type: string, id: string) => {
-        try{
-            const productCart = cart.value?.find(c => c.id === id);
-
-            const currentPrice = Number(productCart?.price) || 0;
-            const currentQuantity = Number(productCart?.quantity) || 1;
-
-            if(productCart){
-                if(type === 'add'){
-                    const newPrice = currentPrice * 2;
-                    const newQuantity = currentQuantity + 1;
-
-                    await handler(`/cart/${id}`, {
-                        method: "PATCH",
-                        body: JSON.stringify({
-                            price: newPrice,
-                            quantity: newQuantity,
-                        })
-                    });
-                }else if(type === 'away'){
-                    if(currentQuantity === 1){
-                        await deleteProductCart(id);
-                    }else{
-                        const newPrice = currentPrice / 2;
-                        const newQuantity = currentQuantity - 1;
-
-                        await handler(`/cart/${id}`, {
-                            method: "PATCH",
-                            body: JSON.stringify({
-                                price: newPrice,
-                                quantity: newQuantity,
-                            })
-                        });
-                    }
-                }
-                await getCartProducts();
-            }
-        }catch(err){
-            console.log('Не удалось обновить колличество товара', err)
-        }
-    };
-
-    const deleteProductCart = async (id: string) => {
-        try{
-            await handler(`/cart/${id}`, {
-                method: "DELETE",
-            });
-
-            await getCartProducts();
-        }catch(err){
-            console.log('Не удалось удалить товар', err);
-        }
-    };
-
-    const deleteFavoriteProduct = async (id: string, productId: string) => {
-        try{
-            await handler(`/favorites/${id}`, {
-                method: "DELETE",
-            });
-
-            await handler(`/update/${productId}`, {
-                method: "PATCH",
-                body: JSON.stringify({
-                    favorite: false,
-                })
-            });
-
-            await getFavoriteProducts();
-        }catch(err){
-            console.log('Не удалось удалить товар', err);
-        }
-    };
-
-    const deleteOrderProducts = async (id: string) => {
-        try{
-            await handler(`/order/${id}`, {
-                method: "DELETE",
-            });
-        }catch(err){
-            console.log('Не удалось удалить товары из заказа', err);
-        }
-    };
 
     return {
         createProduct,
         onFilesSelected,
         addToCart,
-        addToFavorite,
-        addToOrder,
-        checkedCartItem,
-        updateCartItem,
-        deleteProductCart,
-        deleteFavoriteProduct,
-        deleteOrderProducts
+        toggleToFavorite,
+        addOrder
     }
 }

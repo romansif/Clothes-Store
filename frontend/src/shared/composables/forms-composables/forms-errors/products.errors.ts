@@ -9,6 +9,8 @@ interface ProductFormError {
     priceError: boolean,
     colorError: boolean,
     sizeError: boolean,
+    genderError: boolean,
+    quantityError: boolean,
 }
 
 const createProductFormErrors = ref<ProductFormError>({
@@ -20,6 +22,8 @@ const createProductFormErrors = ref<ProductFormError>({
     priceError: false,
     colorError: false,
     sizeError: false,
+    genderError: false,
+    quantityError: false,
 })
 
 interface AddFormError {

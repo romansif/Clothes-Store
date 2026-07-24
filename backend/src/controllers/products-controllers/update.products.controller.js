@@ -1,6 +1,6 @@
 import { dbService } from "../../config/db.service.js";
 
-export const productsUpdateController = {
+export const updateProductsController = {
     async updateProductItem (req, res) {
         try{
             const db = dbService.readDB()

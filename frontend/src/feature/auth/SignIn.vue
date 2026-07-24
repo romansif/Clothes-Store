@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { watch, ref } from "vue";
-import { useAuth } from "./auth-composables/auth.ts";
-import { authForms } from "../../shared/composables/forms/auth.forms.ts";
-import { authFormsErrors } from "../../shared/composables/forms/forms-errors/auth.errors.ts";
-import { clearAuthForms } from "../../shared/composables/forms/clear-forms/clear.auth.ts";
+import { useAuth } from "./auth-composables/useAuth.ts";
+import { authForms } from "../../shared/composables/forms-composables/forms/auth.forms.ts";
+import { authFormsErrors } from "../../shared/composables/forms-composables/forms-errors/auth.errors.ts";
+import { clearAuthForms } from "../../shared/composables/forms-composables/clear-forms/clear.auth.ts";
 
 import closed from "../../app/assets/icons/auth/closed.png";
 import opened from "../../app/assets/icons/auth/opened.png";
 import maki_arrow from "../../app/assets/icons/arrows/maki--arrow.svg";
 import BaseButton from "../../shared/ui/button/BaseButton.vue";
 
-const { login } = useAuth();
+const { signIn } = useAuth();
 const { clearLoginForm } = clearAuthForms()
 const { loginFormErrors } = authFormsErrors()
 const { loginForm, loginFormMessages } = authForms()
@@ -38,9 +38,9 @@ const togglePassword = () => {
       <div class="flex items-center justify-center">
         <div class="w-[235px] sm:w-[275px]">
           <div class="font-medium flex items-center justify-between">
-            <span class="">LOGIN</span>
-            <router-link :to="{name: 'register'}" @click=clearLoginForm>
-              <span class="text-[#A3A3A3]">REGISTRATION</span>
+            <span class="">SIGN IN</span>
+            <router-link :to="{name: '/auth/Register'}" @click=clearLoginForm>
+              <span class="text-[#A3A3A3]">SIGN UP</span>
             </router-link>
           </div>
         </div>
@@ -49,7 +49,7 @@ const togglePassword = () => {
         <span>WELCOME TO</span>
         <span class="text-[#A3A3A3]">THE STORE</span>
       </div>
-      <form @keydown.enter=login action="" class="flex flex-col gap-6 mt-10">
+      <form @keydown.enter="signIn" action="" class="flex flex-col gap-6 mt-10">
         <div class="flex flex-col gap-2">
           <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">EMAIL</label>
           <input v-model=loginForm.email type="text" class="bg-[#D9D9D9]/40 w-full outline-none
@@ -71,7 +71,7 @@ const togglePassword = () => {
         </div>
       </form>
       <div class="relative">
-        <BaseButton @click=login name="LOGIN" variant="login" />
+        <BaseButton @click="signIn" name="SIGN IN" variant="login" />
         <img :src=maki_arrow alt="" class="absolute w-[25px] top-13.5 left-58 sm:left-83">
       </div>
     </div>

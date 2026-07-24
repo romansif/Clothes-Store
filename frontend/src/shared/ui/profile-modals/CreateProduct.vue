@@ -8,7 +8,7 @@ import { useAddProducts } from "../../../feature/products/composables/useAddProd
 
 const { createProductFormErrors } = productsFormErrors()
 const { createProduct, onFilesSelected } = useAddProducts()
-const { colors, sizes, productsPreview } = productsStore();
+const { colors, sizes, categories, materials, genders, productsPreview } = productsStore();
 const { createProductForm, moreCreateItem, createProductFormMessages } = productsForms();
 const { toggleCreateProductModal, openSelectProductCard, fileInput } = useProductsModals()
 
@@ -72,13 +72,13 @@ watch(() => [
 
 <template>
   <div class="font-[Montserrat] fixed inset-0 z-50 flex items-center justify-center">
-    <div class="py-8 px-5 bg-[#F0F0F0] shadow-md overflow-hidden w-full h-full">
+    <div class="py-4 px-5 bg-[#F0F0F0] shadow-md overflow-hidden w-full h-full">
       <h1 class="font-semibold text-[#A3A3A3] text-2xl">
         CREATING A COVER FOR A NEW PRODUCT
       </h1>
-      <div class="flex gap-30 mt-10">
-        <form action="" class="w-[1000px] mt-2">
-          <div class="flex flex-col gap-5">
+      <div class="flex gap-30 mt-4">
+        <form @keydown.enter="createProduct" action="" class="w-[1000px] mt-2">
+          <div class="flex flex-col gap-4">
             <div class="flex gap-5">
               <div class="flex flex-col gap-2 w-full">
                 <label for="" class="font-semibold uppercase tracking-wider text-xs text-[#A3A3A3]">TITLE</label>
@@ -90,29 +90,39 @@ watch(() => [
               </div>
               <div class="flex flex-col gap-2 w-full">
                 <label for="" class="font-semibold uppercase tracking-wider text-xs text-[#A3A3A3]">CATEGORY</label>
-                <input v-model="createProductForm.category" type="text" class="border border-gray-200 rounded-sm outline-none
-                  px-6 py-5 text-sm bg-white" placeholder="shirt, pants etc.">
+                <select v-model="createProductForm.category" type="text" class="border border-gray-200 rounded-sm outline-none
+                  px-4 py-5 text-sm bg-white">
+                  <option disabled hidden value="">
+                    Chose category
+                  </option>
+                  <option v-for="category in categories">{{ category.category }}</option>
+                </select>
                 <span v-if="createProductFormErrors.categoryError" class="text-red-600 text-xs">
-                {{ createProductFormMessages.categoryMessage }}
-              </span>
+                  {{ createProductFormMessages.categoryMessage }}
+                </span>
               </div>
             </div>
             <div class="flex gap-5">
               <div class="flex flex-col gap-2 w-full">
                 <label for="" class="font-semibold uppercase tracking-wider text-xs text-[#A3A3A3]">MATERIAL</label>
-                <input v-model="createProductForm.material" type="text" class="border border-gray-200 rounded-sm outline-none
-                  px-6 py-5 text-sm bg-white" placeholder="cotton, polyester etc.">
+                <select v-model="createProductForm.material" type="text" class="border border-gray-200 rounded-sm outline-none
+                  px-4 py-5 text-sm bg-white">
+                  <option disabled value="">
+                    Chose material
+                  </option>
+                  <option v-for="material in materials">{{ material.material }}</option>
+                </select>
                 <span v-if="createProductFormErrors.materialError" class="text-red-600 text-xs">
-                {{ createProductFormMessages.materialMessage }}
-              </span>
+                  {{ createProductFormMessages.materialMessage }}
+                </span>
               </div>
               <div class="flex flex-col gap-2 w-full">
                 <label for="" class="font-semibold uppercase tracking-wider text-xs text-[#A3A3A3]">PRICE</label>
                 <input v-model="createProductForm.price" type="number" class="border border-gray-200 rounded-sm outline-none
                   px-6 py-5 text-sm bg-white" placeholder="$00.00">
                 <span v-if="createProductFormErrors.priceError" class="text-red-600 text-xs">
-                {{ createProductFormMessages.priceMessage }}
-              </span>
+                  {{ createProductFormMessages.priceMessage }}
+                </span>
               </div>
             </div>
             <div class="flex flex-col gap-2">
@@ -120,38 +130,69 @@ watch(() => [
               <textarea v-model="createProductForm.description" type="text" class="h-[100px] border border-gray-200 rounded-sm
                 outline-none px-6 py-5 text-sm bg-white" placeholder="short desc. product" />
               <span v-if="createProductFormErrors.descriptionError" class="text-red-600 text-xs">
-              {{ createProductFormMessages.descriptionMessage }}
-            </span>
-            </div>
-            <div class="flex gap-20">
-              <div class="flex flex-col gap-3">
-                <label for="" class="font-semibold uppercase tracking-wider text-xs text-[#A3A3A3]">
-                  COLOR
-                </label>
-                <div class="grid grid-cols-6 gap-5">
-                  <div v-for="color in colors" :key="color.name" :class="[color.color,
-                     moreCreateItem.color.includes(color.name)
-                      ? 'scale-120 border-3 border-black w-[60px] h-[60px]'
-                      : 'hover:scale-110 w-[60px] h-[60px]']" @click="toggleColor(color.name)"></div>
-                </div>
-                <span v-if="createProductFormErrors.colorError" class="text-red-600 text-xs">
-                {{ createProductFormMessages.colorMessage }}
+                {{ createProductFormMessages.descriptionMessage }}
               </span>
+            </div>
+            <div class="flex gap-6">
+              <div class="flex gap-3">
+                <div class="flex flex-col gap-3 w-[240px]">
+                  <label for="" class="font-semibold uppercase tracking-wider text-xs text-[#A3A3A3]">
+                    Gender
+                  </label>
+                  <div class="flex flex-col gap-5">
+                    <select v-model="createProductForm.gender" type="number" class="border border-gray-200 rounded-sm outline-none
+                          px-4 py-5 text-sm bg-white">
+                      <option disabled value="">
+                        Chose gender
+                      </option>
+                      <option v-for="gender in genders">{{ gender.gender }}</option>
+                    </select>
+                    <span v-if="createProductFormErrors.genderError" class="text-red-600 text-xs">
+                        {{ createProductFormMessages.genderMessage }}
+                    </span>
+                  </div>
+                </div>
+                <div class="flex flex-col gap-3 w-[240px]">
+                  <label for="" class="font-semibold uppercase tracking-wider text-xs text-[#A3A3A3]">
+                    Quantity
+                  </label>
+                  <div class="flex flex-col gap-5">
+                    <input v-model="createProductForm.quantity" type="number" class="w-full border border-gray-200 rounded-sm outline-none
+                          px-6 py-5 text-sm bg-white" placeholder="quantity of product">
+                    <span v-if="createProductFormErrors.quantityError" class="text-red-600 text-xs">
+                        {{ createProductFormMessages.quantityMessage }}
+                      </span>
+                  </div>
+                </div>
               </div>
               <div class="flex flex-col gap-3">
                 <label for="" class="font-semibold uppercase tracking-wider text-xs text-[#A3A3A3]">
                   SIZE
                 </label>
-                <div class="flex gap-5">
+                <div class="flex gap-6">
                   <img v-for="size in sizes" :key="size.name" :src=size.url alt="" :class="[size.class,
-                    moreCreateItem.size.includes(size.name)
-                      ? 'scale-120 border-black w-[60px] h-[60px]'
-                      : 'hover:scale-110 w-[60px]']" @click="toggleSize(size.name)">
+                        moreCreateItem.size.includes(size.name)
+                          ? 'scale-120 border-black w-[60px] h-[60px]'
+                          : 'hover:scale-110 w-[60px]']" @click="toggleSize(size.name)">
                 </div>
                 <span v-if="createProductFormErrors.sizeError" class="text-red-600 text-xs">
-                {{ createProductFormMessages.sizeMessage }}
-              </span>
+                      {{ createProductFormMessages.sizeMessage }}
+                  </span>
               </div>
+            </div>
+            <div class="flex flex-col gap-3">
+              <label for="" class="font-semibold uppercase tracking-wider text-xs text-[#A3A3A3]">
+                COLOR
+              </label>
+              <div class="grid grid-cols-12 gap-6">
+                <div v-for="color in colors" :key="color.name" :class="[color.color,
+                     moreCreateItem.color.includes(color.name)
+                      ? 'scale-120 border-3 border-black w-[62px] h-[62px]'
+                      : 'hover:scale-110 w-[62px] h-[62px]']" @click="toggleColor(color.name)"></div>
+              </div>
+              <span v-if="createProductFormErrors.colorError" class="text-red-600 text-xs">
+                  {{ createProductFormMessages.colorMessage }}
+                </span>
             </div>
           </div>
         </form>
@@ -175,7 +216,7 @@ watch(() => [
         </div>
       </div>
       <div class="flex">
-        <div class="flex gap-10 mt-4">
+        <div class="flex gap-10 mt-3">
           <button @click="toggleCreateProductModal" class="bg-black text-white rounded px-20 py-5 font-semibold text-start">
             Close
           </button>

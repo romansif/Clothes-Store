@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { dbService } from "../../config/db.service.js";
 
-export const productsAddController = {
+export const addProductsController = {
     async createdProduct (req, res) {
         try{
             const db = dbService.readDB()

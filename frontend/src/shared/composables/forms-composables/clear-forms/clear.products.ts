@@ -1,8 +1,8 @@
-import { productsForms } from "../products.forms.ts";
+import { productsForms } from "../forms/products.forms.ts";
 import { productsFormErrors } from "../forms-errors/products.errors.ts";
 
-const { createProductFormErrors } = productsFormErrors();
-const { createProductForm, createProductFormMessages, searchProductForm } = productsForms();
+const { createProductFormErrors, addCartFormErrors } = productsFormErrors();
+const { createProductForm, addToCartForm, addToCartFormMessages, moreCreateItem, createProductFormMessages, searchProductForm } = productsForms();
 
 export const clearProductsForms = () => {
     const clearProductForm = () => {
@@ -11,7 +11,9 @@ export const clearProductsForms = () => {
         createProductForm.value.material = ''
         createProductForm.value.description = ''
         createProductForm.value.price = ''
-        createProductForm.value.color = ''
+        createProductForm.value.quantity = 0
+        moreCreateItem.size = []
+        moreCreateItem.size = []
 
         createProductFormMessages.value.titleMessage = ''
         createProductFormMessages.value.colorMessage = ''
@@ -20,6 +22,7 @@ export const clearProductsForms = () => {
         createProductFormMessages.value.priceMessage = ''
         createProductFormMessages.value.colorMessage = ''
         createProductFormMessages.value.sizeMessage = ''
+        createProductFormMessages.value.quantityMessage = ''
 
         createProductFormErrors.value.titleError = false
         createProductFormErrors.value.categoryError = false
@@ -28,6 +31,18 @@ export const clearProductsForms = () => {
         createProductFormErrors.value.priceError = false
         createProductFormErrors.value.colorError = false
         createProductFormErrors.value.sizeError = false
+        createProductFormErrors.value.quantityError = false
+    }
+
+    const clearAddToCartForm = () => {
+        addToCartForm.value.color = ''
+        addToCartForm.value.size = ''
+
+        addToCartFormMessages.value.colorMessage = ''
+        addToCartFormMessages.value.sizeMessage = ''
+
+        addCartFormErrors.value.colorError = false
+        addCartFormErrors.value.sizeError = false
     }
 
     const clearSearchForm = () => {
@@ -36,6 +51,7 @@ export const clearProductsForms = () => {
 
     return{
         clearProductForm,
+        clearAddToCartForm,
         clearSearchForm
     }
 }

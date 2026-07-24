@@ -2,13 +2,13 @@
 const BASE_URL = 'http://localhost:3000';
 
 import { computed } from "vue";
-import { useUserModals } from "../../composables/modals/profile/profileModals.ts";
-import { useProfile } from "../../../feature/profile/profile-composables/useProfile.ts";
+import { useProfileModals } from "../../composables/modals/profile/profileModals.ts";
+import { useAddProfile } from "../../../feature/profile/profile-composables/useAddProfile.ts";
 import { usersStore } from "../../composables/stores/users.store.ts";
 
 const { user } = usersStore();
-const { updateAvatarAccount } = useProfile();
-const { toggleAvatar, openSelectAvatar, fileInput } = useUserModals();
+const { updateAvatarAccount } = useAddProfile();
+const { toggleAvatar, openSelectAvatar, fileInput } = useProfileModals();
 
 const userAvatar = computed(() => {
   if(user.value && user.value.avatarUrl){

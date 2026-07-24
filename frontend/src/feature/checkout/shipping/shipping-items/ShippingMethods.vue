@@ -1,9 +1,63 @@
 <script setup lang="ts">
+import { checkoutForms } from "../../../../shared/composables/forms-composables/forms/checkout.forms.ts";
+import { checkoutErrors }from "../../../../shared/composables/forms-composables/forms-errors/checkout.errors.ts";
 
+const { shippingErrors } = checkoutErrors();
+const { shipping, shippingMessages } = checkoutForms();
 </script>
 
 <template>
-  $END$
+  <div class="flex flex-col mt-8 gap-5">
+    <label class="font-medium text-xs md:text-sm">
+      SHIPPING METHODS
+    </label>
+    <div class="flex gap-3">
+      <form action="" class="flex flex-col gap-6 w-full">
+        <div>
+          <div class="flex justify-between items-center px-3 py-6 border border-gray-200 rounded-xl bg-white">
+            <div class="flex items-center gap-3">
+              <input v-model="shipping.delivery" value="standard" type="radio" name="shipping-method" class="accent-black w-4 h-4">
+              <div class="flex flex-col">
+                <span class="font-semibold">
+                  STANDARD SHIPPING
+                </span>
+                <span class="text-xs text-gray-500">
+                  Delivery in 3-5 business days
+                </span>
+              </div>
+            </div>
+            <span class="text-sm">
+              Free
+            </span>
+          </div>
+          <span v-if="shippingErrors.deliveryError" class="text-red-600 text-xs">
+            {{ shippingMessages.deliveryMessage }}
+          </span>
+        </div>
+        <div>
+          <div class="flex justify-between items-center px-3 py-6 border border-gray-200 rounded-xl bg-white">
+            <div class="flex items-center gap-3">
+              <input v-model="shipping.delivery" value="express" type="radio" name="shipping-method" class="accent-black w-4 h-4">
+              <div class="flex flex-col">
+                <span class="font-semibold">
+                  EXPRESS COURIER
+                </span>
+                <span class="text-xs text-gray-500">
+                  Delivery tomorrow morning
+                </span>
+              </div>
+            </div>
+            <span class="text-sm">
+              $15.00
+            </span>
+          </div>
+          <span v-if="shippingErrors.deliveryError" class="text-red-600 text-xs">
+            {{ shippingMessages.deliveryMessage }}
+          </span>
+        </div>
+      </form>
+    </div>
+  </div>
 </template>
 
 <style scoped>

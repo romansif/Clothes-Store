@@ -1,9 +1,46 @@
 <script setup lang="ts">
+import { watch } from "vue";
+import { useAddProfile } from "../../profile/profile-composables/useAddProfile.ts";
+import { checkoutForms } from "../../../shared/composables/forms-composables/forms/checkout.forms.ts";
+import { checkoutErrors } from "../../../shared/composables/forms-composables/forms-errors/checkout.errors.ts";
 
+import PaymentMethods from "./payment-items/PaymentMethods.vue";
+import arrow from "../../../app/assets/icons/arrows/shop.svg";
+import BaseButton from "../../../shared/ui/button/BaseButton.vue";
+
+const { addPayment } = useAddProfile();
+const { payment } = checkoutForms();
+const { paymentErrors } = checkoutErrors();
+
+watch(() => [payment.value.cardNumber, payment.value.expiryDate, payment.value.cardCvv, payment.value.paymentMethod],
+    ([cardNumber, expiryDate, cardCvv, paymentMethod]) => {
+  if(cardNumber) {
+    paymentErrors.value.cardNumberError = false
+    paymentErrors.value.paymentMethodError = false
+  }
+  if(expiryDate) {
+    paymentErrors.value.expiryDateError = false
+    paymentErrors.value.paymentMethodError = false
+  }
+  if(cardCvv) {
+    paymentErrors.value.cardCvvError = false
+    paymentErrors.value.paymentMethodError = false
+  }
+  if(paymentMethod) {
+    paymentErrors.value.paymentMethodError = false
+  }
+})
 </script>
 
 <template>
-
+  <div class="flex flex-col lg:w-[400px] xl:w-[500px]">
+    <PaymentMethods />
+    <div class="relative mt-5 sm:ml-auto">
+      <BaseButton @click="addPayment()" name="Pay" variant="checkOut"/>
+      <img :src=arrow alt="" class="h-13 absolute left-75 top-1/2 -translate-y-1/2
+          sm:left-60 md:left-75 lg:left-34 xl:left-46">
+    </div>
+  </div>
 </template>
 
 <style scoped>

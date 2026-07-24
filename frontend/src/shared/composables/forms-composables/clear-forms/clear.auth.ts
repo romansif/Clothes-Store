@@ -1,4 +1,4 @@
-import { authForms } from "../auth.forms.ts";
+import { authForms } from "../forms/auth.forms.ts";
 import { authFormsErrors } from "../forms-errors/auth.errors.ts";
 
 const { registerFormErrors, loginFormErrors } = authFormsErrors();
