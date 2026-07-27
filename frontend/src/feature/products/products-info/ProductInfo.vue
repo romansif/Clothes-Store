@@ -103,7 +103,8 @@ watch(() => [addToCartForm.value.color, addToCartForm.value.size], ([color, size
           ADD TO CART
         </span>
       </router-link>
-      <BaseButton @click="addToCart()" v-if="userId" name="ADD TO CART" variant="addToCart" />
+      <BaseButton @click="addToCart()" v-if="userId && product.status === 'Availability'" name="ADD TO CART" variant="addToCart" />
+      <BaseButton v-if="userId && product.status === 'Exhausted'" name="OUT OF STACK" variant="outOfStack" />
     </div>
   </div>
 </template>

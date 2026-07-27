@@ -32,8 +32,7 @@ export const updateUsersController = {
                 return res.status(400).json({ message: 'Неверный текущий пароль' });
             }
 
-            const hashedPassword = await bcrypt.hash(newPassword, 10);
-            user.password = hashedPassword;
+            user.password = await bcrypt.hash(newPassword, 10);
 
             dbService.writeDB(db);
             return res.status(200).json({ message: 'Пароль успешно изменен' });

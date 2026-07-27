@@ -129,9 +129,11 @@ export const useAddProducts = () => {
                     description: currentProduct.description,
                     color: addToCartForm.value.color,
                     size: addToCartForm.value.size,
+                    gender: currentProduct.gender,
+                    quantity: 1,
+                    status: currentProduct.status,
                     favorite: currentProduct.favorite,
                     checked: currentProduct.checked,
-                    quantity: 1,
                 })
             });
             cart.value = newProductCart
@@ -164,7 +166,7 @@ export const useAddProducts = () => {
         try{
             const sourceList = type === 'cart' ? cart.value : products.value;
             const currentProduct = sourceList?.find(item => item.id === id);
-            if(currentProduct) product.value = currentProduct
+            if(!currentProduct) return
 
             const isFavorite = product.value.favorite
             const newStatus = !isFavorite
@@ -174,18 +176,19 @@ export const useAddProducts = () => {
                     method: "POST",
                     body: JSON.stringify({
                         userId: userId,
-                        productId: product.value.id,
-                        // productId: product.value.productId,
-                        images: product.value.images,
-                        title: product.value.title,
-                        category: product.value.category,
-                        material: product.value.material,
-                        price: product.value.price,
-                        description: product.value.description,
-                        color: product.value.color,
-                        size: product.value.size,
+                        productId:currentProduct?.id,
+                        images: currentProduct?.images,
+                        title: currentProduct?.title,
+                        category: currentProduct?.category,
+                        material: currentProduct?.material,
+                        price: currentProduct?.price,
+                        description: currentProduct?.description,
+                        color: currentProduct?.color,
+                        size: currentProduct?.size,
+                        gender: currentProduct?.gender,
+                        quantity: 1,
+                        status: currentProduct?.status,
                         favorite: true,
-                        quantity: 1
                     })
                 });
                 openNotify('You have successfully added the item to your favorite.',

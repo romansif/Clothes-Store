@@ -25,7 +25,7 @@ const productPreview = computed(() => {
 
 <template>
   <TransitionGroup name="list">
-    <li v-for="product in items" :key="product?.id" class="flex justify-between gap-3 border border-gray-300 w-full">
+    <li v-for="product in items" :key="product?.id" class="flex justify-between gap-3 w-full">
       <div class="flex items-center gap-3 font-medium text-xs">
         <img :src="productPreview(product?.id)" alt="" class="w-[113px]">
         <div class="flex flex-col gap-3 mt-3">

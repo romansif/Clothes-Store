@@ -33,8 +33,10 @@ const productPreview = computed(() => {
     <li @click="getProductId(product.id)" v-for="product in products" :key="product.id" class="flex flex-col flex-shrink-0">
       <div class="relative">
         <router-link :to="{ name: '/products/ProductsInfoPage' }">
-          <img :src="productPreview(product.id)" alt="" class="w-full h-[180px] sm:h-[314px] xl:h-[400px]" />
+          <img :src="productPreview(product.id)" alt="" :class="['w-full h-[180px] sm:h-[314px] xl:h-[400px]',
+              product.status === 'Availability' ? '' : 'opacity-40']" />
         </router-link>
+        <span v-if="product.status === 'Exhausted'" class="absolute top-1/2 left-1/20 text-5xl font-semibold -rotate-45">Out Of Stack</span>
         <img @click="toggleToFavorite(product.id, 'product', product.id)" :src="product.favorite ? liked : like" alt=""
              class="absolute top-0.5 left-77 w-[35px]">
       </div>

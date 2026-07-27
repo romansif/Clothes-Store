@@ -10,11 +10,11 @@ import BaseButton from "../../../../shared/ui/button/BaseButton.vue";
 
 const { isAgreeForm } = checkoutForms();
 const { isAgreeFormError } = checkoutErrors();
-const { toggleAgree, continueToOrder, price, totalPrice, commissionPrice } = useProfileProducts()
+const { toggleAgree, continueToOrder, price, totalPrice, commissionPrice } = useProfileProducts();
 
 watch(() => isAgreeFormError.value.agreeError, (agreeError) => {
   if(agreeError === true) {
-    isAgreeForm.value.agreeMessage = ''
+    isAgreeForm.value.agreeMessage = '';
   }
 })
 </script>

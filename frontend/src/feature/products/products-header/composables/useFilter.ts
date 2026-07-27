@@ -1,174 +1,92 @@
-import {computed, ref} from "vue";
+import { ref } from "vue";
 import { useGetProducts } from "../../composables/getProducts.ts";
-import { productsStore } from "../../../../shared/composables/stores/products.store.ts";
 
-const { allProducts } = productsStore();
 const { getFilteredProducts } = useGetProducts();
 
 export const useFilter = () => {
-    const isAvailability = ref<boolean>(true);
-    const isOutOfStack = ref<boolean>(false);
+    const stackProducts = ref<Record<string, boolean>>({
+        Availability: true,
+        Exhausted: false,
+    })
 
-    const isMan = ref<boolean>(false);
-    const isWoman = ref<boolean>(false);
-    const isKids = ref<boolean>(false);
+    const genders = ref<Record<string, boolean>>({
+        Man: false,
+        Woman: false,
+        Kids: false,
+    })
 
-    const isWhite = ref<boolean>(false);
-    const isBlack = ref<boolean>(false);
-    const isBurgundy = ref<boolean>(false);
-    const isRed = ref<boolean>(false);
-    const isGreen = ref<boolean>(false);
-    const isBlue = ref<boolean>(false);
+    const colors = ref<Record<string, boolean>>({
+        White: false,
+        Black: false,
+        Rose: false,
+        Red: false,
+        Green: false,
+        Blue: false,
+    })
 
-    const toggleAvailability = async (type: string) => {
-        switch (type) {
-            case "Availability":
-                isAvailability.value = true;
-                isOutOfStack.value = false;
-                break;
-            case "Out Of Stack":
-                isAvailability.value = false;
-                isOutOfStack.value = true;
-                break;
-        }
-        isWhite.value = false;
-        isBlack.value = false;
-        isBurgundy.value = false;
-        isRed.value = false;
-        isBlue.value = false;
-        isGreen.value = false;
-        isMan.value = false;
-        isWoman.value = false;
-        isKids.value = false;
-        await getFilteredProducts('ALL', type);
-    };
+    const category = ref<Record<string, boolean>>({
+        Availability: true,
+    })
 
-    const toggleGender = async (type: string) => {
-        switch (type) {
-            case "Man":
-                isMan.value = true;
-                isWoman.value = false;
-                isKids.value = false;
-                break;
-            case "Woman":
-                isMan.value = false;
-                isWoman.value = true;
-                isKids.value = false;
-                break;
-            case "Kids":
-                isMan.value = false;
-                isWoman.value = false;
-                isKids.value = true;
-                break;
-        }
-        isWhite.value = false;
-        isBlack.value = false;
-        isBurgundy.value = false;
-        isRed.value = false;
-        isBlue.value = false;
-        isGreen.value = false;
-        isAvailability.value = false;
-        isOutOfStack.value = false;
-        await getFilteredProducts('GENDER', type);
-    };
+    const categories = ref<Record<string, boolean>>({
+        Shirts: false,
+        'Polo shirts': false,
+        Shoes: false,
+        'Best sellers': false,
+        'T-shirts': false,
+        Jeans: false,
+        Jackets: false,
+    })
 
-    const toggleColor = async (type: string) => {
-        switch (type) {
-            case "White":
-                isWhite.value = true;
-                isBlack.value = false;
-                isBurgundy.value = false;
-                isRed.value = false;
-                isBlue.value = false;
-                isGreen.value = false;
-                break;
-            case "Black":
-                isWhite.value = false;
-                isBlack.value = true;
-                isBurgundy.value = false;
-                isRed.value = false;
-                isBlue.value = false;
-                isGreen.value = false;
-                break;
-            case "Rose":
-                isWhite.value = false;
-                isBlack.value = false;
-                isBurgundy.value = true;
-                isRed.value = false;
-                isBlue.value = false;
-                isGreen.value = false;
-                break;
-            case "Red":
-                isWhite.value = false;
-                isBlack.value = false;
-                isBurgundy.value = false;
-                isRed.value = true;
-                isBlue.value = false;
-                isGreen.value = false;
-                break;
-            case "Blue":
-                isWhite.value = false;
-                isBlack.value = false;
-                isBurgundy.value = false;
-                isRed.value = false;
-                isBlue.value = true;
-                isGreen.value = false;
-                break;
-            case "Green":
-                isWhite.value = false;
-                isBlack.value = false;
-                isBurgundy.value = false;
-                isRed.value = false;
-                isBlue.value = false;
-                isGreen.value = true;
-                break;
-        }
-        isMan.value = false;
-        isWoman.value = false;
-        isKids.value = false;
-        isAvailability.value = false;
-        isOutOfStack.value = false;
-        await getFilteredProducts('COLOR', type);
+    const setActiveKey = (targetObj: Record<string, boolean>, selectedKey: string) => {
+        Object.keys(targetObj).forEach(key => {
+            targetObj[key] = key === selectedKey
+        });
     }
 
-    const inStackCount = computed(() => {
-        return allProducts.value.filter(product => product.status === 'Availability')
-    });
-    const outOfStackCount = computed(() => {
-        return allProducts.value.filter(product => product.status === 'Out Of Stack')
-    });
-    const inMan = computed(() => {
-        return allProducts.value.filter(product => product.gender === 'Man')
-    });
-    const inWoman = computed(() => {
-        return allProducts.value.filter(product => product.gender === 'Woman')
-    });
-    const inKids = computed(() => {
-        return allProducts.value.filter(product => product.gender === 'Kids')
-    });
+    const clearActiveKey = () => {
+        setActiveKey(colors.value, '');
+        setActiveKey(genders.value, '');
+        setActiveKey(stackProducts.value, '');
+        setActiveKey(categories.value, '');
+        setActiveKey(category.value, '');
+    }
+
+    const toggleFilter = async (categoryGroup: string, value: string) => {
+        if(categoryGroup === "ALL") {
+            clearActiveKey();
+            setActiveKey(category.value, value);
+        }
+        if(categoryGroup === 'CATEGORY') {
+            clearActiveKey();
+            setActiveKey(categories.value, value);
+        }
+        if(categoryGroup === 'STATUS') {
+            clearActiveKey()
+            setActiveKey(stackProducts.value, value)
+        }else if(categoryGroup === 'GENDER') {
+            clearActiveKey()
+            setActiveKey(genders.value, value)
+        }else if(categoryGroup === 'COLOR') {
+            clearActiveKey()
+            setActiveKey(colors.value, value)
+        }
+        await getFilteredProducts(categoryGroup, value)
+    };
+
+    const toggleSize = async (categoryGroup: string, value: string) => {
+        clearActiveKey()
+        await getFilteredProducts(categoryGroup, value)
+    }
 
     return {
-        toggleAvailability,
-        toggleGender,
-        toggleColor,
+        toggleFilter,
+        toggleSize,
 
-        isAvailability,
-        isOutOfStack,
-        isMan,
-        isWoman,
-        isKids,
-
-        inStackCount,
-        outOfStackCount,
-        inMan,
-        inWoman,
-        inKids,
-
-        isWhite,
-        isBlack,
-        isBurgundy,
-        isRed,
-        isBlue,
-        isGreen,
+        category,
+        categories,
+        stackProducts,
+        genders,
+        colors
     }
 }

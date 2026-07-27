@@ -4,11 +4,13 @@ import { useGetProducts } from "../composables/getProducts.ts";
 import { useGetSearchedProducts } from "./composables/useGetSearched.ts";
 import { useProductsModals } from "../../../shared/composables/modals/products/productsModals.ts";
 import { productsForms } from "../../../shared/composables/forms-composables/forms/products.forms.ts";
+import { useFilter } from "./composables/useFilter.ts";
 
 import search from "../../../app/assets/icons/nav/search.png";
 import right_arrow from '../../../app/assets/icons/arrows/right-arrow.png';
 import del from '../../../app/assets/icons/clean_search.svg';
 
+const { toggleFilter, categories, category } = useFilter();
 const { searchProductForm } = productsForms();
 const { getFilteredProducts } = useGetProducts();
 const { toggleFilterAside } = useProductsModals();
@@ -57,30 +59,14 @@ watch(() => searchProductForm.value.search, async (newValue) => {
         </span>
         <img :src=right_arrow alt="">
       </div>
-      <div class="font-medium hidden gap-x-5 gap-y-2 sm:grid sm:grid-cols-4 xl:mt-22">
-        <button @click="getFilteredProducts('ALL', 'Availability')" class="border-2 sm:px-2 sm:py-1 md:px-3 border-[#A3A3A3]">
+      <div class="font-medium hidden gap-x-5 gap-y-2 sm:grid sm:grid-cols-4 xl:mt-19">
+        <button v-for="(isActive, categoryName) in category" @click="toggleFilter('ALL', categoryName)"
+                :class="['border-2 sm:px-2 sm:py-1 md:px-5 text-lg', isActive ? ' border-black' : 'text-[#A3A3A3] border-[#A3A3A3]']">
           All
         </button>
-        <button @click="getFilteredProducts('CATEGORY', 'Shirts')" class="border-2 sm:px-2 sm:py-1 md:px-3 border-[#A3A3A3]">
-          SHIRTS
-        </button>
-        <button @click="getFilteredProducts('CATEGORY', 'Polo shirts')" class="border-2 sm:px-2 sm:py-1 md:px-3 border-[#A3A3A3]">
-          POLO SHIRTS
-        </button>
-        <button @click="getFilteredProducts('CATEGORY', 'Shoes')" class="border-2 sm:px-2 sm:py-1 md:px-3 border-[#A3A3A3]">
-          SHORTS
-        </button>
-        <button @click="getFilteredProducts('CATEGORY', 'Best sellers')" class="border-2 sm:px-2 sm:py-1 md:px-3 border-[#A3A3A3]">
-          BEST SELLERS
-        </button>
-        <button @click="getFilteredProducts('CATEGORY', 'T-shirts')" class="border-2 sm:px-2 sm:py-1 md:px-3 border-[#A3A3A3]">
-          T-SHIRTS
-        </button>
-        <button @click="getFilteredProducts('CATEGORY', 'Jeans')" class="border-2 sm:px-2 sm:py-1 md:px-3 border-[#A3A3A3]">
-          JEANS
-        </button>
-        <button @click="getFilteredProducts('CATEGORY', 'Jackets')" class="border-2 sm:px-2 sm:py-1 md:px-3 border-[#A3A3A3]">
-          JACKETS
+        <button v-for="(isActive, categoryName) in categories" @click="toggleFilter('CATEGORY', categoryName)"
+                :class="['border-2 sm:px-2 sm:py-1 md:px-5 text-lg', isActive ? ' border-black' : 'text-[#A3A3A3] border-[#A3A3A3]']">
+          {{ categoryName }}
         </button>
       </div>
     </div>

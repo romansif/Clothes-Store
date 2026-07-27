@@ -46,7 +46,7 @@ export const useUpdateProduct = () => {
         }
     };
 
-    const updateCartItem = async (type: string, id: string) => {
+    const updateCartItem = async (type: string, id: string, status: string) => {
         try{
             const productCart = cart.value?.find(c => c.id === id);
 
@@ -54,7 +54,7 @@ export const useUpdateProduct = () => {
             const currentQuantity = Number(productCart?.quantity) || 1;
 
             if(productCart){
-                if(type === 'add'){
+                if(type === 'add' && status === 'Availability'){
                     const newPrice = currentPrice * 2;
                     const newQuantity = currentQuantity + 1;
 
@@ -65,10 +65,10 @@ export const useUpdateProduct = () => {
                             quantity: newQuantity,
                         })
                     });
-                }else if(type === 'away'){
+                }else if(type === 'away' && status === 'Availability'){
                     if(currentQuantity === 1){
                         await deleteProductCart(id);
-                    }else{
+                    }else if(status === 'Availability'){
                         const newPrice = currentPrice / 2;
                         const newQuantity = currentQuantity - 1;
 

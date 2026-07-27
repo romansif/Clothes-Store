@@ -48,8 +48,10 @@ const refreshPage = () => {
       <div class="flex flex-col">
         <div class="relative">
           <router-link :to="{ name: '/products/ProductsInfoPage' }">
-            <img :src="productPreview(product.id)" alt="" class="w-[335px] h-[314px] sm:h-[314px] xl:h-[400px]">
+            <img :src="productPreview(product.id)" alt="" :class="['w-[335px] h-[314px] sm:h-[314px] xl:h-[400px]',
+                product.status === 'Availability' ? '' : 'opacity-40']">
           </router-link>
+          <span v-if="product.status === 'Exhausted'" class="absolute top-1/2 left-1/20 text-5xl font-semibold -rotate-45">Out Of Stack</span>
           <img @click="toggleToFavorite(product.id, 'cart', product.productId)" :src="product.favorite ? liked : like"
                alt="" class="absolute top-0.5 left-75.5 w-[32px]">
         </div>
@@ -68,15 +70,15 @@ const refreshPage = () => {
       <div class="flex flex-col gap-15">
         <div class="flex flex-col gap-4">
           <img @click="deleteProductCart(product.id)" :src="del" alt="">
-          <img @click="checkCartItem(product.id, product)" :src="product.checked ? check_square : square" alt="" class="w-[30px]">
+          <img v-if="product.status === 'Availability'" @click="checkCartItem(product.id, product)" :src="product.checked ? check_square : square" alt="" class="w-[30px]">
         </div>
         <div class="flex flex-col gap-4">
           <img :src="sizeUrl(product.size)" :class="[sizeClass(product.size)]" alt="">
           <div :class="['w-[30px] h-[30px]', colorClass(product.color)]"></div>
           <div class="flex flex-col border">
-            <button @click="updateCartItem('add', product.id)" class="border-b">+</button>
+            <button @click="updateCartItem('add', product.id, product.status)" class="border-b">+</button>
             <span class="text-sm border-b text-center">{{ product.quantity }}</span>
-            <button @click="updateCartItem('away', product.id)" class="" >-</button>
+            <button @click="updateCartItem('away', product.id, product.status)" class="" >-</button>
           </div>
           <img @click="refreshPage" :src="update" alt="">
         </div>

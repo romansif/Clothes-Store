@@ -18,7 +18,8 @@ const variantClasses = {
   checkOut: `bg-black text-white font-semibold w-full text-start px-3 py-2 cursor-pointer text-sm font-medium
           sm:w-[300px] sm:ml-auto md:w-[365px] lg:w-[195px] xl:w-[246px]`,
   profileForm: `bg-black text-white rounded px-6 py-3.5 font-semibold w-[230px] text-start`,
-  repeatOrder: `ml-auto px-4 py-2 text-xs font-semibold border bg-black text-white rounded-md`
+  repeatOrder: `ml-auto px-4 py-2 text-xs font-semibold border bg-black text-white rounded-md`,
+  outOfStack: `w-full font-semibold bg-[#A3A3A3] text-white py-4 mt-1`
 }
 
 </script>

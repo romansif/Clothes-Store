@@ -10,18 +10,7 @@ const { orderItems, colors, sizes } = productsStore();
 
 export const useProfileProducts = () => {
     const toggleAgree = () => {
-        isAgreeFormError.value.agreeError = !isAgreeFormError.value.agreeError
-    }
-
-    const continueToOrder = async () => {
-        if(!isAgreeFormError.value.agreeError){
-            isAgreeForm.value.agreeMessage = 'You must agree to the Terms and Conditions'
-        }else{
-            isAgreeForm.value.agreeMessage = ''
-            isAgreeFormError.value.agreeError = !isAgreeFormError.value.agreeError
-
-            await router.push({ name: '/checkout/InformationPage' })
-        }
+        isAgreeFormError.value.agreeError = !isAgreeFormError.value.agreeError;
     }
 
     const colorClass = (colorName: string) => {
@@ -50,6 +39,22 @@ export const useProfileProducts = () => {
     const commissionPrice = computed(() => {
         return Math.round(orderItems.value.reduce((sum, item) => sum + item.price + 5, 0) * 0.03)
     })
+
+    const continueToOrder = async () => {
+        try{
+            if(!isAgreeFormError.value.agreeError || !orderItems.value?.length) {
+                isAgreeForm.value.agreeMessage = 'You must agree to the Terms and Conditions';
+                return
+            }else{
+                isAgreeForm.value.agreeMessage = '';
+                isAgreeFormError.value.agreeError = false;
+
+                await router.push({ name: '/checkout/InformationPage' });
+            }
+        }catch(error){
+            console.log(error)
+        }
+    }
 
     return{
         toggleAgree,
