@@ -3,6 +3,7 @@ import { useProfileModals } from "../../../composables/modals/profile/profileMod
 
 import ConfidentialityForm from "./ConfidentialityForm.vue";
 import UserData from "./UserData.vue";
+import BaseButton from "../../button/BaseButton.vue";
 
 const { toggleConfidentialityData } = useProfileModals();
 </script>
@@ -14,10 +15,7 @@ const { toggleConfidentialityData } = useProfileModals();
       <div class="flex flex-col gap-2 border-b pb-4">
         <div class="flex items-center">
           <h1 class="font-bold text-2xl">CONFIDENTIALITY DATA</h1>
-          <button @click.stop="toggleConfidentialityData" class="text-start ml-auto h-fit w-fit px-10 py-2 bg-red-500 text-white font-medium
-              text-xs rounded-md">
-            Exit
-          </button>
+          <BaseButton @click.stop="toggleConfidentialityData" name="Exit" variant="exitClose"/>
         </div>
         <span class="text-sm text-[#A3A3A3]">You can view or change your confidential data.</span>
       </div>

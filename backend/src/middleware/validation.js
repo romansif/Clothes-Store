@@ -5,145 +5,149 @@ export const validation = {
         body('name')
             .trim()
             .notEmpty()
-            .withMessage('Name required to registration'),
+            .withMessage('Name required to registration.'),
 
         body('surName')
             .trim()
             .notEmpty()
-            .withMessage('SurName required to registration'),
+            .withMessage('SurName required to registration.'),
 
         body('privatePhone')
             .if(body('role').equals('Buyer'))
-            .notEmpty().withMessage('Private phone required to registration'),
+            .notEmpty().withMessage('Private phone required to registration.'),
 
         body('companyName')
             .if(body('role').equals('Seller'))
-            .notEmpty().withMessage('Company name required to registration by seller'),
+            .notEmpty().withMessage('Company name required to registration by seller.'),
 
         body('publicPhone')
             .if(body('role').equals('Seller'))
-            .notEmpty().withMessage('A company phone number required to registration by seller'),
+            .notEmpty().withMessage('A company phone number required to registration by seller.'),
 
         body('email')
-            .isEmail().withMessage('Invalid email format entered')
+            .isEmail().withMessage('Invalid email format entered.')
             .normalizeEmail(),
 
         body('password')
-            .notEmpty().withMessage('A password required to registration'),
+            .notEmpty().withMessage('A password required to registration.'),
 
         body('password')
-            .isLength({ min: 6, max: 12 }).withMessage('The password must be longer than 6 characters')
-            .matches(/^(?=.*[A-Za-zА-Яа-я])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-zА-Яа-я\d@$!%*#?&]{8,}$/).withMessage('The password must contain at least one letter, one digit, and one special character (@$!%*#?&)'),
+            .isLength({ min: 6, max: 12 }).withMessage('The password must be longer than 6 characters.')
+            .matches(/^(?=.*[A-Za-zА-Яа-я])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-zА-Яа-я\d@$!%*#?&]{8,}$/)
+            .withMessage('The password must contain at least one letter, one digit, and one special character (@$!%*#?&).'),
     ],
 
     loginValidation: [
         body('email')
             .trim()
-            .notEmpty().withMessage('Email required to registration'),
+            .notEmpty().withMessage('Email required to registration.'),
 
         body('email')
             .isEmail()
-            .withMessage('Invalid email format entered').normalizeEmail(),
-
+            .withMessage('Invalid email format entered.').normalizeEmail(),
 
         body('password')
-            .notEmpty().withMessage('A password required to login')
+            .notEmpty().withMessage('A password required to login.'),
+
+        body('role')
+            .notEmpty().withMessage('You need to select a role to determine how you want to login.')
     ],
 
     updateUserNameValidation: [
         body('name')
             .trim()
-            .notEmpty().withMessage('Name required to update name'),
+            .notEmpty().withMessage('Name required to update name.'),
     ],
 
     updateUserSurNameValidation: [
         body('surName')
             .trim()
-            .notEmpty().withMessage('SurName required to update surName'),
+            .notEmpty().withMessage('SurName required to update surName.'),
     ],
 
     updateUserPhoneValidation: [
         body('phone')
             .trim()
-            .notEmpty().withMessage('Phone required to update phone'),
+            .notEmpty().withMessage('Phone required to update phone.'),
     ],
 
     updateUserCompanyNameValidation: [
         body('companyName')
             .trim()
-            .notEmpty().withMessage('Company Name required to update company name'),
+            .notEmpty().withMessage('Company Name required to update company name.'),
     ],
 
     updateUserPublicPhoneValidation: [
         body('publicPhone')
             .trim()
-            .notEmpty().withMessage('Public Phone required to update phone'),
+            .notEmpty().withMessage('Public Phone required to update phone.'),
     ],
 
     updateUserEmailValidation: [
         body('email')
-            .isEmail().withMessage('Invalid email format entered')
+            .isEmail().withMessage('Invalid email format entered.')
             .normalizeEmail(),
     ],
 
     updateUserPasswordValidation: [
         body('oldPassword')
             .trim()
-            .notEmpty().withMessage('OldPassword required to update password'),
+            .notEmpty().withMessage('OldPassword required to update password.'),
 
         body('newPassword')
-            .isLength({ min: 6, max: 12 }).withMessage('The password must be longer than 6 characters')
-            .matches(/^(?=.*[A-Za-zА-Яа-я])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-zА-Яа-я\d@$!%*#?&]{8,}$/).withMessage('The password must contain at least one letter, one digit, and one special character (@$!%*#?&)'),
+            .isLength({ min: 6, max: 12 }).withMessage('The password must be longer than 6 characters.')
+            .matches(/^(?=.*[A-Za-zА-Яа-я])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-zА-Яа-я\d@$!%*#?&]{8,}$/)
+            .withMessage('The password must contain at least one letter, one digit, and one special character (@$!%*#?&).'),
     ],
 
     createProductValidation: [
         body('title')
             .trim()
-            .notEmpty().withMessage('Product title or name required to create product'),
+            .notEmpty().withMessage('Product title or name required to create product.'),
 
         body('category')
             .trim()
-            .notEmpty().withMessage('Product category required to create product'),
+            .notEmpty().withMessage('Product category required to create product.'),
 
         body('material')
             .trim()
-            .notEmpty().withMessage('Product material required to create product'),
+            .notEmpty().withMessage('Product material required to create product.'),
 
         body('price')
             .trim()
-            .notEmpty().withMessage('Product price required to create product'),
+            .notEmpty().withMessage('Product price required to create product.'),
 
         body('description')
             .trim()
-            .notEmpty().withMessage('Product description required to create product'),
+            .notEmpty().withMessage('Product description required to create product.'),
 
         body('color')
             .trim()
-            .notEmpty().withMessage('Product color required to create product'),
+            .notEmpty().withMessage('Product color required to create product.'),
 
         body('size')
             .trim()
-            .notEmpty().withMessage('Product size required to create product'),
+            .notEmpty().withMessage('Product size required to create product.'),
 
         body('quantity')
             .trim()
-            .notEmpty().withMessage('Product quantity required to create product'),
+            .notEmpty().withMessage('Product quantity required to create product.'),
     ],
 
     addProductToCartValidation: [
         body('color')
             .trim()
-            .notEmpty().withMessage('Product color required to adding product to cart'),
+            .notEmpty().withMessage('Product color required to adding product to cart.'),
 
         body('size')
             .trim()
-            .notEmpty().withMessage('Product size required to adding product to cart'),
+            .notEmpty().withMessage('Product size required to adding product to cart.'),
     ],
 
     addAddressValidation: [
         body('email')
             .trim()
-            .notEmpty().withMessage('Email required to order'),
+            .notEmpty().withMessage('Email required to order.'),
 
         body('phone')
             .trim()

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
 import { computed, onMounted } from "vue";
+import { useCheckout } from "./composables/useCheckout.ts";
 import { useGetProfile } from "../profile/profile-composables/getProfile.ts";
 import { useProductsModals } from "../../shared/composables/modals/products/productsModals.ts";
-import { useUpdateProduct } from "../products/composables/useUpdateProduct.ts";
 
 import MainInformation from "./information/MainInformation.vue";
 import MainOrder from "./order-information/MainOrder.vue";
@@ -13,20 +13,14 @@ import MainShipping from "./shipping/MainShipping.vue";
 import Notification from "../../shared/ui/products-modals/Notification.vue";
 
 const route = useRoute();
-const router = useRouter();
 
+const { goBack } = useCheckout();
 const { notify } = useProductsModals();
 const { getAddress, getPayment } = useGetProfile();
-const { updateCartItems } = useUpdateProduct();
 
 const isInfo = computed(() =>  route.name !== '/checkout/InformationPage');
 const isShipping = computed(() =>  route.name !== '/checkout/ShippingPage');
 const isPayment = computed(() =>  route.name !== '/checkout/PaymentPage');
-
-const goBack = async () => {
-  router.back();
-  await updateCartItems()
-}
 
 onMounted(async () => {
   await getAddress();
@@ -40,13 +34,13 @@ onMounted(async () => {
     <div class="flex flex-col mt-16">
       <h1 class="font-extrabold text-xl md:text-2xl xl:text-4xl">CHECKOUT</h1>
       <div class="flex gap-14 font-medium mt-8 text-xs md:text-sm xl:text-lg">
-        <router-link :to="{name: '/checkout/InformationPage'}">
+        <router-link :to="{ name: '/checkout/InformationPage' }">
           <span :class="isInfo ? 'text-gray-400' : ''">#INFORMATION</span>
         </router-link>
-        <router-link :to="{name: '/checkout/ShippingPage'}">
+        <router-link :to="{ name: '/checkout/ShippingPage' }">
           <span :class="isShipping ? 'text-gray-400' : ''">SHIPPING</span>
         </router-link>
-        <router-link :to="{name: '/checkout/PaymentPage'}">
+        <router-link :to="{ name: '/checkout/PaymentPage' }">
           <span :class="isPayment ? 'text-gray-400' : ''">PAYMENT</span>
         </router-link>
       </div>
@@ -64,9 +58,19 @@ onMounted(async () => {
       <MainOrder />
     </div>
   </div>
-  <Notification v-if="notify"/>
+  <Transition>
+    <Notification v-if="notify"/>
+  </Transition>
 </template>
 
 <style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
 
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
 </style>

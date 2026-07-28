@@ -26,7 +26,7 @@ const userAvatar = computed(() => {
   <div class="flex flex-col bg-white rounded-xl">
     <div class="flex p-5">
       <div class="flex items-center gap-10">
-        <img @click=toggleAvatar :src=userAvatar alt="" class="rounded-full w-30">
+        <img @click=toggleAvatar :src=userAvatar alt="" class="rounded-full w-30 transition duration-400 hover:scale-108">
         <div class="flex flex-col gap-4">
           <div class="flex gap-2">
             <span class="font-semibold text-lg">Role:</span>
@@ -41,31 +41,43 @@ const userAvatar = computed(() => {
       <ProfileMenu />
     </div>
     <div class="flex flex-col border-t border-gray-300 font-medium">
-      <div @click="toggleOrderHistory" class="flex items-center justify-between border-b border-gray-300 py-6 px-6">
-        <span>ALL ORDERS</span>
-        <img :src="arrow_down" alt="">
-      </div>
-      <router-link :to="{ name: '/products/MyProductsPage' }">
-        <div v-if="user.role === 'Seller'" class="flex items-center justify-between border-b border-gray-300 py-6 px-6">
-          <span>MY PRODUCTS</span>
+      <div @click="toggleOrderHistory" class="border-b border-gray-300 py-6 px-6">
+        <div class="flex items-center justify-between transition duration-400 hover:scale-105">
+          <span>ALL ORDERS</span>
           <img :src="arrow_down" alt="">
         </div>
+      </div>
+      <router-link :to="{ name: '/products/MyProductsPage' }">
+        <div v-if="user.role === 'Seller'" class="border-b border-gray-300 py-6 px-6">
+          <div class="flex items-center justify-between transition duration-400 hover:scale-105">
+            <span>MY PRODUCTS</span>
+            <img :src="arrow_down" alt="">
+          </div>
+        </div>
       </router-link>
-      <div @click="toggleCurrentOrder" class="flex items-center justify-between border-b border-gray-300 py-6 px-6">
-        <span>ACTIVE ORDERS</span>
-        <img :src="arrow_down" alt="">
+      <div @click="toggleCurrentOrder" class="border-b border-gray-300 py-6 px-6">
+        <div class="flex items-center justify-between transition duration-400 hover:scale-105">
+          <span>ACTIVE ORDERS</span>
+          <img :src="arrow_down" alt="">
+        </div>
       </div>
-      <div @click="toggleConfidentialityData" class="flex items-center justify-between border-b border-gray-300 py-6 px-6">
-        <span>CONFIDENTIALITY DATA</span>
-        <img :src="arrow_down" alt="">
+      <div @click="toggleConfidentialityData" class="border-b border-gray-300 py-6 px-6">
+        <div class="flex items-center justify-between transition duration-400 hover:scale-105">
+          <span>CONFIDENTIALITY DATA</span>
+          <img :src="arrow_down" alt="">
+        </div>
       </div>
-      <div v-if="user.role === 'Seller'" @click="toggleCreateProductModal" class="flex items-center justify-between border-b border-gray-300 py-6 px-6">
-        <span>CREATE PRODUCT COVER</span>
-        <img :src="arrow_down" alt="">
+      <div v-if="user.role === 'Seller'" @click="toggleCreateProductModal" class="border-b border-gray-300 py-6 px-6">
+        <div class="flex items-center justify-between transition duration-400 hover:scale-105">
+          <span>CREATE PRODUCT COVER</span>
+          <img :src="arrow_down" alt="">
+        </div>
       </div>
-      <div @click="toggleAddressesAndCards" class="flex items-center justify-between py-6 px-6">
-        <span>SAVED ADDRESSES AND CARDS</span>
-        <img :src="arrow_down" alt="">
+      <div @click="toggleAddressesAndCards" class="py-6 px-6">
+        <div class="flex items-center justify-between transition duration-400 hover:scale-105">
+          <span>SAVED ADDRESSES AND CARDS</span>
+          <img :src="arrow_down" alt="">
+        </div>
       </div>
     </div>
   </div>

@@ -23,7 +23,9 @@ onMounted(async() => {
     <div class="flex flex-col mt-5.5">
       <span class="font-medium">Size</span>
       <div class="flex items-center mt-2 gap-2">
-        <img v-for="size in sizes" :key="size.name" :src=size.url alt="" @click="toggleSize('SIZE', `${size.name}`)" :class="[size.class, 'w-[40px]']">
+        <img v-for="size in sizes" :key="size.name" :src=size.url alt=""
+             @click="toggleSize('SIZE', `${size.name}`)"
+             :class="[size.class, 'w-[40px] transition duration-400 hover:scale-120']">
       </div>
     </div>
     <div class="border-b-1 border-gray-400 mt-3.5"></div>
@@ -34,10 +36,15 @@ onMounted(async() => {
       </div>
       <div class="flex flex-col gap-2">
         <div v-for="(isActive, stackName) in stackProducts" class="flex gap-3">
-          <img @click="toggleFilter('STATUS', stackName)" :src="isActive ? checked : square" alt="" class="w-[23px] h-[23px]">
+          <img @click="toggleFilter('STATUS', stackName)" :src="isActive ? checked : square"
+               alt="" class="w-[23px] h-[23px] transition duration-400 hover:scale-120">
           <div class="flex gap-1">
             <span>{{ stackName }}</span>
-            <span>(<span class="text-blue-700 font-medium">{{ allProducts.filter(p => p.status === stackName).length }}</span>)</span>
+            <span>
+              (<span class="text-blue-700 font-medium">
+                {{ allProducts.filter(p => p.status === stackName).length }}
+              </span>)
+            </span>
           </div>
         </div>
       </div>
@@ -50,10 +57,15 @@ onMounted(async() => {
       </div>
       <div class="flex flex-col gap-2">
         <div v-for="(isActive, genderName) in genders" class="flex gap-3">
-          <img @click="toggleFilter('GENDER', genderName)" :src="isActive ? checked : square" alt="" class="w-[23px] h-[23px]">
+          <img @click="toggleFilter('GENDER', genderName)" :src="isActive ? checked : square"
+               alt="" class="w-[23px] h-[23px] transition duration-400 hover:scale-120">
           <div class="flex gap-1">
             <span>{{ genderName }}</span>
-            <span>(<span class="text-blue-700 font-medium">{{ allProducts.filter(p => p.gender === genderName).length }}</span>)</span>
+            <span>
+              (<span class="text-blue-700 font-medium">
+                {{ allProducts.filter(p => p.gender === genderName).length }}
+              </span>)
+            </span>
           </div>
         </div>
       </div>
@@ -66,7 +78,8 @@ onMounted(async() => {
       </div>
       <div class="grid grid-cols-2 gap-y-2 gap-x-6">
         <div v-for="(isActive, colorName) in colors" :key="colorName" class="flex gap-3">
-          <img @click="toggleFilter('COLOR', colorName)" :src="isActive ? checked : square" alt="" class="w-[23px] h-[23px]">
+          <img @click="toggleFilter('COLOR', colorName)" :src="isActive ? checked : square"
+               alt="" class="w-[23px] h-[23px] transition duration-400 hover:scale-120">
           <div class="flex gap-1">
             <span>{{ colorName }}</span>
           </div>

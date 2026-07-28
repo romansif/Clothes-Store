@@ -14,7 +14,7 @@ const { shipping, shippingMessages } = checkoutForms();
     <div class="flex gap-3">
       <form action="" class="flex flex-col gap-6 w-full">
         <div>
-          <div class="flex justify-between items-center px-3 py-6 border border-gray-200 rounded-xl bg-white">
+          <div class="flex justify-between items-center px-3 py-6 border border-gray-300 rounded-xl transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50">
             <div class="flex items-center gap-3">
               <input v-model="shipping.delivery" value="standard" type="radio" name="shipping-method" class="accent-black w-4 h-4">
               <div class="flex flex-col">
@@ -35,7 +35,7 @@ const { shipping, shippingMessages } = checkoutForms();
           </span>
         </div>
         <div>
-          <div class="flex justify-between items-center px-3 py-6 border border-gray-200 rounded-xl bg-white">
+          <div class="flex justify-between items-center px-3 py-6 border border-gray-300 rounded-xl transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50">
             <div class="flex items-center gap-3">
               <input v-model="shipping.delivery" value="express" type="radio" name="shipping-method" class="accent-black w-4 h-4">
               <div class="flex flex-col">

@@ -66,8 +66,8 @@ export const useAuth = () => {
                     registerFormMessages.value.passwordMessage = errors.password || '';
 
                     if(role === 'Seller'){
-                        registerFormErrors.value.companyNameError = !!errors.surName;
-                        registerFormErrors.value.publicPhoneError = !!errors.companyNameError;
+                        registerFormErrors.value.companyNameError = !!errors.companyName;
+                        registerFormErrors.value.publicPhoneError = !!errors.publicPhone;
 
                         registerFormMessages.value.companyNameMessage = errors.companyName || '';
                         registerFormMessages.value.publicPhoneMessage = errors.publicPhone || '';
@@ -86,6 +86,7 @@ export const useAuth = () => {
                 body: JSON.stringify({
                     email: loginForm.value.email,
                     password: loginForm.value.password,
+                    role: loginForm.value.role,
                 })
             })
             if(!foundedUser){
@@ -105,9 +106,11 @@ export const useAuth = () => {
                 if(errors){
                     loginFormErrors.value.emailError = !!errors.email;
                     loginFormErrors.value.passwordError = !!errors.password;
+                    loginFormErrors.value.roleError= !!errors.role;
 
                     loginFormMessages.value.emailMessage = errors.email || '';
                     loginFormMessages.value.passwordMessage = errors.password || '';
+                    loginFormMessages.value.roleMessage = errors.role || '';
                 }
             }
             console.log('Не удалось найти пользователя')

@@ -80,10 +80,14 @@ import arrow_down from "../../../app/assets/icons/arrows/arrow-down.png";
         <span>25-26</span>
       </div>
       <div class="flex border-b-1 border-gray-300 gap-5 py-3 text-lg">
-        <span>(All)</span>
-        <span class="text-[#A3A3A3]">Men</span>
-        <span class="text-[#A3A3A3]">Women</span>
-        <span class="text-[#A3A3A3]">KId</span>
+        <span class="transition duration-400 hover:text-black hover:scale-115">
+          (
+            <span class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-115">All</span>
+          )
+        </span>
+        <span class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-115">Men</span>
+        <span class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-115">Women</span>
+        <span class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-115">KId</span>
       </div>
       <div class="flex flex-col mt-10">
         <ul class="flex gap-10 xl:gap-20 overflow-x-auto whitespace-nowrap no-scrollbar">

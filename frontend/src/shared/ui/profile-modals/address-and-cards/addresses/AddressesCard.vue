@@ -10,7 +10,8 @@ const { deleteAddress } = useDeleteProfile();
 
 <template>
   <TransitionGroup name="list">
-    <li v-for="checkout in userAddresses" :key="checkout.id" class="flex flex-col mt-5 border border-gray-200 rounded-xl shadow-lg p-2">
+    <li v-for="checkout in userAddresses" :key="checkout.id"
+        class="flex flex-col mt-5 border border-gray-200 rounded-xl shadow-lg p-2 transition duration-400 hover:scale-105">
       <div class="flex flex-col gap-5">
         <div class="flex">
           <span class="text-sm font-semibold">

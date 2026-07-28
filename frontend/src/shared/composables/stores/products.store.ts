@@ -1,11 +1,11 @@
 import { ref } from 'vue'
 
-import xs from '../../../app/assets/icons/size/xs.svg'
-import s from '../../../app/assets/icons/size/s.svg'
-import m from '../../../app/assets/icons/size/m.svg'
-import l from '../../../app/assets/icons/size/l.svg'
-import xl from '../../../app/assets/icons/size/xl.svg'
-import xxl from '../../../app/assets/icons/size/xxl.svg'
+import xs from '../../../app/assets/icons/size/xs.svg';
+import s from '../../../app/assets/icons/size/s.svg';
+import m from '../../../app/assets/icons/size/m.svg';
+import l from '../../../app/assets/icons/size/l.svg';
+import xl from '../../../app/assets/icons/size/xl.svg';
+import xxl from '../../../app/assets/icons/size/xxl.svg';
 
 interface Product {
     id: string,
@@ -24,7 +24,7 @@ interface Product {
     status: string,
     favorite: boolean,
     checked: boolean,
-}
+};
 
 interface Orders {
     id: string,
@@ -35,30 +35,30 @@ interface Orders {
     dateCreatedOrder: string,
     timeCreatedOrder: string,
     status: string
-}
+};
 
 interface Sizes {
     name: string,
     url: string,
     class: string,
-}
+};
 
 interface Colors {
     name: string,
     color: string,
-}
+};
 
 interface Category {
     category: string,
-}
+};
 
 interface Material {
     material: string,
-}
+};
 
 interface Gender {
     gender: string,
-}
+};
 
 const sizes: Sizes[] = [
     {name: 'XS', url: xs, class: 'border-3 border-[#A3A3A3]'},
@@ -67,7 +67,7 @@ const sizes: Sizes[] = [
     {name: 'L', url: l, class: 'border-3 border-[#A3A3A3]'} ,
     {name: 'XL', url: xl, class: 'border-3 border-[#A3A3A3]'},
     {name: 'XXL', url: xxl, class: 'border-3 border-[#A3A3A3]'},
-]
+];
 const colors: Colors[] = [
     {name: 'Black', color: 'bg-black'},
     {name: 'Rose', color: 'bg-rose-950'},
@@ -81,7 +81,7 @@ const colors: Colors[] = [
     {name: 'Mist', color: 'bg-mist-500'},
     {name: 'Green', color: 'bg-green-500'},
     {name: 'White', color: 'bg-white'},
-]
+];
 const categories: Category[] = [
     {category: 'Shoes'},
     {category: 'Underpants'},
@@ -92,7 +92,7 @@ const categories: Category[] = [
     {category: 'T-shirts'},
     {category: 'Tank top'},
     {category: 'Sweaters'},
-]
+];
 const materials: Material[] = [
     {material: 'Cotton'},
     {material: 'Synthetics'},
@@ -102,37 +102,39 @@ const materials: Material[] = [
     {material: 'Nylon'},
     {material: 'Acrylic'},
     {material: 'Viscose'},
-]
+];
 const genders: Gender[] = [
     {gender: 'Man'},
     {gender: 'Woman'},
     {gender: 'Kids'},
-]
+];
 
-const allProducts = ref<Product[]>([])
-const products = ref<Product[]>([])
-const cart = ref<Product[]>([])
-const favorite = ref<Product[]>([])
-const orders = ref<Orders[]>([])
+const allProducts = ref<Product[]>([]);
+const products = ref<Product[]>([]);
+const cart = ref<Product[]>([]);
+const favorite = ref<Product[]>([]);
+const orders = ref<Orders[]>([]);
 
-const orderItems = ref<Product[]>([])
+const orderItems = ref<Product[]>([]);
 
-const product = ref<Product>({} as Product)
-const items = ref<Product[]>(JSON.parse(localStorage.getItem('orderItems') || '[]'))
+const product = ref<Product>({} as Product);
+const productId = ref<string>(localStorage.getItem("productId") || '');
+const items = ref<Product[]>(JSON.parse(localStorage.getItem('orderItems') || '[]'));
 
-const activeProductImg = ref<string>('')
+const activeProductImg = ref<string>('');
 
-const productFiles = ref<(File | null)[]>([null, null, null, null, null])
-const productsPreview = ref<string[]>([])
-const currentFile = ref<(number | null)>(null)
+const productFiles = ref<(File | null)[]>([null, null, null, null, null]);
+const productsPreview = ref<string[]>([]);
+const currentFile = ref<(number | null)>(null);
 
-const unreadCount = ref<number>(0)
-const deliveryPrice = ref<number>(0)
+const unreadCount = ref<number>(0);
+const deliveryPrice = ref<number>(0);
 
 export const productsStore = () => {
     return {
         allProducts,
         product,
+        productId,
         items,
 
         colors,

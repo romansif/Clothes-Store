@@ -6,6 +6,7 @@ import { useProfileModals } from "../../../composables/modals/profile/profileMod
 
 
 import OrdersList from "./OrdersList.vue";
+import BaseButton from "../../button/BaseButton.vue";
 
 const { orders } = productsStore();
 const { getOrders } = useGetProducts();
@@ -20,10 +21,7 @@ onMounted(async () => {
   <div class="font-[Montserrat] fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)]
                                 flex items-center justify-center">
     <div class="flex flex-col bg-white w-[890px] h-[650px] rounded-xl p-5">
-      <button @click.stop="toggleOrderHistory" class="text-start ml-auto h-fit w-fit px-10 py-2 bg-red-500 text-white font-medium
-               text-xs rounded-md">
-        Exit
-      </button>
+      <BaseButton @click.stop="toggleOrderHistory" name="Exit" variant="exitClose"/>
       <div class="flex flex-col gap-2 border-b py-4">
         <h1 class="font-bold text-2xl">ALL ORDERS</h1>
         <div class="flex">

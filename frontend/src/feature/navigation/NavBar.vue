@@ -12,7 +12,6 @@ const { unreadCount } = productsStore();
 
 const route = useRoute();
 
-const isProducts = computed(() => route.name === "/products/ProductsPage");
 const isProfile = computed(() => route.name !== "/profile/ProfilePage");
 </script>
 
@@ -20,20 +19,18 @@ const isProfile = computed(() => route.name !== "/profile/ProfilePage");
   <nav class="font-[Montserrat]">
     <div class="flex justify-between items-center md:justify-between">
       <div class="flex items-center gap-5 lg:gap-10">
-        <router-link :to="{name: '/home/HomePage'}">
-          <img :src=catalog alt="" class=" w-[30px]">
-        </router-link>
+        <img :src=catalog alt="" class=" w-[30px]">
         <div class="xl:flex xl:gap-10
             lg:flex lg:gap-10
             md:flex md:gap-5
-            sm:hidden hidden">
-          <span class="text-[#A3A3A3]">
-            Collections
-          </span>
-          <router-link :to="{name: '/products/ProductsPage'}">
-            <span :class="isProducts ? 'font-semibold' : 'text-[#A3A3A3]'">Products</span>
+            sm:hidden hidden font-semibold">
+          <router-link :to="{name: '/home/HomePage'}" class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120">
+            Home
           </router-link>
-          <span class="text-[#A3A3A3]">New</span>
+          <router-link :to="{name: '/products/ProductsPage'}" class="text-[#696969] transition duration-400 hover:text-black hover:scale-120">
+            Products
+          </router-link>
+          <span class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120">New</span>
         </div>
       </div>
       <div class="xl:flex xl:gap-10
@@ -43,11 +40,11 @@ const isProfile = computed(() => route.name !== "/profile/ProfilePage");
           flex gap-3">
         <router-link :to="{name: '/profile/profile-products/FavoriteProductsPage'}">
           <div class="xl:flex lg:flex md:flex sm:hidden hidden">
-            <img :src=liked alt="" class="">
+            <img :src=liked alt="" class=" transition duration-400 hover:scale-110">
           </div>
         </router-link>
         <router-link :to="{name: '/profile/profile-products/ProductsCartPage'}">
-          <div class="xl:flex xl:items-center lg:flex md:flex ">
+          <div class="xl:flex xl:items-center lg:flex md:flex  transition duration-400 hover:scale-110">
             <span class="px-7 py-3.5 bg-black rounded-3xl text-white items-center md:flex hidden">
                 Cart
             </span>
@@ -60,7 +57,7 @@ const isProfile = computed(() => route.name !== "/profile/ProfilePage");
           </div>
         </router-link>
         <router-link v-if="isProfile" :to="{name: '/profile/ProfilePage'}">
-          <img :src=profile alt="" class="">
+          <img :src=profile alt="" class="transition duration-400 hover:scale-120">
         </router-link>
       </div>
     </div>

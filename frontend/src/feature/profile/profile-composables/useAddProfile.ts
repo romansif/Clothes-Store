@@ -2,16 +2,14 @@ import { useGetProfile } from "./getProfile.ts";
 import { ApiError, handler } from "../../../shared/api/http.ts";
 import { useAddProducts } from "../../products/composables/useAddProducts.ts";
 import { usersStore } from "../../../shared/composables/stores/users.store.ts";
-import { checkoutErrors } from "../../../shared/composables/forms-composables/forms-errors/checkout.errors.ts";
-import { checkoutForms } from "../../../shared/composables/forms-composables/forms/checkout.forms.ts";
-import { clearCheckoutForm } from "../../../shared/composables/forms-composables/clear-forms/clear.checkout.ts";
 import { useProductsModals } from "../../../shared/composables/modals/products/productsModals.ts";
+import { checkoutForms } from "../../../shared/composables/forms-composables/forms/checkout.forms.ts";
+import { checkoutErrors } from "../../../shared/composables/forms-composables/forms-errors/checkout.errors.ts";
 
 const { addOrder } = useAddProducts();
 const { getAddresses, getPayments } = useGetProfile();
 const { openNotify } = useProductsModals();
 const { paymentMethod, userAddresses, userPayments } = usersStore();
-const { clearInformationForm } = clearCheckoutForm();
 
 const { informationErrors, shippingErrors, paymentErrors } = checkoutErrors();
 const { information, informationMessages, shipping, shippingMessages, payment, paymentMessages } = checkoutForms();
@@ -51,7 +49,6 @@ export const useAddProfile = () => {
 
             openNotify('You have successfully added the shipping address.',
                 'You can click the button to the left of the "X" to go to the shipping methods.', '/checkout/ShippingPage')
-            clearInformationForm();
         }catch(err){
             if(err instanceof ApiError){
                 const errors = err.response as Record<string, string>;
@@ -150,15 +147,14 @@ export const useAddProfile = () => {
 
                 userPayments.value = paymentMethod
             }
-
             await addOrder()
 
             await getPayments()
-            openNotify('You have successfully added the payment method.',
-                'You can click the button to the left of the "X" to go to the profile.', '/profile/ProfilePage')
+            // openNotify('You have successfully added the payment method.',
+            //     'You can click the button to the left of the "X" to go to the profile.', '/profile/ProfilePage')
         }catch(err){
             if(err instanceof ApiError){
-                const errors = err.response as Record<string, string>;;
+                const errors = err.response as Record<string, string>;
                 if(errors){
                     paymentErrors.value.cardNumberError = !!errors.cardNumber;
                     paymentErrors.value.expiryDateError = !!errors.expiryDate;

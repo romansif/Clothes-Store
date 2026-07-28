@@ -1,17 +1,20 @@
+import router  from "../../../app/router";
+
 import { computed, ref } from "vue";
 import { usersStore } from "../../../shared/composables/stores/users.store.ts";
 import { productsStore } from "../../../shared/composables/stores/products.store.ts";
 import { checkoutForms } from "../../../shared/composables/forms-composables/forms/checkout.forms.ts";
 import { checkoutErrors } from "../../../shared/composables/forms-composables/forms-errors/checkout.errors.ts";
+import { useUpdateProduct } from "../../products/composables/useUpdateProduct.ts";
 
-const { shipping } = checkoutForms();
 const { items, deliveryPrice } = productsStore();
 
 const isDebitCard = ref(false);
 
-const { userAddress, paymentMethod } = usersStore();
 const { informationErrors } = checkoutErrors();
-const { informationMessages } = checkoutForms();
+const { shipping, informationMessages } = checkoutForms();
+const { updateCartChecked } = useUpdateProduct();
+const { userAddress, paymentMethod } = usersStore();
 
 export const useCheckout = () => {
     const openCardForm = (method: string) => {
@@ -22,6 +25,11 @@ export const useCheckout = () => {
     const closeCardForm = (method: string) => {
         isDebitCard.value = false;
         paymentMethod.value = method
+    }
+
+    const goBack = async () => {
+        router.back();
+        await updateCartChecked()
     }
 
     const price = computed(() => {
@@ -53,7 +61,7 @@ export const useCheckout = () => {
         if(userAddress.value.firstName){
             return userAddress.value.firstName;
         }
-        return informationMessages.value.firstNameMessage;
+        return informationMessages.value.firstNameMessage = 'FirstName';
     })
 
     const lastNamePlaceholder = computed(() => {
@@ -63,7 +71,7 @@ export const useCheckout = () => {
         if(userAddress.value.lastName){
             return userAddress.value.lastName;
         }
-        return informationMessages.value.lastNameMessage;
+        return informationMessages.value.lastNameMessage = 'LastName';
     })
 
     const countryPlaceholder = computed(() => {
@@ -73,7 +81,7 @@ export const useCheckout = () => {
         if(userAddress.value.country){
             return userAddress.value.country;
         }
-        return informationMessages.value.countryMessage;
+        return informationMessages.value.countryMessage = 'Country';
     })
 
     const statePlaceholder = computed(() => {
@@ -83,7 +91,7 @@ export const useCheckout = () => {
         if(userAddress.value.stateRegion){
             return userAddress.value.stateRegion;
         }
-        return informationMessages.value.stateRegionMessage;
+        return informationMessages.value.stateRegionMessage = 'State/Region';
     })
 
     const addressPlaceholder = computed(() => {
@@ -93,7 +101,7 @@ export const useCheckout = () => {
         if(userAddress.value.address){
             return userAddress.value.address;
         }
-        return informationMessages.value.addressMessage;
+        return informationMessages.value.addressMessage = 'Address';
     })
 
     const cityPlaceholder = computed(() => {
@@ -103,7 +111,7 @@ export const useCheckout = () => {
         if(userAddress.value.city){
             return userAddress.value.city;
         }
-        return informationMessages.value.cityMessage;
+        return informationMessages.value.cityMessage = 'City';
     })
 
     const postalCodePlaceholder = computed(() => {
@@ -113,12 +121,14 @@ export const useCheckout = () => {
         if(userAddress.value.postalCode){
             return String(userAddress.value.postalCode);
         }
-        return informationMessages.value.postalCodeMessage;
+        return informationMessages.value.postalCodeMessage = 'Postal Code';
     })
 
     return{
         openCardForm,
         closeCardForm,
+
+        goBack,
 
         isDebitCard,
         price,

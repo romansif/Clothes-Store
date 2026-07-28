@@ -1,7 +1,7 @@
 import { handler } from "../../../shared/api/http.ts";
 import { productsStore } from "../../../shared/composables/stores/products.store.ts";
 
-const { allProducts, products, cart, favorite, orders, product } = productsStore()
+const { allProducts, products, cart, favorite, orders, product, productId } = productsStore()
 
 export const useGetProducts = () => {
     const getAllProducts = async () => {
@@ -87,13 +87,15 @@ export const useGetProducts = () => {
 
 
     const getProductId = async (id: string) => {
-        localStorage.setItem('productId', id);
+        localStorage.setItem("productId", id)
+
+        await getProduct()
     }
 
     const getProduct = async () => {
-        const productId = localStorage.getItem('productId');
+        const currentId = localStorage.getItem("productId") || productId.value;
         try{
-            const oneProduct = await handler(`/products/item/${productId}`, {
+            const oneProduct = await handler(`/products/item/${currentId}`, {
                 method: 'GET',
             })
             product.value = oneProduct

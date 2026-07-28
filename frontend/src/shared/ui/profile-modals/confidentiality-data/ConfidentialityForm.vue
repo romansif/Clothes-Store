@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 
-import { usersStore } from "../../../composables/stores/users.store.ts";
 import { userForms } from "../../../composables/forms-composables/forms/users.forms.ts";
 import { useUpdateProfile } from "../../../../feature/profile/profile-composables/useUpdateProfile.ts";
 import { userFormsErrors } from "../../../composables/forms-composables/forms-errors/users.errors.ts";
@@ -9,15 +8,11 @@ import { userFormsErrors } from "../../../composables/forms-composables/forms-er
 import opened from '../../../../app/assets/icons/auth/opened.png'
 import closed from '../../../../app/assets/icons/auth/closed.png'
 import BaseButton  from "../../button/BaseButton.vue";
+import SellerEmailForm from "./email-phone-form/SellerEmailForm.vue";
+import SellerForm from "./email-phone-form/SellerForm.vue";
+import BuyerForm from "./email-phone-form/BuyerForm.vue";
 
-const { user } = usersStore();
-const {
-  updatePasswordAccount,
-  updateNameAccount, updateSurNameAccount,
-  updatePhoneAccount, updateCompanyName,
-  updatePublicPhoneAccount, updateEmailAccount,
-} = useUpdateProfile();
-
+const { updatePasswordAccount, updateNameAccount, updateSurNameAccount } = useUpdateProfile();
 const {
   updateUserFormPublicPhoneErrors,
   updateUserNameErrors, updateUserSurNameErrors,
@@ -26,13 +21,11 @@ const {
 } = userFormsErrors();
 
 const {
+  updateUserPhone, updateUserEmail,
   updateUserName, updateUserFormNameMessage,
-  updateUserPhone, updateUserFormPhoneMessage,
-  updateUserEmail, updateUserFormEmailMessage,
   updateUserSurName, updateUserFormSurNameMessage,
+  updateUserCompanyName, updateUserFormPublicPhone,
   updateUserPassword, updateUserFormPasswordMessages,
-  updateUserCompanyName, updateUserFormCompanyNameMessage,
-  updateUserFormPublicPhone, updateUserFormPublicPhoneMessage,
 } = userForms();
 
 watch(() => [
@@ -82,13 +75,14 @@ const toggleNewPassword = () => {
 </script>
 
 <template>
-  <div class="flex font-medium flex-col gap-8 pt-5">
-    <div class="flex flex-col gap-4">
+  <div class="flex font-medium flex-col gap-5 pt-5">
+    <div class="flex flex-col gap-5">
       <div class="flex gap-10">
         <form @keydown.enter.prevent="updateNameAccount" class="flex flex-col gap-3 w-full">
           <label for="">Name</label>
-          <input v-model=updateUserName.name type="text" inputmode="numeric" class="border border-gray-200 rounded-xl
-              outline-none px-4 py-3 text-sm bg-white appearance-none" placeholder="New Name" />
+          <input v-model=updateUserName.name type="text" inputmode="numeric"
+                 class="border border-gray-300 rounded-xl outline-none px-4 py-3 text-sm bg-[#D9D9D9]/40
+                   transition duration-400 hover:bg-gray-50 focus:bg-gray-50 appearance-none" placeholder="New Name" />
           <span v-if=updateUserNameErrors.nameError class="text-red-600 text-xs">
             {{ updateUserFormNameMessage.nameMessage }}
           </span>
@@ -98,8 +92,9 @@ const toggleNewPassword = () => {
         </form>
         <form @keydown.enter.prevent="updateSurNameAccount" class="flex flex-col gap-3 w-full">
           <label for="">SurName</label>
-          <input v-model=updateUserSurName.surName type="text" inputmode="numeric" class="border border-gray-200 rounded-xl
-              outline-none px-4 py-3 text-sm bg-white appearance-none" placeholder="New SurName" />
+          <input v-model=updateUserSurName.surName type="text" inputmode="numeric"
+                 class="border border-gray-300 rounded-xl outline-none px-4 py-3 text-sm bg-[#D9D9D9]/40
+                   transition duration-400 hover:bg-gray-50 focus:bg-gray-50 appearance-none" placeholder="New SurName"/>
           <span v-if=updateUserSurNameErrors.surNameError class="text-red-600 text-xs">
             {{ updateUserFormSurNameMessage.surNameMessage }}
           </span>
@@ -108,62 +103,17 @@ const toggleNewPassword = () => {
           </div>
         </form>
       </div>
-      <div @keydown.enter.prevent="updatePhoneAccount" v-if="user.role === 'Buyer'" class="flex flex-col gap-10 sm:flex-row">
-        <form class="flex flex-col gap-3 w-full">
-          <label for="">Phone</label>
-          <input v-model=updateUserPhone.phone type="text" inputmode="numeric" class="border border-gray-200 rounded-xl
-              outline-none px-4 py-3 text-sm bg-white appearance-none" placeholder="+000 (00) 000-00-00" />
-          <span v-if=updateUserPhoneErrors.phoneError class="text-red-600 text-xs">
-            {{ updateUserFormPhoneMessage.phoneMessage }}
-          </span>
-          <div class="flex">
-            <BaseButton @click.prevent="updatePhoneAccount()" name="Save Phone" variant="profileForm" />
-          </div>
-        </form>
-        <form @keydown.enter.prevent="updateEmailAccount" class="flex flex-col gap-3 w-full">
-          <label for="">Email</label>
-          <input v-model=updateUserEmail.email type="text" inputmode="numeric" class="border border-gray-200 rounded-xl
-              outline-none px-4 py-3 text-sm bg-white appearance-none" placeholder="example@mail.com" />
-          <span v-if=updateUserEmailErrors.emailError class="text-red-600 text-xs">
-            {{ updateUserFormEmailMessage.emailMessage }}
-          </span>
-          <div class="flex">
-            <BaseButton @click.prevent="updateEmailAccount()" name="Save Email" variant="profileForm" />
-          </div>
-        </form>
-      </div>
-      <div v-if="user.role === 'Seller'" class="flex flex-col gap-10 sm:flex-row">
-        <form @keydown.enter.prevent="updateCompanyName" class="flex flex-col gap-3 w-full">
-          <label for="">Company Name</label>
-          <input v-model=updateUserCompanyName.companyName type="text" inputmode="numeric" class="border border-gray-200
-              rounded-xl outline-none px-4 py-3 text-sm bg-white appearance-none" placeholder="New Company Name" />
-          <span v-if=updateUserFormCompanyNameErrors.companyNameError class="text-red-600 text-xs">
-            {{ updateUserFormCompanyNameMessage.companyNameMessage }}
-          </span>
-          <div class="flex">
-            <BaseButton @click.prevent="updateCompanyName()" name="Save Company Name" variant="profileForm" />
-          </div>
-        </form>
-        <form @keydown.enter.prevent="updatePublicPhoneAccount" class="flex flex-col gap-3 w-full">
-          <label for="">Public Phone</label>
-          <input v-model=updateUserFormPublicPhone.publicPhone type="text" inputmode="numeric" class="border border-gray-200
-              rounded-xl outline-none px-4 py-3 text-sm bg-white appearance-none" placeholder="+000 (00) 000-00-00" />
-          <span v-if=updateUserFormPublicPhoneErrors.publicPhoneError class="text-red-600 text-xs">
-            {{ updateUserFormPublicPhoneMessage.publicPhoneMessage }}</span>
-          <div class="flex">
-            <BaseButton @click.prevent="updatePublicPhoneAccount()" name="Save Phone" variant="profileForm" />
-          </div>
-        </form>
-      </div>
+      <SellerForm />
     </div>
+    <BuyerForm />
     <div class="flex flex-col">
       <form @keydown.enter.prevent="updatePasswordAccount" class="flex flex-col gap-10 sm:flex-row">
         <div class="flex flex-col gap-3 w-full">
           <label>Old password</label>
           <div class="relative">
             <input v-model=updateUserPassword.oldPassword :type="showOldPassword ? 'text' : 'password'" inputmode="numeric"
-                class="w-full border border-gray-200 rounded-xl outline-none px-4 py-3 text-sm bg-white appearance-none"
-                placeholder="Old Password" />
+                   class="w-full border border-gray-300 rounded-xl outline-none px-4 py-3 text-sm bg-[#D9D9D9]/40
+                     transition duration-400 hover:bg-gray-50 focus:bg-gray-50 appearance-none" placeholder="Old Password" />
             <img @click.prevent=toggleOldPassword :src="showOldPassword ? opened : closed" alt=""
                 class="absolute w-[30px] top-1/5 left-115">
           </div>
@@ -175,8 +125,8 @@ const toggleNewPassword = () => {
           <label>New password</label>
           <div class="relative">
             <input v-model=updateUserPassword.newPassword :type="showNewPassword ? 'text' : 'password'" inputmode="numeric"
-                class="w-full border border-gray-200 rounded-xl outline-none px-4 py-3 text-sm bg-white appearance-none"
-                placeholder="New Password" />
+                   class=" w-full border border-gray-300 rounded-xl outline-none px-4 py-3 text-sm bg-[#D9D9D9]/40
+                     transition duration-400 hover:bg-gray-50 focus:bg-gray-50 appearance-none" placeholder="New Password" />
             <img @click.prevent=toggleNewPassword :src="showNewPassword ? opened : closed" alt=""
                 class="absolute w-[30px] top-1/5 left-115">
           </div>
@@ -189,19 +139,7 @@ const toggleNewPassword = () => {
         <BaseButton @click.prevent="updatePasswordAccount()" name="Save Password" variant="profileForm" />
       </div>
     </div>
-    <div v-if="user.role === 'Seller'" class="flex gap-10">
-      <form @keydown.enter.prevent="updateEmailAccount" class="flex flex-col gap-3 w-[510px]">
-        <label for="">Email</label>
-        <input v-model=updateUserEmail.email type="text" inputmode="numeric" class="border border-gray-200 rounded-xl
-            outline-none px-4 py-3 text-sm bg-white appearance-none" placeholder="example@mail.com" />
-        <span v-if=updateUserEmailErrors.emailError class="text-red-600 text-xs">
-          {{ updateUserFormEmailMessage.emailMessage }}
-        </span>
-        <div class="flex">
-          <BaseButton @click.prevent="updateEmailAccount()" name="Save Email" variant="profileForm" />
-        </div>
-      </form>
-    </div>
+    <SellerEmailForm />
   </div>
 </template>
 

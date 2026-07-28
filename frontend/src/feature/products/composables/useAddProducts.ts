@@ -1,19 +1,21 @@
 import router from "../../../app/router";
 
 import { useGetProducts } from "./getProducts.ts";
+import { useUpdateProduct } from "./useUpdateProduct.ts";
 import { ApiError, handler } from "../../../shared/api/http.ts";
-import { productsForms } from "../../../shared/composables/forms-composables/forms/products.forms.ts";
-import { productsStore } from "../../../shared/composables/stores/products.store.ts";
-import { productsFormErrors } from "../../../shared/composables/forms-composables/forms-errors/products.errors.ts";
-import { useProductsModals } from "../../../shared/composables/modals/products/productsModals.ts";
-import { clearProductsForms } from "../../../shared/composables/forms-composables/clear-forms/clear.products.ts";
 import { useCheckout } from "../../checkout/composables/useCheckout.ts";
+import { productsStore } from "../../../shared/composables/stores/products.store.ts";
+import { useProductsModals } from "../../../shared/composables/modals/products/productsModals.ts";
+import { productsForms } from "../../../shared/composables/forms-composables/forms/products.forms.ts";
+import { productsFormErrors } from "../../../shared/composables/forms-composables/forms-errors/products.errors.ts";
+import { clearProductsForms } from "../../../shared/composables/forms-composables/clear-forms/clear.products.ts";
 
 const { totalPrice } = useCheckout();
+const { getCartProducts, getFavoriteProducts } = useGetProducts();
 const { toggleCreateProductModal, openNotify } = useProductsModals();
+const { updateFavorite, updateCheckedQuantity } = useUpdateProduct();
 const { clearProductForm, clearAddToCartForm } = clearProductsForms();
 const { createProductFormErrors, addCartFormErrors } = productsFormErrors();
-const { getFilteredProducts, getCartProducts, getFavoriteProducts } = useGetProducts();
 const { createProductForm, moreCreateItem, createProductFormMessages,
     addToCartForm, addToCartFormMessages } = productsForms();
 const { products, cart, product, items, orders,
@@ -168,8 +170,8 @@ export const useAddProducts = () => {
             const currentProduct = sourceList?.find(item => item.id === id);
             if(!currentProduct) return
 
-            const isFavorite = product.value.favorite
-            const newStatus = !isFavorite
+                    const isFavorite = product.value.favorite
+                    const newStatus = !isFavorite
 
             if(!isFavorite){
                 await handler(`/favorites`, {
@@ -204,23 +206,7 @@ export const useAddProducts = () => {
                 await getFavoriteProducts();
             }
 
-            await Promise.all([
-                await handler(`/cart/${id}`, {
-                    method: "PATCH",
-                    body: JSON.stringify({
-                        favorite: newStatus,
-                    })
-                }),
-                await getCartProducts(),
-
-                await handler(`/products/${productId}`, {
-                    method: "PATCH",
-                    body: JSON.stringify({
-                        favorite: newStatus,
-                    })
-                }),
-                await getFilteredProducts('ALL', 'ALL'),
-            ])
+            await updateFavorite(id, productId, newStatus)
         }catch(err){
             console.log('Не удалось добавить товар в любимое.', err);
         }
@@ -230,9 +216,7 @@ export const useAddProducts = () => {
         const userId = localStorage.getItem("userId");
         try{
             const date = new Date();
-
             const dateCreated = date.toLocaleDateString();
-
             const time = date.toLocaleTimeString("ru-RU", {
                 hour: "2-digit",
                 minute: "2-digit",
@@ -251,16 +235,7 @@ export const useAddProducts = () => {
             })
             orders.value = newOrder;
 
-            const cartItems = await handler(`/cart/${userId}`, {
-                method: "GET",
-            })
-
-            const checkedItems = cartItems.filter((item: any) => item.checked === true);
-            for(const item of checkedItems) {
-                await handler(`/cart/${item.id}`, {
-                    method: "DELETE",
-                })
-            }
+            await updateCheckedQuantity()
 
             await router.push({ name: '/profile/ProfilePage' })
         }catch(err){

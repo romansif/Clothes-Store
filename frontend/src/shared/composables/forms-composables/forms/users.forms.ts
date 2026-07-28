@@ -117,6 +117,6 @@ export const userForms = () => {
         updateUserEmail,
         updateUserFormEmailMessage,
         updateUserPassword,
-        updateUserFormPasswordMessages
+        updateUserFormPasswordMessages,
     }
 }

@@ -6,7 +6,6 @@ import { productsStore } from "../../../../shared/composables/stores/products.st
 
 const { items } = productsStore();
 
-
 const productPreview = computed(() => {
   return(id: string) => {
     if(!id){

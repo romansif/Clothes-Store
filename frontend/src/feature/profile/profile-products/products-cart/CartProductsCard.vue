@@ -69,18 +69,21 @@ const refreshPage = () => {
       </div>
       <div class="flex flex-col gap-15">
         <div class="flex flex-col gap-4">
-          <img @click="deleteProductCart(product.id)" :src="del" alt="">
-          <img v-if="product.status === 'Availability'" @click="checkCartItem(product.id, product)" :src="product.checked ? check_square : square" alt="" class="w-[30px]">
+          <img @click="deleteProductCart(product.id)" :src="del" alt="" class="transition duration-400 hover:scale-120">
+          <img v-if="product.status === 'Availability'" @click="checkCartItem(product.id, product)"
+               :src="product.checked ? check_square : square" alt="" class="w-[30px] transition duration-400 hover:scale-120">
         </div>
         <div class="flex flex-col gap-4">
           <img :src="sizeUrl(product.size)" :class="[sizeClass(product.size)]" alt="">
           <div :class="['w-[30px] h-[30px]', colorClass(product.color)]"></div>
-          <div class="flex flex-col border">
-            <button @click="updateCartItem('add', product.id, product.status)" class="border-b">+</button>
+          <div class="flex flex-col border transition duration-400 hover:scale-120">
+            <button @click="updateCartItem('add', product.id, product.status)"
+                    class="border-b transition duration-400 hover:bg-zinc-300">+</button>
             <span class="text-sm border-b text-center">{{ product.quantity }}</span>
-            <button @click="updateCartItem('away', product.id, product.status)" class="" >-</button>
+            <button @click="updateCartItem('away', product.id, product.status)"
+                    class="border-b transition duration-400 hover:bg-zinc-300">-</button>
           </div>
-          <img @click="refreshPage" :src="update" alt="">
+          <img @click="refreshPage" :src="update" alt="" class="transition duration-400 hover:scale-120">
         </div>
       </div>
     </li>

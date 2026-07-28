@@ -70,7 +70,7 @@ export const useUpdateProfile = () => {
                     updateUserFormNameMessage.value.nameMessage = errors.name || '';
                 }
             }
-            console.log('Не удалось обновить данные пользователя')
+            console.log('Не удалось обновить имя пользователя')
         }
     };
 
@@ -94,6 +94,7 @@ export const useUpdateProfile = () => {
                     updateUserFormSurNameMessage.value.surNameMessage = errors.surName || '';
                 }
             }
+            console.log('Не удалось обновить фамилию пользователя')
         }
     };
 
@@ -117,6 +118,7 @@ export const useUpdateProfile = () => {
                     updateUserFormPhoneMessage.value.phoneMessage = errors.phone || '';
                 }
             }
+            console.log('Не удалось обновить личный телефон пользователя')
         }
     };
 
@@ -140,6 +142,7 @@ export const useUpdateProfile = () => {
                     updateUserFormCompanyNameMessage.value.companyNameMessage = errors.companyName || '';
                 }
             }
+            console.log('Не удалось обновить название компании пользователя')
         }
     };
 
@@ -163,6 +166,7 @@ export const useUpdateProfile = () => {
                     updateUserFormPublicPhoneMessage.value.publicPhoneMessage = errors.publicPhone || '';
                 }
             }
+            console.log('Не удалось обновить телефон компании пользователя')
         }
     };
 
@@ -186,6 +190,7 @@ export const useUpdateProfile = () => {
                     updateUserFormEmailMessage.value.emailMessage = errors.email || '';
                 }
             }
+            console.log('Не удалось обновить почту пользователя')
         }
     };
 
@@ -213,6 +218,7 @@ export const useUpdateProfile = () => {
                     updateUserFormPasswordMessages.value.newPasswordMessage = errors.newPassword || '';
                 }
             }
+            console.log('Не удалось обновить пароль пользователя')
         }
     };
 

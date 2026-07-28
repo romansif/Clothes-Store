@@ -72,7 +72,7 @@ onMounted(async() => {
         </div>
       </div>
       <div :class="isShoppingCart ? 'hidden' : 'flex flex-col xl:flex-row xl:justify-between'">
-        <CartList v-if="cart.length > 0"/>
+        <CartList v-if="cart.length > 0" />
         <div v-else class="flex items-center px-105">
           <span class="text-[#A3A3A3] text-xl">Cart is empty</span>
         </div>
@@ -80,7 +80,7 @@ onMounted(async() => {
       </div>
       <div v-if="favorite.length > 0" :class="isFavoriteProducts ? 'hidden' :
           'flex flex-col xl:flex-row xl:justify-between'">
-        <FavoriteList/>
+        <FavoriteList />
       </div>
       <div v-else :class="isFavoriteProducts ? 'hidden' : 'flex justify-center py-55'">
         <span class="text-[#A3A3A3] text-xl">
@@ -92,7 +92,8 @@ onMounted(async() => {
   <div :class="isShoppingCart ? 'hidden' : 'font-[Montserrat] flex flex-col mt-3 xl:hidden'">
     <div class="flex flex-col gap-4">
       <div class="flex gap-4 items-center">
-        <img @click="toggleAgree" :src="isAgreeFormError.agreeError ? check_square : square" alt="" class="w-[25px]">
+        <img @click="toggleAgree" :src="isAgreeFormError.agreeError ? check_square : square"
+             alt="" class="w-[25px] transition duration-400 hover:scale-120">
         <span class="text-xs text-[#A3A3A3]">
           I agree to the Terms and Conditions
         </span>

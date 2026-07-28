@@ -5,9 +5,9 @@ import { productsStore } from "../../../shared/composables/stores/products.store
 import { useDeleteProduct } from "./useDeleteProduct.ts";
 import { useGetProducts } from "./getProducts.ts";
 
-const { getCartProducts } = useGetProducts();
 const { deleteProductCart } = useDeleteProduct();
-const { cart, orderItems, product, activeProductImg } = productsStore();
+const { getCartProducts, getFilteredProducts } = useGetProducts();
+const { products, cart, orderItems, product, activeProductImg } = productsStore();
 
 export const useUpdateProduct = () => {
     const checkCartItem = async (id: string, product: any) => {
@@ -21,8 +21,20 @@ export const useUpdateProduct = () => {
                             checked: true
                         })
                     })
+                    await handler(`/products/${id}`, {
+                        method: "PATCH",
+                        body: JSON.stringify({
+                            checked: true
+                        })
+                    })
                 }else{
                     await handler(`/cart/${id}`, {
+                        method: "PATCH",
+                        body: JSON.stringify({
+                            checked: false
+                        })
+                    })
+                    await handler(`/products/${id}`, {
                         method: "PATCH",
                         body: JSON.stringify({
                             checked: false
@@ -88,14 +100,13 @@ export const useUpdateProduct = () => {
         }
     };
 
-    const updateCartItems = async () => {
+    const updateCartChecked = async () => {
         try{
             const userId = localStorage.getItem('userId');
 
             const allCartItems = await handler(`/cart/${userId}`, {
                 method: "GET"
             });
-
             for(const item of allCartItems) {
                 await handler(`/cart/${item.id}`, {
                     method: "PATCH",
@@ -112,6 +123,75 @@ export const useUpdateProduct = () => {
         }
     };
 
+    const updateFavorite = async (id: string, productId: string, status: boolean) => {
+        try{
+            await Promise.all([
+                await handler(`/cart/${id}`, {
+                    method: "PATCH",
+                    body: JSON.stringify({
+                        favorite: status,
+                    })
+                }),
+                await getCartProducts(),
+
+                await handler(`/products/${productId}`, {
+                    method: "PATCH",
+                    body: JSON.stringify({
+                        favorite: status,
+                    })
+                }),
+                await getFilteredProducts('ALL', 'ALL'),
+            ])
+        }catch(err){
+            console.log('Не удалось изменить статус', err)
+        }
+    };
+
+    const updateCheckedQuantity = async () => {
+        const userId = localStorage.getItem("userId");
+        try{
+
+            const cartItems = await handler(`/cart/${userId}`, {
+                method: "GET",
+            })
+            const checkedItems = cartItems.filter((item: any) => item.checked === true);
+
+            for(const item of checkedItems) {
+                await handler(`/cart/${item.id}`, {
+                    method: "DELETE",
+                })
+
+                console.log(item.productId)
+                const product = products.value.find(p => p.id === item.productId);
+
+                if(product){
+                    const newQuantity = product?.quantity - item.quantity
+                    if(product?.quantity > 1){
+                        await handler(`/products/${product.id}`, {
+                            method: "PATCH",
+                            body: JSON.stringify({
+                                quantity: Number(newQuantity),
+                            })
+                        })
+                    }else if(product?.quantity === 1){
+                        await handler(`/products/${product.id}`, {
+                            method: "PATCH",
+                            body: JSON.stringify({
+                                quantity: Number(newQuantity),
+                                status: "Exhausted"
+                            })
+                        })
+                    }
+                }else{
+                    console.log('Product not found');
+                }
+            }
+            localStorage.removeItem("ordersItem");
+        }catch(err){
+            console.log('Не удалось изменить статус или колличество товара', err)
+        }
+    }
+
     const changeImg = (index: number) => {
         if(!product.value || !Array.isArray(product.value.images)) return
 
@@ -127,7 +207,9 @@ export const useUpdateProduct = () => {
     return{
         checkCartItem,
         updateCartItem,
-        updateCartItems,
+        updateCartChecked,
+        updateFavorite,
+        updateCheckedQuantity,
         changeImg
     }
 }

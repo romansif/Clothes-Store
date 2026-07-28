@@ -10,9 +10,9 @@ const { deleteAccount } = useDeleteProfile();
 </script>
 
 <template>
-  <Menu as="div" class="relative inline-block ml-auto">
+  <Menu as="div" class="relative inline-block ml-auto ">
     <MenuButton class="border border-gray-300 inline-flex w-full justify-center gap-x-1.5 rounded-xl
-        px-3 py-2 text-sm font-semibold inset-ring-1 inset-ring-white/5 ">
+        px-3 py-2 text-sm font-semibold inset-ring-1 inset-ring-white/5 transition duration-400 hover:scale-108">
       Account
     </MenuButton>
     <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95"
@@ -22,7 +22,7 @@ const { deleteAccount } = useDeleteProfile();
           rounded-xl bg-white border border-gray-300">
         <div class="py-1">
           <MenuItem v-slot="{ active }">
-            <button @click=logout :class="[active ? 'bg-white/5 text-black outline-hidden' : 'text-[#A3A3A3]',
+            <button @click=logout :class="['transition duration-400', active ? 'bg-white/5 text-black outline-hidden scale-110' : 'text-[#A3A3A3]',
                 'block px-4 py-2 text-sm']">
               Exit Account
             </button>
@@ -30,7 +30,7 @@ const { deleteAccount } = useDeleteProfile();
         </div>
         <div class="py-1">
           <MenuItem v-slot="{ active }">
-            <button @click=deleteAccount :class="[active ? 'bg-white/5 text-black outline-hidden' : 'text-[#A3A3A3]',
+            <button @click=deleteAccount :class="['transition duration-400', active ? 'bg-white/5 text-black outline-hidden scale-110' : 'text-[#A3A3A3]',
                 'block px-4 py-2 text-sm']">
               Delete Account
             </button>
@@ -39,7 +39,7 @@ const { deleteAccount } = useDeleteProfile();
         <div class="py-1">
           <MenuItem v-slot="{ active }" v-if="user.role === 'Seller'">
             <router-link :to="{name: '/auth/Register'}">
-              <button :class="[active ? 'bg-white/5 text-black outline-hidden' : 'text-[#A3A3A3]',
+              <button :class="['transition duration-400', active ? 'bg-white/5 text-black outline-hidden scale-110' : 'text-[#A3A3A3]',
                   'block px-4 py-2 text-sm']">
                 Become a buyer
               </button>
@@ -47,7 +47,7 @@ const { deleteAccount } = useDeleteProfile();
           </MenuItem>
           <MenuItem v-slot="{ active }" v-if="user.role === 'Buyer'">
             <router-link :to="{name: '/auth/Register'}">
-              <button :class="[active ? 'bg-white/5 text-black outline-hidden' : 'text-[#A3A3A3]',
+              <button :class="['transition duration-400', active ? 'bg-white/5 text-black outline-hidden scale-110' : 'text-[#A3A3A3]',
                   'block px-4 py-2 text-sm']">
                 Become a seller
               </button>

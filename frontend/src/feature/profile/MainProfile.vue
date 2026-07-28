@@ -14,10 +14,11 @@ import OrdersModal from "../../shared/ui/profile-modals/order-history/OrdersModa
 import CurrentOrderModal from "../../shared/ui/profile-modals/current-order/CurrentOrderModal.vue";
 import AddressesCardsModal from "../../shared/ui/profile-modals/address-and-cards/AddressesCardsModal.vue";
 import ConfidentialityModal from "../../shared/ui/profile-modals/confidentiality-data/ConfidentialityModal.vue";
+import Notification from "../../shared/ui/products-modals/Notification.vue";
 
 const { user } = usersStore();
 const { getUser } = useGetUsers();
-const { createProduct } = useProductsModals();
+const { createProduct, notify } = useProductsModals();
 const { avatarModal, orderHistory, currentOrder, addressesAndCards, confidentialityData } = useProfileModals();
 
 const userId = localStorage.getItem("userId");
@@ -53,6 +54,9 @@ onMounted(async () => {
   </Transition>
   <Transition>
     <ConfidentialityModal v-if="confidentialityData"/>
+  </Transition>
+  <Transition>
+    <Notification v-if="notify"/>
   </Transition>
 </template>
 

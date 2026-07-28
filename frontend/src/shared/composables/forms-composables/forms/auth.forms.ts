@@ -54,19 +54,23 @@ const registerFormMessages = ref<registerFormMessage>({
 interface LoginForm {
     email: string,
     password: string
+    role: string
 }
 const loginForm = ref<LoginForm>({
     email: '',
     password: '',
+    role: '',
 })
 
 interface loginFormMessage {
     emailMessage: string,
     passwordMessage: string,
+    roleMessage: string
 }
 const loginFormMessages = ref<loginFormMessage>({
     emailMessage: '',
     passwordMessage: '',
+    roleMessage: '',
 })
 
 export const authForms = () => {

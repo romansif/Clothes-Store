@@ -1,28 +1,30 @@
 <script setup lang="ts">
-import {computed, watch} from "vue";
+import { computed, watch } from "vue";
 import { useAddProducts } from "../composables/useAddProducts.ts";
+import { useUpdateProduct } from "../composables/useUpdateProduct.ts";
 import { productsStore } from "../../../shared/composables/stores/products.store.ts";
 import { productsForms } from "../../../shared/composables/forms-composables/forms/products.forms.ts";
 import { productsFormErrors } from "../../../shared/composables/forms-composables/forms-errors/products.errors.ts";
 
 import like from '../../../app/assets/icons/nav/like.png'
 import liked from '../../../app/assets/icons/nav/liked.png'
+import plus from '../../../app/assets/icons/plus.svg'
+import minus from '../../../app/assets/icons/minus.svg'
 import BaseButton from "../../../shared/ui/button/BaseButton.vue";
 
-const userId = localStorage.getItem("userId");
-
+const { updateCartItem } = useUpdateProduct();
 const { addCartFormErrors } = productsFormErrors();
-const { product, sizes, colors } = productsStore();
+const { products, cart, product, productId, sizes, colors } = productsStore();
 const { addToCart, toggleToFavorite } = useAddProducts();
 const { addToCartForm, addToCartFormMessages } = productsForms();
+
+const userId = localStorage.getItem("userId");
 
 const isAvailableColors = computed(() => {
   if(!product.value.color){
     return ''
   }
-  console.log()
   return colors.filter(color => product.value.color.includes(color.name))
-
 })
 
 const isAvailableSizes = computed(() => {
@@ -30,6 +32,14 @@ const isAvailableSizes = computed(() => {
     return ''
   }
   return sizes.filter(size => product.value.size.includes(size.name))
+})
+
+const isInCart = computed(() => {
+  const product = products.value.find(p => p.id === productId.value);
+  if(!product?.id || !Array.isArray(cart.value)){
+    return false
+  }
+  return cart.value.find(c => c.productId === product?.id) || null
 })
 
 watch(() => [addToCartForm.value.color, addToCartForm.value.size], ([color, size]) => {
@@ -71,10 +81,10 @@ watch(() => [addToCartForm.value.color, addToCartForm.value.size], ([color, size
           Colors
         </span>
         <div class="flex justify-between lg:gap-5">
-          <div v-for="color in (isAvailableColors as any)" :key="color.name" :class="[color.color,
+          <div v-for="color in (isAvailableColors as any)" :key="color.name" :class="[color.color, 'w-[60px] h-[60px]',
                 addToCartForm.color === color.name
-                  ? 'scale-120 border-3 border-black w-[60px] h-[60px]'
-                  : 'hover:scale-110 w-[60px] h-[60px]'
+                  ? 'scale-120 border-3 border-black'
+                  : 'hover:scale-120 transition duration-400'
                ]" @click="addToCartForm.color = color.name"></div>
         </div>
         <span v-if=addCartFormErrors.colorError class="text-red-600 text-xs">
@@ -84,10 +94,10 @@ watch(() => [addToCartForm.value.color, addToCartForm.value.size], ([color, size
       <div class="flex flex-col gap-2">
         <span class="font-medium text-[#A3A3A3]">Size</span>
         <div class="flex justify-between lg:gap-5">
-          <img v-for="size in (isAvailableSizes as any)" :key="size.name" :src=size.url alt="" :class="[size.class,
+          <img v-for="size in (isAvailableSizes as any)" :key="size.name" :src=size.url alt="" :class="[size.class, 'w-[60px] h-[60px]',
                 addToCartForm.size === size.name
-                  ? 'scale-120 border-black w-[60px] h-[60px]'
-                  : 'hover:scale-110 w-[60px]']" @click="addToCartForm.size = size.name">
+                  ? 'scale-120 border-black'
+                  : 'hover:scale-120 transition duration-400']" @click="addToCartForm.size = size.name">
         </div>
         <span v-if=addCartFormErrors.sizeError class="text-red-600 text-xs">
           {{ addToCartFormMessages.sizeMessage }}
@@ -103,8 +113,21 @@ watch(() => [addToCartForm.value.color, addToCartForm.value.size], ([color, size
           ADD TO CART
         </span>
       </router-link>
-      <BaseButton @click="addToCart()" v-if="userId && product.status === 'Availability'" name="ADD TO CART" variant="addToCart" />
+      <BaseButton @click="addToCart()" v-if="userId && product.status === 'Availability' && !isInCart" name="ADD TO CART" variant="addToCart" />
       <BaseButton v-if="userId && product.status === 'Exhausted'" name="OUT OF STACK" variant="outOfStack" />
+      <div v-if="userId && isInCart" class="flex items-center gap-18">
+        <div class="flex gap-6 bg-zinc-800 py-3.5 px-3 text-lg rounded-md transition duration-300 hover:scale-108">
+          <img :src="plus" @click="updateCartItem('add', isInCart.id, isInCart.status)"
+               class="bg-zinc-600 text-white px-2 w-[35px] rounded-md transition duration-300 hover:bg-zinc-400" />
+          <span class="text-white">{{ isInCart.quantity }}</span>
+          <img :src="minus" @click="updateCartItem('away', isInCart.id, isInCart.status)"
+               class="bg-zinc-600 text-white px-2 w-[35px] rounded-md transition duration-300 hover:bg-zinc-400" />
+        </div>
+        <router-link :to="{ name: '/profile/profile-products/ProductsCartPage' }">
+          <span class="bg-black text-white font-semibold py-4 px-21 font-[Montserrat]
+              lg:block cursor-pointer text-start transition duration-300 transform hover:scale-108">Go to Cart</span>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>

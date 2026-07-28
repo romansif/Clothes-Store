@@ -9,6 +9,7 @@ import CardsList from "./cards/CardsList.vue";
 
 import icon_address from "../../../../app/assets/icons/icon_address.svg";
 import icon_card from "../../../../app/assets/icons/icon_card.svg";
+import BaseButton from "../../button/BaseButton.vue";
 
 const { userAddresses, userPayments } = usersStore();
 const { getAddresses, getPayments } = useGetProfile();
@@ -24,10 +25,7 @@ onMounted(async () => {
   <div class="font-[Montserrat] fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)]
                                 flex items-center justify-center">
     <div class="flex flex-col bg-white w-[890px] h-[600px] rounded-xl p-5">
-      <button @click.stop="toggleAddressesAndCards" class="text-start ml-auto h-fit w-fit px-10 py-2
-          bg-red-500 text-white font-medium text-xs rounded-md">
-        Exit
-      </button>
+      <BaseButton @click.stop="toggleAddressesAndCards" name="Exit" variant="exitClose"/>
       <div class="flex flex-col gap-2 border-b py-4">
         <h1 class="font-bold text-2xl">ADDRESSES AND CARDS</h1>
         <div class="flex">

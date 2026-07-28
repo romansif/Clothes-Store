@@ -11,12 +11,16 @@ export const getUsersController = {
         }
     },
     async getUserById (req, res) {
-        const db = dbService.readDB()
-        const user = db.users.find(u => u.id === req.params.id);
-        if (!user) return res.status(404).json({ message: "User not found" });
+        try{
+            const db = dbService.readDB()
+            const user = db.users.find(u => u.id === req.params.id);
+            if (!user) return res.status(404).json({ message: "User not found" });
 
-        const { password: _, refreshTokens: __, ...userWithoutPassword } = user;
-        res.json(userWithoutPassword);
+            const { password: _, refreshTokens: __, ...userWithoutPassword } = user;
+            res.json(userWithoutPassword);
+        }catch(err){
+            res.status(500).json({error: err.message});
+        }
     },
     async getAllCheckout (req, res) {
         try{

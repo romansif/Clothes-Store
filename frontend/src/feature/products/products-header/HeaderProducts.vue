@@ -30,7 +30,7 @@ watch(() => searchProductForm.value.search, async (newValue) => {
     <div class="flex flex-col">
       <div class="flex flex-col gap-4">
         <div class="flex flex-col gap-2 items-center xl:items-start">
-          <div class="font-medium flex gap-2">
+          <div class="font-semibold flex gap-2">
             <span class="text-[#A3A3A3]">
               Home
             </span>
@@ -39,14 +39,15 @@ watch(() => searchProductForm.value.search, async (newValue) => {
               Products
             </span>
           </div>
-          <h1 class="text-4xl font-bold">
+          <h1 class="text-4xl font-extrabold">
             PRODUCTS
           </h1>
         </div>
       </div>
       <div class="flex mt-10 relative">
-        <input v-model="searchProductForm.search" type="text" class="bg-[#D9D9D9] h-[50px] px-10 w-full placeholder:px-52 border-none outline-none
-             sm:placeholder:px-122 md:placeholder:px-130 lg:placeholder:px-190 xl:w-[370px] xl:placeholder:px-65"
+        <input v-model="searchProductForm.search" type="text" class="bg-[#D9D9D9] h-[50px] px-10 w-full placeholder:px-52
+            border-none outline-none sm:placeholder:px-122 md:placeholder:px-130 lg:placeholder:px-190 xl:w-[370px]
+            xl:placeholder:px-65 transition duration-400 hover:bg-[#D9D9D9]/40 focus:bg-[#D9D9D9]/40"
                placeholder="Search">
         <img :src=search alt="" class="absolute left-4 top-1/2 -translate-y-1/2">
         <img v-if="searchProductForm.search" @click="resetSearch" :src="del" alt="" class="w-[25px] absolute top-1/4 left-85">
@@ -61,11 +62,11 @@ watch(() => searchProductForm.value.search, async (newValue) => {
       </div>
       <div class="font-medium hidden gap-x-5 gap-y-2 sm:grid sm:grid-cols-4 xl:mt-19">
         <button v-for="(isActive, categoryName) in category" @click="toggleFilter('ALL', categoryName)"
-                :class="['border-2 sm:px-2 sm:py-1 md:px-5 text-lg', isActive ? ' border-black' : 'text-[#A3A3A3] border-[#A3A3A3]']">
+                :class="['border-2 sm:px-2 sm:py-1 md:px-5 text-lg transition duration-400 hover:border-black hover:text-black hover:scale-110', isActive ? ' border-black' : 'text-[#A3A3A3] border-[#A3A3A3]']">
           All
         </button>
         <button v-for="(isActive, categoryName) in categories" @click="toggleFilter('CATEGORY', categoryName)"
-                :class="['border-2 sm:px-2 sm:py-1 md:px-5 text-lg', isActive ? ' border-black' : 'text-[#A3A3A3] border-[#A3A3A3]']">
+                :class="['border-2 sm:px-2 sm:py-1 md:px-5 text-lg transition duration-400 hover:border-black hover:text-black hover:scale-110', isActive ? ' border-black' : 'text-[#A3A3A3] border-[#A3A3A3]']">
           {{ categoryName }}
         </button>
       </div>

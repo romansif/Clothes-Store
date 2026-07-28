@@ -86,14 +86,15 @@ export const authController = {
 
     async login (req, res) {
         const db = dbService.readDB();
-        const { email, password } = req.body;
+        const { email, password, role } = req.body;
 
         try {
-            if (!email || !password) {
+            if (!email || !password || !role) {
                 return res.status(400).json({ message: 'Email and password are required.' });
             }
-            const user = db.users.find(u => u.email === email);
-            if(!user){
+            const user = db.users.find(u => u.email === email && u.role === role);
+
+            if(!user) {
                 return res.status(400).json({
                     message: 'Invalid email or password',
                     errors: { email: 'Invalid email or password' }

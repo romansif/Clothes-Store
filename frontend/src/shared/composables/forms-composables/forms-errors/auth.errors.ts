@@ -21,11 +21,13 @@ const registerFormErrors = ref<RegisterFormErrors>({
 
 interface LoginFormErrors {
     emailError: boolean,
-    passwordError: boolean
+    passwordError: boolean,
+    roleError: boolean,
 }
 const loginFormErrors = ref<LoginFormErrors>({
     emailError: false,
-    passwordError: false
+    passwordError: false,
+    roleError: false,
 })
 
 export const authFormsErrors = () => {

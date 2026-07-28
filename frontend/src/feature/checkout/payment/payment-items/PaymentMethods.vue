@@ -24,7 +24,7 @@ const { openCardForm, closeCardForm, isDebitCard } = useCheckout();
           <PaymentForm />
         </form>
         <div v-if="isDebitCard === false" @click="openCardForm('card')" class="flex justify-between items-center
-            px-3 border border-gray-200 rounded-xl h-[80px] bg-white">
+            px-3 border border-gray-300 rounded-xl h-[80px] transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50">
           <div class="flex items-center gap-3">
             <input v-model="payment.paymentMethod" type="radio" name="shipping-method"
                 class="accent-black w-4 h-4" placeholder="Email">
@@ -42,8 +42,8 @@ const { openCardForm, closeCardForm, isDebitCard } = useCheckout();
             <img :src="mastercard_pay" alt="" class="w-[45px]">
           </div>
         </div>
-        <div @click="closeCardForm('apple')" class="flex justify-between items-center px-3 border border-gray-200
-            rounded-xl h-[80px] bg-white">
+        <div @click="closeCardForm('apple')" class="flex justify-between items-center px-3 border border-gray-300
+            rounded-xl h-[80px] transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50">
           <div class="flex items-center gap-3">
             <input v-model="payment.paymentMethod" type="radio" value="apple" name="shipping-method"
                 class="accent-black w-4 h-4" placeholder="Email">
@@ -58,8 +58,8 @@ const { openCardForm, closeCardForm, isDebitCard } = useCheckout();
           </div>
           <img :src="apple_pay" alt="" class="w-[60px]">
         </div>
-        <div @click="closeCardForm('google')" class="flex justify-between items-center px-3 border border-gray-200
-            rounded-xl h-[80px] bg-white">
+        <div @click="closeCardForm('google')" class="flex justify-between items-center px-3 border border-gray-300
+            rounded-xl h-[80px] transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50">
           <div class="flex items-center gap-3">
             <input v-model="payment.paymentMethod" type="radio" value="google" name="shipping-method"
                 class="accent-black w-4 h-4" placeholder="Email">
@@ -74,8 +74,8 @@ const { openCardForm, closeCardForm, isDebitCard } = useCheckout();
           </div>
           <img :src="google_pay" alt="" class="w-[60px]">
         </div>
-        <div @click="closeCardForm('paypal')" class="flex justify-between items-center px-3 border border-gray-200
-            rounded-xl h-[80px] bg-white">
+        <div @click="closeCardForm('paypal')" class="flex justify-between items-center px-3 border border-gray-300
+            rounded-xl h-[80px] transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50">
           <div class="flex items-center gap-3">
             <input v-model="payment.paymentMethod" type="radio" value="paypal" name="shipping-method"
                 class="accent-black w-4 h-4" placeholder="Email">

@@ -21,7 +21,7 @@ export const handler = async <T = any>(
 
     const headers: Record<string, string> = {
         "Authorization": `Bearer ${localStorage.getItem('accessToken')}`,
-        ...options.headers
+        ...(options.headers as Record<string, string>)
     }
 
     if (!(options.body instanceof FormData)) {
@@ -42,7 +42,7 @@ export const handler = async <T = any>(
                 credentials: 'include'
             })
             if(!refreshRes.ok){
-                throw new Error('Сессия истекла, авторизуйтесь заново');
+                new Error('Сессия истекла, авторизуйтесь заново');
             }
 
             const data = await refreshRes.json();
@@ -54,7 +54,7 @@ export const handler = async <T = any>(
             console.log('Не удалось востановить ссесию');
             localStorage.clear();
 
-            await router.replace({ name: 'signIn' })
+            await router.replace({ name: '/auth/LoginPage' })
             throw err;
         }
     }

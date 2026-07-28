@@ -37,8 +37,10 @@ const productPreview = computed(() => {
       <div class="flex flex-col">
         <div class="relative">
           <router-link :to="{ name: '/products/ProductsInfoPage' }">
-            <img :src="productPreview(product.id)" alt="" class="w-[335px] h-[314px] sm:h-[314px] xl:h-[400px]">
+            <img :src="productPreview(product.id)" alt="" :class="['w-[335px] h-[314px] sm:h-[314px] xl:h-[400px]',
+                product.status === 'Availability' ? '' : 'opacity-40']">
           </router-link>
+          <span v-if="product.status === 'Exhausted'" class="absolute top-1/2 left-1/20 text-5xl font-semibold -rotate-45">Out Of Stack</span>
           <img @click="toggleToFavorite(product.id, 'cart', product.productId)" :src="product.favorite ? liked : like"
                alt="" class="absolute top-0.5 left-75.5 w-[32px]">
         </div>
@@ -56,7 +58,7 @@ const productPreview = computed(() => {
       </div>
       <div class="flex flex-col gap-15">
         <div class="flex flex-col gap-4">
-          <img @click="deleteProduct(product.id)" :src="del" alt="" class="w-[30px]">
+          <img @click="deleteProduct(product.id)" :src="del" alt="" class="w-[30px] transition duration-400 hover:scale-120">
         </div>
         <div class="flex flex-col gap-4">
 

@@ -10,20 +10,18 @@ import catalog from "../../../app/assets/icons/nav/catalog.png";
   <nav class="font-[Montserrat]">
     <div class="flex justify-between items-center md:justify-between">
       <div class="flex items-center gap-5 lg:gap-10">
-        <router-link :to="{name: '/auth/LoginPage'}">
-          <img :src=catalog alt="" class="w-[30px]">
-        </router-link>
+        <img :src=catalog alt="" class="w-[30px]">
         <div class="xl:flex xl:gap-10
             lg:flex lg:gap-10
             md:flex md:gap-5
-            sm:hidden hidden">
-          <span class="font-semibold">
+            sm:hidden hidden font-semibold">
+          <span class="text-[#696969] transition duration-400 hover:text-black hover:scale-120">
             Home
           </span>
-          <router-link :to="{name: '/products/ProductsPage'}">
-            <span class="text-[#A3A3A3]">Products</span>
+          <router-link :to="{name: '/products/ProductsPage'}" class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120">
+            Products
           </router-link>
-          <span class="text-[#A3A3A3]">New</span>
+          <span class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120">New</span>
         </div>
       </div>
       <div class="xl:flex xl:gap-10
@@ -57,8 +55,9 @@ import catalog from "../../../app/assets/icons/nav/catalog.png";
       </div>
       <div class="flex">
         <div class="relative">
-          <input type="text" class="bg-[#D9D9D9] h-[50px] w-[300px] sm:w-[400px] placeholder:px-45
-              xl:border-none xl:outline-none px-10 sm:placeholder:px-70" placeholder="Search">
+          <input type="text" class="bg-[#D9D9D9]  h-[50px] w-[300px] sm:w-[400px] placeholder:px-45
+              xl:border-none xl:outline-none px-10 sm:placeholder:px-70 transition duration-400 hover:bg-[#D9D9D9]/40
+              focus:bg-[#D9D9D9]/40" placeholder="Search">
           <img :src=search alt="" class="absolute left-4 top-1/2 -translate-y-1/2">
         </div>
       </div>

@@ -5,7 +5,7 @@ const { getFilteredProducts } = useGetProducts();
 
 export const useFilter = () => {
     const stackProducts = ref<Record<string, boolean>>({
-        Availability: true,
+        Availability: false,
         Exhausted: false,
     })
 
@@ -25,7 +25,7 @@ export const useFilter = () => {
     })
 
     const category = ref<Record<string, boolean>>({
-        Availability: true,
+        ALL: true,
     })
 
     const categories = ref<Record<string, boolean>>({

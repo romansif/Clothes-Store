@@ -87,7 +87,7 @@ const routerBack = () => {
             </div>
             <div class="flex flex-col justify-between">
               <div v-for="(img, index) in angelCards(product)" :key="index" class="h-[85px] w-[72px]">
-                <img @click="changeImg(index)" :src="img" alt="" class="opacity-70">
+                <img @click="changeImg(index)" :src="img" alt="" class="opacity-70 transition duration-400 hover:scale-120">
               </div>
             </div>
           </div>
@@ -101,9 +101,19 @@ const routerBack = () => {
       </div>
     </div>
   </div>
-  <Notification v-if="notify"/>
+  <Transition>
+    <Notification v-if="notify"/>
+  </Transition>
 </template>
 
 <style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
 
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
 </style>

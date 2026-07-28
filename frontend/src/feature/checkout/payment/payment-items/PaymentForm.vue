@@ -23,13 +23,13 @@ const formatCardNumber = (event: Event) => {
   <div class="flex gap-2">
     <div class="flex flex-col gap-2 w-full">
       <label>Card Name</label>
-      <input v-model="payment.cardName" type="text" class="border border-gray-200 rounded-xl outline-none
-          px-4 py-3 text-sm bg-white appearance-none" placeholder="Card Name is optional"/>
+      <input v-model="payment.cardName" type="text" class="border border-gray-300 rounded-xl outline-none
+          px-4 py-3 text-sm transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50 appearance-none " placeholder="Card Name is optional"/>
     </div>
     <div class="flex flex-col gap-2 w-full">
       <label>Card Number</label>
-      <input v-model="payment.cardNumber" type="text" @input="formatCardNumber" class="border border-gray-200 rounded-xl outline-none
-          px-4 py-3 text-xs bg-white appearance-none placeholder:text-lg" placeholder="xxxx xxxx xxxx xxxx" />
+      <input v-model="payment.cardNumber" type="text" @input="formatCardNumber" class="border border-gray-300 rounded-xl outline-none
+          px-4 py-3 text-xs transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50 appearance-none placeholder:text-lg" placeholder="xxxx xxxx xxxx xxxx" />
       <span v-if="paymentErrors.cardNumberError" class="text-red-600 text-xs">
         {{ paymentMessages.cardNumberMessage }}
       </span>
@@ -38,8 +38,8 @@ const formatCardNumber = (event: Event) => {
   <div class="flex gap-2">
     <div class="flex flex-col gap-2">
       <label>Expiry date</label>
-      <input v-model="payment.expiryDate" type="text" inputmode="numeric" class="border border-gray-200 rounded-xl w-full
-          sm:w-[300px] md:w-[365px] lg:w-[195px] xl:w-[245px] outline-none px-4 py-3 text-xs bg-white"
+      <input v-model="payment.expiryDate" type="text" inputmode="numeric" class="border border-gray-300 rounded-xl w-full
+          sm:w-[300px] md:w-[365px] lg:w-[195px] xl:w-[245px] outline-none px-4 py-3 text-xs transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50"
           placeholder="MM / YY">
       <span v-if="paymentErrors.expiryDateError" class="text-red-600 text-xs">
         {{ paymentMessages.expiryDateMessage }}
@@ -47,8 +47,8 @@ const formatCardNumber = (event: Event) => {
     </div>
     <div class="flex flex-col gap-2">
       <label>CVV</label>
-      <input  v-model="payment.cardCvv" type="number" inputmode="numeric" class="border border-gray-200 rounded-xl w-full
-          sm:w-[300px] md:w-[365px] lg:w-[195px] xl:w-[245px] outline-none px-4 py-3 text-xs bg-white placeholder:text-xl"
+      <input  v-model="payment.cardCvv" type="number" inputmode="numeric" class="border border-gray-300 rounded-xl w-full
+          sm:w-[300px] md:w-[365px] lg:w-[195px] xl:w-[245px] outline-none px-4 py-3 text-xs transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50 placeholder:text-xl"
           placeholder="•••">
       <span v-if="paymentErrors.cardCvvError" class="text-red-600 text-xs">
         {{ paymentMessages.cardCvvMessage }}

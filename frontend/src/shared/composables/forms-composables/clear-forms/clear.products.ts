@@ -13,7 +13,7 @@ export const clearProductsForms = () => {
         createProductForm.value.price = ''
         createProductForm.value.quantity = 0
         moreCreateItem.size = []
-        moreCreateItem.size = []
+        moreCreateItem.color = []
 
         createProductFormMessages.value.titleMessage = ''
         createProductFormMessages.value.colorMessage = ''
