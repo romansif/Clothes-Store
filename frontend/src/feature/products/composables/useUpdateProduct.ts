@@ -1,9 +1,9 @@
 const BASE_URL = `http://localhost:3000`
 
-import { handler } from "../../../shared/api/http.ts";
-import { productsStore } from "../../../shared/composables/stores/products.store.ts";
-import { useDeleteProduct } from "./useDeleteProduct.ts";
+import { handler } from "@/shared/api/http.ts";
 import { useGetProducts } from "./getProducts.ts";
+import { useDeleteProduct } from "./useDeleteProduct.ts";
+import { productsStore } from "@/shared/composables/stores/products.store.ts";
 
 const { deleteProductCart } = useDeleteProduct();
 const { getCartProducts, getFilteredProducts } = useGetProducts();
@@ -20,26 +20,26 @@ export const useUpdateProduct = () => {
                         body: JSON.stringify({
                             checked: true
                         })
-                    })
+                    });
                     await handler(`/products/${id}`, {
                         method: "PATCH",
                         body: JSON.stringify({
                             checked: true
                         })
-                    })
+                    });
                 }else{
                     await handler(`/cart/${id}`, {
                         method: "PATCH",
                         body: JSON.stringify({
                             checked: false
                         })
-                    })
+                    });
                     await handler(`/products/${id}`, {
                         method: "PATCH",
                         body: JSON.stringify({
                             checked: false
                         })
-                    })
+                    });
                 }
 
                 const index = orderItems.value.findIndex(item => item.id === product.id);
@@ -60,28 +60,45 @@ export const useUpdateProduct = () => {
 
     const updateCartItem = async (type: string, id: string, status: string) => {
         try{
+            await getFilteredProducts('ALL', 'ALL');
+
             const productCart = cart.value?.find(c => c.id === id);
+            const product = products.value?.find(
+                p => p.id === productCart?.productId
+            );
 
-            const currentPrice = Number(productCart?.price) || 0;
-            const currentQuantity = Number(productCart?.quantity) || 1;
+            if(!productCart && !product) {
+                console.log('Товар в корзине или в каталоге не найден')
+                return
+            }
 
-            if(productCart){
-                if(type === 'add' && status === 'Availability'){
-                    const newPrice = currentPrice * 2;
-                    const newQuantity = currentQuantity + 1;
+            const basePrice =  Number(product?.price)
+            const stock = Number(product?.quantity);
+            const currentPrice = Number(productCart?.price);
+            const currentQuantity = Number(productCart?.quantity);
 
-                    await handler(`/cart/${id}`, {
-                        method: "PATCH",
-                        body: JSON.stringify({
-                            price: newPrice,
-                            quantity: newQuantity,
-                        })
-                    });
-                }else if(type === 'away' && status === 'Availability'){
-                    if(currentQuantity === 1){
+            if(status === 'Availability'){
+                if(type === 'add'){
+                    if(currentQuantity < stock){
+                        const newPrice = currentPrice + basePrice;
+                        const newQuantity = currentQuantity + 1;
+
+                        await handler(`/cart/${id}`, {
+                            method: "PATCH",
+                            body: JSON.stringify({
+                                price: newPrice,
+                                quantity: newQuantity,
+                            })
+                        });
+                    }else{
+                        console.warn('Достигнуто максимальное количество товара на складе');
+                        return;
+                    }
+                }else if(type === 'away') {
+                    if(currentQuantity <= 1){
                         await deleteProductCart(id);
-                    }else if(status === 'Availability'){
-                        const newPrice = currentPrice / 2;
+                    }else{
+                        const newPrice = currentPrice - basePrice;
                         const newQuantity = currentQuantity - 1;
 
                         await handler(`/cart/${id}`, {
@@ -93,10 +110,10 @@ export const useUpdateProduct = () => {
                         });
                     }
                 }
-                await getCartProducts();
             }
+            await getCartProducts();
         }catch(err){
-            console.log('Не удалось обновить колличество товара', err)
+            console.log('Не удалось обновить колличество товара', err);
         }
     };
 
@@ -115,7 +132,7 @@ export const useUpdateProduct = () => {
                     })
                 })
             }
-            orderItems.value = []
+            orderItems.value = [];
 
             await getCartProducts();
         }catch(err){
@@ -150,6 +167,7 @@ export const useUpdateProduct = () => {
     const updateCheckedQuantity = async () => {
         const userId = localStorage.getItem("userId");
         try{
+            await getFilteredProducts('ALL', 'ALL')
 
             const cartItems = await handler(`/cart/${userId}`, {
                 method: "GET",
@@ -157,48 +175,59 @@ export const useUpdateProduct = () => {
             const checkedItems = cartItems.filter((item: any) => item.checked === true);
 
             for(const item of checkedItems) {
-                await handler(`/cart/${item.id}`, {
-                    method: "DELETE",
-                })
+                await deleteProductCart(item.id);
 
-                console.log(item.productId)
-                const product = products.value.find(p => p.id === item.productId);
+                const product = products.value?.find(
+                    p => p.id === item.productId
+                );
+                if(!item && !product) {
+                    console.log('Товар в корзине или в каталоге не найден')
+                    return
+                }
 
-                if(product){
-                    const newQuantity = product?.quantity - item.quantity
-                    if(product?.quantity > 1){
-                        await handler(`/products/${product.id}`, {
-                            method: "PATCH",
-                            body: JSON.stringify({
-                                quantity: Number(newQuantity),
-                            })
+                const currentQuantity = Number(product?.quantity);
+                const cartQuantity = Number(item?.quantity);
+
+                const newQuantity = currentQuantity - cartQuantity;
+                if(currentQuantity > cartQuantity){
+                    await handler(`/products/${product?.id}`, {
+                        method: "PATCH",
+                        body: JSON.stringify({
+                            quantity: Number(newQuantity),
                         })
-                    }else if(product?.quantity === 1){
-                        await handler(`/products/${product.id}`, {
-                            method: "PATCH",
-                            body: JSON.stringify({
-                                quantity: Number(newQuantity),
-                                status: "Exhausted"
-                            })
+                    });
+                }else if(currentQuantity === cartQuantity){
+                    await handler(`/products/${product?.id}`, {
+                        method: "PATCH",
+                        body: JSON.stringify({
+                            quantity: Number(newQuantity),
+                            status: "Exhausted"
                         })
-                    }
+                    });
+                    await handler(`/favorites/${product?.id}`, {
+                        method: "PATCH",
+                        body: JSON.stringify({
+                            quantity: Number(newQuantity),
+                            status: "Exhausted"
+                        })
+                    });
                 }else{
                     console.log('Product not found');
                 }
             }
             localStorage.removeItem("ordersItem");
         }catch(err){
-            console.log('Не удалось изменить статус или колличество товара', err)
+            console.log('Не удалось изменить статус или колличество товара', err);
         }
     }
 
     const changeImg = (index: number) => {
-        if(!product.value || !Array.isArray(product.value.images)) return
+        if(!product.value || !Array.isArray(product.value.images)) return;
 
-        const realIndex = index + 1
-        const mainPath = product.value.images[0]
+        const realIndex = index + 1;
+        const mainPath = product.value.images[0];
 
-        product.value.images[0] = product.value.images[realIndex]
+        product.value.images[0] = product.value.images[realIndex];
         product.value.images[realIndex] = mainPath;
 
         activeProductImg.value = `${BASE_URL}/${product.value.images[0]}`;

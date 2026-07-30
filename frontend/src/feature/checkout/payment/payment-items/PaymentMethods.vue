@@ -1,15 +1,17 @@
 <script setup lang="ts">
-import { useCheckout } from "../../composables/useCheckout.ts";
-import { checkoutForms } from "../../../../shared/composables/forms-composables/forms/checkout.forms.ts";
-import { checkoutErrors }from "../../../../shared/composables/forms-composables/forms-errors/checkout.errors.ts";
+import { useCheckout } from "@/feature/checkout/composables/useCheckout.ts";
+import { useAddCheckout } from "@/feature/checkout/composables/useAddCheckout.ts";
+import { checkoutForms } from "@/shared/composables/forms-composables/forms/checkout.forms.ts";
+import { checkoutErrors }from "@/shared/composables/forms-composables/forms-errors/checkout.errors.ts";
 
 import PaymentForm from "./PaymentForm.vue";
-import apple_pay from '../../../../app/assets/icons/payment/applepay.png'
-import google_pay from '../../../../app/assets/icons/payment/googlepay.png'
-import pay_pal from '../../../../app/assets/icons/payment/paypal.png'
-import visa_pay from '../../../../app/assets/icons/payment/visa.png'
-import mastercard_pay from '../../../../app/assets/icons/payment/mastercard.svg'
+import visa_pay from '@/assets/icons/payment/visa.png';
+import pay_pal from '@/assets/icons/payment/paypal.png';
+import apple_pay from '@/assets/icons/payment/applepay.png';
+import google_pay from '@/assets/icons/payment/googlepay.png';
+import mastercard_pay from '@/assets/icons/payment/mastercard.svg';
 
+const { addPayment } = useAddCheckout();
 const { paymentErrors } = checkoutErrors();
 const { payment, paymentMessages } = checkoutForms();
 const { openCardForm, closeCardForm, isDebitCard } = useCheckout();
@@ -19,12 +21,13 @@ const { openCardForm, closeCardForm, isDebitCard } = useCheckout();
   <div class="flex flex-col mt-8 gap-5">
     <label class="font-medium text-xs md:text-sm">PAYMENT METHODS</label>
     <div class="flex gap-3">
-      <form action="" class="flex flex-col gap-6 w-full">
+      <form @keydown.enter="addPayment" action="" class="flex flex-col gap-6 w-full">
         <form v-if="isDebitCard === true" action="" class="flex flex-col gap-3 w-full">
           <PaymentForm />
         </form>
-        <div v-if="isDebitCard === false" @click="openCardForm('card')" class="flex justify-between items-center
-            px-3 border border-gray-300 rounded-xl h-[80px] transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50">
+        <div v-if="isDebitCard === false" @click="openCardForm('card')"
+             :class="[`flex justify-between items-center px-3 border border-gray-300 rounded-xl h-[80px] transition
+                duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50`, paymentErrors.paymentMethodError ? 'border-red-400' : '']">
           <div class="flex items-center gap-3">
             <input v-model="payment.paymentMethod" type="radio" name="shipping-method"
                 class="accent-black w-4 h-4" placeholder="Email">
@@ -42,10 +45,10 @@ const { openCardForm, closeCardForm, isDebitCard } = useCheckout();
             <img :src="mastercard_pay" alt="" class="w-[45px]">
           </div>
         </div>
-        <div @click="closeCardForm('apple')" class="flex justify-between items-center px-3 border border-gray-300
-            rounded-xl h-[80px] transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50">
+        <div :class="[`flex justify-between items-center px-3 border border-gray-300 rounded-xl h-[80px] transition
+                duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50`, paymentErrors.paymentMethodError ? 'border-red-400' : '']">
           <div class="flex items-center gap-3">
-            <input v-model="payment.paymentMethod" type="radio" value="apple" name="shipping-method"
+            <input @click="closeCardForm('apple')" v-model="payment.paymentMethod" type="radio" value="apple" name="shipping-method"
                 class="accent-black w-4 h-4" placeholder="Email">
             <div class="flex flex-col">
               <span class="font-semibold">
@@ -58,10 +61,10 @@ const { openCardForm, closeCardForm, isDebitCard } = useCheckout();
           </div>
           <img :src="apple_pay" alt="" class="w-[60px]">
         </div>
-        <div @click="closeCardForm('google')" class="flex justify-between items-center px-3 border border-gray-300
-            rounded-xl h-[80px] transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50">
+        <div :class="[`flex justify-between items-center px-3 border border-gray-300 rounded-xl h-[80px] transition
+                duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50`, paymentErrors.paymentMethodError ? 'border-red-400' : '']">
           <div class="flex items-center gap-3">
-            <input v-model="payment.paymentMethod" type="radio" value="google" name="shipping-method"
+            <input @click="closeCardForm('google')" v-model="payment.paymentMethod" type="radio" value="google" name="shipping-method"
                 class="accent-black w-4 h-4" placeholder="Email">
             <div class="flex flex-col">
               <span class="font-semibold">
@@ -74,10 +77,10 @@ const { openCardForm, closeCardForm, isDebitCard } = useCheckout();
           </div>
           <img :src="google_pay" alt="" class="w-[60px]">
         </div>
-        <div @click="closeCardForm('paypal')" class="flex justify-between items-center px-3 border border-gray-300
-            rounded-xl h-[80px] transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50">
+        <div :class="[`flex justify-between items-center px-3 border border-gray-300 rounded-xl h-[80px] transition
+                duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50`, paymentErrors.paymentMethodError ? 'border-red-400' : '']">
           <div class="flex items-center gap-3">
-            <input v-model="payment.paymentMethod" type="radio" value="paypal" name="shipping-method"
+            <input @click="closeCardForm('paypal')" v-model="payment.paymentMethod" type="radio" value="paypal" name="shipping-method"
                 class="accent-black w-4 h-4" placeholder="Email">
             <div class="flex flex-col">
               <span class="font-semibold">

@@ -1,21 +1,21 @@
 <script setup lang="ts">
 import { watch } from "vue";
-import { useAddProfile } from "../../profile/profile-composables/useAddProfile.ts";
-import { checkoutForms } from "../../../shared/composables/forms-composables/forms/checkout.forms.ts";
-import { checkoutErrors } from "../../../shared/composables/forms-composables/forms-errors/checkout.errors.ts";
+import { useAddCheckout } from "../composables/useAddCheckout.ts";
+import { checkoutForms } from "@/shared/composables/forms-composables/forms/checkout.forms.ts";
+import { checkoutErrors } from "@/shared/composables/forms-composables/forms-errors/checkout.errors.ts";
 
-import arrow from "../../../app/assets/icons/arrows/shop.svg";
+import arrow from "@/app/assets/icons/arrows/shop.svg";
+import BaseButton from "@/shared/ui/button/BaseButton.vue";
 import ShippingMethods from "./shipping-items/ShippingMethods.vue";
 import ShippingAddress from "./shipping-items/ShippingAddress.vue";
-import BaseButton from "../../../shared/ui/button/BaseButton.vue";
 
-const { addShipping } = useAddProfile();
 const { shipping } = checkoutForms();
+const { addShipping } = useAddCheckout();
 const { shippingErrors } = checkoutErrors();
 
 watch(() => shipping.value.delivery, (delivery) => {
   if(delivery){
-    shippingErrors.value.deliveryError = false
+    shippingErrors.value.deliveryError = false;
   }
 })
 </script>

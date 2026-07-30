@@ -6,7 +6,6 @@ export const getProductsController = {
             const db = dbService.readDB()
             const products = db.products;
 
-            res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
             res.json(products);
         }catch(err){
             res.status(500).json({error: err.message})
@@ -46,7 +45,6 @@ export const getProductsController = {
                 }
             }
 
-            res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
             res.json(products || []);
         }catch(err){
             res.status(500).json({error: err.message})
@@ -90,7 +88,6 @@ export const getProductsController = {
             const db = dbService.readDB();
             const product = db.products.find(p => p.id === req.params.id)
 
-            res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
             res.json(product || {});
         }catch (err){
             res.status(500).json({error: err.message})
@@ -101,7 +98,6 @@ export const getProductsController = {
             const db = dbService.readDB()
             const cart = db.cart.filter(item => item.userId === req.params.userId);
 
-            res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
             res.json(cart || {});
         }catch (err){
             console.error(`Не удалось получить данные по корзине: ${cart}`, err);
@@ -113,7 +109,6 @@ export const getProductsController = {
             const db = dbService.readDB()
             const favorite = db.favorites.filter(item => item.userId === req.params.userId);
 
-            res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
             res.json(favorite || {});
         }catch (err){
             console.error(`Не удалось получить данные по избранному: ${favorite}`, err);
@@ -125,7 +120,6 @@ export const getProductsController = {
             const db = dbService.readDB()
             const orders = db.orders.filter(item => item.userId === req.params.userId);
 
-            res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
             res.json(orders || {});
         }catch (err){
             console.error(`Не удалось получить данные по сем заказам: ${orders}`, err);
@@ -137,7 +131,6 @@ export const getProductsController = {
             const db = dbService.readDB()
             const orders = db.orders.filter(item => item.userId === req.params.userId && item.status !== 'Delivered');
 
-            res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
             res.json(orders || {});
         }catch (err){
             console.error(`Не удалось получить данные по сем заказам: ${orders}`, err);

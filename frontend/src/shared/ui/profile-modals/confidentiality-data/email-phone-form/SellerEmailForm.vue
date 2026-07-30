@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { usersStore } from "../../../../composables/stores/users.store.ts";
-import { userForms } from "../../../../composables/forms-composables/forms/users.forms.ts";
-import { useUpdateProfile } from "../../../../../feature/profile/profile-composables/useUpdateProfile.ts";
+import { usersStore } from "@/shared/composables/stores/users.store.ts";
+import { userForms } from "@/shared/composables/forms-composables/forms/users.forms.ts";
+import { useUpdateProfile } from "@/feature/profile/profile-composables/useUpdateProfile.ts";
+import { userFormsErrors } from "@/shared/composables/forms-composables/forms-errors/users.errors.ts";
 
-import BaseButton from "../../../button/BaseButton.vue";
-import {userFormsErrors} from "../../../../composables/forms-composables/forms-errors/users.errors.ts";
+import BaseButton from "@/shared/ui/button/BaseButton.vue";
 
 const { user } = usersStore();
 const { updateEmailAccount } = useUpdateProfile();

@@ -1,44 +1,44 @@
 <script setup lang="ts">
 const BASE_URL = `http://localhost:3000`
 
-import {computed} from "vue";
-import { productsStore } from "../../../../shared/composables/stores/products.store.ts";
-import { useGetProducts } from "../../../products/composables/getProducts.ts";
-import { useAddProducts } from "../../../products/composables/useAddProducts.ts";
-import { useUpdateProduct } from "../../../products/composables/useUpdateProduct.ts";
-import { useDeleteProduct } from "../../../products/composables/useDeleteProduct.ts";
+import { computed } from "vue";
+import { useGetProducts } from "@/feature/products/composables/getProducts.ts";
+import { useAddProducts } from "@/feature/products/composables/useAddProducts.ts";
+import { useUpdateProduct } from "@/feature/products/composables/useUpdateProduct.ts";
 import { useProfileProducts } from "../../profile-composables/useProfileProducts.ts";
+import { productsStore } from "@/shared/composables/stores/products.store.ts";
+import { useProfileModals } from "@/shared/composables/modals/profile/profileModals.ts";
 
-import check_square from '../../../../app/assets/icons/check-square.png'
-import square from '../../../../app/assets/icons/square.png'
-import del from '../../../../app/assets/icons/delete.svg'
-import update from '../../../../app/assets/icons/update.svg'
-import like from '../../../../app/assets/icons/nav/like.png'
-import liked from '../../../../app/assets/icons/nav/liked.png'
+import del from '@/app/assets/icons/delete.svg';
+import square from '@/app/assets/icons/square.png';
+import update from '@/app/assets/icons/update.svg';
+import like from '@/app/assets/icons/nav/like.png';
+import liked from '@/app/assets/icons/nav/liked.png';
+import check_square from '@/app/assets/icons/check-square.png';
 
 const { cart } = productsStore();
 const { getProductId } = useGetProducts();
 const { toggleToFavorite } = useAddProducts();
-const { deleteProductCart } = useDeleteProduct();
+const { toggleDeleteChoice } = useProfileModals();
 const { updateCartItem, checkCartItem } = useUpdateProduct();
 const { colorClass, sizeClass, sizeUrl } = useProfileProducts();
 
 const productPreview = computed(() => {
   return(id: string) => {
     if(!id){
-      console.log('Id не найден')
-      return
+      console.log('Id не найден');
+      return;
     }
 
-    const product = cart.value?.find(p => p.id === id)
+    const product = cart.value?.find(p => p.id === id);
     if(product && Array.isArray(product.images) && product.images[0]){
-      return `${BASE_URL}/${product.images[0]}`
+      return `${BASE_URL}/${product.images[0]}`;
     }
   }
 });
 
 const refreshPage = () => {
-  window.location.reload()
+  window.location.reload();
 }
 </script>
 
@@ -49,9 +49,9 @@ const refreshPage = () => {
         <div class="relative">
           <router-link :to="{ name: '/products/ProductsInfoPage' }">
             <img :src="productPreview(product.id)" alt="" :class="['w-[335px] h-[314px] sm:h-[314px] xl:h-[400px]',
-                product.status === 'Availability' ? '' : 'opacity-40']">
+                product.quantity === 0 || product.status === 'Exhausted' ? 'opacity-40' : '']">
           </router-link>
-          <span v-if="product.status === 'Exhausted'" class="absolute top-1/2 left-1/20 text-5xl font-semibold -rotate-45">Out Of Stack</span>
+          <span v-if="product.quantity === 0 || product.status === 'Exhausted'" class="absolute top-1/2 left-1/20 text-5xl font-semibold -rotate-45">Out Of Stack</span>
           <img @click="toggleToFavorite(product.id, 'cart', product.productId)" :src="product.favorite ? liked : like"
                alt="" class="absolute top-0.5 left-75.5 w-[32px]">
         </div>
@@ -69,7 +69,9 @@ const refreshPage = () => {
       </div>
       <div class="flex flex-col gap-15">
         <div class="flex flex-col gap-4">
-          <img @click="deleteProductCart(product.id)" :src="del" alt="" class="transition duration-400 hover:scale-120">
+          <img @click="toggleDeleteChoice(
+              'Are you sure you want to delete this cart product?', 'DELETE_CART_ITEM', product.id)"
+               :src="del" alt="" class="transition duration-400 hover:scale-120">
           <img v-if="product.status === 'Availability'" @click="checkCartItem(product.id, product)"
                :src="product.checked ? check_square : square" alt="" class="w-[30px] transition duration-400 hover:scale-120">
         </div>

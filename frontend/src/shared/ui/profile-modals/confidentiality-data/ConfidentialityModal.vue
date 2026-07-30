@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useProfileModals } from "../../../composables/modals/profile/profileModals.ts";
+import { useProfileModals } from "@/shared/composables/modals/profile/profileModals.ts";
 
-import ConfidentialityForm from "./ConfidentialityForm.vue";
 import UserData from "./UserData.vue";
-import BaseButton from "../../button/BaseButton.vue";
+import BaseButton from "@/shared/ui/button/BaseButton.vue";
+import ConfidentialityForm from "./ConfidentialityForm.vue";
 
 const { toggleConfidentialityData } = useProfileModals();
 </script>

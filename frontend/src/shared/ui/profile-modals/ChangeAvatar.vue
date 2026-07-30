@@ -2,9 +2,9 @@
 const BASE_URL = 'http://localhost:3000';
 
 import { computed } from "vue";
-import { useProfileModals } from "../../composables/modals/profile/profileModals.ts";
-import { useUpdateProfile } from "../../../feature/profile/profile-composables/useUpdateProfile.ts";
-import { usersStore } from "../../composables/stores/users.store.ts";
+import { usersStore } from "@/shared/composables/stores/users.store.ts";
+import { useProfileModals } from "@/shared/composables/modals/profile/profileModals.ts";
+import { useUpdateProfile } from "@/feature/profile/profile-composables/useUpdateProfile.ts";
 
 import BaseButton from "../button/BaseButton.vue";
 
@@ -14,13 +14,13 @@ const { toggleAvatar, openSelectAvatar, fileInput } = useProfileModals();
 
 const userAvatar = computed(() => {
   if(user.value && user.value.avatarUrl){
-    return `${BASE_URL}/${user.value.avatarUrl}`
+    return `${BASE_URL}/${user.value.avatarUrl}`;
   }
 })
 </script>
 
 <template>
-  <div class="font-[Montserrat] fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)]
+  <section class="font-[Montserrat] fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)]
                                 flex items-center justify-center">
     <div class="bg-white rounded-2xl w-[450px] shadow-xl">
       <div class="flex flex-col justify-center py-8 gap-6">
@@ -34,7 +34,7 @@ const userAvatar = computed(() => {
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <style scoped>

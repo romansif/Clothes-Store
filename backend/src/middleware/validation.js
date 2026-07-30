@@ -192,7 +192,7 @@ export const validation = {
         body('paymentMethod')
             .trim()
             .notEmpty().withMessage('Select a payment method.')
-            .isIn(['card', 'cash']).withMessage('Invalid payment method.'),
+            .isIn(['card', 'apple', 'google', 'paypal']).withMessage('Invalid payment method.'),
 
         body('cardNumber')
             .if(body('paymentMethod').equals('card'))
@@ -201,8 +201,7 @@ export const validation = {
 
         body('expiryDate')
             .if(body('paymentMethod').equals('card'))
-            .notEmpty().withMessage('Enter the card\'s expiration date.')
-            .matches(/^(0[1-9]|1[0-2])\/\d{2}$/).withMessage('The format must be MM/YY.'),
+            .notEmpty().withMessage('Enter the card\'s expiration date.'),
 
         body('cardCvv')
             .if(body('paymentMethod').equals('card'))

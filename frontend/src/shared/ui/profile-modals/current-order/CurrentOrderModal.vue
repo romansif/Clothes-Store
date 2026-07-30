@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed, onMounted } from "vue";
-import { productsStore } from "../../../composables/stores/products.store.ts";
-import { useProfileModals } from "../../../composables/modals/profile/profileModals.ts";
-import { useGetProducts } from "../../../../feature/products/composables/getProducts.ts";
+import { productsStore } from "@/shared/composables/stores/products.store.ts";
+import { useProfileModals } from "@/shared/composables/modals/profile/profileModals.ts";
+import { useGetProducts } from "@/feature/products/composables/getProducts.ts";
 
+import BaseButton from "@/shared/ui/button/BaseButton.vue";
 import CurrentOrderList from "./CurrentOrderList.vue";
-import BaseButton from "../../button/BaseButton.vue";
 
 const { orders } = productsStore();
 const { getFilteredOrders } = useGetProducts();

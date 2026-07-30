@@ -1,7 +1,7 @@
 import { ref } from "vue";
-import { clearProductsForms } from "../../forms-composables/clear-forms/clear.products.ts";
+import router from "@/app/router/index.ts";
 import { productsStore } from "../../stores/products.store.ts";
-import router from "../../../../app/router";
+import { clearProductsForms } from "../../forms-composables/clear-forms/clear.products.ts";
 
 const notify = ref<boolean>(false)
 const filterAside = ref<boolean>(false)

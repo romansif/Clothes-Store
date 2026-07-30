@@ -1,7 +1,7 @@
 import { computed } from "vue";
-import { usersStore } from "../../../shared/composables/stores/users.store.ts";
-import { authForms } from "../../../shared/composables/forms-composables/forms/auth.forms.ts";
-import { checkoutForms } from "../../../shared/composables/forms-composables/forms/checkout.forms.ts";
+import { usersStore } from "../composables/stores/users.store.ts";
+import { authForms } from "../composables/forms-composables/forms/auth.forms.ts";
+import { checkoutForms } from "../composables/forms-composables/forms/checkout.forms.ts";
 
 const { information } = checkoutForms();
 const { registerBuyerForm, registerSellerForm } = authForms()

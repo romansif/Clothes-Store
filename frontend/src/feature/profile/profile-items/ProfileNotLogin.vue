@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import not_avatar from '../../../app/assets/icons/default-avatar.png'
+  import not_avatar from '@/app/assets/icons/default-avatar.png'
 </script>
 
 <template>

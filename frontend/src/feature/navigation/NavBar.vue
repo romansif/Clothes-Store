@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useRoute } from "vue-router";
-import { productsStore } from "../../shared/composables/stores/products.store.ts";
+import { productsStore } from "@/shared/composables/stores/products.store.ts";
 
-import liked from "../../app/assets/icons/nav/favorite.png";
-import cartImg from "../../app/assets/icons/nav/cart.png";
-import profile from "../../app/assets/icons/nav/profile.png";
-import catalog from "../../app/assets/icons/nav/catalog.png";
+import cartImg from "@/app/assets/icons/nav/cart.png";
+import liked from "@/app/assets/icons/nav/favorite.png";
+import profile from "@/app/assets/icons/nav/profile.png";
+import catalog from "@/app/assets/icons/nav/catalog.png";
 
 const { unreadCount } = productsStore();
 

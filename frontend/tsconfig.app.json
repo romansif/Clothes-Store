@@ -6,6 +6,14 @@
       "vite/client",
       "unplugin-vue-router/client"
     ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@/app/*": ["src/app/*"],
+      "@/feature/*": ["src/feature/*"],
+      "@/pages/*": ["src/pages/*"],
+      "@/shared/*": ["src/shared/*"],
+    },
 
     /* Linting */
     "noUnusedLocals": true,

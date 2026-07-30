@@ -1,9 +1,14 @@
 <script setup lang="ts">
-import { checkoutForms } from "../../../../shared/composables/forms-composables/forms/checkout.forms.ts";
-import { checkoutErrors }from "../../../../shared/composables/forms-composables/forms-errors/checkout.errors.ts";
+import { IMaskComponent as IMask } from "vue-imask";
+import { useCheckout } from "@/feature/checkout/composables/useCheckout.ts";
+import { usersStore } from "@/shared/composables/stores/users.store.ts";
+import { checkoutForms } from "@/shared/composables/forms-composables/forms/checkout.forms.ts";
+import { checkoutErrors }from "@/shared/composables/forms-composables/forms-errors/checkout.errors.ts";
 
+const { payment } = checkoutForms();
+const { cardNumberMask, expiryDateMask, cardCvv } = usersStore();
 const { paymentErrors } = checkoutErrors();
-const { payment, paymentMessages } = checkoutForms();
+const { cardNumberPlaceholder, expiryDatePlaceholder, cardCvvPlaceholder } = useCheckout();
 
 const formatCardNumber = (event: Event) => {
   const input = event.target as HTMLInputElement;
@@ -24,35 +29,37 @@ const formatCardNumber = (event: Event) => {
     <div class="flex flex-col gap-2 w-full">
       <label>Card Name</label>
       <input v-model="payment.cardName" type="text" class="border border-gray-300 rounded-xl outline-none
-          px-4 py-3 text-sm transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50 appearance-none " placeholder="Card Name is optional"/>
+          px-4 py-3 text-xs transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50 appearance-none"
+             placeholder="Card Name is optional"/>
     </div>
     <div class="flex flex-col gap-2 w-full">
       <label>Card Number</label>
-      <input v-model="payment.cardNumber" type="text" @input="formatCardNumber" class="border border-gray-300 rounded-xl outline-none
-          px-4 py-3 text-xs transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50 appearance-none placeholder:text-lg" placeholder="xxxx xxxx xxxx xxxx" />
-      <span v-if="paymentErrors.cardNumberError" class="text-red-600 text-xs">
-        {{ paymentMessages.cardNumberMessage }}
-      </span>
+      <IMask v-model:value="payment.cardNumber" type="text" @input="formatCardNumber" :mask="cardNumberMask.mask"
+          :class="[`border border-gray-300 rounded-xl outline-none px-4 py-3 text-xs transition duration-400
+                bg-[#D9D9D9]/40 hover:bg-gray-50 appearance-none placeholder:text-sm`,
+             paymentErrors.cardNumberError ? 'placeholder:text-red-500 border-red-400 placeholder:text-xs'
+             : 'placeholder:text-gray-600']"
+          :placeholder="cardNumberPlaceholder" />
     </div>
   </div>
   <div class="flex gap-2">
     <div class="flex flex-col gap-2">
       <label>Expiry date</label>
-      <input v-model="payment.expiryDate" type="text" inputmode="numeric" class="border border-gray-300 rounded-xl w-full
-          sm:w-[300px] md:w-[365px] lg:w-[195px] xl:w-[245px] outline-none px-4 py-3 text-xs transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50"
-          placeholder="MM / YY">
-      <span v-if="paymentErrors.expiryDateError" class="text-red-600 text-xs">
-        {{ paymentMessages.expiryDateMessage }}
-      </span>
+      <IMask v-model.value="payment.expiryDate" type="text" inputmode="numeric" :mask="expiryDateMask.mask"
+          :class="[`border border-gray-300 rounded-xl w-full sm:w-[300px] md:w-[365px] lg:w-[195px] xl:w-[245px]
+                outline-none px-4 py-3 text-xs transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50`,
+             paymentErrors.expiryDateError ? 'placeholder:text-red-500 border-red-400 placeholder:text-xs'
+             : 'placeholder:text-gray-600']"
+          :placeholder="expiryDatePlaceholder" />
     </div>
     <div class="flex flex-col gap-2">
       <label>CVV</label>
-      <input  v-model="payment.cardCvv" type="number" inputmode="numeric" class="border border-gray-300 rounded-xl w-full
-          sm:w-[300px] md:w-[365px] lg:w-[195px] xl:w-[245px] outline-none px-4 py-3 text-xs transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50 placeholder:text-xl"
-          placeholder="•••">
-      <span v-if="paymentErrors.cardCvvError" class="text-red-600 text-xs">
-        {{ paymentMessages.cardCvvMessage }}
-      </span>
+      <IMask v-model.value="payment.cardCvv" type="text" inputmode="numeric" :mask="cardCvv.mask"
+          :class="[`border border-gray-300 rounded-xl w-full sm:w-[300px] md:w-[365px] lg:w-[195px] xl:w-[245px]
+              outline-none px-4 py-3 text-xs transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50 placeholder:text-lg`,
+            paymentErrors.cardCvvError ? 'placeholder:text-red-500 border-red-400 placeholder:text-xs'
+            : 'placeholder:text-gray-600']"
+          :placeholder="cardCvvPlaceholder" />
     </div>
   </div>
 </template>

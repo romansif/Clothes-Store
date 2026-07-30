@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import photo_1 from '../../../app/assets/photos/home/1.png'
-import photo_2 from '../../../app/assets/photos/home/2.png'
-import photo_3 from '../../../app/assets/photos/home/3.png'
-import photo_4 from '../../../app/assets/photos/home/4.png'
-import photo_5 from '../../../app/assets/photos/home/5.png'
-import photo_6 from '../../../app/assets/photos/home/6.png'
-import photo_7 from '../../../app/assets/photos/home/7.png'
-import photo_8 from '../../../app/assets/photos/home/8.png'
-import photo_9 from '../../../app/assets/photos/home/9.png'
-import photo_10 from '../../../app/assets/photos/home/10.png'
-import back_arrow from "../../../app/assets/icons/arrows/back-arrow.png";
-import next_arrow from "../../../app/assets/icons/arrows/next-arrow.png";
-import arrow_down from "../../../app/assets/icons/arrows/arrow-down.png";
+import photo_1 from '@/app/assets/photos/home/1.png';
+import photo_2 from '@/app/assets/photos/home/2.png';
+import photo_3 from '@/app/assets/photos/home/3.png';
+import photo_4 from '@/app/assets/photos/home/4.png';
+import photo_5 from '@/app/assets/photos/home/5.png';
+import photo_6 from '@/app/assets/photos/home/6.png';
+import photo_7 from '@/app/assets/photos/home/7.png';
+import photo_8 from '@/app/assets/photos/home/8.png';
+import photo_9 from '@/app/assets/photos/home/9.png';
+import photo_10 from '@/app/assets/photos/home/10.png';
+import back_arrow from "@/app/assets/icons/arrows/back-arrow.png";
+import next_arrow from "@/app/assets/icons/arrows/next-arrow.png";
+import arrow_down from "@/app/assets/icons/arrows/arrow-down.png";
 </script>
 
 <template>

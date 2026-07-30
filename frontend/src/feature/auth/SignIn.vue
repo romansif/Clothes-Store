@@ -1,34 +1,34 @@
 <script setup lang="ts">
 import { watch, ref } from "vue";
 import { useAuth } from "./auth-composables/useAuth.ts";
-import { authForms } from "../../shared/composables/forms-composables/forms/auth.forms.ts";
-import { authFormsErrors } from "../../shared/composables/forms-composables/forms-errors/auth.errors.ts";
-import { clearAuthForms } from "../../shared/composables/forms-composables/clear-forms/clear.auth.ts";
+import { authForms } from "@/shared/composables/forms-composables/forms/auth.forms.ts";
+import { clearAuthForms } from "@/shared/composables/forms-composables/clear-forms/clear.auth.ts";
+import { authFormsErrors } from "@/shared/composables/forms-composables/forms-errors/auth.errors.ts";
 
-import closed from "../../app/assets/icons/auth/closed.png";
-import opened from "../../app/assets/icons/auth/opened.png";
-import maki_arrow from "../../app/assets/icons/arrows/maki--arrow.svg";
-import BaseButton from "../../shared/ui/button/BaseButton.vue";
+import closed from "@/app/assets/icons/auth/closed.png";
+import opened from "@/app/assets/icons/auth/opened.png";
+import BaseButton from "@/shared/ui/button/BaseButton.vue";
+import maki_arrow from "@/app/assets/icons/arrows/maki--arrow.svg";
 
 const { signIn } = useAuth();
-const { clearLoginForm } = clearAuthForms()
-const { loginFormErrors } = authFormsErrors()
-const { loginForm, loginFormMessages } = authForms()
+const { clearLoginForm } = clearAuthForms();
+const { loginFormErrors } = authFormsErrors();
+const { loginForm, loginFormMessages } = authForms();
 
 watch(() => [loginForm.value.email, loginForm.value.password, loginForm.value.role],([email, password, role]) => {
       if(email){
-        loginFormErrors.value.emailError = false
+        loginFormErrors.value.emailError = false;
       }
       if(password){
-        loginFormErrors.value.passwordError = false
+        loginFormErrors.value.passwordError = false;
       }
       if(role){
-        loginFormErrors.value.roleError = false
+        loginFormErrors.value.roleError = false;
       }
     }
-)
+);
 
-const showPassword = ref(false)
+const showPassword = ref(false);
 
 const togglePassword = () => {
   showPassword.value = !showPassword.value

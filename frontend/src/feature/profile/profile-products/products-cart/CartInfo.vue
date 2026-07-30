@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { watch } from "vue";
-import { useProfileProducts } from "../../profile-composables/useProfileProducts.ts";
-import { checkoutForms } from "../../../../shared/composables/forms-composables/forms/checkout.forms.ts";
-import { checkoutErrors } from "../../../../shared/composables/forms-composables/forms-errors/checkout.errors.ts";
+import { useProfileProducts } from "@/feature/profile/profile-composables/useProfileProducts";
+import { checkoutForms } from "@/shared/composables/forms-composables/forms/checkout.forms.ts";
+import { checkoutErrors } from "@/shared/composables/forms-composables/forms-errors/checkout.errors.ts";
 
-import square from '../../../../app/assets/icons/square.png';
-import check_square from '../../../../app/assets/icons/check-square.png';
-import BaseButton from "../../../../shared/ui/button/BaseButton.vue";
+import square from '@/app/assets/icons/square.png';
+import BaseButton from "@/shared/ui/button/BaseButton.vue";
+import check_square from '@/app/assets/icons/check-square.png';
 
 const { isAgreeForm } = checkoutForms();
 const { isAgreeFormError } = checkoutErrors();

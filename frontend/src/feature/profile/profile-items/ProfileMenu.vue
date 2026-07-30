@@ -1,12 +1,10 @@
 <script setup lang="ts">
+import { usersStore } from "@/shared/composables/stores/users.store.ts";
 import { Menu, MenuItems, MenuItem, MenuButton} from "@headlessui/vue";
-import { useAuth } from "../../auth/auth-composables/useAuth.ts";
-import { useDeleteProfile } from "../profile-composables/useDeleteProfile.ts";
-import { usersStore } from "../../../shared/composables/stores/users.store.ts";
+import { useProfileModals } from "@/shared/composables/modals/profile/profileModals.ts";
 
-const { logout } = useAuth();
 const { user } = usersStore();
-const { deleteAccount } = useDeleteProfile();
+const { toggleDeleteChoice } = useProfileModals();
 </script>
 
 <template>
@@ -22,7 +20,10 @@ const { deleteAccount } = useDeleteProfile();
           rounded-xl bg-white border border-gray-300">
         <div class="py-1">
           <MenuItem v-slot="{ active }">
-            <button @click=logout :class="['transition duration-400', active ? 'bg-white/5 text-black outline-hidden scale-110' : 'text-[#A3A3A3]',
+            <button @click="toggleDeleteChoice('Are you sure you want to log out of this account?', 'EXIT', '')"
+                    :class="['transition duration-400', active ?
+                    'bg-white/5 text-black outline-hidden scale-110' :
+                    'text-[#A3A3A3]',
                 'block px-4 py-2 text-sm']">
               Exit Account
             </button>
@@ -30,7 +31,10 @@ const { deleteAccount } = useDeleteProfile();
         </div>
         <div class="py-1">
           <MenuItem v-slot="{ active }">
-            <button @click=deleteAccount :class="['transition duration-400', active ? 'bg-white/5 text-black outline-hidden scale-110' : 'text-[#A3A3A3]',
+            <button @click="toggleDeleteChoice('Are you sure you want to delete this account?', 'DELETE_ACCOUNT', '')"
+                    :class="['transition duration-400', active ?
+                    'bg-white/5 text-black outline-hidden scale-110' :
+                    'text-[#A3A3A3]',
                 'block px-4 py-2 text-sm']">
               Delete Account
             </button>

@@ -2,14 +2,14 @@
 import { onMounted } from "vue";
 import { useFilter } from "./composables/useFilter.ts";
 import { useGetProducts } from "../composables/getProducts.ts";
-import { productsStore } from "../../../shared/composables/stores/products.store.ts";
+import { productsStore } from "@/shared/composables/stores/products.store.ts";
 
-import availability from '../../../app/assets/icons/arrows/arrow-up.png'
-import checked from '../../../app/assets/icons/check-square.png'
-import square from '../../../app/assets/icons/square.png'
+import square from '@/app/assets/icons/square.png'
+import checked from '@/app/assets/icons/check-square.png'
+import availability from '@/app/assets/icons/arrows/arrow-up.png'
 
-const { allProducts, sizes } = productsStore();
 const { getAllProducts } = useGetProducts();
+const { allProducts, sizes } = productsStore();
 const { toggleFilter, toggleSize, stackProducts, genders, colors } = useFilter();
 
 onMounted(async() => {

@@ -1,41 +1,41 @@
 <script setup lang="ts">
 import { watch } from "vue";
-import { productsForms } from "../../composables/forms-composables/forms/products.forms.ts";
-import { useProductsModals } from "../../composables/modals/products/productsModals.ts";
-import { productsStore } from "../../composables/stores/products.store.ts";
-import { productsFormErrors } from "../../composables/forms-composables/forms-errors/products.errors.ts";
-import { useAddProducts } from "../../../feature/products/composables/useAddProducts.ts";
+import { productsStore } from "@/shared/composables/stores/products.store.ts";
+import { useProductsModals } from "@/shared/composables/modals/products/productsModals.ts";
+import { useAddProducts } from "@/feature/products/composables/useAddProducts.ts";
+import { productsForms } from "@/shared/composables/forms-composables/forms/products.forms.ts";
+import { productsFormErrors } from "@/shared/composables/forms-composables/forms-errors/products.errors.ts";
 
-const { createProductFormErrors } = productsFormErrors()
-const { createProduct, onFilesSelected } = useAddProducts()
-const { colors, sizes, categories, materials, genders, productsPreview } = productsStore();
+const { createProductFormErrors } = productsFormErrors();
+const { createProduct, onFilesSelected } = useAddProducts();
 const { createProductForm, moreCreateItem, createProductFormMessages } = productsForms();
-const { toggleCreateProductModal, openSelectProductCard, fileInput } = useProductsModals()
+const { colors, sizes, categories, materials, genders, productsPreview } = productsStore();
+const { toggleCreateProductModal, openSelectProductCard, fileInput } = useProductsModals();
 
 const toggleColor = (colorName: string) => {
-  const index = moreCreateItem.color.indexOf(colorName)
+  const index = moreCreateItem.color.indexOf(colorName);
   if (!Array.isArray(moreCreateItem.color)) {
     moreCreateItem.color = [];
   }
   if(index === -1){
     if(moreCreateItem.color.length >= 6){
-      return
+      return;
     }
-    moreCreateItem.color.push(colorName)
+    moreCreateItem.color.push(colorName);
   }else{
-    moreCreateItem.color.splice(index, 1)
+    moreCreateItem.color.splice(index, 1);
   }
 }
 
 const toggleSize = (sizeName: string) => {
-  const index = moreCreateItem.size.indexOf(sizeName)
+  const index = moreCreateItem.size.indexOf(sizeName);
   if (!Array.isArray(moreCreateItem.size)) {
     moreCreateItem.size = [];
   }
   if(index === -1){
-      moreCreateItem.size.push(sizeName)
+      moreCreateItem.size.push(sizeName);
   }else{
-    moreCreateItem.size.splice(index, 1)
+    moreCreateItem.size.splice(index, 1);
   }
 }
 
@@ -46,27 +46,26 @@ watch(() => [
       moreCreateItem.color, moreCreateItem.size],
     ([title, category, material, price, description, color, size]) => {
       if(title){
-        createProductFormErrors.value.titleError = false
+        createProductFormErrors.value.titleError = false;
       }
       if(category){
-        createProductFormErrors.value.categoryError = false
+        createProductFormErrors.value.categoryError = false;
       }
       if(material){
-        createProductFormErrors.value.materialError = false
+        createProductFormErrors.value.materialError = false;
       }
       if(price){
-        createProductFormErrors.value.priceError = false
+        createProductFormErrors.value.priceError = false;
       }
       if(description){
-        createProductFormErrors.value.descriptionError = false
+        createProductFormErrors.value.descriptionError = false;
       }
       if(color){
-        createProductFormErrors.value.colorError = false
+        createProductFormErrors.value.colorError = false;
       }
       if(size){
-        createProductFormErrors.value.sizeError = false
+        createProductFormErrors.value.sizeError = false;
       }
-      console.log(title, category, material, price, description, color, size)
 })
 </script>
 

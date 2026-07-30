@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { productsStore } from "../../../shared/composables/stores/products.store.ts";
+import { productsStore } from "@/shared/composables/stores/products.store.ts";
 
 import MyProductsCard from "./MyProductsCard.vue";
-import icon_products from "../../../app/assets/icons/icon-products.svg";
+import icon_products from "@/app/assets/icons/icon-products.svg";
 
 const { products } = productsStore();
 </script>

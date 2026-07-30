@@ -1,25 +1,26 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useProfileModals } from "../../shared/composables/modals/profile/profileModals.ts";
 import { useGetUsers } from "../auth/auth-composables/getUsers.ts";
-import { useProductsModals } from "../../shared/composables/modals/products/productsModals.ts";
-import { usersStore } from "../../shared/composables/stores/users.store.ts";
+import { usersStore } from "@/shared/composables/stores/users.store.ts";
+import { useProfileModals } from "@/shared/composables/modals/profile/profileModals.ts";
+import { useProductsModals } from "@/shared/composables/modals/products/productsModals.ts";
 
 import NavBar from '../navigation/NavBar.vue'
 import ProfileSettings from "./profile-items/ProfileSettings.vue";
 import ProfileNotLogin from "./profile-items/ProfileNotLogin.vue";
-import ChangeAvatar from "../../shared/ui/profile-modals/ChangeAvatar.vue";
-import CreateProduct from "../../shared/ui/profile-modals/CreateProduct.vue";
-import OrdersModal from "../../shared/ui/profile-modals/order-history/OrdersModal.vue";
-import CurrentOrderModal from "../../shared/ui/profile-modals/current-order/CurrentOrderModal.vue";
-import AddressesCardsModal from "../../shared/ui/profile-modals/address-and-cards/AddressesCardsModal.vue";
-import ConfidentialityModal from "../../shared/ui/profile-modals/confidentiality-data/ConfidentialityModal.vue";
-import Notification from "../../shared/ui/products-modals/Notification.vue";
+import ChangeAvatar from "@/shared/ui/profile-modals/ChangeAvatar.vue";
+import Notification from "@/shared/ui/products-modals/Notification.vue";
+import CreateProduct from "@/shared/ui/profile-modals/CreateProduct.vue";
+import OrdersModal from "@/shared/ui/profile-modals/order-history/OrdersModal.vue";
+import CurrentOrderModal from "@/shared/ui/profile-modals/current-order/CurrentOrderModal.vue";
+import AddressesCardsModal from "@/shared/ui/profile-modals/address-and-cards/AddressesCardsModal.vue";
+import ConfidentialityModal from "@/shared/ui/profile-modals/confidentiality-data/ConfidentialityModal.vue";
+import ChoiceModal from "@/shared/ui/ChoiceModal.vue";
 
 const { user } = usersStore();
 const { getUser } = useGetUsers();
 const { createProduct, notify } = useProductsModals();
-const { avatarModal, orderHistory, currentOrder, addressesAndCards, confidentialityData } = useProfileModals();
+const { avatarModal, orderHistory, currentOrder, addressesAndCards, confidentialityData, deleteChoice } = useProfileModals();
 
 const userId = localStorage.getItem("userId");
 onMounted(async () => {
@@ -57,6 +58,9 @@ onMounted(async () => {
   </Transition>
   <Transition>
     <Notification v-if="notify"/>
+  </Transition>
+  <Transition>
+    <ChoiceModal v-if="deleteChoice"/>
   </Transition>
 </template>
 

@@ -1,4 +1,5 @@
 import { ref } from 'vue'
+import { IMask } from "vue-imask";
 
 interface User {
     id: string,
@@ -86,6 +87,35 @@ const countries = [
     },
 ]
 
+const cardNumberMask = {
+    mask: '0000-0000-0000-0000',
+    lazy: false,
+}
+
+const expiryDateMask = {
+    mask: '00/00',
+    blocks: {
+        MM:{
+            mask: IMask.MaskedRange,
+            from: 1,
+            to: 12,
+            maxLength: 2
+        },
+        YY:{
+            mask: IMask.MaskedRange,
+            from: 26,
+            to: 32,
+            maxLength: 2
+        }
+    },
+    lazy: false
+}
+
+const cardCvv = {
+    mask: '000[0]',
+    lazy: false
+}
+
 const selectedCountryCode = ref('UZ');
 
 export const usersStore = () => {
@@ -103,6 +133,10 @@ export const usersStore = () => {
 
         paymentMethod,
         countries,
+        cardNumberMask,
+        expiryDateMask,
+        cardCvv,
+
         selectedCountryCode,
     }
 }

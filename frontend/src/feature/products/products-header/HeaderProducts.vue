@@ -1,26 +1,26 @@
 <script setup lang="ts">
 import { watch } from "vue";
+import { useFilter } from "./composables/useFilter.ts";
 import { useGetProducts } from "../composables/getProducts.ts";
 import { useGetSearchedProducts } from "./composables/useGetSearched.ts";
-import { useProductsModals } from "../../../shared/composables/modals/products/productsModals.ts";
-import { productsForms } from "../../../shared/composables/forms-composables/forms/products.forms.ts";
-import { useFilter } from "./composables/useFilter.ts";
+import { useProductsModals } from "@/shared/composables/modals/products/productsModals.ts";
+import { productsForms } from "@/shared/composables/forms-composables/forms/products.forms.ts";
 
-import search from "../../../app/assets/icons/nav/search.png";
-import right_arrow from '../../../app/assets/icons/arrows/right-arrow.png';
-import del from '../../../app/assets/icons/clean_search.svg';
+import del from '@/app/assets/icons/clean_search.svg';
+import search from "@/app/assets/icons/nav/search.png";
+import right_arrow from '@/app/assets/icons/arrows/right-arrow.png';
 
-const { toggleFilter, categories, category } = useFilter();
 const { searchProductForm } = productsForms();
 const { getFilteredProducts } = useGetProducts();
 const { toggleFilterAside } = useProductsModals();
-const { debouncedSearch, resetSearch } = useGetSearchedProducts()
+const { toggleFilter, categories, category } = useFilter();
+const { debouncedSearch, resetSearch } = useGetSearchedProducts();
 
 watch(() => searchProductForm.value.search, async (newValue) => {
   if(newValue) {
     await debouncedSearch();
   }else{
-    await getFilteredProducts('ALL', 'Availability')
+    await getFilteredProducts('ALL', 'Availability');
   }
 })
 </script>

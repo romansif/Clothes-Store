@@ -2,7 +2,7 @@
 const BASE_URL = 'http://localhost:3000';
 
 import { computed } from "vue";
-import { productsStore } from "../../../../shared/composables/stores/products.store.ts";
+import { productsStore } from "@/shared/composables/stores/products.store.ts";
 
 const { items } = productsStore();
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { usersStore } from "../../../../shared/composables/stores/users.store.ts";
+import { usersStore } from "@/shared/composables/stores/users.store.ts";
 
 const { userAddress } = usersStore();
 </script>

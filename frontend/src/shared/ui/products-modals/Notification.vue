@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useProductsModals } from "../../composables/modals/products/productsModals.ts";
+import { useProductsModals } from "@/shared/composables/modals/products/productsModals.ts";
 
-import star from '../../../app/assets/icons/notification/star.svg';
-import close from '../../../app/assets/icons/notification/close.svg';
-import transit from '../../../app/assets/icons/notification/transit.svg';
+import star from '@/app/assets/icons/notification/star.svg';
+import close from '@/app/assets/icons/notification/close.svg';
+import transit from '@/app/assets/icons/notification/transit.svg';
 
 const { notifyTitle, notifyMessage, notifyRoute, closeNotify } = useProductsModals();
 </script>

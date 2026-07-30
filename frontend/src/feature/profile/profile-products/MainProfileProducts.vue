@@ -1,22 +1,24 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
 import { computed, onMounted, watch } from "vue";
-import { useGetProducts } from "../../products/composables/getProducts.ts";
-import { checkoutForms } from "../../../shared/composables/forms-composables/forms/checkout.forms.ts";
-import { productsStore } from "../../../shared/composables/stores/products.store.ts";
-import { checkoutErrors } from "../../../shared/composables/forms-composables/forms-errors/checkout.errors.ts";
+import { useGetProducts } from "@/feature/products/composables/getProducts.ts";
+import { productsStore } from "@/shared/composables/stores/products.store.ts";
+import { useProfileModals } from "@/shared/composables/modals/profile/profileModals.ts";
 import { useProfileProducts } from "../profile-composables/useProfileProducts.ts";
-import { useProductsModals } from "../../../shared/composables/modals/products/productsModals.ts";
+import { useProductsModals } from "@/shared/composables/modals/products/productsModals.ts";
+import { checkoutForms } from "@/shared/composables/forms-composables/forms/checkout.forms.ts";
+import { checkoutErrors } from "@/shared/composables/forms-composables/forms-errors/checkout.errors.ts";
 
+import ChoiceModal from "@/shared/ui/ChoiceModal.vue";
+import square from "@/app/assets/icons/square.png";
+import liked from "@/app/assets/icons/nav/liked.png";
 import NavBar from "../../navigation/NavBar.vue";
-import liked from "../../../app/assets/icons/nav/liked.png";
-import square from "../../../app/assets/icons/square.png";
 import CartInfo from "./products-cart/CartInfo.vue";
 import CartList from "./products-cart/CartList.vue";
+import BaseButton from "@/shared/ui/button/BaseButton.vue";
+import check_square from "@/app/assets/icons/check-square.png";
 import FavoriteList from "./favorite-products/FavoriteList.vue";
-import check_square from "../../../app/assets/icons/check-square.png";
-import Notification from "../../../shared/ui/products-modals/Notification.vue";
-import BaseButton from "../../../shared/ui/button/BaseButton.vue";
+import Notification from "@/shared/ui/products-modals/Notification.vue";
 
 const route = useRoute();
 
@@ -25,6 +27,7 @@ const { isAgreeFormError } = checkoutErrors();
 
 const { notify } = useProductsModals();
 const { cart, favorite } = productsStore();
+const { deleteChoice } = useProfileModals();
 const { toggleAgree, continueToOrder } = useProfileProducts();
 const { getCartProducts, getFavoriteProducts } = useGetProducts();
 
@@ -102,9 +105,23 @@ onMounted(async() => {
     </div>
     <BaseButton @click="continueToOrder" name="CONTINUE" variant="addToOrder" />
   </div>
-  <Notification v-if="notify"/>
+  <Transition>
+    <Notification v-if="notify"/>
+  </Transition>
+  <Transition>
+    <ChoiceModal v-if="deleteChoice"/>
+  </Transition>
 </template>
 
 <style scoped>
+/* мы объясним, что делают эти классы дальше! */
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
 
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
 </style>

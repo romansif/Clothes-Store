@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useCheckout } from "../composables/useCheckout.ts";
-import { productsStore } from "../../../shared/composables/stores/products.store.ts";
-import { usersStore } from "../../../shared/composables/stores/users.store.ts";
+import { usersStore } from "@/shared/composables/stores/users.store.ts";
+import { productsStore } from "@/shared/composables/stores/products.store.ts";
 
 import OrderList from "./order-items/OrderList.vue";
 

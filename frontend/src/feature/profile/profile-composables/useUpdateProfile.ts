@@ -1,19 +1,14 @@
-import { ApiError, handler } from "../../../shared/api/http.ts";
-import { usersStore } from "../../../shared/composables/stores/users.store.ts";
-import { userForms } from "../../../shared/composables/forms-composables/forms/users.forms.ts";
-import { clearUsersForms } from "../../../shared/composables/forms-composables/clear-forms/clear.users.ts";
-import { userFormsErrors } from "../../../shared/composables/forms-composables/forms-errors/users.errors.ts";
+import { handler } from "@/shared/api/http.ts";
+import { useFormsErrors } from "@/shared/errors/FormErrors.ts";
+import { usersStore } from "@/shared/composables/stores/users.store.ts";
+import { userForms } from "@/shared/composables/forms-composables/forms/users.forms.ts";
+import { clearUsersForms } from "@/shared/composables/forms-composables/clear-forms/clear.users.ts";
 
 const { user } = usersStore();
 const {
-    updateUserName, updateUserFormNameMessage,
-    updateUserEmail, updateUserFormEmailMessage,
-    updateUserPhone, updateUserFormPhoneMessage,
-    updateUserSurName, updateUserFormSurNameMessage,
-    updateUserPassword, updateUserFormPasswordMessages,
-    updateUserCompanyName, updateUserFormCompanyNameMessage,
-    updateUserFormPublicPhone, updateUserFormPublicPhoneMessage,
-} = userForms();
+    updateNameErrors, updateSurNameErrors, updateEmailErrors, updatePhoneErrors,
+    updatePublicPhoneErrors, updateCompanyNameErrors, updatePasswordErrors
+} = useFormsErrors();
 const {
     clearUpdateUserFormPublicPhone,
     clearUpdateUserFormPhone, clearUpdateUserFormEmail,
@@ -21,20 +16,17 @@ const {
     clearUpdateUserFormPassword, clearUpdateUserFormCompanyName,
 } = clearUsersForms();
 const {
-    updateUserPasswordErrors,
-    updateUserNameErrors, updateUserSurNameErrors,
-    updateUserPhoneErrors, updateUserFormCompanyNameErrors,
-    updateUserFormPublicPhoneErrors, updateUserEmailErrors
-} = userFormsErrors()
-
+    updateUserName, updateUserEmail, updateUserPhone, updateUserSurName,
+    updateUserPassword, updateUserCompanyName, updateUserFormPublicPhone,
+} = userForms();
 
 export const useUpdateProfile = () => {
     const updateAvatarAccount = async (event: Event) => {
         const userId = localStorage.getItem("userId");
 
         const target = event.target as HTMLInputElement;
-        if(!target.files || target.files.length === 0) return
-        const selectedFile = target.files[0]
+        if(!target.files || target.files.length === 0) return;
+        const selectedFile = target.files[0];
 
         const formData = new FormData();
         formData.append("avatar", selectedFile);
@@ -43,161 +35,118 @@ export const useUpdateProfile = () => {
             const newAvatar = await handler(`/users/avatar/${userId}`, {
                 method: "PATCH",
                 body: formData,
-            })
-            user.value.avatarUrl = newAvatar.avatarUrl
+            });
+            user.value.avatarUrl = newAvatar.avatarUrl;
         }catch(err){
-            console.log('Failed to change the avatar', err)
+            console.log('Failed to change the avatar', err);
         }
     };
 
     const updateNameAccount = async () => {
+        const userId = localStorage.getItem("userId");
         try{
-            const userId = localStorage.getItem("userId");
-
-            const updateName = await handler(`/users/name/${userId}`, {
+            const updateName = await handler(`/users/${userId}`, {
                 method: "PATCH",
                 body: JSON.stringify({
                     name: updateUserName.value.name,
                 })
             });
             user.value.name = updateName.name;
-            clearUpdateUserFormName()
+            clearUpdateUserFormName();
         }catch(err){
-            if(err instanceof ApiError){
-                const errors = err.response as Record<string, string> | undefined;
-                if(errors){
-                    updateUserNameErrors.value.nameError = !!errors.name;
-                    updateUserFormNameMessage.value.nameMessage = errors.name || '';
-                }
-            }
-            console.log('Не удалось обновить имя пользователя')
+            updateNameErrors(err);
+            console.log('Не удалось обновить имя пользователя');
         }
     };
 
     const updateSurNameAccount = async () => {
+        const userId = localStorage.getItem("userId");
         try{
-            const userId = localStorage.getItem("userId");
-
-            const updateSurName = await handler(`/users/surName/${userId}`, {
+            const updateSurName = await handler(`/users/${userId}`, {
                 method: "PATCH",
                 body: JSON.stringify({
                     surName: updateUserSurName.value.surName,
                 })
-            })
-            user.value.surName = updateSurName.surName
-            clearUpdateUserFormSurName()
+            });
+            user.value.surName = updateSurName.surName;
+            clearUpdateUserFormSurName();
         }catch(err){
-            if(err instanceof ApiError){
-                const errors = err.response as Record<string, string> | undefined;
-                if(errors){
-                    updateUserSurNameErrors.value.surNameError = !!errors.surName;
-                    updateUserFormSurNameMessage.value.surNameMessage = errors.surName || '';
-                }
-            }
-            console.log('Не удалось обновить фамилию пользователя')
+            updateSurNameErrors(err);
+            console.log('Не удалось обновить фамилию пользователя');
         }
     };
 
     const updatePhoneAccount = async () => {
+        const userId = localStorage.getItem("userId");
         try{
-            const userId = localStorage.getItem("userId");
-
-            const updatePhone = await handler(`/users/phone/${userId}`, {
+            const updatePhone = await handler(`/users/${userId}`, {
                 method: "PATCH",
                 body: JSON.stringify({
                     privatePhone: updateUserPhone.value.phone,
                 })
-            })
-            user.value.privatePhone = updatePhone.privatePhone
-            clearUpdateUserFormPhone()
+            });
+            user.value.privatePhone = updatePhone.privatePhone;
+            clearUpdateUserFormPhone();
         }catch(err){
-            if(err instanceof ApiError){
-                const errors = err.response as Record<string, string> | undefined;
-                if(errors){
-                    updateUserPhoneErrors.value.phoneError = !!errors.phone;
-                    updateUserFormPhoneMessage.value.phoneMessage = errors.phone || '';
-                }
-            }
-            console.log('Не удалось обновить личный телефон пользователя')
+            updatePhoneErrors(err);
+            console.log('Не удалось обновить личный телефон пользователя');
         }
     };
 
     const updateCompanyName = async () => {
+        const userId = localStorage.getItem("userId");
         try{
-            const userId = localStorage.getItem("userId");
-
-            const updateCompanyName = await handler(`/users/company/${userId}`, {
+            const updateCompanyName = await handler(`/users/${userId}`, {
                 method: "PATCH",
                 body: JSON.stringify({
                     companyName: updateUserCompanyName.value.companyName,
                 })
-            })
-            user.value.companyName = updateCompanyName.companyName
-            clearUpdateUserFormCompanyName()
+            });
+            user.value.companyName = updateCompanyName.companyName;
+            clearUpdateUserFormCompanyName();
         }catch(err){
-            if(err instanceof ApiError){
-                const errors = err.response as Record<string, string> | undefined;
-                if(errors){
-                    updateUserFormCompanyNameErrors.value.companyNameError = !!errors.companyName;
-                    updateUserFormCompanyNameMessage.value.companyNameMessage = errors.companyName || '';
-                }
-            }
-            console.log('Не удалось обновить название компании пользователя')
+            updateCompanyNameErrors(err);
+            console.log('Не удалось обновить название компании пользователя');
         }
     };
 
     const updatePublicPhoneAccount = async () => {
+        const userId = localStorage.getItem("userId");
         try{
-            const userId = localStorage.getItem("userId");
-
-            const updatePublic = await handler(`/users/public/${userId}`, {
+            const updatePublic = await handler(`/users/${userId}`, {
                 method: "PATCH",
                 body: JSON.stringify({
                     publicPhone: updateUserFormPublicPhone.value.publicPhone,
                 })
-            })
-            user.value.publicPhone = updatePublic.publicPhone
-            clearUpdateUserFormPublicPhone()
+            });
+            user.value.publicPhone = updatePublic.publicPhone;
+            clearUpdateUserFormPublicPhone();
         }catch(err){
-            if(err instanceof ApiError){
-                const errors = err.response as Record<string, string> | undefined;
-                if(errors){
-                    updateUserFormPublicPhoneErrors.value.publicPhoneError = !!errors.publicPhone;
-                    updateUserFormPublicPhoneMessage.value.publicPhoneMessage = errors.publicPhone || '';
-                }
-            }
-            console.log('Не удалось обновить телефон компании пользователя')
+            updatePublicPhoneErrors(err);
+            console.log('Не удалось обновить телефон компании пользователя');
         }
     };
 
     const updateEmailAccount = async () => {
+        const userId = localStorage.getItem("userId");
         try{
-            const userId = localStorage.getItem("userId");
-
-            const updateEmail = await handler(`/users/email/${userId}`, {
+            const updateEmail = await handler(`/users/${userId}`, {
                 method: "PATCH",
                 body: JSON.stringify({
                     email: updateUserEmail.value.email,
                 })
             })
-            user.value.email = updateEmail.email
-            clearUpdateUserFormEmail()
+            user.value.email = updateEmail.email;
+            clearUpdateUserFormEmail();
         }catch(err){
-            if(err instanceof ApiError){
-                const errors = err.response as Record<string, string> | undefined;
-                if(errors){
-                    updateUserEmailErrors.value.emailError = !!errors.email;
-                    updateUserFormEmailMessage.value.emailMessage = errors.email || '';
-                }
-            }
-            console.log('Не удалось обновить почту пользователя')
+            updateEmailErrors(err);
+            console.log('Не удалось обновить почту пользователя');
         }
     };
 
     const updatePasswordAccount = async () => {
+        const userId = localStorage.getItem("userId");
         try{
-            const userId = localStorage.getItem("userId");
-
             const updatePassword = await handler(`/users/password/${userId}`, {
                 method: "POST",
                 body: JSON.stringify({
@@ -208,17 +157,8 @@ export const useUpdateProfile = () => {
             user.value.password = updatePassword.password;
             clearUpdateUserFormPassword();
         }catch(err){
-            if(err instanceof ApiError){
-                const errors = err.response as Record<string, string> | undefined;
-                if(errors){
-                    updateUserPasswordErrors.value.oldPasswordError = !!errors.oldPassword;
-                    updateUserPasswordErrors.value.newPasswordError = !!errors.newPassword;
-
-                    updateUserFormPasswordMessages.value.oldPasswordMessage = errors.oldPassword || '';
-                    updateUserFormPasswordMessages.value.newPasswordMessage = errors.newPassword || '';
-                }
-            }
-            console.log('Не удалось обновить пароль пользователя')
+            updatePasswordErrors(err);
+            console.log('Не удалось обновить пароль пользователя');
         }
     };
 

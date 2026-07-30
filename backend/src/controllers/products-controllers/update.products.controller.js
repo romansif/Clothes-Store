@@ -26,5 +26,18 @@ export const updateProductsController = {
         }catch(err){
             res.status(500).json({error: err.message})
         }
+    },
+    async updateFavoriteItems (req, res) {
+        try{
+            const db = dbService.readDB()
+
+            const index = db.favorites.findIndex(f => f.id === req.params.id || f.productId === req.params.id)
+            if (index !== -1) db.favorites[index] = { ...db.favorites[index], ...req.body };
+
+            dbService.writeDB(db);
+            res.json(db.favorites[index] || []);
+        }catch(err){
+            res.status(500).json({error: err.message})
+        }
     }
 }

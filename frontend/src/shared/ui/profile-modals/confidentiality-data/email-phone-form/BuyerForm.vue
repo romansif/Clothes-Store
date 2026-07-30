@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import { IMaskComponent as IMask } from "vue-imask";
-import { usersStore } from "../../../../composables/stores/users.store.ts";
-import { userForms } from "../../../../composables/forms-composables/forms/users.forms.ts";
-import { usePhoneForm } from "../../../../../feature/auth/auth-composables/usePhoneForm.ts";
-import { useUpdateProfile } from "../../../../../feature/profile/profile-composables/useUpdateProfile.ts";
-import { userFormsErrors } from "../../../../composables/forms-composables/forms-errors/users.errors.ts";
+import { usePhoneForm } from "@/shared/mask-forms/usePhoneForm.ts";
+import { usersStore } from "@/shared/composables/stores/users.store.ts";
+import { userForms } from "@/shared/composables/forms-composables/forms/users.forms.ts";
+import { useUpdateProfile } from "@/feature/profile/profile-composables/useUpdateProfile.ts";
+import { userFormsErrors } from "@/shared/composables/forms-composables/forms-errors/users.errors.ts";
 
-import BaseButton  from "../../../button/BaseButton.vue";
+import BaseButton  from "@/shared/ui/button/BaseButton.vue";
 
 const { user } = usersStore();
 const { countries, selectedCountryCode } = usersStore();
+const { updatePhoneAccount, updateEmailAccount } = useUpdateProfile();
 const { currentCountry, currentMask, changeCountry } = usePhoneForm();
 const { updateUserEmailErrors, updateUserPhoneErrors } = userFormsErrors();
-const { updatePhoneAccount, updateEmailAccount } = useUpdateProfile();
 const { updateUserPhone, updateUserFormPhoneMessage, updateUserEmail, updateUserFormEmailMessage } = userForms();
 </script>
 

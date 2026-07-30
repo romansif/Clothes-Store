@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { useGetProducts } from "../composables/getProducts.ts";
+import { useProfileModals } from "@/shared/composables/modals/profile/profileModals.ts";
 
-import MyProductsList from "./MyProductsList.vue";
+import ChoiceModal from "@/shared/ui/ChoiceModal.vue";
 import NavBar from "../../navigation/NavBar.vue";
+import MyProductsList from "./MyProductsList.vue";
 
 const { getMyProducts } = useGetProducts();
+const { deleteChoice } = useProfileModals();
 
 onMounted(async () => {
   await getMyProducts();
@@ -19,8 +22,20 @@ onMounted(async () => {
       <MyProductsList />
     </div>
   </div>
+  <Transition>
+    <ChoiceModal v-if="deleteChoice"/>
+  </Transition>
 </template>
 
 <style scoped>
+/* мы объясним, что делают эти классы дальше! */
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
 
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
 </style>

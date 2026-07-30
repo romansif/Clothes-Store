@@ -2,44 +2,44 @@
 import { computed, watch } from "vue";
 import { useAddProducts } from "../composables/useAddProducts.ts";
 import { useUpdateProduct } from "../composables/useUpdateProduct.ts";
-import { productsStore } from "../../../shared/composables/stores/products.store.ts";
-import { productsForms } from "../../../shared/composables/forms-composables/forms/products.forms.ts";
-import { productsFormErrors } from "../../../shared/composables/forms-composables/forms-errors/products.errors.ts";
+import { productsStore } from "@/shared/composables/stores/products.store.ts";
+import { productsForms } from "@/shared/composables/forms-composables/forms/products.forms.ts";
+import { productsFormErrors } from "@/shared/composables/forms-composables/forms-errors/products.errors.ts";
 
-import like from '../../../app/assets/icons/nav/like.png'
-import liked from '../../../app/assets/icons/nav/liked.png'
-import plus from '../../../app/assets/icons/plus.svg'
-import minus from '../../../app/assets/icons/minus.svg'
-import BaseButton from "../../../shared/ui/button/BaseButton.vue";
+import plus from '@/app/assets/icons/plus.svg';
+import minus from '@/app/assets/icons/minus.svg';
+import like from '@/app/assets/icons/nav/like.png';
+import liked from '@/app/assets/icons/nav/liked.png';
+import BaseButton from "@/shared/ui/button/BaseButton.vue";
 
 const { updateCartItem } = useUpdateProduct();
 const { addCartFormErrors } = productsFormErrors();
-const { products, cart, product, productId, sizes, colors } = productsStore();
 const { addToCart, toggleToFavorite } = useAddProducts();
 const { addToCartForm, addToCartFormMessages } = productsForms();
+const { products, cart, product, productId, sizes, colors } = productsStore();
 
 const userId = localStorage.getItem("userId");
 
 const isAvailableColors = computed(() => {
   if(!product.value.color){
-    return ''
+    return '';
   }
-  return colors.filter(color => product.value.color.includes(color.name))
+  return colors.filter(color => product.value.color.includes(color.name));
 })
 
 const isAvailableSizes = computed(() => {
   if(!product.value.size){
-    return ''
+    return '';
   }
-  return sizes.filter(size => product.value.size.includes(size.name))
+  return sizes.filter(size => product.value.size.includes(size.name));
 })
 
 const isInCart = computed(() => {
   const product = products.value.find(p => p.id === productId.value);
   if(!product?.id || !Array.isArray(cart.value)){
-    return false
+    return false;
   }
-  return cart.value.find(c => c.productId === product?.id) || null
+  return cart.value.find(c => c.productId === product?.id) || null;
 })
 
 watch(() => [addToCartForm.value.color, addToCartForm.value.size], ([color, size]) => {
@@ -113,8 +113,8 @@ watch(() => [addToCartForm.value.color, addToCartForm.value.size], ([color, size
           ADD TO CART
         </span>
       </router-link>
-      <BaseButton @click="addToCart()" v-if="userId && product.status === 'Availability' && !isInCart" name="ADD TO CART" variant="addToCart" />
-      <BaseButton v-if="userId && product.status === 'Exhausted'" name="OUT OF STACK" variant="outOfStack" />
+      <BaseButton @click="addToCart()" v-if="userId && product.quantity !== 0 && !isInCart" name="ADD TO CART" variant="addToCart" />
+      <BaseButton v-if="userId && product.quantity === 0" name="OUT OF STACK" variant="outOfStack" />
       <div v-if="userId && isInCart" class="flex items-center gap-18">
         <div class="flex gap-6 bg-zinc-800 py-3.5 px-3 text-lg rounded-md transition duration-300 hover:scale-108">
           <img :src="plus" @click="updateCartItem('add', isInCart.id, isInCart.status)"

@@ -4,17 +4,16 @@ const BASE_URL = `http://localhost:3000`
 import { useRouter } from "vue-router";
 import { computed, onMounted } from "vue";
 import { useGetProducts } from "../composables/getProducts.ts";
-import { productsStore } from "../../../shared/composables/stores/products.store.ts";
 import { useUpdateProduct } from "../composables/useUpdateProduct.ts";
-import { useProductsModals } from "../../../shared/composables/modals/products/productsModals.ts";
+import { productsStore } from "@/shared/composables/stores/products.store.ts";
+import { useProductsModals } from "@/shared/composables/modals/products/productsModals.ts";
 
 import ProductInfo from "./ProductInfo.vue";
+import cart from '@/app/assets/icons/nav/cart.png';
 import NavBar from "../../navigation/NavBar.vue";
-import Notification from "../../../shared/ui/products-modals/Notification.vue";
-
-import cart from '../../../app/assets/icons/nav/cart.png'
-import go_to_shop from '../../../app/assets/icons/arrows/go-to-shop.png'
-import profile from '../../../app/assets/icons/nav/profile.png'
+import profile from '@/app/assets/icons/nav/profile.png';
+import go_to_shop from '@/app/assets/icons/arrows/go-to-shop.png';
+import Notification from "@/shared/ui/products-modals/Notification.vue";
 
 const { notify } = useProductsModals();
 const { getProduct } = useGetProducts();
@@ -28,11 +27,11 @@ const userId = localStorage.getItem("userId");
 const productPreview = computed(() => {
   return(product: any) => {
     if(!product){
-      console.log('Product not found')
-      return
+      console.log('Product not found');
+      return;
     }
     if(product && Array.isArray(product.images) && product.images[0]){
-      return `${BASE_URL}/${product.images[0]}`
+      return `${BASE_URL}/${product.images[0]}`;
     }
   }
 });
@@ -40,14 +39,14 @@ const productPreview = computed(() => {
 const angelCards = computed(() => {
   return(product: any): string[] => {
     if(!product){
-      console.log('Product not found')
-      return []
+      console.log('Product not found');
+      return [];
     }
 
     if(product && Array.isArray(product.images) && product.images.length > 0){
-      return product.images.slice(1).map((img: string) => `${BASE_URL}/${img}`)
+      return product.images.slice(1).map((img: string) => `${BASE_URL}/${img}`);
     }
-    return []
+    return [];
   }
 });
 
@@ -55,12 +54,12 @@ onMounted(async () => {
   await getProduct();
 
   if(product.value && Array.isArray(product.value.images) && product.value.images[0]) {
-    activeProductImg.value = productPreview.value(product.value) ?? ''
+    activeProductImg.value = productPreview.value(product.value) ?? '';
   }
 })
 
 const routerBack = () => {
-  router.back()
+  router.back();
 }
 </script>
 

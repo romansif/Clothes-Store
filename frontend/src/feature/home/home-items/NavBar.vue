@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import liked from "../../../app/assets/icons/nav/favorite.png";
-import cart from "../../../app/assets/icons/nav/cart.png";
-import profile from "../../../app/assets/icons/nav/profile.png";
-import search from "../../../app/assets/icons/nav/search.png";
-import catalog from "../../../app/assets/icons/nav/catalog.png";
+import cart from "@/assets/icons/nav/cart.png";
+import search from "@/assets/icons/nav/search.png";
+import liked from "@/assets/icons/nav/favorite.png";
+import profile from "@/assets/icons/nav/profile.png";
+import catalog from "@/assets/icons/nav/catalog.png";
 </script>
 
 <template>

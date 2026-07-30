@@ -1,4 +1,4 @@
-import { handler } from "../../../shared/api/http.ts";
+import { handler } from "@/shared//api/http.ts";
 import { useGetProducts } from "./getProducts.ts";
 
 const { getFilteredProducts, getCartProducts, getFavoriteProducts } = useGetProducts();

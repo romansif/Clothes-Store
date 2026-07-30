@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { usersStore } from "../../../../composables/stores/users.store.ts";
-import { useDeleteProfile } from "../../../../../feature/profile/profile-composables/useDeleteProfile.ts";
+import { usersStore } from "@/shared/composables/stores/users.store.ts";
+import { useProfileModals } from "@/shared/composables/modals/profile/profileModals.ts";
 
-import del from "../../../../../app/assets/icons/del_address_card.svg";
+import del from "@/app/assets/icons/del_address_card.svg";
 
 const { userPayments } = usersStore();
-const { deletePayment } = useDeleteProfile();
+const { toggleDeleteChoice } = useProfileModals();
 </script>
 
 <template>
@@ -20,7 +20,9 @@ const { deletePayment } = useDeleteProfile();
           <span class="text-sm font-semibold">
             CVV: <span class="font-normal">{{ checkout.cardCvv }}</span>
           </span>
-          <img @click="deletePayment(checkout.id)" :src="del" alt="" class="w-[20px] ml-auto ">
+          <img @click="toggleDeleteChoice(
+              'Are you sure you want to delete this saved card?', 'DELETE_SAVED_CARD', checkout.id)"
+               :src="del" alt="" class="w-[20px] ml-auto ">
         </div>
         <div class="flex gap-5">
           <span class="text-sm font-semibold">

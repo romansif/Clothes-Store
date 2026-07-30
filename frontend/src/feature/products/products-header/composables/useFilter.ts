@@ -47,9 +47,9 @@ export const useFilter = () => {
     const clearActiveKey = () => {
         setActiveKey(colors.value, '');
         setActiveKey(genders.value, '');
-        setActiveKey(stackProducts.value, '');
-        setActiveKey(categories.value, '');
         setActiveKey(category.value, '');
+        setActiveKey(categories.value, '');
+        setActiveKey(stackProducts.value, '');
     }
 
     const toggleFilter = async (categoryGroup: string, value: string) => {
@@ -62,21 +62,21 @@ export const useFilter = () => {
             setActiveKey(categories.value, value);
         }
         if(categoryGroup === 'STATUS') {
-            clearActiveKey()
+            clearActiveKey();
             setActiveKey(stackProducts.value, value)
         }else if(categoryGroup === 'GENDER') {
             clearActiveKey()
             setActiveKey(genders.value, value)
         }else if(categoryGroup === 'COLOR') {
-            clearActiveKey()
+            clearActiveKey();
             setActiveKey(colors.value, value)
         }
-        await getFilteredProducts(categoryGroup, value)
+        await getFilteredProducts(categoryGroup, value);
     };
 
     const toggleSize = async (categoryGroup: string, value: string) => {
-        clearActiveKey()
-        await getFilteredProducts(categoryGroup, value)
+        clearActiveKey();
+        await getFilteredProducts(categoryGroup, value);
     }
 
     return {

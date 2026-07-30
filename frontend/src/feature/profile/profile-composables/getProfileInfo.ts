@@ -1,7 +1,7 @@
-import { handler } from "../../../shared/api/http.ts";
-import { usersStore } from "../../../shared/composables/stores/users.store.ts";
+import { handler } from "@/shared//api/http.ts";
+import { usersStore } from "@/shared//composables/stores/users.store.ts";
 
-const { userAddresses, userAddress, userPayments, userPayment } = usersStore()
+const { userAddresses, userAddress, userPayments, userPayment } = usersStore();
 
 export const useGetProfile = () => {
     const getAddresses = async () => {
@@ -9,8 +9,8 @@ export const useGetProfile = () => {
         try{
             const addresses = await handler(`/checkout/address/${userId}`, {
                 method: "GET",
-            })
-            userAddresses.value = addresses
+            });
+            userAddresses.value = addresses;
         }catch(err){
             console.error(err)
         }
@@ -21,8 +21,8 @@ export const useGetProfile = () => {
         try{
             const addresses = await handler(`/checkout/address/item/${addressId}`, {
                 method: "GET",
-            })
-            userAddress.value = addresses
+            });
+            userAddress.value = addresses;
         }catch(err){
             console.error(err)
         }
@@ -33,8 +33,8 @@ export const useGetProfile = () => {
         try{
             const payments = await handler(`/checkout/payment/${userId}`, {
                 method: "GET",
-            })
-            userPayments.value = payments
+            });
+            userPayments.value = payments;
         }catch(err){
             console.error(err)
         }
@@ -45,7 +45,7 @@ export const useGetProfile = () => {
         try{
             const payments = await handler(`/checkout/payment/item/${paymentId}`, {
                 method: "GET",
-            })
+            });
             userPayment.value = payments
         }catch(err){
             console.error(err)

@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import { createApp, type Directive } from 'vue'
 import { IMaskDirective } from "vue-imask";
 import { VueQueryPlugin } from '@tanstack/vue-query'
 import router from "./app/router/index";
@@ -7,7 +7,7 @@ import './app/styles/main.css'
 
 const app = createApp(App)
 
-app.directive('mask', IMaskDirective)
+app.directive('mask', IMaskDirective as Directive)
 
 app
     .use(VueQueryPlugin)

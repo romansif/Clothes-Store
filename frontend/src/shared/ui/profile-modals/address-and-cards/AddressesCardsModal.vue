@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useProfileModals } from "../../../composables/modals/profile/profileModals.ts";
-import { useGetProfile } from "../../../../feature/profile/profile-composables/getProfile.ts";
-import { usersStore } from "../../../composables/stores/users.store.ts"
-  ;
-import AddressesList from "./addresses/AddressesList.vue";
-import CardsList from "./cards/CardsList.vue";
+import { usersStore } from "@/shared/composables/stores/users.store.ts"
+import { useProfileModals } from "@/shared/composables/modals/profile/profileModals.ts";
+import { useGetProfile } from "@/feature/profile/profile-composables/getProfileInfo.ts";
 
-import icon_address from "../../../../app/assets/icons/icon_address.svg";
-import icon_card from "../../../../app/assets/icons/icon_card.svg";
-import BaseButton from "../../button/BaseButton.vue";
+import CardsList from "./cards/CardsList.vue";
+import BaseButton from "@/shared/ui/button/BaseButton.vue";
+import AddressesList from "./addresses/AddressesList.vue";
+import icon_card from "@/app/assets/icons/icon_card.svg";
+import icon_address from "@/app/assets/icons/icon_address.svg";
+import ChoiceModal from "../../ChoiceModal.vue";
 
 const { userAddresses, userPayments } = usersStore();
 const { getAddresses, getPayments } = useGetProfile();
-const { toggleAddressesAndCards } = useProfileModals()
+const { toggleAddressesAndCards, deleteChoice } = useProfileModals();
 
 onMounted(async () => {
   await getAddresses();
@@ -61,8 +61,21 @@ onMounted(async () => {
       </div>
     </div>
   </div>
+  <Transition>
+    <ChoiceModal v-if="deleteChoice"/>
+  </Transition>
 </template>
 
 <style scoped>
 
+/* мы объясним, что делают эти классы дальше! */
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
 </style>

@@ -1,4 +1,4 @@
-import router from '../../app/router/index.ts'
+import router from '@/app/router/index.ts'
 
 export const BASE_URL = `http://localhost:3000/api`;
 

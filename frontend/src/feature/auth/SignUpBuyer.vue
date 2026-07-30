@@ -2,44 +2,44 @@
 import { watch } from "vue";
 import { IMaskComponent as IMask } from "vue-imask";
 import { useAuth } from "./auth-composables/useAuth.ts";
-import { usePhoneForm } from "./auth-composables/usePhoneForm.ts";
-import { authStore } from "../../shared/composables/stores/auth.store.ts";
-import { usersStore } from "../../shared/composables/stores/users.store.ts";
-import { authForms } from "../../shared/composables/forms-composables/forms/auth.forms.ts";
-import { authFormsErrors } from "../../shared/composables/forms-composables/forms-errors/auth.errors.ts";
-import { clearAuthForms } from "../../shared/composables/forms-composables/clear-forms/clear.auth.ts";
+import { usePhoneForm } from "@/shared/mask-forms/usePhoneForm.ts";
+import { authStore } from "@/shared/composables/stores/auth.store.ts";
+import { usersStore } from "@/shared/composables/stores/users.store.ts";
+import { authForms } from "@/shared/composables/forms-composables/forms/auth.forms.ts";
+import { authFormsErrors } from "@/shared/composables/forms-composables/forms-errors/auth.errors.ts";
+import { clearAuthForms } from "@/shared/composables/forms-composables/clear-forms/clear.auth.ts";
 
-import closed from "../../app/assets/icons/auth/closed.png";
-import opened from "../../app/assets/icons/auth/opened.png";
-import maki_arrow from "../../app/assets/icons/arrows/maki--arrow.svg";
 import SignUpSeller from "./SignUpSeller.vue";
-import BaseButton from "../../shared/ui/button/BaseButton.vue";
+import closed from "@/app/assets/icons/auth/closed.png";
+import opened from "@/app/assets/icons/auth/opened.png";
+import BaseButton from "@/shared/ui/button/BaseButton.vue";
+import maki_arrow from "@/app/assets/icons/arrows/maki--arrow.svg";
 
 const { signUp } = useAuth();
 const { registerFormErrors } = authFormsErrors();
 const { showPassword, showSection } = authStore();
 const { countries, selectedCountryCode } = usersStore();
-const { currentCountry, currentMask, changeCountry } = usePhoneForm();
 const { registerBuyerForm, registerFormMessages } = authForms();
+const { currentCountry, currentMask, changeCountry } = usePhoneForm();
 const { clearRegisterBuyerForm, clearRegisterSellerForm } = clearAuthForms();
 
 watch(() => [registerBuyerForm.value.name, registerBuyerForm.value.surName, registerBuyerForm.value.privatePhone,
   registerBuyerForm.value.email, registerBuyerForm.value.password],([name, surName, privatePhone, email, password]) => {
       if(name){
         registerFormErrors.value.nameError = false;
-      };
+      }
       if(surName){
         registerFormErrors.value.surNameError = false;
-      };
+      }
       if(privatePhone){
         registerFormErrors.value.privatePhoneError = false;
-      };
+      }
       if(email){
         registerFormErrors.value.emailError = false;
-      };
+      }
       if(password){
         registerFormErrors.value.passwordError = false;
-      };
+      }
     }
 );
 

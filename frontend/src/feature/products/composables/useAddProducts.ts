@@ -1,25 +1,25 @@
-import router from "../../../app/router";
-
+import router from "@/app/router";
 import { useGetProducts } from "./getProducts.ts";
+import { handler } from "@/shared//api/http.ts";
 import { useUpdateProduct } from "./useUpdateProduct.ts";
-import { ApiError, handler } from "../../../shared/api/http.ts";
-import { useCheckout } from "../../checkout/composables/useCheckout.ts";
-import { productsStore } from "../../../shared/composables/stores/products.store.ts";
-import { useProductsModals } from "../../../shared/composables/modals/products/productsModals.ts";
-import { productsForms } from "../../../shared/composables/forms-composables/forms/products.forms.ts";
-import { productsFormErrors } from "../../../shared/composables/forms-composables/forms-errors/products.errors.ts";
-import { clearProductsForms } from "../../../shared/composables/forms-composables/clear-forms/clear.products.ts";
+import { useFormsErrors } from "@/shared//errors/FormErrors.ts";
+import { useCheckout } from "@/feature//checkout/composables/useCheckout.ts";
+import { productsStore } from "@/shared//composables/stores/products.store.ts";
+import { useProductsModals } from "@/shared//composables/modals/products/productsModals.ts";
+import { productsForms } from "@/shared//composables/forms-composables/forms/products.forms.ts";
+import { clearProductsForms } from "@/shared//composables/forms-composables/clear-forms/clear.products.ts";
 
 const { totalPrice } = useCheckout();
+const { createProductErrors, addToCartErrors } = useFormsErrors();
 const { getCartProducts, getFavoriteProducts } = useGetProducts();
-const { toggleCreateProductModal, openNotify } = useProductsModals();
 const { updateFavorite, updateCheckedQuantity } = useUpdateProduct();
+const { toggleCreateProductModal, openNotify } = useProductsModals();
 const { clearProductForm, clearAddToCartForm } = clearProductsForms();
-const { createProductFormErrors, addCartFormErrors } = productsFormErrors();
-const { createProductForm, moreCreateItem, createProductFormMessages,
-    addToCartForm, addToCartFormMessages } = productsForms();
-const { products, cart, product, items, orders,
-    currentFile, productFiles, productsPreview, unreadCount } = productsStore();
+const { createProductForm, moreCreateItem, addToCartForm } = productsForms();
+const {
+    products, cart, product, items, orders,
+    currentFile, productFiles, productsPreview, unreadCount
+} = productsStore();
 
 export const useAddProducts = () => {
     const onFilesSelected = (event: Event) => {
@@ -39,7 +39,7 @@ export const useAddProducts = () => {
         }
 
         target.value = '';
-    }
+    };
 
     const createProduct = async () => {
         try{
@@ -47,7 +47,6 @@ export const useAddProducts = () => {
             if(!userId){
                 return
             }
-
             const formData = new FormData();
 
             formData.append("userId", userId);
@@ -86,28 +85,7 @@ export const useAddProducts = () => {
             clearProductForm();
             toggleCreateProductModal();
         }catch(err){
-            if(err instanceof ApiError){
-                const errors = err.response as Record<string, string>
-                if(errors){
-                    createProductFormErrors.value.titleError = !!errors.title;
-                    createProductFormErrors.value.categoryError = !!errors.category;
-                    createProductFormErrors.value.materialError = !!errors.material;
-                    createProductFormErrors.value.priceError = !!errors.price;
-                    createProductFormErrors.value.descriptionError = !!errors.description;
-                    createProductFormErrors.value.colorError = !!errors.color;
-                    createProductFormErrors.value.sizeError = !!errors.size;
-                    createProductFormErrors.value.quantityError = !!errors.quantity;
-
-                    createProductFormMessages.value.titleMessage = errors.title || '';
-                    createProductFormMessages.value.categoryMessage = errors.category || '';
-                    createProductFormMessages.value.materialMessage = errors.material || '';
-                    createProductFormMessages.value.priceMessage = errors.price || '';
-                    createProductFormMessages.value.descriptionMessage = errors.description || '';
-                    createProductFormMessages.value.colorMessage = errors.color || '';
-                    createProductFormMessages.value.sizeMessage = errors.size || '';
-                    createProductFormMessages.value.quantityMessage = errors.quantity    || '';
-                }
-            }
+            createProductErrors(err);
             console.log('Не удалось создать обложку нового товара.', err);
         }
     };
@@ -138,27 +116,19 @@ export const useAddProducts = () => {
                     checked: currentProduct.checked,
                 })
             });
-            cart.value = newProductCart
+            cart.value = newProductCart;
 
-            unreadCount.value += 1
+            unreadCount.value += 1;
 
-            clearAddToCartForm()
+            await getCartProducts();
+
+            clearAddToCartForm();
+
             openNotify('You have successfully added the item to your cart.',
                 'You can click the button to the left of the "X" to go to the cart.',
-                '/profile/profile-products/ProductsCartPage')
-
-            await getCartProducts()
+                '/profile/profile-products/ProductsCartPage');
         }catch(err){
-            if(err instanceof ApiError){
-                const errors = err.response as Record<string, string>;
-                if(errors){
-                    addCartFormErrors.value.colorError = !!errors.color;
-                    addCartFormErrors.value.sizeError = !!errors.size;
-
-                    addToCartFormMessages.value.colorMessage = errors.color || '';
-                    addToCartFormMessages.value.sizeMessage = errors.size || '';
-                }
-            }
+            addToCartErrors(err);
             console.log('Не удалось добавить товар в корзину.', err);
         }
     };
@@ -168,12 +138,15 @@ export const useAddProducts = () => {
         try{
             const sourceList = type === 'cart' ? cart.value : products.value;
             const currentProduct = sourceList?.find(item => item.id === id);
-            if(!currentProduct) return
 
-                    const isFavorite = product.value.favorite
-                    const newStatus = !isFavorite
+            const isFavorite = currentProduct?.favorite
+            const newStatus = !isFavorite
 
-            if(!isFavorite){
+            if(!currentProduct){
+                console.log('Продукт не найден')
+                return
+            }
+            if(newStatus){
                 await handler(`/favorites`, {
                     method: "POST",
                     body: JSON.stringify({
@@ -188,25 +161,24 @@ export const useAddProducts = () => {
                         color: currentProduct?.color,
                         size: currentProduct?.size,
                         gender: currentProduct?.gender,
-                        quantity: 1,
+                        quantity: currentProduct?.quantity,
                         status: currentProduct?.status,
                         favorite: true,
                     })
                 });
+                await getFavoriteProducts();
+
                 openNotify('You have successfully added the item to your favorite.',
                     'You can click the button to the left of the "X" to go to the favorite.',
-                    '/profile/profile-products/FavoriteProductsPage')
-
-                await getFavoriteProducts();
+                    '/profile/profile-products/FavoriteProductsPage');
             }else{
                 await handler(`/favorites/${productId}`, {
                     method: "DELETE",
                 })
-
                 await getFavoriteProducts();
             }
 
-            await updateFavorite(id, productId, newStatus)
+            await updateFavorite(id, productId, newStatus);
         }catch(err){
             console.log('Не удалось добавить товар в любимое.', err);
         }
@@ -235,9 +207,9 @@ export const useAddProducts = () => {
             })
             orders.value = newOrder;
 
-            await updateCheckedQuantity()
+            await updateCheckedQuantity();
 
-            await router.push({ name: '/profile/ProfilePage' })
+            await router.push({ name: '/profile/ProfilePage' });
         }catch(err){
             console.log('Не удалось сделать заказ.', err);
         }

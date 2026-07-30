@@ -2,18 +2,19 @@
 const BASE_URL = `http://localhost:3000`
 
 import { computed } from "vue";
-import { usersStore } from "../../../shared/composables/stores/users.store.ts";
-import { useProfileModals } from "../../../shared/composables/modals/profile/profileModals.ts";
-import { useProductsModals } from "../../../shared/composables/modals/products/productsModals.ts";
+import { usersStore } from "@/shared/composables/stores/users.store.ts";
+import { useProfileModals } from "@/shared/composables/modals/profile/profileModals.ts";
+import { useProductsModals } from "@/shared/composables/modals/products/productsModals.ts";
 
 import ProfileMenu from "./ProfileMenu.vue";
-
-import arrow_down from '../../../app/assets/icons/arrows/arrow-down.png'
+import arrow_down from '@/app/assets/icons/arrows/arrow-down.png'
 
 const { user } = usersStore()
 const { toggleCreateProductModal } = useProductsModals();
-const { toggleAvatar, toggleOrderHistory, toggleCurrentOrder,
-  toggleConfidentialityData, toggleAddressesAndCards } = useProfileModals()
+const {
+  toggleAvatar, toggleOrderHistory, toggleCurrentOrder,
+  toggleConfidentialityData, toggleAddressesAndCards
+} = useProfileModals()
 
 const userAvatar = computed(() => {
   if(user.value && user.value.avatarUrl){

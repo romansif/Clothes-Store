@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { watch } from "vue";
-import { useAddProfile } from "../../profile/profile-composables/useAddProfile.ts";
-import { checkoutForms } from "../../../shared/composables/forms-composables/forms/checkout.forms.ts";
-import { checkoutErrors }from "../../../shared/composables/forms-composables/forms-errors/checkout.errors.ts";
+import { useAddCheckout } from "../composables/useAddCheckout.ts";
+import { checkoutForms } from "@/shared/composables/forms-composables/forms/checkout.forms.ts";
+import { checkoutErrors }from "@/shared/composables/forms-composables/forms-errors/checkout.errors.ts";
 
+import arrow from "@/app/assets/icons/arrows/shop.svg";
+import BaseButton from "@/shared/ui/button/BaseButton.vue";
 import ContactInfo from "./information-items/ContactInfo.vue";
 import AddressInfo from "./information-items/AddressInfo.vue";
-import arrow from "../../../app/assets/icons/arrows/shop.svg";
-import BaseButton from "../../../shared/ui/button/BaseButton.vue";
 
-const { addAddress } = useAddProfile();
+const { addAddress } = useAddCheckout();
 const { information } = checkoutForms();
 const { informationErrors } = checkoutErrors();
 
@@ -19,31 +19,31 @@ watch(() => [
   information.value.postalCode], ([email, phone, firstName, lastName, country, stateRegion, address, city , postalCode]) => {
 
   if(email){
-    informationErrors.value.emailError = false
+    informationErrors.value.emailError = false;
   }
   if(phone){
-    informationErrors.value.phoneError = false
+    informationErrors.value.phoneError = false;
   }
   if(firstName){
-    informationErrors.value.firstNameError = false
+    informationErrors.value.firstNameError = false;
   }
   if(lastName){
-    informationErrors.value.lastNameError = false
+    informationErrors.value.lastNameError = false;
   }
   if(country){
-    informationErrors.value.countryError = false
+    informationErrors.value.countryError = false;
   }
   if(stateRegion){
-    informationErrors.value.stateRegionError = false
+    informationErrors.value.stateRegionError = false;
   }
   if(address){
-    informationErrors.value.addressError = false
+    informationErrors.value.addressError = false;
   }
   if(city){
-    informationErrors.value.cityError = false
+    informationErrors.value.cityError = false;
   }
   if(postalCode){
-    informationErrors.value.postalCodeError = false
+    informationErrors.value.postalCodeError = false;
   }
 });
 

@@ -2,15 +2,15 @@
 import { useRoute } from 'vue-router';
 import { computed, onMounted } from "vue";
 import { useCheckout } from "./composables/useCheckout.ts";
-import { useGetProfile } from "../profile/profile-composables/getProfile.ts";
-import { useProductsModals } from "../../shared/composables/modals/products/productsModals.ts";
+import { useGetProfile } from "../profile/profile-composables/getProfileInfo.ts";
+import { useProductsModals } from "@/shared/composables/modals/products/productsModals.ts";
 
-import MainInformation from "./information/MainInformation.vue";
-import MainOrder from "./order-information/MainOrder.vue";
-import go_to_shop from "../../app/assets/icons/arrows/go-to-shop.png";
 import MainPayment from "./payment/MainPayment.vue";
 import MainShipping from "./shipping/MainShipping.vue";
-import Notification from "../../shared/ui/products-modals/Notification.vue";
+import MainOrder from "./order-information/MainOrder.vue";
+import go_to_shop from "@/app/assets/icons/arrows/go-to-shop.png";
+import MainInformation from "./information/MainInformation.vue";
+import Notification from "@/shared/ui/products-modals/Notification.vue";
 
 const route = useRoute();
 
@@ -18,9 +18,9 @@ const { goBack } = useCheckout();
 const { notify } = useProductsModals();
 const { getAddress, getPayment } = useGetProfile();
 
+const isPayment = computed(() =>  route.name !== '/checkout/PaymentPage');
 const isInfo = computed(() =>  route.name !== '/checkout/InformationPage');
 const isShipping = computed(() =>  route.name !== '/checkout/ShippingPage');
-const isPayment = computed(() =>  route.name !== '/checkout/PaymentPage');
 
 onMounted(async () => {
   await getAddress();

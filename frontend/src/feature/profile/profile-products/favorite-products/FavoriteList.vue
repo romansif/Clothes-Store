@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import FavoriteProductsCard from "./FavoriteProductsCard.vue";
+  import FavoriteProductsCard from "./FavoriteProductsCard.vue";
 </script>
 
 <template>

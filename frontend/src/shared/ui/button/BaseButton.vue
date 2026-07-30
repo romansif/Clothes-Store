@@ -23,7 +23,9 @@ const variantClasses = {
   repeatOrder: `ml-auto px-4 py-2 text-xs font-semibold border bg-black text-white rounded-md transition duration-400 hover:scale-108`,
   outOfStack: `w-full font-semibold bg-[#A3A3A3] text-white py-4 mt-1 transition duration-300 transform hover:scale-108`,
   exitClose: `class="text-start ml-auto h-fit w-fit px-10 py-2 bg-red-600 text-white font-medium text-xs rounded-md
-          transition duration-300 transform hover:scale-108 hover:bg-red-500`
+          transition duration-300 transform hover:scale-108 hover:bg-red-500`,
+  cancel: `bg-red-600 text-white px-8 py-3.5 font-medium text-xs rounded-md transition duration-300 hover:scale-108 hover:bg-red-700`,
+  confirm: `bg-blue-700 text-white px-8 py-3.5 font-medium text-xs rounded-md transition duration-300 hover:scale-108 hover:bg-blue-800`
 }
 
 </script>

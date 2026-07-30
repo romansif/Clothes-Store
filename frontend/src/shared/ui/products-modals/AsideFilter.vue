@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { useProductsModals } from "../../composables/modals/products/productsModals.ts";
+import { useProductsModals } from "@/shared/composables/modals/products/productsModals.ts";
 
-import xs from "../../../app/assets/icons/size/xs.svg";
-import s from "../../../app/assets/icons/size/s.svg";
-import m from "../../../app/assets/icons/size/m.svg";
-import l from "../../../app/assets/icons/size/l.svg";
-import xl from "../../../app/assets/icons/size/xl.svg";
-import xxl from "../../../app/assets/icons/size/xxl.svg";
-import availability from "../../../app/assets/icons/arrows/arrow-up.png";
-import square from "../../../app/assets/icons/square.png";
-import left_arrow from "../../../app/assets/icons/arrows/left-arrow.png";
-import right_arrow from "../../../app/assets/icons/arrows/right-arrow.png";
+import s from "@/app/assets/icons/size/s.svg";
+import m from "@/app/assets/icons/size/m.svg";
+import l from "@/app/assets/icons/size/l.svg";
+import xl from "@/app/assets/icons/size/xl.svg";
+import xs from "@/app/assets/icons/size/xs.svg";
+import xxl from "@/app/assets/icons/size/xxl.svg";
+import square from "@/app/assets/icons/square.png";
+import availability from "@/app/assets/icons/arrows/arrow-up.png";
+import left_arrow from "@/app/assets/icons/arrows/left-arrow.png";
+import right_arrow from "@/app/assets/icons/arrows/right-arrow.png";
 
 const { toggleFilterAside } = useProductsModals();
 </script>

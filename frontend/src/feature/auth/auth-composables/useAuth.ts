@@ -1,14 +1,15 @@
-import router from '../../../app/router/index.ts'
-import { handler, ApiError } from "../../../shared/api/http.ts"
-import { authForms } from "../../../shared/composables/forms-composables/forms/auth.forms.ts";
-import { authFormsErrors } from "../../../shared/composables/forms-composables/forms-errors/auth.errors.ts";
-import { clearAuthForms } from "../../../shared/composables/forms-composables/clear-forms/clear.auth.ts"
-import { usersStore } from "../../../shared/composables/stores/users.store.ts";
+import router from '@/app/router'
+import { handler } from "@/shared/api/http.ts"
+import { useFormsErrors } from "@/shared/errors/FormErrors.ts";
+import { usersStore } from "@/shared/composables/stores/users.store.ts";
+import { authForms } from "@/shared/composables/forms-composables/forms/auth.forms.ts";
+import { clearAuthForms } from "@/shared/composables/forms-composables/clear-forms/clear.auth.ts"
 
-const { users, user } = usersStore()
-const { registerBuyerForm, registerSellerForm, loginForm, registerFormMessages, loginFormMessages } = authForms()
-const { registerFormErrors, loginFormErrors } = authFormsErrors()
-const { clearRegisterBuyerForm, clearRegisterSellerForm, clearRegisterFormMessages, clearLoginForm, clearLoginFormMessages } = clearAuthForms()
+const { users, user } = usersStore();
+const { registerErrors, loginErrors } = useFormsErrors();
+const { clearRegisterBuyerForm, clearRegisterSellerForm, clearRegisterFormMessages,
+    clearLoginForm, clearLoginFormMessages } = clearAuthForms();
+const { registerBuyerForm, registerSellerForm, loginForm } = authForms();
 
 export const useAuth = () => {
     const signUp = async (role: string) => {
@@ -50,30 +51,7 @@ export const useAuth = () => {
 
             await router.push({ path: "/profile/ProfilePage" })
         }catch(err){
-            if(err instanceof ApiError){
-                const errors = err.response as Record<string, string> | undefined;
-                if(errors){
-                    registerFormErrors.value.nameError = !!errors.name;
-                    registerFormErrors.value.surNameError = !!errors.surName;
-                    registerFormErrors.value.privatePhoneError = !!errors.privatePhone;
-                    registerFormErrors.value.emailError = !!errors.email;
-                    registerFormErrors.value.passwordError = !!errors.password;
-
-                    registerFormMessages.value.nameMessage = errors.name || '';
-                    registerFormMessages.value.surNameMessage = errors.surName || '';
-                    registerFormMessages.value.privatePhoneMessage = errors.privatePhone || '';
-                    registerFormMessages.value.emailMessage = errors.email || '';
-                    registerFormMessages.value.passwordMessage = errors.password || '';
-
-                    if(role === 'Seller'){
-                        registerFormErrors.value.companyNameError = !!errors.companyName;
-                        registerFormErrors.value.publicPhoneError = !!errors.publicPhone;
-
-                        registerFormMessages.value.companyNameMessage = errors.companyName || '';
-                        registerFormMessages.value.publicPhoneMessage = errors.publicPhone || '';
-                    }
-                }
-            }
+            registerErrors(err, role)
             console.log('Не удалось создать нового пользователя', err)
         }
     };
@@ -101,18 +79,7 @@ export const useAuth = () => {
             clearLoginForm()
             await router.push({ path: "/profile/ProfilePage" })
         }catch(err){
-            if(err instanceof ApiError){
-                const errors = err.response as Record<string, string> | undefined;
-                if(errors){
-                    loginFormErrors.value.emailError = !!errors.email;
-                    loginFormErrors.value.passwordError = !!errors.password;
-                    loginFormErrors.value.roleError= !!errors.role;
-
-                    loginFormMessages.value.emailMessage = errors.email || '';
-                    loginFormMessages.value.passwordMessage = errors.password || '';
-                    loginFormMessages.value.roleMessage = errors.role || '';
-                }
-            }
+            loginErrors(err)
             console.log('Не удалось найти пользователя')
         }
     };
@@ -131,9 +98,27 @@ export const useAuth = () => {
         }
     };
 
+
+    const deleteAccount = async () => {
+        try{
+            const userId = localStorage.getItem("userId");
+
+            await handler(`/users/${userId}`, {
+                method: "DELETE",
+            });
+
+            localStorage.clear()
+
+            await router.push({ name: '/auth/LoginPage' });
+        }catch(err){
+            console.log('Не удалось удалить аккаунт', err);
+        }
+    };
+
     return{
         signUp,
         signIn,
-        logout
+        logout,
+        deleteAccount,
     }
 }

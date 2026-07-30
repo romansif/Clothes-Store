@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { usersStore } from "../../../../composables/stores/users.store.ts";
+import { usersStore } from "@/shared/composables/stores/users.store.ts";
 
 import CardsCard from "./CardsCard.vue";
-import icon_card from "../../../../../app/assets/icons/icon_card.svg";
+import icon_card from "@/app/assets/icons/icon_card.svg";
 
 const { userPayments } = usersStore();
+
 const userPaymentsCard = computed(() => {
   return userPayments.value.some(item => 'cardNumber' in item);
 });

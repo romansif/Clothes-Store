@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 
-import { userForms } from "../../../composables/forms-composables/forms/users.forms.ts";
-import { useUpdateProfile } from "../../../../feature/profile/profile-composables/useUpdateProfile.ts";
-import { userFormsErrors } from "../../../composables/forms-composables/forms-errors/users.errors.ts";
+import { userForms } from "@/shared/composables/forms-composables/forms/users.forms.ts";
+import { useUpdateProfile } from "@/feature/profile/profile-composables/useUpdateProfile.ts";
+import { userFormsErrors } from "@/shared/composables/forms-composables/forms-errors/users.errors.ts";
 
-import opened from '../../../../app/assets/icons/auth/opened.png'
-import closed from '../../../../app/assets/icons/auth/closed.png'
-import BaseButton  from "../../button/BaseButton.vue";
-import SellerEmailForm from "./email-phone-form/SellerEmailForm.vue";
-import SellerForm from "./email-phone-form/SellerForm.vue";
+import BaseButton  from "@/shared/ui/button/BaseButton.vue";
 import BuyerForm from "./email-phone-form/BuyerForm.vue";
+import SellerForm from "./email-phone-form/SellerForm.vue";
+import opened from '@/app/assets/icons/auth/opened.png'
+import closed from '@/app/assets/icons/auth/closed.png'
+import SellerEmailForm from "./email-phone-form/SellerEmailForm.vue";
 
 const { updatePasswordAccount, updateNameAccount, updateSurNameAccount } = useUpdateProfile();
 const {
@@ -35,30 +35,29 @@ watch(() => [
       updateUserPassword.value.oldPassword, updateUserPassword.value.newPassword],
     ([name, surName, phone, companyName, publicPhone, email, oldPassword, newPassword]) => {
       if(name){
-        updateUserNameErrors.value.nameError = false
+        updateUserNameErrors.value.nameError = false;
       }
       if(surName){
-        updateUserSurNameErrors.value.surNameError = false
+        updateUserSurNameErrors.value.surNameError = false;
       }
       if(phone){
-        updateUserPhoneErrors.value.phoneError = false
+        updateUserPhoneErrors.value.phoneError = false;
       }
       if(companyName){
-        updateUserFormCompanyNameErrors.value.companyNameError = false
+        updateUserFormCompanyNameErrors.value.companyNameError = false;
       }
       if(publicPhone){
-        updateUserFormPublicPhoneErrors.value.publicPhoneError = false
+        updateUserFormPublicPhoneErrors.value.publicPhoneError = false;
       }
       if(email){
-        updateUserEmailErrors.value.emailError = false
+        updateUserEmailErrors.value.emailError = false;
       }
       if(oldPassword){
-        updateUserPasswordErrors.value.oldPasswordError = false
+        updateUserPasswordErrors.value.oldPasswordError = false;
       }
       if(newPassword){
-        updateUserPasswordErrors.value.newPasswordError = false
+        updateUserPasswordErrors.value.newPasswordError = false;
       }
-    console.log(oldPassword, newPassword)
     }
 )
 

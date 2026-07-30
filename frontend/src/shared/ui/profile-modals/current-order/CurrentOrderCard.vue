@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import BaseButton from "../../button/BaseButton.vue";
-
 const BASE_URL = 'http://localhost:3000';
 
 import { computed } from "vue";
-import { useGetProducts } from "../../../../feature/products/composables/getProducts.ts";
-import { productsStore } from "../../../composables/stores/products.store.ts";
+import { productsStore } from "@/shared/composables/stores/products.store.ts";
+import { useGetProducts } from "@/feature/products/composables/getProducts.ts";
 
-const { getProductId } = useGetProducts();
+import BaseButton from "@/shared/ui/button/BaseButton.vue";
+
 const { orders } = productsStore();
+const { getProductId } = useGetProducts();
 
 const items = computed(() => {
   if(Array.isArray(orders.value)) {
@@ -19,13 +19,13 @@ const items = computed(() => {
 const productPreview = computed(() => {
   return(id: string) => {
     if(!id){
-      console.log('Id не найден')
-      return
+      console.log('Id не найден');
+      return;
     }
 
-    const product = items.value?.find(p => p.id === id)
+    const product = items.value?.find(p => p.id === id);
     if(product && Array.isArray(product.images) && product.images[0]){
-      return `${BASE_URL}/${product.images[0]}`
+      return `${BASE_URL}/${product.images[0]}`;
     }
   }
 });

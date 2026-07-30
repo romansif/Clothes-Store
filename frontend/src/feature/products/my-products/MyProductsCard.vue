@@ -2,19 +2,19 @@
 const BASE_URL = `http://localhost:3000`
 
 import { computed } from "vue";
-import { productsStore } from "../../../shared/composables/stores/products.store.ts";
 import { useGetProducts } from "../composables/getProducts.ts";
 import { useAddProducts } from "../composables/useAddProducts.ts";
-import { useDeleteProduct } from "../composables/useDeleteProduct.ts";
+import { productsStore } from "@/shared/composables/stores/products.store.ts";
+import { useProfileModals } from "@/shared/composables/modals/profile/profileModals.ts";
 
-import like from '../../../app/assets/icons/nav/like.png'
-import liked from '../../../app/assets/icons/nav/liked.png'
-import del from '../../../app/assets/icons/delete.svg'
+import del from '@/app/assets/icons/delete.svg'
+import like from '@/app/assets/icons/nav/like.png'
+import liked from '@/app/assets/icons/nav/liked.png'
 
 const { products } = productsStore();
-const { deleteProduct } = useDeleteProduct();
-const { toggleToFavorite } = useAddProducts();
 const { getProductId } = useGetProducts();
+const { toggleToFavorite } = useAddProducts();
+const { toggleDeleteChoice } = useProfileModals();
 
 const productPreview = computed(() => {
   return(id: string) => {
@@ -58,7 +58,9 @@ const productPreview = computed(() => {
       </div>
       <div class="flex flex-col gap-15">
         <div class="flex flex-col gap-4">
-          <img @click="deleteProduct(product.id)" :src="del" alt="" class="w-[30px] transition duration-400 hover:scale-120">
+          <img @click="toggleDeleteChoice(
+              'Are you sure you want to delete this product?', 'DELETE_PROUCT_ITEM', product.id
+              )" :src="del" alt="" class="w-[30px] transition duration-400 hover:scale-120">
         </div>
         <div class="flex flex-col gap-4">
 
