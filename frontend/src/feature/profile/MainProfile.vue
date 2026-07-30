@@ -65,7 +65,6 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-/* мы объясним, что делают эти классы дальше! */
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.5s ease;

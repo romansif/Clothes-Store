@@ -42,7 +42,7 @@ const togglePassword = () => {
         <div class="w-[235px] sm:w-[275px]">
           <div class="font-medium flex items-center justify-between">
             <span class="">SIGN IN</span>
-            <router-link :to="{name: '/auth/Register'}" @click=clearLoginForm>
+            <router-link :to="{ name: 'signUp'}" @click=clearLoginForm>
               <span class="text-[#A3A3A3]">SIGN UP</span>
             </router-link>
           </div>

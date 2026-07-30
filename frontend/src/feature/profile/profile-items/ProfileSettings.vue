@@ -48,7 +48,7 @@ const userAvatar = computed(() => {
           <img :src="arrow_down" alt="">
         </div>
       </div>
-      <router-link :to="{ name: '/products/MyProductsPage' }">
+      <router-link :to="{ name: 'my/products' }">
         <div v-if="user.role === 'Seller'" class="border-b border-gray-300 py-6 px-6">
           <div class="flex items-center justify-between transition duration-400 hover:scale-105">
             <span>MY PRODUCTS</span>

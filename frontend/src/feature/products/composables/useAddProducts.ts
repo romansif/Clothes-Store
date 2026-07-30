@@ -126,7 +126,7 @@ export const useAddProducts = () => {
 
             openNotify('You have successfully added the item to your cart.',
                 'You can click the button to the left of the "X" to go to the cart.',
-                '/profile/profile-products/ProductsCartPage');
+                'cart');
         }catch(err){
             addToCartErrors(err);
             console.log('Не удалось добавить товар в корзину.', err);
@@ -170,7 +170,7 @@ export const useAddProducts = () => {
 
                 openNotify('You have successfully added the item to your favorite.',
                     'You can click the button to the left of the "X" to go to the favorite.',
-                    '/profile/profile-products/FavoriteProductsPage');
+                    'favorite');
             }else{
                 await handler(`/favorites/${productId}`, {
                     method: "DELETE",
@@ -209,7 +209,7 @@ export const useAddProducts = () => {
 
             await updateCheckedQuantity();
 
-            await router.push({ name: '/profile/ProfilePage' });
+            await router.push({ name: 'profile' });
         }catch(err){
             console.log('Не удалось сделать заказ.', err);
         }

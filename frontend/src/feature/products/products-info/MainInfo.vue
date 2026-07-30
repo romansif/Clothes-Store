@@ -69,10 +69,10 @@ const routerBack = () => {
     <div class="flex justify-between items-center px-4 pt-4 lg:hidden">
       <img @click="routerBack" :src=go_to_shop alt="" class="rotate-180">
       <div class="flex gap-2">
-        <router-link :to="{name: '/profile/profile-products/ProductsCartPage'}">
+        <router-link :to="{name: 'cart'}">
           <img :src=cart alt="">
         </router-link>
-        <router-link :to="{name: '/profile/ProfilePage'}">
+        <router-link :to="{name: 'profile'}">
           <img :src=profile alt="">
         </router-link>
       </div>
@@ -92,7 +92,7 @@ const routerBack = () => {
           </div>
           <ProductInfo />
         <div class="flex justify-center lg:hidden">
-          <router-link v-if="!userId" :to="{name: '/auth/LoginPage'}">
+          <router-link v-if="!userId" :to="{name: 'signIn'}">
             <span class="bg-black font-semibold text-sm py-5 px-46 text-white font-[Montserrat] lg:block cursor-pointer">ADD TO CART</span>
           </router-link>
         </div>

@@ -24,10 +24,10 @@ const isProfile = computed(() => route.name !== "/profile/ProfilePage");
             lg:flex lg:gap-10
             md:flex md:gap-5
             sm:hidden hidden font-semibold">
-          <router-link :to="{name: '/home/HomePage'}" class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120">
+          <router-link :to="{name: 'home'}" class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120">
             Home
           </router-link>
-          <router-link :to="{name: '/products/ProductsPage'}" class="text-[#696969] transition duration-400 hover:text-black hover:scale-120">
+          <router-link :to="{name: 'products'}" class="text-[#696969] transition duration-400 hover:text-black hover:scale-120">
             Products
           </router-link>
           <span class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120">New</span>
@@ -38,12 +38,12 @@ const isProfile = computed(() => route.name !== "/profile/ProfilePage");
           md:flex md:gap-5
           sm:flex sm:gap-3
           flex gap-3">
-        <router-link :to="{name: '/profile/profile-products/FavoriteProductsPage'}">
+        <router-link :to="{name: 'favorite'}">
           <div class="xl:flex lg:flex md:flex sm:hidden hidden">
             <img :src=liked alt="" class=" transition duration-400 hover:scale-110">
           </div>
         </router-link>
-        <router-link :to="{name: '/profile/profile-products/ProductsCartPage'}">
+        <router-link :to="{name: 'cart'}">
           <div class="xl:flex xl:items-center lg:flex md:flex  transition duration-400 hover:scale-110">
             <span class="px-7 py-3.5 bg-black rounded-3xl text-white items-center md:flex hidden">
                 Cart
@@ -56,7 +56,7 @@ const isProfile = computed(() => route.name !== "/profile/ProfilePage");
             </div>
           </div>
         </router-link>
-        <router-link v-if="isProfile" :to="{name: '/profile/ProfilePage'}">
+        <router-link v-if="isProfile" :to="{name: 'profile'}">
           <img :src=profile alt="" class="transition duration-400 hover:scale-120">
         </router-link>
       </div>

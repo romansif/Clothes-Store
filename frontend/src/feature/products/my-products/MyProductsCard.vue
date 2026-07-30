@@ -36,7 +36,7 @@ const productPreview = computed(() => {
     <li @click="getProductId(product.productId)" v-for="product in products" :key="product.id" class="flex gap-5">
       <div class="flex flex-col">
         <div class="relative">
-          <router-link :to="{ name: '/products/ProductsInfoPage' }">
+          <router-link :to="{ name: 'products/info' }">
             <img :src="productPreview(product.id)" alt="" :class="['w-[335px] h-[314px] sm:h-[314px] xl:h-[400px]',
                 product.status === 'Availability' ? '' : 'opacity-40']">
           </router-link>

@@ -108,8 +108,9 @@ watch(() => [addToCartForm.value.color, addToCartForm.value.size], ([color, size
       <span class="text-[#A3A3A3] text-sm">
         FIND YOUR SIZE |  MEASUREMENT GUIDE
       </span>
-      <router-link v-if="!userId" :to="{name: '/auth/LoginPage'}">
-        <span class="hidden bg-black text-white font-semibold text-sm py-4 w-full text-center font-[Montserrat] lg:block cursor-pointer">
+      <router-link v-if="!userId" :to="{name: 'signIn'}">
+        <span class="hidden bg-black text-white font-semibold text-sm py-4 w-full text-center
+            font-[Montserrat] lg:block cursor-pointer">
           ADD TO CART
         </span>
       </router-link>
@@ -123,7 +124,7 @@ watch(() => [addToCartForm.value.color, addToCartForm.value.size], ([color, size
           <img :src="minus" @click="updateCartItem('away', isInCart.id, isInCart.status)"
                class="bg-zinc-600 text-white px-2 w-[35px] rounded-md transition duration-300 hover:bg-zinc-400" />
         </div>
-        <router-link :to="{ name: '/profile/profile-products/ProductsCartPage' }">
+        <router-link :to="{ name: 'cart' }">
           <span class="bg-black text-white font-semibold py-4 px-21 font-[Montserrat]
               lg:block cursor-pointer text-start transition duration-300 transform hover:scale-108">Go to Cart</span>
         </router-link>

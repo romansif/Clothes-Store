@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
-import { computed, onMounted, watch } from "vue";
+import {computed, onErrorCaptured, onMounted, ref, watch} from "vue";
 import { useGetProducts } from "@/feature/products/composables/getProducts.ts";
 import { productsStore } from "@/shared/composables/stores/products.store.ts";
 import { useProfileModals } from "@/shared/composables/modals/profile/profileModals.ts";
@@ -31,8 +31,10 @@ const { deleteChoice } = useProfileModals();
 const { toggleAgree, continueToOrder } = useProfileProducts();
 const { getCartProducts, getFavoriteProducts } = useGetProducts();
 
-const isShoppingCart = computed(() => route.name !== '/profile/profile-products/ProductsCartPage');
-const isFavoriteProducts = computed(() => route.name !== '/profile/profile-products/FavoriteProductsPage');
+const componentError = ref<string | null>(null);
+
+const isShoppingCart = computed(() => route.name !== 'cart');
+const isFavoriteProducts = computed(() => route.name !== 'favorite');
 
 const cartCount = computed(() => {
   return cart.value.length;
@@ -41,10 +43,25 @@ const favoritesCount = computed(() => {
   return favorite.value.length;
 });
 
+const resetError = async () => {
+  componentError.value = null;
+  await getFavoriteProducts();
+  await getCartProducts()
+};
+
 watch(() => isAgreeFormError.value.agreeError, (agreeError) => {
   if(agreeError === true) {
     isAgreeForm.value.agreeMessage = ''
   }
+});
+
+onErrorCaptured((err, info) => {
+  console.error("Перехвачена ошибка в дочернем компоненте:", err);
+  console.log("Детали ошибки:", info);
+
+  componentError.value = "An error occurred while displaying the product catalog."
+
+  return false
 });
 
 onMounted(async() => {
@@ -54,19 +71,28 @@ onMounted(async() => {
 </script>
 
 <template>
-  <div class="font-[Montserrat] xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
+  <div v-if="componentError" class="flex flex-col items-center justify-center pt-80 p-6 text-red-700 rounded-xl">
+      <span class="text-lg font-semibold mb-2">
+        Something went wrong 😔
+      </span>
+    <p class="text-sm mb-4">{{ componentError }}</p>
+    <button @click="resetError" class="px-4 py-2 mt-5 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+      Try again
+    </button>
+  </div>
+  <div v-else class="font-[Montserrat] xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
     <NavBar />
     <div class="mt-10 xl:mt-25 xl:px-10">
       <div class="flex flex-col">
         <div class="flex gap-14 items-center font-medium text-sm">
-          <router-link :to="{name: '/profile/profile-products/ProductsCartPage'}">
+          <router-link :to="{name: 'cart'}">
             <span :class="isShoppingCart ? 'text-[#A3A3A3]' : ''">
               SHOPPING BAG ({{ cartCount }})
             </span>
           </router-link>
           <div class="flex items-center gap-2">
               <img :src="liked" alt="" class="w-[35px]">
-            <router-link :to="{name: '/profile/profile-products/FavoriteProductsPage'}">
+            <router-link :to="{name: 'favorite'}">
               <span :class="isFavoriteProducts ? 'text-[#A3A3A3]' : ''">
                 FAVORITES ({{ favoritesCount }})
               </span>

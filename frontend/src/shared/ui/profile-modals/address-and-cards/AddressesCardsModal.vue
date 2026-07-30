@@ -15,6 +15,7 @@ const { userAddresses, userPayments } = usersStore();
 const { getAddresses, getPayments } = useGetProfile();
 const { toggleAddressesAndCards, deleteChoice } = useProfileModals();
 
+
 onMounted(async () => {
   await getAddresses();
   await getPayments();

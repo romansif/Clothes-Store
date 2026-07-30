@@ -61,7 +61,7 @@ const toggleRegister = () => {
       <div class="flex items-center justify-center">
         <div class="w-[235px] sm:w-[300px]">
           <div class="font-medium flex items-center justify-between">
-            <router-link :to="{name: '/auth/LoginPage'}" @click=clearRegisterBuyerForm>
+            <router-link :to="{name: 'signIn'}" @click=clearRegisterBuyerForm>
               <span class="text-[#A3A3A3]">SIGN IN</span>
             </router-link>
             <span class="">SIGN UP</span>

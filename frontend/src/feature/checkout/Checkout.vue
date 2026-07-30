@@ -18,9 +18,9 @@ const { goBack } = useCheckout();
 const { notify } = useProductsModals();
 const { getAddress, getPayment } = useGetProfile();
 
-const isPayment = computed(() =>  route.name !== '/checkout/PaymentPage');
-const isInfo = computed(() =>  route.name !== '/checkout/InformationPage');
-const isShipping = computed(() =>  route.name !== '/checkout/ShippingPage');
+const isPayment = computed(() =>  route.name !== 'payment');
+const isInfo = computed(() =>  route.name !== 'information');
+const isShipping = computed(() =>  route.name !== 'shipping');
 
 onMounted(async () => {
   await getAddress();

@@ -25,7 +25,7 @@ import arrow_down from "@/app/assets/icons/arrows/arrow-down.png";
         <span class="text-[#A3A3A3] ml-auto mb-3">See All</span>
         <ul class="flex gap-10 xl:gap-20">
           <li class="flex flex-col flex-shrink-0 lg:w-[300px] w-[200px]">
-            <router-link :to="{name: '/products/ProductsInfoPage'}">
+            <router-link :to="{name: 'products/info'}">
               <img :src="photo_1" alt="">
             </router-link>
             <span class="whitespace-normal mt-2 text-[#A3A3A3]">Cotton T Shirt</span>
@@ -35,7 +35,7 @@ import arrow_down from "@/app/assets/icons/arrows/arrow-down.png";
             </div>
           </li>
           <li class="flex flex-col flex-shrink-0 lg:w-[300px] w-[200px]">
-            <router-link :to="{name: '/products/ProductsInfoPage'}">
+            <router-link :to="{name: 'products/info'}">
               <img :src="photo_2" alt="">
             </router-link>
             <span class="whitespace-normal mt-2 text-[#A3A3A3]">Cotton T Shirt</span>
@@ -45,7 +45,7 @@ import arrow_down from "@/app/assets/icons/arrows/arrow-down.png";
             </div>
           </li>
           <li class="flex flex-col flex-shrink-0 lg:w-[300px] w-[200px]">
-            <router-link :to="{name: '/products/ProductsInfoPage'}">
+            <router-link :to="{name: 'products/info'}">
               <img :src="photo_3" alt="">
             </router-link>
             <span class="whitespace-normal mt-2 text-[#A3A3A3]">Cotton T Shirt</span>
@@ -55,7 +55,7 @@ import arrow_down from "@/app/assets/icons/arrows/arrow-down.png";
             </div>
           </li>
           <li class="flex flex-col flex-shrink-0 lg:w-[300px] w-[200px]">
-            <router-link :to="{name: '/products/ProductsInfoPage'}">
+            <router-link :to="{name: 'products/info'}">
               <img :src="photo_4" alt="">
             </router-link>
             <span class="whitespace-normal mt-2 text-[#A3A3A3]">Cotton T Shirt</span>
@@ -92,7 +92,7 @@ import arrow_down from "@/app/assets/icons/arrows/arrow-down.png";
       <div class="flex flex-col mt-10">
         <ul class="flex gap-10 xl:gap-20 overflow-x-auto whitespace-nowrap no-scrollbar">
           <li class="flex flex-col flex-shrink-0 lg:w-[380px] md:w-[280px] w-[200px]">
-            <router-link :to="{name: '/products/ProductsInfoPage'}">
+            <router-link :to="{name: 'products/info'}">
               <img :src="photo_5" alt="" class="w-full h-[200px] lg:h-[380px] md:h-[280px]">
             </router-link>
             <span class="whitespace-normal mt-2 text-[#A3A3A3]">Cotton T Shirt</span>
@@ -102,7 +102,7 @@ import arrow_down from "@/app/assets/icons/arrows/arrow-down.png";
             </div>
           </li>
           <li class="flex flex-col flex-shrink-0 lg:w-[380px] md:w-[280px] w-[200px]">
-            <router-link :to="{name: '/products/ProductsInfoPage'}">
+            <router-link :to="{name: 'products/info'}">
               <img :src="photo_6" alt="" class="w-full h-[200px] lg:h-[380px] md:h-[280px]">
             </router-link>
             <span class="whitespace-normal mt-2 text-[#A3A3A3]">Cotton T Shirt</span>
@@ -112,7 +112,7 @@ import arrow_down from "@/app/assets/icons/arrows/arrow-down.png";
             </div>
           </li>
           <li class="flex flex-col flex-shrink-0 lg:w-[380px] md:w-[280px] w-[200px]">
-            <router-link :to="{name: '/products/ProductsInfoPage'}">
+            <router-link :to="{name: 'products/info'}">
               <img :src="photo_7" alt="" class="w-full h-[200px] lg:h-[380px] md:h-[280px]">
             </router-link>
             <span class="whitespace-normal mt-2 text-[#A3A3A3]">Cotton T Shirt</span>

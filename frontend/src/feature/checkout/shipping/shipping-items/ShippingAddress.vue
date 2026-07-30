@@ -11,7 +11,7 @@ const { userAddress } = usersStore();
         <span class="font-semibold">
           SHIP TO
         </span>
-        <router-link :to="{name: '/checkout/InformationPage'}" class="text-xs text-gray-500">
+        <router-link :to="{name: 'information'}" class="text-xs text-gray-500">
           Change
         </router-link>
       </div>

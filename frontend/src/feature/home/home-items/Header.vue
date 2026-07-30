@@ -22,7 +22,7 @@ import arrow_3 from "@/app/assets/icons/arrows/next-arrow.png";
           <ul class="flex gap-6 md:gap-10 overflow-x-auto cursor-grab active:cursor-grabbing whitespace-nowrap
               no-scrollbar lg:max-w-[1120px] w-full h-fit md:px-0">
             <li class="flex flex-col flex-shrink-0 lg:w-[380px] md:w-[280px] w-[200px]">
-              <router-link :to="{name: '/products/ProductsInfoPage'}">
+              <router-link :to="{name: 'products/info'}">
                 <img :src="photo_1" alt="" class="w-full h-[200px] lg:h-[380px] md:h-[280px]" />
               </router-link>
               <span class="whitespace-normal mt-2 text-gray-500">Cotton T Shirt</span>
@@ -32,7 +32,7 @@ import arrow_3 from "@/app/assets/icons/arrows/next-arrow.png";
               </div>
             </li>
             <li class="flex flex-col flex-shrink-0 lg:w-[380px] md:w-[280px] w-[200px]">
-              <router-link :to="{name: '/products/ProductsInfoPage'}">
+              <router-link :to="{name: 'products/info'}">
                 <img :src="photo_2" alt="" class="w-full h-[200px] lg:h-[380px] md:h-[280px]" />
               </router-link>
               <span class="whitespace-normal mt-2 text-gray-500">Cotton T Shirt</span>
@@ -45,7 +45,7 @@ import arrow_3 from "@/app/assets/icons/arrows/next-arrow.png";
         </div>
         <div class="xl:flex xl:mt-auto mt-5 gap-10 items-center">
           <div class="relative">
-            <router-link :to="{name: '/products/ProductsPage'}">
+            <router-link :to="{name: 'products'}">
               <span class="bg-black font-semibold text-white xl:w-[265px] px-40 py-3 text-start
                   xl:pl-4 pl-3 cursor-pointer">Go To Shop</span>
               <img :src=arrow alt="" class="absolute h-13 xl:left-50 left-35 top-1/2 -translate-y-1/2">
@@ -60,12 +60,12 @@ import arrow_3 from "@/app/assets/icons/arrows/next-arrow.png";
       <div class="xl:flex xl:ml-auto lg:hidden hidden">
         <ul class="xl:flex xl:gap-10 xl:ml-auto">
           <li class="flex-shrink-0 lg:w-[380px] md:w-[280px] w-[200px]">
-            <router-link :to="{name: '/products/ProductsInfoPage'}">
+            <router-link :to="{name: 'products/info'}">
               <img :src=photo_1 alt="" class=" w-full h-[200px] lg:h-[380px] md:h-[280px]">
             </router-link>
           </li>
           <li class="flex-shrink-0 lg:w-[380px] md:w-[280px] w-[200px]">
-            <router-link :to="{name: '/products/ProductsInfoPage'}">
+            <router-link :to="{name: 'products/info'}">
               <img :src=photo_2 alt="" class=" w-full h-[200px] lg:h-[380px] md:h-[280px]">
             </router-link>
           </li>

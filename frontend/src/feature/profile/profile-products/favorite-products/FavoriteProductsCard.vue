@@ -41,7 +41,7 @@ const refreshPage = () => {
     <li v-for="product in favorite" :key="product.id" class="flex gap-5">
       <div class="flex flex-col">
         <div @click="getProductId(product.id)" class="relative">
-          <router-link :to="{ name: '/products/ProductsInfoPage' }">
+          <router-link :to="{ name: 'products/info' }">
             <img :src="productPreview(product.id)" alt="" :class="['w-[335px] h-[180px] sm:h-[314px] xl:h-[400px]',
                 product.quantity === 0 || product.status === 'Exhausted' ? 'opacity-40' : '']">
           </router-link>

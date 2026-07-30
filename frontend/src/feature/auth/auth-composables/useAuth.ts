@@ -49,7 +49,7 @@ export const useAuth = () => {
 
             (role === 'Buyer' ? clearRegisterBuyerForm() : clearRegisterSellerForm())
 
-            await router.push({ path: "/profile/ProfilePage" })
+            await router.push({ path: "/profile" })
         }catch(err){
             registerErrors(err, role)
             console.log('Не удалось создать нового пользователя', err)
@@ -77,7 +77,7 @@ export const useAuth = () => {
             user.value = foundedUser.user
 
             clearLoginForm()
-            await router.push({ path: "/profile/ProfilePage" })
+            await router.push({ path: "/profile" })
         }catch(err){
             loginErrors(err)
             console.log('Не удалось найти пользователя')
@@ -94,7 +94,7 @@ export const useAuth = () => {
             console.log('Не удалось выйти из аккаунта')
         }finally {
             localStorage.clear()
-            await router.replace({ name: '/auth/LoginPage' })
+            await router.replace({ path: '/signIn' })
         }
     };
 
@@ -109,7 +109,7 @@ export const useAuth = () => {
 
             localStorage.clear()
 
-            await router.push({ name: '/auth/LoginPage' });
+            await router.push({ path: '/signIn' });
         }catch(err){
             console.log('Не удалось удалить аккаунт', err);
         }
