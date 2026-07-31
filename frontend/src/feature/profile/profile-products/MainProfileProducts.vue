@@ -1,53 +1,41 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
-import {computed, onErrorCaptured, onMounted, ref, watch} from "vue";
-import { useGetProducts } from "@/feature/products/composables/getProducts.ts";
+import { useRoute } from "vue-router";
+import { errorHandler } from "@/shared/composables/errors/errors-middleware/error.handler.ts";
+import { useProfile } from "@/shared/composables/use.profile.ts";
+import { computed, onErrorCaptured, onMounted, watch } from "vue";
 import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { useProfileModals } from "@/shared/composables/modals/profile/profileModals.ts";
-import { useProfileProducts } from "../profile-composables/useProfileProducts.ts";
-import { useProductsModals } from "@/shared/composables/modals/products/productsModals.ts";
-import { checkoutForms } from "@/shared/composables/forms-composables/forms/checkout.forms.ts";
-import { checkoutErrors } from "@/shared/composables/forms-composables/forms-errors/checkout.errors.ts";
+import { useGetProducts } from "@/feature/products/composables/get-products.ts";
+import { useProfileProducts } from "../profile-composables/use-profile-products.ts";
+import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
+import { useProductsModals } from "@/shared/composables/modals/products.modals.ts";
+import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
+import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors.ts";
 
-import ChoiceModal from "@/shared/ui/ChoiceModal.vue";
-import square from "@/app/assets/icons/square.png";
-import liked from "@/app/assets/icons/nav/liked.png";
 import NavBar from "../../navigation/NavBar.vue";
-import CartInfo from "./products-cart/CartInfo.vue";
+import square from "@/app/assets/icons/square.png";
 import CartList from "./products-cart/CartList.vue";
+import CartInfo from "./products-cart/CartInfo.vue";
+import liked from "@/app/assets/icons/nav/liked.png";
+import ChoiceModal from "@/shared/ui/base-modals/ChoiceModal.vue";
 import BaseButton from "@/shared/ui/button/BaseButton.vue";
 import check_square from "@/app/assets/icons/check-square.png";
 import FavoriteList from "./favorite-products/FavoriteList.vue";
-import Notification from "@/shared/ui/products-modals/Notification.vue";
-
-const route = useRoute();
-
-const { isAgreeForm } = checkoutForms()
-const { isAgreeFormError } = checkoutErrors();
+import Notification from "@/shared/ui/base-modals/Notification.vue";
 
 const { notify } = useProductsModals();
+const { isAgreeForm } = checkoutForms();
 const { cart, favorite } = productsStore();
 const { deleteChoice } = useProfileModals();
+const { isAgreeFormError } = checkoutErrors();
+const { componentError, resetError } = errorHandler();
 const { toggleAgree, continueToOrder } = useProfileProducts();
 const { getCartProducts, getFavoriteProducts } = useGetProducts();
 
-const componentError = ref<string | null>(null);
+const route = useRoute();
 
-const isShoppingCart = computed(() => route.name !== 'cart');
-const isFavoriteProducts = computed(() => route.name !== 'favorite');
+const isShoppingCart = computed(() => route.name !== 'cart')
 
-const cartCount = computed(() => {
-  return cart.value.length;
-});
-const favoritesCount = computed(() => {
-  return favorite.value.length;
-});
-
-const resetError = async () => {
-  componentError.value = null;
-  await getFavoriteProducts();
-  await getCartProducts()
-};
+const isFavoriteProducts = computed(() => route.name !== 'favorite')
 
 watch(() => isAgreeFormError.value.agreeError, (agreeError) => {
   if(agreeError === true) {
@@ -76,7 +64,7 @@ onMounted(async() => {
         Something went wrong 😔
       </span>
     <p class="text-sm mb-4">{{ componentError }}</p>
-    <button @click="resetError" class="px-4 py-2 mt-5 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+    <button @click="resetError('CART_FAVORITE')" class="px-4 py-2 mt-5 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
       Try again
     </button>
   </div>
@@ -87,14 +75,14 @@ onMounted(async() => {
         <div class="flex gap-14 items-center font-medium text-sm">
           <router-link :to="{name: 'cart'}">
             <span :class="isShoppingCart ? 'text-[#A3A3A3]' : ''">
-              SHOPPING BAG ({{ cartCount }})
+              SHOPPING BAG ({{ useProfile.cartCount.value }})
             </span>
           </router-link>
           <div class="flex items-center gap-2">
               <img :src="liked" alt="" class="w-[35px]">
             <router-link :to="{name: 'favorite'}">
               <span :class="isFavoriteProducts ? 'text-[#A3A3A3]' : ''">
-                FAVORITES ({{ favoritesCount }})
+                FAVORITES ({{ useProfile.favoritesCount.value }})
               </span>
             </router-link>
           </div>
@@ -111,7 +99,7 @@ onMounted(async() => {
           'flex flex-col xl:flex-row xl:justify-between'">
         <FavoriteList />
       </div>
-      <div v-else :class="isFavoriteProducts ? 'hidden' : 'flex justify-center py-55'">
+      <div v-else :class="isFavoriteProducts? 'hidden' : 'flex justify-center py-55'">
         <span class="text-[#A3A3A3] text-xl">
           Favorite products addn't
         </span>

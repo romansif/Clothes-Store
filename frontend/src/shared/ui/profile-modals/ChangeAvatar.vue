@@ -1,22 +1,12 @@
 <script setup lang="ts">
-const BASE_URL = 'http://localhost:3000';
+import { useProfile } from "@/shared/composables/use.profile.ts";
+import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
+import { useUpdateProfile } from "@/feature/profile/profile-composables/use-update-profile.ts";
 
-import { computed } from "vue";
-import { usersStore } from "@/shared/composables/stores/users.store.ts";
-import { useProfileModals } from "@/shared/composables/modals/profile/profileModals.ts";
-import { useUpdateProfile } from "@/feature/profile/profile-composables/useUpdateProfile.ts";
+import BaseButton from "@/shared/ui/button/BaseButton.vue";
 
-import BaseButton from "../button/BaseButton.vue";
-
-const { user } = usersStore();
 const { updateAvatarAccount } = useUpdateProfile();
 const { toggleAvatar, openSelectAvatar, fileInput } = useProfileModals();
-
-const userAvatar = computed(() => {
-  if(user.value && user.value.avatarUrl){
-    return `${BASE_URL}/${user.value.avatarUrl}`;
-  }
-})
 </script>
 
 <template>
@@ -26,7 +16,7 @@ const userAvatar = computed(() => {
       <div class="flex flex-col justify-center py-8 gap-6">
         <h2 class="text-2xl text-center font-bold">Change your avatar</h2>
         <div class="flex flex-col items-center gap-6">
-          <img @click=openSelectAvatar :src=userAvatar alt="" class="w-35 rounded-full transition duration-400 hover:scale-110" />
+          <img @click=openSelectAvatar :src=useProfile.userAvatar.value alt="" class="w-35 rounded-full transition duration-400 hover:scale-110" />
           <div class="flex gap-12">
             <BaseButton @click="toggleAvatar" name="Confirm" variant="toggleAvatar" />
           </div>

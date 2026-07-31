@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { usersStore } from "@/shared/composables/stores/users.store.ts";
-import { useProfileModals } from "@/shared/composables/modals/profile/profileModals.ts";
+import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
 
 import del from '@/app/assets/icons/del_address_card.svg'
 

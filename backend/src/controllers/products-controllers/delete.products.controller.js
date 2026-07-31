@@ -11,7 +11,8 @@ export const deleteProductsController = {
 
             dbService.writeDB(db);
             res.json(deletedProduct);
-        }catch (err){
+        }catch(err){
+            console.log(`Failed to delete the product cover: ${productIndex}`, err)
             res.status(500).json({error: err.message})
         }
     },
@@ -26,6 +27,7 @@ export const deleteProductsController = {
             dbService.writeDB(db);
             res.json(deletedProduct);
         }catch (err){
+            console.log(`Failed to delete the product at cart: ${index}`, err)
             res.status(500).json({error: err.message})
         }
     },
@@ -39,7 +41,8 @@ export const deleteProductsController = {
 
             dbService.writeDB(db);
             res.json(deletedProduct);
-        }catch (err){
+        }catch(err){
+            console.log(`Failed to delete the product at favorite: ${index}`, err)
             res.status(500).json({error: err.message})
         }
     },
@@ -53,7 +56,8 @@ export const deleteProductsController = {
 
             dbService.writeDB(db);
             res.json(deletedProduct);
-        }catch (err){
+        }catch(err){
+            console.log(`Failed to delete the order: ${orderIndex}`, err)
             res.status(500).json({error: err.message})
         }
     },

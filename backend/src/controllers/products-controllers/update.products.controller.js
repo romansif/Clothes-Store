@@ -11,6 +11,7 @@ export const updateProductsController = {
             dbService.writeDB(db);
             return res.json(db.products[index] || []);
         }catch(err){
+            console.log(`Failed to update the product cover: ${index}`, err)
             res.status(500).json({error: err.message})
         }
     },
@@ -24,6 +25,7 @@ export const updateProductsController = {
             dbService.writeDB(db);
             res.json(db.cart[index] || []);
         }catch(err){
+            console.log(`Failed to update the cart item: ${index}`, err)
             res.status(500).json({error: err.message})
         }
     },
@@ -37,6 +39,7 @@ export const updateProductsController = {
             dbService.writeDB(db);
             res.json(db.favorites[index] || []);
         }catch(err){
+            console.log(`Failed to update the favorite item: ${index}`, err)
             res.status(500).json({error: err.message})
         }
     }

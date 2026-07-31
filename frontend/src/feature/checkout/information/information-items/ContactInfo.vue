@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { IMaskComponent as IMask } from "vue-imask";
-import { usePhoneForm } from "@/shared/mask-forms/usePhoneForm.ts";
+import { usePhoneForm } from "@/shared/mask-forms/use.phone.form.ts";
 import { usersStore } from "@/shared/composables/stores/users.store.ts";
-import { useCheckout } from "@/feature/checkout/composables/useCheckout.ts";
-import { useAddCheckout } from "@/feature/checkout/composables/useAddCheckout.ts";
-import { checkoutForms } from "@/shared/composables/forms-composables/forms/checkout.forms.ts";
-import { checkoutErrors }from "@/shared/composables/forms-composables/forms-errors/checkout.errors.ts";
+import { useCheckout } from "@/feature/checkout/composables/use-checkout.ts";
+import { useAddCheckout } from "@/feature/checkout/composables/use-add-checkout.ts";
+import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
+import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors.ts";
 
 const { information } = checkoutForms();
 const { addAddress } = useAddCheckout();

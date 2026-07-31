@@ -11,7 +11,8 @@ export const authMiddleware = (req, res, next) => {
         const decoded = jwt.verify(token, ACCESS_SECRET);
         req.user = decoded;
         next();
-    } catch (e) {
+    } catch (err) {
+        console.log(`It is not possible to do this without authorization.: ${decoded}`, err)
         return res.status(401).json({ message: 'Your session has expired; please log in again.' });
     }
 };

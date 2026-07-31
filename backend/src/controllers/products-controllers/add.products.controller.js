@@ -7,8 +7,8 @@ export const addProductsController = {
             const db = dbService.readDB()
 
             if(!req.files){
-                res.status(400).json('Текстовые поля:', req.body);
-                res.status(400).json('Файлы от Multer:', req.files);
+                res.status(400).json('Text fields:', req.body);
+                res.status(400).json('Files from Multer:', req.files);
                 return res.status(400).json({ message: 'Product photos are mandatory.'})
             }
 
@@ -19,6 +19,7 @@ export const addProductsController = {
             dbService.writeDB(db)
             res.status(201).json(newProduct);
         }catch(err){
+            console.log(`Failed to create the product cover: ${newProduct}`, err)
             res.status(500).json({error: err.message})
         }
     },
@@ -34,6 +35,7 @@ export const addProductsController = {
             dbService.writeDB(db);
             res.status(201).json({message: 'Product added to cart'})
         }catch(err){
+            console.log(`Failed to add the product to the cart: ${newCartItem}`, err)
             res.status(500).json({error: err.message})
         }
     },
@@ -46,6 +48,7 @@ export const addProductsController = {
             dbService.writeDB(db);
             res.status(201).json({message: 'Product added to favorite'})
         }catch(err){
+            console.log(`Failed to add the product to the favorite: ${newFavoriteItem}`, err)
             res.status(500).json({error: err.message})
         }
     },
@@ -58,6 +61,7 @@ export const addProductsController = {
             dbService.writeDB(db);
             res.status(201).json({message: 'Product added to orderItems'})
         }catch(err){
+            console.log(`Failed to create the order: ${newOrderItems}`, err)
             res.status(500).json({error: err.message})
         }
     }

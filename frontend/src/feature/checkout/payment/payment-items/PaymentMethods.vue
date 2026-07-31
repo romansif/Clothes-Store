@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { useCheckout } from "@/feature/checkout/composables/useCheckout.ts";
-import { useAddCheckout } from "@/feature/checkout/composables/useAddCheckout.ts";
-import { checkoutForms } from "@/shared/composables/forms-composables/forms/checkout.forms.ts";
-import { checkoutErrors }from "@/shared/composables/forms-composables/forms-errors/checkout.errors.ts";
+import { useCheckout } from "@/feature/checkout/composables/use-checkout.ts";
+import { useAddCheckout } from "@/feature/checkout/composables/use-add-checkout.ts";
+import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
+import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors.ts";
 
 import PaymentForm from "./PaymentForm.vue";
-import visa_pay from '@/assets/icons/payment/visa.png';
-import pay_pal from '@/assets/icons/payment/paypal.png';
-import apple_pay from '@/assets/icons/payment/applepay.png';
-import google_pay from '@/assets/icons/payment/googlepay.png';
-import mastercard_pay from '@/assets/icons/payment/mastercard.svg';
+import visa_pay from '@/app/assets/icons/payment/visa.png';
+import pay_pal from '@/app/assets/icons/payment/paypal.png';
+import apple_pay from '@/app/assets/icons/payment/applepay.png';
+import google_pay from '@/app/assets/icons/payment/googlepay.png';
+import mastercard_pay from '@/app/assets/icons/payment/mastercard.svg';
 
 const { addPayment } = useAddCheckout();
 const { paymentErrors } = checkoutErrors();

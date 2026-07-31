@@ -1,43 +1,17 @@
 <script setup lang="ts">
 import { watch } from "vue";
+import { useProducts } from "@/shared/composables/use.products.ts";
 import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { useProductsModals } from "@/shared/composables/modals/products/productsModals.ts";
-import { useAddProducts } from "@/feature/products/composables/useAddProducts.ts";
-import { productsForms } from "@/shared/composables/forms-composables/forms/products.forms.ts";
-import { productsFormErrors } from "@/shared/composables/forms-composables/forms-errors/products.errors.ts";
+import { useAddProducts } from "@/feature/products/composables/use-add-products.ts";
+import { useProductsModals } from "@/shared/composables/modals/products.modals.ts";
+import { productsForms } from "@/shared/composables/forms/products.forms.ts";
+import { productsFormErrors } from "@/shared/composables/errors/errors-messages/products.errors.ts";
 
 const { createProductFormErrors } = productsFormErrors();
 const { createProduct, onFilesSelected } = useAddProducts();
 const { createProductForm, moreCreateItem, createProductFormMessages } = productsForms();
 const { colors, sizes, categories, materials, genders, productsPreview } = productsStore();
 const { toggleCreateProductModal, openSelectProductCard, fileInput } = useProductsModals();
-
-const toggleColor = (colorName: string) => {
-  const index = moreCreateItem.color.indexOf(colorName);
-  if (!Array.isArray(moreCreateItem.color)) {
-    moreCreateItem.color = [];
-  }
-  if(index === -1){
-    if(moreCreateItem.color.length >= 6){
-      return;
-    }
-    moreCreateItem.color.push(colorName);
-  }else{
-    moreCreateItem.color.splice(index, 1);
-  }
-}
-
-const toggleSize = (sizeName: string) => {
-  const index = moreCreateItem.size.indexOf(sizeName);
-  if (!Array.isArray(moreCreateItem.size)) {
-    moreCreateItem.size = [];
-  }
-  if(index === -1){
-      moreCreateItem.size.push(sizeName);
-  }else{
-    moreCreateItem.size.splice(index, 1);
-  }
-}
 
 watch(() => [
       createProductForm.value.title, createProductForm.value.category,
@@ -172,7 +146,7 @@ watch(() => [
                   <img v-for="size in sizes" :key="size.name" :src=size.url alt="" :class="[size.class,
                         moreCreateItem.size.includes(size.name)
                           ? 'scale-120 border-black w-[60px] h-[60px]'
-                          : 'hover:scale-110 w-[60px]']" @click="toggleSize(size.name)">
+                          : 'hover:scale-110 w-[60px]']" @click="useProducts.toggleSize(size.name)">
                 </div>
                 <span v-if="createProductFormErrors.sizeError" class="text-red-600 text-xs">
                       {{ createProductFormMessages.sizeMessage }}
@@ -187,7 +161,7 @@ watch(() => [
                 <div v-for="color in colors" :key="color.name" :class="[color.color,
                      moreCreateItem.color.includes(color.name)
                       ? 'scale-120 border-3 border-black w-[62px] h-[62px]'
-                      : 'hover:scale-110 w-[62px] h-[62px]']" @click="toggleColor(color.name)"></div>
+                      : 'hover:scale-110 w-[62px] h-[62px]']" @click="useProducts.toggleColor(color.name)"></div>
               </div>
               <span v-if="createProductFormErrors.colorError" class="text-red-600 text-xs">
                   {{ createProductFormMessages.colorMessage }}

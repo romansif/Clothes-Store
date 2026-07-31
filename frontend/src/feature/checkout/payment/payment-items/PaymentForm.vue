@@ -1,27 +1,14 @@
 <script setup lang="ts">
 import { IMaskComponent as IMask } from "vue-imask";
-import { useCheckout } from "@/feature/checkout/composables/useCheckout.ts";
+import { useCheckout } from "@/feature/checkout/composables/use-checkout.ts";
 import { usersStore } from "@/shared/composables/stores/users.store.ts";
-import { checkoutForms } from "@/shared/composables/forms-composables/forms/checkout.forms.ts";
-import { checkoutErrors }from "@/shared/composables/forms-composables/forms-errors/checkout.errors.ts";
+import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
+import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors.ts";
 
 const { payment } = checkoutForms();
 const { cardNumberMask, expiryDateMask, cardCvv } = usersStore();
 const { paymentErrors } = checkoutErrors();
 const { cardNumberPlaceholder, expiryDatePlaceholder, cardCvvPlaceholder } = useCheckout();
-
-const formatCardNumber = (event: Event) => {
-  const input = event.target as HTMLInputElement;
-
-  let value = input.value.replace(/\D/g, '');
-
-  value = value.substring(0, 16)
-
-  const formatted = value.match(/.{1,4}/g)?.join(' ') || '';
-
-  payment.value.cardNumber = formatted;
-  input.value = formatted;
-}
 </script>
 
 <template>
@@ -34,7 +21,7 @@ const formatCardNumber = (event: Event) => {
     </div>
     <div class="flex flex-col gap-2 w-full">
       <label>Card Number</label>
-      <IMask v-model:value="payment.cardNumber" type="text" @input="formatCardNumber" :mask="cardNumberMask.mask"
+      <IMask v-model:value="payment.cardNumber" type="text" :mask="cardNumberMask.mask"
           :class="[`border border-gray-300 rounded-xl outline-none px-4 py-3 text-xs transition duration-400
                 bg-[#D9D9D9]/40 hover:bg-gray-50 appearance-none placeholder:text-sm`,
              paymentErrors.cardNumberError ? 'placeholder:text-red-500 border-red-400 placeholder:text-xs'

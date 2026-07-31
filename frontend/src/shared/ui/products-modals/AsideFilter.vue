@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useProductsModals } from "@/shared/composables/modals/products/productsModals.ts";
+import { useProductsModals } from "@/shared/composables/modals/products.modals.ts";
 
 import s from "@/app/assets/icons/size/s.svg";
 import m from "@/app/assets/icons/size/m.svg";

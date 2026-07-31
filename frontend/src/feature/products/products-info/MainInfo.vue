@@ -1,19 +1,18 @@
 <script setup lang="ts">
-const BASE_URL = `http://localhost:3000`
-
+import { onMounted } from "vue";
 import { useRouter } from "vue-router";
-import { computed, onMounted } from "vue";
-import { useGetProducts } from "../composables/getProducts.ts";
-import { useUpdateProduct } from "../composables/useUpdateProduct.ts";
+import { useGetProducts } from "../composables/get-products.ts";
+import { useProducts } from "@/shared/composables/use.products.ts";
+import { useUpdateProduct } from "../composables/use-update-product.ts";
 import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { useProductsModals } from "@/shared/composables/modals/products/productsModals.ts";
+import { useProductsModals } from "@/shared/composables/modals/products.modals.ts";
 
 import ProductInfo from "./ProductInfo.vue";
 import cart from '@/app/assets/icons/nav/cart.png';
 import NavBar from "../../navigation/NavBar.vue";
 import profile from '@/app/assets/icons/nav/profile.png';
 import go_to_shop from '@/app/assets/icons/arrows/go-to-shop.png';
-import Notification from "@/shared/ui/products-modals/Notification.vue";
+import Notification from "@/shared/ui/base-modals/Notification.vue";
 
 const { notify } = useProductsModals();
 const { getProduct } = useGetProducts();
@@ -24,37 +23,11 @@ const router = useRouter();
 
 const userId = localStorage.getItem("userId");
 
-const productPreview = computed(() => {
-  return(product: any) => {
-    if(!product){
-      console.log('Product not found');
-      return;
-    }
-    if(product && Array.isArray(product.images) && product.images[0]){
-      return `${BASE_URL}/${product.images[0]}`;
-    }
-  }
-});
-
-const angelCards = computed(() => {
-  return(product: any): string[] => {
-    if(!product){
-      console.log('Product not found');
-      return [];
-    }
-
-    if(product && Array.isArray(product.images) && product.images.length > 0){
-      return product.images.slice(1).map((img: string) => `${BASE_URL}/${img}`);
-    }
-    return [];
-  }
-});
-
 onMounted(async () => {
   await getProduct();
 
   if(product.value && Array.isArray(product.value.images) && product.value.images[0]) {
-    activeProductImg.value = productPreview.value(product.value) ?? '';
+    activeProductImg.value = useProducts.productInfoPreview.value(product.value) ?? '';
   }
 })
 
@@ -85,7 +58,7 @@ const routerBack = () => {
               <img :src="activeProductImg" alt="" class="w-[390px]">
             </div>
             <div class="flex flex-col justify-between">
-              <div v-for="(img, index) in angelCards(product)" :key="index" class="h-[85px] w-[72px]">
+              <div v-for="(img, index) in useProducts.angelCards.value(product)" :key="index" class="h-[85px] w-[72px]">
                 <img @click="changeImg(index)" :src="img" alt="" class="opacity-70 transition duration-400 hover:scale-120">
               </div>
             </div>

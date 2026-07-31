@@ -1,32 +1,20 @@
 <script setup lang="ts">
-const BASE_URL = 'http://localhost:3000';
-
-import { computed } from "vue";
+import { useOrderCard } from "@/shared/ui/orders/use.order.card.ts";
 import { productsStore } from "@/shared/composables/stores/products.store.ts";
+import { useGetProducts } from "@/feature/products/composables/get-products.ts";
 
 const { items } = productsStore();
-
-const productPreview = computed(() => {
-  return(id: string) => {
-    if(!id){
-      console.log('Id не найден')
-      return
-    }
-
-    const product = items.value.find(p => p.id === id)
-    if(product && Array.isArray(product.images) && product.images[0]){
-      return `${BASE_URL}/${product.images[0]}`
-    }
-  }
-});
-
+const { getProductId } = useGetProducts();
+const { productPreview } = useOrderCard();
 </script>
 
 <template>
   <TransitionGroup name="list">
-    <li v-for="product in items" :key="product?.id" class="flex justify-between gap-3 w-full">
+    <li @click="getProductId(product.productId)" v-for="product in items" :key="product?.id" class="flex justify-between gap-3 w-full">
       <div class="flex items-center gap-3 font-medium text-xs">
-        <img :src="productPreview(product?.id)" alt="" class="w-[113px]">
+        <router-link :to="{name: 'products/info'}">
+          <img :src="productPreview(product?.id)" alt="" class="w-[113px] cursor-pointer">
+        </router-link>
         <div class="flex flex-col gap-3 mt-3">
           <div class="flex items-center gap-35">
             <span class="">{{ product?.title }} {{ product?.category }}</span>

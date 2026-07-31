@@ -11,6 +11,7 @@ export const updateUsersController = {
             dbService.writeDB(db);
             res.json(db.users[index] || {});
         }catch(err){
+            console.log(`Failed to update the user: ${index}`, err)
             res.status(500).json({error: err.message})
         }
     },
@@ -37,6 +38,7 @@ export const updateUsersController = {
             dbService.writeDB(db);
             return res.status(200).json({ message: 'Пароль успешно изменен' });
         }catch(err){
+            console.log(`Failed to update the user paswword: ${user}`, err)
             res.status(500).json({error: err.message})
         }
     },
@@ -61,6 +63,7 @@ export const updateUsersController = {
                 avatarUrl: newAvatar
             });
         }catch(err){
+            console.log(`Failed to update the user avatar: ${index}`, err)
             res.status(500).json({error: err.message})
         }
     },
@@ -91,6 +94,7 @@ export const updateUsersController = {
             dbService.writeDB(db);
             res.status(200).json(db.checkoutPayments[index]);
         }catch(err){
+            console.log(`Failed to update the user payment: ${index}`, err)
             res.status(500).json({ error: err.message });
         }
     },

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { watch } from "vue";
-import { useProfileProducts } from "@/feature/profile/profile-composables/useProfileProducts";
-import { checkoutForms } from "@/shared/composables/forms-composables/forms/checkout.forms.ts";
-import { checkoutErrors } from "@/shared/composables/forms-composables/forms-errors/checkout.errors.ts";
+import { useProfileProducts } from "@/feature/profile/profile-composables/use-profile-products.ts";
+import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
+import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors.ts";
 
 import square from '@/app/assets/icons/square.png';
 import BaseButton from "@/shared/ui/button/BaseButton.vue";
@@ -52,7 +52,7 @@ watch(() => isAgreeFormError.value.agreeError, (agreeError) => {
   <div class="flex flex-col mt-2 hidden xl:block">
     <div class="flex flex-col gap-4">
       <div class="flex gap-4 items-center">
-        <img @click="toggleAgree" :src="isAgreeFormError.agreeError ? check_square : square" alt="" class="w-[25px]">
+        <img @click="toggleAgree" :src="isAgreeFormError.agreeError ? check_square : square" alt="" class="w-[25px] cursor-pointer">
         <span class="text-xs text-[#A3A3A3]">
           I agree to the Terms and Conditions
         </span>

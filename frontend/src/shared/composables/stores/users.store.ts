@@ -87,6 +87,11 @@ const countries = [
     },
 ]
 
+const postalCode = {
+    mask: '0000[00]',
+    lazy: false
+}
+
 const cardNumberMask = {
     mask: '0000-0000-0000-0000',
     lazy: false,
@@ -116,6 +121,7 @@ const cardCvv = {
     lazy: false
 }
 
+
 const selectedCountryCode = ref('UZ');
 
 export const usersStore = () => {
@@ -133,6 +139,7 @@ export const usersStore = () => {
 
         paymentMethod,
         countries,
+        postalCode,
         cardNumberMask,
         expiryDateMask,
         cardCvv,

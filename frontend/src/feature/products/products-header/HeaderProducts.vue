@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { watch } from "vue";
-import { useFilter } from "./composables/useFilter.ts";
-import { useGetProducts } from "../composables/getProducts.ts";
-import { useGetSearchedProducts } from "./composables/useGetSearched.ts";
-import { useProductsModals } from "@/shared/composables/modals/products/productsModals.ts";
-import { productsForms } from "@/shared/composables/forms-composables/forms/products.forms.ts";
+import { useFilter } from "./composables/use-filter.ts";
+import { useGetProducts } from "../composables/get-products.ts";
+import { useGetSearchedProducts } from "./composables/get-searched.ts";
+import { useProductsModals } from "@/shared/composables/modals/products.modals.ts";
+import { productsForms } from "@/shared/composables/forms/products.forms.ts";
 
 import del from '@/app/assets/icons/clean_search.svg';
 import search from "@/app/assets/icons/nav/search.png";
@@ -50,7 +50,7 @@ watch(() => searchProductForm.value.search, async (newValue) => {
             xl:placeholder:px-65 transition duration-400 hover:bg-[#D9D9D9]/40 focus:bg-[#D9D9D9]/40"
                placeholder="Search">
         <img :src=search alt="" class="absolute left-4 top-1/2 -translate-y-1/2">
-        <img v-if="searchProductForm.search" @click="resetSearch" :src="del" alt="" class="w-[25px] absolute top-1/4 left-85">
+        <img v-if="searchProductForm.search" @click="resetSearch" :src="del" alt="" class="w-[25px] absolute top-1/4 left-85 cursor-pointer">
       </div>
     </div>
     <div class="flex flex-col h-[40px] sm:h-[140px] xl:h-[215px] gap-5 mt-12 xl:mt-0">
@@ -62,11 +62,13 @@ watch(() => searchProductForm.value.search, async (newValue) => {
       </div>
       <div class="font-medium hidden gap-x-5 gap-y-2 sm:grid sm:grid-cols-4 xl:mt-19">
         <button v-for="(isActive, categoryName) in category" @click="toggleFilter('ALL', categoryName)"
-                :class="['border-2 sm:px-2 sm:py-1 md:px-5 text-lg transition duration-400 hover:border-black hover:text-black hover:scale-110', isActive ? ' border-black' : 'text-[#A3A3A3] border-[#A3A3A3]']">
+                :class="[`cursor-pointer border-2 sm:px-2 sm:py-1 md:px-5 text-lg transition duration-400 hover:border-black
+                 hover:text-black hover:scale-110`, isActive ? ' border-black' : 'text-[#A3A3A3] border-[#A3A3A3]']">
           All
         </button>
         <button v-for="(isActive, categoryName) in categories" @click="toggleFilter('CATEGORY', categoryName)"
-                :class="['border-2 sm:px-2 sm:py-1 md:px-5 text-lg transition duration-400 hover:border-black hover:text-black hover:scale-110', isActive ? ' border-black' : 'text-[#A3A3A3] border-[#A3A3A3]']">
+                :class="[`cursor-pointer border-2 sm:px-2 sm:py-1 md:px-5 text-lg transition duration-400 hover:border-black
+                 hover:text-black hover:scale-110`, isActive ? ' border-black' : 'text-[#A3A3A3] border-[#A3A3A3]']">
           {{ categoryName }}
         </button>
       </div>

@@ -2,7 +2,6 @@ import router from '@/app/router/index.ts'
 
 export const BASE_URL = `http://localhost:3000/api`;
 
-
 export class ApiError extends Error {
     response?: {
         data: any
@@ -42,7 +41,7 @@ export const handler = async <T = any>(
                 credentials: 'include'
             })
             if(!refreshRes.ok){
-                new Error('Сессия истекла, авторизуйтесь заново');
+                new Error('Session expired, please log in again.');
             }
 
             const data = await refreshRes.json();
@@ -51,7 +50,7 @@ export const handler = async <T = any>(
             return handler(endpoints, options, true);
 
         }catch(err){
-            console.log('Не удалось востановить ссесию');
+            console.log(`Failed to restore the session:`, err);
             localStorage.clear();
 
             await router.replace({ name: '/auth/LoginPage' })

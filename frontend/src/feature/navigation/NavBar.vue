@@ -12,7 +12,7 @@ const { unreadCount } = productsStore();
 
 const route = useRoute();
 
-const isProfile = computed(() => route.name !== "/profile/ProfilePage");
+const isProfile = computed(() => route.name !== "profile");
 </script>
 
 <template>
@@ -30,7 +30,7 @@ const isProfile = computed(() => route.name !== "/profile/ProfilePage");
           <router-link :to="{name: 'products'}" class="text-[#696969] transition duration-400 hover:text-black hover:scale-120">
             Products
           </router-link>
-          <span class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120">New</span>
+          <span class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120 cursor-pointer">New</span>
         </div>
       </div>
       <div class="xl:flex xl:gap-10

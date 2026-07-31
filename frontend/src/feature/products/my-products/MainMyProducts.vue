@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useGetProducts } from "../composables/getProducts.ts";
-import { useProfileModals } from "@/shared/composables/modals/profile/profileModals.ts";
+import { useGetProducts } from "../composables/get-products.ts";
+import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
 
-import ChoiceModal from "@/shared/ui/ChoiceModal.vue";
+import ChoiceModal from "@/shared/ui/base-modals/ChoiceModal.vue";
 import NavBar from "../../navigation/NavBar.vue";
 import MyProductsList from "./MyProductsList.vue";
 

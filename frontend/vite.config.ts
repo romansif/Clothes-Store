@@ -21,5 +21,10 @@ export default defineConfig({
             '@/pages': fileURLToPath(new URL('./src/pages', import.meta.url)),
             '@/shared': fileURLToPath(new URL('./src/shared', import.meta.url)),
         }
-    }
+    },
+    server: {
+        headers: {
+            'Cross-Origin-Opener-Policy': 'same-origin-allow-popups',
+        },
+    },
 })

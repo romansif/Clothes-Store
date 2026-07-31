@@ -7,6 +7,7 @@ export const getUsersController = {
             const cleanUsers = db.users.map(({ password, refreshTokens, ...u }) => u);
             res.json(cleanUsers);
         }catch(err){
+            console.log(`Failed to get the users: ${cleanUsers}`, err)
             res.status(500).json({error: err.message});
         }
     },
@@ -19,6 +20,7 @@ export const getUsersController = {
             const { password: _, refreshTokens: __, ...userWithoutPassword } = user;
             res.json(userWithoutPassword);
         }catch(err){
+            console.log(`Failed to get the user: ${user}`, err)
             res.status(500).json({error: err.message});
         }
     },
@@ -27,6 +29,7 @@ export const getUsersController = {
             const db = dbService.readDB()
             res.json(db.checkoutAddresses, db.checkoutPayments);
         }catch(err){
+            console.log(`Failed to get the user checkouts: ${db.checkoutPayments}-${db.checkoutAddresses}`, err)
             res.status(500).json({error: err.message})
         }
     },
@@ -38,6 +41,7 @@ export const getUsersController = {
 
             res.json(addresses || []);
         }catch(err){
+            console.log(`Failed to get the user addresses: ${addresses}`, err)
             res.status(500).json({error: err.message})
         }
     },
@@ -49,6 +53,7 @@ export const getUsersController = {
 
             res.json(address || {});
         }catch(err){
+            console.log(`Failed to delete the user address: ${address}`, err)
             res.status(500).json({error: err.message})
         }
     },
@@ -60,6 +65,7 @@ export const getUsersController = {
 
             res.json(payments || []);
         }catch(err){
+            console.log(`Failed to get the user payments: ${payments}`, err)
             res.status(500).json({error: err.message})
         }
     },
@@ -71,6 +77,7 @@ export const getUsersController = {
 
             res.json(payment || {});
         }catch(err){
+            console.log(`Failed to get the user payment: ${payment}`, err)
             res.status(500).json({error: err.message})
         }
     },

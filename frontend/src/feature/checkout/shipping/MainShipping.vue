@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { watch } from "vue";
-import { useAddCheckout } from "../composables/useAddCheckout.ts";
-import { checkoutForms } from "@/shared/composables/forms-composables/forms/checkout.forms.ts";
-import { checkoutErrors } from "@/shared/composables/forms-composables/forms-errors/checkout.errors.ts";
+import { useAddCheckout } from "../composables/use-add-checkout.ts";
+import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
+import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors.ts";
 
 import arrow from "@/app/assets/icons/arrows/shop.svg";
 import BaseButton from "@/shared/ui/button/BaseButton.vue";

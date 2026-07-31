@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { IMaskComponent as IMask } from "vue-imask";
-import { usePhoneForm } from "@/shared/mask-forms/usePhoneForm.ts";
+import { usePhoneForm } from "@/shared/mask-forms/use.phone.form.ts";
 import { usersStore } from "@/shared/composables/stores/users.store.ts";
-import { userForms } from "@/shared/composables/forms-composables/forms/users.forms.ts";
-import { useUpdateProfile } from "@/feature/profile/profile-composables/useUpdateProfile.ts";
-import { userFormsErrors } from "@/shared/composables/forms-composables/forms-errors/users.errors.ts";
+import { userForms } from "@/shared/composables/forms/users.forms.ts";
+import { useUpdateProfile } from "@/feature/profile/profile-composables/use-update-profile.ts";
+import { userFormsErrors } from "@/shared/composables/errors/errors-messages/users.errors.ts";
 
 import BaseButton  from "@/shared/ui/button/BaseButton.vue";
 

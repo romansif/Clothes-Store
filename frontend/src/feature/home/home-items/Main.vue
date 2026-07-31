@@ -68,8 +68,8 @@ import arrow_down from "@/app/assets/icons/arrows/arrow-down.png";
       </div>
       <div class="flex justify-center mt-5 gap-10">
         <div class="flex gap-3">
-          <img :src=back_arrow alt="">
-          <img :src=next_arrow alt="">
+          <img :src=back_arrow alt="" class="transtion duration-400 hover:scale-108 cursor-pointer">
+          <img :src=next_arrow alt="" class="transtion duration-400 hover:scale-108 cursor-pointer">
         </div>
       </div>
     </div>
@@ -82,12 +82,12 @@ import arrow_down from "@/app/assets/icons/arrows/arrow-down.png";
       <div class="flex border-b-1 border-gray-300 gap-5 py-3 text-lg">
         <span class="transition duration-400 hover:text-black hover:scale-115">
           (
-            <span class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-115">All</span>
+            <span class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-115 cursor-pointer">All</span>
           )
         </span>
-        <span class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-115">Men</span>
-        <span class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-115">Women</span>
-        <span class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-115">KId</span>
+        <span class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-115 cursor-pointer">Men</span>
+        <span class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-115 cursor-pointer">Women</span>
+        <span class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-115 cursor-pointer">KId</span>
       </div>
       <div class="flex flex-col mt-10">
         <ul class="flex gap-10 xl:gap-20 overflow-x-auto whitespace-nowrap no-scrollbar">
@@ -126,7 +126,7 @@ import arrow_down from "@/app/assets/icons/arrows/arrow-down.png";
       <div class="flex justify-center items-center mt-5 gap-10">
         <div class="flex flex-col items-center gap-2 text-lg">
           <span>More</span>
-          <img :src=arrow_down alt="" class="w-[20px]">
+          <img :src=arrow_down alt="" class="w-[20px] transition duration-400 hover:scale-120 cursor-pointer">
         </div>
       </div>
     </div>

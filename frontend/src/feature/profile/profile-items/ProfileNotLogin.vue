@@ -8,12 +8,12 @@
         <img :src="not_avatar" alt="" class="w-20 rounded-full" />
       </div>
       <div class="flex font-medium gap-10">
-        <router-link :to="{ name: '/auth/LoginPage' }">
+        <router-link :to="{ name: 'signIn' }" class="transition duration-400 hover:scale-108">
           <span class="border border-gray-300 rounded-xl px-12 py-3">
             Login
           </span>
         </router-link>
-        <router-link :to="{ name: '/auth/Register' }">
+        <router-link :to="{ name: 'signUp' }" class="transition duration-400 hover:scale-108">
           <span class="border border-gray-300 rounded-xl px-5 py-3">
             Registration
           </span>

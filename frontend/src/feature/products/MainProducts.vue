@@ -1,24 +1,20 @@
 <script setup lang="ts">
-import { ref, onMounted, onErrorCaptured } from "vue";
-import { useGetProducts } from "./composables/getProducts.ts";
-import { useProductsModals } from "@/shared/composables/modals/products/productsModals.ts";
+import { onMounted, onErrorCaptured } from "vue";
+import { useGetProducts } from "./composables/get-products.ts";
+import { errorHandler } from "@/shared/composables/errors/errors-middleware/error.handler.ts";
+import { useProductsModals } from "@/shared/composables/modals/products.modals.ts";
 
 import NavBar from "../navigation/NavBar.vue";
 import ProductsList from "./products-items/ProductsList.vue";
 import HeaderProducts from "./products-header/HeaderProducts.vue";
 import FilterProducts from "./products-header/FilterProducts.vue";
+import Notification from "@/shared/ui/base-modals/Notification.vue";
 import AsideFilter from "@/shared/ui/products-modals/AsideFilter.vue";
-import Notification from "@/shared/ui/products-modals/Notification.vue";
 
 const { getFilteredProducts } = useGetProducts();
 const { filterAside, notify } = useProductsModals();
+const { componentError, resetError } = errorHandler();
 
-const componentError = ref<string | null>(null);
-
-const resetError = async () => {
-  componentError.value = null;
-  await getFilteredProducts('ALL', 'Availability');
-}
 onErrorCaptured((err, info) => {
   console.error("Перехвачена ошибка в дочернем компоненте:", err);
   console.log("Детали ошибки:", info);
@@ -26,7 +22,7 @@ onErrorCaptured((err, info) => {
   componentError.value = "An error occurred while displaying the product catalog."
 
   return false
-})
+});
 
 onMounted(async () => {
   await getFilteredProducts('ALL', 'Availability');
@@ -39,7 +35,7 @@ onMounted(async () => {
         Something went wrong 😔
       </span>
     <p class="text-sm mb-4">{{ componentError }}</p>
-    <button @click="resetError" class="px-4 py-2 mt-5 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+    <button @click="resetError('FILTET')" class="px-4 py-2 mt-5 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
       Try again
     </button>
   </div>

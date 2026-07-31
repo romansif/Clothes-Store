@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
 import { computed, onMounted } from "vue";
-import { useCheckout } from "./composables/useCheckout.ts";
-import { useGetProfile } from "../profile/profile-composables/getProfileInfo.ts";
-import { useProductsModals } from "@/shared/composables/modals/products/productsModals.ts";
+import { useCheckout } from "./composables/use-checkout.ts";
+import { useGetProfile } from "../profile/profile-composables/get-profile-info.ts";
+import { useProductsModals } from "@/shared/composables/modals/products.modals.ts";
 
 import MainPayment from "./payment/MainPayment.vue";
 import MainShipping from "./shipping/MainShipping.vue";
 import MainOrder from "./order-information/MainOrder.vue";
 import go_to_shop from "@/app/assets/icons/arrows/go-to-shop.png";
 import MainInformation from "./information/MainInformation.vue";
-import Notification from "@/shared/ui/products-modals/Notification.vue";
+import Notification from "@/shared/ui/base-modals/Notification.vue";
 
 const route = useRoute();
 
@@ -34,13 +34,13 @@ onMounted(async () => {
     <div class="flex flex-col mt-16">
       <h1 class="font-extrabold text-xl md:text-2xl xl:text-4xl">CHECKOUT</h1>
       <div class="flex gap-14 font-medium mt-8 text-xs md:text-sm xl:text-lg">
-        <router-link :to="{ name: '/checkout/InformationPage' }">
+        <router-link :to="{ name: 'information' }">
           <span :class="isInfo ? 'text-gray-400' : ''">#INFORMATION</span>
         </router-link>
-        <router-link :to="{ name: '/checkout/ShippingPage' }">
+        <router-link :to="{ name: 'shipping' }">
           <span :class="isShipping ? 'text-gray-400' : ''">SHIPPING</span>
         </router-link>
-        <router-link :to="{ name: '/checkout/PaymentPage' }">
+        <router-link :to="{ name: 'payment' }">
           <span :class="isPayment ? 'text-gray-400' : ''">PAYMENT</span>
         </router-link>
       </div>

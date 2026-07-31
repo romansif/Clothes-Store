@@ -1,16 +1,17 @@
 <script setup lang="ts">
 import { watch, ref } from "vue";
-import { useAuth } from "./auth-composables/useAuth.ts";
-import { authForms } from "@/shared/composables/forms-composables/forms/auth.forms.ts";
-import { clearAuthForms } from "@/shared/composables/forms-composables/clear-forms/clear.auth.ts";
-import { authFormsErrors } from "@/shared/composables/forms-composables/forms-errors/auth.errors.ts";
+import { useAuth } from "./auth-composables/use-auth.ts";
+import { GoogleSignInButton } from 'vue3-google-signin'
+import { authForms } from "@/shared/composables/forms/auth.forms.ts";
+import { clearAuthForms } from "@/shared/composables/clear-forms/clear.auth.ts";
+import { authFormsErrors } from "@/shared/composables/errors/errors-messages/auth.errors.ts";
 
 import closed from "@/app/assets/icons/auth/closed.png";
 import opened from "@/app/assets/icons/auth/opened.png";
 import BaseButton from "@/shared/ui/button/BaseButton.vue";
 import maki_arrow from "@/app/assets/icons/arrows/maki--arrow.svg";
 
-const { signIn } = useAuth();
+const { signIn, signOAuth } = useAuth();
 const { clearLoginForm } = clearAuthForms();
 const { loginFormErrors } = authFormsErrors();
 const { loginForm, loginFormMessages } = authForms();
@@ -41,8 +42,8 @@ const togglePassword = () => {
       <div class="flex items-center justify-center">
         <div class="w-[235px] sm:w-[275px]">
           <div class="font-medium flex items-center justify-between">
-            <span class="">SIGN IN</span>
-            <router-link :to="{ name: 'signUp'}" @click=clearLoginForm>
+            <span class="cursor-pointer transition duration-400 hover:scale-120">SIGN IN</span>
+            <router-link :to="{ name: 'signUp'}" @click=clearLoginForm class="transition duration-400 hover:scale-110">
               <span class="text-[#A3A3A3]">SIGN UP</span>
             </router-link>
           </div>
@@ -81,17 +82,17 @@ const togglePassword = () => {
             <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">ROLE</label>
             <div class="flex gap-3">
               <div :class="[`flex items-center gap-3 bg-[#D9D9D9]/40  outline-none px-6 py-4 rounded-sm border border-gray-300
-                       transition duration-400 hover:bg-gray-50 focus:bg-gray-50 placeholder:text-xl w-full`,
+                       transition duration-400 hover:bg-gray-50 focus:bg-gray-50 placeholder:text-xl w-full cursor-pointer`,
                        loginFormErrors.roleError ? 'border border-red-500' : '']">
-                <input v-model="loginForm.role" value="Buyer" type="radio" name="role" class="accent-black w-4 h-4">
+                <input v-model="loginForm.role" value="Buyer" type="radio" name="role" class="accent-black w-4 h-4 cursor-pointer">
                 <span class="font-semibold">
                   Buyer
                 </span>
               </div>
               <div :class="[`flex items-center gap-3 bg-[#D9D9D9]/40  outline-none px-6 py-4 rounded-sm border border-gray-300
-                       transition duration-400 hover:bg-gray-50 focus:bg-gray-50 placeholder:text-xl w-full`,
+                       transition duration-400 hover:bg-gray-50 focus:bg-gray-50 placeholder:text-xl w-full cursor-pointer`,
                        loginFormErrors.roleError ? 'border border-red-500' : '']">
-                <input v-model="loginForm.role" value="Seller" type="radio" name="role" class="accent-black w-4 h-4">
+                <input v-model="loginForm.role" value="Seller" type="radio" name="role" class="accent-black w-4 h-4 cursor-pointer">
                 <span class="font-semibold">
                   Seller
                 </span>
@@ -103,8 +104,9 @@ const togglePassword = () => {
       </form>
       <div class="relative">
         <BaseButton @click="signIn" name="SIGN IN" variant="login" />
-        <img :src=maki_arrow alt="" class="absolute w-[25px] top-9.5 left-58 sm:left-83">
+        <img :src=maki_arrow alt="" class="absolute w-[25px] top-9.5 left-58 sm:left-83 ">
       </div>
+      <GoogleSignInButton theme="outline" size="large" text="signin_with" class="px-18 pt-4" @success="signOAuth"/>
     </div>
   </section>
 </template>

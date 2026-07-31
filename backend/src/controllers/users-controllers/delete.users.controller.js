@@ -26,6 +26,7 @@ export const deleteUsersController = {
             const { password: _, refreshTokens: __, ...userWithoutPassword } = deletedUser;
             res.json({ message: "Пользователь и его данные удалены", user: userWithoutPassword });
         }catch(err){
+            console.log(`Failed to delete the user: ${userIndex}`, err)
             res.status(500).json({error: err.message})
         }
     },
@@ -40,6 +41,7 @@ export const deleteUsersController = {
             dbService.writeDB(db);
             res.json(deleteCheckout);
         }catch(err){
+            console.log(`Failed to delete the user address: ${addressIndex}`, err)
             res.status(500).json({error: err.message})
         }
     },
@@ -54,6 +56,7 @@ export const deleteUsersController = {
             dbService.writeDB(db);
             res.json(deleteCheckout);
         }catch(err){
+            console.log(`Failed to delete the user payment: ${paymentIndex}`, err)
             res.status(500).json({error: err.message})
         }
     }

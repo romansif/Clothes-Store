@@ -7,7 +7,7 @@ import l from '../../../app/assets/icons/size/l.svg';
 import xl from '../../../app/assets/icons/size/xl.svg';
 import xxl from '../../../app/assets/icons/size/xxl.svg';
 
-interface Product {
+export interface Product {
     id: string,
     userId: string,
     productId: string,

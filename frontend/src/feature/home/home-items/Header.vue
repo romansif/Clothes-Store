@@ -44,7 +44,7 @@ import arrow_3 from "@/app/assets/icons/arrows/next-arrow.png";
           </ul>
         </div>
         <div class="xl:flex xl:mt-auto mt-5 gap-10 items-center">
-          <div class="relative">
+          <div class="relative transtion duration-400 hover:scale-108">
             <router-link :to="{name: 'products'}">
               <span class="bg-black font-semibold text-white xl:w-[265px] px-40 py-3 text-start
                   xl:pl-4 pl-3 cursor-pointer">Go To Shop</span>
@@ -52,8 +52,8 @@ import arrow_3 from "@/app/assets/icons/arrows/next-arrow.png";
             </router-link>
           </div>
           <div class="xl:flex gap-3 hidden">
-            <img :src=arrow_2 alt="" class="">
-            <img :src=arrow_3 alt="" class="">
+            <img :src=arrow_2 alt="" class="cursor-pointer transtion duration-400 hover:scale-108">
+            <img :src=arrow_3 alt="" class="cursor-pointer transtion duration-400 hover:scale-108">
           </div>
         </div>
       </div>

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 
-import { userForms } from "@/shared/composables/forms-composables/forms/users.forms.ts";
-import { useUpdateProfile } from "@/feature/profile/profile-composables/useUpdateProfile.ts";
-import { userFormsErrors } from "@/shared/composables/forms-composables/forms-errors/users.errors.ts";
+import { userForms } from "@/shared/composables/forms/users.forms.ts";
+import { useUpdateProfile } from "@/feature/profile/profile-composables/use-update-profile.ts";
+import { userFormsErrors } from "@/shared/composables/errors/errors-messages/users.errors.ts";
 
 import BaseButton  from "@/shared/ui/button/BaseButton.vue";
 import BuyerForm from "./email-phone-form/BuyerForm.vue";
@@ -24,14 +24,14 @@ const {
   updateUserPhone, updateUserEmail,
   updateUserName, updateUserFormNameMessage,
   updateUserSurName, updateUserFormSurNameMessage,
-  updateUserCompanyName, updateUserFormPublicPhone,
+  updateUserCompanyName, updateUserPublicPhone,
   updateUserPassword, updateUserFormPasswordMessages,
 } = userForms();
 
 watch(() => [
       updateUserName.value.name, updateUserSurName.value.surName,
       updateUserPhone.value.phone, updateUserCompanyName.value.companyName,
-      updateUserFormPublicPhone.value.publicPhone, updateUserEmail.value.email,
+      updateUserPublicPhone.value.publicPhone, updateUserEmail.value.email,
       updateUserPassword.value.oldPassword, updateUserPassword.value.newPassword],
     ([name, surName, phone, companyName, publicPhone, email, oldPassword, newPassword]) => {
       if(name){

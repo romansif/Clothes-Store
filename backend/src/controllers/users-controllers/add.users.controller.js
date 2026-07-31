@@ -17,6 +17,7 @@ export const addUsersController = {
             dbService.writeDB(db);
             res.status(201).json(newAddress)
         }catch(err){
+            console.log(`Failed to create the user address: ${newAddress}`, err)
             res.status(500).json({error: err.message})
         }
     },
@@ -29,6 +30,7 @@ export const addUsersController = {
             dbService.writeDB(db);
             res.status(201).json(newPayment)
         }catch(err){
+            console.log(`Failed to add the user payment: ${newPayment}`, err)
             res.status(500).json({error: err.message})
         }
     },

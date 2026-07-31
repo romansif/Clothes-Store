@@ -8,6 +8,7 @@ export const getProductsController = {
 
             res.json(products);
         }catch(err){
+            console.log(`Failed to get the product list: ${products}`, err)
             res.status(500).json({error: err.message})
         }
     },
@@ -47,6 +48,7 @@ export const getProductsController = {
 
             res.json(products || []);
         }catch(err){
+            console.log(`Failed to get the filtered product list: ${products}`, err)
             res.status(500).json({error: err.message})
         }
     },
@@ -71,15 +73,17 @@ export const getProductsController = {
 
             res.json(products || []);
         }catch(err){
+            console.log(`Failed to get the searched product list: ${products}`, err)
             res.status(500).json({error: err.message})
         }
     },
     async getMyProducts (req, res) {
         try{
             const db = dbService.readDB();
-            const product = db.products.filter(p => p.userId === req.params.userId)
-            res.json(product || []);
+            const products = db.products.filter(p => p.userId === req.params.userId)
+            res.json(products || []);
         }catch (err){
+            console.log(`Failed to get the product list creating by me: ${products}`, err)
             res.status(500).json({error: err.message})
         }
     },
@@ -90,6 +94,7 @@ export const getProductsController = {
 
             res.json(product || {});
         }catch (err){
+            console.log(`Failed to get the product by id: ${product}`, err)
             res.status(500).json({error: err.message})
         }
     },
@@ -100,7 +105,7 @@ export const getProductsController = {
 
             res.json(cart || {});
         }catch (err){
-            console.error(`Не удалось получить данные по корзине: ${cart}`, err);
+            console.log(`Failed to get the cart list: ${cart}`, err);
             res.status(500).json({error: err.message})
         }
     },
@@ -111,7 +116,7 @@ export const getProductsController = {
 
             res.json(favorite || {});
         }catch (err){
-            console.error(`Не удалось получить данные по избранному: ${favorite}`, err);
+            console.log(`Failed to get the favorite list: ${favorite}`, err);
             res.status(500).json({error: err.message})
         }
     },
@@ -122,7 +127,7 @@ export const getProductsController = {
 
             res.json(orders || {});
         }catch (err){
-            console.error(`Не удалось получить данные по сем заказам: ${orders}`, err);
+            console.error(`Failed to get the current orders:`, err);
             res.status(500).json({error: err.message})
         }
     },
@@ -133,7 +138,7 @@ export const getProductsController = {
 
             res.json(orders || {});
         }catch (err){
-            console.error(`Не удалось получить данные по сем заказам: ${orders}`, err);
+            console.error(`Failed to get the all orders:`, err);
             res.status(500).json({error: err.message})
         }
     }

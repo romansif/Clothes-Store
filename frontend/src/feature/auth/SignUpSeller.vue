@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { watch } from "vue";
 import { IMaskComponent as IMask } from "vue-imask";
-import { useAuth } from "./auth-composables/useAuth.ts";
-import { usePhoneForm } from "@/shared/mask-forms/usePhoneForm.ts";
+import { useAuth } from "./auth-composables/use-auth.ts";
+import { usePhoneForm } from "@/shared/mask-forms/use.phone.form.ts";
 import { authStore} from "@/shared/composables/stores/auth.store.ts";
 import { usersStore } from "@/shared/composables/stores/users.store.ts";
-import { authForms } from "@/shared/composables/forms-composables/forms/auth.forms.ts";
-import { authFormsErrors } from "@/shared/composables/forms-composables/forms-errors/auth.errors.ts";
-import { clearAuthForms } from "@/shared/composables/forms-composables/clear-forms/clear.auth.ts";
+import { authForms } from "@/shared/composables/forms/auth.forms.ts";
+import { authFormsErrors } from "@/shared/composables/errors/errors-messages/auth.errors.ts";
+import { clearAuthForms } from "@/shared/composables/clear-forms/clear.auth.ts";
 
 import opened from "@/app/assets/icons/auth/opened.png";
 import closed from "@/app/assets/icons/auth/closed.png";
@@ -64,7 +64,7 @@ const toggleRegister = () => {
       <div class="flex items-center justify-center">
         <div class="w-[235px] sm:w-[300px]">
           <div class="font-medium flex items-center justify-between">
-            <router-link :to="{name: '/signIn'}" @click=clearRegisterSellerForm>
+            <router-link :to="{name: 'signIn'}" @click=clearRegisterSellerForm>
               <span class="text-[#A3A3A3]">SIGN IN</span>
             </router-link>
             <span class="">SIGN UP</span>

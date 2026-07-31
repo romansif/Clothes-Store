@@ -78,8 +78,8 @@ export const authController = {
 
             const { password: _, refreshTokens: __, ...userWithoutPassword } = newUser;
             res.status(201).json({ ...userWithoutPassword, accessToken });
-        } catch (e) {
-            console.error(e);
+        } catch (err) {
+            console.log(`Failed to register the new user: ${newUser}`, err)
             res.status(500).json({ message: 'Registration error' });
         }
     },
@@ -134,8 +134,17 @@ export const authController = {
             const { password: _, refreshTokens: __, ...userWithoutPassword } = user;
 
             return res.json({ ...userWithoutPassword, accessToken });
-        } catch (e) {
-            console.error(e);
+        } catch (err) {
+            console.log(`Failed to login: ${user}`, err)
+            res.status(500).json({ message: 'Authorization error' });
+        }
+    },
+
+    async oAuth (req, res) {
+        try {
+
+        } catch (err) {
+            console.log(`Failed to login with google: ${user}`, err)
             res.status(500).json({ message: 'Authorization error' });
         }
     },
@@ -151,8 +160,8 @@ export const authController = {
                     user.refreshTokens = user.refreshTokens.filter(t => t !== refreshToken);
                     dbService.writeDB(db);
                 }
-            }catch(e){
-                console.log(e);
+            }catch(err){
+                console.log(`Failed to logout: ${user}`, err)
             }
         }
         res.clearCookie('accessToken');
@@ -197,7 +206,8 @@ export const authController = {
             });
 
             res.json({ success: true });
-        } catch (e) {
+        } catch (err) {
+            console.log(`Failed to refresh: ${user}`, err)
             return res.status(403).json({ message: 'Refresh token expired' });
         }
     }

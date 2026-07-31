@@ -1,13 +1,11 @@
 <script setup lang="ts">
-const BASE_URL = `http://localhost:3000`
-
-import { computed } from "vue";
-import { useGetProducts } from "@/feature/products/composables/getProducts.ts";
-import { useAddProducts } from "@/feature/products/composables/useAddProducts.ts";
-import { useUpdateProduct } from "@/feature/products/composables/useUpdateProduct.ts";
-import { useProfileProducts } from "../../profile-composables/useProfileProducts.ts";
+import { useProducts } from "@/shared/composables/use.products.ts";
 import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { useProfileModals } from "@/shared/composables/modals/profile/profileModals.ts";
+import { useGetProducts } from "@/feature/products/composables/get-products.ts";
+import { useAddProducts } from "@/feature/products/composables/use-add-products.ts";
+import { useUpdateProduct } from "@/feature/products/composables/use-update-product.ts";
+import { useProfileProducts } from "../../profile-composables/use-profile-products.ts";
+import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
 
 import del from '@/app/assets/icons/delete.svg';
 import square from '@/app/assets/icons/square.png';
@@ -23,20 +21,6 @@ const { toggleDeleteChoice } = useProfileModals();
 const { updateCartItem, checkCartItem } = useUpdateProduct();
 const { colorClass, sizeClass, sizeUrl } = useProfileProducts();
 
-const productPreview = computed(() => {
-  return(id: string) => {
-    if(!id){
-      console.log('Id не найден');
-      return;
-    }
-
-    const product = cart.value?.find(p => p.id === id);
-    if(product && Array.isArray(product.images) && product.images[0]){
-      return `${BASE_URL}/${product.images[0]}`;
-    }
-  }
-});
-
 const refreshPage = () => {
   window.location.reload();
 }
@@ -48,12 +32,12 @@ const refreshPage = () => {
       <div class="flex flex-col">
         <div class="relative">
           <router-link :to="{ name: 'products/info' }">
-            <img :src="productPreview(product.id)" alt="" :class="['w-[335px] h-[314px] sm:h-[314px] xl:h-[400px]',
+            <img :src="useProducts.productPreview.value(product.id, cart)" alt="" :class="['w-[335px] h-[314px] sm:h-[314px] xl:h-[400px]',
                 product.quantity === 0 || product.status === 'Exhausted' ? 'opacity-40' : '']">
           </router-link>
           <span v-if="product.quantity === 0 || product.status === 'Exhausted'" class="absolute top-1/2 left-1/20 text-5xl font-semibold -rotate-45">Out Of Stack</span>
           <img @click="toggleToFavorite(product.id, 'cart', product.productId)" :src="product.favorite ? liked : like"
-               alt="" class="absolute top-0.5 left-75.5 w-[32px]">
+               alt="" class="absolute top-0.5 left-75.5 w-[32px] cursor-pointer">
         </div>
         <span class="whitespace-normal mt-2 text-[#A3A3A3] text-sm sm:text-lg">
           {{ product.material }} {{ product.category }}
@@ -71,21 +55,21 @@ const refreshPage = () => {
         <div class="flex flex-col gap-4">
           <img @click="toggleDeleteChoice(
               'Are you sure you want to delete this cart product?', 'DELETE_CART_ITEM', product.id)"
-               :src="del" alt="" class="transition duration-400 hover:scale-120">
+               :src="del" alt="" class="transition duration-400 hover:scale-120 cursor-pointer">
           <img v-if="product.status === 'Availability'" @click="checkCartItem(product.id, product)"
-               :src="product.checked ? check_square : square" alt="" class="w-[30px] transition duration-400 hover:scale-120">
+               :src="product.checked ? check_square : square" alt="" class="cursor-pointer w-[30px] transition duration-400 hover:scale-120">
         </div>
         <div class="flex flex-col gap-4">
           <img :src="sizeUrl(product.size)" :class="[sizeClass(product.size)]" alt="">
           <div :class="['w-[30px] h-[30px]', colorClass(product.color)]"></div>
           <div class="flex flex-col border transition duration-400 hover:scale-120">
             <button @click="updateCartItem('add', product.id, product.status)"
-                    class="border-b transition duration-400 hover:bg-zinc-300">+</button>
+                    class="border-b transition duration-400 hover:bg-zinc-300 cursor-pointer">+</button>
             <span class="text-sm border-b text-center">{{ product.quantity }}</span>
             <button @click="updateCartItem('away', product.id, product.status)"
-                    class="border-b transition duration-400 hover:bg-zinc-300">-</button>
+                    class="border-b transition duration-400 hover:bg-zinc-300 cursor-pointer">-</button>
           </div>
-          <img @click="refreshPage" :src="update" alt="" class="transition duration-400 hover:scale-120">
+          <img @click="refreshPage" :src="update" alt="" class="transition duration-400 hover:scale-120 cursor-pointer">
         </div>
       </div>
     </li>

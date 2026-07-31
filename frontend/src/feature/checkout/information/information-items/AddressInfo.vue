@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import { useCheckout } from "../../composables/useCheckout.ts";
-import { useAddCheckout } from "../../composables/useAddCheckout.ts";
-import { checkoutForms } from "@/shared/composables/forms-composables/forms/checkout.forms.ts";
-import { checkoutErrors }from "@/shared/composables/forms-composables/forms-errors/checkout.errors.ts";
+import { IMaskComponent as IMask } from "vue-imask";
+import { useCheckout } from "../../composables/use-checkout.ts";
+import { useAddCheckout } from "../../composables/use-add-checkout.ts";
+import { usersStore } from "@/shared/composables/stores/users.store.ts";
+import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
+import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors.ts";
 
+const { postalCode } = usersStore();
 const { addAddress } = useAddCheckout();
 const { information } = checkoutForms();
 const { informationErrors } = checkoutErrors();
@@ -57,7 +60,7 @@ const { firstNamePlaceholder, lastNamePlaceholder, countryPlaceholder, statePlac
                  :placeholder="cityPlaceholder"  />
         </div>
         <div class="flex flex-col w-full">
-          <input v-model="information.postalCode" type="text"
+          <IMask v-model.value="information.postalCode" type="text" :mask="postalCode.mask"
                  :class="[`w-full bg-[#D9D9D9]/40 border border-gray-300 transition duration-400 hover:bg-gray-50 focus:bg-gray-50
                   rounded-xl outline-none px-4 py-3 text-xs`,
             informationErrors.postalCodeError ? `placeholder:text-red-500 border-red-400` : `placeholder:text-gray-600`]"

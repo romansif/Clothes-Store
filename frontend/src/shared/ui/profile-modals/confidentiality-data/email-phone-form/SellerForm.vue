@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { IMaskComponent as IMask } from "vue-imask";
-import { usePhoneForm } from "@/shared/mask-forms/usePhoneForm.ts";
+import { usePhoneForm } from "@/shared/mask-forms/use.phone.form.ts";
 import { usersStore } from "@/shared/composables/stores/users.store.ts";
-import { userForms } from "@/shared/composables/forms-composables/forms/users.forms.ts";
-import { useUpdateProfile } from "@/feature/profile/profile-composables/useUpdateProfile.ts";
-import { userFormsErrors } from "@/shared/composables/forms-composables/forms-errors/users.errors.ts";
+import { userForms } from "@/shared/composables/forms/users.forms.ts";
+import { useUpdateProfile } from "@/feature/profile/profile-composables/use-update-profile.ts";
+import { userFormsErrors } from "@/shared/composables/errors/errors-messages/users.errors.ts";
 
 import BaseButton  from "@/shared/ui/button/BaseButton.vue";
 
@@ -15,7 +15,7 @@ const { updateCompanyName, updatePublicPhoneAccount } = useUpdateProfile();
 const { updateUserFormPublicPhoneErrors, updateUserFormCompanyNameErrors } = userFormsErrors();
 const {
   updateUserCompanyName, updateUserFormCompanyNameMessage,
-  updateUserFormPublicPhone, updateUserFormPublicPhoneMessage
+  updateUserPublicPhone, updateUserFormPublicPhoneMessage
 } = userForms();
 </script>
 
@@ -43,7 +43,7 @@ const {
             {{ country.name }}
           </option>
         </select>
-        <IMask v-model:value=updateUserFormPublicPhone.publicPhone type="text" inputmode="numeric" :mask="currentMask.mask" :key="selectedCountryCode"
+        <IMask v-model:value=updateUserPublicPhone.publicPhone type="text" inputmode="numeric" :mask="currentMask.mask" :key="selectedCountryCode"
                class="w-full border border-gray-300 rounded-xl outline-none px-4 py-3 text-sm bg-[#D9D9D9]/40
                      transition duration-400 hover:bg-gray-50 focus:bg-gray-50 appearance-none" :placeholder="currentCountry?.placeholder"/>
       </div>
