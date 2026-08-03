@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
 import { computed, onMounted } from "vue";
-import { useCheckout } from "./composables/use-checkout.ts";
-import { useGetProfile } from "../profile/profile-composables/get-profile-info.ts";
+import { useCheckout } from "./composables/use.checkout.ts";
+import { useGetProfile } from "../profile/profile-composables/get.profile.info.ts";
 import { useProductsModals } from "@/shared/composables/modals/products.modals.ts";
 
 import MainPayment from "./payment/MainPayment.vue";
@@ -10,7 +10,7 @@ import MainShipping from "./shipping/MainShipping.vue";
 import MainOrder from "./order-information/MainOrder.vue";
 import go_to_shop from "@/app/assets/icons/arrows/go-to-shop.png";
 import MainInformation from "./information/MainInformation.vue";
-import Notification from "@/shared/ui/base-modals/Notification.vue";
+import Notification from "@/shared/ui/base/base-modals/Notification.vue";
 
 const route = useRoute();
 

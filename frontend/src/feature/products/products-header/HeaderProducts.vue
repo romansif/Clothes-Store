@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { watch } from "vue";
-import { useFilter } from "./composables/use-filter.ts";
-import { useGetProducts } from "../composables/get-products.ts";
-import { useGetSearchedProducts } from "./composables/get-searched.ts";
+import { useFilter } from "./composables/use.filter.ts";
+import { useGetProducts } from "../composables/get.products.ts";
+import { useGetSearchedProducts } from "./composables/get.searched.ts";
 import { useProductsModals } from "@/shared/composables/modals/products.modals.ts";
 import { productsForms } from "@/shared/composables/forms/products.forms.ts";
 

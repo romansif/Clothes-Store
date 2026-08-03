@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { watch } from "vue";
 import { IMaskComponent as IMask } from "vue-imask";
-import { useAuth } from "./auth-composables/use-auth.ts";
+import { useAuth } from "./auth-composables/use.auth.ts";
 import { usePhoneForm } from "@/shared/mask-forms/use.phone.form.ts";
 import { authStore} from "@/shared/composables/stores/auth.store.ts";
 import { usersStore } from "@/shared/composables/stores/users.store.ts";
@@ -11,8 +11,9 @@ import { clearAuthForms } from "@/shared/composables/clear-forms/clear.auth.ts";
 
 import opened from "@/app/assets/icons/auth/opened.png";
 import closed from "@/app/assets/icons/auth/closed.png";
-import BaseButton from "@/shared/ui/button/BaseButton.vue";
+import BaseButton from "@/shared/ui/base/BaseButton.vue";
 import maki_arrow from "@/app/assets/icons/arrows/maki--arrow.svg";
+import BaseInput from "@/shared/ui/base/BaseInput.vue";
 
 const { signUp } = useAuth();
 const { registerFormErrors } = authFormsErrors();
@@ -80,45 +81,25 @@ const toggleRegister = () => {
           <div class="flex gap-3">
             <div class="flex flex-col gap-2 w-full">
               <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">NAME</label>
-              <input v-model=registerSellerForm.name type="text"
-                     :class="[`bg-[#D9D9D9]/40 w-full outline-none px-6 py-4 rounded-sm border border-gray-300
-                     transition duration-400 hover:bg-gray-50 focus:bg-gray-50`,
-                     registerFormErrors.nameError ? 'border border-red-500' : '']" placeholder="name" required />
-              <span v-if=registerFormErrors.nameError class="text-red-600 text-xs">
-                {{ registerFormMessages.nameMessage }}
-              </span>
+              <BaseInput v-model=registerSellerForm.name type="text" placeholder="name" :error="registerFormErrors.nameError"
+                  :error-message="registerFormErrors.nameError ? registerFormMessages.nameMessage : ''" variant="auth" required />
             </div>
             <div class="flex flex-col gap-2 w-full">
               <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">SURNAME</label>
-              <input v-model=registerSellerForm.surName type="text"
-                     :class="[`bg-[#D9D9D9]/40 w-full outline-none px-6 py-4 rounded-sm border border-gray-300
-                     transition duration-400 hover:bg-gray-50 focus:bg-gray-50`,
-                     registerFormErrors.surNameError ? 'border border-red-500' : '']" placeholder="surname" required />
-              <span v-if=registerFormErrors.surNameError class="text-red-600 text-xs">
-                {{ registerFormMessages.surNameMessage }}
-              </span>
+              <BaseInput v-model=registerSellerForm.surName type="text" placeholder="surname" :error="registerFormErrors.surNameError"
+                  :error-message="registerFormErrors.surNameError ? registerFormMessages.surNameMessage : ''" variant="auth" required />
             </div>
           </div>
           <div class="flex gap-3">
             <div class="flex flex-col gap-2 w-full">
               <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">COMPANY NAME</label>
-              <input v-model=registerSellerForm.companyName type="text"
-                     :class="[`bg-[#D9D9D9]/40 w-full outline-none px-6 py-4 rounded-sm border border-gray-300
-                     transition duration-400 hover:bg-gray-50 focus:bg-gray-50`,
-                     registerFormErrors.companyNameError ? 'border border-red-500' : '']" placeholder="company" required />
-              <span v-if=registerFormErrors.companyNameError class="text-red-600 text-xs">
-                {{ registerFormMessages.companyNameMessage }}
-              </span>
+              <BaseInput v-model=registerSellerForm.companyName type="text" placeholder="company" :error="registerFormErrors.companyNameError"
+                  :error-message="registerFormErrors.companyNameError ? registerFormMessages.companyNameMessage : ''" variant="auth" required />
             </div>
             <div class="flex flex-col gap-2 w-full">
               <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">EMAIL</label>
-              <input v-model=registerSellerForm.email type="text"
-                     :class="[`bg-[#D9D9D9]/40 w-full outline-none px-6 py-4 rounded-sm border border-gray-300
-                     transition duration-400 hover:bg-gray-50 focus:bg-gray-50`,
-                     registerFormErrors.emailError ? 'border border-red-500' : '']" placeholder="example@mail.com" required />
-              <span v-if=registerFormErrors.emailError class="text-red-600 text-xs">
-                {{ registerFormMessages.emailMessage }}
-              </span>
+              <BaseInput v-model=registerSellerForm.email type="text" placeholder="example@mail.com" :error="registerFormErrors.emailError"
+                  :error-message="registerFormErrors.emailError ? registerFormMessages.emailMessage : ''" variant="auth" required />
             </div>
           </div>
           <div class="flex flex-col gap-2 w-full">
@@ -144,16 +125,12 @@ const toggleRegister = () => {
           <div class="flex flex-col gap-2 w-full">
             <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">PASSWORD</label>
             <div class="relative">
-              <input v-model=registerSellerForm.password :type="showPassword.password ? 'text' : 'password'"
-                     :class="[`bg-[#D9D9D9]/40 w-full outline-none px-6 py-4 rounded-sm border border-gray-300
-                       transition duration-400 hover:bg-gray-50 focus:bg-gray-50  placeholder:text-xl`,
-                      registerFormErrors.passwordError ? 'border border-red-500' : '']" placeholder="••••••••" required />
-              <img @click=togglePassword :src="showPassword.password ? opened : closed" alt="" class="absolute w-[30px] top-1/4
-                    left-57 sm:left-120">
+              <BaseInput v-model=registerSellerForm.password :type="showPassword.password ? 'text' : 'password'" placeholder="••••••••"
+                  :error="registerFormErrors.passwordError" variant="auth" required
+                  :error-message="registerFormErrors.passwordError ? registerFormMessages.passwordMessage : ''" />
+              <img @click=togglePassword :src="showPassword.password ? opened : closed" alt=""
+                   :class="['absolute w-[30px] top-1/4 left-57 sm:left-120', registerFormErrors.passwordError ? 'top-1/7' : '']">
             </div>
-            <span v-if=registerFormErrors.passwordError class="text-red-600 text-xs">
-                {{ registerFormMessages.passwordMessage }}
-              </span>
           </div>
         </div>
       </form>

@@ -12,7 +12,8 @@ const router = express.Router();
 router.get('/products', getProductsController.getAllProducts);
 router.get('/searched/products', getProductsController.getSearchedProducts);
 router.get('/filtered/products/:type/:filter', getProductsController.getFilteredProducts);
-router.get('/products/:userId', getProductsController.getMyProducts);
+router.get('/products/stack/:userId', getProductsController.getMyStackProducts);
+router.get('/products/out/of/stack/:userId', getProductsController.getMyOutOfStackProducts);
 router.get('/products/item/:id', getProductsController.getProductsById);
 
 router.get('/cart/:userId', getProductsController.getCart);

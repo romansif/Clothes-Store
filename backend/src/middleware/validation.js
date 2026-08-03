@@ -129,6 +129,10 @@ export const validation = {
             .trim()
             .notEmpty().withMessage('Product size required to create product.'),
 
+        body('gender')
+            .trim()
+            .notEmpty().withMessage('Product gender required to create product.'),
+
         body('quantity')
             .trim()
             .notEmpty().withMessage('Product quantity required to create product.'),

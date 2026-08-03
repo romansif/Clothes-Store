@@ -6,10 +6,10 @@ const { users, user } = usersStore()
 export const useGetUsers = () => {
     const getUsers = async () => {
         try{
-            const allUsers = await handler('/profile', {
+            const res = await handler('/profile', {
                 method: "GET",
             })
-            users.value = allUsers;
+            users.value = res;
 
             return users;
         }catch(err){
@@ -20,10 +20,10 @@ export const useGetUsers = () => {
     const getUser = async () => {
         const userId = localStorage.getItem("userId")
         try{
-            const oneUser = await handler(`/users/${userId}`, {
+            const res = await handler(`/users/${userId}`, {
                 method: "GET",
             });
-            user.value = oneUser;
+            user.value = res;
 
             return user;
         }catch(err){

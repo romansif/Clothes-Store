@@ -2,15 +2,16 @@
 import { ref, watch } from 'vue'
 
 import { userForms } from "@/shared/composables/forms/users.forms.ts";
-import { useUpdateProfile } from "@/feature/profile/profile-composables/use-update-profile.ts";
+import { useUpdateProfile } from "@/feature/profile/profile-composables/use.update.profile.ts";
 import { userFormsErrors } from "@/shared/composables/errors/errors-messages/users.errors.ts";
 
-import BaseButton  from "@/shared/ui/button/BaseButton.vue";
+import BaseButton  from "@/shared/ui/base/BaseButton.vue";
 import BuyerForm from "./email-phone-form/BuyerForm.vue";
 import SellerForm from "./email-phone-form/SellerForm.vue";
 import opened from '@/app/assets/icons/auth/opened.png'
 import closed from '@/app/assets/icons/auth/closed.png'
 import SellerEmailForm from "./email-phone-form/SellerEmailForm.vue";
+import BaseInput from "@/shared/ui/base/BaseInput.vue";
 
 const { updatePasswordAccount, updateNameAccount, updateSurNameAccount } = useUpdateProfile();
 const {
@@ -79,24 +80,18 @@ const toggleNewPassword = () => {
       <div class="flex gap-10">
         <form @keydown.enter.prevent="updateNameAccount" class="flex flex-col gap-3 w-full">
           <label for="">Name</label>
-          <input v-model=updateUserName.name type="text" inputmode="numeric"
-                 class="border border-gray-300 rounded-xl outline-none px-4 py-3 text-sm bg-[#D9D9D9]/40
-                   transition duration-400 hover:bg-gray-50 focus:bg-gray-50 appearance-none" placeholder="New Name" />
-          <span v-if=updateUserNameErrors.nameError class="text-red-600 text-xs">
-            {{ updateUserFormNameMessage.nameMessage }}
-          </span>
+          <BaseInput v-model=updateUserName.name type="text" inputmode="numeric" placeholder="New Name"
+              :error="updateUserNameErrors.nameError" variant="confidentialityData" required
+              :error-message="updateUserNameErrors.nameError ? updateUserFormNameMessage.nameMessage : ''" />
           <div class="flex">
             <BaseButton @click.prevent="updateNameAccount()" name="Save Name" variant="profileForm" />
           </div>
         </form>
         <form @keydown.enter.prevent="updateSurNameAccount" class="flex flex-col gap-3 w-full">
           <label for="">SurName</label>
-          <input v-model=updateUserSurName.surName type="text" inputmode="numeric"
-                 class="border border-gray-300 rounded-xl outline-none px-4 py-3 text-sm bg-[#D9D9D9]/40
-                   transition duration-400 hover:bg-gray-50 focus:bg-gray-50 appearance-none" placeholder="New SurName"/>
-          <span v-if=updateUserSurNameErrors.surNameError class="text-red-600 text-xs">
-            {{ updateUserFormSurNameMessage.surNameMessage }}
-          </span>
+          <BaseInput v-model=updateUserSurName.surName type="text" inputmode="numeric" placeholder="New SurName"
+              :error="updateUserSurNameErrors.surNameError" variant="confidentialityData" required
+              :error-message="updateUserSurNameErrors.surNameError ? updateUserFormSurNameMessage.surNameMessage : ''" />
           <div class="flex">
             <BaseButton @click.prevent="updateSurNameAccount()" name="Save SurName" variant="profileForm" />
           </div>
@@ -110,28 +105,22 @@ const toggleNewPassword = () => {
         <div class="flex flex-col gap-3 w-full">
           <label>Old password</label>
           <div class="relative">
-            <input v-model=updateUserPassword.oldPassword :type="showOldPassword ? 'text' : 'password'" inputmode="numeric"
-                   class="w-full border border-gray-300 rounded-xl outline-none px-4 py-3 text-sm bg-[#D9D9D9]/40
-                     transition duration-400 hover:bg-gray-50 focus:bg-gray-50 appearance-none" placeholder="Old Password" />
+            <BaseInput v-model=updateUserPassword.oldPassword :type="showOldPassword ? 'text' : 'password'" inputmode="numeric"
+                :error="updateUserPasswordErrors.oldPasswordError" variant="confidentialityData" placeholder="Old Password"
+                :error-message="updateUserPasswordErrors.oldPasswordError ? updateUserFormPasswordMessages.oldPasswordMessage : ''" />
             <img @click.prevent=toggleOldPassword :src="showOldPassword ? opened : closed" alt=""
-                class="absolute w-[30px] top-1/5 left-115">
+                 :class="['absolute w-[30px] top-1/4 left-115', updateUserPasswordErrors.oldPasswordError ? 'top-1/6' : '']">
           </div>
-          <span v-if=updateUserPasswordErrors.oldPasswordError class="text-red-600 text-xs">
-            {{ updateUserFormPasswordMessages.oldPasswordMessage }}
-          </span>
         </div>
         <div class="flex flex-col gap-3 w-full">
           <label>New password</label>
           <div class="relative">
-            <input v-model=updateUserPassword.newPassword :type="showNewPassword ? 'text' : 'password'" inputmode="numeric"
-                   class=" w-full border border-gray-300 rounded-xl outline-none px-4 py-3 text-sm bg-[#D9D9D9]/40
-                     transition duration-400 hover:bg-gray-50 focus:bg-gray-50 appearance-none" placeholder="New Password" />
+            <BaseInput v-model=updateUserPassword.newPassword :type="showNewPassword ? 'text' : 'password'" inputmode="numeric"
+                :error="updateUserPasswordErrors.newPasswordError" variant="confidentialityData" placeholder="New Password"
+                :error-message="updateUserPasswordErrors.newPasswordError ? updateUserFormPasswordMessages.newPasswordMessage : ''"/>
             <img @click.prevent=toggleNewPassword :src="showNewPassword ? opened : closed" alt=""
-                class="absolute w-[30px] top-1/5 left-115">
+                :class="['absolute w-[30px] top-1/4 left-115', updateUserPasswordErrors.newPasswordError ? 'top-1/8' : '']">
           </div>
-          <span v-if=updateUserPasswordErrors.newPasswordError class="text-red-600 text-xs">
-            {{ updateUserFormPasswordMessages.newPasswordMessage }}
-          </span>
         </div>
       </form>
       <div class="flex mt-3">

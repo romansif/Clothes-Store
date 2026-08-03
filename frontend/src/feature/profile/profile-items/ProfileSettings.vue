@@ -34,40 +34,40 @@ const {
       <ProfileMenu />
     </div>
     <div class="flex flex-col border-t border-gray-300 font-medium">
-      <div @click="toggleOrderHistory" class="border-b border-gray-300 py-6 px-6">
-        <div class="flex items-center justify-between transition duration-400 hover:scale-105 cursor-pointer">
+      <div @click="toggleOrderHistory" class="border-b border-gray-300 py-6 px-6 transition duration-400 hover:scale-105 cursor-pointer">
+        <div class="flex items-center justify-between">
           <span>ALL ORDERS</span>
           <img :src="arrow_down" alt="">
         </div>
       </div>
-      <router-link :to="{ name: 'my/products' }">
+      <router-link :to="{ name: 'my/products' }" class="transition duration-400 hover:scale-105">
         <div v-if="user.role === 'Seller'" class="border-b border-gray-300 py-6 px-6">
-          <div class="flex items-center justify-between transition duration-400 hover:scale-105">
+          <div class="flex items-center justify-between">
             <span>MY PRODUCTS</span>
             <img :src="arrow_down" alt="">
           </div>
         </div>
       </router-link>
-      <div @click="toggleCurrentOrder" class="border-b border-gray-300 py-6 px-6">
-        <div class="flex items-center justify-between transition duration-400 hover:scale-105 cursor-pointer">
+      <div @click="toggleCurrentOrder" class="border-b border-gray-300 py-6 px-6 transition duration-400 hover:scale-105 cursor-pointer">
+        <div class="flex items-center justify-between">
           <span>ACTIVE ORDERS</span>
           <img :src="arrow_down" alt="">
         </div>
       </div>
-      <div @click="toggleConfidentialityData" class="border-b border-gray-300 py-6 px-6">
-        <div class="flex items-center justify-between transition duration-400 hover:scale-105 cursor-pointer">
+      <div @click="toggleConfidentialityData" class="border-b border-gray-300 py-6 px-6 transition duration-400 hover:scale-105 cursor-pointer">
+        <div class="flex items-center justify-between">
           <span>CONFIDENTIALITY DATA</span>
           <img :src="arrow_down" alt="">
         </div>
       </div>
-      <div v-if="user.role === 'Seller'" @click="toggleCreateProductModal" class="border-b border-gray-300 py-6 px-6">
-        <div class="flex items-center justify-between transition duration-400 hover:scale-105 cursor-pointer">
+      <div v-if="user.role === 'Seller'" @click="toggleCreateProductModal" class="border-b border-gray-300 py-6 px-6 transition duration-400 hover:scale-105 cursor-pointer">
+        <div class="flex items-center justify-between">
           <span>CREATE PRODUCT COVER</span>
           <img :src="arrow_down" alt="">
         </div>
       </div>
-      <div @click="toggleAddressesAndCards" class="py-6 px-6">
-        <div class="flex items-center justify-between transition duration-400 hover:scale-105 cursor-pointer">
+      <div @click="toggleAddressesAndCards" class="py-6 px-6 transition duration-400 hover:scale-105 cursor-pointer">
+        <div class="flex items-center justify-between">
           <span>SAVED ADDRESSES AND CARDS</span>
           <img :src="arrow_down" alt="">
         </div>

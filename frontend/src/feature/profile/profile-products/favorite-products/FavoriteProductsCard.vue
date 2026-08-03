@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useProducts } from "@/shared/composables/use.products.ts";
-import { useGetProducts } from "@/feature/products/composables/get-products.ts";
+import { useGetProducts } from "@/feature/products/composables/get.products.ts";
 import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { useAddProducts } from "@/feature/products/composables/use-add-products.ts";
+import { useAddProducts } from "@/feature/products/composables/use.add.products.ts";
 import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
 
 import del from "@/app/assets/icons/delete.svg";

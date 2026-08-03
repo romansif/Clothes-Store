@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useProfile } from "@/shared/composables/use.profile.ts";
 import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
-import { useUpdateProfile } from "@/feature/profile/profile-composables/use-update-profile.ts";
+import { useUpdateProfile } from "@/feature/profile/profile-composables/use.update.profile.ts";
 
-import BaseButton from "@/shared/ui/button/BaseButton.vue";
+import BaseButton from "@/shared/ui/base/BaseButton.vue";
 
 const { updateAvatarAccount } = useUpdateProfile();
 const { toggleAvatar, openSelectAvatar, fileInput } = useProfileModals();

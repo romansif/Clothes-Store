@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { IMaskComponent as IMask } from "vue-imask";
-import { useCheckout } from "../../composables/use-checkout.ts";
-import { useAddCheckout } from "../../composables/use-add-checkout.ts";
+import { useCheckout } from "../../composables/use.checkout.ts";
+import { useAddCheckout } from "../../composables/use.add.checkout.ts";
 import { usersStore } from "@/shared/composables/stores/users.store.ts";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
 import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors.ts";
+import CheckoutInput from "@/shared/ui/base/CheckoutInput.vue";
 
 const { postalCode } = usersStore();
 const { addAddress } = useAddCheckout();
@@ -18,46 +19,27 @@ const { firstNamePlaceholder, lastNamePlaceholder, countryPlaceholder, statePlac
   <form @keydown.enter="addAddress" class="flex flex-col mt-5 gap-5">
     <label class="font-medium text-xs md:text-sm">SHIPPING ADDRESS</label>
     <div class="flex flex-col gap-3">
-      <input v-model="information.addressName" type="text"
-             class="bg-[#D9D9D9]/40 border border-gray-300 transition duration-400 hover:bg-gray-50 focus:bg-gray-50
-                rounded-xl outline-none px-4 py-3 text-xs placeholder:text-gray-600"
-             placeholder="Address Name is optional"  />
+      <input v-model="information.addressName" class="bg-[#D9D9D9]/40 border border-gray-300 transition duration-400
+              hover:bg-gray-50 focus:bg-gray-50 rounded-xl outline-none px-4 py-3 text-xs placeholder:text-gray-600 w-full"
+             type="text" placeholder="Address Name is optional" />
       <div class="flex gap-2">
-        <input v-model="information.firstName" type="text"
-               :class="[`w-full bg-[#D9D9D9]/40 border border-gray-300 transition duration-400 hover:bg-gray-50 focus:bg-gray-50
-                  rounded-xl outline-none px-4 py-3 text-xs`,
-                    informationErrors.firstNameError ? `placeholder:text-red-500 border-red-400` : `placeholder:text-gray-600`]"
-               :placeholder="firstNamePlaceholder"  />
-        <input v-model="information.lastName" type="text"
-               :class="[`w-full bg-[#D9D9D9]/40 border border-gray-300 transition duration-400 hover:bg-gray-50 focus:bg-gray-50
-                  rounded-xl outline-none px-4 py-3 text-xs`,
-                    informationErrors.lastNameError ? `placeholder:text-red-500 border-red-400` : `placeholder:text-gray-600`]"
-               :placeholder="lastNamePlaceholder"  />
+        <CheckoutInput v-model="information.firstName" type="text" :placeholder="firstNamePlaceholder"
+            :error="informationErrors.firstNameError" variant="checkoutInfo" />
+        <CheckoutInput v-model="information.lastName" type="text" :placeholder="lastNamePlaceholder"
+            :error="informationErrors.lastNameError" variant="checkoutInfo" />
       </div>
       <div class="flex flex-col gap-3">
-        <input v-model="information.country" type="text"
-               :class="[`w-full bg-[#D9D9D9]/40 border border-gray-300 transition duration-400 hover:bg-gray-50 focus:bg-gray-50
-                  rounded-xl outline-none px-4 py-3 text-xs`,
-            informationErrors.countryError ? `placeholder:text-red-500 border-red-400` : `placeholder:text-gray-600`]"
-               :placeholder="countryPlaceholder"  />
-        <input v-model="information.stateRegion" type="text"
-               :class="[`w-full bg-[#D9D9D9]/40 border border-gray-300 transition duration-400 hover:bg-gray-50 focus:bg-gray-50
-                  rounded-xl outline-none px-4 py-3 text-xs`,
-            informationErrors.stateRegionError ? `placeholder:text-red-500 border-red-400` : `placeholder:text-gray-600`]"
-               :placeholder="statePlaceholder"  />
-        <input v-model="information.address" type="text"
-               :class="[`w-full bg-[#D9D9D9]/40 border border-gray-300 transition duration-400 hover:bg-gray-50 focus:bg-gray-50
-                  rounded-xl outline-none px-4 py-3 text-xs`,
-            informationErrors.addressError ? `placeholder:text-red-500 border-red-400` : `placeholder:text-gray-600`]"
-               :placeholder="addressPlaceholder"  />
+        <CheckoutInput v-model="information.country" type="text" :placeholder="countryPlaceholder"
+            :error="informationErrors.countryError" variant="checkoutInfo" />
+        <CheckoutInput v-model="information.stateRegion" type="text" :placeholder="statePlaceholder"
+            :error="informationErrors.stateRegionError" variant="checkoutInfo" />
+        <CheckoutInput v-model="information.address" type="text" :placeholder="addressPlaceholder"
+            :error="informationErrors.addressError" variant="checkoutInfo" />
       </div>
       <div class="flex gap-2">
         <div class="flex flex-col w-full">
-          <input v-model="information.city" type="text"
-                 :class="[`w-full bg-[#D9D9D9]/40 border border-gray-300 transition duration-400 hover:bg-gray-50 focus:bg-gray-50
-                  rounded-xl outline-none px-4 py-3 text-xs`,
-            informationErrors.cityError ? `placeholder:text-red-500 border-red-400` : `placeholder:text-gray-600`]"
-                 :placeholder="cityPlaceholder"  />
+          <CheckoutInput v-model="information.city" type="text" :placeholder="cityPlaceholder"
+              :error="informationErrors.cityError" variant="checkoutInfo" />
         </div>
         <div class="flex flex-col w-full">
           <IMask v-model.value="information.postalCode" type="text" :mask="postalCode.mask"

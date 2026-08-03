@@ -29,7 +29,17 @@ router.put('/checkout/payment/:id', authMiddleware, validation.paymentValidation
     validation.handleValidationErrors, updateUsersController.updateCheckoutPayment);
 
 router.patch('/users/avata/:id', authMiddleware, upload.single('avatar'), updateUsersController.updateUserAvatar);
-router.patch('/users/:id', authMiddleware, validation.updateUserNameValidation, validation.handleValidationErrors,
+router.patch('/users/name/:id', authMiddleware, validation.updateUserNameValidation, validation.handleValidationErrors,
+    updateUsersController.updateUser);
+router.patch('/users/surname/:id', authMiddleware, validation.updateUserSurNameValidation, validation.handleValidationErrors,
+    updateUsersController.updateUser);
+router.patch('/users/phone/:id', authMiddleware, validation.updateUserPhoneValidation, validation.handleValidationErrors,
+    updateUsersController.updateUser);
+router.patch('/users/companyName/:id', authMiddleware, validation.updateUserCompanyNameValidation, validation.handleValidationErrors,
+    updateUsersController.updateUser);
+router.patch('/users/publicPhone/:id', authMiddleware, validation.updateUserPublicPhoneValidation, validation.handleValidationErrors,
+    updateUsersController.updateUser);
+router.patch('/users/email/:id', authMiddleware, validation.updateUserEmailValidation, validation.handleValidationErrors,
     updateUsersController.updateUser);
 router.post('/users/password/:id', authMiddleware, validation.updateUserPasswordValidation, validation.handleValidationErrors,
     updateUsersController.updateUserPassword);

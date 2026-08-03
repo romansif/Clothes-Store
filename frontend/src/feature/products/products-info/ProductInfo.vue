@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { watch } from "vue";
 import { useProducts } from "@/shared/composables/use.products.ts";
-import { useAddProducts } from "../composables/use-add-products.ts";
-import { useUpdateProduct } from "../composables/use-update-product.ts";
+import { useAddProducts } from "../composables/use.add.products.ts";
+import { useUpdateProduct } from "../composables/use.update.product.ts";
 import { productsStore } from "@/shared/composables/stores/products.store.ts";
 import { productsForms } from "@/shared/composables/forms/products.forms.ts";
 import { productsFormErrors } from "@/shared/composables/errors/errors-messages/products.errors.ts";
@@ -11,7 +11,7 @@ import plus from '@/app/assets/icons/plus.svg';
 import minus from '@/app/assets/icons/minus.svg';
 import like from '@/app/assets/icons/nav/like.png';
 import liked from '@/app/assets/icons/nav/liked.png';
-import BaseButton from "@/shared/ui/button/BaseButton.vue";
+import BaseButton from "@/shared/ui/base/BaseButton.vue";
 
 const { product } = productsStore()
 const { updateCartItem } = useUpdateProduct();

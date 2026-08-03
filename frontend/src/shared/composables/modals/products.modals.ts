@@ -15,30 +15,30 @@ const { currentFile } = productsStore()
 
 export const useProductsModals = () => {
     const openNotify= (title: string, message: string) => {
-        notify.value = true
+        notify.value = true;
 
         setTimeout(() => {
             notify.value = false;
-            notifyTitle.value = ''
-            notifyMessage.value = ''
+            notifyTitle.value = '';
+            notifyMessage.value = '';
         }, 1500);
 
-        notifyTitle.value = title
-        notifyMessage.value = message
+        notifyTitle.value = title;
+        notifyMessage.value = message;
     }
 
     const toggleFilterAside = () => {
-        filterAside.value = !filterAside.value
+        filterAside.value = !filterAside.value;
     }
 
     const toggleCreateProductModal = () => {
-        createProduct.value = !createProduct.value
-        currentFile.value = null
-        clearProductForm()
+        createProduct.value = !createProduct.value;
+        currentFile.value = 0;
+        clearProductForm();
     }
     const openSelectProductCard = (index: number) => {
-        currentFile.value = index
-        fileInput.value?.click()
+        currentFile.value = index;
+        fileInput.value?.click();
     }
     return {
         openNotify,

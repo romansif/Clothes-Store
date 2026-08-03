@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onErrorCaptured } from "vue";
-import { useGetProducts } from "./composables/get-products.ts";
+import { useGetProducts } from "./composables/get.products.ts";
 import { errorHandler } from "@/shared/composables/errors/errors-middleware/error.handler.ts";
 import { useProductsModals } from "@/shared/composables/modals/products.modals.ts";
 
@@ -8,7 +8,7 @@ import NavBar from "../navigation/NavBar.vue";
 import ProductsList from "./products-items/ProductsList.vue";
 import HeaderProducts from "./products-header/HeaderProducts.vue";
 import FilterProducts from "./products-header/FilterProducts.vue";
-import Notification from "@/shared/ui/base-modals/Notification.vue";
+import Notification from "@/shared/ui/base/base-modals/Notification.vue";
 import AsideFilter from "@/shared/ui/products-modals/AsideFilter.vue";
 
 const { getFilteredProducts } = useGetProducts();

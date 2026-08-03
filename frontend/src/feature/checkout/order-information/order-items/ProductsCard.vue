@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useOrderCard } from "@/shared/ui/orders/use.order.card.ts";
 import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { useGetProducts } from "@/feature/products/composables/get-products.ts";
+import { useGetProducts } from "@/feature/products/composables/get.products.ts";
 
 const { items } = productsStore();
 const { getProductId } = useGetProducts();

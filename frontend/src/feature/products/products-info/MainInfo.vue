@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { useRouter } from "vue-router";
-import { useGetProducts } from "../composables/get-products.ts";
+import { useGetProducts } from "../composables/get.products.ts";
 import { useProducts } from "@/shared/composables/use.products.ts";
-import { useUpdateProduct } from "../composables/use-update-product.ts";
 import { productsStore } from "@/shared/composables/stores/products.store.ts";
 import { useProductsModals } from "@/shared/composables/modals/products.modals.ts";
 
@@ -12,11 +11,10 @@ import cart from '@/app/assets/icons/nav/cart.png';
 import NavBar from "../../navigation/NavBar.vue";
 import profile from '@/app/assets/icons/nav/profile.png';
 import go_to_shop from '@/app/assets/icons/arrows/go-to-shop.png';
-import Notification from "@/shared/ui/base-modals/Notification.vue";
+import Notification from "@/shared/ui/base/base-modals/Notification.vue";
 
 const { notify } = useProductsModals();
 const { getProduct } = useGetProducts();
-const { changeImg } = useUpdateProduct();
 const { product, activeProductImg } = productsStore();
 
 const router = useRouter();
@@ -59,7 +57,7 @@ const routerBack = () => {
             </div>
             <div class="flex flex-col justify-between">
               <div v-for="(img, index) in useProducts.angelCards.value(product)" :key="index" class="h-[85px] w-[72px]">
-                <img @click="changeImg(index)" :src="img" alt="" class="opacity-70 transition duration-400 hover:scale-120">
+                <img @click="useProducts.changeImg(index)" :src="img" alt="" class="opacity-70 transition duration-400 hover:scale-120">
               </div>
             </div>
           </div>

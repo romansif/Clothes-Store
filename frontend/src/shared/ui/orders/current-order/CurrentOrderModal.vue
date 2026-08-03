@@ -2,11 +2,11 @@
 import { onMounted } from "vue";
 import { useOrderCard } from "@/shared/ui/orders/use.order.card.ts";
 import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
-import { useGetProducts } from "@/feature/products/composables/get-products.ts";
+import { useGetProducts } from "@/feature/products/composables/get.products.ts";
 
 import CurrentOrderList from "./CurrentOrderList.vue";
-import BaseButton from "@/shared/ui/button/BaseButton.vue";
-import ClipboardNotify from "@/shared/ui/base-modals/ClipboardNotify.vue";
+import BaseButton from "@/shared/ui/base/BaseButton.vue";
+import ClipboardNotify from "@/shared/ui/base/base-modals/ClipboardNotify.vue";
 
 const { items } = useOrderCard();
 const { clipboard } = useOrderCard();

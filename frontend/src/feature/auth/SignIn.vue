@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { watch, ref } from "vue";
-import { useAuth } from "./auth-composables/use-auth.ts";
+import { useAuth } from "./auth-composables/use.auth.ts";
 import { GoogleSignInButton } from 'vue3-google-signin'
 import { authForms } from "@/shared/composables/forms/auth.forms.ts";
 import { clearAuthForms } from "@/shared/composables/clear-forms/clear.auth.ts";
@@ -8,8 +8,9 @@ import { authFormsErrors } from "@/shared/composables/errors/errors-messages/aut
 
 import closed from "@/app/assets/icons/auth/closed.png";
 import opened from "@/app/assets/icons/auth/opened.png";
-import BaseButton from "@/shared/ui/button/BaseButton.vue";
+import BaseButton from "@/shared/ui/base/BaseButton.vue";
 import maki_arrow from "@/app/assets/icons/arrows/maki--arrow.svg";
+import BaseInput from "@/shared/ui/base/BaseInput.vue";
 
 const { signIn, signOAuth } = useAuth();
 const { clearLoginForm } = clearAuthForms();
@@ -57,11 +58,8 @@ const togglePassword = () => {
         <div class="flex flex-col gap-4">
           <div class="flex flex-col gap-2">
             <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">EMAIL</label>
-            <input v-model=loginForm.email type="text"
-                   :class="[`bg-[#D9D9D9]/40 w-full outline-none px-6 py-4 rounded-sm
-                   transition duration-400 hover:bg-gray-50 focus:bg-gray-50 border border-gray-300`,
-                   loginFormErrors.emailError ? 'border border-red-500' : '']" placeholder="example@mail.com" required />
-            <span v-if=loginFormErrors.emailError class="text-red-600 text-xs">{{ loginFormMessages.emailMessage }}</span>
+            <BaseInput v-model=loginForm.email type="email" placeholder="example@mail.com" :error="loginFormErrors.emailError"
+                :error-message="loginFormErrors.emailError ? loginFormMessages.emailMessage : ''" variant="auth" required />
           </div>
           <div class="flex flex-col gap-2">
             <div class="flex">
@@ -69,14 +67,12 @@ const togglePassword = () => {
               <label class="text-xs text-gray-400 ml-auto">Forgot a password?</label>
             </div>
             <div class="relative">
-              <input v-model=loginForm.password :type="showPassword ? 'text' : 'password'"
-                     :class="[`bg-[#D9D9D9]/40 w-full outline-none px-6 py-4 rounded-sm border border-gray-300
-                     transition duration-400 hover:bg-gray-50 focus:bg-gray-50 placeholder:text-xl`,
-                     loginFormErrors.passwordError ? 'border border-red-500' : '']" placeholder="••••••••" required />
-              <img @click=togglePassword :src="showPassword ? opened : closed" alt="" class="absolute w-[30px] top-1/4
-                  left-57 sm:left-82">
+              <BaseInput v-model=loginForm.password :type="showPassword ? 'text' : 'password'" placeholder="••••••••"
+                  :error="loginFormErrors.passwordError" variant="auth" required
+                  :error-message="loginFormErrors.passwordError ? loginFormMessages.passwordMessage : ''" />
+              <img @click=togglePassword :src="showPassword ? opened : closed" alt=""
+                   :class="['absolute w-[30px] top-1/4 left-57 sm:left-82', loginFormErrors.passwordError ? 'top-1/6' : '']">
             </div>
-            <span v-if=loginFormErrors.passwordError class="text-red-600 text-xs">{{ loginFormMessages.passwordMessage }}</span>
           </div>
           <div class="flex flex-col gap-2">
             <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">ROLE</label>

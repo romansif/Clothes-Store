@@ -81,7 +81,8 @@ export const useFormsErrors = () => {
                 createProductFormErrors.value.descriptionError = !!errors.description;
                 createProductFormErrors.value.colorError = !!errors.color;
                 createProductFormErrors.value.sizeError = !!errors.size;
-                createProductFormErrors.value.quantityError = !!errors.quantity;
+                createProductFormErrors.value.genderError = !!errors.gender;
+                createProductFormErrors.value.quantityError = !!errors.count;
 
                 createProductFormMessages.value.titleMessage = errors.title || '';
                 createProductFormMessages.value.categoryMessage = errors.category || '';
@@ -90,7 +91,8 @@ export const useFormsErrors = () => {
                 createProductFormMessages.value.descriptionMessage = errors.description || '';
                 createProductFormMessages.value.colorMessage = errors.color || '';
                 createProductFormMessages.value.sizeMessage = errors.size || '';
-                createProductFormMessages.value.quantityMessage = errors.quantity    || '';
+                createProductFormMessages.value.genderMessage = errors.gender || '';
+                createProductFormMessages.value.quantityMessage = errors.count || '';
             }
         }
     };

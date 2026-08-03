@@ -2,8 +2,8 @@ import router from "@/app/router";
 import { handler } from "@/shared/api/http.ts";
 import { useFormsErrors } from "@/shared/composables/errors/errors-middleware/forms.errors.ts";
 import { usersStore } from "@/shared/composables/stores/users.store.ts";
-import { useAddProducts } from "@/feature/products/composables/use-add-products.ts";
-import { useGetProfile } from "@/feature/profile/profile-composables/get-profile-info.ts";
+import { useAddProducts } from "@/feature/products/composables/use.add.products.ts";
+import { useGetProfile } from "@/feature/profile/profile-composables/get.profile.info.ts";
 import { useProductsModals } from "@/shared/composables/modals/products.modals.ts";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
 
@@ -47,7 +47,7 @@ export const useAddCheckout = () => {
 
             await router.push({ name: 'shipping' })
             openNotify('You have successfully added the shipping address.',
-                'You can click the button to the left of the "X" to go to the shipping methods.')
+                'You will now be redirected to the shipping method selection page.')
         }catch(err){
             createInformationErrors(err);
             console.error(`Failed to create the new address:`, err);
@@ -77,7 +77,7 @@ export const useAddCheckout = () => {
 
             await router.push({ name: 'payment' })
             openNotify('You have successfully added the shipping method.',
-                'You can click the button to the left of the "X" to go to the payment.')
+                'You will now be redirected to the payment method selection page.')
         }catch(err){
             createSippingErrors(err)
             console.error(`Failed to register new payment:`, err);

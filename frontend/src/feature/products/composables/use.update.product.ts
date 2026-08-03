@@ -1,16 +1,14 @@
-import {useProductsModals} from "@/shared/composables/modals/products.modals.ts";
-
-const BASE_URL = `http://localhost:3000`
+import { useProductsModals } from "@/shared/composables/modals/products.modals.ts";
 
 import { handler } from "@/shared/api/http.ts";
-import { useGetProducts } from "./get-products.ts";
-import { useDeleteProduct } from "./use-delete-product.ts";
+import { useGetProducts } from "./get.products.ts";
+import { useDeleteProduct } from "./use.delete.product.ts";
 import { productsStore } from "@/shared/composables/stores/products.store.ts";
 
-const { deleteProductCart } = useDeleteProduct();
-const { getCartProducts, getFilteredProducts } = useGetProducts();
-const { products, cart, orderItems, product, activeProductImg } = productsStore();
 const { openNotify } = useProductsModals();
+const { deleteProductCart } = useDeleteProduct();
+const { products, cart, orderItems } = productsStore();
+const { getCartProducts, getFilteredProducts } = useGetProducts();
 
 export const useUpdateProduct = () => {
     const checkCartItem = async (id: string, product: any) => {
@@ -225,25 +223,12 @@ export const useUpdateProduct = () => {
         }
     }
 
-    const changeImg = (index: number) => {
-        if(!product.value || !Array.isArray(product.value.images)) return;
-
-        const realIndex = index + 1;
-        const mainPath = product.value.images[0];
-
-        product.value.images[0] = product.value.images[realIndex];
-        product.value.images[realIndex] = mainPath;
-
-        activeProductImg.value = `${BASE_URL}/${product.value.images[0]}`;
-    };
-
     return{
         checkCartItem,
         updateCartItem,
         updateCartChecked,
         updateFavorite,
         updateCheckedQuantity,
-        changeImg
     }
 }
 

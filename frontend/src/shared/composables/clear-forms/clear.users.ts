@@ -67,25 +67,31 @@ export const clearUsersForms = () => {
 
     const clearUpdateUserForm = () => {
         updateUserName.value.name = ''
-        updateUserSurName.value.surName = ''
         updateUserPhone.value.phone = ''
         updateUserEmail.value.email = ''
-        updateUserPassword.value.oldPassword = ''
+        updateUserSurName.value.surName = ''
         updateUserPassword.value.newPassword = ''
+        updateUserPassword.value.oldPassword = ''
+        updateUserCompanyName.value.companyName = ''
+        updateUserPublicPhone.value.publicPhone = ''
 
         updateUserFormNameMessage.value.nameMessage = ''
-        updateUserFormSurNameMessage.value.surNameMessage = ''
         updateUserFormPhoneMessage.value.phoneMessage = ''
         updateUserFormEmailMessage.value.emailMessage = ''
-        updateUserFormPasswordMessages.value.oldPasswordMessage = ''
+        updateUserFormSurNameMessage.value.surNameMessage = ''
         updateUserFormPasswordMessages.value.newPasswordMessage = ''
+        updateUserFormPasswordMessages.value.oldPasswordMessage = ''
+        updateUserFormCompanyNameMessage.value.companyNameMessage = ''
+        updateUserFormPublicPhoneMessage.value.publicPhoneMessage = ''
 
         updateUserNameErrors.value.nameError = false
-        updateUserSurNameErrors.value.surNameError = false
         updateUserPhoneErrors.value.phoneError = false
         updateUserEmailErrors.value.emailError = false
+        updateUserSurNameErrors.value.surNameError = false
         updateUserPasswordErrors.value.oldPasswordError = false
         updateUserPasswordErrors.value.newPasswordError = false
+        updateUserFormCompanyNameErrors.value.companyNameError = false
+        updateUserFormPublicPhoneErrors.value.publicPhoneError = false
     }
 
     return{

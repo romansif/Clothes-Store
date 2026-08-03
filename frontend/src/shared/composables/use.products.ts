@@ -5,7 +5,7 @@ import { productsStore, type Product } from "@/shared/composables/stores/product
 import { productsForms } from "@/shared/composables/forms/products.forms.ts";
 
 const { moreCreateItem } = productsForms();
-const { products, cart, product, productId, sizes, colors } = productsStore();
+const { products, cart, product, productId, sizes, colors, activeProductImg } = productsStore();
 
 export const useProducts = {
     toggleColor  (colorName: string) {
@@ -33,6 +33,18 @@ export const useProducts = {
         }else{
             moreCreateItem.size.splice(index, 1);
         }
+    },
+
+    changeImg (index: number) {
+        if(!product.value || !Array.isArray(product.value.images)) return;
+
+        const realIndex = index + 1;
+        const mainPath = product.value.images[0];
+
+        product.value.images[0] = product.value.images[realIndex];
+        product.value.images[realIndex] = mainPath;
+
+        activeProductImg.value = `${BASE_URL}/${product.value.images[0]}`;
     },
 
     productPreview: computed(() => {

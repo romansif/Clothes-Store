@@ -118,6 +118,8 @@ const orders = ref<Orders[]>([]);
 const orderItems = ref<Product[]>([]);
 
 const product = ref<Product>({} as Product);
+const stack = ref<Product[]>([]);
+const outOfStack = ref<Product[]>([]);
 const productId = ref<string>(localStorage.getItem("productId") || '');
 const items = ref<Product[]>(JSON.parse(localStorage.getItem('orderItems') || '[]'));
 
@@ -134,6 +136,8 @@ export const productsStore = () => {
     return {
         allProducts,
         product,
+        stack,
+        outOfStack,
         productId,
         items,
 

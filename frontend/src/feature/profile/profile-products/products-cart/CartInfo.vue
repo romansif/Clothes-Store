@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { watch } from "vue";
-import { useProfileProducts } from "@/feature/profile/profile-composables/use-profile-products.ts";
+import { useProfileProducts } from "@/feature/profile/profile-composables/use.profile.products.ts";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
 import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors.ts";
 
 import square from '@/app/assets/icons/square.png';
-import BaseButton from "@/shared/ui/button/BaseButton.vue";
+import BaseButton from "@/shared/ui/base/BaseButton.vue";
 import check_square from '@/app/assets/icons/check-square.png';
 
 const { isAgreeForm } = checkoutForms();

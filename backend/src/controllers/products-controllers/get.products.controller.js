@@ -77,13 +77,25 @@ export const getProductsController = {
             res.status(500).json({error: err.message})
         }
     },
-    async getMyProducts (req, res) {
+    async getMyStackProducts (req, res) {
         try{
             const db = dbService.readDB();
             const products = db.products.filter(p => p.userId === req.params.userId)
-            res.json(products || []);
+            const stack = products.filter(p => p.status === 'Availability')
+            res.json(stack || []);
         }catch (err){
-            console.log(`Failed to get the product list creating by me: ${products}`, err)
+            console.log(`Failed to get the product list creating by me: ${stack}`, err)
+            res.status(500).json({error: err.message})
+        }
+    },
+    async getMyOutOfStackProducts (req, res) {
+        try{
+            const db = dbService.readDB();
+            const products = db.products.filter(p => p.userId === req.params.userId)
+            const outOfStack = products.filter(p => p.status === 'Exhausted')
+            res.json(outOfStack || []);
+        }catch (err){
+            console.log(`Failed to get the product list creating by me: ${outOfStack}`, err)
             res.status(500).json({error: err.message})
         }
     },

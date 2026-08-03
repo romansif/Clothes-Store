@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { useGetProducts } from "../../composables/get-products.ts";
+import { useGetProducts } from "../../composables/get.products.ts";
 
 const { getFilteredProducts } = useGetProducts();
 

@@ -2,9 +2,9 @@ import router  from "@/app/router";
 import { computed, ref } from "vue";
 import { usePhoneForm } from "@/shared/mask-forms/use.phone.form.ts";
 import { usersStore } from "@/shared/composables/stores/users.store.ts";
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { useUpdateProduct } from "@/feature/products/composables/use-update-product.ts";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
+import { productsStore } from "@/shared/composables/stores/products.store.ts";
+import { useUpdateProduct } from "@/feature/products/composables/use.update.product.ts";
 import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors.ts";
 
 const { items, deliveryPrice } = productsStore();
@@ -12,9 +12,9 @@ const { items, deliveryPrice } = productsStore();
 const isDebitCard = ref(false);
 
 const { currentCountry } = usePhoneForm();
-const { informationErrors, paymentErrors } = checkoutErrors();
 const { updateCartChecked } = useUpdateProduct();
 const { userAddress, paymentMethod } = usersStore();
+const { informationErrors, paymentErrors } = checkoutErrors();
 const { shipping, informationMessages, payment, paymentMessages } = checkoutForms();
 
 export const useCheckout = () => {

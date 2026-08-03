@@ -2,7 +2,7 @@
 import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
 
 import UserData from "./UserData.vue";
-import BaseButton from "@/shared/ui/button/BaseButton.vue";
+import BaseButton from "@/shared/ui/base/BaseButton.vue";
 import ConfidentialityForm from "./ConfidentialityForm.vue";
 
 const { toggleConfidentialityData } = useProfileModals();

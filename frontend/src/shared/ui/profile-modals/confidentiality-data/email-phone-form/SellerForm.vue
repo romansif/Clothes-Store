@@ -3,10 +3,11 @@ import { IMaskComponent as IMask } from "vue-imask";
 import { usePhoneForm } from "@/shared/mask-forms/use.phone.form.ts";
 import { usersStore } from "@/shared/composables/stores/users.store.ts";
 import { userForms } from "@/shared/composables/forms/users.forms.ts";
-import { useUpdateProfile } from "@/feature/profile/profile-composables/use-update-profile.ts";
+import { useUpdateProfile } from "@/feature/profile/profile-composables/use.update.profile.ts";
 import { userFormsErrors } from "@/shared/composables/errors/errors-messages/users.errors.ts";
 
-import BaseButton  from "@/shared/ui/button/BaseButton.vue";
+import BaseButton  from "@/shared/ui/base/BaseButton.vue";
+import BaseInput from "@/shared/ui/base/BaseInput.vue";
 
 const { user } = usersStore();
 const { countries, selectedCountryCode } = usersStore();
@@ -23,12 +24,9 @@ const {
   <div v-if="user.role === 'Seller'" class="flex flex-col gap-10 sm:flex-row">
     <form @keydown.enter.prevent="updateCompanyName" class="flex flex-col gap-3 w-full">
       <label for="">Company Name</label>
-      <input v-model=updateUserCompanyName.companyName type="text" inputmode="numeric"
-             class="border border-gray-300 rounded-xl outline-none px-4 py-3 text-sm bg-[#D9D9D9]/40
-                   transition duration-400 hover:bg-gray-50 focus:bg-gray-50 appearance-none" placeholder="New Name"/>
-      <span v-if=updateUserFormCompanyNameErrors.companyNameError class="text-red-600 text-xs">
-        {{ updateUserFormCompanyNameMessage.companyNameMessage }}
-      </span>
+      <BaseInput v-model=updateUserCompanyName.companyName type="text" inputmode="numeric" placeholder="New Name"
+          :error="updateUserFormCompanyNameErrors.companyNameError" variant="confidentialityData"
+          :error-message="updateUserFormCompanyNameErrors.companyNameError ? updateUserFormCompanyNameMessage.companyNameMessage : ''"/>
       <div class="flex">
         <BaseButton @click.prevent="updateCompanyName()" name="Save Company Name" variant="profileForm" />
       </div>
@@ -43,9 +41,10 @@ const {
             {{ country.name }}
           </option>
         </select>
-        <IMask v-model:value=updateUserPublicPhone.publicPhone type="text" inputmode="numeric" :mask="currentMask.mask" :key="selectedCountryCode"
+        <IMask v-model:value=updateUserPublicPhone.publicPhone type="text" inputmode="numeric" :mask="currentMask.mask"
+               :key="selectedCountryCode" :placeholder="currentCountry?.placeholder"
                class="w-full border border-gray-300 rounded-xl outline-none px-4 py-3 text-sm bg-[#D9D9D9]/40
-                     transition duration-400 hover:bg-gray-50 focus:bg-gray-50 appearance-none" :placeholder="currentCountry?.placeholder"/>
+                     transition duration-400 hover:bg-gray-50 focus:bg-gray-50 appearance-none" />
       </div>
       <span v-if=updateUserFormPublicPhoneErrors.publicPhoneError class="text-red-600 text-xs">
         {{ updateUserFormPublicPhoneMessage.publicPhoneMessage }}

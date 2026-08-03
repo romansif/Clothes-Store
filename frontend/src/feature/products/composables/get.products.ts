@@ -1,15 +1,15 @@
 import { handler } from "@/shared/api/http.ts";
 import { productsStore } from "@/shared//composables/stores/products.store.ts";
 
-const { allProducts, products, cart, favorite, orders, product, productId } = productsStore()
+const { allProducts, products, stack, outOfStack, cart, favorite, orders, product, productId } = productsStore()
 
 export const useGetProducts = () => {
     const getAllProducts = async () => {
         try{
-            const all = await handler(`/products`, {
+            const res = await handler(`/products`, {
                 method: 'GET',
             })
-            allProducts.value = all;
+            allProducts.value = res;
         }catch(err){
             console.error(`Failed to get the all products:`, err);
         }
@@ -17,10 +17,10 @@ export const useGetProducts = () => {
 
     const getFilteredProducts = async (type: string, filter: string) => {
         try{
-            const filtered = await handler(`/filtered/products/${type}/${filter}`, {
+            const res = await handler(`/filtered/products/${type}/${filter}`, {
                 method: 'GET',
             })
-            products.value = filtered;
+            products.value = res;
         }catch(err){
             console.error(`Failed to get the filtered products:`, err);
         }
@@ -35,22 +35,34 @@ export const useGetProducts = () => {
     const getProduct = async () => {
         const currentId = localStorage.getItem("productId") || productId.value;
         try{
-            const oneProduct = await handler(`/products/item/${currentId}`, {
+            const res = await handler(`/products/item/${currentId}`, {
                 method: 'GET',
             })
-            product.value = oneProduct;
+            product.value = res;
         }catch(err){
             console.error(`Failed to get the product by id:`, err);
         }
     };
 
-    const getMyProducts = async () => {
+    const getMyStackProducts = async () => {
         const userId = localStorage.getItem("userId")
         try{
-            const allMyProducts = await handler(`/products/${userId}`, {
+            const res = await handler(`/products/stack/${userId}`, {
                 method: 'GET',
             })
-            products.value = allMyProducts;
+            stack.value = res;
+        }catch(err){
+            console.error(`Failed to get the all my products:`, err);
+        }
+    };
+
+    const getMyOutOfStackProducts = async () => {
+        const userId = localStorage.getItem("userId")
+        try{
+            const res = await handler(`/products/out/of/stack/${userId}`, {
+                method: 'GET',
+            })
+            outOfStack.value = res;
         }catch(err){
             console.error(`Failed to get the all my products:`, err);
         }
@@ -59,10 +71,10 @@ export const useGetProducts = () => {
     const getCartProducts = async () => {
         const userId = localStorage.getItem("userId")
         try{
-            const cartProducts = await handler(`/cart/${userId}`, {
+            const res = await handler(`/cart/${userId}`, {
                 method: 'GET',
             })
-            cart.value = cartProducts;
+            cart.value = res;
         }catch(err){
             console.error(`Failed to get the cart products:`, err);
         }
@@ -71,10 +83,10 @@ export const useGetProducts = () => {
     const getFavoriteProducts = async () => {
         const userId = localStorage.getItem("userId")
         try{
-            const favoriteProducts = await handler(`/favorites/${userId}`, {
+            const res = await handler(`/favorites/${userId}`, {
                 method: 'GET',
             })
-            favorite.value = favoriteProducts;
+            favorite.value = res;
         }catch(err){
             console.error(`Failed to get the favorite products:`, err);
         }
@@ -83,10 +95,10 @@ export const useGetProducts = () => {
     const getOrders = async () => {
         const userId = localStorage.getItem("userId");
         try{
-            const ordersProduct = await handler(`/orders/${userId}`, {
+            const res = await handler(`/orders/${userId}`, {
                 method: 'GET',
             })
-            orders.value = ordersProduct;
+            orders.value = res;
         }catch(err){
             console.error(`Failed to get the all orders:`, err);
         }
@@ -95,10 +107,10 @@ export const useGetProducts = () => {
     const getFilteredOrders = async () => {
         const userId = localStorage.getItem("userId");
         try{
-            const ordersProduct = await handler(`/filtered/orders/${userId}`, {
+            const res = await handler(`/filtered/orders/${userId}`, {
                 method: 'GET',
             })
-            orders.value = ordersProduct;
+            orders.value = res;
         }catch(err){
             console.error(`Failed to get the current orders:`, err);
         }
@@ -107,7 +119,8 @@ export const useGetProducts = () => {
     return{
         getAllProducts,
         getFilteredProducts,
-        getMyProducts,
+        getMyStackProducts,
+        getMyOutOfStackProducts,
         getProductId,
         getProduct,
         getFavoriteProducts,

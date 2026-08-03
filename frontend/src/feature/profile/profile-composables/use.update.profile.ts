@@ -51,9 +51,9 @@ export const useUpdateProfile = () => {
         }
     };
 
-    const baseUpdateAccount = async (dataToUpdate: UserDataUpdate) => {
+    const baseUpdateAccount = async (dataToUpdate: UserDataUpdate, type: string) => {
         const userId = localStorage.getItem("userId");
-        const res = await handler(`/users/${userId}`, {
+        const res = await handler(`/users/${type}/${userId}`, {
             method: "PATCH",
             body: JSON.stringify(dataToUpdate),
         });
@@ -62,7 +62,7 @@ export const useUpdateProfile = () => {
 
     const updateNameAccount = async () => {
         try{
-            await baseUpdateAccount({name: updateUserName.value.name,})
+            await baseUpdateAccount({name: updateUserName.value.name}, 'name')
             clearUpdateUserFormName();
         }catch(err){
             updateNameErrors(err);
@@ -72,7 +72,7 @@ export const useUpdateProfile = () => {
 
     const updateSurNameAccount = async () => {
         try{
-            await baseUpdateAccount({surName: updateUserSurName.value.surName})
+            await baseUpdateAccount({surName: updateUserSurName.value.surName}, 'surname')
             clearUpdateUserFormSurName();
         }catch(err){
             updateSurNameErrors(err);
@@ -82,7 +82,7 @@ export const useUpdateProfile = () => {
 
     const updatePhoneAccount = async () => {
         try{
-            await baseUpdateAccount({phone: updateUserPhone.value.phone})
+            await baseUpdateAccount({phone: updateUserPhone.value.phone}, 'phone')
             clearUpdateUserFormPhone();
         }catch(err){
             updatePhoneErrors(err);
@@ -92,7 +92,7 @@ export const useUpdateProfile = () => {
 
     const updateCompanyName = async () => {
         try{
-            await baseUpdateAccount({companyName: updateUserCompanyName.value.companyName})
+            await baseUpdateAccount({companyName: updateUserCompanyName.value.companyName}, 'companyName')
             clearUpdateUserFormCompanyName();
         }catch(err){
             updateCompanyNameErrors(err);
@@ -102,7 +102,7 @@ export const useUpdateProfile = () => {
 
     const updatePublicPhoneAccount = async () => {
         try{
-            await baseUpdateAccount({publicPhone: updateUserPublicPhone.value.publicPhone})
+            await baseUpdateAccount({publicPhone: updateUserPublicPhone.value.publicPhone}, 'publicPhone')
             clearUpdateUserFormPublicPhone();
         }catch(err){
             updatePublicPhoneErrors(err);
@@ -112,7 +112,7 @@ export const useUpdateProfile = () => {
 
     const updateEmailAccount = async () => {
         try{
-            await baseUpdateAccount({email: updateUserEmail.value.email})
+            await baseUpdateAccount({email: updateUserEmail.value.email}, 'email')
             clearUpdateUserFormEmail();
         }catch(err){
             updateEmailErrors(err);

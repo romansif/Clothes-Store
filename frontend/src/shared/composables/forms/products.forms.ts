@@ -8,7 +8,7 @@ interface ProductForm {
     description: string,
     price: string,
     gender: string,
-    quantity: number,
+    quantity: string,
 }
 
 const createProductForm = ref<ProductForm>({
@@ -19,7 +19,7 @@ const createProductForm = ref<ProductForm>({
     description: '',
     price: '',
     gender: '',
-    quantity: 0,
+    quantity: '',
 })
 
 const moreCreateItem = reactive({

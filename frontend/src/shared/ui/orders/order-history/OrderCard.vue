@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useOrderCard } from "@/shared/ui/orders/use.order.card.ts";
 import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { useGetProducts } from "@/feature/products/composables/get-products.ts";
+import { useGetProducts } from "@/feature/products/composables/get.products.ts";
 
 import copy_btn from '@/app/assets/icons/copy.svg';
-import BaseButton from "@/shared/ui/button/BaseButton.vue";
+import BaseButton from "@/shared/ui/base/BaseButton.vue";
 
 const { orders } = productsStore();
 const { getProductId } = useGetProducts();
@@ -19,9 +19,9 @@ const { productPreview, copyText } = useOrderCard();
           <div class="flex flex-col gap-4">
             <span class="text-xs px-2.5 py-1 rounded-md" :class="[
                   {
-                    'bg-teal-50 text-teal-700 border border-teal-200 w-19.5' : order.status === 'Delivered',
-                    'bg-sky-50 text-sky-700 border border-sky-200 w-18.5' : order.status === 'En route',
-                     'bg-indigo-50 text-indigo-700 border border-indigo-200 w-18' : order.status === 'Convene',
+                      'bg-teal-50 text-teal-700 border border-teal-200 w-19.5' : order.status === 'Delivered',
+                      'bg-sky-50 text-sky-700 border border-sky-200 w-18.5' : order.status === 'En route',
+                      'bg-indigo-50 text-indigo-700 border border-indigo-200 w-18' : order.status === 'Convene',
                   }
               ]">
                 {{ order.status }}
@@ -48,31 +48,33 @@ const { productPreview, copyText } = useOrderCard();
         <router-link :to="{ name: 'products/info' }">
           <div class="flex py-5 px-3">
             <div class="flex gap-5">
-              <img :src="productPreview(item.id)" alt="" class="w-[120px] rounded-2xl border border-gray-400 transition duration-400 hover:scale-110">
-              <div class="flex flex-col mt-15 gap-5">
+              <img :src="productPreview(item.id)" alt="" class="w-[120px] h-[156px] rounded-2xl border border-gray-400
+                  transition duration-400 hover:scale-110">
+              <div class="flex flex-col mt- gap-5">
                 <div class="flex flex-col gap-1">
                   <span class="font-medium">{{ item.title }}</span>
-                  <span class="text-[#A3A3A3]">{{ item.description }}</span>
+                  <span class="text-[#A3A3A3] break-all w-170 overflow-y-auto max-h-30 no-scrollbar">{{ item.description}}</span>
                 </div>
-                <div class="flex gap-6 text-sm">
+                <div class="flex gap-6 text-sm items-center mt-auto">
                   <div class="px-2.5 py-0.5 bg-[#F0F0F0] rounded">
                     Size: <span>{{ item.size }}</span>
                   </div>
                   <div class="px-2.5 py-0.5 bg-[#F0F0F0] rounded">
                     <span>Color: <span class="font-medium">{{ item.color }}</span></span>
                   </div>
+                  <div class="flex gap-5 ml-auto">
+                    <span class="font-medium">$ {{ item.price }}</span>
+                    <span class="text-[#A3A3A3]">{{ item.quantity }} pcs.</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="flex flex-col gap-2 ml-auto mt-15">
-              <span class="font-medium">$ {{ item.price }}</span>
-              <span class="text-[#A3A3A3] ml-auto">{{ item.quantity }} pcs.</span>
             </div>
           </div>
         </router-link>
       </div>
-      <div class="flex bg-gray-50 p-3 border-t border-gray-300">
+      <div class="flex gap-8 ml-auto p-3 border-t bg-gray-50 border-gray-300">
         <BaseButton name="Repeat Order" variant="repeatOrder" />
+        <BaseButton name="Cancel Order" variant="repeatOrder" />
       </div>
     </li>
   </TransitionGroup>

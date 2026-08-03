@@ -1,7 +1,8 @@
 import { ref } from "vue";
-import { useAuth } from "@/feature/auth/auth-composables/use-auth.ts";
-import { useDeleteProduct } from "@/feature/products/composables/use-delete-product.ts";
-import { useDeleteCheckout } from "@/feature/profile/profile-composables/use-delete-info.ts";
+import { useAuth } from "@/feature/auth/auth-composables/use.auth.ts";
+import { clearUsersForms } from "@/shared/composables/clear-forms/clear.users.ts";
+import { useDeleteProduct } from "@/feature/products/composables/use.delete.product.ts";
+import { useDeleteCheckout } from "@/feature/profile/profile-composables/use.delete.info.ts";
 
 const avatarModal = ref<boolean>(false);
 const fileInput = ref<HTMLInputElement | null>(null);
@@ -17,6 +18,7 @@ const deleteMessage = ref<string>('');
 const deleteChoice = ref<boolean>(false);
 
 const { logout, deleteAccount } = useAuth();
+const { clearUpdateUserForm } = clearUsersForms();
 const { deleteAddress, deletePayment } = useDeleteCheckout();
 const { deleteProduct, deleteProductCart, deleteFavoriteProduct, deleteOrderProducts } = useDeleteProduct();
 
@@ -39,6 +41,7 @@ export const useProfileModals = () => {
 
     const toggleConfidentialityData = () => {
         confidentialityData.value = !confidentialityData.value;
+        clearUpdateUserForm();
     }
 
     const toggleAddressesAndCards = () => {

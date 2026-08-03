@@ -1,9 +1,9 @@
 import router from "@/app/router";
 import { handler } from "@/shared//api/http.ts";
-import { useGetProducts } from "./get-products.ts";
-import { useUpdateProduct } from "./use-update-product.ts";
+import { useGetProducts } from "./get.products.ts";
+import { useUpdateProduct } from "./use.update.product.ts";
 import { useFormsErrors } from "@/shared/composables/errors/errors-middleware/forms.errors.ts";
-import { useCheckout } from "@/feature/checkout/composables/use-checkout.ts";
+import { useCheckout } from "@/feature/checkout/composables/use.checkout.ts";
 import { productsStore } from "@/shared//composables/stores/products.store.ts";
 import { useProductsModals } from "@/shared/composables/modals/products.modals.ts";
 import { productsForms } from "@/shared/composables/forms/products.forms.ts";
@@ -62,7 +62,7 @@ export const useAddProducts = () => {
                 formData.append('size', String(size))
             });
             formData.append('gender', createProductForm.value.gender);
-            formData.append('quantity', String(createProductForm.value.quantity));
+            formData.append('quantity', createProductForm.value.quantity);
             formData.append('status', 'Availability');
 
             productFiles.value.forEach((file) => {
@@ -125,7 +125,7 @@ export const useAddProducts = () => {
             clearAddToCartForm();
 
             openNotify('You have successfully added the item to your cart.',
-                'You can click the button to the left of the "X" to go to the cart.');
+                'You will now be redirected to the "Cart" page.');
             await router.push({ name: 'cart' })
         }catch(err){
             addToCartErrors(err);
@@ -138,6 +138,7 @@ export const useAddProducts = () => {
         try{
             const sourceList = type === 'cart' ? cart.value : products.value;
             const currentProduct = sourceList?.find(item => item.id === id);
+            const currentId = type === 'cart' ? currentProduct?.productId : currentProduct?.id
 
             const isFavorite = currentProduct?.favorite
             const newStatus = !isFavorite
@@ -151,7 +152,7 @@ export const useAddProducts = () => {
                     method: "POST",
                     body: JSON.stringify({
                         userId: userId,
-                        productId:currentProduct?.id,
+                        productId: currentId,
                         images: currentProduct?.images,
                         title: currentProduct?.title,
                         category: currentProduct?.category,
@@ -169,7 +170,7 @@ export const useAddProducts = () => {
                 await getFavoriteProducts();
 
                 openNotify('You have successfully added the item to your favorite.',
-                    'You can click the button to the left of the "X" to go to the favorite.');
+                    'You will now be redirected to the "Favorite" page.');
                 await router.push({ name: 'favorite' })
             }else{
                 await handler(`/favorites/${productId}`, {

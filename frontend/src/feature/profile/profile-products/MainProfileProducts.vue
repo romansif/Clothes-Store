@@ -4,23 +4,25 @@ import { errorHandler } from "@/shared/composables/errors/errors-middleware/erro
 import { useProfile } from "@/shared/composables/use.profile.ts";
 import { computed, onErrorCaptured, onMounted, watch } from "vue";
 import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { useGetProducts } from "@/feature/products/composables/get-products.ts";
-import { useProfileProducts } from "../profile-composables/use-profile-products.ts";
+import { useGetProducts } from "@/feature/products/composables/get.products.ts";
+import { useProfileProducts } from "../profile-composables/use.profile.products.ts";
 import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
 import { useProductsModals } from "@/shared/composables/modals/products.modals.ts";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
 import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors.ts";
 
-import NavBar from "../../navigation/NavBar.vue";
+import NavBar from "@/feature/navigation/NavBar.vue";
 import square from "@/app/assets/icons/square.png";
 import CartList from "./products-cart/CartList.vue";
 import CartInfo from "./products-cart/CartInfo.vue";
 import liked from "@/app/assets/icons/nav/liked.png";
-import ChoiceModal from "@/shared/ui/base-modals/ChoiceModal.vue";
-import BaseButton from "@/shared/ui/button/BaseButton.vue";
+import BaseButton from "@/shared/ui/base/BaseButton.vue";
+import empty_cart from '@/app/assets/icons/empty-cart.svg';
+import favorite_cart from '@/app/assets/icons/favorute_empty.svg';
 import check_square from "@/app/assets/icons/check-square.png";
 import FavoriteList from "./favorite-products/FavoriteList.vue";
-import Notification from "@/shared/ui/base-modals/Notification.vue";
+import ChoiceModal from "@/shared/ui/base/base-modals/ChoiceModal.vue";
+import Notification from "@/shared/ui/base/base-modals/Notification.vue";
 
 const { notify } = useProductsModals();
 const { isAgreeForm } = checkoutForms();
@@ -90,8 +92,12 @@ onMounted(async() => {
       </div>
       <div :class="isShoppingCart ? 'hidden' : 'flex flex-col xl:flex-row xl:justify-between'">
         <CartList v-if="cart.length > 0" />
-        <div v-else class="flex items-center px-105">
-          <span class="text-[#A3A3A3] text-xl">Cart is empty</span>
+        <div v-else class="flex flex-col gap-5 items-center pl-40 pt-55">
+          <img :src="empty_cart" alt="">
+          <div class="flex flex-col gap-2 items-center">
+            <span class="font-bold">Cart is empty</span>
+            <span class="text-[#A3A3A3]">It’s the perfect time to go shopping or check out this year’s new releases.</span>
+          </div>
         </div>
         <CartInfo />
       </div>
@@ -100,9 +106,13 @@ onMounted(async() => {
         <FavoriteList />
       </div>
       <div v-else :class="isFavoriteProducts? 'hidden' : 'flex justify-center py-55'">
-        <span class="text-[#A3A3A3] text-xl">
-          Favorite products addn't
-        </span>
+        <div class="flex flex-col gap-5 items-center">
+          <img :src="favorite_cart" alt="">
+          <div class="flex flex-col gap-2 items-center">
+            <span class="font-bold">Favorite is empty</span>
+            <span class="text-[#A3A3A3]">It’s the perfect time to look through the catalog and choose new clothes for the year.</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>

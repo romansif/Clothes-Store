@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useFilter } from "./composables/use-filter.ts";
-import { useGetProducts } from "../composables/get-products.ts";
+import { useFilter } from "./composables/use.filter.ts";
+import { useGetProducts } from "../composables/get.products.ts";
 import { productsStore } from "@/shared/composables/stores/products.store.ts";
 
 import square from '@/app/assets/icons/square.png'

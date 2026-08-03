@@ -1,5 +1,5 @@
 import { handler } from "@/shared//api/http.ts";
-import { useGetProfile } from "./get-profile-info.ts";
+import { useGetProfile } from "./get.profile.info.ts";
 
 const { getAddresses, getPayments } = useGetProfile();
 

@@ -2,14 +2,14 @@
 import { onMounted } from "vue";
 import { usersStore } from "@/shared/composables/stores/users.store.ts"
 import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
-import { useGetProfile } from "@/feature/profile/profile-composables/get-profile-info.ts";
+import { useGetProfile } from "@/feature/profile/profile-composables/get.profile.info.ts";
 
 import CardsList from "./cards/CardsList.vue";
-import BaseButton from "@/shared/ui/button/BaseButton.vue";
+import BaseButton from "@/shared/ui/base/BaseButton.vue";
 import AddressesList from "./addresses/AddressesList.vue";
 import icon_card from "@/app/assets/icons/icon_card.svg";
 import icon_address from "@/app/assets/icons/icon_address.svg";
-import ChoiceModal from "../../base-modals/ChoiceModal.vue";
+import ChoiceModal from "@/shared/ui/base/base-modals/ChoiceModal.vue";
 
 const { userAddresses, userPayments } = usersStore();
 const { getAddresses, getPayments } = useGetProfile();

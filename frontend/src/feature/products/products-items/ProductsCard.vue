@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useGetProducts } from "../composables/get-products.ts";
-import { useAddProducts } from "../composables/use-add-products.ts";
+import { useGetProducts } from "../composables/get.products.ts";
+import { useAddProducts } from "../composables/use.add.products.ts";
 import { useProducts } from "@/shared/composables/use.products.ts";
 import { productsStore } from "@/shared/composables/stores/products.store.ts";
 

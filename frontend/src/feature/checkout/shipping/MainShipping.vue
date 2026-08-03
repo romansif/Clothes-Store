@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { watch } from "vue";
-import { useAddCheckout } from "../composables/use-add-checkout.ts";
+import { useAddCheckout } from "../composables/use.add.checkout.ts";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
 import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors.ts";
 
 import arrow from "@/app/assets/icons/arrows/shop.svg";
-import BaseButton from "@/shared/ui/button/BaseButton.vue";
+import BaseButton from "@/shared/ui/base/BaseButton.vue";
 import ShippingMethods from "./shipping-items/ShippingMethods.vue";
 import ShippingAddress from "./shipping-items/ShippingAddress.vue";
 

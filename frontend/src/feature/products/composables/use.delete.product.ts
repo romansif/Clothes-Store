@@ -1,5 +1,5 @@
 import { handler } from "@/shared//api/http.ts";
-import { useGetProducts } from "./get-products.ts";
+import { useGetProducts } from "./get.products.ts";
 
 const { getFilteredProducts, getCartProducts, getFavoriteProducts, getOrders } = useGetProducts();
 
@@ -10,6 +10,7 @@ export const useDeleteProduct = () => {
                 method: "DELETE",
             });
             await getFilteredProducts('ALL', 'ALL');
+            window.location.reload();
         }catch(err){
             console.error(`Failed to delete the product:`, err);
         }

@@ -58,12 +58,15 @@ export const clearAuthForms = () => {
     const clearLoginForm = () => {
         loginForm.value.email = '';
         loginForm.value.password = '';
+        loginForm.value.role = '';
 
         loginFormMessages.value.emailMessage = '';
         loginFormMessages.value.passwordMessage = '';
+        loginFormMessages.value.roleMessage = '';
 
         loginFormErrors.value.emailError = false;
         loginFormErrors.value.passwordError = false;
+        loginFormErrors.value.roleError = false;
     }
 
     const clearLoginFormMessages = () => {
