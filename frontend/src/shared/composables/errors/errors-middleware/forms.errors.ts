@@ -1,12 +1,12 @@
-import { ApiError } from "../../../api/http.ts";
-import { authForms } from "@/shared/composables/forms/auth.forms.ts";
-import { userForms } from "@/shared/composables/forms/users.forms.ts";
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
-import { productsForms } from "@/shared/composables/forms/products.forms.ts";
-import { authFormsErrors } from "@/shared/composables/errors/errors-messages/auth.errors.ts";
-import { userFormsErrors } from "@/shared/composables/errors/errors-messages/users.errors.ts";
-import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors.ts";
-import { productsFormErrors } from "@/shared/composables/errors/errors-messages/products.errors.ts";
+import { ApiError } from "../../../api/http";
+import { authForms } from "@/shared/composables/forms/auth.forms";
+import { userForms } from "@/shared/composables/forms/users.forms";
+import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
+import { productsForms } from "@/shared/composables/forms/products.forms";
+import { authFormsErrors } from "@/shared/composables/errors/errors-messages/auth.errors";
+import { userFormsErrors } from "@/shared/composables/errors/errors-messages/users.errors";
+import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors";
+import { productsFormErrors } from "@/shared/composables/errors/errors-messages/products.errors";
 
 const { registerFormMessages, loginFormMessages } = authForms();
 const { registerFormErrors, loginFormErrors } = authFormsErrors();

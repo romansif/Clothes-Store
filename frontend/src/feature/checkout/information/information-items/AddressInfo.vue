@@ -1,23 +1,29 @@
 <script setup lang="ts">
 import { IMaskComponent as IMask } from "vue-imask";
-import { useCheckout } from "../../composables/use.checkout.ts";
-import { useAddCheckout } from "../../composables/use.add.checkout.ts";
-import { usersStore } from "@/shared/composables/stores/users.store.ts";
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
-import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors.ts";
-import CheckoutInput from "@/shared/ui/base/CheckoutInput.vue";
+import { checkout } from "../../composables/checkout.ts";
+import { useAddress } from "../../composables/use.address.ts";
+import { usersStore } from "@/shared/composables/stores/users.store";
+import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
+import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors";
+
+import CheckoutInput from "@/shared/ui/base/input/CheckoutInput.vue";
 
 const { postalCode } = usersStore();
-const { addAddress } = useAddCheckout();
+const { addAddress } = useAddress();
 const { information } = checkoutForms();
 const { informationErrors } = checkoutErrors();
 const { firstNamePlaceholder, lastNamePlaceholder, countryPlaceholder, statePlaceholder,
-  cityPlaceholder, addressPlaceholder, postalCodePlaceholder } = useCheckout();
+  cityPlaceholder, addressPlaceholder, postalCodePlaceholder, toggleShowSaved } = checkout();
 </script>
 
 <template>
   <form @keydown.enter="addAddress" class="flex flex-col mt-5 gap-5">
-    <label class="font-medium text-xs md:text-sm">SHIPPING ADDRESS</label>
+    <div class="flex justify-between">
+      <label class="font-medium text-xs md:text-sm">SHIPPING ADDRESS</label>
+      <span @click="toggleShowSaved" class="text-xs text-indigo-600 cursor-pointer hover:text-violet-600">
+        Show saved info
+      </span>
+    </div>
     <div class="flex flex-col gap-3">
       <input v-model="information.addressName" class="bg-[#D9D9D9]/40 border border-gray-300 transition duration-400
               hover:bg-gray-50 focus:bg-gray-50 rounded-xl outline-none px-4 py-3 text-xs placeholder:text-gray-600 w-full"

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import MainProfileProducts from "../../../feature/profile/profile-products/MainProfileProducts.vue";
+import MainProfileProducts from "@/feature/profile/MainProfileProducts.vue";
 </script>
 
 <template>

@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { useCheckout } from "../composables/use.checkout.ts";
-import { usersStore } from "@/shared/composables/stores/users.store.ts";
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
+import { checkout } from "../composables/checkout.ts";
+import { usersStore } from "@/shared/composables/stores/users.store";
+import { productsStore } from "@/shared/composables/stores/products.store";
 
 import OrderList from "./order-items/OrderList.vue";
 
 const { items } = productsStore();
 const { userPayment } = usersStore();
-const { price, totalPrice, commissionPrice } = useCheckout();
+const { price, totalPrice, commissionPrice } = checkout();
 </script>
 
 <template>

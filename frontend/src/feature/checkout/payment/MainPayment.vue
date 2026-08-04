@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { watch } from "vue";
-import { useAddCheckout } from "../composables/use.add.checkout.ts";
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
-import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors.ts";
+import { usePayment } from "@/feature/checkout/composables/use.payment.ts";
+import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
+import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors";
 
-import arrow from "@/app/assets/icons/arrows/shop.svg";
-import BaseButton from "@/shared/ui/base/BaseButton.vue";
+import arrow from "@/app/assets/icons/arrows/right-shop.svg";
+import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 import PaymentMethods from "./payment-items/PaymentMethods.vue";
 
 const { payment } = checkoutForms();
-const { addPayment } = useAddCheckout();
+const { addPayment } = usePayment();
 const { paymentErrors } = checkoutErrors();
 
 watch(() => [payment.value.cardNumber, payment.value.expiryDate, payment.value.cardCvv, payment.value.paymentMethod],

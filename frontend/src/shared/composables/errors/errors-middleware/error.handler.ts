@@ -1,7 +1,11 @@
 import { ref } from "vue";
-import { useGetProducts } from "@/feature/products/composables/get.products.ts";
+import { useProducts } from "@/feature/products/composables/use.products.ts";
+import { useCart } from "@/feature/products/composables/use.cart.ts";
+import { useFavorites } from "@/feature/products/composables/use.favorites.ts";
 
-const { getFilteredProducts, getCartProducts, getFavoriteProducts } = useGetProducts();
+const { getCartProducts } = useCart();
+const { getFilteredProducts } = useProducts();
+const { getFavoriteProducts } = useFavorites();
 
 export const errorHandler = () => {
     const componentError = ref<string | null>(null);

@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import { IMaskComponent as IMask } from "vue-imask";
-import { usePhoneForm } from "@/shared/mask-forms/use.phone.form.ts";
-import { usersStore } from "@/shared/composables/stores/users.store.ts";
-import { userForms } from "@/shared/composables/forms/users.forms.ts";
-import { useUpdateProfile } from "@/feature/profile/profile-composables/use.update.profile.ts";
-import { userFormsErrors } from "@/shared/composables/errors/errors-messages/users.errors.ts";
+import { usePhoneForm } from "@/shared/mask-forms/use.phone.form";
+import { usersStore } from "@/shared/composables/stores/users.store";
+import { userForms } from "@/shared/composables/forms/users.forms";
+import { useProfile } from "@/feature/profile/composables/use.profile.ts";
+import { userFormsErrors } from "@/shared/composables/errors/errors-messages/users.errors";
 
-import BaseButton  from "@/shared/ui/base/BaseButton.vue";
-import BaseInput from "@/shared/ui/base/BaseInput.vue";
+import BaseButton  from "@/shared/ui/base/button/BaseButton.vue";
+import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
 
 const { user } = usersStore();
 const { countries, selectedCountryCode } = usersStore();
 const { currentCountry, currentMask, changeCountry } = usePhoneForm();
-const { updateCompanyName, updatePublicPhoneAccount } = useUpdateProfile();
+const { updateCompanyName, updatePublicPhoneAccount } = useProfile();
 const { updateUserFormPublicPhoneErrors, updateUserFormCompanyNameErrors } = userFormsErrors();
 const {
   updateUserCompanyName, updateUserFormCompanyNameMessage,
@@ -23,7 +23,7 @@ const {
 <template>
   <div v-if="user.role === 'Seller'" class="flex flex-col gap-10 sm:flex-row">
     <form @keydown.enter.prevent="updateCompanyName" class="flex flex-col gap-3 w-full">
-      <label for="">Company Name</label>
+      <label>Company Name</label>
       <BaseInput v-model=updateUserCompanyName.companyName type="text" inputmode="numeric" placeholder="New Name"
           :error="updateUserFormCompanyNameErrors.companyNameError" variant="confidentialityData"
           :error-message="updateUserFormCompanyNameErrors.companyNameError ? updateUserFormCompanyNameMessage.companyNameMessage : ''"/>
@@ -32,7 +32,7 @@ const {
       </div>
     </form>
     <form @keydown.enter.prevent="updatePublicPhoneAccount" class="flex flex-col gap-3 w-full">
-      <label for="">Public Phone</label>
+      <label>Public Phone</label>
       <div class="flex gap-3">
         <select name="" id="" v-model="selectedCountryCode" @change="changeCountry"
                 class="text-xs outline-none bg-[#D9D9D9]/40 transition duration-400 border border-gray-300

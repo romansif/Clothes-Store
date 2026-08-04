@@ -1,17 +1,18 @@
 <script setup lang="ts">
 import { watch } from "vue";
-import { useProducts } from "@/shared/composables/use.products.ts";
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { useAddProducts } from "@/feature/products/composables/use.add.products.ts";
-import { useProductsModals } from "@/shared/composables/modals/products.modals.ts";
-import { productsForms } from "@/shared/composables/forms/products.forms.ts";
-import { productsFormErrors } from "@/shared/composables/errors/errors-messages/products.errors.ts";
+import { productsCover } from "@/shared/composables/product.cover.ts";
+import { productsStore } from "@/shared/composables/stores/products.store";
+import { useProducts } from "@/feature/products/composables/use.products.ts";
+import { useProductsModals } from "@/shared/composables/modals/products.modals";
+import { productsForms } from "@/shared/composables/forms/products.forms";
+import { productsFormErrors } from "@/shared/composables/errors/errors-messages/products.errors";
 
-import BaseInput from "@/shared/ui/base/BaseInput.vue";
-import close from '@/app/assets/icons/del_address_card.svg';
+import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
+import close from '@/app/assets/icons/delete-close/del_address_card.svg';
 
+const { toggleSize, toggleColor } = productsCover();
 const { createProductFormErrors } = productsFormErrors();
-const { createProduct, onFilesSelected } = useAddProducts();
+const { createProduct, onFilesSelected } = useProducts();
 const { createProductForm, moreCreateItem, createProductFormMessages } = productsForms();
 const { colors, sizes, categories, materials, genders, productsPreview } = productsStore();
 const { toggleCreateProductModal, openSelectProductCard, fileInput } = useProductsModals();
@@ -128,7 +129,7 @@ watch(() => [
                       <option v-for="gender in genders">{{ gender.gender }}</option>
                     </select>
                     <span v-if="createProductFormErrors.genderError" class="text-red-600 text-xs">
-                        {{ createProductFormMessages.genderMessage }}
+                      {{ createProductFormMessages.genderMessage }}
                     </span>
                   </div>
                 </div>
@@ -151,11 +152,11 @@ watch(() => [
                   <img v-for="size in sizes" :key="size.name" :src=size.url alt="" :class="[size.class,
                         moreCreateItem.size.includes(size.name)
                           ? 'transition duration-400 scale-120 border-black w-[60px] h-[60px]'
-                          : 'transition duration-400 hover:scale-120 w-[60px]']" @click="useProducts.toggleSize(size.name)">
+                          : 'transition duration-400 hover:scale-120 w-[60px]']" @click="toggleSize(size.name)">
                 </div>
                 <span v-if="createProductFormErrors.sizeError" class="text-red-600 text-xs">
-                      {{ createProductFormMessages.sizeMessage }}
-                  </span>
+                  {{ createProductFormMessages.sizeMessage }}
+                </span>
               </div>
             </div>
             <div class="flex flex-col gap-3">
@@ -166,10 +167,10 @@ watch(() => [
                 <div v-for="color in colors" :key="color.name" :class="[color.color,
                      moreCreateItem.color.includes(color.name)
                       ? 'transition duration-400 scale-120 border-3 border-black w-[62px] h-[62px]'
-                      : 'transition duration-400 hover:scale-120 w-[62px] h-[62px]']" @click="useProducts.toggleColor(color.name)"></div>
+                      : 'transition duration-400 hover:scale-120 w-[62px] h-[62px]']" @click="toggleColor(color.name)"></div>
               </div>
               <span v-if="createProductFormErrors.colorError" class="text-red-600 text-xs">
-                  {{ createProductFormMessages.colorMessage }}
+                {{ createProductFormMessages.colorMessage }}
               </span>
             </div>
           </div>

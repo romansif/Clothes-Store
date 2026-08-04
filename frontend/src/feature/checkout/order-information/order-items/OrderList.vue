@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
+import { productsStore } from "@/shared/composables/stores/products.store";
 
 import ProductsCard from "./ProductsCard.vue";
 

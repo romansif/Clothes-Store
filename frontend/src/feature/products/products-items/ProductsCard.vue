@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import { useGetProducts } from "../composables/get.products.ts";
-import { useAddProducts } from "../composables/use.add.products.ts";
-import { useProducts } from "@/shared/composables/use.products.ts";
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
+import { productsCover } from "@/shared/composables/product.cover.ts";
+import { useProducts } from "../composables/use.products.ts";
+import { useFavorites } from "@/feature/products/composables/use.favorites.ts";
+import { productsStore } from "@/shared/composables/stores/products.store";
 
 import like from '@/app/assets/icons/nav/like.png';
 import liked from '@/app/assets/icons/nav/liked.png';
 
 const { products } = productsStore();
-const { getProductId } = useGetProducts();
-const { toggleToFavorite } = useAddProducts();
+const { getProductId } = useProducts();
+const { productPreview } = productsCover();
+const { toggleToFavorite } = useFavorites();
 
 </script>
 
@@ -18,7 +19,7 @@ const { toggleToFavorite } = useAddProducts();
     <li @click="getProductId(product.id)" v-for="product in products" :key="product.id" class="flex flex-col flex-shrink-0">
       <div class="relative">
         <router-link :to="{ name: 'products/info' }">
-            <img :src="useProducts.productPreview.value(product.id, products)" alt="" :class="['w-full h-[180px] sm:h-[314px] xl:h-[400px]',
+            <img :src="productPreview(product.id, products)" alt="" :class="['w-full h-[180px] sm:h-[314px] xl:h-[400px]',
               product.quantity === 0 || product.status === 'Exhausted' ? 'opacity-40' : '']" />
         </router-link>
         <span v-if="product.quantity === 0 || product.status === 'Exhausted'" class="absolute top-1/2 left-1/20 text-5xl font-semibold -rotate-45">

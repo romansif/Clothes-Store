@@ -1,19 +1,20 @@
 <script setup lang="ts">
 import { IMaskComponent as IMask } from "vue-imask";
-import { usePhoneForm } from "@/shared/mask-forms/use.phone.form.ts";
-import { usersStore } from "@/shared/composables/stores/users.store.ts";
-import { useCheckout } from "@/feature/checkout/composables/use.checkout.ts";
-import { useAddCheckout } from "@/feature/checkout/composables/use.add.checkout.ts";
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
-import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors.ts";
-import CheckoutInput from "@/shared/ui/base/CheckoutInput.vue";
+import { usePhoneForm } from "@/shared/mask-forms/use.phone.form";
+import { usersStore } from "@/shared/composables/stores/users.store";
+import { checkout } from "@/feature/checkout/composables/checkout.ts";
+import { useAddress } from "@/feature/checkout/composables/use.address.ts";
+import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
+import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors";
 
+import CheckoutInput from "@/shared/ui/base/input/CheckoutInput.vue";
+
+const { addAddress } = useAddress();
 const { information } = checkoutForms();
-const { addAddress } = useAddCheckout();
 const { informationErrors } = checkoutErrors();
 const { currentMask, changeCountry } = usePhoneForm();
 const { countries, selectedCountryCode } = usersStore();
-const { emailPlaceholder, phonePlaceholder } = useCheckout();
+const { emailPlaceholder, phonePlaceholder } = checkout();
 </script>
 
 <template>

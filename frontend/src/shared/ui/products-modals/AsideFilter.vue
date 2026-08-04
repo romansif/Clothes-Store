@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useProductsModals } from "@/shared/composables/modals/products.modals.ts";
+import { useProductsModals } from "@/shared/composables/modals/products.modals";
 
 import s from "@/app/assets/icons/size/s.svg";
 import m from "@/app/assets/icons/size/m.svg";
@@ -7,7 +7,7 @@ import l from "@/app/assets/icons/size/l.svg";
 import xl from "@/app/assets/icons/size/xl.svg";
 import xs from "@/app/assets/icons/size/xs.svg";
 import xxl from "@/app/assets/icons/size/xxl.svg";
-import square from "@/app/assets/icons/square.png";
+import square from "@/app/assets/icons/squares/square.png";
 import availability from "@/app/assets/icons/arrows/arrow-up.png";
 import left_arrow from "@/app/assets/icons/arrows/left-arrow.png";
 import right_arrow from "@/app/assets/icons/arrows/right-arrow.png";
@@ -16,7 +16,7 @@ const { toggleFilterAside } = useProductsModals();
 </script>
 
 <template>
-  <section class="fixed inset-0 z-50">
+  <aside class="fixed inset-0 z-50">
     <div class="font-[Montserrat] flex flex-col h-screen bg-white px-6 py-6 sm:w-[305px] md:w-[330px]">
       <div class="flex gap-5 items-center" @click=toggleFilterAside>
         <span class="font-bold text-xl">Filters</span>
@@ -111,7 +111,7 @@ const { toggleFilterAside } = useProductsModals();
         </button>
       </div>
     </div>
-  </section>
+  </aside>
 </template>
 
 <style scoped>

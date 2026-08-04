@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import arrow from "@/app/assets/icons/arrows/shop.svg";
+import arrow from "@/app/assets/icons/arrows/right-shop.svg";
 import photo_1 from "@/app/assets/photos/home/pants.png";
 import photo_2 from "@/app/assets/photos/home/shirt.png";
-import arrow_2 from "@/app/assets/icons/arrows/back-arrow.png";
+import arrow_2 from "@/app/assets/icons/arrows/past-arrow.png";
 import arrow_3 from "@/app/assets/icons/arrows/next-arrow.png";
 </script>
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import MainMyProducts from "../../feature/products/my-products/MainMyProducts.vue";
+import MainMyProducts from "@/feature/products/my-products/MainMyProducts.vue";
 </script>
 
 <template>

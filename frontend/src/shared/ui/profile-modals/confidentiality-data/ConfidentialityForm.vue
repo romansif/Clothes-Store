@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 
-import { userForms } from "@/shared/composables/forms/users.forms.ts";
-import { useUpdateProfile } from "@/feature/profile/profile-composables/use.update.profile.ts";
-import { userFormsErrors } from "@/shared/composables/errors/errors-messages/users.errors.ts";
+import { userForms } from "@/shared/composables/forms/users.forms";
+import { useProfile } from "@/feature/profile/composables/use.profile.ts";
+import { userFormsErrors } from "@/shared/composables/errors/errors-messages/users.errors";
 
-import BaseButton  from "@/shared/ui/base/BaseButton.vue";
+import BaseButton  from "@/shared/ui/base/button/BaseButton.vue";
 import BuyerForm from "./email-phone-form/BuyerForm.vue";
 import SellerForm from "./email-phone-form/SellerForm.vue";
 import opened from '@/app/assets/icons/auth/opened.png'
 import closed from '@/app/assets/icons/auth/closed.png'
 import SellerEmailForm from "./email-phone-form/SellerEmailForm.vue";
-import BaseInput from "@/shared/ui/base/BaseInput.vue";
+import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
 
-const { updatePasswordAccount, updateNameAccount, updateSurNameAccount } = useUpdateProfile();
+const { updatePasswordAccount, updateNameAccount, updateSurNameAccount } = useProfile();
 const {
   updateUserFormPublicPhoneErrors,
   updateUserNameErrors, updateUserSurNameErrors,
@@ -79,7 +79,7 @@ const toggleNewPassword = () => {
     <div class="flex flex-col gap-5">
       <div class="flex gap-10">
         <form @keydown.enter.prevent="updateNameAccount" class="flex flex-col gap-3 w-full">
-          <label for="">Name</label>
+          <label>Name</label>
           <BaseInput v-model=updateUserName.name type="text" inputmode="numeric" placeholder="New Name"
               :error="updateUserNameErrors.nameError" variant="confidentialityData" required
               :error-message="updateUserNameErrors.nameError ? updateUserFormNameMessage.nameMessage : ''" />
@@ -88,7 +88,7 @@ const toggleNewPassword = () => {
           </div>
         </form>
         <form @keydown.enter.prevent="updateSurNameAccount" class="flex flex-col gap-3 w-full">
-          <label for="">SurName</label>
+          <label>SurName</label>
           <BaseInput v-model=updateUserSurName.surName type="text" inputmode="numeric" placeholder="New SurName"
               :error="updateUserSurNameErrors.surNameError" variant="confidentialityData" required
               :error-message="updateUserSurNameErrors.surNameError ? updateUserFormSurNameMessage.surNameMessage : ''" />

@@ -1,0 +1,32 @@
+<script setup lang="ts">
+import { computed } from "vue";
+import { usersStore } from "@/shared/composables/stores/users.store.ts";
+
+import icon_address from "@/app/assets/icons/checkout/icon_address.svg";
+import ContactInfoCard from "@/feature/checkout/information/contact-info/ContactInfoCard.vue";
+
+const { userAddresses } = usersStore();
+
+const userAddressesCity = computed(() => {
+  return userAddresses.value.some(item => 'city' in item);
+});
+</script>
+
+<template>
+  <ul v-if="userAddressesCity" class="flex flex-col overflow-y-auto no-scrollbar h-[200px] pb-4">
+    <ContactInfoCard />
+  </ul>
+  <div v-else class="flex justify-center pt-35">
+    <div class="flex flex-col items-center gap-5">
+      <img :src="icon_address" alt="" class="">
+      <div class="flex flex-col gap-2 items-center">
+        <span class="font-bold">You have no saved address</span>
+        <span class="text-[#A3A3A3]">It’s the perfect time to place your first order.</span>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+
+</style>

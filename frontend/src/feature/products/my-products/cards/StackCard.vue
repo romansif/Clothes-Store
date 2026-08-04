@@ -1,18 +1,19 @@
 <script setup lang="ts">
-import { useGetProducts } from "../../composables/get.products.ts";
-import { useAddProducts } from "../../composables/use.add.products.ts";
-import { useProducts } from "@/shared/composables/use.products.ts";
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
+import { useProducts } from "@/feature/products/composables/use.products.ts";
+import { useFavorites } from "@/feature/products/composables/use.favorites.ts";
+import { productsCover } from "@/shared/composables/product.cover.ts";
+import { productsStore } from "@/shared/composables/stores/products.store";
+import { useProfileModals } from "@/shared/composables/modals/profile.modals";
 
-import del from '@/app/assets/icons/delete.svg'
+import del from '@/app/assets/icons/delete-close/delete.svg'
 import like from '@/app/assets/icons/nav/like.png'
 import liked from '@/app/assets/icons/nav/liked.png'
-import pencil from "@/app/assets/icons/pencil.svg";
+import pencil from "@/app/assets/icons/products/pencil.svg";
 
+const { getProductId } = useProducts();
+const { toggleToFavorite } = useFavorites();
 const { stack, outOfStack } = productsStore();
-const { getProductId } = useGetProducts();
-const { toggleToFavorite } = useAddProducts();
+const { productPreview } = productsCover();
 const { toggleDeleteChoice } = useProfileModals();
 </script>
 
@@ -22,7 +23,7 @@ const { toggleDeleteChoice } = useProfileModals();
       <div class="flex flex-col">
         <div class="relative">
           <router-link :to="{ name: 'products/info' }">
-            <img :src="useProducts.productPreview.value(product.id, stack)" alt="" :class="['w-[335px] h-[314px] sm:h-[314px] xl:h-[400px]',
+            <img :src="productPreview(product.id, stack)" alt="" :class="['w-[335px] h-[314px] sm:h-[314px] xl:h-[400px]',
                 product.status === 'Availability' ? '' : 'opacity-40']">
           </router-link>
           <span v-if="product.status === 'Exhausted'" class="absolute top-1/2 left-1/20 text-5xl font-semibold -rotate-45">Out Of Stack</span>

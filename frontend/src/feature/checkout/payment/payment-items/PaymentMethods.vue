@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useCheckout } from "@/feature/checkout/composables/use.checkout.ts";
-import { useAddCheckout } from "@/feature/checkout/composables/use.add.checkout.ts";
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
-import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors.ts";
+import { checkout } from "@/feature/checkout/composables/checkout.ts";
+import { usePayment } from "@/feature/checkout/composables/use.payment.ts";
+import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
+import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors";
 
 import PaymentForm from "./PaymentForm.vue";
 import visa_pay from '@/app/assets/icons/payment/visa.png';
@@ -11,10 +11,10 @@ import apple_pay from '@/app/assets/icons/payment/applepay.png';
 import google_pay from '@/app/assets/icons/payment/googlepay.png';
 import mastercard_pay from '@/app/assets/icons/payment/mastercard.svg';
 
-const { addPayment } = useAddCheckout();
+const { addPayment } = usePayment();
 const { paymentErrors } = checkoutErrors();
 const { payment, paymentMessages } = checkoutForms();
-const { openCardForm, closeCardForm, isDebitCard } = useCheckout();
+const { openCardForm, closeCardForm, isDebitCard } = checkout();
 </script>
 
 <template>

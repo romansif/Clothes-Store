@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import { IMaskComponent as IMask } from "vue-imask";
-import { usePhoneForm } from "@/shared/mask-forms/use.phone.form.ts";
-import { usersStore } from "@/shared/composables/stores/users.store.ts";
-import { userForms } from "@/shared/composables/forms/users.forms.ts";
-import { useUpdateProfile } from "@/feature/profile/profile-composables/use.update.profile.ts";
-import { userFormsErrors } from "@/shared/composables/errors/errors-messages/users.errors.ts";
+import { usePhoneForm } from "@/shared/mask-forms/use.phone.form";
+import { usersStore } from "@/shared/composables/stores/users.store";
+import { userForms } from "@/shared/composables/forms/users.forms";
+import { useProfile } from "@/feature/profile/composables/use.profile.ts";
+import { userFormsErrors } from "@/shared/composables/errors/errors-messages/users.errors";
 
-import BaseButton  from "@/shared/ui/base/BaseButton.vue";
-import BaseInput from "@/shared/ui/base/BaseInput.vue";
+import BaseButton  from "@/shared/ui/base/button/BaseButton.vue";
+import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
 
 const { user } = usersStore();
 const { countries, selectedCountryCode } = usersStore();
-const { updatePhoneAccount, updateEmailAccount } = useUpdateProfile();
+const { updatePhoneAccount, updateEmailAccount } = useProfile();
 const { currentCountry, currentMask, changeCountry } = usePhoneForm();
 const { updateUserEmailErrors, updateUserPhoneErrors } = userFormsErrors();
 const { updateUserPhone, updateUserFormPhoneMessage, updateUserEmail, updateUserFormEmailMessage } = userForms();
@@ -20,7 +20,7 @@ const { updateUserPhone, updateUserFormPhoneMessage, updateUserEmail, updateUser
 <template>
   <div v-if="user.role === 'Buyer'" class="flex flex-col gap-10 sm:flex-row">
     <form @keydown.enter.prevent="updatePhoneAccount" class="flex flex-col gap-3 w-full">
-      <label for="">Private Phone</label>
+      <label>Private Phone</label>
       <div class="flex gap-3">
         <select name="" id="" v-model="selectedCountryCode" @change="changeCountry"
                 class="text-xs outline-none bg-[#D9D9D9]/40 transition duration-400 border border-gray-300
@@ -41,7 +41,7 @@ const { updateUserPhone, updateUserFormPhoneMessage, updateUserEmail, updateUser
       </div>
     </form>
     <form @keydown.enter.prevent="updateEmailAccount" class="flex flex-col gap-3 w-full">
-      <label for="">Email</label>
+      <label>Email</label>
       <BaseInput v-model=updateUserEmail.email type="text" inputmode="numeric" placeholder="example@mail.com"
           :error="updateUserEmailErrors.emailError" variant="confidentialityData" reqiured
           :error-message="updateUserEmailErrors.emailError ? updateUserFormEmailMessage.emailMessage : ''"/>

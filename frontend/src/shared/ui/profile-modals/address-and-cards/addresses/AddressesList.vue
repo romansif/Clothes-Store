@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { usersStore } from "@/shared/composables/stores/users.store.ts";
+import { usersStore } from "@/shared/composables/stores/users.store";
 
 import AddressesCard from "./AddressesCard.vue";
-import icon_address from "@/app/assets/icons/icon_address.svg";
+import icon_address from "@/app/assets/icons/checkout/icon_address.svg";
 
 const { userAddresses } = usersStore();
 
@@ -20,7 +20,7 @@ const userAddressesCity = computed(() => {
     <div class="flex flex-col items-center gap-5">
       <img :src="icon_address" alt="" class="">
       <div class="flex flex-col gap-2 items-center">
-        <span class="font-bold">You have no saved addresses</span>
+        <span class="font-bold">You have no saved address</span>
         <span class="text-[#A3A3A3]">It’s the perfect time to place your first order.</span>
       </div>
     </div>

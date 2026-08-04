@@ -1,5 +1,5 @@
-import { handler } from '@/shared/api/http.ts'
-import { usersStore } from "@/shared/composables/stores/users.store.ts";
+import { handler } from '@/shared/api/http'
+import { usersStore } from "@/shared/composables/stores/users.store";
 
 const { users, user } = usersStore()
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
-import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors.ts";
+import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
+import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors";
 
 const { shippingErrors } = checkoutErrors();
 const { shipping, shippingMessages } = checkoutForms();

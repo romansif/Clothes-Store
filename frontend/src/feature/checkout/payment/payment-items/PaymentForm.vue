@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { IMaskComponent as IMask } from "vue-imask";
-import { useCheckout } from "@/feature/checkout/composables/use.checkout.ts";
-import { usersStore } from "@/shared/composables/stores/users.store.ts";
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
-import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors.ts";
+import { checkout } from "@/feature/checkout/composables/checkout.ts";
+import { usersStore } from "@/shared/composables/stores/users.store";
+import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
+import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors";
 
 const { payment } = checkoutForms();
 const { cardNumberMask, expiryDateMask, cardCvv } = usersStore();
 const { paymentErrors } = checkoutErrors();
-const { cardNumberPlaceholder, expiryDatePlaceholder, cardCvvPlaceholder } = useCheckout();
+const { cardNumberPlaceholder, expiryDatePlaceholder, cardCvvPlaceholder } = checkout();
 </script>
 
 <template>

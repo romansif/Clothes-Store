@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { usersStore } from "@/shared/composables/stores/users.store.ts";
+import { usersStore } from "@/shared/composables/stores/users.store";
 
 import CardsCard from "./CardsCard.vue";
-import icon_card from "@/app/assets/icons/icon_card.svg";
+import icon_card from "@/app/assets/icons/checkout/icon_card.svg";
 
 const { userPayments } = usersStore();
 

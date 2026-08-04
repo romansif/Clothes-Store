@@ -1,11 +1,24 @@
 <script setup lang="ts">
-import { useOrderCard } from "@/shared/ui/orders/use.order.card.ts";
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { useGetProducts } from "@/feature/products/composables/get.products.ts";
+import { computed } from "vue";
+import { productsStore } from "@/shared/composables/stores/products.store";
+import { useProducts } from "@/feature/products/composables/use.products.ts";
 
 const { items } = productsStore();
-const { getProductId } = useGetProducts();
-const { productPreview } = useOrderCard();
+const { getProductId } = useProducts();
+
+const productPreview = computed(() => {
+  return(id: string) => {
+    if(!id){
+      console.log('Id не найден');
+      return;
+    }
+
+    const product = items.value?.find(p => p.id === id);
+    if(product && Array.isArray(product.images) && product.images[0]){
+      return `${import.meta.env.VITE_BASE_URL}/${product.images[0]}`;
+    }
+  }
+});
 </script>
 
 <template>

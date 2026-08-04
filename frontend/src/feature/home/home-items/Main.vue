@@ -9,7 +9,7 @@ import photo_7 from '@/app/assets/photos/home/7.png';
 import photo_8 from '@/app/assets/photos/home/8.png';
 import photo_9 from '@/app/assets/photos/home/9.png';
 import photo_10 from '@/app/assets/photos/home/10.png';
-import back_arrow from "@/app/assets/icons/arrows/back-arrow.png";
+import back_arrow from "@/app/assets/icons/arrows/past-arrow.png";
 import next_arrow from "@/app/assets/icons/arrows/next-arrow.png";
 import arrow_down from "@/app/assets/icons/arrows/arrow-down.png";
 </script>

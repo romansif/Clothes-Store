@@ -1,10 +1,12 @@
-import router from '@/app/router'
-import { handler } from "@/shared/api/http.ts"
-import { useFormsErrors } from "@/shared/composables/errors/errors-middleware/forms.errors.ts";
-import { usersStore } from "@/shared/composables/stores/users.store.ts";
-import { authForms } from "@/shared/composables/forms/auth.forms.ts";
-import { clearAuthForms } from "@/shared/composables/clear-forms/clear.auth.ts"
+import router from '@/app/router';
+import { handler } from "@/shared/api/http";
+import { authForms } from "@/shared/composables/forms/auth.forms";
+import { usersStore } from "@/shared/composables/stores/users.store";
+import { clearAuthForms } from "@/shared/composables/clear-forms/clear.auth";
+import { useFormsErrors } from "@/shared/composables/errors/errors-middleware/forms.errors";
+import { useBaseModals } from "@/shared/composables/modals/base.modals";
 
+const { loadAuth } = useBaseModals();
 const { users, user } = usersStore();
 const { registerErrors, loginErrors } = useFormsErrors();
 const { clearRegisterBuyerForm, clearRegisterSellerForm, clearRegisterFormMessages,
@@ -32,7 +34,7 @@ export const useAuth = () => {
                 )
             };
 
-            const authData = await handler('/users/register', {
+            const authData = await handler('/users/signUp', {
                 method: "POST",
                 body: JSON.stringify(requestBody),
             });
@@ -49,7 +51,8 @@ export const useAuth = () => {
 
             (role === 'Buyer' ? clearRegisterBuyerForm() : clearRegisterSellerForm());
 
-            await router.push({ path: "/profile" });
+            await loadAuth('You have successfully registered.',
+                'You will now be taken to your profile page.', 'profile')
         }catch(err){
             registerErrors(err, role)
             console.log(`Failed to register new user:`, err);
@@ -59,7 +62,7 @@ export const useAuth = () => {
     const signIn = async () => {
         clearLoginFormMessages()
         try{
-            const foundedUser = await handler('/users/login', {
+            const foundedUser = await handler('/users/signIn', {
                 method: "POST",
                 body: JSON.stringify({
                     email: loginForm.value.email,
@@ -76,8 +79,10 @@ export const useAuth = () => {
             }
             user.value = foundedUser.user
 
+            await loadAuth('You have successfully logged in.',
+                'You will now be taken to your profile page.', 'profile')
+
             clearLoginForm()
-            await router.push({ path: "/profile" })
         }catch(err){
             loginErrors(err)
             console.log(`Failed to login:`, err);
@@ -98,7 +103,7 @@ export const useAuth = () => {
             console.log(`Failed to logout:`, err);
         }finally {
             localStorage.clear()
-            await router.replace({ path: '/signIn' })
+            await router.push({ name: 'signIn' })
         }
     };
 
@@ -110,10 +115,9 @@ export const useAuth = () => {
             await handler(`/users/${userId}`, {
                 method: "DELETE",
             });
-
             localStorage.clear()
 
-            await router.push({ path: '/signIn' });
+            await router.push({ name: 'signIn' });
         }catch(err){
             console.error(`Failed to delete the user:`, err);
         }

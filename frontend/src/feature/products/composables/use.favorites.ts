@@ -1,0 +1,109 @@
+import { handler } from "@/shared//api/http";
+import { productsStore } from "@/shared/composables/stores/products.store.ts";
+import { useCart } from "@/feature/products/composables/use.cart.ts";
+import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
+import { useProducts } from "@/feature/products/composables/use.products.ts";
+
+const { getCartProducts } = useCart();
+const { openNotify } = useBaseModals();
+const { favorite, cart, products } = productsStore();
+const { getFilteredProducts, updateFavorite } = useProducts();
+
+export const useFavorites = () => {
+    const getFavoriteProducts = async () => {
+        const userId = localStorage.getItem("userId")
+        try{
+            const res = await handler(`/favorites/${userId}`, {
+                method: 'GET',
+            })
+            favorite.value = res;
+        }catch(err){
+            console.error(`Failed to get the favorite products:`, err);
+        }
+    };
+
+    const toggleToFavorite = async (id: string, type: string, productId: string) => {
+        const userId = localStorage.getItem("userId");
+        try{
+            const sourceList = type === 'cart' ? cart.value : products.value;
+            const currentProduct = sourceList?.find(item => item.id === id);
+            const currentId = type === 'cart' ? currentProduct?.productId : currentProduct?.id
+
+            const isFavorite = currentProduct?.favorite
+            const newStatus = !isFavorite
+
+            if(!currentProduct){
+                console.log('Продукт не найден')
+                return
+            }
+            if(newStatus){
+                await handler(`/favorites`, {
+                    method: "POST",
+                    body: JSON.stringify({
+                        userId: userId,
+                        productId: currentId,
+                        images: currentProduct?.images,
+                        title: currentProduct?.title,
+                        category: currentProduct?.category,
+                        material: currentProduct?.material,
+                        price: currentProduct?.price,
+                        description: currentProduct?.description,
+                        color: currentProduct?.color,
+                        size: currentProduct?.size,
+                        gender: currentProduct?.gender,
+                        quantity: currentProduct?.quantity,
+                        status: currentProduct?.status,
+                        favorite: true,
+                    })
+                });
+                await getFavoriteProducts();
+
+                await openNotify('You have successfully added the item to your favorite.',
+                    'You will now be redirected to the "Favorite" page.', 'favorite');
+            }else{
+                await handler(`/favorites/${productId}`, {
+                    method: "DELETE",
+                })
+                await getFavoriteProducts();
+            }
+
+            await updateFavorite(id, productId, newStatus);
+        }catch(err){
+            console.error(`Failed to add the favorite:`, err);
+        }
+    };
+
+    const deleteFavoriteProduct = async (id: string) => {
+        try{
+            await handler(`/favorites/${id}`, {
+                method: "DELETE",
+            });
+            await getFavoriteProducts();
+
+            await handler(`/cart/${id}`, {
+                method: "PATCH",
+                body: JSON.stringify({
+                    favorite: false,
+                })
+            });
+            await getCartProducts();
+
+            await handler(`/products/${id}`, {
+                method: "PATCH",
+                body: JSON.stringify({
+                    favorite: false,
+                })
+            })
+            await getFilteredProducts('ALL', 'ALL');
+        }catch(err){
+            console.error(`Failed to delete the favorite product:`, err);
+        }
+    };
+
+
+    return{
+        toggleToFavorite,
+        getFavoriteProducts,
+        deleteFavoriteProduct,
+    }
+}

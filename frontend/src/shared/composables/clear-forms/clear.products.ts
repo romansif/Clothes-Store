@@ -1,5 +1,5 @@
-import { productsForms } from "@/shared/composables/forms/products.forms.ts";
-import { productsFormErrors } from "@/shared/composables/errors/errors-messages/products.errors.ts";
+import { productsForms } from "@/shared/composables/forms/products.forms";
+import { productsFormErrors } from "@/shared/composables/errors/errors-messages/products.errors";
 
 const { createProductFormErrors, addCartFormErrors } = productsFormErrors();
 const { createProductForm, addToCartForm, addToCartFormMessages, moreCreateItem, createProductFormMessages, searchProductForm } = productsForms();
@@ -11,7 +11,7 @@ export const clearProductsForms = () => {
         createProductForm.value.material = ''
         createProductForm.value.description = ''
         createProductForm.value.price = ''
-        createProductForm.value.quantity = 0
+        createProductForm.value.quantity = ''
         moreCreateItem.size = []
         moreCreateItem.color = []
 

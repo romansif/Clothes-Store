@@ -20,7 +20,8 @@ export default defineConfig({
             '@/feature': fileURLToPath(new URL('./src/feature', import.meta.url)),
             '@/pages': fileURLToPath(new URL('./src/pages', import.meta.url)),
             '@/shared': fileURLToPath(new URL('./src/shared', import.meta.url)),
-        }
+        },
+        extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
     },
     server: {
         headers: {

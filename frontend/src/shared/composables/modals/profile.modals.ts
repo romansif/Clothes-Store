@@ -1,8 +1,12 @@
 import { ref } from "vue";
-import { useAuth } from "@/feature/auth/auth-composables/use.auth.ts";
-import { clearUsersForms } from "@/shared/composables/clear-forms/clear.users.ts";
-import { useDeleteProduct } from "@/feature/products/composables/use.delete.product.ts";
-import { useDeleteCheckout } from "@/feature/profile/profile-composables/use.delete.info.ts";
+import { useAuth } from "@/feature/auth/auth-composables/use.auth";
+import { clearUsersForms } from "@/shared/composables/clear-forms/clear.users";
+import { useProducts } from "@/feature/products/composables/use.products.ts";
+import { useCart } from "@/feature/products/composables/use.cart.ts";
+import { useFavorites } from "@/feature/products/composables/use.favorites.ts";
+import { useOrders } from "@/feature/products/composables/use.orders.ts";
+import { useAddress } from "@/feature/checkout/composables/use.address.ts";
+import { usePayment } from "@/feature/checkout/composables/use.payment.ts";
 
 const avatarModal = ref<boolean>(false);
 const fileInput = ref<HTMLInputElement | null>(null);
@@ -17,10 +21,14 @@ const deleteType = ref<string>('');
 const deleteMessage = ref<string>('');
 const deleteChoice = ref<boolean>(false);
 
+const { deleteProduct } = useProducts();
+const { deleteProductCart } = useCart();
+const { deleteAddress } = useAddress();
+const { deletePayment } = usePayment();
+const { deleteOrderProducts } = useOrders();
 const { logout, deleteAccount } = useAuth();
+const { deleteFavoriteProduct } = useFavorites();
 const { clearUpdateUserForm } = clearUsersForms();
-const { deleteAddress, deletePayment } = useDeleteCheckout();
-const { deleteProduct, deleteProductCart, deleteFavoriteProduct, deleteOrderProducts } = useDeleteProduct();
 
 export const useProfileModals = () => {
     const toggleAvatar = () => {
@@ -53,7 +61,6 @@ export const useProfileModals = () => {
         deleteType.value = type;
         deleteMessage.value = message;
         deleteChoice.value = !deleteChoice.value;
-        console.log('a')
     }
 
 
@@ -84,11 +91,11 @@ export const useProfileModals = () => {
                     await deleteOrderProducts(generalId.value)
                     break;
 
-                case "DELETE_SAVED_CARD":
+                case "DELETE_SAVED_ADDRESS":
                     await deleteAddress(generalId.value)
                     break;
 
-                case "DELETE_SAVED_ADDRESS":
+                case "DELETE_SAVED_CARD":
                     await deletePayment(generalId.value)
                     break;
             }

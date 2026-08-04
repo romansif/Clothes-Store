@@ -1,11 +1,10 @@
 <script setup lang="ts">
-
-import SignUpBuyer from "../../feature/auth/SignUpBuyer.vue";
+import MainSignUp from "@/feature/auth/MainSignUp.vue";
 </script>
 
 <template>
   <div class="bg-[#F5F5F5] h-screen">
-    <SignUpBuyer />
+    <MainSignUp />
   </div>
 </template>
 

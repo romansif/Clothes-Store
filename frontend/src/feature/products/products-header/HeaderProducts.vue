@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import { watch } from "vue";
-import { useFilter } from "./composables/use.filter.ts";
-import { useGetProducts } from "../composables/get.products.ts";
-import { useGetSearchedProducts } from "./composables/get.searched.ts";
-import { useProductsModals } from "@/shared/composables/modals/products.modals.ts";
-import { productsForms } from "@/shared/composables/forms/products.forms.ts";
+import { filtered } from "@/feature/products/products-header/composables/filtered.ts";
+import { useProducts } from "@/feature/products/composables/use.products.ts";
+import { useGetSearchedProducts } from "@/feature/products/products-header/composables/searched.ts";
+import { useProductsModals } from "@/shared/composables/modals/products.modals";
+import { productsForms } from "@/shared/composables/forms/products.forms";
 
-import del from '@/app/assets/icons/clean_search.svg';
+import del from '@/app/assets/icons/delete-close/clean_search.svg';
 import search from "@/app/assets/icons/nav/search.png";
 import right_arrow from '@/app/assets/icons/arrows/right-arrow.png';
 
 const { searchProductForm } = productsForms();
-const { getFilteredProducts } = useGetProducts();
+const { getFilteredProducts } = useProducts();
 const { toggleFilterAside } = useProductsModals();
-const { toggleFilter, categories, category } = useFilter();
+const { toggleFilter, categories, category } = filtered();
 const { debouncedSearch, resetSearch } = useGetSearchedProducts();
 
 watch(() => searchProductForm.value.search, async (newValue) => {
@@ -45,10 +45,10 @@ watch(() => searchProductForm.value.search, async (newValue) => {
         </div>
       </div>
       <div class="flex mt-10 relative">
-        <input v-model="searchProductForm.search" type="text" class="bg-[#D9D9D9] h-[50px] px-10 w-full placeholder:px-52
+        <input v-model="searchProductForm.search" type="text" class="bg-[#D9D9D9]/40 h-[50px] px-10 w-full placeholder:px-52
             border-none outline-none sm:placeholder:px-122 md:placeholder:px-130 lg:placeholder:px-190 xl:w-[370px]
-            xl:placeholder:px-65 transition duration-400 hover:bg-[#D9D9D9]/40 focus:bg-[#D9D9D9]/40"
-               placeholder="Search">
+            xl:placeholder:px-65 transition duration-400 hover:bg-gray-50 focus:bg-gray-50"
+               placeholder="Search" />
         <img :src=search alt="" class="absolute left-4 top-1/2 -translate-y-1/2">
         <img v-if="searchProductForm.search" @click="resetSearch" :src="del" alt="" class="w-[25px] absolute top-1/4 left-85 cursor-pointer">
       </div>

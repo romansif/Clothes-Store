@@ -1,7 +1,5 @@
-const BASE_URL = 'http://localhost:3000';
-
 import { computed, ref } from "vue";
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
+import { productsStore } from "@/shared/composables/stores/products.store";
 
 const { orders } = productsStore();
 
@@ -23,11 +21,10 @@ export const useOrderCard = () => {
 
             const product = items.value?.find(p => p.id === id);
             if(product && Array.isArray(product.images) && product.images[0]){
-                return `${BASE_URL}/${product.images[0]}`;
+                return `${import.meta.env.VITE_BASE_URL}/${product.images[0]}`;
             }
         }
     });
-
 
     const copyText = async (text: string) => {
         try{
@@ -41,7 +38,7 @@ export const useOrderCard = () => {
         }catch(err){
             console.error('Error while copying: ', err)
         }
-    }
+    };
 
     return {
         items,

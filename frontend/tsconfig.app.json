@@ -5,13 +5,12 @@
     "types": [
       "vite/client",
     ],
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@/app/*": ["src/app/*"],
-      "@/feature/*": ["src/feature/*"],
-      "@/pages/*": ["src/pages/*"],
-      "@/shared/*": ["src/shared/*"],
+      "@/*": ["./src/*"],
+      "@/app/*": ["./src/app/*"],
+      "@/feature/*": ["./src/feature/*"],
+      "@/pages/*": ["./src/pages/*"],
+      "@/shared/*": ["./src/shared/*"],
     },
 
     /* Linting */

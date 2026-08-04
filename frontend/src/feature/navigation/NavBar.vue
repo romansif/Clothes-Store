@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useRoute } from "vue-router";
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
+import { productsStore } from "@/shared/composables/stores/products.store";
 
 import cartImg from "@/app/assets/icons/nav/cart.png";
 import liked from "@/app/assets/icons/nav/favorite.png";

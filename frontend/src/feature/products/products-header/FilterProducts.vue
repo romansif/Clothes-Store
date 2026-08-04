@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useFilter } from "./composables/use.filter.ts";
-import { useGetProducts } from "../composables/get.products.ts";
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
+import { filtered } from "./composables/filtered.ts";
+import { useProducts } from "@/feature/products/composables/use.products.ts";
+import { productsStore } from "@/shared/composables/stores/products.store";
 
-import square from '@/app/assets/icons/square.png'
-import checked from '@/app/assets/icons/check-square.png'
+import square from '@/app/assets/icons/squares/square.png'
+import checked from '@/app/assets/icons/squares/check-square.png'
 import availability from '@/app/assets/icons/arrows/arrow-up.png'
 
-const { getAllProducts } = useGetProducts();
+const { getAllProducts } = useProducts();
 const { allProducts, sizes } = productsStore();
-const { toggleFilter, toggleSize, stackProducts, genders, colors } = useFilter();
+const { toggleFilter, toggleSize, stackProducts, genders, colors } = filtered();
 
 onMounted(async() => {
   await getAllProducts();

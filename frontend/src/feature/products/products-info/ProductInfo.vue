@@ -1,29 +1,27 @@
 <script setup lang="ts">
 import { watch } from "vue";
-import { useProducts } from "@/shared/composables/use.products.ts";
-import { useAddProducts } from "../composables/use.add.products.ts";
-import { useUpdateProduct } from "../composables/use.update.product.ts";
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { productsForms } from "@/shared/composables/forms/products.forms.ts";
-import { productsFormErrors } from "@/shared/composables/errors/errors-messages/products.errors.ts";
+import { productsCover } from "@/shared/composables/product.cover.ts";
 
-import plus from '@/app/assets/icons/plus.svg';
-import minus from '@/app/assets/icons/minus.svg';
+import { useCart } from "@/feature/products/composables/use.cart.ts";
+import { useFavorites } from "@/feature/products/composables/use.favorites.ts";
+import { productsStore } from "@/shared/composables/stores/products.store";
+import { productsForms } from "@/shared/composables/forms/products.forms";
+import { productsFormErrors } from "@/shared/composables/errors/errors-messages/products.errors";
+
+import plus from '@/app/assets/icons/products/plus.svg';
+import minus from '@/app/assets/icons/products/minus.svg';
 import like from '@/app/assets/icons/nav/like.png';
 import liked from '@/app/assets/icons/nav/liked.png';
-import BaseButton from "@/shared/ui/base/BaseButton.vue";
+import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 
-const { product } = productsStore()
-const { updateCartItem } = useUpdateProduct();
+const { product } = productsStore();
+const { toggleToFavorite } = useFavorites();
+const { addToCart, updateCartItem } = useCart();
 const { addCartFormErrors } = productsFormErrors();
-const { addToCart, toggleToFavorite } = useAddProducts();
+const { isAvailableColors, isAvailableSizes, isInCart } = productsCover();
 const { addToCartForm, addToCartFormMessages } = productsForms();
 
 const userId = localStorage.getItem("userId");
-
-const id = useProducts.isInCart.value?.id as string;
-const status = useProducts.isInCart.value?.status as string;
-const quantity = useProducts.isInCart.value?.quantity as number;
 
 watch(() => [addToCartForm.value.color, addToCartForm.value.size], ([color, size]) => {
   if(color){
@@ -64,7 +62,7 @@ watch(() => [addToCartForm.value.color, addToCartForm.value.size], ([color, size
           Colors
         </span>
         <div class="flex justify-between lg:gap-5">
-          <div v-for="color in (useProducts.isAvailableColors.value as any)" :key="color.name" :class="[color.color, 'w-[60px] h-[60px]',
+          <div v-for="color in (isAvailableColors as any)" :key="color.name" :class="[color.color, 'w-[60px] h-[60px]',
                 addToCartForm.color === color.name
                   ? 'scale-120 border-3 border-black'
                   : 'hover:scale-120 transition duration-400'
@@ -77,7 +75,7 @@ watch(() => [addToCartForm.value.color, addToCartForm.value.size], ([color, size
       <div class="flex flex-col gap-2">
         <span class="font-medium text-[#A3A3A3]">Size</span>
         <div class="flex justify-between lg:gap-5">
-          <img v-for="size in (useProducts.isAvailableSizes.value as any)" :key="size.name" :src=size.url alt="" :class="[size.class, 'w-[60px] h-[60px]',
+          <img v-for="size in (isAvailableSizes as any)" :key="size.name" :src=size.url alt="" :class="[size.class, 'w-[60px] h-[60px]',
                 addToCartForm.size === size.name
                   ? 'scale-120 border-black'
                   : 'hover:scale-120 transition duration-400']" @click="addToCartForm.size = size.name">
@@ -97,14 +95,14 @@ watch(() => [addToCartForm.value.color, addToCartForm.value.size], ([color, size
           ADD TO CART
         </span>
       </router-link>
-      <BaseButton @click="addToCart()" v-if="userId && product.quantity !== 0 && !useProducts.isInCart.value" name="ADD TO CART" variant="addToCart" />
+      <BaseButton @click="addToCart()" v-if="userId && product.quantity !== 0 && !isInCart" name="ADD TO CART" variant="addToCart" />
       <BaseButton v-if="userId && product.quantity === 0" name="OUT OF STACK" variant="outOfStack" />
-      <div v-if="userId && useProducts.isInCart.value" class="flex items-center gap-18">
+      <div v-if="userId && isInCart" class="flex items-center gap-18">
         <div class="flex gap-6 bg-zinc-800 py-3.5 px-3 text-lg rounded-md transition duration-300 hover:scale-108">
-          <img :src="plus" @click="updateCartItem('add', id, status)"
+          <img :src="plus" @click="updateCartItem('add', isInCart.id, isInCart.status)"
                class="bg-zinc-600 text-white px-2 w-[35px] rounded-md transition duration-300 hover:bg-zinc-400" />
-          <span class="text-white">{{ quantity }}</span>
-          <img :src="minus" @click="updateCartItem('away', id, status)"
+          <span class="text-white">{{ isInCart.quantity }}</span>
+          <img :src="minus" @click="updateCartItem('away', isInCart.id, isInCart.status)"
                class="bg-zinc-600 text-white px-2 w-[35px] rounded-md transition duration-300 hover:bg-zinc-400" />
         </div>
         <router-link :to="{ name: 'cart' }">

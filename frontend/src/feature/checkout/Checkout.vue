@@ -1,29 +1,31 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
 import { computed, onMounted } from "vue";
-import { useCheckout } from "./composables/use.checkout.ts";
-import { useGetProfile } from "../profile/profile-composables/get.profile.info.ts";
-import { useProductsModals } from "@/shared/composables/modals/products.modals.ts";
+import { checkout } from "./composables/checkout.ts";
+import { useAddress } from "@/feature/checkout/composables/use.address.ts";
+import { usePayment } from "@/feature/checkout/composables/use.payment.ts";
+import { useBaseModals } from "@/shared/composables/modals/base.modals";
 
 import MainPayment from "./payment/MainPayment.vue";
 import MainShipping from "./shipping/MainShipping.vue";
 import MainOrder from "./order-information/MainOrder.vue";
-import go_to_shop from "@/app/assets/icons/arrows/go-to-shop.png";
+import go_to_shop from "@/app/assets/icons/arrows/right-long-arrow.png";
 import MainInformation from "./information/MainInformation.vue";
 import Notification from "@/shared/ui/base/base-modals/Notification.vue";
 
 const route = useRoute();
 
-const { goBack } = useCheckout();
-const { notify } = useProductsModals();
-const { getAddress, getPayment } = useGetProfile();
+const { goBack } = checkout();
+const { notify } = useBaseModals();
+const { getAddresses } = useAddress();
+const { getPayment } = usePayment();
 
 const isPayment = computed(() =>  route.name !== 'payment');
 const isInfo = computed(() =>  route.name !== 'information');
 const isShipping = computed(() =>  route.name !== 'shipping');
 
 onMounted(async () => {
-  await getAddress();
+  await getAddresses()
   await getPayment();
 })
 </script>

@@ -1,6 +1,4 @@
-import router from '@/app/router/index.ts'
-
-export const BASE_URL = `http://localhost:3000/api`;
+import router from '@/app/router/index'
 
 export class ApiError extends Error {
     response?: {
@@ -33,10 +31,10 @@ export const handler = async <T = any>(
         credentials: 'include',
     }
 
-    const res = await fetch(`${BASE_URL}${endpoints}`, fetchOptions)
+    const res = await fetch(`${import.meta.env.VITE_BASE_API}${endpoints}`, fetchOptions)
     if(res.status === 401 && !retry){
         try{
-            const refreshRes = await fetch(`${BASE_URL}/refresh`, {
+            const refreshRes = await fetch(`${import.meta.env.VITE_BASE_API}/refresh`, {
                 method: 'POST',
                 credentials: 'include'
             })

@@ -1,5 +1,5 @@
-import { userForms } from "@/shared/composables/forms/users.forms.ts";
-import { userFormsErrors } from "@/shared/composables/errors/errors-messages/users.errors.ts";
+import { userForms } from "@/shared/composables/forms/users.forms";
+import { userFormsErrors } from "@/shared/composables/errors/errors-messages/users.errors";
 
 const {
     updateUserName, updateUserFormNameMessage,

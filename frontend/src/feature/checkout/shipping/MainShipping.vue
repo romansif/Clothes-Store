@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { watch } from "vue";
-import { useAddCheckout } from "../composables/use.add.checkout.ts";
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
-import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors.ts";
+import { usePayment } from "@/feature/checkout/composables/use.payment.ts";
+import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
+import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors";
 
-import arrow from "@/app/assets/icons/arrows/shop.svg";
-import BaseButton from "@/shared/ui/base/BaseButton.vue";
+import arrow from "@/app/assets/icons/arrows/right-shop.svg";
+import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 import ShippingMethods from "./shipping-items/ShippingMethods.vue";
 import ShippingAddress from "./shipping-items/ShippingAddress.vue";
 
 const { shipping } = checkoutForms();
-const { addShipping } = useAddCheckout();
+const { addShipping } = usePayment();
 const { shippingErrors } = checkoutErrors();
 
 watch(() => shipping.value.delivery, (delivery) => {

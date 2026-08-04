@@ -1,18 +1,22 @@
 <script setup lang="ts">
 import { watch, ref } from "vue";
-import { useAuth } from "./auth-composables/use.auth.ts";
+import { useAuth } from "./auth-composables/use.auth";
 import { GoogleSignInButton } from 'vue3-google-signin'
-import { authForms } from "@/shared/composables/forms/auth.forms.ts";
-import { clearAuthForms } from "@/shared/composables/clear-forms/clear.auth.ts";
-import { authFormsErrors } from "@/shared/composables/errors/errors-messages/auth.errors.ts";
+import { authForms } from "@/shared/composables/forms/auth.forms";
+import { clearAuthForms } from "@/shared/composables/clear-forms/clear.auth";
+import { authFormsErrors } from "@/shared/composables/errors/errors-messages/auth.errors";
+import { useBaseModals } from "@/shared/composables/modals/base.modals";
 
 import closed from "@/app/assets/icons/auth/closed.png";
 import opened from "@/app/assets/icons/auth/opened.png";
-import BaseButton from "@/shared/ui/base/BaseButton.vue";
-import maki_arrow from "@/app/assets/icons/arrows/maki--arrow.svg";
-import BaseInput from "@/shared/ui/base/BaseInput.vue";
+import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
+import maki_arrow from "@/app/assets/icons/arrows/right-short-arrow.svg";
+import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
+import Loading from "@/shared/ui/base/base-modals/Loading.vue";
+import Notification from "@/shared/ui/base/base-modals/Notification.vue";
 
 const { signIn, signOAuth } = useAuth();
+const { loading, notify } = useBaseModals();
 const { clearLoginForm } = clearAuthForms();
 const { loginFormErrors } = authFormsErrors();
 const { loginForm, loginFormMessages } = authForms();
@@ -105,8 +109,20 @@ const togglePassword = () => {
       <GoogleSignInButton theme="outline" size="large" text="signin_with" class="px-18 pt-4" @success="signOAuth"/>
     </div>
   </section>
+  <Loading v-if="loading"/>
+  <Transition>
+    <Notification v-if="notify"/>
+  </Transition>
 </template>
 
 <style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
 
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
 </style>

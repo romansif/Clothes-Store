@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 import { v4 as uuidv4 } from 'uuid'
 import bcrypt from 'bcryptjs'
-import { dbService } from "../config/db.service.js";
+import { dbService } from "#config/db.service.js";
 
 const ACCESS_SECRET = 'your_access_secret_key_123'
 const REFRESH_SECRET = 'your_refresh_secret_key_123'

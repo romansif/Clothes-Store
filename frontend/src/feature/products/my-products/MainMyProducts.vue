@@ -1,32 +1,40 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useGetProducts } from "../composables/get.products.ts";
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
+import { useProducts } from "@/feature/products/composables/use.products.ts";
+import { productsStore } from "@/shared/composables/stores/products.store";
+import { useProfileModals } from "@/shared/composables/modals/profile.modals";
+import { useBaseModals } from "@/shared/composables/modals/base.modals";
 
 import NavBar from "../../navigation/NavBar.vue";
 import OutOfStackList from "./lists/OutOfStackList.vue";
-import icon_products from "@/app/assets/icons/icon-products.svg";
+import icon_products from "@/app/assets/icons/products/icon-products.svg";
 import EditProduct from "@/shared/ui/products-modals/EditProduct.vue";
-import ChoiceModal from "@/shared/ui/base/base-modals/ChoiceModal.vue";
+import DeleteModal from "@/shared/ui/base/base-modals/DeleteModal.vue";
 import StackList from "@/feature/products/my-products/lists/StackList.vue";
+import Loading from "@/shared/ui/base/base-modals/Loading.vue";
 
-const { stack, outOfStack } = productsStore();
 const { deleteChoice } = useProfileModals();
-const { getMyStackProducts, getMyOutOfStackProducts } = useGetProducts();
+const { loading, loadData } = useBaseModals();
+const { stack, outOfStack } = productsStore();
+const { getMyStackProducts, getMyOutOfStackProducts } = useProducts();
 
 onMounted(async () => {
-  await getMyStackProducts();
-  await getMyOutOfStackProducts();
+  try{
+    await getMyStackProducts();
+    await getMyOutOfStackProducts();
+  }finally {
+    await loadData()
+  }
 })
 </script>
 
 <template>
-  <div class="xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
+  <Loading v-if="loading" />
+  <div v-else class="xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
     <NavBar />
     <div v-if="stack.length > 0 || outOfStack.length > 0" class="flex mt-10">
       <StackList />
-      <div v-if="stack.length > 0" class="border-l"></div>
+      <div v-if="stack.length > 0 && outOfStack.length > 0" class="border-l"></div>
       <OutOfStackList />
     </div>
     <div v-else class="flex justify-center pt-80">
@@ -41,7 +49,7 @@ onMounted(async () => {
     </div>
   </div>
   <Transition>
-    <ChoiceModal v-if="deleteChoice"/>
+    <DeleteModal v-if="deleteChoice"/>
   </Transition>
   <Transition>
     <EditProduct />
