@@ -24,7 +24,7 @@ export interface Product {
     status: string,
     favorite: boolean,
     checked: boolean,
-};
+}
 
 interface Orders {
     id: string,
@@ -36,30 +36,30 @@ interface Orders {
     dateCreatedOrder: string,
     timeCreatedOrder: string,
     status: string
-};
+}
 
 interface Sizes {
     name: string,
     url: string,
     class: string,
-};
+}
 
 interface Colors {
     name: string,
     color: string,
-};
+}
 
 interface Category {
     category: string,
-};
+}
 
 interface Material {
     material: string,
-};
+}
 
 interface Gender {
     gender: string,
-};
+}
 
 const sizes: Sizes[] = [
     {name: 'XS', url: xs, class: 'border-3 border-[#A3A3A3]'},
