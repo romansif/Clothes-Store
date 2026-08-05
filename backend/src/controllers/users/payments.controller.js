@@ -2,10 +2,10 @@ import { v4 as uuidv4 } from "uuid";
 import { dbService } from "#config/db.service.js";
 
 export const paymentsController = {
-    async getCheckoutPayments (req, res) {
+    async getPayments (req, res) {
         try{
             const db = dbService.readDB()
-            const payments = db.checkoutPayments.filter(item => item.userId === req.params.userId);
+            const payments = db.payments.filter(item => item.userId === req.params.userId);
             if (!payments) return res.status(404).json({ message: "Payments not found" });
 
             res.json(payments || []);
@@ -15,10 +15,10 @@ export const paymentsController = {
         }
     },
 
-    async getCheckoutPayment (req, res) {
+    async getPayment (req, res) {
         try{
             const db = dbService.readDB()
-            const payment = db.checkoutPayments.find(p => p.id === req.params.id);
+            const payment = db.payments.find(p => p.id === req.params.id);
             if (!payment) return res.status(404).json({ message: "Payment not found" });
 
             res.json(payment || {});
@@ -28,32 +28,32 @@ export const paymentsController = {
         }
     },
 
-    async addCheckoutPayments (req, res) {
+    async addPayment (req, res) {
         try{
             const db = dbService.readDB()
             const newPayment = {id:uuidv4(), userId: req.user.id, ...req.body};
 
-            db.checkoutPayments.push(newPayment)
+            db.payments.push(newPayment)
             dbService.writeDB(db);
-            res.status(201).json(newPayment)
+            res.status(201).json(newPayment);
         }catch(err){
             console.log(`Failed to add the user payment: ${newPayment}`, err)
             res.status(500).json({error: err.message})
         }
     },
 
-    async updateCheckoutPayment (req, res) {
+    async updatePayment (req, res) {
         try{
             const db = dbService.readDB();
 
-            const index = db.checkoutPayments.findIndex(item => item.id === req.params.id);
+            const index = db.payments.findIndex(item => item.id === req.params.id);
             if (index === -1) {
                 return res.status(404).json({ message: 'Payment record not found' })
             }
 
-            const currentPayment = db.checkoutPayments[index];
+            const currentPayment = db.payments[index];
             if (req.body.cardNumber) {
-                const isCardDuplicate = db.checkoutPayments.some(item =>
+                const isCardDuplicate = db.payments.some(item =>
                     item.userId === currentPayment.userId &&
                     item.cardNumber === currentPayment.cardNumber&&
                     item.id !== currentPayment.id
@@ -64,23 +64,23 @@ export const paymentsController = {
                     });
                 }
             }
-            db.checkoutPayments[index] = {...db.checkoutPayments[index], ...req.body, id: db.checkoutPayments[index].id};
+            db.payments[index] = {...db.payments[index], ...req.body, id: db.payments[index].id};
 
             dbService.writeDB(db);
-            res.status(200).json(db.checkoutPayments[index]);
+            res.status(200).json(db.payments[index]);
         }catch(err){
             console.log(`Failed to update the user payment: ${index}`, err)
             res.status(500).json({ error: err.message });
         }
     },
 
-    async deleteCheckoutPayment (req, res) {
+    async deletePayment (req, res) {
         try{
             const db = dbService.readDB();
 
-            const paymentIndex = db.checkoutPayments.findIndex(p => p.id === req.params.id);
+            const paymentIndex = db.payments.findIndex(p => p.id === req.params.id);
             if (paymentIndex === -1) return res.status(404).json({ message: "Адресс не найден" });
-            const [deleteCheckout] = db.checkoutPayments.splice(paymentIndex, 1);
+            const [deleteCheckout] = db.payments.splice(paymentIndex, 1);
 
             dbService.writeDB(db);
             res.json(deleteCheckout);

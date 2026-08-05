@@ -2,6 +2,7 @@
 import { checkout } from "@/feature/checkout/composables/checkout.ts";
 import { usePayment } from "@/feature/checkout/composables/use.payment.ts";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
+import { usersStore } from "@/shared/composables/stores/users.store.ts";
 import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors";
 
 import PaymentForm from "./PaymentForm.vue";
@@ -11,15 +12,22 @@ import apple_pay from '@/app/assets/icons/payment/applepay.png';
 import google_pay from '@/app/assets/icons/payment/googlepay.png';
 import mastercard_pay from '@/app/assets/icons/payment/mastercard.svg';
 
+const { userPayments } = usersStore();
 const { addPayment } = usePayment();
 const { paymentErrors } = checkoutErrors();
 const { payment, paymentMessages } = checkoutForms();
-const { openCardForm, closeCardForm, isDebitCard } = checkout();
+const { openCardForm, closeCardForm, toggleShowPayment, isDebitCard } = checkout();
+
 </script>
 
 <template>
   <div class="flex flex-col mt-8 gap-5">
-    <label class="font-medium text-xs md:text-sm">PAYMENT METHODS</label>
+    <div class="flex justify-between">
+      <label class="font-medium text-xs md:text-sm">PAYMENT METHODS</label>
+      <span v-if="userPayments" @click="toggleShowPayment()" class="text-xs text-indigo-600 cursor-pointer hover:text-violet-600">
+        Show saved payment
+      </span>
+    </div>
     <div class="flex gap-3">
       <form @keydown.enter="addPayment" action="" class="flex flex-col gap-6 w-full">
         <form v-if="isDebitCard === true" action="" class="flex flex-col gap-3 w-full">

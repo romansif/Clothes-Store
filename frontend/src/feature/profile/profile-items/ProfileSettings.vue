@@ -5,7 +5,9 @@ import { useProfileModals } from "@/shared/composables/modals/profile.modals";
 import { useProductsModals } from "@/shared/composables/modals/products.modals";
 
 import ProfileMenu from "./ProfileMenu.vue";
-import arrow_down from '@/app/assets/icons/arrows/arrow-down.png'
+import arrow_down from '@/app/assets/icons/arrows/arrow-down.png';
+import sun from '@/app/assets/icons/mode/sun.svg';
+import moon from '@/app/assets/icons/mode/moon.svg';
 
 const { user } = usersStore();
 const { userAvatar } = profile();
@@ -32,7 +34,15 @@ const {
            </div>
         </div>
       </div>
-      <ProfileMenu />
+      <div class="flex gap-2 ml-auto">
+        <ProfileMenu />
+        <button class="relative flex items-center justify-center w-10 h-9 rounded-xl border transition-all duration-300
+         bg-white border-neutral-200 hover:scale-105 active:scale-95 dark:bg-neutral-900 dark:border-neutral-800
+         dark:hover:bg-neutral-800 dark:hover:border-neutral-700" aria-label="Toggle theme">
+          <img :src="sun" alt="Light mode" class="w-5 h-5 transition-transform duration-300 dark:hidden rotate-0 hover:rotate-45" />
+          <img :src="moon" alt="Dark mode" class="w-5 h-5 transition-transform duration-300 hidden dark:block -rotate-12 hover:rotate-0" />
+        </button>
+      </div>
     </div>
     <div class="flex flex-col border-t border-gray-300 font-medium">
       <div @click="toggleOrderHistory" class="border-b border-gray-300 py-6 px-6 transition duration-400 hover:scale-105 cursor-pointer">

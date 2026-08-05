@@ -7,9 +7,9 @@ import { checkout } from "@/feature/checkout/composables/checkout.ts";
 
 import arrow from "@/app/assets/icons/arrows/right-shop.svg";
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
-import ContactInfo from "./information-items/ContactInfo.vue";
-import AddressInfo from "./information-items/AddressInfo.vue";
-import MainSavedInfo from "@/feature/checkout/information/MainSavedInfo.vue";
+import ContactFom from "@/feature/checkout/information/form-info/ContactFom.vue";
+import AddressForm from "@/feature/checkout/information/form-info/AddressForm.vue";
+import SavedContactInfo from "@/feature/checkout/information/SavedContactInfo.vue";
 
 const { isSavedAddress } = checkout();
 const { addInformation, useInformation } = useAddress();
@@ -48,17 +48,17 @@ watch(() => [
   if(postalCode){
     informationErrors.value.postalCodeError = false;
   }
+console.log(phone)
 });
-
 </script>
 
 <template>
   <div class="flex flex-col lg:w-[400px] xl:w-[500px]">
     <div v-if="!isSavedAddress">
-      <ContactInfo />
-      <AddressInfo />
+      <ContactFom />
+      <AddressForm />
     </div>
-    <MainSavedInfo v-if="isSavedAddress"/>
+    <SavedContactInfo v-if="isSavedAddress"/>
     <div class="relative ml-auto mt-5">
       <BaseButton v-if="!isSavedAddress" @click="addInformation" name="Shipping" variant="checkOut"/>
       <BaseButton v-if="isSavedAddress" @click="useInformation" name="Shipping" variant="checkOut"/>

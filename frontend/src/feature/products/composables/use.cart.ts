@@ -70,7 +70,7 @@ export const useCart = () => {
         try{
             const productCart = cart.value?.find(c => c.id === id);
             if(productCart){
-                if(productCart?.checked === false){
+                if(!productCart?.checked){
                     await handler(`/cart/${id}`, {
                         method: "PATCH",
                         body: JSON.stringify({

@@ -6,8 +6,8 @@ import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
 import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors";
 
 const { payment } = checkoutForms();
-const { cardNumberMask, expiryDateMask, cardCvv } = usersStore();
 const { paymentErrors } = checkoutErrors();
+const { cardNumberMask, expiryDateMask, cardCvv } = usersStore();
 const { cardNumberPlaceholder, expiryDatePlaceholder, cardCvvPlaceholder } = checkout();
 </script>
 

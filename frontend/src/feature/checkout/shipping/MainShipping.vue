@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { watch } from "vue";
-import { usePayment } from "@/feature/checkout/composables/use.payment.ts";
+import { onMounted, watch } from "vue";
+import { useShipping } from "@/feature/checkout/composables/use.shipping.ts";
+import { useAddress } from "@/feature/checkout/composables/use.address.ts";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
 import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors";
 
@@ -10,13 +11,18 @@ import ShippingMethods from "./shipping-items/ShippingMethods.vue";
 import ShippingAddress from "./shipping-items/ShippingAddress.vue";
 
 const { shipping } = checkoutForms();
-const { addShipping } = usePayment();
+const { addShipping } = useShipping();
 const { shippingErrors } = checkoutErrors();
+const { getAddress } = useAddress();
 
 watch(() => shipping.value.delivery, (delivery) => {
   if(delivery){
     shippingErrors.value.deliveryError = false;
   }
+})
+
+onMounted(async () => {
+  await getAddress();
 })
 </script>
 

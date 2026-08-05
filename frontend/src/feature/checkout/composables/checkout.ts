@@ -16,6 +16,9 @@ const isChosenAddress = ref<boolean>(false);
 const isChosenContactInfo = ref<boolean>(false);
 const informationId = ref<string>('');
 
+const isSavedPayment = ref<boolean>(false);
+const isChosenPayment = ref<boolean>(false);
+
 const { currentCountry } = usePhoneForm();
 const { updateCartChecked } = useCart();
 const { userAddress, paymentMethod } = usersStore();
@@ -34,10 +37,13 @@ export const checkout = () => {
         paymentMethod.value = method
     };
 
-    const toggleShowSaved = () => {
+    const toggleShowContact = () => {
         isSavedAddress.value = !isSavedAddress.value;
-    }
+    };
 
+    const toggleShowPayment = () => {
+        isSavedPayment.value = !isSavedPayment.value;
+    };
 
     const goBack = async () => {
         router.back();
@@ -189,7 +195,8 @@ export const checkout = () => {
         openCardForm,
         closeCardForm,
 
-        toggleShowSaved,
+        toggleShowContact,
+        toggleShowPayment,
         goBack,
 
         isDebitCard,
@@ -198,6 +205,9 @@ export const checkout = () => {
         isChosenAddress,
         isChosenContactInfo,
         informationId,
+
+        isSavedPayment,
+        isChosenPayment,
 
         price,
         commissionPrice,

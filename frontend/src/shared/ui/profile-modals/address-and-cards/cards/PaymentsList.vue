@@ -2,7 +2,7 @@
 import { computed } from "vue";
 import { usersStore } from "@/shared/composables/stores/users.store";
 
-import CardsCard from "./CardsCard.vue";
+import PaymentsCard from "./PaymentsCard.vue";
 import icon_card from "@/app/assets/icons/checkout/icon_card.svg";
 
 const { userPayments } = usersStore();
@@ -14,7 +14,7 @@ const userPaymentsCard = computed(() => {
 
 <template>
   <ul v-if="userPaymentsCard" class="flex-col overflow-y-auto no-scrollbar h-[370px] pb-4">
-    <CardsCard />
+    <PaymentsCard />
   </ul>
   <div v-else class="flex justify-center pt-35">
     <div class="flex flex-col items-center gap-5">

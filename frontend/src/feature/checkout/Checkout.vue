@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
-import { computed, onMounted } from "vue";
+import { computed } from "vue";
 import { checkout } from "./composables/checkout.ts";
-import { useAddress } from "@/feature/checkout/composables/use.address.ts";
-import { usePayment } from "@/feature/checkout/composables/use.payment.ts";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
 
 import MainPayment from "./payment/MainPayment.vue";
@@ -17,17 +15,10 @@ const route = useRoute();
 
 const { goBack } = checkout();
 const { notify } = useBaseModals();
-const { getAddresses } = useAddress();
-const { getPayment } = usePayment();
 
 const isPayment = computed(() =>  route.name !== 'payment');
 const isInfo = computed(() =>  route.name !== 'information');
 const isShipping = computed(() =>  route.name !== 'shipping');
-
-onMounted(async () => {
-  await getAddresses()
-  await getPayment();
-})
 </script>
 
 <template>

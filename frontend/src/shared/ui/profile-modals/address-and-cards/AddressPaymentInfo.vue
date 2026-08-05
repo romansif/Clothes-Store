@@ -6,7 +6,7 @@ import { useAddress } from "@/feature/checkout/composables/use.address.ts";
 import { usePayment } from "@/feature/checkout/composables/use.payment.ts";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
 
-import CardsList from "./cards/CardsList.vue";
+import PaymentsList from "./cards/PaymentsList.vue";
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 import AddressesList from "./addresses/AddressesList.vue";
 import icon_card from "@/app/assets/icons/checkout/icon_card.svg";
@@ -42,7 +42,7 @@ onMounted(async () => {
             <span class="text-sm text-[#A3A3A3]">May I see your saved delivery address and the cards you used for payment.</span>
           </div>
         </div>
-        <div v-if="userAddresses.length > 0 && userPayments.length > 0" class="flex justify-between pt-10">
+        <div v-if="userAddresses.length > 0 || userPayments.length > 0" class="flex justify-between pt-10">
           <div class="flex flex-col w-full pr-5">
             <span class="font-semibold">
               SHIPPING ADDRESSES
@@ -54,7 +54,7 @@ onMounted(async () => {
             <span class="font-semibold">
                 PAYMENT CARDS
             </span>
-            <CardsList />
+            <PaymentsList />
           </div>
         </div>
         <div v-else class="flex justify-center pt-45">

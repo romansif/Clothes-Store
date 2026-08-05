@@ -5,15 +5,15 @@ import { addressesController } from "#controllers/users/addresses.controller.js"
 
 const router = express.Router();
 
-router.get('/address/:userId', authMiddleware, addressesController.getCheckoutAddresses);
-router.get('/address/item/:id', authMiddleware, addressesController.getCheckoutAddress);
+router.get('/address/:userId', authMiddleware, addressesController.getAddresses);
+router.get('/address/item/:id', authMiddleware, addressesController.getAddress);
 
 router.post('/address', authMiddleware, validation.addAddressValidation,
-    validation.handleValidationErrors, addressesController.addCheckoutAddress);
+    validation.handleValidationErrors, addressesController.addAddress);
 
-router.post('/address/:id', authMiddleware, validation.addAddressValidation,
-    validation.handleValidationErrors, addressesController.updateCheckoutAddress);
+router.put('/address/:id', authMiddleware, validation.addAddressValidation,
+    validation.handleValidationErrors, addressesController.updateAddress);
 
-router.delete('/address/:id', authMiddleware, addressesController.deleteCheckoutAddress);
+router.delete('/address/:id', authMiddleware, addressesController.deleteAddress);
 
 export default router;

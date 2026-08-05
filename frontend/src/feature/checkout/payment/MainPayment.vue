@@ -3,13 +3,16 @@ import { watch } from "vue";
 import { usePayment } from "@/feature/checkout/composables/use.payment.ts";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
 import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors";
+import { checkout } from "@/feature/checkout/composables/checkout.ts";
 
 import arrow from "@/app/assets/icons/arrows/right-shop.svg";
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 import PaymentMethods from "./payment-items/PaymentMethods.vue";
+import SavedPaymentInfo from "@/feature/checkout/payment/SavedPaymentInfo.vue";
 
+const { isSavedPayment } = checkout();
 const { payment } = checkoutForms();
-const { addPayment } = usePayment();
+const { addPayment, useSavedPayment } = usePayment();
 const { paymentErrors } = checkoutErrors();
 
 watch(() => [payment.value.cardNumber, payment.value.expiryDate, payment.value.cardCvv, payment.value.paymentMethod],
@@ -34,9 +37,13 @@ watch(() => [payment.value.cardNumber, payment.value.expiryDate, payment.value.c
 
 <template>
   <div class="flex flex-col lg:w-[400px] xl:w-[500px]">
-    <PaymentMethods />
+    <div v-if="!isSavedPayment">
+      <PaymentMethods />
+    </div>
+    <SavedPaymentInfo v-if="isSavedPayment"/>
     <div class="relative mt-5 sm:ml-auto">
-      <BaseButton @click="addPayment" name="Pay" variant="checkOut"/>
+      <BaseButton v-if="!isSavedPayment" @click="addPayment" name="Pay" variant="checkOut"/>
+      <BaseButton v-if="isSavedPayment" @click="useSavedPayment" name="Shipping" variant="checkOut"/>
       <img :src=arrow alt="" class="h-13 absolute left-75 top-1/2 -translate-y-1/2
           sm:left-60 md:left-75 lg:left-34 xl:left-46">
     </div>

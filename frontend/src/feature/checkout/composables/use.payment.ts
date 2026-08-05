@@ -4,12 +4,14 @@ import { usersStore } from "@/shared/composables/stores/users.store";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
 import { useOrders } from "@/feature/products/composables/use.orders.ts";
+import { checkout } from "@/feature/checkout/composables/checkout.ts";
 
+const { isChosenPayment } = checkout();
 const { addOrder } = useOrders();
 const { openNotify } = useBaseModals();
-const { shipping, payment } = checkoutForms();
+const { payment } = checkoutForms();
 const { paymentMethod, userPayments, userPayment } = usersStore();
-const { createSippingErrors, createPaymentMethodError, createPaymentCardErrors } = useFormsErrors();
+const { createPaymentMethodError, createPaymentCardErrors } = useFormsErrors();
 
 export const usePayment = () => {
     const getPayments = async () => {
@@ -36,48 +38,53 @@ export const usePayment = () => {
         }
     };
 
-    const addShipping = async () => {
-        const userId = localStorage.getItem("userId");
+    const useSavedCard = (
+        cardName: string, cardNumber: string, expiryDate: string, cardCvv: number) => {
+
+        payment.value.cardName = cardName;
+        payment.value.cardNumber = cardNumber;
+        payment.value.expiryDate = expiryDate;
+        payment.value.cardCvv = String(cardCvv);
+
+        isChosenPayment.value = true;
+    }
+
+    const useSavedPayment = async () => {
         try{
-            const newShipping = await handler(`/payment`, {
-                method: "POST",
+            const cardNumber = await handler(`/payment/${paymentId.value}`, {
+                method: "PUT",
                 body: JSON.stringify({
-                    userId: userId,
-                    delivery: shipping.value.delivery,
+                    paymentMethod: 'card',
+                    cardName: payment.value.cardName,
+                    cardNumber: payment.value.cardNumber,
+                    expiryDate: payment.value.expiryDate,
+                    cardCvv: String(payment.value.cardCvv),
                 })
             });
-            userPayments.value = newShipping;
+            userPayments.value = cardNumber;
 
-            if(newShipping && newShipping.id) {
-                localStorage.setItem("paymentId", newShipping.id);
-                console.log("Успешно сохранено в localStorage!");
-            }else{
-                console.error("Ошибка: id отсутствует в ответе сервера. Проверьте контроллер бэкенда!");
-            }
-            await getPayments()
+            await addOrder();
+            await getPayments();
 
-            await openNotify('You have successfully added the shipping method.',
-                'You will now be redirected to the payment method selection page.', 'payment')
+            await openNotify('You have successfully added the payment method.',
+                'You will now be redirected to the profile page.', 'profile')
         }catch(err){
-            createSippingErrors(err)
+            await openNotify('You must choose.',
+                'Which card and payment method should we use for payment?', '')
             console.error(`Failed to register new payment:`, err);
         }
-    };
+    }
 
     const addPayment = async () => {
         const userId = localStorage.getItem("userId");
+        const paymentId =  localStorage.getItem("paymentId");
         try{
-            const paymentId = localStorage.getItem("paymentId");
-            if(!paymentId){
-                console.error("Ошибка: ID чекаута не найден в localStorage!");
-                return;
-            }
-
             if(paymentMethod.value === 'card'){
-                const cardNumber = await handler(`/payment/${paymentId}`, {
-                    method: "PUT",
+                const cardNumber = await handler(`/payment`, {
+                    method: "POST",
                     body: JSON.stringify({
                         userId: userId,
+                        paymentId: paymentId,
                         paymentMethod: 'card',
                         cardName: payment.value.cardName,
                         cardNumber: payment.value.cardNumber,
@@ -87,8 +94,8 @@ export const usePayment = () => {
                 });
                 userPayments.value = cardNumber;
             }else{
-                const paymentMethod = await handler(`/payment/${paymentId}`, {
-                    method: "PUT",
+                const paymentMethod = await handler(`/payment`, {
+                    method: "POST",
                     body: JSON.stringify({
                         paymentMethod: payment.value.paymentMethod
                     })
@@ -125,7 +132,8 @@ export const usePayment = () => {
     return {
         getPayments,
         getPayment,
-        addShipping,
+        useSavedCard,
+        useSavedPayment,
         addPayment,
         deletePayment,
     }

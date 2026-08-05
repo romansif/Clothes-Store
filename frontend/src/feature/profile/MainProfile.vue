@@ -15,7 +15,7 @@ import ChangeAvatar from "@/shared/ui/profile-modals/ChangeAvatar.vue";
 import CreateProduct from "@/shared/ui/products-modals/CreateProduct.vue";
 import OrdersModal from "@/shared/ui/orders/OrdersModal.vue";
 import CurrentOrderModal from "@/shared/ui/orders/CurrentOrderModal.vue";
-import AddressesCardsModal from "@/shared/ui/profile-modals/address-and-cards/AddressesCardsModal.vue";
+import AddressPaymentInfo from "@/shared/ui/profile-modals/address-and-cards/AddressPaymentInfo.vue";
 import ConfidentialityModal from "@/shared/ui/profile-modals/confidentiality-data/ConfidentialityModal.vue";
 
 const { user } = usersStore();
@@ -58,7 +58,7 @@ onMounted(async () => {
     <CurrentOrderModal v-if="currentOrder" />
   </Transition>
   <Transition>
-    <AddressesCardsModal v-if="addressesAndCards" />
+    <AddressPaymentInfo v-if="addressesAndCards" />
   </Transition>
   <Transition>
     <ConfidentialityModal v-if="confidentialityData" />

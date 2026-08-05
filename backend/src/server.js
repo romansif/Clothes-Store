@@ -8,6 +8,7 @@ import authRoutes from '#routes/auth.routes.js';
 
 import usersRoutes from "#routes/users/users.routes.js";
 import addressesRoutes from "#routes/users/addresses.routes.js";
+import shippingRoutes from "#routes/users/shipping.routes.js";
 import paymentsRoutes from "#routes/users/payments.routes.js";
 
 import productsRoutes from "#routes/products/products.routes.js";
@@ -36,6 +37,7 @@ app.use('/api', authRoutes);
 
 app.use('/api', usersRoutes);
 app.use('/api', addressesRoutes);
+app.use('/api', shippingRoutes);
 app.use('/api', paymentsRoutes);
 
 app.use('/api', productsRoutes);

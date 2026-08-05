@@ -32,14 +32,21 @@ interface UserCheckoutAddress {
     postalCode: number,
 }
 
-interface UserCheckoutPayment {
+interface UserCheckoutShipping {
     id: string,
     userId: string
+    paymentId: string,
     delivery: string,
+}
+
+interface UserCheckoutPayment {
+    id: string,
+    userId: string,
+    paymentId: string,
     cardName: string,
     cardNumber: string,
     expiryDate: string,
-    cardCvv: number
+    cardCvv: number,
     paymentMethod: string,
 }
 
@@ -49,6 +56,8 @@ const user = ref<User>({} as User)
 const usersAddresses = ref<UserCheckoutAddress[]>([])
 const userAddresses = ref<UserCheckoutAddress[]>([])
 const userAddress = ref<UserCheckoutAddress>({} as UserCheckoutAddress)
+
+const userShipping = ref<UserCheckoutShipping[]>([])
 
 const usersPayments = ref<UserCheckoutPayment[]>([])
 const userPayments = ref<UserCheckoutPayment[]>([])
@@ -132,6 +141,8 @@ export const usersStore = () => {
         usersAddresses,
         userAddresses,
         userAddress,
+
+        userShipping,
 
         usersPayments,
         userPayments,

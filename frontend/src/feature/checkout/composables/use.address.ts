@@ -5,11 +5,11 @@ import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
 import { checkout } from "@/feature/checkout/composables/checkout.ts";
 
-const { isChosenAddress, isChosenContactInfo, informationId } = checkout();
 const { openNotify } = useBaseModals();
 const { information } = checkoutForms();
 const { userAddresses, userAddress } = usersStore();
 const { createInformationErrors } = useFormsErrors();
+const { isChosenAddress, isChosenContactInfo, informationId } = checkout();
 
 export const useAddress = () => {
     const getAddresses = async () => {
@@ -27,10 +27,10 @@ export const useAddress = () => {
     const getAddress = async () => {
         const addressId = localStorage.getItem("addressId");
         try{
-            const addresses = await handler(`/address/item/${addressId}`, {
+            const address = await handler(`/address/item/${addressId}`, {
                 method: "GET",
             });
-            userAddress.value = addresses;
+            userAddress.value = address;
         }catch(err){
             console.error(`Failed to get the user address:`, err);
         }
@@ -63,13 +63,17 @@ export const useAddress = () => {
     const useInformation = async () => {
         const userId = localStorage.getItem("userId");
         try{
-            const newAddress = await handler(`/address/item/${informationId.value}`, {
+            if(!informationId.value){
+                console.error("Ошибка: ID чекаута не найден в localStorage!");
+                return;
+            }
+            const newAddress = await handler(`/address/${informationId.value}`, {
                 method: "PUT",
                 body: JSON.stringify({
                     userId: userId,
                     addressName: information.value.addressName,
                     email: information.value.email,
-                    phone: information.value.email,
+                    phone: information.value.phone,
                     firstName: information.value.firstName,
                     lastName: information.value.lastName,
                     country: information.value.country,
@@ -108,7 +112,7 @@ export const useAddress = () => {
                     userId: userId,
                     addressName: information.value.addressName,
                     email: information.value.email,
-                    phone: information.value.email,
+                    phone: information.value.phone,
                     firstName: information.value.firstName,
                     lastName: information.value.lastName,
                     country: information.value.country,
