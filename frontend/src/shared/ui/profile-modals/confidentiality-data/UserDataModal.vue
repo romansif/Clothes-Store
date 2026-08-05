@@ -2,7 +2,7 @@
 import { useProfileModals } from "@/shared/composables/modals/profile.modals";
 import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
 
-import UserData from "./UserData.vue";
+import ConfidentialityData from "./ConfidentialityData.vue";
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 import ConfidentialityForm from "./ConfidentialityForm.vue";
 import Notification from "@/shared/ui/base/base-modals/Notification.vue";
@@ -24,7 +24,7 @@ const { toggleConfidentialityData } = useProfileModals();
           <span class="text-sm text-[#A3A3A3]">You can view or change your confidential data.</span>
         </div>
         <div class="flex flex-col overflow-y-auto no-scrollbar h-[600px]">
-          <UserData />
+          <ConfidentialityData />
           <ConfidentialityForm />
         </div>
       </div>

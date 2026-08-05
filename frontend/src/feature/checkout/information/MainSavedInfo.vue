@@ -3,8 +3,8 @@ import { onMounted } from "vue";
 import { useAddress } from "@/feature/checkout/composables/use.address.ts";
 import { checkout } from "@/feature/checkout/composables/checkout.ts";
 
-import ContactList from "@/feature/checkout/information/saved-contact/ContactList.vue";
-import SavedAddressList from "@/feature/checkout/information/saved-address/SavedAddressList.vue";
+import ContactList from "@/feature/checkout/information/use-saved-lists/ContactList.vue";
+import SavedAddressList from "@/feature/checkout/information/use-saved-lists/SavedAddressList.vue";
 
 const { toggleShowContact } = checkout();
 const { getAddresses } = useAddress();

@@ -13,10 +13,10 @@ import ProfileNotLogin from "./profile-items/ProfileNotLogin.vue";
 import Notification from "@/shared/ui/base/base-modals/Notification.vue";
 import ChangeAvatar from "@/shared/ui/profile-modals/ChangeAvatar.vue";
 import CreateProduct from "@/shared/ui/products-modals/CreateProduct.vue";
-import OrdersModal from "@/shared/ui/orders/OrdersModal.vue";
-import CurrentOrderModal from "@/shared/ui/orders/CurrentOrderModal.vue";
+import AllOrders from "@/shared/ui/orders/AllOrders.vue";
+import CurrentOrder from "@/shared/ui/orders/CurrentOrder.vue";
 import AddressPaymentInfo from "@/shared/ui/profile-modals/address-and-cards/AddressPaymentInfo.vue";
-import ConfidentialityModal from "@/shared/ui/profile-modals/confidentiality-data/ConfidentialityModal.vue";
+import UserDataModal from "@/shared/ui/profile-modals/confidentiality-data/UserDataModal.vue";
 
 const { user } = usersStore();
 const { getUser } = useGetUsers();
@@ -52,16 +52,16 @@ onMounted(async () => {
     <CreateProduct v-if="createProduct" />
   </Transition>
   <Transition>
-    <OrdersModal v-if="orderHistory" />
+    <AllOrders v-if="orderHistory" />
   </Transition>
   <Transition>
-    <CurrentOrderModal v-if="currentOrder" />
+    <CurrentOrder v-if="currentOrder" />
   </Transition>
   <Transition>
     <AddressPaymentInfo v-if="addressesAndCards" />
   </Transition>
   <Transition>
-    <ConfidentialityModal v-if="confidentialityData" />
+    <UserDataModal v-if="confidentialityData" />
   </Transition>
   <Transition>
     <Notification v-if="notify" />

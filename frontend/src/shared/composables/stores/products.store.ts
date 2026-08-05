@@ -32,6 +32,7 @@ interface Orders {
     productId: string,
     orderItems: Product[],
     orderTotal: number,
+    delivery: string,
     dateCreatedOrder: string,
     timeCreatedOrder: string,
     status: string

@@ -45,40 +45,40 @@ const {
       </div>
     </div>
     <div class="flex flex-col border-t border-gray-300 font-medium">
-      <div @click="toggleOrderHistory" class="border-b border-gray-300 py-6 px-6 transition duration-400 hover:scale-105 cursor-pointer">
-        <div class="flex items-center justify-between">
+      <div @click="toggleOrderHistory" class="border-b border-gray-300 py-6 px-6">
+        <div class="flex items-center justify-between transition duration-400 hover:scale-105 cursor-pointer">
           <span>ALL ORDERS</span>
           <img :src="arrow_down" alt="">
         </div>
       </div>
-      <router-link :to="{ name: 'my/products' }" class="transition duration-400 hover:scale-105">
+      <router-link :to="{ name: 'my/products' }">
         <div v-if="user?.role === 'Seller'" class="border-b border-gray-300 py-6 px-6">
-          <div class="flex items-center justify-between">
+          <div class="flex items-center justify-between transition duration-400 hover:scale-105 cursor-pointer">
             <span>MY PRODUCTS</span>
             <img :src="arrow_down" alt="">
           </div>
         </div>
       </router-link>
-      <div @click="toggleCurrentOrder" class="border-b border-gray-300 py-6 px-6 transition duration-400 hover:scale-105 cursor-pointer">
-        <div class="flex items-center justify-between">
+      <div @click="toggleCurrentOrder" class="border-b border-gray-300 py-6 px-6 cursor-pointer">
+        <div class="flex items-center justify-between transition duration-400 hover:scale-105 cursor-pointer">
           <span>ACTIVE ORDERS</span>
           <img :src="arrow_down" alt="">
         </div>
       </div>
-      <div @click="toggleConfidentialityData" class="border-b border-gray-300 py-6 px-6 transition duration-400 hover:scale-105 cursor-pointer">
-        <div class="flex items-center justify-between">
+      <div @click="toggleConfidentialityData" class="border-b border-gray-300 py-6 px-6 cursor-pointer">
+        <div class="flex items-center justify-between transition duration-400 hover:scale-105 cursor-pointer">
           <span>CONFIDENTIALITY DATA</span>
           <img :src="arrow_down" alt="">
         </div>
       </div>
-      <div v-if="user?.role === 'Seller'" @click="toggleCreateProductModal" class="border-b border-gray-300 py-6 px-6 transition duration-400 hover:scale-105 cursor-pointer">
-        <div class="flex items-center justify-between">
+      <div v-if="user?.role === 'Seller'" @click="toggleCreateProductModal" class="border-b border-gray-300 py-6 px-6 cursor-pointer">
+        <div class="flex items-center justify-between transition duration-400 hover:scale-105 cursor-pointer">
           <span>CREATE PRODUCT COVER</span>
           <img :src="arrow_down" alt="">
         </div>
       </div>
-      <div @click="toggleAddressesAndCards" class="py-6 px-6 transition duration-400 hover:scale-105 cursor-pointer">
-        <div class="flex items-center justify-between">
+      <div @click="toggleAddressesAndCards" class="py-6 px-6 cursor-pointer">
+        <div class="flex items-center justify-between transition duration-400 hover:scale-105 cursor-pointer">
           <span>SAVED ADDRESSES AND CARDS</span>
           <img :src="arrow_down" alt="">
         </div>

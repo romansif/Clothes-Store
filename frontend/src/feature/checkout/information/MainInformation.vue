@@ -9,7 +9,7 @@ import arrow from "@/app/assets/icons/arrows/right-shop.svg";
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 import ContactFom from "@/feature/checkout/information/form-info/ContactFom.vue";
 import AddressForm from "@/feature/checkout/information/form-info/AddressForm.vue";
-import SavedContactInfo from "@/feature/checkout/information/SavedContactInfo.vue";
+import MainSavedInfo from "@/feature/checkout/information/MainSavedInfo.vue";
 
 const { isSavedAddress } = checkout();
 const { addInformation, useInformation } = useAddress();
@@ -58,7 +58,7 @@ console.log(phone)
       <ContactFom />
       <AddressForm />
     </div>
-    <SavedContactInfo v-if="isSavedAddress"/>
+    <MainSavedInfo v-if="isSavedAddress"/>
     <div class="relative ml-auto mt-5">
       <BaseButton v-if="!isSavedAddress" @click="addInformation" name="Shipping" variant="checkOut"/>
       <BaseButton v-if="isSavedAddress" @click="useInformation" name="Shipping" variant="checkOut"/>

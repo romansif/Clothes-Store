@@ -8,7 +8,6 @@ export default defineConfig({
   plugins: [
       VueRouter({
           routesFolder: 'src/pages',
-          dts: 'src/typed-router.d.ts'
       }),
       vue(),
       tailwindcss()

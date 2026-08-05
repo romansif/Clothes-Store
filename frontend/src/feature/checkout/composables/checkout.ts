@@ -18,6 +18,7 @@ const informationId = ref<string>('');
 
 const isSavedPayment = ref<boolean>(false);
 const isChosenPayment = ref<boolean>(false);
+const paymentId = ref<string>('');
 
 const { currentCountry } = usePhoneForm();
 const { updateCartChecked } = useCart();
@@ -208,6 +209,7 @@ export const checkout = () => {
 
         isSavedPayment,
         isChosenPayment,
+        paymentId,
 
         price,
         commissionPrice,

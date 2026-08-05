@@ -18,7 +18,7 @@ const { productPreview, copyText } = useOrderCard();
     <li v-for="order in orders" :key="order.id" class="flex flex-col">
       <div class="flex bg-gray-50 p-3 border-b border-gray-300">
         <div class="flex flex-col gap-2">
-          <div class="flex flex-col gap-4">
+          <div class="flex flex-col gap-2">
             <span class="text-xs px-2.5 py-1 rounded-md" :class="[
                     {
                       'bg-teal-50 text-teal-700 border border-teal-200 w-19.5' : order.status === 'Delivered',
@@ -45,8 +45,9 @@ const { productPreview, copyText } = useOrderCard();
           </span>
         </div>
         <div class="flex flex-col gap-2 ml-auto">
-          <span class="text-[#A3A3A3]">Order total</span>
+          <span class="text-[#A3A3A3] ml-auto">Order total</span>
           <span class="font-bold ml-auto">$ {{ order.orderTotal }}</span>
+          <span class="text-[#A3A3A3] font-normal ml-auto">{{ order.delivery }}</span>
         </div>
       </div>
       <div @click="getProductId(item.productId)" v-for="item in order.orderItems" :key="item.id">
@@ -63,14 +64,16 @@ const { productPreview, copyText } = useOrderCard();
                   </span>
                 </div>
                 <div class="flex gap-6 text-sm items-center mt-auto">
-                  <div class="px-2.5 py-0.5 bg-[#F0F0F0] rounded">
-                    Size: <span>{{ item.size }}</span>
+                  <div class="flex gap-1.5 px-2.5 py-0.5 bg-[#F0F0F0] rounded">
+                    <span>Size:</span>
+                    <span class="font-medium">{{ item.size }}</span>
                   </div>
-                  <div class="px-2.5 py-0.5 bg-[#F0F0F0] rounded">
-                    <span>Color: <span class="font-medium">{{ item.color }}</span></span>
+                  <div class="flex gap-1.5 px-2.5 py-0.5 bg-[#F0F0F0] rounded">
+                    <span>Color:</span>
+                    <span class="font-medium">{{ item.color }}</span>
                   </div>
                   <div class="flex gap-5 ml-auto">
-                    <span class="font-medium">$ {{ item.price }}</span>
+                    <span class="font-bold">$ {{ item.price }}</span>
                     <span class="text-[#A3A3A3]">{{ item.quantity }} pcs.</span>
                   </div>
                 </div>

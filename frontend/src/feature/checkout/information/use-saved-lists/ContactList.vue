@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import ContactCard from "@/feature/checkout/information/saved-contact/ContactCard.vue";
+import SavedContactItem from "@/feature/checkout/information/use-saved-items/SavedContactItem.vue";
 </script>
 
 <template>
   <ul  class="flex flex-col overflow-y-auto no-scrollbar h-[200px] pb-4">
-    <ContactCard />
+    <SavedContactItem />
   </ul>
 </template>
 

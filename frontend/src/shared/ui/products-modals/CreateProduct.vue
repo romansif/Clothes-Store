@@ -72,12 +72,13 @@ watch(() => [
               </div>
               <div class="flex flex-col gap-2 w-full">
                 <label for="" class="font-semibold uppercase tracking-wider text-xs text-[#A3A3A3]">CATEGORY</label>
-                <select v-model="createProductForm.category" :class="[`border border-gray-200 rounded-sm outline-none
-                    px-4 py-5 text-sm bg-white`, createProductFormErrors.categoryError ? 'border-red-500' : '']">
+                <select v-model="createProductForm.category" :class="[`border border-gray-300 rounded-sm outline-none
+                    px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`, createProductForm.category ? 'text-black' : '',
+                    createProductFormErrors.categoryError ? 'border-red-500' : '']">
                   <option disabled hidden value="">
-                    Chose category
+                    shirt, shoes etc.
                   </option>
-                  <option v-for="category in categories">{{ category.category }}</option>
+                  <option v-for="category in categories" class="text-black">{{ category.category }}</option>
                 </select>
                 <span v-if="createProductFormErrors.categoryError" class="text-red-600 text-xs">
                   {{ createProductFormMessages.categoryMessage }}
@@ -87,12 +88,13 @@ watch(() => [
             <div class="flex gap-5">
               <div class="flex flex-col gap-2 w-full">
                 <label for="" class="font-semibold uppercase tracking-wider text-xs text-[#A3A3A3]">MATERIAL</label>
-                <select v-model="createProductForm.material" :class="[`border border-gray-200 rounded-sm outline-none
-                    px-4 py-5 text-sm bg-white`, createProductFormErrors.materialError ? 'border-red-500' : '']">
+                <select v-model="createProductForm.material" :class="[`border border-gray-300 rounded-sm outline-none
+                    px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,  createProductForm.material ? 'text-black' : '',
+                    createProductFormErrors.materialError ? 'border-red-500' : '']">
                   <option disabled value="">
-                    Chose material
+                    cotton, wool etc.
                   </option>
-                  <option v-for="material in materials">{{ material.material }}</option>
+                  <option v-for="material in materials" class="text-black">{{ material.material }}</option>
                 </select>
                 <span v-if="createProductFormErrors.materialError" class="text-red-600 text-xs">
                   {{ createProductFormMessages.materialMessage }}
@@ -114,26 +116,27 @@ watch(() => [
                 {{ createProductFormMessages.descriptionMessage }}
               </span>
             </div>
-            <div class="flex gap-6">
+            <div class="flex gap-5">
               <div class="flex gap-3">
-                <div class="flex flex-col gap-3 w-[240px]">
+                <div class="flex flex-col gap-3 w-[239px]">
                   <label for="" class="font-semibold uppercase tracking-wider text-xs text-[#A3A3A3]">
                     Gender
                   </label>
                   <div class="flex flex-col gap-5">
-                    <select v-model="createProductForm.gender" :class="[`border border-gray-200 rounded-sm outline-none
-                          px-4 py-5 text-sm bg-white`, createProductFormErrors.genderError ? 'border-red-500' : '']">
+                    <select v-model="createProductForm.gender" :class="[`border border-gray-300 rounded-sm outline-none
+                          px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`, createProductForm.gender ? 'text-black' : '',
+                           createProductFormErrors.genderError ? 'border-red-500' : '']">
                       <option disabled value="">
-                        Chose gender
+                        man, woman, kids
                       </option>
-                      <option v-for="gender in genders">{{ gender.gender }}</option>
+                      <option v-for="gender in genders" class="text-black">{{ gender.gender }}</option>
                     </select>
                     <span v-if="createProductFormErrors.genderError" class="text-red-600 text-xs">
                       {{ createProductFormMessages.genderMessage }}
                     </span>
                   </div>
                 </div>
-                <div class="flex flex-col gap-3 w-[240px]">
+                <div class="flex flex-col gap-3 w-[239px]">
                   <label for="" class="font-semibold uppercase tracking-wider text-xs text-[#A3A3A3]">
                     Quantity
                   </label>
@@ -151,8 +154,8 @@ watch(() => [
                 <div class="flex gap-6">
                   <img v-for="size in sizes" :key="size.name" :src=size.url alt="" :class="[size.class,
                         moreCreateItem.size.includes(size.name)
-                          ? 'transition duration-400 scale-120 border-black w-[60px] h-[60px]'
-                          : 'transition duration-400 hover:scale-120 w-[60px]']" @click="toggleSize(size.name)">
+                          ? 'transition duration-400 scale-120 border-black w-[62px] h-[62px]'
+                          : 'transition duration-400 hover:scale-120 w-[62px]']" @click="toggleSize(size.name)">
                 </div>
                 <span v-if="createProductFormErrors.sizeError" class="text-red-600 text-xs">
                   {{ createProductFormMessages.sizeMessage }}
@@ -179,18 +182,23 @@ watch(() => [
         <span class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
           PREVIEW
         </span>
-          <div @click="openSelectProductCard(0)" class="bg-white h-[394px] w-[330px] transition duration-400 hover:scale-108">
+          <div @click="openSelectProductCard(0)" class="bg-white h-[394px] w-[330px] shadow-lg transition duration-400
+              hover:scale-108">
             <img v-if="productsPreview[0]" @click="openSelectProductCard(0)"
-                 :src="productsPreview[0] ? productsPreview[0] : ''" alt="" class="w-[330px] h-full transition duration-400 hover:scale-105">
+                 :src="productsPreview[0] ? productsPreview[0] : ''" alt="" class="w-[330px] h-full transition duration-400
+                 hover:scale-105">
           </div>
           <div class="flex gap-7 mt-4">
-            <div @click="openSelectProductCard(index)" v-for="index in 4" :key="index" class="bg-white h-[75px] w-[62px] transition duration-400 hover:scale-115">
-              <img @click="openSelectProductCard(index)" :src="productsPreview[index] ? productsPreview[index] : ''" alt="" class="transition duration-400 hover:scale-108">
+            <div @click="openSelectProductCard(index)" v-for="index in 4" :key="index" class="bg-white h-[75px] w-[62px] shadow-lg
+                transition duration-400 hover:scale-115">
+              <img @click="openSelectProductCard(index)" :src="productsPreview[index] ? productsPreview[index] : ''" alt=""
+                   class="transition duration-400 hover:scale-108">
             </div>
           </div>
           <div class="flex px-8">
             <div class="flex gap-10 mt-8">
-              <button @click="createProduct" class="transition duration-400 hover:scale-108 bg-black text-white rounded px-25 py-5 font-semibold text-start">
+              <button @click="createProduct" class="transition duration-400 hover:scale-108 bg-black text-white rounded
+                  px-25 py-5 font-semibold text-start">
                 Create
               </button>
             </div>

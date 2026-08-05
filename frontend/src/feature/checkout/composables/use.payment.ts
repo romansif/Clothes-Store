@@ -6,7 +6,7 @@ import { useBaseModals } from "@/shared/composables/modals/base.modals";
 import { useOrders } from "@/feature/products/composables/use.orders.ts";
 import { checkout } from "@/feature/checkout/composables/checkout.ts";
 
-const { isChosenPayment } = checkout();
+const { isChosenPayment, paymentId } = checkout();
 const { addOrder } = useOrders();
 const { openNotify } = useBaseModals();
 const { payment } = checkoutForms();
@@ -39,7 +39,9 @@ export const usePayment = () => {
     };
 
     const useSavedCard = (
-        cardName: string, cardNumber: string, expiryDate: string, cardCvv: number) => {
+        cardName: string, cardNumber: string, expiryDate: string, cardCvv: number, id: string) => {
+
+        paymentId.value = id;
 
         payment.value.cardName = cardName;
         payment.value.cardNumber = cardNumber;

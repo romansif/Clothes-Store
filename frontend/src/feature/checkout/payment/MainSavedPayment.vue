@@ -3,7 +3,7 @@ import { onMounted } from "vue";
 import { checkout } from "@/feature/checkout/composables/checkout.ts";
 import { usePayment } from "@/feature/checkout/composables/use.payment.ts";
 
-import SavedPaymentList from "@/feature/checkout/payment/saved-cards/SavedPaymentList.vue";
+import SavedPaymentList from "@/feature/checkout/payment/saved-payment/SavedPaymentList.vue";
 
 const { toggleShowPayment } = checkout();
 const { getPayments } = usePayment();

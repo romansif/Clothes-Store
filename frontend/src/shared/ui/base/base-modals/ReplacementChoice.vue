@@ -3,7 +3,7 @@ import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
 import { useOrders } from "@/feature/products/composables/use.orders.ts";
 
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
-import CancelOrderInput from "@/shared/ui/base/input/CancelOrderInput.vue";
+import ReplacementInput from "@/shared/ui/base/input/ReplacementInput.vue";
 
 const { updateOrderStatus } = useOrders();
 const { toggleOrder, cancelChoice } = useBaseModals();
@@ -19,11 +19,11 @@ const { toggleOrder, cancelChoice } = useBaseModals();
         <span class="text-sm text-[#A3A3A3]">Select the reason why you want to cancel the order.</span>
       </div>
       <div class="flex flex-col items-start gap-5">
-        <CancelOrderInput v-model="cancelChoice" name="Incorrect payment method" variant="choice" :value="'1'"/>
-        <CancelOrderInput v-model="cancelChoice" name="I entered the wrong address." variant="choice" :value="'2'"/>
-        <CancelOrderInput v-model="cancelChoice" name="I no longer need this item." variant="choice" :value="'3'"/>
-        <CancelOrderInput v-model="cancelChoice" name="Ordered it by mistake." variant="choice" :value="'4'"/>
-        <CancelOrderInput v-model="cancelChoice" name="I found a better product." variant="choice" :value="'5'"/>
+        <ReplacementInput v-model="cancelChoice" name="Incorrect payment method" variant="choice" :value="'1'"/>
+        <ReplacementInput v-model="cancelChoice" name="I entered the wrong address." variant="choice" :value="'2'"/>
+        <ReplacementInput v-model="cancelChoice" name="I no longer need this item." variant="choice" :value="'3'"/>
+        <ReplacementInput v-model="cancelChoice" name="Ordered it by mistake." variant="choice" :value="'4'"/>
+        <ReplacementInput v-model="cancelChoice" name="I found a better product." variant="choice" :value="'5'"/>
       </div>
       <div class="flex ml-auto">
         <BaseButton @click.stop="updateOrderStatus" name="REPLACEMENT" variant="profileForm" />

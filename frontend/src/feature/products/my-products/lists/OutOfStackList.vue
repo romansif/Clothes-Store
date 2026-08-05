@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import OutOfStack from "@/feature/products/my-products/cards/OutOfStackCard.vue";
+import OutOfStackItem from "@/feature/products/my-products/items/OutOfStackItem.vue";
 </script>
 
 <template>
   <ul class="font-[Montserrat] flex flex-col overflow-y-auto gap-20 max-h-[700px] no-scrollbar">
-    <OutOfStack />
+    <OutOfStackItem />
   </ul>
 </template>
 

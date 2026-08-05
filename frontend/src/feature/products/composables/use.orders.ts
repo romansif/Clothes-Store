@@ -3,10 +3,12 @@ import { useCart } from "@/feature/products/composables/use.cart";
 import { productsStore } from "@/shared/composables/stores/products.store";
 import { checkout } from "@/feature/checkout/composables/checkout.ts";
 import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
+import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
 
 const { totalPrice } = checkout();
 const { orders, items } = productsStore();
 const { updateCheckedQuantity } = useCart();
+const { shipping } = checkoutForms();
 const { cancelChoice, orderId, openNotify } = useBaseModals();
 
 export const useOrders = () => {
@@ -50,6 +52,7 @@ export const useOrders = () => {
                     userId: userId,
                     orderItems: items.value,
                     orderTotal: Number(totalPrice.value),
+                    delivery: shipping.value.delivery,
                     dateCreatedOrder: dateCreated,
                     timeCreatedOrder: time,
                     status: 'Convene'

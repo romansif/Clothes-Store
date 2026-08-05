@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import SavedPaymentCard from "@/feature/checkout/payment/saved-cards/SavedPaymentCard.vue";
+import SavedPaymentItem from "@/feature/checkout/payment/saved-payment/SavedPaymentItem.vue";
 </script>
 
 <template>
   <ul class="flex-col overflow-y-auto no-scrollbar h-[370px] pb-4">
-    <SavedPaymentCard />
+    <SavedPaymentItem />
   </ul>
 </template>
 

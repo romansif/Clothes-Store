@@ -8,7 +8,7 @@ import { checkout } from "@/feature/checkout/composables/checkout.ts";
 import arrow from "@/app/assets/icons/arrows/right-shop.svg";
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 import PaymentMethods from "./payment-items/PaymentMethods.vue";
-import SavedPaymentInfo from "@/feature/checkout/payment/SavedPaymentInfo.vue";
+import MainSavedPayment from "@/feature/checkout/payment/MainSavedPayment.vue";
 
 const { isSavedPayment } = checkout();
 const { payment } = checkoutForms();
@@ -40,7 +40,7 @@ watch(() => [payment.value.cardNumber, payment.value.expiryDate, payment.value.c
     <div v-if="!isSavedPayment">
       <PaymentMethods />
     </div>
-    <SavedPaymentInfo v-if="isSavedPayment"/>
+    <MainSavedPayment v-if="isSavedPayment"/>
     <div class="relative mt-5 sm:ml-auto">
       <BaseButton v-if="!isSavedPayment" @click="addPayment" name="Pay" variant="checkOut"/>
       <BaseButton v-if="isSavedPayment" @click="useSavedPayment" name="Shipping" variant="checkOut"/>

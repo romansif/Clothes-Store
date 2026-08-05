@@ -6,7 +6,7 @@ import { useAddress } from "@/feature/checkout/composables/use.address.ts";
 import { usePayment } from "@/feature/checkout/composables/use.payment.ts";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
 
-import PaymentsList from "./cards/PaymentsList.vue";
+import PaymentsList from "@/shared/ui/profile-modals/address-and-cards/payments/PaymentsList.vue";
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 import AddressesList from "./addresses/AddressesList.vue";
 import icon_card from "@/app/assets/icons/checkout/icon_card.svg";
