@@ -1,172 +1,211 @@
-import { v4 as uuidv4 } from 'uuid';
-import { dbService } from "#config/db.service.js";
+import { supabase } from '#lib/supbase.js'; // Укажи правильный путь к своему файлу supbase.js
 
 export const productsController = {
     async getAllProducts(req, res) {
-        try{
-            const db = dbService.readDB()
-            const products = db.products;
+        try {
+            const { data: products, error } = await supabase
+                .from('products')
+                .select('*');
 
-            res.json(products);
-        }catch(err){
-            console.log(`Failed to get the product list: ${products}`, err)
-            res.status(500).json({error: err.message})
+            if (error) throw error;
+
+            res.json(products || []);
+        } catch (err) {
+            console.error('Failed to get the product list:', err);
+            res.status(500).json({ error: err.message });
         }
     },
 
-    async getFilteredProducts (req, res) {
-        try{
-            const db = dbService.readDB();
+    async getFilteredProducts(req, res) {
+        try {
+            const { type, filter } = req.params;
+            let query = supabase
+                .from('products')
+                .select('*');
 
-            let products = db.products;
-
-            if(req.params.type) {
-                if(req.params.type === "ALL") {
-                    products = db.products
-                }else if(req.params.type === "CATEGORY"){
-                    products = products.filter(product => product.category === req.params.filter)
-                }else if(req.params.type === "SIZE") {
-                    products = products.filter(product => {
-                        if(Array.isArray(product.size)){
-                            return product.size.some(color => color === req.params.filter)
-                        }else{
-                            return false;
-                        }
-                    })
-                }else if(req.params.type === "STATUS") {
-                    products = products.filter(product => product.status === req.params.filter);
-                }else if(req.params.type === "GENDER") {
-                    products = products.filter(product => product.gender === req.params.filter);
-                }else if(req.params.type === "COLOR") {
-                    products = products.filter(product => {
-                        if(Array.isArray(product.color)){
-                            return product.color.some(color => color === req.params.filter)
-                        }else{
-                            return false;
-                        }
-                    })
+            if (type && type !== "ALL") {
+                if (type === "CATEGORY") {
+                    query = query.eq('category', filter);
+                } else if (type === "SIZE") {
+                    query = query.contains('size', [filter]);
+                } else if (type === "COLOR") {
+                    query = query.contains('color', [filter]);
+                } else if (type === "STATUS") {
+                    query = query.eq('status', filter);
+                } else if (type === "GENDER") {
+                    query = query.eq('gender', filter);
                 }
             }
 
+            const { data: products, error } = await query;
+            if (error) throw error;
+
             res.json(products || []);
-        }catch(err){
-            console.log(`Failed to get the filtered product list: ${products}`, err)
-            res.status(500).json({error: err.message})
+        } catch (err) {
+            console.error('Failed to get the filtered product list:', err);
+            res.status(500).json({ error: err.message });
         }
     },
 
-    async getSearchedProducts (req, res) {
-        try{
-            const db = dbService.readDB();
+    async getSearchedProducts(req, res) {
+        try {
+            const search = req.query.search?.trim();
 
-            let products = db.products;
-
-            const search = req.query.search?.toLowerCase();
-            if(search) {
-                products = products.filter(product => {
-                    const inTitle = product.title?.toLowerCase().includes(search) || false
-                    const inCategory = product.category?.toLowerCase().includes(search) || false
-                    const inMaterial = product.material?.toLowerCase().includes(search) || false
-                    const inDesc = product.description?.toLowerCase().includes(search) || false
-                    const inGender = product.gender?.toLowerCase().includes(search) || false
-
-                    return inTitle || inCategory || inMaterial || inDesc || inGender
-                });
+            if (!search) {
+                const { data: products, error } = await supabase.from('products').select('*');
+                if (error) throw error;
+                return res.json(products || []);
             }
 
+            const { data: products, error } = await supabase
+                .from('products')
+                .select('*')
+                .or(
+                    `title.ilike.%${search}%,` +
+                    `category.ilike.%${search}%,` +
+                    `material.ilike.%${search}%,` +
+                    `description.ilike.%${search}%,` +
+                    `gender.ilike.%${search}%`
+                );
+
+            if (error) throw error;
+
             res.json(products || []);
-        }catch(err){
-            console.log(`Failed to get the searched product list: ${products}`, err)
-            res.status(500).json({error: err.message})
+        } catch (err) {
+            console.error('Failed to get the searched product list:', err);
+            res.status(500).json({ error: err.message });
         }
     },
 
-    async getMyStackProducts (req, res) {
-        try{
-            const db = dbService.readDB();
-            const products = db.products.filter(p => p.userId === req.params.userId)
-            const stack = products.filter(p => p.status === 'Availability')
+    async getMyStackProducts(req, res) {
+        try {
+            const { userId } = req.params;
+
+            const { data: stack, error } = await supabase
+                .from('products')
+                .select('*')
+                .eq('userId', userId)
+                .eq('status', 'Availability');
+
+            if (error) throw error;
+
             res.json(stack || []);
-        }catch (err){
-            console.log(`Failed to get the product list creating by me: ${stack}`, err)
-            res.status(500).json({error: err.message})
+        } catch (err) {
+            console.error(`Failed to get my stack products:`, err);
+            res.status(500).json({ error: err.message });
         }
     },
 
-    async getMyOutOfStackProducts (req, res) {
-        try{
-            const db = dbService.readDB();
-            const products = db.products.filter(p => p.userId === req.params.userId)
-            const outOfStack = products.filter(p => p.status === 'Exhausted')
+    async getMyOutOfStackProducts(req, res) {
+        try {
+            const { userId } = req.params;
+
+            const { data: outOfStack, error } = await supabase
+                .from('products')
+                .select('*')
+                .eq('userId', userId)
+                .eq('status', 'Exhausted');
+
+            if (error) throw error;
+
             res.json(outOfStack || []);
-        }catch (err){
-            console.log(`Failed to get the product list creating by me: ${outOfStack}`, err)
-            res.status(500).json({error: err.message})
+        } catch (err) {
+            console.error(`Failed to get my out of stack products:`, err);
+            res.status(500).json({ error: err.message });
         }
     },
 
-    async getProductsById (req, res) {
-        try{
-            const db = dbService.readDB();
-            const product = db.products.find(p => p.id === req.params.id)
+    async getProductsById(req, res) {
+        try {
+            const { id } = req.params;
+
+            const { data: product, error } = await supabase
+                .from('products')
+                .select('*')
+                .eq('id', id)
+                .maybeSingle();
+
+            if (error) throw error;
 
             res.json(product || {});
-        }catch (err){
-            console.log(`Failed to get the product by id: ${product}`, err)
-            res.status(500).json({error: err.message})
+        } catch (err) {
+            console.error(`Failed to get the product by id ${req.params.id}:`, err);
+            res.status(500).json({ error: err.message });
         }
     },
 
-    async createdProduct (req, res) {
-        try{
-            const db = dbService.readDB()
-
-            if(!req.files){
-                res.status(400).json('Text fields:', req.body);
-                res.status(400).json('Files from Multer:', req.files);
-                return res.status(400).json({ message: 'Product photos are mandatory.'})
+    async createdProduct(req, res) {
+        try {
+            if (!req.files || req.files.length === 0) {
+                return res.status(400).json({ message: 'Product photos are mandatory.' });
             }
 
             const images = req.files.map(file => `uploads/products/${file.filename}`);
-            const newProduct = {id: uuidv4(), userId: req.user.id, images, ...req.body, quantity: Number(req.body.quantity), price: Number(req.body.price), favorite: false, checked: false}
 
-            db.products.push(newProduct)
-            dbService.writeDB(db)
-            res.status(201).json(newProduct);
-        }catch(err){
-            console.log(`Failed to create the product cover: ${newProduct}`, err)
-            res.status(500).json({error: err.message})
+            const newProduct = {
+                userId: req.user.id,
+                images,
+                ...req.body,
+                quantity: Number(req.body.quantity) || 0,
+                price: Number(req.body.price) || 0,
+                favorite: false,
+                checked: false
+            };
+
+            const { data: createdProduct, error } = await supabase
+                .from('products')
+                .insert([newProduct])
+                .select()
+                .single();
+
+            if (error) throw error;
+
+            res.status(201).json(createdProduct);
+        } catch (err) {
+            console.error('Failed to create the product cover:', err);
+            res.status(500).json({ error: err.message });
         }
     },
 
-    async updateProductItem (req, res) {
-        try{
-            const db = dbService.readDB()
+    async updateProductItem(req, res) {
+        try {
+            const { id } = req.params;
 
-            const index = db.products.findIndex(p => p.id === req.params.id);
-            if (index !== -1) db.products[index] = { ...db.products[index], ...req.body };
+            const { data: updatedProduct, error } = await supabase
+                .from('products')
+                .update(req.body)
+                .eq('id', id)
+                .select()
+                .maybeSingle();
 
-            dbService.writeDB(db);
-            return res.json(db.products[index] || []);
-        }catch(err){
-            console.log(`Failed to update the product cover: ${index}`, err)
-            res.status(500).json({error: err.message})
+            if (error) throw error;
+            if (!updatedProduct) return res.status(404).json({ message: 'Product not found' });
+
+            return res.json(updatedProduct);
+        } catch (err) {
+            console.error(`Failed to update the product ${req.params.id}:`, err);
+            res.status(500).json({ error: err.message });
         }
     },
 
-    async deleteProduct (req, res) {
-        try{
-            const db = dbService.readDB();
+    async deleteProduct(req, res) {
+        try {
+            const { id } = req.params;
 
-            const productIndex = db.products.findIndex(p => p.id === req.params.id);
-            if (productIndex === -1) return res.status(404).json({ message: "Product not found" });
-            const [deletedProduct] = db.products.splice(productIndex, 1);
+            const { data: deletedProduct, error } = await supabase
+                .from('products')
+                .delete()
+                .eq('id', id)
+                .select()
+                .maybeSingle();
 
-            dbService.writeDB(db);
+            if (error) throw error;
+            if (!deletedProduct) return res.status(404).json({ message: 'Product not found' });
+
             res.json(deletedProduct);
-        }catch(err){
-            console.log(`Failed to delete the product cover: ${productIndex}`, err)
-            res.status(500).json({error: err.message})
+        } catch (err) {
+            console.error(`Failed to delete the product ${req.params.id}:`, err);
+            res.status(500).json({ error: err.message });
         }
-    },
-}
+    }
+};

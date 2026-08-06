@@ -39,10 +39,13 @@ export const handler = async <T = any>(
                 credentials: 'include'
             })
             if(!refreshRes.ok){
+                await router.replace({ name: 'signIn' })
+
                 new Error('Session expired, please log in again.');
             }
 
             const data = await refreshRes.json();
+            console.log(data)
             localStorage.setItem('accessToken', data.accessToken);
 
             return handler(endpoints, options, true);
@@ -51,7 +54,7 @@ export const handler = async <T = any>(
             console.log(`Failed to restore the session:`, err);
             localStorage.clear();
 
-            await router.replace({ name: '/auth/LoginPage' })
+            await router.replace({ name: 'signIn' })
             throw err;
         }
     }

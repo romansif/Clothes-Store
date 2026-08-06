@@ -1,74 +1,105 @@
-import { v4 as uuidv4 } from "uuid";
-import { dbService } from "#config/db.service.js";
+import { supabase } from '#lib/supbase.js'; // Укажи правильный путь к своему файлу supbase.js
 
 export const ordersController = {
-    async getOrders (req, res) {
-        try{
-            const db = dbService.readDB()
-            const orders = db.orders.filter(item => item.userId === req.params.userId);
+    async getOrders(req, res) {
+        try {
+            const { userId } = req.params;
 
-            res.json(orders || {});
-        }catch (err){
-            console.error(`Failed to get the current orders:`, err);
-            res.status(500).json({error: err.message})
+            const { data: orders, error } = await supabase
+                .from('orders')
+                .select('*')
+                .eq('userId', userId);
+
+            if (error) throw error;
+
+            res.json(orders || []);
+        } catch (err) {
+            console.error('Failed to get the current orders:', err);
+            res.status(500).json({ error: err.message });
         }
     },
 
-    async getFilteredOrders (req, res) {
-        try{
-            const db = dbService.readDB()
-            const orders = db.orders.filter(item => item.userId === req.params.userId &&
-                item.status !== 'Delivered' && item.status !== 'Cancelled');
+    async getFilteredOrders(req, res) {
+        try {
+            const { userId } = req.params;
 
-            res.json(orders || {});
-        }catch (err){
-            console.error(`Failed to get the all orders:`, err);
-            res.status(500).json({error: err.message})
+            const { data: orders, error } = await supabase
+                .from('orders')
+                .select('*')
+                .eq('userId', userId)
+                .neq('status', 'Delivered')
+                .neq('status', 'Cancelled');
+
+            if (error) throw error;
+
+            res.json(orders || []);
+        } catch (err) {
+            console.error('Failed to get the filtered orders:', err);
+            res.status(500).json({ error: err.message });
         }
     },
 
-    async addOrder (req, res) {
-        try{
-            const db = dbService.readDB()
-            const newOrderItems = {id:uuidv4(), userId: req.user.id, ...req.body}
+    async addOrder(req, res) {
+        try {
+            const newOrder = {
+                userId: req.user.id,
+                ...req.body
+            };
 
-            db.orders.push(newOrderItems)
-            dbService.writeDB(db);
-            res.status(201).json({message: 'Product added to orderItems'})
-        }catch(err){
-            console.log(`Failed to create the order: ${newOrderItems}`, err)
-            res.status(500).json({error: err.message})
+            const { data: createdOrder, error } = await supabase
+                .from('orders')
+                .insert([newOrder])
+                .select()
+                .single();
+
+            if (error) throw error;
+
+            res.status(201).json({ message: 'Product added to orderItems', data: createdOrder });
+        } catch (err) {
+            console.error('Failed to create the order:', err);
+            res.status(500).json({ error: err.message });
         }
     },
 
-    async updateOrder (req, res) {
-        try{
-            const db = dbService.readDB()
+    async updateOrder(req, res) {
+        try {
+            const { id } = req.params;
 
-            const index = db.orders.findIndex(o => o.id === req.params.id)
-            if (index !== -1) db.orders[index] = { ...db.orders[index], ...req.body };
+            const { data: updatedOrder, error } = await supabase
+                .from('orders')
+                .update(req.body)
+                .eq('id', id)
+                .select()
+                .maybeSingle();
 
-            dbService.writeDB(db);
-            res.json(db.orders[index] || []);
-        }catch(err){
-            console.log(`Failed to update the order item: ${index}`, err)
-            res.status(500).json({error: err.message})
+            if (error) throw error;
+            if (!updatedOrder) return res.status(404).json({ message: 'Order not found' });
+
+            res.json(updatedOrder);
+        } catch (err) {
+            console.error(`Failed to update the order item ${req.params.id}:`, err);
+            res.status(500).json({ error: err.message });
         }
     },
 
-    async deleteOrderItems (req, res) {
-        try{
-            const db = dbService.readDB();
+    async deleteOrderItems(req, res) {
+        try {
+            const { id } = req.params;
 
-            const orderIndex = db.order.findIndex(p => p.id === req.params.id);
-            if (orderIndex === -1) return res.status(404).json({ message: "Order Product not found" });
-            const [deletedProduct] = db.products.splice(orderIndex, 1);
+            const { data: deletedOrder, error } = await supabase
+                .from('orders')
+                .delete()
+                .eq('id', id)
+                .select()
+                .maybeSingle();
 
-            dbService.writeDB(db);
-            res.json(deletedProduct);
-        }catch(err){
-            console.log(`Failed to delete the order: ${orderIndex}`, err)
-            res.status(500).json({error: err.message})
+            if (error) throw error;
+            if (!deletedOrder) return res.status(404).json({ message: 'Order Product not found' });
+
+            res.json(deletedOrder);
+        } catch (err) {
+            console.error(`Failed to delete the order ${req.params.id}:`, err);
+            res.status(500).json({ error: err.message });
         }
     }
-}
+};

@@ -4,7 +4,7 @@ import { favoritesController } from "#controllers/products/favorites.controller.
 
 const router = express.Router();
 
-router.get('/favorites/:userId', favoritesController.getFavorites);
+router.get('/favorites/:userId', authMiddleware, favoritesController.getFavorites);
 
 router.post('/favorites', authMiddleware, favoritesController.addToFavorite);
 

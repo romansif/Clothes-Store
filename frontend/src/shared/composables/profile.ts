@@ -74,9 +74,12 @@ export const profile = () => {
 
     const commissionPrice = computed(() => {
         return Math.round(orderItems.value.reduce(
-            (sum, item) => sum + item.price + 5, 0) * 0.03
+            (sum, item) => sum + item.price, 0) * 0.08
         );
+
     });
+
+    console.log(commissionPrice.value);
 
     return{
         continueToOrder,

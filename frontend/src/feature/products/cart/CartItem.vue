@@ -57,7 +57,7 @@ const refreshPage = () => {
           <img @click="toggleDeleteChoice(
               'Are you sure you want to delete this cart product?', 'DELETE_CART_ITEM', product.id)"
                :src="del" alt="" class="transition duration-400 hover:scale-120 cursor-pointer">
-          <img v-if="product.status === 'Availability'" @click="checkCartItem(product.id, product)"
+          <img v-if="product.status === 'Availability'" @click="checkCartItem(product.id, product.productId, product)"
                :src="product.checked ? check_square : square" alt="" class="cursor-pointer w-[30px] transition duration-400 hover:scale-120">
         </div>
         <div class="flex flex-col gap-4">

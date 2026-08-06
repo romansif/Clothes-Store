@@ -66,31 +66,31 @@ export const useCart = () => {
         }
     };
 
-    const checkCartItem = async (id: string, product: any) => {
+    const checkCartItem = async (id: string, productId: string, product: any) => {
         try{
             const productCart = cart.value?.find(c => c.id === id);
             if(productCart){
                 if(!productCart?.checked){
-                    await handler(`/cart/${id}`, {
+                    await handler(`/cart/${productId}`, {
                         method: "PATCH",
                         body: JSON.stringify({
                             checked: true
                         })
                     });
-                    await handler(`/products/${id}`, {
+                    await handler(`/products/${productId}`, {
                         method: "PATCH",
                         body: JSON.stringify({
                             checked: true
                         })
                     });
                 }else{
-                    await handler(`/cart/${id}`, {
+                    await handler(`/cart/${productId}`, {
                         method: "PATCH",
                         body: JSON.stringify({
                             checked: false
                         })
                     });
-                    await handler(`/products/${id}`, {
+                    await handler(`/products/${productId}`, {
                         method: "PATCH",
                         body: JSON.stringify({
                             checked: false
@@ -196,43 +196,42 @@ export const useCart = () => {
     };
 
     const updateCheckedQuantity = async () => {
-        const userId = localStorage.getItem("userId");
+        const checkedItems = cart.value.filter((item: any) => item.checked === true);
+        if (!Array.isArray(checkedItems)) {
+            console.warn('Корзина пуста или пришел не массив');
+            return;
+        }
+        console.log(checkedItems);
         try{
-            const cartItems = await handler(`/cart/${userId}`, {
-                method: "GET"
-            })
-            const checkedItems = cartItems.filter((item: any) => item.checked === true);
-
             for(const item of checkedItems) {
                 const product = products.value?.find(
                     p => p.id === item.productId
                 );
-                if(!product) {
-                    console.log('Товар в корзине или в каталоге не найден')
-                    return
+
+                if(product) {
+                    const currentQuantity = Number(product?.quantity);
+                    const cartQuantity = Number(item?.quantity);
+                    const newQuantity = currentQuantity - cartQuantity;
+
+                    const updatePayload: Record<string, any> = {quantity: newQuantity}
+
+                    if(newQuantity === 0){
+                        updatePayload.status = "Exhausted";
+                        await deleteProductCart(item.id);
+                    }
+                    await handler(`/products/${product?.id}`, {
+                        method: "PATCH",
+                        body: JSON.stringify(updatePayload)
+                    });
+                    await handler(`/favorites/${product?.id}`, {
+                        method: "PATCH",
+                        body: JSON.stringify(updatePayload)
+                    });
+                }else{
+                    console.log(`Товар в корзине c id=${item.productId} или в каталоге не найден`)
                 }
-
-                const currentQuantity = Number(product?.quantity);
-                const cartQuantity = Number(item?.quantity);
-                const newQuantity = currentQuantity - cartQuantity;
-
-                const updatePayload: Record<string, any> = {quantity: newQuantity}
-
-                if(newQuantity === 0){
-                    updatePayload.status = "Exhausted";
-                }
-                await handler(`/products/${product?.id}`, {
-                    method: "PATCH",
-                    body: JSON.stringify(updatePayload)
-                });
-                await handler(`/favorites/${product?.id}`, {
-                    method: "PATCH",
-                    body: JSON.stringify(updatePayload)
-                });
-
-                await deleteProductCart(item.id);
+                localStorage.removeItem("ordersItem");
             }
-            localStorage.removeItem("ordersItem");
         }catch(err){
             console.error(`Failed to update the status or quantity:`, err);
         }

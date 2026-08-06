@@ -22,7 +22,7 @@ export const useGetSearchedProducts = () => {
         await getSearchedProducts(products);
 
         return products;
-    }, 300)
+    }, 200)
 
     const resetSearch = () => {
         searchProductForm.value.search = "";

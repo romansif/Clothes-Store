@@ -18,14 +18,12 @@ export const useBaseModals = () => {
     const loadData = async () => {
         loading.value = true
 
-        await delay(500)
         loading.value = false
     };
 
     const loadAuth = async (title: string, message: string, name: string) => {
         loading.value = true
 
-        await delay(1500)
         loading.value = false
 
         await openNotify(title, message, name)
@@ -38,7 +36,7 @@ export const useBaseModals = () => {
 
         notify.value = true;
 
-        await delay(2000)
+        await delay(700)
 
         notify.value = false;
         notifyTitle.value = '';

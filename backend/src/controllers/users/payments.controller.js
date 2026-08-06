@@ -1,92 +1,135 @@
-import { v4 as uuidv4 } from "uuid";
-import { dbService } from "#config/db.service.js";
+import { supabase } from '#lib/supbase.js'; // Укажи правильный путь к своему файлу supbase.js
 
 export const paymentsController = {
-    async getPayments (req, res) {
-        try{
-            const db = dbService.readDB()
-            const payments = db.payments.filter(item => item.userId === req.params.userId);
-            if (!payments) return res.status(404).json({ message: "Payments not found" });
+    async getPayments(req, res) {
+        try {
+            const { userId } = req.params;
+
+            const { data: payments, error } = await supabase
+                .from('payments')
+                .select('*')
+                .eq('userId', userId);
+
+            if (error) throw error;
 
             res.json(payments || []);
-        }catch(err){
-            console.log(`Failed to get the user payments: ${payments}`, err)
-            res.status(500).json({error: err.message})
-        }
-    },
-
-    async getPayment (req, res) {
-        try{
-            const db = dbService.readDB()
-            const payment = db.payments.find(p => p.id === req.params.id);
-            if (!payment) return res.status(404).json({ message: "Payment not found" });
-
-            res.json(payment || {});
-        }catch(err){
-            console.log(`Failed to get the user payment: ${payment}`, err)
-            res.status(500).json({error: err.message})
-        }
-    },
-
-    async addPayment (req, res) {
-        try{
-            const db = dbService.readDB()
-            const newPayment = {id:uuidv4(), userId: req.user.id, ...req.body};
-
-            db.payments.push(newPayment)
-            dbService.writeDB(db);
-            res.status(201).json(newPayment);
-        }catch(err){
-            console.log(`Failed to add the user payment: ${newPayment}`, err)
-            res.status(500).json({error: err.message})
-        }
-    },
-
-    async updatePayment (req, res) {
-        try{
-            const db = dbService.readDB();
-
-            const index = db.payments.findIndex(item => item.id === req.params.id);
-            if (index === -1) {
-                return res.status(404).json({ message: 'Payment record not found' })
-            }
-
-            const currentPayment = db.payments[index];
-            if (req.body.cardNumber) {
-                const isCardDuplicate = db.payments.some(item =>
-                    item.userId === currentPayment.userId &&
-                    item.cardNumber === currentPayment.cardNumber&&
-                    item.id !== currentPayment.id
-                )
-                if(isCardDuplicate){
-                    return res.status(400).json({ message: `This card number is already exist for this accounts.`,
-                        errors: { email: `Limit reached. You can only have one of a kind account per card number.` }
-                    });
-                }
-            }
-            db.payments[index] = {...db.payments[index], ...req.body, id: db.payments[index].id};
-
-            dbService.writeDB(db);
-            res.status(200).json(db.payments[index]);
-        }catch(err){
-            console.log(`Failed to update the user payment: ${index}`, err)
+        } catch (err) {
+            console.error(`Failed to get user payments for user ${req.params.userId}:`, err);
             res.status(500).json({ error: err.message });
         }
     },
 
-    async deletePayment (req, res) {
-        try{
-            const db = dbService.readDB();
+    async getPayment(req, res) {
+        try {
+            const { id } = req.params;
 
-            const paymentIndex = db.payments.findIndex(p => p.id === req.params.id);
-            if (paymentIndex === -1) return res.status(404).json({ message: "Адресс не найден" });
-            const [deleteCheckout] = db.payments.splice(paymentIndex, 1);
+            const { data: payment, error } = await supabase
+                .from('payments')
+                .select('*')
+                .eq('id', id)
+                .maybeSingle();
 
-            dbService.writeDB(db);
-            res.json(deleteCheckout);
-        }catch(err){
-            console.log(`Failed to delete the user payment: ${paymentIndex}`, err)
-            res.status(500).json({error: err.message})
+            if (error) throw error;
+            if (!payment) return res.status(404).json({ message: "Payment not found" });
+
+            res.json(payment);
+        } catch (err) {
+            console.error(`Failed to get payment ${req.params.id}:`, err);
+            res.status(500).json({ error: err.message });
+        }
+    },
+
+    async addPayment(req, res) {
+        try {
+            const newPayment = {
+                userId: req.user.id,
+                ...req.body
+            };
+
+            const { data: createdPayment, error } = await supabase
+                .from('payments')
+                .insert([newPayment])
+                .select()
+                .single();
+
+            if (error) throw error;
+
+            res.status(201).json(createdPayment);
+        } catch (err) {
+            console.error('Failed to add payment:', err);
+            res.status(500).json({ error: err.message });
+        }
+    },
+
+    async updatePayment(req, res) {
+        try {
+            const { id } = req.params;
+
+            // 1. Находим текущую запись платежа
+            const { data: currentPayment, error: fetchError } = await supabase
+                .from('payments')
+                .select('*')
+                .eq('id', id)
+                .maybeSingle();
+
+            if (fetchError) throw fetchError;
+            if (!currentPayment) {
+                return res.status(404).json({ message: 'Payment record not found' });
+            }
+
+            if (req.body.cardNumber) {
+                const { data: duplicateCard, error: dupError } = await supabase
+                    .from('payments')
+                    .select('id')
+                    .eq('userId', currentPayment.userId)
+                    .eq('cardNumber', req.body.cardNumber)
+                    .neq('id', id)
+                    .maybeSingle();
+
+                if (dupError) throw dupError;
+
+                if (duplicateCard) {
+                    return res.status(400).json({
+                        message: `This card number is already exist for this accounts.`,
+                        errors: { email: `Limit reached. You can only have one of a kind account per card number.` }
+                    });
+                }
+            }
+
+            const { data: updatedPayment, error: updateError } = await supabase
+                .from('payments')
+                .update(req.body)
+                .eq('id', id)
+                .select()
+                .single();
+
+            if (updateError) throw updateError;
+
+            res.status(200).json(updatedPayment);
+        } catch (err) {
+            console.error(`Failed to update payment ${req.params.id}:`, err);
+            res.status(500).json({ error: err.message });
+        }
+    },
+
+    async deletePayment(req, res) {
+        try {
+            const { id } = req.params;
+
+            const { data: deletedPayment, error } = await supabase
+                .from('payments')
+                .delete()
+                .eq('id', id)
+                .select()
+                .maybeSingle();
+
+            if (error) throw error;
+            if (!deletedPayment) return res.status(404).json({ message: "Способ оплаты не найден" });
+
+            res.json(deletedPayment);
+        } catch (err) {
+            console.error(`Failed to delete payment ${req.params.id}:`, err);
+            res.status(500).json({ error: err.message });
         }
     }
-}
+};

@@ -6,8 +6,8 @@ import { usersController } from '#controllers/users/users.controller.js'
 
 const router = express.Router();
 
-router.get('/users', authMiddleware, usersController.getUsers);
-router.get('/users/:id', authMiddleware, usersController.getUserById);
+router.get('/users', usersController.getUsers);
+router.get('/users/:id', usersController.getUserById);
 router.get('/checkout', authMiddleware, usersController.getAllCheckout);
 
 router.patch('/avatar/:id', authMiddleware, upload.single('avatar'), usersController.updateUserAvatar);

@@ -15,7 +15,7 @@ const { shipping, shippingMessages } = checkoutForms();
       <form action="" class="flex flex-col gap-6 w-full">
         <div>
           <div :class="[`flex justify-between items-center px-3 py-6 border border-gray-300 rounded-xl
-                  transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50`,
+                  transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50`, shipping.delivery === 'standard' ? 'bg-gray-50' : '',
               shippingErrors.deliveryError ? 'border-red-400' : '']">
             <div class="flex items-center gap-3">
               <input v-model="shipping.delivery" value="standard" type="radio" name="shipping-method" class="accent-black w-4 h-4">
@@ -38,7 +38,7 @@ const { shipping, shippingMessages } = checkoutForms();
         </div>
         <div>
           <div :class="[`flex justify-between items-center px-3 py-6 border border-gray-300 rounded-xl
-                  transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50`,
+                  transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50`, shipping.delivery === 'express' ? 'bg-gray-50' : '',
               shippingErrors.deliveryError ? 'border-red-400' : '']">
             <div class="flex items-center gap-3">
               <input v-model="shipping.delivery" value="express" type="radio" name="shipping-method" class="accent-black w-4 h-4">

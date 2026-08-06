@@ -1,61 +1,86 @@
-import { v4 as uuidv4 } from "uuid";
-import { dbService } from "#config/db.service.js";
+import { supabase } from '#lib/supbase.js'; // Укажи правильный путь к своему файлу supbase.js
 
 export const favoritesController = {
-    async getFavorites (req, res) {
-        try{
-            const db = dbService.readDB()
-            const favorite = db.favorites.filter(item => item.userId === req.params.userId);
+    async getFavorites(req, res) {
+        try {
+            const { userId } = req.params;
 
-            res.json(favorite || {});
-        }catch (err){
-            console.log(`Failed to get the favorite list: ${favorite}`, err);
-            res.status(500).json({error: err.message})
+            const { data: favorites, error } = await supabase
+                .from('favorites')
+                .select('*')
+                .eq('userId', userId);
+
+            if (error) throw error;
+
+            res.json(favorites || []);
+        } catch (err) {
+            console.error(`Failed to get the favorite list for user ${req.params.userId}:`, err);
+            res.status(500).json({ error: err.message });
         }
     },
 
-    async addToFavorite (req, res) {
-        try{
-            const db = dbService.readDB()
-            const newFavoriteItem = {id:uuidv4(), userId: req.user.id, productId: req.body.productId, ...req.body}
+    async addToFavorite(req, res) {
+        try {
+            const newFavoriteItem = {
+                userId: req.user.id,
+                productId: req.body.productId,
+                ...req.body
+            };
 
-            db.favorites.push(newFavoriteItem)
-            dbService.writeDB(db);
-            res.status(201).json({message: 'Product added to favorite'})
-        }catch(err){
-            console.log(`Failed to add the product to the favorite: ${newFavoriteItem}`, err)
-            res.status(500).json({error: err.message})
+            const { data: createdFavorite, error } = await supabase
+                .from('favorites')
+                .insert([newFavoriteItem])
+                .select()
+                .single();
+
+            if (error) throw error;
+
+            res.status(201).json({ message: 'Product added to favorite', data: createdFavorite });
+        } catch (err) {
+            console.error('Failed to add the product to the favorite:', err);
+            res.status(500).json({ error: err.message });
         }
     },
 
-    async updateFavoriteItems (req, res) {
-        try{
-            const db = dbService.readDB()
+    async updateFavoriteItems(req, res) {
+        try {
+            const { id } = req.params;
 
-            const index = db.favorites.findIndex(f => f.id === req.params.id || f.productId === req.params.id)
-            if (index !== -1) db.favorites[index] = { ...db.favorites[index], ...req.body };
+            const { data: updatedFavorite, error } = await supabase
+                .from('favorites')
+                .update(req.body)
+                .or(`id.eq.${id},productId.eq.${id}`)
+                .select()
+                .maybeSingle();
 
-            dbService.writeDB(db);
-            res.json(db.favorites[index] || []);
-        }catch(err){
-            console.log(`Failed to update the favorite item: ${index}`, err)
-            res.status(500).json({error: err.message})
+            if (error) throw error;
+            if (!updatedFavorite) return res.status(404).json({ message: 'Favorite item not found' });
+
+            res.json(updatedFavorite);
+        } catch (err) {
+            console.error(`Failed to update the favorite item ${req.params.id}:`, err);
+            res.status(500).json({ error: err.message });
         }
     },
 
-    async deleteFavorite (req, res) {
-        try{
-            const db = dbService.readDB();
+    async deleteFavorite(req, res) {
+        try {
+            const { id } = req.params;
 
-            const index = db.favorites.findIndex(f => f.productId === req.params.id);
-            if (index === -1) return res.status(404).json({ message: "Favorite Product not found" });
-            const [deletedProduct] = db.favorites.splice(index, 1);
+            const { data: deletedProduct, error } = await supabase
+                .from('favorites')
+                .delete()
+                .or(`id.eq.${id},productId.eq.${id}`)
+                .select()
+                .maybeSingle();
 
-            dbService.writeDB(db);
+            if (error) throw error;
+            if (!deletedProduct) return res.status(404).json({ message: "Favorite Product not found" });
+
             res.json(deletedProduct);
-        }catch(err){
-            console.log(`Failed to delete the product at favorite: ${index}`, err)
-            res.status(500).json({error: err.message})
+        } catch (err) {
+            console.error(`Failed to delete the product from favorites ${req.params.id}:`, err);
+            res.status(500).json({ error: err.message });
         }
     }
-}
+};
