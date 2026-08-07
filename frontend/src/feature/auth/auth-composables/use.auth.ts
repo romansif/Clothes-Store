@@ -89,9 +89,33 @@ export const useAuth = () => {
         }
     };
 
-    const signOAuth = async () => {
+    const signOAuth = async (response: any) => {
+        try{
+            const foundedUser = await handler('/users/OAuth', {
+                method: "POST",
+                body: JSON.stringify({
+                    credential: response.credential,
+                })
+            });
+            if(!foundedUser){
+                console.log('Email and password are required.')
+                return
+            }else{
+                localStorage.setItem("userId", foundedUser.id)
+                localStorage.setItem("accessToken", foundedUser.accessToken)
+            }
+            user.value = foundedUser.user
 
-    }
+            await loadAuth('You have successfully logged in.',
+                'You will now be taken to your profile page.', 'profile')
+
+            console.log(response)
+        }catch(err){
+            await loadAuth('You were unable to login with google..',
+                '', '')
+            console.log(`Failed to login:`, err);
+        }
+    };
 
     const logout = async () => {
         try{

@@ -45,7 +45,7 @@ export const useBaseModals = () => {
         choiceModal.value = false;
         cancelChoice.value = '';
 
-        await router.push({ name: `${name}` });
+        await router.push({name: `${name}`});
     };
 
     const toggleOrder = (id: string) => {

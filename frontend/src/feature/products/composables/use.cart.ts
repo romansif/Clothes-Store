@@ -197,11 +197,11 @@ export const useCart = () => {
 
     const updateCheckedQuantity = async () => {
         const checkedItems = cart.value.filter((item: any) => item.checked === true);
-        if (!Array.isArray(checkedItems)) {
-            console.warn('Корзина пуста или пришел не массив');
-            return;
-        }
-        console.log(checkedItems);
+        // if (!Array.isArray(checkedItems)) {
+        //     console.warn('Корзина пуста или пришел не массив');
+        //     return;
+        // }
+
         try{
             for(const item of checkedItems) {
                 const product = products.value?.find(
@@ -213,25 +213,45 @@ export const useCart = () => {
                     const cartQuantity = Number(item?.quantity);
                     const newQuantity = currentQuantity - cartQuantity;
 
-                    const updatePayload: Record<string, any> = {quantity: newQuantity}
-
-                    if(newQuantity === 0){
-                        updatePayload.status = "Exhausted";
-                        await deleteProductCart(item.id);
+                    if(newQuantity > 0){
+                        await handler(`/products/${product?.id}`, {
+                            method: "PATCH",
+                            body: JSON.stringify({
+                                quantity: newQuantity,
+                                checked: false
+                            })
+                        });
+                        await handler(`/favorites/${product?.id}`, {
+                            method: "PATCH",
+                            body: JSON.stringify({
+                                quantity: newQuantity,
+                                checked: false
+                            })
+                        });
+                    }else{
+                        await handler(`/products/${product?.id}`, {
+                            method: "PATCH",
+                            body: JSON.stringify({
+                                status: 'Exhausted',
+                                quantity: newQuantity,
+                                checked: false
+                            })
+                        });
+                        await handler(`/favorites/${product?.id}`, {
+                            method: "PATCH",
+                            body: JSON.stringify({
+                                status: 'Exhausted',
+                                quantity: newQuantity,
+                                checked: false
+                            })
+                        });
                     }
-                    await handler(`/products/${product?.id}`, {
-                        method: "PATCH",
-                        body: JSON.stringify(updatePayload)
-                    });
-                    await handler(`/favorites/${product?.id}`, {
-                        method: "PATCH",
-                        body: JSON.stringify(updatePayload)
-                    });
+                    await deleteProductCart(item.id);
                 }else{
                     console.log(`Товар в корзине c id=${item.productId} или в каталоге не найден`)
                 }
-                localStorage.removeItem("ordersItem");
             }
+            localStorage.removeItem("ordersItem");
         }catch(err){
             console.error(`Failed to update the status or quantity:`, err);
         }

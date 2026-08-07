@@ -1,6 +1,9 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { supabase } from "#lib/supbase.js";
+import { OAuth2Client } from "google-auth-library";
+
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 const ACCESS_SECRET = 'your_access_secret_key_123';
 const REFRESH_SECRET = 'your_refresh_secret_key_123';
@@ -164,12 +167,102 @@ export const authController = {
         }
     },
 
-    async oAuth (req, res) {
+    async oAuth(req, res) {
         try {
+            const { credential } = req.body;
 
-        } catch (err) {
-            console.error(`Failed to login with google: ${user}`, err)
-            res.status(500).json({ message: 'Authorization error' });
+            if (!credential) {
+                return res.status(400).json({
+                    message: "Google credential is required"
+                });
+            }
+
+            const ticket = await client.verifyIdToken({
+                idToken: credential,
+                audience: process.env.GOOGLE_CLIENT_ID,
+            });
+
+            const payload = ticket.getPayload();
+
+            const {
+                sub,
+                email,
+                given_name,
+                family_name,
+                picture,
+                email_verified
+            } = payload;
+
+            if (!email_verified) {
+                return res.status(401).json({
+                    message: "Email is not verified"
+                });
+            }
+
+            let { data: user, error } = await supabase
+                .from("users")
+                .select("*")
+                .eq("email", email)
+                .single();
+
+            if (error && error.code !== "PGRST116") {
+                throw error;
+            }
+
+            if (!user) {
+                const { data: createdUser, error: insertError } = await supabase
+                    .from("users")
+                    .insert([{
+                        email,
+                        name: given_name,
+                        surName: family_name,
+                        avatarUrl: picture,
+                        googleId: sub,
+                        password: null,
+                        refreshTokens: []
+                    }])
+                    .select()
+                    .single();
+
+                if (insertError) throw insertError;
+
+                user = createdUser;
+            }
+
+            const accessToken = generateAccessToken(user);
+            const refreshToken = generateRefreshToken(user);
+
+            const tokens = [...(user.refreshTokens || []), refreshToken];
+
+            await supabase
+                .from("users")
+                .update({
+                    refreshTokens: tokens
+                })
+                .eq("id", user.id);
+
+            res.cookie('accessToken', accessToken, {
+                httpOnly: true,
+                sameSite: 'lax',
+                secure: false,
+                maxAge: 15 * 60 * 1000
+            });
+
+            res.cookie('refreshToken', refreshToken, {
+                httpOnly: true,
+                sameSite: 'lax',
+                path: '/',
+                secure: false,
+                maxAge: 7 * 24 * 60 * 60 * 1000
+            });
+
+            const {password, refreshTokens, ...userWithoutPassword} = user;
+
+            return res.json({...userWithoutPassword, accessToken});
+
+        }catch (err) {
+            console.error("Failed to login with Google:", err);
+            return res.status(500).json({message: "Authorization error"});
         }
     },
 
@@ -180,7 +273,7 @@ export const authController = {
             try{
                 const { data: user } = await supabase
                     .from('users')
-                    .select('id', refreshTokens)
+                    .select('id', req.body.userId)
                     .contains('refreshTokens', [refreshToken])
                 if(user && user.refreshTokens){
                     const newTokens = user.refreshTokens.filter(t => t !== refreshToken);
@@ -189,7 +282,7 @@ export const authController = {
                         .update({refreshTokens: newTokens})
                 }
             }catch(err){
-                console.log(`Failed to logout: ${user}`, err)
+                console.log(`Failed to logout: ${req.body?.userId}`, err)
             }
         }
         res.clearCookie('accessToken');

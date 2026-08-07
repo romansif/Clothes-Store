@@ -6,10 +6,10 @@ import { useBaseModals } from "@/shared/composables/modals/base.modals";
 import { useOrders } from "@/feature/products/composables/use.orders.ts";
 import { checkout } from "@/feature/checkout/composables/checkout.ts";
 
-const { isChosenPayment, paymentId } = checkout();
 const { addOrder } = useOrders();
 const { openNotify } = useBaseModals();
 const { payment } = checkoutForms();
+const { isChosenPayment, paymentId } = checkout();
 const { paymentMethod, userPayments, userPayment } = usersStore();
 const { createPaymentMethodError, createPaymentCardErrors } = useFormsErrors();
 
@@ -53,7 +53,7 @@ export const usePayment = () => {
 
     const useSavedPayment = async () => {
         try{
-            const cardNumber = await handler(`/payment/${paymentId.value}`, {
+            await handler(`/payment/${paymentId.value}`, {
                 method: "PUT",
                 body: JSON.stringify({
                     paymentMethod: 'card',
@@ -63,12 +63,9 @@ export const usePayment = () => {
                     cardCvv: String(payment.value.cardCvv),
                 })
             });
-            userPayments.value = cardNumber;
-
             await addOrder();
-            await getPayments();
 
-            await openNotify('You have successfully added the payment method.',
+            await openNotify('You have successfully paid and created order.',
                 'You will now be redirected to the profile page.', 'profile')
         }catch(err){
             await openNotify('You must choose.',
@@ -82,7 +79,7 @@ export const usePayment = () => {
         const paymentId =  localStorage.getItem("paymentId");
         try{
             if(paymentMethod.value === 'card'){
-                const cardNumber = await handler(`/payment`, {
+                await handler(`/payment`, {
                     method: "POST",
                     body: JSON.stringify({
                         userId: userId,
@@ -94,20 +91,19 @@ export const usePayment = () => {
                         cardCvv: String(payment.value.cardCvv),
                     })
                 });
-                userPayments.value = cardNumber;
             }else{
-                const paymentMethod = await handler(`/payment`, {
+                await handler(`/payment`, {
                     method: "POST",
                     body: JSON.stringify({
+                        userId: userId,
+                        paymentId: paymentId,
                         paymentMethod: payment.value.paymentMethod
                     })
                 });
-                userPayments.value = paymentMethod;
             }
             await addOrder();
-            await getPayments();
 
-            await openNotify('You have successfully added the payment method.',
+            await openNotify('You have successfully paid and created order.',
                 'You will now be redirected to the profile page.', 'profile')
         }catch(err){
             if (paymentMethod.value === 'card'){

@@ -1,14 +1,14 @@
 import { handler } from "@/shared/api/http";
-import { useCart } from "@/feature/products/composables/use.cart";
 import { productsStore } from "@/shared/composables/stores/products.store";
 import { checkout } from "@/feature/checkout/composables/checkout.ts";
 import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
+import { useCart } from "@/feature/products/composables/use.cart.ts";
 
-const { totalPrice } = checkout();
-const { orders, items } = productsStore();
-const { updateCheckedQuantity } = useCart();
 const { shipping } = checkoutForms();
+const { totalPrice } = checkout();
+const { updateCheckedQuantity } = useCart();
+const { orders, items } = productsStore();
 const { cancelChoice, orderId, openNotify } = useBaseModals();
 
 export const useOrders = () => {
@@ -46,7 +46,7 @@ export const useOrders = () => {
                 minute: "2-digit",
             });
 
-            const newOrder = await handler(`/orders`, {
+            await handler(`/orders`, {
                 method: "POST",
                 body: JSON.stringify({
                     userId: userId,
@@ -58,8 +58,6 @@ export const useOrders = () => {
                     status: 'Convene'
                 })
             })
-            orders.value = newOrder;
-
             await updateCheckedQuantity();
         }catch(err){
             console.error(`Failed to create the order:`, err);

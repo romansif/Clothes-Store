@@ -4,6 +4,7 @@ import { usersStore } from "@/shared/composables/stores/users.store";
 import { userForms } from "@/shared/composables/forms/users.forms";
 import { clearUsersForms } from "@/shared/composables/clear-forms/clear.users";
 import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
+import {useGetUsers} from "@/feature/auth/auth-composables/get.users.ts";
 
 interface UserDataUpdate {
     name?: string;
@@ -15,6 +16,7 @@ interface UserDataUpdate {
 }
 
 const { user } = usersStore();
+const { getUser } = useGetUsers();
 const { openNotify } = useBaseModals();
 const {
     updateNameErrors, updateSurNameErrors, updateEmailErrors, updatePhoneErrors,
@@ -55,11 +57,13 @@ export const useProfile = () => {
 
     const baseUpdateAccount = async (dataToUpdate: UserDataUpdate, type: string, title: string) => {
         const userId = localStorage.getItem("userId");
-        const res = await handler(`/${type}/${userId}`, {
+
+        await handler(`/${type}/${userId}`, {
             method: "PATCH",
             body: JSON.stringify(dataToUpdate),
         });
-        user.value = res;
+        await getUser();
+
         await openNotify(title, '', '')
     }
 

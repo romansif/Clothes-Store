@@ -45,7 +45,7 @@ export const handler = async <T = any>(
             }
 
             const data = await refreshRes.json();
-            console.log(data)
+
             localStorage.setItem('accessToken', data.accessToken);
 
             return handler(endpoints, options, true);

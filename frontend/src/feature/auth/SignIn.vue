@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { watch, ref } from "vue";
 import { useAuth } from "./auth-composables/use.auth";
-import { GoogleSignInButton } from 'vue3-google-signin'
 import { authForms } from "@/shared/composables/forms/auth.forms";
 import { clearAuthForms } from "@/shared/composables/clear-forms/clear.auth";
 import { authFormsErrors } from "@/shared/composables/errors/errors-messages/auth.errors";
@@ -14,8 +13,9 @@ import maki_arrow from "@/app/assets/icons/arrows/right-short-arrow.svg";
 import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
 import Loading from "@/shared/ui/base/base-modals/Loading.vue";
 import Notification from "@/shared/ui/base/base-modals/Notification.vue";
+import GoogleSignIn from "@/feature/auth/GoogleSignIn.vue";
 
-const { signIn, signOAuth } = useAuth();
+const { signIn } = useAuth();
 const { loading, notify } = useBaseModals();
 const { clearLoginForm } = clearAuthForms();
 const { loginFormErrors } = authFormsErrors();
@@ -33,6 +33,7 @@ watch(() => [loginForm.value.email, loginForm.value.password, loginForm.value.ro
       }
     }
 );
+
 
 const showPassword = ref(false);
 
@@ -106,7 +107,7 @@ const togglePassword = () => {
         <BaseButton @click="signIn" name="SIGN IN" variant="login" />
         <img :src=maki_arrow alt="" class="absolute w-[25px] top-9.5 left-58 sm:left-83 ">
       </div>
-      <GoogleSignInButton theme="outline" size="large" text="signin_with" class="px-18 pt-4" @success="signOAuth"/>
+      <GoogleSignIn />
     </div>
   </section>
   <Loading v-if="loading"/>

@@ -131,13 +131,11 @@ export const useProducts = () => {
                 }
             });
 
-            const newProduct = await handler('/products', {
+            await handler('/products', {
                 method: "POST",
                 body: formData,
             });
-            products.value = newProduct;
-
-            await getCartProducts();
+            await getAllProducts();
 
             clearProductForm();
             toggleCreateProductModal();

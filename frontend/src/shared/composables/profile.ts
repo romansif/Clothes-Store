@@ -79,8 +79,6 @@ export const profile = () => {
 
     });
 
-    console.log(commissionPrice.value);
-
     return{
         continueToOrder,
         colorClass,
