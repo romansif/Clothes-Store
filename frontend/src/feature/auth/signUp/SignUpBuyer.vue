@@ -57,7 +57,7 @@ const toggleRegister = () => {
 
 <template>
   <section v-if="showSection.section === false" class='fixed font-[Montserrat] inset-0 flex items-center justify-center'>
-    <div class="bg-white w-[350px] sm:w-[600px] shadow-xl rounded-lg px-8 py-8">
+    <div class="w-[350px] sm:w-[600px] rounded-lg px-8 py-8">
       <div class="flex items-center justify-center">
         <div class="w-[235px] sm:w-[300px]">
           <div class="font-medium flex items-center justify-between">
@@ -68,7 +68,7 @@ const toggleRegister = () => {
           </div>
         </div>
       </div>
-      <div class="flex flex-col mt-10 font-bold text-3xl">
+      <div class="flex flex-col mt-10 font-bold text-3xl w-55 transition duration-400 hover:scale-110">
         <span>WELCOME TO</span>
         <span class="text-[#A3A3A3]">THE STORE</span>
       </div>
@@ -98,7 +98,7 @@ const toggleRegister = () => {
               </select>
               <IMask v-model:value=registerBuyerForm.privatePhone type="tel" :mask="currentMask.mask" :key="selectedCountryCode"
                      :class="[`bg-[#D9D9D9]/40 w-full outline-none px-6 py-4 rounded-sm border border-gray-300
-                        transition duration-400 hover:bg-gray-50 focus:bg-gray-50`,
+                        transition duration-400 hover:bg-gray-50 focus:bg-gray-50 appearance-none`,
                           registerFormErrors.privatePhoneError ? 'border border-red-500' : '']"
                      :placeholder="currentCountry?.placeholder" />
             </div>
@@ -126,7 +126,7 @@ const toggleRegister = () => {
         </div>
       </form>
       <div class="flex flex-col gap-3">
-        <div class="relative">
+        <div class="relative duration-400 hover:scale-105 cursor-pointer">
           <BaseButton @click="signUp('Buyer')" name="SIGN UP BY BUYER" variant="register" />
           <img :src=maki_arrow alt="" class="absolute w-[25px] top-9.5 left-58 sm:left-121">
         </div>

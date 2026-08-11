@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { watch } from "vue";
+import {computed, watch} from "vue";
 import { productsCover } from "@/shared/composables/product.cover.ts";
 
 import { useCart } from "@/feature/products/composables/use.cart.ts";
@@ -30,6 +30,20 @@ watch(() => [addToCartForm.value.color, addToCartForm.value.size], ([color, size
   if(size){
     addCartFormErrors.value.sizeError = false
   }
+})
+
+const parsedColors = computed(() => {
+  if(!product.value.color) return []
+
+  const rawColors = typeof product.value.color === 'string'
+      ? JSON.parse(product.value.color)
+      : product.value.color
+
+  return rawColors.map((item: string) => {
+    if(typeof item === 'string'){
+      return JSON.parse(item)
+    }
+  })
 })
 </script>
 
@@ -62,18 +76,18 @@ watch(() => [addToCartForm.value.color, addToCartForm.value.size], ([color, size
           Colors
         </span>
         <div class="flex justify-start items-center lg:gap-5">
-          <div v-for="hex in product.color" :key="hex" :class="['w-[60px] h-[60px]',
-                addToCartForm.color === hex
+          <div v-for="color in parsedColors" :key="color.hex" :class="['w-[60px] h-[60px]',
+                addToCartForm.color.colorName === color.colorName
                   ? 'scale-120'
                   : 'hover:scale-120 transition duration-400'
-               ]" :style="{ background: hex }" :title="hex" @click="addToCartForm.color = hex"></div>
+               ]" :style="{ background: color.hex }" :title="color.hex" @click="addToCartForm.color = { hex: color.hex, colorName: color.colorName }"></div>
           </div>
         <span v-if=addCartFormErrors.colorError class="text-red-600 text-xs">
           {{ addToCartFormMessages.colorMessage }}
         </span>
       </div>
       <div class="flex flex-col gap-2">
-        <span class="font-medium text-[#A3A3A3]">Size</span>
+        <span class="font-medium text-[#A3A3A3]">Sizes</span>
         <div class="flex justify-start items-center lg:gap-5">
           <img v-for="size in (isAvailableSizes as any)" :key="size.name" :src=size.url alt="" :class="[size.class, 'w-[60px] h-[60px]',
                 addToCartForm.size === size.name

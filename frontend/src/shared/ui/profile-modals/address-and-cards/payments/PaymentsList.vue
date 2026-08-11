@@ -3,7 +3,7 @@ import { computed } from "vue";
 import { usersStore } from "@/shared/composables/stores/users.store";
 
 import PaymentsItem from "./PaymentsItem.vue";
-import icon_card from "@/app/assets/icons/checkout/icon_card.svg";
+import icon_card from "@/app/assets/icons/checkout/payment/icon_card.svg";
 
 const { userPayments } = usersStore();
 

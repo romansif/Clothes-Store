@@ -43,7 +43,7 @@ const togglePassword = () => {
 
 <template>
   <section class="font-[Montserrat] fixed inset-0 flex items-center justify-center">
-    <div class="bg-white w-[350px] sm:w-[450px] shadow-xl rounded-lg px-8 py-8">
+    <div class="w-[350px] sm:w-[450px] rounded-lg px-8 py-8">
       <div class="flex items-center justify-center">
         <div class="w-[235px] sm:w-[275px]">
           <div class="font-medium flex items-center justify-between">
@@ -54,7 +54,7 @@ const togglePassword = () => {
           </div>
         </div>
       </div>
-      <div class="flex flex-col mt-10 font-bold text-3xl">
+      <div class="flex flex-col mt-10 font-bold text-3xl w-55 transition duration-400 hover:scale-110">
         <span>WELCOME TO</span>
         <span class="text-[#A3A3A3]">THE STORE</span>
       </div>
@@ -102,12 +102,12 @@ const togglePassword = () => {
           </div>
         </div>
       </form>
-      <div class="relative">
+      <div class="relative duration-400 hover:scale-105 cursor-pointer">
         <BaseButton @click="signIn" name="SIGN IN" variant="login" />
         <img :src=maki_arrow alt="" class="absolute w-[25px] top-9.5 left-58 sm:left-83 ">
       </div>
       <div class="flex justify-center">
-        <GoogleSignIn />
+        <GoogleSignIn class="duration-400 hover:scale-105 cursor-pointer"/>
       </div>
     </div>
   </section>

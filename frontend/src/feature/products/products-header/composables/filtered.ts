@@ -4,8 +4,10 @@ import { useProducts } from "@/feature/products/composables/use.products.ts";
 const { getFilteredProducts } = useProducts();
 
 export const filtered = () => {
+    const selectedGender = ref<string>('ALL');
+
     const stackProducts = ref<Record<string, boolean>>({
-        Availability: false,
+        Availability: true,
         Exhausted: false,
     })
 
@@ -80,6 +82,8 @@ export const filtered = () => {
     }
 
     return {
+        selectedGender,
+
         toggleFilter,
         toggleSize,
 

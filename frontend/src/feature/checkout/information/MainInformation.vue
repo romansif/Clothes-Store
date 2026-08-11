@@ -58,7 +58,7 @@ watch(() => [
       <AddressForm />
     </div>
     <MainSavedInfo v-if="isSavedAddress"/>
-    <div class="relative ml-auto mt-5">
+    <div class="relative ml-auto mt-5 transition duration-400 hover:scale-110">
       <BaseButton v-if="!isSavedAddress" @click="addInformation" name="Shipping" variant="checkOut"/>
       <BaseButton v-if="isSavedAddress" @click="useInformation" name="Shipping" variant="checkOut"/>
       <img :src=arrow alt="" class="h-13 absolute left-70 top-1/2 -translate-y-1/2

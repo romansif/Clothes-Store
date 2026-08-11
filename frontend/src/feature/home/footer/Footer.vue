@@ -7,20 +7,20 @@
     <div class="w-[300px] md:w-[700px] lg:w-[1000px] py-20">
       <div class="flex gap-50 items-center md:gap-60 lg:gap-100">
         <div class="grid grid-cols-2 gap-30 md:flex md:flex-col md:gap-15">
-          <div class="font-medium flex flex-col gap-10 font-medium">
+          <div class="font-medium flex flex-col gap-6 font-medium">
             <span class="text-[#A3A3A3]">INFO</span>
             <div class="flex flex-col gap-2 text-gray-600">
-              <span>Pricing /</span>
-              <span>ABOUT /</span>
-              <span>CONTACTS</span>
+              <span class="transition duration-400 hover:scale-115 cursor-pointer">Pricing /</span>
+              <span class="transition duration-400 hover:scale-115 cursor-pointer">ABOUT /</span>
+              <span class="transition duration-400 hover:scale-115 cursor-pointer">CONTACTS</span>
             </div>
           </div>
-          <div class="font-medium flex flex-col gap-10 font-medium">
+          <div class="font-medium flex flex-col gap-6 font-medium">
             <span class="text-[#A3A3A3]">LANGUAGES</span>
             <div class="flex flex-col gap-2 text-gray-600">
-              <span>ENG /</span>
-              <span>ESP /</span>
-              <span>SVE</span>
+              <span class="transition duration-400 hover:scale-115 cursor-pointer">ENG /</span>
+              <span class="transition duration-400 hover:scale-115 cursor-pointer">ESP /</span>
+              <span class="transition duration-400 hover:scale-115 cursor-pointer">SVE</span>
             </div>
           </div>
         </div>
@@ -33,7 +33,7 @@
             </div>
             <div class="flex gap-5">
               <span class="text-[80px] font-black">XIV</span>
-              <span class="font-medium mt-9 text-[#A3A3A3]">Near-field communication /</span>
+              <span class="font-medium mt-10 text-[#A3A3A3]">Near-field communication /</span>
             </div>
             <span class="text-[80px] font-black">QR</span>
           </div>

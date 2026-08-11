@@ -3,11 +3,9 @@ import { productsStore } from "@/shared/composables/stores/products.store";
 import { checkout } from "@/feature/checkout/composables/checkout.ts";
 import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
-import { useCart } from "@/feature/products/composables/use.cart.ts";
 
 const { shipping } = checkoutForms();
 const { totalPrice } = checkout();
-const { updateCheckedQuantity } = useCart();
 const { orders, items } = productsStore();
 const { cancelChoice, orderId, loading, openNotify } = useBaseModals();
 
@@ -45,8 +43,6 @@ export const useOrders = () => {
     };
 
     const addOrder = async () => {
-        await updateCheckedQuantity();
-
         const userId = localStorage.getItem("userId");
         try{
             const date = new Date();

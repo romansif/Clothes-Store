@@ -9,8 +9,8 @@ interface ProductForm {
     price: string,
     gender: string,
     quantity: string,
+    collections: string,
 }
-
 const createProductForm = ref<ProductForm>({
     productUrl: '',
     title: '',
@@ -20,10 +20,16 @@ const createProductForm = ref<ProductForm>({
     price: '',
     gender: '',
     quantity: '',
+    collections: '',
 })
 
+interface ProductColor {
+    hex: string
+    colorName: string
+}
+
 const moreCreateItem = reactive({
-    color: [] as string[],
+    color: [] as ProductColor[],
     size: [] as string[],
 })
 
@@ -38,6 +44,7 @@ interface ProductFormMessage {
     sizeMessage: string,
     genderMessage: string,
     quantityMessage: string,
+    collectionsMessage: string,
 }
 
 
@@ -52,15 +59,24 @@ const createProductFormMessages = ref<ProductFormMessage>({
     sizeMessage: '',
     genderMessage: '',
     quantityMessage: '',
+    collectionsMessage: '',
 })
 
+interface AddColor {
+    hex: string,
+    colorName: string
+}
+
 interface AddForm {
-    color: string,
+    color: AddColor,
     size: string,
 }
 
 const addToCartForm = ref<AddForm>({
-    color: '',
+    color: {
+        hex: '',
+        colorName: '',
+    },
     size: '',
 })
 

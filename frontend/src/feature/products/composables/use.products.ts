@@ -1,17 +1,17 @@
 import { handler } from "@/shared/api/http";
 import { productsStore } from "@/shared//composables/stores/products.store";
-import { useCart } from "@/feature/products/composables/use.cart.ts";
 import { productsForms } from "@/shared/composables/forms/products.forms.ts";
 import { clearProductsForms } from "@/shared/composables/clear-forms/clear.products.ts";
 import { useFormsErrors } from "@/shared/composables/errors/errors-middleware/forms.errors.ts";
 import { useProductsModals } from "@/shared/composables/modals/products.modals.ts";
+import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
 
-const { getCartProducts } = useCart();
+const { loading } = useBaseModals()
 const { createProductErrors } = useFormsErrors();
 const { clearProductForm } = clearProductsForms();
 const { toggleCreateProductModal } = useProductsModals();
 const { createProductForm, moreCreateItem } = productsForms();
-const { allProducts, products, stack, outOfStack, product, productId, productFiles, currentFile, productsPreview, } = productsStore();
+const { allProducts, products, productsWeek, productsYear, stack, outOfStack, product, productId, productFiles, currentFile, productsPreview, } = productsStore();
 
 export const useProducts = () => {
     const getAllProducts = async () => {
@@ -36,11 +36,33 @@ export const useProducts = () => {
         }
     };
 
+    const getWeekProducts = async () => {
+        try{
+            const res = await handler(`/products/week`, {
+                method: 'GET',
+            })
+            productsWeek.value = res;
+        }catch(err){
+            console.error(`Failed to get the filtered products:`, err);
+        }
+    };
+
+    const getYearProducts = async (type: string, filter: string) => {
+        try{
+            const res = await handler(`/products/year/${type}/${filter}`, {
+                method: 'GET',
+            })
+            productsYear.value = res;
+        }catch(err){
+            console.error(`Failed to get the filtered products:`, err);
+        }
+    };
+
     const getProductId = async (id: string) => {
         localStorage.setItem("productId", id);
 
         await getProduct();
-    }
+    };
 
     const getProduct = async () => {
         const currentId = localStorage.getItem("productId") || productId.value;
@@ -99,6 +121,7 @@ export const useProducts = () => {
 
 
     const createProduct = async () => {
+        loading.value = true;
         try{
             const userId = localStorage.getItem("userId");
             if(!userId){
@@ -113,13 +136,14 @@ export const useProducts = () => {
             formData.append('price', createProductForm.value.price);
             formData.append('description', createProductForm.value.description);
             moreCreateItem.color.forEach((color) => {
-                formData.append('color', String(color))
+                formData.append('color', JSON.stringify(color));
             });
             moreCreateItem.size.forEach((size) => {
                 formData.append('size', String(size))
             });
             formData.append('gender', createProductForm.value.gender);
             formData.append('quantity', createProductForm.value.quantity);
+            formData.append('collection', createProductForm.value.collections);
             formData.append('status', 'Availability');
 
             productFiles.value.forEach((file) => {
@@ -135,6 +159,8 @@ export const useProducts = () => {
                 method: "POST",
                 body: formData,
             });
+            loading.value = false;
+
             await getAllProducts();
 
             clearProductForm();
@@ -147,25 +173,21 @@ export const useProducts = () => {
 
     const updateFavorite = async (id: string, productId: string, status: boolean) => {
         try{
-            await Promise.all([
-                await handler(`/cart/${id}`, {
-                    method: "PATCH",
-                    body: JSON.stringify({
-                        favorite: status,
-                    })
-                }),
-                await getCartProducts(),
-
-                await handler(`/products/${productId}`, {
-                    method: "PATCH",
-                    body: JSON.stringify({
-                        favorite: status,
-                    })
-                }),
-                await getFilteredProducts('ALL', 'ALL'),
-            ])
+            await handler(`/cart/${id}`, {
+                method: "PATCH",
+                body: JSON.stringify({
+                    favorite: status,
+                })
+            });
         }catch(err){
             console.error(`Failed to update the status:`, err);
+        }finally{
+            await handler(`/products/${productId}`, {
+                method: "PATCH",
+                body: JSON.stringify({
+                    favorite: status,
+                })
+            });
         }
     };
 
@@ -185,6 +207,8 @@ export const useProducts = () => {
     return{
         getAllProducts,
         getFilteredProducts,
+        getWeekProducts,
+        getYearProducts,
         getMyStackProducts,
         getMyOutOfStackProducts,
         getProductId,

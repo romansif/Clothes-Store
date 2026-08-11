@@ -36,7 +36,7 @@ export const useAuth = () => {
                 )
             };
 
-            const authData = await handler('/users/signUp', {
+            const authData = await handler('/auth/signUp', {
                 method: "POST",
                 body: JSON.stringify(requestBody),
             });
@@ -57,6 +57,7 @@ export const useAuth = () => {
             await openNotify('You have successfully sign up.',
                 'You will now be taken to your profile page.', 'profile');
         }catch(err){
+            loading.value = false;
             registerErrors(err, role)
             console.log(`Failed to register new user:`, err);
         }
@@ -67,7 +68,7 @@ export const useAuth = () => {
 
         clearLoginFormMessages();
         try{
-            const foundedUser = await handler('/users/signIn', {
+            const foundedUser = await handler('/auth/signIn', {
                 method: "POST",
                 body: JSON.stringify({
                     email: loginForm.value.email,
@@ -90,6 +91,7 @@ export const useAuth = () => {
 
             clearLoginForm()
         }catch(err){
+            loading.value = false;
             loginErrors(err)
             console.log(`Failed to login:`, err);
         }
@@ -101,7 +103,7 @@ export const useAuth = () => {
         try{
             const date = new Date();
 
-            const foundedUser = await handler('/users/OAuth', {
+            const foundedUser = await handler('/auth/google', {
                 method: "POST",
                 body: JSON.stringify({
                     role: loginForm.value.role || 'Buyer',
@@ -122,6 +124,7 @@ export const useAuth = () => {
             await openNotify('You have successfully sign in.',
                 'You will now be taken to your profile page.', 'profile');
         }catch(err){
+            loading.value = false;
             await openNotify('You were unable to login with google.',
                 '', '')
             console.log(`Failed to login:`, err);
@@ -130,7 +133,7 @@ export const useAuth = () => {
 
     const logout = async () => {
         try{
-            const logoutUser = await handler('/users/logout', {
+            const logoutUser = await handler('/auth/logout', {
                 method: "POST",
             })
             users.value = logoutUser

@@ -4,10 +4,10 @@ import { validation } from "#middleware/validation.js";
 
 const router = express.Router();
 
-router.post('/users/signUp', validation.registerValidation, validation.handleValidationErrors, authController.register);
-router.post('/users/signIn', validation.loginValidation, validation.handleValidationErrors, authController.login);
-router.post('/users/OAuth', validation.handleValidationErrors, authController.oAuth);
-router.post('/users/logout', authController.logout);
+router.post('/auth/signUp', validation.registerValidation, validation.handleValidationErrors, authController.register);
+router.post('/auth/signIn', validation.loginValidation, validation.handleValidationErrors, authController.login);
+router.post('/auth/google', validation.handleValidationErrors, authController.google);
+router.post('/auth/logout', authController.logout);
 router.post('/refresh', authController.refresh);
 
 export default router;

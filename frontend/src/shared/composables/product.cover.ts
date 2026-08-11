@@ -1,4 +1,5 @@
 import { computed } from "vue";
+import namer from 'color-namer'
 import { productsStore, type Product } from "@/shared/composables/stores/products.store";
 import { productsForms } from "@/shared/composables/forms/products.forms";
 
@@ -10,29 +11,27 @@ export const productsCover = () => {
         if (!Array.isArray(moreCreateItem.color)) {
             moreCreateItem.color = [];
         }
-        let hexColor: string;
+        let hexColor = '';
+
 
         if(typeof eventOrColor === "object" && eventOrColor !== null && 'target' in eventOrColor) {
             const target = eventOrColor.target as HTMLInputElement;
-            hexColor = target.value;
+            hexColor = target?.value || '';
 
-            moreCreateItem.color.push(hexColor);
-        }else{
+            const names = namer(hexColor)
+            const colorName = names.ntc[0].name
+
+            moreCreateItem.color.push({
+                hex: hexColor,
+                colorName: colorName,
+            });
+        }else if(typeof eventOrColor === 'string') {
             hexColor = eventOrColor
-            moreCreateItem.color.push(hexColor);
         }
 
         if(!hexColor) console.log('no');
 
-        const index = moreCreateItem.color.indexOf(hexColor);
-
-        if(index === -1) {
-            if(moreCreateItem.color.length >= 6){
-                moreCreateItem.color.push(hexColor);
-            }else(
-                moreCreateItem.color.splice(index, 1)
-            )
-        }
+        console.log(moreCreateItem.color);
     };
 
     const toggleSize = (sizeName: string) => {

@@ -1,0 +1,27 @@
+<script setup lang="ts">
+import { productsStore } from "@/shared/composables/stores/products.store.ts";
+import { useProducts } from "@/feature/products/composables/use.products.ts";
+
+import WeekItem from "@/feature/home/main/week-items/WeekItem.vue";
+import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
+
+const { productsWeek } = productsStore();
+const { getWeekProducts } = useProducts();
+</script>
+
+<template>
+  <ul v-if="productsWeek" class="flex gap-10 xl:gap-20  overflow-x-auto whitespace-nowrap no-scrollbar">
+    <WeekItem />
+  </ul>
+  <div v-else class="flex justify-center p-15">
+    <div class="flex flex-col gap-4 items-center">
+      <span class="text-xl font-semibold">As of now, the new weekly releases have not yet appeared.</span>
+      <span class="text-red-600 ">Or a glitch occurred: click to refresh.</span>
+      <BaseButton name="Try again" variant="refresh" @click="getWeekProducts" />
+    </div>
+  </div>
+</template>
+
+<style scoped>
+
+</style>

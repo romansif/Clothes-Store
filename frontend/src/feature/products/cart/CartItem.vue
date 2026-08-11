@@ -13,6 +13,7 @@ import update from '@/app/assets/icons/products/refresh.svg';
 import like from '@/app/assets/icons/nav/like.png';
 import liked from '@/app/assets/icons/nav/liked.png';
 import check_square from '@/app/assets/icons/squares/check-square.png';
+import {computed} from "vue";
 
 const { cart } = productsStore();
 const { getProductId } = useProducts();
@@ -25,6 +26,10 @@ const { sizeClass, sizeUrl } = profile();
 const refreshPage = () => {
   window.location.reload();
 }
+
+const parsedColor = computed(() => {
+
+})
 </script>
 
 <template>

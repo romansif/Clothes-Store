@@ -1,4 +1,5 @@
-import { supabase } from '#lib/supbase.js'; // Укажи правильный путь к своему файлу supbase.js
+import { supabase } from '#lib/supbase.js';
+import {query} from "express-validator"; // Укажи правильный путь к своему файлу supbase.js
 
 export const productsController = {
     async getAllProducts(req, res) {
@@ -43,6 +44,58 @@ export const productsController = {
             res.json(products || []);
         } catch (err) {
             console.error('Failed to get the filtered product list:', err);
+            res.status(500).json({ error: err.message });
+        }
+    },
+
+    async getWeekProducts (req, res) {
+        try{
+            const sevenDayAgo = new Date();
+            sevenDayAgo.setDate(sevenDayAgo.getDate() - 7);
+            const dateISO = sevenDayAgo.toISOString();
+
+            const { data: products, error } = await supabase
+                .from('products')
+                .select('*')
+                .gte('dateCreatedProduct', dateISO)
+                .order('dateCreatedProduct', { ascending: false });
+
+            if (error) throw error;
+
+            res.json(products || []);
+        }catch(err){
+            console.error('Failed to get the week product list:', err);
+            res.status(500).json({ error: err.message });
+        }
+    },
+
+    async getYearProducts (req, res) {
+        try{
+            const { type, filter } = req.params;
+
+            const last365Days = new Date();
+            last365Days.setDate(last365Days.getDate() - 365);
+            const lastDate = last365Days.toISOString()
+
+            let query = supabase
+                .from('products')
+                .select('*')
+                .gte('dateCreatedProduct', lastDate)
+                .order('dateCreatedProduct', { ascending: false });
+
+
+            if(type && type !== "ALL"){
+                if(type === "GENDER"){
+                    query = query.eq('gender', filter);
+                }
+            }
+
+            const { data: products, error } = await query;
+            if (error) throw error;
+
+            res.json(products || []);
+        }catch(err){
+            console.error('Failed to get the year product list:', err);
             res.status(500).json({ error: err.message });
         }
     },
@@ -148,6 +201,7 @@ export const productsController = {
                 ...req.body,
                 quantity: Number(req.body.quantity) || 0,
                 price: Number(req.body.price) || 0,
+                dateCreatedProduct: new Date(),
                 favorite: false,
                 checked: false
             };

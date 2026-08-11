@@ -29,14 +29,11 @@ export const useFavorites = () => {
             const currentProduct = sourceList?.find(item => item.id === id);
             const currentId = type === 'cart' ? currentProduct?.productId : currentProduct?.id
 
-            const isFavorite = currentProduct?.favorite
-            const newStatus = !isFavorite
+            const status = !currentProduct?.favorite
 
-            if(!currentProduct){
-                console.log('Продукт не найден')
-                return
-            }
-            if(newStatus){
+            await updateFavorite(id, productId, status);
+
+            if(currentProduct && status){
                 await handler(`/favorites`, {
                     method: "POST",
                     body: JSON.stringify({
@@ -57,17 +54,13 @@ export const useFavorites = () => {
                     })
                 });
                 await getFavoriteProducts();
+                await getFilteredProducts('ALL', 'ALL')
 
                 await openNotify('You have successfully added the item to your favorite.',
                     'You will now be redirected to the "Favorite" page.', 'favorite');
             }else{
-                await handler(`/favorites/${productId}`, {
-                    method: "DELETE",
-                })
-                await getFavoriteProducts();
+                await deleteFavoriteProduct(productId);
             }
-
-            await updateFavorite(id, productId, newStatus);
         }catch(err){
             console.error(`Failed to add the favorite:`, err);
         }

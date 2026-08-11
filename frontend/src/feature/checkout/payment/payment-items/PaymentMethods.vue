@@ -6,11 +6,11 @@ import { usersStore } from "@/shared/composables/stores/users.store.ts";
 import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors";
 
 import PaymentForm from "./PaymentForm.vue";
-import visa_pay from '@/app/assets/icons/payment/visa.png';
-import pay_pal from '@/app/assets/icons/payment/paypal.png';
-import apple_pay from '@/app/assets/icons/payment/applepay.png';
-import google_pay from '@/app/assets/icons/payment/googlepay.png';
-import mastercard_pay from '@/app/assets/icons/payment/mastercard.svg';
+import visa_pay from '@/app/assets/icons/checkout/payment/visa.png';
+import pay_pal from '@/app/assets/icons/checkout/payment/paypal.png';
+import apple_pay from '@/app/assets/icons/checkout/payment/applepay.png';
+import google_pay from '@/app/assets/icons/checkout/payment/googlepay.png';
+import mastercard_pay from '@/app/assets/icons/checkout/payment/mastercard.svg';
 
 const { userPayments } = usersStore();
 const { addPayment } = usePayment();

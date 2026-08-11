@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import cart from "@/app/assets/icons/nav/cart.png";
-import search from "@/app/assets/icons/nav/search.png";
 import liked from "@/app/assets/icons/nav/favorite.png";
 import profile from "@/app/assets/icons/nav/profile.png";
 import catalog from "@/app/assets/icons/nav/catalog.png";
 </script>
 
 <template>
-  <nav class="font-[Montserrat]">
+  <nav class="font-[Montserrat] mb-12">
     <div class="flex justify-between items-center md:justify-between">
       <div class="flex items-center gap-5 lg:gap-10">
         <img :src=catalog alt="" class="w-[30px]">
@@ -45,21 +44,6 @@ import catalog from "@/app/assets/icons/nav/catalog.png";
         <router-link :to="{name: 'profile'}">
           <img :src=profile alt="" class="">
         </router-link>
-      </div>
-    </div>
-    <div class="flex flex-col py-12 gap-5">
-      <div class="font-normal flex flex-col">
-        <span>MEN</span>
-        <span>WOMEN</span>
-        <span>KIDS</span>
-      </div>
-      <div class="flex">
-        <div class="relative">
-          <input type="text" class="bg-[#D9D9D9]  h-[50px] w-[300px] sm:w-[400px] placeholder:px-45
-              xl:border-none xl:outline-none px-10 sm:placeholder:px-70 transition duration-400 hover:bg-[#D9D9D9]/40
-              focus:bg-[#D9D9D9]/40" placeholder="Search">
-          <img :src=search alt="" class="absolute left-4 top-1/2 -translate-y-1/2">
-        </div>
       </div>
     </div>
   </nav>

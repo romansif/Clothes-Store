@@ -4,7 +4,7 @@ import SignIn from "../../feature/auth/SignIn.vue";
 </script>
 
 <template>
-  <div class="bg-[#F5F5F5] h-screen">
+  <div class="bg-white h-screen">
     <SignIn />
   </div>
 </template>

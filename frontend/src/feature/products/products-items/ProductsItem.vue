@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { productsCover } from "@/shared/composables/product.cover.ts";
-import { useProducts } from "../composables/use.products.ts";
+import { useProducts } from "@/feature/products/composables/use.products.ts";
 import { useFavorites } from "@/feature/products/composables/use.favorites.ts";
 import { productsStore } from "@/shared/composables/stores/products.store";
 

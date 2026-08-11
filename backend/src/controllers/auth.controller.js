@@ -80,7 +80,7 @@ export const authController = {
                 httpOnly: true,
                 sameSite: 'lax',
                 secure: false,
-                maxAge: 15 * 60 * 1000
+                maxAge: 60 * 60 * 1000
             });
 
             res.cookie('refreshToken', refreshToken, {
@@ -147,7 +147,7 @@ export const authController = {
                 httpOnly: true,
                 sameSite: 'lax',
                 secure: false,
-                maxAge: 15 * 60 * 1000
+                maxAge: 60 * 60 * 1000
             });
 
             res.cookie('refreshToken', refreshToken, {
@@ -167,7 +167,7 @@ export const authController = {
         }
     },
 
-    async oAuth(req, res) {
+    async google(req, res) {
         try {
             const { credential, userId, role, dateCreatedAccount } = req.body;
 
@@ -273,7 +273,7 @@ export const authController = {
                 httpOnly: true,
                 sameSite: 'lax',
                 secure: false,
-                maxAge: 15 * 60 * 1000
+                maxAge: 60 * 60 * 1000
             });
 
             res.cookie('refreshToken', refreshToken, {

@@ -69,9 +69,7 @@ onMounted(async() => {
         Something went wrong 😔
       </span>
     <p class="text-sm mb-4">{{ componentError }}</p>
-    <button @click="resetError('CART_FAVORITE')" class="px-4 py-2 mt-5 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
-      Try again
-    </button>
+    <BaseButton name="Try again" variant="refresh" @click="resetError('CART_FAVORITE')" />
   </div>
   <div v-else class="font-[Montserrat] xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
     <NavBar />

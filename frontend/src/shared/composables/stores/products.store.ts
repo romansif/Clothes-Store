@@ -24,6 +24,8 @@ export interface Product {
     status: string,
     favorite: boolean,
     checked: boolean,
+    collection: string,
+    dateCreatedProduct: string,
 }
 
 interface Orders {
@@ -94,15 +96,22 @@ const genders: Gender[] = [
 
 const allProducts = ref<Product[]>([]);
 const products = ref<Product[]>([]);
+
+const stack = ref<Product[]>([]);
+const outOfStack = ref<Product[]>([]);
+
+const productsWeek = ref<Product[]>([]);
+const productsYear = ref<Product[]>([]);
+
 const cart = ref<Product[]>([]);
+
 const favorite = ref<Product[]>([]);
+
 const orders = ref<Orders[]>([]);
 
 const orderItems = ref<Product[]>([]);
 
 const product = ref<Product>({} as Product);
-const stack = ref<Product[]>([]);
-const outOfStack = ref<Product[]>([]);
 const productId = ref<string>(localStorage.getItem("productId") || '');
 const items = ref<Product[]>(JSON.parse(localStorage.getItem('orderItems') || '[]'));
 
@@ -119,8 +128,13 @@ export const productsStore = () => {
     return {
         allProducts,
         product,
+
+        productsWeek,
+        productsYear,
+
         stack,
         outOfStack,
+
         productId,
         items,
 

@@ -5,7 +5,7 @@ import { productsForms } from "@/shared/composables/forms/products.forms";
 import { clearProductsForms } from "@/shared/composables/clear-forms/clear.products";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
 
-const { openNotify } = useBaseModals();
+const { openNotify, loading } = useBaseModals();
 const { addToCartForm } = productsForms();
 const { addToCartErrors } = useFormsErrors();
 const { clearAddToCartForm } = clearProductsForms();
@@ -25,6 +25,8 @@ export const useCart = () => {
     };
 
     const addToCart = async () => {
+        loading.value = true;
+
         try{
             const userId = localStorage.getItem("userId");
 
@@ -41,7 +43,7 @@ export const useCart = () => {
                     material: currentProduct.material,
                     price: currentProduct.price,
                     description: currentProduct.description,
-                    color: addToCartForm.value.color,
+                    color: JSON.stringify(addToCartForm.value.color),
                     size: addToCartForm.value.size,
                     gender: currentProduct.gender,
                     quantity: 1,
@@ -53,6 +55,8 @@ export const useCart = () => {
             cart.value = newProductCart;
 
             unreadCount.value += 1;
+
+            loading.value = false;
 
             await getCartProducts();
 
@@ -196,14 +200,17 @@ export const useCart = () => {
     };
 
     const updateCheckedQuantity = async () => {
-        const checkedItems = cart.value.filter((item: any) => item.checked === true);
-        if (!Array.isArray(checkedItems)) {
-            console.warn('Корзина пуста или пришел не массив');
+        const checkedItems = cart.value.filter(item => item.checked);
+        if (!checkedItems || checkedItems.length === 0) {
+            console.warn('Нет выбранных (checked) товаров в корзине!', checkedItems);
+            console.log(checkedItems);
             return;
         }
 
         try{
             for(const item of checkedItems) {
+                await deleteProductCart(item.id);
+
                 const product = products.value?.find(
                     p => p.id === item.productId
                 );
@@ -249,7 +256,6 @@ export const useCart = () => {
                 }else{
                     console.log(`Товар в корзине c id=${item.productId} или в каталоге не найден`)
                 }
-                await deleteProductCart(item.id);
             }
 
             localStorage.removeItem("ordersItem");

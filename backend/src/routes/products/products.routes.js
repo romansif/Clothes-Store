@@ -9,8 +9,13 @@ const router = express.Router();
 router.get('/products', productsController.getAllProducts);
 router.get('/searched', productsController.getSearchedProducts);
 router.get('/filtered/:type/:filter', productsController.getFilteredProducts);
+
 router.get('/stack/:userId', productsController.getMyStackProducts);
 router.get('/out/of/stack/:userId', productsController.getMyOutOfStackProducts);
+
+router.get('/products/week', productsController.getWeekProducts);
+router.get('/products/year/:type/:filter', productsController.getYearProducts);
+
 router.get('/products/:id', productsController.getProductsById);
 
 router.post('/products', authMiddleware, upload.array('images', 5), validation.createProductValidation,

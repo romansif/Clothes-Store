@@ -5,10 +5,12 @@ import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
 import { useOrders } from "@/feature/products/composables/use.orders.ts";
 import { checkout } from "@/feature/checkout/composables/checkout.ts";
+import { useCart } from "@/feature/products/composables/use.cart.ts";
 
 const { addOrder } = useOrders();
-const { openNotify, loading } = useBaseModals();
 const { payment } = checkoutForms();
+const { openNotify, loading } = useBaseModals();
+const { updateCheckedQuantity } = useCart();
 const { isChosenPayment, paymentId } = checkout();
 const { paymentMethod, userPayments, userPayment } = usersStore();
 const { createPaymentMethodError, createPaymentCardErrors } = useFormsErrors();
@@ -71,6 +73,7 @@ export const usePayment = () => {
                     cardCvv: String(payment.value.cardCvv),
                 })
             });
+            await updateCheckedQuantity();
             await addOrder();
 
             await openNotify('You have successfully paid and created order.',
@@ -109,6 +112,7 @@ export const usePayment = () => {
                     })
                 });
             }
+            await updateCheckedQuantity();
             await addOrder();
 
             await openNotify('You have successfully paid and created order.',
