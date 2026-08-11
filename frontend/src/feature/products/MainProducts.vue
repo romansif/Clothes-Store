@@ -15,7 +15,7 @@ import Loading from "@/shared/ui/base/base-modals/Loading.vue";
 
 const { filterAside } = useProductsModals();
 const { getFilteredProducts } = useProducts();
-const { notify, loading, loadData } = useBaseModals();
+const { notify, loading } = useBaseModals();
 const { componentError, resetError } = errorHandler();
 
 onErrorCaptured((err, info) => {
@@ -28,11 +28,7 @@ onErrorCaptured((err, info) => {
 });
 
 onMounted(async () => {
-  try{
-    await getFilteredProducts('ALL', 'Availability');
-  }finally{
-    await loadData()
-  }
+  await getFilteredProducts('ALL', 'Availability');
 })
 </script>
 

@@ -8,7 +8,7 @@ import { checkoutErrors } from "@/shared/composables/errors/errors-messages/chec
 const { user } = usersStore();
 const { isAgreeForm } = checkoutForms();
 const { isAgreeFormError } = checkoutErrors();
-const { cart, favorite, orderItems, colors, sizes } = productsStore();
+const { cart, favorite, orderItems, sizes } = productsStore();
 
 export const profile = () => {
     const continueToOrder = async () =>  {
@@ -27,11 +27,6 @@ export const profile = () => {
         }
     };
 
-    const colorClass = (colorName: string) => {
-        const target = colors.find(c => c.name === colorName);
-        return target ? target.color : 'bg-transparent';
-    };
-
     const sizeUrl = (sizeName: string) => {
         const target = sizes.find(s => s.name === sizeName);
         return target ? target.url : 'bg-transparent';
@@ -47,9 +42,17 @@ export const profile = () => {
     };
 
     const userAvatar = computed(() => {
-        if(user.value && user.value.avatarUrl){
-            return `${import.meta.env.VITE_BASE_URL}/${user.value.avatarUrl}`
+        if(!user.value || !user.value.avatarUrl){
+           return '@/app/assets/photos/default-avatar.png'
         }
+
+        const url = user.value.avatarUrl;
+
+        if(url.startsWith('http://') || url.startsWith('https://')){
+            return url;
+        }
+
+        return `${import.meta.env.VITE_BASE_URL}/${user.value.avatarUrl}`
     });
 
     const cartCount = computed(() => {
@@ -81,7 +84,6 @@ export const profile = () => {
 
     return{
         continueToOrder,
-        colorClass,
         sizeUrl,
         sizeClass,
 

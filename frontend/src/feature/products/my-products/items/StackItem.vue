@@ -3,7 +3,7 @@ import { useProducts } from "@/feature/products/composables/use.products.ts";
 import { useFavorites } from "@/feature/products/composables/use.favorites.ts";
 import { productsCover } from "@/shared/composables/product.cover.ts";
 import { productsStore } from "@/shared/composables/stores/products.store";
-import { useProfileModals } from "@/shared/composables/modals/profile.modals";
+import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
 
 import del from '@/app/assets/icons/delete-close/delete.svg'
 import like from '@/app/assets/icons/nav/like.png'

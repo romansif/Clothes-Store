@@ -57,7 +57,8 @@ const usersAddresses = ref<UserCheckoutAddress[]>([])
 const userAddresses = ref<UserCheckoutAddress[]>([])
 const userAddress = ref<UserCheckoutAddress>({} as UserCheckoutAddress)
 
-const userShipping = ref<UserCheckoutShipping[]>([])
+const userShippings = ref<UserCheckoutShipping[]>([])
+const userShipping = ref<UserCheckoutShipping>({} as UserCheckoutShipping)
 
 const usersPayments = ref<UserCheckoutPayment[]>([])
 const userPayments = ref<UserCheckoutPayment[]>([])
@@ -142,6 +143,7 @@ export const usersStore = () => {
         userAddresses,
         userAddress,
 
+        userShippings,
         userShipping,
 
         usersPayments,

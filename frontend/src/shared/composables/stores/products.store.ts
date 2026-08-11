@@ -44,11 +44,6 @@ interface Sizes {
     class: string,
 }
 
-interface Colors {
-    name: string,
-    color: string,
-}
-
 interface Category {
     category: string,
 }
@@ -64,25 +59,12 @@ interface Gender {
 const sizes: Sizes[] = [
     {name: 'XS', url: xs, class: 'border-3 border-[#A3A3A3]'},
     {name: 'S', url: s, class: 'border-3 border-[#A3A3A3]'},
-    {name: 'M', url: m,class: 'border-3 border-[#A3A3A3]'},
+    {name: 'M', url: m, class: 'border-3 border-[#A3A3A3]'},
     {name: 'L', url: l, class: 'border-3 border-[#A3A3A3]'} ,
     {name: 'XL', url: xl, class: 'border-3 border-[#A3A3A3]'},
     {name: 'XXL', url: xxl, class: 'border-3 border-[#A3A3A3]'},
 ];
-const colors: Colors[] = [
-    {name: 'Black', color: 'bg-black'},
-    {name: 'Rose', color: 'bg-rose-950'},
-    {name: 'Lime', color: 'bg-lime-900'},
-    {name: 'Taupe', color: 'bg-taupe-700'},
-    {name: 'Mauve', color: 'bg-mauve-700'},
-    {name: 'Olive', color: 'bg-olive-700'},
-    {name: 'Violet', color: 'bg-violet-700'},
-    {name: 'Red', color: 'bg-red-600'},
-    {name: 'Blue', color: 'bg-blue-600'},
-    {name: 'Mist', color: 'bg-mist-500'},
-    {name: 'Green', color: 'bg-green-500'},
-    {name: 'White', color: 'bg-white'},
-];
+
 const categories: Category[] = [
     {category: 'Shoes'},
     {category: 'Underpants'},
@@ -142,7 +124,6 @@ export const productsStore = () => {
         productId,
         items,
 
-        colors,
         sizes,
         categories,
         materials,

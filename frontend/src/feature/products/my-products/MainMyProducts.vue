@@ -2,8 +2,8 @@
 import { onMounted } from "vue";
 import { useProducts } from "@/feature/products/composables/use.products.ts";
 import { productsStore } from "@/shared/composables/stores/products.store";
-import { useProfileModals } from "@/shared/composables/modals/profile.modals";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
+import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
 
 import NavBar from "../../navigation/NavBar.vue";
 import OutOfStackList from "./lists/OutOfStackList.vue";
@@ -13,18 +13,14 @@ import DeleteModal from "@/shared/ui/base/base-modals/DeleteModal.vue";
 import StackList from "@/feature/products/my-products/lists/StackList.vue";
 import Loading from "@/shared/ui/base/base-modals/Loading.vue";
 
+const { loading } = useBaseModals();
 const { deleteChoice } = useProfileModals();
-const { loading, loadData } = useBaseModals();
 const { stack, outOfStack } = productsStore();
 const { getMyStackProducts, getMyOutOfStackProducts } = useProducts();
 
 onMounted(async () => {
-  try{
-    await getMyStackProducts();
-    await getMyOutOfStackProducts();
-  }finally {
-    await loadData()
-  }
+ await getMyStackProducts();
+ await getMyOutOfStackProducts();
 })
 </script>
 

@@ -3,21 +3,35 @@ import { productsStore, type Product } from "@/shared/composables/stores/product
 import { productsForms } from "@/shared/composables/forms/products.forms";
 
 const { moreCreateItem } = productsForms();
-const { products, cart, product, productId, sizes, colors, activeProductImg } = productsStore();
+const { products, cart, product, productId, sizes, activeProductImg } = productsStore();
 
 export const productsCover = () => {
-    const toggleColor =  (colorName: string) => {
-        const index = moreCreateItem.color.indexOf(colorName);
+    const toggleColor =  (eventOrColor: Event | string) => {
         if (!Array.isArray(moreCreateItem.color)) {
             moreCreateItem.color = [];
         }
-        if(index === -1){
-            if(moreCreateItem.color.length >= 6){
-                return;
-            }
-            moreCreateItem.color.push(colorName);
+        let hexColor: string;
+
+        if(typeof eventOrColor === "object" && eventOrColor !== null && 'target' in eventOrColor) {
+            const target = eventOrColor.target as HTMLInputElement;
+            hexColor = target.value;
+
+            moreCreateItem.color.push(hexColor);
         }else{
-            moreCreateItem.color.splice(index, 1);
+            hexColor = eventOrColor
+            moreCreateItem.color.push(hexColor);
+        }
+
+        if(!hexColor) console.log('no');
+
+        const index = moreCreateItem.color.indexOf(hexColor);
+
+        if(index === -1) {
+            if(moreCreateItem.color.length >= 6){
+                moreCreateItem.color.push(hexColor);
+            }else(
+                moreCreateItem.color.splice(index, 1)
+            )
         }
     };
 
@@ -87,16 +101,10 @@ export const productsCover = () => {
         }
     });
 
-    const isAvailableColors = computed(() => {
-        if(!product.value.color){
-            return '';
-        }
-        return colors.filter(color => product.value.color.includes(color.name));
-    });
 
     const isAvailableSizes = computed(() => {
         if(!product.value.size){
-            return '';
+            return [];
         }
         return sizes.filter(size => product.value.size.includes(size.name));
     });
@@ -116,7 +124,6 @@ export const productsCover = () => {
         productPreview,
         productInfoPreview,
         angelCards,
-        isAvailableColors,
         isInCart,
         isAvailableSizes,
     }

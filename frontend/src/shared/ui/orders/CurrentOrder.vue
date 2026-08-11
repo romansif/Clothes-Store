@@ -13,16 +13,12 @@ import ReplacementChoice from "@/shared/ui/base/base-modals/ReplacementChoice.vu
 
 const { items } = useOrderCard();
 const { clipboard } = useOrderCard();
-const { choiceModal, loadData } = useBaseModals();
+const { choiceModal } = useBaseModals();
 const { getFilteredOrders } = useOrders();
 const { toggleCurrentOrder } = useProfileModals();
 
 onMounted(async () => {
-  try{
-    await getFilteredOrders();
-  }finally{
-    await loadData()
-  }
+  await getFilteredOrders();
 })
 </script>
 

@@ -11,6 +11,16 @@ const { userShipping } = usersStore();
 const { openNotify  } = useBaseModals();
 
 export const useShipping = () => {
+    const getShipping = async () => {
+        const paymentId = localStorage.getItem("paymentId");
+        try{
+            const shipping = await handler(`/shipping/${paymentId}`, {
+                method: "GET",
+            });
+            userShipping.value = shipping;
+        }catch(error){}
+    };
+
     const addShipping = async () => {
         const userId = localStorage.getItem("userId");
         try{
@@ -39,6 +49,7 @@ export const useShipping = () => {
     };
 
     return {
+        getShipping,
         addShipping,
     }
 }

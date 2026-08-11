@@ -9,8 +9,6 @@ const app = createApp(App)
 
 app.directive('mask', IMaskDirective as Directive)
 
-console.log(import.meta.env.VITE_GOOGLE_CLIENT_ID);
-
 app
     .use(VueQueryPlugin)
     .use(router)

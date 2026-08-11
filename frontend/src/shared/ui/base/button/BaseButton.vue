@@ -14,7 +14,7 @@ const variantClasses = {
       transition duration-400 hover:scale-105 cursor-pointer`,
   register:  `bg-black text-white rounded px-6 py-3.5 mt-6 font-semibold w-full text-start
       transition duration-400 hover:scale-105 cursor-pointer`,
-  changeRegister: `text-center text-sm text-[#A3A3A3] cursor-pointer`,
+  changeRegister: `text-center text-sm text-[#A3A3A3] cursor-pointer text-indigo-600 cursor-pointer hover:text-violet-600`,
   addToCart: `bg-black font-semibold text-sm py-5 w-full text-white font-[Montserrat] lg:block cursor-pointer
           transition duration-300 transform hover:scale-108`,
   addToOrder: `w-full font-semibold bg-black text-white py-4 mt-8 cursor-pointer

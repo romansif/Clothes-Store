@@ -5,6 +5,8 @@ import { shippingController } from "#controllers/users/shipping.controller.js";
 
 const router = express.Router();
 
+router.get('/shipping/:paymentId', authMiddleware, shippingController.getShipping);
+
 router.post('/shipping', authMiddleware, validation.shippingValidation,
     validation.handleValidationErrors, shippingController.addShipping);
 

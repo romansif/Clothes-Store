@@ -22,7 +22,7 @@ const {
   <div class="flex flex-col bg-white rounded-xl">
     <div class="flex p-5">
       <div class="flex items-center gap-10">
-        <img @click=toggleAvatar :src=userAvatar alt="" class="rounded-full w-30 transition duration-400 hover:scale-108">
+        <img @click=toggleAvatar :src=userAvatar alt="" class="rounded-full w-25 transition duration-400 hover:scale-108">
         <div class="flex flex-col gap-4">
           <div class="flex gap-2">
             <span class="font-semibold text-lg">Role:</span>
@@ -30,7 +30,7 @@ const {
           </div>
           <div class="flex gap-2">
             <span class="font-semibold text-lg">Name:</span>
-            <span class="font-medium text-lg text-[#A3A3A3]">{{ user?.surName }} {{ user?.name }}</span>
+            <span class="font-medium text-lg text-[#A3A3A3]">{{ user?.name }} {{ user?.surName }}</span>
            </div>
         </div>
       </div>

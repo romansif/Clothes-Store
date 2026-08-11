@@ -20,7 +20,7 @@ const { productPreview } = productsCover();
 const { toggleToFavorite } = useFavorites();
 const { toggleDeleteChoice } = useProfileModals();
 const { updateCartItem, checkCartItem } = useCart();
-const { colorClass, sizeClass, sizeUrl } = profile();
+const { sizeClass, sizeUrl } = profile();
 
 const refreshPage = () => {
   window.location.reload();
@@ -62,7 +62,7 @@ const refreshPage = () => {
         </div>
         <div class="flex flex-col gap-4">
           <img :src="sizeUrl(product.size)" :class="[sizeClass(product.size)]" alt="">
-          <div :class="['w-[30px] h-[30px]', colorClass(product.color)]"></div>
+          <div class="w-[30px] h-[30px]" :style="{ background: product.color }"></div>
           <div class="flex flex-col border transition duration-400 hover:scale-120">
             <button @click="updateCartItem('add', product.id, product.status)"
                     class="border-b transition duration-400 hover:bg-zinc-300 cursor-pointer">+</button>

@@ -34,7 +34,6 @@ watch(() => [loginForm.value.email, loginForm.value.password, loginForm.value.ro
     }
 );
 
-
 const showPassword = ref(false);
 
 const togglePassword = () => {
@@ -107,7 +106,9 @@ const togglePassword = () => {
         <BaseButton @click="signIn" name="SIGN IN" variant="login" />
         <img :src=maki_arrow alt="" class="absolute w-[25px] top-9.5 left-58 sm:left-83 ">
       </div>
-      <GoogleSignIn />
+      <div class="flex justify-center">
+        <GoogleSignIn />
+      </div>
     </div>
   </section>
   <Loading v-if="loading"/>

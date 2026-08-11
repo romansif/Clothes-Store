@@ -197,10 +197,10 @@ export const useCart = () => {
 
     const updateCheckedQuantity = async () => {
         const checkedItems = cart.value.filter((item: any) => item.checked === true);
-        // if (!Array.isArray(checkedItems)) {
-        //     console.warn('Корзина пуста или пришел не массив');
-        //     return;
-        // }
+        if (!Array.isArray(checkedItems)) {
+            console.warn('Корзина пуста или пришел не массив');
+            return;
+        }
 
         try{
             for(const item of checkedItems) {
@@ -246,11 +246,12 @@ export const useCart = () => {
                             })
                         });
                     }
-                    await deleteProductCart(item.id);
                 }else{
                     console.log(`Товар в корзине c id=${item.productId} или в каталоге не найден`)
                 }
+                await deleteProductCart(item.id);
             }
+
             localStorage.removeItem("ordersItem");
         }catch(err){
             console.error(`Failed to update the status or quantity:`, err);

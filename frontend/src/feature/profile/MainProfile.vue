@@ -20,18 +20,14 @@ import UserDataModal from "@/shared/ui/profile-modals/confidentiality-data/UserD
 
 const { user } = usersStore();
 const { getUser } = useGetUsers();
-const { notify, loadData } = useBaseModals();
+const { notify } = useBaseModals();
 const { createProduct } = useProductsModals();
 const { avatarModal, orderHistory, currentOrder, addressesAndCards, confidentialityData, deleteChoice } = useProfileModals();
 
 const userId = localStorage.getItem("userId");
 
 onMounted(async () => {
-  try{
-    await getUser();
-  }finally{
-    await loadData();
-  }
+  await getUser();
 })
 </script>
 

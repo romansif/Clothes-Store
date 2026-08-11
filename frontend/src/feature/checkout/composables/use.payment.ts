@@ -7,7 +7,7 @@ import { useOrders } from "@/feature/products/composables/use.orders.ts";
 import { checkout } from "@/feature/checkout/composables/checkout.ts";
 
 const { addOrder } = useOrders();
-const { openNotify } = useBaseModals();
+const { openNotify, loading } = useBaseModals();
 const { payment } = checkoutForms();
 const { isChosenPayment, paymentId } = checkout();
 const { paymentMethod, userPayments, userPayment } = usersStore();
@@ -15,24 +15,32 @@ const { createPaymentMethodError, createPaymentCardErrors } = useFormsErrors();
 
 export const usePayment = () => {
     const getPayments = async () => {
+        loading.value = true;
+
         const userId = localStorage.getItem("userId");
         try{
             const payments = await handler(`/payment/${userId}`, {
                 method: "GET",
             });
             userPayments.value = payments;
+
+            loading.value = false;
         }catch(err){
             console.error(`Failed to get the user payments:`, err);
         }
     };
 
     const getPayment = async () => {
+        loading.value = true;
+
         const paymentId = localStorage.getItem("paymentId");
         try{
             const payments = await handler(`/payment/item/${paymentId}`, {
                 method: "GET",
             });
-            userPayment.value = payments
+            userPayment.value = payments;
+
+            loading.value = false;
         }catch(err){
             console.error(`Failed to get the user payment:`, err);
         }

@@ -48,7 +48,6 @@ watch(() => [
   if(postalCode){
     informationErrors.value.postalCodeError = false;
   }
-console.log(phone)
 });
 </script>
 

@@ -3,11 +3,11 @@ import { useRoute } from "vue-router";
 import { profile } from "@/shared/composables/profile.ts";
 import { computed, onErrorCaptured, onMounted, watch } from "vue";
 import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import {useCart} from "@/feature/products/composables/use.cart.ts";
-import {useFavorites} from "@/feature/products/composables/use.favorites.ts";
-import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
+import { useCart } from "@/feature/products/composables/use.cart.ts";
+import { useFavorites } from "@/feature/products/composables/use.favorites.ts";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
 import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
+import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
 import { errorHandler } from "@/shared/composables/errors/errors-middleware/error.handler.ts";
 import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors.ts";
 
@@ -27,12 +27,12 @@ import Loading from "@/shared/ui/base/base-modals/Loading.vue";
 
 const { getCartProducts } = useCart();
 const { isAgreeForm } = checkoutForms();
-const { cart, favorite } = productsStore();
 const { deleteChoice } = useProfileModals();
+const { cart, favorite } = productsStore();
+const { notify, loading } = useBaseModals();
 const { isAgreeFormError } = checkoutErrors();
 const { getFavoriteProducts } = useFavorites();
 const { componentError, resetError } = errorHandler();
-const { notify, loading, loadData } = useBaseModals();
 const { cartCount, favoritesCount, toggleAgree, continueToOrder } = profile();
 
 const route = useRoute();
@@ -57,12 +57,8 @@ onErrorCaptured((err, info) => {
 });
 
 onMounted(async() => {
-  try{
-    await getCartProducts();
-    await getFavoriteProducts();
-  }finally {
-    await loadData()
-  }
+  await getCartProducts();
+  await getFavoriteProducts();
 });
 </script>
 

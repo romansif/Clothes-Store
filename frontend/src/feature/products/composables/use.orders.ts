@@ -9,34 +9,44 @@ const { shipping } = checkoutForms();
 const { totalPrice } = checkout();
 const { updateCheckedQuantity } = useCart();
 const { orders, items } = productsStore();
-const { cancelChoice, orderId, openNotify } = useBaseModals();
+const { cancelChoice, orderId, loading, openNotify } = useBaseModals();
 
 export const useOrders = () => {
     const getOrders = async () => {
+        loading.value = true;
+
         const userId = localStorage.getItem("userId");
         try{
             const res = await handler(`/orders/${userId}`, {
                 method: 'GET',
             })
             orders.value = res;
+
+            loading.value = false;
         }catch(err){
             console.error(`Failed to get the all orders:`, err);
         }
     };
 
     const getFilteredOrders = async () => {
+        loading.value = true;
+
         const userId = localStorage.getItem("userId");
         try{
             const res = await handler(`/orders/active/${userId}`, {
                 method: 'GET',
             })
             orders.value = res;
+
+            loading.value = false;
         }catch(err){
             console.error(`Failed to get the current orders:`, err);
         }
     };
 
     const addOrder = async () => {
+        await updateCheckedQuantity();
+
         const userId = localStorage.getItem("userId");
         try{
             const date = new Date();
@@ -58,7 +68,6 @@ export const useOrders = () => {
                     status: 'Convene'
                 })
             })
-            await updateCheckedQuantity();
         }catch(err){
             console.error(`Failed to create the order:`, err);
         }

@@ -4,7 +4,7 @@ import { usersStore } from "@/shared/composables/stores/users.store";
 import { userForms } from "@/shared/composables/forms/users.forms";
 import { clearUsersForms } from "@/shared/composables/clear-forms/clear.users";
 import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
-import {useGetUsers} from "@/feature/auth/auth-composables/get.users.ts";
+import { useGetUsers } from "@/feature/auth/auth-composables/get.users.ts";
 
 interface UserDataUpdate {
     name?: string;

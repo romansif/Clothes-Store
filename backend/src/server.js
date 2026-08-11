@@ -37,10 +37,12 @@ app.use(cookieParser());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use('/api', authRoutes);
+
 app.use('/api', usersRoutes);
 app.use('/api', addressesRoutes);
 app.use('/api', shippingRoutes);
 app.use('/api', paymentsRoutes);
+
 app.use('/api', productsRoutes);
 app.use('/api', cartRoutes);
 app.use('/api', favoritesRoutes);

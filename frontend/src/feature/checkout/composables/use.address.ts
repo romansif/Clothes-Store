@@ -5,7 +5,7 @@ import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
 import { checkout } from "@/feature/checkout/composables/checkout.ts";
 
-const { openNotify } = useBaseModals();
+const { openNotify, loading } = useBaseModals();
 const { information } = checkoutForms();
 const { userAddresses, userAddress } = usersStore();
 const { createInformationErrors } = useFormsErrors();
@@ -13,24 +13,32 @@ const { isChosenAddress, isChosenContactInfo, informationId } = checkout();
 
 export const useAddress = () => {
     const getAddresses = async () => {
+        loading.value = true;
+
         const userId = localStorage.getItem("userId");
         try{
             const addresses = await handler(`/address/${userId}`, {
                 method: "GET",
             });
             userAddresses.value = addresses;
+
+            loading.value = false;
         }catch(err){
             console.error(`Failed to get the user addresses:`, err);
         }
     };
 
     const getAddress = async () => {
+        loading.value = true;
+
         const addressId = localStorage.getItem("addressId");
         try{
             const address = await handler(`/address/item/${addressId}`, {
                 method: "GET",
             });
             userAddress.value = address;
+
+            loading.value = false;
         }catch(err){
             console.error(`Failed to get the user address:`, err);
         }

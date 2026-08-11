@@ -15,7 +15,7 @@ import Notification from "@/shared/ui/base/base-modals/Notification.vue";
 import Loading from "@/shared/ui/base/base-modals/Loading.vue";
 
 const { getProduct } = useProducts();
-const { notify, loading, loadData } = useBaseModals();
+const { notify, loading } = useBaseModals();
 const { product, activeProductImg } = productsStore();
 const { productInfoPreview, angelCards, changeImg } = productsCover();
 
@@ -24,14 +24,10 @@ const router = useRouter();
 const userId = localStorage.getItem("userId");
 
 onMounted(async () => {
-  try{
-    await getProduct();
+  await getProduct();
 
-    if(product.value && Array.isArray(product.value.images) && product.value.images[0]) {
-      activeProductImg.value = productInfoPreview.value(product.value) ?? '';
-    }
-  }finally{
-    await loadData();
+  if(product.value && Array.isArray(product.value.images) && product.value.images[0]) {
+    activeProductImg.value = productInfoPreview.value(product.value) ?? '';
   }
 })
 

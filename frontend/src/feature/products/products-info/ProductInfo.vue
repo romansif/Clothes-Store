@@ -18,7 +18,7 @@ const { product } = productsStore();
 const { toggleToFavorite } = useFavorites();
 const { addToCart, updateCartItem } = useCart();
 const { addCartFormErrors } = productsFormErrors();
-const { isAvailableColors, isAvailableSizes, isInCart } = productsCover();
+const { isAvailableSizes, isInCart } = productsCover();
 const { addToCartForm, addToCartFormMessages } = productsForms();
 
 const userId = localStorage.getItem("userId");
@@ -34,7 +34,7 @@ watch(() => [addToCartForm.value.color, addToCartForm.value.size], ([color, size
 </script>
 
 <template>
-  <div class="flex flex-col mt-6 px-4 lg:mt-0">
+  <div class="flex flex-col mt-6 px-4 lg:mt-0 w-[492px]">
     <div class="flex flex-col gap-2">
       <div class="flex">
         <div class="flex flex-col gap-2 mt-1">
@@ -61,23 +61,23 @@ watch(() => [addToCartForm.value.color, addToCartForm.value.size], ([color, size
         <span class="font-medium text-[#A3A3A3]">
           Colors
         </span>
-        <div class="flex justify-between lg:gap-5">
-          <div v-for="color in (isAvailableColors as any)" :key="color.name" :class="[color.color, 'w-[60px] h-[60px]',
-                addToCartForm.color === color.name
-                  ? 'scale-120 border-3 border-black'
+        <div class="flex justify-start items-center lg:gap-5">
+          <div v-for="hex in product.color" :key="hex" :class="['w-[60px] h-[60px]',
+                addToCartForm.color === hex
+                  ? 'scale-120'
                   : 'hover:scale-120 transition duration-400'
-               ]" @click="addToCartForm.color = color.name"></div>
-        </div>
+               ]" :style="{ background: hex }" :title="hex" @click="addToCartForm.color = hex"></div>
+          </div>
         <span v-if=addCartFormErrors.colorError class="text-red-600 text-xs">
           {{ addToCartFormMessages.colorMessage }}
         </span>
       </div>
       <div class="flex flex-col gap-2">
         <span class="font-medium text-[#A3A3A3]">Size</span>
-        <div class="flex justify-between lg:gap-5">
+        <div class="flex justify-start items-center lg:gap-5">
           <img v-for="size in (isAvailableSizes as any)" :key="size.name" :src=size.url alt="" :class="[size.class, 'w-[60px] h-[60px]',
                 addToCartForm.size === size.name
-                  ? 'scale-120 border-black'
+                  ? 'scale-120'
                   : 'hover:scale-120 transition duration-400']" @click="addToCartForm.size = size.name">
         </div>
         <span v-if=addCartFormErrors.sizeError class="text-red-600 text-xs">

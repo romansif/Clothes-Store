@@ -2,7 +2,7 @@
 import { computed } from "vue";
 import { usersStore } from "@/shared/composables/stores/users.store";
 
-import AddressesItemvue from "./AddressesItem.vue";
+import AddressesItem from "./AddressesItem.vue";
 import icon_address from "@/app/assets/icons/checkout/icon_address.svg";
 
 const { userAddresses } = usersStore();
@@ -14,7 +14,7 @@ const userAddressesCity = computed(() => {
 
 <template>
   <ul v-if="userAddressesCity" class="flex flex-col overflow-y-auto no-scrollbar h-[370px] pb-4">
-    <AddressesItemvue />
+    <AddressesItem />
   </ul>
   <div v-else class="flex justify-center pt-35">
     <div class="flex flex-col items-center gap-5">

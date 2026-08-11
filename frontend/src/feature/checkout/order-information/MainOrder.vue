@@ -1,13 +1,20 @@
 <script setup lang="ts">
+import { onMounted } from "vue";
 import { checkout } from "../composables/checkout.ts";
+import { useShipping } from "@/feature/checkout/composables/use.shipping.ts";
 import { usersStore } from "@/shared/composables/stores/users.store";
 import { productsStore } from "@/shared/composables/stores/products.store";
 
 import OrderList from "./order-items/OrderList.vue";
 
+const { getShipping } = useShipping();
 const { items } = productsStore();
-const { userPayment } = usersStore();
+const { userShipping } = usersStore();
 const { price, totalPrice, commissionPrice } = checkout();
+
+onMounted(async () => {
+  await getShipping();
+})
 </script>
 
 <template>
@@ -25,8 +32,8 @@ const { price, totalPrice, commissionPrice } = checkout();
       </div>
       <div class="flex justify-between">
         <span>Shipping</span>
-        <span v-if="!userPayment.delivery" class="text-gray-400">Calculated at next step</span>
-        <span v-if="userPayment.delivery" class="text-gray-400">{{ userPayment.delivery }}</span>
+        <span v-if="!userShipping.delivery" class="text-gray-400">Calculated at next step</span>
+        <span v-if="userShipping.delivery" class="text-gray-400">{{ userShipping.delivery }}</span>
       </div>
     </div>
     <div class="border-b-1 border-gray-300 mt-3 mb-1"></div>

@@ -169,7 +169,7 @@ export const authController = {
 
     async oAuth(req, res) {
         try {
-            const { credential } = req.body;
+            const { credential, userId, role, dateCreatedAccount } = req.body;
 
             if (!credential) {
                 return res.status(400).json({
@@ -189,6 +189,8 @@ export const authController = {
                 email,
                 given_name,
                 family_name,
+                name,
+                phone,
                 picture,
                 email_verified
             } = payload;
@@ -210,16 +212,27 @@ export const authController = {
             }
 
             if (!user) {
+                const userGivenName = given_name || name || email.split('@')[0];
+                const userSurName = family_name || "";
+                const privatePhone = phone || "";
+
+                const tempUserPayload = { email };
+                const initialRefreshToken = generateRefreshToken(tempUserPayload);
+
                 const { data: createdUser, error: insertError } = await supabase
                     .from("users")
                     .insert([{
                         email,
-                        name: given_name,
-                        surName: family_name,
-                        avatarUrl: picture,
+                        role,
+                        name: userGivenName,
+                        surName: userSurName,
+                        avatarUrl: picture || '',
+                        privatePhone: privatePhone,
                         googleId: sub,
-                        password: null,
-                        refreshTokens: []
+                        dateCreatedAccount,
+                        password: '',
+                        userId,
+                        refreshTokens: [initialRefreshToken]
                     }])
                     .select()
                     .single();
@@ -227,6 +240,21 @@ export const authController = {
                 if (insertError) throw insertError;
 
                 user = createdUser;
+            }else{
+                const refreshToken = generateRefreshToken(user);
+                const tokens = [...(user.refreshTokens || []), refreshToken];
+
+                const { error: updateError } = await supabase
+                    .from("users")
+                    .update({
+                        googleId: user.googleId || sub,
+                        refreshTokens: tokens
+                    })
+                    .eq("id", user.id);
+
+                if (updateError) throw updateError;
+
+                user.refreshTokens = tokens;
             }
 
             const accessToken = generateAccessToken(user);

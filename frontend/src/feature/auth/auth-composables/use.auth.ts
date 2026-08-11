@@ -6,7 +6,7 @@ import { clearAuthForms } from "@/shared/composables/clear-forms/clear.auth";
 import { useFormsErrors } from "@/shared/composables/errors/errors-middleware/forms.errors";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
 
-const { loadAuth } = useBaseModals();
+const { loading, openNotify } = useBaseModals();
 const { users, user } = usersStore();
 const { registerErrors, loginErrors } = useFormsErrors();
 const { clearRegisterBuyerForm, clearRegisterSellerForm, clearRegisterFormMessages,
@@ -15,6 +15,8 @@ const { registerBuyerForm, registerSellerForm, loginForm } = authForms();
 
 export const useAuth = () => {
     const signUp = async (role: string) => {
+        loading.value = true;
+
         clearRegisterFormMessages();
         try{
             const date = new Date();
@@ -51,8 +53,9 @@ export const useAuth = () => {
 
             (role === 'Buyer' ? clearRegisterBuyerForm() : clearRegisterSellerForm());
 
-            await loadAuth('You have successfully registered.',
-                'You will now be taken to your profile page.', 'profile')
+            loading.value = false;
+            await openNotify('You have successfully sign up.',
+                'You will now be taken to your profile page.', 'profile');
         }catch(err){
             registerErrors(err, role)
             console.log(`Failed to register new user:`, err);
@@ -60,7 +63,9 @@ export const useAuth = () => {
     };
 
     const signIn = async () => {
-        clearLoginFormMessages()
+        loading.value = true;
+
+        clearLoginFormMessages();
         try{
             const foundedUser = await handler('/users/signIn', {
                 method: "POST",
@@ -79,7 +84,8 @@ export const useAuth = () => {
             }
             user.value = foundedUser.user
 
-            await loadAuth('You have successfully logged in.',
+            loading.value = false;
+            await openNotify('You have successfully sign in.',
                 'You will now be taken to your profile page.', 'profile')
 
             clearLoginForm()
@@ -90,11 +96,17 @@ export const useAuth = () => {
     };
 
     const signOAuth = async (response: any) => {
+        loading.value = true;
+
         try{
+            const date = new Date();
+
             const foundedUser = await handler('/users/OAuth', {
                 method: "POST",
                 body: JSON.stringify({
+                    role: loginForm.value.role || 'Buyer',
                     credential: response.credential,
+                    dateCreatedAccount: date,
                 })
             });
             if(!foundedUser){
@@ -106,12 +118,11 @@ export const useAuth = () => {
             }
             user.value = foundedUser.user
 
-            await loadAuth('You have successfully logged in.',
-                'You will now be taken to your profile page.', 'profile')
-
-            console.log(response)
+            loading.value = false;
+            await openNotify('You have successfully sign in.',
+                'You will now be taken to your profile page.', 'profile');
         }catch(err){
-            await loadAuth('You were unable to login with google..',
+            await openNotify('You were unable to login with google.',
                 '', '')
             console.log(`Failed to login:`, err);
         }

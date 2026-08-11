@@ -3,8 +3,7 @@ import { onMounted } from "vue";
 import { usersStore } from "@/shared/composables/stores/users.store"
 import { useProfileModals } from "@/shared/composables/modals/profile.modals";
 import { useAddress } from "@/feature/checkout/composables/use.address.ts";
-import { usePayment } from "@/feature/checkout/composables/use.payment.ts";
-import { useBaseModals } from "@/shared/composables/modals/base.modals";
+import { usePayment } from "@/feature/checkout/composables/use.payment.ts";;
 
 import PaymentsList from "@/shared/ui/profile-modals/address-and-cards/payments/PaymentsList.vue";
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
@@ -15,18 +14,13 @@ import DeleteModal from "@/shared/ui/base/base-modals/DeleteModal.vue";
 
 const { getAddresses } = useAddress();
 const { getPayments } = usePayment();
-const { loadData } = useBaseModals();
 const { userAddresses, userPayments } = usersStore();
 const { toggleAddressesAndCards, deleteChoice } = useProfileModals();
 
 
 onMounted(async () => {
-  try{
-    await getAddresses();
-    await getPayments();
-  }finally{
-    await loadData()
-  }
+  await getAddresses();
+  await getPayments();
 })
 </script>
 

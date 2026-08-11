@@ -14,15 +14,12 @@ import ReplacementChoice from "@/shared/ui/base/base-modals/ReplacementChoice.vu
 const { orders } = productsStore();
 const { clipboard } = useOrderCard();
 const { getOrders } = useOrders();
-const { choiceModal, loadData } = useBaseModals();
+const { choiceModal } = useBaseModals();
 const { toggleOrderHistory } = useProfileModals();
 
 onMounted(async () => {
-  try{
-    await getOrders();
-  }finally{
-    await loadData()
-  }
+  await getOrders();
+
 })
 </script>
 

@@ -7,7 +7,7 @@ import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 
 const { userAvatar } = profile();
 const { updateAvatarAccount } = useProfile();
-const { toggleAvatar, openSelectAvatar } = useProfileModals();
+const { toggleAvatar, openSelectAvatar, fileInput } = useProfileModals();
 </script>
 
 <template>
@@ -21,7 +21,7 @@ const { toggleAvatar, openSelectAvatar } = useProfileModals();
           <div class="flex gap-12">
             <BaseButton @click="toggleAvatar" name="Confirm" variant="toggleAvatar" />
           </div>
-          <input type="file" ref="fileInput" class="hidden" accept="image/*" @change="updateAvatarAccount">
+          <input type="file" :ref="(el) => { fileInput = el as HTMLInputElement }" class="hidden" accept="image/*" @change="updateAvatarAccount">
         </div>
       </div>
     </div>
