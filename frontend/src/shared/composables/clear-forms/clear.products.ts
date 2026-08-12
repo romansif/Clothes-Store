@@ -38,7 +38,10 @@ export const clearProductsForms = () => {
     }
 
     const clearAddToCartForm = () => {
-        addToCartForm.value.color = '';
+        addToCartForm.value.color = {
+            hex: '',
+            colorName: ''
+        };
         addToCartForm.value.size = '';
 
         addToCartFormMessages.value.colorMessage = '';

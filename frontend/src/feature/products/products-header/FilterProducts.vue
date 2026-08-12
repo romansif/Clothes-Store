@@ -37,7 +37,7 @@ onMounted(async() => {
       <div class="flex flex-col gap-2">
         <div v-for="(isActive, stackName) in stackProducts" class="flex gap-3">
           <img @click="toggleFilter('STATUS', stackName)" :src="isActive ? checked : square"
-               alt="" class="w-[23px] h-[23px] transition duration-400 hover:scale-120 cursor-pointer">
+               alt="" :class="['w-[23px] h-[23px] transition duration-400 hover:scale-120 cursor-pointer', isActive ? 'scale-120' : '']">
           <div class="flex gap-1">
             <span>{{ stackName }}</span>
             <span>
@@ -58,7 +58,7 @@ onMounted(async() => {
       <div class="flex flex-col gap-2">
         <div v-for="(isActive, genderName) in genders" class="flex gap-3">
           <img @click="toggleFilter('GENDER', genderName)" :src="isActive ? checked : square"
-               alt="" class="w-[23px] h-[23px] transition duration-400 hover:scale-120 cursor-pointer">
+               alt="" :class="['w-[23px] h-[23px] transition duration-400 hover:scale-120 cursor-pointer', isActive ? 'scale-120' : '']">
           <div class="flex gap-1">
             <span>{{ genderName }}</span>
             <span>
@@ -79,7 +79,7 @@ onMounted(async() => {
       <div class="grid grid-cols-2 gap-y-2 gap-x-6">
         <div v-for="(isActive, colorName) in colors" :key="colorName" class="flex gap-3">
           <img @click="toggleFilter('COLOR', colorName)" :src="isActive ? checked : square"
-               alt="" class="w-[23px] h-[23px] transition duration-400 hover:scale-120 cursor-pointer">
+               alt="" :class="['w-[23px] h-[23px] transition duration-400 hover:scale-120 cursor-pointer', isActive ? 'scale-120' : '']">
           <div class="flex gap-1">
             <span>{{ colorName }}</span>
           </div>

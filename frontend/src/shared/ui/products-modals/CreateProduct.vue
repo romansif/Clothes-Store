@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { watch } from "vue";
 import { productsCover } from "@/shared/composables/product.cover.ts";
+import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
 import { productsStore } from "@/shared/composables/stores/products.store";
 import { useProducts } from "@/feature/products/composables/use.products.ts";
 import { useProductsModals } from "@/shared/composables/modals/products.modals";
@@ -9,7 +10,9 @@ import { productsFormErrors } from "@/shared/composables/errors/errors-messages/
 
 import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
 import close from '@/app/assets/icons/delete-close/del_address_card.svg';
+import Loading from "@/shared/ui/base/base-modals/Loading.vue";
 
+const { loading } = useBaseModals();
 const { toggleSize, toggleColor } = productsCover();
 const { createProductFormErrors } = productsFormErrors();
 const { createProduct, onFilesSelected } = useProducts();
@@ -18,16 +21,19 @@ const { sizes, categories, materials, genders, productsPreview } = productsStore
 const { toggleCreateProductModal, openSelectProductCard, fileInput } = useProductsModals();
 
 watch(() => [
-      createProductForm.value.title, createProductForm.value.category,
-      createProductForm.value.material, createProductForm.value.price,
-      createProductForm.value.description,
+      createProductForm.value.title, createProductForm.value.collections,
+      createProductForm.value.category, createProductForm.value.material,
+      createProductForm.value.price, createProductForm.value.description,
       moreCreateItem.color, moreCreateItem.size,
       createProductForm.value.gender, createProductForm.value.quantity
   ],
 
-  ([title, category, material, price, description, color, size, gender, quantity]) => {
+  ([title, collections, category, material, price, description, color, size, gender, quantity]) => {
     if(title){
       createProductFormErrors.value.titleError = false;
+    }
+    if(collections){
+      createProductFormErrors.value.collectionsError = false;
     }
     if(category){
       createProductFormErrors.value.categoryError = false;
@@ -60,16 +66,16 @@ watch(() => [
   <div class="font-[Montserrat] fixed inset-0 z-50 flex items-center justify-center">
     <div class="py-2 px-4 bg-[#F0F0F0] shadow-md overflow-hidden w-full h-full">
       <img @click="toggleCreateProductModal" :src="close" alt="" class="w-[40px] ml-auto transition duration-400 hover:scale-120">
-      <div class="flex gap-30 py-2 px-5.5 mt-4">
+      <div class="flex gap-30 py-2 px-5.5">
         <form @keydown.enter="createProduct" action="" class="flex flex-col w-[1000px] gap-5 mt-2">
           <div class="flex items-center gap-6">
-            <div class="flex flex-col gap-3.5 w-full">
+            <div class="flex flex-col gap-2 w-full">
               <label for="" class="font-semibold uppercase tracking-wider text-xs text-[#A3A3A3]">COLLECTIONS</label>
               <BaseInput v-model="createProductForm.collections" type="text" placeholder="new, ikyk etc."
                          :error="createProductFormErrors.collectionsError" variant="createProduct" required
                          :error-message="createProductFormErrors.collectionsError ? createProductFormMessages.collectionsMessage : ''"/>
             </div>
-            <div class="flex flex-col gap-3.5 w-full">
+            <div class="flex flex-col gap-2.5 w-full">
               <label for="" class="font-semibold uppercase tracking-wider text-xs text-[#A3A3A3]">TITLE</label>
               <BaseInput v-model="createProductForm.title" type="text" placeholder="title, name etc."
                          :error="createProductFormErrors.titleError" variant="createProduct" required
@@ -77,7 +83,7 @@ watch(() => [
             </div>
           </div>
           <div class="flex items-center gap-6">
-            <div class="flex flex-col gap-3.5 w-full">
+            <div class="flex flex-col gap-2.5 w-full">
               <label for="" class="font-semibold uppercase tracking-wider text-xs text-[#A3A3A3]">CATEGORY</label>
               <div class="flex items-center gap-3">
                 <select v-model="createProductForm.category" :class="[`w-32 border border-gray-300 rounded-sm outline-none
@@ -90,13 +96,13 @@ watch(() => [
                 </select>
                 <BaseInput class="w-full" v-model="createProductForm.category" type="text" placeholder="shirt, shoes etc.."
                            :error="createProductFormErrors.categoryError" variant="createProduct" required
-                           :error-message="createProductFormErrors.categoryError ? createProductFormMessages.categoryMessage : ''"/>
+                           :error-message="''"/>
               </div>
               <span v-if="createProductFormErrors.categoryError" class="text-red-600 text-xs">
-                  {{ createProductFormMessages.categoryMessage }}
-                </span>
+                {{ createProductFormMessages.categoryMessage }}
+              </span>
             </div>
-            <div class="flex flex-col gap-3.5 w-full">
+            <div class="flex flex-col gap-2.5 w-full">
               <label for="" class="font-semibold uppercase tracking-wider text-xs text-[#A3A3A3]">MATERIAL</label>
               <div class="flex gap-3">
                 <select v-model="createProductForm.material" :class="[`w-32 border border-gray-300 rounded-sm outline-none
@@ -109,19 +115,19 @@ watch(() => [
                 </select>
                 <BaseInput class="w-full" v-model="createProductForm.material" type="text" placeholder="cotton, wool etc."
                            :error="createProductFormErrors.materialError" variant="createProduct" required
-                           :error-message="createProductFormErrors.materialError ? createProductFormMessages.materialMessage : ''"/>
+                           :error-message="''"/>
               </div>
               <span v-if="createProductFormErrors.materialError" class="text-red-600 text-xs">
-                  {{ createProductFormMessages.materialMessage }}
-                </span>
+                {{ createProductFormMessages.materialMessage }}
+              </span>
             </div>
           </div>
           <div class="flex items-center gap-6">
-            <div class="flex flex-col gap-3.5 w-full">
+            <div class="flex flex-col gap-2.5 w-full">
               <label for="" class="font-semibold uppercase tracking-wider text-xs text-[#A3A3A3]">
                 Gender
               </label>
-              <div class="flex flex-col gap-3">
+              <div class="flex flex-col gap-2.5">
                 <select v-model="createProductForm.gender" :class="[`border border-gray-300 rounded-sm outline-none
                           px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`, createProductForm.gender ? 'text-black' : '',
                            createProductFormErrors.genderError ? 'border-red-500' : '']">
@@ -135,26 +141,26 @@ watch(() => [
                 </span>
               </div>
             </div>
-            <div class="flex items-center gap-3 w-full">
-              <div class="flex flex-col gap-3.5 w-full">
+            <div class="flex gap-3 w-full">
+              <div class="flex flex-col gap-2.5 w-full">
                 <label for="" class="font-semibold uppercase tracking-wider text-xs text-[#A3A3A3]">
                   Quantity
                 </label>
-                <div class="flex flex-col gap-6">
-                  <BaseInput v-model="createProductForm.quantity" type="number" placeholder="quantity of product"
-                             :error="createProductFormErrors.quantityError" variant="createProduct" required
-                             :error-message="createProductFormErrors.quantityError ? createProductFormMessages.quantityMessage : ''"/>
-                </div>
+                <BaseInput v-model="createProductForm.quantity" type="number" placeholder="quantity of product"
+                           :error="createProductFormErrors.quantityError" variant="createProduct" required
+                           :error-message="createProductFormErrors.quantityError ? createProductFormMessages.quantityMessage : ''"/>
               </div>
-              <div class="flex flex-col gap-3.5 w-full">
-                <label for="" class="font-semibold uppercase tracking-wider text-xs text-[#A3A3A3]">PRICE</label>
+              <div class="flex flex-col gap-2.5 w-full">
+                <label for="" class="font-semibold uppercase tracking-wider text-xs text-[#A3A3A3]">
+                  PRICE
+                </label>
                 <BaseInput v-model="createProductForm.price" type="number" placeholder="$00.00"
                            :error="createProductFormErrors.priceError" variant="createProduct" required
                            :error-message="createProductFormErrors.priceError ? createProductFormMessages.priceMessage : ''"/>
               </div>
             </div>
           </div>
-          <div class="flex flex-col gap-3.5 w-full">
+          <div class="flex flex-col gap-2.5">
             <label for="" class="font-semibold uppercase tracking-wider text-xs text-[#A3A3A3]">DESCRIPTION</label>
             <textarea v-model="createProductForm.description" type="text" placeholder="short desc. product"
                       :class="['h-[100px] border border-gray-200 rounded-sm outline-none px-6 py-5 text-sm bg-white',
@@ -164,7 +170,7 @@ watch(() => [
             </span>
           </div>
           <div class="flex items-center gap-6">
-            <div class="flex flex-col gap-3.5">
+            <div class="flex flex-col gap-2.5">
               <div class="flex items-center justify-between">
                 <label for="" class="font-semibold uppercase tracking-wider text-xs text-[#A3A3A3]">
                   SIZES
@@ -181,7 +187,7 @@ watch(() => [
                 {{ createProductFormMessages.sizeMessage }}
               </span>
             </div>
-            <div class="flex flex-col gap-3.5 w-[490px]">
+            <div class="flex flex-col gap-2.5 w-[490px]">
               <div class="flex items-center justify-between">
                 <label for="" class="font-semibold uppercase tracking-wider text-xs text-[#A3A3A3]">
                   COLORS
@@ -195,7 +201,7 @@ watch(() => [
                       border-gray-300 bg-white flex items-center justify-center text-gray-400 cursor-pointer
                         transition-all duration-400 hover:scale-115 hover:border-black hover:text-black text-2xl font-light
                         relative overflow-hidden" title="Выбрать любой цвет"> +
-                  <input @change="toggleColor" type="color" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+                  <input @change="toggleColor" type="color" class="absolute inset-0  h-full opacity-0 cursor-pointer" />
                 </label>
               </div>
               <span v-if="createProductFormErrors.colorError" class="text-red-600 text-xs">
@@ -204,22 +210,22 @@ watch(() => [
             </div>
           </div>
         </form>
-        <div class="flex flex-col items-center gap-5 w-[330px] sticky top-6">
-          <span class="font-semibold uppercase tracking-wider text-xs text-[#A3A3A3] w-full text-left">
+        <div class="flex flex-col items-center gap-2.5 w-[330px]">
+          <span class="font-semibold uppercase tracking-wider text-xs text-[#A3A3A3]  text-left">
             PRODUCT IMAGES PREVIEW
           </span>
           <div @click="openSelectProductCard(0)" class="bg-white h-[394px] w-[330px] shadow-lg transition duration-400
              hover:scale-102 cursor-pointer flex items-center justify-center overflow-hidden rounded-sm border border-gray-100">
             <img v-if="productsPreview[0]" :src="productsPreview[0]" alt="Main Preview"
-                 class="w-full h-full object-cover transition duration-400 hover:scale-105">
+                 class="h-full object-cover transition duration-400 hover:scale-105">
             <span v-else class="text-xs text-gray-400 uppercase tracking-widest font-medium">Click to upload main image</span>
           </div>
-          <div class="flex gap-3.5 justify-between w-full">
+          <div class="flex w-full gap-7">
             <div v-for="index in 4" :key="index" @click="openSelectProductCard(index)"
                  class="bg-white h-[75px] w-[62px] shadow-md transition duration-400 hover:scale-110
                     cursor-pointer overflow-hidden rounded-sm border border-gray-100 flex items-center justify-center">
               <img v-if="productsPreview[index]" :src="productsPreview[index]" alt="Thumbnail"
-                   class="w-full h-full object-cover transition duration-400 hover:scale-108">
+                   class=" h-full object-cover transition duration-400 hover:scale-108">
               <span v-else class="text-gray-300 text-sm font-light">+</span>
             </div>
           </div>
@@ -234,6 +240,7 @@ watch(() => [
       </div>
     </div>
   </div>
+  <Loading v-if="loading" />
 </template>
 
 <style scoped>

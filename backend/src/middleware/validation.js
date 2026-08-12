@@ -101,51 +101,54 @@ export const validation = {
     ],
 
     createProductValidation: [
+        body('collections')
+            .trim()
+            .notEmpty().withMessage('Collection required to create product.'),
         body('title')
             .trim()
-            .notEmpty().withMessage('Product title or name required to create product.'),
+            .notEmpty().withMessage('Title or name required to create product.'),
 
         body('category')
             .trim()
-            .notEmpty().withMessage('Product category required to create product.'),
+            .notEmpty().withMessage('Category required to create product.'),
 
         body('material')
             .trim()
-            .notEmpty().withMessage('Product material required to create product.'),
+            .notEmpty().withMessage('Material required to create product.'),
 
         body('price')
             .trim()
-            .notEmpty().withMessage('Product price required to create product.'),
+            .notEmpty().withMessage('Price required to create product.'),
 
         body('description')
             .trim()
-            .notEmpty().withMessage('Product description required to create product.'),
+            .notEmpty().withMessage('Description required to create product.'),
 
         body('color')
             .trim()
-            .notEmpty().withMessage('Product color required to create product.'),
+            .notEmpty().withMessage('Color required to create product.'),
 
         body('size')
             .trim()
-            .notEmpty().withMessage('Product size required to create product.'),
+            .notEmpty().withMessage('Size required to create product.'),
 
         body('gender')
             .trim()
-            .notEmpty().withMessage('Product gender required to create product.'),
+            .notEmpty().withMessage('Gender required to create product.'),
 
         body('quantity')
             .trim()
-            .notEmpty().withMessage('Product quantity required to create product.'),
+            .notEmpty().withMessage('Quantity required to create product.'),
     ],
 
     addProductToCartValidation: [
         body('color')
             .trim()
-            .notEmpty().withMessage('Product color required to adding product to cart.'),
+            .notEmpty().withMessage('Color required to adding product to cart.'),
 
         body('size')
             .trim()
-            .notEmpty().withMessage('Product size required to adding product to cart.'),
+            .notEmpty().withMessage('Size required to adding product to cart.'),
     ],
 
     addAddressValidation: [

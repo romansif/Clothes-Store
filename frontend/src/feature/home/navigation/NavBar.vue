@@ -1,8 +1,15 @@
 <script setup lang="ts">
+import { computed }  from "vue";
+import { useRoute } from "vue-router";
+
 import cart from "@/app/assets/icons/nav/cart.png";
 import liked from "@/app/assets/icons/nav/favorite.png";
 import profile from "@/app/assets/icons/nav/profile.png";
 import catalog from "@/app/assets/icons/nav/catalog.png";
+
+const route = useRoute();
+
+const isHome = computed(() => route.name !== "");
 </script>
 
 <template>
@@ -14,7 +21,8 @@ import catalog from "@/app/assets/icons/nav/catalog.png";
             lg:flex lg:gap-10
             md:flex md:gap-5
             sm:hidden hidden font-semibold">
-          <span class="text-[#696969] cursor-pointer transition duration-400 hover:text-black hover:scale-120">
+          <span :class="['text-[#696969] cursor-pointer transition duration-400 hover:text-black hover:scale-120',
+                isHome ? 'text-black scale-120' : '']">
             Home
           </span>
           <router-link :to="{name: 'products'}" class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120">

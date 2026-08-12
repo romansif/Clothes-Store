@@ -147,7 +147,7 @@ export const productsCover = () => {
         if(!product.value.size){
             return [];
         }
-        return sizes.filter(size => product.value.size.includes(size.name));
+        return sizes.value.filter(size => product.value.size.includes(size.name));
     });
 
     const isInCart = computed(() => {
@@ -157,6 +157,17 @@ export const productsCover = () => {
         }
         return cart.value.find((c: any) => c.productId === product.id) ?? null
     });
+
+    const vHorizontalScroll = {
+        mounted(el: HTMLElement) {
+            const onWheel = (e: WheelEvent) => {
+                if(e.deltaY === 0) return;
+                e.preventDefault();
+                el.scrollLeft += e.deltaY;
+            }
+            el.addEventListener('wheel', onWheel, { passive: false});
+        }
+    }
 
     return {
         toggleColor,
@@ -169,5 +180,6 @@ export const productsCover = () => {
         parsedColor,
         isAvailableSizes,
         isInCart,
+        vHorizontalScroll,
     }
 }

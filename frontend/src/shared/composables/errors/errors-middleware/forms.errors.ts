@@ -75,6 +75,7 @@ export const useFormsErrors = () => {
             const errors = err.response as Record<string, string> | undefined;
             if(errors){
                 createProductFormErrors.value.titleError = !!errors.title;
+                createProductFormErrors.value.collectionsError = !!errors.collections;
                 createProductFormErrors.value.categoryError = !!errors.category;
                 createProductFormErrors.value.materialError = !!errors.material;
                 createProductFormErrors.value.priceError = !!errors.price;
@@ -82,9 +83,10 @@ export const useFormsErrors = () => {
                 createProductFormErrors.value.colorError = !!errors.color;
                 createProductFormErrors.value.sizeError = !!errors.size;
                 createProductFormErrors.value.genderError = !!errors.gender;
-                createProductFormErrors.value.quantityError = !!errors.count;
+                createProductFormErrors.value.quantityError = !!errors.quantity;
 
                 createProductFormMessages.value.titleMessage = errors.title || '';
+                createProductFormMessages.value.collectionsMessage = errors.collections || '';
                 createProductFormMessages.value.categoryMessage = errors.category || '';
                 createProductFormMessages.value.materialMessage = errors.material || '';
                 createProductFormMessages.value.priceMessage = errors.price || '';
@@ -92,7 +94,7 @@ export const useFormsErrors = () => {
                 createProductFormMessages.value.colorMessage = errors.color || '';
                 createProductFormMessages.value.sizeMessage = errors.size || '';
                 createProductFormMessages.value.genderMessage = errors.gender || '';
-                createProductFormMessages.value.quantityMessage = errors.count || '';
+                createProductFormMessages.value.quantityMessage = errors.quantity || '';
             }
         }
     };

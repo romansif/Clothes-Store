@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { productsStore } from "@/shared/composables/stores/products.store.ts";;
+import { productsStore } from "@/shared/composables/stores/products.store.ts"
+import { productsCover } from "@/shared/composables/product.cover.ts";
 
 import YearItem from "@/feature/home/main/year-items/YearItem.vue";
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 
 const { productsYear } = productsStore();
+const { vHorizontalScroll } = productsCover()
 
 const resetError = () => {
   window.location.reload();
@@ -12,7 +14,8 @@ const resetError = () => {
 </script>
 
 <template>
-  <ul v-if="productsYear.length > 0" class="flex gap-10 xl:gap-20 overflow-x-auto whitespace-nowrap no-scrollbar">
+  <ul v-horizontal-scroll v-if="productsYear.length > 0"
+      class="flex gap-10 xl:gap-20 overflow-x-auto whitespace-nowrap no-scrollbar">
     <YearItem />
   </ul>
   <div v-else class="flex justify-center p-15">

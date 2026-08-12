@@ -19,7 +19,7 @@ const { toggleToFavorite } = useFavorites();
     <li @click="getProductId(product.id)" v-for="product in products" :key="product.id" class="flex flex-col">
       <div class="relative">
         <router-link :to="{ name: 'products/info' }">
-            <img :src="productPreview(product.id, products)" alt="" :class="['w-full h-[180px] sm:h-[314px] xl:h-[400px]',
+            <img :src="productPreview(product.id, products)" alt="" :class="['w-[344.5px] h-[180px] sm:h-[314px] xl:h-[400px]',
               product.quantity === 0 || product.status === 'Exhausted' ? 'opacity-40' : '']" />
         </router-link>
         <span v-if="product.quantity === 0 || product.status === 'Exhausted'" class="absolute top-1/2 left-1/20 text-5xl font-semibold -rotate-45">

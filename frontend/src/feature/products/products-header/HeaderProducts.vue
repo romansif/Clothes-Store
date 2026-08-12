@@ -63,12 +63,12 @@ watch(() => searchProductForm.value.search, async (newValue) => {
       <div class="font-medium hidden gap-x-5 gap-y-2 sm:grid sm:grid-cols-4 xl:mt-19">
         <button v-for="(isActive, categoryName) in category" @click="toggleFilter('ALL', categoryName)"
                 :class="[`cursor-pointer border-2 sm:px-2 sm:py-1 md:px-5 text-lg transition duration-400 hover:border-black
-                 hover:text-black hover:scale-110`, isActive ? ' border-black' : 'text-[#A3A3A3] border-[#A3A3A3]']">
+                 hover:text-black hover:scale-105`, isActive ? ' border-black scale-105' : 'text-[#A3A3A3] border-[#A3A3A3]']">
           All
         </button>
         <button v-for="(isActive, categoryName) in categories" @click="toggleFilter('CATEGORY', categoryName)"
                 :class="[`cursor-pointer border-2 sm:px-2 sm:py-1 md:px-5 text-lg transition duration-400 hover:border-black
-                 hover:text-black hover:scale-110`, isActive ? ' border-black' : 'text-[#A3A3A3] border-[#A3A3A3]']">
+                 hover:text-black hover:scale-105`, isActive ? ' border-black scale-105' : 'text-[#A3A3A3] border-[#A3A3A3]']">
           {{ categoryName }}
         </button>
       </div>

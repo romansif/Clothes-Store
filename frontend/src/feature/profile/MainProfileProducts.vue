@@ -73,7 +73,7 @@ onMounted(async() => {
   </div>
   <div v-else class="font-[Montserrat] xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
     <NavBar />
-    <div class="mt-10 xl:mt-25 xl:px-10">
+    <div class="mt-10 xl:mt-30 xl:px-10">
       <div class="flex flex-col">
         <div class="flex gap-14 items-center font-medium text-sm">
           <router-link :to="{name: 'cart'}">

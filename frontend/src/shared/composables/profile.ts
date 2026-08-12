@@ -28,12 +28,12 @@ export const profile = () => {
     };
 
     const sizeUrl = (sizeName: string) => {
-        const target = sizes.find(s => s.name === sizeName);
+        const target = sizes.value.find(s => s.name === sizeName);
         return target ? target.url : 'bg-transparent';
     };
 
     const sizeClass = (sizeName: string) => {
-        const target = sizes.find(s => s.name === sizeName);
+        const target = sizes.value.find(s => s.name === sizeName);
         return target ? target.class : 'bg-transparent';
     };
 

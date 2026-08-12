@@ -131,7 +131,7 @@ export const useProducts = () => {
             });
             formData.append('gender', createProductForm.value.gender);
             formData.append('quantity', createProductForm.value.quantity);
-            formData.append('collection', createProductForm.value.collections);
+            formData.append('collections', createProductForm.value.collections);
             formData.append('status', 'Availability');
 
             productFiles.value.forEach((file) => {
@@ -154,6 +154,8 @@ export const useProducts = () => {
             clearProductForm();
             toggleCreateProductModal();
         }catch(err){
+            loading.value = false;
+
             createProductErrors(err);
             console.error(`Failed to create the products cover:`, err);
         }

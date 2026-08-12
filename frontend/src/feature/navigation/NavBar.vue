@@ -12,6 +12,8 @@ const { unreadCount } = productsStore();
 
 const route = useRoute();
 
+const isHome = computed(() => route.name === "");
+const isProducts = computed(() => route.name === "products");
 const isProfile = computed(() => route.name !== "profile");
 </script>
 
@@ -24,10 +26,12 @@ const isProfile = computed(() => route.name !== "profile");
             lg:flex lg:gap-10
             md:flex md:gap-5
             sm:hidden hidden font-semibold">
-          <router-link :to="{name: 'home'}" class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120">
+          <router-link :to="{name: 'home'}" :class="['text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120',
+                       isHome ? 'text-black scale-120' : '']">
             Home
           </router-link>
-          <router-link :to="{name: 'products'}" class="text-[#696969] transition duration-400 hover:text-black hover:scale-120">
+          <router-link :to="{name: 'products'}" :class="['text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120',
+                        isProducts ? 'text-black scale-120' : '']">
             Products
           </router-link>
           <span class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120 cursor-pointer">New</span>

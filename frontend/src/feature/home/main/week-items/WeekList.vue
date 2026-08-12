@@ -1,16 +1,19 @@
 <script setup lang="ts">
 import { productsStore } from "@/shared/composables/stores/products.store.ts";
 import { useProducts } from "@/feature/products/composables/use.products.ts";
+import { productsCover } from "@/shared/composables/product.cover.ts";
 
 import WeekItem from "@/feature/home/main/week-items/WeekItem.vue";
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 
 const { productsWeek } = productsStore();
 const { getWeekProducts } = useProducts();
+const { vHorizontalScroll } = productsCover()
 </script>
 
 <template>
-  <ul v-if="productsWeek" class="flex gap-10 xl:gap-20 overflow-x-auto whitespace-nowrap no-scrollbar">
+  <ul v-horizontal-scroll v-if="productsWeek"
+      class="flex gap-10 xl:gap-20 overflow-x-auto whitespace-nowrap no-scrollbar">
     <WeekItem />
   </ul>
   <div v-else class="flex justify-center p-15">
