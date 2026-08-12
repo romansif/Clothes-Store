@@ -1,12 +1,12 @@
 import { ref } from "vue";
 import { clearUsersForms } from "@/shared/composables/clear-forms/clear.users";
-import {useProducts} from "@/feature/products/composables/use.products.ts";
-import {useCart} from "@/feature/products/composables/use.cart.ts";
-import {useAddress} from "@/feature/checkout/composables/use.address.ts";
-import {usePayment} from "@/feature/checkout/composables/use.payment.ts";
-import {useOrders} from "@/feature/products/composables/use.orders.ts";
-import {useAuth} from "@/feature/auth/auth-composables/use.auth.ts";
-import {useFavorites} from "@/feature/products/composables/use.favorites.ts";
+import { useProducts } from "@/feature/products/composables/use.products.ts";
+import { useCart } from "@/feature/products/composables/use.cart.ts";
+import { useAddress } from "@/feature/checkout/composables/use.address.ts";
+import { usePayment } from "@/feature/checkout/composables/use.payment.ts";
+import { useOrders } from "@/feature/products/composables/use.orders.ts";
+import { useAuth } from "@/feature/auth/auth-composables/use.auth.ts";
+import { useFavorites } from "@/feature/products/composables/use.favorites.ts";
 
 const avatarModal = ref<boolean>(false);
 const fileInput = ref<HTMLInputElement | null>(null);
@@ -61,7 +61,6 @@ export const useProfileModals = () => {
         deleteType.value = type;
         deleteMessage.value = message;
         deleteChoice.value = !deleteChoice.value;
-
     }
 
     const generalDelete = async () => {
@@ -103,9 +102,7 @@ export const useProfileModals = () => {
         }catch(err){
             console.log(`Не удалось провести ${deleteType.value}`, err);
         }
-    }
-
-
+    };
 
     return {
         toggleAvatar,

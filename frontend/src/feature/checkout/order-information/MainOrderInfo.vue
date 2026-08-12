@@ -1,20 +1,13 @@
 <script setup lang="ts">
-import { onMounted } from "vue";
 import { checkout } from "../composables/checkout.ts";
-import { useShipping } from "@/feature/checkout/composables/use.shipping.ts";
-import { usersStore } from "@/shared/composables/stores/users.store";
 import { productsStore } from "@/shared/composables/stores/products.store";
+import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
 
-import OrderList from "./order-items/OrderList.vue";
+import OrderInfoList from "./order-items/OrderInfoList.vue";
 
-const { getShipping } = useShipping();
 const { items } = productsStore();
-const { userShipping } = usersStore();
+const { shipping } = checkoutForms();
 const { price, totalPrice, commissionPrice } = checkout();
-
-onMounted(async () => {
-  await getShipping();
-})
 </script>
 
 <template>
@@ -23,17 +16,20 @@ onMounted(async () => {
       <span class="px-2 py-1 bg-white ml-auto">(<span class="text-blue-700 font-medium">{{ items?.length || 0 }}</span>)</span>
     </div>
     <h1 class="font-medium">YOUR ORDER</h1>
-    <OrderList />
+    <OrderInfoList />
     <div class="border-b-1 border-gray-300 mt-5"></div>
     <div class="flex flex-col font-medium text-xs mt-3 gap-2">
       <div class="flex justify-between">
         <span>Subtotal</span>
         <span>$ {{ price }}</span>
       </div>
-      <div class="flex justify-between">
+      <div class="flex jus">
         <span>Shipping</span>
-        <span v-if="!userShipping.delivery" class="text-gray-400">Calculated at next step</span>
-        <span v-if="userShipping.delivery" class="text-gray-400">{{ userShipping.delivery }}</span>
+        <div class="flex ml-auto gap-2">
+          <span v-if="!shipping.delivery" class="text-gray-400">Calculated at next step</span>
+          <span v-if="shipping.delivery === 'express'" class="text-gray-400">{{ shipping.delivery }} </span>
+          <span v-if="shipping.delivery === 'standard'" class="text-gray-400">{{ shipping.delivery }}</span>
+        </div>
       </div>
     </div>
     <div class="border-b-1 border-gray-300 mt-3 mb-1"></div>

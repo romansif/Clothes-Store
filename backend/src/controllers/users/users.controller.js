@@ -1,6 +1,6 @@
 import fs from "fs";
 import bcrypt from "bcryptjs";
-import { supabase } from '#lib/supbase.js'; // Укажи правильный путь к supbase.js
+import { supabase } from '#lib/supbase.js';
 
 export const usersController = {
     async getUsers(req, res) {

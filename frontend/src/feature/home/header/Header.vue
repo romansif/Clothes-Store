@@ -29,11 +29,11 @@ onMounted(async () => {
         <div class="xl:hidden lg:block mt-5">
           <HeaderList />
         </div>
-        <div class="relative transtion duration-400 hover:scale-108 mt-auto">
+        <div class="relative transtion duration-400 hover:scale-108 mt-5 xl:mt-auto ">
           <router-link :to="{name: 'products'}">
               <span class="bg-black font-semibold text-white xl:w-[265px] px-40 py-3 text-start
                   xl:pl-4 pl-3 cursor-pointer">Go To Shop</span>
-            <img :src=arrow alt="" class="absolute h-13 xl:left-50 left-35 top-1/2 -translate-y-1/2">
+            <img :src=arrow alt="" class="absolute h-13 left-50 xl:left-50 top-1/2 -translate-y-1/2">
           </router-link>
         </div>
       </div>

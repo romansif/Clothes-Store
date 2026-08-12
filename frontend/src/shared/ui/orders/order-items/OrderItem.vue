@@ -3,6 +3,7 @@ import { useOrderCard } from "@/shared/ui/orders/use.order.card";
 import { productsStore } from "@/shared/composables/stores/products.store";
 import { useProducts } from "@/feature/products/composables/use.products";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
+import { productsCover } from "@/shared/composables/product.cover.ts";
 
 import copy_btn from '@/app/assets/icons/squares/copy.svg';
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
@@ -10,7 +11,8 @@ import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 const { orders } = productsStore();
 const { getProductId } = useProducts();
 const { toggleOrder } = useBaseModals();
-const { productPreview, copyText } = useOrderCard();
+const { copyText } = useOrderCard();
+const { orderPreview, parsedColor } = productsCover();
 </script>
 
 <template>
@@ -54,7 +56,7 @@ const { productPreview, copyText } = useOrderCard();
         <router-link :to="{ name: 'products/info' }">
           <div class="flex py-5 px-3">
             <div class="flex gap-5">
-              <img :src="productPreview(item.id)" alt="" class="w-[120px] h-[156px] rounded-2xl border border-gray-400
+              <img :src="orderPreview(item.id, 'ADDED')" alt="" class="w-[120px] h-[156px] rounded-2xl border border-gray-400
                   transition duration-400 hover:scale-110">
               <div class="flex flex-col mt- gap-5">
                 <div class="flex flex-col gap-1">
@@ -70,7 +72,7 @@ const { productPreview, copyText } = useOrderCard();
                   </div>
                   <div class="flex gap-1.5 px-2.5 py-0.5 bg-[#F0F0F0] rounded">
                     <span>Color:</span>
-                    <span class="font-medium">{{ item.color }}</span>
+                    <span class="font-medium">{{ parsedColor(item.id, order.orderItems)?.colorName }}</span>
                   </div>
                   <div class="flex gap-5 ml-auto">
                     <span class="font-bold">$ {{ item.price }}</span>

@@ -35,7 +35,7 @@ onMounted(async () => {
   <div class="xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
     <NavBar />
   </div>
-  <div :class="['font-[Montserrat] flex justify-center items-center', user?.role === 'Buyer' ? 'p-35' : 'p-15']">
+  <div :class="['font-[Montserrat] flex justify-center my-items-center', user?.role === 'Buyer' ? 'p-35' : 'p-15']">
     <div class="w-[350px] sm:w-[600px] md:w-[700px] lg:w-[950px] xl:w-[700px]">
       <ProfileNotLogin v-if="!userId" />
       <ProfileSettings v-if="userId" />

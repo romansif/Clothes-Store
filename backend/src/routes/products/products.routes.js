@@ -10,8 +10,7 @@ router.get('/products', productsController.getAllProducts);
 router.get('/searched', productsController.getSearchedProducts);
 router.get('/filtered/:type/:filter', productsController.getFilteredProducts);
 
-router.get('/stack/:userId', productsController.getMyStackProducts);
-router.get('/out/of/stack/:userId', productsController.getMyOutOfStackProducts);
+router.get('/my/products/:userId', productsController.getMyProducts);
 
 router.get('/products/week', productsController.getWeekProducts);
 router.get('/products/year/:type/:filter', productsController.getYearProducts);

@@ -20,12 +20,12 @@ onMounted(async() => {
 <template>
   <aside class="font-[Montserrat] hidden mt-32.5 xl:flex xl:flex-col">
     <span class="font-bold text-xl">Filters</span>
-    <div class="flex flex-col mt-5.5">
+    <div class="flex flex-col mt-7">
       <span class="font-medium">Size</span>
       <div class="flex items-center mt-2 gap-2">
         <img v-for="size in sizes" :key="size.name" :src=size.url alt=""
              @click="toggleSize('SIZE', `${size.name}`)"
-             :class="[size.class, 'w-[40px] transition duration-400 hover:scale-120 cursor-pointer']">
+             :class="[size.class, 'w-[40px] transition duration-400 hover:scale-120 cursor-pointer', size.isActive ? 'scale-120' : '']">
       </div>
     </div>
     <div class="border-b-1 border-gray-400 mt-3.5"></div>

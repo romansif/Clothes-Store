@@ -10,7 +10,7 @@ const { getWeekProducts } = useProducts();
 </script>
 
 <template>
-  <ul v-if="productsWeek" class="flex gap-10 xl:gap-20  overflow-x-auto whitespace-nowrap no-scrollbar">
+  <ul v-if="productsWeek" class="flex gap-10 xl:gap-20 overflow-x-auto whitespace-nowrap no-scrollbar">
     <WeekItem />
   </ul>
   <div v-else class="flex justify-center p-15">

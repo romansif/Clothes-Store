@@ -46,7 +46,7 @@ watch(() => searchProductForm.value.search, async (newValue) => {
       </div>
       <div class="flex mt-10 relative">
         <input v-model="searchProductForm.search" type="text" class="bg-[#D9D9D9]/40 h-[50px] px-10 w-full placeholder:px-52
-            border-none outline-none sm:placeholder:px-122 md:placeholder:px-130 lg:placeholder:px-190 xl:w-[370px]
+            border-none outline-none sm:placeholder:px-114 md:placeholder:px-134 lg:placeholder:px-195 xl:w-[370px]
             xl:placeholder:px-65 transition duration-400 hover:bg-gray-50 focus:bg-gray-50"
                placeholder="Search" />
         <img :src=search alt="" class="absolute left-4 top-1/2 -translate-y-1/2">

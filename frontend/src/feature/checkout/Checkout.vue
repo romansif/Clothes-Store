@@ -6,7 +6,7 @@ import { useBaseModals } from "@/shared/composables/modals/base.modals";
 
 import MainPayment from "./payment/MainPayment.vue";
 import MainShipping from "./shipping/MainShipping.vue";
-import MainOrder from "./order-information/MainOrder.vue";
+import MainOrderInfo from "./order-information/MainOrderInfo.vue";
 import go_to_shop from "@/app/assets/icons/arrows/right-long-arrow.png";
 import MainInformation from "./information/MainInformation.vue";
 import Notification from "@/shared/ui/base/base-modals/Notification.vue";
@@ -40,15 +40,15 @@ const isShipping = computed(() =>  route.name !== 'shipping');
     </div>
     <div :class="isInfo ? 'hidden' : 'flex flex-col lg:flex-row lg:gap-50 xl:gap-100'">
       <MainInformation />
-      <MainOrder />
+      <MainOrderInfo />
     </div>
     <div :class="isShipping ? 'hidden' : 'flex flex-col lg:flex-row lg:gap-50 xl:gap-100'">
       <MainShipping />
-      <MainOrder />
+      <MainOrderInfo />
     </div>
     <div :class="isPayment ? 'hidden' : 'flex flex-col lg:flex-row lg:gap-50 xl:gap-100'">
       <MainPayment />
-      <MainOrder />
+      <MainOrderInfo />
     </div>
   </div>
   <Transition>

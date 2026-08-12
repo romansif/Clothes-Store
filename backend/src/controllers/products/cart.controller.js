@@ -1,4 +1,4 @@
-import { supabase } from '#lib/supbase.js'; // Укажи правильный путь к своему файлу supbase.js
+import { supabase } from '#lib/supbase.js';
 
 export const cartController = {
     async getCart(req, res) {

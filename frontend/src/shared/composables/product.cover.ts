@@ -1,10 +1,10 @@
 import { computed } from "vue";
 import namer from 'color-namer'
-import { productsStore, type Product } from "@/shared/composables/stores/products.store";
+import { productsStore, type Product, type ColorItem} from "@/shared/composables/stores/products.store";
 import { productsForms } from "@/shared/composables/forms/products.forms";
 
 const { moreCreateItem } = productsForms();
-const { products, cart, product, productId, sizes, activeProductImg } = productsStore();
+const { products, cart, orders, items, product, productId, sizes, activeProductImg } = productsStore();
 
 export const productsCover = () => {
     const toggleColor =  (eventOrColor: Event | string) => {
@@ -30,8 +30,6 @@ export const productsCover = () => {
         }
 
         if(!hexColor) console.log('no');
-
-        console.log(moreCreateItem.color);
     };
 
     const toggleSize = (sizeName: string) => {
@@ -74,6 +72,29 @@ export const productsCover = () => {
         }
     });
 
+    const orderItems = computed(() => {
+        if(Array.isArray(orders.value)) {
+            return orders.value.flatMap(order => order.orderItems || []);
+        }
+    })
+
+    const orderPreview = computed(() => {
+        return(id: string, type: string) => {
+            if(!id){
+                console.log('Id не найден');
+                return;
+            }
+
+            const sourceList = type === 'ADD' ? items.value : orderItems.value;
+
+            const order = sourceList?.find(p => p.id === id);
+
+            if(order && Array.isArray(order.images) && order.images[0]){
+                return `${import.meta.env.VITE_BASE_URL}/${order.images[0]}`;
+            }
+        }
+    });
+
     const productInfoPreview = computed(() => {
         return(product: Product) => {
             if(!product){
@@ -100,6 +121,27 @@ export const productsCover = () => {
         }
     });
 
+    const parsedColor = computed(() => {
+        return (id: string, array: Product[]): ColorItem | undefined => {
+            if(!id){
+                console.log('Id не найден')
+                return
+            }
+
+            const product = array?.find(p => p.id === id)
+            if(product){
+                const rawColor =  product.color
+
+                if(typeof rawColor === "string"){
+                    return JSON.parse(rawColor) as ColorItem
+                }
+
+                return rawColor as ColorItem
+            }
+
+            return undefined
+        }
+    });
 
     const isAvailableSizes = computed(() => {
         if(!product.value.size){
@@ -121,9 +163,11 @@ export const productsCover = () => {
         toggleSize,
         changeImg,
         productPreview,
+        orderPreview,
         productInfoPreview,
         angelCards,
-        isInCart,
+        parsedColor,
         isAvailableSizes,
+        isInCart,
     }
 }

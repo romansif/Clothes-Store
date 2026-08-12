@@ -7,6 +7,11 @@ import l from '../../../app/assets/icons/size/l.svg';
 import xl from '../../../app/assets/icons/size/xl.svg';
 import xxl from '../../../app/assets/icons/size/xxl.svg';
 
+export interface ColorItem {
+    hex: string,
+    colorName: string,
+}
+
 export interface Product {
     id: string,
     userId: string,
@@ -17,7 +22,7 @@ export interface Product {
     description: string,
     images: object,
     price: number,
-    color: string,
+    color: (string | ColorItem),
     size: string,
     gender: string,
     quantity: number,
@@ -41,6 +46,7 @@ interface Orders {
 }
 
 interface Sizes {
+    isActive?: boolean,
     name: string,
     url: string,
     class: string,
@@ -58,14 +64,14 @@ interface Gender {
     gender: string,
 }
 
-const sizes: Sizes[] = [
-    {name: 'XS', url: xs, class: 'border-3 border-[#A3A3A3]'},
-    {name: 'S', url: s, class: 'border-3 border-[#A3A3A3]'},
-    {name: 'M', url: m, class: 'border-3 border-[#A3A3A3]'},
-    {name: 'L', url: l, class: 'border-3 border-[#A3A3A3]'} ,
-    {name: 'XL', url: xl, class: 'border-3 border-[#A3A3A3]'},
-    {name: 'XXL', url: xxl, class: 'border-3 border-[#A3A3A3]'},
-];
+const sizes = ref<Sizes[]>([
+    {isActive: false, name: 'XS', url: xs, class: 'border-3 border-[#A3A3A3]'},
+    {isActive: false, name: 'S', url: s, class: 'border-3 border-[#A3A3A3]'},
+    {isActive: false, name: 'M', url: m, class: 'border-3 border-[#A3A3A3]'},
+    {isActive: false, name: 'L', url: l, class: 'border-3 border-[#A3A3A3]'} ,
+    {isActive: false, name: 'XL', url: xl, class: 'border-3 border-[#A3A3A3]'},
+    {isActive: false, name: 'XXL', url: xxl, class: 'border-3 border-[#A3A3A3]'},
+]);
 
 const categories: Category[] = [
     {category: 'Shoes'},
@@ -97,8 +103,7 @@ const genders: Gender[] = [
 const allProducts = ref<Product[]>([]);
 const products = ref<Product[]>([]);
 
-const stack = ref<Product[]>([]);
-const outOfStack = ref<Product[]>([]);
+const myProducts = ref<Product[]>([]);
 
 const productsWeek = ref<Product[]>([]);
 const productsYear = ref<Product[]>([]);
@@ -132,8 +137,7 @@ export const productsStore = () => {
         productsWeek,
         productsYear,
 
-        stack,
-        outOfStack,
+        myProducts,
 
         productId,
         items,

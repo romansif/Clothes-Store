@@ -1,24 +1,11 @@
 <script setup lang="ts">
-import { computed } from "vue";
 import { productsStore } from "@/shared/composables/stores/products.store";
 import { useProducts } from "@/feature/products/composables/use.products.ts";
+import { productsCover } from "@/shared/composables/product.cover.ts";
 
 const { items } = productsStore();
 const { getProductId } = useProducts();
-
-const productPreview = computed(() => {
-  return(id: string) => {
-    if(!id){
-      console.log('Id не найден');
-      return;
-    }
-
-    const product = items.value?.find(p => p.id === id);
-    if(product && Array.isArray(product.images) && product.images[0]){
-      return `${import.meta.env.VITE_BASE_URL}/${product.images[0]}`;
-    }
-  }
-});
+const { orderPreview, parsedColor } = productsCover();
 </script>
 
 <template>
@@ -26,14 +13,17 @@ const productPreview = computed(() => {
     <li @click="getProductId(product.productId)" v-for="product in items" :key="product?.id" class="flex justify-between gap-3 w-full">
       <div class="flex items-center gap-3 font-medium text-xs">
         <router-link :to="{name: 'products/info'}">
-          <img :src="productPreview(product?.id)" alt="" class="w-[113px] cursor-pointer">
+          <img :src="orderPreview(product?.id, 'ADD')" alt="" class="w-[113px] cursor-pointer">
         </router-link>
         <div class="flex flex-col gap-3 mt-3">
-          <div class="flex items-center gap-35">
-            <span class="">{{ product?.title }} {{ product?.category }}</span>
+          <div class="flex gap-25">
+            <div class="flex flex-col gap-1 w-22">
+              <span class="">{{ product?.title }}</span>
+              <span>{{ product?.category }}</span>
+            </div>
             <span class="">$ {{product?.price }}</span>
           </div>
-          <span class="text-gray-400">{{ product?.color }}/{{ product?.size }}</span>
+          <span class="text-gray-400">{{ parsedColor(product.id, items)?.colorName }} / {{ product?.size }}</span>
           <span class="mt-8">(<span class="text-blue-700 font-medium">{{ product?.quantity }}</span>)</span>
         </div>
       </div>
@@ -54,7 +44,7 @@ const productPreview = computed(() => {
   transform: translateX(30px);
 }
 
-/* ensure leaving items are taken out of layout flow so that moving
+/* ensure leaving my-items are taken out of layout flow so that moving
    animations can be calculated correctly. */
 .list-leave-active {
   position: absolute;

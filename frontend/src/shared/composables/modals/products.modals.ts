@@ -19,6 +19,7 @@ export const useProductsModals = () => {
         currentFile.value = 0;
         clearProductForm();
     }
+
     const openSelectProductCard = (index: number) => {
         currentFile.value = index;
         fileInput.value?.click();

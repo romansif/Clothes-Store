@@ -26,12 +26,12 @@ onMounted(async () => {
         <span>NEW</span>
         <span>THIS WEEK</span>
       </div>
-      <div class="flex flex-col">
+      <div class="flex flex-col mt-5">
         <span class="text-[#A3A3A3] ml-auto mb-3 transition duration-400 hover:scale-120 hover:text-black cursor-pointer">See All</span>
         <WeekList />
       </div>
     </div>
-    <div class="flex flex-col xl:mt-25 lg:mt-95 md:mt-65 mt-45">
+    <div class="flex flex-col lg:mt-25 mt-15">
       <div class="font-extrabold flex flex-col text-5xl mb-8">
         <span>XIV</span>
         <span>COLLECTIONS</span>
@@ -48,7 +48,7 @@ onMounted(async () => {
         </div>
       </div>
     </div>
-    <div class="flex flex-col xl:mt-25 lg:mt-95 md:mt-65 mt-45">
+    <div class="flex flex-col mt-25">
       <div class="flex justify-center">
         <div class="flex flex-col items-center">
           <h1 class="font-normal text-5xl w-[300px] text-center md:w-full">Our Approach to fashion design</h1>

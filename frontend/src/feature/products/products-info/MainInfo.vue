@@ -40,7 +40,7 @@ const routerBack = () => {
   <Loading v-if="loading"/>
   <div v-else>
     <NavBar class="hidden xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 lg:block" />
-    <div class="font-[Montserrat] flex flex-col lg:flex-row lg:justify-center lg:items-center lg:mt-30">
+    <div class="font-[Montserrat] flex flex-col lg:flex-row lg:justify-center lg:items-center lg:mt-25">
       <div class="flex justify-between items-center px-4 pt-4 lg:hidden">
         <img @click="routerBack" :src=go_to_shop alt="" class="rotate-180">
         <div class="flex gap-2">
@@ -53,7 +53,7 @@ const routerBack = () => {
         </div>
       </div>
       <div class="flex justify-center items-center">
-        <div class="w-[500px] h-[580px] overflow-y-auto no-scrollbar mt-6 lg:mt-0 lg:w-[1200px]">
+        <div class="overflow-y-auto no-scrollbar mt-6 lg:mt-0 lg:w-[1200px]">
           <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center">
             <div v-if="product && product.id && product.id.length > 0" class="flex gap-18 lg:gap-20">
               <div class="flex flex-col items-center gap-3">

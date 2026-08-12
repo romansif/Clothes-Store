@@ -1,4 +1,5 @@
 import { supabase } from '#lib/supbase.js';
+
 export const addressesController = {
     async getAddresses(req, res) {
         try {

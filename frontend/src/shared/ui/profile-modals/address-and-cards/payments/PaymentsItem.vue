@@ -50,7 +50,7 @@ const { toggleDeleteChoice } = useProfileModals();
   transform: translateX(30px);
 }
 
-/* ensure leaving items are taken out of layout flow so that moving
+/* ensure leaving my-items are taken out of layout flow so that moving
    animations can be calculated correctly. */
 .list-leave-active {
   position: absolute;

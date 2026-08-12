@@ -1,31 +1,11 @@
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import { productsStore } from "@/shared/composables/stores/products.store";
 
-const { orders } = productsStore();
+const { items } = productsStore();
 
 const clipboard = ref<boolean>(false);
 
 export const useOrderCard = () => {
-    const items = computed(() => {
-        if(Array.isArray(orders.value)) {
-            return orders.value.flatMap(order => order.orderItems || []);
-        }
-    })
-
-    const productPreview = computed(() => {
-        return(id: string) => {
-            if(!id){
-                console.log('Id не найден');
-                return;
-            }
-
-            const product = items.value?.find(p => p.id === id);
-            if(product && Array.isArray(product.images) && product.images[0]){
-                return `${import.meta.env.VITE_BASE_URL}/${product.images[0]}`;
-            }
-        }
-    });
-
     const copyText = async (text: string) => {
         try{
             clipboard.value = true;
@@ -42,7 +22,6 @@ export const useOrderCard = () => {
 
     return {
         items,
-        productPreview,
         clipboard,
         copyText,
     }

@@ -16,7 +16,7 @@ const { toggleToFavorite } = useFavorites();
 
 <template>
   <TransitionGroup name="list">
-    <li @click="getProductId(product.id)" v-for="product in products" :key="product.id" class="flex flex-col flex-shrink-0">
+    <li @click="getProductId(product.id)" v-for="product in products" :key="product.id" class="flex flex-col">
       <div class="relative">
         <router-link :to="{ name: 'products/info' }">
             <img :src="productPreview(product.id, products)" alt="" :class="['w-full h-[180px] sm:h-[314px] xl:h-[400px]',
@@ -26,7 +26,7 @@ const { toggleToFavorite } = useFavorites();
           Out Of Stack
         </span>
         <img @click="toggleToFavorite(product.id, 'product', product.id)" :src="product.favorite ? liked : like" alt=""
-             class="absolute top-0.5 left-77 w-[35px] cursor-pointer">
+             class="absolute top-0.5 left-31 w-[25px] cursor-pointer sm:w-[35px] sm:left-58.5 md:left-66.5 lg:left-58.5 xl:left-77">
       </div>
       <span class="whitespace-normal mt-2 text-[#A3A3A3] text-sm sm:text-lg">
         {{ product.material }} {{ product.category }}
@@ -56,7 +56,7 @@ const { toggleToFavorite } = useFavorites();
   transform: translateX(30px);
 }
 
-/* ensure leaving items are taken out of layout flow so that moving
+/* ensure leaving my-items are taken out of layout flow so that moving
    animations can be calculated correctly. */
 .list-leave-active {
   position: absolute;

@@ -65,7 +65,7 @@ const parsedColors = computed(() => {
         MRP incl. of all taxes
       </span>
     </div>
-    <div class="mt-5 lg:w-[300px]">
+    <div class="mt-5 ">
       <span class="font-medium">
         {{ product.description }}
       </span>

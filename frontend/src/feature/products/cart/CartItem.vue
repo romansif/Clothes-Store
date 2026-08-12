@@ -13,11 +13,10 @@ import update from '@/app/assets/icons/products/refresh.svg';
 import like from '@/app/assets/icons/nav/like.png';
 import liked from '@/app/assets/icons/nav/liked.png';
 import check_square from '@/app/assets/icons/squares/check-square.png';
-import {computed} from "vue";
 
 const { cart } = productsStore();
 const { getProductId } = useProducts();
-const { productPreview } = productsCover();
+const { productPreview, parsedColor } = productsCover();
 const { toggleToFavorite } = useFavorites();
 const { toggleDeleteChoice } = useProfileModals();
 const { updateCartItem, checkCartItem } = useCart();
@@ -26,10 +25,6 @@ const { sizeClass, sizeUrl } = profile();
 const refreshPage = () => {
   window.location.reload();
 }
-
-const parsedColor = computed(() => {
-
-})
 </script>
 
 <template>
@@ -67,7 +62,8 @@ const parsedColor = computed(() => {
         </div>
         <div class="flex flex-col gap-4">
           <img :src="sizeUrl(product.size)" :class="[sizeClass(product.size)]" alt="">
-          <div class="w-[30px] h-[30px]" :style="{ background: product.color }"></div>
+          <div class="w-[30px] h-[30px]" :title="parsedColor(product.id, cart)?.hex"
+               :style="{ background: parsedColor(product.id, cart)?.hex || 'transparent' }"></div>
           <div class="flex flex-col border transition duration-400 hover:scale-120">
             <button @click="updateCartItem('add', product.id, product.status)"
                     class="border-b transition duration-400 hover:bg-zinc-300 cursor-pointer">+</button>
@@ -95,7 +91,7 @@ const parsedColor = computed(() => {
   transform: translateX(30px);
 }
 
-/* ensure leaving items are taken out of layout flow so that moving
+/* ensure leaving my-items are taken out of layout flow so that moving
    animations can be calculated correctly. */
 .list-leave-active {
   position: absolute;

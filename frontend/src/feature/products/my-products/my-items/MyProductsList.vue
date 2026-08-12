@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import StackItem from "@/feature/products/my-products/items/StackItem.vue";
+import MyProductItem from "@/feature/products/my-products/my-items/MyProductItem.vue";
 </script>
 
 <template>
   <ul class="font-[Montserrat] flex flex-col overflow-y-auto gap-20 max-h-[700px] no-scrollbar">
-    <StackItem />
+    <MyProductItem />
   </ul>
 </template>
 

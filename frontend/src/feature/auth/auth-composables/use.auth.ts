@@ -145,7 +145,6 @@ export const useAuth = () => {
         }
     };
 
-
     const deleteAccount = async () => {
         try{
             const userId = localStorage.getItem("userId");

@@ -11,7 +11,7 @@ const { createProductErrors } = useFormsErrors();
 const { clearProductForm } = clearProductsForms();
 const { toggleCreateProductModal } = useProductsModals();
 const { createProductForm, moreCreateItem } = productsForms();
-const { allProducts, products, productsWeek, productsYear, stack, outOfStack, product, productId, productFiles, currentFile, productsPreview, } = productsStore();
+const { allProducts, products, productsWeek, productsYear, myProducts, product, productId, productFiles, currentFile, productsPreview, } = productsStore();
 
 export const useProducts = () => {
     const getAllProducts = async () => {
@@ -76,25 +76,13 @@ export const useProducts = () => {
         }
     };
 
-    const getMyStackProducts = async () => {
+    const getMyProducts = async () => {
         const userId = localStorage.getItem("userId")
         try{
-            const res = await handler(`/stack/${userId}`, {
+            const res = await handler(`/my/products/${userId}`, {
                 method: 'GET',
             })
-            stack.value = res;
-        }catch(err){
-            console.error(`Failed to get the all my products:`, err);
-        }
-    };
-
-    const getMyOutOfStackProducts = async () => {
-        const userId = localStorage.getItem("userId")
-        try{
-            const res = await handler(`/out/of/stack/${userId}`, {
-                method: 'GET',
-            })
-            outOfStack.value = res;
+            myProducts.value = res;
         }catch(err){
             console.error(`Failed to get the all my products:`, err);
         }
@@ -209,8 +197,7 @@ export const useProducts = () => {
         getFilteredProducts,
         getWeekProducts,
         getYearProducts,
-        getMyStackProducts,
-        getMyOutOfStackProducts,
+        getMyProducts,
         getProductId,
         getProduct,
         onFilesSelected,

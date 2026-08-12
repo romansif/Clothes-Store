@@ -52,13 +52,16 @@ export const checkout = () => {
     };
 
     const price = computed(() => {
-        return items.value?.reduce((sum: number, item: any) => sum + item.price, 0) || 0;
+        return items.value.reduce(
+            (sum, item) => sum + item.price, 0
+        );
     });
 
     const commissionPrice = computed(() => {
-        return Math.round(items.value?.reduce((sum: number) => sum + price.value, 0) * 0.03) || 0
+        return Math.round(items.value.reduce(
+            (sum, item) => sum + item.price, 0) * 0.08
+        );
     });
-
     const ship = computed(() => {
         if(shipping.value.delivery === 'express'){
             deliveryPrice.value = 15;

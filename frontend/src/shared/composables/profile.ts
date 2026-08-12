@@ -65,7 +65,12 @@ export const profile = () => {
 
     const price = computed(() => {
         return orderItems.value.reduce(
-            (sum, item) => sum + item.price, 0
+            (sum, item) => sum + item.price, 0);
+    });
+
+    const commissionPrice = computed(() => {
+        return Math.round(orderItems.value.reduce(
+            (sum, item) => sum + item.price, 0) * 0.08
         );
     });
 
@@ -75,12 +80,6 @@ export const profile = () => {
         );
     });
 
-    const commissionPrice = computed(() => {
-        return Math.round(orderItems.value.reduce(
-            (sum, item) => sum + item.price, 0) * 0.08
-        );
-
-    });
 
     return{
         continueToOrder,

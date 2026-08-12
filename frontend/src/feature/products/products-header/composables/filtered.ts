@@ -1,7 +1,9 @@
 import { ref } from "vue";
 import { useProducts } from "@/feature/products/composables/use.products.ts";
+import { productsStore } from "@/shared/composables/stores/products.store.ts";
 
 const { getFilteredProducts } = useProducts();
+const { sizes } = productsStore();
 
 export const filtered = () => {
     const selectedGender = ref<string>('ALL');
@@ -47,6 +49,7 @@ export const filtered = () => {
     }
 
     const clearActiveKey = () => {
+
         setActiveKey(colors.value, '');
         setActiveKey(genders.value, '');
         setActiveKey(category.value, '');
@@ -74,9 +77,16 @@ export const filtered = () => {
             setActiveKey(colors.value, value)
         }
         await getFilteredProducts(categoryGroup, value);
+
+        sizes.value.forEach(s => {
+            s.isActive = false
+        })
     };
 
     const toggleSize = async (categoryGroup: string, value: string) => {
+        sizes.value.forEach(s => {
+            s.isActive = s.name === value;
+        })
         clearActiveKey();
         await getFilteredProducts(categoryGroup, value);
     }

@@ -1,5 +1,4 @@
 import { supabase } from '#lib/supbase.js';
-import {query} from "express-validator"; // Укажи правильный путь к своему файлу supbase.js
 
 export const productsController = {
     async getAllProducts(req, res) {
@@ -28,9 +27,9 @@ export const productsController = {
                 if (type === "CATEGORY") {
                     query = query.eq('category', filter);
                 } else if (type === "SIZE") {
-                    query = query.contains('size', [filter]);
+                    query = query.contains('size', JSON.stringify([filter]));
                 } else if (type === "COLOR") {
-                    query = query.contains('color', [filter]);
+                    query = query.contains('color', JSON.stringify([{ colorName: filter}]));
                 } else if (type === "STATUS") {
                     query = query.eq('status', filter);
                 } else if (type === "GENDER") {
@@ -130,40 +129,20 @@ export const productsController = {
         }
     },
 
-    async getMyStackProducts(req, res) {
+    async getMyProducts(req, res) {
         try {
             const { userId } = req.params;
 
-            const { data: stack, error } = await supabase
+            const { data: myProducts, error } = await supabase
                 .from('products')
                 .select('*')
                 .eq('userId', userId)
-                .eq('status', 'Availability');
 
             if (error) throw error;
 
-            res.json(stack || []);
+            res.json(myProducts || []);
         } catch (err) {
             console.error(`Failed to get my stack products:`, err);
-            res.status(500).json({ error: err.message });
-        }
-    },
-
-    async getMyOutOfStackProducts(req, res) {
-        try {
-            const { userId } = req.params;
-
-            const { data: outOfStack, error } = await supabase
-                .from('products')
-                .select('*')
-                .eq('userId', userId)
-                .eq('status', 'Exhausted');
-
-            if (error) throw error;
-
-            res.json(outOfStack || []);
-        } catch (err) {
-            console.error(`Failed to get my out of stack products:`, err);
             res.status(500).json({ error: err.message });
         }
     },

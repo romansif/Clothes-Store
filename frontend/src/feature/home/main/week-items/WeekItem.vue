@@ -13,7 +13,7 @@ const { productPreview } = productsCover();
   <TransitionGroup name="list">
     <li @click="getProductId(product.id)" v-for="product in productsWeek" :key="product.id" class="flex flex-col flex-shrink-0 lg:w-[300px] w-[200px]">
       <router-link :to="{name: 'products/info'}">
-        <img :src="productPreview(product.id, productsWeek)" alt="" :class="['w-full h-[200px] lg:h-[313px] md:h-[280px]',
+        <img :src="productPreview(product.id, productsWeek)" alt="" :class="['w-full h-[200px] md:h-[240px] lg:h-[313px]',
               product.quantity === 0 || product.status === 'Exhausted' ? 'opacity-40' : '']" />
       </router-link>
       <span class="whitespace-normal mt-2 text-[#A3A3A3]">
@@ -40,7 +40,7 @@ const { productPreview } = productsCover();
   transform: translateX(30px);
 }
 
-/* ensure leaving items are taken out of layout flow so that moving
+/* ensure leaving my-items are taken out of layout flow so that moving
    animations can be calculated correctly. */
 .list-leave-active {
   position: absolute;

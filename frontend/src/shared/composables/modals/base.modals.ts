@@ -1,7 +1,6 @@
 import { ref } from "vue";
 import router from "@/app/router";
 
-
 const notify = ref<boolean>(false);
 const notifyTitle = ref<string>('');
 const notifyMessage= ref<string>('');
@@ -40,7 +39,6 @@ export const useBaseModals = () => {
         orderId.value = id;
         cancelChoice.value = '';
     };
-
 
     return {
         openNotify,

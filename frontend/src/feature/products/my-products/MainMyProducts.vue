@@ -5,22 +5,19 @@ import { productsStore } from "@/shared/composables/stores/products.store";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
 import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
 
-import NavBar from "../../navigation/NavBar.vue";
-import OutOfStackList from "./lists/OutOfStackList.vue";
+import NavBar from "@/feature/navigation/NavBar.vue";
 import icon_products from "@/app/assets/icons/products/icon-products.svg";
-import EditProduct from "@/shared/ui/products-modals/EditProduct.vue";
 import DeleteModal from "@/shared/ui/base/base-modals/DeleteModal.vue";
-import StackList from "@/feature/products/my-products/lists/StackList.vue";
+import MyProductsList from "@/feature/products/my-products/my-items/MyProductsList.vue";
 import Loading from "@/shared/ui/base/base-modals/Loading.vue";
 
 const { loading } = useBaseModals();
 const { deleteChoice } = useProfileModals();
-const { stack, outOfStack } = productsStore();
-const { getMyStackProducts, getMyOutOfStackProducts } = useProducts();
+const { myProducts } = productsStore();
+const { getMyProducts } = useProducts();
 
 onMounted(async () => {
- await getMyStackProducts();
- await getMyOutOfStackProducts();
+ await getMyProducts()
 })
 </script>
 
@@ -28,10 +25,8 @@ onMounted(async () => {
   <Loading v-if="loading" />
   <div v-else class="xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
     <NavBar />
-    <div v-if="stack.length > 0 || outOfStack.length > 0" class="flex mt-10">
-      <StackList />
-      <div v-if="stack.length > 0 && outOfStack.length > 0" class="border-l"></div>
-      <OutOfStackList />
+    <div v-if="myProducts.length > 0" class="flex mt-10">
+      <MyProductsList />
     </div>
     <div v-else class="flex justify-center pt-80">
       <div class="flex flex-col items-center gap-5">
@@ -47,13 +42,10 @@ onMounted(async () => {
   <Transition>
     <DeleteModal v-if="deleteChoice"/>
   </Transition>
-  <Transition>
-    <EditProduct />
-  </Transition>
 </template>
 
 <style scoped>
-/* мы объясним, что делают эти классы дальше! */
+
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.5s ease;
