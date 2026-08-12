@@ -2,6 +2,7 @@ import path from 'path';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
+import helmet from 'helmet';
 import { fileURLToPath } from 'url';
 import cookieParser from 'cookie-parser';
 

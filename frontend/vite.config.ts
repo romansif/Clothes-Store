@@ -3,7 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import tailwindcss from "@tailwindcss/vite";
 import VueRouter from "unplugin-vue-router/vite";
 import { fileURLToPath, URL } from "node:url";
-// https://vite.dev/config/
+
 export default defineConfig({
   plugins: [
       VueRouter({
@@ -21,10 +21,5 @@ export default defineConfig({
             '@/shared': fileURLToPath(new URL('./src/shared', import.meta.url)),
         },
         extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
-    },
-    server: {
-        headers: {
-            'Cross-Origin-Opener-Policy': 'same-origin-allow-popups',
-        },
     },
 })
