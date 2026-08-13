@@ -27,9 +27,9 @@ export const productsController = {
                 if (type === "CATEGORY") {
                     query = query.eq('category', filter);
                 } else if (type === "SIZE") {
-                    query = query.contains('size', JSON.stringify([filter]));
+                    query = query.contains('sizes', JSON.stringify([filter]));
                 } else if (type === "COLOR") {
-                    query = query.contains('color', JSON.stringify([{ colorName: filter}]));
+                    query = query.contains('colors', JSON.stringify([filter]));
                 } else if (type === "STATUS") {
                     query = query.eq('status', filter);
                 } else if (type === "GENDER") {

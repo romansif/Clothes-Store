@@ -12,7 +12,7 @@ const { orders } = productsStore();
 const { getProductId } = useProducts();
 const { toggleOrder } = useBaseModals();
 const { copyText } = useOrderCard();
-const { orderPreview, parsedColor } = productsCover();
+const { orderPreview, pureColors } = productsCover();
 </script>
 
 <template>
@@ -68,11 +68,11 @@ const { orderPreview, parsedColor } = productsCover();
                 <div class="flex gap-6 text-sm items-center mt-auto">
                   <div class="flex gap-1.5 px-2.5 py-0.5 bg-[#F0F0F0] rounded">
                     <span>Size:</span>
-                    <span class="font-medium">{{ item.size }}</span>
+                    <span class="font-medium">{{ item.sizes }}</span>
                   </div>
                   <div class="flex gap-1.5 px-2.5 py-0.5 bg-[#F0F0F0] rounded">
                     <span>Color:</span>
-                    <span class="font-medium">{{ parsedColor(item.id, order.orderItems)?.colorName }}</span>
+                    <span class="font-medium">{{ pureColors(item.id, order.orderItems)?.colorName }}</span>
                   </div>
                   <div class="flex gap-5 ml-auto">
                     <span class="font-bold">$ {{ item.price }}</span>

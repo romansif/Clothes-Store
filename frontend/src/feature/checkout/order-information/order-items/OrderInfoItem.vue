@@ -5,7 +5,7 @@ import { productsCover } from "@/shared/composables/product.cover.ts";
 
 const { items } = productsStore();
 const { getProductId } = useProducts();
-const { orderPreview, parsedColor } = productsCover();
+const { orderPreview, pureColors } = productsCover();
 </script>
 
 <template>
@@ -23,7 +23,7 @@ const { orderPreview, parsedColor } = productsCover();
             </div>
             <span class="">$ {{product?.price }}</span>
           </div>
-          <span class="text-gray-400">{{ parsedColor(product.id, items)?.colorName }} / {{ product?.size }}</span>
+          <span class="text-gray-400">{{ pureColors(product.id, items)?.colorName }} / {{ product?.sizes }}</span>
           <span class="mt-8">(<span class="text-blue-700 font-medium">{{ product?.quantity }}</span>)</span>
         </div>
       </div>

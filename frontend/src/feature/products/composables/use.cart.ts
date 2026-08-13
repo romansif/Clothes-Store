@@ -43,8 +43,11 @@ export const useCart = () => {
                     material: currentProduct.material,
                     price: currentProduct.price,
                     description: currentProduct.description,
-                    color: JSON.stringify(addToCartForm.value.color),
-                    size: addToCartForm.value.size,
+                    colors: [{
+                        hex: String(addToCartForm.value.colors.hex),
+                        colorName: String(addToCartForm.value.colors.colorName)
+                    }],
+                    sizes: addToCartForm.value.sizes,
                     gender: currentProduct.gender,
                     quantity: 1,
                     status: currentProduct.status,
@@ -65,6 +68,8 @@ export const useCart = () => {
             await openNotify('You have successfully added the item to your cart.',
                 'You will now be redirected to the "Cart" page.', 'cart');
         }catch(err){
+            loading.value = false;
+
             addToCartErrors(err);
             console.error(`Failed to add the cart:`, err);
         }

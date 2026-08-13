@@ -1,6 +1,6 @@
 import { computed } from "vue";
 import namer from 'color-namer'
-import { productsStore, type Product, type ColorItem} from "@/shared/composables/stores/products.store";
+import { productsStore, type Product } from "@/shared/composables/stores/products.store";
 import { productsForms } from "@/shared/composables/forms/products.forms";
 
 const { moreCreateItem } = productsForms();
@@ -8,8 +8,8 @@ const { products, cart, orders, items, product, productId, sizes, activeProductI
 
 export const productsCover = () => {
     const toggleColor =  (eventOrColor: Event | string) => {
-        if (!Array.isArray(moreCreateItem.color)) {
-            moreCreateItem.color = [];
+        if (!Array.isArray(moreCreateItem.colors)) {
+            moreCreateItem.colors = [];
         }
         let hexColor = '';
 
@@ -21,7 +21,7 @@ export const productsCover = () => {
             const names = namer(hexColor)
             const colorName = names.ntc[0].name
 
-            moreCreateItem.color.push({
+            moreCreateItem.colors.push({
                 hex: hexColor,
                 colorName: colorName,
             });
@@ -33,14 +33,14 @@ export const productsCover = () => {
     };
 
     const toggleSize = (sizeName: string) => {
-        const index = moreCreateItem.size.indexOf(sizeName);
-        if (!Array.isArray(moreCreateItem.size)) {
-            moreCreateItem.size = [];
+        const index = moreCreateItem.sizes.indexOf(sizeName);
+        if (!Array.isArray(moreCreateItem.sizes)) {
+            moreCreateItem.sizes = [];
         }
         if(index === -1){
-            moreCreateItem.size.push(sizeName);
+            moreCreateItem.sizes.push(sizeName);
         }else{
-            moreCreateItem.size.splice(index, 1);
+            moreCreateItem.sizes.splice(index, 1);
         }
     };
 
@@ -121,33 +121,40 @@ export const productsCover = () => {
         }
     });
 
-    const parsedColor = computed(() => {
-        return (id: string, array: Product[]): ColorItem | undefined => {
-            if(!id){
-                console.log('Id не найден')
-                return
+    const pureColors = computed(() => {
+        return(id: string, array: Product[])  => {
+            if(!array){
+                console.log('Product not found');
+                return [];
             }
 
             const product = array?.find(p => p.id === id)
-            if(product){
-                const rawColor =  product.color
+            if(product && Array.isArray(product.colors) && product.colors[0]){
+                return product.colors[0]
+            }
+            return [];
+        }
+    })
 
-                if(typeof rawColor === "string"){
-                    return JSON.parse(rawColor) as ColorItem
-                }
-
-                return rawColor as ColorItem
+    const pureInfoColors = computed(() => {
+        return(product: Product)  => {
+            if(!product){
+                console.log('Product not found');
+                return [];
             }
 
-            return undefined
+            if(product && Array.isArray(product.colors) && product.colors.length > 0){
+                return product.colors
+            }
+            return [];
         }
     });
 
     const isAvailableSizes = computed(() => {
-        if(!product.value.size){
+        if(!product.value.sizes){
             return [];
         }
-        return sizes.value.filter(size => product.value.size.includes(size.name));
+        return sizes.value.filter(size => product.value.sizes.includes(size.name));
     });
 
     const isInCart = computed(() => {
@@ -177,7 +184,8 @@ export const productsCover = () => {
         orderPreview,
         productInfoPreview,
         angelCards,
-        parsedColor,
+        pureColors,
+        pureInfoColors,
         isAvailableSizes,
         isInCart,
         vHorizontalScroll,

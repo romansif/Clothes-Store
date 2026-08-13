@@ -5,7 +5,6 @@ import { useProducts } from "@/feature/products/composables/use.products.ts";
 import photo_1 from '@/app/assets/photos/8.png'
 import photo_2 from '@/app/assets/photos/9.png'
 import photo_3 from '@/app/assets/photos/10.png'
-import arrow_down from "@/app/assets/icons/arrows/arrow-down.png";
 
 import WeekList from "@/feature/home/main/week-items/WeekList.vue";
 import YearList from "@/feature/home/main/year-items/YearList.vue";
@@ -31,7 +30,7 @@ onMounted(async () => {
         <WeekList />
       </div>
     </div>
-    <div class="flex flex-col lg:mt-25 mt-15">
+    <div class="flex flex-col lg:mt-25 mt-10">
       <div class="font-extrabold flex flex-col text-5xl mb-8">
         <span>XIV</span>
         <span>COLLECTIONS</span>
@@ -40,12 +39,6 @@ onMounted(async () => {
       <FilterGender />
       <div class="flex flex-col mt-10">
         <YearList />
-      </div>
-      <div class="flex justify-center items-center mt-5 gap-10">
-        <div class="flex flex-col items-center gap-2 text-lg">
-          <span>More</span>
-          <img :src=arrow_down alt="" class="w-[20px]">
-        </div>
       </div>
     </div>
     <div class="flex flex-col mt-25">

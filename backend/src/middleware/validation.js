@@ -125,10 +125,20 @@ export const validation = {
             .notEmpty().withMessage('Description required to create product.'),
 
         body('color')
-            .trim()
-            .notEmpty().withMessage('Color required to create product.'),
+            .isArray()
+            .withMessage('The color of the pillar should be substantial.'),
 
-        body('size')
+        body('color.*.hex')
+            .isString()
+            .notEmpty()
+            .withMessage('Hex is mandatory.'),
+
+        body('color.*.colorName')
+            .isString()
+            .notEmpty()
+            .withMessage('ColorName is required.'),
+
+        body('sizes')
             .trim()
             .notEmpty().withMessage('Size required to create product.'),
 
@@ -142,11 +152,21 @@ export const validation = {
     ],
 
     addProductToCartValidation: [
-        body('color')
-            .trim()
-            .notEmpty().withMessage('Color required to adding product to cart.'),
+        body('colors')
+            .isArray()
+            .withMessage('The color of the pillar should be substantial.'),
 
-        body('size')
+        body('colors.*.hex')
+            .isString()
+            .notEmpty()
+            .withMessage('Hex is mandatory.'),
+
+        body('colors.*.colorName')
+            .isString()
+            .notEmpty()
+            .withMessage('ColorName is required.'),
+
+        body('sizes')
             .trim()
             .notEmpty().withMessage('Size required to adding product to cart.'),
     ],

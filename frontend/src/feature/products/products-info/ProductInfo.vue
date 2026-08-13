@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {computed, watch} from "vue";
+import { watch} from "vue";
 import { productsCover } from "@/shared/composables/product.cover.ts";
 
 import { useCart } from "@/feature/products/composables/use.cart.ts";
@@ -18,32 +18,19 @@ const { product } = productsStore();
 const { toggleToFavorite } = useFavorites();
 const { addToCart, updateCartItem } = useCart();
 const { addCartFormErrors } = productsFormErrors();
-const { isAvailableSizes, isInCart } = productsCover();
 const { addToCartForm, addToCartFormMessages } = productsForms();
+const { pureInfoColors, isAvailableSizes, isInCart } = productsCover();
 
 const userId = localStorage.getItem("userId");
 
-watch(() => [addToCartForm.value.color, addToCartForm.value.size], ([color, size]) => {
+watch(() => [addToCartForm.colors, addToCartForm.sizes], ([color, size]) => {
   if(color){
     addCartFormErrors.value.colorError = false
   }
   if(size){
     addCartFormErrors.value.sizeError = false
   }
-})
-
-const parsedColors = computed(() => {
-  if(!product.value.color) return []
-
-  const rawColors = typeof product.value.color === 'string'
-      ? JSON.parse(product.value.color)
-      : product.value.color
-
-  return rawColors.map((item: string) => {
-    if(typeof item === 'string'){
-      return JSON.parse(item)
-    }
-  })
+  console.log(addToCartForm.colors)
 })
 </script>
 
@@ -59,13 +46,14 @@ const parsedColors = computed(() => {
             $ {{ product.price }}
           </span>
         </div>
-        <img @click="toggleToFavorite(product.id, 'product', product.id)" :src="product.favorite ? liked : like" alt="" class="ml-auto w-[35px] h-[35px]">
+        <img @click="toggleToFavorite(product.id, 'product', product.id)" :src="product.favorite ? liked : like" alt=""
+             class="ml-auto w-[35px] h-[35px]">
       </div>
       <span class="text-sm font-medium text-[#A3A3A3]">
         MRP incl. of all taxes
       </span>
     </div>
-    <div class="mt-5 ">
+    <div class="mt-5">
       <span class="font-medium">
         {{ product.description }}
       </span>
@@ -76,11 +64,9 @@ const parsedColors = computed(() => {
           Colors
         </span>
         <div class="flex justify-start items-center lg:gap-5">
-          <div v-for="color in parsedColors" :key="color.hex" :class="['w-[60px] h-[60px]',
-                addToCartForm.color.colorName === color.colorName
-                  ? 'scale-120'
-                  : 'hover:scale-120 transition duration-400'
-               ]" :style="{ background: color.hex }" :title="color.hex" @click="addToCartForm.color = { hex: color.hex, colorName: color.colorName }"></div>
+          <div v-for="color in pureInfoColors(product)" :key="color.hex" :style="{ background: color.hex }" :title="color.hex"
+               @click="addToCartForm.colors = { hex: color.hex, colorName: color.colorName }" :class="['w-[60px] h-[60px]',
+               addToCartForm.colors.colorName === color.colorName ? 'scale-120' : 'hover:scale-120 transition duration-400']"></div>
           </div>
         <span v-if=addCartFormErrors.colorError class="text-red-600 text-xs">
           {{ addToCartFormMessages.colorMessage }}
@@ -89,10 +75,9 @@ const parsedColors = computed(() => {
       <div class="flex flex-col gap-2">
         <span class="font-medium text-[#A3A3A3]">Sizes</span>
         <div class="flex justify-start items-center lg:gap-5">
-          <img v-for="size in (isAvailableSizes as any)" :key="size.name" :src=size.url alt="" :class="[size.class, 'w-[60px] h-[60px]',
-                addToCartForm.size === size.name
-                  ? 'scale-120'
-                  : 'hover:scale-120 transition duration-400']" @click="addToCartForm.size = size.name">
+          <img v-for="size in (isAvailableSizes as any)" :key="size.name" :src=size.url alt=""
+               :class="[size.class, 'w-[60px] h-[60px]', addToCartForm.sizes === size.name
+               ? 'scale-120' : 'hover:scale-120 transition duration-400']" @click="addToCartForm.sizes = size.name">
         </div>
         <span v-if=addCartFormErrors.sizeError class="text-red-600 text-xs">
           {{ addToCartFormMessages.sizeMessage }}
@@ -112,7 +97,7 @@ const parsedColors = computed(() => {
       <BaseButton @click="addToCart()" v-if="userId && product.quantity !== 0 && !isInCart" name="ADD TO CART" variant="addToCart" />
       <BaseButton v-if="userId && product.quantity === 0" name="OUT OF STACK" variant="outOfStack" />
       <div v-if="userId && isInCart" class="flex items-center gap-18">
-        <div class="flex gap-6 bg-zinc-800 py-3.5 px-3 text-lg rounded-md transition duration-300 hover:scale-108">
+        <div class="flex gap-6 bg-zinc-800 py-4 px-3 text-lg rounded-md transition duration-300 hover:scale-108">
           <img :src="plus" @click="updateCartItem('add', isInCart.id, isInCart.status)"
                class="bg-zinc-600 text-white px-2 w-[35px] rounded-md transition duration-300 hover:bg-zinc-400" />
           <span class="text-white">{{ isInCart.quantity }}</span>
@@ -120,7 +105,7 @@ const parsedColors = computed(() => {
                class="bg-zinc-600 text-white px-2 w-[35px] rounded-md transition duration-300 hover:bg-zinc-400" />
         </div>
         <router-link :to="{ name: 'cart' }">
-          <span class="bg-black text-white font-semibold py-4 px-21 font-[Montserrat]
+          <span class="bg-black text-white font-semibold py-4 px-19 font-[Montserrat]
               lg:block cursor-pointer text-start transition duration-300 transform hover:scale-108">Go to Cart</span>
         </router-link>
       </div>

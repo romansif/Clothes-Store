@@ -103,11 +103,11 @@ export const useFormsErrors = () => {
         if(err instanceof ApiError){
             const errors = err.response as Record<string, string> | undefined;
             if(errors){
-                addCartFormErrors.value.colorError = !!errors.color;
-                addCartFormErrors.value.sizeError = !!errors.size;
+                addCartFormErrors.value.colorError = !!errors.colors;
+                addCartFormErrors.value.sizeError = !!errors.sizes;
 
-                addToCartFormMessages.value.colorMessage = errors.color || '';
-                addToCartFormMessages.value.sizeMessage = errors.size || '';
+                addToCartFormMessages.value.colorMessage = errors.colors || '';
+                addToCartFormMessages.value.sizeMessage = errors.sizes || '';
             }
         }
     };

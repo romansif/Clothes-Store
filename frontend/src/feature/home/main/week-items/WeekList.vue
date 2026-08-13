@@ -12,7 +12,7 @@ const { vHorizontalScroll } = productsCover()
 </script>
 
 <template>
-  <ul v-horizontal-scroll v-if="productsWeek"
+  <ul v-horizontal-scroll v-if="productsWeek.length > 0"
       class="flex gap-10 xl:gap-20 overflow-x-auto whitespace-nowrap no-scrollbar">
     <WeekItem />
   </ul>

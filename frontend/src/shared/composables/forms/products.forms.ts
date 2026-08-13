@@ -29,8 +29,8 @@ interface ProductColor {
 }
 
 const moreCreateItem = reactive({
-    color: [] as ProductColor[],
-    size: [] as string[],
+    colors: [] as ProductColor[],
+    sizes: [] as string[],
 })
 
 interface ProductFormMessage {
@@ -62,22 +62,17 @@ const createProductFormMessages = ref<ProductFormMessage>({
     collectionsMessage: '',
 })
 
-interface AddColor {
-    hex: string,
-    colorName: string
-}
-
 interface AddForm {
-    color: AddColor,
-    size: string,
+    colors: ProductColor,
+    sizes: string,
 }
 
 const addToCartForm = ref<AddForm>({
-    color: {
+    colors: {
         hex: '',
         colorName: '',
     },
-    size: '',
+    sizes: '',
 })
 
 interface AddFormMessage {

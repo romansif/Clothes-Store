@@ -13,8 +13,8 @@ export const clearProductsForms = () => {
         createProductForm.value.price = '';
         createProductForm.value.quantity = '';
         createProductForm.value.collections = '';
-        moreCreateItem.size = [];
-        moreCreateItem.color = [];
+        moreCreateItem.sizes = [];
+        moreCreateItem.colors = [];
 
         createProductFormMessages.value.titleMessage = '';
         createProductFormMessages.value.colorMessage = '';
@@ -38,11 +38,11 @@ export const clearProductsForms = () => {
     }
 
     const clearAddToCartForm = () => {
-        addToCartForm.value.color = {
+        addToCartForm.colors = {
             hex: '',
             colorName: ''
         };
-        addToCartForm.value.size = '';
+        addToCartForm.sizes = '';
 
         addToCartFormMessages.value.colorMessage = '';
         addToCartFormMessages.value.sizeMessage = '';

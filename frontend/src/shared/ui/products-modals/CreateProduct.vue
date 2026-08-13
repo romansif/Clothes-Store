@@ -24,7 +24,7 @@ watch(() => [
       createProductForm.value.title, createProductForm.value.collections,
       createProductForm.value.category, createProductForm.value.material,
       createProductForm.value.price, createProductForm.value.description,
-      moreCreateItem.color, moreCreateItem.size,
+      moreCreateItem.colors, moreCreateItem.sizes,
       createProductForm.value.gender, createProductForm.value.quantity
   ],
 
@@ -175,11 +175,11 @@ watch(() => [
                 <label for="" class="font-semibold uppercase tracking-wider text-xs text-[#A3A3A3]">
                   SIZES
                 </label>
-                <span class="text-xs text-[#A3A3A3]">Sizes: {{ moreCreateItem.size.length }} / 6</span>
+                <span class="text-xs text-[#A3A3A3]">Sizes: {{ moreCreateItem.sizes.length }} / 6</span>
               </div>
               <div class="flex gap-6">
                 <img v-for="size in sizes" :key="size.name" :src=size.url alt="" :class="[size.class,
-                          moreCreateItem.size.includes(size.name)
+                          moreCreateItem.sizes.includes(size.name)
                             ? 'transition duration-400 scale-120 w-[61.5px]'
                             : 'transition duration-400 hover:scale-120 w-[61.5px]']" @click="toggleSize(size.name)">
               </div>
@@ -192,12 +192,12 @@ watch(() => [
                 <label for="" class="font-semibold uppercase tracking-wider text-xs text-[#A3A3A3]">
                   COLORS
                 </label>
-                <span class="text-xs text-[#A3A3A3]">Colors: {{ moreCreateItem.color.length }} / 6</span>
+                <span class="text-xs text-[#A3A3A3]">Colors: {{ moreCreateItem.colors.length }} / 6</span>
               </div>
               <div class="flex items-center gap-6">
-                <div v-for="color in moreCreateItem.color" :key="color.hex" :title="color.hex" :style="{ background: color.hex }"
+                <div v-for="color in moreCreateItem.colors" :key="color.hex" :title="color.hex" :style="{ background: color.hex }"
                      @click="toggleColor" class="w-[62px] h-[62px] transition-all duration-300 scale-115"></div>
-                <label v-if="(moreCreateItem.color?.length || 0) < 6" class="w-[62px] h-[62px] border-3 border-dashed
+                <label v-if="(moreCreateItem.colors?.length || 0) < 6" class="w-[62px] h-[62px] border-3 border-dashed
                       border-gray-300 bg-white flex items-center justify-center text-gray-400 cursor-pointer
                         transition-all duration-400 hover:scale-115 hover:border-black hover:text-black text-2xl font-light
                         relative overflow-hidden" title="Выбрать любой цвет"> +

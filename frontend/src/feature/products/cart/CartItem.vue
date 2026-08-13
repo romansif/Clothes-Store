@@ -16,7 +16,7 @@ import check_square from '@/app/assets/icons/squares/check-square.png';
 
 const { cart } = productsStore();
 const { getProductId } = useProducts();
-const { productPreview, parsedColor } = productsCover();
+const { productPreview, pureColors } = productsCover();
 const { toggleToFavorite } = useFavorites();
 const { toggleDeleteChoice } = useProfileModals();
 const { updateCartItem, checkCartItem } = useCart();
@@ -61,9 +61,9 @@ const refreshPage = () => {
                :src="product.checked ? check_square : square" alt="" class="cursor-pointer w-[30px] transition duration-400 hover:scale-120">
         </div>
         <div class="flex flex-col gap-4">
-          <img :src="sizeUrl(product.size)" :class="[sizeClass(product.size)]" alt="">
-          <div class="w-[30px] h-[30px]" :title="parsedColor(product.id, cart)?.hex"
-               :style="{ background: parsedColor(product.id, cart)?.hex || 'transparent' }"></div>
+          <img :src="sizeUrl(product.sizes)" :class="[sizeClass(product.sizes)]" alt="">
+          <div class="w-[30px] h-[30px]" :title="pureColors(product.id, cart)?.hex"
+               :style="{ background: pureColors(product.id, cart)?.hex || 'transparent' }"></div>
           <div class="flex flex-col border transition duration-400 hover:scale-120">
             <button @click="updateCartItem('add', product.id, product.status)"
                     class="border-b transition duration-400 hover:bg-zinc-300 cursor-pointer">+</button>

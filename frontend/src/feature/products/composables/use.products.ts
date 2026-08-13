@@ -123,11 +123,12 @@ export const useProducts = () => {
             formData.append('material', createProductForm.value.material);
             formData.append('price', createProductForm.value.price);
             formData.append('description', createProductForm.value.description);
-            moreCreateItem.color.forEach((color) => {
-                formData.append('color', JSON.stringify(color));
+            moreCreateItem.colors.forEach((color, index) => {
+                formData.append(`colors[${index}][hex]`, String(color.hex));
+                formData.append(`colors[${index}][colorName]`, String(color.colorName));
             });
-            moreCreateItem.size.forEach((size) => {
-                formData.append('size', String(size))
+            moreCreateItem.sizes.forEach((size) => {
+                formData.append('sizes', String(size))
             });
             formData.append('gender', createProductForm.value.gender);
             formData.append('quantity', createProductForm.value.quantity);

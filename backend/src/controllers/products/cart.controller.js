@@ -23,6 +23,8 @@ export const cartController = {
         try {
             const { productId } = req.body;
 
+            console.log('colors:', req.body.colors);
+
             const { data: product, error: productError } = await supabase
                 .from('products')
                 .select('id')
