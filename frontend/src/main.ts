@@ -1,9 +1,11 @@
 import { createApp, type Directive } from 'vue'
+import App from './App.vue';
+import '@/app/styles/main.css';
+import '@/app/styles/transition.modal.css';
+import '@/app/styles/transition.notify.css';
 import { IMaskDirective } from "vue-imask";
 import { VueQueryPlugin } from '@tanstack/vue-query'
 import router from "./app/router/index";
-import App from './App.vue'
-import './app/styles/main.css'
 
 const app = createApp(App)
 

@@ -29,7 +29,7 @@ export const useAuth = () => {
                 surName: form.surName,
                 email: form.email,
                 password: form.password,
-                dateCreatedAccount: date,
+                created_at: date,
                 ...(role === 'Buyer'
                     ? { privatePhone: registerBuyerForm.value.privatePhone }
                     : { companyName: registerSellerForm.value.companyName, publicPhone: registerSellerForm.value.publicPhone }

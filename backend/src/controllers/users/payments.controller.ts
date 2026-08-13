@@ -1,6 +1,9 @@
-import { supabase } from '#lib/supbase.js';
+import { supabase } from '#lib/supabase.js';
+import { type Request, type Response } from "express";
+import { type AuthenticatedRequest } from '../../interfaces.ts';
+
 export const paymentsController = {
-    async getPayments(req, res) {
+    async getPayments(req: Request, res: Response) {
         try {
             const { userId } = req.params;
 
@@ -14,11 +17,12 @@ export const paymentsController = {
             res.json(payments || []);
         } catch (err) {
             console.error(`Failed to get user payments for user ${req.params.userId}:`, err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async getPayment(req, res) {
+    async getPayment(req: Request, res: Response) {
         try {
             const { id } = req.params;
 
@@ -34,14 +38,15 @@ export const paymentsController = {
             res.json(payment);
         } catch (err) {
             console.error(`Failed to get payment ${req.params.id}:`, err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async addPayment(req, res) {
+    async addPayment(req: AuthenticatedRequest, res: Response) {
         try {
             const newPayment = {
-                userId: req.user.id,
+                userId: req.user?.id,
                 ...req.body
             };
 
@@ -56,15 +61,15 @@ export const paymentsController = {
             res.status(201).json(createdPayment);
         } catch (err) {
             console.error('Failed to add payment:', err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async updatePayment(req, res) {
+    async updatePayment(req: Request, res: Response) {
         try {
             const { id } = req.params;
 
-            // 1. Находим текущую запись платежа
             const { data: currentPayment, error: fetchError } = await supabase
                 .from('payments')
                 .select('*')
@@ -107,11 +112,12 @@ export const paymentsController = {
             res.status(200).json(updatedPayment);
         } catch (err) {
             console.error(`Failed to update payment ${req.params.id}:`, err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async deletePayment(req, res) {
+    async deletePayment(req: Request, res: Response) {
         try {
             const { id } = req.params;
 
@@ -128,7 +134,8 @@ export const paymentsController = {
             res.json(deletedPayment);
         } catch (err) {
             console.error(`Failed to delete payment ${req.params.id}:`, err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     }
 };

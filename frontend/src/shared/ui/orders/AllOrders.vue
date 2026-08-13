@@ -39,25 +39,17 @@ onMounted(async () => {
           </div>
         </div>
         <OrdersList/>
-        <Transition>
+        <Transition name="notify">
           <ClipboardNotify v-if="clipboard" />
         </Transition>
       </div>
     </div>
-    <Transition>
+    <Transition name="notify">
       <ReplacementChoice v-if="choiceModal" />
     </Transition>
   </div>
 </template>
 
 <style scoped>
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.5s ease;
-}
 
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-}
 </style>

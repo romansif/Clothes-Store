@@ -4,20 +4,23 @@ import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
 import { useFormsErrors } from "@/shared/composables/errors/errors-middleware/forms.errors.ts";
 import { usersStore } from "@/shared/composables/stores/users.store.ts";
 import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
+import { clearCheckoutForm } from "@/shared/composables/clear-forms/clear.checkout.ts";
 
 const { shipping } = checkoutForms();
-const { createSippingErrors } = useFormsErrors();
 const { userShipping } = usersStore();
 const { openNotify  } = useBaseModals();
+const { clearPaymentForm } = clearCheckoutForm();
+const { createSippingErrors } = useFormsErrors();
 
 export const useShipping = () => {
     const getShipping = async () => {
         const paymentId = localStorage.getItem("paymentId");
         try{
-            const shipping = await handler(`/shipping/${paymentId}`, {
+            const res = await handler(`/shipping/${paymentId}`, {
                 method: "GET",
             });
-            userShipping.value = shipping;
+            console.log(res);
+            userShipping.value = res;
         }catch(error){}
     };
 
@@ -42,6 +45,7 @@ export const useShipping = () => {
 
             await openNotify('You have successfully added the shipping method.',
                 'You will now be redirected to the payment method selection page.', 'payment')
+            clearPaymentForm();
         }catch(err){
             createSippingErrors(err)
             console.error(`Failed to register new payment:`, err);

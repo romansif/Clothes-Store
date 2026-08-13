@@ -1,8 +1,8 @@
 import express from "express";
-import { validation } from "#middleware/validation.js";
-import { upload } from "#middleware/upload.products.js";
-import { authMiddleware } from "#middleware/auth.middleware.js";
-import { productsController } from "#controllers/products/products.controller.js";
+import { validation } from "#middleware/validation.ts";
+import { upload } from "#middleware/upload.products.ts";
+import { authMiddleware } from "#middleware/auth.middleware.ts";
+import { productsController } from "#controllers/products/products.controller.ts";
 
 const router = express.Router();
 

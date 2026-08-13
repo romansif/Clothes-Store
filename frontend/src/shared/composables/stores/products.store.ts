@@ -30,7 +30,7 @@ export interface Product {
     favorite: boolean,
     checked: boolean,
     collection: string,
-    dateCreatedProduct: string,
+    created_at: string,
 }
 
 interface Orders {
@@ -40,8 +40,9 @@ interface Orders {
     orderItems: Product[],
     orderTotal: number,
     delivery: string,
-    dateCreatedOrder: string,
-    timeCreatedOrder: string,
+    created_at: string,
+    date_created_at: string,
+    time_created_at: string,
     status: string
 }
 

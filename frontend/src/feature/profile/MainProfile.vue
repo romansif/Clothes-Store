@@ -41,40 +41,32 @@ onMounted(async () => {
       <ProfileSettings v-if="userId" />
     </div>
   </div>
-  <Transition>
+  <Transition name="notify">
     <ChangeAvatar v-if="avatarModal" />
   </Transition>
-  <Transition>
+  <Transition name="notify">
     <CreateProduct v-if="createProduct" />
   </Transition>
-  <Transition>
+  <Transition name="notify">
     <AllOrders v-if="orderHistory" />
   </Transition>
-  <Transition>
+  <Transition name="notify">
     <CurrentOrder v-if="currentOrder" />
   </Transition>
-  <Transition>
+  <Transition name="notify">
     <AddressPaymentInfo v-if="addressesAndCards" />
   </Transition>
-  <Transition>
+  <Transition name="notify">
     <UserDataModal v-if="confidentialityData" />
   </Transition>
-  <Transition>
+  <Transition name="notify">
     <Notification v-if="notify" />
   </Transition>
-  <Transition>
+  <Transition name="notify">
     <DeleteModal v-if="deleteChoice" />
   </Transition>
 </template>
 
 <style scoped>
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.5s ease;
-}
 
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-}
 </style>

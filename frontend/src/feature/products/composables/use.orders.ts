@@ -3,10 +3,12 @@ import { productsStore } from "@/shared/composables/stores/products.store";
 import { checkout } from "@/feature/checkout/composables/checkout.ts";
 import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
+import { useFormsErrors } from "@/shared/composables/errors/errors-middleware/forms.errors.ts";
 
 const { shipping } = checkoutForms();
 const { totalPrice } = checkout();
 const { orders, items } = productsStore();
+const { replaceOrderErrors } = useFormsErrors();
 const { cancelChoice, orderId, loading, openNotify } = useBaseModals();
 
 export const useOrders = () => {
@@ -18,6 +20,7 @@ export const useOrders = () => {
             const res = await handler(`/orders/${userId}`, {
                 method: 'GET',
             })
+            console.log(res);
             orders.value = res;
 
             loading.value = false;
@@ -34,6 +37,7 @@ export const useOrders = () => {
             const res = await handler(`/orders/active/${userId}`, {
                 method: 'GET',
             })
+            console.log(res);
             orders.value = res;
 
             loading.value = false;
@@ -45,13 +49,6 @@ export const useOrders = () => {
     const addOrder = async () => {
         const userId = localStorage.getItem("userId");
         try{
-            const date = new Date();
-            const dateCreated = date.toLocaleDateString();
-            const time = date.toLocaleTimeString("ru-RU", {
-                hour: "2-digit",
-                minute: "2-digit",
-            });
-
             await handler(`/orders`, {
                 method: "POST",
                 body: JSON.stringify({
@@ -59,8 +56,6 @@ export const useOrders = () => {
                     orderItems: items.value,
                     orderTotal: Number(totalPrice.value),
                     delivery: shipping.value.delivery,
-                    dateCreatedOrder: dateCreated,
-                    timeCreatedOrder: time,
                     status: 'Convene'
                 })
             })
@@ -69,15 +64,13 @@ export const useOrders = () => {
         }
     };
 
-    const updateOrderStatus = async () => {
+    const replaceOrder = async () => {
         try{
-            if(!cancelChoice.value){
-                return;
-            }
             await handler(`/orders/${orderId.value}`, {
                 method: "PATCH",
                 body: JSON.stringify({
-                    status: 'Cancelled'
+                    status: 'Cancelled',
+                    cause_replace: cancelChoice.value
                 })
             });
             await openNotify('You have successfully cancelled the order.',
@@ -85,6 +78,7 @@ export const useOrders = () => {
 
             await getOrders();
         }catch(err){
+            replaceOrderErrors(err);
             console.error(`Failed to delete the order:`, err);
         }
     };
@@ -104,7 +98,7 @@ export const useOrders = () => {
         getOrders,
         getFilteredOrders,
         addOrder,
-        updateOrderStatus,
+        replaceOrder,
         deleteOrderProducts,
     }
 }

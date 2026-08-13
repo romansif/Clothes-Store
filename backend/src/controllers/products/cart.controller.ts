@@ -1,13 +1,16 @@
-import { supabase } from '#lib/supbase.js';
+import { supabase } from '#lib/supabase.js';
+import { type Request, type Response } from 'express';
+import { type AuthenticatedRequest } from '../../interfaces.ts';
 
 export const cartController = {
-    async getCart(req, res) {
+    async getCart(req: Request, res: Response) {
         try {
             const { userId } = req.params;
 
             const { data: cart, error } = await supabase
                 .from('cart')
                 .select('*')
+                .order('created_at', { ascending: false })
                 .eq('userId', userId);
 
             if (error) throw error;
@@ -15,11 +18,12 @@ export const cartController = {
             res.json(cart || []);
         } catch (err) {
             console.error(`Failed to get the cart list for user ${req.params.userId}:`, err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async addToCart(req, res) {
+    async addToCart(req: AuthenticatedRequest, res: Response) {
         try {
             const { productId } = req.body;
 
@@ -35,8 +39,9 @@ export const cartController = {
             if (!product) return res.status(400).json({ message: 'Product not found' });
 
             const newCartItem = {
-                userId: req.user.id,
-                ...req.body
+                userId: req.user?.id,
+                ...req.body,
+                created_at: new Date(),
             };
 
             const { data: createdItem, error: insertError } = await supabase
@@ -50,11 +55,12 @@ export const cartController = {
             res.status(201).json({ message: 'Product added to cart', data: createdItem });
         } catch (err) {
             console.error('Failed to add the product to the cart:', err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async updateCartItem(req, res) {
+    async updateCartItem(req: Request, res: Response) {
         try {
             const { id } = req.params;
 
@@ -71,11 +77,12 @@ export const cartController = {
             res.json(updatedItem);
         } catch (err) {
             console.error(`Failed to update the cart item ${req.params.id}:`, err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async deleteCartItem(req, res) {
+    async deleteCartItem(req: Request, res: Response) {
         try {
             const { id } = req.params;
 
@@ -92,7 +99,8 @@ export const cartController = {
             res.json(deletedProduct);
         } catch (err) {
             console.error(`Failed to delete the product from cart ${req.params.id}:`, err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     }
 };

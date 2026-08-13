@@ -1,8 +1,8 @@
 import express from "express";
-import { upload } from '#middleware/upload.avatar.js'
-import { validation } from "#middleware/validation.js";
-import { authMiddleware } from "#middleware/auth.middleware.js";
-import { usersController } from '#controllers/users/users.controller.js'
+import { upload } from '#middleware/upload.avatar.ts'
+import { validation } from "#middleware/validation.ts";
+import { authMiddleware } from "#middleware/auth.middleware.ts";
+import { usersController } from '#controllers/users/users.controller.ts'
 
 const router = express.Router();
 

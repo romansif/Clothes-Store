@@ -1,7 +1,9 @@
-import { supabase } from '#lib/supbase.js';
+import { supabase } from '#lib/supabase.js';
+import { type Request, type Response } from "express";
+import { type AuthenticatedRequest } from '../../interfaces.ts';
 
 export const shippingController = {
-    async getShipping (req, res) {
+    async getShipping (req: Request, res: Response) {
         try{
             const { paymentId } = req.params;
 
@@ -15,14 +17,15 @@ export const shippingController = {
             return res.json(shipping || []);
         }catch(err){
             console.error(`Failed to get user shipping for user ${req.params.userId}:`, err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async addShipping(req, res) {
+    async addShipping(req: AuthenticatedRequest, res: Response) {
         try {
             const newShipping = {
-                userId: req.user.id,
+                userId: req.user?.id,
                 ...req.body
             };
 
@@ -37,7 +40,8 @@ export const shippingController = {
             res.status(201).json(createdShipping);
         } catch (err) {
             console.error('Failed to add shipping entry:', err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     }
 };

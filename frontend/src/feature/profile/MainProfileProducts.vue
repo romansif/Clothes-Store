@@ -130,23 +130,14 @@ onMounted(async() => {
     </div>
     <BaseButton @click="continueToOrder" name="CONTINUE" variant="addToOrder" />
   </div>
-  <Transition>
+  <Transition name="notify">
     <Notification v-if="notify"/>
   </Transition>
-  <Transition>
+  <Transition name="notify">
     <DeleteModal v-if="deleteChoice"/>
   </Transition>
 </template>
 
 <style scoped>
-/* мы объясним, что делают эти классы дальше! */
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.5s ease;
-}
 
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-}
 </style>

@@ -4,6 +4,7 @@
     "module": "esnext",
     "lib": ["ES2023", "DOM"],
     "types": ["vite/client"],
+    "allowJs": true,
     "skipLibCheck": true,
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
@@ -13,7 +14,15 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": "./",
+    "paths": {
+      "#controllers/*": ["./src/controllers/*"],
+      "#lib/*": ["./src/lib/*"],
+      "#middleware/*": ["./src/middleware/*"],
+      "#routes/*": ["./src/routes/*"],
+      "#uploads/*": ["./src/uploads/*"]
+    }
   },
   "include": ["src/**/*"]
 }

@@ -43,9 +43,9 @@ const togglePassword = () => {
 
 <template>
   <section class="font-[Montserrat] fixed inset-0 flex items-center justify-center">
-    <div class="w-[350px] sm:w-[450px] rounded-lg px-8 py-8">
+    <div class="w-87.5 sm:w-112.5 rounded-lg px-8 py-8">
       <div class="flex items-center justify-center">
-        <div class="w-[235px] sm:w-[275px]">
+        <div class="w-58.75 sm:w-68.75">
           <div class="font-medium flex items-center justify-between">
             <span class="cursor-pointer transition duration-400 hover:scale-120">SIGN IN</span>
             <router-link :to="{ name: 'signUp'}" @click=clearLoginForm class="transition duration-400 hover:scale-110">

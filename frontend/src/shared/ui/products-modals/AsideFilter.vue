@@ -38,7 +38,7 @@ const { toggleFilterAside } = useProductsModals();
                :class="[size.class, 'w-[40px] transition duration-400 hover:scale-120 cursor-pointer', size.isActive ? 'scale-120' : '']">
         </div>
       </div>
-      <div class="border-b-1 border-gray-400 mt-3.5 sm:mt-5"></div>
+      <div class="border-b border-gray-400 mt-3.5 sm:mt-5"></div>
       <div class="flex flex-col gap-2 mt-3.5">
         <div class="flex items-center font-medium">
           <span class="font-bold">Availability</span>
@@ -59,7 +59,7 @@ const { toggleFilterAside } = useProductsModals();
           </div>
         </div>
       </div>
-      <div class="border-b-1 border-gray-400 mt-3.5"></div>
+      <div class="border-b border-gray-400 mt-3.5"></div>
       <div class="flex flex-col gap-2 mt-3.5">
         <div class="flex items-center font-medium">
           <span class="font-bold">Gender</span>
@@ -80,7 +80,7 @@ const { toggleFilterAside } = useProductsModals();
           </div>
         </div>
       </div>
-      <div class="border-b-1 border-gray-400 mt-3.5"></div>
+      <div class="border-b border-gray-400 mt-3.5"></div>
       <div class="flex flex-col gap-2 mt-3.5">
         <div class="flex items-center font-medium">
           <span class="font-bold">Color</span>
@@ -96,7 +96,7 @@ const { toggleFilterAside } = useProductsModals();
           </div>
         </div>
       </div>
-      <div class="border-b-1 border-gray-400 mt-3.5"></div>
+      <div class="border-b border-gray-400 mt-3.5"></div>
     </div>
   </aside>
 </template>

@@ -15,7 +15,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <header class="font-[Montserrat] w-full">
+  <header class="font-[Montserrat] w-full mt-14">
     <div class="xl:flex lg:flex h-[380px]">
       <div class="flex flex-col gap-2">
         <div class="font-extrabold flex flex-col text-5xl">

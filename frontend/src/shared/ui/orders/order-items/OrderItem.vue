@@ -43,7 +43,7 @@ const { orderPreview, pureColors } = productsCover();
             </div>
           </div>
           <span class="text-xs text-[#A3A3A3]">
-            Processed: {{ order.dateCreatedOrder }}, {{ order.timeCreatedOrder }}
+            Processed: {{ order.date_created_at }}, {{ order.time_created_at }}
           </span>
         </div>
         <div class="flex flex-col gap-2 ml-auto">
@@ -93,13 +93,5 @@ const { orderPreview, pureColors } = productsCover();
 </template>
 
 <style scoped>
-.list-enter-active,
-.list-leave-active {
-  transition: all 0.5s ease;
-}
-.list-enter-from,
-.list-leave-to {
-  opacity: 0;
-  transform: translateX(30px);
-}
+
 </style>

@@ -38,11 +38,11 @@ export const clearProductsForms = () => {
     }
 
     const clearAddToCartForm = () => {
-        addToCartForm.colors = {
+        addToCartForm.value.colors = {
             hex: '',
             colorName: ''
         };
-        addToCartForm.sizes = '';
+        addToCartForm.value.sizes = '';
 
         addToCartFormMessages.value.colorMessage = '';
         addToCartFormMessages.value.sizeMessage = '';

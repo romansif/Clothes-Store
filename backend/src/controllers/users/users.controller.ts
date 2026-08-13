@@ -1,9 +1,11 @@
 import fs from "fs";
 import bcrypt from "bcryptjs";
-import { supabase } from '#lib/supbase.js';
+import { supabase } from '#lib/supabase.js';
+import { type Request, type Response } from "express";
+import { type AuthenticatedRequest } from '../../interfaces.ts';
 
 export const usersController = {
-    async getUsers(req, res) {
+    async getUsers(_req: Request, res: Response) {
         try {
             const { data: users, error } = await supabase
                 .from('users')
@@ -14,11 +16,12 @@ export const usersController = {
             res.json(users || []);
         } catch (err) {
             console.error('Failed to get the users:', err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async getUserById(req, res) {
+    async getUserById(req: Request, res: Response) {
         try {
             const { id } = req.params;
 
@@ -35,11 +38,12 @@ export const usersController = {
             res.json(userWithoutPassword);
         } catch (err) {
             console.error(`Failed to get the user ${req.params.id}:`, err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async getAllCheckout(req, res) {
+    async getAllCheckout(_req: Request, res: Response) {
         try {
             const [addressesRes, paymentsRes] = await Promise.all([
                 supabase.from('checkoutAddresses').select('*'),
@@ -55,11 +59,12 @@ export const usersController = {
             });
         } catch (err) {
             console.error('Failed to get user checkouts:', err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async updateUser(req, res) {
+    async updateUser(req: Request, res: Response) {
         try {
             const { id } = req.params;
 
@@ -77,11 +82,12 @@ export const usersController = {
             res.json(userWithoutPassword);
         } catch (err) {
             console.error(`Failed to update the user ${req.params.id}:`, err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async updateUserPassword(req, res) {
+    async updateUserPassword(req: Request, res: Response) {
         try {
             const { id } = req.params;
             const { oldPassword, newPassword } = req.body;
@@ -118,11 +124,12 @@ export const usersController = {
             return res.status(200).json({ message: 'Пароль успешно изменен' });
         } catch (err) {
             console.error(`Failed to update password for user ${req.params.id}:`, err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async updateUserAvatar(req, res) {
+    async updateUserAvatar(req: AuthenticatedRequest, res: Response) {
         try {
             const { id } = req.params;
 
@@ -161,15 +168,16 @@ export const usersController = {
             });
         } catch (err) {
             console.error(`Failed to update avatar for user ${req.params.id}:`, err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async deleteUser(req, res) {
+    async deleteUser(req: AuthenticatedRequest, res: Response) {
         try {
             const { id } = req.params;
 
-            const currentUserId = req.user.userId || req.user.id;
+            const currentUserId = req.user?.userId || req.user?.id;
             if (currentUserId !== id) {
                 return res.status(403).json({ message: "Нет прав на удаление чужого аккаунта" });
             }
@@ -200,7 +208,8 @@ export const usersController = {
             res.json({ message: "Пользователь и его данные удалены", user: userWithoutPassword });
         } catch (err) {
             console.error(`Failed to delete user ${req.params.id}:`, err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     }
 };

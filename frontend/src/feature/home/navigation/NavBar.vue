@@ -13,7 +13,7 @@ const isHome = computed(() => route.name !== "");
 </script>
 
 <template>
-  <nav class="font-[Montserrat] mb-12">
+  <nav class="font-[Montserrat]">
     <div class="flex justify-between items-center md:justify-between">
       <div class="flex items-center gap-5 lg:gap-10">
         <img :src=catalog alt="" class="w-[30px]">

@@ -16,6 +16,7 @@ export const useFavorites = () => {
             const res = await handler(`/favorites/${userId}`, {
                 method: 'GET',
             })
+            console.log(res)
             favorite.value = res;
         }catch(err){
             console.error(`Failed to get the favorite products:`, err);

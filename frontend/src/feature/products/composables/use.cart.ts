@@ -18,6 +18,7 @@ export const useCart = () => {
             const res = await handler(`/cart/${userId}`, {
                 method: 'GET',
             })
+            console.log(res);
             cart.value = res;
         }catch(err){
             console.error(`Failed to get the cart products:`, err);
@@ -55,6 +56,7 @@ export const useCart = () => {
                     checked: currentProduct.checked,
                 })
             });
+            console.log('New Cart item', newProductCart);
             cart.value = newProductCart;
 
             unreadCount.value += 1;

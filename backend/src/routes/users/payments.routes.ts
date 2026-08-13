@@ -1,7 +1,7 @@
 import express from "express";
-import { validation } from "#middleware/validation.js";
-import { authMiddleware } from "#middleware/auth.middleware.js";
-import { paymentsController } from "#controllers/users/payments.controller.js";
+import { validation } from "#middleware/validation.ts";
+import { authMiddleware } from "#middleware/auth.middleware.ts";
+import { paymentsController } from "#controllers/users/payments.controller.ts";
 
 const router = express.Router();
 

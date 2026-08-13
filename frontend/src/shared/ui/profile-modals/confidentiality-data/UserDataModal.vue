@@ -29,20 +29,12 @@ const { toggleConfidentialityData } = useProfileModals();
         </div>
       </div>
     </div>
-    <Transition>
+    <Transition name="notify">
       <Notification v-if="notify" />
     </Transition>
   </div>
 </template>
 
 <style scoped>
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.5s ease;
-}
 
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-}
 </style>

@@ -4,7 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "imports": {
-    "#*": "./src/*"
+    "#controllers/*": "./src/controllers/*",
+    "#lib/*": "./src/lib/*",
+    "#middleware/*": "./src/middleware/*",
+    "#routes/*": "./src/routes/*",
+    "#uploads/*": "./src/uploads/*"
   },
   "scripts": {
     "dev": "vite",
@@ -30,9 +34,13 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
+    "@types/express-validator": "^2.20.33",
     "@types/jsonwebtoken": "^9.0.10",
-    "@types/node": "^26.0.0",
+    "@types/multer": "^2.2.0",
+    "@types/node": "^26.2.0",
     "@vitejs/plugin-vue": "^6.0.5",
     "prisma": "^6.19.3",
     "ts-node-dev": "^2.0.0",

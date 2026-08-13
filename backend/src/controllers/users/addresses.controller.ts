@@ -1,7 +1,9 @@
-import { supabase } from '#lib/supbase.js';
+import { supabase } from '#lib/supabase.js';
+import { type Request, type Response } from 'express';
+import { type AuthenticatedRequest } from '../../interfaces.ts';
 
 export const addressesController = {
-    async getAddresses(req, res) {
+    async getAddresses(req: Request, res: Response) {
         try {
             const { userId } = req.params;
 
@@ -15,11 +17,12 @@ export const addressesController = {
             return res.json(addresses || []);
         } catch (err) {
             console.error(`Failed to get user addresses for user ${req.params.userId}:`, err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async getAddress(req, res) {
+    async getAddress(req: Request, res: Response) {
         try {
             const { id } = req.params;
 
@@ -35,13 +38,14 @@ export const addressesController = {
             return res.json(address);
         } catch (err) {
             console.error(`Failed to get address ${req.params.id}:`, err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async addAddress(req, res) {
+    async addAddress(req: AuthenticatedRequest, res: Response) {
         try {
-            const userId = req.user.id;
+            const userId = req.user?.id;
             const { address, postalCode, ...rest } = req.body;
 
             if (address) {
@@ -80,11 +84,12 @@ export const addressesController = {
             res.status(201).json(createdAddress);
         } catch (err) {
             console.error('Failed to create the user address:', err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async updateAddress(req, res) {
+    async updateAddress(req: Request, res: Response) {
         try {
             const { id } = req.params;
 
@@ -106,11 +111,12 @@ export const addressesController = {
             res.status(200).json(updatedAddress);
         } catch (err) {
             console.error(`Failed to update address ${req.params.id}:`, err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async deleteAddress(req, res) {
+    async deleteAddress(req: Request, res: Response) {
         try {
             const { id } = req.params;
 
@@ -127,7 +133,8 @@ export const addressesController = {
             res.json(deletedAddress);
         } catch (err) {
             console.error(`Failed to delete address ${req.params.id}:`, err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     }
 };

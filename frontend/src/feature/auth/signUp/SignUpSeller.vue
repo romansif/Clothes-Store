@@ -49,7 +49,7 @@ watch(() => [registerSellerForm.value.name, registerSellerForm.value.surName, re
 
 const togglePassword = () => {
   showPassword.value.password = !showPassword.value.password;
-};;
+};
 
 const toggleRegister = () => {
   showSection.value.section = !showSection.value.section;
@@ -61,9 +61,9 @@ const toggleRegister = () => {
 
 <template>
   <section v-if="showSection.section === true" class='fixed font-[Montserrat] inset-0 flex items-center justify-center' >
-    <div class="w-[350px] sm:w-[600px] rounded-lg px-8 py-8">
+    <div class="w-87.5 sm:w-150 rounded-lg px-8 py-8">
       <div class="flex items-center justify-center">
-        <div class="w-[235px] sm:w-[300px]">
+        <div class="w-58.75 sm:w-75">
           <div class="font-medium flex items-center justify-between">
             <router-link :to="{name: 'signIn'}" @click=clearRegisterSellerForm>
               <span class="text-[#A3A3A3]">SIGN IN</span>
@@ -129,7 +129,7 @@ const toggleRegister = () => {
                   :error="registerFormErrors.passwordError" variant="auth" required
                   :error-message="registerFormErrors.passwordError ? registerFormMessages.passwordMessage : ''" />
               <img @click=togglePassword :src="showPassword.password ? opened : closed" alt=""
-                   :class="['absolute w-[30px] top-1/4 left-57 sm:left-120', registerFormErrors.passwordError ? 'top-1/7' : '']">
+                   :class="['absolute w-7.5 top-1/4 left-57 sm:left-120', registerFormErrors.passwordError ? 'top-1/7' : '']">
             </div>
           </div>
         </div>
@@ -137,7 +137,7 @@ const toggleRegister = () => {
       <div class="flex flex-col gap-3">
         <div class="relative duration-400 hover:scale-105 cursor-pointer">
           <BaseButton @click="signUp('Seller')" name="SIGN UP BY SELLER" variant="register"/>
-          <img :src=maki_arrow alt="" class="absolute w-[25px] top-9.5 left-58 sm:left-121">
+          <img :src=maki_arrow alt="" class="absolute w-6.25 top-9.5 left-58 sm:left-121">
         </div>
         <BaseButton @click=toggleRegister name="Sign up by buyer" variant="changeRegister" />
       </div>

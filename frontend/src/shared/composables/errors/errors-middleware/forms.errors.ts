@@ -7,6 +7,7 @@ import { authFormsErrors } from "@/shared/composables/errors/errors-messages/aut
 import { userFormsErrors } from "@/shared/composables/errors/errors-messages/users.errors";
 import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors";
 import { productsFormErrors } from "@/shared/composables/errors/errors-messages/products.errors";
+import {useBaseModals} from "@/shared/composables/modals/base.modals.ts";
 
 const { registerFormMessages, loginFormMessages } = authForms();
 const { registerFormErrors, loginFormErrors } = authFormsErrors();
@@ -14,6 +15,7 @@ const { createProductFormErrors, addCartFormErrors } = productsFormErrors();
 const { createProductFormMessages, addToCartFormMessages } = productsForms();
 const { informationErrors, shippingErrors, paymentErrors} = checkoutErrors();
 const { informationMessages, shippingMessages, paymentMessages } = checkoutForms();
+const { cancelChoiceMessage, cancelChoiceError } = useBaseModals();
 
 const { updateUserFormNameMessage, updateUserFormPhoneMessage,
     updateUserFormSurNameMessage, updateUserFormPasswordMessages,
@@ -247,7 +249,18 @@ export const useFormsErrors = () => {
                 updateUserFormPasswordMessages.value.newPasswordMessage = errors.newPassword || '';
             }
         }
-    }
+    };
+
+    const replaceOrderErrors = (err: any) => {
+        if(err instanceof ApiError){
+            const errors = err.response as Record<string, string> | undefined;
+            if(errors){
+                cancelChoiceError.value = !!errors.cause_replace;
+
+                cancelChoiceMessage.value = errors.cause_replace || '';
+            }
+        }
+    };
 
     return{
         registerErrors,
@@ -267,6 +280,8 @@ export const useFormsErrors = () => {
         updatePhoneErrors,
         updatePublicPhoneErrors,
         updateCompanyNameErrors,
-        updatePasswordErrors
+        updatePasswordErrors,
+
+        replaceOrderErrors
     }
 }

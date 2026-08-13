@@ -1,7 +1,7 @@
 import express from "express";
-import { validation } from "#middleware/validation.js";
-import { authMiddleware } from "#middleware/auth.middleware.js";
-import { cartController } from "#controllers/products/cart.controller.js";
+import { validation } from "#middleware/validation.ts";
+import { authMiddleware } from "#middleware/auth.middleware.ts";
+import { cartController } from "#controllers/products/cart.controller.ts";
 
 const router = express.Router();
 

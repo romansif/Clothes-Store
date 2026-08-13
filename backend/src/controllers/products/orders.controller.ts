@@ -1,13 +1,16 @@
-import { supabase } from '#lib/supbase.js';
+import { supabase } from '#lib/supabase.js';
+import { type Request, type Response } from 'express';
+import { type AuthenticatedRequest } from '../../interfaces.ts';
 
 export const ordersController = {
-    async getOrders(req, res) {
+    async getOrders(req: Request, res: Response) {
         try {
             const { userId } = req.params;
 
             const { data: orders, error } = await supabase
                 .from('orders')
                 .select('*')
+                .order('created_at', { ascending: false })
                 .eq('userId', userId);
 
             if (error) throw error;
@@ -15,17 +18,19 @@ export const ordersController = {
             res.json(orders || []);
         } catch (err) {
             console.error('Failed to get the current orders:', err);
-            res.status(500).json({ error: err.message });
+           const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async getFilteredOrders(req, res) {
+    async getFilteredOrders(req: Request, res: Response) {
         try {
             const { userId } = req.params;
 
             const { data: orders, error } = await supabase
                 .from('orders')
                 .select('*')
+                .order('created_at', { ascending: false })
                 .eq('userId', userId)
                 .neq('status', 'Delivered')
                 .neq('status', 'Cancelled');
@@ -35,15 +40,26 @@ export const ordersController = {
             res.json(orders || []);
         } catch (err) {
             console.error('Failed to get the filtered orders:', err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async addOrder(req, res) {
+    async addOrder(req: AuthenticatedRequest, res: Response) {
         try {
+            const date = new Date();
+            const dateCreated = date.toLocaleDateString();
+            const time = date.toLocaleTimeString("ru-RU", {
+                hour: "2-digit",
+                minute: "2-digit",
+            });
+
             const newOrder = {
-                userId: req.user.id,
-                ...req.body
+                userId: req.user?.id,
+                ...req.body,
+                created_at: date,
+                date_created_at: dateCreated,
+                time_created_at: time,
             };
 
             const { data: createdOrder, error } = await supabase
@@ -57,11 +73,12 @@ export const ordersController = {
             res.status(201).json({ message: 'Product added to orderItems', data: createdOrder });
         } catch (err) {
             console.error('Failed to create the order:', err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async updateOrder(req, res) {
+    async updateOrder(req: Request, res: Response) {
         try {
             const { id } = req.params;
 
@@ -78,11 +95,12 @@ export const ordersController = {
             res.json(updatedOrder);
         } catch (err) {
             console.error(`Failed to update the order item ${req.params.id}:`, err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async deleteOrderItems(req, res) {
+    async deleteOrderItems(req: Request, res: Response) {
         try {
             const { id } = req.params;
 
@@ -99,7 +117,8 @@ export const ordersController = {
             res.json(deletedOrder);
         } catch (err) {
             console.error(`Failed to delete the order ${req.params.id}:`, err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     }
 };

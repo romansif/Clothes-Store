@@ -19,6 +19,7 @@ export const useProducts = () => {
             const res = await handler(`/products`, {
                 method: 'GET',
             })
+            console.log(res);
             allProducts.value = res;
         }catch(err){
             console.error(`Failed to get the all products:`, err);
@@ -30,6 +31,7 @@ export const useProducts = () => {
             const res = await handler(`/filtered/${type}/${filter}`, {
                 method: 'GET',
             })
+            console.log(res);
             products.value = res;
         }catch(err){
             console.error(`Failed to get the filtered products:`, err);
@@ -41,6 +43,7 @@ export const useProducts = () => {
             const res = await handler(`/products/week`, {
                 method: 'GET',
             })
+            console.log(res);
             productsWeek.value = res;
         }catch(err){
             console.error(`Failed to get the filtered products:`, err);
@@ -52,6 +55,7 @@ export const useProducts = () => {
             const res = await handler(`/products/year/${type}/${filter}`, {
                 method: 'GET',
             })
+            console.log(res);
             productsYear.value = res;
         }catch(err){
             console.error(`Failed to get the filtered products:`, err);
@@ -70,6 +74,7 @@ export const useProducts = () => {
             const res = await handler(`/products/${currentId}`, {
                 method: 'GET',
             })
+            console.log(res);
             product.value = res;
         }catch(err){
             console.error(`Failed to get the product by id:`, err);
@@ -82,6 +87,7 @@ export const useProducts = () => {
             const res = await handler(`/my/products/${userId}`, {
                 method: 'GET',
             })
+            console.log(res);
             myProducts.value = res;
         }catch(err){
             console.error(`Failed to get the all my products:`, err);

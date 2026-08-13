@@ -6,12 +6,14 @@ import { useBaseModals } from "@/shared/composables/modals/base.modals";
 import { useOrders } from "@/feature/products/composables/use.orders.ts";
 import { checkout } from "@/feature/checkout/composables/checkout.ts";
 import { useCart } from "@/feature/products/composables/use.cart.ts";
+import { clearCheckoutForm } from "@/shared/composables/clear-forms/clear.checkout.ts";
 
 const { addOrder } = useOrders();
 const { payment } = checkoutForms();
 const { openNotify, loading } = useBaseModals();
 const { updateCheckedQuantity } = useCart();
 const { isChosenPayment, paymentId } = checkout();
+const { clearPaymentForm } = clearCheckoutForm();
 const { paymentMethod, userPayments, userPayment } = usersStore();
 const { createPaymentMethodError, createPaymentCardErrors } = useFormsErrors();
 
@@ -21,14 +23,15 @@ export const usePayment = () => {
 
         const userId = localStorage.getItem("userId");
         try{
-            const payments = await handler(`/payment/${userId}`, {
+            const res = await handler(`/payment/${userId}`, {
                 method: "GET",
             });
-            userPayments.value = payments;
+            console.log(res);
+            userPayments.value = res;
 
             loading.value = false;
         }catch(err){
-            console.error(`Failed to get the user payments:`, err);
+            console.error(`Failed to get the user res:`, err);
         }
     };
 
@@ -37,10 +40,11 @@ export const usePayment = () => {
 
         const paymentId = localStorage.getItem("paymentId");
         try{
-            const payments = await handler(`/payment/item/${paymentId}`, {
+            const res = await handler(`/payment/item/${paymentId}`, {
                 method: "GET",
             });
-            userPayment.value = payments;
+            console.log(res);
+            userPayment.value = res;
 
             loading.value = false;
         }catch(err){
@@ -78,6 +82,7 @@ export const usePayment = () => {
 
             await openNotify('You have successfully paid and created order.',
                 'You will now be redirected to the profile page.', 'profile')
+            clearPaymentForm();
         }catch(err){
             await openNotify('You must choose.',
                 'Which card and payment method should we use for payment?', '')
@@ -117,6 +122,7 @@ export const usePayment = () => {
 
             await openNotify('You have successfully paid and created order.',
                 'You will now be redirected to the profile page.', 'profile')
+            clearPaymentForm();
         }catch(err){
             if (paymentMethod.value === 'card'){
                 createPaymentCardErrors(err);

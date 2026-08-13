@@ -1,7 +1,9 @@
-import { supabase } from '#lib/supbase.js';
+import { supabase } from '#lib/supabase.js';
+import { type Request, type Response } from 'express';
+import { type AuthenticatedRequest } from '../../interfaces.ts';
 
 export const productsController = {
-    async getAllProducts(req, res) {
+    async getAllProducts(_req: Request, res: Response) {
         try {
             const { data: products, error } = await supabase
                 .from('products')
@@ -12,16 +14,18 @@ export const productsController = {
             res.json(products || []);
         } catch (err) {
             console.error('Failed to get the product list:', err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async getFilteredProducts(req, res) {
+    async getFilteredProducts(req: Request, res: Response) {
         try {
             const { type, filter } = req.params;
             let query = supabase
                 .from('products')
-                .select('*');
+                .select('*')
+                .order('created_at', { ascending: false });
 
             if (type && type !== "ALL") {
                 if (type === "CATEGORY") {
@@ -29,7 +33,7 @@ export const productsController = {
                 } else if (type === "SIZE") {
                     query = query.contains('sizes', JSON.stringify([filter]));
                 } else if (type === "COLOR") {
-                    query = query.contains('colors', JSON.stringify([filter]));
+                    query = query.contains('colors', JSON.stringify([{ colorName: filter }]));
                 } else if (type === "STATUS") {
                     query = query.eq('status', filter);
                 } else if (type === "GENDER") {
@@ -43,11 +47,12 @@ export const productsController = {
             res.json(products || []);
         } catch (err) {
             console.error('Failed to get the filtered product list:', err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async getWeekProducts (req, res) {
+    async getWeekProducts (_req: Request, res: Response) {
         try{
             const sevenDayAgo = new Date();
             sevenDayAgo.setDate(sevenDayAgo.getDate() - 7);
@@ -56,19 +61,20 @@ export const productsController = {
             const { data: products, error } = await supabase
                 .from('products')
                 .select('*')
-                .gte('dateCreatedProduct', dateISO)
-                .order('dateCreatedProduct', { ascending: false });
+                .gte('created_at', dateISO)
+                .order('created_at', { ascending: false });
 
             if (error) throw error;
 
             res.json(products || []);
         }catch(err){
             console.error('Failed to get the week product list:', err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async getYearProducts (req, res) {
+    async getYearProducts (req: Request, res: Response) {
         try{
             const { type, filter } = req.params;
 
@@ -79,8 +85,8 @@ export const productsController = {
             let query = supabase
                 .from('products')
                 .select('*')
-                .gte('dateCreatedProduct', lastDate)
-                .order('dateCreatedProduct', { ascending: false });
+                .gte('created_at', lastDate)
+                .order('created_at', { ascending: false });
 
 
             if(type && type !== "ALL"){
@@ -95,13 +101,14 @@ export const productsController = {
             res.json(products || []);
         }catch(err){
             console.error('Failed to get the year product list:', err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async getSearchedProducts(req, res) {
+    async getSearchedProducts(req: Request, res: Response) {
         try {
-            const search = req.query.search?.trim();
+            const search = String(req.query.search || '').trim();
 
             if (!search) {
                 const { data: products, error } = await supabase.from('products').select('*');
@@ -112,6 +119,7 @@ export const productsController = {
             const { data: products, error } = await supabase
                 .from('products')
                 .select('*')
+                .order('created_at', { ascending: false })
                 .or(
                     `title.ilike.%${search}%,` +
                     `category.ilike.%${search}%,` +
@@ -125,17 +133,19 @@ export const productsController = {
             res.json(products || []);
         } catch (err) {
             console.error('Failed to get the searched product list:', err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async getMyProducts(req, res) {
+    async getMyProducts(req: Request, res: Response) {
         try {
             const { userId } = req.params;
 
             const { data: myProducts, error } = await supabase
                 .from('products')
                 .select('*')
+                .order('created_at', { ascending: false })
                 .eq('userId', userId)
 
             if (error) throw error;
@@ -143,11 +153,12 @@ export const productsController = {
             res.json(myProducts || []);
         } catch (err) {
             console.error(`Failed to get my stack products:`, err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async getProductsById(req, res) {
+    async getProductsById(req: Request, res: Response) {
         try {
             const { id } = req.params;
 
@@ -162,25 +173,28 @@ export const productsController = {
             res.json(product || {});
         } catch (err) {
             console.error(`Failed to get the product by id ${req.params.id}:`, err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async createdProduct(req, res) {
+    async createdProduct(req: AuthenticatedRequest, res: Response) {
         try {
             if (!req.files || req.files.length === 0) {
                 return res.status(400).json({ message: 'Product photos are mandatory.' });
             }
 
-            const images = req.files.map(file => `uploads/products/${file.filename}`);
+            const files = req.files as Express.Multer.File[]
+
+            const images = files.map((file: any) => `uploads/products/${file.filename}`);
 
             const newProduct = {
-                userId: req.user.id,
+                userId: req.user?.id,
                 images,
                 ...req.body,
                 quantity: Number(req.body.quantity) || 0,
                 price: Number(req.body.price) || 0,
-                dateCreatedProduct: new Date(),
+                created_at: new Date(),
                 favorite: false,
                 checked: false
             };
@@ -196,11 +210,12 @@ export const productsController = {
             res.status(201).json(createdProduct);
         } catch (err) {
             console.error('Failed to create the product cover:', err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async updateProductItem(req, res) {
+    async updateProductItem(req: Request, res: Response) {
         try {
             const { id } = req.params;
 
@@ -217,11 +232,12 @@ export const productsController = {
             return res.json(updatedProduct);
         } catch (err) {
             console.error(`Failed to update the product ${req.params.id}:`, err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     },
 
-    async deleteProduct(req, res) {
+    async deleteProduct(req: Request, res: Response) {
         try {
             const { id } = req.params;
 
@@ -238,7 +254,8 @@ export const productsController = {
             res.json(deletedProduct);
         } catch (err) {
             console.error(`Failed to delete the product ${req.params.id}:`, err);
-            res.status(500).json({ error: err.message });
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
         }
     }
 };

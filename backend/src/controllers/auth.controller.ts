@@ -1,25 +1,27 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import { supabase } from "#lib/supbase.js";
+import { supabase } from "#lib/supabase.js";
 import { OAuth2Client } from "google-auth-library";
+import { type Request, type Response } from "express";
+import { type User, type JwtCustomPayload, type TokenPayload } from '../interfaces.ts';
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 const ACCESS_SECRET = 'your_access_secret_key_123';
 const REFRESH_SECRET = 'your_refresh_secret_key_123';
 
-const generateAccessToken = (user) => {
+const generateAccessToken = (user: Pick<User, 'id' | 'email'>) => {
     return jwt.sign({ userId: user.id, email: user.email }, ACCESS_SECRET, { expiresIn: '1h' });
 };
 
-const generateRefreshToken = (user) => {
+const generateRefreshToken = (user: Pick<User, 'id' | 'email'>) => {
     return jwt.sign({ userId: user.id }, REFRESH_SECRET, { expiresIn: '7d' });
 };
 
-export const authController = {
-    async register (req, res) {
+const authController = {
+    async register (req: Request, res: Response) {
         try {
-            const { role, name, surName, companyName, publicPhone, privatePhone, email, password, dateCreatedAccount, userId } = req.body;
+            const { role, name, surName, companyName, publicPhone, privatePhone, email, password, created_at, userId } = req.body;
 
             const { data: candidates, error: candidateError } = await supabase
                 .from('users')
@@ -54,7 +56,7 @@ export const authController = {
                 email,
                 password: hashedPassword,
                 avatarUrl: 'uploads/avatars/default-avatar.png',
-                dateCreatedAccount,
+                created_at,
                 refreshTokens: [],
                 userId
             };
@@ -99,7 +101,7 @@ export const authController = {
         }
     },
 
-    async login (req, res) {
+    async login (req: Request, res: Response) {
         const { email, password, role } = req.body;
 
         try {
@@ -167,7 +169,7 @@ export const authController = {
         }
     },
 
-    async google(req, res) {
+    async google(req: Request, res: Response) {
         try {
             const { credential, userId, role, dateCreatedAccount } = req.body;
 
@@ -182,7 +184,11 @@ export const authController = {
                 audience: process.env.GOOGLE_CLIENT_ID,
             });
 
-            const payload = ticket.getPayload();
+            const payload = ticket.getPayload() as TokenPayload;
+
+            if (!payload) {
+                return res.status(400).json({ message: 'Invalid Google token payload' });
+            }
 
             const {
                 sub,
@@ -212,12 +218,11 @@ export const authController = {
             }
 
             if (!user) {
+                const email: string = payload.email ?? '';
+
                 const userGivenName = given_name || name || email.split('@')[0];
                 const userSurName = family_name || "";
                 const privatePhone = phone || "";
-
-                const tempUserPayload = { email };
-                const initialRefreshToken = generateRefreshToken(tempUserPayload);
 
                 const { data: createdUser, error: insertError } = await supabase
                     .from("users")
@@ -232,7 +237,7 @@ export const authController = {
                         dateCreatedAccount,
                         password: '',
                         userId,
-                        refreshTokens: [initialRefreshToken]
+                        refreshTokens: []
                     }])
                     .select()
                     .single();
@@ -240,23 +245,8 @@ export const authController = {
                 if (insertError) throw insertError;
 
                 user = createdUser;
-            }else{
-                const refreshToken = generateRefreshToken(user);
-                const tokens = [...(user.refreshTokens || []), refreshToken];
 
-                const { error: updateError } = await supabase
-                    .from("users")
-                    .update({
-                        googleId: user.googleId || sub,
-                        refreshTokens: tokens
-                    })
-                    .eq("id", user.id);
-
-                if (updateError) throw updateError;
-
-                user.refreshTokens = tokens;
             }
-
             const accessToken = generateAccessToken(user);
             const refreshToken = generateRefreshToken(user);
 
@@ -265,9 +255,12 @@ export const authController = {
             await supabase
                 .from("users")
                 .update({
+                    googleId: user.googleId || sub,
                     refreshTokens: tokens
                 })
                 .eq("id", user.id);
+
+            user.refreshTokens = tokens;
 
             res.cookie('accessToken', accessToken, {
                 httpOnly: true,
@@ -294,20 +287,23 @@ export const authController = {
         }
     },
 
-    async logout (req, res) {
+    async logout (req: Request, res: Response) {
         const refreshToken = req.cookies.refreshToken;
 
         if(refreshToken){
             try{
                 const { data: user } = await supabase
                     .from('users')
-                    .select('id', req.body.userId)
+                    .select('id, refreshTokens')
                     .contains('refreshTokens', [refreshToken])
-                if(user && user.refreshTokens){
-                    const newTokens = user.refreshTokens.filter(t => t !== refreshToken);
+                    .single();
+
+                if(user && Array.isArray(user.refreshTokens)){
+                    const newTokens = user.refreshTokens.filter((t: string) => t !== refreshToken);
                     await supabase
                         .from('users')
-                        .update({refreshTokens: newTokens})
+                        .update({ refreshTokens: newTokens })
+                        .eq("id", user.id)
                 }
             }catch(err){
                 console.log(`Failed to logout: ${req.body?.userId}`, err)
@@ -319,11 +315,11 @@ export const authController = {
         return res.json({ success: true, message: 'Successfully logged out of the system' });
     },
 
-    async refresh (req, res) {
+    async refresh (req: Request, res: Response) {
         const refreshToken = req.cookies.refreshToken;
 
         try {
-            const decoded = jwt.verify(refreshToken, REFRESH_SECRET);
+            const decoded = jwt.verify(refreshToken, REFRESH_SECRET) as JwtCustomPayload;
 
             const { data: user, error } = await supabase
                 .from('users')
@@ -338,7 +334,7 @@ export const authController = {
             const newAccessToken = generateAccessToken(user);
             const newRefreshToken = generateRefreshToken(user);
 
-            const updatedTokens = user.refreshTokens.filter(t => t !== refreshToken);
+            const updatedTokens = user.refreshTokens.filter((t: string) => t !== refreshToken);
             updatedTokens.push(newRefreshToken);
 
             await supabase
@@ -363,8 +359,9 @@ export const authController = {
 
             res.json({ success: true });
         } catch (err) {
-            console.error(`Failed to refresh: ${    user}`, err)
+            console.error(`Failed to refresh:`, err)
             return res.status(403).json({ message: 'Refresh token expired' });
         }
     }
 }
+export default authController

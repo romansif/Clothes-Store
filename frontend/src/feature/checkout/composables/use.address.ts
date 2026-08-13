@@ -4,11 +4,13 @@ import { usersStore } from "@/shared/composables/stores/users.store";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
 import { checkout } from "@/feature/checkout/composables/checkout.ts";
+import { clearCheckoutForm } from "@/shared/composables/clear-forms/clear.checkout.ts";
 
-const { openNotify, loading } = useBaseModals();
 const { information } = checkoutForms();
+const { openNotify, loading } = useBaseModals();
 const { userAddresses, userAddress } = usersStore();
 const { createInformationErrors } = useFormsErrors();
+const { clearInformationForm } = clearCheckoutForm();
 const { isChosenAddress, isChosenContactInfo, informationId } = checkout();
 
 export const useAddress = () => {
@@ -17,10 +19,11 @@ export const useAddress = () => {
 
         const userId = localStorage.getItem("userId");
         try{
-            const addresses = await handler(`/address/${userId}`, {
+            const res = await handler(`/address/${userId}`, {
                 method: "GET",
             });
-            userAddresses.value = addresses;
+            console.log(res);
+            userAddresses.value = res;
 
             loading.value = false;
         }catch(err){
@@ -33,10 +36,11 @@ export const useAddress = () => {
 
         const addressId = localStorage.getItem("addressId");
         try{
-            const address = await handler(`/address/item/${addressId}`, {
+            const res = await handler(`/address/item/${addressId}`, {
                 method: "GET",
             });
-            userAddress.value = address;
+            console.log(res);
+            userAddress.value = res;
 
             loading.value = false;
         }catch(err){
@@ -102,10 +106,11 @@ export const useAddress = () => {
             await getAddresses();
 
             await openNotify('You have successfully added the shipping address.',
-                'You will now be redirected to the shipping method selection page.', 'shipping')
+                'You will now be redirected to the shipping method selection page.', 'shipping');
+            clearInformationForm();
         }catch(err){
             await openNotify('You must choose.',
-                'What contact and address information should we use for delivery?', '')
+                'What contact and address information should we use for delivery?', '');
             console.error(`Failed to create the new address:`, err);
         }
     }
@@ -142,6 +147,7 @@ export const useAddress = () => {
 
             await openNotify('You have successfully added the shipping address.',
                 'You will now be redirected to the shipping method selection page.', 'shipping')
+            clearInformationForm();
         }catch(err){
             createInformationErrors(err);
             console.error(`Failed to create the new address:`, err);

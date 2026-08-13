@@ -1,6 +1,7 @@
 import express from "express";
-import { authMiddleware } from "#middleware/auth.middleware.js";
-import { ordersController } from "#controllers/products/orders.controller.js";
+import { authMiddleware } from "#middleware/auth.middleware.ts";
+import { ordersController } from "#controllers/products/orders.controller.ts";
+import { validation } from "#middleware/validation.ts";
 
 const router = express.Router();
 
@@ -10,7 +11,8 @@ router.get('/orders/active/:userId', authMiddleware, ordersController.getFiltere
 
 router.post('/orders', authMiddleware, ordersController.addOrder);
 
-router.patch('/orders/:id', authMiddleware, ordersController.updateOrder);
+router.patch('/orders/:id', authMiddleware, validation.replaceOrderValidation, validation.handleValidationErrors,
+    ordersController.updateOrder);
 
 router.delete('/orders/:id', authMiddleware, ordersController.deleteOrderItems);
 

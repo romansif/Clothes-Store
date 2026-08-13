@@ -23,14 +23,13 @@ const { pureInfoColors, isAvailableSizes, isInCart } = productsCover();
 
 const userId = localStorage.getItem("userId");
 
-watch(() => [addToCartForm.colors, addToCartForm.sizes], ([color, size]) => {
+watch(() => [addToCartForm.value.colors, addToCartForm.value.sizes], ([color, size]) => {
   if(color){
     addCartFormErrors.value.colorError = false
   }
   if(size){
     addCartFormErrors.value.sizeError = false
   }
-  console.log(addToCartForm.colors)
 })
 </script>
 
@@ -98,10 +97,10 @@ watch(() => [addToCartForm.colors, addToCartForm.sizes], ([color, size]) => {
       <BaseButton v-if="userId && product.quantity === 0" name="OUT OF STACK" variant="outOfStack" />
       <div v-if="userId && isInCart" class="flex items-center gap-18">
         <div class="flex gap-6 bg-zinc-800 py-4 px-3 text-lg rounded-md transition duration-300 hover:scale-108">
-          <img :src="plus" @click="updateCartItem('add', isInCart.id, isInCart.status)"
+          <img :src="plus" @click="updateCartItem('add', isInCart.id, isInCart.status)" alt=""
                class="bg-zinc-600 text-white px-2 w-[35px] rounded-md transition duration-300 hover:bg-zinc-400" />
           <span class="text-white">{{ isInCart.quantity }}</span>
-          <img :src="minus" @click="updateCartItem('away', isInCart.id, isInCart.status)"
+          <img :src="minus" @click="updateCartItem('away', isInCart.id, isInCart.status)" alt=""
                class="bg-zinc-600 text-white px-2 w-[35px] rounded-md transition duration-300 hover:bg-zinc-400" />
         </div>
         <router-link :to="{ name: 'cart' }">

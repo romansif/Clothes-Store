@@ -17,7 +17,7 @@ const { price, totalPrice, commissionPrice } = checkout();
     </div>
     <h1 class="font-medium">YOUR ORDER</h1>
     <OrderInfoList />
-    <div class="border-b-1 border-gray-300 mt-5"></div>
+    <div class="border-b border-gray-300 mt-5"></div>
     <div class="flex flex-col font-medium text-xs mt-3 gap-2">
       <div class="flex justify-between">
         <span>Subtotal</span>
@@ -32,7 +32,7 @@ const { price, totalPrice, commissionPrice } = checkout();
         </div>
       </div>
     </div>
-    <div class="border-b-1 border-gray-300 mt-3 mb-1"></div>
+    <div class="border-b border-gray-300 mt-3 mb-1"></div>
     <span class="text-xs text-[#A3A3A3]">$ {{ commissionPrice }} commission and service operation</span>
     <div class="flex justify-between font-medium mt-3 text-sm">
       <span>Total</span>

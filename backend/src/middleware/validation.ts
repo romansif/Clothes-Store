@@ -1,3 +1,4 @@
+import { type Request, type Response, type NextFunction } from 'express';
 import { body, validationResult } from 'express-validator';
 
 export const validation = {
@@ -124,16 +125,16 @@ export const validation = {
             .trim()
             .notEmpty().withMessage('Description required to create product.'),
 
-        body('color')
+        body('colors')
             .isArray()
             .withMessage('The color of the pillar should be substantial.'),
 
-        body('color.*.hex')
+        body('colors.*.hex')
             .isString()
             .notEmpty()
             .withMessage('Hex is mandatory.'),
 
-        body('color.*.colorName')
+        body('colors.*.colorName')
             .isString()
             .notEmpty()
             .withMessage('ColorName is required.'),
@@ -237,13 +238,22 @@ export const validation = {
             .isLength({ min: 3, max: 4 }).withMessage('Enter the card cvv.')
     ],
 
-    handleValidationErrors (req, res, next) {
+    replaceOrderValidation: [
+        body('cause_replace')
+            .trim()
+            .notEmpty().withMessage('Select a reason for cancellation.'),
+    ],
+
+    handleValidationErrors (req: Request, res: Response, next: NextFunction) {
         const errors = validationResult(req);
 
         if (!errors.isEmpty()) {
-            const formattedErrors = {};
+            const formattedErrors: Record<string, string> = {};
+
             errors.array().forEach(err => {
-                formattedErrors[err.path] = err.msg;
+                if('path' in err){
+                    formattedErrors[err.path] = err.msg;
+                }
             });
 
             console.log(errors);
@@ -253,6 +263,6 @@ export const validation = {
                 errors: formattedErrors
             });
         }
-        next();
+        return next();
     }
 };

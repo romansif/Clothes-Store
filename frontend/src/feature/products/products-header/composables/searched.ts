@@ -9,10 +9,11 @@ const { searchProductForm } = productsForms();
 export const useGetSearchedProducts = () => {
     const getSearchedProducts = async (products: any) => {
         try{
-            const all = await handler(`/searched?search=${searchProductForm.value.search}`, {
+            const res = await handler(`/searched?search=${searchProductForm.value.search}`, {
                 method: 'GET',
             })
-            products.value = all;
+            console.log(res);
+            products.value = res;
         }catch(err){
             console.log('Не удалось получить данные по всем товарам', err);
         }
