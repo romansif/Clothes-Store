@@ -7,17 +7,26 @@ const showPassword = ref<AuthPassword>({
     password: false,
 })
 
-interface AuthSection {
+interface SignInSection {
     section: boolean
 }
 
-const showSection = ref<AuthSection>({
+interface SignUpSection {
+    section: boolean
+}
+
+const showSignInSection = ref<SignInSection>({
+    section: false,
+})
+
+const showSignUpSection = ref<SignUpSection>({
     section: false,
 })
 
 export const authStore = () => {
     return {
         showPassword,
-        showSection,
+        showSignInSection,
+        showSignUpSection,
     }
 }

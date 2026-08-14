@@ -3,8 +3,8 @@ import { useRoute } from "vue-router";
 import { profile } from "@/shared/composables/profile.ts";
 import { computed, onErrorCaptured, onMounted, watch } from "vue";
 import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { useCart } from "@/feature/products/composables/use.cart.ts";
-import { useFavorites } from "@/feature/products/composables/use.favorites.ts";
+import { useCart } from "@/feature/profile/composables/use.cart.ts";
+import { useFavorites } from "@/feature/profile/composables/use.favorites.ts";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
 import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
 import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
@@ -13,14 +13,14 @@ import { checkoutErrors } from "@/shared/composables/errors/errors-messages/chec
 
 import NavBar from "@/feature/navigation/NavBar.vue";
 import square from "@/app/assets/icons/squares/square.png";
-import CartList from "@/feature/products/cart/CartList.vue";
-import CartInfo from "@/feature/products/cart/CartInfo.vue";
+import CartList from "@/feature/profile/cart/CartList.vue";
+import CartInfo from "@/feature/profile/cart/CartInfo.vue";
 import liked from "@/app/assets/icons/nav/liked.png";
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 import empty_cart from '@/app/assets/icons/products/empty-cart.svg';
 import favorite_cart from '@/app/assets/icons/products/favorute_empty.svg';
 import check_square from "@/app/assets/icons/squares/check-square.png";
-import FavoriteList from "@/feature/products/favorite/FavoriteList.vue";
+import FavoriteList from "@/feature/profile/favorite/FavoriteList.vue";
 import DeleteModal from "@/shared/ui/base/base-modals/DeleteModal.vue";
 import Notification from "@/shared/ui/base/base-modals/Notification.vue";
 import Loading from "@/shared/ui/base/base-modals/Loading.vue";
@@ -93,20 +93,20 @@ onMounted(async() => {
       </div>
       <div :class="isShoppingCart ? 'hidden' : 'flex flex-col xl:flex-row xl:justify-between'">
         <CartList v-if="cart.length > 0" />
-        <div v-else class="flex flex-col gap-5 items-center pl-40 pt-60">
+        <div v-else class="flex flex-col gap-5 items-center pl-[413.5px] pt-55">
           <img :src="empty_cart" alt="">
           <div class="flex flex-col gap-2 items-center">
             <span class="font-bold">Cart is empty</span>
             <span class="text-[#A3A3A3]">It’s the perfect time to go shopping or check out this year’s new releases.</span>
           </div>
         </div>
-        <CartInfo />
+        <CartInfo v-if="cart.length > 0"/>
       </div>
       <div v-if="favorite.length > 0" :class="isFavoriteProducts ? 'hidden' :
           'flex flex-col xl:flex-row xl:justify-between'">
         <FavoriteList />
       </div>
-      <div v-else :class="isFavoriteProducts ? 'hidden' : 'flex justify-center pt-60'">
+      <div v-else :class="isFavoriteProducts ? 'hidden' : 'flex justify-center pt-55'">
         <div class="flex flex-col gap-5 items-center">
           <img :src="favorite_cart" alt="">
           <div class="flex flex-col gap-2 items-center">

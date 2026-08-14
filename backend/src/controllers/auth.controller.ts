@@ -171,7 +171,7 @@ const authController = {
 
     async google(req: Request, res: Response) {
         try {
-            const { credential, userId, role, dateCreatedAccount } = req.body;
+            const { credential, userId, role, created_at } = req.body;
 
             if (!credential) {
                 return res.status(400).json({
@@ -234,7 +234,7 @@ const authController = {
                         avatarUrl: picture || '',
                         privatePhone: privatePhone,
                         googleId: sub,
-                        dateCreatedAccount,
+                        created_at,
                         password: '',
                         userId,
                         refreshTokens: []
@@ -284,6 +284,120 @@ const authController = {
         }catch (err) {
             console.error("Failed to login with Google:", err);
             return res.status(500).json({message: "Authorization error"});
+        }
+    },
+
+    async sendSmsCode (req: Request, res: Response) {
+        try{
+            const { phone } = req.body;
+            if(!phone) {
+                return res.status(400).json({ error: 'Phone number is required' });
+            }
+
+            const cleanPhone = phone.startsWith("+")
+                ? `+${phone.slice(1).replace(/\D/g, '')}`
+                : `+${phone.replace(/\D/g, '')}`;
+
+            const { error } = await supabase.auth.signInWithOtp({
+                phone: cleanPhone,
+            })
+            if(error){
+                console.error("Failed to login with Supabase Sms:", error);
+                return res.status(400).json({ message: error.message });
+            }
+
+            return res.json({success: true, message: 'SMS verification code sent successfully'})
+        }catch(err){
+            console.error("Failed to send SMS code:", err);
+            return res.status(500).json({ message: 'Failed to send SMS code' });
+        }
+    },
+
+    async verifySmsCode(req: Request, res: Response) {
+        try {
+            const { phone, token, role } = req.body;
+
+            if (!phone || !token) {
+                return res.status(400).json({ message: 'Phone and SMS code (token) are required' });
+            }
+
+            const cleanPhone = phone.startsWith("+")
+                ? `+${phone.slice(1).replace(/\D/g, '')}`
+                : `+${phone.replace(/\D/g, '')}`;
+
+            const { data: authData, error: verifyError } = await supabase.auth.verifyOtp({
+                phone: cleanPhone,
+                token: token,
+                type: 'sms'
+            });
+
+            if (verifyError || !authData.user) {
+                return res.status(400).json({ message: 'Invalid or expired SMS code' });
+            }
+
+            let { data: user, error: fetchError } = await supabase
+                .from('users')
+                .select('*')
+                .eq('privatePhone', cleanPhone)
+                .single();
+
+            if (fetchError && fetchError.code !== 'PGRST116') {
+                throw fetchError;
+            }
+
+            if (!user) {
+                const newUser = {
+                    role: role || 'Buyer',
+                    name: 'User',
+                    surName: '',
+                    privatePhone: cleanPhone,
+                    email: authData.user.email || `${cleanPhone.replace('+', '')}@phone.user`,
+                    password: '',
+                    avatarUrl: 'uploads/avatars/default-avatar.png',
+                    refreshTokens: [],
+                };
+
+                const { data: createdUser, error: insertError } = await supabase
+                    .from('users')
+                    .insert([newUser])
+                    .select()
+                    .single();
+
+                if (insertError) throw insertError;
+                user = createdUser;
+            }
+
+            const accessToken = generateAccessToken(user);
+            const refreshToken = generateRefreshToken(user);
+
+            const updatedTokens = [...(user.refreshTokens || []), refreshToken];
+
+            await supabase
+                .from('users')
+                .update({ refreshTokens: updatedTokens })
+                .eq('id', user.id);
+
+            res.cookie('accessToken', accessToken, {
+                httpOnly: true,
+                sameSite: 'lax',
+                secure: false,
+                maxAge: 60 * 60 * 1000
+            });
+
+            res.cookie('refreshToken', refreshToken, {
+                httpOnly: true,
+                sameSite: 'lax',
+                path: '/',
+                secure: false,
+                maxAge: 7 * 24 * 60 * 60 * 1000
+            });
+
+            const { password, refreshTokens, ...userWithoutPassword } = user;
+            return res.json({ ...userWithoutPassword, accessToken });
+
+        } catch (err) {
+            console.error("Failed to verify SMS code:", err);
+            return res.status(500).json({ message: 'SMS verification error' });
         }
     },
 

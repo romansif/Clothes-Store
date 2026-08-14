@@ -2,8 +2,8 @@
 import { watch} from "vue";
 import { productsCover } from "@/shared/composables/product.cover.ts";
 
-import { useCart } from "@/feature/products/composables/use.cart.ts";
-import { useFavorites } from "@/feature/products/composables/use.favorites.ts";
+import { useCart } from "@/feature/profile/composables/use.cart.ts";
+import { useFavorites } from "@/feature/profile/composables/use.favorites.ts";
 import { productsStore } from "@/shared/composables/stores/products.store";
 import { productsForms } from "@/shared/composables/forms/products.forms";
 import { productsFormErrors } from "@/shared/composables/errors/errors-messages/products.errors";

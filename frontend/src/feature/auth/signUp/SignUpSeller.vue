@@ -14,14 +14,16 @@ import closed from "@/app/assets/icons/auth/closed.png";
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 import maki_arrow from "@/app/assets/icons/arrows/right-short-arrow.svg";
 import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
+import {toggleAuth} from "@/feature/auth/auth-composables/toggleAuth.ts";
 
 const { signUp } = useAuth();
+const { togglePassword, toggleSignUp } = toggleAuth();
 const { registerFormErrors } = authFormsErrors();
-const { showPassword, showSection } = authStore();
+const { showPassword, showSignInSection } = authStore();
 const { countries, selectedCountryCode } = usersStore();
 const { registerSellerForm, registerFormMessages } = authForms();
 const { currentCountry, currentMask, changeCountry } = usePhoneForm();
-const { clearRegisterSellerForm, clearRegisterBuyerForm } = clearAuthForms();
+const { clearRegisterSellerForm } = clearAuthForms();
 
 watch(() => [registerSellerForm.value.name, registerSellerForm.value.surName, registerSellerForm.value.companyName,
   registerSellerForm.value.publicPhone, registerSellerForm.value.email, registerSellerForm.value.password],
@@ -46,21 +48,10 @@ watch(() => [registerSellerForm.value.name, registerSellerForm.value.surName, re
       }
     }
 )
-
-const togglePassword = () => {
-  showPassword.value.password = !showPassword.value.password;
-};
-
-const toggleRegister = () => {
-  showSection.value.section = !showSection.value.section;
-
-  clearRegisterBuyerForm();
-  clearRegisterSellerForm();
-}
 </script>
 
 <template>
-  <section v-if="showSection.section === true" class='fixed font-[Montserrat] inset-0 flex items-center justify-center' >
+  <section v-if="showSignInSection.section === true" class='fixed font-[Montserrat] inset-0 flex items-center justify-center' >
     <div class="w-87.5 sm:w-150 rounded-lg px-8 py-8">
       <div class="flex items-center justify-center">
         <div class="w-58.75 sm:w-75">
@@ -139,7 +130,7 @@ const toggleRegister = () => {
           <BaseButton @click="signUp('Seller')" name="SIGN UP BY SELLER" variant="register"/>
           <img :src=maki_arrow alt="" class="absolute w-6.25 top-9.5 left-58 sm:left-121">
         </div>
-        <BaseButton @click=toggleRegister name="Sign up by buyer" variant="changeRegister" />
+        <BaseButton @click="toggleSignUp" name="Sign up as a buyer" variant="changeRegister" />
       </div>
     </div>
   </section>

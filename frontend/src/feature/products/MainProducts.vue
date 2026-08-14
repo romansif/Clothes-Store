@@ -14,7 +14,7 @@ import AsideFilter from "@/shared/ui/products-modals/AsideFilter.vue";
 import Loading from "@/shared/ui/base/base-modals/Loading.vue";
 
 const { filterAside } = useProductsModals();
-const { getFilteredProducts } = useProducts();
+const { getAllProducts } = useProducts();
 const { notify, loading } = useBaseModals();
 const { componentError, resetError } = errorHandler();
 
@@ -28,7 +28,7 @@ onErrorCaptured((err, info) => {
 });
 
 onMounted(async () => {
-  await getFilteredProducts('ALL', 'Availability');
+  await getAllProducts();
 })
 </script>
 

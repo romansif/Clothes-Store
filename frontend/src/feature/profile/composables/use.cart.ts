@@ -1,9 +1,9 @@
-import { handler } from "@/shared//api/http";
-import { useFormsErrors } from "@/shared/composables/errors/errors-middleware/forms.errors";
-import { productsStore } from "@/shared//composables/stores/products.store";
-import { productsForms } from "@/shared/composables/forms/products.forms";
-import { clearProductsForms } from "@/shared/composables/clear-forms/clear.products";
-import { useBaseModals } from "@/shared/composables/modals/base.modals";
+import { handler } from "@/shared/api/http.ts";
+import { useFormsErrors } from "@/shared/composables/errors/errors-middleware/forms.errors.ts";
+import { productsStore } from "@/shared/composables/stores/products.store.ts";
+import { productsForms } from "@/shared/composables/forms/products.forms.ts";
+import { clearProductsForms } from "@/shared/composables/clear-forms/clear.products.ts";
+import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
 
 const { openNotify, loading } = useBaseModals();
 const { addToCartForm } = productsForms();

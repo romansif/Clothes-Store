@@ -1,22 +1,23 @@
 <script setup lang="ts">
-import { watch, ref } from "vue";
-import { useAuth } from "./auth-composables/use.auth";
-import { authForms } from "@/shared/composables/forms/auth.forms";
-import { clearAuthForms } from "@/shared/composables/clear-forms/clear.auth";
-import { authFormsErrors } from "@/shared/composables/errors/errors-messages/auth.errors";
-import { useBaseModals } from "@/shared/composables/modals/base.modals";
+import { watch } from "vue";
+import { useAuth } from "../auth-composables/use.auth.ts";
+import { authForms } from "@/shared/composables/forms/auth.forms.ts";
+import { toggleAuth } from "@/feature/auth/auth-composables/toggleAuth.ts";
+import { authStore } from "@/shared/composables/stores/auth.store.ts";
+import { clearAuthForms } from "@/shared/composables/clear-forms/clear.auth.ts";
+import { authFormsErrors } from "@/shared/composables/errors/errors-messages/auth.errors.ts";
+
 
 import closed from "@/app/assets/icons/auth/closed.png";
 import opened from "@/app/assets/icons/auth/opened.png";
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 import maki_arrow from "@/app/assets/icons/arrows/right-short-arrow.svg";
 import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
-import Loading from "@/shared/ui/base/base-modals/Loading.vue";
-import Notification from "@/shared/ui/base/base-modals/Notification.vue";
-import GoogleSignIn from "@/feature/auth/GoogleSignIn.vue";
+import GoogleSignIn from "@/feature/auth/signIn/GoogleSignIn.vue";
 
 const { signIn } = useAuth();
-const { loading, notify } = useBaseModals();
+const { showPassword, showSignInSection } = authStore();
+const { togglePassword, toggleSignIn } = toggleAuth();
 const { clearLoginForm } = clearAuthForms();
 const { loginFormErrors } = authFormsErrors();
 const { loginForm, loginFormMessages } = authForms();
@@ -34,15 +35,10 @@ watch(() => [loginForm.value.email, loginForm.value.password, loginForm.value.ro
     }
 );
 
-const showPassword = ref(false);
-
-const togglePassword = () => {
-  showPassword.value = !showPassword.value
-}
 </script>
 
 <template>
-  <section class="font-[Montserrat] fixed inset-0 flex items-center justify-center">
+  <section v-if="showSignInSection.section === false" class="font-[Montserrat] fixed inset-0 flex items-center justify-center">
     <div class="w-87.5 sm:w-112.5 rounded-lg px-8 py-8">
       <div class="flex items-center justify-center">
         <div class="w-58.75 sm:w-68.75">
@@ -106,25 +102,14 @@ const togglePassword = () => {
         <BaseButton @click="signIn" name="SIGN IN" variant="login" />
         <img :src=maki_arrow alt="" class="absolute w-[25px] top-9.5 left-58 sm:left-83 ">
       </div>
-      <div class="flex justify-center">
+      <div class="flex flex-col items-center gap-3 mt-3 ">
         <GoogleSignIn class="duration-400 hover:scale-105 cursor-pointer"/>
+        <BaseButton @click="toggleSignIn" name="Sign in using your phone" variant="changeRegister" />
       </div>
     </div>
   </section>
-  <Loading v-if="loading"/>
-  <Transition>
-    <Notification v-if="notify"/>
-  </Transition>
 </template>
 
 <style scoped>
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.5s ease;
-}
 
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-}
 </style>

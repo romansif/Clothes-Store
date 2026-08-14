@@ -1,6 +1,6 @@
-import { handler } from "@/shared//api/http";
+import { handler } from "@/shared/api/http.ts";
 import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { useCart } from "@/feature/products/composables/use.cart.ts";
+import { useCart } from "@/feature/profile/composables/use.cart.ts";
 import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
 import { useProducts } from "@/feature/products/composables/use.products.ts";
 

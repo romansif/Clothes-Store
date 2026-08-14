@@ -9,7 +9,7 @@ export const filtered = () => {
     const selectedGender = ref<string>('ALL');
 
     const stackProducts = ref<Record<string, boolean>>({
-        Availability: true,
+        Availability: false,
         Exhausted: false,
     })
 

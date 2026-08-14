@@ -8,6 +8,7 @@ import { usersStore } from "@/shared/composables/stores/users.store.ts";
 import { authForms } from "@/shared/composables/forms/auth.forms.ts";
 import { authFormsErrors } from "@/shared/composables/errors/errors-messages/auth.errors.ts";
 import { clearAuthForms } from "@/shared/composables/clear-forms/clear.auth.ts";
+import { toggleAuth } from "@/feature/auth/auth-composables/toggleAuth.ts";
 
 import closed from "@/app/assets/icons/auth/closed.png";
 import opened from "@/app/assets/icons/auth/opened.png";
@@ -16,12 +17,13 @@ import maki_arrow from "@/app/assets/icons/arrows/right-short-arrow.svg";
 import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
 
 const { signUp } = useAuth();
+const { togglePassword, toggleSignUp } = toggleAuth();
 const { registerFormErrors } = authFormsErrors();
-const { showPassword, showSection } = authStore();
+const { showPassword, showSignInSection } = authStore();
 const { countries, selectedCountryCode } = usersStore();
 const { registerBuyerForm, registerFormMessages } = authForms();
 const { currentCountry, currentMask, changeCountry } = usePhoneForm();
-const { clearRegisterBuyerForm, clearRegisterSellerForm } = clearAuthForms();
+const { clearRegisterBuyerForm } = clearAuthForms();
 
 watch(() => [registerBuyerForm.value.name, registerBuyerForm.value.surName, registerBuyerForm.value.privatePhone,
   registerBuyerForm.value.email, registerBuyerForm.value.password],([name, surName, privatePhone, email, password]) => {
@@ -42,21 +44,10 @@ watch(() => [registerBuyerForm.value.name, registerBuyerForm.value.surName, regi
       }
     }
 );
-
-const togglePassword = () => {
-  showPassword.value.password = !showPassword.value.password;
-};
-
-const toggleRegister = () => {
-  showSection.value.section = !showSection.value.section;
-
-  clearRegisterBuyerForm();
-  clearRegisterSellerForm();
-}
 </script>
 
 <template>
-  <section v-if="showSection.section === false" class='fixed font-[Montserrat] inset-0 flex items-center justify-center'>
+  <section v-if="showSignInSection.section === false" class='fixed font-[Montserrat] inset-0 flex items-center justify-center'>
     <div class="w-87.5 sm:w-150 rounded-lg px-8 py-8">
       <div class="flex items-center justify-center">
         <div class="w-58.75 sm:w-75">
@@ -130,7 +121,7 @@ const toggleRegister = () => {
           <BaseButton @click="signUp('Buyer')" name="SIGN UP BY BUYER" variant="register" />
           <img :src=maki_arrow alt="" class="absolute w-6.25 top-9.5 left-58 sm:left-121">
         </div>
-        <BaseButton @click=toggleRegister name="Sign up by seller" variant="changeRegister" />
+        <BaseButton @click="toggleSignUp" name="Sign up as a seller" variant="changeRegister" />
       </div>
     </div>
   </section>

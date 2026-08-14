@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { useBaseModals } from "@/shared/composables/modals/base.modals";
+import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
 
-import SignUpBuyer from "@/feature/auth/signUp/SignUpBuyer.vue";
-import SignUpSeller from "@/feature/auth/signUp/SignUpSeller.vue";
 import Loading from "@/shared/ui/base/base-modals/Loading.vue";
 import Notification from "@/shared/ui/base/base-modals/Notification.vue";
+import SignIn from "@/feature/auth/signIn/SignIn.vue";
+import SignInWithPhone from "@/feature/auth/signIn/SignInWithPhone.vue";
 
 const { loading, notify } = useBaseModals();
 </script>
 
 <template>
-  <SignUpBuyer />
-  <SignUpSeller />
+  <SignIn />
+  <SignInWithPhone />
   <Loading v-if="loading"/>
   <Transition name="notify">
     <Notification v-if="notify"/>

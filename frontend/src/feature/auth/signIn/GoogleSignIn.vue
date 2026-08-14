@@ -14,14 +14,14 @@ onMounted(() => {
       document.getElementById("google-button")!,
       {
         type: "standard",
-        theme: "filled_black",
         size: "large",
         shape: "rectangular",
+        width: 385
       }
   );
 });
 </script>
 
 <template>
-  <div id="google-button" class="mt-6"></div>
+  <div id="google-button"></div>
 </template>

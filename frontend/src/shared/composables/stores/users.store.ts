@@ -12,7 +12,7 @@ interface User {
     email: string,
     password: string,
     avatarUrl: string,
-    dateCreatedAccount: string,
+    created_at: string,
     refreshTokens: object,
     userId: string
 }

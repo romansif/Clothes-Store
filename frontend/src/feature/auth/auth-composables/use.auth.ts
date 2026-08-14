@@ -108,7 +108,7 @@ export const useAuth = () => {
                 body: JSON.stringify({
                     role: loginForm.value.role || 'Buyer',
                     credential: response.credential,
-                    dateCreatedAccount: date,
+                    created_at: date,
                 })
             });
             if(!foundedUser){

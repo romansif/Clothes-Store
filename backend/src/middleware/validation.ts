@@ -54,6 +54,18 @@ export const validation = {
             .notEmpty().withMessage('You need to select a role to determine how you want to login.')
     ],
 
+    loginSendSmsValidation: [
+        body('phone')
+            .trim()
+            .notEmpty().withMessage('Phone required to login'),
+    ],
+
+    loginVerifySmsValidation: [
+        body('validCode')
+            .trim()
+            .notEmpty().withMessage('The code required to login'),
+    ],
+
     updateUserNameValidation: [
         body('name')
             .trim()

@@ -53,25 +53,44 @@ const registerFormMessages = ref<registerFormMessage>({
 
 interface LoginForm {
     email: string,
-    password: string
-    role: string
+    password: string,
+    phone?: string,
+    validCode?: string,
+    role: string,
 }
 const loginForm = ref<LoginForm>({
     email: '',
+    phone: '',
     password: '',
+    validCode: '',
     role: '',
 })
 
 interface loginFormMessage {
     emailMessage: string,
     passwordMessage: string,
+    phoneMessage?: string,
+    validCodeMessage?: string,
     roleMessage: string
 }
 const loginFormMessages = ref<loginFormMessage>({
     emailMessage: '',
     passwordMessage: '',
+    validCodeMessage: '',
+    phoneMessage: '',
     roleMessage: '',
 })
+
+
+const CODE_LENGTH = 6;
+const codeDigits = ref<string[]>(Array(CODE_LENGTH).fill(''));
+const inputRefs = ref<HTMLInputElement[]>([]);
+
+const isSendCode = ref<boolean>(false);
+const isNewCode = ref<boolean>(false);
+
+const timeLeft = ref<number>(59);
+const timerInterval = ref<number>(0);
 
 export const authForms = () => {
     return{
@@ -80,5 +99,14 @@ export const authForms = () => {
         registerFormMessages,
         loginForm,
         loginFormMessages,
+
+        CODE_LENGTH,
+        codeDigits,
+        inputRefs,
+
+        isSendCode,
+        isNewCode,
+        timeLeft,
+        timerInterval
     }
 }

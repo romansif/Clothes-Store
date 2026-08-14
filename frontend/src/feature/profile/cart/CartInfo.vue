@@ -20,7 +20,7 @@ watch(() => isAgreeFormError.value.agreeError, (agreeError) => {
 </script>
 
 <template>
-<div class="flex flex-col mt-6.5 gap-4 font-medium w-[400px]">
+<div class="flex flex-col mt-7.5 gap-4 font-medium w-[400px]">
   <div class="flex flex-col gap-2 sm:pb-3">
     <span class="text-lg xl:text-xl">
       ORDER SUMMARY

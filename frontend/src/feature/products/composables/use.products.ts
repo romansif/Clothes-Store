@@ -21,6 +21,7 @@ export const useProducts = () => {
             })
             console.log(res);
             allProducts.value = res;
+            products.value = res;
         }catch(err){
             console.error(`Failed to get the all products:`, err);
         }

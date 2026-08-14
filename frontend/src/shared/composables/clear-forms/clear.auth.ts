@@ -58,20 +58,25 @@ export const clearAuthForms = () => {
     const clearLoginForm = () => {
         loginForm.value.email = '';
         loginForm.value.password = '';
+        loginForm.value.phone = '';
         loginForm.value.role = '';
 
         loginFormMessages.value.emailMessage = '';
         loginFormMessages.value.passwordMessage = '';
+        loginFormMessages.value.phoneMessage = '';
         loginFormMessages.value.roleMessage = '';
 
         loginFormErrors.value.emailError = false;
         loginFormErrors.value.passwordError = false;
+        loginFormErrors.value.phoneError = false;
         loginFormErrors.value.roleError = false;
     }
 
     const clearLoginFormMessages = () => {
         loginFormMessages.value.emailMessage = '';
         loginFormMessages.value.passwordMessage = '';
+        loginFormMessages.value.phoneMessage = '';
+        loginFormMessages.value.roleMessage = '';
     }
 
     return{
