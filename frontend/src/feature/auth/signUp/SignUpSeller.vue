@@ -81,17 +81,10 @@ watch(() => [registerSellerForm.value.name, registerSellerForm.value.surName, re
                   :error-message="registerFormErrors.surNameError ? registerFormMessages.surNameMessage : ''" variant="auth" required />
             </div>
           </div>
-          <div class="flex gap-3">
-            <div class="flex flex-col gap-2 w-full">
-              <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">COMPANY NAME</label>
-              <BaseInput v-model=registerSellerForm.companyName type="text" placeholder="company" :error="registerFormErrors.companyNameError"
-                  :error-message="registerFormErrors.companyNameError ? registerFormMessages.companyNameMessage : ''" variant="auth" required />
-            </div>
-            <div class="flex flex-col gap-2 w-full">
-              <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">EMAIL</label>
-              <BaseInput v-model=registerSellerForm.email type="text" placeholder="example@mail.com" :error="registerFormErrors.emailError"
-                  :error-message="registerFormErrors.emailError ? registerFormMessages.emailMessage : ''" variant="auth" required />
-            </div>
+          <div class="flex flex-col gap-2 w-full">
+            <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">COMPANY NAME</label>
+            <BaseInput v-model=registerSellerForm.companyName type="text" placeholder="company" :error="registerFormErrors.companyNameError"
+                 :error-message="registerFormErrors.companyNameError ? registerFormMessages.companyNameMessage : ''" variant="auth" required />
           </div>
           <div class="flex flex-col gap-2 w-full">
             <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">PUBLIC PHONE</label>
@@ -113,14 +106,21 @@ watch(() => [registerSellerForm.value.name, registerSellerForm.value.surName, re
               {{ registerFormMessages.publicPhoneMessage }}
             </span>
           </div>
-          <div class="flex flex-col gap-2 w-full">
-            <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">PASSWORD</label>
-            <div class="relative">
-              <BaseInput v-model=registerSellerForm.password :type="showPassword.password ? 'text' : 'password'" placeholder="••••••••"
-                  :error="registerFormErrors.passwordError" variant="auth" required
-                  :error-message="registerFormErrors.passwordError ? registerFormMessages.passwordMessage : ''" />
-              <img @click=togglePassword :src="showPassword.password ? opened : closed" alt=""
-                   :class="['absolute w-7.5 top-1/4 left-57 sm:left-120', registerFormErrors.passwordError ? 'top-1/7' : '']">
+          <div class="flex items-center gap-3">
+            <div class="flex flex-col gap-2 w-full">
+              <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">EMAIL</label>
+              <BaseInput v-model=registerSellerForm.email type="text" placeholder="example@mail.com" :error="registerFormErrors.emailError"
+                         :error-message="registerFormErrors.emailError ? registerFormMessages.emailMessage : ''" variant="auth" required />
+            </div>
+            <div class="flex flex-col gap-2 w-full">
+              <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">PASSWORD</label>
+              <div class="relative">
+                <BaseInput v-model=registerSellerForm.password :type="showPassword.password ? 'text' : 'password'" placeholder="••••••••"
+                    :error="registerFormErrors.passwordError" variant="auth" required
+                    :error-message="registerFormErrors.passwordError ? registerFormMessages.passwordMessage : ''" />
+                <img @click=togglePassword :src="showPassword.password ? opened : closed" alt=""
+                     :class="['absolute w-7.5 top-1/4 left-57 sm:left-51.5', registerFormErrors.passwordError ? 'top-1/7' : '']">
+              </div>
             </div>
           </div>
         </div>

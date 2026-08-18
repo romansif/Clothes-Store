@@ -7,7 +7,6 @@ import { authStore } from "@/shared/composables/stores/auth.store.ts";
 import { clearAuthForms } from "@/shared/composables/clear-forms/clear.auth.ts";
 import { authFormsErrors } from "@/shared/composables/errors/errors-messages/auth.errors.ts";
 
-
 import closed from "@/app/assets/icons/auth/closed.png";
 import opened from "@/app/assets/icons/auth/opened.png";
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
@@ -35,12 +34,11 @@ watch(() => [loginForm.value.email, loginForm.value.password, loginForm.value.ro
       }
     }
 );
-
 </script>
 
 <template>
   <div class="font-[Montserrat] fixed inset-0 flex items-center justify-center">
-    <div class="w-87.5 sm:w-112.5 rounded-lg px-8 py-8">
+    <div class="w-87.5 sm:w-md rounded-lg px-8 py-8">
       <div class="flex items-center justify-center">
         <div class="w-58.75 sm:w-68.75">
           <div class="font-medium flex items-center justify-between">
@@ -58,8 +56,8 @@ watch(() => [loginForm.value.email, loginForm.value.password, loginForm.value.ro
       <form @keydown.enter="signIn" action="" class="mt-10">
         <div class="flex flex-col gap-4">
           <div class="flex flex-col gap-2">
-            <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">EMAIL</label>
-            <BaseInput v-model=loginForm.email type="email" placeholder="example@mail.com" :error="loginFormErrors.emailError"
+            <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">EMAIL OR PHONE</label>
+            <BaseInput v-model=loginForm.email type="email" placeholder="example@mail.com, " :error="loginFormErrors.emailError"
                 :error-message="loginFormErrors.emailError ? loginFormMessages.emailMessage : ''" variant="auth" required />
           </div>
           <div class="flex flex-col gap-2">
@@ -71,7 +69,7 @@ watch(() => [loginForm.value.email, loginForm.value.password, loginForm.value.ro
               <BaseInput v-model=loginForm.password :type="showPassword ? 'text' : 'password'" placeholder="••••••••"
                   :error="loginFormErrors.passwordError" variant="auth" required
                   :error-message="loginFormErrors.passwordError ? loginFormMessages.passwordMessage : ''" />
-              <img @click=togglePassword :src="showPassword ? opened : closed" alt=""
+              <img @click=togglePassword :src="showPassword.password ? opened : closed" alt=""
                    :class="['absolute w-7.5 top-1/4 left-57 sm:left-82', loginFormErrors.passwordError ? 'top-1/6' : '']">
             </div>
           </div>
