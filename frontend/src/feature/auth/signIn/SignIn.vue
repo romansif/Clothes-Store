@@ -20,7 +20,7 @@ const { showPassword } = authStore();
 const { clearLoginForm } = clearAuthForms();
 const { loginFormErrors } = authFormsErrors();
 const { loginForm, loginFormMessages } = authForms();
-const { togglePassword, toggleSignIn } = toggleAuth();
+const { togglePassword } = toggleAuth();
 
 watch(() => [loginForm.value.email, loginForm.value.password, loginForm.value.role],([email, password, role]) => {
       if(email){
@@ -102,9 +102,13 @@ watch(() => [loginForm.value.email, loginForm.value.password, loginForm.value.ro
         <BaseButton @click="signIn" name="SIGN IN" variant="login" />
         <img :src=maki_arrow alt="" class="absolute w-6.25 top-9.5 left-58 sm:left-83 ">
       </div>
-      <div class="flex flex-col items-center gap-3 mt-3 ">
+      <div class="flex justify-center items-center mt-6 gap-2">
+        <span class="border border-[#A3A3A3] w-full"></span>
+        <span class="w-67.5">Sign in with</span>
+        <span class="border border-[#A3A3A3] w-full"></span>
+      </div>
+      <div class="flex flex-col items-center gap-3 mt-3">
         <GoogleSignIn class="duration-400 hover:scale-105 cursor-pointer"/>
-        <BaseButton @click="toggleSignIn" name="Sign in using your phone" variant="changeRegister" />
       </div>
     </div>
   </div>

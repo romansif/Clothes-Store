@@ -13,7 +13,7 @@ onMounted(() => {
   window.google.accounts.id.renderButton(
       document.getElementById("google-button")!,
       {
-        type: "standard",
+        type: "icon",
         size: "large",
         shape: "rectangular",
         width: 385

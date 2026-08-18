@@ -161,7 +161,8 @@ export const useProducts = () => {
 
             toggleCreateProductModal();
 
-            await openNotify('', '', '')
+            await openNotify('You have successfully created a new product card.',
+                'Now, if you go to the products page, your product will be there, and on the profile page as well.', '')
         }catch(err){
             loading.value = false;
 

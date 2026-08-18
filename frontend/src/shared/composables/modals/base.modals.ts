@@ -24,7 +24,7 @@ export const useBaseModals = () => {
 
         notify.value = true;
 
-        await delay(700)
+        await delay(1500)
 
         notify.value = false;
         notifyTitle.value = '';
