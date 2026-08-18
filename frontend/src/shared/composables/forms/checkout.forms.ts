@@ -13,18 +13,17 @@ interface Information {
     postalCode: string,
 }
 
-const information = ref<Information>({
-    addressName: '',
-    email: '',
-    phone: '',
-    firstName: '',
-    lastName: '',
-    country: '',
-    stateRegion: '',
-    address: '',
-    city: '',
-    postalCode: '',
-})
+interface Shipping {
+    delivery: string,
+}
+
+interface Payment {
+    cardName: string,
+    cardNumber: string,
+    expiryDate: string,
+    cardCvv: string,
+    paymentMethod: string,
+}
 
 interface InformationMessages {
     emailMessage: string,
@@ -38,6 +37,52 @@ interface InformationMessages {
     postalCodeMessage: string,
 }
 
+interface ShippingMessage {
+    deliveryMessage: string,
+}
+
+interface PaymentMessage {
+    cardNumberMessage: string,
+    expiryDateMessage: string,
+    cardCvvMessage: string,
+    paymentMethodMessage: string,
+}
+
+interface IsAgree {
+    agreeMessage: string,
+}
+
+const information = ref<Information>({
+    addressName: '',
+    email: '',
+    phone: '',
+    firstName: '',
+    lastName: '',
+    country: '',
+    stateRegion: '',
+    address: '',
+    city: '',
+    postalCode: '',
+})
+
+
+const shipping = ref<Shipping>({
+    delivery: '',
+})
+
+
+const payment = ref<Payment>({
+    cardName: '',
+    cardNumber: '',
+    expiryDate: '',
+    cardCvv: '',
+    paymentMethod: '',
+})
+
+const isAgreeForm = ref<IsAgree>({
+    agreeMessage: ''
+})
+
 const informationMessages = ref<InformationMessages>({
     emailMessage: 'example@gmail.com',
     phoneMessage: '+000 (00) 000-00-00',
@@ -50,58 +95,15 @@ const informationMessages = ref<InformationMessages>({
     postalCodeMessage: 'Postal Code',
 })
 
-interface Shipping {
-    delivery: string,
-}
-
-const shipping = ref<Shipping>({
-    delivery: '',
-})
-
-interface ShippingMessage {
-    deliveryMessage: string,
-}
-
 const shippingMessages = ref<ShippingMessage>({
     deliveryMessage: ''
 })
-
-interface Payment {
-    cardName: string,
-    cardNumber: string,
-    expiryDate: string,
-    cardCvv: string,
-    paymentMethod: string,
-}
-
-const payment = ref<Payment>({
-    cardName: '',
-    cardNumber: '',
-    expiryDate: '',
-    cardCvv: '',
-    paymentMethod: '',
-})
-
-interface PaymentMessage {
-    cardNumberMessage: string,
-    expiryDateMessage: string,
-    cardCvvMessage: string,
-    paymentMethodMessage: string,
-}
 
 const paymentMessages = ref<PaymentMessage>({
     cardNumberMessage: '',
     expiryDateMessage: '',
     cardCvvMessage: '',
     paymentMethodMessage: '',
-})
-
-interface IsAgree {
-    agreeMessage: string,
-}
-
-const isAgreeForm = ref<IsAgree>({
-    agreeMessage: ''
 })
 
 export const checkoutForms = () => {

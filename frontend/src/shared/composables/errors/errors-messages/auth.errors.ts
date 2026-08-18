@@ -9,6 +9,16 @@ interface RegisterFormErrors {
     emailError: boolean,
     passwordError: boolean
 }
+
+interface LoginFormErrors {
+    emailError: boolean,
+    passwordError: boolean,
+    phoneError?: boolean,
+    validCodeError?: boolean,
+    roleError: boolean,
+}
+
+
 const registerFormErrors = ref<RegisterFormErrors>({
     nameError: false,
     surNameError: false,
@@ -19,13 +29,6 @@ const registerFormErrors = ref<RegisterFormErrors>({
     passwordError: false
 })
 
-interface LoginFormErrors {
-    emailError: boolean,
-    passwordError: boolean,
-    phoneError?: boolean,
-    validCodeError?: boolean,
-    roleError: boolean,
-}
 const loginFormErrors = ref<LoginFormErrors>({
     emailError: false,
     passwordError: false,

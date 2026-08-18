@@ -7,13 +7,6 @@ interface RegisterBuyerForm {
     email: string,
     password: string
 }
-const registerBuyerForm = ref<RegisterBuyerForm>({
-    name: '',
-    surName: '',
-    privatePhone: '',
-    email: '',
-    password: ''
-})
 
 interface RegisterSellerForm {
     name: string,
@@ -23,14 +16,14 @@ interface RegisterSellerForm {
     email: string,
     password: string
 }
-const registerSellerForm = ref<RegisterSellerForm>({
-    name: '',
-    surName: '',
-    companyName: '',
-    publicPhone: '',
-    email: '',
-    password: ''
-})
+
+interface LoginForm {
+    email: string,
+    password: string,
+    phone?: string,
+    validCode?: string,
+    role: string,
+}
 
 interface registerFormMessage {
     nameMessage: string,
@@ -41,6 +34,41 @@ interface registerFormMessage {
     emailMessage: string,
     passwordMessage: string,
 }
+
+interface loginFormMessage {
+    emailMessage: string,
+    passwordMessage: string,
+    phoneMessage?: string,
+    validCodeMessage?: string,
+    roleMessage: string
+}
+
+
+const registerBuyerForm = ref<RegisterBuyerForm>({
+    name: '',
+    surName: '',
+    privatePhone: '',
+    email: '',
+    password: ''
+})
+
+const registerSellerForm = ref<RegisterSellerForm>({
+    name: '',
+    surName: '',
+    companyName: '',
+    publicPhone: '',
+    email: '',
+    password: ''
+})
+
+const loginForm = ref<LoginForm>({
+    email: '',
+    phone: '',
+    password: '',
+    validCode: '',
+    role: '',
+})
+
 const registerFormMessages = ref<registerFormMessage>({
     nameMessage: '',
     surNameMessage: '',
@@ -51,28 +79,6 @@ const registerFormMessages = ref<registerFormMessage>({
     passwordMessage: '',
 })
 
-interface LoginForm {
-    email: string,
-    password: string,
-    phone?: string,
-    validCode?: string,
-    role: string,
-}
-const loginForm = ref<LoginForm>({
-    email: '',
-    phone: '',
-    password: '',
-    validCode: '',
-    role: '',
-})
-
-interface loginFormMessage {
-    emailMessage: string,
-    passwordMessage: string,
-    phoneMessage?: string,
-    validCodeMessage?: string,
-    roleMessage: string
-}
 const loginFormMessages = ref<loginFormMessage>({
     emailMessage: '',
     passwordMessage: '',
@@ -80,7 +86,6 @@ const loginFormMessages = ref<loginFormMessage>({
     phoneMessage: '',
     roleMessage: '',
 })
-
 
 const CODE_LENGTH = 6;
 const codeDigits = ref<string[]>(Array(CODE_LENGTH).fill(''));

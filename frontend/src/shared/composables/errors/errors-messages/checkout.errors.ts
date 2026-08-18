@@ -12,6 +12,22 @@ interface InformationErrors {
     postalCodeError: boolean,
 }
 
+interface ShippingError {
+    deliveryError: boolean
+}
+
+interface PaymentError {
+    cardNumberError: boolean,
+    expiryDateError: boolean,
+    cardCvvError: boolean,
+    paymentMethodError: boolean,
+}
+
+interface IsAgreeError {
+    agreeError: boolean,
+}
+
+
 const informationErrors = ref<InformationErrors>({
     emailError: false,
     phoneError: false,
@@ -25,20 +41,9 @@ const informationErrors = ref<InformationErrors>({
 
 })
 
-interface ShippingError {
-    deliveryError: boolean
-}
-
 const shippingErrors = ref<ShippingError>({
     deliveryError: false
 })
-
-interface PaymentError {
-    cardNumberError: boolean,
-    expiryDateError: boolean,
-    cardCvvError: boolean,
-    paymentMethodError: boolean,
-}
 
 const paymentErrors = ref<PaymentError>({
     cardNumberError: false,
@@ -46,10 +51,6 @@ const paymentErrors = ref<PaymentError>({
     cardCvvError: false,
     paymentMethodError: false,
 })
-
-interface IsAgreeError {
-    agreeError: boolean,
-}
 
 const isAgreeFormError = ref<IsAgreeError>({
     agreeError: false,

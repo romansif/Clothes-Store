@@ -14,6 +14,12 @@ interface ProductFormError {
     collectionsError: boolean,
 }
 
+interface AddFormError {
+    colorError: boolean,
+    sizeError: boolean,
+}
+
+
 const createProductFormErrors = ref<ProductFormError>({
     productUrlError: false,
     titleError: false,
@@ -27,11 +33,6 @@ const createProductFormErrors = ref<ProductFormError>({
     quantityError: false,
     collectionsError: false,
 })
-
-interface AddFormError {
-    colorError: boolean,
-    sizeError: boolean,
-}
 
 const addCartFormErrors = ref<AddFormError>({
     colorError: false,

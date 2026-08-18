@@ -11,27 +11,21 @@ interface ProductForm {
     quantity: string,
     collections: string,
 }
-const createProductForm = ref<ProductForm>({
-    productUrl: '',
-    title: '',
-    category: '',
-    material: '',
-    description: '',
-    price: '',
-    gender: '',
-    quantity: '',
-    collections: '',
-})
 
 interface ProductColor {
     hex: string
     colorName: string
 }
 
-const moreCreateItem = reactive({
-    colors: [] as ProductColor[],
-    sizes: [] as string[],
-})
+interface AddForm {
+    colors: ProductColor,
+    sizes: string,
+}
+
+
+interface SearchForm {
+    search: string
+}
 
 interface ProductFormMessage {
     productUrlMessage: string,
@@ -47,6 +41,37 @@ interface ProductFormMessage {
     collectionsMessage: string,
 }
 
+interface AddFormMessage {
+    colorMessage: string,
+    sizeMessage: string,
+}
+
+
+const createProductForm = ref<ProductForm>({
+    productUrl: '',
+    title: '',
+    category: '',
+    material: '',
+    description: '',
+    price: '',
+    gender: '',
+    quantity: '',
+    collections: '',
+})
+
+
+const moreCreateItem = reactive({
+    colors: [] as ProductColor[],
+    sizes: [] as string[],
+})
+
+const addToCartForm = ref<AddForm>({
+    colors: {
+        hex: '',
+        colorName: '',
+    },
+    sizes: '',
+})
 
 const createProductFormMessages = ref<ProductFormMessage>({
     productUrlMessage: '',
@@ -62,32 +87,10 @@ const createProductFormMessages = ref<ProductFormMessage>({
     collectionsMessage: '',
 })
 
-interface AddForm {
-    colors: ProductColor,
-    sizes: string,
-}
-
-const addToCartForm = ref<AddForm>({
-    colors: {
-        hex: '',
-        colorName: '',
-    },
-    sizes: '',
-})
-
-interface AddFormMessage {
-    colorMessage: string,
-    sizeMessage: string,
-}
-
 const addToCartFormMessages = ref<AddFormMessage>({
     colorMessage: '',
     sizeMessage: '',
 })
-
-interface SearchForm {
-    search: string
-}
 
 const searchProductForm = ref<SearchForm>({
     search: ''
