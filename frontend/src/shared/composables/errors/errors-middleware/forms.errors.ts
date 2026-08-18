@@ -17,17 +17,8 @@ const { informationErrors, shippingErrors, paymentErrors} = checkoutErrors();
 const { informationMessages, shippingMessages, paymentMessages } = checkoutForms();
 const { cancelChoiceMessage, cancelChoiceError } = useBaseModals();
 
-const { updateUserFormNameMessage, updateUserFormPhoneMessage,
-    updateUserFormSurNameMessage, updateUserFormPasswordMessages,
-    updateUserFormCompanyNameMessage, updateUserFormPublicPhoneMessage,
-    updateUserFormEmailMessage
-} = userForms();
-const {
-    updateUserPasswordErrors,
-    updateUserNameErrors, updateUserSurNameErrors,
-    updateUserPhoneErrors, updateUserFormCompanyNameErrors,
-    updateUserFormPublicPhoneErrors, updateUserEmailErrors
-} = userFormsErrors()
+const { updateUserFormMessage } = userForms();
+const { updateUserFormErrors } = userFormsErrors()
 
 export const useFormsErrors = () => {
     const registerErrors = (err: any, role: string) => {
@@ -182,8 +173,8 @@ export const useFormsErrors = () => {
         if(err instanceof ApiError){
             const errors = err.response as Record<string, string> | undefined;
             if(errors){
-                updateUserNameErrors.value.nameError = !!errors.name;
-                updateUserFormNameMessage.value.nameMessage = errors.name || '';
+                updateUserFormErrors.value.nameError = !!errors.name;
+                updateUserFormMessage.value.nameMessage = errors.name || '';
             }
         }
     };
@@ -192,8 +183,8 @@ export const useFormsErrors = () => {
         if(err instanceof ApiError){
             const errors = err.response as Record<string, string> | undefined;
             if(errors){
-                updateUserSurNameErrors.value.surNameError = !!errors.surName;
-                updateUserFormSurNameMessage.value.surNameMessage = errors.surName || '';
+                updateUserFormErrors.value.surNameError = !!errors.surName;
+                updateUserFormMessage.value.surNameMessage = errors.surName || '';
             }
         }
     };
@@ -202,8 +193,8 @@ export const useFormsErrors = () => {
         if(err instanceof ApiError){
             const errors = err.response as Record<string, string> | undefined;
             if(errors){
-                updateUserPhoneErrors.value.phoneError = !!errors.phone;
-                updateUserFormPhoneMessage.value.phoneMessage = errors.phone || '';
+                updateUserFormErrors.value.phoneError = !!errors.phone;
+                updateUserFormMessage.value.phoneMessage = errors.phone || '';
             }
         }
     };
@@ -212,8 +203,8 @@ export const useFormsErrors = () => {
         if(err instanceof ApiError){
             const errors = err.response as Record<string, string> | undefined;
             if(errors){
-                updateUserFormCompanyNameErrors.value.companyNameError = !!errors.companyName;
-                updateUserFormCompanyNameMessage.value.companyNameMessage = errors.companyName || '';
+                updateUserFormErrors.value.companyNameError = !!errors.companyName;
+                updateUserFormMessage.value.companyNameMessage = errors.companyName || '';
             }
         }
     };
@@ -222,8 +213,8 @@ export const useFormsErrors = () => {
         if(err instanceof ApiError){
             const errors = err.response as Record<string, string> | undefined;
             if(errors){
-                updateUserFormPublicPhoneErrors.value.publicPhoneError = !!errors.publicPhone;
-                updateUserFormPublicPhoneMessage.value.publicPhoneMessage = errors.publicPhone || '';
+                updateUserFormErrors.value.publicPhoneError = !!errors.publicPhone;
+                updateUserFormMessage.value.publicPhoneMessage = errors.publicPhone || '';
             }
         }
     };
@@ -232,8 +223,8 @@ export const useFormsErrors = () => {
         if(err instanceof ApiError){
             const errors = err.response as Record<string, string> | undefined;
             if(errors){
-                updateUserEmailErrors.value.emailError = !!errors.email;
-                updateUserFormEmailMessage.value.emailMessage = errors.email || '';
+                updateUserFormErrors.value.emailError = !!errors.email;
+                updateUserFormMessage.value.emailMessage = errors.email || '';
             }
         }
     };
@@ -242,11 +233,11 @@ export const useFormsErrors = () => {
         if(err instanceof ApiError){
             const errors = err.response as Record<string, string> | undefined;
             if(errors){
-                updateUserPasswordErrors.value.oldPasswordError = !!errors.oldPassword;
-                updateUserPasswordErrors.value.newPasswordError = !!errors.newPassword;
+                updateUserFormErrors.value.oldPasswordError = !!errors.oldPassword;
+                updateUserFormErrors.value.newPasswordError = !!errors.newPassword;
 
-                updateUserFormPasswordMessages.value.oldPasswordMessage = errors.oldPassword || '';
-                updateUserFormPasswordMessages.value.newPasswordMessage = errors.newPassword || '';
+                updateUserFormMessage.value.oldPasswordMessage = errors.oldPassword || '';
+                updateUserFormMessage.value.newPasswordMessage = errors.newPassword || '';
             }
         }
     };

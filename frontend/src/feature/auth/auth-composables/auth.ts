@@ -13,7 +13,7 @@ const { clearRegisterBuyerForm, clearRegisterSellerForm, clearRegisterFormMessag
     clearLoginForm, clearLoginFormMessages } = clearAuthForms();
 const { registerBuyerForm, registerSellerForm, loginForm } = authForms();
 
-export const useAuth = () => {
+export const auth = () => {
     const signUp = async (role: string) => {
         loading.value = true;
 
@@ -164,6 +164,7 @@ export const useAuth = () => {
         signUp,
         signIn,
         signOAuth,
+
         logout,
         deleteAccount,
     }

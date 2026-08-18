@@ -1,97 +1,83 @@
 import { userForms } from "@/shared/composables/forms/users.forms";
 import { userFormsErrors } from "@/shared/composables/errors/errors-messages/users.errors";
 
-const {
-    updateUserName, updateUserFormNameMessage,
-    updateUserEmail, updateUserFormEmailMessage,
-    updateUserPhone, updateUserFormPhoneMessage,
-    updateUserSurName, updateUserFormSurNameMessage,
-    updateUserPassword, updateUserFormPasswordMessages,
-    updateUserCompanyName, updateUserFormCompanyNameMessage,
-    updateUserPublicPhone, updateUserFormPublicPhoneMessage
-} = userForms();
-
-const {
-    updateUserPasswordErrors,
-    updateUserNameErrors, updateUserSurNameErrors,
-    updateUserPhoneErrors, updateUserFormCompanyNameErrors,
-    updateUserFormPublicPhoneErrors, updateUserEmailErrors
-} = userFormsErrors();
+const { updateUserFormErrors } = userFormsErrors();
+const { updateUserForm, updateUserFormMessage } = userForms();
 
 export const clearUsersForms = () => {
     const clearUpdateUserFormName = () => {
-        updateUserName.value.name = '';
-        updateUserFormNameMessage.value.nameMessage = '';
-        updateUserNameErrors.value.nameError = false;
+        updateUserForm.value.name = '';
+        updateUserFormMessage.value.nameMessage = '';
+        updateUserFormErrors.value.nameError = false;
     }
 
     const clearUpdateUserFormSurName = () => {
-        updateUserSurName.value.surName = '';
-        updateUserFormSurNameMessage.value.surNameMessage = '';
-        updateUserSurNameErrors.value.surNameError = false;
+        updateUserForm.value.surName = '';
+        updateUserFormMessage.value.surNameMessage = '';
+        updateUserFormErrors.value.surNameError = false;
     }
 
     const clearUpdateUserFormPhone = () => {
-        updateUserPhone.value.phone = '';
-        updateUserFormPhoneMessage.value.phoneMessage = '';
-        updateUserPhoneErrors.value.phoneError = false;
+        updateUserForm.value.phone = '';
+        updateUserFormMessage.value.phoneMessage = '';
+        updateUserFormErrors.value.phoneError = false;
     }
 
     const clearUpdateUserFormCompanyName = () => {
-        updateUserCompanyName.value.companyName = '';
-        updateUserFormCompanyNameMessage.value.companyNameMessage = '';
-        updateUserFormCompanyNameErrors.value.companyNameError = false;
+        updateUserForm.value.companyName = '';
+        updateUserFormMessage.value.companyNameMessage = '';
+        updateUserFormErrors.value.companyNameError = false;
     }
 
     const clearUpdateUserFormPublicPhone = () => {
-        updateUserPublicPhone.value.publicPhone = '';
-        updateUserFormPublicPhoneMessage.value.publicPhoneMessage = '';
-        updateUserFormPublicPhoneErrors.value.publicPhoneError = false;
+        updateUserForm.value.publicPhone = '';
+        updateUserFormMessage.value.publicPhoneMessage = '';
+        updateUserFormErrors.value.publicPhoneError = false;
     }
 
     const clearUpdateUserFormEmail = () => {
-        updateUserEmail.value.email = '';
-        updateUserFormEmailMessage.value.emailMessage = '';
-        updateUserEmailErrors.value.emailError = false;
+        updateUserForm.value.email = '';
+        updateUserFormMessage.value.emailMessage = '';
+        updateUserFormErrors.value.emailError = false;
     }
 
     const clearUpdateUserFormPassword = () => {
-        updateUserPassword.value.oldPassword = '';
-        updateUserFormPasswordMessages.value.oldPasswordMessage = '';
-        updateUserPasswordErrors.value.oldPasswordError = false;
+        updateUserForm.value.oldPassword = '';
+        updateUserFormMessage.value.oldPasswordMessage = '';
+        updateUserFormErrors.value.oldPasswordError = false;
 
-        updateUserPassword.value.newPassword = '';
-        updateUserFormPasswordMessages.value.newPasswordMessage = '';
-        updateUserPasswordErrors.value.newPasswordError = false;
+        updateUserForm.value.newPassword = '';
+        updateUserFormMessage.value.newPasswordMessage = '';
+        updateUserFormErrors.value.newPasswordError = false;
     }
 
     const clearUpdateUserForm = () => {
-        updateUserName.value.name = '';
-        updateUserPhone.value.phone = '';
-        updateUserEmail.value.email = '';
-        updateUserSurName.value.surName = '';
-        updateUserPassword.value.newPassword = '';
-        updateUserPassword.value.oldPassword = '';
-        updateUserCompanyName.value.companyName = '';
-        updateUserPublicPhone.value.publicPhone = '';
+        updateUserForm.value.name = '';
+        updateUserForm.value.phone = '';
+        updateUserForm.value.email = '';
+        updateUserForm.value.surName = '';
+        updateUserForm.value.newPassword = '';
+        updateUserForm.value.oldPassword = '';
+        updateUserForm.value.companyName = '';
+        updateUserForm.value.publicPhone = '';
 
-        updateUserFormNameMessage.value.nameMessage = '';
-        updateUserFormPhoneMessage.value.phoneMessage = '';
-        updateUserFormEmailMessage.value.emailMessage = '';
-        updateUserFormSurNameMessage.value.surNameMessage = '';
-        updateUserFormPasswordMessages.value.newPasswordMessage = '';
-        updateUserFormPasswordMessages.value.oldPasswordMessage = '';
-        updateUserFormCompanyNameMessage.value.companyNameMessage = '';
-        updateUserFormPublicPhoneMessage.value.publicPhoneMessage = '';
+        updateUserFormMessage.value.nameMessage = '';
+        updateUserFormMessage.value.phoneMessage = '';
+        updateUserFormMessage.value.emailMessage = '';
+        updateUserFormMessage.value.surNameMessage = '';
+        updateUserFormMessage.value.newPasswordMessage = '';
+        updateUserFormMessage.value.oldPasswordMessage = '';
+        updateUserFormMessage.value.companyNameMessage = '';
+        updateUserFormMessage.value.publicPhoneMessage = '';
 
-        updateUserNameErrors.value.nameError = false;
-        updateUserPhoneErrors.value.phoneError = false;
-        updateUserEmailErrors.value.emailError = false;
-        updateUserSurNameErrors.value.surNameError = false;
-        updateUserPasswordErrors.value.oldPasswordError = false;
-        updateUserPasswordErrors.value.newPasswordError = false;
-        updateUserFormCompanyNameErrors.value.companyNameError = false;
-        updateUserFormPublicPhoneErrors.value.publicPhoneError = false;
+        updateUserFormErrors.value.nameError = false;
+        updateUserFormErrors.value.phoneError = false;
+        updateUserFormErrors.value.emailError = false;
+        updateUserFormErrors.value.surNameError = false;
+        updateUserFormErrors.value.oldPasswordError = false;
+        updateUserFormErrors.value.newPasswordError = false;
+        updateUserFormErrors.value.companyNameError = false;
+        updateUserFormErrors.value.publicPhoneError = false;
     }
 
     return{

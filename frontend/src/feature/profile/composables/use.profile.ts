@@ -18,6 +18,7 @@ interface UserDataUpdate {
 const { user } = usersStore();
 const { getUser } = useGetUsers();
 const { openNotify } = useBaseModals();
+const { updateUserForm } = userForms();
 const {
     updateNameErrors, updateSurNameErrors, updateEmailErrors, updatePhoneErrors,
     updatePublicPhoneErrors, updateCompanyNameErrors, updatePasswordErrors
@@ -28,10 +29,6 @@ const {
     clearUpdateUserFormName, clearUpdateUserFormSurName,
     clearUpdateUserFormPassword, clearUpdateUserFormCompanyName,
 } = clearUsersForms();
-const {
-    updateUserName, updateUserEmail, updateUserPhone, updateUserSurName,
-    updateUserPassword, updateUserCompanyName, updateUserPublicPhone,
-} = userForms();
 
 export const useProfile = () => {
     const updateAvatarAccount = async (event: Event) => {
@@ -69,7 +66,7 @@ export const useProfile = () => {
 
     const updateNameAccount = async () => {
         try{
-            await baseUpdateAccount({name: updateUserName.value.name}, 'name',
+            await baseUpdateAccount({name: updateUserForm.value.name}, 'name',
                 'You have successfully changed your name.')
             clearUpdateUserFormName();
         }catch(err){
@@ -80,7 +77,7 @@ export const useProfile = () => {
 
     const updateSurNameAccount = async () => {
         try{
-            await baseUpdateAccount({surName: updateUserSurName.value.surName}, 'surname',
+            await baseUpdateAccount({surName: updateUserForm.value.surName}, 'surname',
                 'You have successfully changed your surname.')
             clearUpdateUserFormSurName();
         }catch(err){
@@ -91,7 +88,7 @@ export const useProfile = () => {
 
     const updatePhoneAccount = async () => {
         try{
-            await baseUpdateAccount({phone: updateUserPhone.value.phone}, 'phone',
+            await baseUpdateAccount({phone: updateUserForm.value.phone}, 'phone',
                 'You have successfully changed your phone number.')
             clearUpdateUserFormPhone();
         }catch(err){
@@ -102,7 +99,7 @@ export const useProfile = () => {
 
     const updateCompanyName = async () => {
         try{
-            await baseUpdateAccount({companyName: updateUserCompanyName.value.companyName}, 'companyName',
+            await baseUpdateAccount({companyName: updateUserForm.value.companyName}, 'companyName',
                 'You have successfully changed your company name.')
             clearUpdateUserFormCompanyName();
         }catch(err){
@@ -113,7 +110,7 @@ export const useProfile = () => {
 
     const updatePublicPhoneAccount = async () => {
         try{
-            await baseUpdateAccount({publicPhone: updateUserPublicPhone.value.publicPhone}, 'publicPhone',
+            await baseUpdateAccount({publicPhone: updateUserForm.value.publicPhone}, 'publicPhone',
                 'You have successfully changed your public phone number.')
             clearUpdateUserFormPublicPhone();
         }catch(err){
@@ -124,7 +121,7 @@ export const useProfile = () => {
 
     const updateEmailAccount = async () => {
         try{
-            await baseUpdateAccount({email: updateUserEmail.value.email}, 'email',
+            await baseUpdateAccount({email: updateUserForm.value.email}, 'email',
                 'You have successfully changed your email address.')
             clearUpdateUserFormEmail();
         }catch(err){
@@ -139,8 +136,8 @@ export const useProfile = () => {
             const updatePassword = await handler(`/password/${userId}`, {
                 method: "POST",
                 body: JSON.stringify({
-                    oldPassword: updateUserPassword.value.oldPassword,
-                    newPassword: updateUserPassword.value.newPassword,
+                    oldPassword: updateUserForm.value.oldPassword,
+                    newPassword: updateUserForm.value.newPassword,
                 })
             });
             user.value.password = updatePassword.password;
@@ -154,6 +151,7 @@ export const useProfile = () => {
 
     return {
         updateAvatarAccount,
+
         updateNameAccount,
         updateSurNameAccount,
         updateCompanyName,

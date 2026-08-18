@@ -1,10 +1,10 @@
+import { type ComponentPublicInstance, computed } from "vue";
 import { authStore } from "@/shared/composables/stores/auth.store.ts";
 import { clearAuthForms } from "@/shared/composables/clear-forms/clear.auth.ts";
 import { authForms } from "@/shared/composables/forms/auth.forms.ts";
-import { type ComponentPublicInstance, computed} from "vue";
 
-let { CODE_LENGTH, codeDigits, inputRefs, timeLeft, timerInterval } = authForms();
-const { showPassword, showSignUpSection, showSignInSection } = authStore();
+const { showPassword, showSignSection } = authStore();
+const { CODE_LENGTH, codeDigits, inputRefs, timeLeft, timerInterval } = authForms();
 const { clearRegisterSellerForm, clearRegisterBuyerForm, clearLoginForm } = clearAuthForms();
 
 export const toggleAuth = () => {
@@ -13,14 +13,14 @@ export const toggleAuth = () => {
     };
 
     const toggleSignIn = () => {
-        showSignInSection.value.section = !showSignInSection.value.section;
+        showSignSection.value.signIn = !showSignSection.value.signIn;
 
         clearRegisterBuyerForm();
         clearRegisterSellerForm();
     };
 
     const toggleSignUp = () => {
-        showSignUpSection.value.section = !showSignUpSection.value.section;
+        showSignSection.value.signUp = !showSignSection.value.signUp;
 
         clearLoginForm();
     };
@@ -79,6 +79,7 @@ export const toggleAuth = () => {
     const startTimer = () => {
         if(timerInterval) clearInterval(timerInterval.value)
 
+        // @ts-ignore
         timerInterval.value = setInterval(() => {
             if(timeLeft.value > 0) {
                 timeLeft.value--
@@ -86,13 +87,14 @@ export const toggleAuth = () => {
                 stopTimer()
             }
         }, 1000)
-    }
+    };
 
     const stopTimer = () => {
         if(timerInterval) {
             clearInterval(timerInterval.value);
         }
-    }
+    };
+
     return {
         togglePassword,
         toggleSignUp,
@@ -104,6 +106,7 @@ export const toggleAuth = () => {
         handlePaste,
 
         formattedTimer,
+
         startTimer,
         stopTimer,
     }

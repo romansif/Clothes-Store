@@ -183,9 +183,7 @@ export const productsController = {
             if (!req.files || req.files.length === 0) {
                 return res.status(400).json({ message: 'Product photos are mandatory.' });
             }
-
             const files = req.files as Express.Multer.File[]
-
             const images = files.map((file: any) => `uploads/products/${file.filename}`);
 
             const newProduct = {
@@ -215,18 +213,74 @@ export const productsController = {
         }
     },
 
+    async updateProductImages(req: Request, res: Response) {
+        try{
+            const { id, index } = req.params;
+
+            if (!req.files || req.files.length === 0) {
+                return res.status(400).json({ message: 'Product photos are mandatory.' });
+            }
+            const files = req.files as Express.Multer.File[]
+            const images = files.map((file: any) => `uploads/products/${file.filename}`);
+
+            const targetIndex = Number(index);
+
+            const { data: product, error } = await supabase
+                .from('products')
+                .select('images')
+                .eq('id', id)
+                .single();
+
+            if (error || !product) {
+                return res.status(404).json({ message: 'Product not found.' });
+            }
+
+            let updatedImage = product.images ? [...product.images] : [];
+
+            if(targetIndex !== null){
+                const newUrl = images[0];
+                if(typeof updatedImage[targetIndex] !== 'object' && updatedImage[targetIndex] !== null) {
+                    updatedImage[targetIndex] = newUrl
+                }
+            }else{
+                updatedImage = images;
+            }
+
+            const { data: updatedProduct } = await supabase
+                .from('products')
+                .update({images: updatedImage})
+                .eq('id', id)
+                .select()
+                .single();
+
+            if (error) throw error;
+
+            res.status(201).json(updatedProduct);
+        }catch(err) {
+            console.error(`Failed to update the product ${req.params.id}:`, err);
+            const message = err instanceof Error ? err.message : 'Unknown Error'
+            res.status(500).json({ error: message });
+        }
+    },
+
     async updateProductItem(req: Request, res: Response) {
         try {
             const { id } = req.params;
 
+            const sanitizedBody = Object.fromEntries(
+                Object.entries(req.body).filter(([_, value]) =>
+                    value !== "" && value !== null && value !== undefined
+                )
+            );
+
             const { data: updatedProduct, error } = await supabase
                 .from('products')
-                .update(req.body)
+                .update(sanitizedBody)
                 .eq('id', id)
                 .select()
                 .maybeSingle();
 
-            if (error) throw error;
+            if (error) throw error
             if (!updatedProduct) return res.status(404).json({ message: 'Product not found' });
 
             return res.json(updatedProduct);
