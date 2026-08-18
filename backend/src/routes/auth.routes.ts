@@ -2,6 +2,7 @@ import express from "express";
 import authController from '#controllers/auth.controller.ts'
 import { validation } from "#middleware/validation.ts";
 
+
 const router = express.Router();
 
 router.post('/auth/signUp', validation.registerValidation, validation.handleValidationErrors, authController.register);
