@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import MainMyProducts from "@/feature/products/my-products/MainMyProducts.vue";
+import MyProductsView from "@/feature/products/my-products/MyProductsView.vue";
 </script>
 
 <template>
   <div class="bg-[#F0F0F0] h-screen">
-    <MainMyProducts />
+    <MyProductsView />
   </div>
 </template>
 

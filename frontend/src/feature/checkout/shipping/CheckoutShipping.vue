@@ -12,8 +12,8 @@ import ShippingAddress from "./shipping-items/ShippingAddress.vue";
 
 const { shipping } = checkoutForms();
 const { addShipping } = useShipping();
-const { shippingErrors } = checkoutErrors();
 const { getAddress } = useAddress();
+const { shippingErrors } = checkoutErrors();
 
 watch(() => shipping.value.delivery, (delivery) => {
   if(delivery){
@@ -27,7 +27,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="flex flex-col lg:w-[400px] xl:w-[500px]">
+  <div class="flex flex-col lg:w-100 xl:w-125">
     <ShippingAddress />
     <ShippingMethods />
       <div class="relative mt-5 ml-auto transition duration-400 hover:scale-110">

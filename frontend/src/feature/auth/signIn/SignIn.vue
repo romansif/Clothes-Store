@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { watch } from "vue";
-import { useAuth } from "../auth-composables/use.auth.ts";
+import { auth } from "../auth-composables/auth.ts";
 import { authForms } from "@/shared/composables/forms/auth.forms.ts";
 import { toggleAuth } from "@/feature/auth/auth-composables/toggleAuth.ts";
 import { authStore } from "@/shared/composables/stores/auth.store.ts";
@@ -14,13 +14,14 @@ import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 import maki_arrow from "@/app/assets/icons/arrows/right-short-arrow.svg";
 import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
 import GoogleSignIn from "@/feature/auth/signIn/GoogleSignIn.vue";
+import ReCaptcha from "@/feature/auth/ReCaptcha.vue";
 
-const { signIn } = useAuth();
-const { showPassword, showSignInSection } = authStore();
-const { togglePassword, toggleSignIn } = toggleAuth();
+const { signIn } = auth();
+const { showPassword } = authStore();
 const { clearLoginForm } = clearAuthForms();
 const { loginFormErrors } = authFormsErrors();
 const { loginForm, loginFormMessages } = authForms();
+const { togglePassword, toggleSignIn } = toggleAuth();
 
 watch(() => [loginForm.value.email, loginForm.value.password, loginForm.value.role],([email, password, role]) => {
       if(email){
@@ -38,7 +39,7 @@ watch(() => [loginForm.value.email, loginForm.value.password, loginForm.value.ro
 </script>
 
 <template>
-  <section v-if="showSignInSection.section === false" class="font-[Montserrat] fixed inset-0 flex items-center justify-center">
+  <div class="font-[Montserrat] fixed inset-0 flex items-center justify-center">
     <div class="w-87.5 sm:w-112.5 rounded-lg px-8 py-8">
       <div class="flex items-center justify-center">
         <div class="w-58.75 sm:w-68.75">
@@ -71,14 +72,14 @@ watch(() => [loginForm.value.email, loginForm.value.password, loginForm.value.ro
                   :error="loginFormErrors.passwordError" variant="auth" required
                   :error-message="loginFormErrors.passwordError ? loginFormMessages.passwordMessage : ''" />
               <img @click=togglePassword :src="showPassword ? opened : closed" alt=""
-                   :class="['absolute w-[30px] top-1/4 left-57 sm:left-82', loginFormErrors.passwordError ? 'top-1/6' : '']">
+                   :class="['absolute w-7.5 top-1/4 left-57 sm:left-82', loginFormErrors.passwordError ? 'top-1/6' : '']">
             </div>
           </div>
           <div class="flex flex-col gap-2">
             <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">ROLE</label>
             <div class="flex gap-3">
               <div :class="[`flex items-center gap-3 bg-[#D9D9D9]/40  outline-none px-6 py-4 rounded-sm border border-gray-300
-                       transition duration-400 hover:bg-gray-50 focus:bg-gray-50 placeholder:text-xl w-full cursor-pointer`,
+                       transition duration-400 hover:bg-gray-50 placeholder:text-xl w-full cursor-pointer`,
                        loginFormErrors.roleError ? 'border border-red-500' : '']">
                 <input v-model="loginForm.role" value="Buyer" type="radio" name="role" class="accent-black w-4 h-4 cursor-pointer">
                 <span class="font-semibold">
@@ -86,7 +87,7 @@ watch(() => [loginForm.value.email, loginForm.value.password, loginForm.value.ro
                 </span>
               </div>
               <div :class="[`flex items-center gap-3 bg-[#D9D9D9]/40  outline-none px-6 py-4 rounded-sm border border-gray-300
-                       transition duration-400 hover:bg-gray-50 focus:bg-gray-50 placeholder:text-xl w-full cursor-pointer`,
+                       transition duration-400 hover:bg-gray-50 placeholder:text-xl w-full cursor-pointer`,
                        loginFormErrors.roleError ? 'border border-red-500' : '']">
                 <input v-model="loginForm.role" value="Seller" type="radio" name="role" class="accent-black w-4 h-4 cursor-pointer">
                 <span class="font-semibold">
@@ -98,16 +99,17 @@ watch(() => [loginForm.value.email, loginForm.value.password, loginForm.value.ro
           </div>
         </div>
       </form>
+      <ReCaptcha />
       <div class="relative duration-400 hover:scale-105 cursor-pointer">
         <BaseButton @click="signIn" name="SIGN IN" variant="login" />
-        <img :src=maki_arrow alt="" class="absolute w-[25px] top-9.5 left-58 sm:left-83 ">
+        <img :src=maki_arrow alt="" class="absolute w-6.25 top-9.5 left-58 sm:left-83 ">
       </div>
       <div class="flex flex-col items-center gap-3 mt-3 ">
         <GoogleSignIn class="duration-400 hover:scale-105 cursor-pointer"/>
         <BaseButton @click="toggleSignIn" name="Sign in using your phone" variant="changeRegister" />
       </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <style scoped>

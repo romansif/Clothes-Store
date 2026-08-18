@@ -4,11 +4,11 @@ import { computed } from "vue";
 import { checkout } from "./composables/checkout.ts";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
 
-import MainPayment from "./payment/MainPayment.vue";
-import MainShipping from "./shipping/MainShipping.vue";
-import MainOrderInfo from "./order-information/MainOrderInfo.vue";
+import PaymentDashboard from "./payment/PaymentDashboard.vue";
+import CheckoutShipping from "./shipping/CheckoutShipping.vue";
+import OrderInfo from "./order-information/OrderInfo.vue";
 import go_to_shop from "@/app/assets/icons/arrows/right-long-arrow.png";
-import MainInformation from "./information/MainInformation.vue";
+import CheckoutInfo from "./information/CheckoutInfo.vue";
 import Notification from "@/shared/ui/base/base-modals/Notification.vue";
 
 const route = useRoute();
@@ -39,16 +39,16 @@ const isShipping = computed(() =>  route.name !== 'shipping');
       </div>
     </div>
     <div :class="isInfo ? 'hidden' : 'flex flex-col lg:flex-row lg:gap-50 xl:gap-100'">
-      <MainInformation />
-      <MainOrderInfo />
+      <CheckoutInfo />
+      <OrderInfo />
     </div>
     <div :class="isShipping ? 'hidden' : 'flex flex-col lg:flex-row lg:gap-50 xl:gap-100'">
-      <MainShipping />
-      <MainOrderInfo />
+      <CheckoutShipping />
+      <OrderInfo />
     </div>
     <div :class="isPayment ? 'hidden' : 'flex flex-col lg:flex-row lg:gap-50 xl:gap-100'">
-      <MainPayment />
-      <MainOrderInfo />
+      <PaymentDashboard />
+      <OrderInfo />
     </div>
   </div>
   <Transition name="notify">

@@ -19,7 +19,7 @@ const { toggleDeleteChoice } = useProfileModals();
           </span>
           <img @click="toggleDeleteChoice(
               'Are you sure you want to delete this saved address?', 'DELETE_SAVED_ADDRESS', checkout.id)"
-               :src="del" alt="" class="w-[20px] ml-auto transition duration-400 hover:scale-120">
+               :src="del" alt="" class="w-5 ml-auto transition duration-400 hover:scale-120">
         </div>
         <div class="flex gap-5">
           <span class="text-sm font-semibold">

@@ -11,7 +11,7 @@ const { price, totalPrice, commissionPrice } = checkout();
 </script>
 
 <template>
-  <div class="md:px-5 sm:px-4 px-4 lg:w-[300px] xl:w-[400px]">
+  <div class="md:px-5 sm:px-4 px-4 lg:w-75 xl:w-100">
     <div class="flex">
       <span class="px-2 py-1 bg-white ml-auto">(<span class="text-blue-700 font-medium">{{ items?.length || 0 }}</span>)</span>
     </div>

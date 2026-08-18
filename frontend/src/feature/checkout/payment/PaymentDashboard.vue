@@ -8,12 +8,12 @@ import { checkout } from "@/feature/checkout/composables/checkout.ts";
 import arrow from "@/app/assets/icons/arrows/right-shop.svg";
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 import PaymentMethods from "./payment-items/PaymentMethods.vue";
-import MainSavedPayment from "@/feature/checkout/payment/MainSavedPayment.vue";
+import SavedCheckoutPayment from "@/feature/checkout/payment/SavedCheckoutPayment.vue";
 
 const { isSavedPayment } = checkout();
 const { payment } = checkoutForms();
-const { addPayment, useSavedPayment } = usePayment();
 const { paymentErrors } = checkoutErrors();
+const { addPayment, useSavedPayment } = usePayment();
 
 watch(() => [payment.value.cardNumber, payment.value.expiryDate, payment.value.cardCvv, payment.value.paymentMethod],
     ([cardNumber, expiryDate, cardCvv, paymentMethod]) => {
@@ -36,11 +36,11 @@ watch(() => [payment.value.cardNumber, payment.value.expiryDate, payment.value.c
 </script>
 
 <template>
-  <div class="flex flex-col lg:w-[400px] xl:w-[500px]">
-    <div v-if="!isSavedPayment">
+  <div class="flex flex-col lg:w-100 xl:w-125">
+    <div v-if="!isSavedPayment" >
       <PaymentMethods />
     </div>
-    <MainSavedPayment v-if="isSavedPayment"/>
+    <SavedCheckoutPayment v-if="isSavedPayment"/>
     <div class="relative mt-5 sm:ml-auto transition duration-400 hover:scale-110">
       <BaseButton v-if="!isSavedPayment" @click="addPayment" name="Pay" variant="checkOut"/>
       <BaseButton v-if="isSavedPayment" @click="useSavedPayment" name="Shipping" variant="checkOut"/>

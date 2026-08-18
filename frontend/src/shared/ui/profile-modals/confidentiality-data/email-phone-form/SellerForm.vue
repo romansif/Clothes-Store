@@ -9,24 +9,20 @@ import { userFormsErrors } from "@/shared/composables/errors/errors-messages/use
 import BaseButton  from "@/shared/ui/base/button/BaseButton.vue";
 import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
 
-const { user } = usersStore();
 const { countries, selectedCountryCode } = usersStore();
 const { currentCountry, currentMask, changeCountry } = usePhoneForm();
 const { updateCompanyName, updatePublicPhoneAccount } = useProfile();
-const { updateUserFormPublicPhoneErrors, updateUserFormCompanyNameErrors } = userFormsErrors();
-const {
-  updateUserCompanyName, updateUserFormCompanyNameMessage,
-  updateUserPublicPhone, updateUserFormPublicPhoneMessage
-} = userForms();
+const { updateUserFormErrors } = userFormsErrors();
+const { updateUserForm, updateUserFormMessage } = userForms();
 </script>
 
 <template>
-  <div v-if="user.role === 'Seller'" class="flex flex-col gap-10 sm:flex-row">
+  <div class="flex flex-col gap-10 sm:flex-row">
     <form @keydown.enter.prevent="updateCompanyName" class="flex flex-col gap-3 w-full">
       <label>Company Name</label>
-      <BaseInput v-model=updateUserCompanyName.companyName type="text" inputmode="numeric" placeholder="New Name"
-          :error="updateUserFormCompanyNameErrors.companyNameError" variant="confidentialityData"
-          :error-message="updateUserFormCompanyNameErrors.companyNameError ? updateUserFormCompanyNameMessage.companyNameMessage : ''"/>
+      <BaseInput v-model=updateUserForm.companyName type="text" inputmode="numeric" placeholder="New Name"
+          :error="updateUserFormErrors.companyNameError" variant="confidentialityData"
+          :error-message="updateUserFormErrors.companyNameError ? updateUserFormMessage.companyNameMessage : ''"/>
       <div class="flex">
         <BaseButton @click.prevent="updateCompanyName()" name="Save Company Name" variant="profileForm" />
       </div>
@@ -36,18 +32,19 @@ const {
       <div class="flex gap-3">
         <select name="" id="" v-model="selectedCountryCode" @change="changeCountry"
                 class="text-xs outline-none bg-[#D9D9D9]/40 transition duration-400 border border-gray-300
-                        hover:bg-gray-50 focus:bg-gray-50 rounded-md py-5 px-3">
+                        hover:bg-gray-50 rounded-md py-5 px-3">
           <option v-for="country in countries" :key="country.code" :value="country.code">
             {{ country.name }}
           </option>
         </select>
-        <IMask v-model:value=updateUserPublicPhone.publicPhone type="text" inputmode="numeric" :mask="currentMask.mask"
+        <IMask v-model:value=updateUserForm.publicPhone type="text" inputmode="numeric" :mask="currentMask.mask"
                :key="selectedCountryCode" :placeholder="currentCountry?.placeholder"
-               class="w-full border border-gray-300 rounded-xl outline-none px-4 py-3 text-sm bg-[#D9D9D9]/40
-                     transition duration-400 hover:bg-gray-50 focus:bg-gray-50 appearance-none" />
+               :class="[`w-full border border-gray-300 rounded-xl outline-none px-4 py-3 text-sm bg-[#D9D9D9]/40
+                     transition duration-400 hover:bg-gray-50 appearance-none`,
+                     updateUserFormErrors.publicPhoneError ? 'border border-red-500' : '']" />
       </div>
-      <span v-if=updateUserFormPublicPhoneErrors.publicPhoneError class="text-red-600 text-xs">
-        {{ updateUserFormPublicPhoneMessage.publicPhoneMessage }}
+      <span v-if=updateUserFormErrors.publicPhoneError class="text-red-600 text-xs">
+        {{ updateUserFormMessage.publicPhoneMessage }}
       </span>
       <div class="flex">
         <BaseButton @click.prevent="updatePublicPhoneAccount()" name="Save Phone" variant="profileForm" />

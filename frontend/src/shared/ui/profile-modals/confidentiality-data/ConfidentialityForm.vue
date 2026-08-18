@@ -4,6 +4,7 @@ import { ref, watch } from 'vue'
 import { userForms } from "@/shared/composables/forms/users.forms";
 import { useProfile } from "@/feature/profile/composables/use.profile.ts";
 import { userFormsErrors } from "@/shared/composables/errors/errors-messages/users.errors";
+import { usersStore } from "@/shared/composables/stores/users.store.ts";
 
 import BaseButton  from "@/shared/ui/base/button/BaseButton.vue";
 import BuyerForm from "./email-phone-form/BuyerForm.vue";
@@ -13,51 +14,40 @@ import closed from '@/app/assets/icons/auth/closed.png'
 import SellerEmailForm from "./email-phone-form/SellerEmailForm.vue";
 import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
 
+const { user } = usersStore();
+const { updateUserFormErrors } = userFormsErrors();
+const { updateUserForm, updateUserFormMessage } = userForms();
 const { updatePasswordAccount, updateNameAccount, updateSurNameAccount } = useProfile();
-const {
-  updateUserFormPublicPhoneErrors,
-  updateUserNameErrors, updateUserSurNameErrors,
-  updateUserEmailErrors, updateUserPasswordErrors,
-  updateUserPhoneErrors, updateUserFormCompanyNameErrors,
-} = userFormsErrors();
-
-const {
-  updateUserPhone, updateUserEmail,
-  updateUserName, updateUserFormNameMessage,
-  updateUserSurName, updateUserFormSurNameMessage,
-  updateUserCompanyName, updateUserPublicPhone,
-  updateUserPassword, updateUserFormPasswordMessages,
-} = userForms();
 
 watch(() => [
-      updateUserName.value.name, updateUserSurName.value.surName,
-      updateUserPhone.value.phone, updateUserCompanyName.value.companyName,
-      updateUserPublicPhone.value.publicPhone, updateUserEmail.value.email,
-      updateUserPassword.value.oldPassword, updateUserPassword.value.newPassword],
+      updateUserForm.value.name, updateUserForm.value.surName,
+      updateUserForm.value.phone, updateUserForm.value.companyName,
+      updateUserForm.value.publicPhone, updateUserForm.value.email,
+      updateUserForm.value.oldPassword, updateUserForm.value.newPassword],
     ([name, surName, phone, companyName, publicPhone, email, oldPassword, newPassword]) => {
       if(name){
-        updateUserNameErrors.value.nameError = false;
+        updateUserFormErrors.value.nameError = false;
       }
       if(surName){
-        updateUserSurNameErrors.value.surNameError = false;
+        updateUserFormErrors.value.surNameError = false;
       }
       if(phone){
-        updateUserPhoneErrors.value.phoneError = false;
+        updateUserFormErrors.value.phoneError = false;
       }
       if(companyName){
-        updateUserFormCompanyNameErrors.value.companyNameError = false;
+        updateUserFormErrors.value.companyNameError = false;
       }
       if(publicPhone){
-        updateUserFormPublicPhoneErrors.value.publicPhoneError = false;
+        updateUserFormErrors.value.publicPhoneError = false;
       }
       if(email){
-        updateUserEmailErrors.value.emailError = false;
+        updateUserFormErrors.value.emailError = false;
       }
       if(oldPassword){
-        updateUserPasswordErrors.value.oldPasswordError = false;
+        updateUserFormErrors.value.oldPasswordError = false;
       }
       if(newPassword){
-        updateUserPasswordErrors.value.newPasswordError = false;
+        updateUserFormErrors.value.newPasswordError = false;
       }
     }
 )
@@ -80,46 +70,46 @@ const toggleNewPassword = () => {
       <div class="flex gap-10">
         <form @keydown.enter.prevent="updateNameAccount" class="flex flex-col gap-3 w-full">
           <label>Name</label>
-          <BaseInput v-model=updateUserName.name type="text" inputmode="numeric" placeholder="New Name"
-              :error="updateUserNameErrors.nameError" variant="confidentialityData" required
-              :error-message="updateUserNameErrors.nameError ? updateUserFormNameMessage.nameMessage : ''" />
+          <BaseInput v-model=updateUserForm.name type="text" inputmode="numeric" placeholder="New Name"
+              :error="updateUserFormErrors.nameError" variant="confidentialityData" required
+              :error-message="updateUserFormErrors.nameError ? updateUserFormMessage.nameMessage : ''" />
           <div class="flex">
             <BaseButton @click.prevent="updateNameAccount()" name="Save Name" variant="profileForm" />
           </div>
         </form>
         <form @keydown.enter.prevent="updateSurNameAccount" class="flex flex-col gap-3 w-full">
           <label>SurName</label>
-          <BaseInput v-model=updateUserSurName.surName type="text" inputmode="numeric" placeholder="New SurName"
-              :error="updateUserSurNameErrors.surNameError" variant="confidentialityData" required
-              :error-message="updateUserSurNameErrors.surNameError ? updateUserFormSurNameMessage.surNameMessage : ''" />
+          <BaseInput v-model=updateUserForm.surName type="text" inputmode="numeric" placeholder="New SurName"
+              :error="updateUserFormErrors.surNameError" variant="confidentialityData" required
+              :error-message="updateUserFormErrors.surNameError ? updateUserFormMessage.surNameMessage : ''" />
           <div class="flex">
             <BaseButton @click.prevent="updateSurNameAccount()" name="Save SurName" variant="profileForm" />
           </div>
         </form>
       </div>
-      <SellerForm />
+      <SellerForm v-if="user.role === 'Seller'" />
     </div>
-    <BuyerForm />
+    <BuyerForm v-if="user.role === 'Buyer'" />
     <div class="flex flex-col">
       <form @keydown.enter.prevent="updatePasswordAccount" class="flex flex-col gap-10 sm:flex-row">
         <div class="flex flex-col gap-3 w-full">
           <label>Old password</label>
           <div class="relative">
-            <BaseInput v-model=updateUserPassword.oldPassword :type="showOldPassword ? 'text' : 'password'" inputmode="numeric"
-                :error="updateUserPasswordErrors.oldPasswordError" variant="confidentialityData" placeholder="Old Password"
-                :error-message="updateUserPasswordErrors.oldPasswordError ? updateUserFormPasswordMessages.oldPasswordMessage : ''" />
+            <BaseInput v-model=updateUserForm.oldPassword :type="showOldPassword ? 'text' : 'password'" inputmode="numeric"
+                :error="updateUserFormErrors.oldPasswordError" variant="confidentialityData" placeholder="Old Password"
+                :error-message="updateUserFormErrors.oldPasswordError ? updateUserFormMessage.oldPasswordMessage : ''" />
             <img @click.prevent=toggleOldPassword :src="showOldPassword ? opened : closed" alt=""
-                 :class="['absolute w-[30px] top-1/4 left-115', updateUserPasswordErrors.oldPasswordError ? 'top-1/6' : '']">
+                 :class="['absolute w-7.5 top-1/4 left-115', updateUserFormErrors.oldPasswordError ? 'top-1/6' : '']">
           </div>
         </div>
         <div class="flex flex-col gap-3 w-full">
           <label>New password</label>
           <div class="relative">
-            <BaseInput v-model=updateUserPassword.newPassword :type="showNewPassword ? 'text' : 'password'" inputmode="numeric"
-                :error="updateUserPasswordErrors.newPasswordError" variant="confidentialityData" placeholder="New Password"
-                :error-message="updateUserPasswordErrors.newPasswordError ? updateUserFormPasswordMessages.newPasswordMessage : ''"/>
+            <BaseInput v-model=updateUserForm.newPassword :type="showNewPassword ? 'text' : 'password'" inputmode="numeric"
+                :error="updateUserFormErrors.newPasswordError" variant="confidentialityData" placeholder="New Password"
+                :error-message="updateUserFormErrors.newPasswordError ? updateUserFormMessage.newPasswordMessage : ''"/>
             <img @click.prevent=toggleNewPassword :src="showNewPassword ? opened : closed" alt=""
-                :class="['absolute w-[30px] top-1/4 left-115', updateUserPasswordErrors.newPasswordError ? 'top-1/8' : '']">
+                :class="['absolute w-7.5 top-1/4 left-115', updateUserFormErrors.newPasswordError ? 'top-1/8' : '']">
           </div>
         </div>
       </form>
@@ -127,7 +117,7 @@ const toggleNewPassword = () => {
         <BaseButton @click.prevent="updatePasswordAccount()" name="Save Password" variant="profileForm" />
       </div>
     </div>
-    <SellerEmailForm />
+    <SellerEmailForm v-if="user.role === 'Seller'"/>
   </div>
 </template>
 

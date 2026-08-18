@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import MainProfile from "../../feature/profile/MainProfile.vue";
+import ProfileView from "@/feature/profile/ProfileView.vue";
 </script>
 
 <template>
   <div class='bg-[#F0F0F0] h-screen'>
-    <MainProfile />
+    <ProfileView />
   </div>
 </template>
 

@@ -12,7 +12,7 @@ const { useSavedCard } = usePayment();
   <TransitionGroup name="list">
     <li @click="useSavedCard(checkout.cardName, checkout.cardNumber, checkout.expiryDate, checkout.cardCvv, checkout.id)"
         v-for="checkout in userPayments" :key="checkout.id" :class="[`flex flex-col mt-5 transition duration-400 bg-[#D9D9D9]/40
-        hover:bg-gray-50 focus:bg-gray-50 border border-gray-300 rounded-xl p-2`, isChosenPayment ? 'bg-gray-50' : '']">
+        hover:bg-gray-50 border border-gray-300 rounded-xl p-2`, isChosenPayment ? 'bg-gray-50' : '']">
       <div class="flex flex-col gap-5">
         <div class="flex gap-5">
           <span class="text-sm font-semibold">

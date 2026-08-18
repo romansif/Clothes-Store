@@ -30,10 +30,8 @@ const { openCardForm, closeCardForm, toggleShowPayment, isDebitCard } = checkout
     </div>
     <div class="flex gap-3">
       <form @keydown.enter="addPayment" action="" class="flex flex-col gap-6 w-full">
-        <form v-if="isDebitCard === true" action="" class="flex flex-col gap-3 w-full">
-          <PaymentForm />
-        </form>
-        <div v-if="isDebitCard === false" @click="openCardForm('card')"
+          <PaymentForm v-if="isDebitCard" />
+        <div v-if="!isDebitCard" @click="openCardForm('card')"
              :class="[`flex justify-between items-center px-3 border border-gray-300 rounded-xl h-[80px] transition
                 duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50`, payment.paymentMethod === 'card' ? 'bg-gray-50' : '',
                  paymentErrors.paymentMethodError ? 'border-red-400' : '']">

@@ -3,7 +3,7 @@ import { onMounted } from "vue";
 import { usersStore } from "@/shared/composables/stores/users.store"
 import { useProfileModals } from "@/shared/composables/modals/profile.modals";
 import { useAddress } from "@/feature/checkout/composables/use.address.ts";
-import { usePayment } from "@/feature/checkout/composables/use.payment.ts";;
+import { usePayment } from "@/feature/checkout/composables/use.payment.ts";
 
 import PaymentsList from "@/shared/ui/profile-modals/address-and-cards/payments/PaymentsList.vue";
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
@@ -28,7 +28,7 @@ onMounted(async () => {
   <div>
     <div class="font-[Montserrat] fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)]
                                   flex items-center justify-center">
-      <div class="flex flex-col bg-white w-[890px] h-[600px] rounded-xl p-5">
+      <div class="flex flex-col bg-white w-222.5 h-150 rounded-xl p-5">
         <BaseButton @click.stop="toggleAddressesAndCards" name="Exit" variant="exitClose"/>
         <div class="flex flex-col gap-2 border-b py-4">
           <h1 class="font-bold text-2xl">ADDRESSES AND CARDS</h1>

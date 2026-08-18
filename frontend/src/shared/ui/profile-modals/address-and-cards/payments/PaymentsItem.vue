@@ -22,7 +22,7 @@ const { toggleDeleteChoice } = useProfileModals();
           </span>
           <img @click="toggleDeleteChoice(
               'Are you sure you want to delete this saved card?', 'DELETE_SAVED_CARD', checkout.id)"
-               :src="del" alt="" class="w-[20px] ml-auto transition duration-400 hover:scale-120">
+               :src="del" alt="" class="w-5 ml-auto transition duration-400 hover:scale-120">
         </div>
         <div class="flex gap-5">
           <span v-if="checkout.cardName" class="text-sm font-semibold">

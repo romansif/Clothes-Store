@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import MainProfileProducts from "@/feature/profile/MainProfileProducts.vue";
+import ProfileProductsDashboard from "@/feature/profile/ProfileProductsDashboard.vue";
 </script>
 
 <template>
   <div class="bg-[#F0F0F0] h-screen">
-    <MainProfileProducts />
+    <ProfileProductsDashboard />
   </div>
 </template>
 

@@ -27,14 +27,14 @@ const refreshPage = () => {
       <div class="flex flex-col">
         <div @click="getProductId(product.id)" class="relative">
           <router-link :to="{ name: 'products/info' }">
-            <img :src="productPreview(product.id, favorite)" alt="" :class="['w-[335px] h-[180px] sm:h-[314px] xl:h-[400px]',
+            <img :src="productPreview(product.id, favorite)" alt="" :class="['w-83.75 h-45 sm:h-78.5 xl:h-100',
                 product.quantity === 0 || product.status === 'Exhausted' ? 'opacity-40' : '']">
           </router-link>
           <span v-if="product.quantity === 0 || product.status === 'Exhausted'" class="absolute top-1/2 left-1/20 text-5xl font-semibold -rotate-45">
             Out Of Stack
           </span>
           <img @click="toggleToFavorite(product.productId, 'favorite', product.productId)" :src="product.favorite ? liked : like"
-               alt="" class="absolute top-0.5 left-75.5 w-[32px] cursor-pointer">
+               alt="" class="absolute top-0.5 left-75.5 w-8 cursor-pointer">
         </div>
         <span class="whitespace-normal mt-2 text-[#A3A3A3] text-sm sm:text-lg">
           {{ product.material }} {{ product.category }}
@@ -48,7 +48,7 @@ const refreshPage = () => {
           </span>
         </div>
       </div>
-      <div class="flex flex-col w-[30px] gap-5">
+      <div class="flex flex-col w-7.5 gap-5">
         <img @click="toggleDeleteChoice(
             'Are you sure you want to delete this favorite product?', 'DELETE_FAVORITE_ITEM', product.productId)"
              :src="del" alt="" class="transition duration-400 hover:scale-120 cursor-pointer">

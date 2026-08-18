@@ -27,13 +27,13 @@ import Loading from "@/shared/ui/base/base-modals/Loading.vue";
 
 const { getCartProducts } = useCart();
 const { isAgreeForm } = checkoutForms();
-const { deleteChoice } = useProfileModals();
 const { cart, favorite } = productsStore();
 const { notify, loading } = useBaseModals();
+const { deleteChoice } = useProfileModals();
 const { isAgreeFormError } = checkoutErrors();
 const { getFavoriteProducts } = useFavorites();
-const { componentError, resetError } = errorHandler();
-const { cartCount, favoritesCount, toggleAgree, continueToOrder } = profile();
+const { resetError, componentError } = errorHandler();
+const { toggleAgree, continueToOrder, cartCount, favoritesCount } = profile();
 
 const route = useRoute();
 
@@ -82,7 +82,7 @@ onMounted(async() => {
             </span>
           </router-link>
           <div class="flex items-center gap-2">
-              <img :src="liked" alt="" class="w-[35px]">
+              <img :src="liked" alt="" class="w-8.75">
             <router-link :to="{name: 'favorite'}">
               <span :class="isFavoriteProducts ? 'text-[#A3A3A3]' : ''">
                 FAVORITES ({{ favoritesCount }})
@@ -121,7 +121,7 @@ onMounted(async() => {
     <div class="flex flex-col gap-4">
       <div class="flex gap-4 items-center">
         <img @click="toggleAgree" :src="isAgreeFormError.agreeError ? check_square : square"
-             alt="" class="w-[25px] transition duration-400 hover:scale-120">
+             alt="" class="w-6.25 transition duration-400 hover:scale-120">
         <span class="text-xs text-[#A3A3A3]">
           I agree to the Terms and Conditions
         </span>

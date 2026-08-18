@@ -18,7 +18,7 @@ const { toggleFilter, toggleSize, stackProducts, genders, colors } = filtered();
       <div class="flex items-center mt-2 gap-2">
         <img v-for="size in sizes" :key="size.name" :src=size.url alt=""
              @click="toggleSize('SIZE', `${size.name}`)"
-             :class="[size.class, 'w-[40px] transition duration-400 hover:scale-120 cursor-pointer', size.isActive ? 'scale-120' : '']">
+             :class="[size.class, 'w-10 transition duration-400 hover:scale-120 cursor-pointer', size.isActive ? 'scale-120' : '']">
       </div>
     </div>
     <div class="border-b border-gray-400 mt-3.5"></div>
@@ -30,7 +30,7 @@ const { toggleFilter, toggleSize, stackProducts, genders, colors } = filtered();
       <div class="flex flex-col gap-2">
         <div v-for="(isActive, stackName) in stackProducts" class="flex gap-3">
           <img @click="toggleFilter('STATUS', stackName)" :src="isActive ? checked : square"
-               alt="" :class="['w-[23px] h-[23px] transition duration-400 hover:scale-120 cursor-pointer', isActive ? 'scale-120' : '']">
+               alt="" :class="['w-5.75 h-5.75 transition duration-400 hover:scale-120 cursor-pointer', isActive ? 'scale-120' : '']">
           <div class="flex gap-1">
             <span>{{ stackName }}</span>
             <span>
@@ -51,7 +51,7 @@ const { toggleFilter, toggleSize, stackProducts, genders, colors } = filtered();
       <div class="flex flex-col gap-2">
         <div v-for="(isActive, genderName) in genders" class="flex gap-3">
           <img @click="toggleFilter('GENDER', genderName)" :src="isActive ? checked : square"
-               alt="" :class="['w-[23px] h-[23px] transition duration-400 hover:scale-120 cursor-pointer', isActive ? 'scale-120' : '']">
+               alt="" :class="['w-5.75 h-h-5.75 transition duration-400 hover:scale-120 cursor-pointer', isActive ? 'scale-120' : '']">
           <div class="flex gap-1">
             <span>{{ genderName }}</span>
             <span>
@@ -72,7 +72,7 @@ const { toggleFilter, toggleSize, stackProducts, genders, colors } = filtered();
       <div class="grid grid-cols-2 gap-y-2 gap-x-6">
         <div v-for="(isActive, colorName) in colors" :key="colorName" class="flex gap-3">
           <img @click="toggleFilter('COLOR', colorName)" :src="isActive ? checked : square"
-               alt="" :class="['w-[23px] h-[23px] transition duration-400 hover:scale-120 cursor-pointer', isActive ? 'scale-120' : '']">
+               alt="" :class="['w-5.75 h-h-5.75 transition duration-400 hover:scale-120 cursor-pointer', isActive ? 'scale-120' : '']">
           <div class="flex gap-1">
             <span>{{ colorName }}</span>
           </div>

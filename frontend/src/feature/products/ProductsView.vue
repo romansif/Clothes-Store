@@ -6,16 +6,16 @@ import { useProductsModals } from "@/shared/composables/modals/products.modals";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
 
 import NavBar from "../navigation/NavBar.vue";
-import ProductsList from "./products-items/ProductsList.vue";
+import ProductList from "./products-items/ProductList.vue";
 import HeaderProducts from "./products-header/HeaderProducts.vue";
 import FilterProducts from "./products-header/FilterProducts.vue";
 import Notification from "@/shared/ui/base/base-modals/Notification.vue";
 import AsideFilter from "@/shared/ui/products-modals/AsideFilter.vue";
 import Loading from "@/shared/ui/base/base-modals/Loading.vue";
 
-const { filterAside } = useProductsModals();
 const { getAllProducts } = useProducts();
 const { notify, loading } = useBaseModals();
+const { filterAside } = useProductsModals();
 const { componentError, resetError } = errorHandler();
 
 onErrorCaptured((err, info) => {
@@ -49,7 +49,7 @@ onMounted(async () => {
       <FilterProducts />
       <div class="flex flex-col">
         <HeaderProducts />
-        <ProductsList />
+        <ProductList />
       </div>
     </div>
   </div>
@@ -57,7 +57,7 @@ onMounted(async () => {
     <AsideFilter v-if="filterAside" />
   </Transition>
   <Transition name="notify">
-    <Notification v-if="notify"/>
+    <Notification v-if="notify" />
   </Transition>
 </template>
 

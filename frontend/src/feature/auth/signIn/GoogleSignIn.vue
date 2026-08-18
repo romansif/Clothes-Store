@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useAuth } from "@/feature/auth/auth-composables/use.auth.ts";
+import { auth } from "@/feature/auth/auth-composables/auth.ts";
 
-const { signOAuth } = useAuth();
+const { signOAuth } = auth();
 
 onMounted(() => {
   window.google.accounts.id.initialize({

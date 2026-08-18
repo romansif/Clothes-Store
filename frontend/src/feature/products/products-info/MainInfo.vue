@@ -17,7 +17,7 @@ import Loading from "@/shared/ui/base/base-modals/Loading.vue";
 const { getProduct } = useProducts();
 const { notify, loading } = useBaseModals();
 const { product, activeProductImg } = productsStore();
-const { productInfoPreview, angelCards, changeImg } = productsCover();
+const { changeImg, productInfoPreview, angelCards } = productsCover();
 
 const router = useRouter();
 
@@ -52,25 +52,25 @@ const routerBack = () => {
           </router-link>
         </div>
       </div>
-      <div class="flex justify-center items-center">
-        <div class="overflow-y-auto no-scrollbar mt-6 lg:mt-0 lg:w-[1200px]">
+      <div class="flex justify-center items-cente">
+        <div class="overflow-y-auto no-scrollbar mt-6 lg:mt-0 lg:w-300">
           <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center">
             <div v-if="product && product.id && product.id.length > 0" class="flex gap-18 lg:gap-20">
               <div class="flex flex-col items-center gap-3">
-                <img :src="activeProductImg" alt="" class="w-[390px]">
+                <img :src="activeProductImg" alt="" class="w-97.5">
               </div>
               <div class="flex flex-col justify-between">
-                <div v-for="(img, index) in angelCards(product)" :key="index" class="h-[85px] w-[72px]">
+                <div v-for="(img, index) in angelCards(product)" :key="index" class="h-21.25 w-18">
                   <img @click="changeImg(index)" :src="img" alt="" class="opacity-70 transition duration-400 hover:scale-120">
                 </div>
               </div>
             </div>
             <ProductInfo />
-          <div class="flex justify-center lg:hidden">
-            <router-link v-if="!userId" :to="{name: 'signIn'}">
-              <span class="bg-black font-semibold text-sm py-5 px-46 text-white font-[Montserrat] lg:block cursor-pointer">ADD TO CART</span>
-            </router-link>
-          </div>
+            <div class="flex justify-center lg:hidden">
+              <router-link v-if="!userId" :to="{name: 'signIn'}">
+                <span class="bg-black font-semibold text-sm py-5 px-46 text-white font-[Montserrat] lg:block">ADD TO CART</span>
+              </router-link>
+            </div>
           </div>
         </div>
       </div>

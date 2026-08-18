@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import MainSignIn from "@/feature/auth/MainSignIn.vue";
+import SignInView from "@/feature/auth/SignInView.vue";
 </script>
 
 <template>
   <div class="bg-white h-screen">
-    <MainSignIn />
+    <SignInView />
   </div>
 </template>
 

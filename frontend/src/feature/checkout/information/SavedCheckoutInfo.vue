@@ -3,11 +3,11 @@ import { onMounted } from "vue";
 import { useAddress } from "@/feature/checkout/composables/use.address.ts";
 import { checkout } from "@/feature/checkout/composables/checkout.ts";
 
-import ContactList from "@/feature/checkout/information/use-saved-lists/ContactList.vue";
-import SavedAddressList from "@/feature/checkout/information/use-saved-lists/SavedAddressList.vue";
+import ContactList from "@/feature/checkout/information/saved-checkout-lists/ContactList.vue";
+import AddressList from "@/feature/checkout/information/saved-checkout-lists/AddressList.vue";
 
-const { toggleShowContact } = checkout();
 const { getAddresses } = useAddress();
+const { toggleShowContact } = checkout();
 
 onMounted(async () => {
   await getAddresses();
@@ -27,7 +27,7 @@ onMounted(async () => {
           Hide saved contact
         </span>
       </div>
-      <SavedAddressList />
+      <AddressList />
     </div>
   </div>
 </template>

@@ -13,7 +13,7 @@ const userPaymentsCard = computed(() => {
 </script>
 
 <template>
-  <ul v-if="userPaymentsCard" class="flex-col overflow-y-auto no-scrollbar h-[370px] pb-4">
+  <ul v-if="userPaymentsCard" class="flex-col overflow-y-auto no-scrollbar h-92.5 pb-4">
     <PaymentsItem />
   </ul>
   <div v-else class="flex justify-center pt-35">

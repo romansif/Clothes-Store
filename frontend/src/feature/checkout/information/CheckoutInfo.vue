@@ -9,12 +9,12 @@ import arrow from "@/app/assets/icons/arrows/right-shop.svg";
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 import ContactFom from "@/feature/checkout/information/form-info/ContactFom.vue";
 import AddressForm from "@/feature/checkout/information/form-info/AddressForm.vue";
-import MainSavedInfo from "@/feature/checkout/information/MainSavedInfo.vue";
+import SavedCheckoutInfo from "@/feature/checkout/information/SavedCheckoutInfo.vue";
 
 const { isSavedAddress } = checkout();
-const { addInformation, useInformation } = useAddress();
 const { information } = checkoutForms();
 const { informationErrors } = checkoutErrors();
+const { addInformation, useInformation } = useAddress();
 
 watch(() => [
   information.value.email, information.value.phone, information.value.firstName, information.value.lastName,
@@ -52,12 +52,12 @@ watch(() => [
 </script>
 
 <template>
-  <div class="flex flex-col lg:w-[400px] xl:w-[500px]">
+  <div class="flex flex-col lg:w-100 xl:w-125">
     <div v-if="!isSavedAddress">
       <ContactFom />
       <AddressForm />
     </div>
-    <MainSavedInfo v-if="isSavedAddress"/>
+    <SavedCheckoutInfo v-if="isSavedAddress"/>
     <div class="relative ml-auto mt-5 transition duration-400 hover:scale-110">
       <BaseButton v-if="!isSavedAddress" @click="addInformation" name="Shipping" variant="checkOut"/>
       <BaseButton v-if="isSavedAddress" @click="useInformation" name="Shipping" variant="checkOut"/>

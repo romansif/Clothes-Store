@@ -14,13 +14,13 @@ import { productsStore } from "@/shared/composables/stores/products.store";
 
 const { getAllProducts } = useProducts();
 const { allProducts, sizes } = productsStore();
+const { toggleFilterAside } = useProductsModals();
 const { toggleFilter, toggleSize, stackProducts, genders, colors } = filtered();
 
 onMounted(async() => {
   await getAllProducts();
 })
 
-const { toggleFilterAside } = useProductsModals();
 </script>
 
 <template>

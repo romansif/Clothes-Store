@@ -20,7 +20,7 @@ watch(() => isAgreeFormError.value.agreeError, (agreeError) => {
 </script>
 
 <template>
-<div class="flex flex-col mt-7.5 gap-4 font-medium w-[400px]">
+<div class="flex flex-col mt-7.5 gap-4 font-medium w-100">
   <div class="flex flex-col gap-2 sm:pb-3">
     <span class="text-lg xl:text-xl">
       ORDER SUMMARY
@@ -36,7 +36,7 @@ watch(() => isAgreeFormError.value.agreeError, (agreeError) => {
       </div>
     </div>
   </div>
-  <div class="border-b-1"></div>
+  <div class="border-b"></div>
   <div class="flex items-center justify-between text-lg lg:gap-12 xl:text-xl">
     <div class="flex flex-col">
       <span class="text-xs text-[#A3A3A3]">
@@ -49,10 +49,10 @@ watch(() => isAgreeFormError.value.agreeError, (agreeError) => {
     </div>
     <span>$ {{ totalPrice }}</span>
   </div>
-  <div class="flex flex-col mt-2 hidden xl:block">
+  <div class="flex flex-col mt-2 xl:block">
     <div class="flex flex-col gap-4">
       <div class="flex gap-4 items-center">
-        <img @click="toggleAgree" :src="isAgreeFormError.agreeError ? check_square : square" alt="" class="w-[25px] cursor-pointer">
+        <img @click="toggleAgree" :src="isAgreeFormError.agreeError ? check_square : square" alt="" class="w-6.25 cursor-pointer">
         <span class="text-xs text-[#A3A3A3]">
           I agree to the Terms and Conditions
         </span>

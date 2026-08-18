@@ -13,7 +13,7 @@ const userAddressesCity = computed(() => {
 </script>
 
 <template>
-  <ul v-if="userAddressesCity" class="flex flex-col overflow-y-auto no-scrollbar h-[370px] pb-4">
+  <ul v-if="userAddressesCity" class="flex flex-col overflow-y-auto no-scrollbar h-92.5 pb-4">
     <AddressesItem />
   </ul>
   <div v-else class="flex justify-center pt-35">

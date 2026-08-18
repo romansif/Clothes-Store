@@ -45,15 +45,15 @@ watch(() => searchProductForm.value.search, async (newValue) => {
         </div>
       </div>
       <div class="flex mt-10 relative">
-        <input v-model="searchProductForm.search" type="text" class="bg-[#D9D9D9]/40 h-[50px] px-10 w-full placeholder:px-52
-            border-none outline-none sm:placeholder:px-114 md:placeholder:px-134 lg:placeholder:px-195 xl:w-[370px]
-            xl:placeholder:px-65 transition duration-400 hover:bg-gray-50 focus:bg-gray-50"
+        <input v-model="searchProductForm.search" type="text" class="bg-[#D9D9D9]/40 h-12.5 px-10 w-full placeholder:px-52
+            border-none outline-none sm:placeholder:px-114 md:placeholder:px-134 lg:placeholder:px-195 xl:w-92.5
+            xl:placeholder:px-65 transition duration-400 hover:bg-gray-50"
                placeholder="Search" />
         <img :src=search alt="" class="absolute left-4 top-1/2 -translate-y-1/2">
-        <img v-if="searchProductForm.search" @click="resetSearch" :src="del" alt="" class="w-[25px] absolute top-1/4 left-85 cursor-pointer">
+        <img v-if="searchProductForm.search" @click="resetSearch" :src="del" alt="" class="w-6.25 absolute top-1/4 left-85 cursor-pointer">
       </div>
     </div>
-    <div class="flex flex-col h-[40px] sm:h-[140px] xl:h-[215px] gap-5 mt-12 xl:mt-0">
+    <div class="flex flex-col h-10 sm:h-35 xl:h-53.75 gap-5 mt-12 xl:mt-0">
       <div class="flex items-center gap-5 xl:hidden" @click=toggleFilterAside>
         <span class="font-bold">
           Filter

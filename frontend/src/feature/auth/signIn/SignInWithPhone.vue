@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onUnmounted } from "vue";
 import { IMaskComponent as IMask } from "vue-imask";
-import { authStore } from "@/shared/composables/stores/auth.store.ts";
 import { clearAuthForms } from "@/shared/composables/clear-forms/clear.auth.ts";
 import { usePhoneForm } from "@/shared/mask-forms/use.phone.form.ts";
 import { usersStore } from "@/shared/composables/stores/users.store.ts";
@@ -12,13 +11,12 @@ import { authFormsErrors } from "@/shared/composables/errors/errors-messages/aut
 import maki_arrow from "@/app/assets/icons/arrows/right-short-arrow.svg";
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 
-const { showSignInSection } = authStore();
-const { loginFormErrors } = authFormsErrors();
 const { clearLoginForm } = clearAuthForms();
+const { loginFormErrors } = authFormsErrors();
 const { countries, selectedCountryCode } = usersStore();
-const { currentCountry, currentMask, changeCountry } = usePhoneForm();
-const { toggleSignIn, setInputRef, handleInput, handleKeyDown, handlePaste, formattedTimer, stopTimer } = toggleAuth();
+const { changeCountry, currentCountry, currentMask } = usePhoneForm();
 const { loginForm, loginFormMessages, CODE_LENGTH, codeDigits, isSendCode, isNewCode } = authForms();
+const { toggleSignIn, setInputRef, handleInput, handleKeyDown, handlePaste, stopTimer, formattedTimer } = toggleAuth();
 
 onUnmounted(() => {
   stopTimer();
@@ -26,7 +24,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section v-if="showSignInSection.section === true" class="font-[Montserrat] fixed inset-0 flex items-center justify-center">
+  <div class="font-[Montserrat] fixed inset-0 flex items-center justify-center">
     <div class="w-87.5 sm:w-112.5 rounded-lg px-8 py-8">
       <div class="flex items-center justify-center">
         <div class="w-58.75 sm:w-68.75">
@@ -48,14 +46,14 @@ onUnmounted(() => {
           <div class="flex gap-3">
             <select name="" id="" v-model="selectedCountryCode" @change="changeCountry"
                     class="text-xs outline-none bg-[#D9D9D9]/40 transition duration-400 border border-gray-300
-                          hover:bg-gray-50 focus:bg-gray-50 rounded-md py-5 px-3">
+                          hover:bg-gray-50 rounded-md py-5 px-3">
               <option v-for="country in countries" :key="country.code" :value="country.code">
                 {{ country.name }}
               </option>
             </select>
             <IMask v-model:value=loginForm.phone type="text" :mask="currentMask.mask" :key="selectedCountryCode"
                    :class="[`bg-[#D9D9D9]/40 w-full outline-none px-6 py-4 rounded-sm border border-gray-300
-                         transition duration-400 hover:bg-gray-50 focus:bg-gray-50`,
+                         transition duration-400 hover:bg-gray-50`,
                            loginFormErrors.phoneError ? 'border border-red-500' : '']"
                    :placeholder="currentCountry?.placeholder" />
           </div>
@@ -67,9 +65,9 @@ onUnmounted(() => {
         <div v-else class="flex flex-col items-center gap-2">
           <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">VALIDATION CODE</label>
           <div class="flex items-center gap-2 mt-2" @paste="handlePaste">
-            <input v-for="(_, index) in CODE_LENGTH" :key="index" :ref="(el) => setInputRef(el, index)" type="numeric" :value="codeDigits[index]"
+            <input v-for="(index) in CODE_LENGTH" :key="index" :ref="(el) => setInputRef(el, index)" type="number" :value="codeDigits[index]"
                    :class="[`text-center bg-[#D9D9D9]/40 w-14 outline-none px-2 py-4 rounded-sm border border-gray-300
-                    transition duration-400 hover:bg-gray-50 focus:bg-gray-50`,
+                    transition duration-400 hover:bg-gray-50`,
                     loginFormErrors.phoneError ? 'border border-red-500' : '']"
                   @input="handleInput(index, $event)" @keydown="handleKeyDown(index, $event)"/>
           </div>
@@ -82,13 +80,13 @@ onUnmounted(() => {
       </form>
       <div class="relative duration-400 hover:scale-105 cursor-pointer">
         <BaseButton name="SEND CODE" variant="login" />
-        <img :src=maki_arrow alt="" class="absolute w-[25px] top-9.5 left-58 sm:left-83 ">
+        <img :src=maki_arrow alt="" class="absolute w-6.25 top-9.5 left-58 sm:left-83 ">
       </div>
       <div class="flex flex-col items-center gap-3 mt-3">
         <BaseButton @click="toggleSignIn" name="Sign in using your email, password" variant="changeRegister" />
       </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <style scoped>

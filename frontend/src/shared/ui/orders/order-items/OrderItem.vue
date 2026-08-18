@@ -9,10 +9,10 @@ import copy_btn from '@/app/assets/icons/squares/copy.svg';
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 
 const { orders } = productsStore();
+const { copyText } = useOrderCard();
 const { getProductId } = useProducts();
 const { toggleOrder } = useBaseModals();
-const { copyText } = useOrderCard();
-const { orderPreview, pureColors } = productsCover();
+const { orderPreview, pureColorsName } = productsCover();
 </script>
 
 <template>
@@ -33,7 +33,7 @@ const { orderPreview, pureColors } = productsCover();
             </span>
             <div class="flex gap-2 items-center">
               <div class="group relative">
-                <img @click="copyText(order.id.slice(0, 8))" :src="copy_btn" alt="" class="w-[20px]">
+                <img @click="copyText(order.id.slice(0, 8))" :src="copy_btn" alt="" class="w-5">
                 <span class="transition duration-600 opacity-0 absolute group-hover:opacity-100 w-38 px-2 py-1 text-xs
                     bg-[rgba(0,0,0,0.8)] text-white rounded-xl">
                   Copy tracking number
@@ -42,8 +42,17 @@ const { orderPreview, pureColors } = productsCover();
               <span class="font-medium">№ {{ order.id.slice(0, 8) }}</span>
             </div>
           </div>
-          <span class="text-xs text-[#A3A3A3]">
+          <span v-if="order.status === 'Convene'" class="text-xs text-[#A3A3A3]">
+            Created: {{ order.date_created_at }}, {{ order.time_created_at }}
+          </span>
+          <span v-if="order.status === 'En route'" class="text-xs text-[#A3A3A3]">
             Processed: {{ order.date_created_at }}, {{ order.time_created_at }}
+          </span>
+          <span v-if="order.status === 'Delivered'" class="text-xs text-[#A3A3A3]">
+            Delivered: {{ order.date_created_at }}, {{ order.time_created_at }}
+          </span>
+          <span v-if="order.status === 'Cancelled'" class="text-xs text-[#A3A3A3]">
+            Cancelled: {{ order.date_cancelled_at }}, {{ order.time_cancelled_at }}
           </span>
         </div>
         <div class="flex flex-col gap-2 ml-auto">
@@ -56,7 +65,7 @@ const { orderPreview, pureColors } = productsCover();
         <router-link :to="{ name: 'products/info' }">
           <div class="flex py-5 px-3">
             <div class="flex gap-5">
-              <img :src="orderPreview(item.id, 'ADDED')" alt="" class="w-[120px] h-[156px] rounded-2xl border border-gray-400
+              <img :src="orderPreview(item.id, 'ADDED')" alt="" class="w-30 h-39 rounded-2xl border border-gray-400
                   transition duration-400 hover:scale-110">
               <div class="flex flex-col mt- gap-5">
                 <div class="flex flex-col gap-1">
@@ -72,7 +81,7 @@ const { orderPreview, pureColors } = productsCover();
                   </div>
                   <div class="flex gap-1.5 px-2.5 py-0.5 bg-[#F0F0F0] rounded">
                     <span>Color:</span>
-                    <span class="font-medium">{{ pureColors(item.id, order.orderItems)?.colorName }}</span>
+                    <span class="font-medium">{{ pureColorsName(item) }}</span>
                   </div>
                   <div class="flex gap-5 ml-auto">
                     <span class="font-bold">$ {{ item.price }}</span>

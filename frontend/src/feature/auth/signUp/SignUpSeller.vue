@@ -1,29 +1,29 @@
 <script setup lang="ts">
 import { watch } from "vue";
 import { IMaskComponent as IMask } from "vue-imask";
-import { useAuth } from "../auth-composables/use.auth.ts";
+import { auth } from "../auth-composables/auth.ts";
 import { usePhoneForm } from "@/shared/mask-forms/use.phone.form.ts";
 import { authStore} from "@/shared/composables/stores/auth.store.ts";
 import { usersStore } from "@/shared/composables/stores/users.store.ts";
 import { authForms } from "@/shared/composables/forms/auth.forms.ts";
 import { authFormsErrors } from "@/shared/composables/errors/errors-messages/auth.errors.ts";
 import { clearAuthForms } from "@/shared/composables/clear-forms/clear.auth.ts";
+import { toggleAuth } from "@/feature/auth/auth-composables/toggleAuth.ts";
 
 import opened from "@/app/assets/icons/auth/opened.png";
 import closed from "@/app/assets/icons/auth/closed.png";
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 import maki_arrow from "@/app/assets/icons/arrows/right-short-arrow.svg";
 import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
-import {toggleAuth} from "@/feature/auth/auth-composables/toggleAuth.ts";
 
-const { signUp } = useAuth();
-const { togglePassword, toggleSignUp } = toggleAuth();
+const { signUp } = auth();
+const { showPassword } = authStore();
 const { registerFormErrors } = authFormsErrors();
-const { showPassword, showSignInSection } = authStore();
+const { clearRegisterSellerForm } = clearAuthForms();
+const { togglePassword, toggleSignUp } = toggleAuth();
 const { countries, selectedCountryCode } = usersStore();
 const { registerSellerForm, registerFormMessages } = authForms();
-const { currentCountry, currentMask, changeCountry } = usePhoneForm();
-const { clearRegisterSellerForm } = clearAuthForms();
+const { changeCountry, currentCountry, currentMask } = usePhoneForm();
 
 watch(() => [registerSellerForm.value.name, registerSellerForm.value.surName, registerSellerForm.value.companyName,
   registerSellerForm.value.publicPhone, registerSellerForm.value.email, registerSellerForm.value.password],
@@ -51,7 +51,7 @@ watch(() => [registerSellerForm.value.name, registerSellerForm.value.surName, re
 </script>
 
 <template>
-  <section v-if="showSignInSection.section === true" class='fixed font-[Montserrat] inset-0 flex items-center justify-center' >
+  <div class='fixed font-[Montserrat] inset-0 flex items-center justify-center' >
     <div class="w-87.5 sm:w-150 rounded-lg px-8 py-8">
       <div class="flex items-center justify-center">
         <div class="w-58.75 sm:w-75">
@@ -98,14 +98,14 @@ watch(() => [registerSellerForm.value.name, registerSellerForm.value.surName, re
             <div class="flex gap-3">
               <select name="" id="" v-model="selectedCountryCode" @change="changeCountry"
                       class="text-xs outline-none bg-[#D9D9D9]/40 transition duration-400 border border-gray-300
-                        hover:bg-gray-50 focus:bg-gray-50 rounded-md py-5 px-3">
+                        hover:bg-gray-50 rounded-md py-5 px-3">
                 <option v-for="country in countries" :key="country.code" :value="country.code">
                   {{ country.name }}
                 </option>
               </select>
               <IMask v-model:value=registerSellerForm.publicPhone type="text" :mask="currentMask.mask" :key="selectedCountryCode"
                      :class="[`bg-[#D9D9D9]/40 w-full outline-none px-6 py-4 rounded-sm border border-gray-300
-                       transition duration-400 hover:bg-gray-50 focus:bg-gray-50`,
+                       transition duration-400 hover:bg-gray-50`,
                          registerFormErrors.publicPhoneError ? 'border border-red-500' : '']"
                      :placeholder="currentCountry?.placeholder" />
             </div>
@@ -133,7 +133,7 @@ watch(() => [registerSellerForm.value.name, registerSellerForm.value.surName, re
         <BaseButton @click="toggleSignUp" name="Sign up as a buyer" variant="changeRegister" />
       </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <style scoped>

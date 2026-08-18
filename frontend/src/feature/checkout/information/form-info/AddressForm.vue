@@ -4,14 +4,18 @@ import { checkout } from "../../composables/checkout.ts";
 import { usersStore } from "@/shared/composables/stores/users.store";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
 import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors";
+import { checkoutPlaceholder } from "@/feature/checkout/composables/checkout.placeholder.ts";
 
 import CheckoutInput from "@/shared/ui/base/input/CheckoutInput.vue";
 
 const { information } = checkoutForms();
+const { toggleShowContact } = checkout();
 const { informationErrors } = checkoutErrors();
 const { postalCode, userAddresses } = usersStore();
-const { firstNamePlaceholder, lastNamePlaceholder, countryPlaceholder, statePlaceholder,
-  cityPlaceholder, addressPlaceholder, postalCodePlaceholder, toggleShowContact } = checkout();
+const {
+  firstNamePlaceholder, lastNamePlaceholder, countryPlaceholder,
+  statePlaceholder, addressPlaceholder, cityPlaceholder, postalCodePlaceholder
+} = checkoutPlaceholder();
 
 </script>
 
@@ -25,7 +29,7 @@ const { firstNamePlaceholder, lastNamePlaceholder, countryPlaceholder, statePlac
     </div>
     <div class="flex flex-col gap-3">
       <input v-model="information.addressName" class="bg-[#D9D9D9]/40 border border-gray-300 transition duration-400
-              hover:bg-gray-50 focus:bg-gray-50 rounded-xl outline-none px-4 py-3 text-xs placeholder:text-gray-600 w-full"
+              hover:bg-gray-50 rounded-xl outline-none px-4 py-3 text-xs placeholder:text-gray-600 w-full"
              type="text" placeholder="Address Name is optional" />
       <div class="flex gap-2">
         <CheckoutInput v-model="information.firstName" type="text" :placeholder="firstNamePlaceholder"
@@ -48,7 +52,7 @@ const { firstNamePlaceholder, lastNamePlaceholder, countryPlaceholder, statePlac
         </div>
         <div class="flex flex-col w-full">
           <IMask v-model.value="information.postalCode" type="text" :mask="postalCode.mask"
-                 :class="[`w-full bg-[#D9D9D9]/40 border border-gray-300 transition duration-400 hover:bg-gray-50 focus:bg-gray-50
+                 :class="[`w-full bg-[#D9D9D9]/40 border border-gray-300 transition duration-400 hover:bg-gray-50
                   rounded-xl outline-none px-4 py-3 text-xs`,
             informationErrors.postalCodeError ? `placeholder:text-red-500 border-red-400` : `placeholder:text-gray-600`]"
                  :placeholder="postalCodePlaceholder" />

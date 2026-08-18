@@ -3,10 +3,10 @@ import { onMounted } from "vue";
 import { checkout } from "@/feature/checkout/composables/checkout.ts";
 import { usePayment } from "@/feature/checkout/composables/use.payment.ts";
 
-import SavedPaymentList from "@/feature/checkout/payment/saved-payment/SavedPaymentList.vue";
+import PaymentList from "@/feature/checkout/payment/saved-payment/PaymentList.vue";
 
-const { toggleShowPayment } = checkout();
 const { getPayments } = usePayment();
+const { toggleShowPayment } = checkout();
 
 onMounted(async () => {
   await getPayments();
@@ -22,7 +22,7 @@ onMounted(async () => {
           Hide saved payment
         </span>
       </div>
-      <SavedPaymentList />
+      <PaymentList />
     </div>
   </div>
 </template>

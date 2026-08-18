@@ -12,7 +12,10 @@ const props = withDefaults(defineProps<Props>(), {
 const variantClasses = {
   login: `bg-black text-white rounded px-6 py-3.5 mt-6 font-semibold w-full text-start transition`,
   register:  `bg-black text-white rounded px-6 py-3.5 mt-6 font-semibold w-full text-start transition`,
-  changeRegister: `text-center text-sm text-[#A3A3A3] duration-400 cursor-pointer text-indigo-600 hover:text-violet-600 hover:scale-108`,
+  changeRegister: `text-center text-sm text-[#A3A3A3] duration-400 cursor-pointer text-indigo-600
+              hover:text-violet-600 hover:scale-108`,
+  useProduct: `w-full transition duration-400 hover:scale-102 bg-black text-white rounded-sm py-5
+                font-semibold text-center uppercase tracking-wider text-sm shadow-md`,
   addToCart: `bg-black font-semibold text-sm py-5 w-full text-white font-[Montserrat] lg:block cursor-pointer
           transition duration-300 transform hover:scale-108`,
   addToOrder: `w-full font-semibold bg-black text-white py-4 mt-8 cursor-pointer
