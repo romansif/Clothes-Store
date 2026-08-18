@@ -20,6 +20,8 @@ router.get('/products/:id', productsController.getProductsById);
 router.post('/products', authMiddleware, upload.array('images', 5), validation.createProductValidation,
     validation.handleValidationErrors, productsController.createdProduct);
 
+router.patch('/products/:id/:index/images', authMiddleware, upload.array('images', 5),
+    productsController.updateProductImages);
 router.patch('/products/:id', authMiddleware, productsController.updateProductItem);
 
 router.delete('/products/:id', authMiddleware, productsController.deleteProduct);

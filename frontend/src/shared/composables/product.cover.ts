@@ -1,7 +1,7 @@
 import { computed } from "vue";
 import namer from 'color-namer'
-import { productsStore, type Product } from "@/shared/composables/stores/products.store";
 import { productsForms } from "@/shared/composables/forms/products.forms";
+import { productsStore, type Product } from "@/shared/composables/stores/products.store";
 
 const { moreCreateItem } = productsForms();
 const { products, cart, orders, items, product, productId, sizes, activeProductImg } = productsStore();
@@ -72,6 +72,46 @@ export const productsCover = () => {
         }
     });
 
+    const productInfoPreview = computed(() => {
+        return(product: Product) => {
+            if(!product){
+                console.log('Product not found');
+                return;
+            }
+            if(product && Array.isArray(product.images) && product.images[0]){
+                return `${import.meta.env.VITE_BASE_URL}/${product.images[0]}`;
+            }
+        }
+    });
+
+    const angelCards = computed(() => {
+        return(product: Product): string[] => {
+            if(!product){
+                console.log('Product not found');
+                return [];
+            }
+
+            if(product && Array.isArray(product.images) && product.images.length > 0){
+                return product.images.slice(1).map(img => `${import.meta.env.VITE_BASE_URL}/${img}`);
+            }
+            return [];
+        }
+    });
+
+    const pureCards = computed(() => {
+        return(product: Product): string[] => {
+            if(!product){
+                console.log('Product not found');
+                return [];
+            }
+
+            if(product && Array.isArray(product.images) && product.images.length > 0){
+                return product.images.slice(0).map(img => `${import.meta.env.VITE_BASE_URL}/${img}`);
+            }
+            return [];
+        }
+    });
+
     const orderItems = computed(() => {
         if(Array.isArray(orders.value)) {
             return orders.value.flatMap(order => order.orderItems || []);
@@ -95,46 +135,20 @@ export const productsCover = () => {
         }
     });
 
-    const productInfoPreview = computed(() => {
-        return(product: Product) => {
-            if(!product){
-                console.log('Product not found');
-                return;
-            }
-            if(product && Array.isArray(product.images) && product.images[0]){
-                return `${import.meta.env.VITE_BASE_URL}/${product.images[0]}`;
-            }
-        }
-    });
-
-    const angelCards = computed(() => {
-        return(product: Product): string[] => {
-            if(!product){
-                console.log('Product not found');
-                return [];
-            }
-
-            if(product && Array.isArray(product.images) && product.images.length > 0){
-                return product.images.slice(1).map((img: string) => `${import.meta.env.VITE_BASE_URL}/${img}`);
-            }
-            return [];
-        }
-    });
-
     const pureColors = computed(() => {
         return(id: string, array: Product[])  => {
             if(!array){
                 console.log('Product not found');
-                return [];
+                return;
             }
 
             const product = array?.find(p => p.id === id)
             if(product && Array.isArray(product.colors) && product.colors[0]){
                 return product.colors[0]
             }
-            return [];
+            return;
         }
-    })
+    });
 
     const pureInfoColors = computed(() => {
         return(product: Product)  => {
@@ -147,6 +161,34 @@ export const productsCover = () => {
                 return product.colors
             }
             return [];
+        }
+    });
+
+    const pureColorsName = computed(() => {
+        return(product: Product): string => {
+            if(!product){
+                console.log('Product not found');
+                return '';
+            }
+
+            if(product && Array.isArray(product.colors) && product.colors.length > 0){
+                return product.colors.map(color => color.colorName).join(', ')
+            }
+            return '';
+        }
+    })
+
+    const pureSizesName = computed(() => {
+        return(product: Product): string => {
+            if(!product){
+                console.log('Product not found');
+                return '';
+            }
+
+            if(product && Array.isArray(product.sizes) && product.sizes.length > 0){
+                return product.sizes.map(size => size).join(', ')
+            }
+            return '';
         }
     });
 
@@ -180,13 +222,19 @@ export const productsCover = () => {
         toggleColor,
         toggleSize,
         changeImg,
+
         productPreview,
         orderPreview,
         productInfoPreview,
         angelCards,
+        pureCards,
+
         pureColors,
         pureInfoColors,
+        pureColorsName,
+
         isAvailableSizes,
+        pureSizesName,
         isInCart,
         vHorizontalScroll,
     }
