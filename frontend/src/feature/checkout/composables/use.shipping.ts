@@ -21,7 +21,9 @@ export const useShipping = () => {
             });
             console.log(res);
             userShipping.value = res;
-        }catch(error){}
+        }catch(err){
+            console.error(`Failed to get the shipping:`, err);
+        }
     };
 
     const addShipping = async () => {
@@ -48,12 +50,13 @@ export const useShipping = () => {
             clearPaymentForm();
         }catch(err){
             createSippingErrors(err)
-            console.error(`Failed to register new payment:`, err);
+            console.error(`Failed to register new sipping:`, err);
         }
     };
 
     return {
         getShipping,
+
         addShipping,
     }
 }

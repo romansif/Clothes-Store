@@ -2,8 +2,8 @@ import { ref } from "vue";
 import { useProducts } from "@/feature/products/composables/use.products.ts";
 import { productsStore } from "@/shared/composables/stores/products.store.ts";
 
-const { getFilteredProducts } = useProducts();
 const { sizes } = productsStore();
+const { getFilteredProducts } = useProducts();
 
 export const filtered = () => {
     const selectedGender = ref<string>('ALL');

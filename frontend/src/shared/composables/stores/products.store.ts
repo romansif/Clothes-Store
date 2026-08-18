@@ -12,7 +12,12 @@ export interface ColorItem {
     colorName: string,
 }
 
+export interface ImageItem {
+    url: string,
+}
+
 export interface Product {
+    product: any;
     id: string,
     userId: string,
     productId: string,
@@ -20,16 +25,16 @@ export interface Product {
     category: string,
     material: string,
     description: string,
-    images: object,
+    images: ImageItem[],
     price: number,
-    colors: (string | ColorItem),
+    colors: ColorItem[],
     sizes: string,
     gender: string,
     quantity: number,
     status: string,
     favorite: boolean,
     checked: boolean,
-    collection: string,
+    collections: string,
     created_at: string,
 }
 
@@ -43,6 +48,9 @@ interface Orders {
     created_at: string,
     date_created_at: string,
     time_created_at: string,
+    cancelled_at: string,
+    date_cancelled_at: string,
+    time_cancelled_at: string,
     status: string
 }
 
@@ -122,6 +130,7 @@ const productId = ref<string>(localStorage.getItem("productId") || '');
 const items = ref<Product[]>(JSON.parse(localStorage.getItem('orderItems') || '[]'));
 
 const activeProductImg = ref<string>('');
+const activeIndex = ref<number>();
 
 const productFiles = ref<(File | null)[]>([null, null, null, null, null]);
 const productsPreview = ref<string[]>([]);
@@ -156,6 +165,7 @@ export const productsStore = () => {
         orderItems,
 
         activeProductImg,
+        activeIndex,
         productFiles,
         productsPreview,
         currentFile,

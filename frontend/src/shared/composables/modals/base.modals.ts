@@ -49,9 +49,12 @@ export const useBaseModals = () => {
         cancelChoice,
         cancelChoiceMessage,
         cancelChoiceError,
+
         choiceModal,
         orderId,
+
         loading,
+
         notify,
         notifyTitle,
         notifyMessage,

@@ -5,9 +5,9 @@ import { productsForms } from "@/shared/composables/forms/products.forms.ts";
 import { clearProductsForms } from "@/shared/composables/clear-forms/clear.products.ts";
 import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
 
-const { openNotify, loading } = useBaseModals();
 const { addToCartForm } = productsForms();
 const { addToCartErrors } = useFormsErrors();
+const { openNotify, loading } = useBaseModals();
 const { clearAddToCartForm } = clearProductsForms();
 const { products, cart, product, orderItems, unreadCount } = productsStore();
 
@@ -284,11 +284,14 @@ export const useCart = () => {
 
     return {
         getCartProducts,
-        checkCartItem,
+
         addToCart,
+
+        checkCartItem,
         updateCartItem,
         updateCartChecked,
         updateCheckedQuantity,
+
         deleteProductCart
     }
 }

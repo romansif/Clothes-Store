@@ -148,9 +148,11 @@ export const usePayment = () => {
     return {
         getPayments,
         getPayment,
+
         useSavedCard,
         useSavedPayment,
         addPayment,
+
         deletePayment,
     }
 }

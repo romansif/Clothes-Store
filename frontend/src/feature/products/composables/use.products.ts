@@ -1,17 +1,17 @@
+import namer from "color-namer";
 import { handler } from "@/shared/api/http";
-import { productsStore } from "@/shared//composables/stores/products.store";
+import { productsStore, type Product } from "@/shared//composables/stores/products.store";
 import { productsForms } from "@/shared/composables/forms/products.forms.ts";
-import { clearProductsForms } from "@/shared/composables/clear-forms/clear.products.ts";
 import { useFormsErrors } from "@/shared/composables/errors/errors-middleware/forms.errors.ts";
 import { useProductsModals } from "@/shared/composables/modals/products.modals.ts";
 import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
 
-const { loading } = useBaseModals()
+const { openNotify, loading } = useBaseModals()
 const { createProductErrors } = useFormsErrors();
-const { clearProductForm } = clearProductsForms();
-const { toggleCreateProductModal } = useProductsModals();
+const { toggleCreateProductModal, toggleEditProductModal } = useProductsModals();
 const { createProductForm, moreCreateItem } = productsForms();
-const { allProducts, products, productsWeek, productsYear, myProducts, product, productId, productFiles, currentFile, productsPreview, } = productsStore();
+const { allProducts, products, productsWeek, productsYear, myProducts, product,
+    productId, productFiles, currentFile, productsPreview } = productsStore();
 
 export const useProducts = () => {
     const getAllProducts = async () => {
@@ -159,8 +159,9 @@ export const useProducts = () => {
 
             await getAllProducts();
 
-            clearProductForm();
             toggleCreateProductModal();
+
+            await openNotify('', '', '')
         }catch(err){
             loading.value = false;
 
@@ -189,6 +190,112 @@ export const useProducts = () => {
         }
     };
 
+    const updateProductImages = async (product: Product, event: Event) => {
+        loading.value = true;
+        try{
+            if(!product){
+                console.log('Такого продукта не существует');
+                return
+            }
+
+            const target = event.target as HTMLInputElement;
+            const file = target.files?.[0];
+            if (!file || currentFile.value === null) {
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append(`images`, file);
+
+
+            await handler(`/products/${product.id}/${currentFile.value}/images`, {
+                method: "PATCH",
+                body: formData
+            });
+
+            loading.value = false;
+
+            await getProduct();
+            await openNotify('You have successfully changed the product card images.', '', '')
+        }catch(err){
+            loading.value = false;
+
+            await openNotify(`You haven't entered anything to change.`, '', '');
+            console.error(`Failed to edit the product cover:`, err);
+        }
+    };
+
+    const updateProductDesc = async (id: string) => {
+        loading.value = true;
+        try{
+            await handler(`/products/${id}`, {
+                method: "PATCH",
+                body: JSON.stringify({
+                    collections: createProductForm.value.collections,
+                    title: createProductForm.value.title,
+                    category: createProductForm.value.category,
+                    material: createProductForm.value.material,
+                    gender: createProductForm.value.gender,
+                    quantity: createProductForm.value.quantity,
+                    price: createProductForm.value.price,
+                    description: createProductForm.value.description,
+                })
+            });
+            loading.value = false;
+
+            await getProduct();
+
+            await openNotify('You have successfully changed the product card description.', '', '');
+            toggleEditProductModal();
+        }catch(err){
+            loading.value = false;
+
+            await openNotify(`You haven't entered anything to change.`, '', '');
+            console.error(`Failed to edit the product cover:`, err);
+        }
+    };
+
+    const updateProductColors = async (product: Product, index: number, eventOrColor: Event | string) => {
+        loading.value = true;
+        try{
+            if(!product){
+                console.log('Такого продукта не существует');
+                return
+            }
+
+            if(typeof eventOrColor === "object" && eventOrColor !== null && 'target' in eventOrColor) {
+                let hexColor = '';
+
+                const target = eventOrColor.target as HTMLInputElement;
+                hexColor = target?.value || '';
+
+                const names = namer(hexColor);
+                const colorName = names.ntc[0].name;
+
+                product.colors[index] = {
+                    ...product.colors[index],
+                    hex: hexColor,
+                    colorName: colorName
+                };
+
+                await handler(`/products/${product.id}`, {
+                    method: "PATCH",
+                    body: JSON.stringify({
+                        colors: product.colors,
+                    }),
+                });
+            }
+            loading.value = false;
+
+            await openNotify('You have successfully changed the product colors on the product card.', '', '')
+        }catch(err){
+            loading.value = false;
+
+            await openNotify(`You haven't entered anything to change.`, '', '');
+            console.error(`Failed to edit the colors product cover:`, err);
+        }
+    };
+
     const deleteProduct = async (id: string) => {
         try{
             await handler(`/products/${id}`, {
@@ -210,9 +317,15 @@ export const useProducts = () => {
         getMyProducts,
         getProductId,
         getProduct,
+
         onFilesSelected,
         createProduct,
+
         updateFavorite,
+        updateProductImages,
+        updateProductDesc,
+        updateProductColors,
+
         deleteProduct,
     }
 }

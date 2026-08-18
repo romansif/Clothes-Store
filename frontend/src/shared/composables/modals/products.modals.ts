@@ -3,11 +3,12 @@ import { productsStore } from "../stores/products.store";
 import { clearProductsForms } from "@/shared/composables/clear-forms/clear.products";
 
 const filterAside = ref<boolean>(false);
+const editProduct = ref<boolean>(false);
 const createProduct = ref<boolean>(false);
 const fileInput = ref<HTMLInputElement | null>(null);
 
-const { clearProductForm } = clearProductsForms();
 const { currentFile } = productsStore();
+const { clearProductForm } = clearProductsForms();
 
 export const useProductsModals = () => {
     const toggleFilterAside = () => {
@@ -25,13 +26,20 @@ export const useProductsModals = () => {
         fileInput.value?.click();
     };
 
+    const toggleEditProductModal = () => {
+        editProduct.value = !editProduct.value;
+        clearProductForm();
+    }
+
     return {
         toggleFilterAside,
         toggleCreateProductModal,
         openSelectProductCard,
+        toggleEditProductModal,
 
         filterAside,
         createProduct,
+        editProduct,
         fileInput,
     }
 }

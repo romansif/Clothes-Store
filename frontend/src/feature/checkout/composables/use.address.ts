@@ -169,10 +169,12 @@ export const useAddress = () => {
     return {
         getAddresses,
         getAddress,
+
         useSavedContactInfo,
         useSavedAddress,
         useInformation,
         addInformation,
+
         deleteAddress,
     }
 

@@ -5,11 +5,11 @@ import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
 import { useFormsErrors } from "@/shared/composables/errors/errors-middleware/forms.errors.ts";
 
-const { shipping } = checkoutForms();
 const { totalPrice } = checkout();
+const { shipping } = checkoutForms();
 const { orders, items } = productsStore();
 const { replaceOrderErrors } = useFormsErrors();
-const { cancelChoice, orderId, loading, openNotify } = useBaseModals();
+const { openNotify, cancelChoice, orderId, loading } = useBaseModals();
 
 export const useOrders = () => {
     const getOrders = async () => {
@@ -66,11 +66,21 @@ export const useOrders = () => {
 
     const replaceOrder = async () => {
         try{
+            const date = new Date();
+            const dateCreated = date.toLocaleDateString();
+            const time = date.toLocaleTimeString("ru-RU", {
+                hour: "2-digit",
+                minute: "2-digit",
+            });
+
             await handler(`/orders/${orderId.value}`, {
                 method: "PATCH",
                 body: JSON.stringify({
                     status: 'Cancelled',
-                    cause_replace: cancelChoice.value
+                    cause_replace: cancelChoice.value,
+                    cancelled_at: date,
+                    date_cancelled_at: dateCreated,
+                    time_cancelled_at: time,
                 })
             });
             await openNotify('You have successfully cancelled the order.',
@@ -97,8 +107,11 @@ export const useOrders = () => {
     return{
         getOrders,
         getFilteredOrders,
+
         addOrder,
+
         replaceOrder,
+
         deleteOrderProducts,
     }
 }

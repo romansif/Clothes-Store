@@ -96,8 +96,10 @@ export const useFavorites = () => {
 
 
     return{
-        toggleToFavorite,
         getFavoriteProducts,
+
+        toggleToFavorite,
+
         deleteFavoriteProduct,
     }
 }

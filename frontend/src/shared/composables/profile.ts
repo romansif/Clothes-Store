@@ -87,9 +87,12 @@ export const profile = () => {
         sizeClass,
 
         userAvatar,
+
         cartCount,
         favoritesCount,
+
         toggleAgree,
+
         price,
         totalPrice,
         commissionPrice,

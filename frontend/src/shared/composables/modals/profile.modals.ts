@@ -5,7 +5,7 @@ import { useCart } from "@/feature/profile/composables/use.cart.ts";
 import { useAddress } from "@/feature/checkout/composables/use.address.ts";
 import { usePayment } from "@/feature/checkout/composables/use.payment.ts";
 import { useOrders } from "@/feature/products/composables/use.orders.ts";
-import { useAuth } from "@/feature/auth/auth-composables/use.auth.ts";
+import { auth } from "@/feature/auth/auth-composables/auth.ts";
 import { useFavorites } from "@/feature/profile/composables/use.favorites.ts";
 
 const avatarModal = ref<boolean>(false);
@@ -21,12 +21,12 @@ const deleteType = ref<string>('');
 const deleteMessage = ref<string>('');
 const deleteChoice = ref<boolean>(false);
 
-const { deleteProduct } = useProducts();
-const { deleteProductCart } = useCart();
 const { deleteAddress } = useAddress();
 const { deletePayment } = usePayment();
+const { deleteProduct } = useProducts();
+const { deleteProductCart } = useCart();
+const { logout, deleteAccount } = auth();
 const { deleteOrderProducts } = useOrders();
-const { logout, deleteAccount } = useAuth();
 const { deleteFavoriteProduct } = useFavorites();
 const { clearUpdateUserForm } = clearUsersForms();
 
