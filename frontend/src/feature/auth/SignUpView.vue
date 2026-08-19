@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { auth } from "@/feature/auth/auth-composables/auth.ts";
+import { auth } from "@/feature/auth/auth-actions/auth.ts";
 import { clearAuthForms } from "@/shared/composables/clear-forms/clear.auth.ts";
-import { toggleAuth } from "@/feature/auth/auth-composables/toggleAuth.ts";
+import { toggleAuth } from "@/feature/auth/auth-actions/toggleAuth.ts";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
 import { authStore } from "@/shared/composables/stores/auth.store.ts";
 
@@ -34,7 +34,7 @@ const { clearRegisterForm } = clearAuthForms();
       </div>
       <div class="flex flex-col mt-10 font-bold text-3xl w-55 transition duration-400 hover:scale-110">
         <span>WELCOME TO</span>
-        <span class="text-[#A3A3A3]">THE STORE</span>
+        <span class="text-[#A3A3A3]">THE NOIR</span>
       </div>
       <SignUpBuyer v-if="!showSignSection.signUp" />
       <SignUpSeller v-if="showSignSection.signUp" />

@@ -3,7 +3,7 @@ import { useFormsErrors } from "@/shared/composables/errors/errors-middleware/fo
 import { usersStore } from "@/shared/composables/stores/users.store";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
-import { checkout } from "@/feature/checkout/composables/checkout.ts";
+import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
 import { clearCheckoutForm } from "@/shared/composables/clear-forms/clear.checkout.ts";
 
 const { information } = checkoutForms();

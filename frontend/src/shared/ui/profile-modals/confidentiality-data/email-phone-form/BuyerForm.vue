@@ -3,7 +3,7 @@ import { IMaskComponent as IMask } from "vue-imask";
 import { usePhoneForm } from "@/shared/mask-forms/use.phone.form";
 import { usersStore } from "@/shared/composables/stores/users.store";
 import { userForms } from "@/shared/composables/forms/users.forms";
-import { useProfile } from "@/feature/profile/composables/use.profile.ts";
+import { useProfile } from "@/feature/profile/profile-actions/use.profile.ts";
 import { userFormsErrors } from "@/shared/composables/errors/errors-messages/users.errors";
 
 import BaseButton  from "@/shared/ui/base/button/BaseButton.vue";

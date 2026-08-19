@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useGetUsers } from "../auth/auth-composables/get.users";
+import { useGetUsers } from "@/feature/auth/auth-actions/get.users";
 import { usersStore } from "@/shared/composables/stores/users.store";
 import { useProfileModals } from "@/shared/composables/modals/profile.modals";
 import { useProductsModals } from "@/shared/composables/modals/products.modals";
@@ -17,21 +17,27 @@ import AllOrders from "@/shared/ui/orders/AllOrders.vue";
 import CurrentOrder from "@/shared/ui/orders/CurrentOrder.vue";
 import AddressPaymentInfo from "@/shared/ui/profile-modals/address-and-cards/AddressPaymentInfo.vue";
 import UserDataModal from "@/shared/ui/profile-modals/confidentiality-data/UserDataModal.vue";
+import Loading from "@/shared/ui/base/base-modals/Loading.vue";
 
 const { user } = usersStore();
 const { getUser } = useGetUsers();
-const { notify } = useBaseModals();
+const { notify, loading } = useBaseModals();
 const { createProduct } = useProductsModals();
 const { avatarModal, orderHistory, currentOrder, addressesAndCards, confidentialityData, deleteChoice } = useProfileModals();
 
 const userId = localStorage.getItem("userId");
 
 onMounted(async () => {
+  loading.value = true;
+
   await getUser();
+
+  loading.value = false;
 })
 </script>
 
 <template>
+  <Loading v-if="loading" />
   <div class="xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
     <NavBar />
   </div>

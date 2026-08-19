@@ -4,7 +4,7 @@ import { IMaskComponent as IMask } from "vue-imask";
 import { usePhoneForm } from "@/shared/mask-forms/use.phone.form.ts";
 import { usersStore } from "@/shared/composables/stores/users.store.ts";
 import { authForms } from "@/shared/composables/forms/auth.forms.ts";
-import { toggleAuth } from "@/feature/auth/auth-composables/toggleAuth.ts";
+import { toggleAuth } from "@/feature/auth/auth-actions/toggleAuth.ts";
 import { authFormsErrors } from "@/shared/composables/errors/errors-messages/auth.errors.ts";
 
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { auth } from "@/feature/auth/auth-composables/auth.ts";
+import { auth } from "@/feature/auth/auth-actions/auth.ts";
 
 const { signOAuth } = auth();
 

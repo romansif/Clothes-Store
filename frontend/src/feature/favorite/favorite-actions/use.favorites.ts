@@ -1,8 +1,8 @@
 import { handler } from "@/shared/api/http.ts";
 import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { useCart } from "@/feature/profile/composables/use.cart.ts";
+import { useCart } from "@/feature/cart/cart-actions/use.cart.ts";
 import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
-import { useProducts } from "@/feature/products/composables/use.products.ts";
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
 
 const { getCartProducts } = useCart();
 const { openNotify } = useBaseModals();
@@ -74,14 +74,6 @@ export const useFavorites = () => {
             });
             await getFavoriteProducts();
 
-            await handler(`/cart/${id}`, {
-                method: "PATCH",
-                body: JSON.stringify({
-                    favorite: false,
-                })
-            });
-            await getCartProducts();
-
             await handler(`/products/${id}`, {
                 method: "PATCH",
                 body: JSON.stringify({
@@ -89,6 +81,14 @@ export const useFavorites = () => {
                 })
             })
             await getFilteredProducts('ALL', 'ALL');
+
+            await handler(`/cart/${id}`, {
+                method: "PATCH",
+                body: JSON.stringify({
+                    favorite: false,
+                })
+            });
+            await getCartProducts();
         }catch(err){
             console.error(`Failed to delete the favorite product:`, err);
         }

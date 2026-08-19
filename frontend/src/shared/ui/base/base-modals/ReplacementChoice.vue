@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
-import { useOrders } from "@/feature/products/composables/use.orders.ts";
+import { useOrders } from "@/feature/products/products-actions/use.orders.ts";
 
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 import ReplacementInput from "@/shared/ui/base/input/ReplacementInput.vue";

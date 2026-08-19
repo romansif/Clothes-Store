@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { onMounted, onErrorCaptured } from "vue";
-import { useProducts } from "./composables/use.products.ts";
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
 import { errorHandler } from "@/shared/composables/errors/errors-middleware/error.handler";
 import { useProductsModals } from "@/shared/composables/modals/products.modals";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
 
 import NavBar from "../navigation/NavBar.vue";
 import ProductList from "./products-items/ProductList.vue";
-import HeaderProducts from "./products-header/HeaderProducts.vue";
-import FilterProducts from "./products-header/FilterProducts.vue";
+import HeaderProducts from "../navigation/products-header/HeaderProducts.vue";
+import FilterProducts from "../navigation/products-header/FilterProducts.vue";
 import Notification from "@/shared/ui/base/base-modals/Notification.vue";
 import AsideFilter from "@/shared/ui/products-modals/AsideFilter.vue";
 import Loading from "@/shared/ui/base/base-modals/Loading.vue";
@@ -28,7 +28,11 @@ onErrorCaptured((err, info) => {
 });
 
 onMounted(async () => {
+  loading.value = true;
+
   await getAllProducts();
+
+  loading.value = false;
 })
 </script>
 

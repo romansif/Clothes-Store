@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { userForms } from "@/shared/composables/forms/users.forms";
-import { useProfile } from "@/feature/profile/composables/use.profile.ts";
+import { useProfile } from "@/feature/profile/profile-actions/use.profile.ts";
 import { userFormsErrors } from "@/shared/composables/errors/errors-messages/users.errors";
 
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";

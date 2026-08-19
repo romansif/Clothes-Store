@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { usersStore } from "@/shared/composables/stores/users.store";
-import { checkout } from "@/feature/checkout/composables/checkout.ts";
-import { usePayment } from "@/feature/checkout/composables/use.payment.ts";
+import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
+import { usePayment } from "@/feature/checkout/checkout-actions/use.payment.ts";
 
 const { userPayments } = usersStore();
 const { isChosenPayment } = checkout();

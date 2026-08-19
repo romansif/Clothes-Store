@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { checkout } from "@/feature/checkout/composables/checkout.ts";
-import { usePayment } from "@/feature/checkout/composables/use.payment.ts";
+import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
+import { usePayment } from "@/feature/checkout/checkout-actions/use.payment.ts";
 
 import PaymentList from "@/feature/checkout/payment/saved-payment/PaymentList.vue";
 

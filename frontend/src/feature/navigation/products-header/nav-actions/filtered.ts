@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { useProducts } from "@/feature/products/composables/use.products.ts";
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
 import { productsStore } from "@/shared/composables/stores/products.store.ts";
 
 const { sizes } = productsStore();

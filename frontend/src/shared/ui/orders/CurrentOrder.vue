@@ -2,7 +2,7 @@
 import { onMounted } from "vue";
 import { useOrderCard } from "@/shared/ui/orders/use.order.card.ts";
 import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
-import { useOrders } from "@/feature/products/composables/use.orders.ts";
+import { useOrders } from "@/feature/products/products-actions/use.orders.ts";
 import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
 
 import OrderList from "./order-items/OrderList.vue";

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { productsCover } from "@/shared/composables/product.cover.ts";
 import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { useProducts } from "@/feature/products/composables/use.products.ts";
-import { useFavorites } from "@/feature/profile/composables/use.favorites.ts";
-import { useCart } from "@/feature/profile/composables/use.cart.ts";
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
+import { useFavorites } from "@/feature/favorite/favorite-actions/use.favorites.ts";
+import { useCart } from "@/feature/cart/cart-actions/use.cart.ts";
 import { profile } from "@/shared/composables/profile.ts";
 import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
 

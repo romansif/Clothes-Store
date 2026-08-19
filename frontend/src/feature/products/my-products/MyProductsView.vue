@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useProducts } from "@/feature/products/composables/use.products.ts";
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
 import { productsStore } from "@/shared/composables/stores/products.store";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
 import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
@@ -20,7 +20,11 @@ const { editProduct } = useProductsModals();
 const { deleteChoice } = useProfileModals();
 
 onMounted(async () => {
- await getMyProducts()
+  loading.value = true;
+
+  await getMyProducts();
+
+  loading.value = false;
 })
 </script>
 

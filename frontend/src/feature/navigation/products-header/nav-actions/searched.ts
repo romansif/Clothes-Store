@@ -1,7 +1,7 @@
 import { useDebounceFn } from "@vueuse/core";
-import { handler } from "@/shared/api/http";
-import { productsStore } from "@/shared/composables/stores/products.store";
-import { productsForms } from "@/shared/composables/forms/products.forms";
+import { handler } from "@/shared/api/http.ts";
+import { productsStore } from "@/shared/composables/stores/products.store.ts";
+import { productsForms } from "@/shared/composables/forms/products.forms.ts";
 
 const { products } = productsStore();
 const { searchProductForm } = productsForms();

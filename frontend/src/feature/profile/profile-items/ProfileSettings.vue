@@ -51,20 +51,20 @@ const {
           <img :src="arrow_down" alt="">
         </div>
       </div>
-      <router-link :to="{ name: 'my/products' }">
-        <div v-if="user?.role === 'Seller'" class="border-b border-gray-300 py-6 px-6">
-          <div class="flex items-center justify-between transition duration-400 hover:scale-105 cursor-pointer">
-            <span>MY PRODUCTS</span>
-            <img :src="arrow_down" alt="">
-          </div>
-        </div>
-      </router-link>
       <div @click="toggleCurrentOrder" class="border-b border-gray-300 py-6 px-6 cursor-pointer">
         <div class="flex items-center justify-between transition duration-400 hover:scale-105 cursor-pointer">
           <span>ACTIVE ORDERS</span>
           <img :src="arrow_down" alt="">
         </div>
       </div>
+      <router-link :to="{ name: 'my/products' }">
+        <div v-if="user?.role === 'Seller'" class="border-b border-gray-300 py-6 px-6">
+          <div class="flex items-center justify-between transition duration-400 hover:scale-105 cursor-pointer">
+            <span>ALL MY PRODUCTS</span>
+            <img :src="arrow_down" alt="">
+          </div>
+        </div>
+      </router-link>
       <div @click="toggleConfidentialityData" class="border-b border-gray-300 py-6 px-6 cursor-pointer">
         <div class="flex items-center justify-between transition duration-400 hover:scale-105 cursor-pointer">
           <span>CONFIDENTIALITY DATA</span>

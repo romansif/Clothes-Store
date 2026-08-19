@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useProducts } from "@/feature/products/composables/use.products.ts";
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
 import { productsCover } from "@/shared/composables/product.cover.ts";
 import { productsStore } from "@/shared/composables/stores/products.store";
 import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";

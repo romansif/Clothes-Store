@@ -5,7 +5,7 @@ import { authForms } from "@/shared/composables/forms/auth.forms.ts";
 
 const { showPassword, showSignSection } = authStore();
 const { CODE_LENGTH, codeDigits, inputRefs, timeLeft, timerInterval } = authForms();
-const { clearRegisterSellerForm, clearRegisterBuyerForm, clearLoginForm } = clearAuthForms();
+const { clearRegisterForm, clearLoginForm } = clearAuthForms();
 
 export const toggleAuth = () => {
     const togglePassword = () => {
@@ -15,8 +15,7 @@ export const toggleAuth = () => {
     const toggleSignIn = () => {
         showSignSection.value.signIn = !showSignSection.value.signIn;
 
-        clearRegisterBuyerForm();
-        clearRegisterSellerForm();
+        clearRegisterForm();
     };
 
     const toggleSignUp = () => {

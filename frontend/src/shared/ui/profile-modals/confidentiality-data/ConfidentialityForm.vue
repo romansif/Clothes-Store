@@ -2,7 +2,7 @@
 import { ref, watch } from 'vue'
 
 import { userForms } from "@/shared/composables/forms/users.forms";
-import { useProfile } from "@/feature/profile/composables/use.profile.ts";
+import { useProfile } from "@/feature/profile/profile-actions/use.profile.ts";
 import { userFormsErrors } from "@/shared/composables/errors/errors-messages/users.errors";
 import { usersStore } from "@/shared/composables/stores/users.store.ts";
 

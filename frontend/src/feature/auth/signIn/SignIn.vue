@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { watch } from "vue";
-import { auth } from "../auth-composables/auth.ts";
+import { auth } from "@/feature/auth/auth-actions/auth.ts";
 import { authForms } from "@/shared/composables/forms/auth.forms.ts";
-import { toggleAuth } from "@/feature/auth/auth-composables/toggleAuth.ts";
+import { toggleAuth } from "@/feature/auth/auth-actions/toggleAuth.ts";
 import { authStore } from "@/shared/composables/stores/auth.store.ts";
 import { authFormsErrors } from "@/shared/composables/errors/errors-messages/auth.errors.ts";
 

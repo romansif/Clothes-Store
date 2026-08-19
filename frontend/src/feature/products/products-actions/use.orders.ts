@@ -1,6 +1,6 @@
 import { handler } from "@/shared/api/http";
 import { productsStore } from "@/shared/composables/stores/products.store";
-import { checkout } from "@/feature/checkout/composables/checkout.ts";
+import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
 import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
 import { useFormsErrors } from "@/shared/composables/errors/errors-middleware/forms.errors.ts";

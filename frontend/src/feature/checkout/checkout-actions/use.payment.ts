@@ -3,9 +3,9 @@ import { useFormsErrors } from "@/shared/composables/errors/errors-middleware/fo
 import { usersStore } from "@/shared/composables/stores/users.store";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
-import { useOrders } from "@/feature/products/composables/use.orders.ts";
-import { checkout } from "@/feature/checkout/composables/checkout.ts";
-import { useCart } from "@/feature/profile/composables/use.cart.ts";
+import { useOrders } from "@/feature/products/products-actions/use.orders.ts";
+import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
+import { useCart } from "@/feature/cart/cart-actions/use.cart.ts";
 import { clearCheckoutForm } from "@/shared/composables/clear-forms/clear.checkout.ts";
 
 const { addOrder } = useOrders();

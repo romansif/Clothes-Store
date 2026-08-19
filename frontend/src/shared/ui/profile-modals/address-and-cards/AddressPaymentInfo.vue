@@ -2,8 +2,8 @@
 import { onMounted } from "vue";
 import { usersStore } from "@/shared/composables/stores/users.store"
 import { useProfileModals } from "@/shared/composables/modals/profile.modals";
-import { useAddress } from "@/feature/checkout/composables/use.address.ts";
-import { usePayment } from "@/feature/checkout/composables/use.payment.ts";
+import { useAddress } from "@/feature/checkout/checkout-actions/use.address.ts";
+import { usePayment } from "@/feature/checkout/checkout-actions/use.payment.ts";
 
 import PaymentsList from "@/shared/ui/profile-modals/address-and-cards/payments/PaymentsList.vue";
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, watch } from "vue";
-import { useShipping } from "@/feature/checkout/composables/use.shipping.ts";
-import { useAddress } from "@/feature/checkout/composables/use.address.ts";
+import { useShipping } from "@/feature/checkout/checkout-actions/use.shipping.ts";
+import { useAddress } from "@/feature/checkout/checkout-actions/use.address.ts";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
 import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors";
 

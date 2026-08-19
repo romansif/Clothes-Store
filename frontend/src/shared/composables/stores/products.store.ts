@@ -38,6 +38,22 @@ export interface Product {
     created_at: string,
 }
 
+interface Collection {
+    collection: string,
+}
+
+interface Category {
+    category: string,
+}
+
+interface Material {
+    material: string,
+}
+
+interface Gender {
+    gender: string,
+}
+
 interface Orders {
     id: string,
     userId: string,
@@ -61,26 +77,18 @@ interface Sizes {
     class: string,
 }
 
-interface Category {
-    category: string,
-}
-
-interface Material {
-    material: string,
-}
-
-interface Gender {
-    gender: string,
-}
-
-const sizes = ref<Sizes[]>([
-    {isActive: false, name: 'XS', url: xs, class: 'border-3 border-[#A3A3A3]'},
-    {isActive: false, name: 'S', url: s, class: 'border-3 border-[#A3A3A3]'},
-    {isActive: false, name: 'M', url: m, class: 'border-3 border-[#A3A3A3]'},
-    {isActive: false, name: 'L', url: l, class: 'border-3 border-[#A3A3A3]'} ,
-    {isActive: false, name: 'XL', url: xl, class: 'border-3 border-[#A3A3A3]'},
-    {isActive: false, name: 'XXL', url: xxl, class: 'border-3 border-[#A3A3A3]'},
-]);
+const collections: Collection[] = [
+    {collection: 'Essence'},
+    {collection: 'Silence'},
+    {collection: 'Blueprint'},
+    {collection: 'Chapter |'},
+    {collection: 'Raw'},
+    {collection: 'Mono'},
+    {collection: 'Grid'},
+    {collection: 'Draft'},
+    {collection: 'Void'},
+    {collection: 'Static'},
+]
 
 const categories: Category[] = [
     {category: 'Shoes'},
@@ -108,6 +116,15 @@ const genders: Gender[] = [
     {gender: 'Woman'},
     {gender: 'Kids'},
 ];
+
+const sizes = ref<Sizes[]>([
+    {isActive: false, name: 'XS', url: xs, class: 'border-3 border-[#A3A3A3]'},
+    {isActive: false, name: 'S', url: s, class: 'border-3 border-[#A3A3A3]'},
+    {isActive: false, name: 'M', url: m, class: 'border-3 border-[#A3A3A3]'},
+    {isActive: false, name: 'L', url: l, class: 'border-3 border-[#A3A3A3]'} ,
+    {isActive: false, name: 'XL', url: xl, class: 'border-3 border-[#A3A3A3]'},
+    {isActive: false, name: 'XXL', url: xxl, class: 'border-3 border-[#A3A3A3]'},
+]);
 
 const allProducts = ref<Product[]>([]);
 const products = ref<Product[]>([]);
@@ -142,6 +159,7 @@ const deliveryPrice = ref<number>(0);
 export const productsStore = () => {
     return {
         allProducts,
+        products,
         product,
 
         productsWeek,
@@ -149,20 +167,20 @@ export const productsStore = () => {
 
         myProducts,
 
-        productId,
+        orderItems,
         items,
 
-        sizes,
-        categories,
-        materials,
-        genders,
-
-        products,
         cart,
         favorite,
         orders,
 
-        orderItems,
+        productId,
+
+        collections,
+        categories,
+        materials,
+        genders,
+        sizes,
 
         activeProductImg,
         activeIndex,

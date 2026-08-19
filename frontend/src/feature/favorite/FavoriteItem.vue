@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { productsCover } from "@/shared/composables/product.cover.ts";
-import { useProducts } from "@/feature/products/composables/use.products.ts";
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
 import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { useFavorites } from "@/feature/profile/composables/use.favorites.ts";
+import { useFavorites } from "@/feature/favorite/favorite-actions/use.favorites.ts";
 import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
 
 import del from "@/app/assets/icons/delete-close/delete.svg";

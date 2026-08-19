@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useAddress } from "@/feature/checkout/composables/use.address.ts";
-import { checkout } from "@/feature/checkout/composables/checkout.ts";
+import { useAddress } from "@/feature/checkout/checkout-actions/use.address.ts";
+import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
 
 import ContactList from "@/feature/checkout/information/saved-checkout-lists/ContactList.vue";
 import AddressList from "@/feature/checkout/information/saved-checkout-lists/AddressList.vue";

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { checkout } from "../composables/checkout.ts";
+import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
 import { productsStore } from "@/shared/composables/stores/products.store";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
 

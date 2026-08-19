@@ -9,7 +9,7 @@ import { useBaseModals } from "@/shared/composables/modals/base.modals";
 const { loading, openNotify } = useBaseModals();
 const { users, user } = usersStore();
 const { registerErrors, loginErrors } = useFormsErrors();
-const { clearRegisterBuyerForm, clearRegisterSellerForm, clearRegisterFormMessages,
+const { clearRegisterForm, clearRegisterFormMessages,
     clearLoginForm, clearLoginFormMessages } = clearAuthForms();
 const { registerBuyerForm, registerSellerForm, loginForm } = authForms();
 
@@ -51,7 +51,7 @@ export const auth = () => {
             }
             users.value = authData;
 
-            (role === 'Buyer' ? clearRegisterBuyerForm() : clearRegisterSellerForm());
+            (role === 'Buyer' ? clearRegisterForm() : clearRegisterForm());
 
             loading.value = false;
             await openNotify('You have successfully sign up.',

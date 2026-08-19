@@ -1,12 +1,12 @@
 import { ref } from "vue";
 import { clearUsersForms } from "@/shared/composables/clear-forms/clear.users";
-import { useProducts } from "@/feature/products/composables/use.products.ts";
-import { useCart } from "@/feature/profile/composables/use.cart.ts";
-import { useAddress } from "@/feature/checkout/composables/use.address.ts";
-import { usePayment } from "@/feature/checkout/composables/use.payment.ts";
-import { useOrders } from "@/feature/products/composables/use.orders.ts";
-import { auth } from "@/feature/auth/auth-composables/auth.ts";
-import { useFavorites } from "@/feature/profile/composables/use.favorites.ts";
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
+import { useCart } from "@/feature/cart/cart-actions/use.cart.ts";
+import { useAddress } from "@/feature/checkout/checkout-actions/use.address.ts";
+import { usePayment } from "@/feature/checkout/checkout-actions/use.payment.ts";
+import { useOrders } from "@/feature/products/products-actions/use.orders.ts";
+import { auth } from "@/feature/auth/auth-actions/auth.ts";
+import { useFavorites } from "@/feature/favorite/favorite-actions/use.favorites.ts";
 
 const avatarModal = ref<boolean>(false);
 const fileInput = ref<HTMLInputElement | null>(null);

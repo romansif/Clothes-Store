@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useOrderCard } from "@/shared/ui/orders/use.order.card";
 import { productsStore } from "@/shared/composables/stores/products.store";
-import { useProducts } from "@/feature/products/composables/use.products";
+import { useProducts } from "@/feature/products/products-actions/use.products";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
 import { productsCover } from "@/shared/composables/product.cover.ts";
 

@@ -3,7 +3,7 @@ import { computed, ref } from "vue";
 import { usersStore } from "@/shared/composables/stores/users.store";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
 import { productsStore } from "@/shared/composables/stores/products.store";
-import { useCart } from "@/feature/profile/composables/use.cart.ts";
+import { useCart } from "@/feature/cart/cart-actions/use.cart.ts";
 import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors";
 
 const { items, deliveryPrice } = productsStore();

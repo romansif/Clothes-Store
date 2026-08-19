@@ -4,7 +4,7 @@ import { usePhoneForm } from "@/shared/mask-forms/use.phone.form";
 import { usersStore } from "@/shared/composables/stores/users.store";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
 import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors";
-import { checkoutPlaceholder } from "@/feature/checkout/composables/checkout.placeholder.ts";
+import { checkoutPlaceholder } from "@/feature/checkout/checkout-actions/checkout.placeholder.ts";
 
 import CheckoutInput from "@/shared/ui/base/input/CheckoutInput.vue";
 

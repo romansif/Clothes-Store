@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useProducts } from "@/feature/products/composables/use.products.ts";
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
 
 import arrow from "@/app/assets/icons/arrows/right-shop.svg";
 import photo_1 from "@/app/assets/photos/pants.png";

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
 import { computed } from "vue";
-import { checkout } from "./composables/checkout.ts";
+import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
 
 import PaymentDashboard from "./payment/PaymentDashboard.vue";

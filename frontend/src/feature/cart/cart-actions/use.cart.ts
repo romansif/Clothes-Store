@@ -5,9 +5,9 @@ import { productsForms } from "@/shared/composables/forms/products.forms.ts";
 import { clearProductsForms } from "@/shared/composables/clear-forms/clear.products.ts";
 import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
 
+const { openNotify } = useBaseModals();
 const { addToCartForm } = productsForms();
 const { addToCartErrors } = useFormsErrors();
-const { openNotify, loading } = useBaseModals();
 const { clearAddToCartForm } = clearProductsForms();
 const { products, cart, product, orderItems, unreadCount } = productsStore();
 
@@ -26,8 +26,6 @@ export const useCart = () => {
     };
 
     const addToCart = async () => {
-        loading.value = true;
-
         try{
             const userId = localStorage.getItem("userId");
 
@@ -61,8 +59,6 @@ export const useCart = () => {
 
             unreadCount.value += 1;
 
-            loading.value = false;
-
             await getCartProducts();
 
             clearAddToCartForm();
@@ -70,8 +66,6 @@ export const useCart = () => {
             await openNotify('You have successfully added the item to your cart.',
                 'You will now be redirected to the "Cart" page.', 'cart');
         }catch(err){
-            loading.value = false;
-
             addToCartErrors(err);
             console.error(`Failed to add the cart:`, err);
         }

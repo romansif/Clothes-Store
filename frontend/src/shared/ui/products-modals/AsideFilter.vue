@@ -7,8 +7,8 @@ import left_arrow from "@/app/assets/icons/arrows/left-arrow.png";
 import checked from '@/app/assets/icons/squares/check-square.png'
 
 import { onMounted } from "vue";
-import { filtered } from "@/feature/products/products-header/composables/filtered.ts";
-import { useProducts } from "@/feature/products/composables/use.products.ts";
+import { filtered } from "@/feature/navigation/products-header/nav-actions/filtered.ts";
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
 import { productsStore } from "@/shared/composables/stores/products.store";
 
 

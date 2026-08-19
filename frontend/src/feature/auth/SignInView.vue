@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { auth } from "@/feature/auth/auth-composables/auth.ts";
+import { auth } from "@/feature/auth/auth-actions/auth.ts";
 import { clearAuthForms } from "@/shared/composables/clear-forms/clear.auth.ts";
 import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
 import { authStore } from "@/shared/composables/stores/auth.store.ts";

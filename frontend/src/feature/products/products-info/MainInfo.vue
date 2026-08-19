@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { useRouter } from "vue-router";
-import { useProducts } from "@/feature/products/composables/use.products.ts";
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
 import { productsCover } from "@/shared/composables/product.cover.ts";
 import { productsStore } from "@/shared/composables/stores/products.store";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
@@ -24,11 +24,15 @@ const router = useRouter();
 const userId = localStorage.getItem("userId");
 
 onMounted(async () => {
+  loading.value = true;
+
   await getProduct();
 
   if(product.value && Array.isArray(product.value.images) && product.value.images[0]) {
     activeProductImg.value = productInfoPreview.value(product.value) ?? '';
   }
+
+  loading.value = false;
 })
 
 const routerBack = () => {

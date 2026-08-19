@@ -1,7 +1,7 @@
 import { ref } from "vue";
-import { useProducts } from "@/feature/products/composables/use.products.ts";
-import { useCart } from "@/feature/profile/composables/use.cart.ts";
-import { useFavorites } from "@/feature/profile/composables/use.favorites.ts";
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
+import { useCart } from "@/feature/cart/cart-actions/use.cart.ts";
+import { useFavorites } from "@/feature/favorite/favorite-actions/use.favorites.ts";
 
 const { getCartProducts } = useCart();
 const { getFilteredProducts } = useProducts();

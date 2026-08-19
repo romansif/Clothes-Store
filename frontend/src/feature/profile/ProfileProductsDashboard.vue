@@ -3,8 +3,8 @@ import { useRoute } from "vue-router";
 import { profile } from "@/shared/composables/profile.ts";
 import { computed, onErrorCaptured, onMounted, watch } from "vue";
 import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { useCart } from "@/feature/profile/composables/use.cart.ts";
-import { useFavorites } from "@/feature/profile/composables/use.favorites.ts";
+import { useCart } from "@/feature/cart/cart-actions/use.cart.ts";
+import { useFavorites } from "@/feature/favorite/favorite-actions/use.favorites.ts";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
 import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
 import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
@@ -13,14 +13,14 @@ import { checkoutErrors } from "@/shared/composables/errors/errors-messages/chec
 
 import NavBar from "@/feature/navigation/NavBar.vue";
 import square from "@/app/assets/icons/squares/square.png";
-import CartList from "@/feature/profile/cart/CartList.vue";
-import CartInfo from "@/feature/profile/cart/CartInfo.vue";
+import CartList from "@/feature/cart/CartList.vue";
+import CartInfo from "@/feature/cart/CartInfo.vue";
 import liked from "@/app/assets/icons/nav/liked.png";
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 import empty_cart from '@/app/assets/icons/products/empty-cart.svg';
 import favorite_cart from '@/app/assets/icons/products/favorute_empty.svg';
 import check_square from "@/app/assets/icons/squares/check-square.png";
-import FavoriteList from "@/feature/profile/favorite/FavoriteList.vue";
+import FavoriteList from "@/feature/favorite/FavoriteList.vue";
 import DeleteModal from "@/shared/ui/base/base-modals/DeleteModal.vue";
 import Notification from "@/shared/ui/base/base-modals/Notification.vue";
 import Loading from "@/shared/ui/base/base-modals/Loading.vue";
@@ -57,8 +57,12 @@ onErrorCaptured((err, info) => {
 });
 
 onMounted(async() => {
+  loading.value = true;
+
   await getCartProducts();
   await getFavoriteProducts();
+
+  loading.value = false;
 });
 </script>
 

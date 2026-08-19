@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { filtered } from "./composables/filtered.ts";
-import { productsStore } from "@/shared/composables/stores/products.store";
+import { filtered } from "@/feature/navigation/products-header/nav-actions/filtered.ts";
+import { productsStore } from "@/shared/composables/stores/products.store.ts";
 
 import square from '@/app/assets/icons/squares/square.png'
 import checked from '@/app/assets/icons/squares/check-square.png'

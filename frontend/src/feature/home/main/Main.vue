@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useProducts } from "@/feature/products/composables/use.products.ts";
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
 
 import photo_1 from '@/app/assets/photos/8.png'
 import photo_2 from '@/app/assets/photos/9.png'

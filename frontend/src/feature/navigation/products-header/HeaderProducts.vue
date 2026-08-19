@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { watch } from "vue";
-import { filtered } from "@/feature/products/products-header/composables/filtered.ts";
-import { useProducts } from "@/feature/products/composables/use.products.ts";
-import { useGetSearchedProducts } from "@/feature/products/products-header/composables/searched.ts";
-import { useProductsModals } from "@/shared/composables/modals/products.modals";
-import { productsForms } from "@/shared/composables/forms/products.forms";
+import { filtered } from "@/feature/navigation/products-header/nav-actions/filtered.ts";
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
+import { useGetSearchedProducts } from "@/feature/navigation/products-header/nav-actions/searched.ts";
+import { useProductsModals } from "@/shared/composables/modals/products.modals.ts";
+import { productsForms } from "@/shared/composables/forms/products.forms.ts";
 
 import del from '@/app/assets/icons/delete-close/clean_search.svg';
 import search from "@/app/assets/icons/nav/search.png";

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { profile } from "@/shared/composables/profile";
 import { useProfileModals } from "@/shared/composables/modals/profile.modals";
-import { useProfile } from "@/feature/profile/composables/use.profile";
+import { useProfile } from "@/feature/profile/profile-actions/use.profile";
 
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 
