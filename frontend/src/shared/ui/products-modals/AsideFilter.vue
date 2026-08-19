@@ -1,28 +1,3 @@
-<script setup lang="ts">
-import { useProductsModals } from "@/shared/composables/modals/products.modals";
-
-import square from "@/app/assets/icons/squares/square.png";
-import availability from "@/app/assets/icons/arrows/arrow-up.png";
-import left_arrow from "@/app/assets/icons/arrows/left-arrow.png";
-import checked from '@/app/assets/icons/squares/check-square.png'
-
-import { onMounted } from "vue";
-import { filtered } from "@/feature/navigation/products-header/nav-actions/filtered.ts";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-import { productsStore } from "@/shared/composables/stores/products.store";
-
-
-const { getAllProducts } = useProducts();
-const { allProducts, sizes } = productsStore();
-const { toggleFilterAside } = useProductsModals();
-const { toggleFilter, toggleSize, stackProducts, genders, colors } = filtered();
-
-onMounted(async() => {
-  await getAllProducts();
-})
-
-</script>
-
 <template>
   <aside class="fixed inset-0 z-50">
     <div class="font-[Montserrat] flex flex-col h-screen bg-white px-6 py-6 sm:w-[305px] md:w-[330px]">
@@ -100,6 +75,30 @@ onMounted(async() => {
     </div>
   </aside>
 </template>
+
+<script setup lang="ts">
+import { useProductsModals } from "@/shared/composables/modals/products.modals";
+
+import square from "@/app/assets/icons/squares/square.png";
+import availability from "@/app/assets/icons/arrows/arrow-up.png";
+import left_arrow from "@/app/assets/icons/arrows/left-arrow.png";
+import checked from '@/app/assets/icons/squares/check-square.png'
+
+import { onMounted } from "vue";
+import { filtered } from "@/feature/navigation/products-header/nav-actions/filtered.ts";
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
+import { productsStore } from "@/shared/composables/stores/products.store";
+
+
+const { getAllProducts } = useProducts();
+const { allProducts, sizes } = productsStore();
+const { toggleFilterAside } = useProductsModals();
+const { toggleFilter, toggleSize, stackProducts, genders, colors } = filtered();
+
+onMounted(async() => {
+  await getAllProducts();
+})
+</script>
 
 <style scoped>
 

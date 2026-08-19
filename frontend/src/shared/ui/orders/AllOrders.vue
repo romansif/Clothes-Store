@@ -1,27 +1,3 @@
-<script setup lang="ts">
-import { onMounted } from "vue";
-import { useOrderCard } from "@/shared/ui/orders/use.order.card.ts";
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { useOrders } from "@/feature/products/products-actions/use.orders.ts";
-import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
-import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
-
-import OrdersList from "@/shared/ui/orders/order-items/OrderList.vue";
-import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
-import ClipboardNotify from "@/shared/ui/base/base-modals/ClipboardNotify.vue";
-import ReplacementChoice from "@/shared/ui/base/base-modals/ReplacementChoice.vue";
-
-const { orders } = productsStore();
-const { clipboard } = useOrderCard();
-const { getOrders } = useOrders();
-const { choiceModal } = useBaseModals();
-const { toggleOrderHistory } = useProfileModals();
-
-onMounted(async () => {
-  await getOrders();
-})
-</script>
-
 <template>
   <div>
     <div v-if="!choiceModal" @click="toggleOrderHistory" class="font-[Montserrat] fixed inset-0 z-50
@@ -48,6 +24,30 @@ onMounted(async () => {
     </Transition>
   </div>
 </template>
+
+<script setup lang="ts">
+import { onMounted } from "vue";
+import { useOrderCard } from "@/shared/ui/orders/use.order.card.ts";
+import { productsStore } from "@/shared/composables/stores/products.store.ts";
+import { useOrders } from "@/feature/products/products-actions/use.orders.ts";
+import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
+import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
+
+import OrdersList from "@/shared/ui/orders/order-items/OrderList.vue";
+import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
+import ClipboardNotify from "@/shared/ui/base/base-modals/ClipboardNotify.vue";
+import ReplacementChoice from "@/shared/ui/base/base-modals/ReplacementChoice.vue";
+
+const { orders } = productsStore();
+const { clipboard } = useOrderCard();
+const { getOrders } = useOrders();
+const { choiceModal } = useBaseModals();
+const { toggleOrderHistory } = useProfileModals();
+
+onMounted(async () => {
+  await getOrders();
+})
+</script>
 
 <style scoped>
 

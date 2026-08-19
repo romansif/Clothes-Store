@@ -1,13 +1,3 @@
-<script setup lang="ts">
-import { productsCover } from "@/shared/composables/product.cover.ts";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-import { productsStore } from "@/shared/composables/stores/products.store";
-
-const { productsYear } = productsStore();
-const { getProductId } = useProducts();
-const { productPreview } = productsCover();
-</script>
-
 <template>
   <TransitionGroup name="list">
     <li @click="getProductId(product.id)" v-for="product in productsYear" :key="product.id"
@@ -27,22 +17,16 @@ const { productPreview } = productsCover();
   </TransitionGroup>
 </template>
 
+<script setup lang="ts">
+import { productsCover } from "@/shared/composables/product.cover.ts";
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
+import { productsStore } from "@/shared/composables/stores/products.store";
+
+const { productsYear } = productsStore();
+const { getProductId } = useProducts();
+const { productPreview } = productsCover();
+</script>
+
 <style scoped>
-.list-move, /* apply transition to moving elements */
-.list-enter-active,
-.list-leave-active {
-  transition: all 0.5s ease;
-}
 
-.list-enter-from,
-.list-leave-to {
-  opacity: 0;
-  transform: translateX(30px);
-}
-
-/* ensure leaving my-items are taken out of layout flow so that moving
-   animations can be calculated correctly. */
-.list-leave-active {
-  position: absolute;
-}
 </style>

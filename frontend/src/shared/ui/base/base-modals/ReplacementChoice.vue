@@ -1,22 +1,3 @@
-<script setup lang="ts">
-import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
-import { useOrders } from "@/feature/products/products-actions/use.orders.ts";
-
-import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
-import ReplacementInput from "@/shared/ui/base/input/ReplacementInput.vue";
-import {watch} from "vue";
-
-const { replaceOrder } = useOrders();
-const { toggleOrder, cancelChoice, cancelChoiceMessage, cancelChoiceError } = useBaseModals();
-
-watch(() => [cancelChoice.value],([choice]) => {
-      if(choice){
-        cancelChoiceError.value = false;
-      }
-    }
-);
-</script>
-
 <template>
   <div @click="toggleOrder('')" class="font-[Montserrat] fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)]
       flex items-center justify-center">
@@ -45,6 +26,25 @@ watch(() => [cancelChoice.value],([choice]) => {
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
+import { useOrders } from "@/feature/products/products-actions/use.orders.ts";
+
+import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
+import ReplacementInput from "@/shared/ui/base/input/ReplacementInput.vue";
+import {watch} from "vue";
+
+const { replaceOrder } = useOrders();
+const { toggleOrder, cancelChoice, cancelChoiceMessage, cancelChoiceError } = useBaseModals();
+
+watch(() => [cancelChoice.value],([choice]) => {
+      if(choice){
+        cancelChoiceError.value = false;
+      }
+    }
+);
+</script>
 
 <style scoped>
 

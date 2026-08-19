@@ -1,13 +1,3 @@
-<script setup lang="ts">
-import { usersStore } from "@/shared/composables/stores/users.store";
-import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
-import { usePayment } from "@/feature/checkout/checkout-actions/use.payment.ts";
-
-const { userPayments } = usersStore();
-const { isChosenPayment } = checkout();
-const { useSavedCard } = usePayment();
-</script>
-
 <template>
   <TransitionGroup name="list">
     <li @click="useSavedCard(checkout.cardName, checkout.cardNumber, checkout.expiryDate, checkout.cardCvv, checkout.id)"
@@ -34,6 +24,16 @@ const { useSavedCard } = usePayment();
     </li>
   </TransitionGroup>
 </template>
+
+<script setup lang="ts">
+import { usersStore } from "@/shared/composables/stores/users.store";
+import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
+import { usePayment } from "@/feature/checkout/checkout-actions/use.payment.ts";
+
+const { userPayments } = usersStore();
+const { isChosenPayment } = checkout();
+const { useSavedCard } = usePayment();
+</script>
 
 <style scoped>
 

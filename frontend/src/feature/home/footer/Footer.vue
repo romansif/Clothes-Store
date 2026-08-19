@@ -1,7 +1,3 @@
-<script setup lang="ts">
-  import logo from '@/app/assets/icons/nav/logo.png';
-</script>
-
 <template>
   <footer class="font-[Montserrat] flex justify-center items-center bg-[#F5F5F5] mt-30">
     <div class="w-75 md:w-175 lg:w-250 py-20">
@@ -42,6 +38,10 @@
     </div>
   </footer>
 </template>
+
+<script setup lang="ts">
+import logo from '@/app/assets/icons/nav/logo.png';
+</script>
 
 <style scoped>
 

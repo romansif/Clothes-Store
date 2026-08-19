@@ -1,23 +1,3 @@
-<script setup lang="ts">
-import { productsCover } from "@/shared/composables/product.cover.ts";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { useFavorites } from "@/feature/favorite/favorite-actions/use.favorites.ts";
-
-import like from "@/app/assets/icons/nav/like.png";
-import update from "@/app/assets/icons/products/refresh.svg";
-import liked from "@/app/assets/icons/nav/liked.png";
-
-const { favorite } = productsStore();
-const { getProductId } = useProducts();
-const { productPreview } = productsCover();
-const { toggleToFavorite } = useFavorites();
-
-const refreshPage = () => {
-  window.location.reload();
-}
-</script>
-
 <template>
   <TransitionGroup name="list">
     <li v-for="product in favorite" :key="product.id" class="flex gap-5">
@@ -51,6 +31,26 @@ const refreshPage = () => {
     </li>
   </TransitionGroup>
 </template>
+
+<script setup lang="ts">
+import { productsCover } from "@/shared/composables/product.cover.ts";
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
+import { productsStore } from "@/shared/composables/stores/products.store.ts";
+import { useFavorites } from "@/feature/favorite/favorite-actions/use.favorites.ts";
+
+import like from "@/app/assets/icons/nav/like.png";
+import update from "@/app/assets/icons/products/refresh.svg";
+import liked from "@/app/assets/icons/nav/liked.png";
+
+const { favorite } = productsStore();
+const { getProductId } = useProducts();
+const { productPreview } = productsCover();
+const { toggleToFavorite } = useFavorites();
+
+const refreshPage = () => {
+  window.location.reload();
+}
+</script>
 
 <style scoped>
 

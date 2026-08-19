@@ -1,7 +1,3 @@
-<script setup lang="ts">
-  import not_avatar from '@/app/assets/icons/users/default-avatar.png'
-</script>
-
 <template>
     <div class="flex justify-between items-center px-12 py-8 bg-white rounded-xl">
       <div class="flex flex-col items-center gap-4">
@@ -21,6 +17,10 @@
       </div>
     </div>
 </template>
+
+<script setup lang="ts">
+  import not_avatar from '@/app/assets/icons/users/default-avatar.png'
+</script>
 
 <style scoped>
 

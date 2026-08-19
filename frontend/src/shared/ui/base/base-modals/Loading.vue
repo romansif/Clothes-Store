@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import loading from '@/app/assets/icons/auth/loading.svg'
-</script>
-
 <template>
   <div class="font-[Montserrat] fixed inset-0 z-50 bg-[#F0F0F0] flex flex-col items-center justify-center transition-opacity duration-500">
     <div class="flex flex-col items-center gap-12">
@@ -14,6 +10,10 @@ import loading from '@/app/assets/icons/auth/loading.svg'
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import loading from '@/app/assets/icons/auth/loading.svg'
+</script>
 
 <style scoped>
 

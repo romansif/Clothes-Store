@@ -1,9 +1,3 @@
-<script setup lang="ts">
-import { usersStore } from "@/shared/composables/stores/users.store";
-
-const { user } = usersStore();
-</script>
-
 <template>
   <div class="flex gap-10">
     <div class="flex flex-col gap-4 mt-4 w-full">
@@ -34,6 +28,12 @@ const { user } = usersStore();
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { usersStore } from "@/shared/composables/stores/users.store";
+
+const { user } = usersStore();
+</script>
 
 <style scoped>
 

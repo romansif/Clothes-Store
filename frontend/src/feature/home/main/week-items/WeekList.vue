@@ -1,16 +1,3 @@
-<script setup lang="ts">
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-import { productsCover } from "@/shared/composables/product.cover.ts";
-
-import WeekItem from "@/feature/home/main/week-items/WeekItem.vue";
-import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
-
-const { productsWeek } = productsStore();
-const { getWeekProducts } = useProducts();
-const { vHorizontalScroll } = productsCover()
-</script>
-
 <template>
   <ul v-horizontal-scroll v-if="productsWeek.length > 0"
       class="flex gap-10 xl:gap-20 overflow-x-auto whitespace-nowrap no-scrollbar">
@@ -24,6 +11,19 @@ const { vHorizontalScroll } = productsCover()
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { productsStore } from "@/shared/composables/stores/products.store.ts";
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
+import { productsCover } from "@/shared/composables/product.cover.ts";
+
+import WeekItem from "@/feature/home/main/week-items/WeekItem.vue";
+import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
+
+const { productsWeek } = productsStore();
+const { getWeekProducts } = useProducts();
+const { vHorizontalScroll } = productsCover()
+</script>
 
 <style scoped>
 

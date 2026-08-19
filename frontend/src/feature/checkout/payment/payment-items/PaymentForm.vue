@@ -1,16 +1,3 @@
-<script setup lang="ts">
-import { IMaskComponent as IMask } from "vue-imask";
-import { usersStore } from "@/shared/composables/stores/users.store";
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
-import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors";
-import { checkoutPlaceholder } from "@/feature/checkout/checkout-actions/checkout.placeholder.ts";
-
-const { payment } = checkoutForms();
-const { paymentErrors } = checkoutErrors();
-const { cardNumberMask, expiryDateMask, cardCvv } = usersStore();
-const { cardNumberPlaceholder, expiryDatePlaceholder, cardCvvPlaceholder } = checkoutPlaceholder();
-</script>
-
 <template>
   <div class="flex gap-2">
     <div class="flex flex-col gap-2 w-full">
@@ -50,6 +37,19 @@ const { cardNumberPlaceholder, expiryDatePlaceholder, cardCvvPlaceholder } = che
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { IMaskComponent as IMask } from "vue-imask";
+import { usersStore } from "@/shared/composables/stores/users.store";
+import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
+import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors";
+import { checkoutPlaceholder } from "@/feature/checkout/checkout-actions/checkout.placeholder.ts";
+
+const { payment } = checkoutForms();
+const { paymentErrors } = checkoutErrors();
+const { cardNumberMask, expiryDateMask, cardCvv } = usersStore();
+const { cardNumberPlaceholder, expiryDatePlaceholder, cardCvvPlaceholder } = checkoutPlaceholder();
+</script>
 
 <style scoped>
 

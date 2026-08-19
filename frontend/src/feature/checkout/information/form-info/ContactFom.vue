@@ -1,20 +1,3 @@
-<script setup lang="ts">
-import { IMaskComponent as IMask } from "vue-imask";
-import { usePhoneForm } from "@/shared/mask-forms/use.phone.form";
-import { usersStore } from "@/shared/composables/stores/users.store";
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
-import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors";
-import { checkoutPlaceholder } from "@/feature/checkout/checkout-actions/checkout.placeholder.ts";
-
-import CheckoutInput from "@/shared/ui/base/input/CheckoutInput.vue";
-
-const { information } = checkoutForms();
-const { informationErrors } = checkoutErrors();
-const { currentMask, changeCountry } = usePhoneForm();
-const { countries, selectedCountryCode } = usersStore();
-const { emailPlaceholder, phonePlaceholder } = checkoutPlaceholder();
-</script>
-
 <template>
   <form class="flex flex-col mt-5 gap-5">
     <label class="font-medium text-xs md:text-sm">CONTACT INFO</label>
@@ -38,6 +21,23 @@ const { emailPlaceholder, phonePlaceholder } = checkoutPlaceholder();
     </div>
   </form>
 </template>
+
+<script setup lang="ts">
+import { IMaskComponent as IMask } from "vue-imask";
+import { usePhoneForm } from "@/shared/mask-forms/use.phone.form";
+import { usersStore } from "@/shared/composables/stores/users.store";
+import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
+import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors";
+import { checkoutPlaceholder } from "@/feature/checkout/checkout-actions/checkout.placeholder.ts";
+
+import CheckoutInput from "@/shared/ui/base/input/CheckoutInput.vue";
+
+const { information } = checkoutForms();
+const { informationErrors } = checkoutErrors();
+const { currentMask, changeCountry } = usePhoneForm();
+const { countries, selectedCountryCode } = usersStore();
+const { emailPlaceholder, phonePlaceholder } = checkoutPlaceholder();
+</script>
 
 <style scoped>
 

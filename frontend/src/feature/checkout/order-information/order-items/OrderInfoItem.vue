@@ -1,13 +1,3 @@
-<script setup lang="ts">
-import { productsStore } from "@/shared/composables/stores/products.store";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-import { productsCover } from "@/shared/composables/product.cover.ts";
-
-const { items } = productsStore();
-const { getProductId } = useProducts();
-const { orderPreview, pureColorsName } = productsCover();
-</script>
-
 <template>
   <TransitionGroup name="list">
     <li @click="getProductId(product.productId)" v-for="product in items" :key="product?.id" class="flex justify-between gap-3 w-full">
@@ -30,6 +20,16 @@ const { orderPreview, pureColorsName } = productsCover();
     </li>
   </TransitionGroup>
 </template>
+
+<script setup lang="ts">
+import { productsStore } from "@/shared/composables/stores/products.store";
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
+import { productsCover } from "@/shared/composables/product.cover.ts";
+
+const { items } = productsStore();
+const { getProductId } = useProducts();
+const { orderPreview, pureColorsName } = productsCover();
+</script>
 
 <style scoped>
 

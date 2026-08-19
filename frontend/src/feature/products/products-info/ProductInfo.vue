@@ -1,38 +1,3 @@
-<script setup lang="ts">
-import { watch} from "vue";
-import { productsCover } from "@/shared/composables/product.cover.ts";
-
-import { useCart } from "@/feature/cart/cart-actions/use.cart.ts";
-import { useFavorites } from "@/feature/favorite/favorite-actions/use.favorites.ts";
-import { productsStore } from "@/shared/composables/stores/products.store";
-import { productsForms } from "@/shared/composables/forms/products.forms";
-import { productsFormErrors } from "@/shared/composables/errors/errors-messages/products.errors";
-
-import plus from '@/app/assets/icons/products/plus.svg';
-import minus from '@/app/assets/icons/products/minus.svg';
-import like from '@/app/assets/icons/nav/like.png';
-import liked from '@/app/assets/icons/nav/liked.png';
-import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
-
-const { product } = productsStore();
-const { toggleToFavorite } = useFavorites();
-const { addToCart, updateCartItem } = useCart();
-const { addCartFormErrors } = productsFormErrors();
-const { addToCartForm, addToCartFormMessages } = productsForms();
-const { pureInfoColors, isAvailableSizes, isInCart } = productsCover();
-
-const userId = localStorage.getItem("userId");
-
-watch(() => [addToCartForm.value.colors, addToCartForm.value.sizes], ([color, size]) => {
-  if(color){
-    addCartFormErrors.value.colorError = false
-  }
-  if(size){
-    addCartFormErrors.value.sizeError = false
-  }
-})
-</script>
-
 <template>
   <div class="flex flex-col mt-6 px-4 lg:mt-0 w-123">
     <div class="flex flex-col gap-2">
@@ -111,6 +76,41 @@ watch(() => [addToCartForm.value.colors, addToCartForm.value.sizes], ([color, si
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { watch} from "vue";
+import { productsCover } from "@/shared/composables/product.cover.ts";
+
+import { useCart } from "@/feature/cart/cart-actions/use.cart.ts";
+import { useFavorites } from "@/feature/favorite/favorite-actions/use.favorites.ts";
+import { productsStore } from "@/shared/composables/stores/products.store";
+import { productsForms } from "@/shared/composables/forms/products.forms";
+import { productsFormErrors } from "@/shared/composables/errors/errors-messages/products.errors";
+
+import plus from '@/app/assets/icons/products/plus.svg';
+import minus from '@/app/assets/icons/products/minus.svg';
+import like from '@/app/assets/icons/nav/like.png';
+import liked from '@/app/assets/icons/nav/liked.png';
+import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
+
+const { product } = productsStore();
+const { toggleToFavorite } = useFavorites();
+const { addToCart, updateCartItem } = useCart();
+const { addCartFormErrors } = productsFormErrors();
+const { addToCartForm, addToCartFormMessages } = productsForms();
+const { pureInfoColors, isAvailableSizes, isInCart } = productsCover();
+
+const userId = localStorage.getItem("userId");
+
+watch(() => [addToCartForm.value.colors, addToCartForm.value.sizes], ([color, size]) => {
+  if(color){
+    addCartFormErrors.value.colorError = false
+  }
+  if(size){
+    addCartFormErrors.value.sizeError = false
+  }
+})
+</script>
 
 <style scoped>
 

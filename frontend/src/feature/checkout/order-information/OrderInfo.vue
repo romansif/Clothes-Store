@@ -1,15 +1,3 @@
-<script setup lang="ts">
-import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
-import { productsStore } from "@/shared/composables/stores/products.store";
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
-
-import OrderInfoList from "./order-items/OrderInfoList.vue";
-
-const { items } = productsStore();
-const { shipping } = checkoutForms();
-const { price, totalPrice, commissionPrice } = checkout();
-</script>
-
 <template>
   <div class="md:px-5 sm:px-4 px-4 lg:w-75 xl:w-100">
     <div class="flex">
@@ -40,6 +28,18 @@ const { price, totalPrice, commissionPrice } = checkout();
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
+import { productsStore } from "@/shared/composables/stores/products.store";
+import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
+
+import OrderInfoList from "./order-items/OrderInfoList.vue";
+
+const { items } = productsStore();
+const { shipping } = checkoutForms();
+const { price, totalPrice, commissionPrice } = checkout();
+</script>
 
 <style scoped>
 

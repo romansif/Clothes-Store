@@ -1,17 +1,3 @@
-<script setup lang="ts">
-import { computed } from "vue";
-import { usersStore } from "@/shared/composables/stores/users.store";
-
-import AddressesItem from "./AddressesItem.vue";
-import icon_address from "@/app/assets/icons/checkout/icon_address.svg";
-
-const { userAddresses } = usersStore();
-
-const userAddressesCity = computed(() => {
-  return userAddresses.value.some(item => 'city' in item);
-});
-</script>
-
 <template>
   <ul v-if="userAddressesCity" class="flex flex-col overflow-y-auto no-scrollbar h-92.5 pb-4">
     <AddressesItem />
@@ -26,6 +12,20 @@ const userAddressesCity = computed(() => {
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { computed } from "vue";
+import { usersStore } from "@/shared/composables/stores/users.store";
+
+import AddressesItem from "./AddressesItem.vue";
+import icon_address from "@/app/assets/icons/checkout/icon_address.svg";
+
+const { userAddresses } = usersStore();
+
+const userAddressesCity = computed(() => {
+  return userAddresses.value.some(item => 'city' in item);
+});
+</script>
 
 <style scoped>
 

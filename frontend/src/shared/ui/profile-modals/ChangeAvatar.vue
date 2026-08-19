@@ -1,15 +1,3 @@
-<script setup lang="ts">
-import { profile } from "@/shared/composables/profile";
-import { useProfileModals } from "@/shared/composables/modals/profile.modals";
-import { useProfile } from "@/feature/profile/profile-actions/use.profile";
-
-import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
-
-const { userAvatar } = profile();
-const { updateAvatarAccount } = useProfile();
-const { toggleAvatar, openSelectAvatar, fileInput } = useProfileModals();
-</script>
-
 <template>
   <div @click="toggleAvatar" class="font-[Montserrat] fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)]
                                 flex items-center justify-center">
@@ -28,6 +16,18 @@ const { toggleAvatar, openSelectAvatar, fileInput } = useProfileModals();
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { profile } from "@/shared/composables/profile";
+import { useProfileModals } from "@/shared/composables/modals/profile.modals";
+import { useProfile } from "@/feature/profile/profile-actions/use.profile";
+
+import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
+
+const { userAvatar } = profile();
+const { updateAvatarAccount } = useProfile();
+const { toggleAvatar, openSelectAvatar, fileInput } = useProfileModals();
+</script>
 
 <style scoped>
 

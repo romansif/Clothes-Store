@@ -1,23 +1,3 @@
-<script setup lang="ts">
-import { onMounted } from "vue";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-
-import photo_1 from '@/app/assets/photos/8.png'
-import photo_2 from '@/app/assets/photos/9.png'
-import photo_3 from '@/app/assets/photos/10.png'
-
-import WeekList from "@/feature/home/main/week-items/WeekList.vue";
-import YearList from "@/feature/home/main/year-items/YearList.vue";
-import FilterGender from "@/feature/home/main/FilterGender.vue";
-
-const { getWeekProducts, getYearProducts } = useProducts();
-
-onMounted(async () => {
-  await getWeekProducts();
-  await getYearProducts('ALL', 'ALL');
-})
-</script>
-
 <template>
   <main class="font-[Montserrat] xl:mt-25 lg:mt-95 md:mt-65 mt-45">
     <div class="flex flex-col">
@@ -70,6 +50,26 @@ onMounted(async () => {
     </div>
   </main>
 </template>
+
+<script setup lang="ts">
+import { onMounted } from "vue";
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
+
+import photo_1 from '@/app/assets/photos/8.png'
+import photo_2 from '@/app/assets/photos/9.png'
+import photo_3 from '@/app/assets/photos/10.png'
+
+import WeekList from "@/feature/home/main/week-items/WeekList.vue";
+import YearList from "@/feature/home/main/year-items/YearList.vue";
+import FilterGender from "@/feature/home/main/FilterGender.vue";
+
+const { getWeekProducts, getYearProducts } = useProducts();
+
+onMounted(async () => {
+  await getWeekProducts();
+  await getYearProducts('ALL', 'ALL');
+})
+</script>
 
 <style scoped>
 

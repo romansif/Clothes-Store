@@ -1,13 +1,3 @@
-<script setup lang="ts">
-import { usersStore } from "@/shared/composables/stores/users.store.ts";
-import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
-import { useAddress } from "@/feature/checkout/checkout-actions/use.address.ts";
-
-const { userAddresses } = usersStore();
-const { isChosenContactInfo } = checkout();
-const { useSavedContactInfo } = useAddress();
-</script>
-
 <template>
   <TransitionGroup name="list">
     <li @click="useSavedContactInfo(checkout.email, checkout.phone, checkout.id)" v-for="checkout in userAddresses" :key="checkout.id" :class="[`flex flex-col mt-5 transition duration-400 bg-[#D9D9D9]/40
@@ -23,6 +13,16 @@ const { useSavedContactInfo } = useAddress();
     </li>
   </TransitionGroup>
 </template>
+
+<script setup lang="ts">
+import { usersStore } from "@/shared/composables/stores/users.store.ts";
+import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
+import { useAddress } from "@/feature/checkout/checkout-actions/use.address.ts";
+
+const { userAddresses } = usersStore();
+const { isChosenContactInfo } = checkout();
+const { useSavedContactInfo } = useAddress();
+</script>
 
 <style scoped>
 

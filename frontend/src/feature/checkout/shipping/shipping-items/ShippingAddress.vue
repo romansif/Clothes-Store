@@ -1,9 +1,3 @@
-<script setup lang="ts">
-import { usersStore } from "@/shared/composables/stores/users.store";
-
-const { userAddress } = usersStore();
-</script>
-
 <template>
   <div class="flex flex-col mt-8 gap-5">
     <div class="flex flex-col px-3 py-6 border border-gray-300 rounded-xl transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50">
@@ -21,6 +15,12 @@ const { userAddress } = usersStore();
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { usersStore } from "@/shared/composables/stores/users.store";
+
+const { userAddress } = usersStore();
+</script>
 
 <style scoped>
 

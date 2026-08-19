@@ -1,3 +1,7 @@
+<template>
+  <div id="google-button"></div>
+</template>
+
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { auth } from "@/feature/auth/auth-actions/auth.ts";
@@ -21,7 +25,3 @@ onMounted(() => {
   );
 });
 </script>
-
-<template>
-  <div id="google-button"></div>
-</template>

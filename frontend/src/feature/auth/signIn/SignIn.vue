@@ -1,35 +1,3 @@
-<script setup lang="ts">
-import { watch } from "vue";
-import { auth } from "@/feature/auth/auth-actions/auth.ts";
-import { authForms } from "@/shared/composables/forms/auth.forms.ts";
-import { toggleAuth } from "@/feature/auth/auth-actions/toggleAuth.ts";
-import { authStore } from "@/shared/composables/stores/auth.store.ts";
-import { authFormsErrors } from "@/shared/composables/errors/errors-messages/auth.errors.ts";
-
-import closed from "@/app/assets/icons/auth/closed.png";
-import opened from "@/app/assets/icons/auth/opened.png";
-import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
-
-const { signIn } = auth();
-const { showPassword } = authStore();
-const { loginFormErrors } = authFormsErrors();
-const { loginForm, loginFormMessages } = authForms();
-const { togglePassword } = toggleAuth();
-
-watch(() => [loginForm.value.email, loginForm.value.password, loginForm.value.role],([email, password, role]) => {
-      if(email){
-        loginFormErrors.value.emailError = false;
-      }
-      if(password){
-        loginFormErrors.value.passwordError = false;
-      }
-      if(role){
-        loginFormErrors.value.roleError = false;
-      }
-    }
-);
-</script>
-
 <template>
   <form @keydown.enter="signIn" action="" class="mt-10">
     <div class="flex flex-col gap-4">
@@ -76,6 +44,38 @@ watch(() => [loginForm.value.email, loginForm.value.password, loginForm.value.ro
     </div>
   </form>
 </template>
+
+<script setup lang="ts">
+import { watch } from "vue";
+import { auth } from "@/feature/auth/auth-actions/auth.ts";
+import { authForms } from "@/shared/composables/forms/auth.forms.ts";
+import { toggleAuth } from "@/feature/auth/auth-actions/toggleAuth.ts";
+import { authStore } from "@/shared/composables/stores/auth.store.ts";
+import { authFormsErrors } from "@/shared/composables/errors/errors-messages/auth.errors.ts";
+
+import closed from "@/app/assets/icons/auth/closed.png";
+import opened from "@/app/assets/icons/auth/opened.png";
+import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
+
+const { signIn } = auth();
+const { showPassword } = authStore();
+const { loginFormErrors } = authFormsErrors();
+const { loginForm, loginFormMessages } = authForms();
+const { togglePassword } = toggleAuth();
+
+watch(() => [loginForm.value.email, loginForm.value.password, loginForm.value.role],([email, password, role]) => {
+      if(email){
+        loginFormErrors.value.emailError = false;
+      }
+      if(password){
+        loginFormErrors.value.passwordError = false;
+      }
+      if(role){
+        loginFormErrors.value.roleError = false;
+      }
+    }
+);
+</script>
 
 <style scoped>
 

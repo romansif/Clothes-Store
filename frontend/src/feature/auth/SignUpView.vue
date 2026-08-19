@@ -1,24 +1,3 @@
-<script setup lang="ts">
-import { auth } from "@/feature/auth/auth-actions/auth.ts";
-import { clearAuthForms } from "@/shared/composables/clear-forms/clear.auth.ts";
-import { toggleAuth } from "@/feature/auth/auth-actions/toggleAuth.ts";
-import { useBaseModals } from "@/shared/composables/modals/base.modals";
-import { authStore } from "@/shared/composables/stores/auth.store.ts";
-
-import SignUpBuyer from "@/feature/auth/signUp/SignUpBuyer.vue";
-import SignUpSeller from "@/feature/auth/signUp/SignUpSeller.vue";
-import Loading from "@/shared/ui/base/base-modals/Loading.vue";
-import Notification from "@/shared/ui/base/base-modals/Notification.vue";
-import maki_arrow from "@/app/assets/icons/arrows/right-short-arrow.svg";
-import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
-
-const { signUp } = auth();
-const { toggleSignUp } = toggleAuth();
-const { showSignSection } = authStore();
-const { loading, notify } = useBaseModals();
-const { clearRegisterForm } = clearAuthForms();
-</script>
-
 <template>
   <div class='fixed font-[Montserrat] inset-0 flex items-center justify-center'>
     <div class="w-87.5 sm:w-150 rounded-lg px-8 py-8">
@@ -52,6 +31,27 @@ const { clearRegisterForm } = clearAuthForms();
     <Notification v-if="notify"/>
   </Transition>
 </template>
+
+<script setup lang="ts">
+import { auth } from "@/feature/auth/auth-actions/auth.ts";
+import { clearAuthForms } from "@/shared/composables/clear-forms/clear.auth.ts";
+import { toggleAuth } from "@/feature/auth/auth-actions/toggleAuth.ts";
+import { useBaseModals } from "@/shared/composables/modals/base.modals";
+import { authStore } from "@/shared/composables/stores/auth.store.ts";
+
+import SignUpBuyer from "@/feature/auth/signUp/SignUpBuyer.vue";
+import SignUpSeller from "@/feature/auth/signUp/SignUpSeller.vue";
+import Loading from "@/shared/ui/base/base-modals/Loading.vue";
+import Notification from "@/shared/ui/base/base-modals/Notification.vue";
+import maki_arrow from "@/app/assets/icons/arrows/right-short-arrow.svg";
+import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
+
+const { signUp } = auth();
+const { toggleSignUp } = toggleAuth();
+const { showSignSection } = authStore();
+const { loading, notify } = useBaseModals();
+const { clearRegisterForm } = clearAuthForms();
+</script>
 
 <style scoped>
 

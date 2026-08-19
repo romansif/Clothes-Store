@@ -1,17 +1,3 @@
-<script setup lang="ts">
-import { computed } from "vue";
-import { usersStore } from "@/shared/composables/stores/users.store";
-
-import PaymentsItem from "./PaymentsItem.vue";
-import icon_card from "@/app/assets/icons/checkout/payment/icon_card.svg";
-
-const { userPayments } = usersStore();
-
-const userPaymentsCard = computed(() => {
-  return userPayments.value.some(item => 'cardNumber' in item);
-});
-</script>
-
 <template>
   <ul v-if="userPaymentsCard" class="flex-col overflow-y-auto no-scrollbar h-92.5 pb-4">
     <PaymentsItem />
@@ -26,6 +12,21 @@ const userPaymentsCard = computed(() => {
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { computed } from "vue";
+import { usersStore } from "@/shared/composables/stores/users.store";
+
+import PaymentsItem from "./PaymentsItem.vue";
+import icon_card from "@/app/assets/icons/checkout/payment/icon_card.svg";
+
+const { userPayments } = usersStore();
+
+const userPaymentsCard = computed(() => {
+  return userPayments.value.some(item => 'cardNumber' in item);
+});
+</script>
+
 
 <style scoped>
 

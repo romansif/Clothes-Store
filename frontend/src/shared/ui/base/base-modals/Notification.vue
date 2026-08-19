@@ -1,9 +1,3 @@
-<script setup lang="ts">
-import { useBaseModals } from "@/shared/composables/modals/base.modals";
-
-const {  notifyTitle, notifyMessage } =  useBaseModals();
-</script>
-
 <template>
   <div class="font-[Montserrat] fixed inset-0 z-50 flex justify-center items-center ">
     <div class="flex justify-center items-center bg-black opacity-70 w-137.5 h-32.5 px-10 rounded-lg text-white">
@@ -14,6 +8,12 @@ const {  notifyTitle, notifyMessage } =  useBaseModals();
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { useBaseModals } from "@/shared/composables/modals/base.modals";
+
+const { notifyTitle, notifyMessage } =  useBaseModals();
+</script>
 
 <style scoped>
 

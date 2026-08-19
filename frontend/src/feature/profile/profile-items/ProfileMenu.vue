@@ -1,12 +1,3 @@
-<script setup lang="ts">
-import { usersStore } from "@/shared/composables/stores/users.store";
-import { Menu, MenuItems, MenuItem, MenuButton} from "@headlessui/vue";
-import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
-
-const { user } = usersStore();
-const { toggleDeleteChoice } = useProfileModals();
-</script>
-
 <template>
   <Menu as="div" class="relative inline-block">
     <MenuButton class="border border-gray-300 inline-flex w-full justify-center gap-x-1.5 rounded-xl
@@ -62,6 +53,15 @@ const { toggleDeleteChoice } = useProfileModals();
     </transition>
   </Menu>
 </template>
+
+<script setup lang="ts">
+import { usersStore } from "@/shared/composables/stores/users.store";
+import { Menu, MenuItems, MenuItem, MenuButton} from "@headlessui/vue";
+import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
+
+const { user } = usersStore();
+const { toggleDeleteChoice } = useProfileModals();
+</script>
 
 <style scoped>
 

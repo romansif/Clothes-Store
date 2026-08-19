@@ -1,30 +1,3 @@
-<script setup lang="ts">
-import { watch } from "vue";
-import { filtered } from "@/feature/navigation/products-header/nav-actions/filtered.ts";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-import { useGetSearchedProducts } from "@/feature/navigation/products-header/nav-actions/searched.ts";
-import { useProductsModals } from "@/shared/composables/modals/products.modals.ts";
-import { productsForms } from "@/shared/composables/forms/products.forms.ts";
-
-import del from '@/app/assets/icons/delete-close/clean_search.svg';
-import search from "@/app/assets/icons/nav/search.png";
-import right_arrow from '@/app/assets/icons/arrows/right-arrow.png';
-
-const { searchProductForm } = productsForms();
-const { getFilteredProducts } = useProducts();
-const { toggleFilterAside } = useProductsModals();
-const { toggleFilter, categories, category } = filtered();
-const { debouncedSearch, resetSearch } = useGetSearchedProducts();
-
-watch(() => searchProductForm.value.search, async (newValue) => {
-  if(newValue) {
-    await debouncedSearch();
-  }else{
-    await getFilteredProducts('ALL', 'Availability');
-  }
-})
-</script>
-
 <template>
   <div class="font-[Montserrat] flex flex-col xl:flex-row xl:gap-25">
     <div class="flex flex-col">
@@ -75,6 +48,33 @@ watch(() => searchProductForm.value.search, async (newValue) => {
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { watch } from "vue";
+import { filtered } from "@/feature/navigation/products-header/nav-actions/filtered.ts";
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
+import { useGetSearchedProducts } from "@/feature/navigation/products-header/nav-actions/searched.ts";
+import { useProductsModals } from "@/shared/composables/modals/products.modals.ts";
+import { productsForms } from "@/shared/composables/forms/products.forms.ts";
+
+import del from '@/app/assets/icons/delete-close/clean_search.svg';
+import search from "@/app/assets/icons/nav/search.png";
+import right_arrow from '@/app/assets/icons/arrows/right-arrow.png';
+
+const { searchProductForm } = productsForms();
+const { getFilteredProducts } = useProducts();
+const { toggleFilterAside } = useProductsModals();
+const { toggleFilter, categories, category } = filtered();
+const { debouncedSearch, resetSearch } = useGetSearchedProducts();
+
+watch(() => searchProductForm.value.search, async (newValue) => {
+  if(newValue) {
+    await debouncedSearch();
+  }else{
+    await getFilteredProducts('ALL', 'Availability');
+  }
+})
+</script>
 
 <style scoped>
 

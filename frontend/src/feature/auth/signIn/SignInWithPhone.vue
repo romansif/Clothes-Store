@@ -1,24 +1,3 @@
-<script setup lang="ts">
-import { onUnmounted } from "vue";
-import { IMaskComponent as IMask } from "vue-imask";
-import { usePhoneForm } from "@/shared/mask-forms/use.phone.form.ts";
-import { usersStore } from "@/shared/composables/stores/users.store.ts";
-import { authForms } from "@/shared/composables/forms/auth.forms.ts";
-import { toggleAuth } from "@/feature/auth/auth-actions/toggleAuth.ts";
-import { authFormsErrors } from "@/shared/composables/errors/errors-messages/auth.errors.ts";
-
-import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
-
-const { loginFormErrors } = authFormsErrors();
-const { countries, selectedCountryCode } = usersStore();
-const { changeCountry, currentCountry, currentMask } = usePhoneForm();
-const { loginForm, loginFormMessages, CODE_LENGTH, codeDigits, isSendCode, isNewCode } = authForms();
-const { setInputRef, handleInput, handleKeyDown, handlePaste, stopTimer, formattedTimer } = toggleAuth();
-
-onUnmounted(() => {
-  stopTimer();
-})
-</script>
 
 <template>
   <form class="w-full mt-10">
@@ -60,6 +39,28 @@ onUnmounted(() => {
     </div>
   </form>
 </template>
+
+<script setup lang="ts">
+import { onUnmounted } from "vue";
+import { IMaskComponent as IMask } from "vue-imask";
+import { usePhoneForm } from "@/shared/mask-forms/use.phone.form.ts";
+import { usersStore } from "@/shared/composables/stores/users.store.ts";
+import { authForms } from "@/shared/composables/forms/auth.forms.ts";
+import { toggleAuth } from "@/feature/auth/auth-actions/toggleAuth.ts";
+import { authFormsErrors } from "@/shared/composables/errors/errors-messages/auth.errors.ts";
+
+import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
+
+const { loginFormErrors } = authFormsErrors();
+const { countries, selectedCountryCode } = usersStore();
+const { changeCountry, currentCountry, currentMask } = usePhoneForm();
+const { loginForm, loginFormMessages, CODE_LENGTH, codeDigits, isSendCode, isNewCode } = authForms();
+const { setInputRef, handleInput, handleKeyDown, handlePaste, stopTimer, formattedTimer } = toggleAuth();
+
+onUnmounted(() => {
+  stopTimer();
+})
+</script>
 
 <style scoped>
 

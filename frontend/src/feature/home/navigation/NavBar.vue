@@ -1,17 +1,3 @@
-<script setup lang="ts">
-import { computed }  from "vue";
-import { useRoute } from "vue-router";
-
-import cart from "@/app/assets/icons/nav/cart.png";
-import liked from "@/app/assets/icons/nav/favorite.png";
-import profile from "@/app/assets/icons/nav/profile.png";
-import catalog from "@/app/assets/icons/nav/catalog.png";
-
-const route = useRoute();
-
-const isHome = computed(() => route.name !== "");
-</script>
-
 <template>
   <nav class="font-[Montserrat]">
     <div class="flex justify-between items-center md:justify-between">
@@ -56,6 +42,20 @@ const isHome = computed(() => route.name !== "");
     </div>
   </nav>
 </template>
+
+<script setup lang="ts">
+import { computed }  from "vue";
+import { useRoute } from "vue-router";
+
+import cart from "@/app/assets/icons/nav/cart.png";
+import liked from "@/app/assets/icons/nav/favorite.png";
+import profile from "@/app/assets/icons/nav/profile.png";
+import catalog from "@/app/assets/icons/nav/catalog.png";
+
+const route = useRoute();
+
+const isHome = computed(() => route.name !== "");
+</script>
 
 <style scoped>
 

@@ -1,3 +1,9 @@
+<template>
+  <button :class="variantClasses[props.variant]" v-bind="$attrs">
+    <slot>{{ props.name }}</slot>
+  </button>
+</template>
+
 <script setup lang="ts">
 interface Props {
   name?: string,
@@ -37,11 +43,4 @@ const variantClasses = {
       transition duration-300 hover:scale-108 hover:bg-blue-800`,
   refresh: `transition duration-400 px-4 py-2 mt-5 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors`
 }
-
 </script>
-
-<template>
-  <button :class="variantClasses[props.variant]" v-bind="$attrs">
-    <slot>{{ props.name }}</slot>
-  </button>
-</template>

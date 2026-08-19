@@ -1,3 +1,10 @@
+<template>
+  <input v-model="model" :class="[
+      variantClasses[props.variant], props.error ? 'border border-red-500' : 'border-gray-300'
+      ]" v-bind="$attrs" />
+  <span v-if=props.errorMessage class="text-red-600 text-xs">{{ props.errorMessage }}</span>
+</template>
+
 <script setup lang="ts">
 interface Props {
   name?: string,
@@ -23,10 +30,3 @@ const variantClasses = {
                    transition duration-400 hover:bg-gray-50 focus:bg-gray-50 appearance-none`,
 }
 </script>
-
-<template>
-  <input v-model="model" :class="[
-      variantClasses[props.variant], props.error ? 'border border-red-500' : 'border-gray-300'
-      ]" v-bind="$attrs" />
-  <span v-if=props.errorMessage class="text-red-600 text-xs">{{ props.errorMessage }}</span>
-</template>

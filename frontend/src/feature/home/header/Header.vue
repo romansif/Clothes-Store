@@ -1,19 +1,3 @@
-<script setup lang="ts">
-import { onMounted } from "vue";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-
-import arrow from "@/app/assets/icons/arrows/right-shop.svg";
-import photo_1 from "@/app/assets/photos/pants.png";
-import photo_2 from "@/app/assets/photos/shirt.png";
-import HeaderList from "@/feature/home/header/header-items/HeaderList.vue";
-
-const { getAllProducts } = useProducts();
-
-onMounted(async () => {
-  await getAllProducts();
-})
-</script>
-
 <template>
   <header class="font-[Montserrat] w-full mt-14">
     <div class="xl:flex lg:flex h-95">
@@ -54,6 +38,22 @@ onMounted(async () => {
     </div>
   </header>
 </template>
+
+<script setup lang="ts">
+import { onMounted } from "vue";
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
+
+import arrow from "@/app/assets/icons/arrows/right-shop.svg";
+import photo_1 from "@/app/assets/photos/pants.png";
+import photo_2 from "@/app/assets/photos/shirt.png";
+import HeaderList from "@/feature/home/header/header-items/HeaderList.vue";
+
+const { getAllProducts } = useProducts();
+
+onMounted(async () => {
+  await getAllProducts();
+})
+</script>
 
 <style scoped>
 

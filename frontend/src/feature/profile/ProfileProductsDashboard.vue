@@ -1,71 +1,3 @@
-<script setup lang="ts">
-import { useRoute } from "vue-router";
-import { profile } from "@/shared/composables/profile.ts";
-import { computed, onErrorCaptured, onMounted, watch } from "vue";
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { useCart } from "@/feature/cart/cart-actions/use.cart.ts";
-import { useFavorites } from "@/feature/favorite/favorite-actions/use.favorites.ts";
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
-import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
-import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
-import { errorHandler } from "@/shared/composables/errors/errors-middleware/error.handler.ts";
-import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors.ts";
-
-import NavBar from "@/feature/navigation/NavBar.vue";
-import square from "@/app/assets/icons/squares/square.png";
-import CartList from "@/feature/cart/CartList.vue";
-import CartInfo from "@/feature/cart/CartInfo.vue";
-import liked from "@/app/assets/icons/nav/liked.png";
-import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
-import empty_cart from '@/app/assets/icons/products/empty-cart.svg';
-import favorite_cart from '@/app/assets/icons/products/favorute_empty.svg';
-import check_square from "@/app/assets/icons/squares/check-square.png";
-import FavoriteList from "@/feature/favorite/FavoriteList.vue";
-import DeleteModal from "@/shared/ui/base/base-modals/DeleteModal.vue";
-import Notification from "@/shared/ui/base/base-modals/Notification.vue";
-import Loading from "@/shared/ui/base/base-modals/Loading.vue";
-
-const { getCartProducts } = useCart();
-const { isAgreeForm } = checkoutForms();
-const { cart, favorite } = productsStore();
-const { notify, loading } = useBaseModals();
-const { deleteChoice } = useProfileModals();
-const { isAgreeFormError } = checkoutErrors();
-const { getFavoriteProducts } = useFavorites();
-const { resetError, componentError } = errorHandler();
-const { toggleAgree, continueToOrder, cartCount, favoritesCount } = profile();
-
-const route = useRoute();
-
-const isShoppingCart = computed(() => route.name !== 'cart')
-
-const isFavoriteProducts = computed(() => route.name !== 'favorite')
-
-watch(() => isAgreeFormError.value.agreeError, (agreeError) => {
-  if(agreeError === true) {
-    isAgreeForm.value.agreeMessage = ''
-  }
-});
-
-onErrorCaptured((err, info) => {
-  console.error("Перехвачена ошибка в дочернем компоненте:", err);
-  console.log("Детали ошибки:", info);
-
-  componentError.value = "An error occurred while displaying the product catalog."
-
-  return false
-});
-
-onMounted(async() => {
-  loading.value = true;
-
-  await getCartProducts();
-  await getFavoriteProducts();
-
-  loading.value = false;
-});
-</script>
-
 <template>
   <Loading v-if="loading" />
   <div v-else-if="componentError" class="flex flex-col items-center justify-center pt-80 p-6 text-red-700 rounded-xl">
@@ -141,6 +73,74 @@ onMounted(async() => {
     <DeleteModal v-if="deleteChoice"/>
   </Transition>
 </template>
+
+<script setup lang="ts">
+import { useRoute } from "vue-router";
+import { profile } from "@/shared/composables/profile.ts";
+import { computed, onErrorCaptured, onMounted, watch } from "vue";
+import { productsStore } from "@/shared/composables/stores/products.store.ts";
+import { useCart } from "@/feature/cart/cart-actions/use.cart.ts";
+import { useFavorites } from "@/feature/favorite/favorite-actions/use.favorites.ts";
+import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
+import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
+import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
+import { errorHandler } from "@/shared/composables/errors/errors-middleware/error.handler.ts";
+import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors.ts";
+
+import NavBar from "@/feature/navigation/NavBar.vue";
+import square from "@/app/assets/icons/squares/square.png";
+import CartList from "@/feature/cart/CartList.vue";
+import CartInfo from "@/feature/cart/CartInfo.vue";
+import liked from "@/app/assets/icons/nav/liked.png";
+import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
+import empty_cart from '@/app/assets/icons/products/empty-cart.svg';
+import favorite_cart from '@/app/assets/icons/products/favorute_empty.svg';
+import check_square from "@/app/assets/icons/squares/check-square.png";
+import FavoriteList from "@/feature/favorite/FavoriteList.vue";
+import DeleteModal from "@/shared/ui/base/base-modals/DeleteModal.vue";
+import Notification from "@/shared/ui/base/base-modals/Notification.vue";
+import Loading from "@/shared/ui/base/base-modals/Loading.vue";
+
+const { getCartProducts } = useCart();
+const { isAgreeForm } = checkoutForms();
+const { cart, favorite } = productsStore();
+const { notify, loading } = useBaseModals();
+const { deleteChoice } = useProfileModals();
+const { isAgreeFormError } = checkoutErrors();
+const { getFavoriteProducts } = useFavorites();
+const { resetError, componentError } = errorHandler();
+const { toggleAgree, continueToOrder, cartCount, favoritesCount } = profile();
+
+const route = useRoute();
+
+const isShoppingCart = computed(() => route.name !== 'cart')
+
+const isFavoriteProducts = computed(() => route.name !== 'favorite')
+
+watch(() => isAgreeFormError.value.agreeError, (agreeError) => {
+  if(agreeError === true) {
+    isAgreeForm.value.agreeMessage = ''
+  }
+});
+
+onErrorCaptured((err, info) => {
+  console.error("Перехвачена ошибка в дочернем компоненте:", err);
+  console.log("Детали ошибки:", info);
+
+  componentError.value = "An error occurred while displaying the product catalog."
+
+  return false
+});
+
+onMounted(async() => {
+  loading.value = true;
+
+  await getCartProducts();
+  await getFavoriteProducts();
+
+  loading.value = false;
+});
+</script>
 
 <style scoped>
 

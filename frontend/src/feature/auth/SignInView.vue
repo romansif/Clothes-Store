@@ -1,24 +1,3 @@
-<script setup lang="ts">
-import { auth } from "@/feature/auth/auth-actions/auth.ts";
-import { clearAuthForms } from "@/shared/composables/clear-forms/clear.auth.ts";
-import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
-import { authStore } from "@/shared/composables/stores/auth.store.ts";
-
-import Loading from "@/shared/ui/base/base-modals/Loading.vue";
-import Notification from "@/shared/ui/base/base-modals/Notification.vue";
-import SignIn from "@/feature/auth/signIn/SignIn.vue";
-import SignInWithPhone from "@/feature/auth/signIn/SignInWithPhone.vue";
-import maki_arrow from "@/app/assets/icons/arrows/right-short-arrow.svg";
-import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
-import GoogleSignIn from "@/feature/auth/signIn/GoogleSignIn.vue";
-import ReCaptcha from "@/feature/auth/auth-middleware/ReCaptcha.vue";
-
-const { signIn } = auth();
-const { showSignSection } = authStore();
-const { loading, notify } = useBaseModals();
-const { clearLoginForm } = clearAuthForms();
-</script>
-
 <template>
   <div class="font-[Montserrat] fixed inset-0 flex items-center justify-center">
     <div class="w-87.5 sm:w-md rounded-lg px-8 py-8">
@@ -58,6 +37,27 @@ const { clearLoginForm } = clearAuthForms();
     <Notification v-if="notify"/>
   </Transition>
 </template>
+
+<script setup lang="ts">
+import { auth } from "@/feature/auth/auth-actions/auth.ts";
+import { clearAuthForms } from "@/shared/composables/clear-forms/clear.auth.ts";
+import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
+import { authStore } from "@/shared/composables/stores/auth.store.ts";
+
+import Loading from "@/shared/ui/base/base-modals/Loading.vue";
+import Notification from "@/shared/ui/base/base-modals/Notification.vue";
+import SignIn from "@/feature/auth/signIn/SignIn.vue";
+import SignInWithPhone from "@/feature/auth/signIn/SignInWithPhone.vue";
+import maki_arrow from "@/app/assets/icons/arrows/right-short-arrow.svg";
+import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
+import GoogleSignIn from "@/feature/auth/signIn/GoogleSignIn.vue";
+import ReCaptcha from "@/feature/auth/auth-middleware/ReCaptcha.vue";
+
+const { signIn } = auth();
+const { showSignSection } = authStore();
+const { loading, notify } = useBaseModals();
+const { clearLoginForm } = clearAuthForms();
+</script>
 
 <style scoped>
 

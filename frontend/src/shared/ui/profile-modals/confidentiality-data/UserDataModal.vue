@@ -1,16 +1,3 @@
-<script setup lang="ts">
-import { useProfileModals } from "@/shared/composables/modals/profile.modals";
-import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
-
-import ConfidentialityData from "./ConfidentialityData.vue";
-import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
-import ConfidentialityForm from "./ConfidentialityForm.vue";
-import Notification from "@/shared/ui/base/base-modals/Notification.vue";
-
-const { notify } = useBaseModals();
-const { toggleConfidentialityData } = useProfileModals();
-</script>
-
 <template>
   <div>
     <div @click="toggleConfidentialityData" class="font-[Montserrat] fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)]
@@ -34,6 +21,20 @@ const { toggleConfidentialityData } = useProfileModals();
     </Transition>
   </div>
 </template>
+
+<script setup lang="ts">
+import { useProfileModals } from "@/shared/composables/modals/profile.modals";
+import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
+
+import ConfidentialityData from "./ConfidentialityData.vue";
+import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
+import ConfidentialityForm from "./ConfidentialityForm.vue";
+import Notification from "@/shared/ui/base/base-modals/Notification.vue";
+
+const { notify } = useBaseModals();
+const { toggleConfidentialityData } = useProfileModals();
+</script>
+
 
 <style scoped>
 

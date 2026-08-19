@@ -1,19 +1,3 @@
-<script setup lang="ts">
-import { productsCover } from "@/shared/composables/product.cover.ts";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-import { useFavorites } from "@/feature/favorite/favorite-actions/use.favorites.ts";
-import { productsStore } from "@/shared/composables/stores/products.store";
-
-import like from '@/app/assets/icons/nav/like.png';
-import liked from '@/app/assets/icons/nav/liked.png';
-
-const { products } = productsStore();
-const { getProductId } = useProducts();
-const { productPreview } = productsCover();
-const { toggleToFavorite } = useFavorites();
-
-</script>
-
 <template>
   <TransitionGroup name="list">
     <li @click="getProductId(product.id)" v-for="product in products" :key="product.id" class="flex flex-col">
@@ -42,6 +26,21 @@ const { toggleToFavorite } = useFavorites();
     </li>
   </TransitionGroup>
 </template>
+
+<script setup lang="ts">
+import { productsCover } from "@/shared/composables/product.cover.ts";
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
+import { useFavorites } from "@/feature/favorite/favorite-actions/use.favorites.ts";
+import { productsStore } from "@/shared/composables/stores/products.store";
+
+import like from '@/app/assets/icons/nav/like.png';
+import liked from '@/app/assets/icons/nav/liked.png';
+
+const { products } = productsStore();
+const { getProductId } = useProducts();
+const { productPreview } = productsCover();
+const { toggleToFavorite } = useFavorites();
+</script>
 
 <style scoped>
 

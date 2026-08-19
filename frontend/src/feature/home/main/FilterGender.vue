@@ -1,16 +1,3 @@
-<script setup lang="ts">
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-import { filtered } from "@/feature/navigation/products-header/nav-actions/filtered.ts";
-
-const { selectedGender } = filtered();
-const { getYearProducts } = useProducts();
-
-const selectGender = async (type: string, filter: string) => {
-  await getYearProducts(type, filter);
-  selectedGender.value = filter;
-}
-</script>
-
 <template>
   <div class="flex border-b border-gray-300 gap-5 py-3 text-lg">
     <button @click="selectGender('ALL', 'ALL')" :class="[
@@ -28,6 +15,19 @@ const selectGender = async (type: string, filter: string) => {
       hover:text-black hover:scale-115 cursor-pointer`, selectedGender === 'Kids' ? 'text-black scale-115' : '']">Kids</button>
   </div>
 </template>
+
+<script setup lang="ts">
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
+import { filtered } from "@/feature/navigation/products-header/nav-actions/filtered.ts";
+
+const { selectedGender } = filtered();
+const { getYearProducts } = useProducts();
+
+const selectGender = async (type: string, filter: string) => {
+  await getYearProducts(type, filter);
+  selectedGender.value = filter;
+}
+</script>
 
 <style scoped>
 

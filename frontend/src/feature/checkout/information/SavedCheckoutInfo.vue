@@ -1,19 +1,3 @@
-<script setup lang="ts">
-import { onMounted } from "vue";
-import { useAddress } from "@/feature/checkout/checkout-actions/use.address.ts";
-import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
-
-import ContactList from "@/feature/checkout/information/saved-checkout-lists/ContactList.vue";
-import AddressList from "@/feature/checkout/information/saved-checkout-lists/AddressList.vue";
-
-const { getAddresses } = useAddress();
-const { toggleShowContact } = checkout();
-
-onMounted(async () => {
-  await getAddresses();
-})
-</script>
-
 <template>
   <div class="flex flex-col gap-5 pt-5 font-[Montserrat]">
     <div class="flex flex-col">
@@ -31,6 +15,22 @@ onMounted(async () => {
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { onMounted } from "vue";
+import { useAddress } from "@/feature/checkout/checkout-actions/use.address.ts";
+import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
+
+import ContactList from "@/feature/checkout/information/saved-checkout-lists/ContactList.vue";
+import AddressList from "@/feature/checkout/information/saved-checkout-lists/AddressList.vue";
+
+const { getAddresses } = useAddress();
+const { toggleShowContact } = checkout();
+
+onMounted(async () => {
+  await getAddresses();
+})
+</script>
 
 <style scoped>
 

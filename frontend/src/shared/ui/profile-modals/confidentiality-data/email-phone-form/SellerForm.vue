@@ -1,21 +1,3 @@
-<script setup lang="ts">
-import { IMaskComponent as IMask } from "vue-imask";
-import { usePhoneForm } from "@/shared/mask-forms/use.phone.form";
-import { usersStore } from "@/shared/composables/stores/users.store";
-import { userForms } from "@/shared/composables/forms/users.forms";
-import { useProfile } from "@/feature/profile/profile-actions/use.profile.ts";
-import { userFormsErrors } from "@/shared/composables/errors/errors-messages/users.errors";
-
-import BaseButton  from "@/shared/ui/base/button/BaseButton.vue";
-import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
-
-const { countries, selectedCountryCode } = usersStore();
-const { currentCountry, currentMask, changeCountry } = usePhoneForm();
-const { updateCompanyName, updatePublicPhoneAccount } = useProfile();
-const { updateUserFormErrors } = userFormsErrors();
-const { updateUserForm, updateUserFormMessage } = userForms();
-</script>
-
 <template>
   <div class="flex flex-col gap-10 sm:flex-row">
     <form @keydown.enter.prevent="updateCompanyName" class="flex flex-col gap-3 w-full">
@@ -52,6 +34,24 @@ const { updateUserForm, updateUserFormMessage } = userForms();
     </form>
   </div>
 </template>
+
+<script setup lang="ts">
+import { IMaskComponent as IMask } from "vue-imask";
+import { usePhoneForm } from "@/shared/mask-forms/use.phone.form";
+import { usersStore } from "@/shared/composables/stores/users.store";
+import { userForms } from "@/shared/composables/forms/users.forms";
+import { useProfile } from "@/feature/profile/profile-actions/use.profile.ts";
+import { userFormsErrors } from "@/shared/composables/errors/errors-messages/users.errors";
+
+import BaseButton  from "@/shared/ui/base/button/BaseButton.vue";
+import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
+
+const { countries, selectedCountryCode } = usersStore();
+const { currentCountry, currentMask, changeCountry } = usePhoneForm();
+const { updateCompanyName, updatePublicPhoneAccount } = useProfile();
+const { updateUserFormErrors } = userFormsErrors();
+const { updateUserForm, updateUserFormMessage } = userForms();
+</script>
 
 <style scoped>
 

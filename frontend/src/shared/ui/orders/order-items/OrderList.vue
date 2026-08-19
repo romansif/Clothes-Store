@@ -1,12 +1,3 @@
-<script setup lang="ts">
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
-
-import icon_shop from "@/app/assets/icons/products/icon_shop.svg";
-import OrderItem from "@/shared/ui/orders/order-items/OrderItem.vue";
-
-const { orders } = productsStore();
-</script>
-
 <template>
   <ul v-if="orders.length > 0" class="flex flex-col gap-8 overflow-y-auto no-scrollbar h-125 mt-6">
     <OrderItem />
@@ -21,6 +12,16 @@ const { orders } = productsStore();
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { productsStore } from "@/shared/composables/stores/products.store.ts";
+
+import icon_shop from "@/app/assets/icons/products/icon_shop.svg";
+import OrderItem from "@/shared/ui/orders/order-items/OrderItem.vue";
+
+const { orders } = productsStore();
+</script>
+
 
 <style scoped>
 

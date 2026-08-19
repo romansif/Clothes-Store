@@ -1,3 +1,18 @@
+<template>
+  <div class="flex flex-col lg:w-100 xl:w-125">
+    <div v-if="!isSavedPayment" >
+      <PaymentMethods />
+    </div>
+    <SavedCheckoutPayment v-if="isSavedPayment"/>
+    <div class="relative mt-5 sm:ml-auto transition duration-400 hover:scale-110">
+      <BaseButton v-if="!isSavedPayment" @click="addPayment" name="Pay" variant="checkOut"/>
+      <BaseButton v-if="isSavedPayment" @click="useSavedPayment" name="Shipping" variant="checkOut"/>
+      <img :src=arrow alt="" class="h-13 absolute left-75 top-1/2 -translate-y-1/2
+          sm:left-60 md:left-75 lg:left-34 xl:left-46">
+    </div>
+  </div>
+</template>
+
 <script setup lang="ts">
 import { watch } from "vue";
 import { usePayment } from "@/feature/checkout/checkout-actions/use.payment.ts";
@@ -34,21 +49,6 @@ watch(() => [payment.value.cardNumber, payment.value.expiryDate, payment.value.c
   }
 })
 </script>
-
-<template>
-  <div class="flex flex-col lg:w-100 xl:w-125">
-    <div v-if="!isSavedPayment" >
-      <PaymentMethods />
-    </div>
-    <SavedCheckoutPayment v-if="isSavedPayment"/>
-    <div class="relative mt-5 sm:ml-auto transition duration-400 hover:scale-110">
-      <BaseButton v-if="!isSavedPayment" @click="addPayment" name="Pay" variant="checkOut"/>
-      <BaseButton v-if="isSavedPayment" @click="useSavedPayment" name="Shipping" variant="checkOut"/>
-      <img :src=arrow alt="" class="h-13 absolute left-75 top-1/2 -translate-y-1/2
-          sm:left-60 md:left-75 lg:left-34 xl:left-46">
-    </div>
-  </div>
-</template>
 
 <style scoped>
 

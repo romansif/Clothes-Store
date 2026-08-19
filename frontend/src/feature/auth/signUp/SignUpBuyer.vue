@@ -1,47 +1,3 @@
-<script setup lang="ts">
-import { watch } from "vue";
-import { IMaskComponent as IMask } from "vue-imask";
-import { auth } from "@/feature/auth/auth-actions/auth.ts";
-import { usePhoneForm } from "@/shared/mask-forms/use.phone.form.ts";
-import { authStore } from "@/shared/composables/stores/auth.store.ts";
-import { usersStore } from "@/shared/composables/stores/users.store.ts";
-import { authForms } from "@/shared/composables/forms/auth.forms.ts";
-import { authFormsErrors } from "@/shared/composables/errors/errors-messages/auth.errors.ts";
-import { toggleAuth } from "@/feature/auth/auth-actions/toggleAuth.ts";
-
-import closed from "@/app/assets/icons/auth/closed.png";
-import opened from "@/app/assets/icons/auth/opened.png";
-import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
-
-const { signUp } = auth();
-const { showPassword } = authStore();
-const { togglePassword } = toggleAuth();
-const { registerFormErrors } = authFormsErrors();
-const { countries, selectedCountryCode } = usersStore();
-const { registerBuyerForm, registerFormMessages } = authForms();
-const { changeCountry, currentCountry, currentMask } = usePhoneForm();
-
-watch(() => [registerBuyerForm.value.name, registerBuyerForm.value.surName, registerBuyerForm.value.privatePhone,
-  registerBuyerForm.value.email, registerBuyerForm.value.password],([name, surName, privatePhone, email, password]) => {
-      if(name){
-        registerFormErrors.value.nameError = false;
-      }
-      if(surName){
-        registerFormErrors.value.surNameError = false;
-      }
-      if(privatePhone){
-        registerFormErrors.value.privatePhoneError = false;
-      }
-      if(email){
-        registerFormErrors.value.emailError = false;
-      }
-      if(password){
-        registerFormErrors.value.passwordError = false;
-      }
-    }
-);
-</script>
-
 <template>
   <form @keydown.enter="signUp('Buyer')" action="" class="mt-10">
     <div class="flex flex-col gap-4">
@@ -97,6 +53,50 @@ watch(() => [registerBuyerForm.value.name, registerBuyerForm.value.surName, regi
     </div>
   </form>
 </template>
+
+<script setup lang="ts">
+import { watch } from "vue";
+import { IMaskComponent as IMask } from "vue-imask";
+import { auth } from "@/feature/auth/auth-actions/auth.ts";
+import { usePhoneForm } from "@/shared/mask-forms/use.phone.form.ts";
+import { authStore } from "@/shared/composables/stores/auth.store.ts";
+import { usersStore } from "@/shared/composables/stores/users.store.ts";
+import { authForms } from "@/shared/composables/forms/auth.forms.ts";
+import { authFormsErrors } from "@/shared/composables/errors/errors-messages/auth.errors.ts";
+import { toggleAuth } from "@/feature/auth/auth-actions/toggleAuth.ts";
+
+import closed from "@/app/assets/icons/auth/closed.png";
+import opened from "@/app/assets/icons/auth/opened.png";
+import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
+
+const { signUp } = auth();
+const { showPassword } = authStore();
+const { togglePassword } = toggleAuth();
+const { registerFormErrors } = authFormsErrors();
+const { countries, selectedCountryCode } = usersStore();
+const { registerBuyerForm, registerFormMessages } = authForms();
+const { changeCountry, currentCountry, currentMask } = usePhoneForm();
+
+watch(() => [registerBuyerForm.value.name, registerBuyerForm.value.surName, registerBuyerForm.value.privatePhone,
+  registerBuyerForm.value.email, registerBuyerForm.value.password],([name, surName, privatePhone, email, password]) => {
+      if(name){
+        registerFormErrors.value.nameError = false;
+      }
+      if(surName){
+        registerFormErrors.value.surNameError = false;
+      }
+      if(privatePhone){
+        registerFormErrors.value.privatePhoneError = false;
+      }
+      if(email){
+        registerFormErrors.value.emailError = false;
+      }
+      if(password){
+        registerFormErrors.value.passwordError = false;
+      }
+    }
+);
+</script>
 
 <style scoped>
 

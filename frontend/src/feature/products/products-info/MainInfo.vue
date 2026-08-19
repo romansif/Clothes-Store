@@ -1,45 +1,3 @@
-<script setup lang="ts">
-import { onMounted } from "vue";
-import { useRouter } from "vue-router";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-import { productsCover } from "@/shared/composables/product.cover.ts";
-import { productsStore } from "@/shared/composables/stores/products.store";
-import { useBaseModals } from "@/shared/composables/modals/base.modals";
-
-import ProductInfo from "./ProductInfo.vue";
-import cart from '@/app/assets/icons/nav/cart.png';
-import NavBar from "../../navigation/NavBar.vue";
-import profile from '@/app/assets/icons/nav/profile.png';
-import go_to_shop from '@/app/assets/icons/arrows/right-long-arrow.png';
-import Notification from "@/shared/ui/base/base-modals/Notification.vue";
-import Loading from "@/shared/ui/base/base-modals/Loading.vue";
-
-const { getProduct } = useProducts();
-const { notify, loading } = useBaseModals();
-const { product, activeProductImg } = productsStore();
-const { changeImg, productInfoPreview, angelCards } = productsCover();
-
-const router = useRouter();
-
-const userId = localStorage.getItem("userId");
-
-onMounted(async () => {
-  loading.value = true;
-
-  await getProduct();
-
-  if(product.value && Array.isArray(product.value.images) && product.value.images[0]) {
-    activeProductImg.value = productInfoPreview.value(product.value) ?? '';
-  }
-
-  loading.value = false;
-})
-
-const routerBack = () => {
-  router.back();
-}
-</script>
-
 <template>
   <Loading v-if="loading"/>
   <div v-else>
@@ -84,6 +42,48 @@ const routerBack = () => {
     <Notification v-if="notify"/>
   </Transition>
 </template>
+
+<script setup lang="ts">
+import { onMounted } from "vue";
+import { useRouter } from "vue-router";
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
+import { productsCover } from "@/shared/composables/product.cover.ts";
+import { productsStore } from "@/shared/composables/stores/products.store";
+import { useBaseModals } from "@/shared/composables/modals/base.modals";
+
+import ProductInfo from "./ProductInfo.vue";
+import cart from '@/app/assets/icons/nav/cart.png';
+import NavBar from "../../navigation/NavBar.vue";
+import profile from '@/app/assets/icons/nav/profile.png';
+import go_to_shop from '@/app/assets/icons/arrows/right-long-arrow.png';
+import Notification from "@/shared/ui/base/base-modals/Notification.vue";
+import Loading from "@/shared/ui/base/base-modals/Loading.vue";
+
+const { getProduct } = useProducts();
+const { notify, loading } = useBaseModals();
+const { product, activeProductImg } = productsStore();
+const { changeImg, productInfoPreview, angelCards } = productsCover();
+
+const router = useRouter();
+
+const userId = localStorage.getItem("userId");
+
+onMounted(async () => {
+  loading.value = true;
+
+  await getProduct();
+
+  if(product.value && Array.isArray(product.value.images) && product.value.images[0]) {
+    activeProductImg.value = productInfoPreview.value(product.value) ?? '';
+  }
+
+  loading.value = false;
+})
+
+const routerBack = () => {
+  router.back();
+}
+</script>
 
 <style scoped>
 

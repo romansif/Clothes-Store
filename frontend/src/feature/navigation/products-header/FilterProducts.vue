@@ -1,15 +1,3 @@
-<script setup lang="ts">
-import { filtered } from "@/feature/navigation/products-header/nav-actions/filtered.ts";
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
-
-import square from '@/app/assets/icons/squares/square.png'
-import checked from '@/app/assets/icons/squares/check-square.png'
-import availability from '@/app/assets/icons/arrows/arrow-up.png'
-
-const { allProducts, sizes } = productsStore();
-const { toggleFilter, toggleSize, stackProducts, genders, colors } = filtered();
-</script>
-
 <template>
   <aside class="font-[Montserrat] hidden mt-32.5 xl:flex xl:flex-col">
     <span class="font-bold text-xl">Filters</span>
@@ -82,6 +70,18 @@ const { toggleFilter, toggleSize, stackProducts, genders, colors } = filtered();
     <div class="border-b border-gray-400 mt-3.5"></div>
   </aside>
 </template>
+
+<script setup lang="ts">
+import { filtered } from "@/feature/navigation/products-header/nav-actions/filtered.ts";
+import { productsStore } from "@/shared/composables/stores/products.store.ts";
+
+import square from '@/app/assets/icons/squares/square.png'
+import checked from '@/app/assets/icons/squares/check-square.png'
+import availability from '@/app/assets/icons/arrows/arrow-up.png'
+
+const { allProducts, sizes } = productsStore();
+const { toggleFilter, toggleSize, stackProducts, genders, colors } = filtered();
+</script>
 
 <style scoped>
 

@@ -1,25 +1,3 @@
-<script setup lang="ts">
-import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
-import { usePayment } from "@/feature/checkout/checkout-actions/use.payment.ts";
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
-import { usersStore } from "@/shared/composables/stores/users.store.ts";
-import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors";
-
-import PaymentForm from "./PaymentForm.vue";
-import visa_pay from '@/app/assets/icons/checkout/payment/visa.png';
-import pay_pal from '@/app/assets/icons/checkout/payment/paypal.png';
-import apple_pay from '@/app/assets/icons/checkout/payment/applepay.png';
-import google_pay from '@/app/assets/icons/checkout/payment/googlepay.png';
-import mastercard_pay from '@/app/assets/icons/checkout/payment/mastercard.svg';
-
-const { userPayments } = usersStore();
-const { addPayment } = usePayment();
-const { paymentErrors } = checkoutErrors();
-const { payment, paymentMessages } = checkoutForms();
-const { openCardForm, closeCardForm, toggleShowPayment, isDebitCard } = checkout();
-
-</script>
-
 <template>
   <div class="flex flex-col mt-8 gap-5">
     <div class="flex justify-between">
@@ -110,6 +88,27 @@ const { openCardForm, closeCardForm, toggleShowPayment, isDebitCard } = checkout
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
+import { usePayment } from "@/feature/checkout/checkout-actions/use.payment.ts";
+import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
+import { usersStore } from "@/shared/composables/stores/users.store.ts";
+import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors";
+
+import PaymentForm from "./PaymentForm.vue";
+import visa_pay from '@/app/assets/icons/checkout/payment/visa.png';
+import pay_pal from '@/app/assets/icons/checkout/payment/paypal.png';
+import apple_pay from '@/app/assets/icons/checkout/payment/applepay.png';
+import google_pay from '@/app/assets/icons/checkout/payment/googlepay.png';
+import mastercard_pay from '@/app/assets/icons/checkout/payment/mastercard.svg';
+
+const { userPayments } = usersStore();
+const { addPayment } = usePayment();
+const { paymentErrors } = checkoutErrors();
+const { payment, paymentMessages } = checkoutForms();
+const { openCardForm, closeCardForm, toggleShowPayment, isDebitCard } = checkout();
+</script>
 
 <style scoped>
 

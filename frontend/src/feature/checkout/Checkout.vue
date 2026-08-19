@@ -1,26 +1,3 @@
-<script setup lang="ts">
-import { useRoute } from 'vue-router';
-import { computed } from "vue";
-import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
-import { useBaseModals } from "@/shared/composables/modals/base.modals";
-
-import PaymentDashboard from "./payment/PaymentDashboard.vue";
-import CheckoutShipping from "./shipping/CheckoutShipping.vue";
-import OrderInfo from "./order-information/OrderInfo.vue";
-import go_to_shop from "@/app/assets/icons/arrows/right-long-arrow.png";
-import CheckoutInfo from "./information/CheckoutInfo.vue";
-import Notification from "@/shared/ui/base/base-modals/Notification.vue";
-
-const route = useRoute();
-
-const { goBack } = checkout();
-const { notify } = useBaseModals();
-
-const isPayment = computed(() =>  route.name !== 'payment');
-const isInfo = computed(() =>  route.name !== 'information');
-const isShipping = computed(() =>  route.name !== 'shipping');
-</script>
-
 <template>
   <div class="font-[Montserrat] xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
     <img @click="goBack" :src="go_to_shop" alt="" class="rotate-180">
@@ -55,6 +32,29 @@ const isShipping = computed(() =>  route.name !== 'shipping');
     <Notification v-if="notify"/>
   </Transition>
 </template>
+
+<script setup lang="ts">
+import { useRoute } from 'vue-router';
+import { computed } from "vue";
+import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
+import { useBaseModals } from "@/shared/composables/modals/base.modals";
+
+import PaymentDashboard from "./payment/PaymentDashboard.vue";
+import CheckoutShipping from "./shipping/CheckoutShipping.vue";
+import OrderInfo from "./order-information/OrderInfo.vue";
+import go_to_shop from "@/app/assets/icons/arrows/right-long-arrow.png";
+import CheckoutInfo from "./information/CheckoutInfo.vue";
+import Notification from "@/shared/ui/base/base-modals/Notification.vue";
+
+const route = useRoute();
+
+const { goBack } = checkout();
+const { notify } = useBaseModals();
+
+const isPayment = computed(() =>  route.name !== 'payment');
+const isInfo = computed(() =>  route.name !== 'information');
+const isShipping = computed(() =>  route.name !== 'shipping');
+</script>
 
 <style scoped>
 

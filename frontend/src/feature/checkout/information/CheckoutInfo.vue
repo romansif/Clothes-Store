@@ -1,3 +1,19 @@
+<template>
+  <div class="flex flex-col lg:w-100 xl:w-125">
+    <div v-if="!isSavedAddress">
+      <ContactFom />
+      <AddressForm />
+    </div>
+    <SavedCheckoutInfo v-if="isSavedAddress"/>
+    <div class="relative ml-auto mt-5 transition duration-400 hover:scale-110">
+      <BaseButton v-if="!isSavedAddress" @click="addInformation" name="Shipping" variant="checkOut"/>
+      <BaseButton v-if="isSavedAddress" @click="useInformation" name="Shipping" variant="checkOut"/>
+      <img :src=arrow alt="" class="h-13 absolute left-70 top-1/2 -translate-y-1/2
+          sm:left-60 md:left-75 lg:left-34 xl:left-46">
+    </div>
+  </div>
+</template>
+
 <script setup lang="ts">
 import { watch } from "vue";
 import { useAddress } from "@/feature/checkout/checkout-actions/use.address.ts";
@@ -50,22 +66,6 @@ watch(() => [
   }
 });
 </script>
-
-<template>
-  <div class="flex flex-col lg:w-100 xl:w-125">
-    <div v-if="!isSavedAddress">
-      <ContactFom />
-      <AddressForm />
-    </div>
-    <SavedCheckoutInfo v-if="isSavedAddress"/>
-    <div class="relative ml-auto mt-5 transition duration-400 hover:scale-110">
-      <BaseButton v-if="!isSavedAddress" @click="addInformation" name="Shipping" variant="checkOut"/>
-      <BaseButton v-if="isSavedAddress" @click="useInformation" name="Shipping" variant="checkOut"/>
-      <img :src=arrow alt="" class="h-13 absolute left-70 top-1/2 -translate-y-1/2
-          sm:left-60 md:left-75 lg:left-34 xl:left-46">
-    </div>
-  </div>
-</template>
 
 <style scoped>
 

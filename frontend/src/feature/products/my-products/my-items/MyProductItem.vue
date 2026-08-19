@@ -1,18 +1,3 @@
-<script setup lang="ts">
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-import { productsCover } from "@/shared/composables/product.cover.ts";
-import { productsStore } from "@/shared/composables/stores/products.store";
-import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
-
-import del from '@/app/assets/icons/delete-close/delete.svg'
-import pencil from "@/app/assets/icons/products/pencil.svg";
-
-const { getProductId } = useProducts();
-const { myProducts } = productsStore();
-const { productPreview } = productsCover();
-const { toggleDeleteChoice } = useProfileModals();
-</script>
-
 <template>
   <TransitionGroup name="list">
     <li @click="getProductId(product.id)" v-for="product in myProducts" :key="product.id" class="flex pl-10 gap-8">
@@ -60,6 +45,22 @@ const { toggleDeleteChoice } = useProfileModals();
     </li>
   </TransitionGroup>
 </template>
+
+<script setup lang="ts">
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
+import { productsCover } from "@/shared/composables/product.cover.ts";
+import { productsStore } from "@/shared/composables/stores/products.store";
+import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
+
+import del from '@/app/assets/icons/delete-close/delete.svg'
+import pencil from "@/app/assets/icons/products/pencil.svg";
+
+const { getProductId } = useProducts();
+const { myProducts } = productsStore();
+const { productPreview } = productsCover();
+const { toggleDeleteChoice } = useProfileModals();
+</script>
+
 
 <style scoped>
 

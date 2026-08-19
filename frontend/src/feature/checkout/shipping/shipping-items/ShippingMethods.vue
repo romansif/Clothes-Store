@@ -1,11 +1,3 @@
-<script setup lang="ts">
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
-import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors";
-
-const { shippingErrors } = checkoutErrors();
-const { shipping, shippingMessages } = checkoutForms();
-</script>
-
 <template>
   <div class="flex flex-col mt-8 gap-5">
     <label class="font-medium text-xs md:text-sm">
@@ -63,6 +55,14 @@ const { shipping, shippingMessages } = checkoutForms();
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
+import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors";
+
+const { shippingErrors } = checkoutErrors();
+const { shipping, shippingMessages } = checkoutForms();
+</script>
 
 <style scoped>
 

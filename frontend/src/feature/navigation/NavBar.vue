@@ -1,22 +1,3 @@
-<script setup lang="ts">
-import { computed } from "vue";
-import { useRoute } from "vue-router";
-import { productsStore } from "@/shared/composables/stores/products.store";
-
-import cartImg from "@/app/assets/icons/nav/cart.png";
-import liked from "@/app/assets/icons/nav/favorite.png";
-import profile from "@/app/assets/icons/nav/profile.png";
-import catalog from "@/app/assets/icons/nav/catalog.png";
-
-const { unreadCount } = productsStore();
-
-const route = useRoute();
-
-const isHome = computed(() => route.name === "");
-const isProducts = computed(() => route.name === "products");
-const isProfile = computed(() => route.name !== "profile");
-</script>
-
 <template>
   <nav class="font-[Montserrat]">
     <div class="flex justify-between items-center md:justify-between">
@@ -67,6 +48,25 @@ const isProfile = computed(() => route.name !== "profile");
     </div>
   </nav>
 </template>
+
+<script setup lang="ts">
+import { computed } from "vue";
+import { useRoute } from "vue-router";
+import { productsStore } from "@/shared/composables/stores/products.store";
+
+import cartImg from "@/app/assets/icons/nav/cart.png";
+import liked from "@/app/assets/icons/nav/favorite.png";
+import profile from "@/app/assets/icons/nav/profile.png";
+import catalog from "@/app/assets/icons/nav/catalog.png";
+
+const { unreadCount } = productsStore();
+
+const route = useRoute();
+
+const isHome = computed(() => route.name === "");
+const isProducts = computed(() => route.name === "products");
+const isProfile = computed(() => route.name !== "profile");
+</script>
 
 <style scoped>
 

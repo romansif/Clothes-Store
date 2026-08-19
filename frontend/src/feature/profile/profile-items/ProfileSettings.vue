@@ -1,21 +1,3 @@
-<script setup lang="ts">
-import { profile } from "@/shared/composables/profile.ts";
-import { usersStore } from "@/shared/composables/stores/users.store";
-import { useProfileModals } from "@/shared/composables/modals/profile.modals";
-
-import ProfileMenu from "./ProfileMenu.vue";
-import arrow_down from '@/app/assets/icons/arrows/arrow-down.png';
-import sun from '@/app/assets/icons/mode/sun.svg';
-import moon from '@/app/assets/icons/mode/moon.svg';
-
-const { user } = usersStore();
-const { userAvatar } = profile();
-const {
-  toggleAvatar, toggleOrderHistory, toggleCurrentOrder,
-  toggleConfidentialityData, toggleAddressesAndCards
-} = useProfileModals()
-</script>
-
 <template>
   <div class="flex flex-col bg-white rounded-xl">
     <div class="flex p-5">
@@ -84,6 +66,24 @@ const {
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { profile } from "@/shared/composables/profile.ts";
+import { usersStore } from "@/shared/composables/stores/users.store";
+import { useProfileModals } from "@/shared/composables/modals/profile.modals";
+
+import ProfileMenu from "./ProfileMenu.vue";
+import arrow_down from '@/app/assets/icons/arrows/arrow-down.png';
+import sun from '@/app/assets/icons/mode/sun.svg';
+import moon from '@/app/assets/icons/mode/moon.svg';
+
+const { user } = usersStore();
+const { userAvatar } = profile();
+const {
+  toggleAvatar, toggleOrderHistory, toggleCurrentOrder,
+  toggleConfidentialityData, toggleAddressesAndCards
+} = useProfileModals()
+</script>
 
 <style scoped>
 
