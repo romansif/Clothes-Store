@@ -5,8 +5,10 @@ import { productsStore, type Product } from "@/shared//composables/stores/produc
 import { productsForms } from "@/shared/composables/forms/products.forms.ts";
 import { useFormsErrors } from "@/shared/composables/errors/errors-middleware/forms.errors.ts";
 import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
+import { clearProductsForms } from "@/shared/composables/clear-forms/clear.products.ts";
 
 const { openNotify, loading } = useBaseModals()
+const { clearProductForm } = clearProductsForms();
 const { createProductErrors } = useFormsErrors();
 const { createProductForm, moreCreateItem } = productsForms();
 const { allProducts, products, productsWeek, productsYear, myProducts, product,
@@ -159,6 +161,8 @@ export const useProducts = () => {
             await openNotify('You have successfully created a new product card.',
                 'Now, if you go to the products page, your product will be there, and on the profile page as well.', '')
             await router.push({ name: 'profile'})
+
+            clearProductForm();
         }catch(err){
             loading.value = false;
 
