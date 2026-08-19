@@ -3,9 +3,7 @@ import { productsCover } from "@/shared/composables/product.cover.ts";
 import { useProducts } from "@/feature/products/products-actions/use.products.ts";
 import { productsStore } from "@/shared/composables/stores/products.store.ts";
 import { useFavorites } from "@/feature/favorite/favorite-actions/use.favorites.ts";
-import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
 
-import del from "@/app/assets/icons/delete-close/delete.svg";
 import like from "@/app/assets/icons/nav/like.png";
 import update from "@/app/assets/icons/products/refresh.svg";
 import liked from "@/app/assets/icons/nav/liked.png";
@@ -14,7 +12,6 @@ const { favorite } = productsStore();
 const { getProductId } = useProducts();
 const { productPreview } = productsCover();
 const { toggleToFavorite } = useFavorites();
-const { toggleDeleteChoice } = useProfileModals();
 
 const refreshPage = () => {
   window.location.reload();
@@ -49,9 +46,6 @@ const refreshPage = () => {
         </div>
       </div>
       <div class="flex flex-col w-7.5 gap-5">
-        <img @click="toggleDeleteChoice(
-            'Are you sure you want to delete this favorite product?', 'DELETE_FAVORITE_ITEM', product.productId)"
-             :src="del" alt="" class="transition duration-400 hover:scale-120 cursor-pointer">
         <img @click="refreshPage()" :src="update" alt="" class="transition duration-400 hover:scale-120 cursor-pointer">
       </div>
     </li>

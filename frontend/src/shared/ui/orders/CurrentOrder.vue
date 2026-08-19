@@ -24,10 +24,10 @@ onMounted(async () => {
 
 <template>
   <div>
-    <div v-if="!choiceModal" class="font-[Montserrat] fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)]
-                                  flex items-center justify-center">
-      <div class="flex flex-col bg-white w-222.5 h-162.5 rounded-xl p-5">
-        <BaseButton @click.stop="toggleCurrentOrder" name="Exit" variant="exitClose"/>
+    <div v-if="!choiceModal" @click="toggleCurrentOrder" class="font-[Montserrat] fixed inset-0 z-50
+        bg-[rgba(0,0,0,0.5)] flex items-center justify-center">
+      <div @click.stop class="flex flex-col bg-white w-222.5 h-162.5 rounded-xl p-5">
+        <BaseButton @click="toggleCurrentOrder" name="Exit" variant="exitClose"/>
         <div class="flex flex-col gap-2 border-b py-4">
           <h1 class="font-bold text-2xl">ACTIVE ORDERS</h1>
           <div class="flex">
