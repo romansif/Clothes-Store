@@ -1,185 +1,22 @@
 {
   "users": [
-    {
-      "id": "1787123819421",
-      "email": "akmalmavlonov25@gmail.com",
-      "role": "Seller",
-      "name": "Plagiat555",
-      "surName": "",
-      "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocJzHyeN95wO6MAZzH4E9FkqrC9pDZ_IsEztiiZDoWZD08A2Osv2=s96-c",
-      "privatePhone": "",
-      "googleId": "117192309001137738940",
-      "created_at": "2026-08-19T07:16:47.849Z",
-      "password": "",
-      "refreshTokens": [
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxNzg3MTIzODE5NDIxIiwiaWF0IjoxNzg3MTIzODE5LCJleHAiOjE3ODc3Mjg2MTl9.jZifMt6n8P1-BmZktNGBJPMKusEL_tvT-mUJ3CbK8ks"
-      ]
-    },
-    {
-      "id": "1787123902131",
-      "role": "Buyer",
-      "name": "Akmal",
-      "surName": "Movlonov",
-      "privatePhone": "+998 (12) 345-67-89",
-      "email": "akmalmavlonov25@gmail.com",
-      "password": "$2b$10$JNF79fTQHLDOvOhFAmsQj.spOgKNCcaDY6BUXPudISSMa4kNJm55q",
-      "avatarUrl": "uploads/avatars/default-avatar.png",
-      "created_at": "2026-08-19T07:18:21.985Z",
-      "refreshTokens": [
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxNzg3MTIzOTAyMTMxIiwiaWF0IjoxNzg3MTIzOTAyLCJleHAiOjE3ODc3Mjg3MDJ9.qK2DOUXJ2Xuc-kzuUolylp8OD9jVhs2JQhT4K-2BpgI"
-      ]
-    }
+
   ],
   "products": [
-    {
-      "id": "1787123870051",
-      "userId": "1787123819421",
-      "images": [
-        "uploads/products/product-1787123870013-972458807.png",
-        "uploads/products/product-1787123870015-869047339.png",
-        "uploads/products/product-1787123870019-410670556.png",
-        "uploads/products/product-1787123870025-188791696.png",
-        "uploads/products/product-1787123870031-115886840.png"
-      ],
-      "title": "AAA",
-      "category": "Underpants",
-      "material": "Viscose",
-      "price": 99,
-      "description": "BBB",
-      "colors": [
-        {
-          "hex": "#ffffff",
-          "colorName": "White"
-        },
-        {
-          "hex": "#000000",
-          "colorName": "Black"
-        }
-      ],
-      "sizes": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL",
-        "XXL"
-      ],
-      "gender": "Man",
-      "quantity": 1,
-      "collections": "Mono",
-      "status": "Availability",
-      "created_at": "2026-08-19T07:17:50.051Z",
-      "favorite": false,
-      "checked": true
-    }
+
   ],
-  "cart": [
-    {
-      "id": "1787123966082",
-      "userId": "1787123902131",
-      "productId": "1787123870051",
-      "images": [
-        "uploads/products/product-1787123870013-972458807.png",
-        "uploads/products/product-1787123870015-869047339.png",
-        "uploads/products/product-1787123870019-410670556.png",
-        "uploads/products/product-1787123870025-188791696.png",
-        "uploads/products/product-1787123870031-115886840.png"
-      ],
-      "title": "AAA",
-      "category": "Underpants",
-      "material": "Viscose",
-      "price": 99,
-      "description": "BBB",
-      "colors": [
-        {
-          "hex": "#ffffff",
-          "colorName": "White"
-        }
-      ],
-      "sizes": "S",
-      "gender": "Man",
-      "quantity": 1,
-      "status": "Availability",
-      "favorite": false,
-      "checked": true,
-      "created_at": "2026-08-19T07:19:26.082Z"
-    }
-  ],
+  "cart": [],
   "favorite": [],
   "addresses": [
-    {
-      "id": "1787123927395",
-      "userId": "1787123902131",
-      "address": "Ташкент, Чиланзар_5, 26",
-      "postalCode": 1091,
-      "addressName": "Ташкент, Чиланзар_5, 26",
-      "email": "akmalmavlonov25@gmail.com",
-      "phone": "+998 (12) 345-67-89",
-      "firstName": "Akmal",
-      "lastName": "Movlonov",
-      "country": "Узбекистан",
-      "stateRegion": "QR",
-      "city": "Ташкент"
-    }
+
   ],
   "shipping": [
-    {
-      "id": "1787123931617",
-      "userId": "1787123902131",
-      "paymentId": "36e5dad2-7b18-4fe2-b6f9-3efefb0ab3f7",
-      "delivery": "express"
-    }
+
   ],
   "payments": [
-    {
-      "id": "1787123937513",
-      "userId": "1787123902131",
-      "paymentId": "36e5dad2-7b18-4fe2-b6f9-3efefb0ab3f7",
-      "paymentMethod": "apple"
-    }
+
   ],
   "orders": [
-    {
-      "id": "1787123937568",
-      "userId": "1787123902131",
-      "orderItems": [
-        {
-          "id": "1787123908900",
-          "userId": "1787123902131",
-          "productId": "1787123870051",
-          "images": [
-            "uploads/products/product-1787123870013-972458807.png",
-            "uploads/products/product-1787123870015-869047339.png",
-            "uploads/products/product-1787123870019-410670556.png",
-            "uploads/products/product-1787123870025-188791696.png",
-            "uploads/products/product-1787123870031-115886840.png"
-          ],
-          "title": "AAA",
-          "category": "Underpants",
-          "material": "Viscose",
-          "price": 99,
-          "description": "BBB",
-          "colors": [
-            {
-              "hex": "#ffffff",
-              "colorName": "White"
-            }
-          ],
-          "sizes": "S",
-          "gender": "Man",
-          "quantity": 1,
-          "status": "Availability",
-          "favorite": false,
-          "checked": false,
-          "created_at": "2026-08-19T07:18:28.900Z"
-        }
-      ],
-      "orderTotal": 122,
-      "delivery": "express",
-      "status": "Convene",
-      "created_at": "2026-08-19T07:18:57.537Z",
-      "date_created_at": "19.08.2026",
-      "time_created_at": "12:18"
-    }
+
   ]
 }
