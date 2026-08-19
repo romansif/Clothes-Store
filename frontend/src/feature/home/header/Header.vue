@@ -40,12 +40,12 @@ onMounted(async () => {
       <div class="xl:flex xl:ml-auto lg:hidden hidden">
         <ul class="xl:flex xl:gap-10 xl:ml-auto">
           <li class="shrink-0 lg:w-95 md:w-70 w-50">
-            <router-link :to="{name: 'products/info'}">
+            <router-link :to="{name: 'product/info'}">
               <img :src=photo_1 alt="" class=" w-full h-50 lg:h-95 md:h-70">
             </router-link>
           </li>
           <li class="shrink-0 lg:w-95 md:w-70 w-50">
-            <router-link :to="{name: 'products/info'}">
+            <router-link :to="{name: 'product/info'}">
               <img :src=photo_2 alt="" class=" w-full h-50 lg:h-95 md:h-70">
             </router-link>
           </li>

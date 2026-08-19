@@ -11,7 +11,7 @@ const { productPreview } = productsCover();
 <template>
   <li @click="getProductId(product.id)" v-for="product in products" :key="product.id"
       class="flex flex-col shrink-0 lg:w-95 md:w-70 w-50">
-    <router-link :to="{name: 'products/info'}">
+    <router-link :to="{name: 'product/info'}">
       <img :src="productPreview(product.id, products)" alt="" :class="['w-full h-50 lg:h-95 md:h-70',
             product.quantity === 0 || product.status === 'Exhausted' ? 'opacity-40' : '']" />
     </router-link>
