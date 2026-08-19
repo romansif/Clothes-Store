@@ -11,7 +11,7 @@ const { getAllProducts } = useProducts();
 const { addToCartForm } = productsForms();
 const { addToCartErrors } = useFormsErrors();
 const { clearAddToCartForm } = clearProductsForms();
-const { products, cart, product, orderItems, unreadCount } = productsStore();
+const { allProducts, products, cart, product, orderItems, unreadCount } = productsStore();
 
 export const useCart = () => {
     const getCartProducts = async () => {
@@ -204,7 +204,12 @@ export const useCart = () => {
 
     const updateCheckedQuantity = async () => {
         await getCartProducts();
-        const checkedItems = cart.value.filter(item => item.checked);
+        await getAllProducts();
+
+        const checkedItems = cart.value.filter(
+            item => item.checked).map(
+                item => ({ ...item })
+        );
         if (!checkedItems || checkedItems.length === 0) {
             console.log('Нет выбранных (checked) товаров в корзине!', checkedItems);
             return;
@@ -214,51 +219,31 @@ export const useCart = () => {
             for(const item of checkedItems) {
                 await deleteProductCart(item.id);
 
-                await getAllProducts();
-                const product = products.value?.find(
+                const product = allProducts.value?.find(
                     p => p.id === item.productId);
                 if(!product) {
                     console.log(`Товар в корзине c id=${item.productId} или в каталоге не найден`);
-                    return
+                    continue
                 }
+
+                console.log(product, item);
 
                 const currentQuantity = Number(product?.quantity);
                 const cartQuantity = Number(item?.quantity);
                 const newQuantity = currentQuantity - cartQuantity;
 
-                if(newQuantity > 0){
-                    await handler(`/products/${product?.id}`, {
-                        method: "PATCH",
-                        body: JSON.stringify({
-                            quantity: newQuantity,
-                            checked: false
-                        })
-                    });
-                    await handler(`/favorites/${product?.id}`, {
-                        method: "PATCH",
-                        body: JSON.stringify({
-                            quantity: newQuantity,
-                            checked: false
-                        })
-                    });
-                }else{
-                    await handler(`/products/${product?.id}`, {
-                        method: "PATCH",
-                        body: JSON.stringify({
-                            status: 'Exhausted',
-                            quantity: newQuantity,
-                            checked: false
-                        })
-                    });
-                    await handler(`/favorites/${product?.id}`, {
-                        method: "PATCH",
-                        body: JSON.stringify({
-                            status: 'Exhausted',
-                            quantity: newQuantity,
-                            checked: false
-                        })
-                    });
-                }
+                const updatedData = newQuantity > 0
+                    ? { quantity: newQuantity, checked: false }
+                    : { status: 'Exhausted', quantity: newQuantity, checked: false };
+
+                await handler(`/products/${product?.id}`, {
+                    method: "PATCH",
+                    body: JSON.stringify(updatedData)
+                });
+                await handler(`/favorites/${product?.id}`, {
+                    method: "PATCH",
+                    body: JSON.stringify(updatedData)
+                }).catch(() => {});
             }
             localStorage.removeItem("ordersItem");
         }catch(err){
