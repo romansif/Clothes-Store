@@ -3,7 +3,6 @@ import { onMounted } from "vue";
 import { useGetUsers } from "@/feature/auth/auth-actions/get.users";
 import { usersStore } from "@/shared/composables/stores/users.store";
 import { useProfileModals } from "@/shared/composables/modals/profile.modals";
-import { useProductsModals } from "@/shared/composables/modals/products.modals";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
 
 import NavBar from '../navigation/NavBar.vue'
@@ -12,7 +11,6 @@ import ProfileSettings from "./profile-items/ProfileSettings.vue";
 import ProfileNotLogin from "./profile-items/ProfileNotLogin.vue";
 import Notification from "@/shared/ui/base/base-modals/Notification.vue";
 import ChangeAvatar from "@/shared/ui/profile-modals/ChangeAvatar.vue";
-import CreateProduct from "@/shared/ui/products-modals/CreateProduct.vue";
 import AllOrders from "@/shared/ui/orders/AllOrders.vue";
 import CurrentOrder from "@/shared/ui/orders/CurrentOrder.vue";
 import AddressPaymentInfo from "@/shared/ui/profile-modals/address-and-cards/AddressPaymentInfo.vue";
@@ -22,7 +20,6 @@ import Loading from "@/shared/ui/base/base-modals/Loading.vue";
 const { user } = usersStore();
 const { getUser } = useGetUsers();
 const { notify, loading } = useBaseModals();
-const { createProduct } = useProductsModals();
 const { avatarModal, orderHistory, currentOrder, addressesAndCards, confidentialityData, deleteChoice } = useProfileModals();
 
 const userId = localStorage.getItem("userId");
@@ -49,9 +46,6 @@ onMounted(async () => {
   </div>
   <Transition name="notify">
     <ChangeAvatar v-if="avatarModal" />
-  </Transition>
-  <Transition name="notify">
-    <CreateProduct v-if="createProduct" />
   </Transition>
   <Transition name="notify">
     <AllOrders v-if="orderHistory" />

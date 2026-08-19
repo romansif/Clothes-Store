@@ -62,7 +62,7 @@ const { orderPreview, pureColorsName } = productsCover();
         </div>
       </div>
       <div @click="getProductId(item.productId)" v-for="item in order.orderItems" :key="item.id">
-        <router-link :to="{ name: 'products/info' }">
+        <router-link :to="{ name: 'product/info' }">
           <div class="flex py-5 px-3">
             <div class="flex gap-5">
               <img :src="orderPreview(item.id, 'ADDED')" alt="" class="w-30 h-39 rounded-2xl border border-gray-400

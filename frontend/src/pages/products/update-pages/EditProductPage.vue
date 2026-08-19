@@ -16,7 +16,7 @@ import Notification from "@/shared/ui/base/base-modals/Notification.vue";
 const { loading, notify } = useBaseModals();
 const { createProductFormErrors } = productsFormErrors();
 const { product, collections, categories, materials, genders, activeProductImg } = productsStore();
-const { toggleEditProductModal, openSelectProductCard, fileInput } = useProductsModals();
+const { openSelectProductCard, fileInput } = useProductsModals();
 const { createProductForm, moreCreateItem, createProductFormMessages } = productsForms();
 const { createProduct, updateProductImages, updateProductColors, updateProductDesc } = useProducts();
 const { productInfoPreview, pureCards, pureInfoColors, pureColorsName, pureSizesName, isAvailableSizes } = productsCover();
@@ -75,7 +75,10 @@ onMounted(async () => {
     <div class="font-[Montserrat] fixed inset-0 z-50">
       <div class="py-2 px-4 bg-[#F0F0F0] shadow-md overflow-hidden h-full overflow-y-auto no-scrollbar">
         <div class="flex">
-          <BaseButton @click="toggleEditProductModal" name="Exit" variant="exitClose" class="" />
+          <router-link :to="{ name: 'my/products' }" class="text-start ml-auto h-fit w-fit px-10 py-2 bg-red-600 text-white
+              font-medium text-xs rounded-md cursor-pointer transition duration-300 transform hover:scale-108 hover:bg-red-500">
+            Exit
+          </router-link>
         </div>
         <div class="flex justify-center">
           <div class="flex flex-col gap-5">
@@ -199,16 +202,16 @@ onMounted(async () => {
                     </span>
                   </label>
                   <BaseInput v-model="createProductForm.quantity" type="number" placeholder="quantity of product"
-                       :error="createProductFormErrors.quantityError" variant="createProduct" required
-                       :error-message="createProductFormErrors.quantityError ? createProductFormMessages.quantityMessage : ''"/>
+                             :error="createProductFormErrors.quantityError" variant="createProduct" required
+                             :error-message="createProductFormErrors.quantityError ? createProductFormMessages.quantityMessage : ''"/>
                 </div>
                 <div class="flex flex-col gap-2.5 w-full">
                   <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
                     PRICE: <span class="text-black">${{ product.price }}</span>
                   </label>
                   <BaseInput v-model="createProductForm.price" type="number" placeholder="$00.00 "
-                       :error="createProductFormErrors.priceError" variant="createProduct" required
-                       :error-message="createProductFormErrors.priceError ? createProductFormMessages.priceMessage : ''"/>
+                             :error="createProductFormErrors.priceError" variant="createProduct" required
+                             :error-message="createProductFormErrors.priceError ? createProductFormMessages.priceMessage : ''"/>
                 </div>
               </div>
               <div class="flex flex-col gap-2.5 pb-5.5 border-b">
@@ -254,7 +257,7 @@ onMounted(async () => {
                   </div>
                   <div class="flex gap-6">
                     <label v-for="(color, index) in pureInfoColors(product)" :key="color.hex" :title="color.hex"
-                         :style="{ background: color.hex }"  class="w-17.5 h-17.5">
+                           :style="{ background: color.hex }"  class="w-17.5 h-17.5">
                       <input @change="(e) => updateProductColors(product, index, e)" type="color"
                              class="h-full opacity-0 cursor-pointer" />
                     </label>

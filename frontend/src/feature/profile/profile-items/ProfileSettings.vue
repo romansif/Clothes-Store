@@ -2,7 +2,6 @@
 import { profile } from "@/shared/composables/profile.ts";
 import { usersStore } from "@/shared/composables/stores/users.store";
 import { useProfileModals } from "@/shared/composables/modals/profile.modals";
-import { useProductsModals } from "@/shared/composables/modals/products.modals";
 
 import ProfileMenu from "./ProfileMenu.vue";
 import arrow_down from '@/app/assets/icons/arrows/arrow-down.png';
@@ -11,7 +10,6 @@ import moon from '@/app/assets/icons/mode/moon.svg';
 
 const { user } = usersStore();
 const { userAvatar } = profile();
-const { toggleCreateProductModal } = useProductsModals();
 const {
   toggleAvatar, toggleOrderHistory, toggleCurrentOrder,
   toggleConfidentialityData, toggleAddressesAndCards
@@ -71,12 +69,12 @@ const {
           <img :src="arrow_down" alt="">
         </div>
       </div>
-      <div v-if="user?.role === 'Seller'" @click="toggleCreateProductModal" class="border-b border-gray-300 py-6 px-6 cursor-pointer">
+      <router-link :to="{ name: 'create/product' }" v-if="user?.role === 'Seller'"  class="border-b border-gray-300 py-6 px-6 cursor-pointer">
         <div class="flex items-center justify-between transition duration-400 hover:scale-105 cursor-pointer">
           <span>CREATE PRODUCT COVER</span>
           <img :src="arrow_down" alt="">
         </div>
-      </div>
+      </router-link>
       <div @click="toggleAddressesAndCards" class="py-6 px-6 cursor-pointer">
         <div class="flex items-center justify-between transition duration-400 hover:scale-105 cursor-pointer">
           <span>SAVED ADDRESSES AND CARDS</span>

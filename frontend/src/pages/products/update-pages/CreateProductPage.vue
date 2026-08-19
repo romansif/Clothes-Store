@@ -19,7 +19,7 @@ const { createProductFormErrors } = productsFormErrors();
 const { createProduct, onFilesSelected } = useProducts();
 const { collections, categories, materials, genders, sizes, productsPreview } = productsStore();
 const { createProductForm, moreCreateItem, createProductFormMessages } = productsForms();
-const { toggleCreateProductModal, openSelectProductCard, fileInput } = useProductsModals();
+const { openSelectProductCard, fileInput } = useProductsModals();
 
 watch(() => [
       createProductForm.value.title, createProductForm.value.collections,
@@ -27,40 +27,40 @@ watch(() => [
       createProductForm.value.price, createProductForm.value.description,
       moreCreateItem.colors, moreCreateItem.sizes,
       createProductForm.value.gender, createProductForm.value.quantity
-  ],
+    ],
 
-  ([title, collections, category, material, price, description, color, size, gender, quantity]) => {
-    if(title){
-      createProductFormErrors.value.titleError = false;
-    }
-    if(collections){
-      createProductFormErrors.value.collectionsError = false;
-    }
-    if(category){
-      createProductFormErrors.value.categoryError = false;
-    }
-    if(material){
-      createProductFormErrors.value.materialError = false;
-    }
-    if(price){
-      createProductFormErrors.value.priceError = false;
-    }
-    if(description){
-      createProductFormErrors.value.descriptionError = false;
-    }
-    if(color){
-      createProductFormErrors.value.colorError = false;
-    }
-    if(size){
-      createProductFormErrors.value.sizeError = false;
-    }
-    if(gender){
-      createProductFormErrors.value.genderError = false;
-    }
-    if(quantity){
-      createProductFormErrors.value.quantityError = false;
-    }
-})
+    ([title, collections, category, material, price, description, color, size, gender, quantity]) => {
+      if(title){
+        createProductFormErrors.value.titleError = false;
+      }
+      if(collections){
+        createProductFormErrors.value.collectionsError = false;
+      }
+      if(category){
+        createProductFormErrors.value.categoryError = false;
+      }
+      if(material){
+        createProductFormErrors.value.materialError = false;
+      }
+      if(price){
+        createProductFormErrors.value.priceError = false;
+      }
+      if(description){
+        createProductFormErrors.value.descriptionError = false;
+      }
+      if(color){
+        createProductFormErrors.value.colorError = false;
+      }
+      if(size){
+        createProductFormErrors.value.sizeError = false;
+      }
+      if(gender){
+        createProductFormErrors.value.genderError = false;
+      }
+      if(quantity){
+        createProductFormErrors.value.quantityError = false;
+      }
+    })
 </script>
 
 <template>
@@ -68,7 +68,10 @@ watch(() => [
     <div class="font-[Montserrat] fixed inset-0 z-50">
       <div class="py-2 px-4 bg-[#F0F0F0] shadow-md overflow-hidden h-full overflow-y-auto no-scrollbar">
         <div class="flex">
-          <BaseButton @click="toggleCreateProductModal" name="Exit" variant="exitClose" class="" />
+          <router-link :to="{ name: 'profile' }" class="text-start ml-auto h-fit w-fit px-10 py-2 bg-red-600 text-white
+              font-medium text-xs rounded-md cursor-pointer transition duration-300 transform hover:scale-108 hover:bg-red-500">
+            Exit
+          </router-link>
         </div>
         <div class="flex justify-center">
           <div class="flex flex-col gap-5">
@@ -93,8 +96,8 @@ watch(() => [
                     TITLE
                   </label>
                   <BaseInput v-model="createProductForm.title" type="text" placeholder="title, name etc."
-                       :error="createProductFormErrors.titleError" variant="createProduct" required
-                       :error-message="createProductFormErrors.titleError ? createProductFormMessages.titleMessage : ''"/>
+                             :error="createProductFormErrors.titleError" variant="createProduct" required
+                             :error-message="createProductFormErrors.titleError ? createProductFormMessages.titleMessage : ''"/>
                 </div>
                 <div class="flex flex-col gap-2 w-full">
                   <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
@@ -173,16 +176,16 @@ watch(() => [
                     QUANTITY
                   </label>
                   <BaseInput v-model="createProductForm.quantity" type="number" placeholder="quantity of product"
-                       :error="createProductFormErrors.quantityError" variant="createProduct" required
-                       :error-message="createProductFormErrors.quantityError ? createProductFormMessages.quantityMessage : ''"/>
+                             :error="createProductFormErrors.quantityError" variant="createProduct" required
+                             :error-message="createProductFormErrors.quantityError ? createProductFormMessages.quantityMessage : ''"/>
                 </div>
                 <div class="flex flex-col gap-2.5 w-full">
                   <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
                     PRICE
                   </label>
                   <BaseInput v-model="createProductForm.price" type="number" placeholder="$00.00 "
-                       :error="createProductFormErrors.priceError" variant="createProduct" required
-                       :error-message="createProductFormErrors.priceError ? createProductFormMessages.priceMessage : ''"/>
+                             :error="createProductFormErrors.priceError" variant="createProduct" required
+                             :error-message="createProductFormErrors.priceError ? createProductFormMessages.priceMessage : ''"/>
                 </div>
               </div>
               <div class="flex flex-col gap-2.5 pb-5.5 border-b">

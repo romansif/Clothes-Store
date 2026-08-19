@@ -1,14 +1,13 @@
 import namer from "color-namer";
+import router from "@/app/router";
 import { handler } from "@/shared/api/http";
 import { productsStore, type Product } from "@/shared//composables/stores/products.store";
 import { productsForms } from "@/shared/composables/forms/products.forms.ts";
 import { useFormsErrors } from "@/shared/composables/errors/errors-middleware/forms.errors.ts";
-import { useProductsModals } from "@/shared/composables/modals/products.modals.ts";
 import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
 
 const { openNotify, loading } = useBaseModals()
 const { createProductErrors } = useFormsErrors();
-const { toggleCreateProductModal, toggleEditProductModal } = useProductsModals();
 const { createProductForm, moreCreateItem } = productsForms();
 const { allProducts, products, productsWeek, productsYear, myProducts, product,
     productId, productFiles, currentFile, productsPreview } = productsStore();
@@ -157,12 +156,9 @@ export const useProducts = () => {
             });
             loading.value = false;
 
-            await getAllProducts();
-
-            toggleCreateProductModal();
-
             await openNotify('You have successfully created a new product card.',
                 'Now, if you go to the products page, your product will be there, and on the profile page as well.', '')
+            await router.push({ name: 'profile'})
         }catch(err){
             loading.value = false;
 
@@ -247,7 +243,7 @@ export const useProducts = () => {
             await getProduct();
 
             await openNotify('You have successfully changed the product card description.', '', '');
-            toggleEditProductModal();
+            await router.push({ name: 'my/products'})
         }catch(err){
             loading.value = false;
 
@@ -291,7 +287,6 @@ export const useProducts = () => {
             await openNotify('You have successfully changed the product colors on the product card.', '', '')
         }catch(err){
             loading.value = false;
-
             await openNotify(`You haven't entered anything to change.`, '', '');
             console.error(`Failed to edit the colors product cover:`, err);
         }

@@ -32,7 +32,7 @@ const refreshPage = () => {
     <li @click="getProductId(product.productId)" v-for="product in cart" :key="product.id" class="flex gap-5">
       <div class="flex flex-col">
         <div class="relative">
-          <router-link :to="{ name: 'products/info' }">
+          <router-link :to="{ name: 'product/info' }">
             <img :src="productPreview(product.id, cart)" alt="" :class="['w-83.75 h-78.5 sm:h-78.5 xl:h-100',
                 product.quantity === 0 || product.status === 'Exhausted' ? 'opacity-40' : '']">
           </router-link>

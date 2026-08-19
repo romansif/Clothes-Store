@@ -3,20 +3,17 @@ import { onMounted } from "vue";
 import { useProducts } from "@/feature/products/products-actions/use.products.ts";
 import { productsStore } from "@/shared/composables/stores/products.store";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
-import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
-import { useProductsModals } from "@/shared/composables/modals/products.modals.ts";
+import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";;
 
 import NavBar from "@/feature/navigation/NavBar.vue";
 import icon_products from "@/app/assets/icons/products/icon-products.svg";
 import DeleteModal from "@/shared/ui/base/base-modals/DeleteModal.vue";
 import MyProductsList from "@/feature/products/my-products/my-items/MyProductsList.vue";
 import Loading from "@/shared/ui/base/base-modals/Loading.vue";
-import EditProduct from "@/shared/ui/products-modals/EditProduct.vue";
 
 const { loading } = useBaseModals();
 const { myProducts } = productsStore();
 const { getMyProducts } = useProducts();
-const { editProduct } = useProductsModals();
 const { deleteChoice } = useProfileModals();
 
 onMounted(async () => {
@@ -48,9 +45,6 @@ onMounted(async () => {
   </div>
   <Transition name="notify">
     <DeleteModal v-if="deleteChoice"/>
-  </Transition>
-  <Transition name="notify">
-    <EditProduct v-if="editProduct"/>
   </Transition>
 </template>
 

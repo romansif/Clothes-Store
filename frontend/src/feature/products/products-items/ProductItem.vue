@@ -18,7 +18,7 @@ const { toggleToFavorite } = useFavorites();
   <TransitionGroup name="list">
     <li @click="getProductId(product.id)" v-for="product in products" :key="product.id" class="flex flex-col">
       <div class="relative">
-        <router-link :to="{ name: 'products/info' }">
+        <router-link :to="{ name: 'product/info' }">
             <img :src="productPreview(product.id, products)" alt="" :class="['w-[344.5px] h-45 sm:h-78.5 xl:h-100',
               product.quantity === 0 || product.status === 'Exhausted' ? 'opacity-40' : '']" />
         </router-link>

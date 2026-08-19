@@ -32,16 +32,19 @@ const routes: RouteRecordRaw[] = [
                 component: () => import('@/pages/products/ProductsPage.vue'),
             },
             {
-                path: 'products/info',
-                name: 'products/info',
+                path: 'product/info',
+                name: 'product/info',
                 component: () => import('@/pages/products/ProductsInfoPage.vue'),
-
             },
             {
-                path: 'my/products',
-                name: 'my/products',
-                component: () => import('@/pages/products/MyProductsPage.vue'),
-
+                path: 'cart',
+                name: 'cart',
+                component: () => import('@/pages/profile/profile-products/ProductsCartPage.vue')
+            },
+            {
+                path: 'favorite',
+                name: 'favorite',
+                component: () => import('@/pages/profile/profile-products/FavoriteProductsPage.vue')
             },
             {
                 path: 'profile',
@@ -53,15 +56,23 @@ const routes: RouteRecordRaw[] = [
                         component: () => import('@/pages/profile/ProfilePage.vue'),
                     },
                     {
-                        path: 'cart',
-                        name: 'cart',
-                        component: () => import('@/pages/profile/profile-products/ProductsCartPage.vue')
+                        path: 'my/products',
+                        name: 'my/products',
+                        component: () => import('@/pages/products/MyProductsPage.vue'),
+
                     },
                     {
-                        path: 'favorite',
-                        name: 'favorite',
-                        component: () => import('@/pages/profile/profile-products/FavoriteProductsPage.vue')
-                    }
+                        path: 'create/product',
+                        name: 'create/product',
+                        component: () => import('@/pages/products/update-pages/CreateProductPage.vue'),
+
+                    },
+                    {
+                        path: 'edit/product',
+                        name: 'edit/product',
+                        component: () => import('@/pages/products/update-pages/EditProductPage.vue'),
+
+                    },
                 ]
             },
             {

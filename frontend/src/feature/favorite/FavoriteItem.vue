@@ -25,8 +25,8 @@ const refreshPage = () => {
   <TransitionGroup name="list">
     <li v-for="product in favorite" :key="product.id" class="flex gap-5">
       <div class="flex flex-col">
-        <div @click="getProductId(product.id)" class="relative">
-          <router-link :to="{ name: 'products/info' }">
+        <div @click="getProductId(product.productId)" class="relative">
+          <router-link :to="{ name: 'product/info' }">
             <img :src="productPreview(product.id, favorite)" alt="" :class="['w-83.75 h-45 sm:h-78.5 xl:h-100',
                 product.quantity === 0 || product.status === 'Exhausted' ? 'opacity-40' : '']">
           </router-link>

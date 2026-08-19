@@ -3,7 +3,6 @@ import { useProducts } from "@/feature/products/products-actions/use.products.ts
 import { productsCover } from "@/shared/composables/product.cover.ts";
 import { productsStore } from "@/shared/composables/stores/products.store";
 import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
-import { useProductsModals } from "@/shared/composables/modals/products.modals.ts";
 
 import del from '@/app/assets/icons/delete-close/delete.svg'
 import pencil from "@/app/assets/icons/products/pencil.svg";
@@ -12,7 +11,6 @@ const { getProductId } = useProducts();
 const { myProducts } = productsStore();
 const { productPreview } = productsCover();
 const { toggleDeleteChoice } = useProfileModals();
-const { toggleEditProductModal } = useProductsModals();
 </script>
 
 <template>
@@ -20,7 +18,7 @@ const { toggleEditProductModal } = useProductsModals();
     <li @click="getProductId(product.id)" v-for="product in myProducts" :key="product.id" class="flex pl-10 gap-8">
       <div class="flex flex-col">
         <div class="relative">
-          <router-link :to="{ name: 'products/info' }">
+          <router-link :to="{ name: 'product/info' }">
             <img :src="productPreview(product.id, myProducts)" alt="" :class="['w-83.75 h-h-78.5m:h-[314px] xl:h-100',
                 product.status === 'Availability' ? '' : 'opacity-40']">
           </router-link>
@@ -30,7 +28,9 @@ const { toggleEditProductModal } = useProductsModals();
       <div class="flex flex-col gap-25">
         <div class="flex flex-col gap-20">
           <div class="flex items-center ml-auto gap-10">
-            <img @click="toggleEditProductModal()" :src="pencil" alt="" class="w-7 transition duration-400 hover:scale-120 cursor-pointer">
+            <router-link :to="{ name: 'edit/product' }">
+              <img :src="pencil" alt="" class="w-7 transition duration-400 hover:scale-120 cursor-pointer">
+            </router-link>
             <img @click="toggleDeleteChoice(
             'Are you sure you want to delete this product?', 'DELETE_PROUCT_ITEM', product.id
                  )" :src="del" alt="" class="w-7.5 transition duration-400 hover:scale-120 cursor-pointer">
