@@ -1,4 +1,4 @@
-import { v4 as uuid4 } from 'uuid'
+import { v4 as uuidv4 } from 'uuid'
 import { type Request, type Response } from "express";
 import { type AuthenticatedRequest } from '../../interfaces.ts';
 import { dbService } from '../../db/db.config.ts';
@@ -45,7 +45,7 @@ export const paymentsController = {
             const payments: any[] = db.payments || [];
 
             const newPayment = {
-                id: uuid4,
+                id: uuidv4(),
                 userId: req.user?.id || req.user?.userId,
                 ...req.body
             };
@@ -119,7 +119,6 @@ export const paymentsController = {
 
             const deletedPayment = payments[index];
 
-            // Удаляем элемент из массива
             db.payments = payments.filter(p => String(p.id) !== String(id));
             dbService.writeDB(db);
 

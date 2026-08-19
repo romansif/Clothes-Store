@@ -1,4 +1,4 @@
-import { v4 as uuid4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import { type Request, type Response } from 'express';
 import { type AuthenticatedRequest } from '../../interfaces.ts';
 import { dbService } from '../../db/db.config.ts';
@@ -165,13 +165,13 @@ export const productsController = {
             const products: any[] = db.products || [];
 
             const newProduct = {
-                id: uuid4,
+                id: uuidv4(),
                 userId: req.user?.id || req.user?.userId,
                 images,
                 ...req.body,
                 quantity: Number(req.body.quantity) || 0,
                 price: Number(req.body.price) || 0,
-                created_at: new Date().toISOString(),
+                created_at: new Date(),
                 favorite: false,
                 checked: false
             };

@@ -1,4 +1,4 @@
-import { v4 as uuid4 } from 'uuid'
+import { v4 as uuidv4 } from 'uuid'
 import { type Request, type Response } from "express";
 import { type AuthenticatedRequest } from '../../interfaces.ts';
 import { dbService } from '../../db/db.config.ts'; // Подставь свой путь к файлу конфигурации
@@ -61,7 +61,7 @@ export const addressesController = {
             }
 
             const newAddress = {
-                id: uuid4,
+                id: uuidv4(),
                 userId,
                 address,
                 ...(postalCode !== undefined && { postalCode: Number(postalCode) }),

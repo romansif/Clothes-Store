@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import { v4 as uuid4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import { dbService } from '../db/db.config.ts';
 import { OAuth2Client } from "google-auth-library";
 import { type Request, type Response } from "express";
@@ -48,7 +48,7 @@ const authController = {
             const hashedPassword = await bcrypt.hash(password, 10);
 
             const newUser = {
-                id: uuid4,
+                id: uuidv4(),
                 role,
                 name,
                 surName,
@@ -58,7 +58,7 @@ const authController = {
                 email,
                 password: hashedPassword,
                 avatarUrl: 'uploads/avatars/default-avatar.png',
-                created_at: created_at || new Date().toISOString(),
+                created_at: created_at,
                 refreshTokens: [],
                 userId
             };
@@ -196,7 +196,7 @@ const authController = {
                 const privatePhone = phone || "";
 
                 user = {
-                    id: uuid4,
+                    id: uuidv4(),
                     email,
                     role: role || 'Buyer',
                     name: userGivenName,
@@ -204,7 +204,7 @@ const authController = {
                     avatarUrl: picture || '',
                     privatePhone,
                     googleId: sub,
-                    created_at: created_at || new Date().toISOString(),
+                    created_at: created_at,
                     password: '',
                     userId,
                     refreshTokens: []
