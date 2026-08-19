@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+import { v4 as uuid4 } from 'uuid';
 import { dbService } from '../db/db.config.ts';
 import { OAuth2Client } from "google-auth-library";
 import { type Request, type Response } from "express";
@@ -10,11 +11,11 @@ const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 const ACCESS_SECRET = 'your_access_secret_key_123';
 const REFRESH_SECRET = 'your_refresh_secret_key_123';
 
-const generateAccessToken = (user: Pick<User, 'id' | 'email'>) => {
+const generateAccessToken = (user: Pick<User, any>) => {
     return jwt.sign({ userId: user.id, email: user.email }, ACCESS_SECRET, { expiresIn: '1h' });
 };
 
-const generateRefreshToken = (user: Pick<User, 'id' | 'email'>) => {
+const generateRefreshToken = (user: Pick<User, any>) => {
     return jwt.sign({ userId: user.id }, REFRESH_SECRET, { expiresIn: '7d' });
 };
 
@@ -45,10 +46,9 @@ const authController = {
             }
 
             const hashedPassword = await bcrypt.hash(password, 10);
-            const newId = String(Date.now());
 
             const newUser = {
-                id: newId,
+                id: uuid4,
                 role,
                 name,
                 surName,
@@ -196,7 +196,7 @@ const authController = {
                 const privatePhone = phone || "";
 
                 user = {
-                    id: String(Date.now()),
+                    id: uuid4,
                     email,
                     role: role || 'Buyer',
                     name: userGivenName,

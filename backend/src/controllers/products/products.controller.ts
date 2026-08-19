@@ -1,3 +1,4 @@
+import { v4 as uuid4 } from 'uuid';
 import { type Request, type Response } from 'express';
 import { type AuthenticatedRequest } from '../../interfaces.ts';
 import { dbService } from '../../db/db.config.ts';
@@ -36,7 +37,6 @@ export const productsController = {
                 }
             }
 
-            // Сортировка по дате создания (новые сначала)
             products.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
 
             res.json(products);
@@ -165,7 +165,7 @@ export const productsController = {
             const products: any[] = db.products || [];
 
             const newProduct = {
-                id: String(Date.now()), // Генерация уникального ID
+                id: uuid4,
                 userId: req.user?.id || req.user?.userId,
                 images,
                 ...req.body,

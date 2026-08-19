@@ -67,7 +67,6 @@ export const usersController = {
 
             if (index === -1) return res.status(404).json({ message: "User not found" });
 
-            // Обновляем данные пользователя
             users[index] = {
                 ...users[index],
                 ...req.body

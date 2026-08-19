@@ -1,3 +1,4 @@
+import { v4 as uuid4 } from 'uuid'
 import { type Request, type Response } from "express";
 import { type AuthenticatedRequest } from '../../interfaces.ts';
 import { dbService } from '../../db/db.config.ts'; // Подставь свой путь к файлу конфигурации
@@ -46,7 +47,6 @@ export const addressesController = {
             const db = dbService.readDB();
             const addresses: any[] = db.addresses || [];
 
-            // Проверка на существующий адрес у того же пользователя
             if (address) {
                 const existingAddress = addresses.find(a =>
                     String(a.userId) === String(userId) && a.address === address
@@ -61,7 +61,7 @@ export const addressesController = {
             }
 
             const newAddress = {
-                id: String(Date.now()), // Генерация уникального ID
+                id: uuid4,
                 userId,
                 address,
                 ...(postalCode !== undefined && { postalCode: Number(postalCode) }),

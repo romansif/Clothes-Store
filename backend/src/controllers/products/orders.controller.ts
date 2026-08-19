@@ -1,3 +1,4 @@
+import { v4 as uuid4 } from 'uuid';
 import { type Request, type Response } from 'express';
 import { type AuthenticatedRequest } from '../../interfaces.ts';
 import { dbService } from '../../db/db.config.ts';
@@ -57,7 +58,7 @@ export const ordersController = {
             const orders: any[] = db.orders || [];
 
             const newOrder = {
-                id: String(Date.now()), // Генерация уникального ID
+                id: uuid4,
                 userId: req.user?.id || req.user?.userId,
                 ...req.body,
                 created_at: date.toISOString(),

@@ -1,3 +1,4 @@
+import { v4 as uuid4 } from 'uuid'
 import { type Request, type Response } from "express";
 import { type AuthenticatedRequest } from '../../interfaces.ts';
 import { dbService } from '../../db/db.config.ts';
@@ -44,7 +45,7 @@ export const paymentsController = {
             const payments: any[] = db.payments || [];
 
             const newPayment = {
-                id: String(Date.now()), // Генерация уникального ID
+                id: uuid4,
                 userId: req.user?.id || req.user?.userId,
                 ...req.body
             };
@@ -75,7 +76,6 @@ export const paymentsController = {
 
             const currentPayment = payments[index];
 
-            // Проверка на дубликат номера карты у того же пользователя
             if (req.body.cardNumber) {
                 const duplicateCard = payments.find(p =>
                     String(p.userId) === String(currentPayment.userId) &&
@@ -91,7 +91,6 @@ export const paymentsController = {
                 }
             }
 
-            // Обновляем платеж
             payments[index] = {
                 ...currentPayment,
                 ...req.body

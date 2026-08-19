@@ -1,3 +1,4 @@
+import { v4 as uuid4 } from 'uuid';
 import { type Request, type Response } from "express";
 import { type AuthenticatedRequest } from '../../interfaces.ts';
 import { dbService } from '../../db/db.config.ts'; // Подставь свой путь к файлу конфигурации
@@ -10,7 +11,6 @@ export const shippingController = {
             const db = dbService.readDB();
             const shippingList: any[] = db.shipping || [];
 
-            // Фильтруем по paymentId, если он передан, иначе возвращаем весь список
             const filteredShipping = paymentId
                 ? shippingList.filter(s => String(s.paymentId) === String(paymentId))
                 : shippingList;
@@ -29,7 +29,7 @@ export const shippingController = {
             const shippingList: any[] = db.shipping || [];
 
             const newShipping = {
-                id: String(Date.now()), // Генерируем уникальный ID для локальной записи
+                id: uuid4,
                 userId: req.user?.id || req.user?.userId,
                 ...req.body
             };

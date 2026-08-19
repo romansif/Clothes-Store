@@ -1,3 +1,4 @@
+import { v4 as uuid4 } from 'uuid';
 import { type Request, type Response } from 'express';
 import { type AuthenticatedRequest } from '../../interfaces.ts';
 import { dbService } from '../../db/db.config.ts'; // Подставь свой путь к файлу конфигурации
@@ -27,7 +28,7 @@ export const favoritesController = {
             const favorites: any[] = db.favorites || [];
 
             const newFavoriteItem = {
-                id: String(Date.now()), // Генерация уникального ID
+                id: uuid4,
                 userId: req.user?.id || req.user?.userId,
                 productId: req.body.productId,
                 ...req.body,
@@ -53,7 +54,6 @@ export const favoritesController = {
             const db = dbService.readDB();
             const favorites: any[] = db.favorites || [];
 
-            // Ищем элемент по id или по productId (как было в Supabase через .or())
             const index = favorites.findIndex(f => String(f.id) === String(id) || String(f.productId) === String(id));
 
             if (index === -1) {
@@ -91,7 +91,6 @@ export const favoritesController = {
 
             const deletedProduct = favorites[index];
 
-            // Удаляем элемент, удовлетворяющий условию id или productId
             db.favorites = favorites.filter(f => String(f.id) !== String(id) && String(f.productId) !== String(id));
             dbService.writeDB(db);
 

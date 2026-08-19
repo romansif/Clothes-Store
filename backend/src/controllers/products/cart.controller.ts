@@ -1,3 +1,4 @@
+import { v4 as uuid4 } from 'uuid';
 import { type Request, type Response } from 'express';
 import { type AuthenticatedRequest } from '../../interfaces.ts';
 import { dbService } from '../../db/db.config.ts'; // Подставь свой путь к файлу конфигурации
@@ -30,7 +31,6 @@ export const cartController = {
             const db = dbService.readDB();
             const products: any[] = db.products || [];
 
-            // Проверяем, существует ли продукт в локальной базе продуктов
             const product = products.find(p => String(p.id) === String(productId));
 
             if (!product) return res.status(400).json({ message: 'Product not found' });
@@ -38,7 +38,7 @@ export const cartController = {
             const cart: any[] = db.cart || [];
 
             const newCartItem = {
-                id: String(Date.now()), // Генерация уникального ID для записи в корзине
+                id: uuid4,
                 userId: req.user?.id || req.user?.userId,
                 ...req.body,
                 created_at: new Date().toISOString(),
@@ -63,7 +63,6 @@ export const cartController = {
             const db = dbService.readDB();
             const cart: any[] = db.cart || [];
 
-            // Ищем элемент по id или по productId
             const index = cart.findIndex(item => String(item.id) === String(id) || String(item.productId) === String(id));
 
             if (index === -1) {
@@ -101,7 +100,6 @@ export const cartController = {
 
             const deletedProduct = cart[index];
 
-            // Удаляем элемент, соответствующий id или productId
             db.cart = cart.filter(item => String(item.id) !== String(id) && String(item.productId) !== String(id));
             dbService.writeDB(db);
 
