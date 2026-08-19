@@ -93,8 +93,8 @@ watch(() => [addToCartForm.value.colors, addToCartForm.value.sizes], ([color, si
           ADD TO CART
         </span>
       </router-link>
-      <BaseButton @click="addToCart()" v-if="userId && product.quantity !== 0 && !isInCart" name="ADD TO CART" variant="addToCart" />
-      <BaseButton v-if="userId && product.quantity === 0 && product.userId !== userId" name="OUT OF STACK" variant="outOfStack" />
+      <BaseButton @click="addToCart()" v-if="product.userId !== userId && product.quantity !== 0 && !isInCart" name="ADD TO CART" variant="addToCart" />
+      <BaseButton v-if="userId && product.quantity === 0" name="OUT OF STACK" variant="outOfStack" />
       <div v-if="userId && isInCart" class="flex items-center gap-18">
         <div class="flex gap-6 bg-zinc-800 py-4 px-3 text-lg rounded-md transition duration-300 hover:scale-108">
           <img :src="plus" @click="updateCartItem('add', isInCart.id, isInCart.status)" alt=""

@@ -4,10 +4,10 @@
 
 <template>
   <footer class="font-[Montserrat] flex justify-center items-center bg-[#F5F5F5] mt-30">
-    <div class="w-[300px] md:w-[700px] lg:w-[1000px] py-20">
+    <div class="w-75 md:w-175 lg:w-250 py-20">
       <div class="flex gap-50 items-center md:gap-60 lg:gap-100">
         <div class="grid grid-cols-2 gap-30 md:flex md:flex-col md:gap-15">
-          <div class="font-medium flex flex-col gap-6 font-medium">
+          <div class="font-medium flex flex-col gap-6">
             <span class="text-[#A3A3A3]">INFO</span>
             <div class="flex flex-col gap-2 text-gray-600">
               <span class="transition duration-400 hover:scale-115 cursor-pointer">Pricing /</span>
@@ -15,7 +15,7 @@
               <span class="transition duration-400 hover:scale-115 cursor-pointer">CONTACTS</span>
             </div>
           </div>
-          <div class="font-medium flex flex-col gap-6 font-medium">
+          <div class="font-medium flex flex-col gap-6">
             <span class="text-[#A3A3A3]">LANGUAGES</span>
             <div class="flex flex-col gap-2 text-gray-600">
               <span class="transition duration-400 hover:scale-115 cursor-pointer">ENG /</span>
@@ -29,7 +29,7 @@
           <div class="flex flex-col items-start">
             <div class="relative">
               <span class="text-[80px] font-black text-[#D9D9D9]">VR</span>
-              <img :src=logo alt="" class="absolute left-1 top-1/3 w-[40px]">
+              <img :src=logo alt="" class="absolute left-1 top-1/3 w-10">
             </div>
             <div class="flex gap-5">
               <span class="text-[80px] font-black">XIV</span>

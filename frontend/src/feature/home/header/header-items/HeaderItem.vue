@@ -9,9 +9,10 @@ const { productPreview } = productsCover();
 </script>
 
 <template>
-  <li @click="getProductId(product.id)" v-for="product in products" :key="product.id" class="flex flex-col flex-shrink-0 lg:w-[380px] md:w-[280px] w-[200px]">
+  <li @click="getProductId(product.id)" v-for="product in products" :key="product.id"
+      class="flex flex-col shrink-0 lg:w-95 md:w-70 w-50">
     <router-link :to="{name: 'products/info'}">
-      <img :src="productPreview(product.id, products)" alt="" :class="['w-full h-[200px] lg:h-[380px] md:h-[280px]',
+      <img :src="productPreview(product.id, products)" alt="" :class="['w-full h-50 lg:h-95 md:h-70',
             product.quantity === 0 || product.status === 'Exhausted' ? 'opacity-40' : '']" />
     </router-link>
     <span class="whitespace-normal mt-2 text-gray-500">

@@ -16,7 +16,7 @@ const isHome = computed(() => route.name !== "");
   <nav class="font-[Montserrat]">
     <div class="flex justify-between items-center md:justify-between">
       <div class="flex items-center gap-5 lg:gap-10">
-        <img :src=catalog alt="" class="w-[30px]">
+        <img :src=catalog alt="" class="w-7.5">
         <div class="xl:flex xl:gap-10
             lg:flex lg:gap-10
             md:flex md:gap-5

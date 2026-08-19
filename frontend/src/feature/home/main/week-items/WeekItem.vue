@@ -11,9 +11,10 @@ const { productPreview } = productsCover();
 
 <template>
   <TransitionGroup name="list">
-    <li @click="getProductId(product.id)" v-for="product in productsWeek" :key="product.id" class="flex flex-col flex-shrink-0 lg:w-[300px] w-[200px]">
-      <router-link :to="{name: 'products/info'}">
-        <img :src="productPreview(product.id, productsWeek)" alt="" :class="['w-full h-[200px] md:h-[240px] lg:h-[313px]',
+    <li @click="getProductId(product.id)" v-for="product in productsWeek" :key="product.id"
+        class="flex flex-col shrink-0 lg:w-75 w-50">
+      <router-link :to="{name: 'product/info'}">
+        <img :src="productPreview(product.id, productsWeek)" alt="" :class="['w-full h-50 md:h-60 lg:h-78.25',
               product.quantity === 0 || product.status === 'Exhausted' ? 'opacity-40' : '']" />
       </router-link>
       <span class="whitespace-normal mt-2 text-[#A3A3A3]">

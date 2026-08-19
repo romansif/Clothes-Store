@@ -26,7 +26,9 @@ onMounted(async () => {
         <span>THIS WEEK</span>
       </div>
       <div class="flex flex-col mt-5">
-        <span class="text-[#A3A3A3] ml-auto mb-3 transition duration-400 hover:scale-120 hover:text-black cursor-pointer">See All</span>
+        <span class="text-[#A3A3A3] ml-auto mb-3 transition duration-400 hover:scale-120 hover:text-black cursor-pointer">
+          See All
+        </span>
         <WeekList />
       </div>
     </div>
@@ -44,23 +46,23 @@ onMounted(async () => {
     <div class="flex flex-col mt-25">
       <div class="flex justify-center">
         <div class="flex flex-col items-center">
-          <h1 class="font-normal text-5xl w-[300px] text-center md:w-full">Our Approach to fashion design</h1>
-          <p class="font-light text-[#A3A3A3] text-center w-[300px] mt-13 md:w-[540px]">
+          <h1 class="font-normal text-5xl w-75 text-center md:w-full">Our Approach to fashion design</h1>
+          <p class="font-light text-[#A3A3A3] text-center w-75 mt-13 md:w-135">
             At elegant vogue , we blend creativity with craftsmanship to create
             fashion that transcends trends and stands the test of time each design
-            is meticulously crafted, ensuring the highest quelity exqulsite finish
+            is meticulously crafted, ensuring the highest quality exquisite finish
           </p>
         </div>
       </div>
       <div class="flex justify-center mt-20 lg:mt-20 lg:flex">
         <ul class="flex flex-col lg:flex lg:flex-row gap-10 xl:gap-20 overflow-x-auto whitespace-nowrap no-scrollbar">
-          <li class="flex flex-col flex-shrink-0 lg:w-[300px] md:w-[300px] w-[200px]">
+          <li class="flex flex-col shrink-0 lg:w-75 md:w-75 w-50">
             <img :src="photo_1" alt="">
           </li>
-          <li class="flex flex-col flex-shrink-0 lg:w-[300px] md:w-[300px] w-[200px] mt-0 lg:mt-20">
+          <li class="flex flex-col shrink-0 lg:w-75 md:w-75 w-50 mt-0 lg:mt-20">
             <img :src="photo_2" alt="">
           </li>
-          <li class="flex flex-col flex-shrink-0 lg:w-[300px] md:w-[300px] w-[200px]">
+          <li class="flex flex-col shrink-0 lg:w-75 md:w-75 w-50">
             <img :src="photo_3" alt="">
           </li>
         </ul>

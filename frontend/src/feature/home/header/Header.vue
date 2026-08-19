@@ -16,7 +16,7 @@ onMounted(async () => {
 
 <template>
   <header class="font-[Montserrat] w-full mt-14">
-    <div class="xl:flex lg:flex h-[380px]">
+    <div class="xl:flex lg:flex h-95">
       <div class="flex flex-col gap-2">
         <div class="font-extrabold flex flex-col text-5xl">
           <span>NEW</span>
@@ -31,7 +31,7 @@ onMounted(async () => {
         </div>
         <div class="relative transtion duration-400 hover:scale-108 mt-5 xl:mt-auto ">
           <router-link :to="{name: 'products'}">
-              <span class="bg-black font-semibold text-white xl:w-[265px] px-40 py-3 text-start
+              <span class="bg-black font-semibold text-white xl:w-66.25 px-40 py-3 text-start
                   xl:pl-4 pl-3 cursor-pointer">Go To Shop</span>
             <img :src=arrow alt="" class="absolute h-13 left-50 xl:left-50 top-1/2 -translate-y-1/2">
           </router-link>
@@ -39,14 +39,14 @@ onMounted(async () => {
       </div>
       <div class="xl:flex xl:ml-auto lg:hidden hidden">
         <ul class="xl:flex xl:gap-10 xl:ml-auto">
-          <li class="flex-shrink-0 lg:w-[380px] md:w-[280px] w-[200px]">
+          <li class="shrink-0 lg:w-95 md:w-70 w-50">
             <router-link :to="{name: 'products/info'}">
-              <img :src=photo_1 alt="" class=" w-full h-[200px] lg:h-[380px] md:h-[280px]">
+              <img :src=photo_1 alt="" class=" w-full h-50 lg:h-95 md:h-70">
             </router-link>
           </li>
-          <li class="flex-shrink-0 lg:w-[380px] md:w-[280px] w-[200px]">
+          <li class="shrink-0 lg:w-95 md:w-70 w-50">
             <router-link :to="{name: 'products/info'}">
-              <img :src=photo_2 alt="" class=" w-full h-[200px] lg:h-[380px] md:h-[280px]">
+              <img :src=photo_2 alt="" class=" w-full h-50 lg:h-95 md:h-70">
             </router-link>
           </li>
         </ul>
