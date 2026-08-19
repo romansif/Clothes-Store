@@ -9,8 +9,7 @@ const { currentFile } = productsStore();
 export const useProductsModals = () => {
     const toggleFilterAside = () => {
         filterAside.value = !filterAside.value;
-    }
-
+    };
 
     const openSelectProductCard = (index: number) => {
         currentFile.value = index;
