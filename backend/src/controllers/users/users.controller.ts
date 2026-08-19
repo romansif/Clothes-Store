@@ -180,9 +180,10 @@ export const usersController = {
             if (db.products) db.products = db.products.filter((p: any) => p.userId !== id);
             if (db.cart) db.cart = db.cart.filter((c: any) => c.userId !== id);
             if (db.favorites) db.favorites = db.favorites.filter((f: any) => f.userId !== id);
-            if (db.orders) db.orders = db.orders.filter((o: any) => o.userId !== id);
             if (db.addresses) db.addresses = db.addresses.filter((a: any) => a.userId !== id);
+            if (db.shipping) db.shipping = db.shipping.filter((a: any) => a.userId !== id);
             if (db.payments) db.payments = db.payments.filter((p: any) => p.userId !== id);
+            if (db.orders) db.orders = db.orders.filter((o: any) => o.userId !== id);
 
             dbService.writeDB(db);
 
