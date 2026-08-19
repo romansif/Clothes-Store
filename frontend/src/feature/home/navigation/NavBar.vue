@@ -28,7 +28,7 @@
           </div>
         </router-link>
         <router-link :to="{name: 'cart'}">
-          <div class="xl:flex xl:items-center lg:flex md:flex ">
+          <div class="xl:flex xl:items-center lg:flex md:flex gap-1">
             <span class="px-7 py-3.5 bg-black rounded-4xl text-white items-center md:flex hidden">
               Cart
             </span>

@@ -6,7 +6,8 @@
             <img :src="productPreview(product.id, products)" alt="" :class="['w-[344.5px] h-45 sm:h-78.5 xl:h-100',
               product.quantity === 0 || product.status === 'Exhausted' ? 'opacity-40' : '']" />
         </router-link>
-        <span v-if="product.quantity === 0 || product.status === 'Exhausted'" class="absolute top-1/2 left-1/20 text-5xl font-semibold -rotate-45">
+        <span v-if="product.quantity === 0 || product.status === 'Exhausted'"
+              class="absolute w-100 top-45 -left-7 text-6xl font-semibold -rotate-50">
           Out Of Stack
         </span>
         <img @click="toggleToFavorite(product.id, 'product', product.id)" :src="product.favorite ? liked : like" alt=""
