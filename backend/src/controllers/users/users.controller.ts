@@ -1,22 +1,24 @@
 import fs from "fs";
 import bcrypt from "bcryptjs";
-import { supabase } from '#lib/supabase.js';
 import { type Request, type Response } from "express";
 import { type AuthenticatedRequest } from '../../interfaces.ts';
+import { dbService } from '../../db/db.config.ts';
 
 export const usersController = {
     async getUsers(_req: Request, res: Response) {
         try {
-            const { data: users, error } = await supabase
-                .from('users')
-                .select('id, role, name, surName, privatePhone, companyName, publicPhone, email, avatarUrl, dateCreatedAccount, userId');
+            const db = dbService.readDB();
+            const users: any[] = db.users || [];
 
-            if (error) throw error;
+            const sanitizedUsers = users.map(user => {
+                const { password: _, refreshTokens: __, ...rest } = user;
+                return rest;
+            });
 
-            res.json(users || []);
+            res.json(sanitizedUsers);
         } catch (err) {
             console.error('Failed to get the users:', err);
-            const message = err instanceof Error ? err.message : 'Unknown Error'
+            const message = err instanceof Error ? err.message : 'Unknown Error';
             res.status(500).json({ error: message });
         }
     },
@@ -25,41 +27,32 @@ export const usersController = {
         try {
             const { id } = req.params;
 
-            const { data: user, error } = await supabase
-                .from('users')
-                .select('*')
-                .eq('id', id)
-                .maybeSingle();
+            const db = dbService.readDB();
+            const users: any[] = db.users || [];
+            const user = users.find(u => u.id === id);
 
-            if (error) throw error;
             if (!user) return res.status(404).json({ message: "User not found" });
 
             const { password: _, refreshTokens: __, ...userWithoutPassword } = user;
             res.json(userWithoutPassword);
         } catch (err) {
             console.error(`Failed to get the user ${req.params.id}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error'
+            const message = err instanceof Error ? err.message : 'Unknown Error';
             res.status(500).json({ error: message });
         }
     },
 
     async getAllCheckout(_req: Request, res: Response) {
         try {
-            const [addressesRes, paymentsRes] = await Promise.all([
-                supabase.from('checkoutAddresses').select('*'),
-                supabase.from('checkoutPayments').select('*')
-            ]);
-
-            if (addressesRes.error) throw addressesRes.error;
-            if (paymentsRes.error) throw paymentsRes.error;
+            const db = dbService.readDB();
 
             res.json({
-                addresses: addressesRes.data || [],
-                payments: paymentsRes.data || []
+                addresses: db.addresses || [],
+                payments: db.payments || []
             });
         } catch (err) {
             console.error('Failed to get user checkouts:', err);
-            const message = err instanceof Error ? err.message : 'Unknown Error'
+            const message = err instanceof Error ? err.message : 'Unknown Error';
             res.status(500).json({ error: message });
         }
     },
@@ -68,21 +61,26 @@ export const usersController = {
         try {
             const { id } = req.params;
 
-            const { data: updatedUser, error } = await supabase
-                .from('users')
-                .update(req.body)
-                .eq('id', id)
-                .select()
-                .maybeSingle();
+            const db = dbService.readDB();
+            const users: any[] = db.users || [];
+            const index = users.findIndex(u => u.id === id);
 
-            if (error) throw error;
-            if (!updatedUser) return res.status(404).json({ message: "User not found" });
+            if (index === -1) return res.status(404).json({ message: "User not found" });
 
-            const { password: _, refreshTokens: __, ...userWithoutPassword } = updatedUser;
+            // Обновляем данные пользователя
+            users[index] = {
+                ...users[index],
+                ...req.body
+            };
+
+            db.users = users;
+            dbService.writeDB(db);
+
+            const { password: _, refreshTokens: __, ...userWithoutPassword } = users[index];
             res.json(userWithoutPassword);
         } catch (err) {
             console.error(`Failed to update the user ${req.params.id}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error'
+            const message = err instanceof Error ? err.message : 'Unknown Error';
             res.status(500).json({ error: message });
         }
     },
@@ -96,13 +94,10 @@ export const usersController = {
                 return res.status(400).json({ message: 'Заполните все поля' });
             }
 
-            const { data: user, error: fetchError } = await supabase
-                .from('users')
-                .select('id, password')
-                .eq('id', id)
-                .maybeSingle();
+            const db = dbService.readDB();
+            const users: any[] = db.users || [];
+            const user = users.find(u => u.id === id);
 
-            if (fetchError) throw fetchError;
             if (!user) {
                 return res.status(404).json({ message: 'Пользователь не найден' });
             }
@@ -112,19 +107,13 @@ export const usersController = {
                 return res.status(400).json({ message: 'Неверный текущий пароль' });
             }
 
-            const hashedPassword = await bcrypt.hash(newPassword, 10);
-
-            const { error: updateError } = await supabase
-                .from('users')
-                .update({ password: hashedPassword })
-                .eq('id', id);
-
-            if (updateError) throw updateError;
+            user.password = await bcrypt.hash(newPassword, 10);
+            dbService.writeDB(db);
 
             return res.status(200).json({ message: 'Пароль успешно изменен' });
         } catch (err) {
             console.error(`Failed to update password for user ${req.params.id}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error'
+            const message = err instanceof Error ? err.message : 'Unknown Error';
             res.status(500).json({ error: message });
         }
     },
@@ -137,13 +126,10 @@ export const usersController = {
                 return res.status(400).json({ message: 'Файл аватарки обязателен' });
             }
 
-            const { data: user, error: fetchError } = await supabase
-                .from('users')
-                .select('avatarUrl')
-                .eq('id', id)
-                .maybeSingle();
+            const db = dbService.readDB();
+            const users: any[] = db.users || [];
+            const user = users.find(u => u.id === id);
 
-            if (fetchError) throw fetchError;
             if (!user) return res.status(404).json({ message: "User not found" });
 
             const oldAvatar = user.avatarUrl;
@@ -155,12 +141,11 @@ export const usersController = {
 
             const newAvatar = `uploads/avatars/${req.file.filename}`;
 
-            const { error: updateError } = await supabase
-                .from('users')
-                .update({ avatarUrl: newAvatar, ...req.body })
-                .eq('id', id);
+            user.avatarUrl = newAvatar;
 
-            if (updateError) throw updateError;
+            Object.assign(user, req.body);
+
+            dbService.writeDB(db);
 
             res.json({
                 message: 'Avatar updated successfully',
@@ -168,7 +153,7 @@ export const usersController = {
             });
         } catch (err) {
             console.error(`Failed to update avatar for user ${req.params.id}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error'
+            const message = err instanceof Error ? err.message : 'Unknown Error';
             res.status(500).json({ error: message });
         }
     },
@@ -182,24 +167,25 @@ export const usersController = {
                 return res.status(403).json({ message: "Нет прав на удаление чужого аккаунта" });
             }
 
-            const { data: deletedUser, error: deleteError } = await supabase
-                .from('users')
-                .delete()
-                .eq('id', id)
-                .select()
-                .maybeSingle();
+            const db = dbService.readDB();
+            const users: any[] = db.users || [];
+            const index = users.findIndex(u => u.id === id);
 
-            if (deleteError) throw deleteError;
-            if (!deletedUser) return res.status(404).json({ message: "Пользователь не найден" });
+            if (index === -1) return res.status(404).json({ message: "Пользователь не найден" });
 
-            await Promise.all([
-                supabase.from('products').delete().eq('userId', id),
-                supabase.from('cart').delete().eq('userId', id),
-                supabase.from('favorites').delete().eq('userId', id),
-                supabase.from('orders').delete().eq('userId', id),
-                supabase.from('checkoutAddresses').delete().eq('userId', id),
-                supabase.from('checkoutPayments').delete().eq('userId', id),
-            ]);
+            const deletedUser = users[index];
+
+
+            db.users = users.filter((u: any) => u.id !== id);
+
+            if (db.products) db.products = db.products.filter((p: any) => p.userId !== id);
+            if (db.cart) db.cart = db.cart.filter((c: any) => c.userId !== id);
+            if (db.favorites) db.favorites = db.favorites.filter((f: any) => f.userId !== id);
+            if (db.orders) db.orders = db.orders.filter((o: any) => o.userId !== id);
+            if (db.addresses) db.addresses = db.addresses.filter((a: any) => a.userId !== id);
+            if (db.payments) db.payments = db.payments.filter((p: any) => p.userId !== id);
+
+            dbService.writeDB(db);
 
             res.clearCookie('accessToken');
             res.clearCookie('refreshToken', { path: '/' });
@@ -208,8 +194,10 @@ export const usersController = {
             res.json({ message: "Пользователь и его данные удалены", user: userWithoutPassword });
         } catch (err) {
             console.error(`Failed to delete user ${req.params.id}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error'
+            const message = err instanceof Error ? err.message : 'Unknown Error';
             res.status(500).json({ error: message });
         }
     }
 };
+
+export default usersController;

@@ -7,17 +7,17 @@ import express, { type Request, type Response } from 'express';
 
 dotenv.config();
 
-import authRoutes from '#routes/auth.routes';
+import authRoutes from '#routes/auth.routes.ts';
 
-import usersRoutes from "#routes/users/users.routes";
-import addressesRoutes from "#routes/users/addresses.routes";
-import shippingRoutes from "#routes/users/shipping.routes";
-import paymentsRoutes from "#routes/users/payments.routes";
+import usersRoutes from "#routes/users/users.routes.ts";
+import addressesRoutes from "#routes/users/addresses.routes.ts";
+import shippingRoutes from "#routes/users/shipping.routes.ts";
+import paymentsRoutes from "#routes/users/payments.routes.ts";
 
-import productsRoutes from "#routes/products/products.routes";
-import cartRoutes from "#routes/products/cart.routes";
-import favoritesRoutes from "#routes/products/favorite.routes";
-import ordersRoutes from "#routes/products/orders.routes";
+import productsRoutes from "#routes/products/products.routes.ts";
+import cartRoutes from "#routes/products/cart.routes.ts";
+import favoritesRoutes from "#routes/products/favorite.routes.ts";
+import ordersRoutes from "#routes/products/orders.routes.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

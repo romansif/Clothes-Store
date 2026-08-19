@@ -1,24 +1,22 @@
-import { supabase } from '#lib/supabase.js';
 import { type Request, type Response } from 'express';
 import { type AuthenticatedRequest } from '../../interfaces.ts';
+import { dbService } from '../../db/db.config.ts';
 
 export const ordersController = {
     async getOrders(req: Request, res: Response) {
         try {
             const { userId } = req.params;
 
-            const { data: orders, error } = await supabase
-                .from('orders')
-                .select('*')
-                .order('created_at', { ascending: false })
-                .eq('userId', userId);
+            const db = dbService.readDB();
+            const orders: any[] = db.orders || [];
 
-            if (error) throw error;
+            const userOrders = orders.filter(o => String(o.userId) === String(userId));
+            userOrders.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
 
-            res.json(orders || []);
+            res.json(userOrders);
         } catch (err) {
             console.error('Failed to get the current orders:', err);
-           const message = err instanceof Error ? err.message : 'Unknown Error'
+            const message = err instanceof Error ? err.message : 'Unknown Error';
             res.status(500).json({ error: message });
         }
     },
@@ -27,20 +25,21 @@ export const ordersController = {
         try {
             const { userId } = req.params;
 
-            const { data: orders, error } = await supabase
-                .from('orders')
-                .select('*')
-                .order('created_at', { ascending: false })
-                .eq('userId', userId)
-                .neq('status', 'Delivered')
-                .neq('status', 'Cancelled');
+            const db = dbService.readDB();
+            const orders: any[] = db.orders || [];
 
-            if (error) throw error;
+            const filteredOrders = orders.filter(o =>
+                String(o.userId) === String(userId) &&
+                o.status !== 'Delivered' &&
+                o.status !== 'Cancelled'
+            );
 
-            res.json(orders || []);
+            filteredOrders.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+
+            res.json(filteredOrders);
         } catch (err) {
             console.error('Failed to get the filtered orders:', err);
-            const message = err instanceof Error ? err.message : 'Unknown Error'
+            const message = err instanceof Error ? err.message : 'Unknown Error';
             res.status(500).json({ error: message });
         }
     },
@@ -54,26 +53,26 @@ export const ordersController = {
                 minute: "2-digit",
             });
 
+            const db = dbService.readDB();
+            const orders: any[] = db.orders || [];
+
             const newOrder = {
-                userId: req.user?.id,
+                id: String(Date.now()), // Генерация уникального ID
+                userId: req.user?.id || req.user?.userId,
                 ...req.body,
-                created_at: date,
+                created_at: date.toISOString(),
                 date_created_at: dateCreated,
                 time_created_at: time,
             };
 
-            const { data: createdOrder, error } = await supabase
-                .from('orders')
-                .insert([newOrder])
-                .select()
-                .single();
+            orders.push(newOrder);
+            db.orders = orders;
+            dbService.writeDB(db);
 
-            if (error) throw error;
-
-            res.status(201).json({ message: 'Product added to orderItems', data: createdOrder });
+            res.status(201).json({ message: 'Product added to orderItems', data: newOrder });
         } catch (err) {
             console.error('Failed to create the order:', err);
-            const message = err instanceof Error ? err.message : 'Unknown Error'
+            const message = err instanceof Error ? err.message : 'Unknown Error';
             res.status(500).json({ error: message });
         }
     },
@@ -82,20 +81,26 @@ export const ordersController = {
         try {
             const { id } = req.params;
 
-            const { data: updatedOrder, error } = await supabase
-                .from('orders')
-                .update(req.body)
-                .eq('id', id)
-                .select()
-                .maybeSingle();
+            const db = dbService.readDB();
+            const orders: any[] = db.orders || [];
+            const index = orders.findIndex(o => String(o.id) === String(id));
 
-            if (error) throw error;
-            if (!updatedOrder) return res.status(404).json({ message: 'Order not found' });
+            if (index === -1) {
+                return res.status(404).json({ message: 'Order not found' });
+            }
 
-            res.json(updatedOrder);
+            orders[index] = {
+                ...orders[index],
+                ...req.body
+            };
+
+            db.orders = orders;
+            dbService.writeDB(db);
+
+            res.json(orders[index]);
         } catch (err) {
             console.error(`Failed to update the order item ${req.params.id}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error'
+            const message = err instanceof Error ? err.message : 'Unknown Error';
             res.status(500).json({ error: message });
         }
     },
@@ -104,21 +109,26 @@ export const ordersController = {
         try {
             const { id } = req.params;
 
-            const { data: deletedOrder, error } = await supabase
-                .from('orders')
-                .delete()
-                .eq('id', id)
-                .select()
-                .maybeSingle();
+            const db = dbService.readDB();
+            const orders: any[] = db.orders || [];
+            const index = orders.findIndex(o => String(o.id) === String(id));
 
-            if (error) throw error;
-            if (!deletedOrder) return res.status(404).json({ message: 'Order Product not found' });
+            if (index === -1) {
+                return res.status(404).json({ message: 'Order Product not found' });
+            }
+
+            const deletedOrder = orders[index];
+
+            db.orders = orders.filter(o => String(o.id) !== String(id));
+            dbService.writeDB(db);
 
             res.json(deletedOrder);
         } catch (err) {
             console.error(`Failed to delete the order ${req.params.id}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error'
+            const message = err instanceof Error ? err.message : 'Unknown Error';
             res.status(500).json({ error: message });
         }
     }
 };
+
+export default ordersController;

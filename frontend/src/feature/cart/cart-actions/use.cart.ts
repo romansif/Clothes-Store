@@ -201,6 +201,8 @@ export const useCart = () => {
     };
 
     const updateCheckedQuantity = async () => {
+        await getCartProducts();
+
         const checkedItems = cart.value.filter(item => item.checked);
         if (!checkedItems || checkedItems.length === 0) {
             console.warn('Нет выбранных (checked) товаров в корзине!', checkedItems);

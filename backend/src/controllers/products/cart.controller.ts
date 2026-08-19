@@ -1,24 +1,22 @@
-import { supabase } from '#lib/supabase.js';
 import { type Request, type Response } from 'express';
 import { type AuthenticatedRequest } from '../../interfaces.ts';
+import { dbService } from '../../db/db.config.ts'; // Подставь свой путь к файлу конфигурации
 
 export const cartController = {
     async getCart(req: Request, res: Response) {
         try {
             const { userId } = req.params;
 
-            const { data: cart, error } = await supabase
-                .from('cart')
-                .select('*')
-                .order('created_at', { ascending: false })
-                .eq('userId', userId);
+            const db = dbService.readDB();
+            const cart: any[] = db.cart || [];
 
-            if (error) throw error;
+            const userCart = cart.filter(item => String(item.userId) === String(userId));
+            userCart.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
 
-            res.json(cart || []);
+            res.json(userCart);
         } catch (err) {
             console.error(`Failed to get the cart list for user ${req.params.userId}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error'
+            const message = err instanceof Error ? err.message : 'Unknown Error';
             res.status(500).json({ error: message });
         }
     },
@@ -29,33 +27,31 @@ export const cartController = {
 
             console.log('colors:', req.body.colors);
 
-            const { data: product, error: productError } = await supabase
-                .from('products')
-                .select('id')
-                .eq('id', productId)
-                .maybeSingle();
+            const db = dbService.readDB();
+            const products: any[] = db.products || [];
 
-            if (productError) throw productError;
+            // Проверяем, существует ли продукт в локальной базе продуктов
+            const product = products.find(p => String(p.id) === String(productId));
+
             if (!product) return res.status(400).json({ message: 'Product not found' });
 
+            const cart: any[] = db.cart || [];
+
             const newCartItem = {
-                userId: req.user?.id,
+                id: String(Date.now()), // Генерация уникального ID для записи в корзине
+                userId: req.user?.id || req.user?.userId,
                 ...req.body,
-                created_at: new Date(),
+                created_at: new Date().toISOString(),
             };
 
-            const { data: createdItem, error: insertError } = await supabase
-                .from('cart')
-                .insert([newCartItem])
-                .select()
-                .single();
+            cart.push(newCartItem);
+            db.cart = cart;
+            dbService.writeDB(db);
 
-            if (insertError) throw insertError;
-
-            res.status(201).json({ message: 'Product added to cart', data: createdItem });
+            res.status(201).json({ message: 'Product added to cart', data: newCartItem });
         } catch (err) {
             console.error('Failed to add the product to the cart:', err);
-            const message = err instanceof Error ? err.message : 'Unknown Error'
+            const message = err instanceof Error ? err.message : 'Unknown Error';
             res.status(500).json({ error: message });
         }
     },
@@ -64,20 +60,28 @@ export const cartController = {
         try {
             const { id } = req.params;
 
-            const { data: updatedItem, error } = await supabase
-                .from('cart')
-                .update(req.body)
-                .or(`id.eq.${id},productId.eq.${id}`)
-                .select()
-                .maybeSingle();
+            const db = dbService.readDB();
+            const cart: any[] = db.cart || [];
 
-            if (error) throw error;
-            if (!updatedItem) return res.status(404).json({ message: 'Cart item not found' });
+            // Ищем элемент по id или по productId
+            const index = cart.findIndex(item => String(item.id) === String(id) || String(item.productId) === String(id));
 
-            res.json(updatedItem);
+            if (index === -1) {
+                return res.status(404).json({ message: 'Cart item not found' });
+            }
+
+            cart[index] = {
+                ...cart[index],
+                ...req.body
+            };
+
+            db.cart = cart;
+            dbService.writeDB(db);
+
+            res.json(cart[index]);
         } catch (err) {
             console.error(`Failed to update the cart item ${req.params.id}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error'
+            const message = err instanceof Error ? err.message : 'Unknown Error';
             res.status(500).json({ error: message });
         }
     },
@@ -86,21 +90,28 @@ export const cartController = {
         try {
             const { id } = req.params;
 
-            const { data: deletedProduct, error } = await supabase
-                .from('cart')
-                .delete()
-                .or(`id.eq.${id},productId.eq.${id}`)
-                .select()
-                .maybeSingle();
+            const db = dbService.readDB();
+            const cart: any[] = db.cart || [];
 
-            if (error) throw error;
-            if (!deletedProduct) return res.status(404).json({ message: "Cart Product not found" });
+            const index = cart.findIndex(item => String(item.id) === String(id) || String(item.productId) === String(id));
+
+            if (index === -1) {
+                return res.status(404).json({ message: "Cart Product not found" });
+            }
+
+            const deletedProduct = cart[index];
+
+            // Удаляем элемент, соответствующий id или productId
+            db.cart = cart.filter(item => String(item.id) !== String(id) && String(item.productId) !== String(id));
+            dbService.writeDB(db);
 
             res.json(deletedProduct);
         } catch (err) {
             console.error(`Failed to delete the product from cart ${req.params.id}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error'
+            const message = err instanceof Error ? err.message : 'Unknown Error';
             res.status(500).json({ error: message });
         }
     }
 };
+
+export default cartController;

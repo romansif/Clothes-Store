@@ -1,46 +1,47 @@
-import { supabase } from '#lib/supabase.js';
 import { type Request, type Response } from "express";
 import { type AuthenticatedRequest } from '../../interfaces.ts';
+import { dbService } from '../../db/db.config.ts'; // Подставь свой путь к файлу конфигурации
 
 export const shippingController = {
     async getShipping (req: Request, res: Response) {
-        try{
+        try {
             const { paymentId } = req.params;
 
-            const { data: shipping, error } = await supabase
-                .from('shipping')
-                .select('*')
-                .eq('paymentId', paymentId)
+            const db = dbService.readDB();
+            const shippingList: any[] = db.shipping || [];
 
-            if (error) throw error;
+            // Фильтруем по paymentId, если он передан, иначе возвращаем весь список
+            const filteredShipping = paymentId
+                ? shippingList.filter(s => String(s.paymentId) === String(paymentId))
+                : shippingList;
 
-            return res.json(shipping || []);
-        }catch(err){
-            console.error(`Failed to get user shipping for user ${req.params.userId}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error'
+            return res.json(filteredShipping);
+        } catch (err) {
+            console.error(`Failed to get user shipping for payment ${req.params.paymentId}:`, err);
+            const message = err instanceof Error ? err.message : 'Unknown Error';
             res.status(500).json({ error: message });
         }
     },
 
     async addShipping(req: AuthenticatedRequest, res: Response) {
         try {
+            const db = dbService.readDB();
+            const shippingList: any[] = db.shipping || [];
+
             const newShipping = {
-                userId: req.user?.id,
+                id: String(Date.now()), // Генерируем уникальный ID для локальной записи
+                userId: req.user?.id || req.user?.userId,
                 ...req.body
             };
 
-            const { data: createdShipping, error } = await supabase
-                .from('shipping')
-                .insert([newShipping])
-                .select()
-                .single();
+            shippingList.push(newShipping);
+            db.shipping = shippingList;
+            dbService.writeDB(db);
 
-            if (error) throw error;
-
-            res.status(201).json(createdShipping);
+            res.status(201).json(newShipping);
         } catch (err) {
             console.error('Failed to add shipping entry:', err);
-            const message = err instanceof Error ? err.message : 'Unknown Error'
+            const message = err instanceof Error ? err.message : 'Unknown Error';
             res.status(500).json({ error: message });
         }
     }

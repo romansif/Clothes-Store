@@ -1,49 +1,47 @@
-import { supabase } from '#lib/supabase.js';
 import { type Request, type Response } from 'express';
 import { type AuthenticatedRequest } from '../../interfaces.ts';
+import { dbService } from '../../db/db.config.ts'; // Подставь свой путь к файлу конфигурации
 
 export const favoritesController = {
     async getFavorites(req: Request, res: Response) {
         try {
             const { userId } = req.params;
 
-            const { data: favorites, error } = await supabase
-                .from('favorites')
-                .select('*')
-                .order('created_at', { ascending: false })
-                .eq('userId', userId);
+            const db = dbService.readDB();
+            const favorites: any[] = db.favorites || [];
 
-            if (error) throw error;
+            const userFavorites = favorites.filter(f => String(f.userId) === String(userId));
+            userFavorites.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
 
-            res.json(favorites || []);
+            res.json(userFavorites);
         } catch (err) {
             console.error(`Failed to get the favorite list for user ${req.params.userId}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error'
+            const message = err instanceof Error ? err.message : 'Unknown Error';
             res.status(500).json({ error: message });
         }
     },
 
     async addToFavorite(req: AuthenticatedRequest, res: Response) {
         try {
+            const db = dbService.readDB();
+            const favorites: any[] = db.favorites || [];
+
             const newFavoriteItem = {
-                userId: req.user?.id,
+                id: String(Date.now()), // Генерация уникального ID
+                userId: req.user?.id || req.user?.userId,
                 productId: req.body.productId,
                 ...req.body,
-                created_at: new Date(),
+                created_at: new Date().toISOString(),
             };
 
-            const { data: createdFavorite, error } = await supabase
-                .from('favorites')
-                .insert([newFavoriteItem])
-                .select()
-                .single();
+            favorites.push(newFavoriteItem);
+            db.favorites = favorites;
+            dbService.writeDB(db);
 
-            if (error) throw error;
-
-            res.status(201).json({ message: 'Product added to favorite', data: createdFavorite });
+            res.status(201).json({ message: 'Product added to favorite', data: newFavoriteItem });
         } catch (err) {
             console.error('Failed to add the product to the favorite:', err);
-            const message = err instanceof Error ? err.message : 'Unknown Error'
+            const message = err instanceof Error ? err.message : 'Unknown Error';
             res.status(500).json({ error: message });
         }
     },
@@ -52,20 +50,28 @@ export const favoritesController = {
         try {
             const { id } = req.params;
 
-            const { data: updatedFavorite, error } = await supabase
-                .from('favorites')
-                .update(req.body)
-                .or(`id.eq.${id},productId.eq.${id}`)
-                .select()
-                .maybeSingle();
+            const db = dbService.readDB();
+            const favorites: any[] = db.favorites || [];
 
-            if (error) throw error;
-            if (!updatedFavorite) return res.status(404).json({ message: 'Favorite item not found' });
+            // Ищем элемент по id или по productId (как было в Supabase через .or())
+            const index = favorites.findIndex(f => String(f.id) === String(id) || String(f.productId) === String(id));
 
-            res.json(updatedFavorite);
+            if (index === -1) {
+                return res.status(404).json({ message: 'Favorite item not found' });
+            }
+
+            favorites[index] = {
+                ...favorites[index],
+                ...req.body
+            };
+
+            db.favorites = favorites;
+            dbService.writeDB(db);
+
+            res.json(favorites[index]);
         } catch (err) {
             console.error(`Failed to update the favorite item ${req.params.id}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error'
+            const message = err instanceof Error ? err.message : 'Unknown Error';
             res.status(500).json({ error: message });
         }
     },
@@ -74,21 +80,28 @@ export const favoritesController = {
         try {
             const { id } = req.params;
 
-            const { data: deletedProduct, error } = await supabase
-                .from('favorites')
-                .delete()
-                .or(`id.eq.${id},productId.eq.${id}`)
-                .select()
-                .maybeSingle();
+            const db = dbService.readDB();
+            const favorites: any[] = db.favorites || [];
 
-            if (error) throw error;
-            if (!deletedProduct) return res.status(404).json({ message: "Favorite Product not found" });
+            const index = favorites.findIndex(f => String(f.id) === String(id) || String(f.productId) === String(id));
+
+            if (index === -1) {
+                return res.status(404).json({ message: "Favorite Product not found" });
+            }
+
+            const deletedProduct = favorites[index];
+
+            // Удаляем элемент, удовлетворяющий условию id или productId
+            db.favorites = favorites.filter(f => String(f.id) !== String(id) && String(f.productId) !== String(id));
+            dbService.writeDB(db);
 
             res.json(deletedProduct);
         } catch (err) {
             console.error(`Failed to delete the product from favorites ${req.params.id}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error'
+            const message = err instanceof Error ? err.message : 'Unknown Error';
             res.status(500).json({ error: message });
         }
     }
 };
+
+export default favoritesController;
