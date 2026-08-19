@@ -3,13 +3,12 @@ import { watch } from "vue";
 import { productsCover } from "@/shared/composables/product.cover.ts";
 import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
 import { productsStore } from "@/shared/composables/stores/products.store";
-import { useProducts } from "@/feature/products/composables/use.products.ts";
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
 import { useProductsModals } from "@/shared/composables/modals/products.modals";
 import { productsForms } from "@/shared/composables/forms/products.forms";
 import { productsFormErrors } from "@/shared/composables/errors/errors-messages/products.errors";
 
 import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
-import close from '@/app/assets/icons/delete-close/del_address_card.svg';
 import Loading from "@/shared/ui/base/base-modals/Loading.vue";
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 import Notification from "@/shared/ui/base/base-modals/Notification.vue";
@@ -18,7 +17,7 @@ const { loading, notify } = useBaseModals();
 const { toggleSize, toggleColor } = productsCover();
 const { createProductFormErrors } = productsFormErrors();
 const { createProduct, onFilesSelected } = useProducts();
-const { sizes, categories, materials, genders, productsPreview } = productsStore();
+const { collections, categories, materials, genders, sizes, productsPreview } = productsStore();
 const { createProductForm, moreCreateItem, createProductFormMessages } = productsForms();
 const { toggleCreateProductModal, openSelectProductCard, fileInput } = useProductsModals();
 
@@ -68,8 +67,9 @@ watch(() => [
   <div>
     <div class="font-[Montserrat] fixed inset-0 z-50">
       <div class="py-2 px-4 bg-[#F0F0F0] shadow-md overflow-hidden h-full overflow-y-auto no-scrollbar">
-        <img @click="toggleCreateProductModal" :src="close" alt=""
-             class="w-10 ml-auto transition duration-400 hover:scale-120">
+        <div class="flex">
+          <BaseButton @click="toggleCreateProductModal" name="Exit" variant="exitClose" class="" />
+        </div>
         <div class="flex justify-center">
           <div class="flex flex-col gap-5">
             <div class="flex flex-col items-center gap-2.5 w-full pb-6.5 border-b">
@@ -87,26 +87,37 @@ watch(() => [
               </div>
             </div>
             <form @keydown.enter="createProduct" action="" class="flex flex-col justify-center gap-5 mt-2">
-              <div class="flex flex-col gap-2 w-full pb-5.5 border-b">
-                <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
-                  COLLECTIONS
-                </label>
-                <BaseInput v-model="createProductForm.collections" type="text" placeholder="new, ikyk etc."
-                      :error="createProductFormErrors.collectionsError" variant="createProduct" required
-                      :error-message="createProductFormErrors.collectionsError ? createProductFormMessages.collectionsMessage : ''"/>
+              <div class="flex gap-3 pb-5.5 border-b">
+                <div class="flex flex-col gap-2.5 w-full">
+                  <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
+                    TITLE
+                  </label>
+                  <BaseInput v-model="createProductForm.title" type="text" placeholder="title, name etc."
+                       :error="createProductFormErrors.titleError" variant="createProduct" required
+                       :error-message="createProductFormErrors.titleError ? createProductFormMessages.titleMessage : ''"/>
+                </div>
+                <div class="flex flex-col gap-2 w-full">
+                  <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
+                    COLLECTIONS
+                  </label>
+                  <select v-model="createProductForm.collections" :class="[`w-full border border-gray-300 rounded-sm
+                          outline-none px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,
+                            createProductForm.collections ? 'text-black' : '',
+                            createProductFormErrors.collectionsError ? 'border-red-500' : '']">
+                    <option disabled hidden value="">
+                      Void
+                    </option>
+                    <option v-for="collection in collections" class="text-black">{{ collection.collection }}</option>
+                  </select>
+                  <span v-if="createProductFormErrors.collectionsError" class="text-red-600 text-xs">
+                    {{ createProductFormMessages.collectionsMessage }}
+                  </span>
+                </div>
               </div>
-              <div class="flex flex-col gap-2.5 w-full pb-5.5 border-b">
-                <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
-                  TITLE
-                </label>
-                <BaseInput v-model="createProductForm.title" type="text" placeholder="title, name etc."
-                     :error="createProductFormErrors.titleError" variant="createProduct" required
-                     :error-message="createProductFormErrors.titleError ? createProductFormMessages.titleMessage : ''"/>
-              </div>
-              <div class="flex flex-col gap-2.5 w-full pb-5.5 border-b">
-                <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">CATEGORY</label>
-                <div class="flex items-center gap-6">
-                  <select v-model="createProductForm.category" :class="[`w-40 border border-gray-300 rounded-sm
+              <div class="flex gap-3 pb-5.5 border-b">
+                <div class="flex flex-col gap-2.5 w-full">
+                  <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">CATEGORY</label>
+                  <select v-model="createProductForm.category" :class="[`w-full border border-gray-300 rounded-sm
                           outline-none px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,
                             createProductForm.category ? 'text-black' : '',
                             createProductFormErrors.categoryError ? 'border-red-500' : '']">
@@ -115,20 +126,15 @@ watch(() => [
                     </option>
                     <option v-for="category in categories" class="text-black">{{ category.category }}</option>
                   </select>
-                  <BaseInput class="w-full" v-model="createProductForm.category" type="text"
-                       placeholder="shirt, shoes etc.." :error="createProductFormErrors.categoryError"
-                       variant="createProduct" required :error-message="''"/>
+                  <span v-if="createProductFormErrors.categoryError" class="text-red-600 text-xs">
+                    {{ createProductFormMessages.categoryMessage }}
+                  </span>
                 </div>
-                <span v-if="createProductFormErrors.categoryError" class="text-red-600 text-xs">
-                  {{ createProductFormMessages.categoryMessage }}
-                </span>
-              </div>
-              <div class="flex flex-col gap-2.5 w-full pb-5.5 border-b">
-                <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
-                  MATERIAL
-                </label>
-                <div class="flex gap-6">
-                  <select v-model="createProductForm.material" :class="[`w-40 border border-gray-300 rounded-sm
+                <div class="flex flex-col gap-2.5 w-full">
+                  <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
+                    MATERIAL
+                  </label>
+                  <select v-model="createProductForm.material" :class="[`w-full border border-gray-300 rounded-sm
                           outline-none px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,
                             createProductForm.material ? 'text-black' : '',
                             createProductFormErrors.materialError ? 'border-red-500' : '']">
@@ -137,37 +143,34 @@ watch(() => [
                     </option>
                     <option v-for="material in materials" class="text-black">{{ material.material }}</option>
                   </select>
-                  <BaseInput class="w-full" v-model="createProductForm.material" type="text" placeholder="cotton, wool etc."
-                       :error="createProductFormErrors.materialError" variant="createProduct" required
-                       :error-message="''"/>
-                </div>
-                <span v-if="createProductFormErrors.materialError" class="text-red-600 text-xs">
+                  <span v-if="createProductFormErrors.materialError" class="text-red-600 text-xs">
                   {{ createProductFormMessages.materialMessage }}
                 </span>
-              </div>
-              <div class="flex flex-col gap-2.5 w-full pb-5.5 border-b">
-                <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
-                  Gender
-                </label>
-                <div class="flex flex-col gap-2.5">
-                  <select v-model="createProductForm.gender" :class="[`border border-gray-300 rounded-sm outline-none
-                          px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,
-                            createProductForm.gender ? 'text-black' : '',
-                            createProductFormErrors.genderError ? 'border-red-500' : '']">
-                    <option disabled hidden value="">
-                      man, woman, kids
-                    </option>
-                    <option v-for="gender in genders" class="text-black">{{ gender.gender }}</option>
-                  </select>
-                  <span v-if="createProductFormErrors.genderError" class="text-red-600 text-xs">
-                    {{ createProductFormMessages.genderMessage }}
-                  </span>
                 </div>
               </div>
               <div class="flex gap-3 w-full pb-5.5 border-b">
                 <div class="flex flex-col gap-2.5 w-full">
                   <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
-                    Quantity
+                    GENDER
+                  </label>
+                  <div class="flex flex-col gap-2.5">
+                    <select v-model="createProductForm.gender" :class="[`border border-gray-300 rounded-sm outline-none
+                            px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,
+                              createProductForm.gender ? 'text-black' : '',
+                              createProductFormErrors.genderError ? 'border-red-500' : '']">
+                      <option disabled hidden value="">
+                        man, woman, kids
+                      </option>
+                      <option v-for="gender in genders" class="text-black">{{ gender.gender }}</option>
+                    </select>
+                    <span v-if="createProductFormErrors.genderError" class="text-red-600 text-xs">
+                      {{ createProductFormMessages.genderMessage }}
+                    </span>
+                  </div>
+                </div>
+                <div class="flex flex-col gap-2.5 w-full">
+                  <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
+                    QUANTITY
                   </label>
                   <BaseInput v-model="createProductForm.quantity" type="number" placeholder="quantity of product"
                        :error="createProductFormErrors.quantityError" variant="createProduct" required
