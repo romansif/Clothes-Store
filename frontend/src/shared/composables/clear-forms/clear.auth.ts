@@ -5,33 +5,25 @@ const { registerFormErrors, loginFormErrors } = authFormsErrors();
 const { registerBuyerForm, registerSellerForm, loginForm, registerFormMessages, loginFormMessages } = authForms();
 
 export const clearAuthForms = () => {
-    const clearRegisterBuyerForm = () => {
+    const clearRegisterForm = () => {
         registerBuyerForm.value.name = '';
         registerBuyerForm.value.surName = '';
         registerBuyerForm.value.privatePhone = '';
         registerBuyerForm.value.email = '';
         registerBuyerForm.value.password = '';
 
-        registerFormMessages.value.nameMessage = '';
-        registerFormMessages.value.surNameMessage = '';
-        registerFormMessages.value.privatePhoneMessage = '';
-        registerFormMessages.value.emailMessage = '';
-        registerFormMessages.value.passwordMessage = '';
-
-        registerFormErrors.value.nameError = false;
-        registerFormErrors.value.surNameError = false;
-        registerFormErrors.value.privatePhoneError = false;
-        registerFormErrors.value.emailError = false;
-        registerFormErrors.value.passwordError = false;
-    };
-
-    const clearRegisterSellerForm = () => {
         registerSellerForm.value.name = '';
         registerSellerForm.value.surName = '';
         registerSellerForm.value.companyName = '';
         registerSellerForm.value.publicPhone = '';
         registerSellerForm.value.email = '';
         registerSellerForm.value.password = '';
+
+        registerFormMessages.value.nameMessage = '';
+        registerFormMessages.value.surNameMessage = '';
+        registerFormMessages.value.privatePhoneMessage = '';
+        registerFormMessages.value.emailMessage = '';
+        registerFormMessages.value.passwordMessage = '';
 
         registerFormMessages.value.nameMessage = '';
         registerFormMessages.value.surNameMessage = '';
@@ -42,11 +34,17 @@ export const clearAuthForms = () => {
 
         registerFormErrors.value.nameError = false;
         registerFormErrors.value.surNameError = false;
+        registerFormErrors.value.privatePhoneError = false;
+        registerFormErrors.value.emailError = false;
+        registerFormErrors.value.passwordError = false;
+
+        registerFormErrors.value.nameError = false;
+        registerFormErrors.value.surNameError = false;
         registerFormErrors.value.companyNameError = false;
         registerFormErrors.value.publicPhoneError = false;
         registerFormErrors.value.emailError = false;
         registerFormErrors.value.passwordError = false;
-    }
+    };
 
     const clearRegisterFormMessages = () => {
         registerFormMessages.value.nameMessage = '';
@@ -80,8 +78,7 @@ export const clearAuthForms = () => {
     }
 
     return{
-        clearRegisterBuyerForm,
-        clearRegisterSellerForm,
+        clearRegisterForm,
         clearRegisterFormMessages,
         clearLoginForm,
         clearLoginFormMessages
