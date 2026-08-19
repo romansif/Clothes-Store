@@ -22,7 +22,7 @@ const generateRefreshToken = (user: Pick<User, any>) => {
 const authController = {
     async register (req: Request, res: Response) {
         try {
-            const { role, name, surName, companyName, publicPhone, privatePhone, email, password, created_at, userId } = req.body;
+            const { role, name, surName, companyName, publicPhone, privatePhone, email, password, created_at } = req.body;
 
             const db = dbService.readDB();
             const users: any[] = db.users || [];
@@ -60,7 +60,6 @@ const authController = {
                 avatarUrl: 'uploads/avatars/default-avatar.png',
                 created_at: created_at,
                 refreshTokens: [],
-                userId
             };
 
             users.push(newUser);
@@ -160,7 +159,7 @@ const authController = {
 
     async google(req: Request, res: Response) {
         try {
-            const { credential, userId, role, created_at } = req.body;
+            const { credential, role, created_at } = req.body;
 
             if (!credential) {
                 return res.status(400).json({ message: "Google credential is required" });
@@ -206,7 +205,6 @@ const authController = {
                     googleId: sub,
                     created_at: created_at,
                     password: '',
-                    userId,
                     refreshTokens: []
                 };
 

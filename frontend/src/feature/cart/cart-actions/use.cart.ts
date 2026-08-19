@@ -4,8 +4,10 @@ import { productsStore } from "@/shared/composables/stores/products.store.ts";
 import { productsForms } from "@/shared/composables/forms/products.forms.ts";
 import { clearProductsForms } from "@/shared/composables/clear-forms/clear.products.ts";
 import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
 
 const { openNotify } = useBaseModals();
+const { getAllProducts } = useProducts();
 const { addToCartForm } = productsForms();
 const { addToCartErrors } = useFormsErrors();
 const { clearAddToCartForm } = clearProductsForms();
@@ -202,11 +204,9 @@ export const useCart = () => {
 
     const updateCheckedQuantity = async () => {
         await getCartProducts();
-
         const checkedItems = cart.value.filter(item => item.checked);
         if (!checkedItems || checkedItems.length === 0) {
-            console.warn('Нет выбранных (checked) товаров в корзине!', checkedItems);
-            console.log(checkedItems);
+            console.log('Нет выбранных (checked) товаров в корзине!', checkedItems);
             return;
         }
 
@@ -214,53 +214,52 @@ export const useCart = () => {
             for(const item of checkedItems) {
                 await deleteProductCart(item.id);
 
+                await getAllProducts();
                 const product = products.value?.find(
-                    p => p.id === item.productId
-                );
+                    p => p.id === item.productId);
+                if(!product) {
+                    console.log(`Товар в корзине c id=${item.productId} или в каталоге не найден`);
+                    return
+                }
 
-                if(product) {
-                    const currentQuantity = Number(product?.quantity);
-                    const cartQuantity = Number(item?.quantity);
-                    const newQuantity = currentQuantity - cartQuantity;
+                const currentQuantity = Number(product?.quantity);
+                const cartQuantity = Number(item?.quantity);
+                const newQuantity = currentQuantity - cartQuantity;
 
-                    if(newQuantity > 0){
-                        await handler(`/products/${product?.id}`, {
-                            method: "PATCH",
-                            body: JSON.stringify({
-                                quantity: newQuantity,
-                                checked: false
-                            })
-                        });
-                        await handler(`/favorites/${product?.id}`, {
-                            method: "PATCH",
-                            body: JSON.stringify({
-                                quantity: newQuantity,
-                                checked: false
-                            })
-                        });
-                    }else{
-                        await handler(`/products/${product?.id}`, {
-                            method: "PATCH",
-                            body: JSON.stringify({
-                                status: 'Exhausted',
-                                quantity: newQuantity,
-                                checked: false
-                            })
-                        });
-                        await handler(`/favorites/${product?.id}`, {
-                            method: "PATCH",
-                            body: JSON.stringify({
-                                status: 'Exhausted',
-                                quantity: newQuantity,
-                                checked: false
-                            })
-                        });
-                    }
+                if(newQuantity > 0){
+                    await handler(`/products/${product?.id}`, {
+                        method: "PATCH",
+                        body: JSON.stringify({
+                            quantity: newQuantity,
+                            checked: false
+                        })
+                    });
+                    await handler(`/favorites/${product?.id}`, {
+                        method: "PATCH",
+                        body: JSON.stringify({
+                            quantity: newQuantity,
+                            checked: false
+                        })
+                    });
                 }else{
-                    console.log(`Товар в корзине c id=${item.productId} или в каталоге не найден`)
+                    await handler(`/products/${product?.id}`, {
+                        method: "PATCH",
+                        body: JSON.stringify({
+                            status: 'Exhausted',
+                            quantity: newQuantity,
+                            checked: false
+                        })
+                    });
+                    await handler(`/favorites/${product?.id}`, {
+                        method: "PATCH",
+                        body: JSON.stringify({
+                            status: 'Exhausted',
+                            quantity: newQuantity,
+                            checked: false
+                        })
+                    });
                 }
             }
-
             localStorage.removeItem("ordersItem");
         }catch(err){
             console.error(`Failed to update the status or quantity:`, err);
