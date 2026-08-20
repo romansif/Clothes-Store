@@ -1,11 +1,10 @@
 import jwt from "jsonwebtoken";
-import {type Response, type NextFunction, type RequestHandler} from "express";
+import { type Response, type NextFunction, type RequestHandler } from "express";
 import { type CustomJwtPayload, type AuthenticatedRequest } from "../interfaces.ts";
 
 const ACCESS_SECRET = 'your_access_secret_key_123'
 
 export const authMiddleware: RequestHandler = (req, res, next) => {
-
     const authReq = req as AuthenticatedRequest;
     const token = req.cookies?.accessToken;
     if (!token) {
