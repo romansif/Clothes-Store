@@ -49,13 +49,13 @@ cd your-repo-name
 ### 2. Installing dependencies
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### 3. Launch in development mode (Both the backend and frontend are launched.)
 
 ```
-npm run dev
+pnpm run dev
 ```
 
 ## 📦 Production Build
@@ -65,11 +65,11 @@ To release the project:
 ### 1. To build an optimized project for deployment
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 ### 2. Verify the locally built build
 
 ```bash
-npm run preview
+pnpm run preview
 ```
