@@ -1,6 +1,6 @@
 import { handler } from "@/shared/api/http";
 import { useFormsErrors } from "@/shared/composables/errors/errors-middleware/forms.errors";
-import { usersStore } from "@/shared/composables/stores/users.store";
+import { usersStore, type UserCheckoutPayment } from "@/shared/composables/stores/users.store";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
 import { useOrders } from "@/feature/products/products-actions/use.orders.ts";
@@ -52,15 +52,13 @@ export const usePayment = () => {
         }
     };
 
-    const useSavedCard = (
-        cardName: string, cardNumber: string, expiryDate: string, cardCvv: number, id: string) => {
+    const useSavedCard = (checkout: UserCheckoutPayment) => {
+        paymentId.value = checkout.id;
 
-        paymentId.value = id;
-
-        payment.value.cardName = cardName;
-        payment.value.cardNumber = cardNumber;
-        payment.value.expiryDate = expiryDate;
-        payment.value.cardCvv = String(cardCvv);
+        payment.value.cardName = checkout.cardName;
+        payment.value.cardNumber = checkout.cardNumber;
+        payment.value.expiryDate = checkout.expiryDate;
+        payment.value.cardCvv = String(checkout.cardCvv);
 
         isChosenPayment.value = true;
     }

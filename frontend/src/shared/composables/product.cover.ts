@@ -216,13 +216,21 @@ export const productsCover = () => {
             }
             el.addEventListener('wheel', onWheel, { passive: false});
         }
-    }
+    };
+
+    const isValidOutOfStack = (product: Product) => {
+        const userId = localStorage.getItem('userId');
+
+        const hasOutOfStack = product.quantity === 0
+
+        return userId && hasOutOfStack
+    };
+
+    const isOutOfStack = (product: Product) => {
+        return product.quantity === 0 || product.status === 'Exhausted'
+    };
 
     return {
-        toggleColor,
-        toggleSize,
-        changeImg,
-
         productPreview,
         orderPreview,
         productInfoPreview,
@@ -237,5 +245,12 @@ export const productsCover = () => {
         pureSizesName,
         isInCart,
         vHorizontalScroll,
+
+        toggleColor,
+        toggleSize,
+        changeImg,
+
+        isValidOutOfStack,
+        isOutOfStack
     }
 }

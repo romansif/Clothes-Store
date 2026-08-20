@@ -1,6 +1,6 @@
 import { handler } from "@/shared/api/http";
 import { useFormsErrors } from "@/shared/composables/errors/errors-middleware/forms.errors";
-import { usersStore } from "@/shared/composables/stores/users.store";
+import { usersStore, type UserCheckoutAddress } from "@/shared/composables/stores/users.store";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
 import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
@@ -48,26 +48,23 @@ export const useAddress = () => {
         }
     };
 
-    const useSavedContactInfo = (email: string, phone: string, id: string) => {
-        informationId.value = id
-        information.value.email = email
-        information.value.phone = phone
+    const useSavedContactInfo = (checkout: UserCheckoutAddress) => {
+        informationId.value = checkout.id
+        information.value.email = checkout.email
+        information.value.phone = checkout.phone
 
         isChosenContactInfo.value = true;
     };
 
-    const useSavedAddress = (
-        name: string, firstName: string, lastName: string, country: string,
-        state: string, address: string, city: string, code: number) => {
-
-        information.value.addressName = name
-        information.value.firstName = firstName
-        information.value.lastName = lastName
-        information.value.country = country
-        information.value.stateRegion = state
-        information.value.address = address
-        information.value.city =  city
-        information.value.postalCode = String(code)
+    const useSavedAddress = (checkout: UserCheckoutAddress) => {
+        information.value.addressName = checkout.addressName;
+        information.value.firstName = checkout.firstName
+        information.value.lastName = checkout.lastName
+        information.value.country = checkout.country
+        information.value.stateRegion = checkout.stateRegion
+        information.value.address = checkout.address
+        information.value.city = checkout.city
+        information.value.postalCode = String(checkout.postalCode)
 
         isChosenAddress.value = true;
     };

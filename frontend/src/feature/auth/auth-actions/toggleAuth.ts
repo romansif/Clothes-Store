@@ -15,13 +15,13 @@ export const toggleAuth = () => {
     const toggleSignIn = () => {
         showSignSection.value.signIn = !showSignSection.value.signIn;
 
-        clearRegisterForm();
+        clearLoginForm();
     };
 
     const toggleSignUp = () => {
         showSignSection.value.signUp = !showSignSection.value.signUp;
 
-        clearLoginForm();
+        clearRegisterForm();
     };
 
     const setInputRef = (
