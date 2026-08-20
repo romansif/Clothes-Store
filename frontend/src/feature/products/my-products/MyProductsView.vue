@@ -22,6 +22,11 @@
 </template>
 
 <script setup lang="ts">
+const { loading } = useBaseModals();
+const { myProducts } = productsStore();
+const { getMyProducts } = useProducts();
+const { deleteChoice } = useProfileModals();
+
 import { onMounted } from "vue";
 import { useProducts } from "@/feature/products/products-actions/use.products.ts";
 import { productsStore } from "@/shared/composables/stores/products.store";
@@ -33,11 +38,6 @@ import icon_products from "@/app/assets/icons/products/icon-products.svg";
 import DeleteModal from "@/shared/ui/base/base-modals/DeleteModal.vue";
 import MyProductsList from "@/feature/products/my-products/my-items/MyProductsList.vue";
 import Loading from "@/shared/ui/base/base-modals/Loading.vue";
-
-const { loading } = useBaseModals();
-const { myProducts } = productsStore();
-const { getMyProducts } = useProducts();
-const { deleteChoice } = useProfileModals();
 
 onMounted(async () => {
   loading.value = true;

@@ -1,8 +1,6 @@
 <template>
   <TransitionGroup name="list">
-    <li @click="useSavedCard(checkout.cardName, checkout.cardNumber, checkout.expiryDate, checkout.cardCvv, checkout.id)"
-        v-for="checkout in userPayments" :key="checkout.id" :class="[`flex flex-col mt-5 transition duration-400 bg-[#D9D9D9]/40
-        hover:bg-gray-50 border border-gray-300 rounded-xl p-2`, isChosenPayment ? 'bg-gray-50' : '']">
+    <li @click="useSavedCard(checkout)" v-for="checkout in userPayments" :key="checkout.id" :class="savedPaymentClass">
       <div class="flex flex-col gap-5">
         <div class="flex gap-5">
           <span class="text-sm font-semibold">
@@ -26,13 +24,13 @@
 </template>
 
 <script setup lang="ts">
-import { usersStore } from "@/shared/composables/stores/users.store";
-import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
-import { usePayment } from "@/feature/checkout/checkout-actions/use.payment.ts";
-
 const { userPayments } = usersStore();
-const { isChosenPayment } = checkout();
 const { useSavedCard } = usePayment();
+const { savedPaymentClass } = paymentClasses();
+
+import { usersStore } from "@/shared/composables/stores/users.store";
+import { paymentClasses } from "@/shared/composables/style/checkout-style/payment.classes.ts";
+import { usePayment } from "@/feature/checkout/checkout-actions/use.payment.ts";
 </script>
 
 <style scoped>

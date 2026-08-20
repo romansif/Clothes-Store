@@ -13,16 +13,16 @@
 </template>
 
 <script setup lang="ts">
+const { updateEmailAccount } = useProfile();
+const { updateUserFormErrors } = userFormsErrors();
+const { updateUserForm, updateUserFormMessage } = userForms();
+
 import { userForms } from "@/shared/composables/forms/users.forms";
 import { useProfile } from "@/feature/profile/profile-actions/use.profile.ts";
 import { userFormsErrors } from "@/shared/composables/errors/errors-messages/users.errors";
 
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
-
-const { updateEmailAccount } = useProfile();
-const { updateUserFormErrors } = userFormsErrors();
-const { updateUserForm, updateUserFormMessage } = userForms();
 </script>
 
 <style scoped>

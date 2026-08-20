@@ -9,15 +9,15 @@
       </div>
       <div class="flex flex-col items-start gap-5">
         <ReplacementInput v-model="cancelChoice" name="Incorrect payment method" variant="choice"
-                          :value="'Incorrect payment method'"/>
+            :value="'Incorrect payment method'"/>
         <ReplacementInput v-model="cancelChoice" name="I entered the wrong address" variant="choice"
-                          :value="'I entered the wrong address'"/>
+            :value="'I entered the wrong address'"/>
         <ReplacementInput v-model="cancelChoice" name="I no longer need this item" variant="choice"
-                          :value="'I no longer need this item'"/>
+            :value="'I no longer need this item'"/>
         <ReplacementInput v-model="cancelChoice" name="Ordered it by mistake" variant="choice"
-                          :value="'Ordered it by mistake'"/>
+            :value="'Ordered it by mistake'"/>
         <ReplacementInput v-model="cancelChoice" name="I found a better product" variant="choice"
-                          :value="'I found a better product'"/>
+            :value="'I found a better product'"/>
       </div>
       <span v-if="cancelChoiceError" class="text-red-600 text-xs px-4">{{ cancelChoiceMessage }}</span>
       <div class="flex ml-auto">
@@ -28,15 +28,15 @@
 </template>
 
 <script setup lang="ts">
+const { replaceOrder } = useOrders();
+const { toggleOrder, cancelChoice, cancelChoiceMessage, cancelChoiceError } = useBaseModals();
+
+import { watch } from "vue";
 import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
 import { useOrders } from "@/feature/products/products-actions/use.orders.ts";
 
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 import ReplacementInput from "@/shared/ui/base/input/ReplacementInput.vue";
-import {watch} from "vue";
-
-const { replaceOrder } = useOrders();
-const { toggleOrder, cancelChoice, cancelChoiceMessage, cancelChoiceError } = useBaseModals();
 
 watch(() => [cancelChoice.value],([choice]) => {
       if(choice){

@@ -56,6 +56,11 @@
 </template>
 
 <script setup lang="ts">
+const { user } = usersStore();
+const { updateUserFormErrors } = userFormsErrors();
+const { updateUserForm, updateUserFormMessage } = userForms();
+const { updatePasswordAccount, updateNameAccount, updateSurNameAccount } = useProfile();
+
 import { ref, watch } from 'vue'
 
 import { userForms } from "@/shared/composables/forms/users.forms";
@@ -70,11 +75,6 @@ import opened from '@/app/assets/icons/auth/opened.png'
 import closed from '@/app/assets/icons/auth/closed.png'
 import SellerEmailForm from "./email-phone-form/SellerEmailForm.vue";
 import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
-
-const { user } = usersStore();
-const { updateUserFormErrors } = userFormsErrors();
-const { updateUserForm, updateUserFormMessage } = userForms();
-const { updatePasswordAccount, updateNameAccount, updateSurNameAccount } = useProfile();
 
 watch(() => [
       updateUserForm.value.name, updateUserForm.value.surName,

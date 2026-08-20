@@ -1,7 +1,13 @@
 <template>
   <div class="md:px-5 sm:px-4 px-4 lg:w-75 xl:w-100">
     <div class="flex">
-      <span class="px-2 py-1 bg-white ml-auto">(<span class="text-blue-700 font-medium">{{ items?.length || 0 }}</span>)</span>
+      <span class="px-2 py-1 bg-white ml-auto">
+        (
+          <span class="text-blue-700 font-medium">
+          {{ items?.length || 0 }}
+          </span>
+        )
+      </span>
     </div>
     <h1 class="font-medium">YOUR ORDER</h1>
     <OrderInfoList />
@@ -15,8 +21,12 @@
         <span>Shipping</span>
         <div class="flex ml-auto gap-2">
           <span v-if="!shipping.delivery" class="text-gray-400">Calculated at next step</span>
-          <span v-if="shipping.delivery === 'express'" class="text-gray-400">{{ shipping.delivery }} </span>
-          <span v-if="shipping.delivery === 'standard'" class="text-gray-400">{{ shipping.delivery }}</span>
+          <span v-if="shipping.delivery === 'express'" class="text-gray-400">
+            {{ shipping.delivery }}
+          </span>
+          <span v-if="shipping.delivery === 'standard'" class="text-gray-400">
+            {{ shipping.delivery }}
+          </span>
         </div>
       </div>
     </div>
@@ -30,15 +40,15 @@
 </template>
 
 <script setup lang="ts">
+const { items } = productsStore();
+const { shipping } = checkoutForms();
+const { price, totalPrice, commissionPrice } = checkout();
+
 import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
 import { productsStore } from "@/shared/composables/stores/products.store";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
 
 import OrderInfoList from "./order-items/OrderInfoList.vue";
-
-const { items } = productsStore();
-const { shipping } = checkoutForms();
-const { price, totalPrice, commissionPrice } = checkout();
 </script>
 
 <style scoped>

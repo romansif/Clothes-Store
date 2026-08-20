@@ -2,53 +2,40 @@
   <div class="flex gap-2">
     <div class="flex flex-col gap-2 w-full">
       <label>Card Name</label>
-      <input v-model="payment.cardName" type="text" class="border border-gray-300 rounded-xl outline-none
-          px-4 py-3 text-xs transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50 appearance-none"
-             placeholder="Card Name is optional"/>
+      <input v-model="payment.cardName" type="text" placeholder="Card Name is optional" :class="carNameClass()" />
     </div>
     <div class="flex flex-col gap-2 w-full">
       <label>Card Number</label>
-      <IMask v-model:value="payment.cardNumber" type="text" :mask="cardNumberMask.mask"
-          :class="[`border border-gray-300 rounded-xl outline-none px-4 py-3 text-xs transition duration-400
-                bg-[#D9D9D9]/40 hover:bg-gray-50 appearance-none placeholder:text-sm`,
-             paymentErrors.cardNumberError ? 'placeholder:text-red-500 border-red-400 placeholder:text-xs'
-             : 'placeholder:text-gray-600']"
-          :placeholder="cardNumberPlaceholder" />
+      <IMask v-model:value="payment.cardNumber" type="text" :placeholder="cardNumberPlaceholder"
+          :class="cardNumberClass" :mask="cardNumberMask.mask" />
     </div>
   </div>
   <div class="flex gap-2">
     <div class="flex flex-col gap-2">
       <label>Expiry date</label>
-      <IMask v-model.value="payment.expiryDate" type="text" inputmode="numeric" :mask="expiryDateMask.mask"
-          :class="[`border border-gray-300 rounded-xl w-full sm:w-75 md:w-91.25 lg:w-48.75 xl:w-61.25
-                outline-none px-4 py-3 text-xs transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50`,
-             paymentErrors.expiryDateError ? 'placeholder:text-red-500 border-red-400 placeholder:text-xs'
-             : 'placeholder:text-gray-600']"
-          :placeholder="expiryDatePlaceholder" />
+      <IMask v-model.value="payment.expiryDate" type="text" inputmode="numeric" :placeholder="expiryDatePlaceholder"
+          :class="expiryDateClass" :mask="expiryDateMask.mask" />
     </div>
     <div class="flex flex-col gap-2">
       <label>CVV</label>
-      <IMask v-model.value="payment.cardCvv" type="text" inputmode="numeric" :mask="cardCvv.mask"
-          :class="[`border border-gray-300 rounded-xl w-full sm:w-75 md:w-91.25 lg:w-48.75 xl:w-61.25
-              outline-none px-4 py-3 text-xs transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50 placeholder:text-lg`,
-            paymentErrors.cardCvvError ? 'placeholder:text-red-500 border-red-400 placeholder:text-xs'
-            : 'placeholder:text-gray-600']"
-          :placeholder="cardCvvPlaceholder" />
+      <IMask v-model.value="payment.cardCvv" type="text" inputmode="numeric" :placeholder="cardCvvPlaceholder"
+          :class="cardCvvClass" :mask="cardCvv.mask"/>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+
+const { payment } = checkoutForms();
+const { cardNumberMask, expiryDateMask, cardCvv } = usersStore();
+const { carNameClass, cardNumberClass, expiryDateClass, cardCvvClass } = paymentClasses();
+const { cardNumberPlaceholder, expiryDatePlaceholder, cardCvvPlaceholder } = checkoutPlaceholder();
+
 import { IMaskComponent as IMask } from "vue-imask";
 import { usersStore } from "@/shared/composables/stores/users.store";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
-import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors";
+import { paymentClasses } from "@/shared/composables/style/checkout-style/payment.classes.ts";
 import { checkoutPlaceholder } from "@/feature/checkout/checkout-actions/checkout.placeholder.ts";
-
-const { payment } = checkoutForms();
-const { paymentErrors } = checkoutErrors();
-const { cardNumberMask, expiryDateMask, cardCvv } = usersStore();
-const { cardNumberPlaceholder, expiryDatePlaceholder, cardCvvPlaceholder } = checkoutPlaceholder();
 </script>
 
 <style scoped>

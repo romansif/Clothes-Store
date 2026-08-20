@@ -7,7 +7,9 @@
         <div class="flex flex-col gap-2 border-b py-4">
           <h1 class="font-bold text-2xl">ADDRESSES AND CARDS</h1>
           <div class="flex">
-            <span class="text-sm text-[#A3A3A3]">May I see your saved delivery address and the cards you used for payment.</span>
+            <span class="text-sm text-[#A3A3A3]">
+              May I see your saved delivery address and the cards you used for payment.
+            </span>
           </div>
         </div>
         <div v-if="userAddresses.length > 0 || userPayments.length > 0" class="flex justify-between pt-10">
@@ -46,6 +48,11 @@
 </template>
 
 <script setup lang="ts">
+const { getAddresses } = useAddress();
+const { getPayments } = usePayment();
+const { userAddresses, userPayments } = usersStore();
+const { toggleAddressesAndCards, deleteChoice } = useProfileModals();
+
 import { onMounted } from "vue";
 import { usersStore } from "@/shared/composables/stores/users.store"
 import { useProfileModals } from "@/shared/composables/modals/profile.modals";
@@ -58,12 +65,6 @@ import AddressesList from "./addresses/AddressesList.vue";
 import icon_card from "@/app/assets/icons/checkout/payment/icon_card.svg";
 import icon_address from "@/app/assets/icons/checkout/icon_address.svg";
 import DeleteModal from "@/shared/ui/base/base-modals/DeleteModal.vue";
-
-const { getAddresses } = useAddress();
-const { getPayments } = usePayment();
-const { userAddresses, userPayments } = usersStore();
-const { toggleAddressesAndCards, deleteChoice } = useProfileModals();
-
 
 onMounted(async () => {
   await getAddresses();

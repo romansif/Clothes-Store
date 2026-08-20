@@ -24,6 +24,6 @@ const props = withDefaults(defineProps<Props>(), {
 const model = defineModel<string | number>();
 
 const cancelOrderClasses = {
-  choice: `flex items-center gap-5 w-full p-4 transition duration-300 hover:scale-103`,
+  choice: `flex items-center gap-5 w-full p-4 transition duration-400 hover:scale-105`,
 }
 </script>

@@ -29,19 +29,18 @@
         </span>
         <div class="flex justify-start items-center lg:gap-5">
           <div v-for="color in pureInfoColors(product)" :key="color.hex" :style="{ background: color.hex }" :title="color.hex"
-               @click="addToCartForm.colors = { hex: color.hex, colorName: color.colorName }" :class="['w-15 h-15',
-               addToCartForm.colors.colorName === color.colorName ? 'scale-120' : 'hover:scale-120 transition duration-400']"></div>
+               @click="addToCartForm.colors = { hex: color.hex, colorName: color.colorName }"
+               :class="selectedColorClass(color, product, user)"></div>
           </div>
-        <span v-if=addCartFormErrors.colorError class="text-red-600 text-xs">
-          {{ addToCartFormMessages.colorMessage }}
-        </span>
+          <span v-if=addCartFormErrors.colorError class="text-red-600 text-xs">
+            {{ addToCartFormMessages.colorMessage }}
+          </span>
       </div>
       <div class="flex flex-col gap-2">
         <span class="font-medium text-[#A3A3A3]">Sizes</span>
         <div class="flex justify-start items-center lg:gap-5">
           <img v-for="size in (isAvailableSizes as any)" :key="size.name" :src=size.url alt=""
-               :class="[size.class, 'w-15 h-15', addToCartForm.sizes === size.name
-               ? 'scale-120' : 'hover:scale-120 transition duration-400']" @click="addToCartForm.sizes = size.name">
+               :class="selectedSizesClass(size, product, user)" @click="addToCartForm.sizes = size.name">
         </div>
         <span v-if=addCartFormErrors.sizeError class="text-red-600 text-xs">
           {{ addToCartFormMessages.sizeMessage }}
@@ -58,8 +57,8 @@
           ADD TO CART
         </span>
       </router-link>
-      <BaseButton @click="addToCart()" v-if="product.quantity !== 0 && !isInCart" name="ADD TO CART" variant="addToCart" />
-      <BaseButton v-if="userId && product.quantity === 0" name="OUT OF STACK" variant="outOfStack" />
+      <BaseButton @click="addToCart()" v-if="product.userId !== userId && product.userId !== userId && !isInCart" name="ADD TO CART" variant="addToCart" />
+      <BaseButton v-if="isValidOutOfStack(product)" name="OUT OF STACK" variant="outOfStack" />
       <div v-if="userId && isInCart" class="flex items-center gap-18">
         <div class="flex gap-6 bg-zinc-800 py-4 px-3 text-lg rounded-md transition duration-300 hover:scale-108">
           <img :src="plus" @click="updateCartItem('add', isInCart.id, isInCart.status)" alt=""
@@ -70,7 +69,7 @@
         </div>
         <router-link :to="{ name: 'cart' }">
           <span class="bg-black text-white font-semibold py-4 px-19 font-[Montserrat]
-              lg:block cursor-pointer text-start transition duration-300 transform hover:scale-108">Go to Cart</span>
+              lg:block cursor-pointer text-start transition duration-400 transform hover:scale-108">Go to Cart</span>
         </router-link>
       </div>
     </div>
@@ -78,11 +77,23 @@
 </template>
 
 <script setup lang="ts">
+
+const { user } = usersStore();
+const { product } = productsStore();
+const { toggleToFavorite } = useFavorites();
+const { addToCart, updateCartItem } = useCart();
+const { addCartFormErrors } = productsFormErrors();
+const { selectedColorClass, selectedSizesClass } = productsClasses();
+const { addToCartForm, addToCartFormMessages } = productsForms();
+const { isValidOutOfStack, pureInfoColors, isAvailableSizes, isInCart } = productsCover();
+
 import { watch} from "vue";
 import { productsCover } from "@/shared/composables/product.cover.ts";
 
 import { useCart } from "@/feature/cart/cart-actions/use.cart.ts";
+import { usersStore } from "@/shared/composables/stores/users.store.ts";
 import { useFavorites } from "@/feature/favorite/favorite-actions/use.favorites.ts";
+import { productsClasses } from "@/shared/composables/style/products.classes.ts";
 import { productsStore } from "@/shared/composables/stores/products.store";
 import { productsForms } from "@/shared/composables/forms/products.forms";
 import { productsFormErrors } from "@/shared/composables/errors/errors-messages/products.errors";
@@ -92,13 +103,6 @@ import minus from '@/app/assets/icons/products/minus.svg';
 import like from '@/app/assets/icons/nav/like.png';
 import liked from '@/app/assets/icons/nav/liked.png';
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
-
-const { product } = productsStore();
-const { toggleToFavorite } = useFavorites();
-const { addToCart, updateCartItem } = useCart();
-const { addCartFormErrors } = productsFormErrors();
-const { addToCartForm, addToCartFormMessages } = productsForms();
-const { pureInfoColors, isAvailableSizes, isInCart } = productsCover();
 
 const userId = localStorage.getItem("userId");
 

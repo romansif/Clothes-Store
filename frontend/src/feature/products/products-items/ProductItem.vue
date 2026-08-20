@@ -3,11 +3,10 @@
     <li @click="getProductId(product.id)" v-for="product in products" :key="product.id" class="flex flex-col">
       <div class="relative">
         <router-link :to="{ name: 'product/info' }">
-            <img :src="productPreview(product.id, products)" alt="" :class="['w-[344.5px] h-45 sm:h-78.5 xl:h-100',
-              product.quantity === 0 || product.status === 'Exhausted' ? 'opacity-40' : '']" />
+            <img :src="productPreview(product.id, products)" alt=""
+                 :class="productPreviewClass('w-[344.5px] h-45 sm:h-78.5 xl:h-100', product)" />
         </router-link>
-        <span v-if="product.quantity === 0 || product.status === 'Exhausted'"
-              class="absolute w-100 top-45 -left-7 text-6xl font-semibold -rotate-50">
+        <span v-if="isOutOfStack(product)" class="absolute w-100 top-45 -left-7 text-6xl font-semibold -rotate-50">
           Out Of Stack
         </span>
         <img @click="toggleToFavorite(product.id, 'product', product.id)" :src="product.favorite ? liked : like" alt=""
@@ -29,6 +28,13 @@
 </template>
 
 <script setup lang="ts">
+const { products } = productsStore();
+const { getProductId } = useProducts();
+const { isOutOfStack, productPreview } = productsCover();
+const { productPreviewClass } = baseClasses();
+const { toggleToFavorite } = useFavorites();
+
+import { baseClasses } from "@/shared/composables/style/base.classes.ts";
 import { productsCover } from "@/shared/composables/product.cover.ts";
 import { useProducts } from "@/feature/products/products-actions/use.products.ts";
 import { useFavorites } from "@/feature/favorite/favorite-actions/use.favorites.ts";
@@ -36,11 +42,6 @@ import { productsStore } from "@/shared/composables/stores/products.store";
 
 import like from '@/app/assets/icons/nav/like.png';
 import liked from '@/app/assets/icons/nav/liked.png';
-
-const { products } = productsStore();
-const { getProductId } = useProducts();
-const { productPreview } = productsCover();
-const { toggleToFavorite } = useFavorites();
 </script>
 
 <style scoped>

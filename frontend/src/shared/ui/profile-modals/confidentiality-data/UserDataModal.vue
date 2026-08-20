@@ -23,6 +23,9 @@
 </template>
 
 <script setup lang="ts">
+const { notify } = useBaseModals();
+const { toggleConfidentialityData } = useProfileModals();
+
 import { useProfileModals } from "@/shared/composables/modals/profile.modals";
 import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
 
@@ -30,9 +33,6 @@ import ConfidentialityData from "./ConfidentialityData.vue";
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 import ConfidentialityForm from "./ConfidentialityForm.vue";
 import Notification from "@/shared/ui/base/base-modals/Notification.vue";
-
-const { notify } = useBaseModals();
-const { toggleConfidentialityData } = useProfileModals();
 </script>
 
 

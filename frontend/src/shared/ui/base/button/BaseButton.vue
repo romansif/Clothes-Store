@@ -23,7 +23,7 @@ const variantClasses = {
   useProduct: `w-full transition duration-400 hover:scale-102 bg-black text-white rounded-sm py-5
                 font-semibold text-center uppercase tracking-wider text-sm shadow-md`,
   addToCart: `bg-black font-semibold text-sm py-5 w-full text-white font-[Montserrat] lg:block cursor-pointer
-          transition duration-300 transform hover:scale-108`,
+          transition duration-400 transform hover:scale-108`,
   addToOrder: `w-full font-semibold bg-black text-white py-4 mt-8 cursor-pointer
       transition duration-400 hover:scale-108`,
   checkOut: `bg-black text-white font-semibold w-full text-start px-3 py-2 cursor-pointer text-sm font-medium
@@ -36,11 +36,11 @@ const variantClasses = {
       transition duration-400 hover:scale-108`,
   outOfStack: `w-full font-semibold bg-[#A3A3A3] text-white py-4 mt-1`,
   exitClose: `class="text-start ml-auto h-fit w-fit px-10 py-2 bg-red-600 text-white font-medium text-xs rounded-md cursor-pointer
-          transition duration-300 transform hover:scale-108 hover:bg-red-500`,
+          transition duration-400 transform hover:scale-108 hover:bg-red-500`,
   cancel: `bg-red-600 text-white px-8 py-3.5 font-medium text-xs rounded-md cursor-pointer
-      transition duration-300 hover:scale-108 hover:bg-red-700`,
+      transition duration-400 hover:scale-108 hover:bg-red-700`,
   confirm: `bg-blue-700 text-white px-8 py-3.5 font-medium text-xs rounded-md cursor-pointer
-      transition duration-300 hover:scale-108 hover:bg-blue-800`,
+      transition duration-400 hover:scale-108 hover:bg-blue-800`,
   refresh: `transition duration-400 px-4 py-2 mt-5 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors`
 }
 </script>

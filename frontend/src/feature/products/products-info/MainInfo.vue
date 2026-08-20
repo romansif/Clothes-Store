@@ -30,7 +30,9 @@
             <ProductInfo />
             <div class="flex justify-center lg:hidden">
               <router-link v-if="!userId" :to="{name: 'signIn'}">
-                <span class="bg-black font-semibold text-sm py-5 px-46 text-white font-[Montserrat] lg:block">ADD TO CART</span>
+                <span class="bg-black font-semibold text-sm py-5 px-46 text-white font-[Montserrat] lg:block">
+                  ADD TO CART
+                </span>
               </router-link>
             </div>
           </div>
@@ -44,6 +46,11 @@
 </template>
 
 <script setup lang="ts">
+const { getProduct } = useProducts();
+const { notify, loading } = useBaseModals();
+const { product, activeProductImg } = productsStore();
+const { changeImg, productInfoPreview, angelCards } = productsCover();
+
 import { onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useProducts } from "@/feature/products/products-actions/use.products.ts";
@@ -58,11 +65,6 @@ import profile from '@/app/assets/icons/nav/profile.png';
 import go_to_shop from '@/app/assets/icons/arrows/right-long-arrow.png';
 import Notification from "@/shared/ui/base/base-modals/Notification.vue";
 import Loading from "@/shared/ui/base/base-modals/Loading.vue";
-
-const { getProduct } = useProducts();
-const { notify, loading } = useBaseModals();
-const { product, activeProductImg } = productsStore();
-const { changeImg, productInfoPreview, angelCards } = productsCover();
 
 const router = useRouter();
 

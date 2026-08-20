@@ -3,10 +3,10 @@
   <div class="xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
     <NavBar />
   </div>
-  <div :class="['font-[Montserrat] flex justify-center my-items-center', user?.role === 'Buyer' ? 'p-35' : 'p-15']">
+  <div :class="isProfileLoginClass(user)">
     <div class="w-87.5 sm:w-150 md:w-175 lg:w-237.5 xl:w-175">
-      <ProfileNotLogin v-if="!userId" />
-      <ProfileSettings v-if="userId" />
+      <ProfileNotLogin v-if="!user.id" />
+      <ProfileSettings v-if="user.id" />
     </div>
   </div>
   <Transition name="notify">
@@ -33,11 +33,18 @@
 </template>
 
 <script setup lang="ts">
+const { user } = usersStore();
+const { getUser } = useGetUsers();
+const { notify, loading } = useBaseModals();
+const { isProfileLoginClass } = profileClasses();
+const { avatarModal, orderHistory, currentOrder, addressesAndCards, confidentialityData, deleteChoice } = useProfileModals();
+
 import { onMounted } from "vue";
 import { useGetUsers } from "@/feature/auth/auth-actions/get.users";
 import { usersStore } from "@/shared/composables/stores/users.store";
 import { useProfileModals } from "@/shared/composables/modals/profile.modals";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
+import { profileClasses } from "@/shared/composables/style/profile.classes.ts";
 
 import NavBar from '../navigation/NavBar.vue'
 import DeleteModal from "@/shared/ui/base/base-modals/DeleteModal.vue";
@@ -50,13 +57,6 @@ import CurrentOrder from "@/shared/ui/orders/CurrentOrder.vue";
 import AddressPaymentInfo from "@/shared/ui/profile-modals/address-and-cards/AddressPaymentInfo.vue";
 import UserDataModal from "@/shared/ui/profile-modals/confidentiality-data/UserDataModal.vue";
 import Loading from "@/shared/ui/base/base-modals/Loading.vue";
-
-const { user } = usersStore();
-const { getUser } = useGetUsers();
-const { notify, loading } = useBaseModals();
-const { avatarModal, orderHistory, currentOrder, addressesAndCards, confidentialityData, deleteChoice } = useProfileModals();
-
-const userId = localStorage.getItem("userId");
 
 onMounted(async () => {
   loading.value = true;

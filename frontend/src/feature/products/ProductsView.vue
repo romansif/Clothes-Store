@@ -28,6 +28,11 @@
 </template>
 
 <script setup lang="ts">
+const { getAllProducts } = useProducts();
+const { notify, loading } = useBaseModals();
+const { filterAside } = useProductsModals();
+const { componentError, resetError } = errorHandler();
+
 import { onMounted, onErrorCaptured } from "vue";
 import { useProducts } from "@/feature/products/products-actions/use.products.ts";
 import { errorHandler } from "@/shared/composables/errors/errors-middleware/error.handler";
@@ -41,11 +46,6 @@ import FilterProducts from "../navigation/products-header/FilterProducts.vue";
 import Notification from "@/shared/ui/base/base-modals/Notification.vue";
 import AsideFilter from "@/shared/ui/products-modals/AsideFilter.vue";
 import Loading from "@/shared/ui/base/base-modals/Loading.vue";
-
-const { getAllProducts } = useProducts();
-const { notify, loading } = useBaseModals();
-const { filterAside } = useProductsModals();
-const { componentError, resetError } = errorHandler();
 
 onErrorCaptured((err, info) => {
   console.error("Перехвачена ошибка в дочернем компоненте:", err);

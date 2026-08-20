@@ -26,6 +26,12 @@
 </template>
 
 <script setup lang="ts">
+const { items } = useOrderCard();
+const { clipboard } = useOrderCard();
+const { choiceModal } = useBaseModals();
+const { getFilteredOrders } = useOrders();
+const { toggleCurrentOrder } = useProfileModals();
+
 import { onMounted } from "vue";
 import { useOrderCard } from "@/shared/ui/orders/use.order.card.ts";
 import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
@@ -37,12 +43,6 @@ import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 import ClipboardNotify from "@/shared/ui/base/base-modals/ClipboardNotify.vue";
 
 import ReplacementChoice from "@/shared/ui/base/base-modals/ReplacementChoice.vue";
-
-const { items } = useOrderCard();
-const { clipboard } = useOrderCard();
-const { choiceModal } = useBaseModals();
-const { getFilteredOrders } = useOrders();
-const { toggleCurrentOrder } = useProfileModals();
 
 onMounted(async () => {
   await getFilteredOrders();

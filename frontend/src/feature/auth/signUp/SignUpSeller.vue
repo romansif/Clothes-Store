@@ -21,28 +21,24 @@
       <div class="flex flex-col gap-2 w-full">
         <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">PUBLIC PHONE</label>
         <div class="flex gap-3">
-          <select name="" id="" v-model="selectedCountryCode" @change="changeCountry"
-                  class="text-xs outline-none bg-[#D9D9D9]/40 transition duration-400 border border-gray-300
-                        hover:bg-gray-50 rounded-md py-5 px-3">
+          <select name="" id="" v-model="selectedCountryCode" @change="changeCountry" :class="selectPhoneCodeClass()">
             <option v-for="country in countries" :key="country.code" :value="country.code">
               {{ country.name }}
             </option>
           </select>
-          <IMask v-model:value=registerSellerForm.publicPhone type="text" :mask="currentMask.mask" :key="selectedCountryCode"
-                 :class="[`bg-[#D9D9D9]/40 w-full outline-none px-6 py-4 rounded-sm border border-gray-300
-                       transition duration-400 hover:bg-gray-50`,
-                         registerFormErrors.publicPhoneError ? 'border border-red-500' : '']"
-                 :placeholder="currentCountry?.placeholder" />
+          <IMask v-model:value=registerSellerForm.publicPhone type="text" :placeholder="currentCountry?.placeholder"
+                 :class="signUpSellerPhoneClass" :key="selectedCountryCode" :mask="currentMask.mask"  />
         </div>
         <span v-if=registerFormErrors.publicPhoneError class="text-red-600 text-xs">
-              {{ registerFormMessages.publicPhoneMessage }}
-            </span>
+          {{ registerFormMessages.publicPhoneMessage }}
+        </span>
       </div>
-      <div class="flex items-center gap-3">
+      <div class="flex gap-3">
         <div class="flex flex-col gap-2 w-full">
           <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">EMAIL</label>
-          <BaseInput v-model=registerSellerForm.email type="text" placeholder="example@mail.com" :error="registerFormErrors.emailError"
-                     :error-message="registerFormErrors.emailError ? registerFormMessages.emailMessage : ''" variant="auth" required />
+          <BaseInput v-model=registerSellerForm.email type="text" placeholder="example@mail.com"
+                     :error="registerFormErrors.emailError" variant="auth" required
+                     :error-message="registerFormErrors.emailError ? registerFormMessages.emailMessage : ''" />
         </div>
         <div class="flex flex-col gap-2 w-full">
           <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">PASSWORD</label>
@@ -50,8 +46,7 @@
             <BaseInput v-model=registerSellerForm.password :type="showPassword.password ? 'text' : 'password'" placeholder="••••••••"
                        :error="registerFormErrors.passwordError" variant="auth" required
                        :error-message="registerFormErrors.passwordError ? registerFormMessages.passwordMessage : ''" />
-            <img @click=togglePassword :src="showPassword.password ? opened : closed" alt=""
-                 :class="['absolute w-7.5 top-1/4 left-57 sm:left-51.5', registerFormErrors.passwordError ? 'top-1/7' : '']">
+            <img @click=togglePassword :src="showPassword.password ? opened : closed" alt="" :class="signUpPasswordClass">
           </div>
         </div>
       </div>
@@ -60,6 +55,15 @@
 </template>
 
 <script setup lang="ts">
+const { signUp } = auth();
+const { showPassword } = authStore();
+const { togglePassword } = toggleAuth();
+const { registerFormErrors } = authFormsErrors();
+const { countries, selectedCountryCode } = usersStore();
+const { registerSellerForm, registerFormMessages } = authForms();
+const { changeCountry, currentCountry, currentMask } = usePhoneForm();
+const { signUpSellerPhoneClass, signUpPasswordClass, selectPhoneCodeClass } = authClasses();
+
 import { watch } from "vue";
 import { IMaskComponent as IMask } from "vue-imask";
 import { auth } from "@/feature/auth/auth-actions/auth.ts";
@@ -69,19 +73,12 @@ import { usersStore } from "@/shared/composables/stores/users.store.ts";
 import { authForms } from "@/shared/composables/forms/auth.forms.ts";
 import { authFormsErrors } from "@/shared/composables/errors/errors-messages/auth.errors.ts";
 import { toggleAuth } from "@/feature/auth/auth-actions/toggleAuth.ts";
+import { authClasses } from "@/shared/composables/style/auth.classes.ts";
 
 import opened from "@/app/assets/icons/auth/opened.png";
 import closed from "@/app/assets/icons/auth/closed.png";
 
 import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
-
-const { signUp } = auth();
-const { showPassword } = authStore();
-const { togglePassword } = toggleAuth();
-const { registerFormErrors } = authFormsErrors();
-const { countries, selectedCountryCode } = usersStore();
-const { registerSellerForm, registerFormMessages } = authForms();
-const { changeCountry, currentCountry, currentMask } = usePhoneForm();
 
 watch(() => [registerSellerForm.value.name, registerSellerForm.value.surName, registerSellerForm.value.companyName,
   registerSellerForm.value.publicPhone, registerSellerForm.value.email, registerSellerForm.value.password],

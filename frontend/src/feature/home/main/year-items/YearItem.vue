@@ -4,11 +4,10 @@
         class="flex flex-col shrink-0 lg:w-95 md:w-70 w-50">
       <div class="relative">
         <router-link :to="{name: 'product/info'}">
-          <img :src="productPreview(product.id, productsYear)" alt="" :class="['w-full h-50 lg:h-95 md:h-70',
-                product.quantity === 0 || product.status === 'Exhausted' ? 'opacity-40' : '']">
+          <img :src="productPreview(product.id, productsYear)" alt=""
+               :class="productPreviewClass('w-full h-50 lg:h-95 md:h-70', product)">
         </router-link>
-        <span v-if="product.quantity === 0 || product.status === 'Exhausted'"
-              class="absolute top-40 -left-2 text-6xl font-semibold -rotate-45">
+        <span v-if="isOutOfStack(product)" class="absolute top-40 -left-2 text-6xl font-semibold -rotate-45">
             Out Of Stack
         </span>
       </div>
@@ -24,13 +23,15 @@
 </template>
 
 <script setup lang="ts">
+const { productsYear } = productsStore();
+const { getProductId } = useProducts();
+const { isOutOfStack, productPreview } = productsCover();
+const { productPreviewClass } = baseClasses();
+
 import { productsCover } from "@/shared/composables/product.cover.ts";
 import { useProducts } from "@/feature/products/products-actions/use.products.ts";
 import { productsStore } from "@/shared/composables/stores/products.store";
-
-const { productsYear } = productsStore();
-const { getProductId } = useProducts();
-const { productPreview } = productsCover();
+import { baseClasses } from "@/shared/composables/style/base.classes.ts";
 </script>
 
 <style scoped>

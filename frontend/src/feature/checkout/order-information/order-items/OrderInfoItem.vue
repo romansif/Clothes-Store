@@ -1,6 +1,7 @@
 <template>
   <TransitionGroup name="list">
-    <li @click="getProductId(product.productId)" v-for="product in items" :key="product?.id" class="flex justify-between gap-3 w-full">
+    <li @click="getProductId(product.productId)" v-for="product in items" :key="product?.id"
+        class="flex justify-between gap-3 w-full">
       <div class="flex items-center gap-3 font-medium text-xs">
         <router-link :to="{name: 'product/info'}">
           <img :src="orderPreview(product?.id, 'ADD')" alt="" class="w-28.25 cursor-pointer">
@@ -22,13 +23,13 @@
 </template>
 
 <script setup lang="ts">
-import { productsStore } from "@/shared/composables/stores/products.store";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-import { productsCover } from "@/shared/composables/product.cover.ts";
-
 const { items } = productsStore();
 const { getProductId } = useProducts();
 const { orderPreview, pureColorsName } = productsCover();
+
+import { productsStore } from "@/shared/composables/stores/products.store";
+import { useProducts } from "@/feature/products/products-actions/use.products.ts";
+import { productsCover } from "@/shared/composables/product.cover.ts";
 </script>
 
 <style scoped>

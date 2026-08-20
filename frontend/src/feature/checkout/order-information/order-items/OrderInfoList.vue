@@ -5,11 +5,11 @@
 </template>
 
 <script setup lang="ts">
+const { items } = productsStore();
+
 import { productsStore } from "@/shared/composables/stores/products.store";
 
 import OrderInfoItem from "./OrderInfoItem.vue";
-
-const { items } = productsStore();
 </script>
 
 <style scoped>

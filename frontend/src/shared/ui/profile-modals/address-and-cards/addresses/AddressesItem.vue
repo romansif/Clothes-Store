@@ -28,13 +28,13 @@
 </template>
 
 <script setup lang="ts">
+const { userAddresses } = usersStore();
+const { toggleDeleteChoice } = useProfileModals();
+
 import { usersStore } from "@/shared/composables/stores/users.store";
 import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
 
 import del from '@/app/assets/icons/delete-close/del_address_card.svg'
-
-const { userAddresses } = usersStore();
-const { toggleDeleteChoice } = useProfileModals();
 </script>
 
 <style scoped>

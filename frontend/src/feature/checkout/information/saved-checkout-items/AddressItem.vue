@@ -1,9 +1,7 @@
 <template>
   <TransitionGroup name="list">
-    <li @click="useSavedAddress(checkout.addressName, checkout.firstName, checkout.lastName, checkout.country,
-        checkout.stateRegion, checkout.address, checkout.city, checkout.postalCode)" v-for="checkout in userAddresses" :key="checkout.id"
-        :class="[`flex flex-col mt-5 transition duration-400 bg-[#D9D9D9]/40
-        hover:bg-gray-50 border border-gray-300 rounded-xl p-2`, isChosenAddress ? 'bg-gray-50' : '']">
+    <li @click="useSavedAddress(checkout)" v-for="checkout in userAddresses" :key="checkout.id"
+        :class="savedAddressClass">
       <div class="flex flex-col gap-5">
         <div class="flex">
           <span class="text-sm font-semibold">
@@ -27,13 +25,13 @@
 </template>
 
 <script setup lang="ts">
-import { usersStore } from "@/shared/composables/stores/users.store.ts";
-import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
-import { useAddress } from "@/feature/checkout/checkout-actions/use.address.ts";
-
 const { userAddresses } = usersStore();
-const { isChosenAddress } = checkout();
 const { useSavedAddress } = useAddress();
+const { savedAddressClass } = informationClasses()
+
+import {informationClasses} from "@/shared/composables/style/checkout-style/information.classes.ts";
+import { usersStore } from "@/shared/composables/stores/users.store.ts";
+import { useAddress } from "@/feature/checkout/checkout-actions/use.address.ts";
 </script>
 
 <style scoped>

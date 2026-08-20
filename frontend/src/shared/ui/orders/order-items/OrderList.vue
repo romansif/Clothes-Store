@@ -7,19 +7,21 @@
       <img :src="icon_shop" alt="">
       <div class="flex flex-col gap-2 items-center">
         <span class="font-bold">You have no orders</span>
-        <span class="text-[#A3A3A3]">It’s the perfect time to browse our product catalog.</span>
+        <span class="text-[#A3A3A3]">
+          It’s the perfect time to browse our product catalog.
+        </span>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+const { orders } = productsStore();
+
 import { productsStore } from "@/shared/composables/stores/products.store.ts";
 
 import icon_shop from "@/app/assets/icons/products/icon_shop.svg";
 import OrderItem from "@/shared/ui/orders/order-items/OrderItem.vue";
-
-const { orders } = productsStore();
 </script>
 
 

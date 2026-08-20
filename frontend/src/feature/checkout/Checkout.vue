@@ -15,15 +15,15 @@
         </router-link>
       </div>
     </div>
-    <div :class="isInfo ? 'hidden' : 'flex flex-col lg:flex-row lg:gap-50 xl:gap-100'">
+    <div :class="checkoutVisibilityClass(isInfo)">
       <CheckoutInfo />
       <OrderInfo />
     </div>
-    <div :class="isShipping ? 'hidden' : 'flex flex-col lg:flex-row lg:gap-50 xl:gap-100'">
+    <div :class="checkoutVisibilityClass(isShipping)">
       <CheckoutShipping />
       <OrderInfo />
     </div>
-    <div :class="isPayment ? 'hidden' : 'flex flex-col lg:flex-row lg:gap-50 xl:gap-100'">
+    <div :class="checkoutVisibilityClass(isPayment)">
       <PaymentDashboard />
       <OrderInfo />
     </div>
@@ -34,10 +34,16 @@
 </template>
 
 <script setup lang="ts">
+
+const { goBack } = checkout();
+const { notify } = useBaseModals();
+const { checkoutVisibilityClass } = checkoutClasses();
+
 import { useRoute } from 'vue-router';
 import { computed } from "vue";
 import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
+import { checkoutClasses } from "@/shared/composables/style/checkout-style/checkout.classes.ts";
 
 import PaymentDashboard from "./payment/PaymentDashboard.vue";
 import CheckoutShipping from "./shipping/CheckoutShipping.vue";
@@ -47,9 +53,6 @@ import CheckoutInfo from "./information/CheckoutInfo.vue";
 import Notification from "@/shared/ui/base/base-modals/Notification.vue";
 
 const route = useRoute();
-
-const { goBack } = checkout();
-const { notify } = useBaseModals();
 
 const isPayment = computed(() =>  route.name !== 'payment');
 const isInfo = computed(() =>  route.name !== 'information');

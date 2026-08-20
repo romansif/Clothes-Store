@@ -5,17 +5,13 @@
       <CheckoutInput v-model="information.email" type="text" :placeholder="emailPlaceholder"
           :error="informationErrors.emailError" variant="checkoutInfo"/>
       <div class="flex gap-2">
-        <select name="" id="" v-model="selectedCountryCode" @change="changeCountry" class="text-xs outline-none bg-[#D9D9D9]/40 border
-            border-gray-300 transition duration-400 hover:bg-gray-50 rounded-xl px-2 py-3">
+        <select name="" id="" v-model="selectedCountryCode" @change="changeCountry" :class="informationSelectPhoneCodeClass">
           <option v-for="country in countries" :key="country.code" :value="country.code">
             {{ country.name }}
           </option>
         </select>
-        <IMask v-model:value="information.phone" type="tel" :mask="currentMask.mask" :key="selectedCountryCode"
-               :class="[`bg-[#D9D9D9]/40 border border-gray-300 transition duration-400 hover:bg-gray-50
-                  rounded-xl outline-none px-4 py-3 text-xs w-full`,
-                    informationErrors.phoneError ? `placeholder:text-red-500 border-red-400` : `placeholder:text-gray-600`]"
-               :placeholder="phonePlaceholder" >
+        <IMask v-model:value="information.phone" type="tel"  :placeholder="phonePlaceholder" :class="informationPhoneClass"
+               :mask="currentMask.mask" :key="selectedCountryCode">
         </IMask>
       </div>
     </div>
@@ -27,6 +23,7 @@ import { IMaskComponent as IMask } from "vue-imask";
 import { usePhoneForm } from "@/shared/mask-forms/use.phone.form";
 import { usersStore } from "@/shared/composables/stores/users.store";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
+import { informationClasses } from "@/shared/composables/style/checkout-style/information.classes.ts";
 import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors";
 import { checkoutPlaceholder } from "@/feature/checkout/checkout-actions/checkout.placeholder.ts";
 
@@ -37,6 +34,7 @@ const { informationErrors } = checkoutErrors();
 const { currentMask, changeCountry } = usePhoneForm();
 const { countries, selectedCountryCode } = usersStore();
 const { emailPlaceholder, phonePlaceholder } = checkoutPlaceholder();
+const { informationPhoneClass, informationSelectPhoneCodeClass } = informationClasses();
 </script>
 
 <style scoped>

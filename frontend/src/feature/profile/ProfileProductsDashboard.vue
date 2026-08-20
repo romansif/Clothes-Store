@@ -33,7 +33,9 @@
           <img :src="empty_cart" alt="">
           <div class="flex flex-col gap-2 items-center">
             <span class="font-bold">Cart is empty</span>
-            <span class="text-[#A3A3A3]">It’s the perfect time to go shopping or check out this year’s new releases.</span>
+            <span class="text-[#A3A3A3]">
+              It’s the perfect time to go shopping or check out this year’s new releases.
+            </span>
           </div>
         </div>
         <CartInfo v-if="cart.length > 0"/>
@@ -47,7 +49,9 @@
           <img :src="favorite_cart" alt="">
           <div class="flex flex-col gap-2 items-center">
             <span class="font-bold">Favorite is empty</span>
-            <span class="text-[#A3A3A3]">It’s the perfect time to look through the catalog and choose new clothes for the year.</span>
+            <span class="text-[#A3A3A3]">
+              It’s the perfect time to look through the catalog and choose new clothes for the year.
+            </span>
           </div>
         </div>
       </div>

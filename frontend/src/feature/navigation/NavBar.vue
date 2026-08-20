@@ -7,12 +7,10 @@
             lg:flex lg:gap-10
             md:flex md:gap-5
             sm:hidden hidden font-semibold">
-          <router-link :to="{name: 'home'}" :class="['text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120',
-                       isHome ? 'text-black scale-120' : '']">
+          <router-link :to="{name: 'home'}" :class="selectedPageClass(isHome)">
             Home
           </router-link>
-          <router-link :to="{name: 'products'}" :class="['text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120',
-                        isProducts ? 'text-black scale-120' : '']">
+          <router-link :to="{name: 'products'}" :class="selectedPageClass(isProducts)">
             Products
           </router-link>
           <span class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120 cursor-pointer">New</span>
@@ -50,8 +48,11 @@
 </template>
 
 <script setup lang="ts">
+const { selectedPageClass } = baseClasses();
+
 import { computed } from "vue";
 import { useRoute } from "vue-router";
+import { baseClasses } from "@/shared/composables/style/base.classes.ts";
 import { productsStore } from "@/shared/composables/stores/products.store";
 
 import cartImg from "@/app/assets/icons/nav/cart.png";

@@ -30,9 +30,9 @@
 </template>
 
 <script setup lang="ts">
-import { usersStore } from "@/shared/composables/stores/users.store";
-
 const { user } = usersStore();
+
+import { usersStore } from "@/shared/composables/stores/users.store";
 </script>
 
 <style scoped>

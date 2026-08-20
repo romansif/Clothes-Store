@@ -4,10 +4,12 @@
       <div class="flex flex-col">
         <div class="relative">
           <router-link :to="{ name: 'product/info' }">
-            <img :src="productPreview(product.id, myProducts)" alt="" :class="['w-83.75 h-h-78.5m:h-[314px] xl:h-100',
-                product.status === 'Availability' ? '' : 'opacity-40']">
+            <img :src="productPreview(product.id, myProducts)" alt=""
+                 :class="productPreviewClass('w-83.75 h-h-78.5m:h-[314px] xl:h-100', product)">
           </router-link>
-          <span v-if="product.status === 'Exhausted'" class="absolute top-1/2 left-1/20 text-5xl font-semibold -rotate-45">Out Of Stack</span>
+          <span v-if="isOutOfStack(product)" class="absolute top-1/2 left-1/20 text-5xl font-semibold -rotate-45">
+            Out Of Stack
+          </span>
         </div>
       </div>
       <div class="flex flex-col gap-25">
@@ -25,8 +27,12 @@
               {{ product.title }}
             </h3>
             <div class="flex flex-wrap gap-4 text-xs">
-              <span class="px-2 py-1 rounded-md bg-gray-100 transition duration-400 hover:scale-120 cursor-default">{{ product.category }}</span>
-              <span class="px-2 py-1 rounded-md bg-gray-100 transition duration-400 hover:scale-120 cursor-default">{{ product.material }}</span>
+              <span class="px-2 py-1 rounded-md bg-gray-100 transition duration-400 hover:scale-120 cursor-default">
+                {{ product.category }}
+              </span>
+              <span class="px-2 py-1 rounded-md bg-gray-100 transition duration-400 hover:scale-120 cursor-default">
+                {{ product.material }}
+              </span>
             </div>
             <p class="text-xs sm:text-sm text-gray-500 break-after-all leading-relaxed w-250 mt-2">
               {{ product.description }}
@@ -47,6 +53,13 @@
 </template>
 
 <script setup lang="ts">
+const { getProductId } = useProducts();
+const { myProducts } = productsStore();
+const { isOutOfStack, productPreview } = productsCover();
+const { toggleDeleteChoice } = useProfileModals();
+const { productPreviewClass } = baseClasses();
+
+import { baseClasses } from "@/shared/composables/style/base.classes.ts";
 import { useProducts } from "@/feature/products/products-actions/use.products.ts";
 import { productsCover } from "@/shared/composables/product.cover.ts";
 import { productsStore } from "@/shared/composables/stores/products.store";
@@ -54,13 +67,7 @@ import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts"
 
 import del from '@/app/assets/icons/delete-close/delete.svg'
 import pencil from "@/app/assets/icons/products/pencil.svg";
-
-const { getProductId } = useProducts();
-const { myProducts } = productsStore();
-const { productPreview } = productsCover();
-const { toggleDeleteChoice } = useProfileModals();
 </script>
-
 
 <style scoped>
 

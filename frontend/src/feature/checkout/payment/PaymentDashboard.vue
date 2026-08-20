@@ -14,6 +14,11 @@
 </template>
 
 <script setup lang="ts">
+const { isSavedPayment } = checkout();
+const { payment } = checkoutForms();
+const { paymentErrors } = checkoutErrors();
+const { addPayment, useSavedPayment } = usePayment();
+
 import { watch } from "vue";
 import { usePayment } from "@/feature/checkout/checkout-actions/use.payment.ts";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
@@ -24,11 +29,6 @@ import arrow from "@/app/assets/icons/arrows/right-shop.svg";
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 import PaymentMethods from "./payment-items/PaymentMethods.vue";
 import SavedCheckoutPayment from "@/feature/checkout/payment/SavedCheckoutPayment.vue";
-
-const { isSavedPayment } = checkout();
-const { payment } = checkoutForms();
-const { paymentErrors } = checkoutErrors();
-const { addPayment, useSavedPayment } = usePayment();
 
 watch(() => [payment.value.cardNumber, payment.value.expiryDate, payment.value.cardCvv, payment.value.paymentMethod],
     ([cardNumber, expiryDate, cardCvv, paymentMethod]) => {

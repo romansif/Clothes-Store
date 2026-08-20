@@ -1,6 +1,7 @@
 <template>
   <div class="flex flex-col mt-8 gap-5">
-    <div class="flex flex-col px-3 py-6 border border-gray-300 rounded-xl transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50">
+    <div class="flex flex-col px-3 py-6 border border-gray-300 rounded-xl
+          transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50">
       <div class="flex justify-between">
         <span class="font-semibold">
           SHIP TO
@@ -17,9 +18,9 @@
 </template>
 
 <script setup lang="ts">
-import { usersStore } from "@/shared/composables/stores/users.store";
-
 const { userAddress } = usersStore();
+
+import { usersStore } from "@/shared/composables/stores/users.store";
 </script>
 
 <style scoped>

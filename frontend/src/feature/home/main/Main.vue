@@ -52,6 +52,8 @@
 </template>
 
 <script setup lang="ts">
+const { getWeekProducts, getYearProducts } = useProducts();
+
 import { onMounted } from "vue";
 import { useProducts } from "@/feature/products/products-actions/use.products.ts";
 
@@ -62,8 +64,6 @@ import photo_3 from '@/app/assets/photos/10.png'
 import WeekList from "@/feature/home/main/week-items/WeekList.vue";
 import YearList from "@/feature/home/main/year-items/YearList.vue";
 import FilterGender from "@/feature/home/main/FilterGender.vue";
-
-const { getWeekProducts, getYearProducts } = useProducts();
 
 onMounted(async () => {
   await getWeekProducts();

@@ -15,6 +15,11 @@
 </template>
 
 <script setup lang="ts">
+const { isSavedAddress } = checkout();
+const { information } = checkoutForms();
+const { informationErrors } = checkoutErrors();
+const { addInformation, useInformation } = useAddress();
+
 import { watch } from "vue";
 import { useAddress } from "@/feature/checkout/checkout-actions/use.address.ts";
 import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
@@ -26,11 +31,6 @@ import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
 import ContactFom from "@/feature/checkout/information/form-info/ContactFom.vue";
 import AddressForm from "@/feature/checkout/information/form-info/AddressForm.vue";
 import SavedCheckoutInfo from "@/feature/checkout/information/SavedCheckoutInfo.vue";
-
-const { isSavedAddress } = checkout();
-const { information } = checkoutForms();
-const { informationErrors } = checkoutErrors();
-const { addInformation, useInformation } = useAddress();
 
 watch(() => [
   information.value.email, information.value.phone, information.value.firstName, information.value.lastName,

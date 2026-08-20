@@ -4,14 +4,7 @@
       <div class="flex bg-gray-50 p-3 border-b border-gray-300">
         <div class="flex flex-col gap-2">
           <div class="flex flex-col gap-2">
-            <span class="text-xs px-2.5 py-1 rounded-md" :class="[
-                    {
-                      'bg-teal-50 text-teal-700 border border-teal-200 w-19.5' : order.status === 'Delivered',
-                      'bg-sky-50 text-sky-700 border border-sky-200 w-18.5' : order.status === 'En route',
-                      'bg-indigo-50 text-indigo-700 border border-indigo-200 w-18' : order.status === 'Convene',
-                      'bg-rose-50 text-rose-700 border border-rose-200 w-19.5' : order.status === 'Cancelled',
-                    }
-                  ]">
+            <span class="text-xs px-2.5 py-1 rounded-md" :class="orderStatus(order)">
                 {{ order.status }}
             </span>
             <div class="flex gap-2 items-center">
@@ -25,18 +18,7 @@
               <span class="font-medium">№ {{ order.id.slice(0, 8) }}</span>
             </div>
           </div>
-          <span v-if="order.status === 'Convene'" class="text-xs text-[#A3A3A3]">
-            Created: {{ order.date_created_at }}, {{ order.time_created_at }}
-          </span>
-          <span v-if="order.status === 'En route'" class="text-xs text-[#A3A3A3]">
-            Processed: {{ order.date_created_at }}, {{ order.time_created_at }}
-          </span>
-          <span v-if="order.status === 'Delivered'" class="text-xs text-[#A3A3A3]">
-            Delivered: {{ order.date_created_at }}, {{ order.time_created_at }}
-          </span>
-          <span v-if="order.status === 'Cancelled'" class="text-xs text-[#A3A3A3]">
-            Cancelled: {{ order.date_cancelled_at }}, {{ order.time_cancelled_at }}
-          </span>
+          <OrderStatus :order="order" />
         </div>
         <div class="flex flex-col gap-2 ml-auto">
           <span class="text-[#A3A3A3] ml-auto">Order total</span>
@@ -44,7 +26,7 @@
           <span class="text-[#A3A3A3] font-normal ml-auto">{{ order.delivery }}</span>
         </div>
       </div>
-      <div @click="getProductId(item.productId)" v-for="item in order.orderItems" :key="item.id">
+      <div v-for="item in order.orderItems" :key="item.id"  @click="getProductId(item.productId)">
         <router-link :to="{ name: 'product/info' }">
           <div class="flex py-5 px-3">
             <div class="flex gap-5">
@@ -60,11 +42,15 @@
                 <div class="flex gap-6 text-sm items-center mt-auto">
                   <div class="flex gap-1.5 px-2.5 py-0.5 bg-[#F0F0F0] rounded">
                     <span>Size:</span>
-                    <span class="font-medium">{{ item.sizes }}</span>
+                    <span class="font-medium">
+                      {{ item.sizes }}
+                    </span>
                   </div>
                   <div class="flex gap-1.5 px-2.5 py-0.5 bg-[#F0F0F0] rounded">
                     <span>Color:</span>
-                    <span class="font-medium">{{ pureColorsName(item) }}</span>
+                    <span class="font-medium">
+                      {{ pureColorsName(item) }}
+                    </span>
                   </div>
                   <div class="flex gap-5 ml-auto">
                     <span class="font-bold">$ {{ item.price }}</span>
@@ -78,27 +64,30 @@
       </div>
       <div class="flex justify-end gap-8 p-3 border-t bg-gray-50 border-gray-300">
         <BaseButton name="Repeat Order" variant="repeatOrder" />
-        <BaseButton v-if="order.status !== 'Cancelled'" @click="toggleOrder(order.id)" name="Cancel Order" variant="repeatOrder" />
+        <BaseButton v-if="order.status !== 'Cancelled'" variant="repeatOrder" name="Cancel Order" @click="toggleOrder(order.id)" />
       </div>
     </li>
   </TransitionGroup>
 </template>
 
 <script setup lang="ts">
+const { orders } = productsStore();
+const { copyText } = useOrderCard();
+const { getProductId } = useProducts();
+const { toggleOrder } = useBaseModals();
+const { orderStatus } = ordersClasses();
+const { orderPreview, pureColorsName } = productsCover();
+
 import { useOrderCard } from "@/shared/ui/orders/use.order.card";
 import { productsStore } from "@/shared/composables/stores/products.store";
 import { useProducts } from "@/feature/products/products-actions/use.products";
 import { useBaseModals } from "@/shared/composables/modals/base.modals";
 import { productsCover } from "@/shared/composables/product.cover.ts";
+import { ordersClasses } from "@/shared/composables/style/orders.classes.ts";
 
 import copy_btn from '@/app/assets/icons/squares/copy.svg';
 import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
-
-const { orders } = productsStore();
-const { copyText } = useOrderCard();
-const { getProductId } = useProducts();
-const { toggleOrder } = useBaseModals();
-const { orderPreview, pureColorsName } = productsCover();
+import OrderStatus from "@/shared/ui/orders/order-items/OrderStatus.vue";
 </script>
 
 <style scoped>
