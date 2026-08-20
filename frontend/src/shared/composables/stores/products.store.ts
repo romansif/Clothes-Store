@@ -54,7 +54,7 @@ interface Gender {
     gender: string,
 }
 
-interface Orders {
+export interface Orders {
     id: string,
     userId: string,
     productId: string,
@@ -70,8 +70,8 @@ interface Orders {
     status: string
 }
 
-interface Sizes {
-    isActive?: boolean,
+export interface Sizes {
+    isActive: boolean,
     name: string,
     url: string,
     class: string,

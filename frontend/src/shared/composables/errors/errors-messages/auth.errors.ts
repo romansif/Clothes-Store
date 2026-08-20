@@ -13,8 +13,8 @@ interface RegisterFormErrors {
 interface LoginFormErrors {
     emailError: boolean,
     passwordError: boolean,
-    phoneError?: boolean,
-    validCodeError?: boolean,
+    phoneError: boolean,
+    validCodeError: boolean,
     roleError: boolean,
 }
 

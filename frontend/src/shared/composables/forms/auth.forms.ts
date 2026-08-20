@@ -20,8 +20,8 @@ interface RegisterSellerForm {
 interface LoginForm {
     email: string,
     password: string,
-    phone?: string,
-    validCode?: string,
+    phone: string,
+    validCode: string,
     role: string,
 }
 
@@ -38,8 +38,8 @@ interface registerFormMessage {
 interface loginFormMessage {
     emailMessage: string,
     passwordMessage: string,
-    phoneMessage?: string,
-    validCodeMessage?: string,
+    phoneMessage: string,
+    validCodeMessage: string,
     roleMessage: string
 }
 

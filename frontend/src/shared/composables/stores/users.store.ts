@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { IMask } from "vue-imask";
 
-interface User {
+export interface User {
     id: string,
     role: string,
     name: string,
@@ -17,7 +17,7 @@ interface User {
     userId: string
 }
 
-interface UserCheckoutAddress {
+export interface UserCheckoutAddress {
     id: string,
     userId: string
     email: string,
@@ -39,7 +39,7 @@ interface UserCheckoutShipping {
     delivery: string,
 }
 
-interface UserCheckoutPayment {
+export interface UserCheckoutPayment {
     id: string,
     userId: string,
     paymentId: string,
