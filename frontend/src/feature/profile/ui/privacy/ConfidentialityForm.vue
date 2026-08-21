@@ -71,8 +71,8 @@ import { usersStore } from "@/feature/profile/model/users.store.ts";
 import BaseButton  from "@/shared/ui/BaseButton.vue";
 import BuyerForm from "./BuyerForm.vue";
 import SellerForm from "./SellerForm.vue";
-import opened from '@/app/assets/icons/auth/opened.png'
-import closed from '@/app/assets/icons/auth/closed.png'
+import opened from '@/assets/icons/auth/opened.png'
+import closed from '@/assets/icons/auth/closed.png'
 import SellerEmailForm from "./SellerEmailForm.vue";
 import BaseInput from "@/shared/ui/BaseInput.vue";
 

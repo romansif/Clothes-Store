@@ -43,7 +43,7 @@ import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
 import { usersStore } from "@/feature/profile/model/users.store.ts";
 import { userForms } from "@/feature/profile/model/users.forms.ts";
 import { profileApi } from "@/feature/profile/api/profile.api.ts";
-import {profileClasses} from "@/shared/constants/users/profile.classes.ts";
+import { profileClasses } from "@/shared/constants/users/profile.classes.ts";
 import { userFormsErrors } from "@/feature/profile/lib/users.errors.ts";
 
 import BaseButton  from "@/shared/ui/BaseButton.vue";

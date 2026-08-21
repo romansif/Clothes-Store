@@ -81,7 +81,7 @@ import { usersStore } from "@/feature/profile/model/users.store.ts";
 import { useProfileModals } from "@/feature/profile/lib/profile.modals.ts";
 
 import ProfileMenu from "./ProfileMenu.vue";
-import arrow_down from '@/app/assets/icons/arrows/arrow-down.png';
+import arrow_down from '@/assets/icons/arrows/arrow-down.png';
 </script>
 
 <style scoped>

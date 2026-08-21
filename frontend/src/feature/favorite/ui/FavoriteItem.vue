@@ -33,8 +33,7 @@
 </template>
 
 <script setup lang="ts">
-
-const { favorite } = productStore();
+const { favorite } = favoriteStore();
 const { getProductId } = productsApi();
 const { isOutOfStack, productPreview } = productsCover();
 const { toggleToFavorite } = favoritesApi();
@@ -43,7 +42,7 @@ const { productPreviewClass } = baseClasses();
 import { productsCover } from "@/shared/lib/product-image.ts";
 import { baseClasses } from "@/shared/constants/base.classes.ts";
 import { productsApi } from "@/feature/products/api/products.api.ts";
-import { productStore } from "@/feature/products/model/product.store.ts";
+import { favoriteStore } from "@/feature/favorite/model/favorite.store.ts";
 import { favoritesApi } from "@/feature/favorite/api/favorites.api.ts";
 
 import like from "@/assets/icons/nav/like.png";

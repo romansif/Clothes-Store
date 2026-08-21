@@ -1,8 +1,9 @@
-import type { ColorItem, ImageItem } from "@/feature/products/model/product.store.ts";
+import type { ColorItem, ImageItem } from "@/feature/products/model/product.types.ts";
 
 export interface FavoriteItem {
     id: string,
     userId: string,
+    productId: string,
     title: string,
     category: string,
     material: string,

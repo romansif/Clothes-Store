@@ -66,7 +66,7 @@ import { productForms } from "@/feature/products/model/product.forms.ts";
 
 import del from '@/assets/icons/delete-close/clean_search.svg';
 import search from "@/assets/icons/nav/search.png";
-import right_arrow from '@/app/assets/icons/arrows/right-arrow.png';
+import right_arrow from '@/assets/icons/arrows/right-arrow.png';
 
 watch(() => searchProductForm.value.search, async (newValue) => {
   if(newValue) {

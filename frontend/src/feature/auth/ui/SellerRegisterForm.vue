@@ -75,8 +75,8 @@ import { authFormsErrors } from "@/feature/auth/lib/auth.errors.ts";
 import { toggleAuth } from "@/feature/auth/api/toggleAuth.ts";
 import { authClasses } from "@/shared/constants/auth/auth.classes.ts";
 
-import opened from "@/app/assets/icons/auth/opened.png";
-import closed from "@/app/assets/icons/auth/closed.png";
+import opened from "@/assets/icons/auth/opened.png";
+import closed from "@/assets/icons/auth/closed.png";
 
 import BaseInput from "@/shared/ui/BaseInput.vue";
 

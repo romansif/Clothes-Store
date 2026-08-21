@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import loading from '@/app/assets/icons/auth/loading.svg'
+import loading from '@/assets/icons/auth/loading.svg'
 </script>
 
 <style scoped>

@@ -81,7 +81,7 @@ import { productsClasses } from "@/shared/constants/products/products.classes.ts
 
 import square from '@/assets/icons/squares/square.png'
 import checked from '@/assets/icons/squares/check-square.png'
-import availability from '@/app/assets/icons/arrows/arrow-up.png'
+import availability from '@/assets/icons/arrows/arrow-up.png'
 </script>
 
 <style scoped>

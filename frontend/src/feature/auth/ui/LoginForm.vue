@@ -58,8 +58,8 @@ import { authStore } from "@/feature/auth/model/auth.store.ts";
 import { authClasses } from "@/shared/constants/auth/auth.classes.ts";
 import { authFormsErrors } from "@/feature/auth/lib/auth.errors.ts";
 
-import closed from "@/app/assets/icons/auth/closed.png";
-import opened from "@/app/assets/icons/auth/opened.png";
+import closed from "@/assets/icons/auth/closed.png";
+import opened from "@/assets/icons/auth/opened.png";
 import BaseInput from "@/shared/ui/BaseInput.vue";
 
 watch(() => [loginForm.value.email, loginForm.value.password, loginForm.value.role],([email, password, role]) => {

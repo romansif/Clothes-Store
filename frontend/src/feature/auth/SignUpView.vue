@@ -43,7 +43,7 @@ import BuyerRegisterForm from "@/feature/auth/ui/BuyerRegisterForm.vue";
 import SellerRegisterForm from "@/feature/auth/ui/SellerRegisterForm.vue";
 import Loading from "@/shared/ui/Loading.vue";
 import Notification from "@/shared/ui/Notification.vue";
-import maki_arrow from "@/app/assets/icons/arrows/right-short-arrow.svg";
+import maki_arrow from "@/assets/icons/arrows/right-short-arrow.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 
 const { signUp } = authApi();

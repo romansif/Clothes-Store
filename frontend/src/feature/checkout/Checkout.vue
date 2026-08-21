@@ -48,7 +48,7 @@ import { checkoutClasses } from "@/shared/constants/checkout/checkout.classes.ts
 import PaymentDashboard from "./ui/PaymentDashboard.vue";
 import CheckoutShipping from "./ui/CheckoutShipping.vue";
 import OrderInfo from "./ui/OrderInfo.vue";
-import go_to_shop from "@/app/assets/icons/arrows/right-long-arrow.png";
+import go_to_shop from "@/assets/icons/arrows/right-long-arrow.png";
 import CheckoutInfo from "./ui/CheckoutInfo.vue";
 import Notification from "@/shared/ui/Notification.vue";
 

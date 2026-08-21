@@ -48,7 +48,7 @@ import Loading from "@/shared/ui/Loading.vue";
 import Notification from "@/shared/ui/Notification.vue";
 import LoginForm from "@/feature/auth/ui/LoginForm.vue";
 import PhoneSignIn from "@/feature/auth/ui/PhoneSignIn.vue";
-import maki_arrow from "@/app/assets/icons/arrows/right-short-arrow.svg";
+import maki_arrow from "@/assets/icons/arrows/right-short-arrow.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import GoogleSignIn from "@/feature/auth/ui/GoogleSignIn.vue";
 import ReCaptcha from "@/feature/auth/ui/ReCaptcha.vue";

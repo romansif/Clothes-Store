@@ -26,7 +26,7 @@ import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
 import { checkoutErrors }from "@/feature/checkout/lib/checkout.errors.ts";
 import { checkoutApi } from "@/feature/checkout/api/checkout.api.ts";
 
-import arrow from "@/app/assets/icons/arrows/right-shop.svg";
+import arrow from "@/assets/icons/arrows/right-shop.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import ContactForm from "@/feature/checkout/ui/ContactForm.vue";
 import AddressForm from "@/feature/checkout/ui/AddressForm.vue";

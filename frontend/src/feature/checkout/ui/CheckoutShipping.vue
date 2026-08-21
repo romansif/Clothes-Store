@@ -22,7 +22,7 @@ import { adressApi } from "@/feature/checkout/api/adress.api.ts";
 import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
 import { checkoutErrors } from "@/feature/checkout/lib/checkout.errors.ts";
 
-import arrow from "@/app/assets/icons/arrows/right-shop.svg";
+import arrow from "@/assets/icons/arrows/right-shop.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import ShippingMethods from "./ShippingMethods.vue";
 import ShippingAddress from "./ShippingAddress.vue";
