@@ -3,7 +3,7 @@ import type { RouteRecordRaw } from 'vue-router'
 const routes: RouteRecordRaw[] = [
     {
         path: '/',
-        component: () => import('@/app/layouts/auth-layouts/AuthLayout.vue'),
+        component: () => import('@/app/layouts/AuthLayout.vue'),
         children: [
             {
                 path: '',
@@ -24,7 +24,7 @@ const routes: RouteRecordRaw[] = [
     },
     {
         path: '/',
-        component: () => import('@/app/layouts/main-layouts/MainLayout.vue'),
+        component: () => import('@/app/layouts/MainLayout.vue'),
         children: [
             {
                 path: 'products',
@@ -34,25 +34,25 @@ const routes: RouteRecordRaw[] = [
             {
                 path: 'product/info',
                 name: 'product/info',
-                component: () => import('@/pages/products/ProductsInfoPage.vue'),
+                component: () => import('@/pages/products/ProductDetailPage.vue'),
             },
             {
                 path: 'cart',
                 name: 'cart',
-                component: () => import('@/pages/profile/profile-products/ProductsCartPage.vue')
+                component: () => import('@/pages/cart/CartPage.vue')
             },
             {
                 path: 'favorite',
                 name: 'favorite',
-                component: () => import('@/pages/profile/profile-products/FavoriteProductsPage.vue')
+                component: () => import('@/pages/favorite/FavoritePage.vue')
             },
             {
-                path: 'profile',
-                component: () => import('@/app/layouts/main-layouts/ProfileLayout.vue'),
+                path: 'useProfile',
+                component: () => import('@/app/layouts/ProfileLayout.vue'),
                 children: [
                     {
                         path: '',
-                        name: 'profile',
+                        name: 'useProfile',
                         component: () => import('@/pages/profile/ProfilePage.vue'),
                     },
                     {
@@ -64,20 +64,20 @@ const routes: RouteRecordRaw[] = [
                     {
                         path: 'create/product',
                         name: 'create/product',
-                        component: () => import('@/pages/products/update-pages/CreateProductPage.vue'),
+                        component: () => import('@/pages/products/CreateProductPage.vue'),
 
                     },
                     {
                         path: 'edit/product',
                         name: 'edit/product',
-                        component: () => import('@/pages/products/update-pages/EditProductPage.vue'),
+                        component: () => import('@/pages/products/EditProductPage.vue'),
 
                     },
                 ]
             },
             {
-                path: 'checkout',
-                component: () => import('@/app/layouts/main-layouts/CheckoutLayout.vue'),
+                path: 'checkoutApi',
+                component: () => import('@/app/layouts/CheckoutLayout.vue'),
                 children: [
                     {
                         path: 'information',

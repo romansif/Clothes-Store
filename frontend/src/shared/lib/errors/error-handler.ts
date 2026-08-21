@@ -1,11 +1,11 @@
 import { ref } from "vue";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-import { useCart } from "@/feature/cart/cart-actions/use.cart.ts";
-import { useFavorites } from "@/feature/favorite/favorite-actions/use.favorites.ts";
+import { productsApi } from "@/feature/products/api/products.api.ts";
+import { cartApi } from "@/feature/cart/api/cart.api.ts";
+import { favoritesApi } from "@/feature/favorite/api/favorites.api.ts";
 
-const { getCartProducts } = useCart();
-const { getFilteredProducts } = useProducts();
-const { getFavoriteProducts } = useFavorites();
+const { getCartProducts } = cartApi();
+const { getFilteredProducts } = productsApi();
+const { getFavoriteProducts } = favoritesApi();
 
 export const errorHandler = () => {
     const componentError = ref<string | null>(null);

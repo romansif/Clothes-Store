@@ -51,7 +51,7 @@ const apiRoutes = [
     ordersRoutes,
 ]
 
-app.use('/api', apiRoutes);
+app.use('/lib', apiRoutes);
 
 app.use((_req: Request, res: Response) => {
     res.status(404).json({ error: 'Маршрут не найден' });
