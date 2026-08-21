@@ -4,7 +4,7 @@ import { cartStore } from "@/feature/cart/model/cart.store.ts";
 import { orderStore } from "@/feature/orders/model/order.store.ts";
 import { productForms } from "@/feature/products/model/product.forms.ts";
 import { productStore } from "@/feature/products/model/product.store.ts";
-import type { Product } from "@/feature/products/model/product.types.ts";
+import type {ColorItem, Product, Sizes} from "@/feature/products/model/product.types.ts";
 
 
 const { cart } = cartStore();
@@ -63,13 +63,13 @@ export const productsCover = () => {
     };
 
     const productPreview = computed(() => {
-        return(id: string, array: Product[]) => {
+        return(id: string, array: any) => {
             if(!id){
                 console.log('Id не найден')
                 return
             }
 
-            const product = array?.find(p => p.id === id)
+            const product = array?.find((p: any) => p.id === id)
             if(product && Array.isArray(product.images) && product.images[0]){
                 return `${import.meta.env.VITE_BASE_URL}/${product.images[0]}`
             }
@@ -79,7 +79,7 @@ export const productsCover = () => {
     });
 
     const productInfoPreview = computed(() => {
-        return(product: Product) => {
+        return(product: any) => {
             if(!product){
                 console.log('Product not found');
                 return;
@@ -91,28 +91,28 @@ export const productsCover = () => {
     });
 
     const angelCards = computed(() => {
-        return(product: Product): string[] => {
+        return(product: any): string[] => {
             if(!product){
                 console.log('Product not found');
                 return [];
             }
 
             if(product && Array.isArray(product.images) && product.images.length > 0){
-                return product.images.slice(1).map(img => `${import.meta.env.VITE_BASE_URL}/${img}`);
+                return product.images.slice(1).map((img: string) => `${import.meta.env.VITE_BASE_URL}/${img}`);
             }
             return [];
         }
     });
 
     const pureCards = computed(() => {
-        return(product: Product): string[] => {
+        return(product: any): string[] => {
             if(!product){
                 console.log('Product not found');
                 return [];
             }
 
             if(product && Array.isArray(product.images) && product.images.length > 0){
-                return product.images.slice(0).map(img => `${import.meta.env.VITE_BASE_URL}/${img}`);
+                return product.images.slice(0).map((img: string) => `${import.meta.env.VITE_BASE_URL}/${img}`);
             }
             return [];
         }
@@ -142,13 +142,13 @@ export const productsCover = () => {
     });
 
     const pureColors = computed(() => {
-        return(id: string, array: Product[])  => {
+        return(id: string, array: any)  => {
             if(!array){
                 console.log('Product not found');
                 return;
             }
 
-            const product = array?.find(p => p.id === id)
+            const product = array?.find((p: any) => p.id === id)
             if(product && Array.isArray(product.colors) && product.colors[0]){
                 return product.colors[0]
             }
@@ -157,7 +157,7 @@ export const productsCover = () => {
     });
 
     const pureInfoColors = computed(() => {
-        return(product: Product)  => {
+        return(product: any)  => {
             if(!product){
                 console.log('Product not found');
                 return [];
@@ -171,28 +171,28 @@ export const productsCover = () => {
     });
 
     const pureColorsName = computed(() => {
-        return(product: Product): string => {
+        return(product: any): string => {
             if(!product){
                 console.log('Product not found');
                 return '';
             }
 
             if(product && Array.isArray(product.colors) && product.colors.length > 0){
-                return product.colors.map(color => color.colorName).join(', ')
+                return product.colors.map((color: ColorItem) => color.colorName).join(', ')
             }
             return '';
         }
     })
 
     const pureSizesName = computed(() => {
-        return(product: Product): string => {
+        return(product: any): string => {
             if(!product){
                 console.log('Product not found');
                 return '';
             }
 
             if(product && Array.isArray(product.sizes) && product.sizes.length > 0){
-                return product.sizes.map(size => size).join(', ')
+                return product.sizes.map((size: Sizes) => size).join(', ')
             }
             return '';
         }

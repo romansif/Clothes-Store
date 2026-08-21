@@ -27,15 +27,15 @@ export const productsClasses = () => {
     ];
 
     const selectedColorClass = (color: ColorItem, product: CartItem, user: User) => [
-        'w-15 h-15 transition duration-400',
+        'w-[62px] h-[62px] transition duration-400',
         {
             'scale-110': cartForm.value.colors?.hex === color.hex,
             'hover:scale-110 cursor-pointer': product.status !== 'Exhausted' && user.role !== 'Seller'
-        }
+        },
     ];
 
     const selectedSizesClass = (size: Sizes, product: CartItem, user: User) => [
-        size.class, 'w-15 h-15 transition duration-400',
+        size.class, 'w-[61px] h-[61px] transition duration-400',
             {
                 'scale-110' : cartForm.value.sizes === size.name,
                 'hover:scale-110 cursor-pointer': product.status !== 'Exhausted' &&

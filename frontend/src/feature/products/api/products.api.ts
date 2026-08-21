@@ -172,26 +172,6 @@ export const productsApi = () => {
         }
     };
 
-    const updateFavorite = async (id: string, productId: string, status: boolean) => {
-        try{
-            await handler(`/cart/${id}`, {
-                method: "PATCH",
-                body: JSON.stringify({
-                    favorite: status,
-                })
-            });
-        }catch(err){
-            console.error(`Failed to update the status:`, err);
-        }finally{
-            await handler(`/products/${productId}`, {
-                method: "PATCH",
-                body: JSON.stringify({
-                    favorite: status,
-                })
-            });
-        }
-    };
-
     const updateProductImages = async (product: Product, event: Event) => {
         loading.value = true;
         try{
@@ -322,7 +302,6 @@ export const productsApi = () => {
         onFilesSelected,
         createProduct,
 
-        updateFavorite,
         updateProductImages,
         updateProductDesc,
         updateProductColors,
