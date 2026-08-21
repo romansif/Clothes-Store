@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { useBaseModals } from "@/shared/composables/modals/base.modals";
+import { useBaseModals } from "@/shared/lib/base.modals.ts";
 
 const { notifyTitle, notifyMessage } =  useBaseModals();
 </script>

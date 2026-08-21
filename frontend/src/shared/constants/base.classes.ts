@@ -1,4 +1,4 @@
-import { type Product } from "@/shared/composables/stores/products.store.ts";
+import { type Product } from "@/feature/products/model/product.store.ts";
 
 export const baseClasses = () => {
     const getPhoneClass = (hasError: boolean) => [
