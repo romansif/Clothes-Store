@@ -28,13 +28,13 @@
 </template>
 
 <script setup lang="ts">
-const { userAddresses } = usersStore();
+const { userAddresses } = checkoutStore();
 const { toggleDeleteChoice } = useProfileModals();
 
-import { usersStore } from "@/shared/composables/stores/users.store";
-import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
+import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
+import { useProfileModals } from "@/feature/profile/lib/profile.modals.ts";
 
-import del from '@/app/assets/icons/delete-close/del_address_card.svg'
+import del from '@/assets/icons/delete-close/del_address_card.svg'
 </script>
 
 <style scoped>

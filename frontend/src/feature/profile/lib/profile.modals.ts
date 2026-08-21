@@ -1,12 +1,12 @@
 import { ref } from "vue";
-import { clearUsersForms } from "@/shared/composables/clear-forms/clear.users";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-import { useCart } from "@/feature/cart/cart-actions/use.cart.ts";
-import { useAddress } from "@/feature/checkout/checkout-actions/use.address.ts";
-import { usePayment } from "@/feature/checkout/checkout-actions/use.payment.ts";
-import { useOrders } from "@/feature/products/products-actions/use.orders.ts";
-import { auth } from "@/feature/auth/auth-actions/auth.ts";
-import { useFavorites } from "@/feature/favorite/favorite-actions/use.favorites.ts";
+import { clearUsersForms } from "@/feature/profile/lib/clear.users.ts";
+import { productsApi } from "@/feature/products/api/products.api.ts";
+import { cartApi } from "@/feature/cart/api/cart.api.ts";
+import { adressApi } from "@/feature/checkout/api/adress.api.ts";
+import { paymentApi } from "@/feature/checkout/api/payment.api.ts";
+import { ordersApi } from "@/feature/orders/api/orders.api.ts";
+import { authApi } from "@/feature/auth/api/auth.api.ts";
+import { favoritesApi } from "@/feature/favorite/api/favorites.api.ts";
 
 const avatarModal = ref<boolean>(false);
 const fileInput = ref<HTMLInputElement | null>(null);
@@ -21,13 +21,13 @@ const deleteType = ref<string>('');
 const deleteMessage = ref<string>('');
 const deleteChoice = ref<boolean>(false);
 
-const { deleteAddress } = useAddress();
-const { deletePayment } = usePayment();
-const { deleteProduct } = useProducts();
-const { deleteProductCart } = useCart();
-const { logout, deleteAccount } = auth();
-const { deleteOrderProducts } = useOrders();
-const { deleteFavoriteProduct } = useFavorites();
+const { deleteAddress } = adressApi();
+const { deletePayment } = paymentApi();
+const { deleteProduct } = productsApi();
+const { deleteProductCart } = cartApi();
+const { logout, deleteAccount } = authApi();
+const { deleteOrderProducts } = ordersApi();
+const { deleteFavoriteProduct } = favoritesApi();
 const { clearUpdateUserForm } = clearUsersForms();
 
 export const useProfileModals = () => {

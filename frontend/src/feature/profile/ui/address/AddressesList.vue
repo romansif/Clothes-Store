@@ -16,13 +16,13 @@
 </template>
 
 <script setup lang="ts">
-const { userAddresses } = usersStore();
+const { userAddresses } = checkoutStore();
 
 import { computed } from "vue";
-import { usersStore } from "@/shared/composables/stores/users.store";
+import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
 
 import AddressesItem from "./AddressesItem.vue";
-import icon_address from "@/app/assets/icons/checkout/icon_address.svg";
+import icon_address from "@/assets/icons/checkout/icon_address.svg";
 
 const userAddressesCity = computed(() => {
   return userAddresses.value.some(item => 'city' in item);

@@ -1,10 +1,10 @@
 import { handler } from "@/shared/api/http";
-import { useFormsErrors } from "@/shared/composables/errors/errors-middleware/forms.errors";
-import { usersStore } from "@/shared/composables/stores/users.store";
-import { userForms } from "@/shared/composables/forms/users.forms";
-import { clearUsersForms } from "@/shared/composables/clear-forms/clear.users";
-import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
-import { useGetUsers } from "@/feature/auth/auth-actions/get.users.ts";
+import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
+import { usersStore } from "@/feature/profile/model/users.store.ts";
+import { userForms } from "@/feature/profile/model/users.forms.ts";
+import { clearUsersForms } from "@/feature/profile/lib/clear.users.ts";
+import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { useGetUsers } from "@/feature/auth/api/users.api.ts";
 
 interface UserDataUpdate {
     name?: string;
@@ -30,7 +30,7 @@ const {
     clearUpdateUserFormPassword, clearUpdateUserFormCompanyName,
 } = clearUsersForms();
 
-export const useProfile = () => {
+export const profileApi = () => {
     const updateAvatarAccount = async (event: Event) => {
         const userId = localStorage.getItem("userId");
 

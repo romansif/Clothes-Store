@@ -23,7 +23,6 @@ const updateUserFormErrors = ref<UserFormErrors>({
     newPasswordError: false,
 })
 
-
 export const userFormsErrors = () => {
     return {
         updateUserFormErrors,

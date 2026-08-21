@@ -55,9 +55,9 @@
 </template>
 
 <script setup lang="ts">
-import { usersStore } from "@/shared/composables/stores/users.store";
+import { usersStore } from "@/feature/profile/model/users.store.ts";
 import { Menu, MenuItems, MenuItem, MenuButton} from "@headlessui/vue";
-import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
+import { useProfileModals } from "@/feature/profile/lib/profile.modals.ts";
 
 const { user } = usersStore();
 const { toggleDeleteChoice } = useProfileModals();

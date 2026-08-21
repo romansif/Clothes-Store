@@ -48,23 +48,23 @@
 </template>
 
 <script setup lang="ts">
-const { getAddresses } = useAddress();
-const { getPayments } = usePayment();
-const { userAddresses, userPayments } = usersStore();
+const { getAddresses } = adressApi();
+const { getPayments } = paymentApi();
+const { userAddresses, userPayments } = checkoutStore();
 const { toggleAddressesAndCards, deleteChoice } = useProfileModals();
 
 import { onMounted } from "vue";
-import { usersStore } from "@/shared/composables/stores/users.store"
-import { useProfileModals } from "@/shared/composables/modals/profile.modals";
-import { useAddress } from "@/feature/checkout/checkout-actions/use.address.ts";
-import { usePayment } from "@/feature/checkout/checkout-actions/use.payment.ts";
+import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
+import { useProfileModals } from "@/feature/profile/lib/profile.modals.ts";
+import { adressApi } from "@/feature/checkout/api/adress.api.ts";
+import { paymentApi } from "@/feature/checkout/api/payment.api.ts";
 
-import PaymentsList from "@/shared/ui/profile-modals/address-and-cards/payments/PaymentsList.vue";
-import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
-import AddressesList from "./addresses/AddressesList.vue";
-import icon_card from "@/app/assets/icons/checkout/payment/icon_card.svg";
-import icon_address from "@/app/assets/icons/checkout/icon_address.svg";
-import DeleteModal from "@/shared/ui/base/base-modals/DeleteModal.vue";
+import PaymentsList from "@/feature/profile/ui/payment/PaymentsList.vue";
+import BaseButton from "@/shared/ui/BaseButton.vue";
+import AddressesList from "@/feature/profile/ui/address/AddressesList.vue";
+import icon_card from "@/assets/icons/checkout/payment/icon_card.svg";
+import icon_address from "@/assets/icons/checkout/icon_address.svg";
+import DeleteModal from "@/shared/ui/DeleteModal.vue";
 
 onMounted(async () => {
   await getAddresses();

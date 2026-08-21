@@ -40,10 +40,11 @@
 </template>
 
 <script setup lang="ts">
+
 const { information } = checkoutForms();
-const { toggleShowContact } = checkout();
+const { toggleShowContact } = checkoutApi();
 const { informationErrors } = checkoutErrors();
-const { postalCode, userAddresses } = usersStore();
+const { postalCode, userAddresses } = checkoutStore();
 const { addressNameClass, postalCodeClass } = informationClasses();
 const {
   firstNamePlaceholder, lastNamePlaceholder, countryPlaceholder,
@@ -51,14 +52,14 @@ const {
 } = checkoutPlaceholder();
 
 import { IMaskComponent as IMask } from "vue-imask";
-import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
-import { usersStore } from "@/shared/composables/stores/users.store";
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
-import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors";
-import { checkoutPlaceholder } from "@/feature/checkout/checkout-actions/checkout.placeholder.ts";
-import { informationClasses } from "@/shared/composables/style/checkout-style/information.classes.ts";
+import { checkoutApi } from "@/feature/checkout/api/checkout.api.ts";
+import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
+import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
+import { checkoutErrors }from "@/feature/checkout/lib/checkout.errors.ts";
+import { checkoutPlaceholder } from "@/feature/checkout/api/checkout.placeholder.ts";
+import { informationClasses } from "@/shared/constants/checkout/information.classes.ts";
 
-import CheckoutInput from "@/shared/ui/base/input/CheckoutInput.vue";
+import CheckoutInput from "@/feature/checkout/ui/CheckoutInput.vue";
 </script>
 <style scoped>
 

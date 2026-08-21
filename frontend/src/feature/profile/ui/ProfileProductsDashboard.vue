@@ -8,7 +8,7 @@
     <BaseButton name="Try again" variant="refresh" @click="resetError('CART_FAVORITE')" />
   </div>
   <div v-else class="font-[Montserrat] xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
-    <NavBar />
+    <MainNavBar />
     <div class="mt-10 xl:mt-30 xl:px-10">
       <div class="flex flex-col">
         <div class="flex gap-14 items-center font-medium text-sm">
@@ -79,41 +79,43 @@
 </template>
 
 <script setup lang="ts">
-import { useRoute } from "vue-router";
-import { profile } from "@/shared/composables/profile.ts";
-import { computed, onErrorCaptured, onMounted, watch } from "vue";
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { useCart } from "@/feature/cart/cart-actions/use.cart.ts";
-import { useFavorites } from "@/feature/favorite/favorite-actions/use.favorites.ts";
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
-import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
-import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
-import { errorHandler } from "@/shared/composables/errors/errors-middleware/error.handler.ts";
-import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors.ts";
-
-import NavBar from "@/feature/navigation/NavBar.vue";
-import square from "@/app/assets/icons/squares/square.png";
-import CartList from "@/feature/cart/CartList.vue";
-import CartInfo from "@/feature/cart/CartInfo.vue";
-import liked from "@/app/assets/icons/nav/liked.png";
-import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
-import empty_cart from '@/app/assets/icons/products/empty-cart.svg';
-import favorite_cart from '@/app/assets/icons/products/favorute_empty.svg';
-import check_square from "@/app/assets/icons/squares/check-square.png";
-import FavoriteList from "@/feature/favorite/FavoriteList.vue";
-import DeleteModal from "@/shared/ui/base/base-modals/DeleteModal.vue";
-import Notification from "@/shared/ui/base/base-modals/Notification.vue";
-import Loading from "@/shared/ui/base/base-modals/Loading.vue";
-
-const { getCartProducts } = useCart();
+const { cart } = cartStore();
+const { favorite } = favoriteStore();
+const { getCartProducts } = cartApi();
 const { isAgreeForm } = checkoutForms();
-const { cart, favorite } = productsStore();
 const { notify, loading } = useBaseModals();
 const { deleteChoice } = useProfileModals();
 const { isAgreeFormError } = checkoutErrors();
-const { getFavoriteProducts } = useFavorites();
+const { getFavoriteProducts } = favoritesApi();
 const { resetError, componentError } = errorHandler();
-const { toggleAgree, continueToOrder, cartCount, favoritesCount } = profile();
+const { toggleAgree, continueToOrder, cartCount, favoritesCount } = useProfile();
+
+import { useRoute } from "vue-router";
+import { useProfile } from "@/shared/lib/use-profile.ts";
+import { computed, onErrorCaptured, onMounted, watch } from "vue";
+import { cartStore } from "@/feature/cart/model/cart.store.ts";
+import { favoriteStore } from "@/feature/favorite/model/favorite.store.ts";
+import { cartApi } from "@/feature/cart/api/cart.api.ts";
+import { favoritesApi } from "@/feature/favorite/api/favorites.api.ts";
+import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
+import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { useProfileModals } from "@/feature/profile/lib/profile.modals.ts";
+import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
+import { checkoutErrors } from "@/feature/checkout/lib/checkout.errors.ts";
+
+import MainNavBar from "@/feature/navigation/ui/MainNavBar.vue";
+import square from "@/assets/icons/squares/square.png";
+import CartList from "@/feature/cart/ui/CartList.vue";
+import CartInfo from "@/feature/cart/ui/CartInfo.vue";
+import liked from "@/assets/icons/nav/liked.png";
+import BaseButton from "@/shared/ui/BaseButton.vue";
+import empty_cart from '@/assets/icons/products/empty-cart.svg';
+import favorite_cart from '@/assets/icons/products/favorute_empty.svg';
+import check_square from "@/assets/icons/squares/check-square.png";
+import FavoriteList from "@/feature/favorite/ui/FavoriteList.vue";
+import DeleteModal from "@/shared/ui/DeleteModal.vue";
+import Notification from "@/shared/ui/Notification.vue";
+import Loading from "@/shared/ui/Loading.vue";
 
 const route = useRoute();
 

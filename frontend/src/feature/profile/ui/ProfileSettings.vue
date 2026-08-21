@@ -66,19 +66,19 @@
 </template>
 
 <script setup lang="ts">
-import {profileClasses} from "@/shared/composables/style/profile.classes.ts";
+import {profileClasses} from "@/shared/constants/users/profile.classes.ts";
 
 const { user } = usersStore();
-const { userAvatar } = profile();
+const { userAvatar } = useProfile();
 const { profileTabsClass, profileTabsSpanClass } = profileClasses();
 const {
   toggleAvatar, toggleOrderHistory, toggleCurrentOrder,
   toggleConfidentialityData, toggleAddressesAndCards
 } = useProfileModals()
 
-import { profile } from "@/shared/composables/profile.ts";
-import { usersStore } from "@/shared/composables/stores/users.store";
-import { useProfileModals } from "@/shared/composables/modals/profile.modals";
+import { useProfile } from "@/shared/lib/use-profile.ts";
+import { usersStore } from "@/feature/profile/model/users.store.ts";
+import { useProfileModals } from "@/feature/profile/lib/profile.modals.ts";
 
 import ProfileMenu from "./ProfileMenu.vue";
 import arrow_down from '@/app/assets/icons/arrows/arrow-down.png';

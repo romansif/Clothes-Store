@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import AddressItem from "@/feature/checkout/information/saved-checkout-items/AddressItem.vue";
+import AddressItem from "@/feature/checkout/ui/AddressItem.vue";
 </script>
 
 <style scoped>

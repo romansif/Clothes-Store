@@ -1,11 +1,11 @@
 <template>
   <Loading v-if="loading" />
   <div class="xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
-    <NavBar />
+    <MainNavBar />
   </div>
   <div :class="isProfileLoginClass(user)">
     <div class="w-87.5 sm:w-150 md:w-175 lg:w-237.5 xl:w-175">
-      <ProfileNotLogin v-if="!user.id" />
+      <ProfileNotLoggedIn v-if="!user.id" />
       <ProfileSettings v-if="user.id" />
     </div>
   </div>
@@ -40,23 +40,23 @@ const { isProfileLoginClass } = profileClasses();
 const { avatarModal, orderHistory, currentOrder, addressesAndCards, confidentialityData, deleteChoice } = useProfileModals();
 
 import { onMounted } from "vue";
-import { useGetUsers } from "@/feature/auth/auth-actions/get.users";
-import { usersStore } from "@/shared/composables/stores/users.store";
-import { useProfileModals } from "@/shared/composables/modals/profile.modals";
-import { useBaseModals } from "@/shared/composables/modals/base.modals";
-import { profileClasses } from "@/shared/composables/style/profile.classes.ts";
+import { useGetUsers } from "@/feature/auth/api/users.api.ts";
+import { usersStore } from "@/feature/profile/model/users.store.ts";
+import { useProfileModals } from "@/feature/profile/lib/profile.modals.ts";
+import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { profileClasses } from "@/shared/constants/users/profile.classes.ts";
 
-import NavBar from '../navigation/NavBar.vue'
-import DeleteModal from "@/shared/ui/base/base-modals/DeleteModal.vue";
-import ProfileSettings from "./profile-items/ProfileSettings.vue";
-import ProfileNotLogin from "./profile-items/ProfileNotLogin.vue";
-import Notification from "@/shared/ui/base/base-modals/Notification.vue";
-import ChangeAvatar from "@/shared/ui/profile-modals/ChangeAvatar.vue";
-import AllOrders from "@/shared/ui/orders/AllOrders.vue";
-import CurrentOrder from "@/shared/ui/orders/CurrentOrder.vue";
-import AddressPaymentInfo from "@/shared/ui/profile-modals/address-and-cards/AddressPaymentInfo.vue";
-import UserDataModal from "@/shared/ui/profile-modals/confidentiality-data/UserDataModal.vue";
-import Loading from "@/shared/ui/base/base-modals/Loading.vue";
+import MainNavBar from '../navigation/ui/MainNavBar.vue'
+import DeleteModal from "@/shared/ui/DeleteModal.vue";
+import ProfileSettings from "./ui/ProfileSettings.vue";
+import ProfileNotLoggedIn from "./ui/ProfileNotLoggedIn.vue";
+import Notification from "@/shared/ui/Notification.vue";
+import ChangeAvatar from "@/feature/profile/ui/ChangeAvatar.vue";
+import AllOrders from "@/feature/orders/ui/AllOrders.vue";
+import CurrentOrder from "@/feature/orders/ui/CurrentOrder.vue";
+import AddressPaymentInfo from "@/feature/profile/ui/AddressPaymentInfo.vue";
+import UserDataModal from "@/feature/profile/ui/privacy/UserDataModal.vue";
+import Loading from "@/shared/ui/Loading.vue";
 
 onMounted(async () => {
   loading.value = true;

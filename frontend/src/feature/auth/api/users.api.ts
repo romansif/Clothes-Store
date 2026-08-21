@@ -1,6 +1,6 @@
 import { handler } from '@/shared/api/http'
-import { usersStore } from "@/shared/composables/stores/users.store";
-import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
+import { usersStore } from "@/feature/profile/model/users.store.ts";
+import { useBaseModals } from "@/shared/lib/base.modals.ts";
 
 const { users, user } = usersStore();
 const { loading } = useBaseModals();
@@ -10,7 +10,7 @@ export const useGetUsers = () => {
         loading.value = true;
 
         try{
-            const res = await handler('/profile', {
+            const res = await handler('/useProfile', {
                 method: "GET",
             })
             users.value = res;

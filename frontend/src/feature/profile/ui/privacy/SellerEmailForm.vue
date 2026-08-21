@@ -13,16 +13,16 @@
 </template>
 
 <script setup lang="ts">
-const { updateEmailAccount } = useProfile();
+const { updateEmailAccount } = profileApi();
 const { updateUserFormErrors } = userFormsErrors();
 const { updateUserForm, updateUserFormMessage } = userForms();
 
-import { userForms } from "@/shared/composables/forms/users.forms";
-import { useProfile } from "@/feature/profile/profile-actions/use.profile.ts";
-import { userFormsErrors } from "@/shared/composables/errors/errors-messages/users.errors";
+import { userForms } from "@/feature/profile/model/users.forms.ts";
+import { profileApi } from "@/feature/profile/api/profile.api.ts";
+import { userFormsErrors } from "@/feature/profile/lib/users.errors.ts";
 
-import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
-import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
+import BaseButton from "@/shared/ui/BaseButton.vue";
+import BaseInput from "@/shared/ui/BaseInput.vue";
 </script>
 
 <style scoped>

@@ -22,7 +22,6 @@ interface UserFormMessage {
     newPasswordMessage: string,
 }
 
-
 const updateUserForm = ref<UserForm>({
     name: '',
     surName: '',

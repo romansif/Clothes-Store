@@ -1,5 +1,5 @@
 import { computed } from "vue";
-import { type User } from "@/shared/composables/stores/users.store.ts";
+import { type User } from "@/feature/profile/model/users.store.ts";
 
 export const profileClasses = () => {
     const profileTabsClass = () => [
