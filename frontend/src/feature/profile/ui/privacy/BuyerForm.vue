@@ -1,5 +1,14 @@
 <template>
   <div class="flex flex-col gap-10 sm:flex-row">
+    <form @keydown.enter.prevent="updateEmailAccount" class="flex flex-col gap-3 w-full">
+      <label>Email</label>
+      <BaseInput v-model=updateUserForm.email type="text" inputmode="numeric" placeholder="example@mail.com"
+          :error="updateUserFormErrors.emailError" variant="confidentialityData" reqiured
+          :error-message="updateUserFormErrors.emailError ? updateUserFormMessage.emailMessage : ''"/>
+      <div class="flex">
+        <BaseButton @click.prevent="updateEmailAccount()" name="Save Email" variant="profileForm" />
+      </div>
+    </form>
     <form @keydown.enter.prevent="updatePhoneAccount" class="flex flex-col gap-3 w-full">
       <label>Private Phone</label>
       <div class="flex gap-3">
@@ -16,15 +25,6 @@
       </span>
       <div class="flex">
         <BaseButton @click.prevent="updatePhoneAccount()" name="Save Phone" variant="profileForm" />
-      </div>
-    </form>
-    <form @keydown.enter.prevent="updateEmailAccount" class="flex flex-col gap-3 w-full">
-      <label>Email</label>
-      <BaseInput v-model=updateUserForm.email type="text" inputmode="numeric" placeholder="example@mail.com"
-          :error="updateUserFormErrors.emailError" variant="confidentialityData" reqiured
-          :error-message="updateUserFormErrors.emailError ? updateUserFormMessage.emailMessage : ''"/>
-      <div class="flex">
-        <BaseButton @click.prevent="updateEmailAccount()" name="Save Email" variant="profileForm" />
       </div>
     </form>
   </div>

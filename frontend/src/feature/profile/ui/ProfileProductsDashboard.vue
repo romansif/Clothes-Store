@@ -44,15 +44,13 @@
           'flex flex-col xl:flex-row xl:justify-between'">
         <FavoriteList />
       </div>
-      <div v-else :class="isFavoriteProducts ? 'hidden' : 'flex justify-center pt-55'">
-        <div class="flex flex-col gap-5 items-center">
-          <img :src="favorite_cart" alt="">
-          <div class="flex flex-col gap-2 items-center">
-            <span class="font-bold">Favorite is empty</span>
-            <span class="text-[#A3A3A3]">
-              It’s the perfect time to look through the catalog and choose new clothes for the year.
-            </span>
-          </div>
+      <div v-else :class="isFavoriteProducts ? 'hidden' : 'flex flex-col gap-5 items-center justify-center pt-55'">
+        <img :src="favorite_cart" alt="">
+        <div class="flex flex-col gap-2 items-center">
+          <span class="font-bold">Favorite is empty</span>
+          <span class="text-[#A3A3A3]">
+            It’s the perfect time to look through the catalog and choose new clothes for the year.
+          </span>
         </div>
       </div>
     </div>

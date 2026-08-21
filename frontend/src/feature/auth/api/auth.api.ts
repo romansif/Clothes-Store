@@ -6,8 +6,8 @@ import { clearAuthForms } from "@/feature/auth/lib/clear.auth.ts";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
 import { useBaseModals } from "@/shared/lib/base.modals.ts";
 
-const { loading, openNotify } = useBaseModals();
 const { users, user } = usersStore();
+const { loading, openNotify } = useBaseModals();
 const { registerErrors, loginErrors } = useFormsErrors();
 const { clearRegisterForm, clearRegisterFormMessages,
     clearLoginForm, clearLoginFormMessages } = clearAuthForms();
