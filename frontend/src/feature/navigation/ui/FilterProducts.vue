@@ -71,16 +71,16 @@
 </template>
 
 <script setup lang="ts">
-const { allProducts, sizes } = productsStore();
+const { allProducts, sizes } = productStore();
 const { selectedSizeClass, selectedFilterClass } = productsClasses();
-const { toggleFilter, toggleSize, stackProducts, genders, colors } = filtered();
+const { toggleFilter, toggleSize, stackProducts, genders, colors } = filterProducts();
 
-import { filtered } from "@/feature/navigation/products-header/nav-actions/filtered.ts";
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { productsClasses } from "@/shared/composables/style/products.classes.ts";
+import { filterProducts } from "@/feature/navigation/lib/filter-products.ts";
+import { productStore } from "@/feature/products/model/product.store.ts";
+import { productsClasses } from "@/shared/constants/products/products.classes.ts";
 
-import square from '@/app/assets/icons/squares/square.png'
-import checked from '@/app/assets/icons/squares/check-square.png'
+import square from '@/assets/icons/squares/square.png'
+import checked from '@/assets/icons/squares/check-square.png'
 import availability from '@/app/assets/icons/arrows/arrow-up.png'
 </script>
 

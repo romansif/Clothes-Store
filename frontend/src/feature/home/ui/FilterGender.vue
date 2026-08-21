@@ -13,13 +13,13 @@
 
 <script setup lang="ts">
 
-const { selectedGender } = filtered();
-const { getYearProducts } = useProducts();
+const { selectedGender } = filterProducts();
+const { getYearProducts } = productsApi();
 const { selectGenderClass } = productsClasses();
 
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-import { filtered } from "@/feature/navigation/products-header/nav-actions/filtered.ts";
-import { productsClasses } from "@/shared/composables/style/products.classes.ts";
+import { productsApi } from "@/feature/products/api/products.api.ts";
+import { filterProducts } from "@/feature/navigation/lib/filter-products.ts";
+import { productsClasses } from "@/shared/constants/products/products.classes.ts";
 
 const selectGender = async (type: string, filter: string) => {
   await getYearProducts(type, filter);

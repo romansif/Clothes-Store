@@ -1,10 +1,10 @@
 import { useDebounceFn } from "@vueuse/core";
 import { handler } from "@/shared/api/http.ts";
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { productsForms } from "@/shared/composables/forms/products.forms.ts";
+import { productStore } from "@/feature/products/model/product.store.ts";
+import { productForms } from "@/feature/products/model/product.forms.ts";
 
-const { products } = productsStore();
-const { searchProductForm } = productsForms();
+const { products } = productStore();
+const { searchProductForm } = productForms();
 
 export const useGetSearchedProducts = () => {
     const getSearchedProducts = async (products: any) => {

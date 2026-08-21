@@ -2,7 +2,6 @@
   <nav class="font-[Montserrat]">
     <div class="flex justify-between items-center md:justify-between">
       <div class="flex items-center gap-5 lg:gap-10">
-        <img :src=catalog alt="" class=" w-[30px]">
         <div class="xl:flex xl:gap-10
             lg:flex lg:gap-10
             md:flex md:gap-5
@@ -48,19 +47,17 @@
 </template>
 
 <script setup lang="ts">
+const { unreadCount } = cartStore();
 const { selectedPageClass } = baseClasses();
 
 import { computed } from "vue";
 import { useRoute } from "vue-router";
-import { baseClasses } from "@/shared/composables/style/base.classes.ts";
-import { productsStore } from "@/shared/composables/stores/products.store";
+import { baseClasses } from "@/shared/constants/base.classes.ts";
+import { cartStore } from "@/feature/cart/model/cart.store.ts";
 
-import cartImg from "@/app/assets/icons/nav/cart.png";
-import liked from "@/app/assets/icons/nav/favorite.png";
-import profile from "@/app/assets/icons/nav/profile.png";
-import catalog from "@/app/assets/icons/nav/catalog.png";
-
-const { unreadCount } = productsStore();
+import cartImg from "@/assets/icons/nav/cart.png";
+import liked from "@/assets/icons/nav/favorite.png";
+import profile from "@/assets/icons/nav/profile.png";
 
 const route = useRoute();
 

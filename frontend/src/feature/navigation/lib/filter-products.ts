@@ -1,11 +1,11 @@
 import { ref } from "vue";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
+import { productsApi } from "@/feature/products/api/products.api.ts";
+import { productStore } from "@/feature/products/model/product.store.ts";
 
-const { sizes } = productsStore();
-const { getFilteredProducts } = useProducts();
+const { sizes } = productStore();
+const { getFilteredProducts } = productsApi();
 
-export const filtered = () => {
+export const filterProducts = () => {
     const selectedGender = ref<string>('ALL');
 
     const stackProducts = ref<Record<string, boolean>>({
