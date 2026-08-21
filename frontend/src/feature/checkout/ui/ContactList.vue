@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import ContactItem from "@/feature/checkout/information/saved-checkout-items/ContactItem.vue";
+import ContactItem from "@/feature/checkout/ui/ContactItem.vue";
 </script>
 
 <style scoped>

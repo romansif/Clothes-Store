@@ -15,13 +15,13 @@
 </template>
 
 <script setup lang="ts">
-const { userAddresses } = usersStore();
+const { userAddresses } = checkoutStore();
 const { savedContactClass } = informationClasses()
-const { useSavedContactInfo } = useAddress();
+const { useSavedContactInfo } = adressApi();
 
-import { usersStore } from "@/shared/composables/stores/users.store.ts";
-import { useAddress } from "@/feature/checkout/checkout-actions/use.address.ts";
-import { informationClasses } from "@/shared/composables/style/checkout-style/information.classes.ts";
+import { adressApi } from "@/feature/checkout/api/adress.api.ts";
+import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
+import { informationClasses } from "@/shared/constants/checkout/information.classes.ts";
 </script>
 
 <style scoped>

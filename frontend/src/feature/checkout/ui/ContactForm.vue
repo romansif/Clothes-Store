@@ -20,14 +20,14 @@
 
 <script setup lang="ts">
 import { IMaskComponent as IMask } from "vue-imask";
-import { usePhoneForm } from "@/shared/mask-forms/use.phone.form";
-import { usersStore } from "@/shared/composables/stores/users.store";
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
-import { informationClasses } from "@/shared/composables/style/checkout-style/information.classes.ts";
-import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors";
-import { checkoutPlaceholder } from "@/feature/checkout/checkout-actions/checkout.placeholder.ts";
+import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
+import { usersStore } from "@/feature/profile/model/users.store.ts";
+import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
+import { informationClasses } from "@/shared/constants/checkout/information.classes.ts";
+import { checkoutErrors }from "@/feature/checkout/lib/checkout.errors.ts";
+import { checkoutPlaceholder } from "@/feature/checkout/api/checkout.placeholder.ts";
 
-import CheckoutInput from "@/shared/ui/base/input/CheckoutInput.vue";
+import CheckoutInput from "@/feature/checkout/ui/CheckoutInput.vue";
 
 const { information } = checkoutForms();
 const { informationErrors } = checkoutErrors();

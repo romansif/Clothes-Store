@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col lg:w-100 xl:w-125">
     <div v-if="!isSavedAddress">
-      <ContactFom />
+      <ContactForm />
       <AddressForm />
     </div>
     <SavedCheckoutInfo v-if="isSavedAddress"/>
@@ -15,22 +15,22 @@
 </template>
 
 <script setup lang="ts">
-const { isSavedAddress } = checkout();
+const { isSavedAddress } = checkoutApi();
 const { information } = checkoutForms();
 const { informationErrors } = checkoutErrors();
-const { addInformation, useInformation } = useAddress();
+const { addInformation, useInformation } = adressApi();
 
 import { watch } from "vue";
-import { useAddress } from "@/feature/checkout/checkout-actions/use.address.ts";
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
-import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors";
-import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
+import { adressApi } from "@/feature/checkout/api/adress.api.ts";
+import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
+import { checkoutErrors }from "@/feature/checkout/lib/checkout.errors.ts";
+import { checkoutApi } from "@/feature/checkout/api/checkout.api.ts";
 
 import arrow from "@/app/assets/icons/arrows/right-shop.svg";
-import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
-import ContactFom from "@/feature/checkout/information/form-info/ContactFom.vue";
-import AddressForm from "@/feature/checkout/information/form-info/AddressForm.vue";
-import SavedCheckoutInfo from "@/feature/checkout/information/SavedCheckoutInfo.vue";
+import BaseButton from "@/shared/ui/BaseButton.vue";
+import ContactForm from "@/feature/checkout/ui/ContactForm.vue";
+import AddressForm from "@/feature/checkout/ui/AddressForm.vue";
+import SavedCheckoutInfo from "@/feature/checkout/ui/SavedCheckoutInfo.vue";
 
 watch(() => [
   information.value.email, information.value.phone, information.value.firstName, information.value.lastName,

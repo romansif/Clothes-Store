@@ -35,22 +35,22 @@
 
 <script setup lang="ts">
 
-const { goBack } = checkout();
+const { goBack } = checkoutApi();
 const { notify } = useBaseModals();
 const { checkoutVisibilityClass } = checkoutClasses();
 
 import { useRoute } from 'vue-router';
 import { computed } from "vue";
-import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
-import { useBaseModals } from "@/shared/composables/modals/base.modals";
-import { checkoutClasses } from "@/shared/composables/style/checkout-style/checkout.classes.ts";
+import { checkoutApi } from "@/feature/checkout/api/checkout.api.ts";
+import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { checkoutClasses } from "@/shared/constants/checkout/checkout.classes.ts";
 
-import PaymentDashboard from "./payment/PaymentDashboard.vue";
-import CheckoutShipping from "./shipping/CheckoutShipping.vue";
-import OrderInfo from "./order-information/OrderInfo.vue";
+import PaymentDashboard from "./ui/PaymentDashboard.vue";
+import CheckoutShipping from "./ui/CheckoutShipping.vue";
+import OrderInfo from "./ui/OrderInfo.vue";
 import go_to_shop from "@/app/assets/icons/arrows/right-long-arrow.png";
-import CheckoutInfo from "./information/CheckoutInfo.vue";
-import Notification from "@/shared/ui/base/base-modals/Notification.vue";
+import CheckoutInfo from "./ui/CheckoutInfo.vue";
+import Notification from "@/shared/ui/Notification.vue";
 
 const route = useRoute();
 
