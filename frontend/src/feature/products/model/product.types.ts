@@ -15,11 +15,6 @@ export interface ProductColor {
     colorName: string
 }
 
-
-export interface SearchForm {
-    search: string
-}
-
 export interface ProductFormMessage {
     productUrlMessage: string,
     titleMessage: string,
@@ -72,7 +67,6 @@ export interface Product {
     gender: string,
     quantity: number,
     status: string,
-    favorite: boolean,
     checked: boolean,
     collections: string,
     created_at: string,

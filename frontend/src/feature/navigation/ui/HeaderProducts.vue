@@ -23,7 +23,7 @@
                sm:placeholder:px-114 md:placeholder:px-134 lg:placeholder:px-195 xl:w-92.5 xl:placeholder:px-65
                transition duration-400 hover:bg-gray-50" />
         <img :src=search alt="" class="absolute left-4 top-1/2 -translate-y-1/2">
-        <img v-if="searchProductForm.search" @click="resetSearch" :src="del" alt=""
+        <img v-if="searchProductForm.search" @click="clearSearchProductForm" :src="del" alt=""
              class="w-6.25 absolute top-1/4 left-85 cursor-pointer">
       </div>
     </div>
@@ -49,20 +49,21 @@
 </template>
 
 <script setup lang="ts">
-const { searchProductForm } = productForms();
+const { searchProductForm } = searchForm();
 const { getFilteredProducts } = productsApi();
 const { selectedCategoryClass } = productsClasses();
 const { toggleFilterAside } = useProductsModals();
 const { toggleFilter, categories, category } = filterProducts();
-const { debouncedSearch, resetSearch } = useGetSearchedProducts();
+const { debouncedSearch } = useGetSearchedProducts();
 
 import { watch } from "vue";
 import { filterProducts } from "@/feature/navigation/lib/filter-products.ts";
 import { productsClasses } from "@/shared/constants/products/products.classes.ts";
+import { searchForm } from "@/feature/navigation/model/search.form.ts";
 import { productsApi } from "@/feature/products/api/products.api.ts";
+import { clearSearchProductForm } from "@/feature/navigation/lib/clear.search.ts";
 import { useGetSearchedProducts } from "@/feature/navigation/lib/search-products.ts";
 import { useProductsModals } from "@/feature/products/lib/products.modals.ts";
-import { productForms } from "@/feature/products/model/product.forms.ts";
 
 import del from '@/assets/icons/delete-close/clean_search.svg';
 import search from "@/assets/icons/nav/search.png";

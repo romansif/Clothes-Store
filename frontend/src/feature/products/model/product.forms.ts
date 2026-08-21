@@ -1,5 +1,5 @@
 import { reactive, ref } from 'vue'
-import type { ProductForm, ProductColor, ProductFormMessage, SearchForm} from "@/feature/products/model/product.types.ts";
+import type { ProductForm, ProductColor, ProductFormMessage } from "@/feature/products/model/product.types.ts";
 
 const createProductForm = ref<ProductForm>({
     productUrl: '',
@@ -35,15 +35,10 @@ const createProductFormMessages = ref<ProductFormMessage>({
 })
 
 
-const searchProductForm = ref<SearchForm>({
-    search: ''
-})
-
 export const productForms = () => {
     return {
         createProductForm,
         moreCreateItem,
         createProductFormMessages,
-        searchProductForm,
     }
 }

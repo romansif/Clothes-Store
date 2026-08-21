@@ -1,10 +1,10 @@
 import { useDebounceFn } from "@vueuse/core";
 import { handler } from "@/shared/api/http.ts";
 import { productStore } from "@/feature/products/model/product.store.ts";
-import { productForms } from "@/feature/products/model/product.forms.ts";
+import { searchForm } from "@/feature/navigation/model/search.form.ts";
 
 const { products } = productStore();
-const { searchProductForm } = productForms();
+const { searchProductForm } = searchForm();
 
 export const useGetSearchedProducts = () => {
     const getSearchedProducts = async (products: any) => {
@@ -25,13 +25,9 @@ export const useGetSearchedProducts = () => {
         return products;
     }, 700)
 
-    const resetSearch = () => {
-        searchProductForm.value.search = "";
-    }
 
     return{
         getSearchedProducts,
         debouncedSearch,
-        resetSearch
     }
 }
