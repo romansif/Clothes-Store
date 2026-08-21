@@ -14,7 +14,7 @@ const { createInformationErrors } = useFormsErrors();
 const { clearInformationForm } = clearCheckoutForm();
 const { isChosenAddress, isChosenContactInfo, informationId } = checkoutApi();
 
-export const adressApi = () => {
+export const addressApi = () => {
     const getAddresses = async () => {
         loading.value = true;
 
