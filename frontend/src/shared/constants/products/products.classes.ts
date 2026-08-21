@@ -1,10 +1,11 @@
 import { filterProducts } from "@/feature/navigation/lib/filter-products.ts";
-import { productForms } from "@/feature/products/model/product.forms.ts";
-import { type Product, type ColorItem, type Sizes } from "@/feature/products/model/product.store.ts";
-import { type User } from "@/feature/profile/model/users.store.ts";
+import { addToCartForm } from "@/feature/cart/model/cart.forms.ts";
+import type { ColorItem, Sizes } from "@/feature/products/model/product.types.ts";
+import type { CartItem } from "@/feature/cart/model/cart.types.ts";
+import type { User } from "@/feature/profile/model/users.store.ts";
 
+const { cartForm } = addToCartForm();
 const { selectedGender } = filterProducts();
-const { addToCartForm } = productForms();
 
 export const productsClasses = () => {
     const selectGenderClass = (gender: string) => [
@@ -25,19 +26,19 @@ export const productsClasses = () => {
         hover:text-black hover:scale-105`, isActive ? ' border-black scale-105' : 'text-[#A3A3A3] border-[#A3A3A3]'
     ];
 
-    const selectedColorClass = (color: ColorItem, product: Product, user: User) => [
-        'w-15 h-15',
+    const selectedColorClass = (color: ColorItem, product: CartItem, user: User) => [
+        'w-15 h-15 transition duration-400',
         {
-            'scale-110': addToCartForm.value.colors?.colorName === color.colorName,
-            'hover:scale-110 transition duration-400 cursor-pointer': product.status !== 'Exhausted' && user.role !== 'Seller'
+            'scale-110': cartForm.value.colors?.hex === color.hex,
+            'hover:scale-110 cursor-pointer': product.status !== 'Exhausted' && user.role !== 'Seller'
         }
     ];
 
-    const selectedSizesClass = (size: Sizes, product: Product, user: User) => [
-        size.class, 'w-15 h-15',
+    const selectedSizesClass = (size: Sizes, product: CartItem, user: User) => [
+        size.class, 'w-15 h-15 transition duration-400',
             {
-                'scale-110' : addToCartForm.value.sizes === size.name,
-                'hover:scale-110 transition duration-400 cursor-pointer': product.status !== 'Exhausted' &&
+                'scale-110' : cartForm.value.sizes === size.name,
+                'hover:scale-110 cursor-pointer': product.status !== 'Exhausted' &&
                     user.role !== 'Seller'
             }
     ];

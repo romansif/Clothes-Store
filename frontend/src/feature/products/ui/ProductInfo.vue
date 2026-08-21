@@ -77,14 +77,13 @@
 </template>
 
 <script setup lang="ts">
-
 const { user } = usersStore();
 const { product } = productStore();
 const { toggleToFavorite } = favoritesApi();
 const { addToCart, updateCartItem } = cartApi();
 const { cartFormErrors } = addToCartErrors();
 const { selectedColorClass, selectedSizesClass } = productsClasses();
-const { cartForm,  cartFormMessages} = addToCartForm();
+const { cartForm, cartFormMessages} = addToCartForm();
 const { isValidOutOfStack, pureInfoColors, isAvailableSizes, isInCart } = productsCover();
 
 import { watch } from "vue";

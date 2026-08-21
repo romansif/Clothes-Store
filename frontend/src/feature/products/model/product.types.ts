@@ -60,6 +60,7 @@ export interface ImageItem {
 export interface Product {
     id: string,
     userId: string,
+    productId: string,
     title: string,
     category: string,
     material: string,

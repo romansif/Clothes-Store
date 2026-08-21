@@ -4,10 +4,10 @@
       <div class="flex items-center justify-center">
         <div class="w-58.75 sm:w-75">
           <div class="font-medium flex items-center justify-between">
-            <router-link :to="{name: 'signIn'}" @click=clearRegisterForm>
+            <router-link :to="{name: 'signIn'}" @click=clearRegisterForm class="transition duration-400 hover:scale-120">
               <span class="text-[#A3A3A3]">SIGN IN</span>
             </router-link>
-            <span class="">SIGN UP</span>
+            <span class="cursor-pointer transition duration-400 hover:scale-120">SIGN UP</span>
           </div>
         </div>
       </div>

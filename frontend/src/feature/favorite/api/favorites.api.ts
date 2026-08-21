@@ -3,10 +3,14 @@ import { productStore } from "@/feature/products/model/product.store.ts";
 import { cartApi } from "@/feature/cart/api/cart.api.ts";
 import { useBaseModals } from "@/shared/lib/base.modals.ts";
 import { productsApi } from "@/feature/products/api/products.api.ts";
+import { favoriteStore } from "@/feature/favorite/model/favorite.store.ts";
+import { cartStore } from "@/feature/cart/model/cart.store.ts";
 
+const { cart } = cartStore();
+const { products } = productStore();
+const { favorite } = favoriteStore();
 const { getCartProducts } = cartApi();
 const { openNotify } = useBaseModals();
-const { favorite, cart, products } = productStore();
 const { getFilteredProducts, updateFavorite } = productsApi();
 
 export const favoritesApi = () => {

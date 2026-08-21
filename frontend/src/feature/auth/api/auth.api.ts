@@ -36,7 +36,7 @@ export const authApi = () => {
                 )
             };
 
-            const authData = await handler('/authApi/signUp', {
+            const authData = await handler('/auth/signUp', {
                 method: "POST",
                 body: JSON.stringify(requestBody),
             });
@@ -44,7 +44,7 @@ export const authApi = () => {
 
             if(authData.accessToken){
                 localStorage.setItem("accessToken", authData.accessToken);
-                console.log("authApi data:", authData.accessToken);
+                console.log("auth data:", authData.accessToken);
             }else{
                 console.log('Access token is not found');
                 return;
@@ -55,7 +55,7 @@ export const authApi = () => {
 
             loading.value = false;
             await openNotify('You have successfully sign up.',
-                'You will now be taken to your useProfile page.', 'useProfile');
+                'You will now be taken to your profile page.', 'profile');
         }catch(err){
             loading.value = false;
             registerErrors(err, role)
@@ -68,7 +68,7 @@ export const authApi = () => {
 
         clearLoginFormMessages();
         try{
-            const foundedUser = await handler('/authApi/signIn', {
+            const foundedUser = await handler('/auth/signIn', {
                 method: "POST",
                 body: JSON.stringify({
                     email: loginForm.value.email,
@@ -87,7 +87,7 @@ export const authApi = () => {
 
             loading.value = false;
             await openNotify('You have successfully sign in.',
-                'You will now be taken to your useProfile page.', 'useProfile')
+                'You will now be taken to your profile page.', 'profile')
 
             clearLoginForm()
         }catch(err){
@@ -103,7 +103,7 @@ export const authApi = () => {
         try{
             const date = new Date();
 
-            const foundedUser = await handler('/authApi/google', {
+            const foundedUser = await handler('/auth/google', {
                 method: "POST",
                 body: JSON.stringify({
                     role: loginForm.value.role || 'Buyer',
@@ -122,7 +122,7 @@ export const authApi = () => {
 
             loading.value = false;
             await openNotify('You have successfully sign in.',
-                'You will now be taken to your useProfile page.', 'useProfile');
+                'You will now be taken to your profile page.', 'profile');
         }catch(err){
             loading.value = false;
             await openNotify('You were unable to login with google.',
@@ -133,7 +133,7 @@ export const authApi = () => {
 
     const logout = async () => {
         try{
-            const logoutUser = await handler('/authApi/logout', {
+            const logoutUser = await handler('/auth/logout', {
                 method: "POST",
             })
             users.value = logoutUser

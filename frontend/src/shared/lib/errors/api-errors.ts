@@ -7,12 +7,16 @@ import { authFormsErrors } from "@/feature/auth/lib/auth.errors.ts";
 import { userFormsErrors } from "@/feature/profile/lib/users.errors.ts";
 import { checkoutErrors } from "@/feature/checkout/lib/checkout.errors.ts";
 import { productsFormErrors } from "@/feature/products/lib/products.errors.ts";
-import {useBaseModals} from "@/shared/lib/base.modals.ts";
+import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { addToCartForm } from "@/feature/cart/model/cart.forms.ts";
+import { addToCartErrors } from "@/feature/cart/lib/cart.errors.ts";
 
+const { createProductFormMessages } = productForms();
+const { createProductFormErrors } = productsFormErrors();
 const { registerFormMessages, loginFormMessages } = authForms();
 const { registerFormErrors, loginFormErrors } = authFormsErrors();
-const { createProductFormErrors, addCartFormErrors } = productsFormErrors();
-const { createProductFormMessages, addToCartFormMessages } = productForms();
+const { cartFormMessages } = addToCartForm();
+const { cartFormErrors } = addToCartErrors();
 const { informationErrors, shippingErrors, paymentErrors} = checkoutErrors();
 const { informationMessages, shippingMessages, paymentMessages } = checkoutForms();
 const { cancelChoiceMessage, cancelChoiceError } = useBaseModals();
@@ -96,11 +100,11 @@ export const useFormsErrors = () => {
         if(err instanceof ApiError){
             const errors = err.response as Record<string, string> | undefined;
             if(errors){
-                addCartFormErrors.value.colorError = !!errors.colors;
-                addCartFormErrors.value.sizeError = !!errors.sizes;
+                cartFormErrors.value.colorError = !!errors.colors;
+                cartFormErrors.value.sizeError = !!errors.sizes;
 
-                addToCartFormMessages.value.colorMessage = errors.colors || '';
-                addToCartFormMessages.value.sizeMessage = errors.sizes || '';
+                cartFormMessages.value.colorMessage = errors.colors || '';
+                cartFormMessages.value.sizeMessage = errors.sizes || '';
             }
         }
     };

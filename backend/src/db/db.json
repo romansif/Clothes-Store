@@ -1,22 +1,370 @@
 {
   "users": [
-
+    {
+      "id": "3c211823-b398-4641-b07a-fce439ce7395",
+      "email": "akmalmavlonov25@gmail.com",
+      "role": "Seller",
+      "name": "Plagiat555",
+      "surName": "",
+      "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocJzHyeN95wO6MAZzH4E9FkqrC9pDZ_IsEztiiZDoWZD08A2Osv2=s96-c",
+      "privatePhone": "",
+      "googleId": "117192309001137738940",
+      "created_at": "2026-08-19T11:14:41.962Z",
+      "password": "",
+      "refreshTokens": [
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzYzIxMTgyMy1iMzk4LTQ2NDEtYjA3YS1mY2U0MzljZTczOTUiLCJpYXQiOjE3ODcyOTYyNzgsImV4cCI6MTc4NzkwMTA3OH0.O-FAacKlUdfJpalLFbqFpfGRqZ7GSWddB9-PotySNpo"
+      ]
+    },
+    {
+      "id": "0a488d83-afc3-42c7-92a1-a219551eaf13",
+      "role": "Buyer",
+      "name": "Akmal",
+      "surName": "Movlonov",
+      "privatePhone": "+998 (12) 345-67-89",
+      "email": "akmalmavlonov25@gmail.com",
+      "password": "$2b$10$IZb0p9Hiq/6XdSG.trvCWehCk79H0LnG52A5tkodGkKh9z.Hi9vQy",
+      "avatarUrl": "uploads/avatars/default-avatar.png",
+      "created_at": "2026-08-20T09:29:46.573Z",
+      "refreshTokens": [
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwYTQ4OGQ4My1hZmMzLTQyYzctOTJhMS1hMjE5NTUxZWFmMTMiLCJpYXQiOjE3ODcyMTgxODYsImV4cCI6MTc4NzgyMjk4Nn0.bp-SRQhbuB8X94VWkfL1AseCvwlv8hV2c9gwhEXHBts",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwYTQ4OGQ4My1hZmMzLTQyYzctOTJhMS1hMjE5NTUxZWFmMTMiLCJpYXQiOjE3ODcyODYwNzIsImV4cCI6MTc4Nzg5MDg3Mn0.JFvrcuxK3s1tx-QII07um0zCmhmHnQ5_8K13PK8HMvM",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwYTQ4OGQ4My1hZmMzLTQyYzctOTJhMS1hMjE5NTUxZWFmMTMiLCJpYXQiOjE3ODcyOTY3NzEsImV4cCI6MTc4NzkwMTU3MX0.I3ytgTjhUMkKQ9Ogqz0CKkKcq0A6ZRl31vtVx8bwTQg"
+      ]
+    }
   ],
   "products": [
-
+    {
+      "id": "9fc5bd99-403c-4c65-ac42-8e7529977dee",
+      "userId": "3c211823-b398-4641-b07a-fce439ce7395",
+      "images": [
+        "uploads/products/product-1787138694785-654791739.png",
+        "uploads/products/product-1787138694785-693427573.png",
+        "uploads/products/product-1787138694788-778728940.png",
+        "uploads/products/product-1787138694791-472452647.png",
+        "uploads/products/product-1787138694794-572224519.png"
+      ],
+      "title": "AAA",
+      "category": "Shorts",
+      "material": "Polyester",
+      "price": 99,
+      "description": "BBB",
+      "colors": [
+        {
+          "hex": "#ffffff",
+          "colorName": "White"
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black"
+        }
+      ],
+      "sizes": [
+        "XS",
+        "S"
+      ],
+      "gender": "Man",
+      "quantity": 0,
+      "collections": "Blueprint",
+      "status": "Exhausted",
+      "created_at": "2026-08-19T11:24:54.798Z",
+      "favorite": false,
+      "checked": false
+    },
+    {
+      "id": "d7e72b2c-79d7-4030-ac42-a0549bc04125",
+      "userId": "3c211823-b398-4641-b07a-fce439ce7395",
+      "images": [
+        "uploads/products/product-1787139881445-832848421.png",
+        "uploads/products/product-1787139881445-695002066.png",
+        "uploads/products/product-1787139881447-363853124.png",
+        "uploads/products/product-1787139881449-268010218.png",
+        "uploads/products/product-1787139881453-481087611.png"
+      ],
+      "title": "AAA",
+      "category": "Pants",
+      "material": "Acrylic",
+      "price": 99,
+      "description": "BBB",
+      "colors": [
+        {
+          "hex": "#ffffff",
+          "colorName": "White"
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black"
+        }
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L"
+      ],
+      "gender": "Man",
+      "quantity": 0,
+      "collections": "Essence",
+      "status": "Exhausted",
+      "created_at": "2026-08-19T11:44:41.459Z",
+      "favorite": false,
+      "checked": false
+    },
+    {
+      "id": "769c55d8-516f-4b91-a865-d6e67f07a1ab",
+      "userId": "3c211823-b398-4641-b07a-fce439ce7395",
+      "images": [
+        "uploads/products/product-1787199733352-165557543.png",
+        "uploads/products/product-1787199733357-429745255.png",
+        "uploads/products/product-1787199733364-578543999.png",
+        "uploads/products/product-1787199733365-78205935.png",
+        "uploads/products/product-1787199733368-514295818.png"
+      ],
+      "title": "QQQ",
+      "category": "Pants",
+      "material": "Synthetics",
+      "price": 99,
+      "description": "RRR",
+      "colors": [
+        {
+          "hex": "#ffffff",
+          "colorName": "White"
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black"
+        }
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "gender": "Man",
+      "quantity": 0,
+      "collections": "Mono",
+      "status": "Exhausted",
+      "created_at": "2026-08-20T04:22:13.388Z",
+      "favorite": false,
+      "checked": false
+    },
+    {
+      "id": "f42ead48-14da-4ea6-b0b6-0b0f32b66f21",
+      "userId": "3c211823-b398-4641-b07a-fce439ce7395",
+      "images": [
+        "uploads/products/product-1787218431546-591539095.png",
+        "uploads/products/product-1787218431548-511273692.png",
+        "uploads/products/product-1787218431551-33181920.png",
+        "uploads/products/product-1787218431554-295355887.png",
+        "uploads/products/product-1787218431558-730963823.png"
+      ],
+      "title": "AAA",
+      "category": "Jeans",
+      "material": "Cotton",
+      "price": 99,
+      "description": "BBB",
+      "colors": [
+        {
+          "hex": "#ffffff",
+          "colorName": "White"
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black"
+        }
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "L",
+        "XXL"
+      ],
+      "gender": "Man",
+      "quantity": 1,
+      "collections": "Silence",
+      "status": "Availability",
+      "created_at": "2026-08-20T09:33:51.567Z",
+      "favorite": false,
+      "checked": false
+    }
   ],
   "cart": [],
   "favorite": [],
   "addresses": [
-
+    {
+      "id": "c9d5f478-7f8d-4fa2-94eb-46212fa201cc",
+      "userId": "3c211823-b398-4641-b07a-fce439ce7395",
+      "address": "Ташкент, Чиланзар_5, 26",
+      "postalCode": 1091,
+      "addressName": "Ташкент, Чиланзар_5, 26",
+      "email": "akmalmavlonov25@gmail.com",
+      "phone": "+998 (12) 345-67-89",
+      "firstName": "Akmal",
+      "lastName": "Movlonov",
+      "country": "Узбекистан",
+      "stateRegion": "QR",
+      "city": "Ташкент"
+    },
+    {
+      "id": "ade7ba67-1731-4b75-8543-99c75866dc22",
+      "userId": "0a488d83-afc3-42c7-92a1-a219551eaf13",
+      "address": "Ташкент, Чиланзар_5, 26",
+      "postalCode": 1091,
+      "addressName": "Ташкент, Чиланзар_5, 26",
+      "email": "akmalmavlonov25@gmail.com",
+      "phone": "+998 (12) 345-67-89",
+      "firstName": "Akmal",
+      "lastName": "Movlonov",
+      "country": "Узбекистан",
+      "stateRegion": "qr",
+      "city": "Ташкент"
+    }
   ],
   "shipping": [
-
+    {
+      "id": "b0e36170-ce44-478e-95ea-c824efc36e60",
+      "userId": "3c211823-b398-4641-b07a-fce439ce7395",
+      "paymentId": "faf9df67-2ac7-4978-804f-0f9ea0427940",
+      "delivery": "express"
+    },
+    {
+      "id": "21b79419-f156-465d-9508-e7b18664fa3b",
+      "userId": "0a488d83-afc3-42c7-92a1-a219551eaf13",
+      "paymentId": "62ec0900-3f61-4c41-9571-f3721212e43f",
+      "delivery": "express"
+    }
   ],
   "payments": [
-
+    {
+      "id": "53200688-265d-4625-b7d3-3b9611ffa91b",
+      "userId": "3c211823-b398-4641-b07a-fce439ce7395",
+      "paymentId": "faf9df67-2ac7-4978-804f-0f9ea0427940",
+      "paymentMethod": "apple"
+    },
+    {
+      "id": "b83fd39a-3709-49ae-97d6-78038c2d0eae",
+      "userId": "0a488d83-afc3-42c7-92a1-a219551eaf13",
+      "paymentId": "62ec0900-3f61-4c41-9571-f3721212e43f",
+      "paymentMethod": "apple"
+    }
   ],
   "orders": [
-
-  ]
+    {
+      "id": "523ffb76-7360-4517-b4ba-1802c562dbaf",
+      "userId": "3c211823-b398-4641-b07a-fce439ce7395",
+      "orderItems": [
+        {
+          "id": "10add0ef-c320-4f6c-a562-9ff0e7e9586f",
+          "userId": "3c211823-b398-4641-b07a-fce439ce7395",
+          "productId": "d7e72b2c-79d7-4030-ac42-a0549bc04125",
+          "images": [
+            "uploads/products/product-1787139881445-832848421.png",
+            "uploads/products/product-1787139881445-695002066.png",
+            "uploads/products/product-1787139881447-363853124.png",
+            "uploads/products/product-1787139881449-268010218.png",
+            "uploads/products/product-1787139881453-481087611.png"
+          ],
+          "title": "AAA",
+          "category": "Pants",
+          "material": "Acrylic",
+          "price": 99,
+          "description": "BBB",
+          "colors": [
+            {
+              "hex": "#ffffff",
+              "colorName": "White"
+            }
+          ],
+          "sizes": "M",
+          "gender": "Man",
+          "quantity": 1,
+          "status": "Availability",
+          "favorite": false,
+          "checked": false,
+          "created_at": "2026-08-19T11:55:34.363Z"
+        },
+        {
+          "id": "29404179-45ef-40dc-95fc-f0a9f295d6c2",
+          "userId": "3c211823-b398-4641-b07a-fce439ce7395",
+          "productId": "9fc5bd99-403c-4c65-ac42-8e7529977dee",
+          "images": [
+            "uploads/products/product-1787138694785-654791739.png",
+            "uploads/products/product-1787138694785-693427573.png",
+            "uploads/products/product-1787138694788-778728940.png",
+            "uploads/products/product-1787138694791-472452647.png",
+            "uploads/products/product-1787138694794-572224519.png"
+          ],
+          "title": "AAA",
+          "category": "Shorts",
+          "material": "Polyester",
+          "price": 99,
+          "description": "BBB",
+          "colors": [
+            {
+              "hex": "#ffffff",
+              "colorName": "White"
+            }
+          ],
+          "sizes": "S",
+          "gender": "Man",
+          "quantity": 1,
+          "status": "Availability",
+          "favorite": false,
+          "checked": false,
+          "created_at": "2026-08-19T11:55:24.982Z"
+        }
+      ],
+      "orderTotal": 229,
+      "delivery": "express",
+      "status": "Convene",
+      "created_at": "2026-08-19T11:56:02.110Z",
+      "date_created_at": "19.08.2026",
+      "time_created_at": "16:56"
+    },
+    {
+      "id": "e913a712-191b-4e29-baaf-9e32bca138b9",
+      "userId": "0a488d83-afc3-42c7-92a1-a219551eaf13",
+      "orderItems": [
+        {
+          "id": "41e55c49-d498-4602-ac65-8da680cf3772",
+          "userId": "0a488d83-afc3-42c7-92a1-a219551eaf13",
+          "productId": "769c55d8-516f-4b91-a865-d6e67f07a1ab",
+          "images": [
+            "uploads/products/product-1787199733352-165557543.png",
+            "uploads/products/product-1787199733357-429745255.png",
+            "uploads/products/product-1787199733364-578543999.png",
+            "uploads/products/product-1787199733365-78205935.png",
+            "uploads/products/product-1787199733368-514295818.png"
+          ],
+          "title": "QQQ",
+          "category": "Pants",
+          "material": "Synthetics",
+          "price": 99,
+          "description": "RRR",
+          "colors": [
+            {
+              "hex": "#000000",
+              "colorName": "Black"
+            }
+          ],
+          "sizes": "S",
+          "gender": "Man",
+          "quantity": 1,
+          "status": "Availability",
+          "favorite": false,
+          "checked": false,
+          "created_at": "2026-08-20T09:30:29.225Z"
+        }
+      ],
+      "orderTotal": 122,
+      "delivery": "express",
+      "status": "Convene",
+      "created_at": "2026-08-20T09:31:07.554Z",
+      "date_created_at": "20.08.2026",
+      "time_created_at": "14:31"
+    }
+  ],
+  "favorites": []
 }

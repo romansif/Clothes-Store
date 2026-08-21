@@ -47,12 +47,12 @@ const routes: RouteRecordRaw[] = [
                 component: () => import('@/pages/favorite/FavoritePage.vue')
             },
             {
-                path: 'useProfile',
+                path: 'profile',
                 component: () => import('@/app/layouts/ProfileLayout.vue'),
                 children: [
                     {
                         path: '',
-                        name: 'useProfile',
+                        name: 'profile',
                         component: () => import('@/pages/profile/ProfilePage.vue'),
                     },
                     {
