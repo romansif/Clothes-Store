@@ -34,21 +34,21 @@
 
 <script setup lang="ts">
 
-const { favorite } = productsStore();
-const { getProductId } = useProducts();
+const { favorite } = productStore();
+const { getProductId } = productsApi();
 const { isOutOfStack, productPreview } = productsCover();
-const { toggleToFavorite } = useFavorites();
+const { toggleToFavorite } = favoritesApi();
 const { productPreviewClass } = baseClasses();
 
-import { productsCover } from "@/shared/composables/product.cover.ts";
-import { baseClasses } from "@/shared/composables/style/base.classes.ts";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { useFavorites } from "@/feature/favorite/favorite-actions/use.favorites.ts";
+import { productsCover } from "@/shared/lib/product-image.ts";
+import { baseClasses } from "@/shared/constants/base.classes.ts";
+import { productsApi } from "@/feature/products/api/products.api.ts";
+import { productStore } from "@/feature/products/model/product.store.ts";
+import { favoritesApi } from "@/feature/favorite/api/favorites.api.ts";
 
-import like from "@/app/assets/icons/nav/like.png";
-import update from "@/app/assets/icons/products/refresh.svg";
-import liked from "@/app/assets/icons/nav/liked.png";
+import like from "@/assets/icons/nav/like.png";
+import update from "@/assets/icons/products/refresh.svg";
+import liked from "@/assets/icons/nav/liked.png";
 
 const refreshPage = () => {
   window.location.reload();

@@ -1,15 +1,15 @@
 import { handler } from "@/shared/api/http.ts";
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { useCart } from "@/feature/cart/cart-actions/use.cart.ts";
-import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
+import { productStore } from "@/feature/products/model/product.store.ts";
+import { cartApi } from "@/feature/cart/api/cart.api.ts";
+import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { productsApi } from "@/feature/products/api/products.api.ts";
 
-const { getCartProducts } = useCart();
+const { getCartProducts } = cartApi();
 const { openNotify } = useBaseModals();
-const { favorite, cart, products } = productsStore();
-const { getFilteredProducts, updateFavorite } = useProducts();
+const { favorite, cart, products } = productStore();
+const { getFilteredProducts, updateFavorite } = productsApi();
 
-export const useFavorites = () => {
+export const favoritesApi = () => {
     const getFavoriteProducts = async () => {
         const userId = localStorage.getItem("userId")
         try{
