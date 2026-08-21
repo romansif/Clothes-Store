@@ -1,24 +1,24 @@
 <script setup lang="ts">
 import {onMounted, watch} from "vue";
-import { productsCover } from "@/shared/composables/product.cover.ts";
-import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
-import { productsStore } from "@/shared/composables/stores/products.store";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-import { useProductsModals } from "@/shared/composables/modals/products.modals";
-import { productsForms } from "@/shared/composables/forms/products.forms";
-import { productsFormErrors } from "@/shared/composables/errors/errors-messages/products.errors";
+import { productsCover } from "@/shared/lib/product-image.ts";
+import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { productStore } from "@/feature/products/model/product.store.ts";
+import { productsApi } from "@/feature/products/api/products.api.ts";
+import { useProductsModals } from "@/feature/products/lib/products.modals.ts";
+import { productForms } from "@/feature/products/model/product.forms.ts";
+import { productsFormErrors } from "@/feature/products/lib/products.errors.ts";
 
-import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
-import Loading from "@/shared/ui/base/base-modals/Loading.vue";
-import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
-import Notification from "@/shared/ui/base/base-modals/Notification.vue";
+import BaseInput from "@/shared/ui/BaseInput.vue";
+import Loading from "@/shared/ui/Loading.vue";
+import BaseButton from "@/shared/ui/BaseButton.vue";
+import Notification from "@/shared/ui/Notification.vue";
 
 const { loading, notify } = useBaseModals();
 const { createProductFormErrors } = productsFormErrors();
-const { product, collections, categories, materials, genders, activeProductImg } = productsStore();
+const { product, collections, categories, materials, genders, activeProductImg } = productStore();
 const { openSelectProductCard, fileInput } = useProductsModals();
-const { createProductForm, moreCreateItem, createProductFormMessages } = productsForms();
-const { createProduct, updateProductImages, updateProductColors, updateProductDesc } = useProducts();
+const { createProductForm, moreCreateItem, createProductFormMessages } = productForms();
+const { createProduct, updateProductImages, updateProductColors, updateProductDesc } = productsApi();
 const { productInfoPreview, pureCards, pureInfoColors, pureColorsName, pureSizesName, isAvailableSizes } = productsCover();
 
 watch(() => [

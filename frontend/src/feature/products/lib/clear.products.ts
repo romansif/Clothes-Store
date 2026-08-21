@@ -1,8 +1,8 @@
-import { productsForms } from "@/shared/composables/forms/products.forms";
-import { productsFormErrors } from "@/shared/composables/errors/errors-messages/products.errors";
+import { productForms } from "@/feature/products/model/product.forms.ts";
+import { productsFormErrors } from "@/feature/products/lib/products.errors.ts";
 
-const { createProductFormErrors, addCartFormErrors } = productsFormErrors();
-const { createProductForm, addToCartForm, addToCartFormMessages, moreCreateItem, createProductFormMessages, searchProductForm } = productsForms();
+const { createProductFormErrors } = productsFormErrors();
+const { createProductForm, moreCreateItem, createProductFormMessages, searchProductForm } = productForms();
 
 export const clearProductsForms = () => {
     const clearProductForm = () => {
@@ -35,29 +35,14 @@ export const clearProductsForms = () => {
         createProductFormErrors.value.sizeError = false;
         createProductFormErrors.value.quantityError = false;
         createProductFormErrors.value.collectionsError = false;
-    }
-
-    const clearAddToCartForm = () => {
-        addToCartForm.value.colors = {
-            hex: '',
-            colorName: ''
-        };
-        addToCartForm.value.sizes = '';
-
-        addToCartFormMessages.value.colorMessage = '';
-        addToCartFormMessages.value.sizeMessage = '';
-
-        addCartFormErrors.value.colorError = false;
-        addCartFormErrors.value.sizeError = false;
-    }
+    };
 
     const clearSearchForm = () => {
         searchProductForm.value.search = '';
-    }
+    };
 
     return{
         clearProductForm,
-        clearAddToCartForm,
         clearSearchForm
     }
 }
