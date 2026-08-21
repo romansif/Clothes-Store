@@ -1,20 +1,21 @@
 import namer from "color-namer";
 import router from "@/app/router";
-import { handler } from "@/shared/api/http";
-import { productsStore, type Product } from "@/shared//composables/stores/products.store";
-import { productsForms } from "@/shared/composables/forms/products.forms.ts";
-import { useFormsErrors } from "@/shared/composables/errors/errors-middleware/forms.errors.ts";
-import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
-import { clearProductsForms } from "@/shared/composables/clear-forms/clear.products.ts";
+import { handler } from "@/shared/api/http.ts";
+import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
+import { productStore } from "@/feature/products/model/product.store.ts";
+import { productForms } from "@/feature/products/model/product.forms.ts";
+import { clearProductsForms } from "@/feature/products/lib/clear.products.ts";
+import type { Product } from "@/feature/products/model/product.types.ts";
 
 const { openNotify, loading } = useBaseModals()
 const { clearProductForm } = clearProductsForms();
 const { createProductErrors } = useFormsErrors();
-const { createProductForm, moreCreateItem } = productsForms();
+const { createProductForm, moreCreateItem } = productForms();
 const { allProducts, products, productsWeek, productsYear, myProducts, product,
-    productId, productFiles, currentFile, productsPreview } = productsStore();
+    productId, productFiles, currentFile, productsPreview } = productStore();
 
-export const useProducts = () => {
+export const productsApi = () => {
     const getAllProducts = async () => {
         try{
             const res = await handler(`/products`, {
@@ -159,7 +160,7 @@ export const useProducts = () => {
             loading.value = false;
 
             await openNotify('You have successfully created a new product card.',
-                'Now, if you go to the products page, your product will be there, and on the profile page as well.', '')
+                'Now, if you go to the products page, your product will be there, and on the useProfile page as well.', '')
             await router.push({ name: 'profile'})
 
             clearProductForm();

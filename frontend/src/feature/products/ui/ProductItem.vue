@@ -28,20 +28,20 @@
 </template>
 
 <script setup lang="ts">
-const { products } = productsStore();
-const { getProductId } = useProducts();
+const { products } = productStore();
+const { getProductId } = productsApi();
 const { isOutOfStack, productPreview } = productsCover();
 const { productPreviewClass } = baseClasses();
-const { toggleToFavorite } = useFavorites();
+const { toggleToFavorite } = favoritesApi();
 
-import { baseClasses } from "@/shared/composables/style/base.classes.ts";
-import { productsCover } from "@/shared/composables/product.cover.ts";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-import { useFavorites } from "@/feature/favorite/favorite-actions/use.favorites.ts";
-import { productsStore } from "@/shared/composables/stores/products.store";
+import { baseClasses } from "@/shared/constants/base.classes.ts";
+import { productsCover } from "@/shared/lib/product-image.ts";
+import { productsApi } from "@/feature/products/api/products.api.ts";
+import { favoritesApi } from "@/feature/favorite/api/favorites.api.ts";
+import { productStore } from "@/feature/products/model/product.store.ts";
 
-import like from '@/app/assets/icons/nav/like.png';
-import liked from '@/app/assets/icons/nav/liked.png';
+import like from '@/assets/icons/nav/like.png';
+import liked from '@/assets/icons/nav/liked.png';
 </script>
 
 <style scoped>

@@ -29,21 +29,21 @@
         </span>
         <div class="flex justify-start items-center lg:gap-5">
           <div v-for="color in pureInfoColors(product)" :key="color.hex" :style="{ background: color.hex }" :title="color.hex"
-               @click="addToCartForm.colors = { hex: color.hex, colorName: color.colorName }"
+               @click="cartForm.colors = { hex: color.hex, colorName: color.colorName }"
                :class="selectedColorClass(color, product, user)"></div>
           </div>
-          <span v-if=addCartFormErrors.colorError class="text-red-600 text-xs">
-            {{ addToCartFormMessages.colorMessage }}
+          <span v-if=cartFormErrors.colorError class="text-red-600 text-xs">
+            {{ cartFormMessages.colorMessage }}
           </span>
       </div>
       <div class="flex flex-col gap-2">
         <span class="font-medium text-[#A3A3A3]">Sizes</span>
         <div class="flex justify-start items-center lg:gap-5">
           <img v-for="size in (isAvailableSizes as any)" :key="size.name" :src=size.url alt=""
-               :class="selectedSizesClass(size, product, user)" @click="addToCartForm.sizes = size.name">
+               :class="selectedSizesClass(size, product, user)" @click="cartForm.sizes = size.name">
         </div>
-        <span v-if=addCartFormErrors.sizeError class="text-red-600 text-xs">
-          {{ addToCartFormMessages.sizeMessage }}
+        <span v-if=cartFormErrors.sizeError class="text-red-600 text-xs">
+          {{ cartFormMessages.sizeMessage }}
         </span>
       </div>
     </div>
@@ -79,39 +79,38 @@
 <script setup lang="ts">
 
 const { user } = usersStore();
-const { product } = productsStore();
-const { toggleToFavorite } = useFavorites();
-const { addToCart, updateCartItem } = useCart();
-const { addCartFormErrors } = productsFormErrors();
+const { product } = productStore();
+const { toggleToFavorite } = favoritesApi();
+const { addToCart, updateCartItem } = cartApi();
+const { cartFormErrors } = addToCartErrors();
 const { selectedColorClass, selectedSizesClass } = productsClasses();
-const { addToCartForm, addToCartFormMessages } = productsForms();
+const { cartForm,  cartFormMessages} = addToCartForm();
 const { isValidOutOfStack, pureInfoColors, isAvailableSizes, isInCart } = productsCover();
 
-import { watch} from "vue";
-import { productsCover } from "@/shared/composables/product.cover.ts";
+import { watch } from "vue";
+import { productsCover } from "@/shared/lib/product-image.ts";
+import { cartApi } from "@/feature/cart/api/cart.api.ts";
+import { usersStore } from "@/feature/profile/model/users.store.ts";
+import { favoritesApi } from "@/feature/favorite/api/favorites.api.ts";
+import { productsClasses } from "@/shared/constants/products/products.classes.ts";
+import { productStore } from "@/feature/products/model/product.store.ts";
+import { addToCartForm } from "@/feature/cart/model/cart.forms.ts";
+import { addToCartErrors } from "@/feature/cart/lib/cart.errors.ts";
 
-import { useCart } from "@/feature/cart/cart-actions/use.cart.ts";
-import { usersStore } from "@/shared/composables/stores/users.store.ts";
-import { useFavorites } from "@/feature/favorite/favorite-actions/use.favorites.ts";
-import { productsClasses } from "@/shared/composables/style/products.classes.ts";
-import { productsStore } from "@/shared/composables/stores/products.store";
-import { productsForms } from "@/shared/composables/forms/products.forms";
-import { productsFormErrors } from "@/shared/composables/errors/errors-messages/products.errors";
-
-import plus from '@/app/assets/icons/products/plus.svg';
-import minus from '@/app/assets/icons/products/minus.svg';
-import like from '@/app/assets/icons/nav/like.png';
-import liked from '@/app/assets/icons/nav/liked.png';
-import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
+import plus from '@/assets/icons/products/plus.svg';
+import minus from '@/assets/icons/products/minus.svg';
+import like from '@/assets/icons/nav/like.png';
+import liked from '@/assets/icons/nav/liked.png';
+import BaseButton from "@/shared/ui/BaseButton.vue";
 
 const userId = localStorage.getItem("userId");
 
-watch(() => [addToCartForm.value.colors, addToCartForm.value.sizes], ([color, size]) => {
+watch(() => [cartForm.value.colors, cartForm.value.sizes], ([color, size]) => {
   if(color){
-    addCartFormErrors.value.colorError = false
+    cartFormErrors.value.colorError = false
   }
   if(size){
-    addCartFormErrors.value.sizeError = false
+    cartFormErrors.value.sizeError = false
   }
 })
 </script>

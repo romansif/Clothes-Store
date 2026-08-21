@@ -10,7 +10,7 @@
     </button>
   </div>
   <div v-else class="xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
-    <NavBar />
+    <MainNavBar />
     <div class="flex justify-center mt-12 xl:justify-between">
       <FilterProducts />
       <div class="flex flex-col">
@@ -28,24 +28,24 @@
 </template>
 
 <script setup lang="ts">
-const { getAllProducts } = useProducts();
+const { getAllProducts } = productsApi();
 const { notify, loading } = useBaseModals();
 const { filterAside } = useProductsModals();
 const { componentError, resetError } = errorHandler();
 
 import { onMounted, onErrorCaptured } from "vue";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-import { errorHandler } from "@/shared/composables/errors/errors-middleware/error.handler";
-import { useProductsModals } from "@/shared/composables/modals/products.modals";
-import { useBaseModals } from "@/shared/composables/modals/base.modals";
+import { productsApi } from "@/feature/products/api/products.api.ts";
+import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
+import { useProductsModals } from "@/feature/products/lib/products.modals.ts";
+import { useBaseModals } from "@/shared/lib/base.modals.ts";
 
-import NavBar from "../navigation/NavBar.vue";
-import ProductList from "./products-items/ProductList.vue";
-import HeaderProducts from "../navigation/products-header/HeaderProducts.vue";
-import FilterProducts from "../navigation/products-header/FilterProducts.vue";
-import Notification from "@/shared/ui/base/base-modals/Notification.vue";
-import AsideFilter from "@/shared/ui/products-modals/AsideFilter.vue";
-import Loading from "@/shared/ui/base/base-modals/Loading.vue";
+import MainNavBar from "../navigation/ui/MainNavBar.vue";
+import ProductList from "./ui/ProductList.vue";
+import HeaderProducts from "../navigation/ui/HeaderProducts.vue";
+import FilterProducts from "../navigation/ui/FilterProducts.vue";
+import Notification from "@/shared/ui/Notification.vue";
+import AsideFilter from "@/feature/products/ui/AsideFilter.vue";
+import Loading from "@/shared/ui/Loading.vue";
 
 onErrorCaptured((err, info) => {
   console.error("Перехвачена ошибка в дочернем компоненте:", err);

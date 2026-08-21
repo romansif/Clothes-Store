@@ -1,10 +1,10 @@
 import { ref } from "vue";
-import { productsStore } from "../stores/products.store";
+import { productStore } from "@/feature/products/model/product.store.ts";
 
 const filterAside = ref<boolean>(false);
 const fileInput = ref<HTMLInputElement | null>(null);
 
-const { currentFile } = productsStore();
+const { currentFile } = productStore();
 
 export const useProductsModals = () => {
     const toggleFilterAside = () => {

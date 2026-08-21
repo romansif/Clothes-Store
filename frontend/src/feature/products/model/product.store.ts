@@ -1,81 +1,12 @@
 import { ref } from 'vue'
+import type { Product, Collection, Gender, Sizes, Material, Category } from "@/feature/products/model/product.types.ts";
 
-import xs from '../../../app/assets/icons/size/xs.svg';
-import s from '../../../app/assets/icons/size/s.svg';
-import m from '../../../app/assets/icons/size/m.svg';
-import l from '../../../app/assets/icons/size/l.svg';
-import xl from '../../../app/assets/icons/size/xl.svg';
-import xxl from '../../../app/assets/icons/size/xxl.svg';
-
-export interface ColorItem {
-    hex: string,
-    colorName: string,
-}
-
-export interface ImageItem {
-    url: string,
-}
-
-export interface Product {
-    product: any;
-    id: string,
-    userId: string,
-    productId: string,
-    title: string,
-    category: string,
-    material: string,
-    description: string,
-    images: ImageItem[],
-    price: number,
-    colors: ColorItem[],
-    sizes: string,
-    gender: string,
-    quantity: number,
-    status: string,
-    favorite: boolean,
-    checked: boolean,
-    collections: string,
-    created_at: string,
-}
-
-interface Collection {
-    collection: string,
-}
-
-interface Category {
-    category: string,
-}
-
-interface Material {
-    material: string,
-}
-
-interface Gender {
-    gender: string,
-}
-
-export interface Orders {
-    id: string,
-    userId: string,
-    productId: string,
-    orderItems: Product[],
-    orderTotal: number,
-    delivery: string,
-    created_at: string,
-    date_created_at: string,
-    time_created_at: string,
-    cancelled_at: string,
-    date_cancelled_at: string,
-    time_cancelled_at: string,
-    status: string
-}
-
-export interface Sizes {
-    isActive: boolean,
-    name: string,
-    url: string,
-    class: string,
-}
+import xs from '@/assets/icons/size/xs.svg';
+import s from '@/assets/icons/size/s.svg';
+import m from '@/assets/icons/size/m.svg';
+import l from '@/assets/icons/size/l.svg';
+import xl from '@/assets/icons/size/xl.svg';
+import xxl from '@/assets/icons/size/xxl.svg';
 
 const collections: Collection[] = [
     {collection: 'Essence'},
@@ -101,6 +32,7 @@ const categories: Category[] = [
     {category: 'Tank top'},
     {category: 'Sweaters'},
 ];
+
 const materials: Material[] = [
     {material: 'Cotton'},
     {material: 'Synthetics'},
@@ -111,6 +43,7 @@ const materials: Material[] = [
     {material: 'Acrylic'},
     {material: 'Viscose'},
 ];
+
 const genders: Gender[] = [
     {gender: 'Man'},
     {gender: 'Woman'},
@@ -134,17 +67,8 @@ const myProducts = ref<Product[]>([]);
 const productsWeek = ref<Product[]>([]);
 const productsYear = ref<Product[]>([]);
 
-const cart = ref<Product[]>([]);
-
-const favorite = ref<Product[]>([]);
-
-const orders = ref<Orders[]>([]);
-
-const orderItems = ref<Product[]>([]);
-
 const product = ref<Product>({} as Product);
 const productId = ref<string>(localStorage.getItem("productId") || '');
-const items = ref<Product[]>(JSON.parse(localStorage.getItem('orderItems') || '[]'));
 
 const activeProductImg = ref<string>('');
 const activeIndex = ref<number>();
@@ -153,10 +77,7 @@ const productFiles = ref<(File | null)[]>([null, null, null, null, null]);
 const productsPreview = ref<string[]>([]);
 const currentFile = ref<(number | null)>(null);
 
-const unreadCount = ref<number>(0);
-const deliveryPrice = ref<number>(0);
-
-export const productsStore = () => {
+export const productStore = () => {
     return {
         allProducts,
         products,
@@ -166,13 +87,6 @@ export const productsStore = () => {
         productsYear,
 
         myProducts,
-
-        orderItems,
-        items,
-
-        cart,
-        favorite,
-        orders,
 
         productId,
 
@@ -186,9 +100,6 @@ export const productsStore = () => {
         activeIndex,
         productFiles,
         productsPreview,
-        currentFile,
-
-        unreadCount,
-        deliveryPrice,
+        currentFile
     }
 }

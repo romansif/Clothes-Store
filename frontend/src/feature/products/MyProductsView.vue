@@ -1,7 +1,7 @@
 <template>
   <Loading v-if="loading" />
   <div v-else class="xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
-    <NavBar />
+    <MainNavBar />
     <div v-if="myProducts.length > 0" class="flex mt-10">
       <MyProductsList />
     </div>
@@ -11,7 +11,7 @@
         <div class="flex flex-col gap-2 items-center">
           <span class="font-bold">You haven't created any product cards</span>
           <span class="text-[#A3A3A3]">It’s the perfect time to start building your own business.</span>
-          <span class="text-[#A3A3A3]">To do this, go to your profile and tap "CREATE PRODUCT COVER".</span>
+          <span class="text-[#A3A3A3]">To do this, go to your useProfile and tap "CREATE PRODUCT COVER".</span>
         </div>
       </div>
     </div>
@@ -23,21 +23,21 @@
 
 <script setup lang="ts">
 const { loading } = useBaseModals();
-const { myProducts } = productsStore();
-const { getMyProducts } = useProducts();
+const { myProducts } = productStore();
+const { getMyProducts } = productsApi();
 const { deleteChoice } = useProfileModals();
 
 import { onMounted } from "vue";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-import { productsStore } from "@/shared/composables/stores/products.store";
-import { useBaseModals } from "@/shared/composables/modals/base.modals";
-import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";;
+import { productsApi } from "@/feature/products/api/products.api.ts";
+import { productStore } from "@/feature/products/model/product.store.ts";
+import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { useProfileModals } from "@/feature/profile/lib/profile.modals.ts";;
 
-import NavBar from "@/feature/navigation/NavBar.vue";
-import icon_products from "@/app/assets/icons/products/icon-products.svg";
-import DeleteModal from "@/shared/ui/base/base-modals/DeleteModal.vue";
-import MyProductsList from "@/feature/products/my-products/my-items/MyProductsList.vue";
-import Loading from "@/shared/ui/base/base-modals/Loading.vue";
+import MainNavBar from "@/feature/navigation/ui/MainNavBar.vue";
+import icon_products from "@/assets/icons/products/icon-products.svg";
+import DeleteModal from "@/shared/ui/DeleteModal.vue";
+import MyProductsList from "@/feature/products/ui/MyProductsList.vue";
+import Loading from "@/shared/ui/Loading.vue";
 
 onMounted(async () => {
   loading.value = true;

@@ -1,10 +1,10 @@
-import { filtered } from "@/feature/navigation/products-header/nav-actions/filtered.ts";
-import { productsForms } from "@/shared/composables/forms/products.forms.ts";
-import { type Product, type ColorItem, type Sizes } from "@/shared/composables/stores/products.store.ts";
-import { type User } from "@/shared/composables/stores/users.store.ts";
+import { filterProducts } from "@/feature/navigation/lib/filter-products.ts";
+import { productForms } from "@/feature/products/model/product.forms.ts";
+import { type Product, type ColorItem, type Sizes } from "@/feature/products/model/product.store.ts";
+import { type User } from "@/feature/profile/model/users.store.ts";
 
-const { selectedGender } = filtered();
-const { addToCartForm } = productsForms();
+const { selectedGender } = filterProducts();
+const { addToCartForm } = productForms();
 
 export const productsClasses = () => {
     const selectGenderClass = (gender: string) => [

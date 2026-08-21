@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import MainInfo from "../../feature/products/products-info/MainInfo.vue";
+import MainInfo from "@/feature/products/ui/MainInfo.vue";
 </script>
 
 <template>

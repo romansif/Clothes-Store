@@ -1,7 +1,7 @@
 <template>
   <Loading v-if="loading"/>
   <div v-else>
-    <NavBar class="hidden xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 lg:block" />
+    <MainNavBar class="hidden xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 lg:block" />
     <div class="font-[Montserrat] flex flex-col lg:flex-row lg:justify-center lg:items-center lg:mt-25">
       <div class="flex justify-between items-center px-4 pt-4 lg:hidden">
         <img @click="routerBack" :src=go_to_shop alt="" class="rotate-180">
@@ -46,25 +46,25 @@
 </template>
 
 <script setup lang="ts">
-const { getProduct } = useProducts();
+const { getProduct } = productsApi();
 const { notify, loading } = useBaseModals();
-const { product, activeProductImg } = productsStore();
+const { product, activeProductImg } = productStore();
 const { changeImg, productInfoPreview, angelCards } = productsCover();
 
 import { onMounted } from "vue";
 import { useRouter } from "vue-router";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-import { productsCover } from "@/shared/composables/product.cover.ts";
-import { productsStore } from "@/shared/composables/stores/products.store";
-import { useBaseModals } from "@/shared/composables/modals/base.modals";
+import { productsApi } from "@/feature/products/api/products.api.ts";
+import { productsCover } from "@/shared/lib/product-image.ts";
+import { productStore } from "@/feature/products/model/product.store.ts";
+import { useBaseModals } from "@/shared/lib/base.modals.ts";
 
 import ProductInfo from "./ProductInfo.vue";
-import cart from '@/app/assets/icons/nav/cart.png';
-import NavBar from "../../navigation/NavBar.vue";
-import profile from '@/app/assets/icons/nav/profile.png';
+import cart from '@/assets/icons/nav/cart.png';
+import MainNavBar from "../../navigation/ui/MainNavBar.vue";
+import profile from '@/assets/icons/nav/profile.png';
 import go_to_shop from '@/app/assets/icons/arrows/right-long-arrow.png';
-import Notification from "@/shared/ui/base/base-modals/Notification.vue";
-import Loading from "@/shared/ui/base/base-modals/Loading.vue";
+import Notification from "@/shared/ui/Notification.vue";
+import Loading from "@/shared/ui/Loading.vue";
 
 const router = useRouter();
 

@@ -1,10 +1,16 @@
 import { computed } from "vue";
 import namer from 'color-namer'
-import { productsForms } from "@/shared/composables/forms/products.forms";
-import { productsStore, type Product } from "@/shared/composables/stores/products.store";
+import { cartStore } from "@/feature/cart/model/cart.store.ts";
+import { orderStore } from "@/feature/orders/model/order.store.ts";
+import { productForms } from "@/feature/products/model/product.forms.ts";
+import { productStore } from "@/feature/products/model/product.store.ts";
+import type { Product } from "@/feature/products/model/product.types.ts";
 
-const { moreCreateItem } = productsForms();
-const { products, cart, orders, items, product, productId, sizes, activeProductImg } = productsStore();
+
+const { cart } = cartStore();
+const { orders, items } = orderStore();
+const { moreCreateItem } = productForms();
+const { products, product, productId, sizes, activeProductImg } = productStore();
 
 export const productsCover = () => {
     const toggleColor =  (eventOrColor: Event | string) => {

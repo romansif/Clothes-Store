@@ -53,20 +53,20 @@
 </template>
 
 <script setup lang="ts">
-const { getProductId } = useProducts();
-const { myProducts } = productsStore();
+const { getProductId } = productsApi();
+const { myProducts } = productStore();
 const { isOutOfStack, productPreview } = productsCover();
 const { toggleDeleteChoice } = useProfileModals();
 const { productPreviewClass } = baseClasses();
 
-import { baseClasses } from "@/shared/composables/style/base.classes.ts";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-import { productsCover } from "@/shared/composables/product.cover.ts";
-import { productsStore } from "@/shared/composables/stores/products.store";
-import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
+import { baseClasses } from "@/shared/constants/base.classes.ts";
+import { productsApi } from "@/feature/products/api/products.api.ts";
+import { productsCover } from "@/shared/lib/product-image.ts";
+import { productStore } from "@/feature/products/model/product.store.ts";
+import { useProfileModals } from "@/feature/profile/lib/profile.modals.ts";
 
-import del from '@/app/assets/icons/delete-close/delete.svg'
-import pencil from "@/app/assets/icons/products/pencil.svg";
+import del from '@/assets/icons/delete-close/delete.svg'
+import pencil from "@/assets/icons/products/pencil.svg";
 </script>
 
 <style scoped>
