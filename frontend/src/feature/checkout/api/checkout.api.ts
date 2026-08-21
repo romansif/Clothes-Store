@@ -1,6 +1,5 @@
 import router  from "@/app/router";
 import { computed, ref } from "vue";
-import { usersStore } from "@/feature/profile/model/users.store.ts";
 import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
 import { cartApi } from "@/feature/cart/api/cart.api.ts";
 import { checkoutErrors } from "@/feature/checkout/lib/checkout.errors.ts";
@@ -9,9 +8,8 @@ import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
 
 const { items } = orderStore();
 const { shipping } = checkoutForms();
-const { paymentMethod } = usersStore();
 const { updateCartChecked } = cartApi();
-const { deliveryPrice } = checkoutStore();
+const { deliveryPrice, paymentMethod } = checkoutStore();
 const { paymentErrors } = checkoutErrors();
 
 const isDebitCard = ref<boolean>(false);
