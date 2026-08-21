@@ -11,7 +11,7 @@
           </span>
         </div>
         <img @click="toggleToFavorite(product.id, 'product', product.id)" :src="isFavorite(product.id) ? liked : like" alt=""
-             class="ml-auto w-8.75 h-8.75">
+             class="ml-auto w-8.75 h-8.75 cursor-pointer">
       </div>
       <span class="text-sm font-medium text-[#A3A3A3]">
         MRP incl. of all taxes
@@ -29,7 +29,7 @@
         </span>
         <div class="flex justify-start items-center lg:gap-5">
           <div v-for="color in pureInfoColors(product)" :key="color.hex" :style="{ background: color.hex }" :title="color.hex"
-               @click="cartForm.colors = { hex: color.hex, colorName: color.colorName }"
+               @click="addColor(color, user)"
                :class="selectedColorClass(color, product, user)"></div>
           </div>
           <span v-if=cartFormErrors.colorError class="text-red-600 text-xs">
@@ -40,7 +40,7 @@
         <span class="font-medium text-[#A3A3A3]">Sizes</span>
         <div class="flex justify-start items-center lg:gap-5">
           <img v-for="size in (isAvailableSizes as any)" :key="size.name" :src=size.url alt=""
-               @click="cartForm.sizes = size.name" :class="selectedSizesClass(size, product, user)">
+               @click="addSize(size, user)" :class="selectedSizesClass(size, product, user)">
         </div>
         <span v-if=cartFormErrors.sizeError class="text-red-600 text-xs">
           {{ cartFormMessages.sizeMessage }}
@@ -80,6 +80,7 @@
 const { user } = usersStore();
 const { product } = productStore();
 const { isFavorite } = useFavorite();
+const { addColor, addSize } = useCartForm();
 const { toggleToFavorite } = favoritesApi();
 const { addToCart, updateCartItem } = cartApi();
 const { cartFormErrors } = addToCartErrors();
@@ -90,6 +91,7 @@ const { isValidOutOfStack, pureInfoColors, isAvailableSizes, isInCart } = produc
 import { watch } from "vue";
 import { productsCover } from "@/shared/lib/product-image.ts";
 import { cartApi } from "@/feature/cart/api/cart.api.ts";
+import { useCartForm } from "@/feature/cart/lib/use.cart.ts";
 import { useFavorite } from "@/feature/favorite/lib/use-favorite.ts";
 import { usersStore } from "@/feature/profile/model/users.store.ts";
 import { favoritesApi } from "@/feature/favorite/api/favorites.api.ts";

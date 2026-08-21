@@ -30,7 +30,10 @@ export const favoritesApi = () => {
             const currentProduct = sourceList?.find(item => item.id === id);
             const currentId = type === 'cart' ? currentProduct?.productId : currentProduct?.id
 
-            if(currentProduct){
+            const favoriteItem = favorite.value.find(
+                item => item.productId === productId);
+
+            if(currentProduct && !favoriteItem?.status){
                 await handler(`/favorites`, {
                     method: "POST",
                     body: JSON.stringify({
