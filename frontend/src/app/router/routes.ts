@@ -76,25 +76,23 @@ const routes: RouteRecordRaw[] = [
                 ]
             },
             {
-                path: 'checkoutApi',
+                path: 'checkout',
                 component: () => import('@/app/layouts/CheckoutLayout.vue'),
                 children: [
                     {
                         path: 'information',
                         name: 'information',
                         component: () => import('@/pages/checkout/InformationPage.vue'),
-                        children: [
-                            {
-                                path: 'shipping',
-                                name: 'shipping',
-                                component: () => import('@/pages/checkout/ShippingPage.vue'),
-                            },
-                            {
-                                path: 'payment',
-                                name: 'payment',
-                                component: () => import('@/pages/checkout/PaymentPage.vue'),
-                            }
-                        ]
+                    },
+                    {
+                        path: 'shipping',
+                        name: 'shipping',
+                        component: () => import('@/pages/checkout/ShippingPage.vue'),
+                    },
+                    {
+                        path: 'payment',
+                        name: 'payment',
+                        component: () => import('@/pages/checkout/PaymentPage.vue'),
                     }
                 ]
             },
