@@ -2,7 +2,7 @@ import { ref } from "vue";
 import { clearUsersForms } from "@/feature/profile/lib/clear.users.ts";
 import { productsApi } from "@/feature/products/api/products.api.ts";
 import { cartApi } from "@/feature/cart/api/cart.api.ts";
-import { adressApi } from "@/feature/checkout/api/adress.api.ts";
+import { addressApi } from "@/feature/checkout/api/address.api.ts";
 import { paymentApi } from "@/feature/checkout/api/payment.api.ts";
 import { ordersApi } from "@/feature/orders/api/orders.api.ts";
 import { authApi } from "@/feature/auth/api/auth.api.ts";
@@ -21,7 +21,7 @@ const deleteType = ref<string>('');
 const deleteMessage = ref<string>('');
 const deleteChoice = ref<boolean>(false);
 
-const { deleteAddress } = adressApi();
+const { deleteAddress } = addressApi();
 const { deletePayment } = paymentApi();
 const { deleteProduct } = productsApi();
 const { deleteProductCart } = cartApi();

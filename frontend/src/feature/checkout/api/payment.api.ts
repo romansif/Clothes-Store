@@ -80,7 +80,7 @@ export const paymentApi = () => {
             await addOrder();
 
             await openNotify('You have successfully paid and created order.',
-                'You will now be redirected to the useProfile page.', 'useProfile')
+                'You will now be redirected to the profile page.', 'profile')
             clearPaymentForm();
         }catch(err){
             await openNotify('You must choose.',
@@ -120,7 +120,7 @@ export const paymentApi = () => {
             await addOrder();
 
             await openNotify('You have successfully paid and created order.',
-                'You will now be redirected to the useProfile page.', 'useProfile')
+                'You will now be redirected to the profile page.', 'profile')
             clearPaymentForm();
         }catch(err){
             if (paymentMethod.value === 'card'){

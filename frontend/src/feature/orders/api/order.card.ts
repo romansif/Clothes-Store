@@ -1,7 +1,7 @@
 import { ref } from "vue";
-import { productStore } from "@/feature/products/model/product.store.ts";
+import { orderStore } from "@/feature/orders/model/order.store.ts";
 
-const { items } = productStore();
+const { items } = orderStore();
 
 const clipboard = ref<boolean>(false);
 
