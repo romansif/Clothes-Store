@@ -52,18 +52,18 @@
 </template>
 
 <script setup lang="ts">
-const { getWeekProducts, getYearProducts } = useProducts();
+const { getWeekProducts, getYearProducts } = productsApi();
 
 import { onMounted } from "vue";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
+import { productsApi } from "@/feature/products/api/products.api.ts";
 
-import photo_1 from '@/app/assets/photos/8.png'
-import photo_2 from '@/app/assets/photos/9.png'
-import photo_3 from '@/app/assets/photos/10.png'
+import photo_1 from '@/assets/photos/8.png'
+import photo_2 from '@/assets/photos/9.png'
+import photo_3 from '@/assets/photos/10.png'
 
-import WeekList from "@/feature/home/main/week-items/WeekList.vue";
-import YearList from "@/feature/home/main/year-items/YearList.vue";
-import FilterGender from "@/feature/home/main/FilterGender.vue";
+import WeekList from "@/feature/home/ui/WeekList.vue";
+import YearList from "@/feature/home/ui/YearList.vue";
+import FilterGender from "@/feature/home/ui/FilterGender.vue";
 
 onMounted(async () => {
   await getWeekProducts();

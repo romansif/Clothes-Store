@@ -1,5 +1,5 @@
-import { userForms } from "@/shared/composables/forms/users.forms";
-import { userFormsErrors } from "@/shared/composables/errors/errors-messages/users.errors";
+import { userForms } from "@/feature/profile/model/users.forms.ts";
+import { userFormsErrors } from "@/feature/profile/lib/users.errors.ts";
 
 const { updateUserFormErrors } = userFormsErrors();
 const { updateUserForm, updateUserFormMessage } = userForms();

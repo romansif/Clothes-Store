@@ -1,16 +1,16 @@
 import { computed } from "vue";
 import router from "@/app/router";
-import { usersStore } from "@/shared/composables/stores/users.store";
-import { productsStore } from "@/shared/composables/stores/products.store";
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
-import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors";
+import { usersStore } from "@/feature/profile/model/users.store.ts";
+import { productStore } from "@/feature/products/model/product.store.ts";
+import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
+import { checkoutErrors } from "@/feature/checkout/lib/checkout.errors.ts";
 
 const { user } = usersStore();
+const { sizes } = productStore();
 const { isAgreeForm } = checkoutForms();
 const { isAgreeFormError } = checkoutErrors();
-const { cart, favorite, orderItems, sizes } = productsStore();
 
-export const profile = () => {
+export const useProfile = () => {
     const continueToOrder = async () =>  {
         try{
             if(!isAgreeFormError.value.agreeError || !orderItems.value?.length) {

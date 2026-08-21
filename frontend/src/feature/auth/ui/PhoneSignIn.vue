@@ -42,14 +42,14 @@ const { setInputRef, handleInput, handleKeyDown, handlePaste, stopTimer, formatt
 
 import { onUnmounted } from "vue";
 import { IMaskComponent as IMask } from "vue-imask";
-import { usePhoneForm } from "@/shared/mask-forms/use.phone.form.ts";
-import { usersStore } from "@/shared/composables/stores/users.store.ts";
-import { authForms } from "@/shared/composables/forms/auth.forms.ts";
-import { toggleAuth } from "@/feature/auth/auth-actions/toggleAuth.ts";
-import { authClasses } from "@/shared/composables/style/auth.classes.ts";
-import { authFormsErrors } from "@/shared/composables/errors/errors-messages/auth.errors.ts";
+import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
+import { usersStore } from "@/feature/profile/model/users.store.ts";
+import { authForms } from "@/feature/auth/model/auth.forms.ts";
+import { toggleAuth } from "@/feature/auth/api/toggleAuth.ts";
+import { authClasses } from "@/shared/constants/auth/auth.classes.ts";
+import { authFormsErrors } from "@/feature/auth/lib/auth.errors.ts";
 
-import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
+import BaseButton from "@/shared/ui/BaseButton.vue";
 
 onUnmounted(() => {
   stopTimer();
