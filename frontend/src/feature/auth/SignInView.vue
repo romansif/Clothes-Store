@@ -15,8 +15,8 @@
         <span>WELCOME TO</span>
         <span class="text-[#A3A3A3]">THE NOIR</span>
       </div>
-      <SignIn v-if="!showSignSection.signIn" />
-      <SignInWithPhone v-if="showSignSection.signIn" />
+      <LoginForm v-if="!showSignSection.signIn" />
+      <PhoneSignIn v-if="showSignSection.signIn" />
       <ReCaptcha />
       <div class="relative duration-400 hover:scale-105 cursor-pointer">
         <BaseButton @click="signIn" name="SIGN IN" variant="login" />
@@ -39,21 +39,21 @@
 </template>
 
 <script setup lang="ts">
-import { auth } from "@/feature/auth/auth-actions/auth.ts";
-import { clearAuthForms } from "@/shared/composables/clear-forms/clear.auth.ts";
-import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
-import { authStore } from "@/shared/composables/stores/auth.store.ts";
+import { authApi } from "@/feature/auth/api/auth.api.ts";
+import { clearAuthForms } from "@/feature/auth/lib/clear.auth.ts";
+import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { authStore } from "@/feature/auth/model/auth.store.ts";
 
-import Loading from "@/shared/ui/base/base-modals/Loading.vue";
-import Notification from "@/shared/ui/base/base-modals/Notification.vue";
-import SignIn from "@/feature/auth/signIn/SignIn.vue";
-import SignInWithPhone from "@/feature/auth/signIn/SignInWithPhone.vue";
+import Loading from "@/shared/ui/Loading.vue";
+import Notification from "@/shared/ui/Notification.vue";
+import LoginForm from "@/feature/auth/ui/LoginForm.vue";
+import PhoneSignIn from "@/feature/auth/ui/PhoneSignIn.vue";
 import maki_arrow from "@/app/assets/icons/arrows/right-short-arrow.svg";
-import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
-import GoogleSignIn from "@/feature/auth/signIn/GoogleSignIn.vue";
-import ReCaptcha from "@/feature/auth/auth-middleware/ReCaptcha.vue";
+import BaseButton from "@/shared/ui/BaseButton.vue";
+import GoogleSignIn from "@/feature/auth/ui/GoogleSignIn.vue";
+import ReCaptcha from "@/feature/auth/ui/ReCaptcha.vue";
 
-const { signIn } = auth();
+const { signIn } = authApi();
 const { showSignSection } = authStore();
 const { loading, notify } = useBaseModals();
 const { clearLoginForm } = clearAuthForms();

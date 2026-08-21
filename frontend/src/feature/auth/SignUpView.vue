@@ -15,8 +15,8 @@
         <span>WELCOME TO</span>
         <span class="text-[#A3A3A3]">THE NOIR</span>
       </div>
-      <SignUpBuyer v-if="!showSignSection.signUp" />
-      <SignUpSeller v-if="showSignSection.signUp" />
+      <BuyerRegisterForm v-if="!showSignSection.signUp" />
+      <SellerRegisterForm v-if="showSignSection.signUp" />
       <div class="flex flex-col gap-3">
         <div class="relative duration-400 hover:scale-105 cursor-pointer">
           <BaseButton @click="signUp('Buyer')" name="SIGN UP BY BUYER" variant="register" />
@@ -33,20 +33,20 @@
 </template>
 
 <script setup lang="ts">
-import { auth } from "@/feature/auth/auth-actions/auth.ts";
-import { clearAuthForms } from "@/shared/composables/clear-forms/clear.auth.ts";
-import { toggleAuth } from "@/feature/auth/auth-actions/toggleAuth.ts";
-import { useBaseModals } from "@/shared/composables/modals/base.modals";
-import { authStore } from "@/shared/composables/stores/auth.store.ts";
+import { authApi } from "@/feature/auth/api/auth.api.ts";
+import { clearAuthForms } from "@/feature/auth/lib/clear.auth.ts";
+import { toggleAuth } from "@/feature/auth/api/toggleAuth.ts";
+import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { authStore } from "@/feature/auth/model/auth.store.ts";
 
-import SignUpBuyer from "@/feature/auth/signUp/SignUpBuyer.vue";
-import SignUpSeller from "@/feature/auth/signUp/SignUpSeller.vue";
-import Loading from "@/shared/ui/base/base-modals/Loading.vue";
-import Notification from "@/shared/ui/base/base-modals/Notification.vue";
+import BuyerRegisterForm from "@/feature/auth/ui/BuyerRegisterForm.vue";
+import SellerRegisterForm from "@/feature/auth/ui/SellerRegisterForm.vue";
+import Loading from "@/shared/ui/Loading.vue";
+import Notification from "@/shared/ui/Notification.vue";
 import maki_arrow from "@/app/assets/icons/arrows/right-short-arrow.svg";
-import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
+import BaseButton from "@/shared/ui/BaseButton.vue";
 
-const { signUp } = auth();
+const { signUp } = authApi();
 const { toggleSignUp } = toggleAuth();
 const { showSignSection } = authStore();
 const { loading, notify } = useBaseModals();

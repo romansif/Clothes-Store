@@ -1,7 +1,7 @@
 import { type ComponentPublicInstance, computed } from "vue";
-import { authStore } from "@/shared/composables/stores/auth.store.ts";
-import { clearAuthForms } from "@/shared/composables/clear-forms/clear.auth.ts";
-import { authForms } from "@/shared/composables/forms/auth.forms.ts";
+import { authStore } from "@/feature/auth/model/auth.store.ts";
+import { clearAuthForms } from "@/feature/auth/lib/clear.auth.ts";
+import { authForms } from "@/feature/auth/model/auth.forms.ts";
 
 const { showPassword, showSignSection } = authStore();
 const { CODE_LENGTH, codeDigits, inputRefs, timeLeft, timerInterval } = authForms();
