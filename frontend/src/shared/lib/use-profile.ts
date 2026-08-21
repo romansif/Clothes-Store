@@ -4,9 +4,15 @@ import { usersStore } from "@/feature/profile/model/users.store.ts";
 import { productStore } from "@/feature/products/model/product.store.ts";
 import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
 import { checkoutErrors } from "@/feature/checkout/lib/checkout.errors.ts";
+import { cartStore } from "@/feature/cart/model/cart.store.ts";
+import { favoriteStore } from "@/feature/favorite/model/favorite.store.ts";
+import { orderStore } from "@/feature/orders/model/order.store.ts";
 
+const { cart } = cartStore();
 const { user } = usersStore();
 const { sizes } = productStore();
+const { orderItems } = orderStore();
+const { favorite } = favoriteStore();
 const { isAgreeForm } = checkoutForms();
 const { isAgreeFormError } = checkoutErrors();
 
