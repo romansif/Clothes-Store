@@ -89,8 +89,8 @@ import { productStore } from "@/feature/products/model/product.store.ts";
 import { useProductsModals } from "@/feature/products/lib/products.modals.ts";
 
 import square from "@/assets/icons/squares/square.png";
-import availability from "@/app/assets/icons/arrows/arrow-up.png";
-import left_arrow from "@/app/assets/icons/arrows/left-arrow.png";
+import availability from "@/assets/icons/arrows/arrow-up.png";
+import left_arrow from "@/assets/icons/arrows/left-arrow.png";
 import checked from '@/assets/icons/squares/check-square.png'
 
 onMounted(async() => {

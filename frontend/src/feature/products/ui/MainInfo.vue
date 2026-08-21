@@ -62,7 +62,7 @@ import ProductInfo from "./ProductInfo.vue";
 import cart from '@/assets/icons/nav/cart.png';
 import MainNavBar from "../../navigation/ui/MainNavBar.vue";
 import profile from '@/assets/icons/nav/profile.png';
-import go_to_shop from '@/app/assets/icons/arrows/right-long-arrow.png';
+import go_to_shop from '@/assets/icons/arrows/right-long-arrow.png';
 import Notification from "@/shared/ui/Notification.vue";
 import Loading from "@/shared/ui/Loading.vue";
 
