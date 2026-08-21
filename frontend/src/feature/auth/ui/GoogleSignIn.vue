@@ -4,9 +4,9 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { auth } from "@/feature/auth/auth-actions/auth.ts";
+import { authApi } from "@/feature/auth/api/auth.api.ts";
 
-const { signOAuth } = auth();
+const { signOAuth } = authApi();
 
 onMounted(() => {
   window.google.accounts.id.initialize({

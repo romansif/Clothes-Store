@@ -1,65 +1,23 @@
 import { ref } from 'vue'
+import { type BuyerRegisterForm, type SellerRegisterForm,
+    type LoginForm, type RegisterFormMessage, type LoginFormMessage} from "@/feature/auth/model/auth.types.ts";
 
-interface RegisterBuyerForm {
-    name: string,
-    surName: string,
-    privatePhone: string,
-    email: string,
-    password: string
-}
-
-interface RegisterSellerForm {
-    name: string,
-    surName: string,
-    companyName: string,
-    publicPhone: string,
-    email: string,
-    password: string
-}
-
-interface LoginForm {
-    email: string,
-    password: string,
-    phone: string,
-    validCode: string,
-    role: string,
-}
-
-interface registerFormMessage {
-    nameMessage: string,
-    surNameMessage: string,
-    privatePhoneMessage: string,
-    companyNameMessage: string,
-    publicPhoneMessage: string,
-    emailMessage: string,
-    passwordMessage: string,
-}
-
-interface loginFormMessage {
-    emailMessage: string,
-    passwordMessage: string,
-    phoneMessage: string,
-    validCodeMessage: string,
-    roleMessage: string
-}
-
-
-const registerBuyerForm = ref<RegisterBuyerForm>({
+const registerBuyerForm = ref<BuyerRegisterForm>({
     name: '',
     surName: '',
     privatePhone: '',
     email: '',
     password: ''
-})
+});
 
-const registerSellerForm = ref<RegisterSellerForm>({
+const registerSellerForm = ref<SellerRegisterForm>({
     name: '',
     surName: '',
     companyName: '',
     publicPhone: '',
     email: '',
     password: ''
-})
+});
 
 const loginForm = ref<LoginForm>({
     email: '',
@@ -67,9 +25,9 @@ const loginForm = ref<LoginForm>({
     password: '',
     validCode: '',
     role: '',
-})
+});
 
-const registerFormMessages = ref<registerFormMessage>({
+const registerFormMessages = ref<RegisterFormMessage>({
     nameMessage: '',
     surNameMessage: '',
     privatePhoneMessage: '',
@@ -77,15 +35,15 @@ const registerFormMessages = ref<registerFormMessage>({
     publicPhoneMessage: '',
     emailMessage: '',
     passwordMessage: '',
-})
+});
 
-const loginFormMessages = ref<loginFormMessage>({
+const loginFormMessages = ref<LoginFormMessage>({
     emailMessage: '',
     passwordMessage: '',
     validCodeMessage: '',
     phoneMessage: '',
     roleMessage: '',
-})
+});
 
 const CODE_LENGTH = 6;
 const codeDigits = ref<string[]>(Array(CODE_LENGTH).fill(''));

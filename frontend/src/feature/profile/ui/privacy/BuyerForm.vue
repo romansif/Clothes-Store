@@ -34,20 +34,20 @@
 const { updateUserFormErrors } = userFormsErrors();
 const { countries, selectedCountryCode } = usersStore();
 const { updateUserForm, updateUserFormMessage } = userForms();
-const { updatePhoneAccount, updateEmailAccount } = useProfile();
+const { updatePhoneAccount, updateEmailAccount } = profileApi();
 const { changeCountry, currentCountry, currentMask } = usePhoneForm();
 const { profilePhoneClass, profileSelectPhoneCodeClass } = profileClasses();
 
 import { IMaskComponent as IMask } from "vue-imask";
-import { usePhoneForm } from "@/shared/mask-forms/use.phone.form";
-import { usersStore } from "@/shared/composables/stores/users.store";
-import { userForms } from "@/shared/composables/forms/users.forms";
-import { profileClasses } from "@/shared/composables/style/profile.classes.ts";
-import { useProfile } from "@/feature/profile/profile-actions/use.profile.ts";
-import { userFormsErrors } from "@/shared/composables/errors/errors-messages/users.errors";
+import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
+import { usersStore } from "@/feature/profile/model/users.store.ts";
+import { userForms } from "@/feature/profile/model/users.forms.ts";
+import { profileClasses } from "@/shared/constants/users/profile.classes.ts";
+import { profileApi } from "@/feature/profile/api/profile.api.ts";
+import { userFormsErrors } from "@/feature/profile/lib/users.errors.ts";
 
-import BaseButton  from "@/shared/ui/base/button/BaseButton.vue";
-import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
+import BaseButton  from "@/shared/ui/BaseButton.vue";
+import BaseInput from "@/shared/ui/BaseInput.vue";
 </script>
 
 <style scoped>

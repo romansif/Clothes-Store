@@ -43,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-const { signIn } = auth();
+const { signIn } = authApi();
 const { signInRoleClass } = authClasses();
 const { showPassword } = authStore();
 const { togglePassword } = toggleAuth();
@@ -51,16 +51,16 @@ const { loginFormErrors } = authFormsErrors();
 const { loginForm, loginFormMessages } = authForms();
 
 import { watch } from "vue";
-import { auth } from "@/feature/auth/auth-actions/auth.ts";
-import { authForms } from "@/shared/composables/forms/auth.forms.ts";
-import { toggleAuth } from "@/feature/auth/auth-actions/toggleAuth.ts";
-import { authStore } from "@/shared/composables/stores/auth.store.ts";
-import { authClasses } from "@/shared/composables/style/auth.classes.ts";
-import { authFormsErrors } from "@/shared/composables/errors/errors-messages/auth.errors.ts";
+import { authApi } from "@/feature/auth/api/auth.api.ts";
+import { authForms } from "@/feature/auth/model/auth.forms.ts";
+import { toggleAuth } from "@/feature/auth/api/toggleAuth.ts";
+import { authStore } from "@/feature/auth/model/auth.store.ts";
+import { authClasses } from "@/shared/constants/auth/auth.classes.ts";
+import { authFormsErrors } from "@/feature/auth/lib/auth.errors.ts";
 
 import closed from "@/app/assets/icons/auth/closed.png";
 import opened from "@/app/assets/icons/auth/opened.png";
-import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
+import BaseInput from "@/shared/ui/BaseInput.vue";
 
 watch(() => [loginForm.value.email, loginForm.value.password, loginForm.value.role],([email, password, role]) => {
       if(email){

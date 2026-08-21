@@ -52,7 +52,7 @@
 </template>
 
 <script setup lang="ts">
-const { signUp } = auth();
+const { signUp } = authApi();
 const { showPassword } = authStore();
 const { togglePassword } = toggleAuth();
 const { registerFormErrors } = authFormsErrors();
@@ -63,18 +63,18 @@ const { signUpBuyerPhoneClass, signUpPasswordClass, selectPhoneCodeClass } = aut
 
 import { watch } from "vue";
 import { IMaskComponent as IMask } from "vue-imask";
-import { auth } from "@/feature/auth/auth-actions/auth.ts";
-import { usePhoneForm } from "@/shared/mask-forms/use.phone.form.ts";
-import { authStore } from "@/shared/composables/stores/auth.store.ts";
-import { usersStore } from "@/shared/composables/stores/users.store.ts";
-import { authForms } from "@/shared/composables/forms/auth.forms.ts";
-import { authClasses } from "@/shared/composables/style/auth.classes.ts";
-import { authFormsErrors } from "@/shared/composables/errors/errors-messages/auth.errors.ts";
-import { toggleAuth } from "@/feature/auth/auth-actions/toggleAuth.ts";
+import { authApi } from "@/feature/auth/api/auth.api.ts";
+import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
+import { authStore } from "@/feature/auth/model/auth.store.ts";
+import { usersStore } from "@/feature/profile/model/users.store.ts";
+import { authForms } from "@/feature/auth/model/auth.forms.ts";
+import { authClasses } from "@/shared/constants/auth/auth.classes.ts";
+import { authFormsErrors } from "@/feature/auth/lib/auth.errors.ts";
+import { toggleAuth } from "@/feature/auth/api/toggleAuth.ts";
 
 import closed from "@/app/assets/icons/auth/closed.png";
 import opened from "@/app/assets/icons/auth/opened.png";
-import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
+import BaseInput from "@/shared/ui/BaseInput.vue";
 
 watch(() => [registerBuyerForm.value.name, registerBuyerForm.value.surName, registerBuyerForm.value.privatePhone,
   registerBuyerForm.value.email, registerBuyerForm.value.password],([name, surName, privatePhone, email, password]) => {

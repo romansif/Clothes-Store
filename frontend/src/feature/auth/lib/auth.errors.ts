@@ -1,23 +1,5 @@
 import { ref } from 'vue'
-
-interface RegisterFormErrors {
-    nameError: boolean,
-    surNameError: boolean,
-    privatePhoneError: boolean,
-    companyNameError: boolean,
-    publicPhoneError: boolean,
-    emailError: boolean,
-    passwordError: boolean
-}
-
-interface LoginFormErrors {
-    emailError: boolean,
-    passwordError: boolean,
-    phoneError: boolean,
-    validCodeError: boolean,
-    roleError: boolean,
-}
-
+import { type RegisterFormErrors, type LoginFormErrors} from "@/feature/auth/model/auth.types.ts";
 
 const registerFormErrors = ref<RegisterFormErrors>({
     nameError: false,

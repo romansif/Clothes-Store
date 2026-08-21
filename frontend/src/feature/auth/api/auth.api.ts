@@ -1,10 +1,10 @@
 import router from '@/app/router';
 import { handler } from "@/shared/api/http";
-import { authForms } from "@/shared/composables/forms/auth.forms";
-import { usersStore } from "@/shared/composables/stores/users.store";
-import { clearAuthForms } from "@/shared/composables/clear-forms/clear.auth";
-import { useFormsErrors } from "@/shared/composables/errors/errors-middleware/forms.errors";
-import { useBaseModals } from "@/shared/composables/modals/base.modals";
+import { authForms } from "@/feature/auth/model/auth.forms.ts";
+import { usersStore } from "@/feature/profile/model/users.store.ts";
+import { clearAuthForms } from "@/feature/auth/lib/clear.auth.ts";
+import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
+import { useBaseModals } from "@/shared/lib/base.modals.ts";
 
 const { loading, openNotify } = useBaseModals();
 const { users, user } = usersStore();
@@ -13,7 +13,7 @@ const { clearRegisterForm, clearRegisterFormMessages,
     clearLoginForm, clearLoginFormMessages } = clearAuthForms();
 const { registerBuyerForm, registerSellerForm, loginForm } = authForms();
 
-export const auth = () => {
+export const authApi = () => {
     const signUp = async (role: string) => {
         loading.value = true;
 
@@ -36,7 +36,7 @@ export const auth = () => {
                 )
             };
 
-            const authData = await handler('/auth/signUp', {
+            const authData = await handler('/authApi/signUp', {
                 method: "POST",
                 body: JSON.stringify(requestBody),
             });
@@ -44,7 +44,7 @@ export const auth = () => {
 
             if(authData.accessToken){
                 localStorage.setItem("accessToken", authData.accessToken);
-                console.log("auth data:", authData.accessToken);
+                console.log("authApi data:", authData.accessToken);
             }else{
                 console.log('Access token is not found');
                 return;
@@ -55,7 +55,7 @@ export const auth = () => {
 
             loading.value = false;
             await openNotify('You have successfully sign up.',
-                'You will now be taken to your profile page.', 'profile');
+                'You will now be taken to your useProfile page.', 'useProfile');
         }catch(err){
             loading.value = false;
             registerErrors(err, role)
@@ -68,7 +68,7 @@ export const auth = () => {
 
         clearLoginFormMessages();
         try{
-            const foundedUser = await handler('/auth/signIn', {
+            const foundedUser = await handler('/authApi/signIn', {
                 method: "POST",
                 body: JSON.stringify({
                     email: loginForm.value.email,
@@ -87,7 +87,7 @@ export const auth = () => {
 
             loading.value = false;
             await openNotify('You have successfully sign in.',
-                'You will now be taken to your profile page.', 'profile')
+                'You will now be taken to your useProfile page.', 'useProfile')
 
             clearLoginForm()
         }catch(err){
@@ -103,7 +103,7 @@ export const auth = () => {
         try{
             const date = new Date();
 
-            const foundedUser = await handler('/auth/google', {
+            const foundedUser = await handler('/authApi/google', {
                 method: "POST",
                 body: JSON.stringify({
                     role: loginForm.value.role || 'Buyer',
@@ -122,7 +122,7 @@ export const auth = () => {
 
             loading.value = false;
             await openNotify('You have successfully sign in.',
-                'You will now be taken to your profile page.', 'profile');
+                'You will now be taken to your useProfile page.', 'useProfile');
         }catch(err){
             loading.value = false;
             await openNotify('You were unable to login with google.',
@@ -133,7 +133,7 @@ export const auth = () => {
 
     const logout = async () => {
         try{
-            const logoutUser = await handler('/auth/logout', {
+            const logoutUser = await handler('/authApi/logout', {
                 method: "POST",
             })
             users.value = logoutUser

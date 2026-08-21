@@ -1,5 +1,5 @@
-import { authForms } from "@/shared/composables/forms/auth.forms";
-import { authFormsErrors } from "@/shared/composables/errors/errors-messages/auth.errors";
+import { authForms } from "@/feature/auth/model/auth.forms.ts";
+import { authFormsErrors } from "@/feature/auth/lib/auth.errors.ts";
 
 const { registerFormErrors, loginFormErrors } = authFormsErrors();
 const { registerBuyerForm, registerSellerForm, loginForm, registerFormMessages, loginFormMessages } = authForms();
