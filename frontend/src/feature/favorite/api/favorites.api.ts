@@ -1,17 +1,13 @@
 import { handler } from "@/shared/api/http.ts";
 import { productStore } from "@/feature/products/model/product.store.ts";
-import { cartApi } from "@/feature/cart/api/cart.api.ts";
 import { useBaseModals } from "@/shared/lib/base.modals.ts";
-import { productsApi } from "@/feature/products/api/products.api.ts";
 import { favoriteStore } from "@/feature/favorite/model/favorite.store.ts";
 import { cartStore } from "@/feature/cart/model/cart.store.ts";
 
 const { cart } = cartStore();
 const { products } = productStore();
 const { favorite } = favoriteStore();
-const { getCartProducts } = cartApi();
 const { openNotify } = useBaseModals();
-const { getFilteredProducts, updateFavorite } = productsApi();
 
 export const favoritesApi = () => {
     const getFavoriteProducts = async () => {
@@ -34,11 +30,7 @@ export const favoritesApi = () => {
             const currentProduct = sourceList?.find(item => item.id === id);
             const currentId = type === 'cart' ? currentProduct?.productId : currentProduct?.id
 
-            const status = !currentProduct?.favorite
-
-            await updateFavorite(id, productId, status);
-
-            if(currentProduct && status){
+            if(currentProduct){
                 await handler(`/favorites`, {
                     method: "POST",
                     body: JSON.stringify({
@@ -59,7 +51,6 @@ export const favoritesApi = () => {
                     })
                 });
                 await getFavoriteProducts();
-                await getFilteredProducts('ALL', 'ALL')
 
                 await openNotify('You have successfully added the item to your favorite.',
                     'You will now be redirected to the "Favorite" page.', 'favorite');
@@ -77,27 +68,10 @@ export const favoritesApi = () => {
                 method: "DELETE",
             });
             await getFavoriteProducts();
-
-            await handler(`/products/${id}`, {
-                method: "PATCH",
-                body: JSON.stringify({
-                    favorite: false,
-                })
-            })
-            await getFilteredProducts('ALL', 'ALL');
-
-            await handler(`/cart/${id}`, {
-                method: "PATCH",
-                body: JSON.stringify({
-                    favorite: false,
-                })
-            });
-            await getCartProducts();
         }catch(err){
             console.error(`Failed to delete the favorite product:`, err);
         }
     };
-
 
     return{
         getFavoriteProducts,
