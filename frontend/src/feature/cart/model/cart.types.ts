@@ -1,5 +1,5 @@
-import type { ColorItem, ImageItem } from "@/feature/products/model/product.types.ts";
-import type { ProductColor } from "@/feature/products/model/product.types.ts";
+import { type ColorItem, type ImageItem } from "@/feature/products/model/product.types.ts";
+import { type ProductColor } from "@/feature/products/model/product.types.ts";
 
 export interface AddForm {
     colors: ProductColor,
@@ -31,7 +31,6 @@ export interface CartItem {
     gender: string,
     quantity: number,
     status: string,
-    favorite: boolean,
     checked: boolean,
     collections: string,
     created_at: string,

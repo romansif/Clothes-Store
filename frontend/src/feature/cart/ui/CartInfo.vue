@@ -49,8 +49,8 @@ import { useProfile } from "@/shared/lib/use-profile.ts";
 import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
 import { checkoutErrors } from "@/feature/checkout/lib/checkout.errors.ts";
 
-import square from '@/assets/icons/squares/square.png';
 import BaseButton from "@/shared/ui/BaseButton.vue";
+import square from '@/assets/icons/squares/square.png';
 import check_square from '@/assets/icons/squares/check-square.png';
 
 const { isAgreeForm } = checkoutForms();

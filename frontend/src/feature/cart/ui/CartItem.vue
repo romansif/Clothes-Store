@@ -11,7 +11,7 @@
             Out Of Stack
           </span>
           <img @click="toggleToFavorite(product.id, 'cart', product.productId)"
-               :src="product.favorite ? liked : like" alt="" class="absolute top-0.5 left-75.5 w-8 cursor-pointer">
+               :src="isFavorite(product.productId) ? liked : like" alt="" class="absolute top-0.5 left-75.5 w-8 cursor-pointer">
         </div>
         <span class="whitespace-normal mt-2 text-[#A3A3A3] text-sm sm:text-lg">
           {{ product.material }} {{ product.category }}
@@ -55,6 +55,7 @@
 <script setup lang="ts">
 const { cart } = cartStore();
 const { getProductId } = productsApi();
+const { isFavorite } = useFavorite();
 const { sizeClass, sizeUrl } = useProfile();
 const { toggleToFavorite } = favoritesApi();
 const { toggleDeleteChoice } = useProfileModals();
@@ -69,6 +70,7 @@ import like from '@/assets/icons/nav/like.png';
 import liked from '@/assets/icons/nav/liked.png';
 import check_square from '@/assets/icons/squares/check-square.png';
 
+import { useFavorite } from "@/feature/favorite/lib/use-favorite.ts";
 import { productsCover } from "@/shared/lib/product-image.ts";
 import { cartStore } from "@/feature/cart/model/cart.store.ts";
 import { productsApi } from "@/feature/products/api/products.api.ts";

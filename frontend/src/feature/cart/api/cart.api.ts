@@ -49,14 +49,13 @@ export const cartApi = () => {
                     price: currentProduct.price,
                     description: currentProduct.description,
                     colors: [{
-                        hex: String(cartForm.value.colors.hex),
-                        colorName: String(cartForm.value.colors.colorName)
+                        hex: cartForm.value.colors.hex,
+                        colorName: cartForm.value.colors.colorName
                     }],
                     sizes: cartForm.value.sizes,
                     gender: currentProduct.gender,
                     quantity: 1,
                     status: currentProduct.status,
-                    favorite: currentProduct.favorite,
                     checked: currentProduct.checked,
                 })
             });
