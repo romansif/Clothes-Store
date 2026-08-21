@@ -45,17 +45,17 @@
 
 <script setup lang="ts">
 import { watch } from "vue";
-import { profile } from "@/shared/composables/profile.ts";
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
-import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors.ts";
+import { useProfile } from "@/shared/lib/use-profile.ts";
+import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
+import { checkoutErrors } from "@/feature/checkout/lib/checkout.errors.ts";
 
-import square from '@/app/assets/icons/squares/square.png';
-import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
-import check_square from '@/app/assets/icons/squares/check-square.png';
+import square from '@/assets/icons/squares/square.png';
+import BaseButton from "@/shared/ui/BaseButton.vue";
+import check_square from '@/assets/icons/squares/check-square.png';
 
 const { isAgreeForm } = checkoutForms();
 const { isAgreeFormError } = checkoutErrors();
-const { toggleAgree, continueToOrder, price, totalPrice, commissionPrice } = profile();
+const { toggleAgree, continueToOrder, price, totalPrice, commissionPrice } = useProfile();
 
 watch(() => isAgreeFormError.value.agreeError, (agreeError) => {
   if(agreeError === true) {

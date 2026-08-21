@@ -1,19 +1,23 @@
 import { handler } from "@/shared/api/http.ts";
-import { useFormsErrors } from "@/shared/composables/errors/errors-middleware/forms.errors.ts";
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { productsForms } from "@/shared/composables/forms/products.forms.ts";
-import { clearProductsForms } from "@/shared/composables/clear-forms/clear.products.ts";
-import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
+import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
+import { productStore } from "@/feature/products/model/product.store.ts";
+import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { productsApi } from "@/feature/products/api/products.api.ts";
+import { addToCartForm } from "@/feature/cart/model/cart.forms.ts";
+import { clearAddToCartForm } from "@/feature/cart/lib/clear.cart.ts";
+import { cartStore } from "@/feature/cart/model/cart.store.ts";
+import { orderStore } from "@/feature/orders/model/order.store.ts";
 
+const { orderItems } = orderStore();
+const { cartForm } = addToCartForm();
 const { openNotify } = useBaseModals();
-const { getAllProducts } = useProducts();
-const { addToCartForm } = productsForms();
+const { getAllProducts } = productsApi();
+const { cart, unreadCount } = cartStore();
 const { addToCartErrors } = useFormsErrors();
-const { clearAddToCartForm } = clearProductsForms();
-const { allProducts, products, cart, product, orderItems, unreadCount } = productsStore();
+const { clearCartForm } = clearAddToCartForm();
+const { allProducts, products, product } = productStore();
 
-export const useCart = () => {
+export const cartApi = () => {
     const getCartProducts = async () => {
         const userId = localStorage.getItem("userId")
         try{
@@ -45,10 +49,10 @@ export const useCart = () => {
                     price: currentProduct.price,
                     description: currentProduct.description,
                     colors: [{
-                        hex: String(addToCartForm.value.colors.hex),
-                        colorName: String(addToCartForm.value.colors.colorName)
+                        hex: String(cartForm.value.colors.hex),
+                        colorName: String(cartForm.value.colors.colorName)
                     }],
-                    sizes: addToCartForm.value.sizes,
+                    sizes: cartForm.value.sizes,
                     gender: currentProduct.gender,
                     quantity: 1,
                     status: currentProduct.status,
@@ -63,7 +67,7 @@ export const useCart = () => {
 
             await getCartProducts();
 
-            clearAddToCartForm();
+            clearCartForm();
 
             await openNotify('You have successfully added the item to your cart.',
                 'You will now be redirected to the "Cart" page.', 'cart');

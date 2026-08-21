@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ProfileProductsDashboard from "@/feature/profile/ProfileProductsDashboard.vue";
+import ProfileProductsDashboard from "@/feature/profile/ui/ProfileProductsDashboard.vue";
 </script>
 
 <template>

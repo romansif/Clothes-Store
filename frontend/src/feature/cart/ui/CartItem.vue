@@ -53,30 +53,30 @@
 </template>
 
 <script setup lang="ts">
-const { cart } = productsStore();
-const { getProductId } = useProducts();
-const { sizeClass, sizeUrl } = profile();
-const { toggleToFavorite } = useFavorites();
+const { cart } = cartStore();
+const { getProductId } = productsApi();
+const { sizeClass, sizeUrl } = useProfile();
+const { toggleToFavorite } = favoritesApi();
 const { toggleDeleteChoice } = useProfileModals();
-const { updateCartItem, checkCartItem } = useCart();
+const { updateCartItem, checkCartItem } = cartApi();
 const { isOutOfStack, productPreview, pureColors } = productsCover();
 const { productPreviewClass } = baseClasses();
 
-import del from '@/app/assets/icons/delete-close/delete.svg';
-import square from '@/app/assets/icons/squares/square.png';
-import update from '@/app/assets/icons/products/refresh.svg';
-import like from '@/app/assets/icons/nav/like.png';
-import liked from '@/app/assets/icons/nav/liked.png';
-import check_square from '@/app/assets/icons/squares/check-square.png';
+import del from '@/assets/icons/delete-close/delete.svg';
+import square from '@/assets/icons/squares/square.png';
+import update from '@/assets/icons/products/refresh.svg';
+import like from '@/assets/icons/nav/like.png';
+import liked from '@/assets/icons/nav/liked.png';
+import check_square from '@/assets/icons/squares/check-square.png';
 
-import { productsCover } from "@/shared/composables/product.cover.ts";
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-import { useFavorites } from "@/feature/favorite/favorite-actions/use.favorites.ts";
-import { useCart } from "@/feature/cart/cart-actions/use.cart.ts";
-import { profile } from "@/shared/composables/profile.ts";
-import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
-import { baseClasses } from "@/shared/composables/style/base.classes.ts";
+import { productsCover } from "@/shared/lib/product-image.ts";
+import { cartStore } from "@/feature/cart/model/cart.store.ts";
+import { productsApi } from "@/feature/products/api/products.api.ts";
+import { favoritesApi } from "@/feature/favorite/api/favorites.api.ts";
+import { cartApi } from "@/feature/cart/api/cart.api.ts";
+import { useProfile } from "@/shared/lib/use-profile.ts";
+import { useProfileModals } from "@/feature/profile/lib/profile.modals.ts";
+import { baseClasses } from "@/shared/constants/base.classes.ts";
 
 const refreshPage = () => {
   window.location.reload();
