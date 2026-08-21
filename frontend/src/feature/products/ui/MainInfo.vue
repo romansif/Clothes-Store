@@ -16,7 +16,7 @@
       </div>
       <div class="flex justify-center items-cente">
         <div class="overflow-y-auto no-scrollbar mt-6 lg:mt-0 lg:w-300">
-          <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center">
+          <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-10">
             <div v-if="product && product.id && product.id.length > 0" class="flex gap-18 lg:gap-20">
               <div class="flex flex-col items-center gap-3">
                 <img :src="activeProductImg" alt="" class="w-97.5">
@@ -30,7 +30,7 @@
             <ProductInfo />
             <div class="flex justify-center lg:hidden">
               <router-link v-if="!userId" :to="{name: 'signIn'}">
-                <span class="bg-black font-semibold text-sm py-5 px-46 text-white font-[Montserrat] lg:block">
+                <span class="bg-black font-semibold text-sm py-8 px-46 text-white font-[Montserrat] lg:block">
                   ADD TO CART
                 </span>
               </router-link>
@@ -51,6 +51,8 @@ const { notify, loading } = useBaseModals();
 const { product, activeProductImg } = productStore();
 const { changeImg, productInfoPreview, angelCards } = productsCover();
 
+const userId = localStorage.getItem("userId");
+
 import { onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { productsApi } from "@/feature/products/api/products.api.ts";
@@ -67,8 +69,6 @@ import Notification from "@/shared/ui/Notification.vue";
 import Loading from "@/shared/ui/Loading.vue";
 
 const router = useRouter();
-
-const userId = localStorage.getItem("userId");
 
 onMounted(async () => {
   loading.value = true;

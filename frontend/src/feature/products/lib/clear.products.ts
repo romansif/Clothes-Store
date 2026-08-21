@@ -2,7 +2,7 @@ import { productForms } from "@/feature/products/model/product.forms.ts";
 import { productsFormErrors } from "@/feature/products/lib/products.errors.ts";
 
 const { createProductFormErrors } = productsFormErrors();
-const { createProductForm, moreCreateItem, createProductFormMessages, searchProductForm } = productForms();
+const { createProductForm, moreCreateItem, createProductFormMessages } = productForms();
 
 export const clearProductsForms = () => {
     const clearProductForm = () => {
@@ -37,12 +37,7 @@ export const clearProductsForms = () => {
         createProductFormErrors.value.collectionsError = false;
     };
 
-    const clearSearchForm = () => {
-        searchProductForm.value.search = '';
-    };
-
     return{
         clearProductForm,
-        clearSearchForm
     }
 }

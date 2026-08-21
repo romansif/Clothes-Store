@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col mt-6 px-4 lg:mt-0 w-123">
+  <div class="flex flex-col mt-6 px-4 lg:mt-0 w-125">
     <div class="flex flex-col gap-2">
       <div class="flex">
         <div class="flex flex-col gap-2 mt-1">
@@ -10,7 +10,7 @@
             $ {{ product.price }}
           </span>
         </div>
-        <img @click="toggleToFavorite(product.id, 'product', product.id)" :src="product.favorite ? liked : like" alt=""
+        <img @click="toggleToFavorite(product.id, 'product', product.id)" :src="isFavorite(product.id) ? liked : like" alt=""
              class="ml-auto w-8.75 h-8.75">
       </div>
       <span class="text-sm font-medium text-[#A3A3A3]">
@@ -40,7 +40,7 @@
         <span class="font-medium text-[#A3A3A3]">Sizes</span>
         <div class="flex justify-start items-center lg:gap-5">
           <img v-for="size in (isAvailableSizes as any)" :key="size.name" :src=size.url alt=""
-               :class="selectedSizesClass(size, product, user)" @click="cartForm.sizes = size.name">
+               @click="cartForm.sizes = size.name" :class="selectedSizesClass(size, product, user)">
         </div>
         <span v-if=cartFormErrors.sizeError class="text-red-600 text-xs">
           {{ cartFormMessages.sizeMessage }}
@@ -51,15 +51,15 @@
       <span class="text-[#A3A3A3] text-sm">
         FIND YOUR SIZE |  MEASUREMENT GUIDE
       </span>
-      <router-link v-if="!userId" :to="{name: 'signIn'}">
+      <router-link v-if="!user" :to="{name: 'signIn'}">
         <span class="hidden bg-black text-white font-semibold text-sm py-4 w-full text-center
             font-[Montserrat] lg:block">
           ADD TO CART
         </span>
       </router-link>
-      <BaseButton @click="addToCart()" v-if="product.userId !== userId && product.userId !== userId && !isInCart" name="ADD TO CART" variant="addToCart" />
+      <BaseButton @click="addToCart()" v-if="product.quantity !== 0 && !isInCart" name="ADD TO CART" variant="addToCart" />
       <BaseButton v-if="isValidOutOfStack(product)" name="OUT OF STACK" variant="outOfStack" />
-      <div v-if="userId && isInCart" class="flex items-center gap-18">
+      <div v-if="user && isInCart" class="flex items-center gap-18">
         <div class="flex gap-6 bg-zinc-800 py-4 px-3 text-lg rounded-md transition duration-300 hover:scale-108">
           <img :src="plus" @click="updateCartItem('add', isInCart.id, isInCart.status)" alt=""
                class="bg-zinc-600 text-white px-2 w-8.75 rounded-md transition duration-300 hover:bg-zinc-400" />
@@ -79,16 +79,18 @@
 <script setup lang="ts">
 const { user } = usersStore();
 const { product } = productStore();
+const { isFavorite } = useFavorite();
 const { toggleToFavorite } = favoritesApi();
 const { addToCart, updateCartItem } = cartApi();
 const { cartFormErrors } = addToCartErrors();
+const { cartForm, cartFormMessages } = addToCartForm();
 const { selectedColorClass, selectedSizesClass } = productsClasses();
-const { cartForm, cartFormMessages} = addToCartForm();
 const { isValidOutOfStack, pureInfoColors, isAvailableSizes, isInCart } = productsCover();
 
 import { watch } from "vue";
 import { productsCover } from "@/shared/lib/product-image.ts";
 import { cartApi } from "@/feature/cart/api/cart.api.ts";
+import { useFavorite } from "@/feature/favorite/lib/use-favorite.ts";
 import { usersStore } from "@/feature/profile/model/users.store.ts";
 import { favoritesApi } from "@/feature/favorite/api/favorites.api.ts";
 import { productsClasses } from "@/shared/constants/products/products.classes.ts";
@@ -102,8 +104,6 @@ import like from '@/assets/icons/nav/like.png';
 import liked from '@/assets/icons/nav/liked.png';
 import BaseButton from "@/shared/ui/BaseButton.vue";
 
-const userId = localStorage.getItem("userId");
-
 watch(() => [cartForm.value.colors, cartForm.value.sizes], ([color, size]) => {
   if(color){
     cartFormErrors.value.colorError = false
@@ -111,6 +111,7 @@ watch(() => [cartForm.value.colors, cartForm.value.sizes], ([color, size]) => {
   if(size){
     cartFormErrors.value.sizeError = false
   }
+
 })
 </script>
 
