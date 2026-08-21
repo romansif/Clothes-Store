@@ -25,7 +25,7 @@ import { usersStore } from "@/feature/profile/model/users.store.ts";
 import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
 import { informationClasses } from "@/shared/constants/checkout/information.classes.ts";
 import { checkoutErrors }from "@/feature/checkout/lib/checkout.errors.ts";
-import { checkoutPlaceholder } from "@/feature/checkout/api/checkout.placeholder.ts";
+import { checkoutInput } from "@/feature/checkout/lib/checkout-input.ts";
 
 import CheckoutInput from "@/feature/checkout/ui/CheckoutInput.vue";
 
@@ -33,7 +33,7 @@ const { information } = checkoutForms();
 const { informationErrors } = checkoutErrors();
 const { currentMask, changeCountry } = usePhoneForm();
 const { countries, selectedCountryCode } = usersStore();
-const { emailPlaceholder, phonePlaceholder } = checkoutPlaceholder();
+const { emailPlaceholder, phonePlaceholder } = checkoutInput();
 const { informationPhoneClass, informationSelectPhoneCodeClass } = informationClasses();
 </script>
 

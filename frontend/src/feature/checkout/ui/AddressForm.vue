@@ -49,14 +49,14 @@ const { addressNameClass, postalCodeClass } = informationClasses();
 const {
   firstNamePlaceholder, lastNamePlaceholder, countryPlaceholder,
   statePlaceholder, addressPlaceholder, cityPlaceholder, postalCodePlaceholder
-} = checkoutPlaceholder();
+} = checkoutInput();
 
 import { IMaskComponent as IMask } from "vue-imask";
 import { checkoutApi } from "@/feature/checkout/api/checkout.api.ts";
 import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
 import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
 import { checkoutErrors }from "@/feature/checkout/lib/checkout.errors.ts";
-import { checkoutPlaceholder } from "@/feature/checkout/api/checkout.placeholder.ts";
+import { checkoutInput } from "@/feature/checkout/lib/checkout-input.ts";
 import { informationClasses } from "@/shared/constants/checkout/information.classes.ts";
 
 import CheckoutInput from "@/feature/checkout/ui/CheckoutInput.vue";

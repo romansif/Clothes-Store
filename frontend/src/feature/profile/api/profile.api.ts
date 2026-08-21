@@ -151,7 +151,6 @@ export const profileApi = () => {
 
     return {
         updateAvatarAccount,
-
         updateNameAccount,
         updateSurNameAccount,
         updateCompanyName,

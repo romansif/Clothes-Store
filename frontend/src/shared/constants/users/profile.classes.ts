@@ -1,5 +1,5 @@
 import { computed } from "vue";
-import { type User } from "@/feature/profile/model/users.store.ts";
+import { type User } from "@/feature/profile/model/users.types.ts";
 
 export const profileClasses = () => {
     const profileTabsClass = () => [

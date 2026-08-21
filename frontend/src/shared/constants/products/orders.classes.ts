@@ -1,7 +1,7 @@
-import { type Orders } from "@/feature/products/model/product.store.ts";
+import { type Order } from "@/feature/orders/model/order.types.ts";
 
 export const ordersClasses = () => {
-    const orderStatus = (order: Orders) => [
+    const orderStatus = (order: Order) => [
         {
             'bg-teal-50 text-teal-700 border border-teal-200 w-19.5' : order.status === 'Delivered',
             'bg-sky-50 text-sky-700 border border-sky-200 w-18.5' : order.status === 'En route',

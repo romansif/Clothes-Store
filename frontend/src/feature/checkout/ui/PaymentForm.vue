@@ -28,13 +28,13 @@
 const { payment } = checkoutForms();
 const { cardNumberMask, expiryDateMask, cardCvvMask } = checkoutStore();
 const { carNameClass, cardNumberClass, expiryDateClass, cardCvvClass } = paymentClasses();
-const { cardNumberPlaceholder, expiryDatePlaceholder, cardCvvPlaceholder } = checkoutPlaceholder();
+const { cardNumberPlaceholder, expiryDatePlaceholder, cardCvvPlaceholder } = checkoutInput();
 
 import { IMaskComponent as IMask } from "vue-imask";
 import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
 import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
 import { paymentClasses } from "@/shared/constants/checkout/payment.classes.ts";
-import { checkoutPlaceholder } from "@/feature/checkout/api/checkout.placeholder.ts";
+import { checkoutInput } from "@/feature/checkout/lib/checkout-input.ts";
 </script>
 
 <style scoped>

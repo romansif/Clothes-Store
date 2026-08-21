@@ -4,7 +4,7 @@ import { cartStore } from "@/feature/cart/model/cart.store.ts";
 import { orderStore } from "@/feature/orders/model/order.store.ts";
 import { productForms } from "@/feature/products/model/product.forms.ts";
 import { productStore } from "@/feature/products/model/product.store.ts";
-import type {ColorItem, Product, Sizes} from "@/feature/products/model/product.types.ts";
+import type { ColorItem, Product, Sizes } from "@/feature/products/model/product.types.ts";
 
 
 const { cart } = cartStore();

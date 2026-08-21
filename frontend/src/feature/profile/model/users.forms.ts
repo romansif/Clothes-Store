@@ -1,26 +1,5 @@
 import { ref } from 'vue'
-
-interface UserForm {
-    name: string,
-    surName: string,
-    phone: string,
-    companyName: string,
-    publicPhone: string,
-    email: string,
-    oldPassword: string,
-    newPassword: string,
-}
-
-interface UserFormMessage {
-    nameMessage: string,
-    surNameMessage: string,
-    phoneMessage: string,
-    companyNameMessage: string,
-    publicPhoneMessage: string,
-    emailMessage: string,
-    oldPasswordMessage: string,
-    newPasswordMessage: string,
-}
+import { type UserForm, type UserFormMessage } from "@/feature/profile/model/users.types.ts";
 
 const updateUserForm = ref<UserForm>({
     name: '',

@@ -1,16 +1,5 @@
 import { ref } from 'vue'
-
-interface UserFormErrors {
-    nameError: boolean,
-    surNameError: boolean,
-    phoneError: boolean,
-    companyNameError: boolean,
-    publicPhoneError: boolean,
-    emailError: boolean,
-    oldPasswordError: boolean,
-    newPasswordError: boolean,
-}
-
+import { type UserFormErrors } from "@/feature/profile/model/users.types.ts";
 
 const updateUserFormErrors = ref<UserFormErrors>({
     nameError: false,

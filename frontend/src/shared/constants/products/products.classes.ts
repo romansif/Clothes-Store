@@ -2,7 +2,7 @@ import { filterProducts } from "@/feature/navigation/lib/filter-products.ts";
 import { addToCartForm } from "@/feature/cart/model/cart.forms.ts";
 import type { ColorItem, Sizes } from "@/feature/products/model/product.types.ts";
 import type { CartItem } from "@/feature/cart/model/cart.types.ts";
-import type { User } from "@/feature/profile/model/users.store.ts";
+import type { User } from "@/feature/profile/model/users.types.ts";
 
 const { cartForm } = addToCartForm();
 const { selectedGender } = filterProducts();

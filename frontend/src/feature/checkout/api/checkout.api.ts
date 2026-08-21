@@ -15,12 +15,16 @@ const { paymentErrors } = checkoutErrors();
 const isDebitCard = ref<boolean>(false);
 
 const isSavedAddress = ref<boolean>(false);
+
 const isChosenAddress = ref<boolean>(false);
 const isChosenContactInfo = ref<boolean>(false);
+
 const informationId = ref<string>('');
 
 const isSavedPayment = ref<boolean>(false);
+
 const isChosenPayment = ref<boolean>(false);
+
 const paymentId = ref<string>('');
 
 export const checkoutApi = () => {

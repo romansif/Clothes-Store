@@ -3,13 +3,11 @@ import { IMask } from "vue-imask";
 import { type UserCheckoutAddress,
     type UserCheckoutShipping, type UserCheckoutPayment } from "@/feature/checkout/model/checkout.types.ts";
 
-const usersAddresses = ref<UserCheckoutAddress[]>([])
 const userAddresses = ref<UserCheckoutAddress[]>([])
 const userAddress = ref<UserCheckoutAddress>({} as UserCheckoutAddress)
 
 const userShipping = ref<UserCheckoutShipping[]>([])
 
-const usersPayments = ref<UserCheckoutPayment[]>([])
 const userPayments = ref<UserCheckoutPayment[]>([])
 const userPayment = ref<UserCheckoutPayment>({} as UserCheckoutPayment)
 
@@ -52,13 +50,11 @@ const cardCvvMask = {
 
 export const checkoutStore = () => {
     return {
-        usersAddresses,
         userAddresses,
         userAddress,
 
         userShipping,
 
-        usersPayments,
         userPayments,
         userPayment,
 

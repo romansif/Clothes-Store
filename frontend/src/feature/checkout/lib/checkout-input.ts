@@ -9,7 +9,7 @@ const { currentCountry } = usePhoneForm();
 const { informationErrors, paymentErrors } = checkoutErrors();
 const { informationMessages, payment, paymentMessages } = checkoutForms();
 
-export const checkoutPlaceholder = () => {
+export const checkoutInput = () => {
     const emailPlaceholder = computed(() => {
         if(informationErrors.value.emailError){
             return informationMessages.value.emailMessage;

@@ -13,12 +13,10 @@ const createProductForm = ref<ProductForm>({
     collections: '',
 })
 
-
 const moreCreateItem = reactive({
     colors: [] as ProductColor[],
     sizes: [] as string[],
 })
-
 
 const createProductFormMessages = ref<ProductFormMessage>({
     productUrlMessage: '',
@@ -33,7 +31,6 @@ const createProductFormMessages = ref<ProductFormMessage>({
     quantityMessage: '',
     collectionsMessage: '',
 })
-
 
 export const productForms = () => {
     return {
