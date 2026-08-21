@@ -1,10 +1,10 @@
 import { computed } from "vue";
-import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors.ts";
-import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
-import { checkoutClasses } from "@/shared/composables/style/checkout-style/checkout.classes.ts";
+import { checkoutErrors } from "@/feature/checkout/lib/checkout.errors.ts";
+import { checkoutApi } from "@/feature/checkout/api/checkout.api.ts";
+import { checkoutClasses } from "@/shared/constants/checkout/checkout.classes.ts";
 
 const { informationErrors } = checkoutErrors();
-const { isChosenAddress, isChosenContactInfo } = checkout();
+const { isChosenAddress, isChosenContactInfo } = checkoutApi();
 const { getSavedInfoClass } = checkoutClasses();
 
 export const informationClasses = () => {
