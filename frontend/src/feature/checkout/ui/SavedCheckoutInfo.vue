@@ -17,11 +17,11 @@
 </template>
 
 <script setup lang="ts">
-const { getAddresses } = adressApi();
+const { getAddresses } = addressApi();
 const { toggleShowContact } = checkoutApi();
 
 import { onMounted } from "vue";
-import { adressApi } from "@/feature/checkout/api/adress.api.ts";
+import { addressApi } from "@/feature/checkout/api/address.api.ts";
 import { checkoutApi } from "@/feature/checkout/api/checkout.api.ts";
 
 import ContactList from "@/feature/checkout/ui/ContactList.vue";

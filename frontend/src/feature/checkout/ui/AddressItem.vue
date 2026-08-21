@@ -27,11 +27,11 @@
 <script setup lang="ts">
 
 const { userAddresses } = checkoutStore();
-const { useSavedAddress } = adressApi();
+const { useSavedAddress } = addressApi();
 const { savedAddressClass } = informationClasses()
 
 import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
-import { adressApi } from "@/feature/checkout/api/adress.api.ts";
+import { addressApi } from "@/feature/checkout/api/address.api.ts";
 import { informationClasses } from "@/shared/constants/checkout/information.classes.ts";
 </script>
 

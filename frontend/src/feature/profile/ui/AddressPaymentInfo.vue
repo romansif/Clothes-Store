@@ -48,7 +48,7 @@
 </template>
 
 <script setup lang="ts">
-const { getAddresses } = adressApi();
+const { getAddresses } = addressApi();
 const { getPayments } = paymentApi();
 const { userAddresses, userPayments } = checkoutStore();
 const { toggleAddressesAndCards, deleteChoice } = useProfileModals();
@@ -56,7 +56,7 @@ const { toggleAddressesAndCards, deleteChoice } = useProfileModals();
 import { onMounted } from "vue";
 import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
 import { useProfileModals } from "@/feature/profile/lib/profile.modals.ts";
-import { adressApi } from "@/feature/checkout/api/adress.api.ts";
+import { addressApi } from "@/feature/checkout/api/address.api.ts";
 import { paymentApi } from "@/feature/checkout/api/payment.api.ts";
 
 import PaymentsList from "@/feature/profile/ui/payment/PaymentsList.vue";
