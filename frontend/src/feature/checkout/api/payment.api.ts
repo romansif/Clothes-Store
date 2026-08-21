@@ -1,23 +1,24 @@
 import { handler } from "@/shared/api/http";
-import { useFormsErrors } from "@/shared/composables/errors/errors-middleware/forms.errors";
-import { usersStore, type UserCheckoutPayment } from "@/shared/composables/stores/users.store";
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
-import { useBaseModals } from "@/shared/composables/modals/base.modals";
-import { useOrders } from "@/feature/products/products-actions/use.orders.ts";
-import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
-import { useCart } from "@/feature/cart/cart-actions/use.cart.ts";
-import { clearCheckoutForm } from "@/shared/composables/clear-forms/clear.checkout.ts";
+import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
+import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
+import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { ordersApi } from "@/feature/orders/api/orders.api.ts";
+import { checkoutApi } from "@/feature/checkout/api/checkout.api.ts";
+import { cartApi } from "@/feature/cart/api/cart.api.ts";
+import { clearCheckoutForm } from "@/feature/checkout/lib/clear.checkout.ts";
+import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
+import type { UserCheckoutPayment } from "@/feature/checkout/model/checkout.types.ts";
 
-const { addOrder } = useOrders();
+const { addOrder } = ordersApi();
 const { payment } = checkoutForms();
+const { updateCheckedQuantity } = cartApi();
 const { openNotify, loading } = useBaseModals();
-const { updateCheckedQuantity } = useCart();
-const { isChosenPayment, paymentId } = checkout();
 const { clearPaymentForm } = clearCheckoutForm();
-const { paymentMethod, userPayments, userPayment } = usersStore();
+const { isChosenPayment, paymentId } = checkoutApi();
+const { userPayments, userPayment, paymentMethod } = checkoutStore();
 const { createPaymentMethodError, createPaymentCardErrors } = useFormsErrors();
 
-export const usePayment = () => {
+export const paymentApi = () => {
     const getPayments = async () => {
         loading.value = true;
 
@@ -79,7 +80,7 @@ export const usePayment = () => {
             await addOrder();
 
             await openNotify('You have successfully paid and created order.',
-                'You will now be redirected to the profile page.', 'profile')
+                'You will now be redirected to the useProfile page.', 'useProfile')
             clearPaymentForm();
         }catch(err){
             await openNotify('You must choose.',
@@ -119,7 +120,7 @@ export const usePayment = () => {
             await addOrder();
 
             await openNotify('You have successfully paid and created order.',
-                'You will now be redirected to the profile page.', 'profile')
+                'You will now be redirected to the useProfile page.', 'useProfile')
             clearPaymentForm();
         }catch(err){
             if (paymentMethod.value === 'card'){

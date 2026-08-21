@@ -1,11 +1,11 @@
 import { computed } from "vue";
-import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors.ts";
-import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
-import { checkoutClasses } from "@/shared/composables/style/checkout-style/checkout.classes.ts";
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
+import { checkoutErrors } from "@/feature/checkout/lib/checkout.errors.ts";
+import { checkoutApi } from "@/feature/checkout/api/checkout.api.ts";
+import { checkoutClasses } from "@/shared/constants/checkout/checkout.classes.ts";
+import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
 
 const { payment } = checkoutForms()
-const { isChosenPayment } = checkout();
+const { isChosenPayment } = checkoutApi();
 const { paymentErrors } = checkoutErrors();
 const { getSavedInfoClass } = checkoutClasses();
 
