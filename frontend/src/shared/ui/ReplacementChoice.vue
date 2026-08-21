@@ -28,15 +28,15 @@
 </template>
 
 <script setup lang="ts">
-const { replaceOrder } = useOrders();
+const { replaceOrder } = ordersApi();
 const { toggleOrder, cancelChoice, cancelChoiceMessage, cancelChoiceError } = useBaseModals();
 
 import { watch } from "vue";
-import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
-import { useOrders } from "@/feature/products/products-actions/use.orders.ts";
+import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { ordersApi } from "@/feature/orders/api/orders.api.ts";
 
-import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
-import ReplacementInput from "@/shared/ui/base/input/ReplacementInput.vue";
+import BaseButton from "@/shared/ui/BaseButton.vue";
+import ReplacementInput from "@/shared/ui/ReplacementInput.vue";
 
 watch(() => [cancelChoice.value],([choice]) => {
       if(choice){

@@ -59,22 +59,22 @@
 const { user } = usersStore();
 const { updateUserFormErrors } = userFormsErrors();
 const { updateUserForm, updateUserFormMessage } = userForms();
-const { updatePasswordAccount, updateNameAccount, updateSurNameAccount } = useProfile();
+const { updatePasswordAccount, updateNameAccount, updateSurNameAccount } = profileApi();
 
 import { ref, watch } from 'vue'
 
-import { userForms } from "@/shared/composables/forms/users.forms";
-import { useProfile } from "@/feature/profile/profile-actions/use.profile.ts";
-import { userFormsErrors } from "@/shared/composables/errors/errors-messages/users.errors";
-import { usersStore } from "@/shared/composables/stores/users.store.ts";
+import { userForms } from "@/feature/profile/model/users.forms.ts";
+import { profileApi } from "@/feature/profile/api/profile.api.ts";
+import { userFormsErrors } from "@/feature/profile/lib/users.errors.ts";
+import { usersStore } from "@/feature/profile/model/users.store.ts";
 
-import BaseButton  from "@/shared/ui/base/button/BaseButton.vue";
-import BuyerForm from "./email-phone-form/BuyerForm.vue";
-import SellerForm from "./email-phone-form/SellerForm.vue";
+import BaseButton  from "@/shared/ui/BaseButton.vue";
+import BuyerForm from "./BuyerForm.vue";
+import SellerForm from "./SellerForm.vue";
 import opened from '@/app/assets/icons/auth/opened.png'
 import closed from '@/app/assets/icons/auth/closed.png'
-import SellerEmailForm from "./email-phone-form/SellerEmailForm.vue";
-import BaseInput from "@/shared/ui/base/input/BaseInput.vue";
+import SellerEmailForm from "./SellerEmailForm.vue";
+import BaseInput from "@/shared/ui/BaseInput.vue";
 
 watch(() => [
       updateUserForm.value.name, updateUserForm.value.surName,

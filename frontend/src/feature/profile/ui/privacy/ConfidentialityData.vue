@@ -32,7 +32,7 @@
 <script setup lang="ts">
 const { user } = usersStore();
 
-import { usersStore } from "@/shared/composables/stores/users.store";
+import { usersStore } from "@/feature/profile/model/users.store.ts";
 </script>
 
 <style scoped>

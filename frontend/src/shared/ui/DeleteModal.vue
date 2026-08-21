@@ -14,9 +14,9 @@
 </template>
 
 <script setup lang="ts">
-import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
+import { useProfileModals } from "@/feature/profile/lib/profile.modals.ts";
 
-import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
+import BaseButton from "@/shared/ui/BaseButton.vue";
 
 const { toggleDeleteChoice, generalDelete, deleteMessage } = useProfileModals();
 </script>

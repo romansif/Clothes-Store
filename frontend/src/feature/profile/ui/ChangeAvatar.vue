@@ -18,15 +18,15 @@
 </template>
 
 <script setup lang="ts">
-const { userAvatar } = profile();
-const { updateAvatarAccount } = useProfile();
+const { userAvatar } = useProfile();
+const { updateAvatarAccount } = profileApi();
 const { toggleAvatar, openSelectAvatar, fileInput } = useProfileModals();
 
-import { profile } from "@/shared/composables/profile";
-import { useProfileModals } from "@/shared/composables/modals/profile.modals";
-import { useProfile } from "@/feature/profile/profile-actions/use.profile";
+import { useProfile } from "@/shared/lib/use-profile.ts";
+import { useProfileModals } from "@/feature/profile/lib/profile.modals.ts";
+import { profileApi } from "@/feature/profile/api/profile.api.ts";
 
-import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
+import BaseButton from "@/shared/ui/BaseButton.vue";
 </script>
 
 <style scoped>

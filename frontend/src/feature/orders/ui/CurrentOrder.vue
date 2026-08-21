@@ -26,23 +26,23 @@
 </template>
 
 <script setup lang="ts">
-const { items } = useOrderCard();
-const { clipboard } = useOrderCard();
+const { items } = orderCard();
+const { clipboard } = orderCard();
 const { choiceModal } = useBaseModals();
-const { getFilteredOrders } = useOrders();
+const { getFilteredOrders } = ordersApi();
 const { toggleCurrentOrder } = useProfileModals();
 
 import { onMounted } from "vue";
-import { useOrderCard } from "@/shared/ui/orders/use.order.card.ts";
-import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
-import { useOrders } from "@/feature/products/products-actions/use.orders.ts";
-import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
+import { orderCard } from "@/feature/orders/api/order.card.ts";
+import { useProfileModals } from "@/feature/profile/lib/profile.modals.ts";
+import { ordersApi } from "@/feature/orders/api/orders.api.ts";
+import { useBaseModals } from "@/shared/lib/base.modals.ts";
 
-import OrderList from "./order-items/OrderList.vue";
-import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
-import ClipboardNotify from "@/shared/ui/base/base-modals/ClipboardNotify.vue";
+import OrderList from "./OrderList.vue";
+import BaseButton from "@/shared/ui/BaseButton.vue";
+import ClipboardNotify from "@/shared/ui/ClipboardNotify.vue";
 
-import ReplacementChoice from "@/shared/ui/base/base-modals/ReplacementChoice.vue";
+import ReplacementChoice from "@/shared/ui/ReplacementChoice.vue";
 
 onMounted(async () => {
   await getFilteredOrders();
