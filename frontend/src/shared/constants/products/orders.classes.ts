@@ -1,4 +1,4 @@
-import { type Orders } from "@/shared/composables/stores/products.store.ts";
+import { type Orders } from "@/feature/products/model/product.store.ts";
 
 export const ordersClasses = () => {
     const orderStatus = (order: Orders) => [

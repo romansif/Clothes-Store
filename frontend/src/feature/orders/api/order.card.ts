@@ -1,11 +1,11 @@
 import { ref } from "vue";
-import { productsStore } from "@/shared/composables/stores/products.store";
+import { productStore } from "@/feature/products/model/product.store.ts";
 
-const { items } = productsStore();
+const { items } = productStore();
 
 const clipboard = ref<boolean>(false);
 
-export const useOrderCard = () => {
+export const orderCard = () => {
     const copyText = async (text: string) => {
         try{
             clipboard.value = true;

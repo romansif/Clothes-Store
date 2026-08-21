@@ -23,13 +23,14 @@
 </template>
 
 <script setup lang="ts">
-const { items } = productsStore();
-const { getProductId } = useProducts();
+
+const { items } = orderStore();
+const { getProductId } = productsApi();
 const { orderPreview, pureColorsName } = productsCover();
 
-import { productsStore } from "@/shared/composables/stores/products.store";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-import { productsCover } from "@/shared/composables/product.cover.ts";
+import { orderStore } from "@/feature/orders/model/order.store.ts";
+import { productsApi } from "@/feature/products/api/products.api.ts";
+import { productsCover } from "@/shared/lib/product-image.ts";
 </script>
 
 <style scoped>

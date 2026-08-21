@@ -5,9 +5,9 @@
 </template>
 
 <script setup lang="ts">
-const { items } = productsStore();
+const { items } = orderStore();
 
-import { productsStore } from "@/shared/composables/stores/products.store";
+import { orderStore } from "@/feature/orders/model/order.store.ts";
 
 import OrderInfoItem from "./OrderInfoItem.vue";
 </script>

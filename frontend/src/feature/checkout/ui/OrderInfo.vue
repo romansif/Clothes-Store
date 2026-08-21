@@ -40,15 +40,16 @@
 </template>
 
 <script setup lang="ts">
-const { items } = productsStore();
+
+const { items } = orderStore();
 const { shipping } = checkoutForms();
-const { price, totalPrice, commissionPrice } = checkout();
+const { price, totalPrice, commissionPrice } = checkoutApi();
 
-import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
-import { productsStore } from "@/shared/composables/stores/products.store";
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
+import { orderStore } from "@/feature/orders/model/order.store.ts";
+import { checkoutApi } from "@/feature/checkout/api/checkout.api.ts";
+import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
 
-import OrderInfoList from "./order-items/OrderInfoList.vue";
+import OrderInfoList from "./OrderInfoList.vue";
 </script>
 
 <style scoped>

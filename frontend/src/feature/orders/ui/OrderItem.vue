@@ -71,23 +71,23 @@
 </template>
 
 <script setup lang="ts">
-const { orders } = productsStore();
-const { copyText } = useOrderCard();
-const { getProductId } = useProducts();
+const { orders } = orderStore();
+const { copyText } = orderCard();
+const { getProductId } = productsApi();
 const { toggleOrder } = useBaseModals();
 const { orderStatus } = ordersClasses();
 const { orderPreview, pureColorsName } = productsCover();
 
-import { useOrderCard } from "@/shared/ui/orders/use.order.card";
-import { productsStore } from "@/shared/composables/stores/products.store";
-import { useProducts } from "@/feature/products/products-actions/use.products";
-import { useBaseModals } from "@/shared/composables/modals/base.modals";
-import { productsCover } from "@/shared/composables/product.cover.ts";
-import { ordersClasses } from "@/shared/composables/style/orders.classes.ts";
+import { orderCard } from "@/feature/orders/api/order.card.ts";
+import { orderStore } from "@/feature/orders/model/order.store.ts";
+import { productsApi } from "@/feature/products/api/products.api.ts";
+import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { productsCover } from "@/shared/lib/product-image.ts";
+import { ordersClasses } from "@/shared/constants/products/orders.classes.ts";
 
-import copy_btn from '@/app/assets/icons/squares/copy.svg';
-import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
-import OrderStatus from "@/shared/ui/orders/order-items/OrderStatus.vue";
+import copy_btn from '@/assets/icons/squares/copy.svg';
+import BaseButton from "@/shared/ui/BaseButton.vue";
+import OrderStatus from "@/feature/orders/ui/OrderStatus.vue";
 </script>
 
 <style scoped>

@@ -1,17 +1,17 @@
-import { handler } from "@/shared/api/http";
-import { productsStore } from "@/shared/composables/stores/products.store";
-import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
-import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
-import { useFormsErrors } from "@/shared/composables/errors/errors-middleware/forms.errors.ts";
+import { handler } from "@/shared/api/http.ts";
+import { checkoutApi } from "@/feature/checkout/api/checkout.api.ts";
+import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
+import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
+import { orderStore } from "@/feature/orders/model/order.store.ts";
 
-const { totalPrice } = checkout();
+const { totalPrice } = checkoutApi();
 const { shipping } = checkoutForms();
-const { orders, items } = productsStore();
+const { orders, items } = orderStore();
 const { replaceOrderErrors } = useFormsErrors();
 const { openNotify, cancelChoice, orderId, loading } = useBaseModals();
 
-export const useOrders = () => {
+export const ordersApi = () => {
     const getOrders = async () => {
         loading.value = true;
 

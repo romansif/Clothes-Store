@@ -16,12 +16,12 @@
 </template>
 
 <script setup lang="ts">
-const { orders } = productsStore();
+const { orders } = orderStore();
 
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
+import { orderStore } from "@/feature/orders/model/order.store.ts";
 
-import icon_shop from "@/app/assets/icons/products/icon_shop.svg";
-import OrderItem from "@/shared/ui/orders/order-items/OrderItem.vue";
+import icon_shop from "@/assets/icons/products/icon_shop.svg";
+import OrderItem from "@/feature/orders/ui/OrderItem.vue";
 </script>
 
 

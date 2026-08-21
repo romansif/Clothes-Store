@@ -14,10 +14,10 @@
 </template>
 
 <script setup lang="ts">
-import { type Orders } from "@/shared/composables/stores/products.store.ts";
+import { type Order } from "@/feature/orders/model/order.types.ts";
 
 const props = defineProps<{
-  order: Orders;
+  order: Order;
 }>();
 </script>
 
