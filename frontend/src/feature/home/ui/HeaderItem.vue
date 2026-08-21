@@ -16,15 +16,15 @@
 </template>
 
 <script setup lang="ts">
-const { products } = productsStore();
-const { getProductId } = useProducts();
+const { products } = productStore();
+const { getProductId } = productsApi();
 const { productPreview } = productsCover();
 const { productPreviewClass } = baseClasses();
 
-import { baseClasses } from "@/shared/composables/style/base.classes.ts";
-import { productsCover } from "@/shared/composables/product.cover.ts";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-import { productsStore } from "@/shared/composables/stores/products.store";
+import { baseClasses } from "@/shared/constants/base.classes.ts";
+import { productsCover } from "@/shared/lib/product-image.ts";
+import { productsApi } from "@/feature/products/api/products.api.ts";
+import { productStore } from "@/feature/products/model/product.store.ts";
 </script>
 
 <style scoped>

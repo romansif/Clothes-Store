@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import NavBar from "./navigation/NavBar.vue";
-import Header from "./header/Header.vue";
-import Main from "./main/Main.vue";
-import Footer from "./footer/Footer.vue";
+import Header from "./ui/Header.vue";
+import Main from "./ui/Main.vue";
+import Footer from "./ui/Footer.vue";
 </script>
 
 <template>

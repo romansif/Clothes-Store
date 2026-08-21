@@ -13,14 +13,14 @@
 </template>
 
 <script setup lang="ts">
-const { productsYear } = productsStore();
+const { productsYear } = productStore();
 const { vHorizontalScroll } = productsCover()
 
-import { productsStore } from "@/shared/composables/stores/products.store.ts"
-import { productsCover } from "@/shared/composables/product.cover.ts";
+import { productStore } from "@/feature/products/model/product.store.ts"
+import { productsCover } from "@/shared/lib/product-image.ts";
 
-import YearItem from "@/feature/home/main/year-items/YearItem.vue";
-import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
+import YearItem from "@/feature/home/ui/YearItem.vue";
+import BaseButton from "@/shared/ui/BaseButton.vue";
 
 const resetError = () => {
   window.location.reload();

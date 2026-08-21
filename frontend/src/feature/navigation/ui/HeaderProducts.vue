@@ -49,23 +49,23 @@
 </template>
 
 <script setup lang="ts">
-const { searchProductForm } = productsForms();
-const { getFilteredProducts } = useProducts();
+const { searchProductForm } = productForms();
+const { getFilteredProducts } = productsApi();
 const { selectedCategoryClass } = productsClasses();
 const { toggleFilterAside } = useProductsModals();
-const { toggleFilter, categories, category } = filtered();
+const { toggleFilter, categories, category } = filterProducts();
 const { debouncedSearch, resetSearch } = useGetSearchedProducts();
 
 import { watch } from "vue";
-import { filtered } from "@/feature/navigation/products-header/nav-actions/filtered.ts";
-import { productsClasses } from "@/shared/composables/style/products.classes.ts";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-import { useGetSearchedProducts } from "@/feature/navigation/products-header/nav-actions/searched.ts";
-import { useProductsModals } from "@/shared/composables/modals/products.modals.ts";
-import { productsForms } from "@/shared/composables/forms/products.forms.ts";
+import { filterProducts } from "@/feature/navigation/lib/filter-products.ts";
+import { productsClasses } from "@/shared/constants/products/products.classes.ts";
+import { productsApi } from "@/feature/products/api/products.api.ts";
+import { useGetSearchedProducts } from "@/feature/navigation/lib/search-products.ts";
+import { useProductsModals } from "@/feature/products/lib/products.modals.ts";
+import { productForms } from "@/feature/products/model/product.forms.ts";
 
-import del from '@/app/assets/icons/delete-close/clean_search.svg';
-import search from "@/app/assets/icons/nav/search.png";
+import del from '@/assets/icons/delete-close/clean_search.svg';
+import search from "@/assets/icons/nav/search.png";
 import right_arrow from '@/app/assets/icons/arrows/right-arrow.png';
 
 watch(() => searchProductForm.value.search, async (newValue) => {

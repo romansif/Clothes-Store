@@ -40,15 +40,15 @@
 </template>
 
 <script setup lang="ts">
-const { getAllProducts } = useProducts();
+const { getAllProducts } = productsApi();
 
 import { onMounted } from "vue";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
+import { productsApi } from "@/feature/products/api/products.api.ts";
 
 import arrow from "@/app/assets/icons/arrows/right-shop.svg";
-import photo_1 from "@/app/assets/photos/pants.png";
-import photo_2 from "@/app/assets/photos/shirt.png";
-import HeaderList from "@/feature/home/header/header-items/HeaderList.vue";
+import photo_1 from "@/assets/photos/pants.png";
+import photo_2 from "@/assets/photos/shirt.png";
+import HeaderList from "@/feature/home/ui/HeaderList.vue";
 
 onMounted(async () => {
   await getAllProducts();

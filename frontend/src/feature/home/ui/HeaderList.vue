@@ -7,13 +7,13 @@
 </template>
 
 <script setup lang="ts">
-const { products } = productsStore();
+const { products } = productStore();
 const { vHorizontalScroll } = productsCover();
 
-import { productsCover } from "@/shared/composables/product.cover.ts";
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
+import { productsCover } from "@/shared/lib/product-image.ts";
+import { productStore } from "@/feature/products/model/product.store.ts";
 
-import HeaderItem from "@/feature/home/header/header-items/HeaderItem.vue";
+import HeaderItem from "@/feature/home/ui/HeaderItem.vue";
 </script>
 
 <style scoped>

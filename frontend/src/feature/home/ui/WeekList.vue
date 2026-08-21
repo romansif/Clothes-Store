@@ -13,16 +13,16 @@
 </template>
 
 <script setup lang="ts">
-const { productsWeek } = productsStore();
-const { getWeekProducts } = useProducts();
+const { productsWeek } = productStore();
+const { getWeekProducts } = productsApi();
 const { vHorizontalScroll } = productsCover()
 
-import { productsStore } from "@/shared/composables/stores/products.store.ts";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-import { productsCover } from "@/shared/composables/product.cover.ts";
+import { productStore } from "@/feature/products/model/product.store.ts";
+import { productsApi } from "@/feature/products/api/products.api.ts";
+import { productsCover } from "@/shared/lib/product-image.ts";
 
-import WeekItem from "@/feature/home/main/week-items/WeekItem.vue";
-import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
+import WeekItem from "@/feature/home/ui/WeekItem.vue";
+import BaseButton from "@/shared/ui/BaseButton.vue";
 </script>
 
 <style scoped>

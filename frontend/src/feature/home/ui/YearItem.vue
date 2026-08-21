@@ -23,15 +23,15 @@
 </template>
 
 <script setup lang="ts">
-const { productsYear } = productsStore();
-const { getProductId } = useProducts();
+const { productsYear } = productStore();
+const { getProductId } = productsApi();
 const { isOutOfStack, productPreview } = productsCover();
 const { productPreviewClass } = baseClasses();
 
-import { productsCover } from "@/shared/composables/product.cover.ts";
-import { useProducts } from "@/feature/products/products-actions/use.products.ts";
-import { productsStore } from "@/shared/composables/stores/products.store";
-import { baseClasses } from "@/shared/composables/style/base.classes.ts";
+import { productsCover } from "@/shared/lib/product-image.ts";
+import { productsApi } from "@/feature/products/api/products.api.ts";
+import { productStore } from "@/feature/products/model/product.store.ts";
+import { baseClasses } from "@/shared/constants/base.classes.ts";
 </script>
 
 <style scoped>
