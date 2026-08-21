@@ -1,18 +1,18 @@
 import { v4 as uuidv4 } from 'uuid';
 import { handler } from "@/shared/api/http.ts";
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms.ts";
-import { useFormsErrors } from "@/shared/composables/errors/errors-middleware/forms.errors.ts";
-import { usersStore } from "@/shared/composables/stores/users.store.ts";
-import { useBaseModals } from "@/shared/composables/modals/base.modals.ts";
-import { clearCheckoutForm } from "@/shared/composables/clear-forms/clear.checkout.ts";
+import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
+import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
+import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { clearCheckoutForm } from "@/feature/checkout/lib/clear.checkout.ts";
+import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
 
 const { shipping } = checkoutForms();
-const { userShipping } = usersStore();
+const { userShipping } = checkoutStore();
 const { openNotify  } = useBaseModals();
 const { clearPaymentForm } = clearCheckoutForm();
 const { createSippingErrors } = useFormsErrors();
 
-export const useShipping = () => {
+export const shippingApi = () => {
     const getShipping = async () => {
         const paymentId = localStorage.getItem("paymentId");
         try{

@@ -18,9 +18,9 @@
 </template>
 
 <script setup lang="ts">
-const { userAddress } = usersStore();
+const { userAddress } = checkoutStore();
 
-import { usersStore } from "@/shared/composables/stores/users.store";
+import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
 </script>
 
 <style scoped>

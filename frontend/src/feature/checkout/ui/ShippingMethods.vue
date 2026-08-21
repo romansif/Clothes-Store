@@ -57,9 +57,9 @@ const { shippingErrors } = checkoutErrors();
 const { shippingMethodClass } = shippingClasses();
 const { shipping, shippingMessages } = checkoutForms();
 
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
-import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors";
-import { shippingClasses } from "@/shared/composables/style/checkout-style/shipping.classes.ts";
+import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
+import { checkoutErrors }from "@/feature/checkout/lib/checkout.errors.ts";
+import { shippingClasses } from "@/shared/constants/checkout/shipping.classes.ts";
 </script>
 
 <style scoped>

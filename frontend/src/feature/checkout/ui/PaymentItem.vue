@@ -1,7 +1,6 @@
 <template>
   <TransitionGroup name="list">
-    <li v-for="checkout in userPayments" :key="checkout.id"
-        class="flex flex-col mt-5 border border-gray-200 rounded-xl shadow-lg p-2">
+    <li @click="useSavedCard(checkout)" v-for="checkout in userPayments" :key="checkout.id" :class="savedPaymentClass">
       <div class="flex flex-col gap-5">
         <div class="flex gap-5">
           <span class="text-sm font-semibold">
@@ -10,9 +9,6 @@
           <span class="text-sm font-semibold">
             CVV: <span class="font-normal">{{ checkout.cardCvv }}</span>
           </span>
-          <img @click="toggleDeleteChoice(
-              'Are you sure you want to delete this saved card?', 'DELETE_SAVED_CARD', checkout.id)"
-               :src="del" alt="" class="w-5 ml-auto transition duration-400 hover:scale-120">
         </div>
         <div class="flex gap-5">
           <span v-if="checkout.cardName" class="text-sm font-semibold">
@@ -28,17 +24,16 @@
 </template>
 
 <script setup lang="ts">
-const { userPayments } = usersStore();
-const { toggleDeleteChoice } = useProfileModals();
 
-import { usersStore } from "@/shared/composables/stores/users.store";
-import { useProfileModals } from "@/shared/composables/modals/profile.modals.ts";
+const { userPayments } = checkoutStore();
+const { useSavedCard } = paymentApi();
+const { savedPaymentClass } = paymentClasses();
 
-import del from "@/app/assets/icons/delete-close/del_address_card.svg";
+import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
+import { paymentClasses } from "@/shared/constants/checkout/payment.classes.ts";
+import { paymentApi } from "@/feature/checkout/api/payment.api.ts";
 </script>
 
-
 <style scoped>
-
 
 </style>

@@ -1,56 +1,6 @@
 import { ref } from 'vue'
-
-interface Information {
-    addressName: string
-    email: string,
-    phone: string,
-    firstName: string,
-    lastName: string,
-    country: string,
-    stateRegion: string,
-    address: string,
-    city: string,
-    postalCode: string,
-}
-
-interface Shipping {
-    delivery: string,
-}
-
-interface Payment {
-    cardName: string,
-    cardNumber: string,
-    expiryDate: string,
-    cardCvv: string,
-    paymentMethod: string,
-}
-
-interface InformationMessages {
-    emailMessage: string,
-    phoneMessage: string,
-    firstNameMessage: string,
-    lastNameMessage: string,
-    countryMessage: string,
-    stateRegionMessage: string,
-    addressMessage: string,
-    cityMessage: string,
-    postalCodeMessage: string,
-}
-
-interface ShippingMessage {
-    deliveryMessage: string,
-}
-
-interface PaymentMessage {
-    cardNumberMessage: string,
-    expiryDateMessage: string,
-    cardCvvMessage: string,
-    paymentMethodMessage: string,
-}
-
-interface IsAgree {
-    agreeMessage: string,
-}
+import { type Information, type Shipping, type Payment, type IsAgree,
+    type InformationMessages, type ShippingMessage, type PaymentMessage } from "@/feature/checkout/model/checkout.types.ts";
 
 const information = ref<Information>({
     addressName: '',
@@ -65,11 +15,9 @@ const information = ref<Information>({
     postalCode: '',
 })
 
-
 const shipping = ref<Shipping>({
     delivery: '',
 })
-
 
 const payment = ref<Payment>({
     cardName: '',

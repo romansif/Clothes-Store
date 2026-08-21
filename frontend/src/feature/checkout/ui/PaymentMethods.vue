@@ -85,27 +85,26 @@
 </template>
 
 <script setup lang="ts">
-
-const { userPayments } = usersStore();
-const { addPayment } = usePayment();
+const { userPayments } = checkoutStore();
+const { addPayment } = paymentApi();
 const { paymentMethodClass } = paymentClasses();
 const { paymentErrors } = checkoutErrors();
 const { payment, paymentMessages } = checkoutForms();
-const { openCardForm, closeCardForm, toggleShowPayment, isDebitCard } = checkout();
+const { openCardForm, closeCardForm, toggleShowPayment, isDebitCard } = checkoutApi();
 
-import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
-import { usePayment } from "@/feature/checkout/checkout-actions/use.payment.ts";
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
-import { usersStore } from "@/shared/composables/stores/users.store.ts";
-import { paymentClasses } from "@/shared/composables/style/checkout-style/payment.classes.ts";
-import { checkoutErrors }from "@/shared/composables/errors/errors-messages/checkout.errors";
+import { checkoutApi } from "@/feature/checkout/api/checkout.api.ts";
+import { paymentApi } from "@/feature/checkout/api/payment.api.ts";
+import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
+import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
+import { paymentClasses } from "@/shared/constants/checkout/payment.classes.ts";
+import { checkoutErrors }from "@/feature/checkout/lib/checkout.errors.ts";
 
 import PaymentForm from "./PaymentForm.vue";
-import visa_pay from '@/app/assets/icons/checkout/payment/visa.png';
-import pay_pal from '@/app/assets/icons/checkout/payment/paypal.png';
-import apple_pay from '@/app/assets/icons/checkout/payment/applepay.png';
-import google_pay from '@/app/assets/icons/checkout/payment/googlepay.png';
-import mastercard_pay from '@/app/assets/icons/checkout/payment/mastercard.svg';
+import visa_pay from '@/assets/icons/checkout/payment/visa.png';
+import pay_pal from '@/assets/icons/checkout/payment/paypal.png';
+import apple_pay from '@/assets/icons/checkout/payment/applepay.png';
+import google_pay from '@/assets/icons/checkout/payment/googlepay.png';
+import mastercard_pay from '@/assets/icons/checkout/payment/mastercard.svg';
 </script>
 
 <style scoped>

@@ -17,15 +17,15 @@
 </template>
 
 <script setup lang="ts">
-const { getAddresses } = useAddress();
-const { toggleShowContact } = checkout();
+const { getAddresses } = adressApi();
+const { toggleShowContact } = checkoutApi();
 
 import { onMounted } from "vue";
-import { useAddress } from "@/feature/checkout/checkout-actions/use.address.ts";
-import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
+import { adressApi } from "@/feature/checkout/api/adress.api.ts";
+import { checkoutApi } from "@/feature/checkout/api/checkout.api.ts";
 
-import ContactList from "@/feature/checkout/information/saved-checkout-lists/ContactList.vue";
-import AddressList from "@/feature/checkout/information/saved-checkout-lists/AddressList.vue";
+import ContactList from "@/feature/checkout/ui/ContactList.vue";
+import AddressList from "@/feature/checkout/ui/AddressList.vue";
 
 onMounted(async () => {
   await getAddresses();

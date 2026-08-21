@@ -16,13 +16,13 @@
 </template>
 
 <script setup lang="ts">
-const { userPayments } = usersStore();
+const { userPayments } = checkoutStore();
 
 import { computed } from "vue";
-import { usersStore } from "@/shared/composables/stores/users.store";
+import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
 
 import PaymentsItem from "./PaymentsItem.vue";
-import icon_card from "@/app/assets/icons/checkout/payment/icon_card.svg";
+import icon_card from "@/assets/icons/checkout/payment/icon_card.svg";
 
 const userPaymentsCard = computed(() => {
   return userPayments.value.some(item => 'cardNumber' in item);

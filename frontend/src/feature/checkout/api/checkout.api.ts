@@ -1,12 +1,18 @@
 import router  from "@/app/router";
 import { computed, ref } from "vue";
-import { usersStore } from "@/shared/composables/stores/users.store";
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
-import { productsStore } from "@/shared/composables/stores/products.store";
-import { useCart } from "@/feature/cart/cart-actions/use.cart.ts";
-import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors";
+import { usersStore } from "@/feature/profile/model/users.store.ts";
+import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
+import { cartApi } from "@/feature/cart/api/cart.api.ts";
+import { checkoutErrors } from "@/feature/checkout/lib/checkout.errors.ts";
+import { orderStore } from "@/feature/orders/model/order.store.ts";
+import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
 
-const { items, deliveryPrice } = productsStore();
+const { items } = orderStore();
+const { shipping } = checkoutForms();
+const { paymentMethod } = usersStore();
+const { updateCartChecked } = cartApi();
+const { deliveryPrice } = checkoutStore();
+const { paymentErrors } = checkoutErrors();
 
 const isDebitCard = ref<boolean>(false);
 
@@ -19,12 +25,7 @@ const isSavedPayment = ref<boolean>(false);
 const isChosenPayment = ref<boolean>(false);
 const paymentId = ref<string>('');
 
-const { shipping } = checkoutForms();
-const { paymentMethod } = usersStore();
-const { updateCartChecked } = useCart();
-const { paymentErrors } = checkoutErrors();
-
-export const checkout = () => {
+export const checkoutApi = () => {
     const openCardForm = (method: string) => {
         isDebitCard.value = true;
         paymentMethod.value = method;

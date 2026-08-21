@@ -14,21 +14,21 @@
 </template>
 
 <script setup lang="ts">
-const { isSavedPayment } = checkout();
+const { isSavedPayment } = checkoutApi();
 const { payment } = checkoutForms();
 const { paymentErrors } = checkoutErrors();
-const { addPayment, useSavedPayment } = usePayment();
+const { addPayment, useSavedPayment } = paymentApi();
 
 import { watch } from "vue";
-import { usePayment } from "@/feature/checkout/checkout-actions/use.payment.ts";
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
-import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors";
-import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
+import { paymentApi } from "@/feature/checkout/api/payment.api.ts";
+import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
+import { checkoutErrors } from "@/feature/checkout/lib/checkout.errors.ts";
+import { checkoutApi } from "@/feature/checkout/api/checkout.api.ts";
 
 import arrow from "@/app/assets/icons/arrows/right-shop.svg";
-import BaseButton from "@/shared/ui/base/button/BaseButton.vue";
-import PaymentMethods from "./payment-items/PaymentMethods.vue";
-import SavedCheckoutPayment from "@/feature/checkout/payment/SavedCheckoutPayment.vue";
+import BaseButton from "@/shared/ui/BaseButton.vue";
+import PaymentMethods from "./PaymentMethods.vue";
+import SavedCheckoutPayment from "@/feature/checkout/ui/SavedCheckoutPayment.vue";
 
 watch(() => [payment.value.cardNumber, payment.value.expiryDate, payment.value.cardCvv, payment.value.paymentMethod],
     ([cardNumber, expiryDate, cardCvv, paymentMethod]) => {

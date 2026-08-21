@@ -1,5 +1,5 @@
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
-import { checkoutErrors } from "@/shared/composables/errors/errors-messages/checkout.errors";
+import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
+import { checkoutErrors } from "@/feature/checkout/lib/checkout.errors.ts";
 
 const { informationErrors, shippingErrors, paymentErrors } = checkoutErrors();
 const { information, informationMessages, shipping, shippingMessages, payment, paymentMessages} = checkoutForms();

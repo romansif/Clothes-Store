@@ -1,19 +1,20 @@
 import { handler } from "@/shared/api/http";
-import { useFormsErrors } from "@/shared/composables/errors/errors-middleware/forms.errors";
-import { usersStore, type UserCheckoutAddress } from "@/shared/composables/stores/users.store";
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
-import { useBaseModals } from "@/shared/composables/modals/base.modals";
-import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
-import { clearCheckoutForm } from "@/shared/composables/clear-forms/clear.checkout.ts";
+import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
+import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
+import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { checkoutApi } from "@/feature/checkout/api/checkout.api.ts";
+import { clearCheckoutForm } from "@/feature/checkout/lib/clear.checkout.ts";
+import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
+import type { UserCheckoutAddress } from "@/feature/checkout/model/checkout.types.ts";
 
 const { information } = checkoutForms();
 const { openNotify, loading } = useBaseModals();
-const { userAddresses, userAddress } = usersStore();
+const { userAddresses, userAddress } = checkoutStore();
 const { createInformationErrors } = useFormsErrors();
 const { clearInformationForm } = clearCheckoutForm();
-const { isChosenAddress, isChosenContactInfo, informationId } = checkout();
+const { isChosenAddress, isChosenContactInfo, informationId } = checkoutApi();
 
-export const useAddress = () => {
+export const adressApi = () => {
     const getAddresses = async () => {
         loading.value = true;
 

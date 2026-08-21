@@ -19,23 +19,22 @@
     <div class="flex flex-col gap-2">
       <label>CVV</label>
       <IMask v-model.value="payment.cardCvv" type="text" inputmode="numeric" :placeholder="cardCvvPlaceholder"
-          :class="cardCvvClass" :mask="cardCvv.mask"/>
+          :class="cardCvvClass" :mask="cardCvvMask.mask"/>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-
 const { payment } = checkoutForms();
-const { cardNumberMask, expiryDateMask, cardCvv } = usersStore();
+const { cardNumberMask, expiryDateMask, cardCvvMask } = checkoutStore();
 const { carNameClass, cardNumberClass, expiryDateClass, cardCvvClass } = paymentClasses();
 const { cardNumberPlaceholder, expiryDatePlaceholder, cardCvvPlaceholder } = checkoutPlaceholder();
 
 import { IMaskComponent as IMask } from "vue-imask";
-import { usersStore } from "@/shared/composables/stores/users.store";
-import { checkoutForms } from "@/shared/composables/forms/checkout.forms";
-import { paymentClasses } from "@/shared/composables/style/checkout-style/payment.classes.ts";
-import { checkoutPlaceholder } from "@/feature/checkout/checkout-actions/checkout.placeholder.ts";
+import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
+import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
+import { paymentClasses } from "@/shared/constants/checkout/payment.classes.ts";
+import { checkoutPlaceholder } from "@/feature/checkout/api/checkout.placeholder.ts";
 </script>
 
 <style scoped>

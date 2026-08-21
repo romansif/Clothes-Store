@@ -1,32 +1,6 @@
 import { ref } from 'vue'
-
-interface InformationErrors {
-    emailError: boolean,
-    phoneError: boolean,
-    firstNameError: boolean,
-    lastNameError: boolean,
-    countryError: boolean,
-    stateRegionError: boolean,
-    addressError: boolean,
-    cityError: boolean,
-    postalCodeError: boolean,
-}
-
-interface ShippingError {
-    deliveryError: boolean
-}
-
-interface PaymentError {
-    cardNumberError: boolean,
-    expiryDateError: boolean,
-    cardCvvError: boolean,
-    paymentMethodError: boolean,
-}
-
-interface IsAgreeError {
-    agreeError: boolean,
-}
-
+import { type InformationErrors, type ShippingError,
+    type PaymentError, type IsAgreeError } from "@/feature/checkout/model/checkout.types.ts";
 
 const informationErrors = ref<InformationErrors>({
     emailError: false,

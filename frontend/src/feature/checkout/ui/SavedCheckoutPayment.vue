@@ -16,14 +16,14 @@
 </template>
 
 <script setup lang="ts">
-const { getPayments } = usePayment();
-const { toggleShowPayment } = checkout();
+const { getPayments } = paymentApi();
+const { toggleShowPayment } = checkoutApi();
 
 import { onMounted } from "vue";
-import { checkout } from "@/feature/checkout/checkout-actions/checkout.ts";
-import { usePayment } from "@/feature/checkout/checkout-actions/use.payment.ts";
+import { checkoutApi } from "@/feature/checkout/api/checkout.api.ts";
+import { paymentApi } from "@/feature/checkout/api/payment.api.ts";
 
-import PaymentList from "@/feature/checkout/payment/saved-payment/PaymentList.vue";
+import PaymentList from "@/feature/checkout/ui/PaymentList.vue";
 
 onMounted(async () => {
   await getPayments();
