@@ -1,6 +1,7 @@
 <template>
   <div class="md:px-5 sm:px-4 px-4 lg:w-75 xl:w-100">
     <div class="flex">
+      <h1 class="font-medium mt-2.5">YOUR ORDER</h1>
       <span class="px-2 py-1 bg-white ml-auto">
         (
           <span class="text-blue-700 font-medium">
@@ -9,7 +10,6 @@
         )
       </span>
     </div>
-    <h1 class="font-medium">YOUR ORDER</h1>
     <OrderInfoList />
     <div class="border-b border-gray-300 mt-5"></div>
     <div class="flex flex-col font-medium text-xs mt-3 gap-2">
