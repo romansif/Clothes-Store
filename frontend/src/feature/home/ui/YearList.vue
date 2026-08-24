@@ -7,24 +7,22 @@
     <div class="flex flex-col gap-4 items-center">
       <span class="text-xl font-semibold">As of now, this annual releases have not yet appeared.</span>
       <span class="text-red-600">Or a glitch occurred: click to refresh.</span>
-      <BaseButton name="Try again" variant="refresh" @click="resetError" />
+      <BaseButton name="Try again" variant="refresh" @click="getYearProducts" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 const { productsYear } = productStore();
+const { getYearProducts } = productsApi();
 const { vHorizontalScroll } = productsCover()
 
 import { productStore } from "@/feature/products/model/product.store.ts"
+import { productsApi } from "@/feature/products/api/products.api.ts";
 import { productsCover } from "@/shared/lib/product-image.ts";
 
 import YearItem from "@/feature/home/ui/YearItem.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";
-
-const resetError = () => {
-  window.location.reload();
-}
 </script>
 
 

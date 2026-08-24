@@ -41,9 +41,9 @@ export const productsApi = () => {
         }
     };
 
-    const getWeekProducts = async () => {
+    const getWeekProducts = async (type: string, filter: string) => {
         try{
-            const res = await handler(`/products/week`, {
+            const res = await handler(`/products/week/${type}/${filter}`, {
                 method: 'GET',
             })
             console.log(res);
@@ -67,7 +67,7 @@ export const productsApi = () => {
 
     const getNewCollections = async (collection: string) => {
         try{
-            const res = await handler(`/products/ne-collection/${collection}`, {
+            const res = await handler(`/products/new-collection/${collection}`, {
                 method: 'GET',
             })
             console.log(res);

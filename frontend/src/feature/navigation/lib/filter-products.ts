@@ -3,10 +3,24 @@ import { productsApi } from "@/feature/products/api/products.api.ts";
 import { productStore } from "@/feature/products/model/product.store.ts";
 
 const { sizes } = productStore();
-const { getFilteredProducts } = productsApi();
+const { getFilteredProducts, getWeekProducts, getYearProducts, getNewCollections } = productsApi();
 
 export const filterProducts = () => {
     const selectedGender = ref<string>('ALL');
+
+    const collections = ref<Record<string, boolean>>({
+        Essence: false,
+        Silence: false,
+        Blueprint: false,
+        'Chapter |': false,
+        Raw: false,
+        Mono: false,
+        Grid: false,
+        Draft: false,
+        Void: false,
+        Static: false,
+    });
+
 
     const stackProducts = ref<Record<string, boolean>>({
         Availability: false,
@@ -49,6 +63,7 @@ export const filterProducts = () => {
     }
 
     const clearActiveKey = () => {
+        setActiveKey(collections.value, '');
         setActiveKey(colors.value, '');
         setActiveKey(genders.value, '');
         setActiveKey(category.value, '');
@@ -60,6 +75,10 @@ export const filterProducts = () => {
         if(categoryGroup === "ALL") {
             clearActiveKey();
             setActiveKey(category.value, value);
+        }
+        if(categoryGroup === 'COLLECTION'){
+            clearActiveKey();
+            setActiveKey(collections.value, value);
         }
         if(categoryGroup === 'CATEGORY') {
             clearActiveKey();
@@ -75,7 +94,14 @@ export const filterProducts = () => {
             clearActiveKey();
             setActiveKey(colors.value, value)
         }
-        await getFilteredProducts(categoryGroup, value);
+
+        if(categoryGroup === 'COLLECTION') {
+            await getNewCollections(value)
+        }else{
+            await getFilteredProducts(categoryGroup, value);
+            await getWeekProducts(categoryGroup, value)
+            await getYearProducts(categoryGroup, value)
+        }
 
         sizes.value.forEach(s => {
             s.isActive = false
@@ -96,6 +122,7 @@ export const filterProducts = () => {
         toggleFilter,
         toggleSize,
 
+        collections,
         category,
         categories,
         stackProducts,

@@ -14,7 +14,9 @@
           <router-link :to="{name: 'products'}" class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120">
             Products
           </router-link>
-          <span class="text-[#A3A3A3] cursor-pointer transition duration-400 hover:text-black hover:scale-120">New</span>
+          <router-link :to="{name: 'products/new-collections'}" class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120">
+            New
+          </router-link>
         </div>
       </div>
       <div class="xl:flex xl:gap-10

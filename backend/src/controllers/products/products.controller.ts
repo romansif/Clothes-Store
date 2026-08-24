@@ -47,18 +47,33 @@ export const productsController = {
         }
     },
 
-    async getWeekProducts (_req: Request, res: Response) {
+    async getWeekProducts (req: Request, res: Response) {
         try {
+            const { type, filter } = req.params;
+            const db = dbService.readDB();
+
             const sevenDayAgo = new Date();
             sevenDayAgo.setDate(sevenDayAgo.getDate() - 7);
 
-            const db = dbService.readDB();
-            const products: any[] = db.products || [];
+            let products: any[] = (db.products || []).filter((p: any) => new Date(p.created_at) >= sevenDayAgo);
 
-            const weekProducts = products.filter(p => new Date(p.created_at) >= sevenDayAgo);
-            weekProducts.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+            if (type && type !== "ALL") {
+                if (type === "CATEGORY") {
+                    products = products.filter(p => p.category === filter);
+                } else if (type === "SIZE") {
+                    products = products.filter(p => Array.isArray(p.sizes) && p.sizes.includes(filter));
+                } else if (type === "COLOR") {
+                    products = products.filter(p => Array.isArray(p.colors) && p.colors.some((c: any) => c.colorName === filter));
+                } else if (type === "STATUS") {
+                    products = products.filter(p => p.status === filter);
+                } else if (type === "GENDER") {
+                    products = products.filter(p => p.gender === filter);
+                }
+            }
 
-            res.json(weekProducts);
+            products.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+
+            res.json(products);
         } catch (err) {
             console.error('Failed to get the week product list:', err);
             const message = err instanceof Error ? err.message : 'Unknown Error';
@@ -69,15 +84,23 @@ export const productsController = {
     async getYearProducts (req: Request, res: Response) {
         try {
             const { type, filter } = req.params;
+            const db = dbService.readDB();
 
             const last365Days = new Date();
             last365Days.setDate(last365Days.getDate() - 365);
 
-            const db = dbService.readDB();
             let products: any[] = (db.products || []).filter((p: any) => new Date(p.created_at) >= last365Days);
 
             if (type && type !== "ALL") {
-                if (type === "GENDER") {
+                if (type === "CATEGORY") {
+                    products = products.filter(p => p.category === filter);
+                } else if (type === "SIZE") {
+                    products = products.filter(p => Array.isArray(p.sizes) && p.sizes.includes(filter));
+                } else if (type === "COLOR") {
+                    products = products.filter(p => Array.isArray(p.colors) && p.colors.some((c: any) => c.colorName === filter));
+                } else if (type === "STATUS") {
+                    products = products.filter(p => p.status === filter);
+                } else if (type === "GENDER") {
                     products = products.filter(p => p.gender === filter);
                 }
             }
@@ -94,32 +117,28 @@ export const productsController = {
 
     async getNewCollections(req: Request, res: Response) {
         try {
+            const { collection } = req.params;
             const db = dbService.readDB();
-            const { collection } = req.query;
+            let products: any[] = [...(db.products || [])];
 
             const sixMonthsAgo = new Date();
             sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
-
-            let products: any[] = [...(db.products || [])];
 
             products = products.filter(
                 product => new Date(product.created_at) >= sixMonthsAgo
             );
 
             if (collection && collection !== 'ALL') {
-                products = products.filter(
-                    product => product.collection === collection
-                );
+               products = products.filter(p => p.collection === collection);
             }
+
             products.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
 
-            return res.status(200).json(products);
-        } catch (error) {
-            console.error(error);
-
-            return res.status(500).json({
-                message: 'Failed to get new collections'
-            });
+            res.json(products);
+        } catch (err) {
+            console.error('Failed to get the searched product list:', err);
+            const message = err instanceof Error ? err.message : 'Unknown Error';
+            res.status(500).json({ error: message });
         }
     },
 

@@ -12,7 +12,9 @@
           <router-link :to="{name: 'products'}" :class="selectedPageClass(isProducts)">
             Products
           </router-link>
-          <span class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120 cursor-pointer">New</span>
+          <router-link :to="{name: 'products/new-collections'}" :class="selectedPageClass(isNewCollections)">
+            New
+          </router-link>
         </div>
       </div>
       <div class="xl:flex xl:gap-10
@@ -64,6 +66,7 @@ const route = useRoute();
 const isHome = computed(() => route.name === "");
 const isProducts = computed(() => route.name === "products");
 const isProfile = computed(() => route.name !== "profile");
+const isNewCollections = computed(() => route.name === "products/new-collections");
 </script>
 
 <style scoped>
