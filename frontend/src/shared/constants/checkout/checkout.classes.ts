@@ -4,12 +4,12 @@ export const checkoutClasses = () => {
         hover:bg-gray-50 border border-gray-300 rounded-xl p-2`, isChosen ? 'bg-gray-50' : ''
     ];
 
-    const checkoutVisibilityClass = (step: boolean) => [
-        step ? 'hidden' : 'flex flex-col lg:flex-row lg:gap-50 xl:gap-100'
+    const checkoutClass = () => [
+        'flex flex-col lg:flex-row lg:gap-50 xl:gap-100'
     ]
 
     return {
         getSavedInfoClass,
-        checkoutVisibilityClass
+        checkoutClass
     }
 }
