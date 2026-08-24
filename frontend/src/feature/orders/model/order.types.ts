@@ -14,7 +14,7 @@ export interface OrderItem {
     sizes: string,
     gender: string,
     quantity: number,
-    collections: string,
+    collection: string,
     created_at: string,
 }
 

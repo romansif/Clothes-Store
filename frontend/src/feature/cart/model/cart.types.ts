@@ -32,6 +32,6 @@ export interface CartItem {
     quantity: number,
     status: string,
     checked: boolean,
-    collections: string,
+    collection: string,
     created_at: string,
 }

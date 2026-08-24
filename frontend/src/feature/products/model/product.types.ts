@@ -7,7 +7,7 @@ export interface ProductForm {
     price: string,
     gender: string,
     quantity: string,
-    collections: string,
+    collection: string,
 }
 
 export interface ProductColor {
@@ -68,7 +68,7 @@ export interface Product {
     quantity: number,
     status: string,
     checked: boolean,
-    collections: string,
+    collection: string,
     created_at: string,
 }
 

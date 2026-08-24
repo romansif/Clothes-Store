@@ -12,7 +12,7 @@ const { openNotify, loading } = useBaseModals()
 const { clearProductForm } = clearProductsForms();
 const { createProductErrors } = useFormsErrors();
 const { createProductForm, moreCreateItem } = productForms();
-const { allProducts, products, productsWeek, productsYear, myProducts, product,
+const { allProducts, products, productsWeek, productsYear, newCollections, myProducts, product,
     productId, productFiles, currentFile, productsPreview } = productStore();
 
 export const productsApi = () => {
@@ -60,6 +60,18 @@ export const productsApi = () => {
             })
             console.log(res);
             productsYear.value = res;
+        }catch(err){
+            console.error(`Failed to get the filtered products:`, err);
+        }
+    };
+
+    const getNewCollections = async (collection: string) => {
+        try{
+            const res = await handler(`/products/ne-collection/${collection}`, {
+                method: 'GET',
+            })
+            console.log(res);
+            newCollections.value = res;
         }catch(err){
             console.error(`Failed to get the filtered products:`, err);
         }
@@ -141,7 +153,7 @@ export const productsApi = () => {
             });
             formData.append('gender', createProductForm.value.gender);
             formData.append('quantity', createProductForm.value.quantity);
-            formData.append('collections', createProductForm.value.collections);
+            formData.append('collection', createProductForm.value.collection);
             formData.append('status', 'Availability');
 
             productFiles.value.forEach((file) => {
@@ -213,7 +225,7 @@ export const productsApi = () => {
             await handler(`/products/${id}`, {
                 method: "PATCH",
                 body: JSON.stringify({
-                    collections: createProductForm.value.collections,
+                    collections: createProductForm.value.collection,
                     title: createProductForm.value.title,
                     category: createProductForm.value.category,
                     material: createProductForm.value.material,
@@ -293,9 +305,14 @@ export const productsApi = () => {
     return{
         getAllProducts,
         getFilteredProducts,
+
         getWeekProducts,
         getYearProducts,
+
+        getNewCollections,
+
         getMyProducts,
+
         getProductId,
         getProduct,
 

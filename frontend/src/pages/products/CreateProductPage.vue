@@ -22,18 +22,18 @@ const { createProductForm, moreCreateItem, createProductFormMessages } = product
 const { openSelectProductCard, fileInput } = useProductsModals();
 
 watch(() => [
-      createProductForm.value.title, createProductForm.value.collections,
+      createProductForm.value.title, createProductForm.value.collection,
       createProductForm.value.category, createProductForm.value.material,
       createProductForm.value.price, createProductForm.value.description,
       moreCreateItem.colors, moreCreateItem.sizes,
       createProductForm.value.gender, createProductForm.value.quantity
     ],
 
-    ([title, collections, category, material, price, description, color, size, gender, quantity]) => {
+    ([title, collection, category, material, price, description, color, size, gender, quantity]) => {
       if(title){
         createProductFormErrors.value.titleError = false;
       }
-      if(collections){
+      if(collection){
         createProductFormErrors.value.collectionsError = false;
       }
       if(category){
@@ -103,9 +103,9 @@ watch(() => [
                   <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
                     COLLECTIONS
                   </label>
-                  <select v-model="createProductForm.collections" :class="[`w-full border border-gray-300 rounded-sm
+                  <select v-model="createProductForm.collection" :class="[`w-full border border-gray-300 rounded-sm
                           outline-none px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,
-                            createProductForm.collections ? 'text-black' : '',
+                            createProductForm.collection ? 'text-black' : '',
                             createProductFormErrors.collectionsError ? 'border-red-500' : '']">
                     <option disabled hidden value="">
                       Void

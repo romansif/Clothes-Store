@@ -49,7 +49,6 @@ export const filterProducts = () => {
     }
 
     const clearActiveKey = () => {
-
         setActiveKey(colors.value, '');
         setActiveKey(genders.value, '');
         setActiveKey(category.value, '');

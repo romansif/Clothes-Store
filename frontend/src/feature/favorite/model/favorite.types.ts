@@ -17,6 +17,6 @@ export interface FavoriteItem {
     status: string,
     favorite: boolean,
     checked: boolean,
-    collections: string,
+    collection: string,
     created_at: string,
 }

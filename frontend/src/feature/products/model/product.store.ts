@@ -67,6 +67,8 @@ const myProducts = ref<Product[]>([]);
 const productsWeek = ref<Product[]>([]);
 const productsYear = ref<Product[]>([]);
 
+const newCollections = ref<Product[]>([]);
+
 const product = ref<Product>({} as Product);
 const productId = ref<string>(localStorage.getItem("productId") || '');
 
@@ -85,6 +87,8 @@ export const productStore = () => {
 
         productsWeek,
         productsYear,
+
+        newCollections,
 
         myProducts,
 

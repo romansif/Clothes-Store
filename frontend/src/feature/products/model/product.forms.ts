@@ -10,7 +10,7 @@ const createProductForm = ref<ProductForm>({
     price: '',
     gender: '',
     quantity: '',
-    collections: '',
+    collection: '',
 })
 
 const moreCreateItem = reactive({

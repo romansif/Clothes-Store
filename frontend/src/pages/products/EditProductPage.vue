@@ -22,7 +22,7 @@ const { createProduct, updateProductImages, updateProductColors, updateProductDe
 const { productInfoPreview, pureCards, pureInfoColors, pureColorsName, pureSizesName, isAvailableSizes } = productsCover();
 
 watch(() => [
-      createProductForm.value.title, createProductForm.value.collections,
+      createProductForm.value.title, createProductForm.value.collection,
       createProductForm.value.category, createProductForm.value.material,
       createProductForm.value.price, createProductForm.value.description,
       moreCreateItem.colors, moreCreateItem.sizes,
@@ -112,12 +112,12 @@ onMounted(async () => {
                   <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
                     COLLECTIONS:
                     <span class="text-black">
-                      {{ product.collections }}
+                      {{ product.collection }}
                     </span>
                   </label>
-                  <select v-model="createProductForm.collections" :class="[`w-full border border-gray-300 rounded-sm
+                  <select v-model="createProductForm.collection" :class="[`w-full border border-gray-300 rounded-sm
                             outline-none px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,
-                              createProductForm.collections ? 'text-black' : '',
+                              createProductForm.collection ? 'text-black' : '',
                               createProductFormErrors.collectionsError ? 'border-red-500' : '']">
                     <option disabled hidden value="">
                       Void
@@ -258,7 +258,7 @@ onMounted(async () => {
                   <div class="flex gap-6">
                     <label v-for="(color, index) in pureInfoColors(product)" :key="color.hex" :title="color.hex"
                            :style="{ background: color.hex }"  class="w-17.5 h-17.5">
-                      <input @change="(e) => updateProductColors(product, index, e)" type="color"
+                      <input @change="(e) => updateProductColors(product, (index as number), e)" type="color"
                              class="h-full opacity-0 cursor-pointer" />
                     </label>
                   </div>
