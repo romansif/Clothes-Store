@@ -11,7 +11,8 @@
             Out Of Stack
           </span>
           <img @click="toggleToFavorite(product.productId, 'favorite', product.productId)"
-               :src="product.favorite ? liked : like" alt="" class="absolute top-0.5 left-75.5 w-8 cursor-pointer">
+               :src="isFavorite(product.productId, userData.id) ? liked : like" alt=""
+               class="absolute top-0.5 left-75.5 w-8 cursor-pointer">
         </div>
         <span class="whitespace-normal mt-2 text-[#A3A3A3] text-sm sm:text-lg">
           {{ product.material }} {{ product.category }}
@@ -33,13 +34,17 @@
 </template>
 
 <script setup lang="ts">
+const { userData } = usersStore();
 const { favorite } = favoriteStore();
+const { isFavorite } = useFavorite();
 const { getProductId } = productsApi();
-const { isOutOfStack, productPreview } = productsCover();
 const { toggleToFavorite } = favoritesApi();
 const { productPreviewClass } = baseClasses();
+const { isOutOfStack, productPreview } = productsCover();
 
-import { productsCover } from "@/shared/lib/product-image.ts";
+import { useFavorite } from "@/feature/favorite/lib/use-favorite.ts";
+import { usersStore } from "@/feature/profile/model/users.store.ts";
+import { productsCover } from "@/shared/lib/product-cover.ts";
 import { baseClasses } from "@/shared/constants/base.classes.ts";
 import { productsApi } from "@/feature/products/api/products.api.ts";
 import { favoriteStore } from "@/feature/favorite/model/favorite.store.ts";

@@ -11,7 +11,7 @@
             Out Of Stack
           </span>
           <img @click="toggleToFavorite(product.id, 'cart', product.productId)"
-               :src="isFavorite(product.productId) ? liked : like" alt="" class="absolute top-0.5 left-75.5 w-8 cursor-pointer">
+               :src="isFavorite(product.productId, userData.id) ? liked : like" alt="" class="absolute top-0.5 left-75.5 w-8 cursor-pointer">
         </div>
         <span class="whitespace-normal mt-2 text-[#A3A3A3] text-sm sm:text-lg">
           {{ product.material }} {{ product.category }}
@@ -30,7 +30,7 @@
           <img @click="toggleDeleteChoice(
               'Are you sure you want to delete this cart product?', 'DELETE_CART_ITEM', product.id)"
                :src="del" alt="" class="transition duration-400 hover:scale-120 cursor-pointer">
-          <img v-if="product.status === 'Availability'" :src="isChecked(product.productId)? check_square : square" alt=""
+          <img v-if="product.status === 'Availability'" :src="product.checked ? check_square : square" alt=""
                @click="checkCartItem(product.id, product.productId, product)"
                class="cursor-pointer w-7.5 transition duration-400 hover:scale-120">
         </div>
@@ -54,7 +54,7 @@
 
 <script setup lang="ts">
 const { cart } = cartStore();
-const { isChecked } = useCart()
+const { userData } = usersStore();
 const { getProductId } = productsApi();
 const { isFavorite } = useFavorite();
 const { sizeClass, sizeUrl } = useProfile();
@@ -71,9 +71,9 @@ import like from '@/assets/icons/nav/like.png';
 import liked from '@/assets/icons/nav/liked.png';
 import check_square from '@/assets/icons/squares/check-square.png';
 
-import { useCart } from "@/feature/cart/lib/use-cart.ts";
+import { usersStore } from "@/feature/profile/model/users.store.ts";
 import { useFavorite } from "@/feature/favorite/lib/use-favorite.ts";
-import { productsCover } from "@/shared/lib/product-image.ts";
+import { productsCover } from "@/shared/lib/product-cover.ts";
 import { cartStore } from "@/feature/cart/model/cart.store.ts";
 import { productsApi } from "@/feature/products/api/products.api.ts";
 import { favoritesApi } from "@/feature/favorite/api/favorites.api.ts";

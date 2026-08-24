@@ -33,7 +33,7 @@ import { onMounted } from "vue";
 import { productsApi } from "@/feature/products/api/products.api.ts";
 import { productStore } from "@/feature/products/model/product.store.ts";
 import { useBaseModals } from "@/shared/lib/base.modals.ts";
-import { useProfileModals } from "@/feature/profile/lib/profile.modals.ts";;
+import { useProfileModals } from "@/feature/profile/lib/profile.modals.ts";
 
 import MainNavBar from "@/feature/navigation/ui/MainNavBar.vue";
 import icon_products from "@/assets/icons/products/icon-products.svg";

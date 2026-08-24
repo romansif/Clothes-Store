@@ -5,7 +5,9 @@ import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
 import { useBaseModals } from "@/shared/lib/base.modals.ts";
 import { clearCheckoutForm } from "@/feature/checkout/lib/clear.checkout.ts";
 import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
+import { usersStore } from "@/feature/profile/model/users.store.ts";
 
+const { userData } = usersStore();
 const { shipping } = checkoutForms();
 const { userShipping } = checkoutStore();
 const { openNotify  } = useBaseModals();
@@ -27,12 +29,11 @@ export const shippingApi = () => {
     };
 
     const addShipping = async () => {
-        const userId = localStorage.getItem("userId");
         try{
             const newShipping = await handler(`/shipping`, {
                 method: "POST",
                 body: JSON.stringify({
-                    userId: userId,
+                    userId: userData.id,
                     paymentId: uuidv4(),
                     delivery: shipping.value.delivery,
                 })

@@ -11,12 +11,12 @@ import { useBaseModals } from "@/shared/lib/base.modals.ts";
 import { addToCartForm } from "@/feature/cart/model/cart.forms.ts";
 import { addToCartErrors } from "@/feature/cart/lib/cart.errors.ts";
 
+const { cartFormMessages } = addToCartForm();
+const { cartFormErrors } = addToCartErrors();
 const { createProductFormMessages } = productForms();
 const { createProductFormErrors } = productsFormErrors();
 const { registerFormMessages, loginFormMessages } = authForms();
 const { registerFormErrors, loginFormErrors } = authFormsErrors();
-const { cartFormMessages } = addToCartForm();
-const { cartFormErrors } = addToCartErrors();
 const { informationErrors, shippingErrors, paymentErrors} = checkoutErrors();
 const { informationMessages, shippingMessages, paymentMessages } = checkoutForms();
 const { cancelChoiceMessage, cancelChoiceError } = useBaseModals();

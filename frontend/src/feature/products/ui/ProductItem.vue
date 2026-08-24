@@ -9,7 +9,8 @@
         <span v-if="isOutOfStack(product)" class="absolute w-100 top-45 -left-7 text-6xl font-semibold -rotate-50">
           Out Of Stack
         </span>
-        <img @click="toggleToFavorite(product.id, 'product', product.id)" :src="isFavorite(product.id) ? liked : like" alt=""
+        <img @click="toggleToFavorite(product.id, 'product', product.id)"
+             :src="isFavorite(product.id, userData.id) ? liked : like" alt=""
              class="absolute top-0.5 left-31 w-6.25 cursor-pointer sm:w-8.75 sm:left-58.5 md:left-66.5 lg:left-58.5 xl:left-77">
       </div>
       <span class="whitespace-normal mt-2 text-[#A3A3A3] text-sm sm:text-lg">
@@ -28,6 +29,7 @@
 </template>
 
 <script setup lang="ts">
+const { userData } = usersStore();
 const { isFavorite } = useFavorite();
 const { products } = productStore();
 const { getProductId } = productsApi();
@@ -35,9 +37,10 @@ const { productPreviewClass } = baseClasses();
 const { toggleToFavorite } = favoritesApi();
 const { isOutOfStack, productPreview } = productsCover();
 
+import { usersStore } from "@/feature/profile/model/users.store.ts";
 import { useFavorite } from "@/feature/favorite/lib/use-favorite.ts";
 import { baseClasses } from "@/shared/constants/base.classes.ts";
-import { productsCover } from "@/shared/lib/product-image.ts";
+import { productsCover } from "@/shared/lib/product-cover.ts";
 import { productsApi } from "@/feature/products/api/products.api.ts";
 import { favoritesApi } from "@/feature/favorite/api/favorites.api.ts";
 import { productStore } from "@/feature/products/model/product.store.ts";

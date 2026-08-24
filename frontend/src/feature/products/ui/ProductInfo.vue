@@ -10,7 +10,8 @@
             $ {{ product.price }}
           </span>
         </div>
-        <img @click="toggleToFavorite(product.id, 'product', product.id)" :src="isFavorite(product.id) ? liked : like" alt=""
+        <img @click="toggleToFavorite(product.id, 'product', product.id)"
+             :src="isFavorite(product.id, userData.id) ? liked : like" alt=""
              class="ml-auto w-8.75 h-8.75 cursor-pointer">
       </div>
       <span class="text-sm font-medium text-[#A3A3A3]">
@@ -29,8 +30,8 @@
         </span>
         <div class="flex justify-start items-center lg:gap-5">
           <div v-for="color in pureInfoColors(product)" :key="color.hex" :style="{ background: color.hex }" :title="color.hex"
-               @click="addColor(color, user)"
-               :class="selectedColorClass(color, product, user)"></div>
+               @click="addColor(color, userData)"
+               :class="selectedColorClass(color, product, userData.role)"></div>
           </div>
           <span v-if=cartFormErrors.colorError class="text-red-600 text-xs">
             {{ cartFormMessages.colorMessage }}
@@ -40,7 +41,7 @@
         <span class="font-medium text-[#A3A3A3]">Sizes</span>
         <div class="flex justify-start items-center lg:gap-5">
           <img v-for="size in (isAvailableSizes as any)" :key="size.name" :src=size.url alt=""
-               @click="addSize(size, user)" :class="selectedSizesClass(size, product, user)">
+               @click="addSize(size, userData)" :class="selectedSizesClass(size, product, userData.role)">
         </div>
         <span v-if=cartFormErrors.sizeError class="text-red-600 text-xs">
           {{ cartFormMessages.sizeMessage }}
@@ -51,16 +52,16 @@
       <span class="text-[#A3A3A3] text-sm">
         FIND YOUR SIZE |  MEASUREMENT GUIDE
       </span>
-      <router-link v-if="!user" :to="{name: 'signIn'}">
+      <router-link v-if="!userData.id" :to="{name: 'signIn'}">
         <span class="hidden bg-black text-white font-semibold text-sm py-4 w-full text-center
             font-[Montserrat] lg:block">
           ADD TO CART
         </span>
       </router-link>
-      <BaseButton @click="addToCart()" v-if="product.quantity !== 0 && !isInCart" name="ADD TO CART" variant="addToCart" />
+      <BaseButton @click="addToCart()" v-if="userData.role !== 'Seller' && product.quantity !== 0 && !isInCart" name="ADD TO CART" variant="addToCart" />
       <BaseButton v-if="isValidOutOfStack(product)" name="OUT OF STACK" variant="outOfStack" />
-      <div v-if="user && isInCart" class="flex items-center gap-18">
-        <div class="flex gap-6 bg-zinc-800 py-4 px-3 text-lg rounded-md transition duration-300 hover:scale-108">
+      <div v-if="userData.id && isInCart" class="flex items-center gap-18">
+        <div class="flex gap-6 bg-zinc-800 py-4 px-3 text-lg transition duration-300 hover:scale-108">
           <img :src="plus" @click="updateCartItem('add', isInCart.id, isInCart.status)" alt=""
                class="bg-zinc-600 text-white px-2 w-8.75 rounded-md transition duration-300 hover:bg-zinc-400" />
           <span class="text-white">{{ isInCart.quantity }}</span>
@@ -68,7 +69,7 @@
                class="bg-zinc-600 text-white px-2 w-8.75 rounded-md transition duration-300 hover:bg-zinc-400" />
         </div>
         <router-link :to="{ name: 'cart' }">
-          <span class="bg-black text-white font-semibold py-4 px-19 font-[Montserrat]
+          <span class="bg-black text-white font-semibold py-4.5 px-19 font-[Montserrat]
               lg:block cursor-pointer text-start transition duration-400 transform hover:scale-108">Go to Cart</span>
         </router-link>
       </div>
@@ -77,7 +78,7 @@
 </template>
 
 <script setup lang="ts">
-const { user } = usersStore();
+const { userData } = usersStore();
 const { product } = productStore();
 const { isFavorite } = useFavorite();
 const { addColor, addSize } = useCart();
@@ -89,7 +90,7 @@ const { selectedColorClass, selectedSizesClass } = productsClasses();
 const { isValidOutOfStack, pureInfoColors, isAvailableSizes, isInCart } = productsCover();
 
 import { watch } from "vue";
-import { productsCover } from "@/shared/lib/product-image.ts";
+import { productsCover } from "@/shared/lib/product-cover.ts";
 import { cartApi } from "@/feature/cart/api/cart.api.ts";
 import { useCart } from "@/feature/cart/lib/use-cart.ts";
 import { useFavorite } from "@/feature/favorite/lib/use-favorite.ts";
@@ -113,7 +114,6 @@ watch(() => [cartForm.value.colors, cartForm.value.sizes], ([color, size]) => {
   if(size){
     cartFormErrors.value.sizeError = false
   }
-
 })
 </script>
 

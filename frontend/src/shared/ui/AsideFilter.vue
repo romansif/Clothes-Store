@@ -87,8 +87,6 @@
 </template>
 
 <script setup lang="ts">
-import { productsClasses } from "@/shared/constants/products/products.classes.ts";
-
 const { getAllProducts } = productsApi();
 const { allProducts, sizes } = productStore();
 const { toggleFilterAside } = useProductsModals();
@@ -98,6 +96,7 @@ const { toggleFilter, toggleSize, stackProducts, genders, colors, category, cate
 import { useRoute } from 'vue-router';
 import { computed, onMounted } from "vue";
 import { filterProducts } from "@/feature/navigation/lib/filter-products.ts";
+import { productsClasses } from "@/shared/constants/products/products.classes.ts";
 import { productsApi } from "@/feature/products/api/products.api.ts";
 import { productStore } from "@/feature/products/model/product.store.ts";
 import { useProductsModals } from "@/feature/products/lib/products.modals.ts";
