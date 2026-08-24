@@ -26,6 +26,11 @@ export const productsClasses = () => {
         hover:text-black hover:scale-105`, isActive ? ' border-black scale-105' : 'text-[#A3A3A3] border-[#A3A3A3]'
     ];
 
+    const selectedCollectionsClass = (isActive: boolean) => [
+        `cursor-pointer border-2 px-6 py-1 text-lg transition duration-400 hover:border-black
+        hover:text-black hover:scale-105`, isActive ? ' border-black scale-105' : 'text-[#A3A3A3] border-[#A3A3A3]'
+    ]
+
     const selectedColorClass = (color: ColorItem, product: CartItem, user: User) => [
         'w-[62px] h-[62px] transition duration-400',
         {
@@ -46,13 +51,14 @@ export const productsClasses = () => {
     const selectedSidebarCategoryClass = (isActive: boolean) => [
         `py-1 cursor-pointer border-2 transition duration-400 hover:border-black hover:text-black hover:scale-105`,
         isActive ? ' border-black scale-105' : 'text-[#A3A3A3] border-[#A3A3A3]'
-    ]
+    ];
 
     return {
         selectGenderClass,
         selectedSizeClass,
         selectedFilterClass,
         selectedCategoryClass,
+        selectedCollectionsClass,
         selectedColorClass,
         selectedSizesClass,
         selectedSidebarCategoryClass
