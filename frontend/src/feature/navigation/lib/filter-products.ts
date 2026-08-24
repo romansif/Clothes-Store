@@ -108,6 +108,14 @@ export const filterProducts = () => {
         })
     };
 
+    const selectGender = async (type: string, filter: string) => {
+        selectedGender.value = filter;
+
+        console.log(selectedGender.value)
+
+        await getYearProducts(type, filter);
+    }
+
     const toggleSize = async (categoryGroup: string, value: string) => {
         sizes.value.forEach(s => {
             s.isActive = s.name === value;
@@ -120,6 +128,7 @@ export const filterProducts = () => {
         selectedGender,
 
         toggleFilter,
+        selectGender,
         toggleSize,
 
         collections,

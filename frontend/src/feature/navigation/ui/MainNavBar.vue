@@ -34,7 +34,7 @@
             </span>
             <div class="relative">
               <img :src=cartImg alt="" class="">
-              <div v-if="unreadCount > 0" class='absolute bottom-7 left-8 bg-black px-3 py-0.5 rounded-full'>
+              <div v-if="unreadCount > 0 && isCart" class='absolute bottom-7 left-8 bg-black px-3 py-0.5 rounded-full'>
                 <span class="text-white text-lg">{{ unreadCount }}</span>
               </div>
             </div>
@@ -66,6 +66,7 @@ const route = useRoute();
 const isHome = computed(() => route.name === "");
 const isProducts = computed(() => route.name === "products");
 const isProfile = computed(() => route.name !== "profile");
+const isCart = computed(() => route.name !== "cart");
 const isNewCollections = computed(() => route.name === "products/new-collections");
 </script>
 

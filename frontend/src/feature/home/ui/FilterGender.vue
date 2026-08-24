@@ -1,30 +1,24 @@
 <template>
   <div class="flex border-b border-gray-300 gap-5 py-3 text-lg">
-    <button @click="selectGender('ALL', 'ALL')" :class="selectGenderClass('ALL')">
-      (
-      All
-      )
-    </button>
-    <button @click="selectGender('GENDER', 'Man')" :class="selectGenderClass('Man')">Man</button>
-    <button @click="selectGender('GENDER', 'Woman')"  :class="selectGenderClass('Woman')">Woman</button>
-    <button @click="selectGender('GENDER', 'Kids')" :class="selectGenderClass('Kids')">Kids</button>
+    <button @click="selectGender('ALL', 'ALL')"
+            :class="[`text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-115 cursor-pointer`,
+             selectedGender === 'ALL' ? 'text-black scale-115' : 'text-[#A3A3A3]']">( All )</button>
+    <button @click="selectGender('GENDER', 'Man')"
+            :class="[`text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-115 cursor-pointer`,
+             selectedGender === 'Man' ? 'text-black scale-115' : 'text-[#A3A3A3]']">Man</button>
+    <button @click="selectGender('GENDER', 'Woman')"
+            :class="[`text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-115 cursor-pointer`,
+             selectedGender === 'Woman' ? 'text-black scale-115' : 'text-[#A3A3A3]']">Woman</button>
+    <button @click="selectGender('GENDER', 'Kids')"
+            :class="[`text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-115 cursor-pointer`,
+             selectedGender === 'Kids' ? 'text-black scale-115' : 'text-[#A3A3A3]']">Kids</button>
   </div>
 </template>
 
 <script setup lang="ts">
+const { selectGender, selectedGender } = filterProducts();
 
-const { selectedGender } = filterProducts();
-const { getYearProducts } = productsApi();
-const { selectGenderClass } = productsClasses();
-
-import { productsApi } from "@/feature/products/api/products.api.ts";
 import { filterProducts } from "@/feature/navigation/lib/filter-products.ts";
-import { productsClasses } from "@/shared/constants/products/products.classes.ts";
-
-const selectGender = async (type: string, filter: string) => {
-  await getYearProducts(type, filter);
-  selectedGender.value = filter;
-}
 </script>
 
 <style scoped>
