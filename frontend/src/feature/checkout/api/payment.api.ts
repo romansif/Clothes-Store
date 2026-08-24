@@ -3,7 +3,7 @@ import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
 import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
 import { useBaseModals } from "@/shared/lib/base.modals.ts";
 import { ordersApi } from "@/feature/orders/api/orders.api.ts";
-import { checkoutApi } from "@/feature/checkout/api/checkout.api.ts";
+import { useCheckout } from "@/feature/checkout/lib/use-checkout.ts";
 import { cartApi } from "@/feature/cart/api/cart.api.ts";
 import { clearCheckoutForm } from "@/feature/checkout/lib/clear.checkout.ts";
 import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
@@ -14,7 +14,7 @@ const { payment } = checkoutForms();
 const { updateCheckedQuantity } = cartApi();
 const { openNotify, loading } = useBaseModals();
 const { clearPaymentForm } = clearCheckoutForm();
-const { isChosenPayment, paymentId } = checkoutApi();
+const { isChosenPayment, paymentId } = useCheckout();
 const { userPayments, userPayment, paymentMethod } = checkoutStore();
 const { createPaymentMethodError, createPaymentCardErrors } = useFormsErrors();
 

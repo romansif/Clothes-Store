@@ -27,7 +27,7 @@ const isChosenPayment = ref<boolean>(false);
 
 const paymentId = ref<string>('');
 
-export const checkoutApi = () => {
+export const useCheckout = () => {
     const openCardForm = (method: string) => {
         isDebitCard.value = true;
         paymentMethod.value = method;

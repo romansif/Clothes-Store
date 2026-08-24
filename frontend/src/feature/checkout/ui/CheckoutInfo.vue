@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-const { isSavedAddress } = checkoutApi();
+const { isSavedAddress } = useCheckout();
 const { information } = checkoutForms();
 const { informationErrors } = checkoutErrors();
 const { addInformation, useInformation } = addressApi();
@@ -24,7 +24,7 @@ import { watch } from "vue";
 import { addressApi } from "@/feature/checkout/api/address.api.ts";
 import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
 import { checkoutErrors }from "@/feature/checkout/lib/checkout.errors.ts";
-import { checkoutApi } from "@/feature/checkout/api/checkout.api.ts";
+import { useCheckout } from "@/feature/checkout/lib/use-checkout.ts";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";

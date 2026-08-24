@@ -42,7 +42,7 @@
 <script setup lang="ts">
 
 const { information } = checkoutForms();
-const { toggleShowContact } = checkoutApi();
+const { toggleShowContact } = useCheckout();
 const { informationErrors } = checkoutErrors();
 const { postalCode, userAddresses } = checkoutStore();
 const { addressNameClass, postalCodeClass } = informationClasses();
@@ -52,7 +52,7 @@ const {
 } = checkoutInput();
 
 import { IMaskComponent as IMask } from "vue-imask";
-import { checkoutApi } from "@/feature/checkout/api/checkout.api.ts";
+import { useCheckout } from "@/feature/checkout/lib/use-checkout.ts";
 import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
 import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
 import { checkoutErrors }from "@/feature/checkout/lib/checkout.errors.ts";

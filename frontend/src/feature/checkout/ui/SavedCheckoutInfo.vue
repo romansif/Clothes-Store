@@ -18,11 +18,11 @@
 
 <script setup lang="ts">
 const { getAddresses } = addressApi();
-const { toggleShowContact } = checkoutApi();
+const { toggleShowContact } = useCheckout();
 
 import { onMounted } from "vue";
 import { addressApi } from "@/feature/checkout/api/address.api.ts";
-import { checkoutApi } from "@/feature/checkout/api/checkout.api.ts";
+import { useCheckout } from "@/feature/checkout/lib/use-checkout.ts";
 
 import ContactList from "@/feature/checkout/ui/ContactList.vue";
 import AddressList from "@/feature/checkout/ui/AddressList.vue";

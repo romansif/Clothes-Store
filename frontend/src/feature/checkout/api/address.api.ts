@@ -2,7 +2,7 @@ import { handler } from "@/shared/api/http";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
 import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
 import { useBaseModals } from "@/shared/lib/base.modals.ts";
-import { checkoutApi } from "@/feature/checkout/api/checkout.api.ts";
+import { useCheckout } from "@/feature/checkout/lib/use-checkout.ts";
 import { clearCheckoutForm } from "@/feature/checkout/lib/clear.checkout.ts";
 import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
 import type { UserCheckoutAddress } from "@/feature/checkout/model/checkout.types.ts";
@@ -12,7 +12,7 @@ const { openNotify, loading } = useBaseModals();
 const { userAddresses, userAddress } = checkoutStore();
 const { createInformationErrors } = useFormsErrors();
 const { clearInformationForm } = clearCheckoutForm();
-const { isChosenAddress, isChosenContactInfo, informationId } = checkoutApi();
+const { isChosenAddress, isChosenContactInfo, informationId } = useCheckout();
 
 export const addressApi = () => {
     const getAddresses = async () => {

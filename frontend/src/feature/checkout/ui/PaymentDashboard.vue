@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-const { isSavedPayment } = checkoutApi();
+const { isSavedPayment } = useCheckout();
 const { payment } = checkoutForms();
 const { paymentErrors } = checkoutErrors();
 const { addPayment, useSavedPayment } = paymentApi();
@@ -23,7 +23,7 @@ import { watch } from "vue";
 import { paymentApi } from "@/feature/checkout/api/payment.api.ts";
 import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
 import { checkoutErrors } from "@/feature/checkout/lib/checkout.errors.ts";
-import { checkoutApi } from "@/feature/checkout/api/checkout.api.ts";
+import { useCheckout } from "@/feature/checkout/lib/use-checkout.ts";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";

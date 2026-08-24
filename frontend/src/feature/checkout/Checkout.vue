@@ -35,13 +35,13 @@
 
 <script setup lang="ts">
 
-const { goBack } = checkoutApi();
+const { goBack } = useCheckout();
 const { notify } = useBaseModals();
 const { checkoutVisibilityClass } = checkoutClasses();
 
 import { useRoute } from 'vue-router';
 import { computed } from "vue";
-import { checkoutApi } from "@/feature/checkout/api/checkout.api.ts";
+import { useCheckout } from "@/feature/checkout/lib/use-checkout.ts";
 import { useBaseModals } from "@/shared/lib/base.modals.ts";
 import { checkoutClasses } from "@/shared/constants/checkout/checkout.classes.ts";
 

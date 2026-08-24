@@ -17,10 +17,10 @@
 
 <script setup lang="ts">
 const { getPayments } = paymentApi();
-const { toggleShowPayment } = checkoutApi();
+const { toggleShowPayment } = useCheckout();
 
 import { onMounted } from "vue";
-import { checkoutApi } from "@/feature/checkout/api/checkout.api.ts";
+import { useCheckout } from "@/feature/checkout/lib/use-checkout.ts";
 import { paymentApi } from "@/feature/checkout/api/payment.api.ts";
 
 import PaymentList from "@/feature/checkout/ui/PaymentList.vue";
