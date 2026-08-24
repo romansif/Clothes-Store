@@ -3,7 +3,7 @@ import { usersStore } from "@/feature/profile/model/users.store.ts";
 import { useBaseModals } from "@/shared/lib/base.modals.ts";
 
 const { loading } = useBaseModals();
-const { users, user } = usersStore();
+const { users, user, userData } = usersStore();
 
 export const useGetUsers = () => {
     const getUsers = async () => {
@@ -23,10 +23,8 @@ export const useGetUsers = () => {
 
     const getUser = async () => {
         loading.value = true;
-
-        const userId = localStorage.getItem("userId")
         try{
-            const res = await handler(`/users/${userId}`, {
+            const res = await handler(`/users/${userData.id}`, {
                 method: "GET",
             });
             user.value = res;

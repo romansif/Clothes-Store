@@ -4,6 +4,8 @@ import { type User } from "@/feature/profile/model/users.types.ts";
 const users = ref<User[]>([])
 const user = ref<User>({} as User)
 
+const userData = JSON.parse(localStorage.getItem('user')!);
+
 const countries = [
     {
         code: 'UZ',
@@ -41,6 +43,8 @@ export const usersStore = () => {
     return {
         users,
         user,
+
+        userData,
 
         countries,
 

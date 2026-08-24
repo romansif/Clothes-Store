@@ -4,7 +4,9 @@ import { useBaseModals } from "@/shared/lib/base.modals.ts";
 import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
 import { orderStore } from "@/feature/orders/model/order.store.ts";
+import { usersStore } from "@/feature/profile/model/users.store.ts";
 
+const { userData } = usersStore();
 const { totalPrice } = useCheckout();
 const { shipping } = checkoutForms();
 const { orders, items } = orderStore();
@@ -15,9 +17,8 @@ export const ordersApi = () => {
     const getOrders = async () => {
         loading.value = true;
 
-        const userId = localStorage.getItem("userId");
         try{
-            const res = await handler(`/orders/${userId}`, {
+            const res = await handler(`/orders/${userData.id}`, {
                 method: 'GET',
             })
             console.log(res);
@@ -32,9 +33,8 @@ export const ordersApi = () => {
     const getFilteredOrders = async () => {
         loading.value = true;
 
-        const userId = localStorage.getItem("userId");
         try{
-            const res = await handler(`/orders/active/${userId}`, {
+            const res = await handler(`/orders/active/${userData.id}`, {
                 method: 'GET',
             })
             console.log(res);
@@ -47,12 +47,11 @@ export const ordersApi = () => {
     };
 
     const addOrder = async () => {
-        const userId = localStorage.getItem("userId");
         try{
             await handler(`/orders`, {
                 method: "POST",
                 body: JSON.stringify({
-                    userId: userId,
+                    userId: userData.id,
                     orderItems: items.value,
                     orderTotal: Number(totalPrice.value),
                     delivery: shipping.value.delivery,

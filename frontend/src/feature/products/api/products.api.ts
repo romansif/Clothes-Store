@@ -7,7 +7,9 @@ import { productStore } from "@/feature/products/model/product.store.ts";
 import { productForms } from "@/feature/products/model/product.forms.ts";
 import { clearProductsForms } from "@/feature/products/lib/clear.products.ts";
 import type { Product } from "@/feature/products/model/product.types.ts";
+import { usersStore } from "@/feature/profile/model/users.store.ts";
 
+const { userData } = usersStore();
 const { openNotify, loading } = useBaseModals()
 const { clearProductForm } = clearProductsForms();
 const { createProductErrors } = useFormsErrors();
@@ -97,9 +99,8 @@ export const productsApi = () => {
     };
 
     const getMyProducts = async () => {
-        const userId = localStorage.getItem("userId")
         try{
-            const res = await handler(`/my/products/${userId}`, {
+            const res = await handler(`/my/products/${userData.id}`, {
                 method: 'GET',
             })
             console.log(res);
@@ -132,13 +133,12 @@ export const productsApi = () => {
     const createProduct = async () => {
         loading.value = true;
         try{
-            const userId = localStorage.getItem("userId");
-            if(!userId){
+            if(!userData.id){
                 return
             }
             const formData = new FormData();
 
-            formData.append('userId', userId);
+            formData.append('userId', userData.id);
             formData.append('title', createProductForm.value.title);
             formData.append('category', createProductForm.value.category);
             formData.append('material', createProductForm.value.material);

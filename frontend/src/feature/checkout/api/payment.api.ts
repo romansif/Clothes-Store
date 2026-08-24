@@ -8,7 +8,9 @@ import { cartApi } from "@/feature/cart/api/cart.api.ts";
 import { clearCheckoutForm } from "@/feature/checkout/lib/clear.checkout.ts";
 import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
 import type { UserCheckoutPayment } from "@/feature/checkout/model/checkout.types.ts";
+import { usersStore } from "@/feature/profile/model/users.store.ts";
 
+const { userData } = usersStore();
 const { addOrder } = ordersApi();
 const { payment } = checkoutForms();
 const { updateCheckedQuantity } = cartApi();
@@ -22,9 +24,8 @@ export const paymentApi = () => {
     const getPayments = async () => {
         loading.value = true;
 
-        const userId = localStorage.getItem("userId");
         try{
-            const res = await handler(`/payment/${userId}`, {
+            const res = await handler(`/payment/${userData.id}`, {
                 method: "GET",
             });
             console.log(res);
@@ -90,14 +91,13 @@ export const paymentApi = () => {
     }
 
     const addPayment = async () => {
-        const userId = localStorage.getItem("userId");
         const paymentId =  localStorage.getItem("paymentId");
         try{
             if(paymentMethod.value === 'card'){
                 await handler(`/payment`, {
                     method: "POST",
                     body: JSON.stringify({
-                        userId: userId,
+                        userId: userData.id,
                         paymentId: paymentId,
                         paymentMethod: 'card',
                         cardName: payment.value.cardName,
@@ -110,7 +110,7 @@ export const paymentApi = () => {
                 await handler(`/payment`, {
                     method: "POST",
                     body: JSON.stringify({
-                        userId: userId,
+                        userId: userData.id,
                         paymentId: paymentId,
                         paymentMethod: payment.value.paymentMethod
                     })

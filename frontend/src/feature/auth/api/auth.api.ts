@@ -40,10 +40,10 @@ export const authApi = () => {
                 method: "POST",
                 body: JSON.stringify(requestBody),
             });
-            localStorage.setItem("userId", authData.id);
 
             if(authData.accessToken){
                 localStorage.setItem("accessToken", authData.accessToken);
+                localStorage.setItem("user", JSON.stringify(authData));
                 console.log("auth data:", authData.accessToken);
             }else{
                 console.log('Access token is not found');
@@ -80,8 +80,8 @@ export const authApi = () => {
                 console.log('Email and password are required.')
                 return
             }else{
-                localStorage.setItem("userId", foundedUser.id)
                 localStorage.setItem("accessToken", foundedUser.accessToken)
+                localStorage.setItem("user", JSON.stringify(foundedUser));
             }
             user.value = foundedUser.user
 
@@ -115,8 +115,8 @@ export const authApi = () => {
                 console.log('Email and password are required.')
                 return
             }else{
-                localStorage.setItem("userId", foundedUser.id)
                 localStorage.setItem("accessToken", foundedUser.accessToken)
+                localStorage.setItem("user", JSON.stringify(foundedUser));
             }
             user.value = foundedUser.user
 

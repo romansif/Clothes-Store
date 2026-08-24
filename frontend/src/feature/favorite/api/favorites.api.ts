@@ -3,7 +3,9 @@ import { productStore } from "@/feature/products/model/product.store.ts";
 import { useBaseModals } from "@/shared/lib/base.modals.ts";
 import { favoriteStore } from "@/feature/favorite/model/favorite.store.ts";
 import { cartStore } from "@/feature/cart/model/cart.store.ts";
+import { usersStore } from "@/feature/profile/model/users.store.ts";
 
+const { userData } = usersStore();
 const { cart } = cartStore();
 const { products } = productStore();
 const { favorite } = favoriteStore();
@@ -11,9 +13,8 @@ const { openNotify } = useBaseModals();
 
 export const favoritesApi = () => {
     const getFavoriteProducts = async () => {
-        const userId = localStorage.getItem("userId")
         try{
-            const res = await handler(`/favorites/${userId}`, {
+            const res = await handler(`/favorites/${userData.id}`, {
                 method: 'GET',
             })
             console.log(res)
@@ -24,7 +25,6 @@ export const favoritesApi = () => {
     };
 
     const toggleToFavorite = async (id: string, type: string, productId: string) => {
-        const userId = localStorage.getItem("userId");
         try{
             const sourceList = type === 'cart' ? cart.value : products.value;
             const currentProduct = sourceList?.find(item => item.id === id);
@@ -37,7 +37,7 @@ export const favoritesApi = () => {
                 await handler(`/favorites`, {
                     method: "POST",
                     body: JSON.stringify({
-                        userId: userId,
+                        userId: userData.id,
                         productId: currentId,
                         images: currentProduct?.images,
                         title: currentProduct?.title,
@@ -49,14 +49,13 @@ export const favoritesApi = () => {
                         size: currentProduct?.sizes,
                         gender: currentProduct?.gender,
                         quantity: currentProduct?.quantity,
-                        status: currentProduct?.status,
-                        favorite: true,
+                        status: currentProduct?.status
                     })
                 });
                 await getFavoriteProducts();
 
                 await openNotify('You have successfully added the item to your favorite.',
-                    'You will now be redirected to the "Favorite" page.', 'favorite');
+                    'You will now be redirected to the "Favorite" page.', '');
             }else{
                 await deleteFavoriteProduct(productId);
             }

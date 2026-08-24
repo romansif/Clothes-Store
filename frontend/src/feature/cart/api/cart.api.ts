@@ -7,7 +7,9 @@ import { addToCartForm } from "@/feature/cart/model/cart.forms.ts";
 import { clearAddToCartForm } from "@/feature/cart/lib/clear.cart.ts";
 import { cartStore } from "@/feature/cart/model/cart.store.ts";
 import { orderStore } from "@/feature/orders/model/order.store.ts";
+import { usersStore } from "@/feature/profile/model/users.store.ts";
 
+const { userData } = usersStore();
 const { orderItems } = orderStore();
 const { cartForm } = addToCartForm();
 const { openNotify } = useBaseModals();
@@ -19,9 +21,8 @@ const { allProducts, products, product } = productStore();
 
 export const cartApi = () => {
     const getCartProducts = async () => {
-        const userId = localStorage.getItem("userId")
         try{
-            const res = await handler(`/cart/${userId}`, {
+            const res = await handler(`/cart/${userData.id}`, {
                 method: 'GET',
             })
             console.log(res);
@@ -33,14 +34,12 @@ export const cartApi = () => {
 
     const addToCart = async () => {
         try{
-            const userId = localStorage.getItem("userId");
-
             const currentProduct = product.value;
 
             const newProductCart = await handler(`/cart`, {
                 method: "POST",
                 body: JSON.stringify({
-                    userId: userId,
+                    userId: userData.id,
                     productId: currentProduct.id,
                     images: currentProduct.images,
                     title: currentProduct.title,
@@ -69,7 +68,7 @@ export const cartApi = () => {
             clearCartForm();
 
             await openNotify('You have successfully added the item to your cart.',
-                'You will now be redirected to the "Cart" page.', 'cart');
+                'You will now be redirected to the "Cart" page.', '');
         }catch(err){
             addToCartErrors(err);
             console.error(`Failed to add the cart:`, err);
@@ -184,9 +183,7 @@ export const cartApi = () => {
 
     const updateCartChecked = async () => {
         try{
-            const userId = localStorage.getItem('userId');
-
-            const allCartItems = await handler(`/cart/${userId}`, {
+            const allCartItems = await handler(`/cart/${userData.id}`, {
                 method: "GET"
             });
             for(const item of allCartItems) {

@@ -15,7 +15,7 @@ interface UserDataUpdate {
     companyName?: string;
 }
 
-const { user } = usersStore();
+const { user, userData } = usersStore();
 const { getUser } = useGetUsers();
 const { openNotify } = useBaseModals();
 const { updateUserForm } = userForms();
@@ -32,8 +32,6 @@ const {
 
 export const profileApi = () => {
     const updateAvatarAccount = async (event: Event) => {
-        const userId = localStorage.getItem("userId");
-
         const target = event.target as HTMLInputElement;
         if(!target.files || target.files.length === 0) return;
         const selectedFile = target.files[0];
@@ -42,7 +40,7 @@ export const profileApi = () => {
         formData.append("avatar", selectedFile);
 
         try{
-            const newAvatar = await handler(`/avatar/${userId}`, {
+            const newAvatar = await handler(`/avatar/${userData.id}`, {
                 method: "PATCH",
                 body: formData,
             });
@@ -53,9 +51,7 @@ export const profileApi = () => {
     };
 
     const baseUpdateAccount = async (dataToUpdate: UserDataUpdate, type: string, title: string) => {
-        const userId = localStorage.getItem("userId");
-
-        await handler(`/${type}/${userId}`, {
+        await handler(`/${type}/${userData.id}`, {
             method: "PATCH",
             body: JSON.stringify(dataToUpdate),
         });
@@ -131,9 +127,8 @@ export const profileApi = () => {
     };
 
     const updatePasswordAccount = async () => {
-        const userId = localStorage.getItem("userId");
         try{
-            const updatePassword = await handler(`/password/${userId}`, {
+            const updatePassword = await handler(`/password/${userData.id}`, {
                 method: "POST",
                 body: JSON.stringify({
                     oldPassword: updateUserForm.value.oldPassword,

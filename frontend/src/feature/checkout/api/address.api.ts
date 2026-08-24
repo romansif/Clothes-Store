@@ -6,7 +6,9 @@ import { useCheckout } from "@/feature/checkout/lib/use-checkout.ts";
 import { clearCheckoutForm } from "@/feature/checkout/lib/clear.checkout.ts";
 import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
 import type { UserCheckoutAddress } from "@/feature/checkout/model/checkout.types.ts";
+import { usersStore } from "@/feature/profile/model/users.store.ts";
 
+const { userData } = usersStore();
 const { information } = checkoutForms();
 const { openNotify, loading } = useBaseModals();
 const { userAddresses, userAddress } = checkoutStore();
@@ -18,9 +20,8 @@ export const addressApi = () => {
     const getAddresses = async () => {
         loading.value = true;
 
-        const userId = localStorage.getItem("userId");
         try{
-            const res = await handler(`/address/${userId}`, {
+            const res = await handler(`/address/${userData.id}`, {
                 method: "GET",
             });
             console.log(res);
@@ -71,7 +72,6 @@ export const addressApi = () => {
     };
 
     const useInformation = async () => {
-        const userId = localStorage.getItem("userId");
         try{
             if(!informationId.value){
                 console.error("Ошибка: ID чекаута не найден в localStorage!");
@@ -80,7 +80,7 @@ export const addressApi = () => {
             const newAddress = await handler(`/address/${informationId.value}`, {
                 method: "PUT",
                 body: JSON.stringify({
-                    userId: userId,
+                    userId: userData.id,
                     addressName: information.value.addressName,
                     email: information.value.email,
                     phone: information.value.phone,
@@ -115,12 +115,10 @@ export const addressApi = () => {
 
     const addInformation = async () => {
         try{
-            const userId = localStorage.getItem("userId");
-
             const newAddress = await handler(`/address`, {
                 method: "POST",
                 body: JSON.stringify({
-                    userId: userId,
+                    userId: userData.id,
                     addressName: information.value.addressName,
                     email: information.value.email,
                     phone: information.value.phone,
