@@ -56,7 +56,7 @@ export const cartApi = () => {
                     gender: currentProduct.gender,
                     quantity: 1,
                     status: currentProduct.status,
-                    checked: currentProduct.checked,
+                    checked: false,
                 })
             });
             console.log('New Cart item', newProductCart);
@@ -236,8 +236,8 @@ export const cartApi = () => {
                 const newQuantity = currentQuantity - cartQuantity;
 
                 const updatedData = newQuantity > 0
-                    ? { quantity: newQuantity, checked: false }
-                    : { status: 'Exhausted', quantity: newQuantity, checked: false };
+                    ? { quantity: newQuantity }
+                    : { status: 'Exhausted', quantity: newQuantity };
 
                 await handler(`/products/${product?.id}`, {
                     method: "PATCH",
