@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import type { Product, Collection, Gender, Sizes, Material, Category } from "@/entities/products/product.types.ts";
+import type { Product, Collection, Gender, Sizes, Material, Category } from "@/entities/product/product.types.ts";
 
 import xs from '@/assets/icons/size/xs.svg';
 import s from '@/assets/icons/size/s.svg';

@@ -1,4 +1,4 @@
-import type { ColorItem, ImageItem } from "@/entities/products/product.types.ts";
+import type { ColorItem, ImageItem } from "@/entities/product/product.types.ts";
 
 export interface FavoriteItem {
     id: string,

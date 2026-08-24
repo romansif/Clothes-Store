@@ -1,4 +1,4 @@
-import { type ColorItem, type ImageItem } from "@/entities/products/product.types.ts";
+import { type ColorItem, type ImageItem } from "@/entities/product/product.types.ts";
 
 export interface CartItem {
     id: string,

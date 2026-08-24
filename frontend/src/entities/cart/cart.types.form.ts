@@ -1,4 +1,4 @@
-import type { ProductColor } from "@/entities/products/product.types.ts";
+import type { ProductColor } from "@/entities/product/product.types.form";
 
 export interface AddForm {
     colors: ProductColor,

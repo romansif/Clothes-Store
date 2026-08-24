@@ -1,5 +1,5 @@
 import {ref} from "vue";
-import { type AddFormError } from "@/entities/cart/cart.types.ts";
+import { type AddFormError } from "@/entities/cart/cart.types.form.ts";
 
 const cartFormErrors = ref<AddFormError>({
     colorError: false,
