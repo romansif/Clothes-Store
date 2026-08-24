@@ -1,9 +1,0 @@
-.notify-enter-active,
-.notify-leave-active {
-    transition: opacity 0.5s ease;
-}
-
-.notify-enter-from,
-.notify-leave-to {
-    opacity: 0;
-}

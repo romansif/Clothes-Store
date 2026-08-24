@@ -1,15 +1,9 @@
-.list-move,
-.list-enter-active,
-.list-leave-active {
-    transition: all 0.5s ease;
+.notify-enter-active,
+.notify-leave-active {
+    transition: opacity 0.5s ease;
 }
 
-.list-enter-from,
-.list-leave-to {
+.notify-enter-from,
+.notify-leave-to {
     opacity: 0;
-    transform: translateX(30px);
-}
-
-.list-leave-active {
-    position: absolute;
 }

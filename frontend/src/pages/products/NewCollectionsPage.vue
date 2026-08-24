@@ -24,29 +24,14 @@
 import MainNavBar from "@/feature/navigation/ui/MainNavBar.vue";
 
 const { loading } = useBaseModals();
-const { getNewCollections } = productsApi();
 const { componentError, resetError } = errorHandler();
 
-import { onErrorCaptured, onMounted } from "vue";
 import { useBaseModals } from "@/shared/lib/base.modals.ts";
-import { productsApi } from "@/feature/products/api/products.api.ts";
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
 
 import HeaderNewCollections from "@/feature/navigation/ui/HeaderNewCollections.vue";
 import NewCollectionList from "@/feature/products/ui/NewCollectionList.vue";
 
-onErrorCaptured((err, info) => {
-  console.error("Перехвачена ошибка в дочернем компоненте:", err);
-  console.log("Детали ошибки:", info);
-
-  componentError.value = "An error occurred while displaying the product catalog."
-
-  return false
-});
-
-onMounted(async () => {
-  await getNewCollections('ALL');
-})
 </script>
 
 <style scoped>

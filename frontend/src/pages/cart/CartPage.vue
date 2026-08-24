@@ -12,7 +12,7 @@
       <MainNavBar />
       <div class="mt-10 xl:mt-30 xl:px-10">
         <div class="flex flex-col">
-          <div class="flex gap-14 items-center font-medium text-sm">
+          <div class="flex gap-14 items-center font-semibold text-sm">
             <router-link :to="{name: 'cart'}">
             <span :class="isShoppingCart ? 'text-[#A3A3A3]' : ''">
               SHOPPING BAG ({{ cartCount }})
@@ -67,21 +67,17 @@
 
 <script setup lang="ts">
 const { cart } = cartStore();
-const { getCartProducts } = cartApi();
 const { isAgreeForm } = checkoutForms();
 const { notify, loading } = useBaseModals();
 const { deleteChoice } = useProfileModals();
 const { isAgreeFormError } = checkoutErrors();
-const { getFavoriteProducts } = favoritesApi();
 const { resetError, componentError } = errorHandler();
 const { toggleAgree, continueToOrder, cartCount, favoritesCount } = useProfile();
 
 import { useRoute } from "vue-router";
 import { useProfile } from "@/shared/lib/use-profile.ts";
-import { computed, onErrorCaptured, onMounted, watch } from "vue";
+import { computed, watch } from "vue";
 import { cartStore } from "@/feature/cart/model/cart.store.ts";
-import { cartApi } from "@/feature/cart/api/cart.api.ts";
-import { favoritesApi } from "@/feature/favorite/api/favorites.api.ts";
 import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
 import { useBaseModals } from "@/shared/lib/base.modals.ts";
 import { useProfileModals } from "@/feature/profile/lib/profile.modals.ts";
@@ -110,24 +106,6 @@ watch(() => isAgreeFormError.value.agreeError, (agreeError) => {
   if(agreeError === true) {
     isAgreeForm.value.agreeMessage = ''
   }
-});
-
-onErrorCaptured((err, info) => {
-  console.error("Перехвачена ошибка в дочернем компоненте:", err);
-  console.log("Детали ошибки:", info);
-
-  componentError.value = "An error occurred while displaying the product catalog."
-
-  return false
-});
-
-onMounted(async() => {
-  loading.value = true;
-
-  await getCartProducts();
-  await getFavoriteProducts();
-
-  loading.value = false;
 });
 </script>
 

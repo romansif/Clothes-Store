@@ -30,7 +30,7 @@
               </div>
               <ProductInfo />
               <div class="flex justify-center lg:hidden">
-                <router-link v-if="!userId" :to="{name: 'signIn'}">
+                <router-link v-if="!userData.id" :to="{name: 'signIn'}">
                 <span class="bg-black font-semibold text-sm py-8 px-46 text-white font-[Montserrat] lg:block">
                   ADD TO CART
                 </span>
@@ -48,19 +48,16 @@
 </template>
 
 <script setup lang="ts">
-const { getProduct } = productsApi();
+const { userData } = usersStore();
 const { notify, loading } = useBaseModals();
 const { product, activeProductImg } = productStore();
-const { changeImg, productInfoPreview, angelCards } = productsCover();
+const { changeImg, angelCards } = productsCover();
 
-const userId = localStorage.getItem("userId");
-
-import { onMounted } from "vue";
 import { useRouter } from "vue-router";
-import { productsApi } from "@/feature/products/api/products.api.ts";
-import { productsCover } from "@/shared/lib/product-image.ts";
+import { productsCover } from "@/shared/lib/product-cover.ts";
 import { productStore } from "@/feature/products/model/product.store.ts";
 import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { usersStore } from "@/feature/profile/model/users.store.ts";
 
 import ProductInfo from "@/feature/products/ui/ProductInfo.vue";
 import cart from '@/assets/icons/nav/cart.png';
@@ -71,18 +68,6 @@ import Notification from "@/shared/ui/Notification.vue";
 import Loading from "@/shared/ui/Loading.vue";
 
 const router = useRouter();
-
-onMounted(async () => {
-  loading.value = true;
-
-  await getProduct();
-
-  if(product.value && Array.isArray(product.value.images) && product.value.images[0]) {
-    activeProductImg.value = productInfoPreview.value(product.value) ?? '';
-  }
-
-  loading.value = false;
-})
 
 const routerBack = () => {
   router.back();

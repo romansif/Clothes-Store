@@ -30,13 +30,10 @@
 </template>
 
 <script setup lang="ts">
-const { getAllProducts } = productsApi();
 const { notify, loading } = useBaseModals();
 const { filterAside } = useProductsModals();
 const { componentError, resetError } = errorHandler();
 
-import { onMounted, onErrorCaptured } from "vue";
-import { productsApi } from "@/feature/products/api/products.api.ts";
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
 import { useProductsModals } from "@/feature/products/lib/products.modals.ts";
 import { useBaseModals } from "@/shared/lib/base.modals.ts";
@@ -48,22 +45,6 @@ import FilterProducts from "@/feature/navigation/ui/FilterProducts.vue";
 import Notification from "@/shared/ui/Notification.vue";
 import AsideFilter from "@/shared/ui/AsideFilter.vue";
 import Loading from "@/shared/ui/Loading.vue";
-
-onErrorCaptured((err, info) => {
-  console.error("Перехвачена ошибка в дочернем компоненте:", err);
-  console.log("Детали ошибки:", info);
-
-  componentError.value = "An error occurred while displaying the product catalog."
-
-  return false
-});
-
-onMounted(async () => {
-  loading.value = true;
-
-  await getAllProducts();
-  loading.value = false;
-})
 </script>
 
 <style scoped>
