@@ -80,7 +80,7 @@
 const { user } = usersStore();
 const { product } = productStore();
 const { isFavorite } = useFavorite();
-const { addColor, addSize } = useCartForm();
+const { addColor, addSize } = useCart();
 const { toggleToFavorite } = favoritesApi();
 const { addToCart, updateCartItem } = cartApi();
 const { cartFormErrors } = addToCartErrors();
@@ -91,7 +91,7 @@ const { isValidOutOfStack, pureInfoColors, isAvailableSizes, isInCart } = produc
 import { watch } from "vue";
 import { productsCover } from "@/shared/lib/product-image.ts";
 import { cartApi } from "@/feature/cart/api/cart.api.ts";
-import { useCartForm } from "@/feature/cart/lib/use.cart.ts";
+import { useCart } from "@/feature/cart/lib/use-cart.ts";
 import { useFavorite } from "@/feature/favorite/lib/use-favorite.ts";
 import { usersStore } from "@/feature/profile/model/users.store.ts";
 import { favoritesApi } from "@/feature/favorite/api/favorites.api.ts";

@@ -72,13 +72,13 @@
 
 <script setup lang="ts">
 const { orders } = orderStore();
-const { copyText } = orderCard();
+const { copyText } = useOrder();
 const { getProductId } = productsApi();
 const { toggleOrder } = useBaseModals();
 const { orderStatus } = ordersClasses();
 const { orderPreview, pureColorsName } = productsCover();
 
-import { orderCard } from "@/feature/orders/api/order.card.ts";
+import { useOrder } from "@/feature/orders/lib/use-order.ts";
 import { orderStore } from "@/feature/orders/model/order.store.ts";
 import { productsApi } from "@/feature/products/api/products.api.ts";
 import { useBaseModals } from "@/shared/lib/base.modals.ts";

@@ -126,7 +126,7 @@ export const productsApi = () => {
             }
             const formData = new FormData();
 
-            formData.append("userId", userId);
+            formData.append('userId', userId);
             formData.append('title', createProductForm.value.title);
             formData.append('category', createProductForm.value.category);
             formData.append('material', createProductForm.value.material);

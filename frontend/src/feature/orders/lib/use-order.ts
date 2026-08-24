@@ -5,7 +5,7 @@ const { items } = orderStore();
 
 const clipboard = ref<boolean>(false);
 
-export const orderCard = () => {
+export const useOrder = () => {
     const copyText = async (text: string) => {
         try{
             clipboard.value = true;

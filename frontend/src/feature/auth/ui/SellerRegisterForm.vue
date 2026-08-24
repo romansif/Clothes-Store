@@ -57,7 +57,7 @@
 <script setup lang="ts">
 const { signUp } = authApi();
 const { showPassword } = authStore();
-const { togglePassword } = toggleAuth();
+const { togglePassword } = useAuth();
 const { registerFormErrors } = authFormsErrors();
 const { countries, selectedCountryCode } = usersStore();
 const { registerSellerForm, registerFormMessages } = authForms();
@@ -72,7 +72,7 @@ import { authStore} from "@/feature/auth/model/auth.store.ts";
 import { usersStore } from "@/feature/profile/model/users.store.ts";
 import { authForms } from "@/feature/auth/model/auth.forms.ts";
 import { authFormsErrors } from "@/feature/auth/lib/auth.errors.ts";
-import { toggleAuth } from "@/feature/auth/api/toggleAuth.ts";
+import { useAuth } from "@/feature/auth/lib/use-auth.ts";
 import { authClasses } from "@/shared/constants/auth/auth.classes.ts";
 
 import opened from "@/assets/icons/auth/opened.png";

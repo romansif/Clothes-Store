@@ -35,7 +35,7 @@
 <script setup lang="ts">
 import { authApi } from "@/feature/auth/api/auth.api.ts";
 import { clearAuthForms } from "@/feature/auth/lib/clear.auth.ts";
-import { toggleAuth } from "@/feature/auth/api/toggleAuth.ts";
+import { useAuth } from "@/feature/auth/lib/use-auth.ts";
 import { useBaseModals } from "@/shared/lib/base.modals.ts";
 import { authStore } from "@/feature/auth/model/auth.store.ts";
 
@@ -47,7 +47,7 @@ import maki_arrow from "@/assets/icons/arrows/right-short-arrow.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 
 const { signUp } = authApi();
-const { toggleSignUp } = toggleAuth();
+const { toggleSignUp } = useAuth();
 const { showSignSection } = authStore();
 const { loading, notify } = useBaseModals();
 const { clearRegisterForm } = clearAuthForms();

@@ -1,11 +1,11 @@
 import { handler } from "@/shared/api/http.ts";
-import { checkoutApi } from "@/feature/checkout/api/checkout.api.ts";
+import { useCheckout } from "@/feature/checkout/lib/use-checkout.ts";
 import { useBaseModals } from "@/shared/lib/base.modals.ts";
 import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
 import { orderStore } from "@/feature/orders/model/order.store.ts";
 
-const { totalPrice } = checkoutApi();
+const { totalPrice } = useCheckout();
 const { shipping } = checkoutForms();
 const { orders, items } = orderStore();
 const { replaceOrderErrors } = useFormsErrors();

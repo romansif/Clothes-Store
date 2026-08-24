@@ -26,14 +26,14 @@
 </template>
 
 <script setup lang="ts">
-const { items } = orderCard();
-const { clipboard } = orderCard();
+const { items } = useOrder();
+const { clipboard } = useOrder();
 const { choiceModal } = useBaseModals();
 const { getFilteredOrders } = ordersApi();
 const { toggleCurrentOrder } = useProfileModals();
 
 import { onMounted } from "vue";
-import { orderCard } from "@/feature/orders/api/order.card.ts";
+import { useOrder } from "@/feature/orders/lib/use-order.ts";
 import { useProfileModals } from "@/feature/profile/lib/profile.modals.ts";
 import { ordersApi } from "@/feature/orders/api/orders.api.ts";
 import { useBaseModals } from "@/shared/lib/base.modals.ts";

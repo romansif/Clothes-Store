@@ -38,14 +38,14 @@ const { countries, selectedCountryCode } = usersStore();
 const { changeCountry, currentCountry, currentMask } = usePhoneForm();
 const { signInPhoneClass, signInCodeClass, selectPhoneCodeClass } = authClasses();
 const { loginForm, loginFormMessages, CODE_LENGTH, codeDigits, isSendCode, isNewCode } = authForms();
-const { setInputRef, handleInput, handleKeyDown, handlePaste, stopTimer, formattedTimer } = toggleAuth();
+const { setInputRef, handleInput, handleKeyDown, handlePaste, stopTimer, formattedTimer } = useAuth();
 
 import { onUnmounted } from "vue";
 import { IMaskComponent as IMask } from "vue-imask";
 import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
 import { usersStore } from "@/feature/profile/model/users.store.ts";
 import { authForms } from "@/feature/auth/model/auth.forms.ts";
-import { toggleAuth } from "@/feature/auth/api/toggleAuth.ts";
+import { useAuth } from "@/feature/auth/lib/use-auth.ts";
 import { authClasses } from "@/shared/constants/auth/auth.classes.ts";
 import { authFormsErrors } from "@/feature/auth/lib/auth.errors.ts";
 

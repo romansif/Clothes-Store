@@ -30,15 +30,14 @@
 </template>
 
 <script setup lang="ts">
-
 const { orders } = orderStore();
-const { clipboard } = orderCard();
+const { clipboard } = useOrder();
 const { getOrders } = ordersApi();
 const { choiceModal } = useBaseModals();
 const { toggleOrderHistory } = useProfileModals();
 
 import { onMounted } from "vue";
-import { orderCard } from "@/feature/orders/api/order.card.ts";
+import { useOrder } from "@/feature/orders/lib/use-order.ts";
 import { orderStore } from "@/feature/orders/model/order.store.ts";
 import { ordersApi } from "@/feature/orders/api/orders.api.ts";
 import { useProfileModals } from "@/feature/profile/lib/profile.modals.ts";

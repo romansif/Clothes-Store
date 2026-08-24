@@ -172,8 +172,6 @@ export const productsController = {
                 quantity: Number(req.body.quantity) || 0,
                 price: Number(req.body.price) || 0,
                 created_at: new Date(),
-                favorite: false,
-                checked: false
             };
 
             products.push(newProduct);
