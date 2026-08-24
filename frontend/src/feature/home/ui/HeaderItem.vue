@@ -22,7 +22,7 @@ const { productPreview } = productsCover();
 const { productPreviewClass } = baseClasses();
 
 import { baseClasses } from "@/shared/constants/base.classes.ts";
-import { productsCover } from "@/shared/lib/product-image.ts";
+import { productsCover } from "@/shared/lib/product-cover.ts";
 import { productsApi } from "@/feature/products/api/products.api.ts";
 import { productStore } from "@/feature/products/model/product.store.ts";
 </script>

@@ -82,7 +82,7 @@ import { useOrder } from "@/feature/orders/lib/use-order.ts";
 import { orderStore } from "@/feature/orders/model/order.store.ts";
 import { productsApi } from "@/feature/products/api/products.api.ts";
 import { useBaseModals } from "@/shared/lib/base.modals.ts";
-import { productsCover } from "@/shared/lib/product-image.ts";
+import { productsCover } from "@/shared/lib/product-cover.ts";
 import { ordersClasses } from "@/shared/constants/products/orders.classes.ts";
 
 import copy_btn from '@/assets/icons/squares/copy.svg';

@@ -4,7 +4,7 @@
       <label class="font-medium text-xs md:text-sm">
         SHIPPING ADDRESS
       </label>
-      <span v-if="userAddresses" @click="toggleShowContact"
+      <span v-if="userAddresses.length > 0" @click="toggleShowContact"
             class="text-xs text-indigo-600 cursor-pointer hover:text-violet-600">
         Show saved contact
       </span>

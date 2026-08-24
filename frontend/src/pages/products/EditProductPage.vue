@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {onMounted, watch} from "vue";
-import { productsCover } from "@/shared/lib/product-image.ts";
+import { productsCover } from "@/shared/lib/product-cover.ts";
 import { useBaseModals } from "@/shared/lib/base.modals.ts";
 import { productStore } from "@/feature/products/model/product.store.ts";
 import { productsApi } from "@/feature/products/api/products.api.ts";

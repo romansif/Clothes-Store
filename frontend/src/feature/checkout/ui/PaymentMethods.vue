@@ -4,7 +4,7 @@
       <label class="font-medium text-xs md:text-sm">
         PAYMENT METHODS
       </label>
-      <span v-if="userPayments" @click="toggleShowPayment()"
+      <span v-if="userPayments.length > 0" @click="toggleShowPayment()"
             class="text-xs text-indigo-600 cursor-pointer hover:text-violet-600">
         Show saved payment
       </span>

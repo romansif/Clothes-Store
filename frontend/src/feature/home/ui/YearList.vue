@@ -1,6 +1,6 @@
 <template>
   <ul v-horizontal-scroll v-if="productsYear.length > 0"
-      class="flex gap-10 xl:gap-20 overflow-x-auto whitespace-nowrap no-scrollbar">
+      class="flex gap-10 xl:gap-40 overflow-x-auto whitespace-nowrap no-scrollbar">
     <YearItem />
   </ul>
   <div v-else class="flex justify-center p-15">
@@ -19,7 +19,7 @@ const { vHorizontalScroll } = productsCover()
 
 import { productStore } from "@/feature/products/model/product.store.ts"
 import { productsApi } from "@/feature/products/api/products.api.ts";
-import { productsCover } from "@/shared/lib/product-image.ts";
+import { productsCover } from "@/shared/lib/product-cover.ts";
 
 import YearItem from "@/feature/home/ui/YearItem.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";

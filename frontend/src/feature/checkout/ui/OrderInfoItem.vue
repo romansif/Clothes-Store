@@ -30,7 +30,7 @@ const { orderPreview, pureColorsName } = productsCover();
 
 import { orderStore } from "@/feature/orders/model/order.store.ts";
 import { productsApi } from "@/feature/products/api/products.api.ts";
-import { productsCover } from "@/shared/lib/product-image.ts";
+import { productsCover } from "@/shared/lib/product-cover.ts";
 </script>
 
 <style scoped>
