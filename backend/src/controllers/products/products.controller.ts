@@ -1,4 +1,3 @@
-import { Op } from 'sequelize';
 import { v4 as uuidv4 } from 'uuid';
 import { type Request, type Response } from 'express';
 import { type AuthenticatedRequest } from '../../interfaces.ts';
@@ -101,20 +100,18 @@ export const productsController = {
             const sixMonthsAgo = new Date();
             sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
 
-            const where: any = {
-                created_at: {
-                    [Op.gte]: sixMonthsAgo
-                }
-            };
+            let products: any[] = [...(db.products || [])];
 
-            if (collection) {
-                where.collection = collection;
+            products = products.filter(
+                product => new Date(product.created_at) >= sixMonthsAgo
+            );
+
+            if (collection && collection !== 'ALL') {
+                products = products.filter(
+                    product => product.collection === collection
+                );
             }
-
-            const products = await db.products.findAll({
-                where,
-                order: [['created_at', 'DESC']]
-            });
+            products.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
 
             return res.status(200).json(products);
         } catch (error) {
