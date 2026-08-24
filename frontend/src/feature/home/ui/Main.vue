@@ -9,7 +9,9 @@
         <span class="text-[#A3A3A3] ml-auto mb-3 transition duration-400 hover:scale-120 hover:text-black cursor-pointer">
           See All
         </span>
-        <WeekList />
+        <TransitionGroup name="list">
+          <WeekList />
+        </TransitionGroup>
       </div>
     </div>
     <div class="flex flex-col lg:mt-25 mt-10">
@@ -20,7 +22,9 @@
       </div>
       <FilterGender />
       <div class="flex flex-col mt-10">
-        <YearList />
+        <TransitionGroup name="list">
+          <YearList />
+        </TransitionGroup>
       </div>
     </div>
     <div class="flex flex-col mt-25">
@@ -66,7 +70,7 @@ import YearList from "@/feature/home/ui/YearList.vue";
 import FilterGender from "@/feature/home/ui/FilterGender.vue";
 
 onMounted(async () => {
-  await getWeekProducts();
+  await getWeekProducts('ALL', 'ALL');
   await getYearProducts('ALL', 'ALL');
 })
 </script>
