@@ -44,7 +44,7 @@ import ProductList from "./ui/ProductList.vue";
 import HeaderProducts from "../navigation/ui/HeaderProducts.vue";
 import FilterProducts from "../navigation/ui/FilterProducts.vue";
 import Notification from "@/shared/ui/Notification.vue";
-import AsideFilter from "@/feature/products/ui/AsideFilter.vue";
+import AsideFilter from "@/shared/ui/AsideFilter.vue";
 import Loading from "@/shared/ui/Loading.vue";
 
 onErrorCaptured((err, info) => {

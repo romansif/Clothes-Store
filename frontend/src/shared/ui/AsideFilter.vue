@@ -2,10 +2,10 @@
   <aside class="fixed inset-0 z-50">
     <div class="font-[Montserrat] flex flex-col h-screen bg-white px-6 py-6 sm:w-76.25 md:w-82.5">
       <div class="flex gap-5 items-center" @click=toggleFilterAside>
-        <span class="font-bold text-xl">Filters</span>
+        <span class="font-bold text-xl cursor-pointer">Filters</span>
         <img :src=left_arrow alt="">
       </div>
-      <div class="flex flex-col mt-6 sm:mt-20">
+      <div class="flex flex-col mt-6 sm:mt-15">
         <span class="font-medium">Size</span>
         <div class="flex gap-4 sm:gap-1 mt-5.5 md:gap-2">
           <img v-for="size in sizes" :key="size.name" :src=size.url alt=""
@@ -72,17 +72,31 @@
         </div>
       </div>
       <div class="border-b border-gray-400 mt-3.5"></div>
+      <div v-if="isHome" class="font-medium grid grid-cols-2 gap-y-2 gap-x-6 mt-3.5">
+        <button v-for="(isActive, categoryName) in category" @click="toggleFilter('ALL', categoryName)"
+                :class="selectedSidebarCategoryClass(isActive)">
+          All
+        </button>
+        <button v-for="(isActive, categoryName) in categories" @click="toggleFilter('CATEGORY', categoryName)"
+                :class="selectedSidebarCategoryClass(isActive)">
+          {{ categoryName }}
+        </button>
+      </div>
     </div>
   </aside>
 </template>
 
 <script setup lang="ts">
+import { productsClasses } from "@/shared/constants/products/products.classes.ts";
+
 const { getAllProducts } = productsApi();
 const { allProducts, sizes } = productStore();
 const { toggleFilterAside } = useProductsModals();
-const { toggleFilter, toggleSize, stackProducts, genders, colors } = filterProducts();
+const { selectedSidebarCategoryClass } = productsClasses();
+const { toggleFilter, toggleSize, stackProducts, genders, colors, category, categories } = filterProducts();
 
-import { onMounted } from "vue";
+import { useRoute } from 'vue-router';
+import { computed, onMounted } from "vue";
 import { filterProducts } from "@/feature/navigation/lib/filter-products.ts";
 import { productsApi } from "@/feature/products/api/products.api.ts";
 import { productStore } from "@/feature/products/model/product.store.ts";
@@ -92,6 +106,10 @@ import square from "@/assets/icons/squares/square.png";
 import availability from "@/assets/icons/arrows/arrow-up.png";
 import left_arrow from "@/assets/icons/arrows/left-arrow.png";
 import checked from '@/assets/icons/squares/check-square.png'
+
+const route = useRoute();
+
+const isHome = computed(() => route.name === 'home');
 
 onMounted(async() => {
   await getAllProducts();

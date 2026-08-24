@@ -19,7 +19,7 @@ import NavBar from "./navigation/NavBar.vue";
 import Header from "./ui/Header.vue";
 import Main from "./ui/Main.vue";
 import Footer from "./ui/Footer.vue";
-import AsideFilter from "@/feature/products/ui/AsideFilter.vue";
+import AsideFilter from "@/shared/ui/AsideFilter.vue";
 </script>
 
 <style scoped>
