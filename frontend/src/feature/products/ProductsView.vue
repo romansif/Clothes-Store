@@ -19,7 +19,7 @@
       </div>
     </div>
   </div>
-  <Transition name="notify">
+  <Transition name="sidebar">
     <AsideFilter v-if="filterAside" />
   </Transition>
   <Transition name="notify">

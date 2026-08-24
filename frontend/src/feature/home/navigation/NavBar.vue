@@ -2,7 +2,7 @@
   <nav class="font-[Montserrat]">
     <div class="flex justify-between items-center md:justify-between">
       <div class="flex items-center gap-5 lg:gap-10">
-        <img :src=catalog alt="" class="w-7.5">
+        <img @click="toggleFilterAside" :src=catalog alt="" class="w-7.5">
         <div class="xl:flex xl:gap-10
             lg:flex lg:gap-10
             md:flex md:gap-5
@@ -44,8 +44,12 @@
 </template>
 
 <script setup lang="ts">
+const { toggleFilterAside } = useProductsModals();
+
 import { computed }  from "vue";
 import { useRoute } from "vue-router";
+
+import {useProductsModals} from "@/feature/products/lib/products.modals.ts";
 
 import cart from "@/assets/icons/nav/cart.png";
 import liked from "@/assets/icons/nav/favorite.png";
