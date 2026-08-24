@@ -34,7 +34,7 @@
 
 <script setup lang="ts">
 const { loginFormErrors } = authFormsErrors();
-const { countries, selectedCountryCode } = usersStore();
+const { countries, selectedCountryCode } = userStore();
 const { changeCountry, currentCountry, currentMask } = usePhoneForm();
 const { signInPhoneClass, signInCodeClass, selectPhoneCodeClass } = authClasses();
 const { loginForm, loginFormMessages, CODE_LENGTH, codeDigits, isSendCode, isNewCode } = authForms();
@@ -43,7 +43,7 @@ const { setInputRef, handleInput, handleKeyDown, handlePaste, stopTimer, formatt
 import { onUnmounted } from "vue";
 import { IMaskComponent as IMask } from "vue-imask";
 import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
-import { usersStore } from "@/feature/profile/model/users.store.ts";
+import { userStore } from "@/feature/profile/model/user.store.ts";
 import { authForms } from "@/feature/auth/model/auth.forms.ts";
 import { useAuth } from "@/feature/auth/lib/use-auth.ts";
 import { authClasses } from "@/shared/constants/auth/auth.classes.ts";

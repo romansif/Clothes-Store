@@ -6,18 +6,18 @@
 const { loading } = useBaseModals();
 const { componentError } = errorHandler();
 const { getCartProducts } = cartApi();
-const { getAllProducts, getFilteredProducts, getNewCollections, getWeekProducts, getYearProducts, getProduct } = productsApi();
+const { getAllProducts, getFilteredProducts, getNewCollections, getWeekProducts, getYearProducts, getProduct } = productApi();
 const { getFavoriteProducts } = favoritesApi();
 const { product, activeProductImg } = productStore();
 const { productInfoPreview } = productsCover();
 
 import { onErrorCaptured, onMounted } from "vue";
 import { cartApi } from "@/feature/cart/api/cart.api.ts";
-import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { favoritesApi } from "@/feature/favorite/api/favorites.api.ts";
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
-import { productsApi } from "@/feature/products/api/products.api.ts";
-import { productStore } from "@/feature/products/model/product.store.ts";
+import { productApi } from "@/feature/product/api/product.api.ts";
+import { productStore } from "@/feature/product/model/product.store.ts";
 import { productsCover } from "@/shared/lib/product-cover.ts";
 
 onErrorCaptured((err, info) => {

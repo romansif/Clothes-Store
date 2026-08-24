@@ -46,20 +46,20 @@
 
 <script setup lang="ts">
 const { searchProductForm } = searchForm();
-const { getFilteredProducts } = productsApi();
+const { getFilteredProducts } = productApi();
 const { selectedCollectionsClass } = productsClasses();
 const { toggleFilterAside } = useProductsModals();
-const { toggleFilter, collections } = filterProducts();
+const { toggleFilter, collections } = filterProduct();
 const { debouncedSearch } = useGetSearchedProducts();
 
 import { watch } from "vue";
-import { filterProducts } from "@/feature/navigation/lib/filter-products.ts";
-import { productsClasses } from "@/shared/constants/products/products.classes.ts";
+import { filterProduct } from "@/feature/navigation/lib/filter-product.ts";
+import { productsClasses } from "@/shared/constants/product/products.classes.ts";
 import { searchForm } from "@/feature/navigation/model/search.form.ts";
-import { productsApi } from "@/feature/products/api/products.api.ts";
+import { productApi } from "@/feature/product/api/product.api.ts";
 import { clearSearchProductForm } from "@/feature/navigation/lib/clear.search.ts";
-import { useGetSearchedProducts } from "@/feature/navigation/lib/search-products.ts";
-import { useProductsModals } from "@/feature/products/lib/products.modals.ts";
+import { useGetSearchedProducts } from "@/feature/navigation/lib/search-product.ts";
+import { useProductsModals } from "@/feature/product/lib/product.modal.ts";
 
 import del from '@/assets/icons/delete-close/clean_search.svg';
 import search from "@/assets/icons/nav/search.png";

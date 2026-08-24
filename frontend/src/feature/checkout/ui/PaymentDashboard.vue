@@ -15,13 +15,13 @@
 
 <script setup lang="ts">
 const { isSavedPayment } = useCheckout();
-const { payment } = checkoutForms();
+const { payment } = checkoutForm();
 const { paymentErrors } = checkoutErrors();
 const { addPayment, useSavedPayment } = paymentApi();
 
 import { watch } from "vue";
 import { paymentApi } from "@/feature/checkout/api/payment.api.ts";
-import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
+import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
 import { checkoutErrors } from "@/feature/checkout/lib/checkout.errors.ts";
 import { useCheckout } from "@/feature/checkout/lib/use-checkout.ts";
 

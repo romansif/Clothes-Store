@@ -67,7 +67,7 @@
 
 <script setup lang="ts">
 const { cart } = cartStore();
-const { isAgreeForm } = checkoutForms();
+const { isAgreeForm } = checkoutForm();
 const { notify, loading } = useBaseModals();
 const { deleteChoice } = useProfileModals();
 const { isAgreeFormError } = checkoutErrors();
@@ -78,9 +78,9 @@ import { useRoute } from "vue-router";
 import { useProfile } from "@/shared/lib/use-profile.ts";
 import { computed, watch } from "vue";
 import { cartStore } from "@/feature/cart/model/cart.store.ts";
-import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
-import { useBaseModals } from "@/shared/lib/base.modals.ts";
-import { useProfileModals } from "@/feature/profile/lib/profile.modals.ts";
+import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
+import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { useProfileModals } from "@/feature/profile/lib/profile.modal.ts";
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
 import { checkoutErrors } from "@/feature/checkout/lib/checkout.errors.ts";
 

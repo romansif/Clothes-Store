@@ -26,11 +26,11 @@ import MainNavBar from "@/feature/navigation/ui/MainNavBar.vue";
 const { loading } = useBaseModals();
 const { componentError, resetError } = errorHandler();
 
-import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
 
 import HeaderNewCollections from "@/feature/navigation/ui/HeaderNewCollections.vue";
-import NewCollectionList from "@/feature/products/ui/NewCollectionList.vue";
+import NewCollectionList from "@/feature/product/ui/NewCollectionList.vue";
 
 </script>
 

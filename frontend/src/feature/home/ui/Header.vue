@@ -40,10 +40,10 @@
 </template>
 
 <script setup lang="ts">
-const { getAllProducts } = productsApi();
+const { getAllProducts } = productApi();
 
 import { onMounted } from "vue";
-import { productsApi } from "@/feature/products/api/products.api.ts";
+import { productApi } from "@/feature/product/api/product.api.ts";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 import photo_1 from "@/assets/photos/pants.png";

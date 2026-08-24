@@ -39,7 +39,7 @@ export const ordersController = {
 
             res.json(filteredOrders);
         } catch (err) {
-            console.error('Failed to get the filterProducts orders:', err);
+            console.error('Failed to get the filterProduct orders:', err);
             const message = err instanceof Error ? err.message : 'Unknown Error';
             res.status(500).json({ error: message });
         }

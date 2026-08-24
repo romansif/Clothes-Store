@@ -54,8 +54,8 @@
 
 <script setup lang="ts">
 const { cart } = cartStore();
-const { userData } = usersStore();
-const { getProductId } = productsApi();
+const { userData } = userStore();
+const { getProductId } = productApi();
 const { isFavorite } = useFavorite();
 const { sizeClass, sizeUrl } = useProfile();
 const { toggleToFavorite } = favoritesApi();
@@ -71,15 +71,15 @@ import like from '@/assets/icons/nav/like.png';
 import liked from '@/assets/icons/nav/liked.png';
 import check_square from '@/assets/icons/squares/check-square.png';
 
-import { usersStore } from "@/feature/profile/model/users.store.ts";
+import { userStore } from "@/feature/profile/model/user.store.ts";
 import { useFavorite } from "@/feature/favorite/lib/use-favorite.ts";
 import { productsCover } from "@/shared/lib/product-cover.ts";
 import { cartStore } from "@/feature/cart/model/cart.store.ts";
-import { productsApi } from "@/feature/products/api/products.api.ts";
+import { productApi } from "@/feature/product/api/product.api.ts";
 import { favoritesApi } from "@/feature/favorite/api/favorites.api.ts";
 import { cartApi } from "@/feature/cart/api/cart.api.ts";
 import { useProfile } from "@/shared/lib/use-profile.ts";
-import { useProfileModals } from "@/feature/profile/lib/profile.modals.ts";
+import { useProfileModals } from "@/feature/profile/lib/profile.modal.ts";
 import { baseClasses } from "@/shared/constants/base.classes.ts";
 
 const refreshPage = () => {

@@ -1,19 +1,19 @@
 import { handler } from "@/shared/api/http.ts";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
-import { productStore } from "@/feature/products/model/product.store.ts";
-import { useBaseModals } from "@/shared/lib/base.modals.ts";
-import { productsApi } from "@/feature/products/api/products.api.ts";
-import { addToCartForm } from "@/feature/cart/model/cart.forms.ts";
+import { productStore } from "@/feature/product/model/product.store.ts";
+import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { productApi } from "@/feature/product/api/product.api.ts";
+import { addToCartForm } from "@/feature/cart/model/cart.form.ts";
 import { clearAddToCartForm } from "@/feature/cart/lib/clear.cart.ts";
 import { cartStore } from "@/feature/cart/model/cart.store.ts";
-import { orderStore } from "@/feature/orders/model/order.store.ts";
-import { usersStore } from "@/feature/profile/model/users.store.ts";
+import { orderStore } from "@/feature/order/model/order.store.ts";
+import { userStore } from "@/feature/profile/model/user.store.ts";
 
-const { userData } = usersStore();
+const { userData } = userStore();
 const { orderItems } = orderStore();
 const { cartForm } = addToCartForm();
 const { openNotify } = useBaseModals();
-const { getAllProducts } = productsApi();
+const { getAllProducts } = productApi();
 const { cart, unreadCount } = cartStore();
 const { addToCartErrors } = useFormsErrors();
 const { clearCartForm } = clearAddToCartForm();

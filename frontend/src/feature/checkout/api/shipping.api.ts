@@ -1,14 +1,14 @@
 import { v4 as uuidv4 } from 'uuid';
 import { handler } from "@/shared/api/http.ts";
-import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
+import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
-import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { clearCheckoutForm } from "@/feature/checkout/lib/clear.checkout.ts";
 import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
-import { usersStore } from "@/feature/profile/model/users.store.ts";
+import { userStore } from "@/feature/profile/model/user.store.ts";
 
-const { userData } = usersStore();
-const { shipping } = checkoutForms();
+const { userData } = userStore();
+const { shipping } = checkoutForm();
 const { userShipping } = checkoutStore();
 const { openNotify  } = useBaseModals();
 const { clearPaymentForm } = clearCheckoutForm();

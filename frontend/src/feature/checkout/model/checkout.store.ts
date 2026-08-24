@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import { IMask } from "vue-imask";
 import { type UserCheckoutAddress,
-    type UserCheckoutShipping, type UserCheckoutPayment } from "@/feature/checkout/model/checkout.types.ts";
+    type UserCheckoutShipping, type UserCheckoutPayment } from "@/entities/checkout/checkout.types.ts";
 
 const userAddresses = ref<UserCheckoutAddress[]>([])
 const userAddress = ref<UserCheckoutAddress>({} as UserCheckoutAddress)

@@ -12,7 +12,7 @@
 <script setup lang="ts">
 const { notifyTitle, notifyMessage } =  useBaseModals();
 
-import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { useBaseModals } from "@/shared/lib/base.modal.ts";
 </script>
 
 <style scoped>

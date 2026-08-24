@@ -41,7 +41,7 @@ export const productsController = {
 
             res.json(products);
         } catch (err) {
-            console.error('Failed to get the filterProducts product list:', err);
+            console.error('Failed to get the filterProduct product list:', err);
             const message = err instanceof Error ? err.message : 'Unknown Error';
             res.status(500).json({ error: message });
         }

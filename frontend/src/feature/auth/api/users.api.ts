@@ -1,9 +1,9 @@
 import { handler } from '@/shared/api/http'
-import { usersStore } from "@/feature/profile/model/users.store.ts";
-import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { userStore } from "@/feature/profile/model/user.store.ts";
+import { useBaseModals } from "@/shared/lib/base.modal.ts";
 
 const { loading } = useBaseModals();
-const { users, user, userData } = usersStore();
+const { users, user, userData } = userStore();
 
 export const useGetUsers = () => {
     const getUsers = async () => {

@@ -41,7 +41,7 @@
 <script setup lang="ts">
 import { authApi } from "@/feature/auth/api/auth.api.ts";
 import { clearAuthForms } from "@/feature/auth/lib/clear.auth.ts";
-import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { authStore } from "@/feature/auth/model/auth.store.ts";
 
 import Loading from "@/shared/ui/Loading.vue";

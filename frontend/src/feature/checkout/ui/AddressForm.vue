@@ -41,7 +41,7 @@
 
 <script setup lang="ts">
 
-const { information } = checkoutForms();
+const { information } = checkoutForm();
 const { toggleShowContact } = useCheckout();
 const { informationErrors } = checkoutErrors();
 const { postalCode, userAddresses } = checkoutStore();
@@ -54,7 +54,7 @@ const {
 import { IMaskComponent as IMask } from "vue-imask";
 import { useCheckout } from "@/feature/checkout/lib/use-checkout.ts";
 import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
-import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
+import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
 import { checkoutErrors }from "@/feature/checkout/lib/checkout.errors.ts";
 import { checkoutInput } from "@/feature/checkout/lib/checkout-input.ts";
 import { informationClasses } from "@/shared/constants/checkout/information.classes.ts";

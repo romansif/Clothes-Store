@@ -55,9 +55,9 @@
 <script setup lang="ts">
 const { shippingErrors } = checkoutErrors();
 const { shippingMethodClass } = shippingClasses();
-const { shipping, shippingMessages } = checkoutForms();
+const { shipping, shippingMessages } = checkoutForm();
 
-import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
+import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
 import { checkoutErrors }from "@/feature/checkout/lib/checkout.errors.ts";
 import { shippingClasses } from "@/shared/constants/checkout/shipping.classes.ts";
 </script>

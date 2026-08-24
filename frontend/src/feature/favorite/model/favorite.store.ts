@@ -1,5 +1,5 @@
 import {ref} from "vue";
-import { type FavoriteItem } from "@/feature/favorite/model/favorite.types.ts";
+import { type FavoriteItem } from "@/entities/favorites/favorite.types.ts";
 
 const favorite = ref<FavoriteItem[]>([]);
 

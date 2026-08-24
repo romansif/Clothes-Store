@@ -14,7 +14,7 @@
       <ChangeAvatar v-if="avatarModal" />
     </Transition>
     <Transition name="notify">
-      <AllOrders v-if="orderHistory" />
+      <Orders v-if="orderHistory" />
     </Transition>
     <Transition name="notify">
       <CurrentOrder v-if="currentOrder" />
@@ -35,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-const { user } = usersStore();
+const { user } = userStore();
 const { getUser } = useGetUsers();
 const { notify, loading } = useBaseModals();
 const { isProfileLoginClass } = profileClasses();
@@ -43,10 +43,10 @@ const { avatarModal, orderHistory, currentOrder, addressesAndCards, confidential
 
 import { onMounted } from "vue";
 import { useGetUsers } from "@/feature/auth/api/users.api.ts";
-import { usersStore } from "@/feature/profile/model/users.store.ts";
-import { useProfileModals } from "@/feature/profile/lib/profile.modals.ts";
-import { useBaseModals } from "@/shared/lib/base.modals.ts";
-import { profileClasses } from "@/shared/constants/users/profile.classes.ts";
+import { userStore } from "@/feature/profile/model/user.store.ts";
+import { useProfileModals } from "@/feature/profile/lib/profile.modal.ts";
+import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { profileClasses } from "@/shared/constants/user/profile.classes.ts";
 
 import MainNavBar from '@/feature/navigation/ui/MainNavBar.vue'
 import DeleteModal from "@/shared/ui/DeleteModal.vue";
@@ -54,8 +54,8 @@ import ProfileSettings from "@/feature/profile/ui/ProfileSettings.vue";
 import ProfileNotLoggedIn from "@/feature/profile/ui/ProfileNotLoggedIn.vue";
 import Notification from "@/shared/ui/Notification.vue";
 import ChangeAvatar from "@/feature/profile/ui/ChangeAvatar.vue";
-import AllOrders from "@/feature/orders/ui/AllOrders.vue";
-import CurrentOrder from "@/feature/orders/ui/CurrentOrder.vue";
+import Orders from "@/feature/order/ui/Orders.vue";
+import CurrentOrder from "@/feature/order/ui/CurrentOrder.vue";
 import AddressPaymentInfo from "@/feature/profile/ui/AddressPaymentInfo.vue";
 import UserDataModal from "@/feature/profile/ui/privacy/UserDataModal.vue";
 import Loading from "@/shared/ui/Loading.vue";

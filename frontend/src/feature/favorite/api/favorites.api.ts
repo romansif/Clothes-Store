@@ -1,11 +1,11 @@
 import { handler } from "@/shared/api/http.ts";
-import { productStore } from "@/feature/products/model/product.store.ts";
-import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { productStore } from "@/feature/product/model/product.store.ts";
+import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { favoriteStore } from "@/feature/favorite/model/favorite.store.ts";
 import { cartStore } from "@/feature/cart/model/cart.store.ts";
-import { usersStore } from "@/feature/profile/model/users.store.ts";
+import { userStore } from "@/feature/profile/model/user.store.ts";
 
-const { userData } = usersStore();
+const { userData } = userStore();
 const { cart } = cartStore();
 const { products } = productStore();
 const { favorite } = favoriteStore();

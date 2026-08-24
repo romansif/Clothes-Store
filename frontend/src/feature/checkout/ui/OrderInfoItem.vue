@@ -25,11 +25,11 @@
 <script setup lang="ts">
 
 const { items } = orderStore();
-const { getProductId } = productsApi();
+const { getProductId } = productApi();
 const { orderPreview, pureColorsName } = productsCover();
 
-import { orderStore } from "@/feature/orders/model/order.store.ts";
-import { productsApi } from "@/feature/products/api/products.api.ts";
+import { orderStore } from "@/feature/order/model/order.store.ts";
+import { productApi } from "@/feature/product/api/product.api.ts";
 import { productsCover } from "@/shared/lib/product-cover.ts";
 </script>
 

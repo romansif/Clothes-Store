@@ -1,15 +1,15 @@
 import { handler } from "@/shared/api/http";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
-import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
-import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
+import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { useCheckout } from "@/feature/checkout/lib/use-checkout.ts";
 import { clearCheckoutForm } from "@/feature/checkout/lib/clear.checkout.ts";
 import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
-import type { UserCheckoutAddress } from "@/feature/checkout/model/checkout.types.ts";
-import { usersStore } from "@/feature/profile/model/users.store.ts";
+import type { UserCheckoutAddress } from "@/entities/checkout/checkout.types.ts";
+import { userStore } from "@/feature/profile/model/user.store.ts";
 
-const { userData } = usersStore();
-const { information } = checkoutForms();
+const { userData } = userStore();
+const { information } = checkoutForm();
 const { openNotify, loading } = useBaseModals();
 const { userAddresses, userAddress } = checkoutStore();
 const { createInformationErrors } = useFormsErrors();

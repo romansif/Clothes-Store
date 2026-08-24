@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { watch } from "vue";
 import { productsCover } from "@/shared/lib/product-cover.ts";
-import { useBaseModals } from "@/shared/lib/base.modals.ts";
-import { productStore } from "@/feature/products/model/product.store.ts";
-import { productsApi } from "@/feature/products/api/products.api.ts";
-import { useProductsModals } from "@/feature/products/lib/products.modals.ts";
-import { productForms } from "@/feature/products/model/product.forms.ts";
-import { productsFormErrors } from "@/feature/products/lib/products.errors.ts";
+import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { productStore } from "@/feature/product/model/product.store.ts";
+import { productApi } from "@/feature/product/api/product.api.ts";
+import { useProductsModals } from "@/feature/product/lib/product.modal.ts";
+import { productForms } from "@/feature/product/model/product.forms.ts";
+import { productsFormErrors } from "@/feature/product/lib/product.error.ts";
 
 import BaseInput from "@/shared/ui/BaseInput.vue";
 import Loading from "@/shared/ui/Loading.vue";
@@ -16,7 +16,7 @@ import Notification from "@/shared/ui/Notification.vue";
 const { loading, notify } = useBaseModals();
 const { toggleSize, toggleColor } = productsCover();
 const { createProductFormErrors } = productsFormErrors();
-const { createProduct, onFilesSelected } = productsApi();
+const { createProduct, onFilesSelected } = productApi();
 const { collections, categories, materials, genders, sizes, productsPreview } = productStore();
 const { createProductForm, moreCreateItem, createProductFormMessages } = productForms();
 const { openSelectProductCard, fileInput } = useProductsModals();

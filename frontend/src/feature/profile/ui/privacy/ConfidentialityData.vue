@@ -26,9 +26,9 @@
 </template>
 
 <script setup lang="ts">
-const { user } = usersStore();
+const { user } = userStore();
 
-import { usersStore } from "@/feature/profile/model/users.store.ts";
+import { userStore } from "@/feature/profile/model/user.store.ts";
 </script>
 
 <style scoped>

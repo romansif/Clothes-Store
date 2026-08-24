@@ -16,9 +16,9 @@
 </template>
 
 <script setup lang="ts">
-const { selectGender, selectedGender } = filterProducts();
+const { selectGender, selectedGender } = filterProduct();
 
-import { filterProducts } from "@/feature/navigation/lib/filter-products.ts";
+import { filterProduct } from "@/feature/navigation/lib/filter-product.ts";
 </script>
 
 <style scoped>

@@ -1,5 +1,5 @@
-import { userForms } from "@/feature/profile/model/users.forms.ts";
-import { userFormsErrors } from "@/feature/profile/lib/users.errors.ts";
+import { userForms } from "@/feature/profile/model/user.form.ts";
+import { userFormsErrors } from "@/feature/profile/lib/users.error.ts";
 
 const { updateUserFormErrors } = userFormsErrors();
 const { updateUserForm, updateUserFormMessage } = userForms();

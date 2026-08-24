@@ -56,17 +56,17 @@
 </template>
 
 <script setup lang="ts">
-const { user } = usersStore();
+const { user } = userStore();
 const { updateUserFormErrors } = userFormsErrors();
 const { updateUserForm, updateUserFormMessage } = userForms();
 const { updatePasswordAccount, updateNameAccount, updateSurNameAccount } = profileApi();
 
 import { ref, watch } from 'vue'
 
-import { userForms } from "@/feature/profile/model/users.forms.ts";
+import { userForms } from "@/feature/profile/model/user.form.ts";
 import { profileApi } from "@/feature/profile/api/profile.api.ts";
-import { userFormsErrors } from "@/feature/profile/lib/users.errors.ts";
-import { usersStore } from "@/feature/profile/model/users.store.ts";
+import { userFormsErrors } from "@/feature/profile/lib/users.error.ts";
+import { userStore } from "@/feature/profile/model/user.store.ts";
 
 import BaseButton  from "@/shared/ui/BaseButton.vue";
 import BuyerForm from "./BuyerForm.vue";

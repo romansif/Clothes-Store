@@ -1,9 +1,9 @@
 import { handler } from "@/shared/api/http";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
-import { usersStore } from "@/feature/profile/model/users.store.ts";
-import { userForms } from "@/feature/profile/model/users.forms.ts";
+import { userStore } from "@/feature/profile/model/user.store.ts";
+import { userForms } from "@/feature/profile/model/user.form.ts";
 import { clearUsersForms } from "@/feature/profile/lib/clear.users.ts";
-import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { useGetUsers } from "@/feature/auth/api/users.api.ts";
 
 interface UserDataUpdate {
@@ -15,7 +15,7 @@ interface UserDataUpdate {
     companyName?: string;
 }
 
-const { user, userData } = usersStore();
+const { user, userData } = userStore();
 const { getUser } = useGetUsers();
 const { openNotify } = useBaseModals();
 const { updateUserForm } = userForms();

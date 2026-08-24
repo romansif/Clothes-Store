@@ -16,13 +16,13 @@
 
 <script setup lang="ts">
 const { isSavedAddress } = useCheckout();
-const { information } = checkoutForms();
+const { information } = checkoutForm();
 const { informationErrors } = checkoutErrors();
 const { addInformation, useInformation } = addressApi();
 
 import { watch } from "vue";
 import { addressApi } from "@/feature/checkout/api/address.api.ts";
-import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
+import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
 import { checkoutErrors }from "@/feature/checkout/lib/checkout.errors.ts";
 import { useCheckout } from "@/feature/checkout/lib/use-checkout.ts";
 

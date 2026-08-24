@@ -17,9 +17,9 @@ const { updateEmailAccount } = profileApi();
 const { updateUserFormErrors } = userFormsErrors();
 const { updateUserForm, updateUserFormMessage } = userForms();
 
-import { userForms } from "@/feature/profile/model/users.forms.ts";
+import { userForms } from "@/feature/profile/model/user.form.ts";
 import { profileApi } from "@/feature/profile/api/profile.api.ts";
-import { userFormsErrors } from "@/feature/profile/lib/users.errors.ts";
+import { userFormsErrors } from "@/feature/profile/lib/users.error.ts";
 
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import BaseInput from "@/shared/ui/BaseInput.vue";

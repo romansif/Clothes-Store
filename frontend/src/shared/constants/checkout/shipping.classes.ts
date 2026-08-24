@@ -1,7 +1,7 @@
 import { checkoutErrors } from "@/feature/checkout/lib/checkout.errors.ts";
-import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
+import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
 
-const { shipping } = checkoutForms();
+const { shipping } = checkoutForm();
 const { shippingErrors } = checkoutErrors();
 
 export const shippingClasses = () => {

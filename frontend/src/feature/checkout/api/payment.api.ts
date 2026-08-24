@@ -1,18 +1,18 @@
 import { handler } from "@/shared/api/http";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
-import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
-import { useBaseModals } from "@/shared/lib/base.modals.ts";
-import { ordersApi } from "@/feature/orders/api/orders.api.ts";
+import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
+import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { orderApi } from "@/feature/order/api/order.api.ts";
 import { useCheckout } from "@/feature/checkout/lib/use-checkout.ts";
 import { cartApi } from "@/feature/cart/api/cart.api.ts";
 import { clearCheckoutForm } from "@/feature/checkout/lib/clear.checkout.ts";
 import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
-import type { UserCheckoutPayment } from "@/feature/checkout/model/checkout.types.ts";
-import { usersStore } from "@/feature/profile/model/users.store.ts";
+import type { UserCheckoutPayment } from "@/entities/checkout/checkout.types.ts";
+import { userStore } from "@/feature/profile/model/user.store.ts";
 
-const { userData } = usersStore();
-const { addOrder } = ordersApi();
-const { payment } = checkoutForms();
+const { userData } = userStore();
+const { addOrder } = orderApi();
+const { payment } = checkoutForm();
 const { updateCheckedQuantity } = cartApi();
 const { openNotify, loading } = useBaseModals();
 const { clearPaymentForm } = clearCheckoutForm();

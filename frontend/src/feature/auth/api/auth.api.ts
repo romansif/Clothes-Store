@@ -1,12 +1,12 @@
 import router from '@/app/router';
 import { handler } from "@/shared/api/http";
 import { authForms } from "@/feature/auth/model/auth.forms.ts";
-import { usersStore } from "@/feature/profile/model/users.store.ts";
+import { userStore } from "@/feature/profile/model/user.store.ts";
 import { clearAuthForms } from "@/feature/auth/lib/clear.auth.ts";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
-import { useBaseModals } from "@/shared/lib/base.modals.ts";
+import { useBaseModals } from "@/shared/lib/base.modal.ts";
 
-const { users, user } = usersStore();
+const { users, user } = userStore();
 const { loading, openNotify } = useBaseModals();
 const { registerErrors, loginErrors } = useFormsErrors();
 const { clearRegisterForm, clearRegisterFormMessages,

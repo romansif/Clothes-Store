@@ -26,19 +26,19 @@
 <script setup lang="ts">
 const { loading } = useBaseModals();
 const { myProducts } = productStore();
-const { getMyProducts } = productsApi();
+const { getMyProducts } = productApi();
 const { deleteChoice } = useProfileModals();
 
 import { onMounted } from "vue";
-import { productsApi } from "@/feature/products/api/products.api.ts";
-import { productStore } from "@/feature/products/model/product.store.ts";
-import { useBaseModals } from "@/shared/lib/base.modals.ts";
-import { useProfileModals } from "@/feature/profile/lib/profile.modals.ts";
+import { productApi } from "@/feature/product/api/product.api.ts";
+import { productStore } from "@/feature/product/model/product.store.ts";
+import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { useProfileModals } from "@/feature/profile/lib/profile.modal.ts";
 
 import MainNavBar from "@/feature/navigation/ui/MainNavBar.vue";
 import icon_products from "@/assets/icons/products/icon-products.svg";
 import DeleteModal from "@/shared/ui/DeleteModal.vue";
-import MyProductsList from "@/feature/products/ui/MyProductsList.vue";
+import MyProductsList from "@/feature/product/ui/MyProductsList.vue";
 import Loading from "@/shared/ui/Loading.vue";
 
 onMounted(async () => {

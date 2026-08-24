@@ -16,7 +16,7 @@
 <script setup lang="ts">
 const { toggleDeleteChoice, generalDelete, deleteMessage } = useProfileModals();
 
-import { useProfileModals } from "@/feature/profile/lib/profile.modals.ts";
+import { useProfileModals } from "@/feature/profile/lib/profile.modal.ts";
 
 import BaseButton from "@/shared/ui/BaseButton.vue";
 </script>

@@ -73,11 +73,11 @@
 <script setup lang="ts">
 const { allProducts, sizes } = productStore();
 const { selectedSizeClass, selectedFilterClass } = productsClasses();
-const { toggleFilter, toggleSize, stackProducts, genders, colors } = filterProducts();
+const { toggleFilter, toggleSize, stackProducts, genders, colors } = filterProduct();
 
-import { filterProducts } from "@/feature/navigation/lib/filter-products.ts";
-import { productStore } from "@/feature/products/model/product.store.ts";
-import { productsClasses } from "@/shared/constants/products/products.classes.ts";
+import { filterProduct } from "@/feature/navigation/lib/filter-product.ts";
+import { productStore } from "@/feature/product/model/product.store.ts";
+import { productsClasses } from "@/shared/constants/product/products.classes.ts";
 
 import square from '@/assets/icons/squares/square.png'
 import checked from '@/assets/icons/squares/check-square.png'

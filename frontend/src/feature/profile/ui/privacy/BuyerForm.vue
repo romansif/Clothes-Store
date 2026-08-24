@@ -32,7 +32,7 @@
 
 <script setup lang="ts">
 const { updateUserFormErrors } = userFormsErrors();
-const { countries, selectedCountryCode } = usersStore();
+const { countries, selectedCountryCode } = userStore();
 const { updateUserForm, updateUserFormMessage } = userForms();
 const { updatePhoneAccount, updateEmailAccount } = profileApi();
 const { changeCountry, currentCountry, currentMask } = usePhoneForm();
@@ -40,11 +40,11 @@ const { profilePhoneClass, profileSelectPhoneCodeClass } = profileClasses();
 
 import { IMaskComponent as IMask } from "vue-imask";
 import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
-import { usersStore } from "@/feature/profile/model/users.store.ts";
-import { userForms } from "@/feature/profile/model/users.forms.ts";
-import { profileClasses } from "@/shared/constants/users/profile.classes.ts";
+import { userStore } from "@/feature/profile/model/user.store.ts";
+import { userForms } from "@/feature/profile/model/user.form.ts";
+import { profileClasses } from "@/shared/constants/user/profile.classes.ts";
 import { profileApi } from "@/feature/profile/api/profile.api.ts";
-import { userFormsErrors } from "@/feature/profile/lib/users.errors.ts";
+import { userFormsErrors } from "@/feature/profile/lib/users.error.ts";
 
 import BaseButton  from "@/shared/ui/BaseButton.vue";
 import BaseInput from "@/shared/ui/BaseInput.vue";

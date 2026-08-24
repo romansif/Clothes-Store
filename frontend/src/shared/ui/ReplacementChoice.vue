@@ -28,12 +28,12 @@
 </template>
 
 <script setup lang="ts">
-const { replaceOrder } = ordersApi();
+const { replaceOrder } = orderApi();
 const { toggleOrder, cancelChoice, cancelChoiceMessage, cancelChoiceError } = useBaseModals();
 
 import { watch } from "vue";
-import { useBaseModals } from "@/shared/lib/base.modals.ts";
-import { ordersApi } from "@/feature/orders/api/orders.api.ts";
+import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { orderApi } from "@/feature/order/api/order.api.ts";
 
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import ReplacementInput from "@/shared/ui/ReplacementInput.vue";

@@ -14,11 +14,11 @@
 
 <script setup lang="ts">
 const { productsWeek } = productStore();
-const { getWeekProducts } = productsApi();
+const { getWeekProducts } = productApi();
 const { vHorizontalScroll } = productsCover()
 
-import { productStore } from "@/feature/products/model/product.store.ts";
-import { productsApi } from "@/feature/products/api/products.api.ts";
+import { productStore } from "@/feature/product/model/product.store.ts";
+import { productApi } from "@/feature/product/api/product.api.ts";
 import { productsCover } from "@/shared/lib/product-cover.ts";
 
 import WeekItem from "@/feature/home/ui/WeekItem.vue";

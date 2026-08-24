@@ -21,18 +21,18 @@
 <script setup lang="ts">
 import { IMaskComponent as IMask } from "vue-imask";
 import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
-import { usersStore } from "@/feature/profile/model/users.store.ts";
-import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
+import { userStore } from "@/feature/profile/model/user.store.ts";
+import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
 import { informationClasses } from "@/shared/constants/checkout/information.classes.ts";
 import { checkoutErrors }from "@/feature/checkout/lib/checkout.errors.ts";
 import { checkoutInput } from "@/feature/checkout/lib/checkout-input.ts";
 
 import CheckoutInput from "@/feature/checkout/ui/CheckoutInput.vue";
 
-const { information } = checkoutForms();
+const { information } = checkoutForm();
 const { informationErrors } = checkoutErrors();
 const { currentMask, changeCountry } = usePhoneForm();
-const { countries, selectedCountryCode } = usersStore();
+const { countries, selectedCountryCode } = userStore();
 const { emailPlaceholder, phonePlaceholder } = checkoutInput();
 const { informationPhoneClass, informationSelectPhoneCodeClass } = informationClasses();
 </script>

@@ -1,5 +1,5 @@
 import {ref} from "vue";
-import { type CartItem } from "@/feature/cart/model/cart.types.ts";
+import { type CartItem } from "@/entities/cart/cart.types.ts";
 
 const cart = ref<CartItem[]>([]);
 

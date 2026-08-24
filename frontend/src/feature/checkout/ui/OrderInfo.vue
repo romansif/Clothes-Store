@@ -42,12 +42,12 @@
 <script setup lang="ts">
 
 const { items } = orderStore();
-const { shipping } = checkoutForms();
+const { shipping } = checkoutForm();
 const { price, totalPrice, commissionPrice } = useCheckout();
 
-import { orderStore } from "@/feature/orders/model/order.store.ts";
+import { orderStore } from "@/feature/order/model/order.store.ts";
 import { useCheckout } from "@/feature/checkout/lib/use-checkout.ts";
-import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
+import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
 
 import OrderInfoList from "./OrderInfoList.vue";
 </script>

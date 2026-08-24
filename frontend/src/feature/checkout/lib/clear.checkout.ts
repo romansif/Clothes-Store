@@ -1,8 +1,8 @@
-import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
+import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
 import { checkoutErrors } from "@/feature/checkout/lib/checkout.errors.ts";
 
 const { informationErrors, shippingErrors, paymentErrors } = checkoutErrors();
-const { information, informationMessages, shipping, shippingMessages, payment, paymentMessages} = checkoutForms();
+const { information, informationMessages, shipping, shippingMessages, payment, paymentMessages} = checkoutForm();
 
 export const clearCheckoutForm = () => {
     const clearInformationForm = () => {

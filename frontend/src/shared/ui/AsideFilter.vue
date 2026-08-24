@@ -87,19 +87,19 @@
 </template>
 
 <script setup lang="ts">
-const { getAllProducts } = productsApi();
+const { getAllProducts } = productApi();
 const { allProducts, sizes } = productStore();
 const { toggleFilterAside } = useProductsModals();
 const { selectedSidebarCategoryClass } = productsClasses();
-const { toggleFilter, toggleSize, stackProducts, genders, colors, category, categories } = filterProducts();
+const { toggleFilter, toggleSize, stackProducts, genders, colors, category, categories } = filterProduct();
 
 import { useRoute } from 'vue-router';
 import { computed, onMounted } from "vue";
-import { filterProducts } from "@/feature/navigation/lib/filter-products.ts";
-import { productsClasses } from "@/shared/constants/products/products.classes.ts";
-import { productsApi } from "@/feature/products/api/products.api.ts";
-import { productStore } from "@/feature/products/model/product.store.ts";
-import { useProductsModals } from "@/feature/products/lib/products.modals.ts";
+import { filterProduct } from "@/feature/navigation/lib/filter-product.ts";
+import { productsClasses } from "@/shared/constants/product/products.classes.ts";
+import { productApi } from "@/feature/product/api/product.api.ts";
+import { productStore } from "@/feature/product/model/product.store.ts";
+import { useProductsModals } from "@/feature/product/lib/product.modal.ts";
 
 import square from "@/assets/icons/squares/square.png";
 import availability from "@/assets/icons/arrows/arrow-up.png";

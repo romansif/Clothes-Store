@@ -25,18 +25,18 @@
 </template>
 
 <script setup lang="ts">
-const { userData } = usersStore();
+const { userData } = userStore();
 const { productsYear } = productStore();
 const { toggleToFavorite } = favoritesApi();
 const { isFavorite } = useFavorite();
-const { getProductId } = productsApi();
+const { getProductId } = productApi();
 const { isOutOfStack, productPreview } = productsCover();
 const { productPreviewClass } = baseClasses();
 
-import { usersStore } from "@/feature/profile/model/users.store.ts";
+import { userStore } from "@/feature/profile/model/user.store.ts";
 import { productsCover } from "@/shared/lib/product-cover.ts";
-import { productsApi } from "@/feature/products/api/products.api.ts";
-import { productStore } from "@/feature/products/model/product.store.ts";
+import { productApi } from "@/feature/product/api/product.api.ts";
+import { productStore } from "@/feature/product/model/product.store.ts";
 import { baseClasses } from "@/shared/constants/base.classes.ts";
 import { favoritesApi } from "@/feature/favorite/api/favorites.api.ts";
 import { useFavorite } from "@/feature/favorite/lib/use-favorite.ts";

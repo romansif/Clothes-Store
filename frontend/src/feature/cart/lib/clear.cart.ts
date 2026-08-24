@@ -1,4 +1,4 @@
-import { addToCartForm } from "@/feature/cart/model/cart.forms.ts";
+import { addToCartForm } from "@/feature/cart/model/cart.form.ts";
 import { addToCartErrors } from "@/feature/cart/lib/cart.errors.ts";
 
 const { cartFormErrors } = addToCartErrors();

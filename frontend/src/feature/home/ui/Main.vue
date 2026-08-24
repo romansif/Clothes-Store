@@ -59,11 +59,11 @@
 
 <script setup lang="ts">
 const { notify } = useBaseModals()
-const { getWeekProducts, getYearProducts } = productsApi();
+const { getWeekProducts, getYearProducts } = productApi();
 
 import { onMounted } from "vue";
-import { useBaseModals } from "@/shared/lib/base.modals.ts";
-import { productsApi } from "@/feature/products/api/products.api.ts";
+import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { productApi } from "@/feature/product/api/product.api.ts";
 
 import photo_1 from '@/assets/photos/8.png'
 import photo_2 from '@/assets/photos/9.png'

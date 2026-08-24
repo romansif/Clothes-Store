@@ -1,10 +1,10 @@
 import { ref } from "vue";
-import { productsApi } from "@/feature/products/api/products.api.ts";
+import { productApi } from "@/feature/product/api/product.api.ts";
 import { cartApi } from "@/feature/cart/api/cart.api.ts";
 import { favoritesApi } from "@/feature/favorite/api/favorites.api.ts";
 
 const { getCartProducts } = cartApi();
-const { getFilteredProducts } = productsApi();
+const { getFilteredProducts } = productApi();
 const { getFavoriteProducts } = favoritesApi();
 
 export const errorHandler = () => {

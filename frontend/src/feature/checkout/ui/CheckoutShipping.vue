@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-const { shipping } = checkoutForms();
+const { shipping } = checkoutForm();
 const { addShipping } = shippingApi();
 const { getAddress } = addressApi();
 const { shippingErrors } = checkoutErrors();
@@ -19,7 +19,7 @@ const { shippingErrors } = checkoutErrors();
 import { onMounted, watch } from "vue";
 import { shippingApi } from "@/feature/checkout/api/shipping.api.ts";
 import { addressApi } from "@/feature/checkout/api/address.api.ts";
-import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
+import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
 import { checkoutErrors } from "@/feature/checkout/lib/checkout.errors.ts";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";

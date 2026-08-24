@@ -1,6 +1,6 @@
-import { type User } from "@/feature/profile/model/users.types.ts";
-import { type ColorItem, type Sizes } from "@/feature/products/model/product.types.ts";
-import { addToCartForm } from "@/feature/cart/model/cart.forms.ts";
+import { type User } from "@/entities/profile/user.types.ts";
+import { type ColorItem, type Sizes } from "@/entities/products/product.types.ts";
+import { addToCartForm } from "@/feature/cart/model/cart.form.ts";
 
 const { cartForm } = addToCartForm();
 

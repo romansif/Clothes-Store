@@ -32,7 +32,7 @@ const { userAddresses } = checkoutStore();
 const { toggleDeleteChoice } = useProfileModals();
 
 import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
-import { useProfileModals } from "@/feature/profile/lib/profile.modals.ts";
+import { useProfileModals } from "@/feature/profile/lib/profile.modal.ts";
 
 import del from '@/assets/icons/delete-close/del_address_card.svg'
 </script>

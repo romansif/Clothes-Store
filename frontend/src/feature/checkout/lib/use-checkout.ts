@@ -1,13 +1,13 @@
 import router  from "@/app/router";
 import { computed, ref } from "vue";
-import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
+import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
 import { cartApi } from "@/feature/cart/api/cart.api.ts";
 import { checkoutErrors } from "@/feature/checkout/lib/checkout.errors.ts";
-import { orderStore } from "@/feature/orders/model/order.store.ts";
+import { orderStore } from "@/feature/order/model/order.store.ts";
 import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
 
 const { items } = orderStore();
-const { shipping } = checkoutForms();
+const { shipping } = checkoutForm();
 const { updateCartChecked } = cartApi();
 const { deliveryPrice, paymentMethod } = checkoutStore();
 const { paymentErrors } = checkoutErrors();

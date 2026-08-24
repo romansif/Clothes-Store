@@ -1,14 +1,14 @@
 import { ApiError } from "../../api/http.ts";
 import { authForms } from "@/feature/auth/model/auth.forms.ts";
-import { userForms } from "@/feature/profile/model/users.forms.ts";
-import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
-import { productForms } from "@/feature/products/model/product.forms.ts";
+import { userForms } from "@/feature/profile/model/user.form.ts";
+import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
+import { productForms } from "@/feature/product/model/product.forms.ts";
 import { authFormsErrors } from "@/feature/auth/lib/auth.errors.ts";
-import { userFormsErrors } from "@/feature/profile/lib/users.errors.ts";
+import { userFormsErrors } from "@/feature/profile/lib/users.error.ts";
 import { checkoutErrors } from "@/feature/checkout/lib/checkout.errors.ts";
-import { productsFormErrors } from "@/feature/products/lib/products.errors.ts";
-import { useBaseModals } from "@/shared/lib/base.modals.ts";
-import { addToCartForm } from "@/feature/cart/model/cart.forms.ts";
+import { productsFormErrors } from "@/feature/product/lib/product.error.ts";
+import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { addToCartForm } from "@/feature/cart/model/cart.form.ts";
 import { addToCartErrors } from "@/feature/cart/lib/cart.errors.ts";
 
 const { cartFormMessages } = addToCartForm();
@@ -18,7 +18,7 @@ const { createProductFormErrors } = productsFormErrors();
 const { registerFormMessages, loginFormMessages } = authForms();
 const { registerFormErrors, loginFormErrors } = authFormsErrors();
 const { informationErrors, shippingErrors, paymentErrors} = checkoutErrors();
-const { informationMessages, shippingMessages, paymentMessages } = checkoutForms();
+const { informationMessages, shippingMessages, paymentMessages } = checkoutForm();
 const { cancelChoiceMessage, cancelChoiceError } = useBaseModals();
 
 const { updateUserFormMessage } = userForms();

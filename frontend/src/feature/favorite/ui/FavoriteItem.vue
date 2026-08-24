@@ -34,19 +34,19 @@
 </template>
 
 <script setup lang="ts">
-const { userData } = usersStore();
+const { userData } = userStore();
 const { favorite } = favoriteStore();
 const { isFavorite } = useFavorite();
-const { getProductId } = productsApi();
+const { getProductId } = productApi();
 const { toggleToFavorite } = favoritesApi();
 const { productPreviewClass } = baseClasses();
 const { isOutOfStack, productPreview } = productsCover();
 
 import { useFavorite } from "@/feature/favorite/lib/use-favorite.ts";
-import { usersStore } from "@/feature/profile/model/users.store.ts";
+import { userStore } from "@/feature/profile/model/user.store.ts";
 import { productsCover } from "@/shared/lib/product-cover.ts";
 import { baseClasses } from "@/shared/constants/base.classes.ts";
-import { productsApi } from "@/feature/products/api/products.api.ts";
+import { productApi } from "@/feature/product/api/product.api.ts";
 import { favoriteStore } from "@/feature/favorite/model/favorite.store.ts";
 import { favoritesApi } from "@/feature/favorite/api/favorites.api.ts";
 

@@ -1,11 +1,11 @@
 import { computed } from "vue";
-import { usersStore } from "@/feature/profile/model/users.store.ts";
+import { userStore } from "@/feature/profile/model/user.store.ts";
 import { authForms } from "@/feature/auth/model/auth.forms.ts";
-import { checkoutForms } from "@/feature/checkout/model/checkout.forms.ts";
+import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
 
-const { information } = checkoutForms();
+const { information } = checkoutForm();
 const { registerBuyerForm, registerSellerForm } = authForms()
-const { countries, selectedCountryCode } = usersStore();
+const { countries, selectedCountryCode } = userStore();
 
 export const usePhoneForm = () => {
     const currentCountry = computed(() => {

@@ -14,11 +14,11 @@
 
 <script setup lang="ts">
 const { productsYear } = productStore();
-const { getYearProducts } = productsApi();
+const { getYearProducts } = productApi();
 const { vHorizontalScroll } = productsCover()
 
-import { productStore } from "@/feature/products/model/product.store.ts"
-import { productsApi } from "@/feature/products/api/products.api.ts";
+import { productStore } from "@/feature/product/model/product.store.ts"
+import { productApi } from "@/feature/product/api/product.api.ts";
 import { productsCover } from "@/shared/lib/product-cover.ts";
 
 import YearItem from "@/feature/home/ui/YearItem.vue";
