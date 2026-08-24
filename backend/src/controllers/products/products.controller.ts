@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import { v4 as uuidv4 } from 'uuid';
 import { type Request, type Response } from 'express';
 import { type AuthenticatedRequest } from '../../interfaces.ts';
@@ -89,6 +90,39 @@ export const productsController = {
             console.error('Failed to get the year product list:', err);
             const message = err instanceof Error ? err.message : 'Unknown Error';
             res.status(500).json({ error: message });
+        }
+    },
+
+    async getNewCollections(req: Request, res: Response) {
+        try {
+            const db = dbService.readDB();
+            const { collection } = req.query;
+
+            const sixMonthsAgo = new Date();
+            sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
+
+            const where: any = {
+                created_at: {
+                    [Op.gte]: sixMonthsAgo
+                }
+            };
+
+            if (collection) {
+                where.collection = collection;
+            }
+
+            const products = await db.products.findAll({
+                where,
+                order: [['created_at', 'DESC']]
+            });
+
+            return res.status(200).json(products);
+        } catch (error) {
+            console.error(error);
+
+            return res.status(500).json({
+                message: 'Failed to get new collections'
+            });
         }
     },
 

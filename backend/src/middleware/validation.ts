@@ -114,7 +114,7 @@ export const validation = {
     ],
 
     createProductValidation: [
-        body('collections')
+        body('collection')
             .trim()
             .notEmpty().withMessage('Collection required to create product.'),
         body('title')
