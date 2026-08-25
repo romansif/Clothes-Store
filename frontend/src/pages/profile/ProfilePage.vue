@@ -36,13 +36,10 @@
 
 <script setup lang="ts">
 const { user } = userStore();
-const { getUser } = useGetUsers();
 const { notify, loading } = useBaseModals();
 const { isProfileLoginClass } = profileClasses();
 const { avatarModal, orderHistory, currentOrder, addressesAndCards, confidentialityData, deleteChoice } = useProfileModals();
 
-import { onMounted } from "vue";
-import { useGetUsers } from "@/features/use-auth/api/users.api.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
@@ -60,13 +57,6 @@ import AddressPaymentInfo from "@/entities/profile/ui/AddressPaymentInfo.vue";
 import UserDataModal from "@/entities/profile/ui/privacy/UserDataModal.vue";
 import Loading from "@/shared/ui/Loading.vue";
 
-onMounted(async () => {
-  loading.value = true;
-
-  await getUser();
-
-  loading.value = false;
-})
 </script>
 
 <style scoped>

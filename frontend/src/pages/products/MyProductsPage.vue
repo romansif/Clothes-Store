@@ -26,11 +26,8 @@
 <script setup lang="ts">
 const { loading } = useBaseModals();
 const { myProducts } = productStore();
-const { getMyProducts } = productApi();
 const { deleteChoice } = useProfileModals();
 
-import { onMounted } from "vue";
-import { productApi } from "@/features/use-product/api/product.api.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
@@ -40,14 +37,6 @@ import icon_products from "@/assets/icons/products/icon-products.svg";
 import DeleteModal from "@/shared/ui/DeleteModal.vue";
 import MyProductsList from "@/entities/product/ui/MyProductsList.vue";
 import Loading from "@/shared/ui/Loading.vue";
-
-onMounted(async () => {
-  loading.value = true;
-
-  await getMyProducts();
-
-  loading.value = false;
-})
 </script>
 
 <style scoped>
