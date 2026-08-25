@@ -3,7 +3,7 @@
     <div v-if="newCollections.length === 0" class="flex justify-center pt-45">
       <div class="flex flex-col gap-4 items-center">
         <img :src="empty_products" alt="">
-        <span class="text-lg font-semibold">At of now, products in this category have not yet appeared</span>
+        <span class="text-lg font-semibold">At of now, new collections have not yet appeared</span>
       </div>
     </div>
     <ul v-else class="font-[Montserrat] grid grid-cols-2 gap-5 overflow-y-auto max-h-132.5

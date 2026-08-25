@@ -3,7 +3,7 @@
     <div v-if="myProducts.length === 0" class="flex justify-center pt-45">
       <div class="flex flex-col gap-4 items-center">
         <img :src="empty_products" alt="">
-        <span class="text-lg font-semibold">At of now, products in this category have not yet appeared</span>
+        <span class="text-lg font-semibold">You haven't created a product cover for sale yet</span>
       </div>
     </div>
     <ul v-else class="font-[Montserrat] flex flex-col overflow-y-auto gap-20 max-h-175 no-scrollbar">

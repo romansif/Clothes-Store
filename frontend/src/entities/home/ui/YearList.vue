@@ -3,7 +3,7 @@
     <div v-if="productsYear.length === 0" class="flex justify-center pt-15">
       <div class="flex flex-col gap-4 items-center">
         <img :src="empty_products" alt="">
-        <span class="text-lg font-semibold">At of now, products in this category have not yet appeared</span>
+        <span class="text-lg font-semibold">At of now, year collection have not yet appeared</span>
       </div>
     </div>
     <ul v-else v-horizontal-scroll class="flex gap-10 xl:gap-40 overflow-x-auto whitespace-nowrap no-scrollbar">

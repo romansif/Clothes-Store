@@ -5,9 +5,9 @@
         <span class="font-bold text-xl cursor-pointer">Filters</span>
         <img :src=left_arrow alt="">
       </div>
-      <div class="flex flex-col mt-6 sm:mt-15">
+      <div class="flex flex-col mt-6 sm:mt-7.5">
         <span class="font-medium">Size</span>
-        <div class="flex gap-4 sm:gap-1 mt-5.5 md:gap-2">
+        <div class="flex gap-4 sm:gap-1 mt-3.5 md:gap-2">
           <img v-for="size in sizes" :key="size.name" :src=size.url alt=""
                @click="toggleSize('SIZE', `${size.name}`)"
                :class="[size.class, 'w-10 transition duration-400 hover:scale-120 cursor-pointer', size.isActive ? 'scale-120' : '']">
@@ -72,15 +72,21 @@
         </div>
       </div>
       <div class="border-b border-gray-400 mt-3.5"></div>
-      <div v-if="isHome" class="font-medium grid grid-cols-2 gap-y-2 gap-x-6 mt-3.5">
-        <button v-for="(isActive, categoryName) in category" @click="toggleFilter('ALL', categoryName)"
-                :class="selectedSidebarCategoryClass(isActive)">
-          All
-        </button>
-        <button v-for="(isActive, categoryName) in categories" @click="toggleFilter('CATEGORY', categoryName)"
-                :class="selectedSidebarCategoryClass(isActive)">
-          {{ categoryName }}
-        </button>
+      <div class="flex flex-col gap-2 mt-3.5">
+        <div class="flex items-center font-medium">
+          <span class="font-bold">Category</span>
+          <img :src=availability alt="" class="ml-auto">
+        </div>
+        <div v-if="isHome" class="font-medium grid grid-cols-2 gap-y-2 gap-x-6">
+          <button v-for="(isActive, categoryName) in category" @click="toggleFilter('ALL', categoryName)"
+                  :class="selectedSidebarCategoryClass(isActive)">
+            All
+          </button>
+          <button v-for="(isActive, categoryName) in categories" @click="toggleFilter('CATEGORY', categoryName)"
+                  :class="selectedSidebarCategoryClass(isActive)">
+            {{ categoryName }}
+          </button>
+        </div>
       </div>
     </div>
   </aside>
