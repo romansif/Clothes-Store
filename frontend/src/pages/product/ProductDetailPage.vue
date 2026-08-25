@@ -44,12 +44,18 @@
     <Transition name="notify">
       <Notification v-if="notify"/>
     </Transition>
+    <Transition name="notify">
+      <SizeGuideModal v-if="guideModel"/>
+    </Transition>
   </div>
 </template>
 
 <script setup lang="ts">
+import SizeGuideModal from "@/entities/product/ui/SizeGuideModal.vue";
+
 const { userData } = userStore();
 const { notify, loading } = useBaseModals();
+const { guideModel } = useProductsModals()
 const { product, activeProductImg } = productStore();
 const { changeImg, angelCards } = productsCover();
 
@@ -58,6 +64,7 @@ import { productsCover } from "@/feature/use-product/model/product-cover.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
+import { useProductsModals } from "@/feature/use-product/lib/product.modal.ts";
 
 import ProductInfo from "@/entities/product/ui/ProductInfo.vue";
 import cart from '@/assets/icons/nav/cart.png';

@@ -14,9 +14,12 @@
              :src="isFavorite(product.id, userData.id) ? liked : like" alt=""
              class="ml-auto w-8.75 h-8.75 cursor-pointer">
       </div>
-      <span class="text-sm font-medium text-[#A3A3A3]">
-        MRP incl. of all taxes
-      </span>
+      <div class="flex text-sm font-medium text-[#A3A3A3]">
+        <span>
+          MRP incl. of all taxes
+        </span>
+        <span class="ml-auto">{{ quantityInfo(product) }}</span>
+      </div>
     </div>
     <div class="mt-5">
       <span class="font-medium">
@@ -49,9 +52,9 @@
       </div>
     </div>
     <div class="flex flex-col gap-8 mt-6">
-      <span class="text-[#A3A3A3] text-sm">
-        FIND YOUR SIZE |  MEASUREMENT GUIDE
-      </span>
+      <button @click="toggleSizeGuide" class="text-[#A3A3A3] text-sm text-left transition duration-400 cursor-pointer hover:scale-105">
+        MEASUREMENT GUIDE
+      </button>
       <router-link v-if="!userData.id" :to="{name: 'signIn'}">
         <span class="hidden bg-black text-white font-semibold text-sm py-4 w-full text-center
             font-[Montserrat] lg:block">
@@ -85,14 +88,16 @@ const { addColor, addSize } = useCart();
 const { toggleToFavorite } = favoritesApi();
 const { addToCart, updateCartItem } = cartApi();
 const { cartFormErrors } = addToCartErrors();
+const { toggleSizeGuide } = useProductsModals();
 const { cartForm, cartFormMessages } = addToCartForm();
 const { selectedColorClass, selectedSizesClass } = productsClasses();
-const { isValidOutOfStack, pureInfoColors, isAvailableSizes, isInCart } = productsCover();
+const { isValidOutOfStack, pureInfoColors, isAvailableSizes, isInCart, quantityInfo } = productsCover();
 
 import { watch } from "vue";
 import { productsCover } from "@/feature/use-product/model/product-cover.ts";
 import { cartApi } from "@/feature/use-cart/api/cart.api.ts";
 import { useCart } from "@/feature/use-cart/model/use-cart.ts";
+import { useProductsModals } from "@/feature/use-product/lib/product.modal.ts";
 import { useFavorite } from "@/feature/use-favorite/model/use-favorite.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
 import { favoritesApi } from "@/feature/use-favorite/api/favorites.api.ts";

@@ -1,5 +1,5 @@
 <template>
-  <ul v-if="myProducts.length < 0" class="font-[Montserrat] flex flex-col overflow-y-auto gap-20 max-h-175 no-scrollbar">
+  <ul v-if="myProducts.length > 0" class="font-[Montserrat] flex flex-col overflow-y-auto gap-20 max-h-175 no-scrollbar">
     <MyProductItem />
   </ul>
   <div v-else class="flex pl-120 pt-65">

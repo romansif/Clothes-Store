@@ -49,3 +49,8 @@ export interface Sizes {
     url: string,
     class: string,
 }
+
+export interface SizeGuide {
+    name: string,
+    values: string[],
+}
