@@ -40,7 +40,7 @@
       <div class="flex flex-col gap-2">
         <span class="font-medium text-[#A3A3A3]">Sizes</span>
         <div class="flex justify-start items-center lg:gap-5">
-          <img v-for="size in (isAvailableSizes as any)" :key="size.name" :src=size.url alt=""
+          <img v-for="size in isAvailableSizes" :key="size.name" :src=size.url alt=""
                @click="addSize(size, userData)" :class="selectedSizesClass(size, product, userData.role)">
         </div>
         <span v-if=cartFormErrors.sizeError class="text-red-600 text-xs">
@@ -90,14 +90,14 @@ const { selectedColorClass, selectedSizesClass } = productsClasses();
 const { isValidOutOfStack, pureInfoColors, isAvailableSizes, isInCart } = productsCover();
 
 import { watch } from "vue";
-import { productsCover } from "@/shared/lib/product-cover.ts";
+import { productsCover } from "@/feature/product/model/product-cover.ts";
 import { cartApi } from "@/feature/cart/api/cart.api.ts";
-import { useCart } from "@/feature/cart/lib/use-cart.ts";
-import { useFavorite } from "@/feature/favorite/lib/use-favorite.ts";
-import { userStore } from "@/feature/profile/model/user.store.ts";
+import { useCart } from "@/feature/cart/model/use-cart.ts";
+import { useFavorite } from "@/feature/favorite/model/use-favorite.ts";
+import { userStore } from "@/entities/profile/user.store.ts";
 import { favoritesApi } from "@/feature/favorite/api/favorites.api.ts";
 import { productsClasses } from "@/shared/constants/product/products.classes.ts";
-import { productStore } from "@/feature/product/model/product.store.ts";
+import { productStore } from "@/entities/product/product.store.ts";
 import { addToCartForm } from "@/feature/cart/model/cart.form.ts";
 import { addToCartErrors } from "@/feature/cart/lib/cart.errors.ts";
 
