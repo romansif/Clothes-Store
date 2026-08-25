@@ -21,7 +21,7 @@ import { productStore } from "@/entities/product/model/product.store.ts"
 import { productApi } from "@/feature/use-product/api/product.api.ts";
 import { productsCover } from "@/feature/use-product/model/product-cover.ts";
 
-import YearItem from "@/feature/home/ui/YearItem.vue";
+import YearItem from "@/entities/home/ui/YearItem.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 </script>
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import Home from "../../feature/home/Home.vue";
+import Home from "../../entities/home/Home.vue";
 </script>
 
 <template>

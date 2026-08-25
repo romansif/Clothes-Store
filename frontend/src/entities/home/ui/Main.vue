@@ -69,9 +69,9 @@ import photo_1 from '@/assets/photos/8.png'
 import photo_2 from '@/assets/photos/9.png'
 import photo_3 from '@/assets/photos/10.png'
 import Notification from "@/shared/ui/Notification.vue";
-import WeekList from "@/feature/home/ui/WeekList.vue";
-import YearList from "@/feature/home/ui/YearList.vue";
-import FilterGender from "@/feature/home/ui/FilterGender.vue";
+import WeekList from "@/entities/home/ui/WeekList.vue";
+import YearList from "@/entities/home/ui/YearList.vue";
+import FilterGender from "@/entities/home/ui/FilterGender.vue";
 
 onMounted(async () => {
   await getWeekProducts('ALL', 'ALL');
