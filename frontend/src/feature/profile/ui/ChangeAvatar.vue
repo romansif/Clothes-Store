@@ -22,7 +22,7 @@ const { userAvatar } = useProfile();
 const { updateAvatarAccount } = profileApi();
 const { toggleAvatar, openSelectAvatar, fileInput } = useProfileModals();
 
-import { useProfile } from "@/shared/lib/use-profile.ts";
+import { useProfile } from "@/feature/profile/model/use-profile.ts";
 import { useProfileModals } from "@/feature/profile/lib/profile.modal.ts";
 import { profileApi } from "@/feature/profile/api/profile.api.ts";
 

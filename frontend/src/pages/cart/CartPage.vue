@@ -75,9 +75,9 @@ const { resetError, componentError } = errorHandler();
 const { toggleAgree, continueToOrder, cartCount, favoritesCount } = useProfile();
 
 import { useRoute } from "vue-router";
-import { useProfile } from "@/shared/lib/use-profile.ts";
+import { useProfile } from "@/feature/profile/model/use-profile.ts";
 import { computed, watch } from "vue";
-import { cartStore } from "@/feature/cart/model/cart.store.ts";
+import { cartStore } from "@/entities/cart/cart.store.ts";
 import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { useProfileModals } from "@/feature/profile/lib/profile.modal.ts";

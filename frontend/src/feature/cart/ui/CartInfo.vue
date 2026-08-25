@@ -45,7 +45,7 @@
 
 <script setup lang="ts">
 import { watch } from "vue";
-import { useProfile } from "@/shared/lib/use-profile.ts";
+import { useProfile } from "@/feature/profile/model/use-profile.ts";
 import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
 import { checkoutErrors } from "@/feature/checkout/lib/checkout.errors.ts";
 
