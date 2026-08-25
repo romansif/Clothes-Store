@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col mt-6 px-4 lg:mt-0 w-125">
+  <div class="flex flex-col mt-5 px-4 lg:mt-0 w-125">
     <div class="flex flex-col gap-2">
       <div class="flex">
         <div class="flex flex-col gap-2 mt-1">
@@ -52,8 +52,8 @@
       </div>
     </div>
     <div class="flex flex-col gap-8 mt-6">
-      <button @click="toggleSizeGuide" class="text-[#A3A3A3] text-sm text-left transition duration-400 cursor-pointer hover:scale-105">
-        MEASUREMENT GUIDE
+      <button @click="toggleSizeGuide" class="text-[#A3A3A3] text-left transition duration-400 cursor-pointer hover:scale-105">
+        What's my size?
       </button>
       <router-link v-if="!userData.id" :to="{name: 'signIn'}">
         <span class="hidden bg-black text-white font-semibold text-sm py-4 w-full text-center

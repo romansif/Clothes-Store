@@ -12,28 +12,28 @@
         We're proud to ofer AU, UK, US and EU sizes. Let us help you find your best fit
       </p>
       <div class="flex gap-2 justify-end items-center font-medium">
-        <button type="button" @click="unit = 'IN'" :class="['transition duration-400 rounded-full px-5 py-2 text-sm tracking-widest',
+        <button type="button" @click="unit = 'IN'" :class="['transition duration-700 rounded-full px-5 py-2 text-sm tracking-widest',
                 unit === 'IN' ? 'bg-black text-white' : 'text-neutral-500 hover:text-black']">
           IN
         </button>
-        <button type="button" @click="unit = 'CM'" :class="['transition duration-400 rounded-full px-4 py-2 text-sm tracking-widest',
+        <button type="button" @click="unit = 'CM'" :class="['transition duration-700 rounded-full px-4 py-2 text-sm tracking-widest',
                 unit === 'CM' ? 'bg-black text-white' : 'text-neutral-500 hover:text-black']">
           CM
         </button>
       </div>
-      <table class="w-full border-collapse mt-2.5 items-center">
+      <table class="w-full border-collapse items-center">
         <thead>
         <tr class="border-b border-neutral-400">
-          <th class="px-4 py-4 text-left text-xs uppercase tracking-wider">
+          <th class="px-4 py-4 text-left uppercase tracking-wider">
             Size
           </th>
-          <th v-for="size in sizes" :key="size.name" class="px-4 py-4 text-center text-xs uppercase tracking-wider">
+          <th v-for="size in sizes" :key="size.name" class="px-4 py-4 text-center uppercase tracking-wider">
             {{ size.name }}
           </th>
         </tr>
         </thead>
         <tbody>
-        <tr v-for="row in formatterSizeGuide" :key="row.name" class="border-b border-neutral-200">
+        <tr v-for="row in formatterSizeGuide" :key="row.name" class="text-sm border-b border-neutral-200">
           <th class="px-4 py-4 text-left font-normal">
             {{ row.name }}
           </th>
