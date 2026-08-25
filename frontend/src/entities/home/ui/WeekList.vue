@@ -1,28 +1,26 @@
 <template>
-  <ul v-horizontal-scroll v-if="productsWeek.length > 0"
-      class="flex gap-10 xl:gap-22.5 overflow-x-auto whitespace-nowrap no-scrollbar">
-    <WeekItem />
-  </ul>
-  <div v-else class="flex justify-center p-15">
-    <div class="flex flex-col gap-4 items-center">
-      <span class="text-xl font-semibold">As of now, the new weekly releases have not yet appeared.</span>
-      <span class="text-red-600 ">Or a glitch occurred: click to refresh.</span>
-      <BaseButton name="Try again" variant="refresh" @click="getWeekProducts" />
+  <Transition name="view">
+    <div v-if="productsWeek.length === 0" class="flex justify-center pt-45">
+      <div class="flex flex-col gap-4 items-center">
+        <img :src="empty_products" alt="">
+        <span class="text-lg font-semibold">At of now, products in this category have not yet appeared</span>
+      </div>
     </div>
-  </div>
+    <ul v-else v-horizontal-scroll class="flex gap-10 xl:gap-22.5 overflow-x-auto whitespace-nowrap no-scrollbar">
+      <WeekItem />
+    </ul>
+  </Transition>
 </template>
 
 <script setup lang="ts">
 const { productsWeek } = productStore();
-const { getWeekProducts } = productApi();
 const { vHorizontalScroll } = productsCover()
 
 import { productStore } from "@/entities/product/model/product.store.ts";
-import { productApi } from "@/features/use-product/api/product.api.ts";
 import { productsCover } from "@/features/use-product/model/product-cover.ts";
 
 import WeekItem from "@/entities/home/ui/WeekItem.vue";
-import BaseButton from "@/shared/ui/BaseButton.vue";
+import empty_products from "@/assets/icons/products/icon-products.svg";
 </script>
 
 <style scoped>

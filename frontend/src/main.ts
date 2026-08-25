@@ -5,6 +5,7 @@ import '@/app/styles/main.css';
 import '@/app/styles/transition.list.css';
 import '@/app/styles/transition.modal.css';
 import '@/app/styles/transition.sidebar.css'
+import '@/app/styles/transition.view-list.css'
 
 import { IMaskDirective } from "vue-imask";
 import { VueQueryPlugin } from '@tanstack/vue-query'

@@ -1,28 +1,26 @@
 <template>
-  <ul v-horizontal-scroll v-if="productsYear.length > 0"
-      class="flex gap-10 xl:gap-40 overflow-x-auto whitespace-nowrap no-scrollbar">
-    <YearItem />
-  </ul>
-  <div v-else class="flex justify-center p-15">
-    <div class="flex flex-col gap-4 items-center">
-      <span class="text-xl font-semibold">As of now, this annual releases have not yet appeared.</span>
-      <span class="text-red-600">Or a glitch occurred: click to refresh.</span>
-      <BaseButton name="Try again" variant="refresh" @click="getYearProducts" />
+  <Transition name="view">
+    <div v-if="productsYear.length === 0" class="flex justify-center pt-45">
+      <div class="flex flex-col gap-4 items-center">
+        <img :src="empty_products" alt="">
+        <span class="text-lg font-semibold">At of now, products in this category have not yet appeared</span>
+      </div>
     </div>
-  </div>
+    <ul v-else v-horizontal-scroll class="flex gap-10 xl:gap-40 overflow-x-auto whitespace-nowrap no-scrollbar">
+      <YearItem />
+    </ul>
+  </Transition>
 </template>
 
 <script setup lang="ts">
 const { productsYear } = productStore();
-const { getYearProducts } = productApi();
 const { vHorizontalScroll } = productsCover()
 
 import { productStore } from "@/entities/product/model/product.store.ts"
-import { productApi } from "@/features/use-product/api/product.api.ts";
 import { productsCover } from "@/features/use-product/model/product-cover.ts";
 
 import YearItem from "@/entities/home/ui/YearItem.vue";
-import BaseButton from "@/shared/ui/BaseButton.vue";
+import empty_products from "@/assets/icons/products/icon-products.svg";
 </script>
 
 
