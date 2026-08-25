@@ -35,13 +35,13 @@ const { filterAside } = useProductsModals();
 const { componentError, resetError } = errorHandler();
 
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
-import { useProductsModals } from "@/feature/product/lib/product.modal.ts";
+import { useProductsModals } from "@/feature/use-product/lib/product.modal.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 
-import MainNavBar from "@/feature/navigation/ui/MainNavBar.vue";
-import ProductList from "@/feature/product/ui/ProductList.vue";
-import HeaderProducts from "@/feature/navigation/ui/HeaderProducts.vue";
-import FilterProducts from "@/feature/navigation/ui/FilterProducts.vue";
+import MainNavBar from "@/entities/navigation/ui/MainNavBar.vue";
+import ProductList from "@/entities/product/ui/ProductList.vue";
+import HeaderProducts from "@/entities/navigation/ui/HeaderProducts.vue";
+import FilterProducts from "@/entities/navigation/ui/FilterProducts.vue";
 import Notification from "@/shared/ui/Notification.vue";
 import AsideFilter from "@/shared/ui/AsideFilter.vue";
 import Loading from "@/shared/ui/Loading.vue";

@@ -1,4 +1,4 @@
-import { type Order } from "@/entities/order/order.types.ts";
+import { type Order } from "@/entities/order/model/order.types.ts";
 
 export const ordersClasses = () => {
     const orderStatus = (order: Order) => [

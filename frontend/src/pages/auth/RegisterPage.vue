@@ -41,14 +41,14 @@ const { showSignSection } = authStore();
 const { loading, notify } = useBaseModals();
 const { clearRegisterForm } = clearAuthForms();
 
-import { authApi } from "@/feature/auth/api/auth.api.ts";
-import { clearAuthForms } from "@/feature/auth/lib/clear.auth.ts";
-import { useAuth } from "@/feature/auth/model/use-auth.ts";
+import { authApi } from "@/feature/use-auth/api/auth.api.ts";
+import { clearAuthForms } from "@/feature/use-auth/lib/clear.auth.ts";
+import { useAuth } from "@/feature/use-auth/model/use-auth.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { authStore } from "@/entities/auth/auth.store.ts";
+import { authStore } from "@/entities/auth/model/auth.store.ts";
 
-import BuyerRegisterForm from "@/feature/auth/ui/BuyerRegisterForm.vue";
-import SellerRegisterForm from "@/feature/auth/ui/SellerRegisterForm.vue";
+import BuyerRegisterForm from "@/entities/auth/ui/BuyerRegisterForm.vue";
+import SellerRegisterForm from "@/entities/auth/ui/SellerRegisterForm.vue";
 import Loading from "@/shared/ui/Loading.vue";
 import Notification from "@/shared/ui/Notification.vue";
 import maki_arrow from "@/assets/icons/arrows/right-short-arrow.svg";

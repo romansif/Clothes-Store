@@ -10,8 +10,8 @@
 const { products } = productStore();
 const { vHorizontalScroll } = productsCover();
 
-import { productsCover } from "@/feature/product/model/product-cover.ts";
-import { productStore } from "@/entities/product/product.store.ts";
+import { productsCover } from "@/feature/use-product/model/product-cover.ts";
+import { productStore } from "@/entities/product/model/product.store.ts";
 
 import HeaderItem from "@/feature/home/ui/HeaderItem.vue";
 </script>

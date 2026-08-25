@@ -46,19 +46,19 @@ const { showSignSection } = authStore();
 const { loading, notify } = useBaseModals();
 const { clearLoginForm } = clearAuthForms();
 
-import { authApi } from "@/feature/auth/api/auth.api.ts";
-import { clearAuthForms } from "@/feature/auth/lib/clear.auth.ts";
+import { authApi } from "@/feature/use-auth/api/auth.api.ts";
+import { clearAuthForms } from "@/feature/use-auth/lib/clear.auth.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { authStore } from "@/entities/auth/auth.store.ts";
+import { authStore } from "@/entities/auth/model/auth.store.ts";
 
 import Loading from "@/shared/ui/Loading.vue";
 import Notification from "@/shared/ui/Notification.vue";
-import LoginForm from "@/feature/auth/ui/LoginForm.vue";
-import PhoneSignIn from "@/feature/auth/ui/PhoneSignIn.vue";
+import LoginForm from "@/entities/auth/ui/LoginForm.vue";
+import PhoneSignIn from "@/entities/auth/ui/PhoneSignIn.vue";
 import maki_arrow from "@/assets/icons/arrows/right-short-arrow.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";
-import GoogleSignIn from "@/feature/auth/ui/GoogleSignIn.vue";
-import ReCaptcha from "@/feature/auth/ui/ReCaptcha.vue";
+import GoogleSignIn from "@/entities/auth/ui/GoogleSignIn.vue";
+import ReCaptcha from "@/entities/auth/ui/ReCaptcha.vue";
 </script>
 
 <style scoped>

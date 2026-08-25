@@ -32,12 +32,12 @@ const { goBack } = useCheckout();
 const { notify } = useBaseModals();
 const { checkoutClass } = checkoutClasses();
 
-import { useCheckout } from "@/feature/checkout/model/use-checkout.ts";
+import { useCheckout } from "@/feature/use-checkout/model/use-checkout.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { checkoutClasses } from "@/shared/constants/checkout/checkout.classes.ts";
 
-import CheckoutShipping from "@/feature/checkout/ui/CheckoutShipping.vue";
-import OrderInfo from "@/feature/checkout/ui/OrderInfo.vue";
+import CheckoutShipping from "@/entities/checkout/ui/CheckoutShipping.vue";
+import OrderInfo from "@/entities/checkout/ui/OrderInfo.vue";
 import go_to_shop from "@/assets/icons/arrows/right-long-arrow.png";
 import Notification from "@/shared/ui/Notification.vue";
 </script>

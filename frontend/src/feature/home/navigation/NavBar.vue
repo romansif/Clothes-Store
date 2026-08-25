@@ -51,7 +51,7 @@ const { toggleFilterAside } = useProductsModals();
 import { computed }  from "vue";
 import { useRoute } from "vue-router";
 
-import {useProductsModals} from "@/feature/product/lib/product.modal.ts";
+import {useProductsModals} from "@/feature/use-product/lib/product.modal.ts";
 
 import cart from "@/assets/icons/nav/cart.png";
 import liked from "@/assets/icons/nav/favorite.png";

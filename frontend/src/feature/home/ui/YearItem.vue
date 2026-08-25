@@ -33,13 +33,13 @@ const { getProductId } = productApi();
 const { isOutOfStack, productPreview } = productsCover();
 const { productPreviewClass } = baseClasses();
 
-import { userStore } from "@/entities/profile/user.store.ts";
-import { productsCover } from "@/feature/product/model/product-cover.ts";
-import { productApi } from "@/feature/product/api/product.api.ts";
-import { productStore } from "@/entities/product/product.store.ts";
+import { userStore } from "@/entities/profile/model/user.store.ts";
+import { productsCover } from "@/feature/use-product/model/product-cover.ts";
+import { productApi } from "@/feature/use-product/api/product.api.ts";
+import { productStore } from "@/entities/product/model/product.store.ts";
 import { baseClasses } from "@/shared/constants/base.classes.ts";
-import { favoritesApi } from "@/feature/favorite/api/favorites.api.ts";
-import { useFavorite } from "@/feature/favorite/model/use-favorite.ts";
+import { favoritesApi } from "@/feature/use-favorite/api/favorites.api.ts";
+import { useFavorite } from "@/feature/use-favorite/model/use-favorite.ts";
 
 import liked from "@/assets/icons/nav/liked.png";
 import like from "@/assets/icons/nav/like.png";

@@ -42,22 +42,22 @@ const { isProfileLoginClass } = profileClasses();
 const { avatarModal, orderHistory, currentOrder, addressesAndCards, confidentialityData, deleteChoice } = useProfileModals();
 
 import { onMounted } from "vue";
-import { useGetUsers } from "@/feature/auth/api/users.api.ts";
-import { userStore } from "@/entities/profile/user.store.ts";
-import { useProfileModals } from "@/feature/profile/lib/profile.modal.ts";
+import { useGetUsers } from "@/feature/use-auth/api/users.api.ts";
+import { userStore } from "@/entities/profile/model/user.store.ts";
+import { useProfileModals } from "@/feature/use-profile/lib/profile.modal.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { profileClasses } from "@/shared/constants/user/profile.classes.ts";
 
-import MainNavBar from '@/feature/navigation/ui/MainNavBar.vue'
+import MainNavBar from '@/entities/navigation/ui/MainNavBar.vue'
 import DeleteModal from "@/shared/ui/DeleteModal.vue";
-import ProfileSettings from "@/feature/profile/ui/ProfileSettings.vue";
-import ProfileNotLoggedIn from "@/feature/profile/ui/ProfileNotLoggedIn.vue";
+import ProfileSettings from "@/entities/profile/ui/ProfileSettings.vue";
+import ProfileNotLoggedIn from "@/entities/profile/ui/ProfileNotLoggedIn.vue";
 import Notification from "@/shared/ui/Notification.vue";
-import ChangeAvatar from "@/feature/profile/ui/ChangeAvatar.vue";
-import Orders from "@/feature/order/ui/Orders.vue";
-import CurrentOrder from "@/feature/order/ui/CurrentOrder.vue";
-import AddressPaymentInfo from "@/feature/profile/ui/AddressPaymentInfo.vue";
-import UserDataModal from "@/feature/profile/ui/privacy/UserDataModal.vue";
+import ChangeAvatar from "@/entities/profile/ui/ChangeAvatar.vue";
+import Orders from "@/entities/order/ui/Orders.vue";
+import CurrentOrder from "@/entities/order/ui/CurrentOrder.vue";
+import AddressPaymentInfo from "@/entities/profile/ui/AddressPaymentInfo.vue";
+import UserDataModal from "@/entities/profile/ui/privacy/UserDataModal.vue";
 import Loading from "@/shared/ui/Loading.vue";
 
 onMounted(async () => {

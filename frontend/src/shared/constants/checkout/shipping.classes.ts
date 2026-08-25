@@ -1,5 +1,5 @@
-import { checkoutErrors } from "@/feature/checkout/lib/checkout.errors.ts";
-import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
+import { checkoutErrors } from "@/feature/use-checkout/lib/checkout.errors.ts";
+import { checkoutForm } from "@/feature/use-checkout/model/checkout.form.ts";
 
 const { shipping } = checkoutForm();
 const { shippingErrors } = checkoutErrors();

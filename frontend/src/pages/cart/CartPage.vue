@@ -75,19 +75,19 @@ const { resetError, componentError } = errorHandler();
 const { toggleAgree, continueToOrder, cartCount, favoritesCount } = useProfile();
 
 import { useRoute } from "vue-router";
-import { useProfile } from "@/feature/profile/model/use-profile.ts";
+import { useProfile } from "@/feature/use-profile/model/use-profile.ts";
 import { computed, watch } from "vue";
-import { cartStore } from "@/entities/cart/cart.store.ts";
-import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
+import { cartStore } from "@/entities/cart/model/cart.store.ts";
+import { checkoutForm } from "@/feature/use-checkout/model/checkout.form.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { useProfileModals } from "@/feature/profile/lib/profile.modal.ts";
+import { useProfileModals } from "@/feature/use-profile/lib/profile.modal.ts";
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
-import { checkoutErrors } from "@/feature/checkout/lib/checkout.errors.ts";
+import { checkoutErrors } from "@/feature/use-checkout/lib/checkout.errors.ts";
 
-import MainNavBar from "@/feature/navigation/ui/MainNavBar.vue";
+import MainNavBar from "@/entities/navigation/ui/MainNavBar.vue";
 import square from "@/assets/icons/squares/square.png";
-import CartList from "@/feature/cart/ui/CartList.vue";
-import CartInfo from "@/feature/cart/ui/CartInfo.vue";
+import CartList from "@/entities/cart/ui/CartList.vue";
+import CartInfo from "@/entities/cart/ui/CartInfo.vue";
 import liked from "@/assets/icons/nav/liked.png";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import empty_cart from '@/assets/icons/products/empty-cart.svg';

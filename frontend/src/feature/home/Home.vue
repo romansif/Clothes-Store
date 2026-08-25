@@ -13,7 +13,7 @@
 <script setup lang="ts">
 const { filterAside } = useProductsModals();
 
-import { useProductsModals } from "@/feature/product/lib/product.modal.ts";
+import { useProductsModals } from "@/feature/use-product/lib/product.modal.ts";
 
 import NavBar from "./navigation/NavBar.vue";
 import Header from "./ui/Header.vue";

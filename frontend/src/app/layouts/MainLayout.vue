@@ -12,13 +12,13 @@ const { product, activeProductImg } = productStore();
 const { productInfoPreview } = productsCover();
 
 import { onErrorCaptured, onMounted } from "vue";
-import { cartApi } from "@/feature/cart/api/cart.api.ts";
+import { cartApi } from "@/feature/use-cart/api/cart.api.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { favoritesApi } from "@/feature/favorite/api/favorites.api.ts";
+import { favoritesApi } from "@/feature/use-favorite/api/favorites.api.ts";
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
-import { productApi } from "@/feature/product/api/product.api.ts";
-import { productStore } from "@/entities/product/product.store.ts";
-import { productsCover } from "@/feature/product/model/product-cover.ts";
+import { productApi } from "@/feature/use-product/api/product.api.ts";
+import { productStore } from "@/entities/product/model/product.store.ts";
+import { productsCover } from "@/feature/use-product/model/product-cover.ts";
 
 onErrorCaptured((err, info) => {
   console.error("Перехвачена ошибка в дочернем компоненте:", err);
@@ -46,7 +46,7 @@ onMounted(async () => {
   await getProduct();
 
   if(product.value && Array.isArray(product.value.images) && product.value.images[0]) {
-    activeProductImg.value = productInfoPreview.value(product.value) ?? '';
+    activeProductImg.value = productInfoPreview(product.value) ?? '';
   }
 
   loading.value = false;

@@ -1,4 +1,4 @@
-import { type Product } from "@/entities/product/product.types.ts";
+import { type Product } from "@/entities/product/model/product.types.ts";
 
 export const baseClasses = () => {
     const getPhoneClass = (hasError: boolean) => [

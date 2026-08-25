@@ -58,19 +58,19 @@ const { resetError, componentError } = errorHandler();
 const { cartCount, favoritesCount } = useProfile();
 
 import { useRoute } from "vue-router";
-import { useProfile } from "@/feature/profile/model/use-profile.ts";
+import { useProfile } from "@/feature/use-profile/model/use-profile.ts";
 import { computed, watch } from "vue";
-import { favoriteStore } from "@/entities/favorite/favorite.store.ts";
-import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
+import { favoriteStore } from "@/entities/favorite/model/favorite.store.ts";
+import { checkoutForm } from "@/feature/use-checkout/model/checkout.form.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
-import { checkoutErrors } from "@/feature/checkout/lib/checkout.errors.ts";
+import { checkoutErrors } from "@/feature/use-checkout/lib/checkout.errors.ts";
 
-import MainNavBar from "@/feature/navigation/ui/MainNavBar.vue";
+import MainNavBar from "@/entities/navigation/ui/MainNavBar.vue";
 import liked from "@/assets/icons/nav/liked.png";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import favorite_cart from '@/assets/icons/products/favorute_empty.svg';
-import FavoriteList from "@/feature/favorite/ui/FavoriteList.vue";
+import FavoriteList from "@/entities/favorite/ui/FavoriteList.vue";
 import Notification from "@/shared/ui/Notification.vue";
 import Loading from "@/shared/ui/Loading.vue";
 
