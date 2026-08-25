@@ -42,8 +42,8 @@ To run the project locally, follow these steps:
 ### 1. Cloning a repository
 
 ```bash
-git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
-cd your-repo-name
+git clone [https://github.com/romansif/Clothes-Store.git](https://github.com/romansif/Clothes-Store.git)
+cd Clothes-Store
 ```
 
 ### 2. Installing dependencies
