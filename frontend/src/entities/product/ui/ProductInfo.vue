@@ -2,38 +2,38 @@
   <div class="flex flex-col mt-5 px-4 lg:mt-0 w-125">
     <div class="flex flex-col gap-2">
       <div class="flex">
-        <div class="flex flex-col gap-2 mt-1">
-          <h1 class="font-medium">
-            {{ product.title }} {{ product.category }}
-          </h1>
-          <span class="font-medium">
-            $ {{ product.price }}
-          </span>
+        <div class="flex flex-col gap-1 mt-1 font-medium">
+          <h1>{{ product.title }}</h1>
+          <h2>
+            {{ product.collection }} / {{ product.category }}
+          </h2>
         </div>
-        <img @click="toggleToFavorite(product.id, 'product', product.id)"
-             :src="isFavorite(product.id, userData.id) ? liked : like" alt=""
-             class="ml-auto w-8.75 h-8.75 cursor-pointer">
+        <div class="flex flex-col gap-3 ml-auto font-medium">
+          <img @click="toggleToFavorite(product.id, 'product', product.id)"
+               :src="isFavorite(product.id, userData.id) ? liked : like" alt=""
+               class="w-8.75  cursor-pointer">
+        </div>
       </div>
-      <div class="flex text-sm font-medium text-[#A3A3A3]">
-        <span>
-          MRP incl. of all taxes
+      <div class="flex text-sm font-medium text-[#A3A3A3] mt-1">
+        <span>{{ quantityInfo(product) }}</span>
+        <span class="ml-auto text-black">
+          $ {{ product.price }}
         </span>
-        <span class="ml-auto">{{ quantityInfo(product) }}</span>
       </div>
     </div>
-    <div class="mt-5">
-      <span class="font-medium">
+    <div class="mt-3.5">
+      <p class="font-medium break-all">
         {{ product.description }}
-      </span>
+      </p>
     </div>
-    <div class="flex flex-col mt-5 gap-6">
+    <div class="flex flex-col mt-3.5 gap-7">
       <div class="flex flex-col gap-2">
         <span class="font-medium text-[#A3A3A3]">
           Colors
         </span>
         <div class="flex justify-start items-center lg:gap-5">
           <div v-for="color in pureInfoColors(product)" :key="color.hex" :style="{ background: color.hex }" :title="color.hex"
-               @click="addColor(color, userData)" :class="selectedColorClass(color, product, userData.role)"></div>
+               @click="addColor(color, userData, product)" :class="selectedColorClass(color, product, userData.role)"></div>
           </div>
           <span v-if=cartFormErrors.colorError class="text-red-600 text-xs">
             {{ cartFormMessages.colorMessage }}
@@ -42,7 +42,7 @@
       <div class="flex flex-col gap-2">
         <span class="font-medium text-[#A3A3A3]">Sizes</span>
         <div class="flex justify-start items-center lg:gap-5">
-          <img v-for="size in isAvailableSizes" :key="size.name" :src=size.url alt="" @click="addSize(size, userData)"
+          <img v-for="size in isAvailableSizes" :key="size.name" :src=size.url alt="" @click="addSize(size, userData, product)"
                :class="selectedSizesClass(size, product, userData.role)">
         </div>
         <span v-if=cartFormErrors.sizeError class="text-red-600 text-xs">

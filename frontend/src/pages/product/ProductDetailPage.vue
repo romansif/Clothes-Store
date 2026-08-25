@@ -24,7 +24,7 @@
                 </div>
                 <div class="flex flex-col justify-between">
                   <div v-for="(img, index) in angelCards(product)" :key="index" class="h-21.25 w-18">
-                    <img @click="changeImg(index)" :src="img" alt="" class="opacity-70 transition duration-400 hover:scale-120">
+                    <img @click="changeImg(index)" :src="img" alt="" class="opacity-70 cursor-pointer transition duration-400 hover:scale-110">
                   </div>
                 </div>
               </div>

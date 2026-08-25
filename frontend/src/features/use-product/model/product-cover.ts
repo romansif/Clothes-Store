@@ -220,8 +220,10 @@ export const productsCover = () => {
     };
 
     const quantityInfo = (product: Product) => {
-        if(product.quantity < 4){
+        if(product.quantity < 4 && product.quantity !== 0){
             return `🔥 Only ${product.quantity} left`;
+        }else if(product.quantity === 0){
+            return ``;
         }else{
             return `In stock ${product.quantity} pcs.`;
         }
