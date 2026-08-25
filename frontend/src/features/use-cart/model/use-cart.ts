@@ -1,20 +1,20 @@
 import { type User } from "@/entities/profile/model/user.types.ts";
-import { type ColorItem, type Sizes } from "@/entities/product/model/product.types.ts";
+import {type ColorItem, type Product, type Sizes} from "@/entities/product/model/product.types.ts";
 import { addToCartForm } from "@/features/use-cart/model/cart.form.ts";
 
 const { cartForm } = addToCartForm();
 
 export const useCart = () => {
-    const addColor = (color: ColorItem, user: User) => {
-        if(user.role !== 'Buyer'){
-            return
+    const addColor = (color: ColorItem, user: User, product: Product) => {
+        if(user.role !== 'Buyer' || product.status === 'Exhausted'){
+            return;
         }
         cartForm.value.colors = { hex: color.hex, colorName: color.colorName }
     };
 
-    const addSize = (size: Sizes, user: User) => {
-        if(user.role !== 'Buyer'){
-            return
+    const addSize = (size: Sizes, user: User, product: Product) => {
+        if(user.role !== 'Buyer' || product.status === 'Exhausted'){
+            return;
         }
         cartForm.value.sizes = size.name
     };

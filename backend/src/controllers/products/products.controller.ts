@@ -155,7 +155,8 @@ export const productsController = {
                         (p.category && String(p.category).toLowerCase().includes(search)) ||
                         (p.material && String(p.material).toLowerCase().includes(search)) ||
                         (p.description && String(p.description).toLowerCase().includes(search)) ||
-                        (p.gender && String(p.gender).toLowerCase().includes(search))
+                        (p.gender && String(p.gender).toLowerCase().includes(search)) ||
+                        (p.collection && String(p.collection).toLowerCase().includes(search))
                     );
                 });
             }
