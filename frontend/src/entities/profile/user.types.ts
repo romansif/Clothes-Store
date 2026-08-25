@@ -13,3 +13,12 @@ export interface User {
     refreshTokens: object,
     userId: string
 }
+
+export interface UserDataUpdate {
+    name?: string;
+    surName?: string;
+    phone?: string;
+    email?: string;
+    publicPhone?: string;
+    companyName?: string;
+}

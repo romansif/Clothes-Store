@@ -1,19 +1,11 @@
 import { handler } from "@/shared/api/http";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
-import { userStore } from "@/feature/profile/model/user.store.ts";
+import { userStore } from "@/entities/profile/user.store.ts";
 import { userForms } from "@/feature/profile/model/user.form.ts";
 import { clearUsersForms } from "@/feature/profile/lib/clear.users.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { useGetUsers } from "@/feature/auth/api/users.api.ts";
-
-interface UserDataUpdate {
-    name?: string;
-    surName?: string;
-    phone?: string;
-    email?: string;
-    publicPhone?: string;
-    companyName?: string;
-}
+import type { UserDataUpdate } from "@/entities/profile/user.types.ts";
 
 const { user, userData } = userStore();
 const { getUser } = useGetUsers();
