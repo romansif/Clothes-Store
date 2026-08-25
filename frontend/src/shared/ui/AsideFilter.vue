@@ -1,7 +1,7 @@
 <template>
   <aside class="fixed inset-0 z-50">
     <div class="font-montserrat flex flex-col h-screen bg-white px-6 py-6 sm:w-76.25 md:w-82.5">
-      <div class="flex gap-5 items-center" @click=toggleFilterAside>
+      <div class="flex gap-5 items-center" @click="toggleFilterAside">
         <span class="font-bold text-xl cursor-pointer">Filters</span>
         <img :src=left_arrow alt="">
       </div>

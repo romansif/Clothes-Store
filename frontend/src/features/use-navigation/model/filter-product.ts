@@ -9,16 +9,16 @@ export const filterProduct = () => {
     const selectedGender = ref<string>('ALL');
 
     const collections = ref<Record<string, boolean>>({
+        Raw: false,
+        Mono: false,
+        Grid: false,
+        Void: false,
+        Draft: false,
+        Static: false,
         Essence: false,
         Silence: false,
         Blueprint: false,
         'Chapter |': false,
-        Raw: false,
-        Mono: false,
-        Grid: false,
-        Draft: false,
-        Void: false,
-        Static: false,
     });
 
 
@@ -35,11 +35,11 @@ export const filterProduct = () => {
 
     const colors = ref<Record<string, boolean>>({
         White: false,
+        Khaki: false,
         Black: false,
-        Rose: false,
-        Red: false,
-        Green: false,
-        Blue: false,
+        Mazarine: false,
+        Beige: false,
+        Burgundy: false,
     })
 
     const category = ref<Record<string, boolean>>({
@@ -48,12 +48,12 @@ export const filterProduct = () => {
 
     const categories = ref<Record<string, boolean>>({
         Shirts: false,
-        'Polo shirts': false,
         Shoes: false,
-        'Best sellers': false,
-        'T-shirts': false,
         Jeans: false,
         Jackets: false,
+        'T-shirts': false,
+        'Polo shirts': false,
+        'Best sellers': false,
     })
 
     const setActiveKey = (targetObj: Record<string, boolean>, selectedKey: string) => {
