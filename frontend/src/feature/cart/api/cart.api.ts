@@ -1,13 +1,14 @@
 import { handler } from "@/shared/api/http.ts";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
-import { productStore } from "@/feature/product/model/product.store.ts";
+import { productStore } from "@/entities/product/product.store.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { productApi } from "@/feature/product/api/product.api.ts";
 import { addToCartForm } from "@/feature/cart/model/cart.form.ts";
 import { clearAddToCartForm } from "@/feature/cart/lib/clear.cart.ts";
-import { cartStore } from "@/feature/cart/model/cart.store.ts";
-import { orderStore } from "@/feature/order/model/order.store.ts";
-import { userStore } from "@/feature/profile/model/user.store.ts";
+import { cartStore } from "@/entities/cart/cart.store.ts";
+import { orderStore } from "@/entities/order/order.store.ts";
+import { userStore } from "@/entities/profile/user.store.ts";
+import type {CartItem} from "@/entities/cart/cart.types.ts";
 
 const { userData } = userStore();
 const { orderItems } = orderStore();
@@ -75,7 +76,7 @@ export const cartApi = () => {
         }
     };
 
-    const checkCartItem = async (id: string, productId: string, product: any) => {
+    const checkCartItem = async (id: string, productId: string, product: CartItem) => {
         try{
             const productCart = cart.value?.find(c => c.id === id);
             if(productCart){
@@ -86,20 +87,8 @@ export const cartApi = () => {
                             checked: true
                         })
                     });
-                    await handler(`/products/${productId}`, {
-                        method: "PATCH",
-                        body: JSON.stringify({
-                            checked: true
-                        })
-                    });
                 }else{
                     await handler(`/cart/${productId}`, {
-                        method: "PATCH",
-                        body: JSON.stringify({
-                            checked: false
-                        })
-                    });
-                    await handler(`/products/${productId}`, {
                         method: "PATCH",
                         body: JSON.stringify({
                             checked: false
