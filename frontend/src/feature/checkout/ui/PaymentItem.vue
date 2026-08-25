@@ -29,7 +29,7 @@ const { userPayments } = checkoutStore();
 const { useSavedCard } = paymentApi();
 const { savedPaymentClass } = paymentClasses();
 
-import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
+import { checkoutStore } from "@/entities/checkout/checkout.store.ts";
 import { paymentClasses } from "@/shared/constants/checkout/payment.classes.ts";
 import { paymentApi } from "@/feature/checkout/api/payment.api.ts";
 </script>

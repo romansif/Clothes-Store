@@ -1,10 +1,10 @@
 import { handler } from "@/shared/api/http.ts";
-import { useCheckout } from "@/feature/checkout/lib/use-checkout.ts";
+import { useCheckout } from "@/feature/checkout/model/use-checkout.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
-import { orderStore } from "@/feature/order/model/order.store.ts";
-import { userStore } from "@/feature/profile/model/user.store.ts";
+import { orderStore } from "@/entities/order/order.store.ts";
+import { userStore } from "@/entities/profile/user.store.ts";
 
 const { userData } = userStore();
 const { totalPrice } = useCheckout();

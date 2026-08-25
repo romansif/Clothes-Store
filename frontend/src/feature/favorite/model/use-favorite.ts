@@ -1,4 +1,4 @@
-import { favoriteStore } from "@/feature/favorite/model/favorite.store.ts";
+import { favoriteStore } from "@/entities/favorite/favorite.store.ts";
 
 const { favorite } = favoriteStore();
 

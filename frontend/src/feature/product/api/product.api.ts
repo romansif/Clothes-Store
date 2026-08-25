@@ -3,11 +3,11 @@ import router from "@/app/router";
 import { handler } from "@/shared/api/http.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
-import { productStore } from "@/feature/product/model/product.store.ts";
+import { productStore } from "@/entities/product/product.store.ts";
 import { productForms } from "@/feature/product/model/product.forms.ts";
 import { clearProductsForms } from "@/feature/product/lib/clear.product.ts";
-import type { Product } from "@/entities/products/product.types.ts";
-import { userStore } from "@/feature/profile/model/user.store.ts";
+import type { Product } from "@/entities/product/product.types.ts";
+import { userStore } from "@/entities/profile/user.store.ts";
 
 const { userData } = userStore();
 const { openNotify, loading } = useBaseModals()

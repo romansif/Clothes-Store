@@ -31,7 +31,7 @@ const { carNameClass, cardNumberClass, expiryDateClass, cardCvvClass } = payment
 const { cardNumberPlaceholder, expiryDatePlaceholder, cardCvvPlaceholder } = checkoutInput();
 
 import { IMaskComponent as IMask } from "vue-imask";
-import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
+import { checkoutStore } from "@/entities/checkout/checkout.store.ts";
 import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
 import { paymentClasses } from "@/shared/constants/checkout/payment.classes.ts";
 import { checkoutInput } from "@/feature/checkout/lib/checkout-input.ts";

@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { orderStore } from "@/feature/order/model/order.store.ts";
+import { orderStore } from "@/entities/order/order.store.ts";
 
 const { items } = orderStore();
 

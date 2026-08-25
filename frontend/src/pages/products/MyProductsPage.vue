@@ -31,7 +31,7 @@ const { deleteChoice } = useProfileModals();
 
 import { onMounted } from "vue";
 import { productApi } from "@/feature/product/api/product.api.ts";
-import { productStore } from "@/feature/product/model/product.store.ts";
+import { productStore } from "@/entities/product/product.store.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { useProfileModals } from "@/feature/profile/lib/profile.modal.ts";
 

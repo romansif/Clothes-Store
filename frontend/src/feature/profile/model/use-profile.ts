@@ -1,12 +1,12 @@
 import { computed } from "vue";
 import router from "@/app/router";
-import { userStore } from "@/feature/profile/model/user.store.ts";
-import { productStore } from "@/feature/product/model/product.store.ts";
+import { userStore } from "@/entities/profile/user.store.ts";
+import { productStore } from "@/entities/product/product.store.ts";
 import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
 import { checkoutErrors } from "@/feature/checkout/lib/checkout.errors.ts";
-import { cartStore } from "@/feature/cart/model/cart.store.ts";
-import { favoriteStore } from "@/feature/favorite/model/favorite.store.ts";
-import { orderStore } from "@/feature/order/model/order.store.ts";
+import { cartStore } from "@/entities/cart/cart.store.ts";
+import { favoriteStore } from "@/entities/favorite/favorite.store.ts";
+import { orderStore } from "@/entities/order/order.store.ts";
 
 const { cart } = cartStore();
 const { user } = userStore();

@@ -40,7 +40,7 @@ const { updateUserForm, updateUserFormMessage } = userForms();
 
 import { IMaskComponent as IMask } from "vue-imask";
 import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
-import { userStore } from "@/feature/profile/model/user.store.ts";
+import { userStore } from "@/entities/profile/user.store.ts";
 import { userForms } from "@/feature/profile/model/user.form.ts";
 import { profileApi } from "@/feature/profile/api/profile.api.ts";
 import { profileClasses } from "@/shared/constants/user/profile.classes.ts";

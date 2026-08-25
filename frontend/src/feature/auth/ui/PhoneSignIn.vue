@@ -43,9 +43,9 @@ const { setInputRef, handleInput, handleKeyDown, handlePaste, stopTimer, formatt
 import { onUnmounted } from "vue";
 import { IMaskComponent as IMask } from "vue-imask";
 import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
-import { userStore } from "@/feature/profile/model/user.store.ts";
+import { userStore } from "@/entities/profile/user.store.ts";
 import { authForms } from "@/feature/auth/model/auth.forms.ts";
-import { useAuth } from "@/feature/auth/lib/use-auth.ts";
+import { useAuth } from "@/feature/auth/model/use-auth.ts";
 import { authClasses } from "@/shared/constants/auth/auth.classes.ts";
 import { authFormsErrors } from "@/feature/auth/lib/auth.errors.ts";
 

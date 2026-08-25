@@ -92,10 +92,10 @@ const { paymentErrors } = checkoutErrors();
 const { payment, paymentMessages } = checkoutForm();
 const { openCardForm, closeCardForm, toggleShowPayment, isDebitCard } = useCheckout();
 
-import { useCheckout } from "@/feature/checkout/lib/use-checkout.ts";
+import { useCheckout } from "@/feature/checkout/model/use-checkout.ts";
 import { paymentApi } from "@/feature/checkout/api/payment.api.ts";
 import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
-import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
+import { checkoutStore } from "@/entities/checkout/checkout.store.ts";
 import { paymentClasses } from "@/shared/constants/checkout/payment.classes.ts";
 import { checkoutErrors }from "@/feature/checkout/lib/checkout.errors.ts";
 

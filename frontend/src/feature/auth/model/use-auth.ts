@@ -1,5 +1,5 @@
 import { type ComponentPublicInstance, computed } from "vue";
-import { authStore } from "@/feature/auth/model/auth.store.ts";
+import { authStore } from "@/entities/auth/auth.store.ts";
 import { clearAuthForms } from "@/feature/auth/lib/clear.auth.ts";
 import { authForms } from "@/feature/auth/model/auth.forms.ts";
 

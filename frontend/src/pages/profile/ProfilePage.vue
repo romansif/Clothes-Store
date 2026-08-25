@@ -43,7 +43,7 @@ const { avatarModal, orderHistory, currentOrder, addressesAndCards, confidential
 
 import { onMounted } from "vue";
 import { useGetUsers } from "@/feature/auth/api/users.api.ts";
-import { userStore } from "@/feature/profile/model/user.store.ts";
+import { userStore } from "@/entities/profile/user.store.ts";
 import { useProfileModals } from "@/feature/profile/lib/profile.modal.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { profileClasses } from "@/shared/constants/user/profile.classes.ts";

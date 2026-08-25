@@ -1,9 +1,9 @@
 import { handler } from "@/shared/api/http.ts";
-import { productStore } from "@/feature/product/model/product.store.ts";
+import { productStore } from "@/entities/product/product.store.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { favoriteStore } from "@/feature/favorite/model/favorite.store.ts";
-import { cartStore } from "@/feature/cart/model/cart.store.ts";
-import { userStore } from "@/feature/profile/model/user.store.ts";
+import { favoriteStore } from "@/entities/favorite/favorite.store.ts";
+import { cartStore } from "@/entities/cart/cart.store.ts";
+import { userStore } from "@/entities/profile/user.store.ts";
 
 const { userData } = userStore();
 const { cart } = cartStore();

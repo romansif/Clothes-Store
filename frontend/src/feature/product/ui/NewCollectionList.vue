@@ -16,7 +16,7 @@
 const { newCollections } = productStore();
 const { getNewCollections } = productApi();
 
-import { productStore } from "@/feature/product/model/product.store.ts";
+import { productStore } from "@/entities/product/product.store.ts";
 import { productApi } from "@/feature/product/api/product.api.ts";
 
 import BaseButton from "@/shared/ui/BaseButton.vue";

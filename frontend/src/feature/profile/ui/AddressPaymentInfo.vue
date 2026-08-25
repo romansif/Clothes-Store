@@ -54,7 +54,7 @@ const { userAddresses, userPayments } = checkoutStore();
 const { toggleAddressesAndCards, deleteChoice } = useProfileModals();
 
 import { onMounted } from "vue";
-import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
+import { checkoutStore } from "@/entities/checkout/checkout.store.ts";
 import { useProfileModals } from "@/feature/profile/lib/profile.modal.ts";
 import { addressApi } from "@/feature/checkout/api/address.api.ts";
 import { paymentApi } from "@/feature/checkout/api/payment.api.ts";

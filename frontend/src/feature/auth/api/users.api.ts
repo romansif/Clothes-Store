@@ -1,5 +1,5 @@
 import { handler } from '@/shared/api/http'
-import { userStore } from "@/feature/profile/model/user.store.ts";
+import { userStore } from "@/entities/profile/user.store.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 
 const { loading } = useBaseModals();

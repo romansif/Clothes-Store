@@ -76,7 +76,7 @@ const { selectedSizeClass, selectedFilterClass } = productsClasses();
 const { toggleFilter, toggleSize, stackProducts, genders, colors } = filterProduct();
 
 import { filterProduct } from "@/feature/navigation/lib/filter-product.ts";
-import { productStore } from "@/feature/product/model/product.store.ts";
+import { productStore } from "@/entities/product/product.store.ts";
 import { productsClasses } from "@/shared/constants/product/products.classes.ts";
 
 import square from '@/assets/icons/squares/square.png'

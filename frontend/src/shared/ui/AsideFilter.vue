@@ -98,7 +98,7 @@ import { computed, onMounted } from "vue";
 import { filterProduct } from "@/feature/navigation/lib/filter-product.ts";
 import { productsClasses } from "@/shared/constants/product/products.classes.ts";
 import { productApi } from "@/feature/product/api/product.api.ts";
-import { productStore } from "@/feature/product/model/product.store.ts";
+import { productStore } from "@/entities/product/product.store.ts";
 import { useProductsModals } from "@/feature/product/lib/product.modal.ts";
 
 import square from "@/assets/icons/squares/square.png";

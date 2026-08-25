@@ -17,8 +17,8 @@ import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { favoritesApi } from "@/feature/favorite/api/favorites.api.ts";
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
 import { productApi } from "@/feature/product/api/product.api.ts";
-import { productStore } from "@/feature/product/model/product.store.ts";
-import { productsCover } from "@/shared/lib/product-cover.ts";
+import { productStore } from "@/entities/product/product.store.ts";
+import { productsCover } from "@/feature/product/model/product-cover.ts";
 
 onErrorCaptured((err, info) => {
   console.error("Перехвачена ошибка в дочернем компоненте:", err);

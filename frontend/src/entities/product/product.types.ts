@@ -43,7 +43,6 @@ export interface Gender {
     gender: string,
 }
 
-
 export interface Sizes {
     isActive: boolean,
     name: string,

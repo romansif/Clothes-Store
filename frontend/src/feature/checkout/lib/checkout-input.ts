@@ -2,7 +2,7 @@ import { computed } from "vue";
 import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
 import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
 import { checkoutErrors } from "@/feature/checkout/lib/checkout.errors.ts";
-import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
+import { checkoutStore } from "@/entities/checkout/checkout.store.ts";
 
 const { userAddress } = checkoutStore();
 const { currentCountry } = usePhoneForm();

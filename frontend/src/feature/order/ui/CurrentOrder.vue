@@ -33,7 +33,7 @@ const { getFilteredOrders } = orderApi();
 const { toggleCurrentOrder } = useProfileModals();
 
 import { onMounted } from "vue";
-import { useOrder } from "@/feature/order/lib/use-order.ts";
+import { useOrder } from "@/feature/order/model/use-order.ts";
 import { useProfileModals } from "@/feature/profile/lib/profile.modal.ts";
 import { orderApi } from "@/feature/order/api/order.api.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";

@@ -22,7 +22,7 @@ const { toggleShowContact } = useCheckout();
 
 import { onMounted } from "vue";
 import { addressApi } from "@/feature/checkout/api/address.api.ts";
-import { useCheckout } from "@/feature/checkout/lib/use-checkout.ts";
+import { useCheckout } from "@/feature/checkout/model/use-checkout.ts";
 
 import ContactList from "@/feature/checkout/ui/ContactList.vue";
 import AddressList from "@/feature/checkout/ui/AddressList.vue";

@@ -45,8 +45,8 @@ const { items } = orderStore();
 const { shipping } = checkoutForm();
 const { price, totalPrice, commissionPrice } = useCheckout();
 
-import { orderStore } from "@/feature/order/model/order.store.ts";
-import { useCheckout } from "@/feature/checkout/lib/use-checkout.ts";
+import { orderStore } from "@/entities/order/order.store.ts";
+import { useCheckout } from "@/feature/checkout/model/use-checkout.ts";
 import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
 
 import OrderInfoList from "./OrderInfoList.vue";

@@ -1,6 +1,6 @@
 import { ref } from "vue";
 import { productApi } from "@/feature/product/api/product.api.ts";
-import { productStore } from "@/feature/product/model/product.store.ts";
+import { productStore } from "@/entities/product/product.store.ts";
 
 const { sizes } = productStore();
 const { getFilteredProducts, getWeekProducts, getYearProducts, getNewCollections } = productApi();

@@ -19,7 +19,7 @@
 const { userAddresses } = checkoutStore();
 
 import { computed } from "vue";
-import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
+import { checkoutStore } from "@/entities/checkout/checkout.store.ts";
 
 import AddressesItem from "./AddressesItem.vue";
 import icon_address from "@/assets/icons/checkout/icon_address.svg";

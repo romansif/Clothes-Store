@@ -42,12 +42,12 @@ const { toggleToFavorite } = favoritesApi();
 const { productPreviewClass } = baseClasses();
 const { isOutOfStack, productPreview } = productsCover();
 
-import { useFavorite } from "@/feature/favorite/lib/use-favorite.ts";
-import { userStore } from "@/feature/profile/model/user.store.ts";
-import { productsCover } from "@/shared/lib/product-cover.ts";
+import { useFavorite } from "@/feature/favorite/model/use-favorite.ts";
+import { userStore } from "@/entities/profile/user.store.ts";
+import { productsCover } from "@/feature/product/model/product-cover.ts";
 import { baseClasses } from "@/shared/constants/base.classes.ts";
 import { productApi } from "@/feature/product/api/product.api.ts";
-import { favoriteStore } from "@/feature/favorite/model/favorite.store.ts";
+import { favoriteStore } from "@/entities/favorite/favorite.store.ts";
 import { favoritesApi } from "@/feature/favorite/api/favorites.api.ts";
 
 import like from "@/assets/icons/nav/like.png";

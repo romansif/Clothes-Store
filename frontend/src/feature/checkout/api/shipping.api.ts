@@ -4,8 +4,8 @@ import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { clearCheckoutForm } from "@/feature/checkout/lib/clear.checkout.ts";
-import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
-import { userStore } from "@/feature/profile/model/user.store.ts";
+import { checkoutStore } from "@/entities/checkout/checkout.store.ts";
+import { userStore } from "@/entities/profile/user.store.ts";
 
 const { userData } = userStore();
 const { shipping } = checkoutForm();

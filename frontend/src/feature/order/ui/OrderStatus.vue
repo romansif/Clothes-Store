@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { type Order } from "@/entities/orders/order.types.ts";
+import { type Order } from "@/entities/order/order.types.ts";
 
 const props = defineProps<{
   order: Order;

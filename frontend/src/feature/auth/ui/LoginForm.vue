@@ -53,8 +53,8 @@ const { loginForm, loginFormMessages } = authForms();
 import { watch } from "vue";
 import { authApi } from "@/feature/auth/api/auth.api.ts";
 import { authForms } from "@/feature/auth/model/auth.forms.ts";
-import { useAuth } from "@/feature/auth/lib/use-auth.ts";
-import { authStore } from "@/feature/auth/model/auth.store.ts";
+import { useAuth } from "@/feature/auth/model/use-auth.ts";
+import { authStore } from "@/entities/auth/auth.store.ts";
 import { authClasses } from "@/shared/constants/auth/auth.classes.ts";
 import { authFormsErrors } from "@/feature/auth/lib/auth.errors.ts";
 

@@ -68,11 +68,11 @@ import { watch } from "vue";
 import { IMaskComponent as IMask } from "vue-imask";
 import { authApi } from "@/feature/auth/api/auth.api.ts";
 import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
-import { authStore} from "@/feature/auth/model/auth.store.ts";
-import { userStore } from "@/feature/profile/model/user.store.ts";
+import { authStore} from "@/entities/auth/auth.store.ts";
+import { userStore } from "@/entities/profile/user.store.ts";
 import { authForms } from "@/feature/auth/model/auth.forms.ts";
 import { authFormsErrors } from "@/feature/auth/lib/auth.errors.ts";
-import { useAuth } from "@/feature/auth/lib/use-auth.ts";
+import { useAuth } from "@/feature/auth/model/use-auth.ts";
 import { authClasses } from "@/shared/constants/auth/auth.classes.ts";
 
 import opened from "@/assets/icons/auth/opened.png";

@@ -21,7 +21,7 @@
 <script setup lang="ts">
 import { IMaskComponent as IMask } from "vue-imask";
 import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
-import { userStore } from "@/feature/profile/model/user.store.ts";
+import { userStore } from "@/entities/profile/user.store.ts";
 import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
 import { informationClasses } from "@/shared/constants/checkout/information.classes.ts";
 import { checkoutErrors }from "@/feature/checkout/lib/checkout.errors.ts";

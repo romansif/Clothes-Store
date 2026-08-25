@@ -12,7 +12,7 @@
               <span class="">{{ product?.title }}</span>
               <span>{{ product?.category }}</span>
             </div>
-            <span class="">$ {{product?.price }}</span>
+            <span class="">$ {{ product?.price }}</span>
           </div>
           <span class="text-gray-400">{{ pureColorsName(product) }} / {{ product?.sizes }}</span>
           <span class="mt-8">(<span class="text-blue-700 font-medium">{{ product?.quantity }}</span>)</span>
@@ -28,9 +28,9 @@ const { items } = orderStore();
 const { getProductId } = productApi();
 const { orderPreview, pureColorsName } = productsCover();
 
-import { orderStore } from "@/feature/order/model/order.store.ts";
+import { orderStore } from "@/entities/order/order.store.ts";
 import { productApi } from "@/feature/product/api/product.api.ts";
-import { productsCover } from "@/shared/lib/product-cover.ts";
+import { productsCover } from "@/feature/product/model/product-cover.ts";
 </script>
 
 <style scoped>

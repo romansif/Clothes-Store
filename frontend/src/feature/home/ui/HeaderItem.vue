@@ -22,9 +22,9 @@ const { productPreview } = productsCover();
 const { productPreviewClass } = baseClasses();
 
 import { baseClasses } from "@/shared/constants/base.classes.ts";
-import { productsCover } from "@/shared/lib/product-cover.ts";
+import { productsCover } from "@/feature/product/model/product-cover.ts";
 import { productApi } from "@/feature/product/api/product.api.ts";
-import { productStore } from "@/feature/product/model/product.store.ts";
+import { productStore } from "@/entities/product/product.store.ts";
 </script>
 
 <style scoped>

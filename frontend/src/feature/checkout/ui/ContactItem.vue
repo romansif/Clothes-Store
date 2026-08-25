@@ -20,7 +20,7 @@ const { savedContactClass } = informationClasses()
 const { useSavedContactInfo } = addressApi();
 
 import { addressApi } from "@/feature/checkout/api/address.api.ts";
-import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
+import { checkoutStore } from "@/entities/checkout/checkout.store.ts";
 import { informationClasses } from "@/shared/constants/checkout/information.classes.ts";
 </script>
 

@@ -66,7 +66,7 @@ import { ref, watch } from 'vue'
 import { userForms } from "@/feature/profile/model/user.form.ts";
 import { profileApi } from "@/feature/profile/api/profile.api.ts";
 import { userFormsErrors } from "@/feature/profile/lib/users.error.ts";
-import { userStore } from "@/feature/profile/model/user.store.ts";
+import { userStore } from "@/entities/profile/user.store.ts";
 
 import BaseButton  from "@/shared/ui/BaseButton.vue";
 import BuyerForm from "./BuyerForm.vue";

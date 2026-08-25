@@ -58,9 +58,9 @@ const { resetError, componentError } = errorHandler();
 const { cartCount, favoritesCount } = useProfile();
 
 import { useRoute } from "vue-router";
-import { useProfile } from "@/shared/lib/use-profile.ts";
+import { useProfile } from "@/feature/profile/model/use-profile.ts";
 import { computed, watch } from "vue";
-import { favoriteStore } from "@/feature/favorite/model/favorite.store.ts";
+import { favoriteStore } from "@/entities/favorite/favorite.store.ts";
 import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";

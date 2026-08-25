@@ -19,7 +19,7 @@
 const { userPayments } = checkoutStore();
 
 import { computed } from "vue";
-import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
+import { checkoutStore } from "@/entities/checkout/checkout.store.ts";
 
 import PaymentsItem from "./PaymentsItem.vue";
 import icon_card from "@/assets/icons/checkout/payment/icon_card.svg";

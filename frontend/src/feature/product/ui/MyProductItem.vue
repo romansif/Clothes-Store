@@ -61,8 +61,8 @@ const { productPreviewClass } = baseClasses();
 
 import { baseClasses } from "@/shared/constants/base.classes.ts";
 import { productApi } from "@/feature/product/api/product.api.ts";
-import { productsCover } from "@/shared/lib/product-cover.ts";
-import { productStore } from "@/feature/product/model/product.store.ts";
+import { productsCover } from "@/feature/product/model/product-cover.ts";
+import { productStore } from "@/entities/product/product.store.ts";
 import { useProfileModals } from "@/feature/profile/lib/profile.modal.ts";
 
 import del from '@/assets/icons/delete-close/delete.svg'

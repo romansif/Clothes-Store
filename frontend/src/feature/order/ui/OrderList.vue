@@ -18,7 +18,7 @@
 <script setup lang="ts">
 const { orders } = orderStore();
 
-import { orderStore } from "@/feature/order/model/order.store.ts";
+import { orderStore } from "@/entities/order/order.store.ts";
 
 import icon_shop from "@/assets/icons/products/icon_shop.svg";
 import OrderItem from "@/feature/order/ui/OrderItem.vue";

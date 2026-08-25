@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { productStore } from "@/feature/product/model/product.store.ts";
+import { productStore } from "@/entities/product/product.store.ts";
 
 const filterAside = ref<boolean>(false);
 const fileInput = ref<HTMLInputElement | null>(null);

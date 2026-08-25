@@ -20,7 +20,7 @@
 <script setup lang="ts">
 const { userAddress } = checkoutStore();
 
-import { checkoutStore } from "@/feature/checkout/model/checkout.store.ts";
+import { checkoutStore } from "@/entities/checkout/checkout.store.ts";
 </script>
 
 <style scoped>

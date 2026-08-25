@@ -28,7 +28,7 @@
 <script setup lang="ts">
 const { user } = userStore();
 
-import { userStore } from "@/feature/profile/model/user.store.ts";
+import { userStore } from "@/entities/profile/user.store.ts";
 </script>
 
 <style scoped>

@@ -23,7 +23,7 @@ import { watch } from "vue";
 import { paymentApi } from "@/feature/checkout/api/payment.api.ts";
 import { checkoutForm } from "@/feature/checkout/model/checkout.form.ts";
 import { checkoutErrors } from "@/feature/checkout/lib/checkout.errors.ts";
-import { useCheckout } from "@/feature/checkout/lib/use-checkout.ts";
+import { useCheckout } from "@/feature/checkout/model/use-checkout.ts";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";

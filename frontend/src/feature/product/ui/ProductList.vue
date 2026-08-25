@@ -16,7 +16,7 @@
 const { products } = productStore();
 const { getAllProducts } = productApi();
 
-import { productStore } from "@/feature/product/model/product.store.ts";
+import { productStore } from "@/entities/product/product.store.ts";
 import { productApi } from "@/feature/product/api/product.api.ts";
 
 import ProductItem from "./ProductItem.vue";
