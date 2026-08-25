@@ -10,7 +10,7 @@ import type { ColorItem, Product, Sizes } from "@/entities/product/model/product
 const { cart } = cartStore();
 const { orders, items } = orderStore();
 const { moreCreateItem } = productForms();
-const { products, product, productId, sizes, activeProductImg } = productStore();
+const { products, product, productId, sizes, sizeGuide, activeProductImg, unit } = productStore();
 
 export const productsCover = () => {
     const toggleColor =  (eventOrColor: Event | string) => {
@@ -219,6 +219,25 @@ export const productsCover = () => {
         return product.quantity === 0 || product.status === 'Exhausted'
     };
 
+    const quantityInfo = (product: Product) => {
+        if(product.quantity < 4){
+            return `🔥 Only ${product.quantity} left`;
+        }else{
+            return `In stock ${product.quantity} pcs.`;
+        }
+    };
+
+    const formatterSizeGuide = computed(() => {
+        if(unit.value === 'IN') {
+            return sizeGuide.map(size => ({
+                    ...size,
+                    values: size.values.map(value => Math.round(Number(value) / 2.54))
+                })
+            )
+        }
+        return sizeGuide
+    })
+
     return {
         productPreview,
         orderPreview,
@@ -240,6 +259,9 @@ export const productsCover = () => {
         changeImg,
 
         isValidOutOfStack,
-        isOutOfStack
+        isOutOfStack,
+        quantityInfo,
+
+        formatterSizeGuide
     }
 }

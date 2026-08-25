@@ -1,8 +1,8 @@
 <template>
   <div @click="toggleOrder('')" class="font-[Montserrat] fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)]
       flex items-center justify-center">
-    <div @click.stop class="flex flex-col gap-2 bg-white w-175 h-[6h-152.5nded-xl p-5">
-      <BaseButton @click="toggleOrder" name="Exit" variant="exitClose"/>
+    <div @click.stop class="flex flex-col gap-2 bg-white w-175 h-152.5 rounded-xl p-5">
+      <BaseButton @click="toggleOrder" name="Exit" variant="exitClose" />
       <div class="flex flex-col gap-4 border-b pb-4">
         <h1 class="font-bold text-2xl">REPLACEMENT OF ORDER</h1>
         <span class="text-sm text-[#A3A3A3]">Select the reason why you want to cancel the order.</span>

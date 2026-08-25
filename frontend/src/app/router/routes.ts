@@ -51,56 +51,56 @@ const routes: RouteRecordRaw[] = [
                 name: 'favorite',
                 component: () => import('@/pages/favorite/FavoritePage.vue')
             },
+        ]
+    },
+    {
+        path: '/',
+        component: () => import('@/app/layouts/ProfileLayout.vue'),
+        children: [
             {
                 path: 'profile',
-                component: () => import('@/app/layouts/ProfileLayout.vue'),
-                children: [
-                    {
-                        path: '',
-                        name: 'profile',
-                        component: () => import('@/pages/profile/ProfilePage.vue'),
-                    },
-                    {
-                        path: 'my/products',
-                        name: 'my/products',
-                        component: () => import('@/pages/products/MyProductsPage.vue'),
-
-                    },
-                    {
-                        path: 'create/product',
-                        name: 'create/product',
-                        component: () => import('@/pages/products/CreateProductPage.vue'),
-
-                    },
-                    {
-                        path: 'edit/product',
-                        name: 'edit/product',
-                        component: () => import('@/pages/products/EditProductPage.vue'),
-
-                    },
-                ]
+                name: 'profile',
+                component: () => import('@/pages/profile/ProfilePage.vue'),
             },
             {
-                path: 'checkout',
-                component: () => import('@/app/layouts/CheckoutLayout.vue'),
-                children: [
-                    {
-                        path: 'information',
-                        name: 'information',
-                        component: () => import('@/pages/checkout/InformationPage.vue'),
-                    },
-                    {
-                        path: 'shipping',
-                        name: 'shipping',
-                        component: () => import('@/pages/checkout/ShippingPage.vue'),
-                    },
-                    {
-                        path: 'payment',
-                        name: 'payment',
-                        component: () => import('@/pages/checkout/PaymentPage.vue'),
-                    }
-                ]
+                path: 'my/products',
+                name: 'my/products',
+                component: () => import('@/pages/products/MyProductsPage.vue'),
+
             },
+            {
+                path: 'create/product',
+                name: 'create/product',
+                component: () => import('@/pages/products/CreateProductPage.vue'),
+
+            },
+            {
+                path: 'edit/product',
+                name: 'edit/product',
+                component: () => import('@/pages/products/EditProductPage.vue'),
+
+            },
+        ]
+    },
+    {
+        path: '/checkout',
+        component: () => import('@/app/layouts/CheckoutLayout.vue'),
+        children: [
+            {
+                path: 'information',
+                name: 'information',
+                component: () => import('@/pages/checkout/InformationPage.vue'),
+            },
+            {
+                path: 'shipping',
+                name: 'shipping',
+                component: () => import('@/pages/checkout/ShippingPage.vue'),
+            },
+            {
+                path: 'payment',
+                name: 'payment',
+                component: () => import('@/pages/checkout/PaymentPage.vue'),
+            }
         ]
     },
     {

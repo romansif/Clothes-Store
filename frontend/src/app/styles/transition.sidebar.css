@@ -14,5 +14,5 @@
 .sidebar-enter-to,
 .sidebar-leave-from {
     transform: translateX(0);
-    opacity: 1;
+    opacity: 2;
 }
