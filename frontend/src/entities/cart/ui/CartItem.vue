@@ -11,7 +11,8 @@
             Out Of Stack
           </span>
           <img @click="toggleToFavorite(product.id, 'cart', product.productId)"
-               :src="isFavorite(product.productId, userData.id) ? liked : like" alt="" class="absolute top-0.5 left-75.5 w-8 cursor-pointer">
+               :src="isFavorite(product.productId, userData.id) ? liked : like" alt=""
+               class="absolute top-0.5 left-75.5 w-8 cursor-pointer">
         </div>
         <span class="whitespace-normal mt-2 text-[#A3A3A3] text-sm sm:text-lg">
           {{ product.material }} {{ product.category }}

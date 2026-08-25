@@ -2,7 +2,7 @@
   <div class="flex flex-col gap-10 sm:flex-row">
     <form @keydown.enter.prevent="updateCompanyName" class="flex flex-col gap-3 w-full">
       <label>Company Name</label>
-      <BaseInput v-model=updateUserForm.companyName type="text" inputmode="numeric" placeholder="New Name"
+      <BaseInput v-model="updateUserForm.companyName" type="text" inputmode="numeric" placeholder="New Name"
           :error="updateUserFormErrors.companyNameError" variant="confidentialityData"
           :error-message="updateUserFormErrors.companyNameError ? updateUserFormMessage.companyNameMessage : ''"/>
       <div class="flex">
@@ -17,10 +17,10 @@
             {{ country.name }}
           </option>
         </select>
-        <IMask v-model:value=updateUserForm.publicPhone type="text" inputmode="numeric" :placeholder="currentCountry?.placeholder"
+        <IMask v-model:value="updateUserForm.publicPhone" type="text" inputmode="numeric" :placeholder="currentCountry?.placeholder"
                :class="profilePhoneClass(updateUserFormErrors.publicPhoneError)" :key="selectedCountryCode" :mask="currentMask.mask" />
       </div>
-      <span v-if=updateUserFormErrors.publicPhoneError class="text-red-600 text-xs">
+      <span v-if="updateUserFormErrors.publicPhoneError" class="text-red-600 text-xs">
         {{ updateUserFormMessage.publicPhoneMessage }}
       </span>
       <div class="flex">

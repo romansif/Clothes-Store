@@ -25,7 +25,7 @@
           <div class="flex flex-col items-start">
             <div class="relative">
               <span class="text-[80px] font-black text-[#D9D9D9]">VR</span>
-              <img :src=logo alt="" class="absolute left-1 top-1/3 w-10">
+              <img :src=logo alt="" class="absolute left-2 top-1/3 w-10">
             </div>
             <div class="flex gap-5">
               <span class="text-[80px] font-black">XIV</span>

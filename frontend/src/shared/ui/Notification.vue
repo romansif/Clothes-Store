@@ -1,5 +1,5 @@
 <template>
-  <div class="font-montserrat fixed inset-0 z-50 flex justify-center items-center ">
+  <div class="font-montserrat fixed inset-0 z-50 flex justify-center items-center">
     <div class="flex justify-center items-center bg-black opacity-70 w-137.5 h-32.5 px-10 rounded-lg text-white">
       <div class="flex flex-col items-center gap-3">
         <h1 class="font-medium text-lg text-center">{{ notifyTitle }}</h1>

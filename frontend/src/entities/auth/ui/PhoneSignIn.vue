@@ -12,7 +12,7 @@
                :class="signInPhoneClass" :placeholder="currentCountry?.placeholder" />
       </div>
       <span class="text-xs text-[#A3A3A3] text-center">We will send you an SMS with a 6-digit confirmation code.</span>
-      <span v-if=loginFormErrors.phoneError class="text-red-600 text-xs">
+      <span v-if="loginFormErrors.phoneError" class="text-red-600 text-xs">
         {{ loginFormMessages.phoneMessage }}
       </span>
     </div>

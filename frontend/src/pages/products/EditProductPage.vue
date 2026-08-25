@@ -1,75 +1,3 @@
-<script setup lang="ts">
-import {onMounted, watch} from "vue";
-import { productsCover } from "@/features/use-product/model/product-cover.ts";
-import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { productStore } from "@/entities/product/model/product.store.ts";
-import { productApi } from "@/features/use-product/api/product.api.ts";
-import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
-import { productForms } from "@/features/use-product/model/product.forms.ts";
-import { productsFormErrors } from "@/features/use-product/lib/product.error.ts";
-
-import BaseInput from "@/shared/ui/BaseInput.vue";
-import Loading from "@/shared/ui/Loading.vue";
-import BaseButton from "@/shared/ui/BaseButton.vue";
-import Notification from "@/shared/ui/Notification.vue";
-
-const { loading, notify } = useBaseModals();
-const { createProductFormErrors } = productsFormErrors();
-const { product, collections, categories, materials, genders, activeProductImg } = productStore();
-const { openSelectProductCard, fileInput } = useProductsModals();
-const { createProductForm, moreCreateItem, createProductFormMessages } = productForms();
-const { createProduct, updateProductImages, updateProductColors, updateProductDesc } = productApi();
-const { productInfoPreview, pureCards, pureInfoColors, pureColorsName, pureSizesName, isAvailableSizes } = productsCover();
-
-watch(() => [
-      createProductForm.value.title, createProductForm.value.collection,
-      createProductForm.value.category, createProductForm.value.material,
-      createProductForm.value.price, createProductForm.value.description,
-      moreCreateItem.colors, moreCreateItem.sizes,
-      createProductForm.value.gender, createProductForm.value.quantity
-    ],
-
-    ([title, collections, category, material, price, description, color, size, gender, quantity]) => {
-      if(title){
-        createProductFormErrors.value.titleError = false;
-      }
-      if(collections){
-        createProductFormErrors.value.collectionsError = false;
-      }
-      if(category){
-        createProductFormErrors.value.categoryError = false;
-      }
-      if(material){
-        createProductFormErrors.value.materialError = false;
-      }
-      if(price){
-        createProductFormErrors.value.priceError = false;
-      }
-      if(description){
-        createProductFormErrors.value.descriptionError = false;
-      }
-      if(color){
-        createProductFormErrors.value.colorError = false;
-      }
-      if(size){
-        createProductFormErrors.value.sizeError = false;
-      }
-      if(gender){
-        createProductFormErrors.value.genderError = false;
-      }
-      if(quantity){
-        createProductFormErrors.value.quantityError = false;
-      }
-    });
-
-onMounted(async () => {
-  if(product.value && Array.isArray(product.value.images) && product.value.images[0]) {
-    activeProductImg.value = productInfoPreview(product.value) ?? '';
-  }
-})
-
-</script>
-
 <template>
   <div>
     <div class="font-[Montserrat] fixed inset-0 z-50">
@@ -239,7 +167,7 @@ onMounted(async () => {
                     </label>
                   </div>
                   <div class="flex gap-6">
-                    <img v-for="size in (isAvailableSizes as any)" :key="size.name" :src=size.url alt=""
+                    <img v-for="size in isAvailableSizes" :key="size.name" :src=size.url alt=""
                          :class="[size.class, 'w-17.5']">
                   </div>
                   <span v-if="createProductFormErrors.sizeError" class="text-red-600 text-xs">
@@ -258,7 +186,7 @@ onMounted(async () => {
                   <div class="flex gap-6">
                     <label v-for="(color, index) in pureInfoColors(product)" :key="color.hex" :title="color.hex"
                            :style="{ background: color.hex }"  class="w-17.5 h-17.5">
-                      <input @change="(e) => updateProductColors(product, (index as number), e)" type="color"
+                      <input @change="(e) => updateProductColors(product, index, e)" type="color"
                              class="h-full opacity-0 cursor-pointer" />
                     </label>
                   </div>
@@ -283,6 +211,78 @@ onMounted(async () => {
     </Transition>
   </div>
 </template>
+
+<script setup lang="ts">
+const { loading, notify } = useBaseModals();
+const { createProductFormErrors } = productsFormErrors();
+const { product, collections, categories, materials, genders, activeProductImg } = productStore();
+const { openSelectProductCard, fileInput } = useProductsModals();
+const { createProductForm, moreCreateItem, createProductFormMessages } = productForms();
+const { createProduct, updateProductImages, updateProductColors, updateProductDesc } = productApi();
+const { productInfoPreview, pureCards, pureInfoColors, pureColorsName, pureSizesName, isAvailableSizes } = productsCover();
+
+import { onMounted, watch } from "vue";
+import { productsCover } from "@/features/use-product/model/product-cover.ts";
+import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { productStore } from "@/entities/product/model/product.store.ts";
+import { productApi } from "@/features/use-product/api/product.api.ts";
+import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
+import { productForms } from "@/features/use-product/model/product.forms.ts";
+import { productsFormErrors } from "@/features/use-product/lib/product.error.ts";
+
+import BaseInput from "@/shared/ui/BaseInput.vue";
+import Loading from "@/shared/ui/Loading.vue";
+import BaseButton from "@/shared/ui/BaseButton.vue";
+import Notification from "@/shared/ui/Notification.vue";
+
+watch(() => [
+      createProductForm.value.title, createProductForm.value.collection,
+      createProductForm.value.category, createProductForm.value.material,
+      createProductForm.value.price, createProductForm.value.description,
+      moreCreateItem.colors, moreCreateItem.sizes,
+      createProductForm.value.gender, createProductForm.value.quantity
+    ],
+
+    ([title, collections, category, material, price, description, color, size, gender, quantity]) => {
+      if(title){
+        createProductFormErrors.value.titleError = false;
+      }
+      if(collections){
+        createProductFormErrors.value.collectionsError = false;
+      }
+      if(category){
+        createProductFormErrors.value.categoryError = false;
+      }
+      if(material){
+        createProductFormErrors.value.materialError = false;
+      }
+      if(price){
+        createProductFormErrors.value.priceError = false;
+      }
+      if(description){
+        createProductFormErrors.value.descriptionError = false;
+      }
+      if(color){
+        createProductFormErrors.value.colorError = false;
+      }
+      if(size){
+        createProductFormErrors.value.sizeError = false;
+      }
+      if(gender){
+        createProductFormErrors.value.genderError = false;
+      }
+      if(quantity){
+        createProductFormErrors.value.quantityError = false;
+      }
+    });
+
+onMounted(async () => {
+  if(product.value && Array.isArray(product.value.images) && product.value.images[0]) {
+    activeProductImg.value = productInfoPreview(product.value) ?? '';
+  }
+})
+
+</script>
 
 <style scoped>
 

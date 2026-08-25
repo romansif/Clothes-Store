@@ -6,7 +6,7 @@
           <div class="w-58.75 sm:w-68.75">
             <div class="font-medium flex items-center justify-between">
               <span class="cursor-pointer transition duration-400 hover:scale-120">SIGN IN</span>
-              <router-link :to="{ name: 'signUp'}" @click=clearLoginForm class="transition duration-400 hover:scale-110">
+              <router-link :to="{ name: 'signUp'}" @click="clearLoginForm" class="transition duration-400 hover:scale-110">
                 <span class="text-[#A3A3A3]">SIGN UP</span>
               </router-link>
             </div>

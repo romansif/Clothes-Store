@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="flex flex-col h-10 sm:h-35 xl:h-53.75 gap-5 mt-12 xl:mt-0">
-      <div class="flex items-center gap-5 xl:hidden" @click=toggleFilterAside>
+      <div class="flex items-center gap-5 xl:hidden" @click="toggleFilterAside">
         <span class="font-bold">
           Filter
         </span>

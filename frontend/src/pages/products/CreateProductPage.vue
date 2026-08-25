@@ -1,68 +1,3 @@
-<script setup lang="ts">
-import { watch } from "vue";
-import { productsCover } from "@/features/use-product/model/product-cover.ts";
-import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { productStore } from "@/entities/product/model/product.store.ts";
-import { productApi } from "@/features/use-product/api/product.api.ts";
-import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
-import { productForms } from "@/features/use-product/model/product.forms.ts";
-import { productsFormErrors } from "@/features/use-product/lib/product.error.ts";
-
-import BaseInput from "@/shared/ui/BaseInput.vue";
-import Loading from "@/shared/ui/Loading.vue";
-import BaseButton from "@/shared/ui/BaseButton.vue";
-import Notification from "@/shared/ui/Notification.vue";
-
-const { loading, notify } = useBaseModals();
-const { toggleSize, toggleColor } = productsCover();
-const { createProductFormErrors } = productsFormErrors();
-const { createProduct, onFilesSelected } = productApi();
-const { collections, categories, materials, genders, sizes, productsPreview } = productStore();
-const { createProductForm, moreCreateItem, createProductFormMessages } = productForms();
-const { openSelectProductCard, fileInput } = useProductsModals();
-
-watch(() => [
-      createProductForm.value.title, createProductForm.value.collection,
-      createProductForm.value.category, createProductForm.value.material,
-      createProductForm.value.price, createProductForm.value.description,
-      moreCreateItem.colors, moreCreateItem.sizes,
-      createProductForm.value.gender, createProductForm.value.quantity
-    ],
-
-    ([title, collection, category, material, price, description, color, size, gender, quantity]) => {
-      if(title){
-        createProductFormErrors.value.titleError = false;
-      }
-      if(collection){
-        createProductFormErrors.value.collectionsError = false;
-      }
-      if(category){
-        createProductFormErrors.value.categoryError = false;
-      }
-      if(material){
-        createProductFormErrors.value.materialError = false;
-      }
-      if(price){
-        createProductFormErrors.value.priceError = false;
-      }
-      if(description){
-        createProductFormErrors.value.descriptionError = false;
-      }
-      if(color){
-        createProductFormErrors.value.colorError = false;
-      }
-      if(size){
-        createProductFormErrors.value.sizeError = false;
-      }
-      if(gender){
-        createProductFormErrors.value.genderError = false;
-      }
-      if(quantity){
-        createProductFormErrors.value.quantityError = false;
-      }
-    })
-</script>
-
 <template>
   <div>
     <div class="font-[Montserrat] fixed inset-0 z-50">
@@ -227,7 +162,7 @@ watch(() => [
                   <div class="flex gap-6">
                     <div v-for="color in moreCreateItem.colors" :key="color.hex" :title="color.hex" :style="{ background: color.hex }"
                          @click="toggleColor" class="w-17.5 h-17.5 transition-all duration-300 scale-108"></div>
-                    <label v-if="(moreCreateItem.colors?.length || 0) < 6" class="h-17.5 w-17.5 border-3
+                    <label v-if="moreCreateItem.colors?.length < 6" class="h-17.5 w-17.5 border-3
                            border-dashed border-gray-300 bg-white flex items-center justify-center text-gray-400
                              cursor-pointer transition-all duration-400 hover:scale-108 hover:border-black
                                hover:text-black text-2xl font-light relative overflow-hidden" title="Выбрать любой цвет"> +
@@ -255,6 +190,71 @@ watch(() => [
     </Transition>
   </div>
 </template>
+
+<script setup lang="ts">
+const { loading, notify } = useBaseModals();
+const { toggleSize, toggleColor } = productsCover();
+const { createProductFormErrors } = productsFormErrors();
+const { createProduct, onFilesSelected } = productApi();
+const { openSelectProductCard, fileInput } = useProductsModals();
+const { createProductForm, moreCreateItem, createProductFormMessages } = productForms();
+const { collections, categories, materials, genders, sizes, productsPreview } = productStore();
+
+import { watch } from "vue";
+import { productsCover } from "@/features/use-product/model/product-cover.ts";
+import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { productStore } from "@/entities/product/model/product.store.ts";
+import { productApi } from "@/features/use-product/api/product.api.ts";
+import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
+import { productForms } from "@/features/use-product/model/product.forms.ts";
+import { productsFormErrors } from "@/features/use-product/lib/product.error.ts";
+
+import BaseInput from "@/shared/ui/BaseInput.vue";
+import Loading from "@/shared/ui/Loading.vue";
+import BaseButton from "@/shared/ui/BaseButton.vue";
+import Notification from "@/shared/ui/Notification.vue";
+
+watch(() => [
+      createProductForm.value.title, createProductForm.value.collection,
+      createProductForm.value.category, createProductForm.value.material,
+      createProductForm.value.price, createProductForm.value.description,
+      moreCreateItem.colors, moreCreateItem.sizes,
+      createProductForm.value.gender, createProductForm.value.quantity
+    ],
+
+    ([title, collection, category, material, price, description, color, size, gender, quantity]) => {
+      if(title){
+        createProductFormErrors.value.titleError = false;
+      }
+      if(collection){
+        createProductFormErrors.value.collectionsError = false;
+      }
+      if(category){
+        createProductFormErrors.value.categoryError = false;
+      }
+      if(material){
+        createProductFormErrors.value.materialError = false;
+      }
+      if(price){
+        createProductFormErrors.value.priceError = false;
+      }
+      if(description){
+        createProductFormErrors.value.descriptionError = false;
+      }
+      if(color){
+        createProductFormErrors.value.colorError = false;
+      }
+      if(size){
+        createProductFormErrors.value.sizeError = false;
+      }
+      if(gender){
+        createProductFormErrors.value.genderError = false;
+      }
+      if(quantity){
+        createProductFormErrors.value.quantityError = false;
+      }
+    })
+</script>
 
 <style scoped>
 

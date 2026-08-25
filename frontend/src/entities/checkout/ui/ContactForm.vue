@@ -10,7 +10,7 @@
             {{ country.name }}
           </option>
         </select>
-        <IMask v-model:value="information.phone" type="tel"  :placeholder="phonePlaceholder" :class="informationPhoneClass"
+        <IMask v-model:value="information.phone" type="tel" :placeholder="phonePlaceholder" :class="informationPhoneClass"
                :mask="currentMask.mask" :key="selectedCountryCode">
         </IMask>
       </div>

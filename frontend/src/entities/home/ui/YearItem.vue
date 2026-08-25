@@ -10,7 +10,8 @@
         <span v-if="isOutOfStack(product)" class="absolute top-40 -left-2 text-6xl font-semibold -rotate-45">
             Out Of Stack
         </span>
-        <img @click="toggleToFavorite(product.id, 'product', product.id)" :src="isFavorite(product.id, userData.id) ? liked : like" alt=""
+        <img @click="toggleToFavorite(product.id, 'product', product.id)"
+             :src="isFavorite(product.id, userData.id) ? liked : like" alt=""
              class="absolute top-0.5 left-31 w-6.25 cursor-pointer sm:w-8.75 sm:left-58.5 md:left-66.5 lg:left-58.5 xl:left-86">
       </div>
       <span class="whitespace-normal mt-2 text-[#A3A3A3]">

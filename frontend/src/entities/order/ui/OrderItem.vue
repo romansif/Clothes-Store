@@ -32,7 +32,7 @@
             <div class="flex gap-5">
               <img :src="orderPreview(item.id, 'ADDED')" alt="" class="w-30 h-39 rounded-2xl border border-gray-400
                   transition duration-400 hover:scale-110">
-              <div class="flex flex-col mt- gap-5">
+              <div class="flex flex-col gap-5">
                 <div class="flex flex-col gap-1">
                   <span class="font-medium">{{ item.title }}</span>
                   <span class="text-[#A3A3A3] break-all w-170 overflow-y-auto max-h-30 no-scrollbar">

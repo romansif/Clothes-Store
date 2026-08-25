@@ -4,7 +4,7 @@
       <div class="flex gap-10">
         <form @keydown.enter.prevent="updateNameAccount" class="flex flex-col gap-3 w-full">
           <label>Name</label>
-          <BaseInput v-model=updateUserForm.name type="text" inputmode="numeric" placeholder="New Name"
+          <BaseInput v-model="updateUserForm.name" type="text" inputmode="numeric" placeholder="New Name"
               :error="updateUserFormErrors.nameError" variant="confidentialityData" required
               :error-message="updateUserFormErrors.nameError ? updateUserFormMessage.nameMessage : ''" />
           <div class="flex">
@@ -13,7 +13,7 @@
         </form>
         <form @keydown.enter.prevent="updateSurNameAccount" class="flex flex-col gap-3 w-full">
           <label>SurName</label>
-          <BaseInput v-model=updateUserForm.surName type="text" inputmode="numeric" placeholder="New SurName"
+          <BaseInput v-model="updateUserForm.surName" type="text" inputmode="numeric" placeholder="New SurName"
               :error="updateUserFormErrors.surNameError" variant="confidentialityData" required
               :error-message="updateUserFormErrors.surNameError ? updateUserFormMessage.surNameMessage : ''" />
           <div class="flex">
@@ -29,20 +29,20 @@
         <div class="flex flex-col gap-3 w-full">
           <label>Old password</label>
           <div class="relative">
-            <BaseInput v-model=updateUserForm.oldPassword :type="showOldPassword ? 'text' : 'password'" inputmode="numeric"
+            <BaseInput v-model="updateUserForm.oldPassword" :type="showOldPassword ? 'text' : 'password'" inputmode="numeric"
                 :error="updateUserFormErrors.oldPasswordError" variant="confidentialityData" placeholder="Old Password"
                 :error-message="updateUserFormErrors.oldPasswordError ? updateUserFormMessage.oldPasswordMessage : ''" />
-            <img @click.prevent=toggleOldPassword :src="showOldPassword ? opened : closed" alt=""
+            <img @click.prevent="toggleOldPassword" :src="showOldPassword ? opened : closed" alt=""
                  :class="['absolute w-7.5 top-1/4 left-115', updateUserFormErrors.oldPasswordError ? 'top-1/6' : '']">
           </div>
         </div>
         <div class="flex flex-col gap-3 w-full">
           <label>New password</label>
           <div class="relative">
-            <BaseInput v-model=updateUserForm.newPassword :type="showNewPassword ? 'text' : 'password'" inputmode="numeric"
+            <BaseInput v-model="updateUserForm.newPassword" :type="showNewPassword ? 'text' : 'password'" inputmode="numeric"
                 :error="updateUserFormErrors.newPasswordError" variant="confidentialityData" placeholder="New Password"
                 :error-message="updateUserFormErrors.newPasswordError ? updateUserFormMessage.newPasswordMessage : ''"/>
-            <img @click.prevent=toggleNewPassword :src="showNewPassword ? opened : closed" alt=""
+            <img @click.prevent="toggleNewPassword" :src="showNewPassword ? opened : closed" alt=""
                 :class="['absolute w-7.5 top-1/4 left-115', updateUserFormErrors.newPasswordError ? 'top-1/8' : '']">
           </div>
         </div>

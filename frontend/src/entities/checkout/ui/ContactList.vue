@@ -1,6 +1,5 @@
-
 <template>
-  <ul  class="flex flex-col overflow-y-auto no-scrollbar h-50 pb-4">
+  <ul class="flex flex-col overflow-y-auto no-scrollbar h-50 pb-4">
     <ContactItem />
   </ul>
 </template>

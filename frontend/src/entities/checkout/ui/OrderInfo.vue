@@ -17,7 +17,7 @@
         <span>Subtotal</span>
         <span>$ {{ price }}</span>
       </div>
-      <div class="flex jus">
+      <div class="flex items-center">
         <span>Shipping</span>
         <div class="flex ml-auto gap-2">
           <span v-if="!shipping.delivery" class="text-gray-400">Calculated at next step</span>

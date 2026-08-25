@@ -59,7 +59,7 @@
               </span>
             </div>
           </div>
-          <img :src="google_pay" alt="" class="w-[60px]">
+          <img :src="google_pay" alt="" class="w-15">
         </div>
         <div :class="paymentMethodClass('paypal')">
           <div class="flex items-center gap-3">

@@ -26,15 +26,14 @@
         {{ product.description }}
       </span>
     </div>
-    <div class="flex flex-col mt-5 gap-6 ">
+    <div class="flex flex-col mt-5 gap-6">
       <div class="flex flex-col gap-2">
         <span class="font-medium text-[#A3A3A3]">
           Colors
         </span>
         <div class="flex justify-start items-center lg:gap-5">
           <div v-for="color in pureInfoColors(product)" :key="color.hex" :style="{ background: color.hex }" :title="color.hex"
-               @click="addColor(color, userData)"
-               :class="selectedColorClass(color, product, userData.role)"></div>
+               @click="addColor(color, userData)" :class="selectedColorClass(color, product, userData.role)"></div>
           </div>
           <span v-if=cartFormErrors.colorError class="text-red-600 text-xs">
             {{ cartFormMessages.colorMessage }}
@@ -43,8 +42,8 @@
       <div class="flex flex-col gap-2">
         <span class="font-medium text-[#A3A3A3]">Sizes</span>
         <div class="flex justify-start items-center lg:gap-5">
-          <img v-for="size in isAvailableSizes" :key="size.name" :src=size.url alt=""
-               @click="addSize(size, userData)" :class="selectedSizesClass(size, product, userData.role)">
+          <img v-for="size in isAvailableSizes" :key="size.name" :src=size.url alt="" @click="addSize(size, userData)"
+               :class="selectedSizesClass(size, product, userData.role)">
         </div>
         <span v-if=cartFormErrors.sizeError class="text-red-600 text-xs">
           {{ cartFormMessages.sizeMessage }}
@@ -57,11 +56,12 @@
       </button>
       <router-link v-if="!userData.id" :to="{name: 'signIn'}">
         <span class="hidden bg-black text-white font-semibold text-sm py-4 w-full text-center
-            font-[Montserrat] lg:block">
+            font-montserrat lg:block">
           ADD TO CART
         </span>
       </router-link>
-      <BaseButton @click="addToCart()" v-if="userData.role !== 'Seller' && product.quantity !== 0 && !isInCart" name="ADD TO CART" variant="addToCart" />
+      <BaseButton v-if="userData.role !== 'Seller' && product.quantity !== 0 && !isInCart" name="ADD TO CART" variant="addToCart"
+                  @click="addToCart()" />
       <BaseButton v-if="isValidOutOfStack(product)" name="OUT OF STACK" variant="outOfStack" />
       <div v-if="userData.id && isInCart" class="flex items-center gap-18">
         <div class="flex gap-6 bg-zinc-800 py-4 px-3 text-lg transition duration-300 hover:scale-108">

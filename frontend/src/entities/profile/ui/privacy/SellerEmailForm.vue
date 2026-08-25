@@ -2,7 +2,7 @@
   <div class="flex gap-10">
     <form @keydown.enter.prevent="updateEmailAccount" class="flex flex-col gap-3 w-127.5">
       <label>Email</label>
-      <BaseInput v-model=updateUserForm.email type="text" inputmode="numeric" placeholder="example@mail.com"
+      <BaseInput v-model="updateUserForm.email" type="text" inputmode="numeric" placeholder="example@mail.com"
           :error="updateUserFormErrors.emailError" variant="confidentialityData"
           :error-message="updateUserFormErrors.emailError ? updateUserFormMessage.emailMessage : ''"/>
       <div class="flex">

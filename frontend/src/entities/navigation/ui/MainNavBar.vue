@@ -33,8 +33,8 @@
                 Cart
             </span>
             <div class="relative">
-              <img :src=cartImg alt="" class="">
-              <div v-if="unreadCount > 0 && isCart" class='absolute bottom-7 left-8 bg-black px-3 py-0.5 rounded-full'>
+              <img :src=cartImg alt="">
+              <div v-if="unreadCount > 0 && isCart" class="absolute bottom-7 left-8 bg-black px-3 py-0.5 rounded-full">
                 <span class="text-white text-lg">{{ unreadCount }}</span>
               </div>
             </div>

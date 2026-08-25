@@ -30,7 +30,7 @@
           </li>
           <li class="shrink-0 lg:w-95 md:w-70 w-50">
             <router-link :to="{name: 'product/info'}">
-              <img :src=photo_2 alt="" class=" w-full h-50 lg:h-95 md:h-70">
+              <img :src=photo_2 alt="" class="w-full h-50 lg:h-95 md:h-70">
             </router-link>
           </li>
         </ul>

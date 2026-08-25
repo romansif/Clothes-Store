@@ -19,11 +19,8 @@
           </router-link>
         </div>
       </div>
-      <div class="xl:flex xl:gap-10
-          lg:flex lg:gap-10
-          md:flex md:gap-5
-          sm:flex sm:gap-3
-          flex gap-3">
+      <div class="xl:flex xl:gap-10 lg:flex lg:gap-10 md:flex md:gap-5
+          sm:flex sm:gap-3 flex gap-3">
         <router-link :to="{name: 'favorite'}">
           <div class="xl:flex lg:flex md:flex sm:hidden hidden">
             <img :src=liked alt="" class="">
