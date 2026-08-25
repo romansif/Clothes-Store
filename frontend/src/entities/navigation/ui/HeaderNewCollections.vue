@@ -1,5 +1,5 @@
 <template>
-  <div class="font-[Montserrat] flex gap-82">
+  <div class="font-montserrat flex gap-57.5">
     <div class="flex flex-col">
       <div class="flex flex-col gap-4">
         <div class="flex flex-col gap-2 items-center xl:items-start">

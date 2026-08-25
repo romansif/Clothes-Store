@@ -19,7 +19,7 @@ export const productsClasses = () => {
     ];
 
     const selectedCollectionsClass = (isActive: boolean) => [
-        `cursor-pointer border-2 px-6 py-1 text-lg transition duration-400 hover:border-black
+        `cursor-pointer border-2 px-8.5 py-1 text-lg transition duration-400 hover:border-black
         hover:text-black hover:scale-105`, isActive ? ' border-black scale-105' : 'text-[#A3A3A3] border-[#A3A3A3]'
     ]
 

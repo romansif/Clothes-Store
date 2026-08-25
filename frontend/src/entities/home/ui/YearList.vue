@@ -1,6 +1,6 @@
 <template>
   <Transition name="view">
-    <div v-if="productsYear.length === 0" class="flex justify-center pt-45">
+    <div v-if="productsYear.length === 0" class="flex justify-center pt-15">
       <div class="flex flex-col gap-4 items-center">
         <img :src="empty_products" alt="">
         <span class="text-lg font-semibold">At of now, products in this category have not yet appeared</span>

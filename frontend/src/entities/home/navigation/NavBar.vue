@@ -1,5 +1,5 @@
 <template>
-  <nav class="font-[Montserrat]">
+  <nav class="font-montserrat">
     <div class="flex justify-between items-center md:justify-between">
       <div class="flex items-center gap-5 lg:gap-10">
         <img @click="toggleFilterAside" :src=catalog alt="" class="w-7.5 cursor-pointer">

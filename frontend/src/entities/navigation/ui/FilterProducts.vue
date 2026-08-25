@@ -1,5 +1,5 @@
 <template>
-  <aside class="font-[Montserrat] hidden mt-32.5 xl:flex xl:flex-col">
+  <aside class="font-montserrat hidden mt-32.5 xl:flex xl:flex-col">
     <span class="font-bold text-xl">Filters</span>
     <div class="flex flex-col mt-7">
       <span class="font-medium">Size</span>

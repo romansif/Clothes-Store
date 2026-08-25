@@ -1,5 +1,5 @@
 <template>
-  <footer class="font-[Montserrat] flex justify-center items-center bg-[#F5F5F5] mt-30">
+  <footer class="font-montserrat flex justify-center items-center bg-[#F5F5F5] mt-30">
     <div class="w-75 md:w-175 lg:w-250 py-20">
       <div class="flex gap-50 items-center md:gap-60 lg:gap-100">
         <div class="grid grid-cols-2 gap-30 md:flex md:flex-col md:gap-15">

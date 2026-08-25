@@ -1,15 +1,17 @@
 <template>
-  <main class="font-[Montserrat] xl:mt-25 lg:mt-95 md:mt-65 mt-45">
+  <main class="font-montserrat xl:mt-25 lg:mt-95 md:mt-65 mt-45">
     <div class="flex flex-col">
       <div class="font-extrabold flex flex-col text-5xl">
         <span>NEW</span>
         <span>THIS WEEK</span>
       </div>
       <div class="flex flex-col mt-5">
-        <router-link :to="{name: 'products/new-collections'}" class="text-[#A3A3A3] ml-auto mb-3
-                transition duration-400 hover:scale-120 hover:text-black cursor-pointer">
-            See All
-        </router-link>
+        <div class="flex border-b border-gray-300 w-full mb-3 pb-3">
+          <router-link :to="{name: 'products/new-collections'}" class="text-[#A3A3A3] transition duration-400
+                 hover:scale-120 hover:text-black cursor-pointer ml-auto">
+              See All
+          </router-link>
+        </div>
         <WeekList />
       </div>
     </div>

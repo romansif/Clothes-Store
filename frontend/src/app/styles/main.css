@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @tailwind utilities;
 
+@theme {
+    --font-montserrat: "Montserrat", sans-serif;
+}
+
 .no-scrollbar::-webkit-scrollbar {
     display: none;
 }

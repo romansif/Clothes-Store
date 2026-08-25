@@ -1,5 +1,5 @@
 <template>
-  <div @click="toggleAvatar" class="font-[Montserrat] fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)]
+  <div @click="toggleAvatar" class="font-montserrat fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)]
                                 flex items-center justify-center">
     <div @click.stop class="bg-white rounded-2xl w-112.5 shadow-xl">
       <div class="flex flex-col justify-center py-8 gap-6">

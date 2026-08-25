@@ -1,5 +1,5 @@
 <template>
-  <nav class="font-[Montserrat]">
+  <nav class="font-montserrat">
     <div class="flex justify-between items-center md:justify-between">
       <div class="flex items-center gap-5 lg:gap-10">
         <div class="xl:flex xl:gap-10

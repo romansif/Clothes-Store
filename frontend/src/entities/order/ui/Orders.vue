@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="!choiceModal" @click="toggleOrderHistory" class="font-[Montserrat] fixed inset-0 z-50
+    <div v-if="!choiceModal" @click="toggleOrderHistory" class="font-montserrat fixed inset-0 z-50
         bg-[rgba(0,0,0,0.5)] flex items-center justify-center">
       <div @click.stop class="flex flex-col bg-white w-222.5 h-162.5 rounded-xl p-5">
         <BaseButton @click="toggleOrderHistory" name="Exit" variant="exitClose"/>
