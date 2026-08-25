@@ -1,2 +1,12 @@
 allowBuilds:
+  '@prisma/engines': false
+  bcrypt: false
+  core-js-pure: false
+  es5-ext: false
   esbuild: true
+  prisma: false
+  vue-demi: false
+
+packages:
+  - "frontend"
+  - "backend"
