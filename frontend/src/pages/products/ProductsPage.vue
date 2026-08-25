@@ -35,7 +35,7 @@ const { filterAside } = useProductsModals();
 const { componentError, resetError } = errorHandler();
 
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
-import { useProductsModals } from "@/feature/use-product/lib/product.modal.ts";
+import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 
 import MainNavBar from "@/entities/navigation/ui/MainNavBar.vue";

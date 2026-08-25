@@ -1,5 +1,5 @@
 import { computed } from "vue";
-import { authFormsErrors } from "@/feature/use-auth/lib/auth.errors.ts";
+import { authFormsErrors } from "@/features/use-auth/lib/auth.errors.ts";
 import { baseClasses } from "@/shared/constants/base.classes.ts";
 
 const { getPhoneClass } = baseClasses();

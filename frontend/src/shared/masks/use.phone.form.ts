@@ -1,7 +1,7 @@
 import { computed } from "vue";
 import { userStore } from "@/entities/profile/model/user.store.ts";
-import { authForms } from "@/feature/use-auth/model/auth.forms.ts";
-import { checkoutForm } from "@/feature/use-checkout/model/checkout.form.ts";
+import { authForms } from "@/features/use-auth/model/auth.forms.ts";
+import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
 
 const { information } = checkoutForm();
 const { registerBuyerForm, registerSellerForm } = authForms()

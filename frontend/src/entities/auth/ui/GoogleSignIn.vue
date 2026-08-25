@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { authApi } from "@/feature/use-auth/api/auth.api.ts";
+import { authApi } from "@/features/use-auth/api/auth.api.ts";
 
 const { signOAuth } = authApi();
 

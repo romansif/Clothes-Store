@@ -17,10 +17,10 @@ const { getAddress } = addressApi();
 const { shippingErrors } = checkoutErrors();
 
 import { onMounted, watch } from "vue";
-import { shippingApi } from "@/feature/use-checkout/api/shipping.api.ts";
-import { addressApi } from "@/feature/use-checkout/api/address.api.ts";
-import { checkoutForm } from "@/feature/use-checkout/model/checkout.form.ts";
-import { checkoutErrors } from "@/feature/use-checkout/lib/checkout.errors.ts";
+import { shippingApi } from "@/features/use-checkout/api/shipping.api.ts";
+import { addressApi } from "@/features/use-checkout/api/address.api.ts";
+import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
+import { checkoutErrors } from "@/features/use-checkout/lib/checkout.errors.ts";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";

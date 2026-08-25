@@ -22,9 +22,9 @@ const { userAvatar } = useProfile();
 const { updateAvatarAccount } = profileApi();
 const { toggleAvatar, openSelectAvatar, fileInput } = useProfileModals();
 
-import { useProfile } from "@/feature/use-profile/model/use-profile.ts";
-import { useProfileModals } from "@/feature/use-profile/lib/profile.modal.ts";
-import { profileApi } from "@/feature/use-profile/api/profile.api.ts";
+import { useProfile } from "@/features/use-profile/model/use-profile.ts";
+import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
+import { profileApi } from "@/features/use-profile/api/profile.api.ts";
 
 import BaseButton from "@/shared/ui/BaseButton.vue";
 </script>

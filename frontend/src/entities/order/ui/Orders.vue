@@ -37,10 +37,10 @@ const { choiceModal } = useBaseModals();
 const { toggleOrderHistory } = useProfileModals();
 
 import { onMounted } from "vue";
-import { useOrder } from "@/feature/use-order/model/use-order.ts";
+import { useOrder } from "@/features/use-order/model/use-order.ts";
 import { orderStore } from "@/entities/order/model/order.store.ts";
-import { orderApi } from "@/feature/use-order/api/order.api.ts";
-import { useProfileModals } from "@/feature/use-profile/lib/profile.modal.ts";
+import { orderApi } from "@/features/use-order/api/order.api.ts";
+import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 
 import OrdersList from "@/entities/order/ui/OrderList.vue";

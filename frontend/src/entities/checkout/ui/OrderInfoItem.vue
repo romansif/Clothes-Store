@@ -29,8 +29,8 @@ const { getProductId } = productApi();
 const { orderPreview, pureColorsName } = productsCover();
 
 import { orderStore } from "@/entities/order/model/order.store.ts";
-import { productApi } from "@/feature/use-product/api/product.api.ts";
-import { productsCover } from "@/feature/use-product/model/product-cover.ts";
+import { productApi } from "@/features/use-product/api/product.api.ts";
+import { productsCover } from "@/features/use-product/model/product-cover.ts";
 </script>
 
 <style scoped>

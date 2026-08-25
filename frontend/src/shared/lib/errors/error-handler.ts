@@ -1,7 +1,7 @@
 import { ref } from "vue";
-import { productApi } from "@/feature/use-product/api/product.api.ts";
-import { cartApi } from "@/feature/use-cart/api/cart.api.ts";
-import { favoritesApi } from "@/feature/use-favorite/api/favorites.api.ts";
+import { productApi } from "@/features/use-product/api/product.api.ts";
+import { cartApi } from "@/features/use-cart/api/cart.api.ts";
+import { favoritesApi } from "@/features/use-favorite/api/favorites.api.ts";
 
 const { getCartProducts } = cartApi();
 const { getFilteredProducts } = productApi();

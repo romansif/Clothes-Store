@@ -60,11 +60,11 @@ const { product, activeProductImg } = productStore();
 const { changeImg, angelCards } = productsCover();
 
 import { useRouter } from "vue-router";
-import { productsCover } from "@/feature/use-product/model/product-cover.ts";
+import { productsCover } from "@/features/use-product/model/product-cover.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
-import { useProductsModals } from "@/feature/use-product/lib/product.modal.ts";
+import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
 
 import ProductInfo from "@/entities/product/ui/ProductInfo.vue";
 import cart from '@/assets/icons/nav/cart.png';

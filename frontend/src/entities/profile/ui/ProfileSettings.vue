@@ -76,9 +76,9 @@ const {
   toggleConfidentialityData, toggleAddressesAndCards
 } = useProfileModals()
 
-import { useProfile } from "@/feature/use-profile/model/use-profile.ts";
+import { useProfile } from "@/features/use-profile/model/use-profile.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
-import { useProfileModals } from "@/feature/use-profile/lib/profile.modal.ts";
+import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
 
 import ProfileMenu from "./ProfileMenu.vue";
 import arrow_down from '@/assets/icons/arrows/arrow-down.png';

@@ -26,7 +26,7 @@
 const { notify } = useBaseModals();
 const { toggleConfidentialityData } = useProfileModals();
 
-import { useProfileModals } from "@/feature/use-profile/lib/profile.modal.ts";
+import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 
 import ConfidentialityData from "./ConfidentialityData.vue";

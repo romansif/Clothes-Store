@@ -32,7 +32,7 @@ const { userPayments } = checkoutStore();
 const { toggleDeleteChoice } = useProfileModals();
 
 import { checkoutStore } from "@/entities/checkout/model/checkout.store.ts";
-import { useProfileModals } from "@/feature/use-profile/lib/profile.modal.ts";
+import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
 
 import del from "@/assets/icons/delete-close/del_address_card.svg";
 </script>

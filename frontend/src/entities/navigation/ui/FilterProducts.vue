@@ -75,7 +75,7 @@ const { allProducts, sizes } = productStore();
 const { selectedSizeClass, selectedFilterClass } = productsClasses();
 const { toggleFilter, toggleSize, stackProducts, genders, colors } = filterProduct();
 
-import { filterProduct } from "@/feature/use-navigation/model/filter-product.ts";
+import { filterProduct } from "@/features/use-navigation/model/filter-product.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
 import { productsClasses } from "@/shared/constants/product/products.classes.ts";
 

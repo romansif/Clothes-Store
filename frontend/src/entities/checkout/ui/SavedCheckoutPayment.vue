@@ -20,8 +20,8 @@ const { getPayments } = paymentApi();
 const { toggleShowPayment } = useCheckout();
 
 import { onMounted } from "vue";
-import { useCheckout } from "@/feature/use-checkout/model/use-checkout.ts";
-import { paymentApi } from "@/feature/use-checkout/api/payment.api.ts";
+import { useCheckout } from "@/features/use-checkout/model/use-checkout.ts";
+import { paymentApi } from "@/features/use-checkout/api/payment.api.ts";
 
 import PaymentList from "@/entities/checkout/ui/PaymentList.vue";
 

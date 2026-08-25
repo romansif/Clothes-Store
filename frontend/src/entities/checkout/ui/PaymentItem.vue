@@ -31,7 +31,7 @@ const { savedPaymentClass } = paymentClasses();
 
 import { checkoutStore } from "@/entities/checkout/model/checkout.store.ts";
 import { paymentClasses } from "@/shared/constants/checkout/payment.classes.ts";
-import { paymentApi } from "@/feature/use-checkout/api/payment.api.ts";
+import { paymentApi } from "@/features/use-checkout/api/payment.api.ts";
 </script>
 
 <style scoped>

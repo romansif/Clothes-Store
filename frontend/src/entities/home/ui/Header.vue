@@ -43,7 +43,7 @@
 const { getAllProducts } = productApi();
 
 import { onMounted } from "vue";
-import { productApi } from "@/feature/use-product/api/product.api.ts";
+import { productApi } from "@/features/use-product/api/product.api.ts";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 import photo_1 from "@/assets/photos/pants.png";

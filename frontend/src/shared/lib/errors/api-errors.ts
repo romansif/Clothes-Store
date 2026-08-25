@@ -1,15 +1,15 @@
 import { ApiError } from "../../api/http.ts";
-import { authForms } from "@/feature/use-auth/model/auth.forms.ts";
-import { userForms } from "@/feature/use-profile/model/user.form.ts";
-import { checkoutForm } from "@/feature/use-checkout/model/checkout.form.ts";
-import { productForms } from "@/feature/use-product/model/product.forms.ts";
-import { authFormsErrors } from "@/feature/use-auth/lib/auth.errors.ts";
-import { userFormsErrors } from "@/feature/use-profile/lib/users.error.ts";
-import { checkoutErrors } from "@/feature/use-checkout/lib/checkout.errors.ts";
-import { productsFormErrors } from "@/feature/use-product/lib/product.error.ts";
+import { authForms } from "@/features/use-auth/model/auth.forms.ts";
+import { userForms } from "@/features/use-profile/model/user.form.ts";
+import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
+import { productForms } from "@/features/use-product/model/product.forms.ts";
+import { authFormsErrors } from "@/features/use-auth/lib/auth.errors.ts";
+import { userFormsErrors } from "@/features/use-profile/lib/users.error.ts";
+import { checkoutErrors } from "@/features/use-checkout/lib/checkout.errors.ts";
+import { productsFormErrors } from "@/features/use-product/lib/product.error.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { addToCartForm } from "@/feature/use-cart/model/cart.form.ts";
-import { addToCartErrors } from "@/feature/use-cart/lib/cart.errors.ts";
+import { addToCartForm } from "@/features/use-cart/model/cart.form.ts";
+import { addToCartErrors } from "@/features/use-cart/lib/cart.errors.ts";
 
 const { cartFormMessages } = addToCartForm();
 const { cartFormErrors } = addToCartErrors();

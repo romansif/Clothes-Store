@@ -45,9 +45,9 @@
 
 <script setup lang="ts">
 import { watch } from "vue";
-import { useProfile } from "@/feature/use-profile/model/use-profile.ts";
-import { checkoutForm } from "@/feature/use-checkout/model/checkout.form.ts";
-import { checkoutErrors } from "@/feature/use-checkout/lib/checkout.errors.ts";
+import { useProfile } from "@/features/use-profile/model/use-profile.ts";
+import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
+import { checkoutErrors } from "@/features/use-checkout/lib/checkout.errors.ts";
 
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import square from '@/assets/icons/squares/square.png';

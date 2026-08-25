@@ -59,8 +59,8 @@ const { toggleSizeGuide } = useProductsModals();
 const { formatterSizeGuide } = productsCover() ;
 
 import { productStore } from "@/entities/product/model/product.store.ts";
-import { productsCover } from "@/feature/use-product/model/product-cover.ts";
-import { useProductsModals } from "@/feature/use-product/lib/product.modal.ts";
+import { productsCover } from "@/features/use-product/model/product-cover.ts";
+import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
 
 import close from '@/assets/icons/delete-close/delete.svg'
 </script>

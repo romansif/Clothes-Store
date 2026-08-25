@@ -75,14 +75,14 @@ const { resetError, componentError } = errorHandler();
 const { toggleAgree, continueToOrder, cartCount, favoritesCount } = useProfile();
 
 import { useRoute } from "vue-router";
-import { useProfile } from "@/feature/use-profile/model/use-profile.ts";
+import { useProfile } from "@/features/use-profile/model/use-profile.ts";
 import { computed, watch } from "vue";
 import { cartStore } from "@/entities/cart/model/cart.store.ts";
-import { checkoutForm } from "@/feature/use-checkout/model/checkout.form.ts";
+import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { useProfileModals } from "@/feature/use-profile/lib/profile.modal.ts";
+import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
-import { checkoutErrors } from "@/feature/use-checkout/lib/checkout.errors.ts";
+import { checkoutErrors } from "@/features/use-checkout/lib/checkout.errors.ts";
 
 import MainNavBar from "@/entities/navigation/ui/MainNavBar.vue";
 import square from "@/assets/icons/squares/square.png";

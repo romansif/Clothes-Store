@@ -52,11 +52,11 @@ const {
 } = checkoutInput();
 
 import { IMaskComponent as IMask } from "vue-imask";
-import { useCheckout } from "@/feature/use-checkout/model/use-checkout.ts";
+import { useCheckout } from "@/features/use-checkout/model/use-checkout.ts";
 import { checkoutStore } from "@/entities/checkout/model/checkout.store.ts";
-import { checkoutForm } from "@/feature/use-checkout/model/checkout.form.ts";
-import { checkoutErrors }from "@/feature/use-checkout/lib/checkout.errors.ts";
-import { checkoutInput } from "@/feature/use-checkout/lib/checkout-input.ts";
+import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
+import { checkoutErrors }from "@/features/use-checkout/lib/checkout.errors.ts";
+import { checkoutInput } from "@/features/use-checkout/lib/checkout-input.ts";
 import { informationClasses } from "@/shared/constants/checkout/information.classes.ts";
 
 import CheckoutInput from "@/entities/checkout/ui/CheckoutInput.vue";

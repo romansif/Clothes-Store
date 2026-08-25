@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { watch } from "vue";
-import { productsCover } from "@/feature/use-product/model/product-cover.ts";
+import { productsCover } from "@/features/use-product/model/product-cover.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
-import { productApi } from "@/feature/use-product/api/product.api.ts";
-import { useProductsModals } from "@/feature/use-product/lib/product.modal.ts";
-import { productForms } from "@/feature/use-product/model/product.forms.ts";
-import { productsFormErrors } from "@/feature/use-product/lib/product.error.ts";
+import { productApi } from "@/features/use-product/api/product.api.ts";
+import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
+import { productForms } from "@/features/use-product/model/product.forms.ts";
+import { productsFormErrors } from "@/features/use-product/lib/product.error.ts";
 
 import BaseInput from "@/shared/ui/BaseInput.vue";
 import Loading from "@/shared/ui/Loading.vue";

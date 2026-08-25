@@ -44,10 +44,10 @@ import { onUnmounted } from "vue";
 import { IMaskComponent as IMask } from "vue-imask";
 import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
-import { authForms } from "@/feature/use-auth/model/auth.forms.ts";
-import { useAuth } from "@/feature/use-auth/model/use-auth.ts";
+import { authForms } from "@/features/use-auth/model/auth.forms.ts";
+import { useAuth } from "@/features/use-auth/model/use-auth.ts";
 import { authClasses } from "@/shared/constants/auth/auth.classes.ts";
-import { authFormsErrors } from "@/feature/use-auth/lib/auth.errors.ts";
+import { authFormsErrors } from "@/features/use-auth/lib/auth.errors.ts";
 
 import BaseButton from "@/shared/ui/BaseButton.vue";
 

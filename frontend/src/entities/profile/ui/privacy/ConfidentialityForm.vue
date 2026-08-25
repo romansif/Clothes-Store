@@ -63,9 +63,9 @@ const { updatePasswordAccount, updateNameAccount, updateSurNameAccount } = profi
 
 import { ref, watch } from 'vue'
 
-import { userForms } from "@/feature/use-profile/model/user.form.ts";
-import { profileApi } from "@/feature/use-profile/api/profile.api.ts";
-import { userFormsErrors } from "@/feature/use-profile/lib/users.error.ts";
+import { userForms } from "@/features/use-profile/model/user.form.ts";
+import { profileApi } from "@/features/use-profile/api/profile.api.ts";
+import { userFormsErrors } from "@/features/use-profile/lib/users.error.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
 
 import BaseButton  from "@/shared/ui/BaseButton.vue";

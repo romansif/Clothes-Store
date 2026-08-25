@@ -1,4 +1,4 @@
-import { addToCartForm } from "@/feature/use-cart/model/cart.form.ts";
+import { addToCartForm } from "@/features/use-cart/model/cart.form.ts";
 import { type ColorItem, type Sizes } from "@/entities/product/model/product.types.ts";
 import { type CartItem } from "@/entities/cart/model/cart.types.ts";
 

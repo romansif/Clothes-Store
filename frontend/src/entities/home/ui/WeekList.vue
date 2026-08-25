@@ -18,8 +18,8 @@ const { getWeekProducts } = productApi();
 const { vHorizontalScroll } = productsCover()
 
 import { productStore } from "@/entities/product/model/product.store.ts";
-import { productApi } from "@/feature/use-product/api/product.api.ts";
-import { productsCover } from "@/feature/use-product/model/product-cover.ts";
+import { productApi } from "@/features/use-product/api/product.api.ts";
+import { productsCover } from "@/features/use-product/model/product-cover.ts";
 
 import WeekItem from "@/entities/home/ui/WeekItem.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";

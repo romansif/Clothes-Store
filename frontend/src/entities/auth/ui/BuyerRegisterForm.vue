@@ -63,14 +63,14 @@ const { signUpBuyerPhoneClass, signUpPasswordClass, selectPhoneCodeClass } = aut
 
 import { watch } from "vue";
 import { IMaskComponent as IMask } from "vue-imask";
-import { authApi } from "@/feature/use-auth/api/auth.api.ts";
+import { authApi } from "@/features/use-auth/api/auth.api.ts";
 import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
 import { authStore } from "@/entities/auth/model/auth.store.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
-import { authForms } from "@/feature/use-auth/model/auth.forms.ts";
+import { authForms } from "@/features/use-auth/model/auth.forms.ts";
 import { authClasses } from "@/shared/constants/auth/auth.classes.ts";
-import { authFormsErrors } from "@/feature/use-auth/lib/auth.errors.ts";
-import { useAuth } from "@/feature/use-auth/model/use-auth.ts";
+import { authFormsErrors } from "@/features/use-auth/lib/auth.errors.ts";
+import { useAuth } from "@/features/use-auth/model/use-auth.ts";
 
 import closed from "@/assets/icons/auth/closed.png";
 import opened from "@/assets/icons/auth/opened.png";

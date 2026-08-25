@@ -30,10 +30,10 @@ const { getMyProducts } = productApi();
 const { deleteChoice } = useProfileModals();
 
 import { onMounted } from "vue";
-import { productApi } from "@/feature/use-product/api/product.api.ts";
+import { productApi } from "@/features/use-product/api/product.api.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { useProfileModals } from "@/feature/use-profile/lib/profile.modal.ts";
+import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
 
 import MainNavBar from "@/entities/navigation/ui/MainNavBar.vue";
 import icon_products from "@/assets/icons/products/icon-products.svg";

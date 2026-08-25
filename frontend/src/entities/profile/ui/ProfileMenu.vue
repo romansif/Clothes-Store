@@ -60,7 +60,7 @@ const { toggleDeleteChoice } = useProfileModals();
 
 import { userStore } from "@/entities/profile/model/user.store.ts";
 import { Menu, MenuItems, MenuItem, MenuButton} from "@headlessui/vue";
-import { useProfileModals } from "@/feature/use-profile/lib/profile.modal.ts";
+import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
 </script>
 
 <style scoped>

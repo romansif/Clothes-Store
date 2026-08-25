@@ -51,12 +51,12 @@ const { loginFormErrors } = authFormsErrors();
 const { loginForm, loginFormMessages } = authForms();
 
 import { watch } from "vue";
-import { authApi } from "@/feature/use-auth/api/auth.api.ts";
-import { authForms } from "@/feature/use-auth/model/auth.forms.ts";
-import { useAuth } from "@/feature/use-auth/model/use-auth.ts";
+import { authApi } from "@/features/use-auth/api/auth.api.ts";
+import { authForms } from "@/features/use-auth/model/auth.forms.ts";
+import { useAuth } from "@/features/use-auth/model/use-auth.ts";
 import { authStore } from "@/entities/auth/model/auth.store.ts";
 import { authClasses } from "@/shared/constants/auth/auth.classes.ts";
-import { authFormsErrors } from "@/feature/use-auth/lib/auth.errors.ts";
+import { authFormsErrors } from "@/features/use-auth/lib/auth.errors.ts";
 
 import closed from "@/assets/icons/auth/closed.png";
 import opened from "@/assets/icons/auth/opened.png";

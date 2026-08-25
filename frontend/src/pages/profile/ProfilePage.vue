@@ -42,9 +42,9 @@ const { isProfileLoginClass } = profileClasses();
 const { avatarModal, orderHistory, currentOrder, addressesAndCards, confidentialityData, deleteChoice } = useProfileModals();
 
 import { onMounted } from "vue";
-import { useGetUsers } from "@/feature/use-auth/api/users.api.ts";
+import { useGetUsers } from "@/features/use-auth/api/users.api.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
-import { useProfileModals } from "@/feature/use-profile/lib/profile.modal.ts";
+import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { profileClasses } from "@/shared/constants/user/profile.classes.ts";
 

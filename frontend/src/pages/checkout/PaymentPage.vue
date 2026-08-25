@@ -32,7 +32,7 @@ const { goBack } = useCheckout();
 const { notify } = useBaseModals();
 const { checkoutClass } = checkoutClasses();
 
-import { useCheckout } from "@/feature/use-checkout/model/use-checkout.ts";
+import { useCheckout } from "@/features/use-checkout/model/use-checkout.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { checkoutClasses } from "@/shared/constants/checkout/checkout.classes.ts";
 

@@ -12,13 +12,13 @@ const { product, activeProductImg } = productStore();
 const { productInfoPreview } = productsCover();
 
 import { onErrorCaptured, onMounted } from "vue";
-import { cartApi } from "@/feature/use-cart/api/cart.api.ts";
+import { cartApi } from "@/features/use-cart/api/cart.api.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { favoritesApi } from "@/feature/use-favorite/api/favorites.api.ts";
+import { favoritesApi } from "@/features/use-favorite/api/favorites.api.ts";
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
-import { productApi } from "@/feature/use-product/api/product.api.ts";
+import { productApi } from "@/features/use-product/api/product.api.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
-import { productsCover } from "@/feature/use-product/model/product-cover.ts";
+import { productsCover } from "@/features/use-product/model/product-cover.ts";
 
 onErrorCaptured((err, info) => {
   console.error("Перехвачена ошибка в дочернем компоненте:", err);

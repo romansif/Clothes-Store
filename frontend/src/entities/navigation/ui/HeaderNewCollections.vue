@@ -53,13 +53,13 @@ const { toggleFilter, collections } = filterProduct();
 const { debouncedSearch } = useGetSearchedProducts();
 
 import { watch } from "vue";
-import { filterProduct } from "@/feature/use-navigation/model/filter-product.ts";
+import { filterProduct } from "@/features/use-navigation/model/filter-product.ts";
 import { productsClasses } from "@/shared/constants/product/products.classes.ts";
 import { searchForm } from "@/entities/navigation/model/search.form.ts";
-import { productApi } from "@/feature/use-product/api/product.api.ts";
-import { clearSearchProductForm } from "@/feature/use-navigation/lib/clear.search.ts";
-import { useGetSearchedProducts } from "@/feature/use-navigation/model/search-product.ts";
-import { useProductsModals } from "@/feature/use-product/lib/product.modal.ts";
+import { productApi } from "@/features/use-product/api/product.api.ts";
+import { clearSearchProductForm } from "@/features/use-navigation/lib/clear.search.ts";
+import { useGetSearchedProducts } from "@/features/use-navigation/model/search-product.ts";
+import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
 
 import del from '@/assets/icons/delete-close/clean_search.svg';
 import search from "@/assets/icons/nav/search.png";

@@ -95,11 +95,11 @@ const { toggleFilter, toggleSize, stackProducts, genders, colors, category, cate
 
 import { useRoute } from 'vue-router';
 import { computed, onMounted } from "vue";
-import { filterProduct } from "@/feature/use-navigation/model/filter-product.ts";
+import { filterProduct } from "@/features/use-navigation/model/filter-product.ts";
 import { productsClasses } from "@/shared/constants/product/products.classes.ts";
-import { productApi } from "@/feature/use-product/api/product.api.ts";
+import { productApi } from "@/features/use-product/api/product.api.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
-import { useProductsModals } from "@/feature/use-product/lib/product.modal.ts";
+import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
 
 import square from "@/assets/icons/squares/square.png";
 import availability from "@/assets/icons/arrows/arrow-up.png";

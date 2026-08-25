@@ -19,7 +19,7 @@ const { userAddresses } = checkoutStore();
 const { savedContactClass } = informationClasses()
 const { useSavedContactInfo } = addressApi();
 
-import { addressApi } from "@/feature/use-checkout/api/address.api.ts";
+import { addressApi } from "@/features/use-checkout/api/address.api.ts";
 import { checkoutStore } from "@/entities/checkout/model/checkout.store.ts";
 import { informationClasses } from "@/shared/constants/checkout/information.classes.ts";
 </script>

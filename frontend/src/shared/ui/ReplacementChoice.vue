@@ -33,7 +33,7 @@ const { toggleOrder, cancelChoice, cancelChoiceMessage, cancelChoiceError } = us
 
 import { watch } from "vue";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { orderApi } from "@/feature/use-order/api/order.api.ts";
+import { orderApi } from "@/features/use-order/api/order.api.ts";
 
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import ReplacementInput from "@/shared/ui/ReplacementInput.vue";

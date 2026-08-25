@@ -78,11 +78,11 @@ const { toggleOrder } = useBaseModals();
 const { orderStatus } = ordersClasses();
 const { orderPreview, pureColorsName } = productsCover();
 
-import { useOrder } from "@/feature/use-order/model/use-order.ts";
+import { useOrder } from "@/features/use-order/model/use-order.ts";
 import { orderStore } from "@/entities/order/model/order.store.ts";
-import { productApi } from "@/feature/use-product/api/product.api.ts";
+import { productApi } from "@/features/use-product/api/product.api.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { productsCover } from "@/feature/use-product/model/product-cover.ts";
+import { productsCover } from "@/features/use-product/model/product-cover.ts";
 import { ordersClasses } from "@/shared/constants/product/orders.classes.ts";
 
 import copy_btn from '@/assets/icons/squares/copy.svg';

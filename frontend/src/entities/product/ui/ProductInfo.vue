@@ -94,17 +94,17 @@ const { selectedColorClass, selectedSizesClass } = productsClasses();
 const { isValidOutOfStack, pureInfoColors, isAvailableSizes, isInCart, quantityInfo } = productsCover();
 
 import { watch } from "vue";
-import { productsCover } from "@/feature/use-product/model/product-cover.ts";
-import { cartApi } from "@/feature/use-cart/api/cart.api.ts";
-import { useCart } from "@/feature/use-cart/model/use-cart.ts";
-import { useProductsModals } from "@/feature/use-product/lib/product.modal.ts";
-import { useFavorite } from "@/feature/use-favorite/model/use-favorite.ts";
+import { productsCover } from "@/features/use-product/model/product-cover.ts";
+import { cartApi } from "@/features/use-cart/api/cart.api.ts";
+import { useCart } from "@/features/use-cart/model/use-cart.ts";
+import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
+import { useFavorite } from "@/features/use-favorite/model/use-favorite.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
-import { favoritesApi } from "@/feature/use-favorite/api/favorites.api.ts";
+import { favoritesApi } from "@/features/use-favorite/api/favorites.api.ts";
 import { productsClasses } from "@/shared/constants/product/products.classes.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
-import { addToCartForm } from "@/feature/use-cart/model/cart.form.ts";
-import { addToCartErrors } from "@/feature/use-cart/lib/cart.errors.ts";
+import { addToCartForm } from "@/features/use-cart/model/cart.form.ts";
+import { addToCartErrors } from "@/features/use-cart/lib/cart.errors.ts";
 
 import plus from '@/assets/icons/products/plus.svg';
 import minus from '@/assets/icons/products/minus.svg';

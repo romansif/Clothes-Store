@@ -92,12 +92,12 @@ const { paymentErrors } = checkoutErrors();
 const { payment, paymentMessages } = checkoutForm();
 const { openCardForm, closeCardForm, toggleShowPayment, isDebitCard } = useCheckout();
 
-import { useCheckout } from "@/feature/use-checkout/model/use-checkout.ts";
-import { paymentApi } from "@/feature/use-checkout/api/payment.api.ts";
-import { checkoutForm } from "@/feature/use-checkout/model/checkout.form.ts";
+import { useCheckout } from "@/features/use-checkout/model/use-checkout.ts";
+import { paymentApi } from "@/features/use-checkout/api/payment.api.ts";
+import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
 import { checkoutStore } from "@/entities/checkout/model/checkout.store.ts";
 import { paymentClasses } from "@/shared/constants/checkout/payment.classes.ts";
-import { checkoutErrors }from "@/feature/use-checkout/lib/checkout.errors.ts";
+import { checkoutErrors }from "@/features/use-checkout/lib/checkout.errors.ts";
 
 import PaymentForm from "./PaymentForm.vue";
 import visa_pay from '@/assets/icons/checkout/payment/visa.png';

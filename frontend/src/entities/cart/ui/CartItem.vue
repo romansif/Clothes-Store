@@ -72,14 +72,14 @@ import liked from '@/assets/icons/nav/liked.png';
 import check_square from '@/assets/icons/squares/check-square.png';
 
 import { userStore } from "@/entities/profile/model/user.store.ts";
-import { useFavorite } from "@/feature/use-favorite/model/use-favorite.ts";
-import { productsCover } from "@/feature/use-product/model/product-cover.ts";
+import { useFavorite } from "@/features/use-favorite/model/use-favorite.ts";
+import { productsCover } from "@/features/use-product/model/product-cover.ts";
 import { cartStore } from "@/entities/cart/model/cart.store.ts";
-import { productApi } from "@/feature/use-product/api/product.api.ts";
-import { favoritesApi } from "@/feature/use-favorite/api/favorites.api.ts";
-import { cartApi } from "@/feature/use-cart/api/cart.api.ts";
-import { useProfile } from "@/feature/use-profile/model/use-profile.ts";
-import { useProfileModals } from "@/feature/use-profile/lib/profile.modal.ts";
+import { productApi } from "@/features/use-product/api/product.api.ts";
+import { favoritesApi } from "@/features/use-favorite/api/favorites.api.ts";
+import { cartApi } from "@/features/use-cart/api/cart.api.ts";
+import { useProfile } from "@/features/use-profile/model/use-profile.ts";
+import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
 import { baseClasses } from "@/shared/constants/base.classes.ts";
 
 const refreshPage = () => {

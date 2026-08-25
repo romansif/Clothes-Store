@@ -18,7 +18,7 @@
 <script setup lang="ts">
 const { selectGender, selectedGender } = filterProduct();
 
-import { filterProduct } from "@/feature/use-navigation/model/filter-product.ts";
+import { filterProduct } from "@/features/use-navigation/model/filter-product.ts";
 </script>
 
 <style scoped>
