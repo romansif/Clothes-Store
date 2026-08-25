@@ -12,7 +12,7 @@ and a responsive interface.
 * **Language:** [TypeScript](https://www.typescriptlang.org/)
 * **Collector:** [Vite](https://vitejs.dev/)
 * **Stylization:** [Tailwind CSS](https://tailwindcss.com/)
-* **Backend & Database:** [Supabase](https://supabase.com/) (PostgreSQL + JSONB, Authentication, Storage)
+* **Backend:** [ExpressJs](https://expressjs.com/) (JSON, Authentication)
 * **Icons & Animations:** Vue Transitions, Кастомные SVG-иконки
 
 ---
@@ -21,7 +21,7 @@ and a responsive interface.
 
 * 📦 **Product Catalog:** Dynamic product list display with filtering by category, size, and color.
 ---
-* 🎨 **JSONB Color Handling:** Parsing and filtering of complex JSON arrays containing colors and HEX codes directly from the database.
+* 🎨 **JSON Color Handling:** Parsing and filtering of complex JSON arrays containing colors and HEX codes directly from the database.
 ---
 * 📏 **Size Selection:** Interactive size selection panel with visual indicators for active items.
 ---
