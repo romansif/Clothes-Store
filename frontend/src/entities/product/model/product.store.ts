@@ -1,5 +1,14 @@
 import { ref } from 'vue'
-import type { Product, Collection, Gender, Sizes, Material, Category, SizeGuide } from "@/entities/product/model/product.types.ts";
+import type {
+    Product,
+    Collection,
+    Gender,
+    Sizes,
+    Material,
+    Category,
+    SizeGuide,
+    SizesShoes
+} from "@/entities/product/model/product.types.ts";
 
 import xs from '@/assets/icons/size/xs.svg';
 import s from '@/assets/icons/size/s.svg';
@@ -59,11 +68,47 @@ const sizes = ref<Sizes[]>([
     {isActive: false, name: 'XXL', url: xxl, class: 'border-3 border-[#A3A3A3]'},
 ]);
 
-const sizeGuide: SizeGuide[] = [
-    {name: 'Heigh', values: ['168', '172', '177', '183', '189', '194']},
-    {name: 'Chest', values: ['83', '88', '93', '98', '103', '119']},
-    {name: 'Waist', values: ['65', '70', '75', '80', '85', '91']},
-    {name: 'Hips', values: ['88', '93', '98', '103', '108', '115']}
+const sizesShoes: SizesShoes[] = [
+    {name: '39'},
+    {name: '40'},
+    {name: '41'},
+    {name: '42'},
+    {name: '43'},
+    {name: '44'},
+    {name: '45'},
+    {name: '46'},
+]
+
+const outerwearSizeGuide: SizeGuide[] = [
+    {name: 'Heigh', values: ['163', '168', '173', '178', '183', '188']},
+    {name: 'Chest', values: ['86', '92', '98', '104', '110', '116']},
+    {name: 'Waist', values: ['68', '72', '78', '84', '90', '96']},
+    {name: 'Length', values: ['64', '66', '68', '70', '72', '74']},
+];
+
+const underWearSizeGuide: SizeGuide[] = [
+    {name: 'Heigh', values: ['163', '168', '173', '178', '183', '188']},
+    {name: 'Waist', values: ['66', '70', '76', '81', '87', '94']},
+    {name: 'Hips', values: ['90', '94', '99', '105', '111', '119']},
+    {name: 'Waist', values: ['77', '80', '82', '84', '86', '88']},
+]
+
+const shoesSizeGuide: SizeGuide[] = [
+    {name: 'Length', values: ['25', '25.7', '26.3', '27', '27.7', '28.3', '29', '29.7']}
+]
+
+const outerWear = [
+    'Shirts',
+    'T-shirts',
+    'Tank top',
+    'Sweaters',
+];
+
+const underWear = [
+    'Underpants',
+    'Shorts',
+    'Jeans',
+    'Pants',
 ];
 
 const allProducts = ref<Product[]>([]);
@@ -86,7 +131,7 @@ const productFiles = ref<(File | null)[]>([null, null, null, null, null]);
 const productsPreview = ref<string[]>([]);
 const currentFile = ref<(number | null)>(null);
 
-const unit = ref<string>('IN')
+const unit = ref<string>('CM')
 
 export const productStore = () => {
     return {
@@ -108,7 +153,14 @@ export const productStore = () => {
         materials,
         genders,
         sizes,
-        sizeGuide,
+        sizesShoes,
+
+        outerwearSizeGuide,
+        underWearSizeGuide,
+        shoesSizeGuide,
+
+        outerWear,
+        underWear,
 
         activeProductImg,
         activeIndex,

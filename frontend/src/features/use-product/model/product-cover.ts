@@ -4,13 +4,14 @@ import { cartStore } from "@/entities/cart/model/cart.store.ts";
 import { orderStore } from "@/entities/order/model/order.store.ts";
 import { productForms } from "@/features/use-product/model/product.forms.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
-import type { ColorItem, Product, Sizes } from "@/entities/product/model/product.types.ts";
+import type {ColorItem, Product, SizeGuide, Sizes} from "@/entities/product/model/product.types.ts";
 
 
 const { cart } = cartStore();
 const { orders, items } = orderStore();
 const { moreCreateItem } = productForms();
-const { products, product, productId, sizes, sizeGuide, activeProductImg, unit } = productStore();
+const { products, product, productId, sizes, outerwearSizeGuide, underWearSizeGuide, shoesSizeGuide,
+    outerWear, underWear, activeProductImg, unit } = productStore();
 
 export const productsCover = () => {
     const toggleColor =  (eventOrColor: Event | string) => {
@@ -207,14 +208,6 @@ export const productsCover = () => {
         }
     };
 
-    const isValidOutOfStack = (product: Product) => {
-        const userId = localStorage.getItem('userId');
-
-        const hasOutOfStack = product.quantity === 0
-
-        return userId && hasOutOfStack
-    };
-
     const isOutOfStack = (product: Product) => {
         return product.quantity === 0 || product.status === 'Exhausted'
     };
@@ -229,15 +222,27 @@ export const productsCover = () => {
         }
     };
 
+    const convertSizeToInches = (sizes: SizeGuide[]) => {
+        return sizes.map(size => ({
+                ...size,
+                values: size.values.map(value => Math.round(Number(value) / 2.54))
+            })
+        )
+    };
+
     const formatterSizeGuide = computed(() => {
-        if(unit.value === 'IN') {
-            return sizeGuide.map(size => ({
-                    ...size,
-                    values: size.values.map(value => Math.round(Number(value) / 2.54))
-                })
-            )
+        const category = product.value.category;
+        console.log(category);
+
+        const isOuterWear = outerWear.includes(category);
+        const isUnderWear = underWear.includes(category);
+
+        if(isOuterWear){
+            return unit.value === 'IN' ? convertSizeToInches(outerwearSizeGuide) : outerwearSizeGuide;
+        }else if(isUnderWear){
+            return unit.value === 'IN' ? convertSizeToInches(underWearSizeGuide) : underWearSizeGuide;
         }
-        return sizeGuide
+        return unit.value === 'IN' ? convertSizeToInches(shoesSizeGuide) : shoesSizeGuide;
     })
 
     return {
@@ -259,8 +264,6 @@ export const productsCover = () => {
         toggleColor,
         toggleSize,
         changeImg,
-
-        isValidOutOfStack,
         isOutOfStack,
         quantityInfo,
 

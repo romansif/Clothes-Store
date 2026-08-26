@@ -50,6 +50,10 @@ export interface Sizes {
     class: string,
 }
 
+export interface SizesShoes {
+    name: string,
+}
+
 export interface SizeGuide {
     name: string,
     values: string[],
