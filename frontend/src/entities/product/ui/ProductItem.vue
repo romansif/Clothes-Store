@@ -6,7 +6,7 @@
             <img :src="productPreview(product.id, products)" alt=""
                  :class="productPreviewClass('w-[344.5px] h-45 sm:h-78.5 xl:h-100', product)" />
         </router-link>
-        <span v-if="isOutOfStack(product)" class="absolute w-100 top-45 -left-7 text-6xl font-semibold -rotate-50">
+        <span v-if="isOutOfStack(product)" class="absolute w-100 top-40 -left-3 text-6xl font-semibold -rotate-50">
           Out Of Stack
         </span>
         <img @click="toggleToFavorite(product.id, 'product', product.id)"

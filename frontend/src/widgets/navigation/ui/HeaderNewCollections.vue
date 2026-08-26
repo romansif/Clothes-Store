@@ -1,5 +1,5 @@
 <template>
-  <div class="font-raleway flex gap-62.5">
+  <div class="font-raleway flex gap-75.5">
     <div class="flex flex-col">
       <div class="flex flex-col gap-4">
         <div class="flex flex-col gap-2 items-center xl:items-start">

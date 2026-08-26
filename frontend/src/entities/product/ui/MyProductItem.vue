@@ -7,7 +7,7 @@
             <img :src="productPreview(product.id, myProducts)" alt=""
                  :class="productPreviewClass('w-83.75 h-h-78.5m:h-[314px] xl:h-100', product)">
           </router-link>
-          <span v-if="isOutOfStack(product)" class="absolute top-1/2 left-1/20 text-5xl font-semibold -rotate-45">
+          <span v-if="isOutOfStack(product)" class="absolute top-45 -left-5 text-6xl font-semibold -rotate-50 w-90">
             Out Of Stack
           </span>
         </div>
