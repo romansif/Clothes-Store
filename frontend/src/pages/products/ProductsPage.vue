@@ -39,12 +39,12 @@ import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
 import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 
-import MainNavBar from "@/entities/navigation/ui/MainNavBar.vue";
+import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
 import ProductList from "@/entities/product/ui/ProductList.vue";
-import HeaderProducts from "@/entities/navigation/ui/HeaderProducts.vue";
-import FilterProducts from "@/entities/navigation/ui/FilterProducts.vue";
+import HeaderProducts from "@/widgets/navigation/ui/HeaderProducts.vue";
+import FilterProducts from "@/widgets/navigation/ui/FilterProducts.vue";
 import Notification from "@/shared/ui/Notification.vue";
-import AsideFilter from "@/shared/ui/AsideFilter.vue";
+import AsideFilter from "@/widgets/AsideFilter.vue";
 import Loading from "@/shared/ui/Loading.vue";
 </script>
 

@@ -47,7 +47,7 @@
         </Transition>
       </div>
     </div>
-    <div class="font-[Montserrat] flex flex-col mt-3 xl:hidden">
+    <div class="font-montserrat flex flex-col mt-3 xl:hidden">
       <div class="flex flex-col gap-4">
         <div class="flex gap-4 items-center">
           <img @click="toggleAgree" :src="isAgreeFormError.agreeError ? check_square : square"
@@ -88,7 +88,7 @@ import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
 import { checkoutErrors } from "@/features/use-checkout/lib/checkout.errors.ts";
 
-import MainNavBar from "@/entities/navigation/ui/MainNavBar.vue";
+import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
 import square from "@/assets/icons/squares/square.png";
 import CartList from "@/entities/cart/ui/CartList.vue";
 import CartInfo from "@/entities/cart/ui/CartInfo.vue";

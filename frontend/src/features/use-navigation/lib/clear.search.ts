@@ -1,4 +1,4 @@
-import { searchForm } from "@/entities/navigation/model/search.form.ts";
+import { searchForm } from "@/widgets/navigation/model/search.form.ts";
 
 const { searchProductForm } = searchForm();
 

@@ -67,7 +67,7 @@ import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
 import { checkoutErrors } from "@/features/use-checkout/lib/checkout.errors.ts";
 
-import MainNavBar from "@/entities/navigation/ui/MainNavBar.vue";
+import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
 import liked from "@/assets/icons/nav/liked.png";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import favorite_cart from '@/assets/icons/products/favorute_empty.svg';

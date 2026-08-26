@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import MainNavBar from "@/entities/navigation/ui/MainNavBar.vue";
+import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
 
 const { loading } = useBaseModals();
 const { componentError, resetError } = errorHandler();
@@ -30,7 +30,7 @@ const { componentError, resetError } = errorHandler();
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
 
-import HeaderNewCollections from "@/entities/navigation/ui/HeaderNewCollections.vue";
+import HeaderNewCollections from "@/widgets/navigation/ui/HeaderNewCollections.vue";
 import NewCollectionList from "@/entities/product/ui/NewCollectionList.vue";
 
 </script>

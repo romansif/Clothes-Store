@@ -55,7 +55,7 @@ const { debouncedSearch } = useGetSearchedProducts();
 import { watch } from "vue";
 import { filterProduct } from "@/features/use-navigation/model/filter-product.ts";
 import { productsClasses } from "@/shared/constants/product/products.classes.ts";
-import { searchForm } from "@/entities/navigation/model/search.form.ts";
+import { searchForm } from "@/widgets/navigation/model/search.form.ts";
 import { productApi } from "@/features/use-product/api/product.api.ts";
 import { clearSearchProductForm } from "@/features/use-navigation/lib/clear.search.ts";
 import { useGetSearchedProducts } from "@/features/use-navigation/model/search-product.ts";

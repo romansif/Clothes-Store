@@ -3,7 +3,7 @@
         transition-opacity duration-500">
     <div class="flex flex-col items-center gap-12">
       <h1 class="font-semibold text-6xl md:text-7xl tracking-widest text-neutral-900">
-        NOIR
+        THE NOIR
       </h1>
       <div class="">
         <img :src="loading" alt="Loading" class="w-full object-contain" />

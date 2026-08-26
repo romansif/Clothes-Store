@@ -1,5 +1,5 @@
 import {ref} from "vue";
-import { type SearchForm } from "@/entities/navigation/model/filter.types.ts";
+import { type SearchForm } from "@/widgets/navigation/model/filter.types.ts";
 
 const searchProductForm = ref<SearchForm>({
     search: ''

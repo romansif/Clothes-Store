@@ -68,7 +68,7 @@ import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
 
 import ProductInfo from "@/entities/product/ui/ProductInfo.vue";
 import cart from '@/assets/icons/nav/cart.png';
-import MainNavBar from "@/entities/navigation/ui/MainNavBar.vue";
+import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
 import profile from '@/assets/icons/nav/profile.png';
 import go_to_shop from '@/assets/icons/arrows/right-long-arrow.png';
 import Notification from "@/shared/ui/Notification.vue";

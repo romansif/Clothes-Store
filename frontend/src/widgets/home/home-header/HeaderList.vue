@@ -13,7 +13,7 @@ const { vHorizontalScroll } = productsCover();
 import { productsCover } from "@/features/use-product/model/product-cover.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
 
-import HeaderItem from "@/entities/home/ui/HeaderItem.vue";
+import HeaderItem from "@/widgets/home/home-header/HeaderItem.vue";
 </script>
 
 <style scoped>

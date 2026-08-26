@@ -48,7 +48,7 @@ import { productApi } from "@/features/use-product/api/product.api.ts";
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 import photo_1 from "@/assets/photos/pants.png";
 import photo_2 from "@/assets/photos/shirt.png";
-import HeaderList from "@/entities/home/ui/HeaderList.vue";
+import HeaderList from "@/widgets/home/home-header/HeaderList.vue";
 
 onMounted(async () => {
   await getAllProducts();
