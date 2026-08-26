@@ -3,18 +3,18 @@
     <div class="xl:flex lg:flex h-95">
       <div class="flex flex-col gap-2">
         <div class="font-extrabold flex flex-col text-5xl">
-          <span>NEW</span>
+          <span>SEASONAL</span>
           <span>COLLECTION</span>
         </div>
         <div class="flex flex-col text-lg text-[#A3A3A3]">
           <span>Summer</span>
-          <span>2026</span>
+          <span class="font-dm-sans">2026</span>
         </div>
         <div class="xl:hidden lg:block mt-5">
           <HeaderList />
         </div>
         <div class="relative transtion duration-400 hover:scale-108 mt-5 xl:mt-auto ">
-          <router-link :to="{name: 'products'}">
+          <router-link :to="{name: 'shop/seasonal-collections'}">
               <span class="bg-black font-semibold text-white xl:w-66.25 px-40 py-3 text-start
                   xl:pl-4 pl-3 cursor-pointer">Go To Shop</span>
             <img :src=arrow alt="" class="absolute h-13 left-50 xl:left-50 top-1/2 -translate-y-1/2">

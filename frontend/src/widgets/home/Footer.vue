@@ -23,10 +23,7 @@
         <div class="hidden md:flex md:flex-col md:items-start md:font-medium">
           <span class="font-medium text-[#A3A3A3]">TECHNOLOGIES</span>
           <div class="flex flex-col items-start">
-            <div class="relative">
-              <span class="text-[80px] font-black text-[#D9D9D9]">VR</span>
-              <img :src=logo alt="" class="absolute left-2 top-1/3 w-10">
-            </div>
+            <span class="text-[80px] font-black text-[#D9D9D9]">VR</span>
             <div class="flex gap-5">
               <span class="text-[80px] font-black">XIV</span>
               <span class="font-medium mt-10 text-[#A3A3A3]">Near-field communication /</span>
@@ -40,7 +37,6 @@
 </template>
 
 <script setup lang="ts">
-import logo from '@/assets/icons/nav/logo.png';
 </script>
 
 <style scoped>

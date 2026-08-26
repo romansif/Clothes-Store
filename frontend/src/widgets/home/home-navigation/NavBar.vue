@@ -11,10 +11,13 @@
                 isHome ? 'text-black scale-120' : '']">
             Home
           </span>
-          <router-link :to="{name: 'products'}" class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120">
-            Products
+          <router-link :to="{name: 'shop'}" class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120">
+            Shop
           </router-link>
-          <router-link :to="{name: 'products/new-collections'}" class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120">
+          <router-link :to="{name: 'shop/new-collections'}" class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120">
+            Seasonal
+          </router-link>
+          <router-link :to="{name: 'shop/new-collections'}" class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120">
             New
           </router-link>
         </div>

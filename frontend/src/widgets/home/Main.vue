@@ -7,7 +7,7 @@
       </div>
       <div class="flex flex-col mt-5">
         <div class="flex border-b border-gray-300 w-full mb-3 pb-3">
-          <router-link :to="{name: 'products/new-collections'}" class="text-[#A3A3A3] transition duration-400
+          <router-link :to="{name: 'shop/new-collections'}" class="text-[#A3A3A3] transition duration-400
                  hover:scale-120 hover:text-black cursor-pointer ml-auto">
               See All
           </router-link>
@@ -19,7 +19,7 @@
       <div class="font-extrabold flex flex-col text-5xl mb-8">
         <span>XIV</span>
         <span>COLLECTIONS</span>
-        <span>25-26</span>
+        <span class="font-dm-sans">25-26</span>
       </div>
       <FilterGender />
       <div class="flex flex-col mt-10">
@@ -32,11 +32,11 @@
           <h1 class="font-normal text-5xl w-75 text-center md:w-full">
             Our Approach to fashion design
           </h1>
-          <p class="font-light text-[#A3A3A3] text-center w-75 mt-13 md:w-135">
+          <i class="font-light text-[#A3A3A3] text-center w-75 mt-13 md:w-135">
             At elegant vogue , we blend creativity with craftsmanship to create
             fashion that transcends trends and stands the test of time each design
             is meticulously crafted, ensuring the highest quality exquisite finish
-          </p>
+          </i>
         </div>
       </div>
       <div class="flex justify-center mt-20 lg:mt-20 lg:flex">

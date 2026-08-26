@@ -9,10 +9,13 @@
           <router-link :to="{name: 'home'}" :class="selectedPageClass(isHome)">
             Home
           </router-link>
-          <router-link :to="{name: 'products'}" :class="selectedPageClass(isProducts)">
-            Products
+          <router-link :to="{name: 'shop'}" :class="selectedPageClass(isProducts)">
+            Shop
           </router-link>
-          <router-link :to="{name: 'products/new-collections'}" :class="selectedPageClass(isNewCollections)">
+          <router-link :to="{name: 'shop/seasonal-collections'}" :class="selectedPageClass(isSeasonCollections)">
+            Seasonal
+          </router-link>
+          <router-link :to="{name: 'shop/new-collections'}" :class="selectedPageClass(isNewCollections)">
             New
           </router-link>
         </div>
@@ -64,10 +67,11 @@ import profile from "@/assets/icons/nav/profile.png";
 const route = useRoute();
 
 const isHome = computed(() => route.name === "");
-const isProducts = computed(() => route.name === "products");
+const isProducts = computed(() => route.name === "shop");
 const isProfile = computed(() => route.name !== "profile");
 const isCart = computed(() => route.name !== "cart");
-const isNewCollections = computed(() => route.name === "products/new-collections");
+const isNewCollections = computed(() => route.name === "shop/new-collections");
+const isSeasonCollections = computed(() => route.name === "shop/seasonal-collections");
 </script>
 
 <style scoped>

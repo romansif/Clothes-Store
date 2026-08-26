@@ -27,13 +27,18 @@ const routes: RouteRecordRaw[] = [
                 component: () => import('@/pages/home/HomePage.vue'),
             },
             {
-                path: 'products',
-                name: 'products',
+                path: 'shop',
+                name: 'shop',
                 component: () => import('@/pages/products/ProductsPage.vue'),
             },
             {
-                path: 'products/new-collections',
-                name: 'products/new-collections',
+                path: 'shop/new-collections',
+                name: 'shop/new-collections',
+                component: () => import('@/pages/products/NewCollectionsPage.vue'),
+            },
+            {
+                path: 'shop/seasonal-collections',
+                name: 'shop/seasonal-collections',
                 component: () => import('@/pages/products/NewCollectionsPage.vue'),
             },
             {

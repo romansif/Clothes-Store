@@ -4,7 +4,7 @@
       <div class="flex flex-col gap-4">
         <div class="flex flex-col gap-2 items-center xl:items-start">
           <div class="font-semibold flex gap-2">
-            <router-link :to="{ name: 'products' }" class="text-[#A3A3A3]">
+            <router-link :to="{ name: 'shop' }" class="text-[#A3A3A3]">
               Products
             </router-link>
             <span>/</span>
