@@ -19,7 +19,7 @@
         <span class="whitespace-normal w-20 sm:w-50">
           {{ product.title }}
         </span>
-        <span>
+        <span font-dm-sans>
           $ {{ product.price }}
         </span>
       </div>

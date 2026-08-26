@@ -1,5 +1,5 @@
 <template>
-  <nav class="font-montserrat">
+  <nav class="font-raleway">
     <div class="flex justify-between items-center md:justify-between">
       <div class="flex items-center gap-5 lg:gap-10">
         <div class="xl:flex xl:gap-10
@@ -35,7 +35,7 @@
             <div class="relative">
               <img :src=cartImg alt="">
               <div v-if="unreadCount > 0 && isCart" class="absolute bottom-7 left-8 bg-black px-3 py-0.5 rounded-full">
-                <span class="text-white text-lg">{{ unreadCount }}</span>
+                <span class="text-white text-lg font-dm-sans">{{ unreadCount }}</span>
               </div>
             </div>
           </div>

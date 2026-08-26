@@ -1,6 +1,6 @@
 <template>
   <div class="bg-white h-screen">
-    <div class='fixed font-[Montserrat] inset-0 flex items-center justify-center'>
+    <div class='fixed font-raleway inset-0 flex items-center justify-center'>
       <div class="w-87.5 sm:w-150 rounded-lg px-8 py-8">
         <div class="flex items-center justify-center">
           <div class="w-58.75 sm:w-75">

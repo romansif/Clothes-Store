@@ -1,5 +1,5 @@
 <template>
-<div class="font-montserrat fixed inset-0 z-50
+<div class="font-raleway fixed inset-0 z-50
      bg-[rgba(0,0,0,0.5)] flex items-center justify-center">
   <div class="flex flex-col gap-2 bg-white w-175 h-142.5 rounded-xl p-5">
     <div class="flex items-center">
@@ -37,7 +37,7 @@
           <th class="px-4 py-4 text-left font-normal">
             {{ row.name }}
           </th>
-          <td v-for="value in row.values" :key="value" class="px-4 py-4 text-center text-neutral-600">
+          <td v-for="value in row.values" :key="value" class="px-4 py-4 text-center text-neutral-600 font-dm-sans">
             {{ value }}
           </td>
         </tr>

@@ -4,7 +4,7 @@
       <h1 class="font-medium mt-2.5">YOUR ORDER</h1>
       <span class="px-2 py-1 bg-white ml-auto">
         (
-          <span class="text-blue-700 font-medium">
+          <span class="text-blue-700 font-medium font-dm-sans">
           {{ items?.length || 0 }}
           </span>
         )

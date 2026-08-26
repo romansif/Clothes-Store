@@ -7,11 +7,11 @@
       </div>
       <div v-if="user.role === 'Seller'" class="flex gap-2 w-84">
         <span class="font-semibold text-lg">Public Phone:</span>
-        <span class="font-medium text-lg text-[#A3A3A3]">{{ user.publicPhone }}</span>
+        <span class="font-medium text-lg text-[#A3A3A3] font-dm-sans">{{ user.publicPhone }}</span>
       </div>
       <div v-if="user.role === 'Buyer'" class="flex gap-2 w-84">
         <span class="font-semibold text-lg">Private Phone:</span>
-        <span class="font-medium text-lg text-[#A3A3A3]">{{ user.privatePhone }}</span>
+        <span class="font-medium text-lg text-[#A3A3A3] font-dm-sans">{{ user.privatePhone }}</span>
       </div>
       <div v-if="user.role === 'Buyer'" class="flex gap-2 w-full">
         <span class="font-semibold text-lg">Email:</span>

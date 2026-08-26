@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="!choiceModal" @click="toggleOrderHistory" class="font-montserrat fixed inset-0 z-50
+    <div v-if="!choiceModal" @click="toggleOrderHistory" class="font-raleway fixed inset-0 z-50
         bg-[rgba(0,0,0,0.5)] flex items-center justify-center">
       <div @click.stop class="flex flex-col bg-white w-222.5 h-162.5 rounded-xl p-5">
         <BaseButton @click="toggleOrderHistory" name="Exit" variant="exitClose"/>
@@ -12,7 +12,7 @@
             <span class="text-sm text-[#A3A3A3]">
               Purchase history and status tracking.
             </span>
-            <span class="ml-auto h-fit px-3 py-1 bg-gray-100 text-gray-700 font-medium text-xs rounded-md">
+            <span class="ml-auto h-fit px-3 py-1 bg-gray-100 text-gray-700 font-medium text-xs rounded-md font-dm-sans">
               Всего заказов: {{ orders.length }}
             </span>
           </div>

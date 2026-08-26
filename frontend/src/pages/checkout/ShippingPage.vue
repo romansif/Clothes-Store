@@ -1,6 +1,6 @@
 <template>
   <div class="bg-[#F0F0F0] lg:h-screen">
-    <div class="font-[Montserrat] xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
+    <div class="font-raleway xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
       <img @click="goBack" :src="go_to_shop" alt="" class="rotate-180">
       <div class="flex flex-col mt-16">
         <h1 class="font-extrabold text-xl md:text-2xl xl:text-4xl">CHECKOUT</h1>

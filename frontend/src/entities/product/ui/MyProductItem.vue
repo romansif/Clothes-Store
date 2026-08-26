@@ -40,10 +40,10 @@
           </div>
         </div>
         <div class="border-t border-gray-100 flex items-center justify-between">
-          <span class="font-bold text-gray-900 text-base sm:text-lg">
+          <span class="font-bold text-gray-900 text-base sm:text-lg font-dm-sans">
             $ {{ product.price }}
           </span>
-          <span class="font-medium text-xs text-gray-400">
+          <span class="font-medium text-xs text-gray-400 font-dm-sans">
             In Stack: {{ product.quantity }} pcs.
           </span>
         </div>

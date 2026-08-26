@@ -8,21 +8,21 @@
       <p class="text-sm mb-4">{{ componentError }}</p>
       <BaseButton name="Try again" variant="refresh" @click="resetError('CART_FAVORITE')" />
     </div>
-    <div v-else class="font-[Montserrat] xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
+    <div v-else class="font-raleway xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
       <MainNavBar />
       <div class="mt-10 xl:mt-30 xl:px-10">
         <div class="flex flex-col">
           <div class="flex gap-14 items-center font-semibold text-sm">
             <router-link :to="{name: 'cart'}">
             <span :class="isShoppingCart ? 'text-[#A3A3A3]' : ''">
-              SHOPPING BAG ({{ cartCount }})
+              SHOPPING BAG <span class="font-dm-sans">({{ cartCount }})</span>
             </span>
             </router-link>
             <div class="flex items-center gap-2">
               <img :src="liked" alt="" class="w-8.75">
               <router-link :to="{name: 'favorite'}">
               <span :class="isFavoriteProducts ? 'text-[#A3A3A3]' : ''">
-                FAVORITES ({{ favoritesCount }})
+                FAVORITES <span class="font-dm-sans">({{ favoritesCount }})</span>
               </span>
               </router-link>
             </div>

@@ -12,7 +12,7 @@ export const authClasses = () => {
 
     const selectPhoneCodeClass = () => [
         `text-xs outline-none bg-[#D9D9D9]/40 transition duration-400 border border-gray-300
-        hover:bg-gray-50 rounded-md py-5 px-3`
+        font-dm-sans hover:bg-gray-50 rounded-md py-5 px-3 font-dm-sans`
     ];
 
     const signInRoleClass = computed(() => [
@@ -23,7 +23,7 @@ export const authClasses = () => {
 
     const signInCodeClass = computed(() => [
         `text-center bg-[#D9D9D9]/40 w-14 outline-none px-2 py-4 rounded-sm border border-gray-300
-        transition duration-400 hover:bg-gray-50`,
+        font-dm-sans transition duration-400 hover:bg-gray-50`,
         loginFormErrors.value.phoneError ? 'border border-red-500' : ''
     ]);
 

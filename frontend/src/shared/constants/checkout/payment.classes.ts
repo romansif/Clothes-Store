@@ -24,19 +24,19 @@ export const paymentClasses = () => {
 
     const cardNumberClass = computed(() => [
         `border border-gray-300 rounded-xl outline-none px-4 py-3 text-xs transition duration-400
-            bg-[#D9D9D9]/40 hover:bg-gray-50 appearance-none placeholder:text-sm`,
+        font-dm-sans bg-[#D9D9D9]/40 hover:bg-gray-50 appearance-none placeholder:text-sm`,
         paymentErrors.value.cardNumberError ? 'placeholder:text-red-500 border-red-400 placeholder:text-xs' : 'placeholder:text-gray-600'
     ]);
 
     const expiryDateClass = computed(() => [
         `border border-gray-300 rounded-xl w-full sm:w-75 md:w-91.25 lg:w-48.75 xl:w-61.25
-            outline-none px-4 py-3 text-xs transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50`,
+        font-dm-sans outline-none px-4 py-3 text-xs transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50`,
         paymentErrors.value.expiryDateError ? 'placeholder:text-red-500 border-red-400 placeholder:text-xs' : 'placeholder:text-gray-600'
     ]);
 
     const cardCvvClass = computed(() => [
         `border border-gray-300 rounded-xl w-full sm:w-75 md:w-91.25 lg:w-48.75 xl:w-61.25
-            outline-none px-4 py-3 text-xs transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50 placeholder:text-lg`,
+        font-dm-sans outline-none px-4 py-3 text-xs transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50 placeholder:text-lg`,
         paymentErrors.value.cardCvvError ? 'placeholder:text-red-500 border-red-400 placeholder:text-xs' : 'placeholder:text-gray-600'
     ]);
 

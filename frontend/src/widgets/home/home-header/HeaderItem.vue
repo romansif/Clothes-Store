@@ -10,7 +10,7 @@
     </span>
     <div class="flex items-center justify-between font-medium text-base">
       <span class="whitespace-normal">{{ product.title }}</span>
-      <span>$ {{ product.price }}</span>
+      <span class="font-dm-sans">$ {{ product.price }}</span>
     </div>
   </li>
 </template>

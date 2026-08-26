@@ -15,14 +15,14 @@
                   Copy tracking number
                 </span>
               </div>
-              <span class="font-medium">№ {{ order.id.slice(0, 8) }}</span>
+              <span class="font-medium font-dm-sans">№ {{ order.id.slice(0, 8) }}</span>
             </div>
           </div>
           <OrderStatus :order="order" />
         </div>
         <div class="flex flex-col gap-2 ml-auto">
           <span class="text-[#A3A3A3] ml-auto">Order total</span>
-          <span class="font-bold ml-auto">$ {{ order.orderTotal }}</span>
+          <span class="font-bold ml-auto font-dm-sans">$ {{ order.orderTotal }}</span>
           <span class="text-[#A3A3A3] font-normal ml-auto">{{ order.delivery }}</span>
         </div>
       </div>
@@ -53,7 +53,7 @@
                     </span>
                   </div>
                   <div class="flex gap-5 ml-auto">
-                    <span class="font-bold">$ {{ item.price }}</span>
+                    <span class="font-bold font-dm-sans">$ {{ item.price }}</span>
                     <span class="text-[#A3A3A3]">{{ item.quantity }} pcs.</span>
                   </div>
                 </div>

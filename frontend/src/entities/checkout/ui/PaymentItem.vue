@@ -4,15 +4,15 @@
       <div class="flex flex-col gap-5">
         <div class="flex gap-5">
           <span class="text-sm font-semibold">
-            Expiry Date: <span class="font-normal">{{ checkout.expiryDate }},</span>
+            Expiry Date: <span class="font-normal font-dm-sans">{{ checkout.expiryDate }},</span>
           </span>
           <span class="text-sm font-semibold">
-            CVV: <span class="font-normal">{{ checkout.cardCvv }}</span>
+            CVV: <span class="font-normal font-dm-sans">{{ checkout.cardCvv }}</span>
           </span>
         </div>
         <div class="flex gap-5">
           <span v-if="checkout.cardName" class="text-sm font-semibold">
-            Card Name: <span class="font-normal">{{ checkout.cardName }}</span>
+            Card Name: <span class="font-normal font-dm-sans">{{ checkout.cardName }}</span>
           </span>
           <span class="text-sm font-semibold">
             Card Number: <span class="font-normal">{{ checkout.cardNumber }}</span>

@@ -14,9 +14,9 @@
                class="w-8.75  cursor-pointer">
         </div>
       </div>
-      <div class="flex text-sm font-medium text-[#A3A3A3] mt-1">
+      <div class="flex text-sm font-medium text-[#A3A3A3] mt-1 font-dm-sans">
         <span>{{ quantityInfo(product) }}</span>
-        <span class="ml-auto text-black">
+        <span class="ml-auto text-black font-dm-sans">
           $ {{ product.price }}
         </span>
       </div>
@@ -56,7 +56,7 @@
       </button>
       <router-link v-if="!userData.id" :to="{name: 'signIn'}">
         <span class="hidden bg-black text-white font-semibold text-sm py-4 w-full text-center
-            font-montserrat lg:block">
+            font-raleway lg:block">
           ADD TO CART
         </span>
       </router-link>
@@ -67,7 +67,7 @@
         <div class="flex gap-6 bg-zinc-800 py-4 px-3 text-lg transition duration-300 hover:scale-108">
           <img :src="plus" @click="updateCartItem('add', isInCart.id, isInCart.status)" alt=""
                class="bg-zinc-600 text-white px-2 w-8.75 rounded-md transition duration-300 hover:bg-zinc-400" />
-          <span class="text-white">{{ isInCart.quantity }}</span>
+          <span class="text-white font-dm-sans">{{ isInCart.quantity }}</span>
           <img :src="minus" @click="updateCartItem('away', isInCart.id, isInCart.status)" alt=""
                class="bg-zinc-600 text-white px-2 w-8.75 rounded-md transition duration-300 hover:bg-zinc-400" />
         </div>

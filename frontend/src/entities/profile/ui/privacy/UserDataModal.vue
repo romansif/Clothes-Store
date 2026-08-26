@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div @click="toggleConfidentialityData" class="font-[Montserrat] fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)]
+    <div @click="toggleConfidentialityData" class="font-raleway fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)]
                                   flex items-center justify-center py-14 ">
       <div @click.stop class="flex flex-col bg-white w-275 h-full p-5 rounded-xl">
         <div class="flex flex-col gap-2 border-b pb-4">

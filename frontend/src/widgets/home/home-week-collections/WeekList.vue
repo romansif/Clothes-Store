@@ -6,7 +6,7 @@
         <span class="text-lg font-semibold">At of now, week collection have not yet appeared</span>
       </div>
     </div>
-    <ul v-else v-horizontal-scroll class="flex gap-10 xl:gap-22.5 overflow-x-auto whitespace-nowrap no-scrollbar">
+    <ul v-else v-horizontal-scroll class="flex gap-10 xl:gap-22.5 overflow-x-auto whitespace-nowrap no-scrollbar pt-6">
       <WeekItem />
     </ul>
   </Transition>

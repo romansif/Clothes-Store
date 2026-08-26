@@ -12,10 +12,10 @@
               <span class="">{{ product?.title }}</span>
               <span>{{ product?.category }}</span>
             </div>
-            <span class="">$ {{ product?.price }}</span>
+            <span class="font-dm-sans">$ {{ product?.price }}</span>
           </div>
           <span class="text-gray-400">{{ pureColorsName(product) }} / {{ product?.sizes }}</span>
-          <span class="mt-8">(<span class="text-blue-700 font-medium">{{ product?.quantity }}</span>)</span>
+          <span class="mt-8">(<span class="text-blue-700 font-medium font-dm-sans">{{ product?.quantity }}</span>)</span>
         </div>
       </div>
     </li>

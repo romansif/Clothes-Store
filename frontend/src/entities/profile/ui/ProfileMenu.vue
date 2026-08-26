@@ -1,5 +1,5 @@
 <template>
-  <Menu as="div" class="relative inline-block">
+  <Menu as="div" class="relative inline-block font-raleway">
     <MenuButton class="border border-gray-300 inline-flex w-full justify-center gap-x-1.5 rounded-xl
         px-3 py-2 text-sm font-semibold inset-ring-1 inset-ring-white/5 transition duration-400 hover:scale-108">
       Account

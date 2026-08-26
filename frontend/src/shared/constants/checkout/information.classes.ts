@@ -15,18 +15,18 @@ export const informationClasses = () => {
 
     const postalCodeClass = computed(() => [
         `w-full bg-[#D9D9D9]/40 border border-gray-300 transition duration-400 hover:bg-gray-50
-        rounded-xl outline-none px-4 py-3 text-xs`,
+        rounded-xl outline-none px-4 py-3 text-xs font-dm-sans`,
         informationErrors.value.postalCodeError ? `placeholder:text-red-500 border-red-400` : `placeholder:text-gray-600`
     ]);
 
     const informationSelectPhoneCodeClass = computed(() => [
-        `text-xs outline-none bg-[#D9D9D9]/40 border
-        border-gray-300 transition duration-400 hover:bg-gray-50 rounded-xl px-2 py-3`
+        `text-xs outline-none bg-[#D9D9D9]/40 border font-dm-sans border-gray-300 transition duration-400 
+        hover:bg-gray-50 rounded-xl px-2 py-3`
     ])
 
     const informationPhoneClass = computed(() => [
-        `bg-[#D9D9D9]/40 border border-gray-300 transition duration-400 hover:bg-gray-50
-                  rounded-xl outline-none px-4 py-3 text-xs w-full`,
+        `bg-[#D9D9D9]/40 border border-gray-300 transition duration-400 hover:bg-gray-50 
+        font-dm-sans rounded-xl outline-none px-4 py-3 text-xs w-full`,
         informationErrors.value.phoneError ? `placeholder:text-red-500 border-red-400` : `placeholder:text-gray-600`
     ]);
 

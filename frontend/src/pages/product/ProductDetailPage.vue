@@ -3,7 +3,7 @@
     <Loading v-if="loading"/>
     <div v-else>
       <MainNavBar class="hidden xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 lg:block" />
-      <div class="font-[Montserrat] flex flex-col lg:flex-row lg:justify-center lg:items-center lg:mt-25">
+      <div class="font-raleway flex flex-col lg:flex-row lg:justify-center lg:items-center lg:mt-25">
         <div class="flex justify-between items-center px-4 pt-4 lg:hidden">
           <img @click="routerBack" :src=go_to_shop alt="" class="rotate-180">
           <div class="flex gap-2">

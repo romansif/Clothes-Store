@@ -1,5 +1,5 @@
 <template>
-  <div class="font-montserrat flex gap-62.5">
+  <div class="font-raleway flex gap-62.5">
     <div class="flex flex-col">
       <div class="flex flex-col gap-4">
         <div class="flex flex-col gap-2 items-center xl:items-start">
@@ -13,7 +13,7 @@
             </span>
           </div>
           <h1 class="text-4xl font-extrabold">
-            NEW COLLECTIONS
+            NEW ARRIVALS
           </h1>
         </div>
       </div>
@@ -21,7 +21,7 @@
         <input v-model="searchProductForm.search" type="text" placeholder="Search"
                class="bg-[#D9D9D9]/40 h-12.5 px-10 placeholder:px-52 border-none outline-none
                sm:placeholder:px-114 md:placeholder:px-134 lg:placeholder:px-195 xl:w-92.5 xl:placeholder:px-65
-               transition duration-400 hover:bg-gray-50" />
+               transition duration-400 hover:bg-gray-50 font-dm-sans" />
         <img :src=search alt="" class="absolute left-4 top-1/2 -translate-y-1/2">
         <img v-if="searchProductForm.search" @click="clearSearchProductForm" :src="del" alt=""
              class="w-6.25 absolute top-1/4 left-85 cursor-pointer">

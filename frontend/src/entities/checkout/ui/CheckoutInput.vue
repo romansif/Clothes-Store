@@ -21,7 +21,7 @@ const model = defineModel<string | number>();
 
 const checkoutClasses = {
   checkoutInfo: `bg-[#D9D9D9]/40 border border-gray-300 transition duration-400 hover:bg-gray-50 focus:bg-gray-50
-                rounded-xl outline-none px-4 py-3 text-xs placeholder:text-gray-600 w-full`,
+                rounded-xl outline-none px-4 py-3 text-xs placeholder:text-gray-600 w-full class="font-dm-sans"`,
 }
 </script>
 

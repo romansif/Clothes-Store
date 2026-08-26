@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="font-[Montserrat] fixed inset-0 z-50">
+    <div class="font-raleway fixed inset-0 z-50">
       <div class="py-2 px-4 bg-[#F0F0F0] shadow-md overflow-hidden h-full overflow-y-auto no-scrollbar">
         <div class="flex">
           <router-link :to="{ name: 'my/products' }" class="text-start ml-auto h-fit w-fit px-10 py-2 bg-red-600 text-white

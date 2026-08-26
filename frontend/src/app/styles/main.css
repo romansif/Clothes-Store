@@ -3,6 +3,8 @@
 
 @theme {
     --font-montserrat: "Montserrat", sans-serif;
+    --font-raleway: "Raleway", monospace;
+    --font-dm-sans: "DM Sans", sans-serif;
 }
 
 .no-scrollbar::-webkit-scrollbar {

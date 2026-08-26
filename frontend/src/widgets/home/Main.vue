@@ -1,5 +1,5 @@
 <template>
-  <main class="font-montserrat xl:mt-25 lg:mt-95 md:mt-65 mt-45">
+  <main class="font-raleway xl:mt-25 lg:mt-95 md:mt-65 mt-45">
     <div class="flex flex-col">
       <div class="font-extrabold flex flex-col text-5xl">
         <span>NEW</span>

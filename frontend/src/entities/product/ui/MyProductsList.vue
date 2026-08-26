@@ -6,7 +6,7 @@
         <span class="text-lg font-semibold">You haven't created a product cover for sale yet</span>
       </div>
     </div>
-    <ul v-else class="font-montserrat flex flex-col overflow-y-auto gap-20 max-h-175 no-scrollbar">
+    <ul v-else class="font-raleway flex flex-col overflow-y-auto gap-20 max-h-175 no-scrollbar">
       <MyProductItem />
     </ul>
   </Transition>

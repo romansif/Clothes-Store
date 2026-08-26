@@ -1,6 +1,6 @@
 <template>
   <aside class="fixed inset-0 z-50">
-    <div class="font-montserrat flex flex-col h-screen bg-white px-6 py-6 sm:w-76.25 md:w-82.5">
+    <div class="font-raleway flex flex-col h-screen bg-white px-6 py-6 sm:w-76.25 md:w-82.5">
       <div class="flex gap-5 items-center" @click="toggleFilterAside">
         <span class="font-bold text-xl cursor-pointer">Filters</span>
         <img :src=left_arrow alt="">
@@ -26,7 +26,7 @@
             <div class="flex gap-1">
               <span>{{ stackName }}</span>
               <span>
-              (<span class="text-blue-700 font-medium">
+              (<span class="text-blue-700 font-medium font-dm-sans">
                 {{ allProducts.filter(p => p.status === stackName).length }}
               </span>)
             </span>
@@ -47,7 +47,7 @@
             <div class="flex gap-1">
               <span>{{ genderName }}</span>
               <span>
-              (<span class="text-blue-700 font-medium">
+              (<span class="text-blue-700 font-medium font-dm-sans">
                 {{ allProducts.filter(p => p.gender === genderName).length }}
               </span>)
             </span>

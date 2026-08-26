@@ -1,5 +1,5 @@
 <template>
-  <aside class="font-montserrat hidden mt-32.5 xl:flex xl:flex-col">
+  <aside class="font-raleway hidden mt-32.5 xl:flex xl:flex-col">
     <span class="font-bold text-xl">Filters</span>
     <div class="flex flex-col mt-7">
       <span class="font-medium">Size</span>
@@ -21,7 +21,7 @@
           <div class="flex gap-1">
             <span>{{ stackName }}</span>
             <span>
-              (<span class="text-blue-700 font-medium">
+              (<span class="text-blue-700 font-medium font-dm-sans">
                 {{ allProducts.filter(p => p.status === stackName).length }}
               </span>)
             </span>
@@ -42,7 +42,7 @@
           <div class="flex gap-1">
             <span>{{ genderName }}</span>
             <span>
-              (<span class="text-blue-700 font-medium">
+              (<span class="text-blue-700 font-medium font-dm-sans">
                 {{ allProducts.filter(p => p.gender === genderName).length }}
               </span>)
             </span>

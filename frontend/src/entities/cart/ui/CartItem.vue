@@ -21,7 +21,7 @@
           <span class="whitespace-normal">
             {{ product.title }}
           </span>
-          <span>
+          <span class="font-dm-sans">
             $ {{ product.price }}
           </span>
         </div>

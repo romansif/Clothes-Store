@@ -66,8 +66,6 @@
 </template>
 
 <script setup lang="ts">
-import {profileClasses} from "@/shared/constants/user/profile.classes.ts";
-
 const { user } = userStore();
 const { userAvatar } = useProfile();
 const { profileTabsClass, profileTabsSpanClass } = profileClasses();
@@ -79,6 +77,7 @@ const {
 import { useProfile } from "@/features/use-profile/model/use-profile.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
+import { profileClasses } from "@/shared/constants/user/profile.classes.ts";
 
 import ProfileMenu from "./ProfileMenu.vue";
 import arrow_down from '@/assets/icons/arrows/arrow-down.png';

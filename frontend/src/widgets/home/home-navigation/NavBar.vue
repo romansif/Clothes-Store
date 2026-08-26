@@ -1,12 +1,12 @@
 <template>
-  <nav class="font-montserrat">
+  <nav class="font-raleway">
     <div class="flex justify-between items-center md:justify-between">
       <div class="flex items-center gap-5 lg:gap-10">
         <img @click="toggleFilterAside" :src=catalog alt="" class="w-7.5 cursor-pointer">
         <div class="xl:flex xl:gap-10
             lg:flex lg:gap-10
             md:flex md:gap-5
-            sm:hidden hidden font-semibold">
+            sm:hidden hidden font-medium">
           <span :class="['text-[#696969] cursor-pointer transition duration-400 hover:text-black hover:scale-120',
                 isHome ? 'text-black scale-120' : '']">
             Home
@@ -47,8 +47,7 @@ const { toggleFilterAside } = useProductsModals();
 
 import { computed }  from "vue";
 import { useRoute } from "vue-router";
-
-import {useProductsModals} from "@/features/use-product/lib/product.modal.ts";
+import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
 
 import cart from "@/assets/icons/nav/cart.png";
 import liked from "@/assets/icons/nav/favorite.png";

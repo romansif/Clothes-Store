@@ -5,10 +5,10 @@
       <div class="flex flex-col gap-5">
         <div class="flex gap-5">
           <span class="text-sm font-semibold">
-            Expiry Date: <span class="font-normal">{{ checkout.expiryDate }},</span>
+            Expiry Date: <span class="font-normal font-dm-sans">{{ checkout.expiryDate }},</span>
           </span>
           <span class="text-sm font-semibold">
-            CVV: <span class="font-normal">{{ checkout.cardCvv }}</span>
+            CVV: <span class="font-normal font-dm-sans">{{ checkout.cardCvv }}</span>
           </span>
           <img @click="toggleDeleteChoice(
               'Are you sure you want to delete this saved card?', 'DELETE_SAVED_CARD', checkout.id)"
@@ -19,7 +19,7 @@
             Card Name: <span class="font-normal">{{ checkout.cardName }}</span>
           </span>
           <span class="text-sm font-semibold">
-            Card Number: <span class="font-normal">{{ checkout.cardNumber }}</span>
+            Card Number: <span class="font-normal font-dm-sans">{{ checkout.cardNumber }}</span>
           </span>
         </div>
       </div>
