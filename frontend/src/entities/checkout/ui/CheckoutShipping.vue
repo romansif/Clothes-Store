@@ -13,12 +13,10 @@
 <script setup lang="ts">
 const { shipping } = checkoutForm();
 const { addShipping } = shippingApi();
-const { getAddress } = addressApi();
 const { shippingErrors } = checkoutErrors();
 
-import { onMounted, watch } from "vue";
+import { watch } from "vue";
 import { shippingApi } from "@/features/use-checkout/api/shipping.api.ts";
-import { addressApi } from "@/features/use-checkout/api/address.api.ts";
 import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
 import { checkoutErrors } from "@/features/use-checkout/lib/checkout.errors.ts";
 
@@ -31,10 +29,6 @@ watch(() => shipping.value.delivery, (delivery) => {
   if(delivery){
     shippingErrors.value.deliveryError = false;
   }
-})
-
-onMounted(async () => {
-  await getAddress();
 })
 </script>
 
