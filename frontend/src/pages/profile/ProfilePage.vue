@@ -55,7 +55,7 @@ import Orders from "@/entities/order/ui/Orders.vue";
 import CurrentOrder from "@/entities/order/ui/CurrentOrder.vue";
 import AddressPaymentInfo from "@/entities/profile/ui/AddressPaymentInfo.vue";
 import UserDataModal from "@/entities/profile/ui/privacy/UserDataModal.vue";
-import Loading from "@/shared/ui/Loading.vue";
+import Loading from "@/widgets/Loading.vue";
 
 </script>
 

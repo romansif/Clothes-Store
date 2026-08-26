@@ -45,7 +45,7 @@ import HeaderProducts from "@/widgets/navigation/ui/HeaderProducts.vue";
 import FilterProducts from "@/widgets/navigation/ui/FilterProducts.vue";
 import Notification from "@/shared/ui/Notification.vue";
 import AsideFilter from "@/widgets/AsideFilter.vue";
-import Loading from "@/shared/ui/Loading.vue";
+import Loading from "@/widgets/Loading.vue";
 </script>
 
 <style scoped>

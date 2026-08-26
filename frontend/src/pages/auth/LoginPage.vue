@@ -51,7 +51,7 @@ import { clearAuthForms } from "@/features/use-auth/lib/clear.auth.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { authStore } from "@/entities/auth/model/auth.store.ts";
 
-import Loading from "@/shared/ui/Loading.vue";
+import Loading from "@/widgets/Loading.vue";
 import Notification from "@/shared/ui/Notification.vue";
 import LoginForm from "@/entities/auth/ui/LoginForm.vue";
 import PhoneSignIn from "@/entities/auth/ui/PhoneSignIn.vue";

@@ -1,5 +1,5 @@
 <template>
-  <div class="font-montserrat fixed inset-0 z-50 bg-[#F0F0F0] flex flex-col items-center justify-center
+  <div class="font-raleway fixed inset-0 z-50 bg-[#F0F0F0] flex flex-col items-center justify-center
         transition-opacity duration-500">
     <div class="flex flex-col items-center gap-12">
       <h1 class="font-semibold text-6xl md:text-7xl tracking-widest text-neutral-900">

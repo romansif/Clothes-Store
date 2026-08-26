@@ -72,7 +72,7 @@ import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
 import profile from '@/assets/icons/nav/profile.png';
 import go_to_shop from '@/assets/icons/arrows/right-long-arrow.png';
 import Notification from "@/shared/ui/Notification.vue";
-import Loading from "@/shared/ui/Loading.vue";
+import Loading from "@/widgets/Loading.vue";
 
 const router = useRouter();
 

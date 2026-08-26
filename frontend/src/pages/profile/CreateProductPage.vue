@@ -210,7 +210,7 @@ import { productForms } from "@/features/use-product/model/product.forms.ts";
 import { productsFormErrors } from "@/features/use-product/lib/product.error.ts";
 
 import BaseInput from "@/shared/ui/BaseInput.vue";
-import Loading from "@/shared/ui/Loading.vue";
+import Loading from "@/widgets/Loading.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import Notification from "@/shared/ui/Notification.vue";
 

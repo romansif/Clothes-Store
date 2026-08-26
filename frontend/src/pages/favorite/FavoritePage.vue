@@ -73,7 +73,7 @@ import BaseButton from "@/shared/ui/BaseButton.vue";
 import favorite_cart from '@/assets/icons/products/favorute_empty.svg';
 import FavoriteList from "@/entities/favorite/ui/FavoriteList.vue";
 import Notification from "@/shared/ui/Notification.vue";
-import Loading from "@/shared/ui/Loading.vue";
+import Loading from "@/widgets/Loading.vue";
 
 const route = useRoute();
 

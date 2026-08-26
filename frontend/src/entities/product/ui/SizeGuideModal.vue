@@ -1,7 +1,7 @@
 <template>
 <div class="font-raleway fixed inset-0 z-50
      bg-[rgba(0,0,0,0.5)] flex items-center justify-center">
-  <div class="flex flex-col gap-2 bg-white w-175 h-142.5 rounded-xl p-5">
+  <div class="flex flex-col gap-2 bg-white rounded-xl p-5 w-175">
     <div class="flex items-center">
       <h1 class="text-2xl font-medium">Size Guide</h1>
       <img @click="toggleSizeGuide" :src="close" alt="" class="w-6.5 ml-auto cursor-pointer">
@@ -23,11 +23,19 @@
       </div>
       <table class="w-full border-collapse items-center">
         <thead>
-        <tr class="border-b border-neutral-400">
+        <tr v-if="product.category !== 'Shoes'" class="border-b border-neutral-400">
           <th class="px-4 py-4 text-left uppercase tracking-wider">
             Size
           </th>
-          <th v-for="size in sizes" :key="size.name" class="px-4 py-4 text-center uppercase tracking-wider">
+          <th v-for="size in sizes" :key="size.name" class="px-4 py-4 text-center uppercase tracking-wider font-dm-sans">
+            {{ size.name }}
+          </th>
+        </tr>
+        <tr v-else class="border-b border-neutral-400">
+          <th class="px-4 py-4 text-left uppercase tracking-wider">
+            Size
+          </th>
+          <th v-for="size in sizesShoes" :key="size.name" class="px-4 py-4 text-center uppercase tracking-wider font-dm-sans">
             {{ size.name }}
           </th>
         </tr>
@@ -53,10 +61,9 @@
 </template>
 
 <script setup lang="ts">
-
-const { sizes, unit } = productStore();
+const { product, sizes, sizesShoes, unit } = productStore();
 const { toggleSizeGuide } = useProductsModals();
-const { formatterSizeGuide } = productsCover() ;
+const { formatterSizeGuide } = productsCover();
 
 import { productStore } from "@/entities/product/model/product.store.ts";
 import { productsCover } from "@/features/use-product/model/product-cover.ts";

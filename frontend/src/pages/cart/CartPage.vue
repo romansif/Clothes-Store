@@ -98,7 +98,7 @@ import empty_cart from '@/assets/icons/products/empty-cart.svg';
 import check_square from "@/assets/icons/squares/check-square.png";
 import DeleteModal from "@/shared/ui/DeleteModal.vue";
 import Notification from "@/shared/ui/Notification.vue";
-import Loading from "@/shared/ui/Loading.vue";
+import Loading from "@/widgets/Loading.vue";
 
 const route = useRoute();
 

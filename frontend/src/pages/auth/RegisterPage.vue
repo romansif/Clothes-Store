@@ -49,7 +49,7 @@ import { authStore } from "@/entities/auth/model/auth.store.ts";
 
 import BuyerRegisterForm from "@/entities/auth/ui/BuyerRegisterForm.vue";
 import SellerRegisterForm from "@/entities/auth/ui/SellerRegisterForm.vue";
-import Loading from "@/shared/ui/Loading.vue";
+import Loading from "@/widgets/Loading.vue";
 import Notification from "@/shared/ui/Notification.vue";
 import maki_arrow from "@/assets/icons/arrows/right-short-arrow.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";

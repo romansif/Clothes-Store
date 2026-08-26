@@ -36,7 +36,7 @@ import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
 import icon_products from "@/assets/icons/products/icon-products.svg";
 import DeleteModal from "@/shared/ui/DeleteModal.vue";
 import MyProductsList from "@/entities/product/ui/MyProductsList.vue";
-import Loading from "@/shared/ui/Loading.vue";
+import Loading from "@/widgets/Loading.vue";
 </script>
 
 <style scoped>
