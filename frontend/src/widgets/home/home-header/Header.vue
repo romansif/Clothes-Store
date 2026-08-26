@@ -1,39 +1,8 @@
 <template>
-  <header class="font-raleway w-full mt-14">
-    <div class="xl:flex lg:flex h-95">
-      <div class="flex flex-col gap-2">
-        <div class="font-extrabold flex flex-col text-5xl">
-          <span>SEASONAL</span>
-          <span>COLLECTION</span>
-        </div>
-        <div class="flex flex-col text-lg text-[#A3A3A3]">
-          <span>Summer</span>
-          <span class="font-dm-sans">2026</span>
-        </div>
-        <div class="xl:hidden lg:block mt-5">
-          <HeaderList />
-        </div>
-        <div class="relative transtion duration-400 hover:scale-108 mt-5 xl:mt-auto ">
-          <router-link :to="{name: 'shop/seasonal-collections'}">
-              <span class="bg-black font-semibold text-white xl:w-66.25 px-40 py-3 text-start
-                  xl:pl-4 pl-3 cursor-pointer">Go To Shop</span>
-            <img :src=arrow alt="" class="absolute h-13 left-50 xl:left-50 top-1/2 -translate-y-1/2">
-          </router-link>
-        </div>
-      </div>
+  <header class="font-montserrat w-full mt-10">
+    <div class="xl:flex lg:flex">
       <div class="xl:flex xl:ml-auto lg:hidden hidden">
-        <ul class="xl:flex xl:gap-10 xl:ml-auto">
-          <li class="shrink-0 lg:w-95 md:w-70 w-50">
-            <router-link :to="{name: 'product/info'}">
-              <img :src=photo_1 alt="" class=" w-full h-50 lg:h-95 md:h-70">
-            </router-link>
-          </li>
-          <li class="shrink-0 lg:w-95 md:w-70 w-50">
-            <router-link :to="{name: 'product/info'}">
-              <img :src=photo_2 alt="" class="w-full h-50 lg:h-95 md:h-70">
-            </router-link>
-          </li>
-        </ul>
+        <SlideBar />
       </div>
     </div>
   </header>
@@ -45,10 +14,7 @@ const { getAllProducts } = productApi();
 import { onMounted } from "vue";
 import { productApi } from "@/features/use-product/api/product.api.ts";
 
-import arrow from "@/assets/icons/arrows/right-shop.svg";
-import photo_1 from "@/assets/photos/pants.png";
-import photo_2 from "@/assets/photos/shirt.png";
-import HeaderList from "@/widgets/home/home-header/HeaderList.vue";
+import SlideBar from "@/widgets/home/home-header/SlideBar.vue";
 
 onMounted(async () => {
   await getAllProducts();

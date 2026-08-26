@@ -58,3 +58,13 @@ export interface SizeGuide {
     name: string,
     values: string[],
 }
+
+export interface Slides {
+    id: number,
+    title: string,
+    title1: string,
+    text: string,
+    routeText: string,
+    routeName: string,
+    url: string,
+}

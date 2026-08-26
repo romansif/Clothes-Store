@@ -29,10 +29,10 @@
     <div class="flex flex-col mt-25">
       <div class="flex justify-center">
         <div class="flex flex-col items-center">
-          <h1 class="font-normal text-5xl w-75 text-center md:w-full">
+          <h1 class="text-5xl w-75 text-center md:w-full">
             Our Approach to fashion design
           </h1>
-          <i class="font-light text-[#A3A3A3] text-center w-75 mt-13 md:w-135">
+          <i class="font-extralight text-[#A3A3A3] text-center w-75 mt-13 md:w-135">
             At elegant vogue , we blend creativity with craftsmanship to create
             fashion that transcends trends and stands the test of time each design
             is meticulously crafted, ensuring the highest quality exquisite finish
@@ -41,13 +41,13 @@
       </div>
       <div class="flex justify-center mt-20 lg:mt-20 lg:flex">
         <ul class="flex flex-col lg:flex lg:flex-row gap-10 xl:gap-20 overflow-x-auto whitespace-nowrap no-scrollbar">
-          <li class="flex flex-col shrink-0 lg:w-75 md:w-75 w-50">
+          <li class="flex flex-col shrink-0 lg:w-75 md:w-75 w-50 transition duration-500 hover:scale-108">
             <img :src="photo_1" alt="">
           </li>
-          <li class="flex flex-col shrink-0 lg:w-75 md:w-75 w-50 mt-0 lg:mt-20">
+          <li class="flex flex-col shrink-0 lg:w-75 md:w-75 w-50 mt-0 lg:mt-20 transition duration-500 hover:scale-108">
             <img :src="photo_2" alt="">
           </li>
-          <li class="flex flex-col shrink-0 lg:w-75 md:w-75 w-50">
+          <li class="flex flex-col shrink-0 lg:w-75 md:w-75 w-50 transition duration-500 hover:scale-108">
             <img :src="photo_3" alt="">
           </li>
         </ul>

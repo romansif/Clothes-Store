@@ -8,6 +8,8 @@ const { getFilteredProducts, getWeekProducts, getYearProducts, getNewCollections
 export const filterProduct = () => {
     const selectedGender = ref<string>('ALL');
 
+    const activeSlide = ref<number>(0);
+
     const collections = ref<Record<string, boolean>>({
         Raw: false,
         Mono: false,
@@ -126,6 +128,7 @@ export const filterProduct = () => {
 
     return {
         selectedGender,
+        activeSlide,
 
         toggleFilter,
         selectGender,

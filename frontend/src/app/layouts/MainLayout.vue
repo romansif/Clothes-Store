@@ -6,10 +6,10 @@
 const { loading } = useBaseModals();
 const { componentError } = errorHandler();
 const { getCartProducts } = cartApi();
-const { getAllProducts, getFilteredProducts, getNewCollections, getWeekProducts, getYearProducts, getProduct } = productApi();
 const { getFavoriteProducts } = favoritesApi();
 const { product, activeProductImg } = productStore();
 const { productInfoPreview } = productsCover();
+const { getAllProducts, getFilteredProducts, getNewCollections, getWeekProducts, getYearProducts, getProduct } = productApi();
 
 import { onErrorCaptured, onMounted } from "vue";
 import { cartApi } from "@/features/use-cart/api/cart.api.ts";

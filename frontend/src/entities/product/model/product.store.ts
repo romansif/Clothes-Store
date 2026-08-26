@@ -7,7 +7,7 @@ import type {
     Material,
     Category,
     SizeGuide,
-    SizesShoes
+    SizesShoes, Slides
 } from "@/entities/product/model/product.types.ts";
 
 import xs from '@/assets/icons/size/xs.svg';
@@ -16,6 +16,9 @@ import m from '@/assets/icons/size/m.svg';
 import l from '@/assets/icons/size/l.svg';
 import xl from '@/assets/icons/size/xl.svg';
 import xxl from '@/assets/icons/size/xxl.svg';
+import autumn from '@/assets/photos/slides/autumn.png';
+import classic from '@/assets/photos/slides/classic.png';
+import past from '@/assets/photos/slides/past.png';
 
 const collections: Collection[] = [
     {collection: 'Essence'},
@@ -77,7 +80,7 @@ const sizesShoes: SizesShoes[] = [
     {name: '44'},
     {name: '45'},
     {name: '46'},
-]
+];
 
 const outerwearSizeGuide: SizeGuide[] = [
     {name: 'Heigh', values: ['163', '168', '173', '178', '183', '188']},
@@ -91,11 +94,44 @@ const underWearSizeGuide: SizeGuide[] = [
     {name: 'Waist', values: ['66', '70', '76', '81', '87', '94']},
     {name: 'Hips', values: ['90', '94', '99', '105', '111', '119']},
     {name: 'Waist', values: ['77', '80', '82', '84', '86', '88']},
-]
+];
 
 const shoesSizeGuide: SizeGuide[] = [
     {name: 'Length', values: ['25', '25.7', '26.3', '27', '27.7', '28.3', '29', '29.7']}
-]
+];
+
+const slides: Slides[] = [
+    {
+        id: 1,
+        title: 'AUTUMN',
+        title1: 'COLLECTIONS',
+        text:`The new season has arrived. 
+        Timeless pieces designed for colder days.`,
+        routeText: 'Discover autumn collection',
+        routeName: 'shop/seasonal-collections',
+        url: autumn
+    },
+    {
+        id: 2,
+        title: 'CLASSIC',
+        title1: 'COLLECTIONS',
+        text:`Timeless pieces from our previous collections.
+        Minimalist designs that never go out of style.`,
+        routeText: 'Explore classics',
+        routeName: 'shop/new-collections',
+        url: classic
+    },
+    {
+        id: 3,
+        title: 'PAST',
+        title1: 'REGULAR',
+        text:`Explore selected pieces from our previous collections.
+        Some pieces may not return.`,
+        routeText: 'Shop past collections',
+        routeName: 'shop',
+        url: past
+    },
+];
 
 const outerWear = [
     'Shirts',
@@ -153,6 +189,7 @@ export const productStore = () => {
         materials,
         genders,
         sizes,
+        slides,
         sizesShoes,
 
         outerwearSizeGuide,
