@@ -104,17 +104,17 @@ const slides: Slides[] = [
     {
         id: 1,
         title: 'AUTUMN',
-        title1: 'COLLECTIONS',
+        title1: 'SELECTION',
         text:`The new season has arrived. 
         Timeless pieces designed for colder days.`,
-        routeText: 'Discover autumn collection',
+        routeText: 'Discover autumn selection',
         routeName: 'shop/seasonal-collections',
         url: autumn
     },
     {
         id: 2,
         title: 'CLASSIC',
-        title1: 'COLLECTIONS',
+        title1: 'SERIES',
         text:`Timeless pieces from our previous collections.
         Minimalist designs that never go out of style.`,
         routeText: 'Explore classics',
@@ -124,10 +124,10 @@ const slides: Slides[] = [
     {
         id: 3,
         title: 'PAST',
-        title1: 'REGULAR',
+        title1: 'HERITAGE',
         text:`Explore selected pieces from our previous collections.
         Some pieces may not return.`,
-        routeText: 'Shop past collections',
+        routeText: 'Shop past heritage',
         routeName: 'shop',
         url: past
     },

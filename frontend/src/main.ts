@@ -25,7 +25,7 @@ import '@fontsource/dm-sans/900.css';
 import '@/app/styles/main.css';
 import '@/app/styles/transition.list.css';
 import '@/app/styles/transition.modal.css';
-import '@/app/styles/transition.slides.css';
+import '@/app/styles/transition.slide.css';
 import '@/app/styles/transition.sidebar.css';
 import '@/app/styles/transition.view-list.css'
 

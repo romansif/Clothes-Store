@@ -41,13 +41,13 @@
       </div>
       <div class="flex justify-center mt-20 lg:mt-20 lg:flex">
         <ul class="flex flex-col lg:flex lg:flex-row gap-10 xl:gap-20 overflow-x-auto whitespace-nowrap no-scrollbar">
-          <li class="flex flex-col shrink-0 lg:w-75 md:w-75 w-50 transition duration-500 hover:scale-108">
+          <li class="flex flex-col shrink-0 lg:w-75 md:w-75 w-50">
             <img :src="photo_1" alt="">
           </li>
-          <li class="flex flex-col shrink-0 lg:w-75 md:w-75 w-50 mt-0 lg:mt-20 transition duration-500 hover:scale-108">
+          <li class="flex flex-col shrink-0 lg:w-75 md:w-75 w-50 mt-0 lg:mt-20">
             <img :src="photo_2" alt="">
           </li>
-          <li class="flex flex-col shrink-0 lg:w-75 md:w-75 w-50 transition duration-500 hover:scale-108">
+          <li class="flex flex-col shrink-0 lg:w-75 md:w-75 w-50">
             <img :src="photo_3" alt="">
           </li>
         </ul>
