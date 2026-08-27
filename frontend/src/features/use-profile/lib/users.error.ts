@@ -5,8 +5,6 @@ const updateUserFormErrors = ref<UserFormErrors>({
     nameError: false,
     surNameError: false,
     phoneError: false,
-    companyNameError: false,
-    publicPhoneError: false,
     emailError: false,
     oldPasswordError: false,
     newPasswordError: false,

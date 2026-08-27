@@ -3,9 +3,7 @@ export interface User {
     role: string,
     name: string,
     surName: string,
-    companyName: string,
-    privatePhone: string,
-    publicPhone: string,
+    phone: string,
     email: string,
     password: string,
     avatarUrl: string,
@@ -19,6 +17,4 @@ export interface UserDataUpdate {
     surName?: string;
     phone?: string;
     email?: string;
-    publicPhone?: string;
-    companyName?: string;
 }

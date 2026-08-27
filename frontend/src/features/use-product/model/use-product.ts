@@ -6,7 +6,6 @@ import { productForms } from "@/features/use-product/model/product.forms.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
 import type {ColorItem, Product, SizeGuide, Sizes} from "@/entities/product/model/product.types.ts";
 
-
 const { cart } = cartStore();
 const { orders, items } = orderStore();
 const { moreCreateItem } = productForms();
@@ -243,7 +242,7 @@ export const productsCover = () => {
             return unit.value === 'IN' ? convertSizeToInches(underWearSizeGuide) : underWearSizeGuide;
         }
         return unit.value === 'IN' ? convertSizeToInches(shoesSizeGuide) : shoesSizeGuide;
-    })
+    });
 
     return {
         productPreview,
@@ -267,6 +266,6 @@ export const productsCover = () => {
         isOutOfStack,
         quantityInfo,
 
-        formatterSizeGuide
+        formatterSizeGuide,
     }
 }

@@ -13,17 +13,9 @@ export const validation = {
             .notEmpty()
             .withMessage('SurName required to registration.'),
 
-        body('privatePhone')
+        body('phone')
             .if(body('role').equals('Buyer'))
             .notEmpty().withMessage('Private phone required to registration.'),
-
-        body('companyName')
-            .if(body('role').equals('Seller'))
-            .notEmpty().withMessage('Company name required to registration by seller.'),
-
-        body('publicPhone')
-            .if(body('role').equals('Seller'))
-            .notEmpty().withMessage('A company phone number required to registration by seller.'),
 
         body('email')
             .isEmail().withMessage('Invalid email format entered.')
@@ -115,8 +107,24 @@ export const validation = {
 
     createProductValidation: [
         body('collection')
-            .trim()
-            .notEmpty().withMessage('Collection required to create product.'),
+            .notEmpty().withMessage('Collection required to create product.')
+            .isObject().withMessage('Collection must be an object.'),
+
+        body('collection.name')
+            .isString()
+            .notEmpty()
+            .trim(),
+
+        body('collection.season')
+            .isString()
+            .notEmpty()
+            .trim(),
+
+        body('collection.condition')
+            .isString()
+            .notEmpty()
+            .trim(),
+
         body('title')
             .trim()
             .notEmpty().withMessage('Title or name required to create product.'),
@@ -138,7 +146,7 @@ export const validation = {
             .notEmpty().withMessage('Description required to create product.'),
 
         body('colors')
-            .isArray()
+            .isArray({ min: 1 })
             .withMessage('The color of the pillar should be substantial.'),
 
         body('colors.*.hex')
@@ -152,7 +160,6 @@ export const validation = {
             .withMessage('ColorName is required.'),
 
         body('sizes')
-            .trim()
             .notEmpty().withMessage('Size required to create product.'),
 
         body('gender')

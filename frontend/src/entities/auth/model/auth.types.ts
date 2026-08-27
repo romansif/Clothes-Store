@@ -4,7 +4,7 @@ export interface AuthPassword {
 
 export interface SignSection {
     signIn: boolean,
-    signUp: boolean,
 }
 
+export type Role = 'Buyer' | 'Seller';
 

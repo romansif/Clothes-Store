@@ -1,6 +1,6 @@
 <template>
   <div class="bg-white h-screen">
-    <div class='fixed font-raleway inset-0 flex items-center justify-center'>
+    <main class='fixed font-raleway inset-0 flex items-center justify-center'>
       <div class="w-87.5 sm:w-150 rounded-lg px-8 py-8">
         <div class="flex items-center justify-center">
           <div class="w-58.75 sm:w-75">
@@ -16,17 +16,17 @@
           <span>WELCOME TO</span>
           <span class="text-[#A3A3A3]">THE NOIR</span>
         </div>
-        <BuyerRegisterForm v-if="!showSignSection.signUp" />
-        <SellerRegisterForm v-if="showSignSection.signUp" />
+        <RegisterForm />
         <div class="flex flex-col gap-3">
           <div class="relative duration-400 hover:scale-105 cursor-pointer">
-            <BaseButton @click="signUp('Buyer')" name="SIGN UP BY BUYER" variant="register" />
+            <BaseButton @click="signUp(currentRole)" variant="register"
+                        :name="isRole ? 'SIGN UP BY SELLER' : 'SIGN UP BY BUYER'" />
             <img :src=maki_arrow alt="" class="absolute w-6.25 top-9.5 left-58 sm:left-121">
           </div>
-          <BaseButton @click="toggleSignUp" name="Sign up as a seller" variant="changeRegister" />
+          <BaseButton @click="toggleSignUp" :name="isRole ? 'Sign up as a buyer' : 'Sign up as a seller'" variant="changeRegister" />
         </div>
       </div>
-    </div>
+    </main>
     <Loading v-if="loading"/>
     <Transition name="notify">
       <Notification v-if="notify"/>
@@ -36,8 +36,8 @@
 
 <script setup lang="ts">
 const { signUp } = authApi();
+const { currentRole, isRole } = authStore();
 const { toggleSignUp } = useAuth();
-const { showSignSection } = authStore();
 const { loading, notify } = useBaseModals();
 const { clearRegisterForm } = clearAuthForms();
 
@@ -47,8 +47,7 @@ import { useAuth } from "@/features/use-auth/model/use-auth.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { authStore } from "@/entities/auth/model/auth.store.ts";
 
-import BuyerRegisterForm from "@/entities/auth/ui/BuyerRegisterForm.vue";
-import SellerRegisterForm from "@/entities/auth/ui/SellerRegisterForm.vue";
+import RegisterForm from "@/entities/auth/ui/RegisterForm.vue";
 import Loading from "@/widgets/Loading.vue";
 import Notification from "@/shared/ui/Notification.vue";
 import maki_arrow from "@/assets/icons/arrows/right-short-arrow.svg";

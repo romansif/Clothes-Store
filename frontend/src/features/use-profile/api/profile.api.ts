@@ -11,15 +11,10 @@ const { user, userData } = userStore();
 const { getUser } = useGetUsers();
 const { openNotify } = useBaseModals();
 const { updateUserForm } = userForms();
+const { updateNameErrors, updateSurNameErrors, updateEmailErrors, updatePhoneErrors, updatePasswordErrors } = useFormsErrors();
 const {
-    updateNameErrors, updateSurNameErrors, updateEmailErrors, updatePhoneErrors,
-    updatePublicPhoneErrors, updateCompanyNameErrors, updatePasswordErrors
-} = useFormsErrors();
-const {
-    clearUpdateUserFormPublicPhone,
-    clearUpdateUserFormPhone, clearUpdateUserFormEmail,
-    clearUpdateUserFormName, clearUpdateUserFormSurName,
-    clearUpdateUserFormPassword, clearUpdateUserFormCompanyName,
+    clearUpdateUserFormPhone, clearUpdateUserFormEmail, clearUpdateUserFormName,
+    clearUpdateUserFormSurName, clearUpdateUserFormPassword
 } = clearUsersForms();
 
 export const profileApi = () => {
@@ -85,28 +80,6 @@ export const profileApi = () => {
         }
     };
 
-    const updateCompanyName = async () => {
-        try{
-            await baseUpdateAccount({companyName: updateUserForm.value.companyName}, 'companyName',
-                'You have successfully changed your company name.')
-            clearUpdateUserFormCompanyName();
-        }catch(err){
-            updateCompanyNameErrors(err);
-            console.error(`Failed to the change company name:`, err);
-        }
-    };
-
-    const updatePublicPhoneAccount = async () => {
-        try{
-            await baseUpdateAccount({publicPhone: updateUserForm.value.publicPhone}, 'publicPhone',
-                'You have successfully changed your public phone number.')
-            clearUpdateUserFormPublicPhone();
-        }catch(err){
-            updatePublicPhoneErrors(err);
-            console.error(`Failed to the change phone company:`, err);
-        }
-    };
-
     const updateEmailAccount = async () => {
         try{
             await baseUpdateAccount({email: updateUserForm.value.email}, 'email',
@@ -140,8 +113,6 @@ export const profileApi = () => {
         updateAvatarAccount,
         updateNameAccount,
         updateSurNameAccount,
-        updateCompanyName,
-        updatePublicPhoneAccount,
         updatePhoneAccount,
         updateEmailAccount,
         updatePasswordAccount,

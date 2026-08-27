@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { type AuthPassword, type SignSection } from "@/entities/auth/model/auth.types.ts";
+import {type AuthPassword, type Role, type SignSection} from "@/entities/auth/model/auth.types.ts";
 
 const showPassword = ref<AuthPassword>({
     password: false,
@@ -7,12 +7,16 @@ const showPassword = ref<AuthPassword>({
 
 const showSignSection = ref<SignSection>({
     signIn: false,
-    signUp: false
 });
+
+const isRole = ref<boolean>(false);
+const currentRole = ref<Role>('Buyer');
 
 export const authStore = () => {
     return {
         showPassword,
-        showSignSection
+        showSignSection,
+        currentRole,
+        isRole
     }
 }

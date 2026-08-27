@@ -1,19 +1,11 @@
-export interface BuyerRegisterForm {
+export interface RegisterForm {
     name: string,
     surName: string,
-    privatePhone: string,
+    phone: string,
     email: string,
     password: string
 }
 
-export interface SellerRegisterForm {
-    name: string,
-    surName: string,
-    companyName: string,
-    publicPhone: string,
-    email: string,
-    password: string
-}
 
 export interface LoginForm {
     email: string,
@@ -26,9 +18,7 @@ export interface LoginForm {
 export interface RegisterFormMessage {
     nameMessage: string,
     surNameMessage: string,
-    privatePhoneMessage: string,
-    companyNameMessage: string,
-    publicPhoneMessage: string,
+    phoneMessage: string,
     emailMessage: string,
     passwordMessage: string,
 }
@@ -44,9 +34,7 @@ export interface LoginFormMessage {
 export interface RegisterFormErrors {
     nameError: boolean,
     surNameError: boolean,
-    privatePhoneError: boolean,
-    companyNameError: boolean,
-    publicPhoneError: boolean,
+    phoneError: boolean,
     emailError: boolean,
     passwordError: boolean
 }

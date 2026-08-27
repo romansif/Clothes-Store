@@ -3,9 +3,9 @@ import { authStore } from "@/entities/auth/model/auth.store.ts";
 import { clearAuthForms } from "@/features/use-auth/lib/clear.auth.ts";
 import { authForms } from "@/features/use-auth/model/auth.forms.ts";
 
-const { showPassword, showSignSection } = authStore();
-const { CODE_LENGTH, codeDigits, inputRefs, timeLeft, timerInterval } = authForms();
+const { showPassword, showSignSection, currentRole, isRole } = authStore();
 const { clearRegisterForm, clearLoginForm } = clearAuthForms();
+const { CODE_LENGTH, codeDigits, inputRefs, timeLeft, timerInterval } = authForms();
 
 export const useAuth = () => {
     const togglePassword = () => {
@@ -19,7 +19,8 @@ export const useAuth = () => {
     };
 
     const toggleSignUp = () => {
-        showSignSection.value.signUp = !showSignSection.value.signUp;
+        currentRole.value = currentRole.value ===  'Buyer' ? 'Seller' : 'Buyer';
+        isRole.value = !isRole.value
 
         clearRegisterForm();
     };

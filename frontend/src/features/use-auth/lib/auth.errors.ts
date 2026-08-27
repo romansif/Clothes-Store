@@ -4,9 +4,7 @@ import { type RegisterFormErrors, type LoginFormErrors} from "@/entities/auth/mo
 const registerFormErrors = ref<RegisterFormErrors>({
     nameError: false,
     surNameError: false,
-    privatePhoneError: false,
-    companyNameError: false,
-    publicPhoneError: false,
+    phoneError: false,
     emailError: false,
     passwordError: false
 })

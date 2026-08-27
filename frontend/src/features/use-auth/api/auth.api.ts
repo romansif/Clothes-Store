@@ -11,29 +11,26 @@ const { loading, openNotify } = useBaseModals();
 const { registerErrors, loginErrors } = useFormsErrors();
 const { clearRegisterForm, clearRegisterFormMessages,
     clearLoginForm, clearLoginFormMessages } = clearAuthForms();
-const { registerBuyerForm, registerSellerForm, loginForm } = authForms();
+const { registerForm, loginForm } = authForms();
 
 export const authApi = () => {
     const signUp = async (role: string) => {
         loading.value = true;
 
+        console.log(role)
+
         clearRegisterFormMessages();
         try{
             const date = new Date();
 
-            const form = (role === 'Buyer' ? registerBuyerForm.value : registerSellerForm.value)
-
             const requestBody = {
                 role,
-                name: form.name,
-                surName: form.surName,
-                email: form.email,
-                password: form.password,
+                name: registerForm.value.name,
+                surName: registerForm.value.surName,
+                phone: registerForm.value.phone,
+                email: registerForm.value.email,
+                password: registerForm.value.password,
                 created_at: date,
-                ...(role === 'Buyer'
-                    ? { privatePhone: registerBuyerForm.value.privatePhone }
-                    : { companyName: registerSellerForm.value.companyName, publicPhone: registerSellerForm.value.publicPhone }
-                )
             };
 
             const authData = await handler('/auth/signUp', {
@@ -58,7 +55,7 @@ export const authApi = () => {
                 'You will now be taken to your profile page.', 'profile');
         }catch(err){
             loading.value = false;
-            registerErrors(err, role)
+            registerErrors(err)
             console.log(`Failed to register new user:`, err);
         }
     };
@@ -147,9 +144,7 @@ export const authApi = () => {
 
     const deleteAccount = async () => {
         try{
-            const userId = localStorage.getItem("userId");
-
-            await handler(`/users/${userId}`, {
+            await handler(`/users/${user.value.id}`, {
                 method: "DELETE",
             });
             localStorage.clear()

@@ -22,7 +22,7 @@ const generateRefreshToken = (user: Pick<User, any>) => {
 const authController = {
     async register (req: Request, res: Response) {
         try {
-            const { role, name, surName, companyName, publicPhone, privatePhone, email, password, created_at } = req.body;
+            const { role, name, surName, phone, email, password, created_at } = req.body;
 
             const db = dbService.readDB();
             const users: any[] = db.users || [];
@@ -52,9 +52,7 @@ const authController = {
                 role,
                 name,
                 surName,
-                privatePhone,
-                companyName,
-                publicPhone,
+                phone,
                 email,
                 password: hashedPassword,
                 avatarUrl: 'uploads/avatars/default-avatar.png',

@@ -12,7 +12,7 @@ export const authClasses = () => {
 
     const selectPhoneCodeClass = () => [
         `text-xs outline-none bg-[#D9D9D9]/40 transition duration-400 border border-gray-300
-        font-dm-sans hover:bg-gray-50 rounded-md py-5 px-3 font-dm-sans`
+        font-dm-sans hover:bg-gray-50 rounded-md py-5 px-3`
     ];
 
     const signInRoleClass = computed(() => [
@@ -28,9 +28,7 @@ export const authClasses = () => {
     ]);
 
     const signInPhoneClass = computed(() => getPhoneClass(loginFormErrors.value.phoneError))
-
-    const signUpBuyerPhoneClass = computed(() => getPhoneClass(registerFormErrors.value.privatePhoneError))
-    const signUpSellerPhoneClass = computed(() => getPhoneClass(registerFormErrors.value.publicPhoneError))
+    const signUpPhoneClass = computed(() => getPhoneClass(registerFormErrors.value.phoneError))
 
     const signUpPasswordClass = computed(() => getSignUpPasswordClass(registerFormErrors.value.passwordError))
 
@@ -39,9 +37,7 @@ export const authClasses = () => {
         signInPhoneClass,
         signInCodeClass,
 
-        signUpBuyerPhoneClass,
-        signUpSellerPhoneClass,
-
+        signUpPhoneClass,
         signUpPasswordClass,
 
         selectPhoneCodeClass

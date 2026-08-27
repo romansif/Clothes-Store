@@ -1,20 +1,11 @@
 import { ref } from 'vue'
-import { type BuyerRegisterForm, type SellerRegisterForm,
+import { type RegisterForm,
     type LoginForm, type RegisterFormMessage, type LoginFormMessage} from "@/entities/auth/model/auth.types.form.ts";
 
-const registerBuyerForm = ref<BuyerRegisterForm>({
+const registerForm = ref<RegisterForm>({
     name: '',
     surName: '',
-    privatePhone: '',
-    email: '',
-    password: ''
-});
-
-const registerSellerForm = ref<SellerRegisterForm>({
-    name: '',
-    surName: '',
-    companyName: '',
-    publicPhone: '',
+    phone: '',
     email: '',
     password: ''
 });
@@ -30,9 +21,7 @@ const loginForm = ref<LoginForm>({
 const registerFormMessages = ref<RegisterFormMessage>({
     nameMessage: '',
     surNameMessage: '',
-    privatePhoneMessage: '',
-    companyNameMessage: '',
-    publicPhoneMessage: '',
+    phoneMessage: '',
     emailMessage: '',
     passwordMessage: '',
 });
@@ -57,8 +46,7 @@ const timerInterval = ref<number>(0);
 
 export const authForms = () => {
     return{
-        registerBuyerForm,
-        registerSellerForm,
+        registerForm,
         registerFormMessages,
         loginForm,
         loginFormMessages,
