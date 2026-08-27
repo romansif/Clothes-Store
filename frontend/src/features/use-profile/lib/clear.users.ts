@@ -23,17 +23,6 @@ export const clearUsersForms = () => {
         updateUserFormErrors.value.phoneError = false;
     }
 
-    const clearUpdateUserFormCompanyName = () => {
-        updateUserForm.value.companyName = '';
-        updateUserFormMessage.value.companyNameMessage = '';
-        updateUserFormErrors.value.companyNameError = false;
-    }
-
-    const clearUpdateUserFormPublicPhone = () => {
-        updateUserForm.value.publicPhone = '';
-        updateUserFormMessage.value.publicPhoneMessage = '';
-        updateUserFormErrors.value.publicPhoneError = false;
-    }
 
     const clearUpdateUserFormEmail = () => {
         updateUserForm.value.email = '';
@@ -58,8 +47,6 @@ export const clearUsersForms = () => {
         updateUserForm.value.surName = '';
         updateUserForm.value.newPassword = '';
         updateUserForm.value.oldPassword = '';
-        updateUserForm.value.companyName = '';
-        updateUserForm.value.publicPhone = '';
 
         updateUserFormMessage.value.nameMessage = '';
         updateUserFormMessage.value.phoneMessage = '';
@@ -67,8 +54,6 @@ export const clearUsersForms = () => {
         updateUserFormMessage.value.surNameMessage = '';
         updateUserFormMessage.value.newPasswordMessage = '';
         updateUserFormMessage.value.oldPasswordMessage = '';
-        updateUserFormMessage.value.companyNameMessage = '';
-        updateUserFormMessage.value.publicPhoneMessage = '';
 
         updateUserFormErrors.value.nameError = false;
         updateUserFormErrors.value.phoneError = false;
@@ -76,16 +61,12 @@ export const clearUsersForms = () => {
         updateUserFormErrors.value.surNameError = false;
         updateUserFormErrors.value.oldPasswordError = false;
         updateUserFormErrors.value.newPasswordError = false;
-        updateUserFormErrors.value.companyNameError = false;
-        updateUserFormErrors.value.publicPhoneError = false;
     }
 
     return{
         clearUpdateUserFormName,
         clearUpdateUserFormSurName,
         clearUpdateUserFormPhone,
-        clearUpdateUserFormCompanyName,
-        clearUpdateUserFormPublicPhone,
         clearUpdateUserFormEmail,
         clearUpdateUserFormPassword,
         clearUpdateUserForm

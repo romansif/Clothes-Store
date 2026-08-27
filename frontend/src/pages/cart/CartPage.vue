@@ -10,8 +10,8 @@
     </div>
     <div v-else class="font-raleway xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
       <MainNavBar />
-      <div class="mt-10 xl:mt-30 xl:px-10">
-        <div class="flex flex-col">
+      <main class="mt-10 xl:mt-30 xl:px-10">
+        <header class="flex flex-col">
           <div class="flex gap-14 items-center font-semibold text-sm">
             <router-link :to="{name: 'cart'}">
             <span :class="isShoppingCart ? 'text-[#A3A3A3]' : ''">
@@ -27,10 +27,10 @@
               </router-link>
             </div>
           </div>
-        </div>
+        </header>
         <Transition name="view">
           <div class="flex flex-col xl:flex-row xl:justify-between">
-            <div v-if="cart.length === 0" class="flex flex-col gap-5 items-center pl-[413.5px] pt-55">
+            <div v-if="cart.length === 0" class="flex flex-col gap-5 items-center pl-110 pt-55">
               <img :src="empty_cart" alt="">
               <div class="flex flex-col gap-2 items-center">
                 <span class="font-bold">Cart is empty</span>
@@ -45,7 +45,7 @@
             </div>
           </div>
         </Transition>
-      </div>
+      </main>
     </div>
     <div class="font-montserrat flex flex-col mt-3 xl:hidden">
       <div class="flex flex-col gap-4">

@@ -74,7 +74,7 @@ import check_square from '@/assets/icons/squares/check-square.png';
 
 import { userStore } from "@/entities/profile/model/user.store.ts";
 import { useFavorite } from "@/features/use-favorite/model/use-favorite.ts";
-import { productsCover } from "@/features/use-product/model/product-cover.ts";
+import { productsCover } from "@/features/use-product/model/use-product.ts";
 import { cartStore } from "@/entities/cart/model/cart.store.ts";
 import { productApi } from "@/features/use-product/api/product.api.ts";
 import { favoritesApi } from "@/features/use-favorite/api/favorites.api.ts";

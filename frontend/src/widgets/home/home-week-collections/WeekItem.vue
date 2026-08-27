@@ -35,7 +35,7 @@ const { productPreviewClass } = baseClasses();
 
 import { userStore } from "@/entities/profile/model/user.store.ts";
 import { baseClasses } from "@/shared/constants/base.classes.ts";
-import { productsCover } from "@/features/use-product/model/product-cover.ts";
+import { productsCover } from "@/features/use-product/model/use-product.ts";
 import { productApi } from "@/features/use-product/api/product.api.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
 import { favoritesApi } from "@/features/use-favorite/api/favorites.api.ts";

@@ -21,9 +21,36 @@
           </div>
         </form>
       </div>
-      <SellerForm v-if="user.role === 'Seller'" />
     </div>
-    <BuyerForm v-if="user.role === 'Buyer'" />
+    <div class="flex flex-col gap-10 sm:flex-row">
+      <form @keydown.enter.prevent="updateEmailAccount" class="flex flex-col gap-3 w-full">
+        <label>Email</label>
+        <BaseInput v-model="updateUserForm.email" type="text" inputmode="numeric" placeholder="example@mail.com"
+                   :error="updateUserFormErrors.emailError" variant="confidentialityData" reqiured
+                   :error-message="updateUserFormErrors.emailError ? updateUserFormMessage.emailMessage : ''"/>
+        <div class="flex">
+          <BaseButton @click.prevent="updateEmailAccount()" name="Save Email" variant="profileForm" />
+        </div>
+      </form>
+      <form @keydown.enter.prevent="updatePhoneAccount" class="flex flex-col gap-3 w-full">
+        <label>Private Phone</label>
+        <div class="flex gap-3">
+          <select name="" id="" v-model="selectedCountryCode" @change="changeCountry" :class="profileSelectPhoneCodeClass">
+            <option v-for="country in countries" :key="country.code" :value="country.code">
+              {{ country.name }}
+            </option>
+          </select>
+          <IMask v-model:value="updateUserForm.phone" type="text" inputmode="numeric" :placeholder="currentCountry?.placeholder"
+                 :class="profilePhoneClass(updateUserFormErrors.phoneError)" :key="selectedCountryCode" :mask="currentMask.mask"/>
+        </div>
+        <span v-if="updateUserFormErrors.phoneError" class="text-red-600 text-xs">
+        {{ updateUserFormMessage.phoneMessage }}
+      </span>
+        <div class="flex">
+          <BaseButton @click.prevent="updatePhoneAccount()" name="Save Phone" variant="profileForm" />
+        </div>
+      </form>
+    </div>
     <div class="flex flex-col">
       <form @keydown.enter.prevent="updatePasswordAccount" class="flex flex-col gap-10 sm:flex-row">
         <div class="flex flex-col gap-3 w-full">
@@ -51,37 +78,37 @@
         <BaseButton @click.prevent="updatePasswordAccount()" name="Save Password" variant="profileForm" />
       </div>
     </div>
-    <SellerEmailForm v-if="user.role === 'Seller'"/>
   </div>
 </template>
 
 <script setup lang="ts">
-const { user } = userStore();
 const { updateUserFormErrors } = userFormsErrors();
+const { countries, selectedCountryCode } = userStore();
 const { updateUserForm, updateUserFormMessage } = userForms();
+const { updatePhoneAccount, updateEmailAccount } = profileApi();
+const { changeCountry, currentCountry, currentMask } = usePhoneForm();
+const { profilePhoneClass, profileSelectPhoneCodeClass } = profileClasses();
 const { updatePasswordAccount, updateNameAccount, updateSurNameAccount } = profileApi();
 
 import { ref, watch } from 'vue'
-
+import { IMaskComponent as IMask } from "vue-imask";
+import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
 import { userForms } from "@/features/use-profile/model/user.form.ts";
 import { profileApi } from "@/features/use-profile/api/profile.api.ts";
 import { userFormsErrors } from "@/features/use-profile/lib/users.error.ts";
+import { profileClasses } from "@/shared/constants/user/profile.classes.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
 
 import BaseButton  from "@/shared/ui/BaseButton.vue";
-import BuyerForm from "./BuyerForm.vue";
-import SellerForm from "./SellerForm.vue";
 import opened from '@/assets/icons/auth/opened.png'
 import closed from '@/assets/icons/auth/closed.png'
-import SellerEmailForm from "./SellerEmailForm.vue";
 import BaseInput from "@/shared/ui/BaseInput.vue";
 
 watch(() => [
       updateUserForm.value.name, updateUserForm.value.surName,
-      updateUserForm.value.phone, updateUserForm.value.companyName,
-      updateUserForm.value.publicPhone, updateUserForm.value.email,
+      updateUserForm.value.phone, updateUserForm.value.email,
       updateUserForm.value.oldPassword, updateUserForm.value.newPassword],
-    ([name, surName, phone, companyName, publicPhone, email, oldPassword, newPassword]) => {
+    ([name, surName, phone, email, oldPassword, newPassword]) => {
       if(name){
         updateUserFormErrors.value.nameError = false;
       }
@@ -90,12 +117,6 @@ watch(() => [
       }
       if(phone){
         updateUserFormErrors.value.phoneError = false;
-      }
-      if(companyName){
-        updateUserFormErrors.value.companyNameError = false;
-      }
-      if(publicPhone){
-        updateUserFormErrors.value.publicPhoneError = false;
       }
       if(email){
         updateUserFormErrors.value.emailError = false;
