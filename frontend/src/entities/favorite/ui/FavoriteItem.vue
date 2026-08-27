@@ -44,7 +44,7 @@ const { isOutOfStack, productPreview } = productsCover();
 
 import { useFavorite } from "@/features/use-favorite/model/use-favorite.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
-import { productsCover } from "@/features/use-product/model/product-cover.ts";
+import { productsCover } from "@/features/use-product/model/use-product.ts";
 import { baseClasses } from "@/shared/constants/base.classes.ts";
 import { productApi } from "@/features/use-product/api/product.api.ts";
 import { favoriteStore } from "@/entities/favorite/model/favorite.store.ts";

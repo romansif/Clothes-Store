@@ -3,9 +3,9 @@
     <Loading v-if="loading" />
     <div v-else class="xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
       <MainNavBar />
-      <div v-if="myProducts.length > 0" class="flex mt-10">
+      <main v-if="myProducts.length > 0" class="flex mt-10">
         <MyProductsList />
-      </div>
+      </main>
       <div v-else class="flex justify-center pt-80">
         <div class="flex flex-col items-center gap-5">
           <img :src="icon_products" alt="">

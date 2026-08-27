@@ -2,7 +2,7 @@
   <header class="font-montserrat w-full mt-10">
     <div class="xl:flex lg:flex">
       <div class="xl:flex xl:ml-auto lg:hidden hidden">
-        <SlideBar />
+        <HomeSlider />
       </div>
     </div>
   </header>
@@ -14,7 +14,7 @@ const { getAllProducts } = productApi();
 import { onMounted } from "vue";
 import { productApi } from "@/features/use-product/api/product.api.ts";
 
-import SlideBar from "@/widgets/home/home-header/SlideBar.vue";
+import HomeSlider from "@/widgets/home/home-header/HomeSlider.vue";
 
 onMounted(async () => {
   await getAllProducts();

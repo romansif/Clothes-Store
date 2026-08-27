@@ -69,11 +69,11 @@ import { productApi } from "@/features/use-product/api/product.api.ts";
 
 import photo_1 from '@/assets/photos/8.png'
 import photo_2 from '@/assets/photos/9.png'
-import photo_3 from '@/assets/photos/10.png'
+import photo_3 from '@/assets/photos/pants.png'
 import Notification from "@/shared/ui/Notification.vue";
 import WeekList from "@/widgets/home/home-week-collections/WeekList.vue";
 import YearList from "@/widgets/home/home-year-collections/YearList.vue";
-import FilterGender from "@/widgets/home/home-filter/FilterGender.vue";
+import FilterGender from "@/widgets/home/FilterGender.vue";
 
 onMounted(async () => {
   await getWeekProducts('ALL', 'ALL');

@@ -19,7 +19,7 @@ import { favoritesApi } from "@/features/use-favorite/api/favorites.api.ts";
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
 import { productApi } from "@/features/use-product/api/product.api.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
-import { productsCover } from "@/features/use-product/model/product-cover.ts";
+import { productsCover } from "@/features/use-product/model/use-product.ts";
 
 const route = useRoute();
 
@@ -57,7 +57,9 @@ onMounted(async () => {
   await getNewCollections('ALL');
   await getCartProducts();
   await getFavoriteProducts();
-  await getProduct(product.value.id);
+  if(route.params.id){
+    await getProduct(route.params.id as string);
+  }
 
   loading.value = false;
 });

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="font-raleway fixed inset-0 z-50">
+    <div class="font-dm-sans fixed inset-0 z-50">
       <div class="py-2 px-4 bg-[#F0F0F0] shadow-md overflow-hidden h-full overflow-y-auto no-scrollbar">
         <div class="flex">
           <router-link :to="{ name: 'my/products' }" class="text-start ml-auto h-fit w-fit px-10 py-2 bg-red-600 text-white
@@ -38,9 +38,9 @@
                 </div>
                 <div class="flex flex-col gap-2 w-full">
                   <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
-                    COLLECTIONS:
+                    COLLECTION:
                     <span class="text-black">
-                      {{ product.collection }}
+                      {{ product.collection.name }}
                     </span>
                   </label>
                   <select v-model="createProductForm.collection" :class="[`w-full border border-gray-300 rounded-sm
@@ -50,7 +50,12 @@
                     <option disabled hidden value="">
                       Void
                     </option>
-                    <option v-for="collection in collections" class="text-black">{{ collection.collection }}</option>
+                    <option v-for="collection in collections" :key="collection.name" class="text-black"
+                            :value="{ season: collection.season, name: collection.name, condition: collection.condition}">
+                      Name: {{ collection.name }} ,
+                      Season: {{ collection.season }} ,
+                      Condition: {{ collection.condition }}
+                    </option>
                   </select>
                   <span v-if="createProductFormErrors.collectionsError" class="text-red-600 text-xs">
                     {{ createProductFormMessages.collectionsMessage }}
@@ -124,10 +129,7 @@
                 </div>
                 <div class="flex flex-col gap-2.5 w-full">
                   <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
-                    QUANTITY:
-                    <span class="text-black">
-                      {{ product.quantity }}
-                    </span>
+                    QUANTITY: <span class="text-black">{{ product.quantity }}</span>
                   </label>
                   <BaseInput v-model="createProductForm.quantity" type="number" placeholder="quantity of product"
                              :error="createProductFormErrors.quantityError" variant="createProduct" required
@@ -222,7 +224,7 @@ const { createProduct, updateProductImages, updateProductColors, updateProductDe
 const { productInfoPreview, pureCards, pureInfoColors, pureColorsName, pureSizesName, isAvailableSizes } = productsCover();
 
 import { onMounted, watch } from "vue";
-import { productsCover } from "@/features/use-product/model/product-cover.ts";
+import { productsCover } from "@/features/use-product/model/use-product.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
 import { productApi } from "@/features/use-product/api/product.api.ts";

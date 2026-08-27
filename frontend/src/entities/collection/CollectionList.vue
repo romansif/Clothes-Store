@@ -8,18 +8,26 @@
     </div>
     <ul v-else class="font-raleway grid grid-cols-2 gap-5 overflow-y-auto max-h-132.5
        sm:max-h-197.5 sm:grid-cols-2 no-scrollbar sm:gap-8 md:gap-10 md:max-h-200 lg:grid-cols-4 xl:max-h-116 mt-5 xl:mt-0">
-      <NewCollectionItem />
+      <NewItem v-if="isNew" />
+      <SeasonalItem v-if="isSeasonal" />
     </ul>
   </Transition>
 </template>
 
 <script setup lang="ts">
+const route = useRoute();
 const { newCollections } = productStore();
 
+import { computed } from "vue";
+import { useRoute } from "vue-router";
 import { productStore } from "@/entities/product/model/product.store.ts";
 
-import NewCollectionItem from "@/entities/product/ui/NewCollectionItem.vue";
+import NewItem from "@/entities/collection/NewItem.vue";
+import SeasonalItem from "@/entities/collection/SeasonalItem.vue";
 import empty_products from "@/assets/icons/products/icon-products.svg";
+
+const isNew = computed(() => route.name === 'shop/new-collections')
+const isSeasonal = computed(() => route.name === 'shop/seasonal-collections')
 </script>
 
 <style scoped>

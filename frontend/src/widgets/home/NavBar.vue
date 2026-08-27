@@ -6,18 +6,21 @@
         <div class="xl:flex xl:gap-10
             lg:flex lg:gap-10
             md:flex md:gap-5
-            sm:hidden hidden font-medium">
+            sm:hidden hidden font-light">
           <span :class="['text-[#696969] cursor-pointer transition duration-400 hover:text-black hover:scale-120',
                 isHome ? 'text-black scale-120' : '']">
             Home
           </span>
-          <router-link :to="{name: 'shop'}" class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120">
-            Shop
-          </router-link>
-          <router-link :to="{name: 'shop/new-collections'}" class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120">
+          <router-link :to="{name: 'shop/seasonal-collections'}"
+                       class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120">
             Seasonal
           </router-link>
-          <router-link :to="{name: 'shop/new-collections'}" class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120">
+          <router-link :to="{name: 'shop'}"
+                       class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120">
+            Shop
+          </router-link>
+          <router-link :to="{name: 'shop/new-collections'}"
+                       class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120">
             New
           </router-link>
         </div>

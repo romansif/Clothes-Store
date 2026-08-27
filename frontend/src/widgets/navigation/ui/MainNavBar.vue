@@ -5,15 +5,15 @@
         <div class="xl:flex xl:gap-10
             lg:flex lg:gap-10
             md:flex md:gap-5
-            sm:hidden hidden font-semibold">
+            sm:hidden hidden font-light">
           <router-link :to="{name: 'home'}" :class="selectedPageClass(isHome)">
             Home
           </router-link>
-          <router-link :to="{name: 'shop'}" :class="selectedPageClass(isProducts)">
-            Shop
-          </router-link>
           <router-link :to="{name: 'shop/seasonal-collections'}" :class="selectedPageClass(isSeasonCollections)">
             Seasonal
+          </router-link>
+          <router-link :to="{name: 'shop'}" :class="selectedPageClass(isProducts)">
+            Shop
           </router-link>
           <router-link :to="{name: 'shop/new-collections'}" :class="selectedPageClass(isNewCollections)">
             New

@@ -61,7 +61,7 @@ const { productPreviewClass } = baseClasses();
 
 import { baseClasses } from "@/shared/constants/base.classes.ts";
 import { productApi } from "@/features/use-product/api/product.api.ts";
-import { productsCover } from "@/features/use-product/model/product-cover.ts";
+import { productsCover } from "@/features/use-product/model/use-product.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
 

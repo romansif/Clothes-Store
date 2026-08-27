@@ -1,6 +1,6 @@
 <template>
   <div class="bg-white h-screen">
-    <div class="font-raleway fixed inset-0 flex items-center justify-center">
+    <main class="font-raleway fixed inset-0 flex items-center justify-center">
       <div class="w-87.5 sm:w-md rounded-lg px-8 py-8">
         <div class="flex items-center justify-center">
           <div class="w-58.75 sm:w-68.75">
@@ -32,7 +32,7 @@
           <GoogleSignIn class="duration-400 hover:scale-105 cursor-pointer"/>
         </div>
       </div>
-    </div>
+    </main>
     <Loading v-if="loading"/>
     <Transition name="notify">
       <Notification v-if="notify"/>

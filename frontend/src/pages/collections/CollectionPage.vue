@@ -13,10 +13,10 @@
     </div>
     <div v-else class="xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
       <MainNavBar />
-      <div class="flex flex-col mt-12">
-        <HeaderNewCollections />
-        <NewCollectionList />
-      </div>
+      <main class="flex flex-col mt-12">
+        <HeaderSelections />
+        <CollectionList />
+      </main>
     </div>
   </div>
 </template>
@@ -30,9 +30,9 @@ const { componentError, resetError } = errorHandler();
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
 
-import HeaderNewCollections from "@/widgets/navigation/ui/HeaderNewCollections.vue";
-import NewCollectionList from "@/entities/product/ui/NewCollectionList.vue";
-
+import Loading from "@/widgets/Loading.vue";
+import CollectionList from "@/entities/collection/CollectionList.vue";
+import HeaderSelections from "@/entities/collection/HeaderSelections.vue";
 </script>
 
 <style scoped>

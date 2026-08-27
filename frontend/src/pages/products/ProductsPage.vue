@@ -13,13 +13,13 @@
     </div>
     <div v-else class="xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
       <MainNavBar />
-      <div class="flex justify-center mt-12 xl:justify-between">
+      <main class="flex justify-center mt-12 xl:justify-between">
         <FilterProducts />
         <div class="flex flex-col">
-          <HeaderProducts />
+          <MainHeader />
           <ProductList />
         </div>
-      </div>
+      </main>
     </div>
     <Transition name="sidebar">
       <AsideFilter v-if="filterAside" />
@@ -41,7 +41,7 @@ import { useBaseModals } from "@/shared/lib/base.modal.ts";
 
 import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
 import ProductList from "@/entities/product/ui/ProductList.vue";
-import HeaderProducts from "@/widgets/navigation/ui/HeaderProducts.vue";
+import MainHeader from "@/entities/product/ui/MainHeader.vue";
 import FilterProducts from "@/widgets/navigation/ui/FilterProducts.vue";
 import Notification from "@/shared/ui/Notification.vue";
 import AsideFilter from "@/widgets/AsideFilter.vue";

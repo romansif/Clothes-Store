@@ -10,8 +10,8 @@
     </div>
     <div v-else class="font-raleway xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
       <MainNavBar />
-      <div class="mt-10 xl:mt-30 xl:px-10">
-        <div class="flex flex-col">
+      <main class="mt-10 xl:mt-30 xl:px-10">
+        <header class="flex flex-col">
           <div class="flex gap-14 items-center font-semibold text-sm">
             <router-link :to="{name: 'cart'}">
             <span :class="isShoppingCart ? 'text-[#A3A3A3]' : ''">
@@ -27,7 +27,7 @@
               </router-link>
             </div>
           </div>
-        </div>
+        </header>
         <Transition name="view">
           <div v-if="favorite.length === 0" class="flex flex-col gap-5 items-center justify-center pt-55">
             <img :src="favorite_cart" alt="">
@@ -42,7 +42,7 @@
             <FavoriteList />
           </div>
         </Transition>
-      </div>
+      </main>
     </div>
     <Transition name="notify">
       <Notification v-if="notify"/>

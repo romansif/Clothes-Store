@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="font-raleway fixed inset-0 z-50">
+    <div class="font-dm-sans fixed inset-0 z-50">
       <div class="py-2 px-4 bg-[#F0F0F0] shadow-md overflow-hidden h-full overflow-y-auto no-scrollbar">
         <div class="flex">
           <router-link :to="{ name: 'profile' }" class="text-start ml-auto h-fit w-fit px-10 py-2 bg-red-600 text-white
@@ -45,7 +45,12 @@
                     <option disabled hidden value="">
                       Void
                     </option>
-                    <option v-for="collection in collections" class="text-black">{{ collection.collection }}</option>
+                    <option v-for="collection in collections" :key="collection.name" class="text-black"
+                            :value="{ season: collection.season, name: collection.name, condition: collection.condition}">
+                      Name: {{ collection.name }} ,
+                      Season: {{ collection.season }} ,
+                      Condition: {{ collection.condition }}
+                    </option>
                   </select>
                   <span v-if="createProductFormErrors.collectionsError" class="text-red-600 text-xs">
                     {{ createProductFormMessages.collectionsMessage }}
@@ -201,7 +206,7 @@ const { createProductForm, moreCreateItem, createProductFormMessages } = product
 const { collections, categories, materials, genders, sizes, productsPreview } = productStore();
 
 import { watch } from "vue";
-import { productsCover } from "@/features/use-product/model/product-cover.ts";
+import { productsCover } from "@/features/use-product/model/use-product.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
 import { productApi } from "@/features/use-product/api/product.api.ts";
@@ -253,6 +258,8 @@ watch(() => [
       if(quantity){
         createProductFormErrors.value.quantityError = false;
       }
+
+      console.log(createProductForm.value)
     })
 </script>
 
