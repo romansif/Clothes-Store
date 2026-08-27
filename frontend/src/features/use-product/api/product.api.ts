@@ -14,8 +14,7 @@ const { openNotify, loading } = useBaseModals()
 const { clearProductForm } = clearProductsForms();
 const { createProductErrors } = useFormsErrors();
 const { createProductForm, moreCreateItem } = productForms();
-const { allProducts, products, productsWeek, productsYear, newCollections, myProducts, product,
-    productId, productFiles, currentFile, productsPreview } = productStore();
+const { allProducts, products, product, productsWeek, productsYear, newCollections, myProducts, productFiles, currentFile, productsPreview } = productStore();
 
 export const productApi = () => {
     const getAllProducts = async () => {
@@ -80,19 +79,16 @@ export const productApi = () => {
     };
 
     const getProductId = async (id: string) => {
-        localStorage.setItem("productId", id);
-
-        await getProduct();
+        await getProduct(id);
     };
 
-    const getProduct = async () => {
-        const currentId = localStorage.getItem("productId") || productId.value;
+    const getProduct = async (id: string) => {
         try{
-            const res = await handler(`/products/${currentId}`, {
+            const data = await handler(`/products/${id}`, {
                 method: 'GET',
-            })
-            console.log(res);
-            product.value = res;
+            });
+            product.value = data
+            localStorage.setItem("product", JSON.stringify(data));
         }catch(err){
             console.error(`Failed to get the product by id:`, err);
         }
@@ -209,7 +205,6 @@ export const productApi = () => {
 
             loading.value = false;
 
-            await getProduct();
             await openNotify('You have successfully changed the product card images.', '', '')
         }catch(err){
             loading.value = false;
@@ -236,8 +231,6 @@ export const productApi = () => {
                 })
             });
             loading.value = false;
-
-            await getProduct();
 
             await openNotify('You have successfully changed the product card description.', '', '');
             await router.push({ name: 'my/products'})

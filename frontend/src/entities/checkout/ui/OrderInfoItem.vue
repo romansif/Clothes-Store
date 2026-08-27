@@ -1,9 +1,9 @@
 <template>
-  <TransitionGroup name="list">
+  <TransitionGroup name="list" mode="out-in">
     <li @click="getProductId(product.productId)" v-for="product in items" :key="product?.id"
         class="flex justify-between gap-3 w-full">
       <div class="flex items-center gap-3 font-medium text-xs">
-        <router-link :to="{name: 'product/info'}">
+        <router-link :to="{ name: 'product/info', params: { id: product.id } }">
           <img :src="orderPreview(product?.id, 'ADD')" alt="" class="w-28.25 cursor-pointer">
         </router-link>
         <div class="flex flex-col gap-3 mt-3">

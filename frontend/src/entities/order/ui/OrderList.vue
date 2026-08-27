@@ -1,5 +1,5 @@
 <template>
-  <Transition name="view">
+  <Transition name="view" mode="out-in">
     <div v-if="orders.length === 0" class="flex justify-center pt-50">
       <div class="flex flex-col items-center gap-5">
         <img :src="icon_shop" alt="">

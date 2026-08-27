@@ -1,5 +1,5 @@
 <template>
-  <TransitionGroup name="list">
+  <TransitionGroup name="list" mode="out-in">
     <li v-for="order in orders" :key="order.id" class="flex flex-col">
       <div class="flex bg-gray-50 p-3 border-b border-gray-300">
         <div class="flex flex-col gap-2">
@@ -27,7 +27,7 @@
         </div>
       </div>
       <div v-for="item in order.orderItems" :key="item.id"  @click="getProductId(item.productId)">
-        <router-link :to="{ name: 'product/info' }">
+        <router-link :to="{ name: 'product/info', params: { id: order.productId } }">
           <div class="flex py-5 px-3">
             <div class="flex gap-5">
               <img :src="orderPreview(item.id, 'ADDED')" alt="" class="w-30 h-39 rounded-2xl border border-gray-400

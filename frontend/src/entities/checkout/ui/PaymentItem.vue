@@ -1,5 +1,5 @@
 <template>
-  <TransitionGroup name="list">
+  <TransitionGroup name="list" mode="out-in">
     <li @click="useSavedCard(checkout)" v-for="checkout in userPayments" :key="checkout.id" :class="savedPaymentClass">
       <div class="flex flex-col gap-5">
         <div class="flex gap-5">

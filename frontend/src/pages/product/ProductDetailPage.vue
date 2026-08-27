@@ -54,12 +54,12 @@
 import SizeGuideModal from "@/entities/product/ui/SizeGuideModal.vue";
 
 const { userData } = userStore();
+const { guideModel } = useProductsModals();
 const { notify, loading } = useBaseModals();
-const { guideModel } = useProductsModals()
-const { product, activeProductImg } = productStore();
 const { changeImg, angelCards } = productsCover();
+const { product, activeProductImg } = productStore();
 
-import { useRouter } from "vue-router";
+import { useRouter  } from "vue-router";
 import { productsCover } from "@/features/use-product/model/product-cover.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";

@@ -1,5 +1,5 @@
 <template>
-<router-view />
+<router-view :key="product?.id" />
 </template>
 
 <script setup lang="ts">
@@ -11,7 +11,8 @@ const { product, activeProductImg } = productStore();
 const { productInfoPreview } = productsCover();
 const { getAllProducts, getFilteredProducts, getNewCollections, getWeekProducts, getYearProducts, getProduct } = productApi();
 
-import { onErrorCaptured, onMounted } from "vue";
+import { useRoute } from "vue-router";
+import { onErrorCaptured, onMounted, watch } from "vue";
 import { cartApi } from "@/features/use-cart/api/cart.api.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { favoritesApi } from "@/features/use-favorite/api/favorites.api.ts";
@@ -19,6 +20,23 @@ import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
 import { productApi } from "@/features/use-product/api/product.api.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
 import { productsCover } from "@/features/use-product/model/product-cover.ts";
+
+const route = useRoute();
+
+watch(
+    () => route.params.id,
+    async (newId) => {
+      if (newId) {
+        loading.value = true;
+        await getProduct(newId as string);
+        if(product.value && Array.isArray(product.value.images) && product.value.images[0]) {
+          activeProductImg.value = productInfoPreview(product.value) ?? '';
+        }
+        loading.value = false;
+      }
+    },
+    { immediate: true }
+);
 
 onErrorCaptured((err, info) => {
   console.error("Перехвачена ошибка в дочернем компоненте:", err);
@@ -34,20 +52,12 @@ onMounted(async () => {
 
   await getAllProducts();
   await getFilteredProducts('ALL', 'ALL');
-
   await getWeekProducts('ALL', 'ALL');
   await getYearProducts('ALL', 'ALL');
-
   await getNewCollections('ALL');
-
   await getCartProducts();
   await getFavoriteProducts();
-
-  await getProduct();
-
-  if(product.value && Array.isArray(product.value.images) && product.value.images[0]) {
-    activeProductImg.value = productInfoPreview(product.value) ?? '';
-  }
+  await getProduct(product.value.id);
 
   loading.value = false;
 });

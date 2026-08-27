@@ -1,14 +1,14 @@
 <template>
-  <TransitionGroup name="list">
+  <TransitionGroup name="list" mode="out-in">
     <li @click="getProductId(product.id)" v-for="product in newCollections" :key="product.id" class="flex flex-col w-fit">
       <div class="relative">
-        <router-link :to="{ name: 'product/info' }">
+        <router-link :to="{ name: 'product/info', params: { id: product.id } }">
           <img :src="productPreview(product.id, newCollections)" alt=""
                :class="productPreviewClass('w-87 h-45 sm:h-78.5 xl:h-100', product)" />
+          <span v-if="isOutOfStack(product)" class="absolute w-100 top-40 -left-3 text-6xl font-semibold -rotate-50">
+            Out Of Stack
+          </span>
         </router-link>
-        <span v-if="isOutOfStack(product)" class="absolute w-100 top-40 -left-3 text-6xl font-semibold -rotate-50">
-          Out Of Stack
-        </span>
         <img @click="toggleToFavorite(product.id, 'product', product.id)" :src="isFavorite(product.id, userData.id) ? liked : like" alt=""
              class="absolute top-0.5 left-31 w-6.25 cursor-pointer sm:w-8.75 sm:left-58.5 md:left-66.5 lg:left-58.5 xl:left-76.5">
       </div>

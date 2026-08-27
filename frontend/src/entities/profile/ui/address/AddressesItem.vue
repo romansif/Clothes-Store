@@ -1,5 +1,5 @@
 <template>
-  <TransitionGroup name="list">
+  <TransitionGroup name="list" mode="out-in">
     <li v-for="checkout in userAddresses" :key="checkout.id"
         class="flex flex-col mt-5 border border-gray-200 rounded-xl shadow-lg p-2">
       <div class="flex flex-col gap-5">

@@ -157,7 +157,8 @@ const productsYear = ref<Product[]>([]);
 
 const newCollections = ref<Product[]>([]);
 
-const product = ref<Product>({} as Product);
+const product = ref<Product>(JSON.parse(localStorage.getItem('product')!))
+
 const productId = ref<string>(localStorage.getItem("productId") || '');
 
 const activeProductImg = ref<string>('');
