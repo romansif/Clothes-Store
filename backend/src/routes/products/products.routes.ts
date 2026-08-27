@@ -1,5 +1,4 @@
 import express from "express";
-import { validation } from "#middleware/validation.ts";
 import { upload } from "#middleware/upload.products.ts";
 import { authMiddleware } from "#middleware/auth.middleware.ts";
 import { productsController } from "#controllers/products/products.controller.ts";
@@ -18,8 +17,7 @@ router.get('/products/new-collection/:collection', productsController.getNewColl
 
 router.get('/products/:id', productsController.getProductsById);
 
-router.post('/products', authMiddleware, upload.array('images', 5), validation.createProductValidation,
-    validation.handleValidationErrors, productsController.createdProduct);
+router.post('/products', authMiddleware, upload.array('images', 5), productsController.createdProduct);
 
 router.patch('/products/:id/:index/images', authMiddleware, upload.array('images', 5),
     productsController.updateProductImages);

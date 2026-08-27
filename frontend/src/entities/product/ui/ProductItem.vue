@@ -1,5 +1,5 @@
 <template>
-  <TransitionGroup name="list">
+  <TransitionGroup name="list" mode="out-in">
     <li @click="getProductId(product.id)" v-for="product in products" :key="product.id" class="flex flex-col">
       <div class="relative">
         <router-link :to="{ name: 'product/info', params: { id: product.id } }">
@@ -40,7 +40,7 @@ const { isOutOfStack, productPreview } = productsCover();
 import { userStore } from "@/entities/profile/model/user.store.ts";
 import { useFavorite } from "@/features/use-favorite/model/use-favorite.ts";
 import { baseClasses } from "@/shared/constants/base.classes.ts";
-import { productsCover } from "@/features/use-product/model/product-cover.ts";
+import { productsCover } from "@/features/use-product/model/use-product.ts";
 import { productApi } from "@/features/use-product/api/product.api.ts";
 import { favoritesApi } from "@/features/use-favorite/api/favorites.api.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";

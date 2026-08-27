@@ -1,6 +1,5 @@
 import { addToCartForm } from "@/features/use-cart/model/cart.form.ts";
-import { type ColorItem, type Sizes } from "@/entities/product/model/product.types.ts";
-import { type CartItem } from "@/entities/cart/model/cart.types.ts";
+import {type ColorItem, type Product, type Sizes} from "@/entities/product/model/product.types.ts";
 
 const { cartForm } = addToCartForm();
 
@@ -23,7 +22,7 @@ export const productsClasses = () => {
         hover:text-black hover:scale-105`, isActive ? ' border-black scale-105' : 'text-[#A3A3A3] border-[#A3A3A3]'
     ]
 
-    const selectedColorClass = (color: ColorItem, product: CartItem, role: String) => [
+    const selectedColorClass = (color: ColorItem, product: Product, role: String) => [
         'w-[62px] h-[62px] transition duration-400',
         {
             'scale-110': cartForm.value.colors?.hex === color.hex,
@@ -31,7 +30,7 @@ export const productsClasses = () => {
         },
     ];
 
-    const selectedSizesClass = (size: Sizes, product: CartItem, role: String) => [
+    const selectedSizesClass = (size: Sizes, product: Product, role: String) => [
         size.class, 'w-[61px] h-[61px] transition duration-400',
             {
                 'scale-110' : cartForm.value.sizes === size.name,

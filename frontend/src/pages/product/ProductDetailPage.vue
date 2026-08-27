@@ -60,7 +60,7 @@ const { changeImg, angelCards } = productsCover();
 const { product, activeProductImg } = productStore();
 
 import { useRouter  } from "vue-router";
-import { productsCover } from "@/features/use-product/model/product-cover.ts";
+import { productsCover } from "@/features/use-product/model/use-product.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";

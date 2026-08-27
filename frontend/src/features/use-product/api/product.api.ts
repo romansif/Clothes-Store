@@ -149,7 +149,9 @@ export const productApi = () => {
             });
             formData.append('gender', createProductForm.value.gender);
             formData.append('quantity', createProductForm.value.quantity);
-            formData.append('collection', createProductForm.value.collection);
+            formData.append(`collection[condition]`, String(createProductForm.value.collection.condition));
+            formData.append(`collection[season]`, String(createProductForm.value.collection.season));
+            formData.append(`collection[name]`, String(createProductForm.value.collection.name));
             formData.append('status', 'Availability');
 
             productFiles.value.forEach((file) => {
@@ -204,6 +206,8 @@ export const productApi = () => {
             });
 
             loading.value = false;
+
+            await getProduct(product.id);
 
             await openNotify('You have successfully changed the product card images.', '', '')
         }catch(err){

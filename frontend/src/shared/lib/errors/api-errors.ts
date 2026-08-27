@@ -25,29 +25,22 @@ const { updateUserFormMessage } = userForms();
 const { updateUserFormErrors } = userFormsErrors()
 
 export const useFormsErrors = () => {
-    const registerErrors = (err: any, role: string) => {
+    const registerErrors = (err: any) => {
         if(err instanceof ApiError){
             const errors = err.response as Record<string, string> | undefined;
             if(errors){
                 registerFormErrors.value.nameError = !!errors.name;
                 registerFormErrors.value.surNameError = !!errors.surName;
-                registerFormErrors.value.privatePhoneError = !!errors.privatePhone;
+                registerFormErrors.value.phoneError = !!errors.privatePhone;
                 registerFormErrors.value.emailError = !!errors.email;
                 registerFormErrors.value.passwordError = !!errors.password;
 
                 registerFormMessages.value.nameMessage = errors.name || '';
                 registerFormMessages.value.surNameMessage = errors.surName || '';
-                registerFormMessages.value.privatePhoneMessage = errors.privatePhone || '';
+                registerFormMessages.value.phoneMessage = errors.privatePhone || '';
                 registerFormMessages.value.emailMessage = errors.email || '';
                 registerFormMessages.value.passwordMessage = errors.password || '';
 
-                if(role === 'Seller'){
-                    registerFormErrors.value.companyNameError = !!errors.companyName;
-                    registerFormErrors.value.publicPhoneError = !!errors.publicPhone;
-
-                    registerFormMessages.value.companyNameMessage = errors.companyName || '';
-                    registerFormMessages.value.publicPhoneMessage = errors.publicPhone || '';
-                }
             }
         }
     };
@@ -203,26 +196,6 @@ export const useFormsErrors = () => {
         }
     };
 
-    const updateCompanyNameErrors = (err: any) => {
-        if(err instanceof ApiError){
-            const errors = err.response as Record<string, string> | undefined;
-            if(errors){
-                updateUserFormErrors.value.companyNameError = !!errors.companyName;
-                updateUserFormMessage.value.companyNameMessage = errors.companyName || '';
-            }
-        }
-    };
-
-    const updatePublicPhoneErrors = (err: any) => {
-        if(err instanceof ApiError){
-            const errors = err.response as Record<string, string> | undefined;
-            if(errors){
-                updateUserFormErrors.value.publicPhoneError = !!errors.publicPhone;
-                updateUserFormMessage.value.publicPhoneMessage = errors.publicPhone || '';
-            }
-        }
-    };
-
     const updateEmailErrors = (err: any) => {
         if(err instanceof ApiError){
             const errors = err.response as Record<string, string> | undefined;
@@ -273,8 +246,6 @@ export const useFormsErrors = () => {
         updateSurNameErrors,
         updateEmailErrors,
         updatePhoneErrors,
-        updatePublicPhoneErrors,
-        updateCompanyNameErrors,
         updatePasswordErrors,
 
         replaceOrderErrors

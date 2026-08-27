@@ -12,7 +12,7 @@ export const clearProductsForms = () => {
         createProductForm.value.description = '';
         createProductForm.value.price = '';
         createProductForm.value.quantity = '';
-        createProductForm.value.collection = '';
+        createProductForm.value.collection = { condition: '', season: '', name: '' };
         moreCreateItem.sizes = [];
         moreCreateItem.colors = [];
 

@@ -1,14 +1,5 @@
 import { ref } from 'vue'
-import type {
-    Product,
-    Collection,
-    Gender,
-    Sizes,
-    Material,
-    Category,
-    SizeGuide,
-    SizesShoes, Slides
-} from "@/entities/product/model/product.types.ts";
+import type {Product, Collection, Gender, Sizes,Material, Category, SizeGuide, SizesShoes, Slides} from "@/entities/product/model/product.types.ts";
 
 import xs from '@/assets/icons/size/xs.svg';
 import s from '@/assets/icons/size/s.svg';
@@ -16,21 +7,24 @@ import m from '@/assets/icons/size/m.svg';
 import l from '@/assets/icons/size/l.svg';
 import xl from '@/assets/icons/size/xl.svg';
 import xxl from '@/assets/icons/size/xxl.svg';
-import autumn from '@/assets/photos/slides/autumn.png';
-import classic from '@/assets/photos/slides/classic.png';
-import past from '@/assets/photos/slides/past.png';
+
+import autumn from '@/assets/photos/home-slides/autumn.jpg';
+import classic from '@/assets/photos/home-slides/classic.jpg';
+import winter from '@/assets/photos/main-slides/winter.png';
+import month from '@/assets/photos/main-slides/month.png';
+import archive from '@/assets/photos/main-slides/archive.png';
 
 const collections: Collection[] = [
-    {collection: 'Essence'},
-    {collection: 'Silence'},
-    {collection: 'Blueprint'},
-    {collection: 'Chapter |'},
-    {collection: 'Raw'},
-    {collection: 'Mono'},
-    {collection: 'Grid'},
-    {collection: 'Draft'},
-    {collection: 'Void'},
-    {collection: 'Static'},
+    {season: 'Spring', condition: 'New', name: 'Essence'},
+    {season: 'Autumn', condition: 'Old', name: 'Silence'},
+    {season: 'Summer', condition: 'New', name: 'Blueprint'},
+    {season: 'Autumn', condition: 'Old', name: 'Chapter |'},
+    {season: 'Summer', condition: 'New', name: 'Raw'},
+    {season: 'Winter', condition: 'Old', name: 'Mono'},
+    {season: 'Spring', condition: 'New', name: 'Grid'},
+    {season: 'Autumn', condition: 'Old', name: 'Draft'},
+    {season: 'Winter', condition: 'Old', name: 'Void'},
+    {season: 'Spring', condition: 'New', name: 'Static'},
 ]
 
 const categories: Category[] = [
@@ -100,7 +94,7 @@ const shoesSizeGuide: SizeGuide[] = [
     {name: 'Length', values: ['25', '25.7', '26.3', '27', '27.7', '28.3', '29', '29.7']}
 ];
 
-const slides: Slides[] = [
+const homeSlides: Slides[] = [
     {
         id: 1,
         title: 'AUTUMN',
@@ -129,9 +123,30 @@ const slides: Slides[] = [
         Some pieces may not return.`,
         routeText: 'Shop past heritage',
         routeName: 'shop',
-        url: past
+        url: archive
     },
 ];
+
+const mainSlides: Slides[] = [
+    {
+        id: 1,
+        title: `THIS MONTH'S DROP`,
+        text:`Fresh arrivals crafted with modern silhouettes for your everyday rotation.`,
+        url: month
+    },
+    {
+        id: 2,
+        title: `WINTER PRELUDE`,
+        text:`Temperatures are dropping. Gear up for the cold season with warmth from The Noir.`,
+        url: winter
+    },
+    {
+        id: 3,
+        title: `ARCHIVE`,
+        text:`Explore selected pieces from previous collections. Once gone, they will not return.`,
+        url: archive
+    },
+]
 
 const outerWear = [
     'Shirts',
@@ -190,8 +205,10 @@ export const productStore = () => {
         materials,
         genders,
         sizes,
-        slides,
         sizesShoes,
+
+        homeSlides,
+        mainSlides,
 
         outerwearSizeGuide,
         underWearSizeGuide,

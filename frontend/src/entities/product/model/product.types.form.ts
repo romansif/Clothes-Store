@@ -1,3 +1,5 @@
+import type { Collection } from "@/entities/product/model/product.types.ts";
+
 export interface ProductForm {
     productUrl: string,
     title: string,
@@ -7,7 +9,7 @@ export interface ProductForm {
     price: string,
     gender: string,
     quantity: string,
-    collection: string,
+    collection: Collection,
 }
 
 export interface ProductColor {

@@ -5,7 +5,7 @@
         <div class="flex flex-col gap-1 mt-1 font-medium">
           <h1>{{ product.title }}</h1>
           <h2>
-            {{ product.collection }} / {{ product.category }}
+            {{ product.collection.name }} / {{ product.category }}
           </h2>
         </div>
         <div class="flex flex-col gap-3 ml-auto font-medium">
@@ -94,7 +94,7 @@ const { selectedColorClass, selectedSizesClass } = productsClasses();
 const { pureInfoColors, isAvailableSizes, isInCart, quantityInfo } = productsCover();
 
 import { watch } from "vue";
-import { productsCover } from "@/features/use-product/model/product-cover.ts";
+import { productsCover } from "@/features/use-product/model/use-product.ts";
 import { cartApi } from "@/features/use-cart/api/cart.api.ts";
 import { useCart } from "@/features/use-cart/model/use-cart.ts";
 import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";

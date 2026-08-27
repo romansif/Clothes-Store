@@ -34,12 +34,12 @@ const routes: RouteRecordRaw[] = [
             {
                 path: 'shop/new-collections',
                 name: 'shop/new-collections',
-                component: () => import('@/pages/products/NewCollectionsPage.vue'),
+                component: () => import('@/pages/collections/CollectionPage.vue'),
             },
             {
                 path: 'shop/seasonal-collections',
                 name: 'shop/seasonal-collections',
-                component: () => import('@/pages/products/NewCollectionsPage.vue'),
+                component: () => import('@/pages/collections/SeasonalPage.vue'),
             },
             {
                 path: 'product/info/:id',

@@ -23,12 +23,14 @@ export interface Product {
     quantity: number,
     status: string,
     checked: boolean,
-    collection: string,
+    collection: Collection,
     created_at: string,
 }
 
 export interface Collection {
-    collection: string,
+    season: string,
+    condition: string,
+    name: string,
 }
 
 export interface Category {
@@ -62,9 +64,9 @@ export interface SizeGuide {
 export interface Slides {
     id: number,
     title: string,
-    title1: string,
+    title1?: string,
     text: string,
-    routeText: string,
-    routeName: string,
+    routeText?: string,
+    routeName?: string,
     url: string,
 }
