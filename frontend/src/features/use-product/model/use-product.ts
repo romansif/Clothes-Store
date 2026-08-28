@@ -1,14 +1,21 @@
 import { computed } from "vue";
 import namer from 'color-namer'
+import { useRoute } from "vue-router";
+import { cartApi } from "@/features/use-cart/api/cart.api.ts";
+import { productApi } from "@/features/use-product/api/product.api.ts";
 import { cartStore } from "@/entities/cart/model/cart.store.ts";
+import { favoritesApi } from "@/features/use-favorite/api/favorites.api.ts";
 import { orderStore } from "@/entities/order/model/order.store.ts";
 import { productForms } from "@/features/use-product/model/product.forms.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
 import type {ColorItem, Product, SizeGuide, Sizes} from "@/entities/product/model/product.types.ts";
 
 const { cart } = cartStore();
+const { getCartProducts } = cartApi();
 const { orders, items } = orderStore();
 const { moreCreateItem } = productForms();
+const { getFavoriteProducts } = favoritesApi();
+const { getAllProducts, getFilteredProducts, getWinter, getSpring, getSummer, getAutumn, getWeekProducts, getYearProducts } = productApi();
 const { products, product, productId, sizes, outerwearSizeGuide, underWearSizeGuide, shoesSizeGuide,
     outerWear, underWear, activeProductImg, unit } = productStore();
 
@@ -244,6 +251,33 @@ export const productsCover = () => {
         return unit.value === 'IN' ? convertSizeToInches(shoesSizeGuide) : shoesSizeGuide;
     });
 
+    const useGetProducts = async () => {
+        const route = useRoute();
+
+        switch (route.name){
+            case 'shop':
+                await getAllProducts();
+                await getFilteredProducts('ALL', 'ALL');
+                break;
+            case 'home':
+                await getWeekProducts('ALL', 'ALL');
+                await getYearProducts('ALL', 'ALL');
+                break;
+            case 'cart':
+                await getCartProducts();
+                break;
+            case 'favorite':
+                await getFavoriteProducts();
+                break;
+            case 'shop/seasonal-collections':
+                await getWinter();
+                await getSpring();
+                await getSummer();
+                await getAutumn();
+                break;
+        }
+    };
+
     return {
         productPreview,
         orderPreview,
@@ -267,5 +301,7 @@ export const productsCover = () => {
         quantityInfo,
 
         formatterSizeGuide,
+
+        useGetProducts
     }
 }

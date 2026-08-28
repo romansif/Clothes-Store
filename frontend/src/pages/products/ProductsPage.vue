@@ -41,7 +41,7 @@ import { useBaseModals } from "@/shared/lib/base.modal.ts";
 
 import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
 import ProductList from "@/entities/product/ui/ProductList.vue";
-import MainHeader from "@/entities/product/ui/MainHeader.vue";
+import MainHeader from "@/widgets/header/MainHeader.vue";
 import FilterProducts from "@/widgets/navigation/ui/FilterProducts.vue";
 import Notification from "@/shared/ui/Notification.vue";
 import AsideFilter from "@/widgets/AsideFilter.vue";

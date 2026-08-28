@@ -10,11 +10,13 @@ import type { Product } from "@/entities/product/model/product.types.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
 
 const { userData } = userStore();
-const { openNotify, loading } = useBaseModals()
+const { openNotify, loading } = useBaseModals();
 const { clearProductForm } = clearProductsForms();
 const { createProductErrors } = useFormsErrors();
 const { createProductForm, moreCreateItem } = productForms();
-const { allProducts, products, product, productsWeek, productsYear, newCollections, myProducts, productFiles, currentFile, productsPreview } = productStore();
+const { allProducts, products, product, productsWeek, productsYear,
+    winterSelections, springSelection, summerSelection, autumnSelection,
+    myProducts, productFiles, currentFile, productsPreview } = productStore();
 
 export const productApi = () => {
     const getAllProducts = async () => {
@@ -66,16 +68,29 @@ export const productApi = () => {
         }
     };
 
-    const getNewCollections = async (collection: string) => {
+    const getSeasonal = async (collection: string) => {
         try{
-            const res = await handler(`/products/new-collection/${collection}`, {
+            const res = await handler(`/products/collections/${collection}`, {
                 method: 'GET',
             })
             console.log(res);
-            newCollections.value = res;
+            return res
         }catch(err){
             console.error(`Failed to get the filtered products:`, err);
         }
+    };
+
+    const getWinter = async () => {
+        winterSelections.value = await getSeasonal('Winter')
+    };
+    const getSpring = async () => {
+        springSelection.value = await getSeasonal('Spring')
+    };
+    const getSummer = async () => {
+        summerSelection.value = await getSeasonal('Summer')
+    };
+    const getAutumn = async () => {
+        autumnSelection.value = await getSeasonal('Autumn')
     };
 
     const getProductId = async (id: string) => {
@@ -298,7 +313,6 @@ export const productApi = () => {
         }
     };
 
-
     return{
         getAllProducts,
         getFilteredProducts,
@@ -306,7 +320,11 @@ export const productApi = () => {
         getWeekProducts,
         getYearProducts,
 
-        getNewCollections,
+        getSeasonal,
+        getWinter,
+        getSpring,
+        getSummer,
+        getAutumn,
 
         getMyProducts,
 

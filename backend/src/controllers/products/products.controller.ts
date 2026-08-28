@@ -115,7 +115,7 @@ export const productsController = {
         }
     },
 
-    async getNewCollections(req: Request, res: Response) {
+    async getCollections(req: Request, res: Response) {
         try {
             const { collection } = req.params;
             const db = dbService.readDB();
@@ -124,17 +124,27 @@ export const productsController = {
             const sixMonthsAgo = new Date();
             sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
 
-            products = products.filter(
-                product => new Date(product.created_at) >= sixMonthsAgo
+            const filteredProducts = products.filter(product => {
+                const createdAt = new Date(product.created_at);
+                if (isNaN(createdAt.getTime()) || createdAt < sixMonthsAgo) {
+                    return false;
+                }
+
+                if (!collection || collection === 'ALL') {
+                    return true;
+                }
+
+                const collectionName = product.collection?.name;
+                const collectionSeason = product.collection?.season;
+
+                return collectionName === collection || collectionSeason === collection;
+            });
+
+            filteredProducts.sort(
+                (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
             );
 
-            if (collection && collection !== 'ALL') {
-               products = products.filter(p => p.collection === collection);
-            }
-
-            products.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
-
-            res.json(products);
+            res.json(filteredProducts);
         } catch (err) {
             console.error('Failed to get the searched product list:', err);
             const message = err instanceof Error ? err.message : 'Unknown Error';

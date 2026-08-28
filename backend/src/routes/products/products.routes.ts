@@ -13,7 +13,7 @@ router.get('/my/products/:userId', productsController.getMyProducts);
 
 router.get('/products/week/:type/:filter', productsController.getWeekProducts);
 router.get('/products/year/:type/:filter', productsController.getYearProducts);
-router.get('/products/new-collection/:collection', productsController.getNewCollections);
+router.get('/products/collections/:collection', productsController.getCollections);
 
 router.get('/products/:id', productsController.getProductsById);
 

@@ -49,17 +49,19 @@
 </template>
 
 <script setup lang="ts">
+const { products } = productStore()
 const { searchProductForm } = searchForm();
 const { getFilteredProducts } = productApi();
 const { selectedCategoryClass } = productsClasses();
 const { toggleFilterAside } = useProductsModals();
-const { toggleFilter, categories, category } = filterProduct();
 const { debouncedSearch } = useGetSearchedProducts();
+const { toggleFilter, categories, category } = filterProduct();
 
 import { watch } from "vue";
 import { filterProduct } from "@/features/use-navigation/model/filter-product.ts";
 import { productsClasses } from "@/shared/constants/product/products.classes.ts";
 import { searchForm } from "@/widgets/navigation/model/search.form.ts";
+import {productStore} from "@/entities/product/model/product.store.ts";
 import { productApi } from "@/features/use-product/api/product.api.ts";
 import { clearSearchProductForm } from "@/features/use-navigation/lib/clear.search.ts";
 import { useGetSearchedProducts } from "@/features/use-navigation/model/search-product.ts";
@@ -71,7 +73,7 @@ import right_arrow from '@/assets/icons/arrows/right-arrow.png';
 
 watch(() => searchProductForm.value.search, async (newValue) => {
   if(newValue) {
-    await debouncedSearch();
+    await debouncedSearch(products);
   }else{
     await getFilteredProducts('ALL', 'Availability');
   }

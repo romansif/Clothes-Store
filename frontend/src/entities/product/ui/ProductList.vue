@@ -3,7 +3,7 @@
     <div v-if="products.length === 0" class="flex justify-center pt-45">
       <div class="flex flex-col gap-4 items-center">
         <img :src="empty_products" alt="">
-        <span class="text-lg font-semibold">There are currently no products in this category</span>
+        <span class="text-lg font-semibold">The products in this category is coming soon</span>
       </div>
     </div>
     <ul v-else class="font-raleway grid grid-cols-2 gap-5 overflow-y-auto max-h-132.5

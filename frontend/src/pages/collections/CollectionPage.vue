@@ -15,7 +15,6 @@
       <MainNavBar />
       <main class="flex flex-col mt-12">
         <HeaderSelections />
-        <CollectionList />
       </main>
     </div>
   </div>
@@ -31,8 +30,7 @@ import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
 
 import Loading from "@/widgets/Loading.vue";
-import CollectionList from "@/entities/collection/CollectionList.vue";
-import HeaderSelections from "@/entities/collection/HeaderSelections.vue";
+import HeaderSelections from "@/widgets/header/HeaderSelections.vue";
 </script>
 
 <style scoped>

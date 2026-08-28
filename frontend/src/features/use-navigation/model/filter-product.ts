@@ -3,7 +3,7 @@ import { productApi } from "@/features/use-product/api/product.api.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
 
 const { sizes } = productStore();
-const { getFilteredProducts, getWeekProducts, getYearProducts, getNewCollections } = productApi();
+const { getFilteredProducts, getWeekProducts, getYearProducts, getSeasonal } = productApi();
 
 export const filterProduct = () => {
     const selectedGender = ref<string>('ALL');
@@ -98,7 +98,7 @@ export const filterProduct = () => {
         }
 
         if(categoryGroup === 'COLLECTION') {
-            await getNewCollections(value)
+            await getSeasonal(value)
         }else{
             await getFilteredProducts(categoryGroup, value);
             await getWeekProducts(categoryGroup, value)

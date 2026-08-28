@@ -170,7 +170,10 @@ const myProducts = ref<Product[]>([]);
 const productsWeek = ref<Product[]>([]);
 const productsYear = ref<Product[]>([]);
 
-const newCollections = ref<Product[]>([]);
+const winterSelections = ref<Product[]>([]);
+const springSelection = ref<Product[]>([]);
+const summerSelection = ref<Product[]>([]);
+const autumnSelection = ref<Product[]>([]);
 
 const product = ref<Product>(JSON.parse(localStorage.getItem('product')!))
 
@@ -194,7 +197,10 @@ export const productStore = () => {
         productsWeek,
         productsYear,
 
-        newCollections,
+        winterSelections,
+        springSelection,
+        summerSelection,
+        autumnSelection,
 
         myProducts,
 

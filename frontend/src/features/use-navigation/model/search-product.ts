@@ -1,11 +1,9 @@
 import type { Ref } from 'vue';
 import { useDebounceFn } from "@vueuse/core";
 import { handler } from "@/shared/api/http.ts";
-import { productStore } from "@/entities/product/model/product.store.ts";
 import { searchForm } from "@/widgets/navigation/model/search.form.ts";
 import type { Product } from "@/entities/product/model/product.types.ts";
 
-const { products } = productStore();
 const { searchProductForm } = searchForm();
 
 export const useGetSearchedProducts = () => {
@@ -21,7 +19,7 @@ export const useGetSearchedProducts = () => {
         }
     };
 
-    const debouncedSearch = useDebounceFn(async () => {
+    const debouncedSearch = useDebounceFn(async (products: Ref<Product[]>) => {
         await getSearchedProducts(products);
 
         return products;

@@ -1,5 +1,5 @@
 <template>
-  <div class="relative overflow-hidden w-368">
+  <div class="relative overflow-hidden w-368 mt-12">
     <Transition name="slide" mode="out-in">
       <div :key="homeSlides[activeSlide].id" class="bg-black flex justify-between h-90 rounded-2xl">
         <div class="flex flex-col justify-center gap-2 px-20">

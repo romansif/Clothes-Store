@@ -47,7 +47,7 @@ import { profileClasses } from "@/shared/constants/user/profile.classes.ts";
 
 import MainNavBar from '@/widgets/navigation/ui/MainNavBar.vue'
 import DeleteModal from "@/shared/ui/DeleteModal.vue";
-import ProfileSettings from "@/entities/profile/ui/ProfileSettings.vue";
+import ProfileSettings from "@/widgets/ProfileSettings.vue";
 import ProfileNotLoggedIn from "@/entities/profile/ui/ProfileNotLoggedIn.vue";
 import Notification from "@/shared/ui/Notification.vue";
 import ChangeAvatar from "@/entities/profile/ui/ChangeAvatar.vue";
