@@ -1,6 +1,6 @@
 <template>
-  <TransitionGroup name="list" mode="out-in">
-    <li @click="getProductId(product.productId)" v-for="product in cart" :key="product.id" class="flex gap-5">
+  <TransitionGroup name="list">
+    <li @click="getProduct(product.productId)" v-for="product in cart" :key="product.id" class="flex gap-5">
       <div class="flex flex-col">
         <div class="relative">
           <router-link :to="{ name: 'product/info', params: { id: product.id } }">
@@ -56,7 +56,7 @@
 <script setup lang="ts">
 const { cart } = cartStore();
 const { userData } = userStore();
-const { getProductId } = productApi();
+const { getProduct } = productApi();
 const { isFavorite } = useFavorite();
 const { sizeClass, sizeUrl } = useProfile();
 const { toggleToFavorite } = favoritesApi();
@@ -81,7 +81,7 @@ import { favoritesApi } from "@/features/use-favorite/api/favorites.api.ts";
 import { cartApi } from "@/features/use-cart/api/cart.api.ts";
 import { useProfile } from "@/features/use-profile/model/use-profile.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
-import { baseClasses } from "@/shared/constants/base.classes.ts";
+import { baseClasses } from "@/shared/const/base.classes.ts";
 
 const refreshPage = () => {
   window.location.reload();

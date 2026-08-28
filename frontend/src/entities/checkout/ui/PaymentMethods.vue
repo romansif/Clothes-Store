@@ -96,7 +96,7 @@ import { useCheckout } from "@/features/use-checkout/model/use-checkout.ts";
 import { paymentApi } from "@/features/use-checkout/api/payment.api.ts";
 import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
 import { checkoutStore } from "@/entities/checkout/model/checkout.store.ts";
-import { paymentClasses } from "@/shared/constants/checkout/payment.classes.ts";
+import { paymentClasses } from "@/shared/const/checkout/payment.classes.ts";
 import { checkoutErrors }from "@/features/use-checkout/lib/checkout.errors.ts";
 
 import PaymentForm from "./PaymentForm.vue";

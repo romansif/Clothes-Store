@@ -34,7 +34,7 @@ const { checkoutClass } = checkoutClasses();
 
 import { useCheckout } from "@/features/use-checkout/model/use-checkout.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { checkoutClasses } from "@/shared/constants/checkout/checkout.classes.ts";
+import { checkoutClasses } from "@/shared/const/checkout/checkout.classes.ts";
 
 import CheckoutShipping from "@/entities/checkout/ui/CheckoutShipping.vue";
 import OrderInfo from "@/entities/checkout/ui/OrderInfo.vue";

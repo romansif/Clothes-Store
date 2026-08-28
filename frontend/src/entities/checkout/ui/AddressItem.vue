@@ -32,7 +32,7 @@ const { savedAddressClass } = informationClasses()
 
 import { checkoutStore } from "@/entities/checkout/model/checkout.store.ts";
 import { addressApi } from "@/features/use-checkout/api/address.api.ts";
-import { informationClasses } from "@/shared/constants/checkout/information.classes.ts";
+import { informationClasses } from "@/shared/const/checkout/information.classes.ts";
 </script>
 
 <style scoped>

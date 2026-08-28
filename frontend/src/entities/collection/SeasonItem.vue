@@ -1,9 +1,9 @@
 <template>
-  <TransitionGroup name="list" mode="out-in">
-    <li @click="getProductId(product.id)" v-for="product in winterSelections" :key="product.id" class="flex flex-col w-fit">
+  <TransitionGroup name="list">
+    <li @click="getProduct(product.id)" v-for="product in seasonalSelections" :key="product.id" class="flex flex-col w-fit">
       <div class="relative">
         <router-link :to="{ name: 'product/info', params: { id: product.id } }">
-          <img :src="productPreview(product.id, winterSelections)" alt=""
+          <img :src="productPreview(product.id, seasonalSelections)" alt=""
                :class="productPreviewClass('w-87 h-45 sm:h-78.5 xl:h-100', product)" />
           <span v-if="isOutOfStack(product)" class="absolute w-100 top-40 -left-3 text-6xl font-semibold -rotate-50">
             Out Of Stack
@@ -30,15 +30,15 @@
 <script setup lang="ts">
 const { userData } = userStore();
 const { isFavorite } = useFavorite();
-const { winterSelections } = productStore();
-const { getProductId } = productApi();
+const { seasonalSelections } = productStore();
+const { getProduct } = productApi();
 const { productPreviewClass } = baseClasses();
 const { toggleToFavorite } = favoritesApi();
 const { isOutOfStack, productPreview } = productsCover();
 
 import { userStore } from "@/entities/profile/model/user.store.ts";
 import { useFavorite } from "@/features/use-favorite/model/use-favorite.ts";
-import { baseClasses } from "@/shared/constants/base.classes.ts";
+import { baseClasses } from "@/shared/const/base.classes.ts";
 import { productsCover } from "@/features/use-product/model/use-product.ts";
 import { productApi } from "@/features/use-product/api/product.api.ts";
 import { favoritesApi } from "@/features/use-favorite/api/favorites.api.ts";

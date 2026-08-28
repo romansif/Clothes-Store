@@ -1,6 +1,6 @@
 <template>
-  <TransitionGroup name="list" mode="out-in">
-    <li @click="getProductId(product.id)" v-for="product in productsWeek" :key="product.id"
+  <TransitionGroup name="list">
+    <li @click="getProduct(product.id)" v-for="product in productsWeek" :key="product.id"
         class="flex flex-col shrink-0 lg:w-75 w-50">
       <div class="relative">
         <router-link :to="{ name: 'product/info', params: { id: product.id } }">
@@ -27,14 +27,14 @@
 <script setup lang="ts">
 const { userData } = userStore();
 const { productsWeek } = productStore();
-const { getProductId } = productApi();
+const { getProduct } = productApi();
 const { toggleToFavorite } = favoritesApi();
 const { isFavorite } = useFavorite();
 const { isOutOfStack, productPreview } = productsCover();
 const { productPreviewClass } = baseClasses();
 
 import { userStore } from "@/entities/profile/model/user.store.ts";
-import { baseClasses } from "@/shared/constants/base.classes.ts";
+import { baseClasses } from "@/shared/const/base.classes.ts";
 import { productsCover } from "@/features/use-product/model/use-product.ts";
 import { productApi } from "@/features/use-product/api/product.api.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";

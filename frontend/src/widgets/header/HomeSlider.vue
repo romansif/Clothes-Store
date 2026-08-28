@@ -1,7 +1,7 @@
 <template>
   <div class="relative overflow-hidden w-368 mt-12">
     <Transition name="slide" mode="out-in">
-      <div :key="homeSlides[activeSlide].id" class="bg-black flex justify-between h-90 rounded-2xl">
+      <div :key="homeSlides[activeSlide].id" class="bg-black flex justify-between h-96 rounded-2xl">
         <div class="flex flex-col justify-center gap-2 px-20">
           <div style="filter: drop-shadow(0 0 8px rgba(255, 255, 255, 1))"
                class="flex flex-col gap-1 text-gray-50 w-100">

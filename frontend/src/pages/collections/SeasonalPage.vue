@@ -15,30 +15,18 @@
       <MainNavBar />
       <main class="flex flex-col gap-6 mt-12">
         <HeaderSelections />
-        <div class="flex flex-col gap-12 mt-10">
-          <section v-if="autumnSelection.length > 0" class="font-raleway flex flex-col text-5xl">
-            <div class="flex flex-col font-extrabold border-b border-gray-300 pb-5">
-              <span>AUTUMN</span>
+        <div class="flex flex-col gap-14">
+          <section class="font-raleway flex flex-col">
+            <div class="flex flex-col gap-2.5">
+              <h2 class="font-extrabold text-5xl">
+                SEARCH RESULTS
+              </h2>
+              <span class="border-b-4 w-120"></span>
+              <h3 class="text-2xl font-medium text-[#A3A3A3]">
+                Products matching your selected filters and query
+              </h3>
             </div>
-            <AutumnList />
-          </section>
-          <section v-if="winterSelections.length > 0" class="font-raleway flex flex-col text-5xl">
-            <div class="flex flex-col font-extrabold border-b border-gray-300 pb-5">
-              <span>WINTER</span>
-            </div>
-            <WinterList />
-          </section>
-          <section v-if="springSelection.length > 0" class="font-raleway flex flex-col text-5xl">
-            <div class="flex flex-col font-extrabold border-b border-gray-300 pb-5">
-              <span>SPRING</span>
-            </div>
-            <SpringList />
-          </section>
-          <section v-if="summerSelection.length > 0" class="font-raleway flex flex-col text-5xl">
-            <div class="flex flex-col font-extrabold border-b border-gray-300 pb-5">
-              <span>SUMMER</span>
-            </div>
-            <SummerList />
+            <SeasonalList />
           </section>
         </div>
       </main>
@@ -47,22 +35,16 @@
 </template>
 
 <script setup lang="ts">
-import HeaderSelections from "@/widgets/header/HeaderSelections.vue";
-
 const { loading } = useBaseModals();
 const { componentError, resetError } = errorHandler();
-const { autumnSelection, winterSelections, springSelection, summerSelection } = productStore();
 
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
 
 import Loading from "@/widgets/Loading.vue";
 import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
-import WinterList from "@/entities/collection/WinterList.vue";
-import SpringList from "@/entities/collection/SpringList.vue";
-import SummerList from "@/entities/collection/SummerList.vue";
-import AutumnList from "@/entities/collection/AutumnList.vue";
-import {productStore} from "@/entities/product/model/product.store.ts";
+import HeaderSelections from "@/widgets/header/HeaderSelections.vue";
+import SeasonalList from "@/entities/collection/SeasonalList.vue";
 </script>
 
 <style scoped>

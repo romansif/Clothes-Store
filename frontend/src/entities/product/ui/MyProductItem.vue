@@ -1,6 +1,6 @@
 <template>
-  <TransitionGroup name="list" mode="out-in">
-    <li @click="getProductId(product.id)" v-for="product in myProducts" :key="product.id" class="flex pl-10 gap-8">
+  <TransitionGroup name="list">
+    <li @click="getProduct(product.id)" v-for="product in myProducts" :key="product.id" class="flex pl-10 gap-8">
       <div class="flex flex-col">
         <div class="relative">
           <router-link :to="{ name: 'product/info', params: { id: product.id } }">
@@ -53,13 +53,13 @@
 </template>
 
 <script setup lang="ts">
-const { getProductId } = productApi();
+const { getProduct } = productApi();
 const { myProducts } = productStore();
 const { isOutOfStack, productPreview } = productsCover();
 const { toggleDeleteChoice } = useProfileModals();
 const { productPreviewClass } = baseClasses();
 
-import { baseClasses } from "@/shared/constants/base.classes.ts";
+import { baseClasses } from "@/shared/const/base.classes.ts";
 import { productApi } from "@/features/use-product/api/product.api.ts";
 import { productsCover } from "@/features/use-product/model/use-product.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";

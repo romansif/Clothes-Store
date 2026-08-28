@@ -41,12 +41,15 @@
 
 <script setup lang="ts">
 const route = useRoute();
+
+const { seasonalSelections } = productStore();
 const { searchProductForm } = searchForm();
 const { getFilteredProducts } = productApi();
 const { debouncedSearch } = useGetSearchedProducts();
 
 import { useRoute } from "vue-router";
 import { computed, watch } from "vue";
+import { productStore } from "@/entities/product/model/product.store.ts";
 import { searchForm } from "@/widgets/navigation/model/search.form.ts";
 import { productApi } from "@/features/use-product/api/product.api.ts";
 import { clearSearchProductForm } from "@/features/use-navigation/lib/clear.search.ts";
@@ -58,7 +61,7 @@ import search from "@/assets/icons/nav/search.png";
 
 watch(() => searchProductForm.value.search, async (newValue) => {
   if(newValue) {
-    await debouncedSearch();
+    await debouncedSearch(seasonalSelections);
   }else{
     await getFilteredProducts('ALL', 'Availability');
   }

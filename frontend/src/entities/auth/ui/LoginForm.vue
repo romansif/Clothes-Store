@@ -55,7 +55,7 @@ import { authApi } from "@/features/use-auth/api/auth.api.ts";
 import { authForms } from "@/features/use-auth/model/auth.forms.ts";
 import { useAuth } from "@/features/use-auth/model/use-auth.ts";
 import { authStore } from "@/entities/auth/model/auth.store.ts";
-import { authClasses } from "@/shared/constants/auth/auth.classes.ts";
+import { authClasses } from "@/shared/const/auth/auth.classes.ts";
 import { authFormsErrors } from "@/features/use-auth/lib/auth.errors.ts";
 
 import closed from "@/assets/icons/auth/closed.png";

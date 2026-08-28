@@ -83,7 +83,7 @@ import { orderStore } from "@/entities/order/model/order.store.ts";
 import { productApi } from "@/features/use-product/api/product.api.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { productsCover } from "@/features/use-product/model/use-product.ts";
-import { ordersClasses } from "@/shared/constants/product/orders.classes.ts";
+import { ordersClasses } from "@/shared/const/product/orders.classes.ts";
 
 import copy_btn from '@/assets/icons/squares/copy.svg';
 import BaseButton from "@/shared/ui/BaseButton.vue";

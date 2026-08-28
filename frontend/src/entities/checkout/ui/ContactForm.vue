@@ -23,7 +23,7 @@ import { IMaskComponent as IMask } from "vue-imask";
 import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
 import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
-import { informationClasses } from "@/shared/constants/checkout/information.classes.ts";
+import { informationClasses } from "@/shared/const/checkout/information.classes.ts";
 import { checkoutErrors }from "@/features/use-checkout/lib/checkout.errors.ts";
 import { checkoutInput } from "@/features/use-checkout/lib/checkout-input.ts";
 

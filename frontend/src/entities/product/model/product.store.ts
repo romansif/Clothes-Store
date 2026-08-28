@@ -1,5 +1,15 @@
-import { ref } from 'vue'
-import type {Product, Collection, Gender, Sizes,Material, Category, SizeGuide, SizesShoes, Slides} from "@/entities/product/model/product.types.ts";
+import {ref} from 'vue'
+import type {
+    Product,
+    Collection,
+    Gender,
+    Sizes,
+    Material,
+    Category,
+    SizeGuide,
+    SizesShoes,
+    Slides,
+} from "@/entities/product/model/product.types.ts";
 
 import xs from '@/assets/icons/size/xs.svg';
 import s from '@/assets/icons/size/s.svg';
@@ -170,10 +180,7 @@ const myProducts = ref<Product[]>([]);
 const productsWeek = ref<Product[]>([]);
 const productsYear = ref<Product[]>([]);
 
-const winterSelections = ref<Product[]>([]);
-const springSelection = ref<Product[]>([]);
-const summerSelection = ref<Product[]>([]);
-const autumnSelection = ref<Product[]>([]);
+const seasonalSelections = ref<Product[]>([]);
 
 const product = ref<Product>(JSON.parse(localStorage.getItem('product')!))
 
@@ -197,10 +204,7 @@ export const productStore = () => {
         productsWeek,
         productsYear,
 
-        winterSelections,
-        springSelection,
-        summerSelection,
-        autumnSelection,
+        seasonalSelections,
 
         myProducts,
 

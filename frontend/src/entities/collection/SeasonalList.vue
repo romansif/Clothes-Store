@@ -1,19 +1,19 @@
 <template>
   <Transition name="view">
     <ul v-horizontal-scroll class="font-raleway flex gap-5 mt-5 overflow-x-auto whitespace-nowrap no-scrollbar pt-5">
-      <SummerItem v-if="isSeasonal" />
+      <SeasonItem v-if="isSeasonal" />
     </ul>
   </Transition>
 </template>
 
 <script setup lang="ts">
+import SeasonItem from "@/entities/collection/SeasonItem.vue";
+
 const { vHorizontalScroll } = productsCover();
 
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { productsCover } from "@/features/use-product/model/use-product.ts";
-
-import SummerItem from "@/entities/collection/SummerItem.vue";
 
 const route = useRoute();
 

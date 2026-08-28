@@ -101,7 +101,7 @@ import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
 import { useFavorite } from "@/features/use-favorite/model/use-favorite.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
 import { favoritesApi } from "@/features/use-favorite/api/favorites.api.ts";
-import { productsClasses } from "@/shared/constants/product/products.classes.ts";
+import { productsClasses } from "@/shared/const/product/products.classes.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
 import { addToCartForm } from "@/features/use-cart/model/cart.form.ts";
 import { addToCartErrors } from "@/features/use-cart/lib/cart.errors.ts";

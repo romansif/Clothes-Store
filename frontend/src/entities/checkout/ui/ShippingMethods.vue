@@ -59,7 +59,7 @@ const { shipping, shippingMessages } = checkoutForm();
 
 import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
 import { checkoutErrors }from "@/features/use-checkout/lib/checkout.errors.ts";
-import { shippingClasses } from "@/shared/constants/checkout/shipping.classes.ts";
+import { shippingClasses } from "@/shared/const/checkout/shipping.classes.ts";
 </script>
 
 <style scoped>

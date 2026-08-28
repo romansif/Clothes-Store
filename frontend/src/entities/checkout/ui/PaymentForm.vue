@@ -33,7 +33,7 @@ const { cardNumberPlaceholder, expiryDatePlaceholder, cardCvvPlaceholder } = che
 import { IMaskComponent as IMask } from "vue-imask";
 import { checkoutStore } from "@/entities/checkout/model/checkout.store.ts";
 import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
-import { paymentClasses } from "@/shared/constants/checkout/payment.classes.ts";
+import { paymentClasses } from "@/shared/const/checkout/payment.classes.ts";
 import { checkoutInput } from "@/features/use-checkout/lib/checkout-input.ts";
 </script>
 

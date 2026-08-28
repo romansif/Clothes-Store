@@ -43,7 +43,7 @@ const { avatarModal, orderHistory, currentOrder, addressesAndCards, confidential
 import { userStore } from "@/entities/profile/model/user.store.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { profileClasses } from "@/shared/constants/user/profile.classes.ts";
+import { profileClasses } from "@/shared/const/user/profile.classes.ts";
 
 import MainNavBar from '@/widgets/navigation/ui/MainNavBar.vue'
 import DeleteModal from "@/shared/ui/DeleteModal.vue";

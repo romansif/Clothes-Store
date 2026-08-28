@@ -57,7 +57,7 @@ const { selectedPageClass } = baseClasses();
 
 import { computed } from "vue";
 import { useRoute } from "vue-router";
-import { baseClasses } from "@/shared/constants/base.classes.ts";
+import { baseClasses } from "@/shared/const/base.classes.ts";
 import { cartStore } from "@/entities/cart/model/cart.store.ts";
 
 import cartImg from "@/assets/icons/nav/cart.png";

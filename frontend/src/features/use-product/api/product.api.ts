@@ -14,8 +14,7 @@ const { openNotify, loading } = useBaseModals();
 const { clearProductForm } = clearProductsForms();
 const { createProductErrors } = useFormsErrors();
 const { createProductForm, moreCreateItem } = productForms();
-const { allProducts, products, product, productsWeek, productsYear,
-    winterSelections, springSelection, summerSelection, autumnSelection,
+const { allProducts, products, product, productsWeek, productsYear, seasonalSelections,
     myProducts, productFiles, currentFile, productsPreview } = productStore();
 
 export const productApi = () => {
@@ -74,27 +73,10 @@ export const productApi = () => {
                 method: 'GET',
             })
             console.log(res);
-            return res
+            seasonalSelections.value = res
         }catch(err){
             console.error(`Failed to get the filtered products:`, err);
         }
-    };
-
-    const getWinter = async () => {
-        winterSelections.value = await getSeasonal('Winter')
-    };
-    const getSpring = async () => {
-        springSelection.value = await getSeasonal('Spring')
-    };
-    const getSummer = async () => {
-        summerSelection.value = await getSeasonal('Summer')
-    };
-    const getAutumn = async () => {
-        autumnSelection.value = await getSeasonal('Autumn')
-    };
-
-    const getProductId = async (id: string) => {
-        await getProduct(id);
     };
 
     const getProduct = async (id: string) => {
@@ -321,14 +303,9 @@ export const productApi = () => {
         getYearProducts,
 
         getSeasonal,
-        getWinter,
-        getSpring,
-        getSummer,
-        getAutumn,
 
         getMyProducts,
 
-        getProductId,
         getProduct,
 
         onFilesSelected,

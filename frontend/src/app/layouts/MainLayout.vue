@@ -5,55 +5,67 @@
 <script setup lang="ts">
 const { getProduct } = productApi();
 const { loading } = useBaseModals();
+const { getCartProducts } = cartApi();
 const { componentError } = errorHandler();
+const { getFavoriteProducts } = favoritesApi();
 const { product, activeProductImg } = productStore();
-const { productInfoPreview, useGetProducts } = productsCover();
+const { productInfoPreview } = productsCover();
+const { getAllProducts, getFilteredProducts, getSeasonal, getWeekProducts, getYearProducts } = productApi();
 
 import { useRoute } from "vue-router";
-import { onErrorCaptured, onMounted, watch } from "vue";
+import { watch } from "vue";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { cartApi } from "@/features/use-cart/api/cart.api.ts";
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
 import { productApi } from "@/features/use-product/api/product.api.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
+import { favoritesApi } from "@/features/use-favorite/api/favorites.api.ts";
 import { productsCover } from "@/features/use-product/model/use-product.ts";
 
 const route = useRoute();
 
-watch(
-    () => route.params.id,
-    async (newId) => {
-      if (newId) {
-        loading.value = true;
-        await getProduct(newId as string);
-        if(product.value && Array.isArray(product.value.images) && product.value.images[0]) {
-          activeProductImg.value = productInfoPreview(product.value) ?? '';
-        }
-        loading.value = false;
-      }
-    },
-    { immediate: true }
-);
-
-onErrorCaptured((err, info) => {
-  console.error("Перехвачена ошибка в дочернем компоненте:", err);
-  console.log("Детали ошибки:", info);
-
-  componentError.value = "An error occurred while displaying the product catalog."
-
-  return false
-});
-
-onMounted(async () => {
+const load = async () => {
   loading.value = true;
 
-  await useGetProducts();
+  try {
+    switch (route.name) {
+      case 'shop':
+        await getAllProducts();
+        await getFilteredProducts('ALL', 'ALL');
+        break;
+      case 'home':
+        await getWeekProducts('ALL', 'ALL');
+        await getYearProducts('ALL', 'ALL');
+        break;
+      case 'cart':
+        await getCartProducts();
+        break;
+      case 'favorite':
+        await getFavoriteProducts();
+        break;
+      case 'shop/seasonal-collections':
+        await getSeasonal('ALL');
+        break;
+    }
 
-  if(route.params.id){
-    await getProduct(route.params.id as string);
+    const id = route.params.id as string | undefined;
+    if (id) {
+      await getProduct(id);
+      activeProductImg.value = product.value?.images?.[0] ? productInfoPreview(product.value) ?? '' : '';
+    }
+  } catch (err) {
+    console.error('Ошибка загрузки данных страницы:', err);
+    componentError.value = 'An error occurred while displaying the product catalog.';
+  } finally {
+    loading.value = false;
   }
+};
 
-  loading.value = false;
-});
+watch(
+    () => [route.name, route.params.id],
+    load,
+    { immediate: true }
+);
 </script>
 
 <style scoped>

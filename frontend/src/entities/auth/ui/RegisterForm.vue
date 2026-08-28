@@ -68,7 +68,7 @@ import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
 import { authStore } from "@/entities/auth/model/auth.store.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
 import { authForms } from "@/features/use-auth/model/auth.forms.ts";
-import { authClasses } from "@/shared/constants/auth/auth.classes.ts";
+import { authClasses } from "@/shared/const/auth/auth.classes.ts";
 import { authFormsErrors } from "@/features/use-auth/lib/auth.errors.ts";
 import { useAuth } from "@/features/use-auth/model/use-auth.ts";
 

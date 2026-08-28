@@ -77,7 +77,7 @@ const {
 import { useProfile } from "@/features/use-profile/model/use-profile.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
-import { profileClasses } from "@/shared/constants/user/profile.classes.ts";
+import { profileClasses } from "@/shared/const/user/profile.classes.ts";
 
 import ProfileMenu from "../entities/profile/ui/ProfileMenu.vue";
 import arrow_down from '@/assets/icons/arrows/arrow-down.png';

@@ -57,7 +57,7 @@ import { checkoutStore } from "@/entities/checkout/model/checkout.store.ts";
 import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
 import { checkoutErrors }from "@/features/use-checkout/lib/checkout.errors.ts";
 import { checkoutInput } from "@/features/use-checkout/lib/checkout-input.ts";
-import { informationClasses } from "@/shared/constants/checkout/information.classes.ts";
+import { informationClasses } from "@/shared/const/checkout/information.classes.ts";
 
 import CheckoutInput from "@/entities/checkout/ui/CheckoutInput.vue";
 </script>

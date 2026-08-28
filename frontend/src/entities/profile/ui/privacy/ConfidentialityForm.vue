@@ -96,7 +96,7 @@ import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
 import { userForms } from "@/features/use-profile/model/user.form.ts";
 import { profileApi } from "@/features/use-profile/api/profile.api.ts";
 import { userFormsErrors } from "@/features/use-profile/lib/users.error.ts";
-import { profileClasses } from "@/shared/constants/user/profile.classes.ts";
+import { profileClasses } from "@/shared/const/user/profile.classes.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
 
 import BaseButton  from "@/shared/ui/BaseButton.vue";

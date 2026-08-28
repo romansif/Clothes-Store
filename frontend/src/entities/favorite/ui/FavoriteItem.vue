@@ -1,8 +1,8 @@
 <template>
-  <TransitionGroup name="list" mode="out-in">
+  <TransitionGroup name="list">
     <li v-for="product in favorite" :key="product.id" class="flex gap-5">
       <div class="flex flex-col">
-        <div @click="getProductId(product.productId)" class="relative">
+        <div @click="getProduct(product.productId)" class="relative">
           <router-link :to="{ name: 'product/info', params: { id: product.id } }">
             <img :src="productPreview(product.id, favorite)" alt=""
                  :class="productPreviewClass('w-83.75 h-45 sm:h-78.5 xl:h-100', product)">
@@ -37,7 +37,7 @@
 const { userData } = userStore();
 const { favorite } = favoriteStore();
 const { isFavorite } = useFavorite();
-const { getProductId } = productApi();
+const { getProduct } = productApi();
 const { toggleToFavorite } = favoritesApi();
 const { productPreviewClass } = baseClasses();
 const { isOutOfStack, productPreview } = productsCover();
@@ -45,7 +45,7 @@ const { isOutOfStack, productPreview } = productsCover();
 import { useFavorite } from "@/features/use-favorite/model/use-favorite.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
 import { productsCover } from "@/features/use-product/model/use-product.ts";
-import { baseClasses } from "@/shared/constants/base.classes.ts";
+import { baseClasses } from "@/shared/const/base.classes.ts";
 import { productApi } from "@/features/use-product/api/product.api.ts";
 import { favoriteStore } from "@/entities/favorite/model/favorite.store.ts";
 import { favoritesApi } from "@/features/use-favorite/api/favorites.api.ts";
