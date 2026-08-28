@@ -13,12 +13,15 @@ const { products, product, productId, sizes, outerwearSizeGuide, underWearSizeGu
     outerWear, underWear, activeProductImg, unit } = productStore();
 
 export const productsCover = () => {
-    const toggleColor =  (eventOrColor: Event | string) => {
+    const toggleColor =  (eventOrColor: Event | string, color: string) => {
         if (!Array.isArray(moreCreateItem.colors)) {
             moreCreateItem.colors = [];
         }
         let hexColor = '';
 
+
+        // @ts-ignore
+        let index = moreCreateItem.colors.indexOf(color);
 
         if(typeof eventOrColor === "object" && eventOrColor !== null && 'target' in eventOrColor) {
             const target = eventOrColor.target as HTMLInputElement;
@@ -34,6 +37,8 @@ export const productsCover = () => {
 
         }else if(typeof eventOrColor === 'string') {
             hexColor = eventOrColor
+        }else{
+            moreCreateItem.colors.splice(index, 1)
         }
 
         if(!hexColor) console.log('no');

@@ -10,33 +10,69 @@
         </div>
         <div class="flex justify-center">
           <div class="flex flex-col gap-5">
-            <div class="flex flex-col items-center gap-2.5 w-full pb-6.5 border-b">
-              <span class="text-start font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
-                  PRODUCT IMAGES PREVIEW
-              </span>
-              <div class="flex gap-7 w-full">
-                <div v-for="index in 5" :key="index" @click="openSelectProductCard(index)"
-                     class="bg-white h-68.5 w-50 border border-gray-200 transition duration-400
-                        hover:scale-105 cursor-pointer flex items-center justify-center overflow-hidden rounded-sm">
-                  <img v-if="productsPreview[index]" :src="productsPreview[index]" alt=""
-                       class="h-full object-cover transition duration-400">
-                  <span v-else class="text-gray-500 text-sm font-light">+</span>
+            <div class="flex flex-col gap-6 bg-white w-full p-6.5 rounded">
+              <div class="flex flex-col gap-1">
+                <h1 class="text-2xl font-semibold">Image slots</h1>
+                <h2 class="text-sm text-[#A3A3A3] font-medium">
+                  5 slots: 1 main photo + 4 additional ones. Click on a slot to select a file
+                </h2>
+              </div>
+              <div class="flex gap-6">
+                <div @click="openSelectProductCard(1)" class="bg-gray-50 h-90 w-90 border border-gray-300 transition duration-400 hover:scale-105
+                          hover:bg-gray-100 cursor-pointer overflow-hidden rounded-lg">
+                  <img v-if="productsPreview[1]" :src="productsPreview[1]" alt=""
+                       class="h-90 w-90 transition duration-400">
+                  <div v-else class="p-4 text-mauve-100">
+                    <span class="bg-black font-bold px-2 py-1.5 rounded-full">
+                      Main Photo
+                    </span>
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                  <div v-for="index in [2, 3, 4, 5]" :key="index" @click="openSelectProductCard(index)"
+                       class="bg-gray-50 h-43.5 w-43.5 border border-gray-300 transition duration-400 hover:scale-105
+                       hover:bg-gray-100 cursor-pointer overflow-hidden rounded-lg">
+                    <img v-if="productsPreview[index]" :src="productsPreview[index]" alt=""
+                         class="h-43.5 w-43.5 transition duration-400">
+                    <div v-else class="p-4 text-mauve-500">
+                      <span class="bg-gray-100 font-bold px-2 py-1.5 rounded-full border border-gray-400">
+                        Photo {{ index }}
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
+              <div class="flex flex-col gap-4">
+                <h2 class="text-sm text-[#A3A3A3] font-medium">The first photo is used in the catalog</h2>
+                <h2 class="text-sm text-[#A3A3A3] font-medium">Formats: JPG · PNG · WEBP Max. size: 5 MB Aspect ratio: 4:5</h2>
+              </div>
             </div>
-            <form @keydown.enter="createProduct" action="" class="flex flex-col justify-center gap-5 mt-2">
-              <div class="flex gap-3 pb-5.5 border-b">
-                <div class="flex flex-col gap-2.5 w-full">
-                  <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
-                    TITLE
+            <form @keydown.enter="createProduct" action="" class="bg-white p-6.5 mt-6 flex flex-col justify-center gap-8 rounded">
+              <div class="flex flex-col gap-1">
+                <label for="" class="text-2xl font-semibold tracking-wider">
+                  Basic information
+                </label>
+                <span class="text-sm text-[#A3A3A3] font-medium">Product name, collection, and category</span>
+              </div>
+              <div class="flex gap-6 mt-3 border-b-2 pb-4">
+                <div class="flex flex-col gap-3 w-full">
+                  <label for="" class="font-semibold tracking-wider text-xs">
+                    <div class="flex gap-1">
+                      <span>TITLE · НАЗВАНИЕ</span>
+                      <span class="text-red-500">*</span>
+                      <span class="text-[#A3A3A3] ml-auto">{{ createProductForm.title.length }} / 50</span>
+                    </div>
                   </label>
                   <BaseInput v-model="createProductForm.title" type="text" placeholder="title, name etc."
                              :error="createProductFormErrors.titleError" variant="createProduct" required
                              :error-message="createProductFormErrors.titleError ? createProductFormMessages.titleMessage : ''"/>
                 </div>
-                <div class="flex flex-col gap-2 w-full">
-                  <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
-                    COLLECTIONS
+                <div class="flex flex-col gap-3 w-full">
+                  <label for="" class="font-semibold tracking-wider text-xs">
+                    <div class="flex gap-1">
+                      <span>COLLECTION · КОЛЛЕКЦИЯ</span>
+                      <span class="text-red-500">*</span>
+                    </div>
                   </label>
                   <select v-model="createProductForm.collection" :class="[`w-full border border-gray-300 rounded-sm
                           outline-none px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,
@@ -57,9 +93,14 @@
                   </span>
                 </div>
               </div>
-              <div class="flex gap-3 pb-5.5 border-b">
-                <div class="flex flex-col gap-2.5 w-full">
-                  <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">CATEGORY</label>
+              <div class="flex gap-6">
+                <div class="flex flex-col gap-3 w-full">
+                  <label for="" class="font-semibold tracking-wider text-xs">
+                    <div class="flex gap-1">
+                      <span>CATEGORY · КАТЕГОРИЯ</span>
+                      <span class="text-red-500">*</span>
+                    </div>
+                  </label>
                   <select v-model="createProductForm.category" :class="[`w-full border border-gray-300 rounded-sm
                           outline-none px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,
                             createProductForm.category ? 'text-black' : '',
@@ -73,9 +114,12 @@
                     {{ createProductFormMessages.categoryMessage }}
                   </span>
                 </div>
-                <div class="flex flex-col gap-2.5 w-full">
-                  <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
-                    MATERIAL
+                <div class="flex flex-col gap-3 w-full">
+                  <label for="" class="font-semibold tracking-wider text-xs">
+                    <div class="flex gap-1">
+                      <span>MATERIAL · МАТЕРИАЛ</span>
+                      <span class="text-red-500">*</span>
+                    </div>
                   </label>
                   <select v-model="createProductForm.material" :class="[`w-full border border-gray-300 rounded-sm
                           outline-none px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,
@@ -91,12 +135,15 @@
                 </span>
                 </div>
               </div>
-              <div class="flex gap-3 w-full pb-5.5 border-b">
-                <div class="flex flex-col gap-2.5 w-full">
-                  <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
-                    GENDER
+              <div class="flex gap-6 w-full">
+                <div class="flex flex-col gap-3 w-full">
+                  <label for="" class="font-semibold tracking-wider text-xs">
+                    <div class="flex gap-1">
+                      <span>GENDER · ПОЛ</span>
+                      <span class="text-red-500">*</span>
+                    </div>
                   </label>
-                  <div class="flex flex-col gap-2.5">
+                  <div class="flex flex-col gap-3">
                     <select v-model="createProductForm.gender" :class="[`border border-gray-300 rounded-sm outline-none
                             px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,
                               createProductForm.gender ? 'text-black' : '',
@@ -111,26 +158,48 @@
                     </span>
                   </div>
                 </div>
-                <div class="flex flex-col gap-2.5 w-full">
-                  <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
-                    QUANTITY
+                <div class="flex flex-col gap-3 w-full">
+                  <label for="" class="font-semibold tracking-wider text-xs">
+                    <div class="flex gap-1">
+                      <span>SKU · АРТИКУЛ</span>
+                      <span class="text-red-500">*</span>
+                    </div>
+                  </label>
+                  <BaseInput v-model="createProductForm.sku" type="text" placeholder="BLC-XS-001"
+                             :error="createProductFormErrors.skuError" variant="createProduct" required
+                             :error-message="createProductFormErrors.skuError ? createProductFormMessages.skuMessage : ''"/>
+                </div>
+              </div>
+              <div class="flex gap-6 w-full">
+                <div class="flex flex-col gap-3 w-full">
+                  <label for="" class="font-semibold tracking-wider text-xs">
+                    <div class="flex gap-1">
+                      <span>QUANTITY · КОЛИЧЕСТВО</span>
+                      <span class="text-red-500">*</span>
+                    </div>
                   </label>
                   <BaseInput v-model="createProductForm.quantity" type="number" placeholder="quantity of product"
                              :error="createProductFormErrors.quantityError" variant="createProduct" required
                              :error-message="createProductFormErrors.quantityError ? createProductFormMessages.quantityMessage : ''"/>
                 </div>
-                <div class="flex flex-col gap-2.5 w-full">
-                  <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
-                    PRICE
+                <div class="flex flex-col gap-3 w-full">
+                  <label for="" class="font-semibold tracking-wider text-xs">
+                    <div class="flex gap-1">
+                      <span>PRICE · ЦЕНА</span>
+                      <span class="text-red-500">*</span>
+                    </div>
                   </label>
                   <BaseInput v-model="createProductForm.price" type="number" placeholder="$00.00 "
                              :error="createProductFormErrors.priceError" variant="createProduct" required
                              :error-message="createProductFormErrors.priceError ? createProductFormMessages.priceMessage : ''"/>
                 </div>
               </div>
-              <div class="flex flex-col gap-2.5 pb-5.5 border-b">
-                <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
-                  DESCRIPTION
+              <div class="flex flex-col gap-3">
+                <label for="" class="font-semibold tracking-wider text-xs">
+                  <div class="flex gap-1">
+                    <span>DESC. · ОПИСАНИЕ</span>
+                    <span class="text-red-500">*</span>
+                  </div>
                 </label>
                 <textarea v-model="createProductForm.description" type="text" placeholder="short desc. product"
                           :class="['h-25 border border-gray-200 rounded-sm outline-none px-6 py-5 text-sm bg-white',
@@ -138,48 +207,55 @@
                 <span v-if="createProductFormErrors.descriptionError" class="text-red-600 text-xs">
                   {{ createProductFormMessages.descriptionMessage }}
                 </span>
-              </div>
-              <div class="flex items-center gap-6 w-full">
-                <div class="flex flex-col gap-2.5 w-full">
-                  <div class="flex items-center justify-between">
-                    <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
-                      SIZES
-                    </label>
-                    <span class="text-xs text-[#A3A3A3]">Sizes: {{ moreCreateItem.sizes.length }} / 6</span>
-                  </div>
-                  <div class="flex gap-6">
-                    <img v-for="size in sizes" :key="size.name" :src=size.url alt="" @click="toggleSize(size.name)"
-                         :class="[size.class, moreCreateItem.sizes.includes(size.name)
-                              ? 'transition duration-400 scale-108 w-17.5'
-                              : 'transition duration-400 hover:scale-108 w-17.5']">
-                  </div>
-                  <span v-if="createProductFormErrors.sizeError" class="text-red-600 text-xs">
-                    {{ createProductFormMessages.sizeMessage }}
-                  </span>
-                </div>
-                <div class="flex flex-col gap-2.5 w-full">
-                  <div class="flex items-center justify-between">
-                    <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
-                      COLORS
-                    </label>
-                    <span class="text-xs text-[#A3A3A3]">Colors: {{ moreCreateItem.colors.length }} / 6</span>
-                  </div>
-                  <div class="flex gap-6">
-                    <div v-for="color in moreCreateItem.colors" :key="color.hex" :title="color.hex" :style="{ background: color.hex }"
-                         @click="toggleColor" class="w-17.5 h-17.5 transition-all duration-300 scale-108"></div>
-                    <label v-if="moreCreateItem.colors?.length < 6" class="h-17.5 w-17.5 border-3
-                           border-dashed border-gray-300 bg-white flex items-center justify-center text-gray-400
-                             cursor-pointer transition-all duration-400 hover:scale-108 hover:border-black
-                               hover:text-black text-2xl font-light relative overflow-hidden" title="Выбрать любой цвет"> +
-                      <input @change="toggleColor" type="color" class="absolute inset-0  h-full opacity-0 cursor-pointer" />
-                    </label>
-                  </div>
-                  <span v-if="createProductFormErrors.colorError" class="text-red-600 text-xs">
-                    {{ createProductFormMessages.colorMessage }}
-                  </span>
-                </div>
+                <span class="ml-auto text-[#A3A3A3] text-xs font-semibold">{{ createProductForm.title.length }} / 200</span>
               </div>
             </form>
+            <div class="bg-white p-6.5 mt-6 flex flex-col justify-center gap-8 rounded">
+              <div class="flex flex-col gap-3 w-full">
+                <div class="flex items-center justify-between">
+                  <label for="" class="font-semibold tracking-wider text-xs">
+                    <div class="flex gap-1">
+                      <span>SIZES · РАЗМЕРЫ</span>
+                      <span class="text-red-500">*</span>
+                    </div>
+                  </label>
+                  <span class="ml-auto text-[#A3A3A3] text-xs font-semibold">Sizes: {{ moreCreateItem.sizes.length }} / 6</span>
+                </div>
+                <div class="flex gap-6">
+                  <img v-for="size in sizes" :key="size.name" :src=size.url alt="" @click="toggleSize(size.name)"
+                       :class="[size.class, moreCreateItem.sizes.includes(size.name)
+                              ? 'transition duration-400 scale-110 w-15'
+                              : 'transition duration-400 hover:scale-110 w-15']">
+                </div>
+                <span v-if="createProductFormErrors.sizeError" class="text-red-600 text-xs">
+                    {{ createProductFormMessages.sizeMessage }}
+                  </span>
+              </div>
+              <div class="flex flex-col gap-3 w-full">
+                <div class="flex items-center justify-between">
+                  <label for="" class="font-semibold tracking-wider text-xs">
+                    <div class="flex gap-1">
+                      <span>COLORS · ЦВЕТА</span>
+                      <span class="text-red-500">*</span>
+                    </div>
+                  </label>
+                  <span class="ml-auto text-[#A3A3A3] text-xs font-semibold">Colors: {{ moreCreateItem.colors.length }} / 6</span>
+                </div>
+                <div class="flex gap-6">
+                  <div v-for="color in moreCreateItem.colors" :key="color.hex" :title="color.hex" :style="{ background: color.hex }"
+                       @click="toggleColor(color)" class="w-16 h-16 border-3 border-[#A3A3A3] rounded-full transition-all duration-300 scale-110"></div>
+                    <label v-if="moreCreateItem.colors?.length < 6" title="Выбрать любой цвет"
+                           class="w-16 h-16 border-3 rounded-full border-dashed border-gray-300 bg-white
+                           flex items-center justify-center text-gray-400 cursor-pointer transition-all duration-400
+                           hover:scale-108 hover:border-black hover:text-black text-2xl font-light relative overflow-hidden">+
+                      <input @change="toggleColor" type="color" class="absolute inset-0 h-full opacity-0 cursor-pointer" />
+                    </label>
+                  </div>
+                <span v-if="createProductFormErrors.colorError" class="text-red-600 text-xs">
+                    {{ createProductFormMessages.colorMessage }}
+                </span>
+              </div>
+            </div>
             <div class="w-full mt-4 mb-6">
               <BaseButton @click="createProduct" name="CREATE PRODUCT" variant="useProduct" />
             </div>
@@ -223,11 +299,11 @@ watch(() => [
       createProductForm.value.title, createProductForm.value.collection,
       createProductForm.value.category, createProductForm.value.material,
       createProductForm.value.price, createProductForm.value.description,
-      moreCreateItem.colors, moreCreateItem.sizes,
+      createProductForm.value.sku, moreCreateItem.colors, moreCreateItem.sizes,
       createProductForm.value.gender, createProductForm.value.quantity
     ],
 
-    ([title, collection, category, material, price, description, color, size, gender, quantity]) => {
+    ([title, collection, category, material, price, description, sku, color, size, gender, quantity]) => {
       if(title){
         createProductFormErrors.value.titleError = false;
       }
@@ -245,6 +321,9 @@ watch(() => [
       }
       if(description){
         createProductFormErrors.value.descriptionError = false;
+      }
+      if(sku){
+        createProductFormErrors.value.skuError = false;
       }
       if(color){
         createProductFormErrors.value.colorError = false;

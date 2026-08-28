@@ -29,6 +29,7 @@ export interface Product {
     sizes: string,
     gender: string,
     quantity: number,
+    sku: string,
     variants: Variant[],
     status: string,
     checked: boolean,

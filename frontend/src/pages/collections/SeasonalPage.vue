@@ -31,7 +31,7 @@
           <section v-else class="flex justify-center pt-45">
             <div class="flex flex-col gap-4 items-center">
               <img :src="empty_products" alt="">
-              <span class="text-lg font-semibold">The seasonal collection is coming soon</span>
+              <span class="text-lg font-semibold">The seasonal selections is coming soon</span>
             </div>
           </section>
         </div>

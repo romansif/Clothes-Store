@@ -9,6 +9,7 @@ export interface ProductForm {
     price: string,
     gender: string,
     quantity: string,
+    sku: string,
     variants: Variant[],
     collection: string,
 }
@@ -28,6 +29,7 @@ export interface ProductFormMessage {
     colorMessage: string,
     sizeMessage: string,
     genderMessage: string,
+    skuMessage: string,
     quantityMessage: string,
     collectionsMessage: string,
 }
@@ -42,6 +44,7 @@ export interface ProductFormError {
     colorError: boolean,
     sizeError: boolean,
     genderError: boolean,
+    skuError: boolean,
     quantityError: boolean,
     collectionsError: boolean,
 }
