@@ -4,7 +4,7 @@ import { cartStore } from "@/entities/cart/model/cart.store.ts";
 import { orderStore } from "@/entities/order/model/order.store.ts";
 import { productForms } from "@/features/use-product/model/product.forms.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
-import type {ColorItem, Product, SizeGuide, Sizes} from "@/entities/product/model/product.types.ts";
+import type { ColorItem, Product, SizeGuide, Size } from "@/entities/product/model/product.types.ts";
 
 const { cart } = cartStore();
 const { orders, items } = orderStore();
@@ -31,6 +31,7 @@ export const productsCover = () => {
                 hex: hexColor,
                 colorName: colorName,
             });
+
         }else if(typeof eventOrColor === 'string') {
             hexColor = eventOrColor
         }
@@ -176,7 +177,7 @@ export const productsCover = () => {
         }
 
         if(product && Array.isArray(product.sizes) && product.sizes.length > 0){
-            return product.sizes.map((size: Sizes) => size).join(', ')
+            return product.sizes.map((size: Size) => size).join(', ')
         }
         return '';
     };

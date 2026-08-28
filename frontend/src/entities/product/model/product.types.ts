@@ -7,6 +7,14 @@ export interface ImageItem {
     url: string,
 }
 
+export interface Variant {
+    sku: string,
+    colorName: string,
+    size: string,
+    quantity: number,
+    price?: number,
+}
+
 export interface Product {
     id: string,
     userId: string,
@@ -21,6 +29,7 @@ export interface Product {
     sizes: string,
     gender: string,
     quantity: number,
+    variants: Variant[],
     status: string,
     checked: boolean,
     collection: Collection,
@@ -45,7 +54,7 @@ export interface Gender {
     gender: string,
 }
 
-export interface Sizes {
+export interface Size {
     isActive: boolean,
     name: string,
     url: string,
@@ -61,7 +70,7 @@ export interface SizeGuide {
     values: string[],
 }
 
-export interface Slides {
+export interface Slide {
     id: number,
     title: string,
     title1?: string,

@@ -1,4 +1,5 @@
 import { reactive, ref } from 'vue'
+import type { Variant } from "@/entities/product/model/product.types.ts";
 import type { ProductForm, ProductColor, ProductFormMessage } from "@/entities/product/model/product.types.form.ts";
 
 const createProductForm = ref<ProductForm>({
@@ -10,6 +11,7 @@ const createProductForm = ref<ProductForm>({
     price: '',
     gender: '',
     quantity: '',
+    variants: [] as Variant[],
     collection: '',
 })
 

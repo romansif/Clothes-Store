@@ -3,12 +3,12 @@ import type {
     Product,
     Collection,
     Gender,
-    Sizes,
+    Size,
     Material,
     Category,
     SizeGuide,
     SizesShoes,
-    Slides,
+    Slide,
 } from "@/entities/product/model/product.types.ts";
 
 import xs from '@/assets/icons/size/xs.svg';
@@ -66,7 +66,7 @@ const genders: Gender[] = [
     {gender: 'Kids'},
 ];
 
-const sizes = ref<Sizes[]>([
+const sizes = ref<Size[]>([
     {isActive: false, name: 'XS', url: xs, class: 'border-3 border-[#A3A3A3]'},
     {isActive: false, name: 'S', url: s, class: 'border-3 border-[#A3A3A3]'},
     {isActive: false, name: 'M', url: m, class: 'border-3 border-[#A3A3A3]'},
@@ -104,7 +104,7 @@ const shoesSizeGuide: SizeGuide[] = [
     {name: 'Length', values: ['25', '25.7', '26.3', '27', '27.7', '28.3', '29', '29.7']}
 ];
 
-const homeSlides: Slides[] = [
+const homeSlides: Slide[] = [
     {
         id: 1,
         title: 'AUTUMN',
@@ -137,7 +137,7 @@ const homeSlides: Slides[] = [
     },
 ];
 
-const mainSlides: Slides[] = [
+const mainSlides: Slide[] = [
     {
         id: 1,
         title: `THIS MONTH'S DROP`,

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[#F0F0F0]">
+  <div :class="['bg-[#F0F0F0]', seasonalSelections.length > 0 ? '' : 'h-screen']">
     <Loading v-if="loading" />
     <div v-else-if="componentError" class="flex flex-col items-center justify-center pt-80 p-6 text-red-700 rounded-xl">
       <span class="text-lg font-semibold mb-2">
@@ -16,7 +16,7 @@
       <main class="flex flex-col gap-6 mt-12">
         <HeaderSelections />
         <div class="flex flex-col gap-14">
-          <section class="font-raleway flex flex-col">
+          <section v-if="seasonalSelections.length > 0" class="font-raleway flex flex-col">
             <div class="flex flex-col gap-2.5">
               <h2 class="font-extrabold text-5xl">
                 SEARCH RESULTS
@@ -28,6 +28,12 @@
             </div>
             <SeasonalList />
           </section>
+          <section v-else class="flex justify-center pt-45">
+            <div class="flex flex-col gap-4 items-center">
+              <img :src="empty_products" alt="">
+              <span class="text-lg font-semibold">The seasonal collection is coming soon</span>
+            </div>
+          </section>
         </div>
       </main>
     </div>
@@ -35,6 +41,9 @@
 </template>
 
 <script setup lang="ts">
+import {productStore} from "@/entities/product/model/product.store.ts";
+
+const { seasonalSelections } = productStore();
 const { loading } = useBaseModals();
 const { componentError, resetError } = errorHandler();
 
@@ -45,6 +54,7 @@ import Loading from "@/widgets/Loading.vue";
 import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
 import HeaderSelections from "@/widgets/header/HeaderSelections.vue";
 import SeasonalList from "@/entities/collection/SeasonalList.vue";
+import empty_products from "@/assets/icons/products/icon-products.svg";
 </script>
 
 <style scoped>
