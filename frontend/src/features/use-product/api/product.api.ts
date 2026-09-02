@@ -145,7 +145,12 @@ export const productApi = () => {
                 formData.append('sizes', String(size))
             });
             formData.append('gender', createProductForm.value.gender);
-            formData.append('quantity', createProductForm.value.quantity);
+            moreCreateItem.quantity.forEach((quantity, index) => {
+                formData.append(`quantity[${index}][hex]`, String(quantity.hex));
+                formData.append(`quantity[${index}][colorName]`, String(quantity.colorName));
+                formData.append(`quantity[${index}][size]`, String(quantity.size));
+                formData.append(`quantity[${index}][count]`, String(quantity.count));
+            });
             formData.append('sku', createProductForm.value.sku);
             formData.append(`collection[condition]`, String(createProductForm.value.collection.condition));
             formData.append(`collection[season]`, String(createProductForm.value.collection.season));
@@ -227,7 +232,6 @@ export const productApi = () => {
                     category: createProductForm.value.category,
                     material: createProductForm.value.material,
                     gender: createProductForm.value.gender,
-                    quantity: createProductForm.value.quantity,
                     price: createProductForm.value.price,
                     description: createProductForm.value.description,
                 })

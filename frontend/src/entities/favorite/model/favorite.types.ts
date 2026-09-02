@@ -1,4 +1,4 @@
-import type {Collection, ColorItem, ImageItem} from "@/entities/product/model/product.types.ts";
+import type {Collection, ColorItem, ImageItem, Variant} from "@/entities/product/model/product.types.ts";
 
 export interface FavoriteItem {
     id: string,
@@ -14,8 +14,9 @@ export interface FavoriteItem {
     sizes: string,
     gender: string,
     quantity: number,
+    sku: string,
+    variants: Variant[],
     status: string,
-    favorite: boolean,
     checked: boolean,
     collection: Collection,
     created_at: string,

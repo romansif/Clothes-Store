@@ -1,6 +1,6 @@
 <template>
   <TransitionGroup name="list" mode="out-in">
-    <li @click="getProductId(product.productId)" v-for="product in items" :key="product?.id"
+    <li @click="getProduct(product.productId)" v-for="product in items" :key="product?.id"
         class="flex justify-between gap-3 w-full">
       <div class="flex items-center gap-3 font-medium text-xs">
         <router-link :to="{ name: 'product/info', params: { id: product.id } }">
@@ -25,7 +25,7 @@
 <script setup lang="ts">
 
 const { items } = orderStore();
-const { getProductId } = productApi();
+const { getProduct } = productApi();
 const { orderPreview, pureColorsName } = productsCover();
 
 import { orderStore } from "@/entities/order/model/order.store.ts";

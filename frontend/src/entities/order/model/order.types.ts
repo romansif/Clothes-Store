@@ -1,4 +1,4 @@
-import type { ColorItem, ImageItem } from "@/entities/product/model/product.types.ts";
+import type {Collection, ColorItem, ImageItem, Variant} from "@/entities/product/model/product.types.ts";
 
 export interface OrderItem {
     id: string,
@@ -14,9 +14,11 @@ export interface OrderItem {
     sizes: string,
     gender: string,
     quantity: number,
+    sku: string,
+    variants: Variant[],
     status: string,
     checked: boolean,
-    collection: string,
+    collection: Collection,
     created_at: string,
 }
 

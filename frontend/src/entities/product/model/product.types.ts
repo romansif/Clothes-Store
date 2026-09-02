@@ -8,11 +8,10 @@ export interface ImageItem {
 }
 
 export interface Variant {
-    sku: string,
-    colorName: string,
-    size: string,
-    quantity: number,
-    price?: number,
+    hex?: string,
+    colorName?: string,
+    size?: string,
+    count?: number,
 }
 
 export interface Product {
@@ -28,9 +27,8 @@ export interface Product {
     colors: ColorItem[],
     sizes: string,
     gender: string,
-    quantity: number,
+    quantity: Variant[],
     sku: string,
-    variants: Variant[],
     status: string,
     checked: boolean,
     collection: Collection,

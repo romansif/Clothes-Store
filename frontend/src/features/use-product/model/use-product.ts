@@ -13,6 +13,36 @@ const { products, product, productId, sizes, outerwearSizeGuide, underWearSizeGu
     outerWear, underWear, activeProductImg, unit } = productStore();
 
 export const productsCover = () => {
+    // const toggleAllVariants = (val: number | string | undefined) => {
+    //     const countNum = Math.max(0, Number(val) || 0);
+    //     if(!moreCreateItem.quantity || moreCreateItem.quantity.length === 0) {
+    //         moreCreateItem.quantity = [{count: countNum}]
+    //         return
+    //     }
+    //
+    //     for(const color of moreCreateItem.colors ?? []) {
+    //         for(const size of moreCreateItem.sizes ?? []) {
+    //             toggleQuantity(color.hex, color.colorName, size).count = countNum
+    //         }
+    //     }
+    // };
+
+    const toggleQuantity = (hex?: string, colorName?: string, size?: string) => {
+        let item = moreCreateItem.quantity.find(
+            (v) => v.hex === hex && v.size === size);
+
+        if(!item) {
+            item = {
+                hex,
+                colorName,
+                size,
+                count: 0
+            }
+            moreCreateItem.quantity.push(item);
+        }
+        return item;
+    };
+
     const toggleColor = (color: string, eventOrColor: Event | string) => {
         if (!Array.isArray(moreCreateItem.colors)) {
             moreCreateItem.colors = [];
@@ -219,16 +249,20 @@ export const productsCover = () => {
     };
 
     const isOutOfStack = (product: Product) => {
-        return product.quantity === 0 || product.status === 'Exhausted'
+        const totalCount = product.quantity.reduce((sum, item) => sum + (item.count || 0), 0);
+
+        return totalCount === 0 || product.status === 'Exhausted';
     };
 
     const quantityInfo = (product: Product) => {
-        if(product.quantity < 4 && product.quantity !== 0){
-            return `🔥 Only ${product.quantity} left`;
-        }else if(product.quantity === 0){
+        const totalCount = product.quantity.reduce((sum, item) => sum + (item.count || 0), 0);
+
+        if(totalCount < 4 && totalCount !== 0){
+            return `🔥 Only ${totalCount} left`;
+        }else if(totalCount === 0){
             return ``;
         }else{
-            return `In stock ${product.quantity} pcs.`;
+            return `In stock ${totalCount} pcs.`;
         }
     };
 
@@ -271,6 +305,8 @@ export const productsCover = () => {
         isInCart,
         vHorizontalScroll,
 
+        // toggleAllVariants,
+        toggleQuantity,
         toggleColor,
         toggleSize,
         changeImg,

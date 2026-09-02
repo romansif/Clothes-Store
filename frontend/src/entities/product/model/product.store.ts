@@ -68,12 +68,12 @@ const genders: Gender[] = [
 ];
 
 const sizes = ref<Size[]>([
-    {isActive: false, name: 'XS', url: xs, class: 'border-3 border-[#A3A3A3]'},
-    {isActive: false, name: 'S', url: s, class: 'border-3 border-[#A3A3A3]'},
-    {isActive: false, name: 'M', url: m, class: 'border-3 border-[#A3A3A3]'},
-    {isActive: false, name: 'L', url: l, class: 'border-3 border-[#A3A3A3]'} ,
-    {isActive: false, name: 'XL', url: xl, class: 'border-3 border-[#A3A3A3]'},
-    {isActive: false, name: 'XXL', url: xxl, class: 'border-3 border-[#A3A3A3]'},
+    {isActive: false, name: 'XS', url: xs, class: 'border-2 border-[#A3A3A3]'},
+    {isActive: false, name: 'S', url: s, class: 'border-2 border-[#A3A3A3]'},
+    {isActive: false, name: 'M', url: m, class: 'border-2 border-[#A3A3A3]'},
+    {isActive: false, name: 'L', url: l, class: 'border-2 border-[#A3A3A3]'} ,
+    {isActive: false, name: 'XL', url: xl, class: 'border-2 border-[#A3A3A3]'},
+    {isActive: false, name: 'XXL', url: xxl, class: 'border-2 border-[#A3A3A3]'},
 ]);
 
 const sizesShoes: SizesShoes[] = [
@@ -195,6 +195,7 @@ const productsPreview = ref<string[]>([]);
 const currentFile = ref<(number | null)>(null);
 
 const unit = ref<string>('CM')
+const countMode = ref<string>('SAME')
 
 const skuMask = {
     mask: '***-**-***',
@@ -242,6 +243,7 @@ export const productStore = () => {
         currentFile,
 
         unit,
+        countMode,
         skuMask
     }
 }

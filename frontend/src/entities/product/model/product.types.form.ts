@@ -1,4 +1,4 @@
-import type {Collection, Variant} from "@/entities/product/model/product.types.ts";
+import type {Collection} from "@/entities/product/model/product.types.ts";
 
 export interface ProductForm {
     productUrl: string,
@@ -8,9 +8,8 @@ export interface ProductForm {
     description: string,
     price: string,
     gender: string,
-    quantity: string,
+    quantity: number,
     sku: string,
-    variants: Variant[],
     collection: Collection,
 }
 

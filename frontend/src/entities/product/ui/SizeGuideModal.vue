@@ -23,32 +23,32 @@
       </div>
       <table class="w-full border-collapse items-center">
         <thead>
-        <tr v-if="product.category !== 'Shoes'" class="border-b border-neutral-400">
-          <th class="px-4 py-4 text-left uppercase tracking-wider">
-            Size
-          </th>
-          <th v-for="size in sizes" :key="size.name" class="px-4 py-4 text-center uppercase tracking-wider font-dm-sans">
-            {{ size.name }}
-          </th>
-        </tr>
-        <tr v-else class="border-b border-neutral-400">
-          <th class="px-4 py-4 text-left uppercase tracking-wider">
-            Size
-          </th>
-          <th v-for="size in sizesShoes" :key="size.name" class="px-4 py-4 text-center uppercase tracking-wider font-dm-sans">
-            {{ size.name }}
-          </th>
-        </tr>
+          <tr v-if="product.category !== 'Shoes'" class="border-b border-neutral-400">
+            <th class="px-4 py-4 text-left uppercase tracking-wider">
+              Size
+            </th>
+            <th v-for="size in sizes" :key="size.name" class="px-4 py-4 text-center uppercase tracking-wider font-dm-sans">
+              {{ size.name }}
+            </th>
+          </tr>
+          <tr v-else class="border-b border-neutral-400">
+            <th class="px-4 py-4 text-left uppercase tracking-wider">
+              Size
+            </th>
+            <th v-for="size in sizesShoes" :key="size.name" class="px-4 py-4 text-center uppercase tracking-wider font-dm-sans">
+              {{ size.name }}
+            </th>
+          </tr>
         </thead>
         <tbody>
-        <tr v-for="row in formatterSizeGuide" :key="row.name" class="text-sm border-b border-neutral-200">
-          <th class="px-4 py-4 text-left font-normal">
-            {{ row.name }}
-          </th>
-          <td v-for="value in row.values" :key="value" class="px-4 py-4 text-center text-neutral-600 font-dm-sans">
-            {{ value }}
-          </td>
-        </tr>
+          <tr v-for="row in formatterSizeGuide" :key="row.name" class="text-sm border-b border-neutral-200">
+            <th class="px-4 py-4 text-left font-normal">
+              {{ row.name }}
+            </th>
+            <td v-for="value in row.values" :key="value" class="px-4 py-4 text-center text-neutral-600 font-dm-sans">
+              {{ value }}
+            </td>
+          </tr>
         </tbody>
       </table>
       <div class="flex flex-col gap-2 mt-3">

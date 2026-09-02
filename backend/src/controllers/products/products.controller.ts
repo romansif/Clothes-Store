@@ -225,12 +225,19 @@ export const productsController = {
             const db = dbService.readDB();
             const products: any[] = db.products || [];
 
+            const quantity = (req.body.quantity ?? []).filter((v: any) => v?.hex && v?.size).map((v: any) => ({
+                hex: v.hex,
+                colorName: v.colorName,
+                size: v.size,
+                count: Number(v.count),
+            }))
+
             const newProduct = {
                 id: uuidv4(),
                 userId: req.user?.id || req.user?.userId,
                 images,
                 ...req.body,
-                quantity: Number(req.body.quantity) || 0,
+                quantity: quantity,
                 price: Number(req.body.price) || 0,
                 created_at: new Date(),
             };
