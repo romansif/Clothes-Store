@@ -15,7 +15,7 @@
     <div class="flex flex-col font-medium text-xs mt-3 gap-2">
       <div class="flex justify-between">
         <span>Subtotal</span>
-        <span>$ {{ price }}</span>
+        <span class="font-dm-sans">$ {{ price }}</span>
       </div>
       <div class="flex items-center">
         <span>Shipping</span>
@@ -31,10 +31,10 @@
       </div>
     </div>
     <div class="border-b border-gray-300 mt-3 mb-1"></div>
-    <span class="text-xs text-[#A3A3A3]">$ {{ commissionPrice }} commission and service operation</span>
+    <span class="text-xs text-[#A3A3A3] font-dm-sans">$ {{ commissionPrice }} commission and service operation</span>
     <div class="flex justify-between font-medium mt-3 text-sm">
       <span>Total</span>
-      <span>$ {{ totalPrice }}</span>
+      <span class="font-dm-sans">$ {{ totalPrice }}</span>
     </div>
   </div>
 </template>

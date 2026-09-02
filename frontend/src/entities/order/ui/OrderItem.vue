@@ -1,5 +1,5 @@
 <template>
-  <TransitionGroup name="list" mode="out-in">
+  <TransitionGroup name="list">
     <li v-for="order in orders" :key="order.id" class="flex flex-col">
       <div class="flex bg-gray-50 p-3 border-b border-gray-300">
         <div class="flex flex-col gap-2">
@@ -26,8 +26,8 @@
           <span class="text-[#A3A3A3] font-normal ml-auto">{{ order.delivery }}</span>
         </div>
       </div>
-      <div v-for="item in order.orderItems" :key="item.id"  @click="getProductId(item.productId)">
-        <router-link :to="{ name: 'product/info', params: { id: order.productId } }">
+      <div v-for="item in order.orderItems" :key="item.id"  @click="getProduct(item.productId)">
+        <router-link :to="{ name: 'product/info', params: { id: item.id } }">
           <div class="flex py-5 px-3">
             <div class="flex gap-5">
               <img :src="orderPreview(item.id, 'ADDED')" alt="" class="w-30 h-39 rounded-2xl border border-gray-400
@@ -73,7 +73,7 @@
 <script setup lang="ts">
 const { orders } = orderStore();
 const { copyText } = useOrder();
-const { getProductId } = productApi();
+const { getProduct } = productApi();
 const { toggleOrder } = useBaseModals();
 const { orderStatus } = ordersClasses();
 const { orderPreview, pureColorsName } = productsCover();

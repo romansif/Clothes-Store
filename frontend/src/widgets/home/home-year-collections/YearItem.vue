@@ -6,7 +6,7 @@
         <router-link :to="{ name: 'product/info', params: { id: product.id } }">
           <img :src="productPreview(product.id, productsYear)" alt=""
                :class="productPreviewClass('w-full h-50 md:h-70 lg:h-105', product)">
-          <span v-if="isOutOfStack(product)" class="absolute top-45 right-1 text-6xl font-semibold -rotate-45">
+          <span v-if="isOutOfStack(product)" class="absolute top-45 -left-7 text-7xl font-semibold -rotate-48">
               Out Of Stack
           </span>
         </router-link>

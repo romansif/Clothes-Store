@@ -1,7 +1,7 @@
 <template>
   <div :class="['bg-[#F0F0F0]', seasonalSelections.length > 0 ? '' : 'h-screen']">
     <Loading v-if="loading" />
-    <div v-else-if="componentError" class="flex flex-col items-center justify-center pt-80 p-6 text-red-700 rounded-xl">
+    <div v-else-if="componentError" class="font-raleway  flex flex-col items-center justify-center pt-80 p-6 text-red-700 rounded-xl">
       <span class="text-lg font-semibold mb-2">
         Something went wrong 😔
       </span>
@@ -37,24 +37,33 @@
         </div>
       </main>
     </div>
+    <Transition name="sidebar">
+      <AsideFilter v-if="filterAside" />
+    </Transition>
+    <Transition name="notify">
+      <Notification v-if="notify" />
+    </Transition>
   </div>
 </template>
 
 <script setup lang="ts">
-import {productStore} from "@/entities/product/model/product.store.ts";
-
+const { filterAside } = useProductsModals();
+const { notify, loading } = useBaseModals();
 const { seasonalSelections } = productStore();
-const { loading } = useBaseModals();
 const { componentError, resetError } = errorHandler();
 
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
+import { productStore } from "@/entities/product/model/product.store.ts";
+import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
 
 import Loading from "@/widgets/Loading.vue";
 import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
 import HeaderSelections from "@/widgets/header/HeaderSelections.vue";
 import SeasonalList from "@/entities/collection/SeasonalList.vue";
 import empty_products from "@/assets/icons/products/icon-products.svg";
+import AsideFilter from "@/widgets/AsideFilter.vue";
+import Notification from "@/shared/ui/Notification.vue";
 </script>
 
 <style scoped>

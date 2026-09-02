@@ -1,6 +1,6 @@
 <template>
   <Transition name="view">
-    <ul v-horizontal-scroll class="font-raleway flex gap-22.5 mt-5 overflow-x-auto whitespace-nowrap no-scrollbar pt-5">
+    <ul v-horizontal-scroll class="flex gap-10 mt-5 overflow-x-auto whitespace-nowrap no-scrollbar pt-5">
       <SeasonItem v-if="isSeasonal" />
     </ul>
   </Transition>

@@ -1,12 +1,12 @@
 <template>
   <TransitionGroup name="list">
-    <li @click="getProduct(product.id)" v-for="product in seasonalSelections" :key="product.id" class="flex flex-col
-        shrink-0 lg:w-75 w-50">
+    <li @click="getProduct(product.id)" v-for="product in seasonalSelections" :key="product.id"
+        class="flex flex-col shrink-0 lg:w-75 w-50">
       <div class="relative">
         <router-link :to="{ name: 'product/info', params: { id: product.id } }">
           <img :src="productPreview(product.id, seasonalSelections)" alt=""
-               :class="productPreviewClass('w-1000 h-45 sm:h-78.5 xl:h-100', product)" />
-          <span v-if="isOutOfStack(product)" class="absolute w-100 top-40 -left-3 text-6xl font-semibold -rotate-50">
+               :class="productPreviewClass('', product)" />
+          <span v-if="isOutOfStack(product)" class="absolute top-40 -left-8 text-6xl font-semibold -rotate-50">
             Out Of Stack
           </span>
         </router-link>
