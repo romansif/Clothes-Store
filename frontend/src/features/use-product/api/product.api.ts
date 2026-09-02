@@ -146,6 +146,7 @@ export const productApi = () => {
             });
             formData.append('gender', createProductForm.value.gender);
             formData.append('quantity', createProductForm.value.quantity);
+            formData.append('sku', createProductForm.value.sku);
             formData.append(`collection[condition]`, String(createProductForm.value.collection.condition));
             formData.append(`collection[season]`, String(createProductForm.value.collection.season));
             formData.append(`collection[name]`, String(createProductForm.value.collection.name));

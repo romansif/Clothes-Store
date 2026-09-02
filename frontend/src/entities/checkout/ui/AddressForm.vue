@@ -31,7 +31,7 @@
             :placeholder="cityPlaceholder" :error="informationErrors.cityError" />
         </div>
         <div class="flex flex-col w-full">
-          <IMask v-model.value="information.postalCode" type="text" :placeholder="postalCodePlaceholder"
+          <IMask v-model:value="information.postalCode" type="text" :placeholder="postalCodePlaceholder"
                  :class="postalCodeClass" :mask="postalCode.mask"  />
         </div>
       </div>

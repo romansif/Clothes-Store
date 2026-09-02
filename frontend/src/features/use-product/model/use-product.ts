@@ -13,35 +13,40 @@ const { products, product, productId, sizes, outerwearSizeGuide, underWearSizeGu
     outerWear, underWear, activeProductImg, unit } = productStore();
 
 export const productsCover = () => {
-    const toggleColor =  (eventOrColor: Event | string, color: string) => {
+    const toggleColor = (color: string, eventOrColor: Event | string) => {
         if (!Array.isArray(moreCreateItem.colors)) {
             moreCreateItem.colors = [];
         }
-        let hexColor = '';
 
+        if (eventOrColor instanceof Event && eventOrColor.target instanceof HTMLInputElement && eventOrColor.target.type === 'color') {
+            const hexColor = eventOrColor.target.value;
+            if (!hexColor) return;
 
-        // @ts-ignore
-        let index = moreCreateItem.colors.indexOf(color);
+            const exists = moreCreateItem.colors.some((c: any) =>
+                typeof c === 'string' ? c === hexColor : c.hex === hexColor
+            );
 
-        if(typeof eventOrColor === "object" && eventOrColor !== null && 'target' in eventOrColor) {
-            const target = eventOrColor.target as HTMLInputElement;
-            hexColor = target?.value || '';
+            if (!exists) {
+                const names = namer(hexColor);
+                const colorName = names.ntc[0].name;
 
-            const names = namer(hexColor)
-            const colorName = names.ntc[0].name
-
-            moreCreateItem.colors.push({
-                hex: hexColor,
-                colorName: colorName,
-            });
-
-        }else if(typeof eventOrColor === 'string') {
-            hexColor = eventOrColor
-        }else{
-            moreCreateItem.colors.splice(index, 1)
+                moreCreateItem.colors.push({
+                    hex: hexColor,
+                    colorName: colorName,
+                });
+            }
+            return;
         }
 
-        if(!hexColor) console.log('no');
+        const index = moreCreateItem.colors.findIndex((c: any) =>
+            typeof c === 'string' ? c === color : c.hex === color
+        );
+        if (typeof eventOrColor === 'string') {
+            return;
+        }
+        if (index !== -1) {
+            moreCreateItem.colors.splice(index, 1);
+        }
     };
 
     const toggleSize = (sizeName: string) => {

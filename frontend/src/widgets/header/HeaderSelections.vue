@@ -25,9 +25,10 @@
       </div>
       <div class="flex mt-15 relative">
         <input v-model="searchProductForm.search" type="text" placeholder="Search"
-               class="bg-[#D9D9D9]/40 h-12.5 px-10 placeholder:px-52 border-none outline-none
-               sm:placeholder:px-114 md:placeholder:px-134 lg:placeholder:px-195 xl:w-92.5 xl:placeholder:px-65
-               transition duration-400 hover:bg-gray-50 font-dm-sans" />
+               class="bg-[#D9D9D9]/40 h-12.5 px-10 w-full placeholder:px-52 outline-none
+                  sm:placeholder:px-114 md:placeholder:px-134 lg:placeholder:px-195 xl:w-92.5 xl:placeholder:px-65
+                  transition duration-400 border-2 border-[#D9D9D9]/40 hover:bg-gray-100 hover:border-[#D9D9D9]
+                focus:bg-gray-100 focus:border-[#D9D9D9] font-dm-sans" />
         <img :src=search alt="" class="absolute left-4 top-1/2 -translate-y-1/2">
         <img v-if="searchProductForm.search" @click="clearSearchProductForm" :src="del" alt=""
              class="w-6.25 absolute top-1/4 left-85 cursor-pointer">

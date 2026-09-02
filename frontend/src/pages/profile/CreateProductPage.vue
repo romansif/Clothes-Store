@@ -165,9 +165,8 @@
                       <span class="text-red-500">*</span>
                     </div>
                   </label>
-                  <BaseInput v-model="createProductForm.sku" type="text" placeholder="BLC-XS-001"
-                             :error="createProductFormErrors.skuError" variant="createProduct" required
-                             :error-message="createProductFormErrors.skuError ? createProductFormMessages.skuMessage : ''"/>
+                  <IMask v-model:value="createProductForm.sku" type="text" inputmode="numeric" placeholder="BLC-XS-001" :mask="skuMask.mask"
+                         class="uppercase border border-gray-200 rounded-sm outline-none px-6 py-5 text-sm bg-white transition duration-400 font-dm-sans" />
                 </div>
               </div>
               <div class="flex gap-6 w-full">
@@ -207,7 +206,7 @@
                 <span v-if="createProductFormErrors.descriptionError" class="text-red-600 text-xs">
                   {{ createProductFormMessages.descriptionMessage }}
                 </span>
-                <span class="ml-auto text-[#A3A3A3] text-xs font-semibold">{{ createProductForm.title.length }} / 200</span>
+                <span class="ml-auto text-[#A3A3A3] text-xs font-semibold">{{ createProductForm.title.length }} / 100</span>
               </div>
             </form>
             <div class="bg-white p-6.5 mt-6 flex flex-col justify-center gap-8 rounded">
@@ -224,8 +223,8 @@
                 <div class="flex gap-6">
                   <img v-for="size in sizes" :key="size.name" :src=size.url alt="" @click="toggleSize(size.name)"
                        :class="[size.class, moreCreateItem.sizes.includes(size.name)
-                              ? 'transition duration-400 scale-110 w-15'
-                              : 'transition duration-400 hover:scale-110 w-15']">
+                              ? 'transition duration-400 scale-110 w-15 rounded-full'
+                              : 'transition duration-400 hover:scale-110 w-15 rounded-full']">
                 </div>
                 <span v-if="createProductFormErrors.sizeError" class="text-red-600 text-xs">
                     {{ createProductFormMessages.sizeMessage }}
@@ -243,17 +242,17 @@
                 </div>
                 <div class="flex gap-6">
                   <div v-for="color in moreCreateItem.colors" :key="color.hex" :title="color.hex" :style="{ background: color.hex }"
-                       @click="toggleColor(color)" class="w-16 h-16 border-3 border-[#A3A3A3] rounded-full transition-all duration-300 scale-110"></div>
+                       @click="toggleColor(color.hex, $event)" class="w-16 h-16 border-3 border-[#A3A3A3] rounded-full transition-all duration-300 scale-110"></div>
                     <label v-if="moreCreateItem.colors?.length < 6" title="Выбрать любой цвет"
                            class="w-16 h-16 border-3 rounded-full border-dashed border-gray-300 bg-white
                            flex items-center justify-center text-gray-400 cursor-pointer transition-all duration-400
                            hover:scale-108 hover:border-black hover:text-black text-2xl font-light relative overflow-hidden">+
-                      <input @change="toggleColor" type="color" class="absolute inset-0 h-full opacity-0 cursor-pointer" />
+                      <input @change="toggleColor(($event.target as HTMLInputElement).value, $event)" type="color" class="absolute inset-0 h-full opacity-0 cursor-pointer" />
                     </label>
                   </div>
-                <span v-if="createProductFormErrors.colorError" class="text-red-600 text-xs">
-                    {{ createProductFormMessages.colorMessage }}
-                </span>
+                  <span v-if="createProductFormErrors.colorError" class="text-red-600 text-xs">
+                      {{ createProductFormMessages.colorMessage }}
+                  </span>
               </div>
             </div>
             <div class="w-full mt-4 mb-6">
@@ -279,9 +278,10 @@ const { createProductFormErrors } = productsFormErrors();
 const { createProduct, onFilesSelected } = productApi();
 const { openSelectProductCard, fileInput } = useProductsModals();
 const { createProductForm, moreCreateItem, createProductFormMessages } = productForms();
-const { collections, categories, materials, genders, sizes, productsPreview } = productStore();
+const { collections, categories, materials, genders, sizes, productsPreview, skuMask } = productStore();
 
 import { watch } from "vue";
+import { IMaskComponent as IMask } from "vue-imask";
 import { productsCover } from "@/features/use-product/model/use-product.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
