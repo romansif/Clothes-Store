@@ -60,9 +60,9 @@
           ADD TO CART
         </span>
       </router-link>
-      <BaseButton v-if="userData.role === 'Buyer' && product.quantity !== 0 && !isInCart" name="ADD TO CART"
+      <BaseButton v-if="userData.role === 'Buyer' && isInStock !== 0 && !isInCart" name="ADD TO CART"
                   variant="addToCart" @click="addToCart()" />
-      <BaseButton v-if="product.quantity === 0 && userData.id" name="OUT OF STACK" variant="outOfStack" />
+      <BaseButton v-if="isInStock === 0 && userData.id" name="OUT OF STACK" variant="outOfStack" />
       <div v-if="userData.id && isInCart" class="flex items-center gap-18">
         <div class="flex gap-6 bg-zinc-800 py-4 px-3 text-lg transition duration-300 hover:scale-108">
           <img :src="plus" @click="updateCartItem('add', isInCart.id, isInCart.status)" alt=""
@@ -91,7 +91,7 @@ const { cartFormErrors } = addToCartErrors();
 const { toggleSizeGuide } = useProductsModals();
 const { cartForm, cartFormMessages } = addToCartForm();
 const { selectedColorClass, selectedSizesClass } = productsClasses();
-const { pureInfoColors, isAvailableSizes, isInCart, quantityInfo } = productsCover();
+const { pureInfoColors, isAvailableSizes, isInStock, isInCart, quantityInfo } = productsCover();
 
 import { watch } from "vue";
 import { productsCover } from "@/features/use-product/model/use-product.ts";

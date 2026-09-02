@@ -229,6 +229,14 @@ export const productsCover = () => {
         return sizes.value.filter(size => product.value.sizes.includes(size.name));
     });
 
+    const isInStock = computed(() => {
+        const product = products.value.find(p => p.id === productId.value);
+        if(!product?.id || !Array.isArray(product.quantity)){
+            return null;
+        }
+        return product.quantity.reduce((sum, variant) => sum + (variant.count ?? 0), 0);
+    });
+
     const isInCart = computed(() => {
         const product = products.value.find(p => p.id === productId.value);
         if(!product?.id || !Array.isArray(cart.value)){
@@ -302,6 +310,7 @@ export const productsCover = () => {
 
         isAvailableSizes,
         pureSizesName,
+        isInStock,
         isInCart,
         vHorizontalScroll,
 
