@@ -13,7 +13,7 @@ const { clearRegisterForm, clearRegisterFormMessages,
     clearLoginForm, clearLoginFormMessages } = clearAuthForms();
 const { registerForm, loginForm } = authForms();
 
-export const authApi = () => {
+export const useAuth = () => {
     const signUp = async (role: string) => {
         loading.value = true;
 

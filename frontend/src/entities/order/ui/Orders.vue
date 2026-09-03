@@ -32,14 +32,14 @@
 <script setup lang="ts">
 const { orders } = orderStore();
 const { clipboard } = useOrder();
-const { getOrders } = orderApi();
+const { getOrders } = useGetOrder();
 const { choiceModal } = useBaseModals();
 const { toggleOrderHistory } = useProfileModals();
 
 import { onMounted } from "vue";
 import { useOrder } from "@/features/use-order/model/use-order.ts";
 import { orderStore } from "@/entities/order/model/order.store.ts";
-import { orderApi } from "@/features/use-order/api/order.api.ts";
+import { useGetOrder } from "@/features/use-order/api/get-order.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 

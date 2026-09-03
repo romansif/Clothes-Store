@@ -53,14 +53,14 @@
 </template>
 
 <script setup lang="ts">
-const { getProduct } = productApi();
 const { myProducts } = productStore();
-const { isOutOfStack, productPreview } = productsCover();
-const { toggleDeleteChoice } = useProfileModals();
+const { getProduct } = useGetProduct();
 const { productPreviewClass } = baseClasses();
+const { toggleDeleteChoice } = useProfileModals();
+const { isOutOfStack, productPreview } = productsCover();
 
 import { baseClasses } from "@/shared/const/base.classes.ts";
-import { productApi } from "@/features/use-product/api/product.api.ts";
+import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { productsCover } from "@/features/use-product/model/use-product.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";

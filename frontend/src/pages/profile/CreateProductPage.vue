@@ -345,10 +345,10 @@
 
 <script setup lang="ts">
 const { loading, notify } = useBaseModals();
-const { toggleQuantity, toggleSize, toggleColor } = productsCover();
 const { createProductFormErrors } = productsFormErrors();
-const { createProduct, onFilesSelected } = productApi();
+const { createProduct, onFilesSelected } = useAddProduct();
 const { openSelectProductCard, fileInput } = useProductsModals();
+const { toggleQuantity, toggleSize, toggleColor } = productsCover();
 const { createProductForm, moreCreateItem, createProductFormMessages } = productForms();
 const { collections, categories, materials, genders, sizes, productsPreview, countMode, skuMask } = productStore();
 
@@ -357,7 +357,7 @@ import { IMaskComponent as IMask } from "vue-imask";
 import { productsCover } from "@/features/use-product/model/use-product.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
-import { productApi } from "@/features/use-product/api/product.api.ts";
+import { useAddProduct } from "@/features/use-product/api/add-product.ts";
 import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
 import { productForms } from "@/features/use-product/model/product.forms.ts";
 import { productsFormErrors } from "@/features/use-product/lib/product.error.ts";

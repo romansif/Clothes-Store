@@ -54,15 +54,17 @@
 </template>
 
 <script setup lang="ts">
+
+
 const { cart } = cartStore();
 const { userData } = userStore();
-const { getProduct } = productApi();
 const { isFavorite } = useFavorite();
+const { getProduct } = useGetProduct();
 const { sizeClass, sizeUrl } = useProfile();
-const { toggleToFavorite } = favoritesApi();
-const { toggleDeleteChoice } = useProfileModals();
-const { updateCartItem, checkCartItem } = cartApi();
 const { productPreviewClass } = baseClasses();
+const { toggleToFavorite } = useToggleFavorite();
+const { toggleDeleteChoice } = useProfileModals();
+const { updateCartItem, checkCartItem } = useUpdateCart();
 const { isOutOfStack, productPreview, pureQuantity, pureColors } = productsCover();
 
 import del from '@/assets/icons/delete-close/delete.svg';
@@ -73,12 +75,12 @@ import liked from '@/assets/icons/nav/liked.png';
 import check_square from '@/assets/icons/squares/check-square.png';
 
 import { userStore } from "@/entities/profile/model/user.store.ts";
+import { useUpdateCart } from "@/features/use-cart/api/update-cart.ts";
 import { useFavorite } from "@/features/use-favorite/model/use-favorite.ts";
 import { productsCover } from "@/features/use-product/model/use-product.ts";
 import { cartStore } from "@/entities/cart/model/cart.store.ts";
-import { productApi } from "@/features/use-product/api/product.api.ts";
-import { favoritesApi } from "@/features/use-favorite/api/favorites.api.ts";
-import { cartApi } from "@/features/use-cart/api/cart.api.ts";
+import { useGetProduct } from "@/features/use-product/api/get-product.ts";
+import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
 import { useProfile } from "@/features/use-profile/model/use-profile.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
 import { baseClasses } from "@/shared/const/base.classes.ts";

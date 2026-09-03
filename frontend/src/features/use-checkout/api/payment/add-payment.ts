@@ -2,58 +2,25 @@ import { handler } from "@/shared/api/http.ts";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
 import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { orderApi } from "@/features/use-order/api/order.api.ts";
+import { orderApi } from "@/features/use-order/api/add-order.ts";
 import { useCheckout } from "@/features/use-checkout/model/use-checkout.ts";
-import { cartApi } from "@/features/use-cart/api/cart.api.ts";
+import { useUpdateCart } from "@/features/use-cart/api/update-cart.ts";
 import { clearCheckoutForm } from "@/features/use-checkout/lib/clear.checkout.ts";
 import { checkoutStore } from "@/entities/checkout/model/checkout.store.ts";
 import type { UserCheckoutPayment } from "@/entities/checkout/model/checkout.types.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
 
-const { userData } = userStore();
 const { addOrder } = orderApi();
+const { userData } = userStore();
 const { payment } = checkoutForm();
-const { updateCheckedQuantity } = cartApi();
-const { openNotify, loading } = useBaseModals();
+const { openNotify } = useBaseModals();
+const { paymentMethod } = checkoutStore();
 const { clearPaymentForm } = clearCheckoutForm();
+const { updateCheckedQuantity } = useUpdateCart();
 const { isChosenPayment, paymentId } = useCheckout();
-const { userPayments, userPayment, paymentMethod } = checkoutStore();
 const { createPaymentMethodError, createPaymentCardErrors } = useFormsErrors();
 
-export const paymentApi = () => {
-    const getPayments = async () => {
-        loading.value = true;
-
-        try{
-            const res = await handler(`/payment/${userData.id}`, {
-                method: "GET",
-            });
-            console.log(res);
-            userPayments.value = res;
-
-            loading.value = false;
-        }catch(err){
-            console.error(`Failed to get the user res:`, err);
-        }
-    };
-
-    const getPayment = async () => {
-        loading.value = true;
-
-        const paymentId = localStorage.getItem("paymentId");
-        try{
-            const res = await handler(`/payment/item/${paymentId}`, {
-                method: "GET",
-            });
-            console.log(res);
-            userPayment.value = res;
-
-            loading.value = false;
-        }catch(err){
-            console.error(`Failed to get the user payment:`, err);
-        }
-    };
-
+export const useAddPayment = () => {
     const useSavedCard = (checkout: UserCheckoutPayment) => {
         paymentId.value = checkout.id;
 
@@ -132,26 +99,9 @@ export const paymentApi = () => {
         }
     };
 
-    const deletePayment = async (id: string) => {
-        try{
-            await handler(`/payment/${id}`, {
-                method: "DELETE",
-            });
-
-            await getPayments();
-        }catch(err){
-            console.error(`Failed to delete the user payment:`, err);
-        }
-    };
-
     return {
-        getPayments,
-        getPayment,
-
         useSavedCard,
         useSavedPayment,
         addPayment,
-
-        deletePayment,
     }
 }

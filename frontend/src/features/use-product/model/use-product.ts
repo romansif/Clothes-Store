@@ -287,10 +287,10 @@ export const productsCover = () => {
 
         if(count < 4 && count !== 0){
             return `🔥 Only ${count} left`;
+        }else if(cartForm.value.colors.hex && cartForm.value.sizes){
+            return `In stock ${count} pcs.`;
         }else if(count === 0){
-            return `Out of stock`;
-        }else if(cartForm.value.colors.hex){
-            return `In stock ${count} pcs`;
+            return `Select specific.`;
         }
     };
 

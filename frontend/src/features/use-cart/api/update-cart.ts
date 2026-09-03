@@ -1,88 +1,24 @@
 import { handler } from "@/shared/api/http.ts";
-import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
-import { productStore } from "@/entities/product/model/product.store.ts";
-import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { productApi } from "@/features/use-product/api/product.api.ts";
-import { addToCartForm } from "@/features/use-cart/model/cart.form.ts";
-import { clearAddToCartForm } from "@/features/use-cart/lib/clear.cart.ts";
-import { cartStore } from "@/entities/cart/model/cart.store.ts";
-import { orderStore } from "@/entities/order/model/order.store.ts";
-import { userStore } from "@/entities/profile/model/user.store.ts";
 import type {CartItem} from "@/entities/cart/model/cart.types.ts";
+import { productStore } from "@/entities/product/model/product.store.ts";
+import { orderStore } from "@/entities/order/model/order.store.ts";
+import { cartStore } from "@/entities/cart/model/cart.store.ts";
+import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
+import { productApi } from "@/features/use-product/api/add-product.ts"
+import { useDeleteCart } from "@/features/use-cart/api/delete-cart.ts";
+import { userStore } from "@/entities/profile/model/user.store.ts";
+import { useBaseModals } from "@/shared/lib/base.modal.ts";
 
+const { cart } = cartStore();
 const { userData } = userStore();
 const { orderItems } = orderStore();
-const { cartForm } = addToCartForm();
+const { getCartProducts } = useGetCart();
 const { openNotify } = useBaseModals();
 const { getAllProducts } = productApi();
-const { cart, unreadCount } = cartStore();
-const { addToCartErrors } = useFormsErrors();
-const { clearCartForm } = clearAddToCartForm();
-const { allProducts, products, product } = productStore();
+const { deleteProductCart } = useDeleteCart();
+const { allProducts, products } = productStore();
 
-export const cartApi = () => {
-    const getCartProducts = async () => {
-        try{
-            const res = await handler(`/cart/${userData.id}`, {
-                method: 'GET',
-            })
-            console.log(res);
-            cart.value = res;
-        }catch(err){
-            console.error(`Failed to get the cart products:`, err);
-        }
-    };
-
-    const addToCart = async () => {
-        try{
-            const currentProduct = product.value;
-            const currentQuantity = product.value.quantity.find(
-                q => q.hex === cartForm.value.colors.hex);
-
-            const newProductCart = await handler(`/cart`, {
-                method: "POST",
-                body: JSON.stringify({
-                    userId: userData.id,
-                    productId: currentProduct.id,
-                    images: currentProduct.images,
-                    title: currentProduct.title,
-                    category: currentProduct.category,
-                    material: currentProduct.material,
-                    price: currentProduct.price,
-                    description: currentProduct.description,
-                    colors: [{
-                        hex: cartForm.value.colors.hex,
-                        colorName: cartForm.value.colors.colorName
-                    }],
-                    sizes: cartForm.value.sizes,
-                    gender: currentProduct.gender,
-                    quantity: [{
-                        hex: currentQuantity?.hex,
-                        colorName: currentQuantity?.colorName,
-                        size: cartForm.value.sizes,
-                        count: 1
-                    }],
-                    status: currentProduct.status,
-                    checked: false,
-                })
-            });
-            console.log('New Cart item', newProductCart);
-            cart.value = newProductCart;
-
-            unreadCount.value += 1;
-
-            await getCartProducts();
-
-            clearCartForm();
-
-            await openNotify('You have successfully added the item to your cart.',
-                'You will now be redirected to the "Cart" page.');
-        }catch(err){
-            addToCartErrors(err);
-            console.error(`Failed to add the cart:`, err);
-        }
-    };
-
+export const useUpdateCart = () => {
     const checkCartItem = async (id: string, productId: string, product: CartItem) => {
         try{
             const productCart = cart.value?.find(
@@ -163,7 +99,7 @@ export const cartApi = () => {
                     }else{
                         console.warn('Достигнуто максимальное количество товара на складе.');
                         await openNotify('The item is no longer in stock.',
-                            'The maximum stock level for the item has been reached.')
+                            'The maximum stock level for the item has been reached.', 'cart')
                         return;
                     }
                 }else if(type === 'away') {
@@ -277,27 +213,10 @@ export const cartApi = () => {
         }
     };
 
-    const deleteProductCart = async (id: string) => {
-        try{
-            await handler(`/cart/${id}`, {
-                method: "DELETE",
-            });
-            await getCartProducts();
-        }catch(err){
-            console.error(`Failed to delete the cart product:`, err);
-        }
-    };
-
     return {
-        getCartProducts,
-
-        addToCart,
-
         checkCartItem,
         updateCartItem,
         updateCartChecked,
-        updateCheckedQuantity,
-
-        deleteProductCart
+        updateCheckedQuantity
     }
 }

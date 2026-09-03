@@ -24,14 +24,13 @@
 </template>
 
 <script setup lang="ts">
-
+const { useSavedCard } = useAddPayment();
 const { userPayments } = checkoutStore();
-const { useSavedCard } = paymentApi();
 const { savedPaymentClass } = paymentClasses();
 
 import { checkoutStore } from "@/entities/checkout/model/checkout.store.ts";
 import { paymentClasses } from "@/shared/const/checkout/payment.classes.ts";
-import { paymentApi } from "@/features/use-checkout/api/payment.api.ts";
+import { useAddPayment } from "@/features/use-checkout/api/payment/add-payment.ts";
 </script>
 
 <style scoped>

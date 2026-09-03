@@ -4,26 +4,16 @@ import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { favoriteStore } from "@/entities/favorite/model/favorite.store.ts";
 import { cartStore } from "@/entities/cart/model/cart.store.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
+import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
 
-const { userData } = userStore();
 const { cart } = cartStore();
+const { userData } = userStore();
 const { products } = productStore();
 const { favorite } = favoriteStore();
 const { openNotify } = useBaseModals();
+const { getFavoriteProducts } = useGetFavorite();
 
-export const favoritesApi = () => {
-    const getFavoriteProducts = async () => {
-        try{
-            const res = await handler(`/favorites/${userData.id}`, {
-                method: 'GET',
-            })
-            console.log(res)
-            favorite.value = res;
-        }catch(err){
-            console.error(`Failed to get the favorite products:`, err);
-        }
-    };
-
+export const useToggleFavorite = () => {
     const toggleToFavorite = async (id: string, type: string, productId: string) => {
         try{
             const sourceList = type === 'cart' ? cart?.value : products?.value;
@@ -65,7 +55,7 @@ export const favoritesApi = () => {
                 await getFavoriteProducts();
 
                 await openNotify('You have successfully added the item to your favorite.',
-                    'You will now be redirected to the "Favorite" page.');
+                    'You will now be redirected to the "Favorite" page.', 'favorite');
             }else{
                 await deleteFavoriteProduct(productId);
             }
@@ -86,10 +76,7 @@ export const favoritesApi = () => {
     };
 
     return{
-        getFavoriteProducts,
-
         toggleToFavorite,
-
         deleteFavoriteProduct,
     }
 }

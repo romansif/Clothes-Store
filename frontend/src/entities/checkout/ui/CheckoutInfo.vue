@@ -18,10 +18,10 @@
 const { isSavedAddress } = useCheckout();
 const { information } = checkoutForm();
 const { informationErrors } = checkoutErrors();
-const { addInformation, useInformation } = addressApi();
+const { addInformation, useInformation } = useAddAddress();
 
 import { watch } from "vue";
-import { addressApi } from "@/features/use-checkout/api/address.api.ts";
+import { useAddAddress } from "@/features/use-checkout/api/address/add-address.ts";
 import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
 import { checkoutErrors }from "@/features/use-checkout/lib/checkout.errors.ts";
 import { useCheckout } from "@/features/use-checkout/model/use-checkout.ts";

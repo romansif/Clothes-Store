@@ -29,13 +29,13 @@
 const { items } = useOrder();
 const { clipboard } = useOrder();
 const { choiceModal } = useBaseModals();
-const { getFilteredOrders } = orderApi();
+const { getFilteredOrders } = useGetOrder();
 const { toggleCurrentOrder } = useProfileModals();
 
 import { onMounted } from "vue";
 import { useOrder } from "@/features/use-order/model/use-order.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
-import { orderApi } from "@/features/use-order/api/order.api.ts";
+import { useGetOrder } from "@/features/use-order/api/get-order.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 
 import OrderList from "./OrderList.vue";

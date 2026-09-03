@@ -31,18 +31,18 @@
 <script setup lang="ts">
 const { userData } = userStore();
 const { isFavorite } = useFavorite();
+const { getProduct } = useGetProduct();
 const { seasonalSelections } = productStore();
-const { getProduct } = productApi();
 const { productPreviewClass } = baseClasses();
-const { toggleToFavorite } = favoritesApi();
+const { toggleToFavorite } = useToggleFavorite();
 const { isOutOfStack, productPreview } = productsCover();
 
 import { userStore } from "@/entities/profile/model/user.store.ts";
 import { useFavorite } from "@/features/use-favorite/model/use-favorite.ts";
 import { baseClasses } from "@/shared/const/base.classes.ts";
 import { productsCover } from "@/features/use-product/model/use-product.ts";
-import { productApi } from "@/features/use-product/api/product.api.ts";
-import { favoritesApi } from "@/features/use-favorite/api/favorites.api.ts";
+import { useGetProduct } from "@/features/use-product/api/get-product.ts";
+import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
 
 import like from '@/assets/icons/nav/like.png';

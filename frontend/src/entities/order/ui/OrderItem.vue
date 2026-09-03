@@ -72,15 +72,15 @@
 
 <script setup lang="ts">
 const { orders } = orderStore();
-const { copyText, orderQuantity } = useOrder();
-const { getProduct } = productApi();
+const { getProduct } = useGetProduct();
 const { toggleOrder } = useBaseModals();
 const { orderStatus } = ordersClasses();
+const { copyText, orderQuantity } = useOrder();
 const { orderPreview, pureColorsName } = productsCover();
 
 import { useOrder } from "@/features/use-order/model/use-order.ts";
 import { orderStore } from "@/entities/order/model/order.store.ts";
-import { productApi } from "@/features/use-product/api/product.api.ts";
+import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { productsCover } from "@/features/use-product/model/use-product.ts";
 import { ordersClasses } from "@/shared/const/product/orders.classes.ts";

@@ -215,19 +215,21 @@
 </template>
 
 <script setup lang="ts">
+const { createProduct } = useAddProduct();
 const { loading, notify } = useBaseModals();
 const { createProductFormErrors } = productsFormErrors();
-const { product, collections, categories, materials, genders, activeProductImg } = productStore();
 const { openSelectProductCard, fileInput } = useProductsModals();
 const { createProductForm, moreCreateItem, createProductFormMessages } = productForms();
-const { createProduct, updateProductImages, updateProductColors, updateProductDesc } = productApi();
+const { updateProductImages, updateProductColors, updateProductDesc } = useUpdateProducts();
+const { product, collections, categories, materials, genders, activeProductImg } = productStore();
 const { productInfoPreview, pureCards, pureInfoColors, pureColorsName, pureSizesName, isAvailableSizes } = productsCover();
 
 import { onMounted, watch } from "vue";
 import { productsCover } from "@/features/use-product/model/use-product.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
-import { productApi } from "@/features/use-product/api/product.api.ts";
+import { useAddProduct } from "@/features/use-product/api/add-product.ts";
+import { useUpdateProducts } from "@/features/use-product/api/update-product.ts";
 import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
 import { productForms } from "@/features/use-product/model/product.forms.ts";
 import { productsFormErrors } from "@/features/use-product/lib/product.error.ts";

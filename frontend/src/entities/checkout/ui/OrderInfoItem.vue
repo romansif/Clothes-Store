@@ -27,11 +27,11 @@
 <script setup lang="ts">
 
 const { items } = orderStore();
-const { getProduct } = productApi();
+const { getProduct } = useGetProduct();
 const { orderPreview, pureQuantity, pureColorsName } = productsCover();
 
 import { orderStore } from "@/entities/order/model/order.store.ts";
-import { productApi } from "@/features/use-product/api/product.api.ts";
+import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { productsCover } from "@/features/use-product/model/use-product.ts";
 </script>
 

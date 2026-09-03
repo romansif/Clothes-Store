@@ -3,23 +3,23 @@
 </template>
 
 <script setup lang="ts">
-const { getProduct } = productApi();
 const { loading } = useBaseModals();
-const { getCartProducts } = cartApi();
+const { getCartProducts } = useGetCart();
 const { componentError } = errorHandler();
-const { getFavoriteProducts } = favoritesApi();
-const { product, activeProductImg } = productStore();
 const { productInfoPreview } = productsCover();
-const { getAllProducts, getFilteredProducts, getSeasonal, getWeekProducts, getYearProducts } = productApi();
+const { getFavoriteProducts } = useGetFavorite();
+const { product, activeProductImg } = productStore();
+const { getProduct, getAllProducts, getFilteredProducts, getSeasonal,
+  getWeekProducts, getYearProducts } = useGetProduct();
 
 import { useRoute } from "vue-router";
 import { watch } from "vue";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { cartApi } from "@/features/use-cart/api/cart.api.ts";
+import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
-import { productApi } from "@/features/use-product/api/product.api.ts";
+import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
-import { favoritesApi } from "@/features/use-favorite/api/favorites.api.ts";
+import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
 import { productsCover } from "@/features/use-product/model/use-product.ts";
 
 const route = useRoute();

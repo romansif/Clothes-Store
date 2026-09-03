@@ -1,14 +1,14 @@
 import router  from "@/app/router";
 import { computed, ref } from "vue";
 import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
-import { cartApi } from "@/features/use-cart/api/cart.api.ts";
+import { addToCart } from "@/features/use-cart/api/add-to-cart.ts";
 import { checkoutErrors } from "@/features/use-checkout/lib/checkout.errors.ts";
 import { orderStore } from "@/entities/order/model/order.store.ts";
 import { checkoutStore } from "@/entities/checkout/model/checkout.store.ts";
 
 const { items } = orderStore();
 const { shipping } = checkoutForm();
-const { updateCartChecked } = cartApi();
+const { updateCartChecked } = addToCart();
 const { deliveryPrice, paymentMethod } = checkoutStore();
 const { paymentErrors } = checkoutErrors();
 

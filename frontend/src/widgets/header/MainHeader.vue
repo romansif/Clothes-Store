@@ -51,7 +51,7 @@
 <script setup lang="ts">
 const { products } = productStore();
 const { searchProductForm } = searchForm();
-const { getFilteredProducts } = productApi();
+const { getFilteredProducts } = useGetProduct();
 const { selectedCategoryClass } = productsClasses();
 const { toggleFilterAside } = useProductsModals();
 const { debouncedSearch } = useGetSearchedProducts();
@@ -62,7 +62,7 @@ import { filterProduct } from "@/features/use-navigation/model/filter-product.ts
 import { productsClasses } from "@/shared/const/product/products.classes.ts";
 import { searchForm } from "@/widgets/navigation/model/search.form.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
-import { productApi } from "@/features/use-product/api/product.api.ts";
+import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { clearSearchProductForm } from "@/features/use-navigation/lib/clear.search.ts";
 import { useGetSearchedProducts } from "@/features/use-navigation/model/search-product.ts";
 import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";

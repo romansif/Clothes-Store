@@ -26,19 +26,19 @@
 
 <script setup lang="ts">
 const { userData } = userStore();
-const { productsWeek } = productStore();
-const { getProduct } = productApi();
-const { toggleToFavorite } = favoritesApi();
 const { isFavorite } = useFavorite();
-const { isOutOfStack, productPreview } = productsCover();
+const { getProduct } = useGetProduct();
+const { productsWeek } = productStore();
 const { productPreviewClass } = baseClasses();
+const { toggleToFavorite } = useToggleFavorite();
+const { isOutOfStack, productPreview } = productsCover();
 
 import { userStore } from "@/entities/profile/model/user.store.ts";
 import { baseClasses } from "@/shared/const/base.classes.ts";
 import { productsCover } from "@/features/use-product/model/use-product.ts";
-import { productApi } from "@/features/use-product/api/product.api.ts";
+import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
-import { favoritesApi } from "@/features/use-favorite/api/favorites.api.ts";
+import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
 import { useFavorite } from "@/features/use-favorite/model/use-favorite.ts";
 
 import liked from "@/assets/icons/nav/liked.png";

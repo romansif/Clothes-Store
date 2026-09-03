@@ -1,12 +1,12 @@
 import { ref } from "vue";
 import { clearUsersForms } from "@/features/use-profile/lib/clear.users.ts";
-import { productApi } from "@/features/use-product/api/product.api.ts";
-import { cartApi } from "@/features/use-cart/api/cart.api.ts";
-import { addressApi } from "@/features/use-checkout/api/address.api.ts";
-import { paymentApi } from "@/features/use-checkout/api/payment.api.ts";
-import { orderApi } from "@/features/use-order/api/order.api.ts";
-import { authApi } from "@/features/use-auth/api/auth.api.ts";
-import { favoritesApi } from "@/features/use-favorite/api/favorites.api.ts";
+import { productApi } from "@/features/use-product/api/add-product.ts";
+import { addToCart } from "@/features/use-cart/api/add-to-cart.ts";
+import { useAddAddress } from "@/features/use-checkout/api/address/add-address.ts";
+import { addPayment } from "@/features/use-checkout/api/payment/add-payment.ts";
+import { orderApi } from "@/features/use-order/api/add-order.ts";
+import { useAuth } from "@/features/use-auth/api/use-auth.ts";
+import { toggleToFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
 
 const avatarModal = ref<boolean>(false);
 const fileInput = ref<HTMLInputElement | null>(null);
@@ -21,13 +21,13 @@ const deleteType = ref<string>('');
 const deleteMessage = ref<string>('');
 const deleteChoice = ref<boolean>(false);
 
-const { deleteAddress } = addressApi();
-const { deletePayment } = paymentApi();
+const { deleteAddress } = useAddAddress();
+const { deletePayment } = addPayment();
 const { deleteProduct } = productApi();
-const { deleteProductCart } = cartApi();
-const { logout, deleteAccount } = authApi();
+const { deleteProductCart } = addToCart();
+const { logout, deleteAccount } = useAuth();
 const { deleteOrderProducts } = orderApi();
-const { deleteFavoriteProduct } = favoritesApi();
+const { deleteFavoriteProduct } = toggleToFavorite();
 const { clearUpdateUserForm } = clearUsersForms();
 
 export const useProfileModals = () => {

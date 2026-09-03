@@ -52,9 +52,9 @@
 </template>
 
 <script setup lang="ts">
-const { signUp } = authApi();
+const { signUp } = useAuth();
 const { showPassword } = authStore();
-const { togglePassword } = useAuth();
+const { togglePassword } = toggleAuth();
 const { registerFormErrors } = authFormsErrors();
 const { countries, selectedCountryCode } = userStore();
 const { registerForm, registerFormMessages } = authForms();
@@ -63,14 +63,14 @@ const { signUpPhoneClass, signUpPasswordClass, selectPhoneCodeClass } = authClas
 
 import { watch } from "vue";
 import { IMaskComponent as IMask } from "vue-imask";
-import { authApi } from "@/features/use-auth/api/auth.api.ts";
+import { useAuth } from "@/features/use-auth/api/use-auth.ts";
 import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
 import { authStore } from "@/entities/auth/model/auth.store.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
 import { authForms } from "@/features/use-auth/model/auth.forms.ts";
 import { authClasses } from "@/shared/const/auth/auth.classes.ts";
 import { authFormsErrors } from "@/features/use-auth/lib/auth.errors.ts";
-import { useAuth } from "@/features/use-auth/model/use-auth.ts";
+import { toggleAuth } from "@/features/use-auth/model/toggle-auth.ts";
 
 import closed from "@/assets/icons/auth/closed.png";
 import opened from "@/assets/icons/auth/opened.png";

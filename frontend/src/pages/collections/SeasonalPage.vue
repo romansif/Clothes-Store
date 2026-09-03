@@ -16,8 +16,8 @@
       <main class="flex flex-col gap-6 mt-12">
         <HeaderSelections />
         <div class="flex flex-col gap-14">
-          <section v-if="seasonalSelections.length > 0" class="font-raleway flex flex-col">
-            <div class="flex flex-col gap-2.5">
+          <section class="font-raleway flex flex-col">
+            <div v-if="seasonalSelections.length > 0" class="flex flex-col gap-2.5">
               <h2 class="font-extrabold text-5xl">
                 SEARCH RESULTS
               </h2>
@@ -27,12 +27,6 @@
               </h3>
             </div>
             <SeasonalList />
-          </section>
-          <section v-else class="flex justify-center pt-45">
-            <div class="flex flex-col gap-4 items-center">
-              <img :src="empty_products" alt="">
-              <span class="text-lg font-semibold">The seasonal selections is coming soon</span>
-            </div>
           </section>
         </div>
       </main>
@@ -61,7 +55,6 @@ import Loading from "@/widgets/Loading.vue";
 import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
 import HeaderSelections from "@/widgets/header/HeaderSelections.vue";
 import SeasonalList from "@/entities/collection/SeasonalList.vue";
-import empty_products from "@/assets/icons/products/icon-products.svg";
 import AsideFilter from "@/widgets/AsideFilter.vue";
 import Notification from "@/shared/ui/Notification.vue";
 </script>

@@ -35,15 +35,15 @@
 </template>
 
 <script setup lang="ts">
-const { signUp } = authApi();
+const { signUp } = useAuth();
+const { toggleSignUp } = toggleAuth();
 const { currentRole, isRole } = authStore();
-const { toggleSignUp } = useAuth();
 const { loading, notify } = useBaseModals();
 const { clearRegisterForm } = clearAuthForms();
 
-import { authApi } from "@/features/use-auth/api/auth.api.ts";
+import { useAuth } from "@/features/use-auth/api/use-auth.ts";
 import { clearAuthForms } from "@/features/use-auth/lib/clear.auth.ts";
-import { useAuth } from "@/features/use-auth/model/use-auth.ts";
+import { toggleAuth } from "@/features/use-auth/model/toggle-auth.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { authStore } from "@/entities/auth/model/auth.store.ts";
 

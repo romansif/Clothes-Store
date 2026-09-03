@@ -37,18 +37,18 @@
 const { userData } = userStore();
 const { favorite } = favoriteStore();
 const { isFavorite } = useFavorite();
-const { getProduct } = productApi();
-const { toggleToFavorite } = favoritesApi();
+const { getProduct } = useGetProduct();
 const { productPreviewClass } = baseClasses();
+const { toggleToFavorite } = useToggleFavorite();
 const { isOutOfStack, productPreview } = productsCover();
 
 import { useFavorite } from "@/features/use-favorite/model/use-favorite.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
 import { productsCover } from "@/features/use-product/model/use-product.ts";
 import { baseClasses } from "@/shared/const/base.classes.ts";
-import { productApi } from "@/features/use-product/api/product.api.ts";
+import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { favoriteStore } from "@/entities/favorite/model/favorite.store.ts";
-import { favoritesApi } from "@/features/use-favorite/api/favorites.api.ts";
+import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
 
 import like from "@/assets/icons/nav/like.png";
 import update from "@/assets/icons/products/refresh.svg";

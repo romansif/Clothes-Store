@@ -14,13 +14,13 @@
 </template>
 
 <script setup lang="ts">
-const { isSavedPayment } = useCheckout();
 const { payment } = checkoutForm();
+const { isSavedPayment } = useCheckout();
 const { paymentErrors } = checkoutErrors();
-const { addPayment, useSavedPayment } = paymentApi();
+const { addPayment, useSavedPayment } = useAddPayment();
 
 import { watch } from "vue";
-import { paymentApi } from "@/features/use-checkout/api/payment.api.ts";
+import { useAddPayment } from "@/features/use-checkout/api/payment/add-payment.ts";
 import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
 import { checkoutErrors } from "@/features/use-checkout/lib/checkout.errors.ts";
 import { useCheckout } from "@/features/use-checkout/model/use-checkout.ts";

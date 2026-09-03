@@ -93,7 +93,7 @@
 </template>
 
 <script setup lang="ts">
-const { getAllProducts } = productApi();
+const { getAllProducts } = useGetProduct();
 const { allProducts, sizes } = productStore();
 const { toggleFilterAside } = useProductsModals();
 const { selectedSidebarCategoryClass } = productsClasses();
@@ -103,7 +103,7 @@ import { useRoute } from 'vue-router';
 import { computed, onMounted } from "vue";
 import { filterProduct } from "@/features/use-navigation/model/filter-product.ts";
 import { productsClasses } from "@/shared/const/product/products.classes.ts";
-import { productApi } from "@/features/use-product/api/product.api.ts";
+import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
 import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
 

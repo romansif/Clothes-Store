@@ -3,12 +3,12 @@
 </template>
 
 <script setup lang="ts">
-const { getPayments } = paymentApi();
-const { getAddresses, getAddress } = addressApi();
+const { getPayments } = useGetPayment();
+const { getAddresses, getAddress } = useGetAddress();
 
 import { onMounted } from "vue";
-import { paymentApi } from "@/features/use-checkout/api/payment.api.ts";
-import { addressApi } from "@/features/use-checkout/api/address.api.ts";
+import { useGetPayment } from "@/features/use-checkout/api/payment/get-payment.ts";
+import { useGetAddress } from "@/features/use-checkout/api/address/get-address.ts";
 
 onMounted(async () => {
   await getAddress();

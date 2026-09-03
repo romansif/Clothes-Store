@@ -43,17 +43,17 @@
 </template>
 
 <script setup lang="ts">
-const { signIn } = authApi();
-const { signInRoleClass } = authClasses();
+const { signIn } = useAuth();
 const { showPassword } = authStore();
-const { togglePassword } = useAuth();
+const { togglePassword } = toggleAuth();
+const { signInRoleClass } = authClasses();
 const { loginFormErrors } = authFormsErrors();
 const { loginForm, loginFormMessages } = authForms();
 
 import { watch } from "vue";
-import { authApi } from "@/features/use-auth/api/auth.api.ts";
+import { useAuth } from "@/features/use-auth/api/use-auth.ts";
 import { authForms } from "@/features/use-auth/model/auth.forms.ts";
-import { useAuth } from "@/features/use-auth/model/use-auth.ts";
+import { toggleAuth } from "@/features/use-auth/model/toggle-auth.ts";
 import { authStore } from "@/entities/auth/model/auth.store.ts";
 import { authClasses } from "@/shared/const/auth/auth.classes.ts";
 import { authFormsErrors } from "@/features/use-auth/lib/auth.errors.ts";

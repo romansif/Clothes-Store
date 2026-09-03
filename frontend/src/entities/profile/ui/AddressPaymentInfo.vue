@@ -48,16 +48,16 @@
 </template>
 
 <script setup lang="ts">
-const { getAddresses } = addressApi();
-const { getPayments } = paymentApi();
+const { getPayments } = useGetPayment();
+const { getAddresses } = useGetAddress();
 const { userAddresses, userPayments } = checkoutStore();
 const { toggleAddressesAndCards, deleteChoice } = useProfileModals();
 
 import { onMounted } from "vue";
 import { checkoutStore } from "@/entities/checkout/model/checkout.store.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
-import { addressApi } from "@/features/use-checkout/api/address.api.ts";
-import { paymentApi } from "@/features/use-checkout/api/payment.api.ts";
+import { useGetAddress } from "@/features/use-checkout/api/address/get-address.ts";
+import { useGetPayment } from "@/features/use-checkout/api/payment/get-payment.ts";
 
 import PaymentsList from "@/entities/profile/ui/payment/PaymentsList.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";

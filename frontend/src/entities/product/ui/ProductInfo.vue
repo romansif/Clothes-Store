@@ -81,26 +81,29 @@
 </template>
 
 <script setup lang="ts">
+import {useUpdateCart} from "@/features/use-cart/api/update-cart.ts";
+
 const { userData } = userStore();
 const { product } = productStore();
 const { isFavorite } = useFavorite();
+const { addToCart } = useAddToCart();
 const { addColor, addSize } = useCart();
-const { toggleToFavorite } = favoritesApi();
-const { addToCart, updateCartItem } = cartApi();
+const { updateCartItem } = useUpdateCart();
 const { cartFormErrors } = addToCartErrors();
 const { toggleSizeGuide } = useProductsModals();
+const { toggleToFavorite } = useToggleFavorite();
 const { cartForm, cartFormMessages } = addToCartForm();
 const { selectedColorClass, selectedSizesClass } = productsClasses();
 const { pureInfoColors, isAvailableSizes, isInStock, isInCart, quantityInfo } = productsCover();
 
 import { watch } from "vue";
 import { productsCover } from "@/features/use-product/model/use-product.ts";
-import { cartApi } from "@/features/use-cart/api/cart.api.ts";
+import { useAddToCart} from "@/features/use-cart/api/add-to-cart.ts";
 import { useCart } from "@/features/use-cart/model/use-cart.ts";
 import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
 import { useFavorite } from "@/features/use-favorite/model/use-favorite.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
-import { favoritesApi } from "@/features/use-favorite/api/favorites.api.ts";
+import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
 import { productsClasses } from "@/shared/const/product/products.classes.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
 import { addToCartForm } from "@/features/use-cart/model/cart.form.ts";

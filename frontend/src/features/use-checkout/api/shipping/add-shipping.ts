@@ -9,25 +9,12 @@ import { userStore } from "@/entities/profile/model/user.store.ts";
 
 const { userData } = userStore();
 const { shipping } = checkoutForm();
-const { userShipping } = checkoutStore();
 const { openNotify  } = useBaseModals();
+const { userShipping } = checkoutStore();
 const { clearPaymentForm } = clearCheckoutForm();
 const { createSippingErrors } = useFormsErrors();
 
-export const shippingApi = () => {
-    const getShipping = async () => {
-        const paymentId = localStorage.getItem("paymentId");
-        try{
-            const res = await handler(`/shipping/${paymentId}`, {
-                method: "GET",
-            });
-            console.log(res);
-            userShipping.value = res;
-        }catch(err){
-            console.error(`Failed to get the shipping:`, err);
-        }
-    };
-
+export const useAddShipping = () => {
     const addShipping = async () => {
         try{
             const newShipping = await handler(`/shipping`, {
@@ -56,8 +43,6 @@ export const shippingApi = () => {
     };
 
     return {
-        getShipping,
-
         addShipping,
     }
 }

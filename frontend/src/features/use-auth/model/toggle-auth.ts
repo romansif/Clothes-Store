@@ -7,7 +7,7 @@ const { showPassword, showSignSection, currentRole, isRole } = authStore();
 const { clearRegisterForm, clearLoginForm } = clearAuthForms();
 const { CODE_LENGTH, codeDigits, inputRefs, timeLeft, timerInterval } = authForms();
 
-export const useAuth = () => {
+export const toggleAuth = () => {
     const togglePassword = () => {
         showPassword.value.password = !showPassword.value.password;
     };

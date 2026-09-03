@@ -41,12 +41,12 @@
 </template>
 
 <script setup lang="ts">
-const { signIn } = authApi();
+const { signIn } = useAuth();
 const { showSignSection } = authStore();
 const { loading, notify } = useBaseModals();
 const { clearLoginForm } = clearAuthForms();
 
-import { authApi } from "@/features/use-auth/api/auth.api.ts";
+import { useAuth } from "@/features/use-auth/api/use-auth.ts";
 import { clearAuthForms } from "@/features/use-auth/lib/clear.auth.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { authStore } from "@/entities/auth/model/auth.store.ts";

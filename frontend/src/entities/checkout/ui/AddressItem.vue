@@ -27,11 +27,11 @@
 <script setup lang="ts">
 
 const { userAddresses } = checkoutStore();
-const { useSavedAddress } = addressApi();
+const { useSavedAddress } = useAddAddress();
 const { savedAddressClass } = informationClasses()
 
 import { checkoutStore } from "@/entities/checkout/model/checkout.store.ts";
-import { addressApi } from "@/features/use-checkout/api/address.api.ts";
+import { useAddAddress } from "@/features/use-checkout/api/address/add-address.ts";
 import { informationClasses } from "@/shared/const/checkout/information.classes.ts";
 </script>
 

@@ -85,15 +85,15 @@
 </template>
 
 <script setup lang="ts">
+const { addPayment } = useAddPayment();
 const { userPayments } = checkoutStore();
-const { addPayment } = paymentApi();
-const { paymentMethodClass } = paymentClasses();
 const { paymentErrors } = checkoutErrors();
+const { paymentMethodClass } = paymentClasses();
 const { payment, paymentMessages } = checkoutForm();
 const { openCardForm, closeCardForm, toggleShowPayment, isDebitCard } = useCheckout();
 
 import { useCheckout } from "@/features/use-checkout/model/use-checkout.ts";
-import { paymentApi } from "@/features/use-checkout/api/payment.api.ts";
+import { useAddPayment } from "@/features/use-checkout/api/payment/add-payment.ts";
 import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
 import { checkoutStore } from "@/entities/checkout/model/checkout.store.ts";
 import { paymentClasses } from "@/shared/const/checkout/payment.classes.ts";

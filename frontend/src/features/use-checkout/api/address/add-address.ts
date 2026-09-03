@@ -7,49 +7,18 @@ import { clearCheckoutForm } from "@/features/use-checkout/lib/clear.checkout.ts
 import { checkoutStore } from "@/entities/checkout/model/checkout.store.ts";
 import type { UserCheckoutAddress } from "@/entities/checkout/model/checkout.types.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
+import {useGetAddress} from "@/features/use-checkout/api/address/get-address.ts";
 
 const { userData } = userStore();
 const { information } = checkoutForm();
-const { openNotify, loading } = useBaseModals();
-const { userAddresses, userAddress } = checkoutStore();
+const { openNotify } = useBaseModals();
+const { getAddresses } = useGetAddress();
+const { userAddresses } = checkoutStore();
 const { createInformationErrors } = useFormsErrors();
 const { clearInformationForm } = clearCheckoutForm();
 const { isChosenAddress, isChosenContactInfo, informationId } = useCheckout();
 
-export const addressApi = () => {
-    const getAddresses = async () => {
-        loading.value = true;
-
-        try{
-            const res = await handler(`/address/${userData.id}`, {
-                method: "GET",
-            });
-            console.log(res);
-            userAddresses.value = res;
-
-            loading.value = false;
-        }catch(err){
-            console.error(`Failed to get the user addresses:`, err);
-        }
-    };
-
-    const getAddress = async () => {
-        loading.value = true;
-
-        const addressId = localStorage.getItem("addressId");
-        try{
-            const res = await handler(`/address/item/${addressId}`, {
-                method: "GET",
-            });
-            console.log(res);
-            userAddress.value = res;
-
-            loading.value = false;
-        }catch(err){
-            console.error(`Failed to get the user address:`, err);
-        }
-    };
-
+export const useAddAddress = () => {
     const useSavedContactInfo = (checkout: UserCheckoutAddress) => {
         informationId.value = checkout.id
         information.value.email = checkout.email
@@ -150,28 +119,11 @@ export const addressApi = () => {
         }
     };
 
-    const deleteAddress = async (id: string) => {
-        try{
-            await handler(`/address/${id}`, {
-                method: "DELETE",
-            });
-
-            await getAddresses();
-        }catch(err){
-            console.error(`Failed to delete the user address:`, err);
-        }
-    };
-
     return {
-        getAddresses,
-        getAddress,
-
         useSavedContactInfo,
         useSavedAddress,
         useInformation,
         addInformation,
-
-        deleteAddress,
     }
 
 }

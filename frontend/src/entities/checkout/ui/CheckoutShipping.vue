@@ -12,11 +12,11 @@
 
 <script setup lang="ts">
 const { shipping } = checkoutForm();
-const { addShipping } = shippingApi();
+const { addShipping } = useAddShipping();
 const { shippingErrors } = checkoutErrors();
 
 import { watch } from "vue";
-import { shippingApi } from "@/features/use-checkout/api/shipping.api.ts";
+import { useAddShipping } from "@/features/use-checkout/api/shipping/add-shipping.ts";
 import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
 import { checkoutErrors } from "@/features/use-checkout/lib/checkout.errors.ts";
 

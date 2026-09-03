@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
 const { productsWeek } = productStore();
-const { vHorizontalScroll } = productsCover()
+const { vHorizontalScroll } = productsCover();
 
 import { productStore } from "@/entities/product/model/product.store.ts";
 import { productsCover } from "@/features/use-product/model/use-product.ts";
