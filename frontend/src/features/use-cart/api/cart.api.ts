@@ -36,6 +36,8 @@ export const cartApi = () => {
     const addToCart = async () => {
         try{
             const currentProduct = product.value;
+            const currentQuantity = product.value.quantity.find(
+                q => q.hex === cartForm.value.colors.hex);
 
             const newProductCart = await handler(`/cart`, {
                 method: "POST",
@@ -54,7 +56,12 @@ export const cartApi = () => {
                     }],
                     sizes: cartForm.value.sizes,
                     gender: currentProduct.gender,
-                    quantity: 1,
+                    quantity: [{
+                        hex: currentQuantity?.hex,
+                        colorName: currentQuantity?.colorName,
+                        size: cartForm.value.sizes,
+                        count: 1
+                    }],
                     status: currentProduct.status,
                     checked: false,
                 })
@@ -69,7 +76,7 @@ export const cartApi = () => {
             clearCartForm();
 
             await openNotify('You have successfully added the item to your cart.',
-                'You will now be redirected to the "Cart" page.', '');
+                'You will now be redirected to the "Cart" page.');
         }catch(err){
             addToCartErrors(err);
             console.error(`Failed to add the cart:`, err);
@@ -78,7 +85,8 @@ export const cartApi = () => {
 
     const checkCartItem = async (id: string, productId: string, product: CartItem) => {
         try{
-            const productCart = cart.value?.find(c => c.id === id);
+            const productCart = cart.value?.find(
+                c => c.id === id);
             if(productCart){
                 if(!productCart?.checked){
                     await handler(`/cart/${productId}`, {
@@ -96,7 +104,8 @@ export const cartApi = () => {
                     });
                 }
 
-                const index = orderItems.value.findIndex(item => item.id === product.id);
+                const index = orderItems.value.findIndex(
+                    item => item.id === product.id);
                 if(index === -1) {
                     orderItems.value.push(product);
                     localStorage.setItem('orderItems', JSON.stringify(orderItems.value));
@@ -113,20 +122,27 @@ export const cartApi = () => {
 
     const updateCartItem = async (type: string, id: string, status: string) => {
         try{
-            const productCart = cart.value?.find(c => c.id === id);
+            const productCart = cart.value?.find(
+                c => c.id === id);
             const product = products.value?.find(
                 p => p.id === productCart?.productId
             );
 
-            if(!productCart && !product) {
+            if(!productCart || !product) {
                 console.log('Товар в корзине или в каталоге не найден')
                 return
             }
 
             const basePrice =  Number(product?.price)
-            const stock = Number(product?.quantity);
             const currentPrice = Number(productCart?.price);
-            const currentQuantity = Number(productCart?.quantity);
+
+            const currentItem = productCart?.quantity.find(
+                p => p.count !== undefined);
+            const currentQuantity = Number(currentItem?.count);
+
+            const stockItem = product?.quantity.find(
+                p => p.hex === currentItem?.hex && p.size === currentItem?.size)
+            const stock = Number(stockItem?.count);
 
             if(status === 'Availability'){
                 if(type === 'add'){
@@ -138,13 +154,16 @@ export const cartApi = () => {
                             method: "PATCH",
                             body: JSON.stringify({
                                 price: newPrice,
-                                quantity: newQuantity,
+                                quantity: productCart?.quantity.map(item => ({
+                                    ...item,
+                                    count: newQuantity,
+                                })),
                             })
                         });
                     }else{
                         console.warn('Достигнуто максимальное количество товара на складе.');
                         await openNotify('The item is no longer in stock.',
-                            'The maximum stock level for the item has been reached.', '')
+                            'The maximum stock level for the item has been reached.')
                         return;
                     }
                 }else if(type === 'away') {
@@ -158,7 +177,10 @@ export const cartApi = () => {
                             method: "PATCH",
                             body: JSON.stringify({
                                 price: newPrice,
-                                quantity: newQuantity,
+                                quantity: productCart?.quantity.map(item => ({
+                                    ...item,
+                                    count: newQuantity,
+                                })),
                             })
                         });
                     }
@@ -195,47 +217,62 @@ export const cartApi = () => {
         await getCartProducts();
         await getAllProducts();
 
-        const checkedItems = cart.value.filter(
-            item => item.checked).map(
-                item => ({ ...item })
-        );
-        if (!checkedItems || checkedItems.length === 0) {
+        const checkedItems = cart.value.filter(item => item.checked).map(item => ({ ...item }));
+
+        if (!checkedItems.length) {
             console.log('Нет выбранных (checked) товаров в корзине!', checkedItems);
             return;
         }
 
-        try{
-            for(const item of checkedItems) {
+        try {
+            for(const item of checkedItems){
                 await deleteProductCart(item.id);
 
                 const product = allProducts.value?.find(
                     p => p.id === item.productId);
-                if(!product) {
+                if (!product) {
                     console.log(`Товар в корзине c id=${item.productId} или в каталоге не найден`);
-                    continue
+                    continue;
                 }
 
-                console.log(product, item);
+                const cartObj = item?.quantity?.find(
+                    p => p.count !== undefined);
+                if (!cartObj) {
+                    console.log(`У товара ${item.productId} в корзине нет данных о варианте`, item);
+                    continue;
+                }
 
-                const currentQuantity = Number(product?.quantity);
-                const cartQuantity = Number(item?.quantity);
-                const newQuantity = currentQuantity - cartQuantity;
+                const cartQuantity = Number(cartObj.count);
 
-                const updatedData = newQuantity > 0
-                    ? { quantity: newQuantity }
-                    : { status: 'Exhausted', quantity: newQuantity };
+                const newQuantityArr = product.quantity.map(
+                    v => {
+                        const isSame = v.hex === cartObj.hex && String(v.size) === String(cartObj.size);
+                        if (!isSame) return { ...v };
 
-                await handler(`/products/${product?.id}`, {
+                        return {...v, count: Math.max(0, Number(v.count) - cartQuantity)};
+                    }
+                );
+
+                const isExhausted = newQuantityArr.every(v => Number(v.count) <= 0);
+
+                const updatedData = {
+                    quantity: newQuantityArr,
+                    status: isExhausted ? 'Exhausted' : product.status
+                };
+
+                await handler(`/products/${product.id}`, {
                     method: "PATCH",
                     body: JSON.stringify(updatedData)
                 });
-                await handler(`/favorites/${product?.id}`, {
+
+                await handler(`/favorites/${product.id}`, {
                     method: "PATCH",
                     body: JSON.stringify(updatedData)
-                }).catch(() => {});
+                })
             }
+
             localStorage.removeItem("ordersItem");
-        }catch(err){
+        } catch (err) {
             console.error(`Failed to update the status or quantity:`, err);
         }
     };

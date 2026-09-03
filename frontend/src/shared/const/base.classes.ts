@@ -8,7 +8,9 @@ export const baseClasses = () => {
     ];
 
     const productPreviewClass = (size: string, product: Product) => [
-        size, product.quantity === 0 || product.status === 'Exhausted' ? 'opacity-40' : ''
+        size,
+        product.quantity.find(p => p.size === size)?.count === 0 ||
+        product.status === 'Exhausted' ? 'opacity-40' : ''
     ];
 
     const selectedPageClass = (isPage: boolean) => [

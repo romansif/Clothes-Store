@@ -1,5 +1,4 @@
 import { ref } from "vue";
-import router from "@/app/router";
 
 const notify = ref<boolean>(false);
 const notifyTitle = ref<string>('');
@@ -18,7 +17,7 @@ export const useBaseModals = () => {
     const delay = (ms: number) =>
         new Promise(resolve => setTimeout(resolve, ms));
 
-    const openNotify= async (title: string, message: string, name: string) => {
+    const openNotify= async (title: string, message: string) => {
         notifyTitle.value = title;
         notifyMessage.value = message;
 
@@ -32,8 +31,6 @@ export const useBaseModals = () => {
 
         choiceModal.value = false;
         cancelChoice.value = '';
-
-        await router.push({name: `${name}`});
     };
 
     const toggleOrder = (id: string) => {

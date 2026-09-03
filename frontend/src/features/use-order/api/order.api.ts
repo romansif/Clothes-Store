@@ -83,7 +83,7 @@ export const orderApi = () => {
                 })
             });
             await openNotify('You have successfully cancelled the order.',
-                'Thank you for providing us with this information, it helps us improve our service.', '')
+                'Thank you for providing us with this information, it helps us improve our service.')
 
             await getOrders();
         }catch(err){

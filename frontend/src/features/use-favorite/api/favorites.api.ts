@@ -26,18 +26,28 @@ export const favoritesApi = () => {
 
     const toggleToFavorite = async (id: string, type: string, productId: string) => {
         try{
-            const sourceList = type === 'cart' ? cart.value : products.value;
-            const currentProduct = sourceList?.find(item => item.id === id);
+            const sourceList = type === 'cart' ? cart?.value : products?.value;
+            const currentProduct = sourceList?.find(item => item?.id === id);
+
             const currentId = type === 'cart' ? currentProduct?.productId : currentProduct?.id
+            if (!currentId) {
+                console.warn("Product ID not found for core operation");
+                return;
+            }
 
-            const favoriteItem = favorite.value.find(
-                item => item.productId === productId);
+            const favoriteItem = favorite.value?.find(
+                item => item?.productId === currentId);
 
-            if(currentProduct && !favoriteItem?.status){
+            if(!favoriteItem?.status){
+                if (!userData?.id) {
+                    console.error("User ID is missing");
+                    return;
+                }
+
                 await handler(`/favorites`, {
                     method: "POST",
                     body: JSON.stringify({
-                        userId: userData.id,
+                        userId: userData?.id,
                         productId: currentId,
                         images: currentProduct?.images,
                         title: currentProduct?.title,
@@ -55,7 +65,7 @@ export const favoritesApi = () => {
                 await getFavoriteProducts();
 
                 await openNotify('You have successfully added the item to your favorite.',
-                    'You will now be redirected to the "Favorite" page.', '');
+                    'You will now be redirected to the "Favorite" page.');
             }else{
                 await deleteFavoriteProduct(productId);
             }

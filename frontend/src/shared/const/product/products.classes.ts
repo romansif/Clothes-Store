@@ -1,42 +1,67 @@
 import { addToCartForm } from "@/features/use-cart/model/cart.form.ts";
-import {type ColorItem, type Product, type Sizes} from "@/entities/product/model/product.types.ts";
+import {type ColorItem, type Product, type Size} from "@/entities/product/model/product.types.ts";
 
 const { cartForm } = addToCartForm();
 
 export const productsClasses = () => {
     const selectedSizeClass = (style: string, isActive: boolean) => [
-        style, 'w-10 transition duration-400 hover:scale-120 cursor-pointer', isActive ? 'scale-120' : ''
+        style, 'w-10 transition duration-400 hover:scale-120 cursor-pointer',
+        isActive ? 'scale-120' : ''
     ];
 
     const selectedFilterClass = (isActive: boolean) => [
-        'w-5.75 h-h-5.75 transition duration-400 hover:scale-120 cursor-pointer', isActive ? 'scale-120' : ''
+        'w-5.75 h-h-5.75 transition duration-400 hover:scale-120 cursor-pointer',
+        isActive ? 'scale-120' : ''
     ];
 
     const selectedCategoryClass = (isActive: boolean) => [
-        `cursor-pointer border-2 sm:px-2 sm:py-1 md:px-5 text-lg transition duration-400 hover:border-black
-        hover:text-black hover:scale-105`, isActive ? ' border-black scale-105' : 'text-[#A3A3A3] border-[#A3A3A3]'
+        `cursor-pointer border-2 sm:px-2 sm:py-1 md:px-5 text-lg transition duration-400 
+        hover:border-black hover:text-black hover:scale-105`,
+        isActive ? ' border-black scale-105' : 'text-[#A3A3A3] border-[#A3A3A3]'
     ];
 
     const selectedCollectionsClass = (isActive: boolean) => [
-        `cursor-pointer border-2 px-8 py-1 text-lg transition duration-400 hover:border-black
-        hover:text-black hover:scale-105`, isActive ? ' border-black scale-105' : 'text-[#A3A3A3] border-[#A3A3A3]'
-    ]
-
-    const selectedColorClass = (color: ColorItem, product: Product, role: String) => [
-        'w-[62px] h-[62px] transition duration-400',
-        {
-            'scale-110': cartForm.value.colors?.hex === color.hex,
-            'hover:scale-110 cursor-pointer': product.status !== 'Exhausted' && role !== 'Seller'
-        },
+        `cursor-pointer border-2 px-8 py-1 text-lg transition duration-400 
+        hover:border-black hover:text-black hover:scale-105`,
+        isActive ? ' border-black scale-105' : 'text-[#A3A3A3] border-[#A3A3A3]'
     ];
 
-    const selectedSizesClass = (size: Sizes, product: Product, role: String) => [
-        size.class, 'w-[61px] h-[61px] transition duration-400',
+    const isColorAvailable = (color: ColorItem, product: Product) =>
+        product.quantity.some(p => p.hex === color.hex &&
+            (!cartForm.value.sizes || p.size === cartForm.value.sizes) && Number(p.count) > 0
+        );
+
+    const isSizeAvailable = (size: Size, product: Product) =>
+        product.quantity.some(p => p.size === size.name &&
+            (!cartForm.value.colors?.hex || p.hex === cartForm.value.colors.hex) && Number(p.count) > 0
+        );
+
+    const selectedColorClass = (color: ColorItem, product: Product, role: string) => {
+        const available = product.status !== 'Exhausted' && role !== 'Seller' && isColorAvailable(color, product);
+
+        return [
+            'w-[62px] h-[62px] transition duration-500 border-2 border-[#A3A3A3]',
             {
-                'scale-110' : cartForm.value.sizes === size.name,
-                'hover:scale-110 cursor-pointer': product.status !== 'Exhausted' && role !== 'Seller'
-            }
-    ];
+                'scale-110': cartForm.value.colors?.hex === color.hex,
+                'hover:scale-110 cursor-pointer': available,
+                'opacity-60 grayscale cursor-not-allowed pointer-events-none': !available,
+            },
+        ];
+    };
+
+    const selectedSizesClass = (size: Size, product: Product, role: string) => {
+        const available = product.status !== 'Exhausted' && role !== 'Seller' && isSizeAvailable(size, product);
+
+        return [
+            size.class,
+            'w-[61px] h-[61px] transition duration-500',
+            {
+                'scale-110': cartForm.value.sizes === size.name,
+                'hover:scale-110 cursor-pointer': available,
+                'opacity-60 grayscale cursor-not-allowed pointer-events-none': !available,
+            },
+        ];
+    };
 
     const selectedSidebarCategoryClass = (isActive: boolean) => [
         `py-1 cursor-pointer border-2 transition duration-400 hover:border-black hover:text-black hover:scale-105`,
@@ -50,6 +75,9 @@ export const productsClasses = () => {
         selectedCollectionsClass,
         selectedColorClass,
         selectedSizesClass,
-        selectedSidebarCategoryClass
+        selectedSidebarCategoryClass,
+
+        isColorAvailable,
+        isSizeAvailable,
     }
 }

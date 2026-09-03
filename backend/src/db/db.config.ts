@@ -10,7 +10,7 @@ export const dbService = {
     readDB () {
         try {
             if (!fs.existsSync(dbPath)) {
-                const defaultDB = { users: [], habits: [], "habits-count": [], records: [] };
+                const defaultDB = { users: [], products: [], cart: [], favorites: [], addresses: [], shipping: [], payments: [], orders: [] };
                 fs.writeFileSync(dbPath, JSON.stringify(defaultDB, null, 2));
                 return defaultDB;
             }
@@ -18,7 +18,7 @@ export const dbService = {
             return JSON.parse(data);
         } catch (error) {
             console.error("Ошибка чтения db.json:", error);
-            return { users: [], habits: [], "habits-count": [], records: [] };
+            return { users: [], products: [], cart: [], favorites: [], addresses: [], shipping: [], payments: [], orders: [] };
         }
     },
     writeDB (data: any) {

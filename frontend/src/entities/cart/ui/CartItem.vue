@@ -1,16 +1,16 @@
 <template>
   <TransitionGroup name="list">
-    <li @click="getProduct(product.productId)" v-for="product in cart" :key="product.id" class="flex gap-5">
+    <li v-for="product in cart" :key="product.id" class="flex gap-5">
       <div class="flex flex-col">
-        <div class="relative">
-          <router-link :to="{ name: 'product/info', params: { id: product.id } }">
+        <div @click="getProduct(product.productId)" class="relative">
+          <router-link :to="{ name: 'product/info', params: { id: product.productId } }">
             <img :src="productPreview(product.id, cart)" alt=""
-                 :class="productPreviewClass('w-83.75 h-78.5 sm:h-78.5 xl:h-100', product)">
+                 :class="productPreviewClass('w-83.75 h-45 sm:h-78.5 xl:h-100', product)">
             <span v-if="isOutOfStack(product)" class="absolute top-45 -left-5 text-6xl font-semibold -rotate-50 w-90">
               Out Of Stack
             </span>
           </router-link>
-          <img @click="toggleToFavorite(product.id, 'cart', product.productId)"
+          <img @click="toggleToFavorite(product.productId, 'favorite', product.productId)"
                :src="isFavorite(product.productId, userData.id) ? liked : like" alt=""
                class="absolute top-0.5 left-75.5 w-8 cursor-pointer">
         </div>
@@ -31,7 +31,7 @@
           <img @click="toggleDeleteChoice(
               'Are you sure you want to delete this cart product?', 'DELETE_CART_ITEM', product.id)"
                :src="del" alt="" class="transition duration-400 hover:scale-120 cursor-pointer">
-          <img v-if="product.status === 'Availability'" :src="product.checked ? check_square : square" alt=""
+          <img :src="product.checked ? check_square : square" alt=""
                @click="checkCartItem(product.id, product.productId, product)"
                class="cursor-pointer w-7.5 transition duration-400 hover:scale-120">
         </div>
@@ -42,7 +42,7 @@
           <div class="flex flex-col border transition duration-400 hover:scale-120">
             <button @click="updateCartItem('add', product.id, product.status)"
                     class="border-b transition duration-400 hover:bg-zinc-300 cursor-pointer">+</button>
-            <span class="text-sm border-b text-center">{{ product.quantity }}</span>
+            <span class="text-sm border-b text-center font-dm-sans">{{ pureQuantity(product.id, cart)?.count }}</span>
             <button @click="updateCartItem('away', product.id, product.status)"
                     class="border-b transition duration-400 hover:bg-zinc-300 cursor-pointer">-</button>
           </div>
@@ -62,8 +62,8 @@ const { sizeClass, sizeUrl } = useProfile();
 const { toggleToFavorite } = favoritesApi();
 const { toggleDeleteChoice } = useProfileModals();
 const { updateCartItem, checkCartItem } = cartApi();
-const { isOutOfStack, productPreview, pureColors } = productsCover();
 const { productPreviewClass } = baseClasses();
+const { isOutOfStack, productPreview, pureQuantity, pureColors } = productsCover();
 
 import del from '@/assets/icons/delete-close/delete.svg';
 import square from '@/assets/icons/squares/square.png';

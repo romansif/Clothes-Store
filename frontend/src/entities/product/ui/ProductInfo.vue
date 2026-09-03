@@ -5,7 +5,7 @@
         <div class="flex flex-col gap-1 mt-1 font-medium">
           <h1>{{ product.title }}</h1>
           <h2>
-            {{ product.collection.name }} / {{ product.category }}
+            {{ product.collection?.name }} / {{ product.category }}
           </h2>
         </div>
         <div class="flex flex-col gap-3 ml-auto font-medium">

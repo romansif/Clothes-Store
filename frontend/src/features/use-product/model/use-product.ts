@@ -4,11 +4,13 @@ import { cartStore } from "@/entities/cart/model/cart.store.ts";
 import { orderStore } from "@/entities/order/model/order.store.ts";
 import { productForms } from "@/features/use-product/model/product.forms.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
+import { addToCartForm } from "@/features/use-cart/model/cart.form.ts";
 import type { ColorItem, Product, SizeGuide, Size } from "@/entities/product/model/product.types.ts";
 
 const { cart } = cartStore();
 const { orders, items } = orderStore();
 const { moreCreateItem } = productForms();
+const { cartForm } = addToCartForm();
 const { products, product, productId, sizes, outerwearSizeGuide, underWearSizeGuide, shoesSizeGuide,
     outerWear, underWear, activeProductImg, unit } = productStore();
 
@@ -173,6 +175,19 @@ export const productsCover = () => {
 
     };
 
+    const pureQuantity = (id: string, array: Product[]) => {
+        if(!array){
+            console.log('Product not found');
+            return;
+        }
+
+        const product = array?.find(p => p.id === id)
+        if(product && Array.isArray(product.quantity) && product.quantity[0]){
+            return product.quantity[0]
+        }
+        return;
+    };
+
     const pureColors = (id: string, array: Product[])  => {
         if(!array){
             console.log('Product not found');
@@ -257,20 +272,25 @@ export const productsCover = () => {
     };
 
     const isOutOfStack = (product: Product) => {
-        const totalCount = product.quantity.reduce((sum, item) => sum + (item.count || 0), 0);
+        const quantity = product.quantity.find(p => p.count !== undefined)
 
-        return totalCount === 0 || product.status === 'Exhausted';
+        return quantity?.count === 0 && product.status === 'Exhausted';
     };
 
     const quantityInfo = (product: Product) => {
-        const totalCount = product.quantity.reduce((sum, item) => sum + (item.count || 0), 0);
+        const quantityList = product?.quantity || [];
 
-        if(totalCount < 4 && totalCount !== 0){
-            return `🔥 Only ${totalCount} left`;
-        }else if(totalCount === 0){
-            return ``;
-        }else{
-            return `In stock ${totalCount} pcs.`;
+        const totalCount = quantityList.find(
+            p => p.hex === cartForm.value.colors.hex && p.size === cartForm.value.sizes);
+
+        const count = totalCount?.count ?? 0;
+
+        if(count < 4 && count !== 0){
+            return `🔥 Only ${count} left`;
+        }else if(count === 0){
+            return `Out of stock`;
+        }else if(cartForm.value.colors.hex){
+            return `In stock ${count} pcs`;
         }
     };
 
@@ -304,6 +324,7 @@ export const productsCover = () => {
         angelCards,
         pureCards,
 
+        pureQuantity,
         pureColors,
         pureInfoColors,
         pureColorsName,

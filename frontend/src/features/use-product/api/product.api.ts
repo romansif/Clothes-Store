@@ -173,7 +173,7 @@ export const productApi = () => {
             loading.value = false;
 
             await openNotify('You have successfully created a new product card.',
-                'Now, if you go to the products page, your product will be there, and on the useProfile page as well.', '')
+                'Now, if you go to the products page, your product will be there, and on the useProfile page as well.')
             await router.push({ name: 'profile'})
 
             clearProductForm();
@@ -212,11 +212,11 @@ export const productApi = () => {
 
             await getProduct(product.id);
 
-            await openNotify('You have successfully changed the product card images.', '', '')
+            await openNotify('You have successfully changed the product card images.', '')
         }catch(err){
             loading.value = false;
 
-            await openNotify(`You haven't entered anything to change.`, '', '');
+            await openNotify(`You haven't entered anything to change.`, '');
             console.error(`Failed to edit the product cover:`, err);
         }
     };
@@ -238,12 +238,12 @@ export const productApi = () => {
             });
             loading.value = false;
 
-            await openNotify('You have successfully changed the product card description.', '', '');
+            await openNotify('You have successfully changed the product card description.', '');
             await router.push({ name: 'my/products'})
         }catch(err){
             loading.value = false;
 
-            await openNotify(`You haven't entered anything to change.`, '', '');
+            await openNotify(`You haven't entered anything to change.`, '');
             console.error(`Failed to edit the product cover:`, err);
         }
     };
@@ -280,10 +280,10 @@ export const productApi = () => {
             }
             loading.value = false;
 
-            await openNotify('You have successfully changed the product colors on the product card.', '', '')
+            await openNotify('You have successfully changed the product colors on the product card.', '')
         }catch(err){
             loading.value = false;
-            await openNotify(`You haven't entered anything to change.`, '', '');
+            await openNotify(`You haven't entered anything to change.`, '');
             console.error(`Failed to edit the colors product cover:`, err);
         }
     };

@@ -54,7 +54,7 @@
                   </div>
                   <div class="flex gap-5 ml-auto">
                     <span class="font-bold font-dm-sans">$ {{ item.price }}</span>
-                    <span class="text-[#A3A3A3]">{{ item.quantity }} pcs.</span>
+                    <span class="text-[#A3A3A3]">{{ orderQuantity(item) }} pcs.</span>
                   </div>
                 </div>
               </div>
@@ -72,7 +72,7 @@
 
 <script setup lang="ts">
 const { orders } = orderStore();
-const { copyText } = useOrder();
+const { copyText, orderQuantity } = useOrder();
 const { getProduct } = productApi();
 const { toggleOrder } = useBaseModals();
 const { orderStatus } = ordersClasses();
