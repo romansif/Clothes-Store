@@ -1,12 +1,12 @@
 import { ref } from "vue";
 import { clearUsersForms } from "@/features/use-profile/lib/clear.users.ts";
-import { productApi } from "@/features/use-product/api/add-product.ts";
-import { addToCart } from "@/features/use-cart/api/add-to-cart.ts";
-import { useAddAddress } from "@/features/use-checkout/api/address/add-address.ts";
-import { addPayment } from "@/features/use-checkout/api/payment/add-payment.ts";
-import { orderApi } from "@/features/use-order/api/add-order.ts";
+import { useDeleteProduct } from "@/features/use-product/api/delete-product";
+import { useDeleteCart } from "@/features/use-cart/api/delete-cart";
+import { useDeleteAddress } from "@/features/use-checkout/api/address/delete-address.ts";
+import { useDeletePayment } from "@/features/use-checkout/api/payment/delete-payment.ts";
+import { useDeleteOrder } from "@/features/use-order/api/delete-order.ts";
 import { useAuth } from "@/features/use-auth/api/use-auth.ts";
-import { toggleToFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
+import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
 
 const avatarModal = ref<boolean>(false);
 const fileInput = ref<HTMLInputElement | null>(null);
@@ -21,14 +21,14 @@ const deleteType = ref<string>('');
 const deleteMessage = ref<string>('');
 const deleteChoice = ref<boolean>(false);
 
-const { deleteAddress } = useAddAddress();
-const { deletePayment } = addPayment();
-const { deleteProduct } = productApi();
-const { deleteProductCart } = addToCart();
 const { logout, deleteAccount } = useAuth();
-const { deleteOrderProducts } = orderApi();
-const { deleteFavoriteProduct } = toggleToFavorite();
+const { deletePayment } = useDeletePayment();
+const { deleteProduct } = useDeleteProduct();
+const { deleteProductCart } = useDeleteCart();
+const { deleteAddress } = useDeleteAddress();
+const { deleteOrderProducts } = useDeleteOrder();
 const { clearUpdateUserForm } = clearUsersForms();
+const { deleteFavoriteProduct } = useToggleFavorite();
 
 export const useProfileModals = () => {
     const toggleAvatar = () => {

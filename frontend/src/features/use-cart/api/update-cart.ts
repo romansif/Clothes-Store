@@ -4,7 +4,7 @@ import { productStore } from "@/entities/product/model/product.store.ts";
 import { orderStore } from "@/entities/order/model/order.store.ts";
 import { cartStore } from "@/entities/cart/model/cart.store.ts";
 import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
-import { productApi } from "@/features/use-product/api/add-product.ts"
+import { useGetProduct } from "@/features/use-product/api/get-product.ts"
 import { useDeleteCart } from "@/features/use-cart/api/delete-cart.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
@@ -14,7 +14,7 @@ const { userData } = userStore();
 const { orderItems } = orderStore();
 const { getCartProducts } = useGetCart();
 const { openNotify } = useBaseModals();
-const { getAllProducts } = productApi();
+const { getAllProducts } = useGetProduct();
 const { deleteProductCart } = useDeleteCart();
 const { allProducts, products } = productStore();
 
