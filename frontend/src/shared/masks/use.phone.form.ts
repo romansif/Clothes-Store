@@ -4,7 +4,7 @@ import { authForms } from "@/features/use-auth/model/auth.forms.ts";
 import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
 
 const { information } = checkoutForm();
-const { registerBuyerForm, registerSellerForm } = authForms()
+const { registerForm } = authForms()
 const { countries, selectedCountryCode } = userStore();
 
 export const usePhoneForm = () => {
@@ -19,8 +19,7 @@ export const usePhoneForm = () => {
 
     const changeCountry = () => {
         information.value.phone = '';
-        registerBuyerForm.value.privatePhone = '';
-        registerSellerForm.value.publicPhone = '';
+        registerForm.value.phone = '';
     };
 
     return {

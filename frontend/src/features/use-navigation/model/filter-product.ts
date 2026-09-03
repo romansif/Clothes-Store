@@ -1,9 +1,9 @@
 import { ref } from "vue";
-import { productApi } from "@/features/use-product/api/add-product.ts";
+import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
 
 const { sizes } = productStore();
-const { getFilteredProducts, getWeekProducts, getYearProducts, getSeasonal } = productApi();
+const { getFilteredProducts, getWeekProducts, getYearProducts, getSeasonal } = useGetProduct();
 
 export const filterProduct = () => {
     const selectedGender = ref<string>('ALL');
