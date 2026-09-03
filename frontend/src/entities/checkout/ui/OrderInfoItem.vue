@@ -1,5 +1,5 @@
 <template>
-  <TransitionGroup name="list" mode="out-in">
+  <TransitionGroup name="list">
     <li @click="getProduct(product.productId)" v-for="product in items" :key="product?.id"
         class="flex justify-between gap-3 w-full">
       <div class="flex items-center gap-3 font-medium text-xs">
@@ -15,7 +15,9 @@
             <span class="font-dm-sans">$ {{ product?.price }}</span>
           </div>
           <span class="text-gray-400">{{ pureColorsName(product) }} / {{ product?.sizes }}</span>
-          <span class="mt-8">(<span class="text-blue-700 font-medium font-dm-sans">{{ product?.quantity }}</span>)</span>
+          <span class="mt-8">
+            (<span class="text-blue-700 font-medium font-dm-sans">{{pureQuantity(product.id, items)?.count }}</span>)
+          </span>
         </div>
       </div>
     </li>
@@ -26,7 +28,7 @@
 
 const { items } = orderStore();
 const { getProduct } = productApi();
-const { orderPreview, pureColorsName } = productsCover();
+const { orderPreview, pureQuantity, pureColorsName } = productsCover();
 
 import { orderStore } from "@/entities/order/model/order.store.ts";
 import { productApi } from "@/features/use-product/api/product.api.ts";

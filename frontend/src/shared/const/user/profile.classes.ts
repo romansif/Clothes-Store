@@ -11,7 +11,8 @@ export const profileClasses = () => {
     ];
 
     const isProfileLoginClass = (user: User) => [
-        `font-raleway flex justify-center my-items-center'`, user?.role === 'Buyer' ? 'p-35' : 'p-15'
+        `font-raleway flex justify-center my-items-center'`,
+        user?.role === 'Buyer' ? 'p-35' : 'p-15'
     ];
 
     const profileSelectPhoneCodeClass = computed(() => [

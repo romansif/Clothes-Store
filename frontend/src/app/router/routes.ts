@@ -6,6 +6,11 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/app/layouts/AuthLayout.vue'),
         children: [
             {
+                path: '',
+                name: 'home',
+                component: () => import('@/pages/home/HomePage.vue'),
+            },
+            {
                 path: 'signUp',
                 name: 'signUp',
                 component: () => import('@/pages/auth/RegisterPage.vue'),
@@ -21,11 +26,6 @@ const routes: RouteRecordRaw[] = [
         path: '/',
         component: () => import('@/app/layouts/MainLayout.vue'),
         children: [
-            {
-                path: 'home',
-                name: 'home',
-                component: () => import('@/pages/home/HomePage.vue'),
-            },
             {
                 path: 'shop',
                 name: 'shop',

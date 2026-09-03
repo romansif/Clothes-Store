@@ -28,25 +28,13 @@ const load = async () => {
   loading.value = true;
 
   try {
-    switch (route.name) {
-      case 'shop':
-        await getAllProducts();
-        await getFilteredProducts('ALL', 'ALL');
-        break;
-      case 'home':
-        await getWeekProducts('ALL', 'ALL');
-        await getYearProducts('ALL', 'ALL');
-        break;
-      case 'cart':
-        await getCartProducts();
-        break;
-      case 'favorite':
-        await getFavoriteProducts();
-        break;
-      case 'shop/seasonal-collections':
-        await getSeasonal('ALL');
-        break;
-    }
+    await getAllProducts();
+    await getFilteredProducts('ALL', 'ALL');
+    await getWeekProducts('ALL', 'ALL');
+    await getYearProducts('ALL', 'ALL');
+    await getSeasonal('ALL');
+    await getCartProducts();
+    await getFavoriteProducts();
 
     const id = route.params.id as string | undefined;
     if (id) {
@@ -56,9 +44,9 @@ const load = async () => {
   } catch (err) {
     console.error('Ошибка загрузки данных страницы:', err);
     componentError.value = 'An error occurred while displaying the product catalog.';
-  } finally {
-    loading.value = false;
   }
+
+  loading.value = false;
 };
 
 watch(
