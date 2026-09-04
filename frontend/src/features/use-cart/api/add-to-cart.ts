@@ -10,10 +10,10 @@ import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
 
 const { userData } = userStore();
 const { product } = productStore();
+const { unreadCount } = cartStore();
 const { cartForm } = addToCartForm();
 const { getCartProducts } = useGetCart();
 const { openNotify } = useBaseModals();
-const { cart, unreadCount } = cartStore();
 const { addToCartErrors } = useFormsErrors();
 const { clearCartForm } = clearAddToCartForm();
 
@@ -24,7 +24,7 @@ export const useAddToCart = () => {
             const currentQuantity = product.value.quantity.find(
                 q => q.hex === cartForm.value.colors.hex);
 
-            const newProductCart = await handler(`/cart`, {
+            await handler(`/cart`, {
                 method: "POST",
                 body: JSON.stringify({
                     userId: userData.id,
@@ -51,9 +51,6 @@ export const useAddToCart = () => {
                     checked: false,
                 })
             });
-            console.log('New Cart item', newProductCart);
-            cart.value = newProductCart;
-
             unreadCount.value += 1;
 
             await getCartProducts();

@@ -9,12 +9,11 @@ import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 
 const { currentFile } = productStore();
 const { getProduct } = useGetProduct();
+const { openNotify } = useBaseModals();
 const { createProductForm } = productForms();
-const { openNotify, loading } = useBaseModals();
 
 export const useUpdateProduct = () => {
     const updateProductImages = async (product: Product, event: Event) => {
-        loading.value = true;
         try{
             if(!product){
                 console.log('Такого продукта не существует');
@@ -36,13 +35,11 @@ export const useUpdateProduct = () => {
                 body: formData
             });
 
-            loading.value = false;
 
             await getProduct(product.id);
 
             await openNotify('You have successfully changed the product card images.', '', '')
         }catch(err){
-            loading.value = false;
 
             await openNotify(`You haven't entered anything to change.`, '', '');
             console.error(`Failed to edit the product cover:`, err);
@@ -50,7 +47,6 @@ export const useUpdateProduct = () => {
     };
 
     const updateProductDesc = async (id: string) => {
-        loading.value = true;
         try{
             await handler(`/products/${id}`, {
                 method: "PATCH",
@@ -64,12 +60,10 @@ export const useUpdateProduct = () => {
                     description: createProductForm.value.description,
                 })
             });
-            loading.value = false;
 
             await openNotify('You have successfully changed the product card description.', '', '');
             await router.push({ name: 'my/products'})
         }catch(err){
-            loading.value = false;
 
             await openNotify(`You haven't entered anything to change.`, '', '');
             console.error(`Failed to edit the product cover:`, err);
@@ -77,7 +71,6 @@ export const useUpdateProduct = () => {
     };
 
     const updateProductColors = async (product: Product, index: number, eventOrColor: Event | string) => {
-        loading.value = true;
         try{
             if(!product){
                 console.log('Такого продукта не существует');
@@ -106,11 +99,9 @@ export const useUpdateProduct = () => {
                     }),
                 });
             }
-            loading.value = false;
 
             await openNotify('You have successfully changed the product colors on the product card.', '', '')
         }catch(err){
-            loading.value = false;
             await openNotify(`You haven't entered anything to change.`, '', '');
             console.error(`Failed to edit the colors product cover:`, err);
         }

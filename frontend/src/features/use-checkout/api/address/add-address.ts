@@ -4,16 +4,14 @@ import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { useCheckout } from "@/features/use-checkout/model/use-checkout.ts";
 import { clearCheckoutForm } from "@/features/use-checkout/lib/clear.checkout.ts";
-import { checkoutStore } from "@/entities/checkout/model/checkout.store.ts";
 import type { UserCheckoutAddress } from "@/entities/checkout/model/checkout.types.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
-import {useGetAddress} from "@/features/use-checkout/api/address/get-address.ts";
+import { useGetAddress } from "@/features/use-checkout/api/address/get-address.ts";
 
 const { userData } = userStore();
 const { information } = checkoutForm();
 const { openNotify } = useBaseModals();
 const { getAddresses } = useGetAddress();
-const { userAddresses } = checkoutStore();
 const { createInformationErrors } = useFormsErrors();
 const { clearInformationForm } = clearCheckoutForm();
 const { isChosenAddress, isChosenContactInfo, informationId } = useCheckout();
@@ -62,14 +60,13 @@ export const useAddAddress = () => {
                     postalCode: information.value.postalCode,
                 })
             });
-            userAddresses.value = newAddress;
-
             if(newAddress && newAddress.id) {
                 localStorage.setItem("addressId", newAddress.id);
                 console.log("Успешно сохранено в localStorage!");
             }else{
                 console.error("Ошибка: id отсутствует в ответе сервера. Проверьте контроллер бэкенда!");
             }
+
             await getAddresses();
 
             await openNotify('You have successfully added the shipping address.',
@@ -100,14 +97,13 @@ export const useAddAddress = () => {
                     postalCode: information.value.postalCode,
                 })
             });
-            userAddresses.value = newAddress;
-
             if(newAddress && newAddress.id) {
                 localStorage.setItem("addressId", newAddress.id);
                 console.log("Успешно сохранено в localStorage!");
             }else{
                 console.error("Ошибка: id отсутствует в ответе сервера. Проверьте контроллер бэкенда!");
             }
+
             await getAddresses();
 
             await openNotify('You have successfully added the shipping address.',

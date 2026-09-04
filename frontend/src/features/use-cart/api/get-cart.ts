@@ -11,7 +11,6 @@ export const useGetCart = () => {
             const res = await handler(`/cart/${userData.id}`, {
                 method: 'GET',
             })
-            console.log(res);
             cart.value = res;
         }catch(err){
             console.error(`Failed to get the cart products:`, err);

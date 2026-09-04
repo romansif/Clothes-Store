@@ -204,8 +204,6 @@ const skuMask = {
     }
 };
 
-console.log(Array.isArray(products.value));
-
 export const productStore = () => {
     return {
         allProducts,

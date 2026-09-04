@@ -8,7 +8,7 @@ import { clearProductsForms } from "@/features/use-product/lib/clear.product.ts"
 import { userStore } from "@/entities/profile/model/user.store.ts";
 
 const { userData } = userStore();
-const { openNotify, loading } = useBaseModals();
+const { openNotify } = useBaseModals();
 const { clearProductForm } = clearProductsForms();
 const { createProductErrors } = useFormsErrors();
 const { createProductForm, moreCreateItem } = productForms();
@@ -36,7 +36,6 @@ export const useAddProduct = () => {
 
 
     const createProduct = async () => {
-        loading.value = true;
         try{
             if(!userData.id){
                 return
@@ -82,7 +81,6 @@ export const useAddProduct = () => {
                 method: "POST",
                 body: formData,
             });
-            loading.value = false;
 
             await openNotify('You have successfully created a new product card.',
                 'Now, if you go to the products page, your product will be there, and on the useProfile page as well.', 'my/products')
@@ -90,8 +88,6 @@ export const useAddProduct = () => {
 
             clearProductForm();
         }catch(err){
-            loading.value = false;
-
             createProductErrors(err);
             console.error(`Failed to create the products cover:`, err);
         }

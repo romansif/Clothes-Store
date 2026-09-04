@@ -4,13 +4,13 @@ import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { clearCheckoutForm } from "@/features/use-checkout/lib/clear.checkout.ts";
-import { checkoutStore } from "@/entities/checkout/model/checkout.store.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
+import { useGetShipping } from "@/features/use-checkout/api/shipping/get-shipping.ts";
 
 const { userData } = userStore();
 const { shipping } = checkoutForm();
 const { openNotify  } = useBaseModals();
-const { userShipping } = checkoutStore();
+const { getShipping } = useGetShipping();
 const { clearPaymentForm } = clearCheckoutForm();
 const { createSippingErrors } = useFormsErrors();
 
@@ -25,13 +25,13 @@ export const useAddShipping = () => {
                     delivery: shipping.value.delivery,
                 })
             });
-            userShipping.value = newShipping;
-
             if(newShipping){
                 localStorage.setItem("paymentId", newShipping.paymentId);
             }else{
                 console.log('Не удалос получить id оплаты')
             }
+
+            await getShipping();
 
             await openNotify('You have successfully added the shipping method.',
                 'You will now be redirected to the payment method selection page.', 'payment')

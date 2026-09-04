@@ -9,7 +9,6 @@ export const useDeletePayment = () => {
             await handler(`/payment/${id}`, {
                 method: "DELETE",
             });
-
             await getPayments();
         }catch(err){
             console.error(`Failed to delete the user payment:`, err);

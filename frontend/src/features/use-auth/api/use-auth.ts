@@ -17,8 +17,6 @@ export const useAuth = () => {
     const signUp = async (role: string) => {
         loading.value = true;
 
-        console.log(role)
-
         clearRegisterFormMessages();
         try{
             const date = new Date();
@@ -54,7 +52,6 @@ export const useAuth = () => {
             await openNotify('You have successfully sign up.',
                 'You will now be taken to your profile page.', 'profile');
         }catch(err){
-            loading.value = false;
             registerErrors(err)
             console.log(`Failed to register new user:`, err);
         }
@@ -88,7 +85,6 @@ export const useAuth = () => {
 
             clearLoginForm()
         }catch(err){
-            loading.value = false;
             loginErrors(err)
             console.log(`Failed to login:`, err);
         }
@@ -121,7 +117,6 @@ export const useAuth = () => {
             await openNotify('You have successfully sign in.',
                 'You will now be taken to your profile page.', 'profile');
         }catch(err){
-            loading.value = false;
             await openNotify('You were unable to login with google.',
                 '', '')
             console.log(`Failed to login:`, err);

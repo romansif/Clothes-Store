@@ -9,7 +9,6 @@ export const useDeleteAddress = () => {
             await handler(`/address/${id}`, {
                 method: "DELETE",
             });
-
             await getAddresses();
         }catch(err){
             console.error(`Failed to delete the user address:`, err);

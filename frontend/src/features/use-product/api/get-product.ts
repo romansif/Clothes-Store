@@ -11,9 +11,8 @@ export const useGetProduct = () => {
             const res = await handler(`/products`, {
                 method: 'GET',
             })
-            console.log(res);
-            allProducts.value = res;
             products.value = res;
+            allProducts.value = res;
         }catch(err){
             console.error(`Failed to get the all products:`, err);
         }
@@ -24,7 +23,6 @@ export const useGetProduct = () => {
             const res = await handler(`/filtered/${type}/${filter}`, {
                 method: 'GET',
             })
-            console.log(res);
             products.value = res;
         }catch(err){
             console.error(`Failed to get the filtered products:`, err);
@@ -36,7 +34,6 @@ export const useGetProduct = () => {
             const res = await handler(`/products/week/${type}/${filter}`, {
                 method: 'GET',
             })
-            console.log(res);
             productsWeek.value = res;
         }catch(err){
             console.error(`Failed to get the filtered products:`, err);
@@ -48,7 +45,6 @@ export const useGetProduct = () => {
             const res = await handler(`/products/year/${type}/${filter}`, {
                 method: 'GET',
             })
-            console.log(res);
             productsYear.value = res;
         }catch(err){
             console.error(`Failed to get the filtered products:`, err);
@@ -60,7 +56,6 @@ export const useGetProduct = () => {
             const res = await handler(`/products/collections/${collection}`, {
                 method: 'GET',
             })
-            console.log(res);
             seasonalSelections.value = res
         }catch(err){
             console.error(`Failed to get the filtered products:`, err);
@@ -84,7 +79,6 @@ export const useGetProduct = () => {
             const res = await handler(`/my/products/${userData.id}`, {
                 method: 'GET',
             })
-            console.log(res);
             myProducts.value = res;
         }catch(err){
             console.error(`Failed to get the all my products:`, err);
