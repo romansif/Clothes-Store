@@ -41,7 +41,7 @@ export const useAddToCart = () => {
                     }],
                     sizes: cartForm.value.sizes,
                     gender: currentProduct.gender,
-                    quantity: [{
+                    variants: [{
                         hex: currentQuantity?.hex,
                         colorName: currentQuantity?.colorName,
                         size: cartForm.value.sizes,

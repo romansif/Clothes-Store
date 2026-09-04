@@ -7,9 +7,9 @@ export const baseClasses = () => {
         hasError ? 'border border-red-500' : ''
     ];
 
-    const productPreviewClass = (size: string, product: Product) => [
-        size,
-        product.variants.find(p => p.size === size)?.count === 0 ||
+    const productPreviewClass = (sizeImg: string, product: Product) => [
+        sizeImg,
+        product.variants.find(p => p.size === product.sizes && p.hex)?.count === 0 ||
         product.status === 'Exhausted' ? 'opacity-40' : ''
     ];
 
