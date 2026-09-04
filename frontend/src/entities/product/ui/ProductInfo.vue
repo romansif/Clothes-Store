@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="flex text-sm font-medium text-[#A3A3A3] mt-1 font-dm-sans">
-        <span>{{ quantityInfo(product) }}</span>
+        <span>{{ variantsInfo(product) }}</span>
         <span class="ml-auto text-black font-dm-sans">
           $ {{ product.price }}
         </span>
@@ -67,7 +67,7 @@
         <div class="flex gap-6 bg-zinc-800 py-4 px-3 text-lg transition duration-300 hover:scale-108">
           <img :src="plus" @click="updateCartItem('add', isInCart.id, isInCart.status)" alt=""
                class="bg-zinc-600 text-white px-2 w-8.75 rounded-md transition duration-300 hover:bg-zinc-400" />
-          <span class="text-white font-dm-sans">{{ isInCart.quantity }}</span>
+          <span class="text-white font-dm-sans">{{ isInCart.variants }}</span>
           <img :src="minus" @click="updateCartItem('away', isInCart.id, isInCart.status)" alt=""
                class="bg-zinc-600 text-white px-2 w-8.75 rounded-md transition duration-300 hover:bg-zinc-400" />
         </div>
@@ -81,8 +81,6 @@
 </template>
 
 <script setup lang="ts">
-import {useUpdateCart} from "@/features/use-cart/api/update-cart.ts";
-
 const { userData } = userStore();
 const { product } = productStore();
 const { isFavorite } = useFavorite();
@@ -94,10 +92,11 @@ const { toggleSizeGuide } = useProductsModals();
 const { toggleToFavorite } = useToggleFavorite();
 const { cartForm, cartFormMessages } = addToCartForm();
 const { selectedColorClass, selectedSizesClass } = productsClasses();
-const { pureInfoColors, isAvailableSizes, isInStock, isInCart, quantityInfo } = productsCover();
+const { variantsInfo, pureInfoColors, isAvailableSizes, isInStock, isInCart } = productsCover();
 
 import { watch } from "vue";
 import { productsCover } from "@/features/use-product/model/use-product.ts";
+import { useUpdateCart } from "@/features/use-cart/api/update-cart.ts";
 import { useAddToCart} from "@/features/use-cart/api/add-to-cart.ts";
 import { useCart } from "@/features/use-cart/model/use-cart.ts";
 import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
