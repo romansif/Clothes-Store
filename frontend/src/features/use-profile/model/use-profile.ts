@@ -17,6 +17,10 @@ const { isAgreeForm } = checkoutForm();
 const { isAgreeFormError } = checkoutErrors();
 
 export const useProfile = () => {
+    const checkedItems = computed(() => {
+        return cart.value.filter(item => item.checked);
+    });
+
     const continueToOrder = async () =>  {
         try{
             if(!isAgreeFormError.value.agreeError || !orderItems.value?.length) {
@@ -70,22 +74,19 @@ export const useProfile = () => {
     });
 
     const price = computed(() => {
-        return orderItems.value.reduce(
-            (sum, item) => sum + item.price, 0);
+        return checkedItems.value.reduce(
+            (sum, item) => sum + item.price,
+            0
+        );
     });
 
     const commissionPrice = computed(() => {
-        return Math.round(orderItems.value.reduce(
-            (sum, item) => sum + item.price, 0) * 0.08
-        );
+        return Math.round(price.value * 0.08);
     });
 
     const totalPrice = computed(() => {
-        return orderItems.value.reduce(
-            (sum, item) => sum + item.price + commissionPrice.value, 0
-        );
+        return price.value + commissionPrice.value;
     });
-
 
     return{
         continueToOrder,

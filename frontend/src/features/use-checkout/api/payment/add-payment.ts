@@ -51,7 +51,7 @@ export const useAddPayment = () => {
                 'You will now be redirected to the profile page.', 'profile')
             clearPaymentForm();
         }catch(err){
-            await openNotify('You must choose.',
+            await openNotify('You must choose',
                 'Which card and payment method should we use for payment?', '')
             console.error(`Failed to register new payment:`, err);
         }

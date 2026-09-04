@@ -40,11 +40,11 @@ export const productsClasses = () => {
         const available = product.status !== 'Exhausted' && role !== 'Seller' && isColorAvailable(color, product);
 
         return [
-            'w-[62px] h-[62px] transition duration-500 border-2 border-[#A3A3A3]',
+            'w-[62px] h-[62px] transition duration-500 border-2 border-dashed border-[#A3A3A3]',
             {
                 'scale-110': cartForm.value.colors?.hex === color.hex,
                 'hover:scale-110 cursor-pointer': available,
-                'opacity-60 grayscale cursor-not-allowed pointer-events-none': !available,
+                'opacity-70 grayscale-[0.8] cursor-not-allowed pointer-events-none scale-95 border-dashed border-gray-300 bg-gray-50 text-gray-400': !available
             },
         ];
     };
@@ -54,11 +54,11 @@ export const productsClasses = () => {
 
         return [
             size.class,
-            'w-[61px] h-[61px] transition duration-500',
+            'w-[61px] h-[61px] transition duration-500 border-dashed',
             {
                 'scale-110': cartForm.value.sizes === size.name,
                 'hover:scale-110 cursor-pointer': available,
-                'opacity-60 grayscale cursor-not-allowed pointer-events-none': !available,
+                'opacity-70 grayscale-[0.8] cursor-not-allowed pointer-events-none scale-95 border-dashed border-gray-300 bg-gray-50 text-gray-400': !available,
             },
         ];
     };

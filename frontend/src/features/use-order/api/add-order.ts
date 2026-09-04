@@ -3,11 +3,13 @@ import { useCheckout } from "@/features/use-checkout/model/use-checkout.ts";
 import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
 import { orderStore } from "@/entities/order/model/order.store.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
+import { useBaseModals } from "@/shared/lib/base.modal.ts";
 
 const { items } = orderStore();
 const { userData } = userStore();
 const { shipping } = checkoutForm();
 const { totalPrice } = useCheckout();
+const { openNotify } = useBaseModals();
 
 export const useAddOrder = () => {
     const addOrder = async () => {
@@ -23,6 +25,8 @@ export const useAddOrder = () => {
                 })
             })
         }catch(err){
+            await openNotify('An error occurred',
+                'We are working on this issue please try again later', '')
             console.error(`Failed to create the order:`, err);
         }
     };

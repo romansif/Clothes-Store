@@ -202,7 +202,9 @@ const skuMask = {
     definitions: {
         '*': /[a-zA-Z0-9]/
     }
-}
+};
+
+console.log(Array.isArray(products.value));
 
 export const productStore = () => {
     return {

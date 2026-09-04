@@ -19,20 +19,20 @@ const { deleteProductCart } = useDeleteCart();
 const { allProducts, products } = productStore();
 
 export const useUpdateCart = () => {
-    const checkCartItem = async (id: string, productId: string, product: CartItem) => {
+    const checkCartItem = async (id: string, product: CartItem) => {
         try{
             const productCart = cart.value?.find(
                 c => c.id === id);
             if(productCart){
                 if(!productCart?.checked){
-                    await handler(`/cart/${productId}`, {
+                    await handler(`/cart/${id}`, {
                         method: "PATCH",
                         body: JSON.stringify({
                             checked: true
                         })
                     });
                 }else{
-                    await handler(`/cart/${productId}`, {
+                    await handler(`/cart/${id}`, {
                         method: "PATCH",
                         body: JSON.stringify({
                             checked: false

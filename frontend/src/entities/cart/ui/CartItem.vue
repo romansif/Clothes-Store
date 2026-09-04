@@ -32,7 +32,7 @@
               'Are you sure you want to delete this cart product?', 'DELETE_CART_ITEM', product.id)"
                :src="del" alt="" class="transition duration-400 hover:scale-120 cursor-pointer">
           <img :src="product.checked ? check_square : square" alt=""
-               @click="checkCartItem(product.id, product.productId, product)"
+               @click="checkCartItem(product.id, product)"
                class="cursor-pointer w-7.5 transition duration-400 hover:scale-120">
         </div>
         <div class="flex flex-col gap-4">
@@ -54,8 +54,6 @@
 </template>
 
 <script setup lang="ts">
-
-
 const { cart } = cartStore();
 const { userData } = userStore();
 const { isFavorite } = useFavorite();
