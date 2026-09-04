@@ -27,12 +27,12 @@ export const productsClasses = () => {
     ];
 
     const isColorAvailable = (color: ColorItem, product: Product) =>
-        product.quantity.some(p => p.hex === color.hex &&
+        product.variants.some(p => p.hex === color.hex &&
             (!cartForm.value.sizes || p.size === cartForm.value.sizes) && Number(p.count) > 0
         );
 
     const isSizeAvailable = (size: Size, product: Product) =>
-        product.quantity.some(p => p.size === size.name &&
+        product.variants.some(p => p.size === size.name &&
             (!cartForm.value.colors?.hex || p.hex === cartForm.value.colors.hex) && Number(p.count) > 0
         );
 

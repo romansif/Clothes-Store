@@ -11,7 +11,7 @@ export const clearProductsForms = () => {
         createProductForm.value.material = '';
         createProductForm.value.description = '';
         createProductForm.value.price = '';
-        createProductForm.value.quantity = '';
+        createProductForm.value.variants = [];
         createProductForm.value.collection = { condition: '', season: '', name: '' };
         moreCreateItem.sizes = [];
         moreCreateItem.colors = [];
@@ -23,7 +23,7 @@ export const clearProductsForms = () => {
         createProductFormMessages.value.priceMessage = '';
         createProductFormMessages.value.colorMessage = '';
         createProductFormMessages.value.sizeMessage = '';
-        createProductFormMessages.value.quantityMessage = '';
+        createProductFormMessages.value.variantMessage = '';
         createProductFormMessages.value.collectionsMessage = '';
 
         createProductFormErrors.value.titleError = false;
@@ -33,7 +33,7 @@ export const clearProductsForms = () => {
         createProductFormErrors.value.priceError = false;
         createProductFormErrors.value.colorError = false;
         createProductFormErrors.value.sizeError = false;
-        createProductFormErrors.value.quantityError = false;
+        createProductFormErrors.value.variantError = false;
         createProductFormErrors.value.collectionsError = false;
     };
 

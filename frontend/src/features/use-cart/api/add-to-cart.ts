@@ -21,7 +21,7 @@ export const useAddToCart = () => {
     const addToCart = async () => {
         try{
             const currentProduct = product.value;
-            const currentQuantity = product.value.quantity.find(
+            const currentQuantity = product.value.variants.find(
                 q => q.hex === cartForm.value.colors.hex);
 
             await handler(`/cart`, {

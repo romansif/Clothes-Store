@@ -56,11 +56,11 @@ export const useAddProduct = () => {
                 formData.append('sizes', String(size))
             });
             formData.append('gender', createProductForm.value.gender);
-            moreCreateItem.quantity.forEach((quantity, index) => {
-                formData.append(`quantity[${index}][hex]`, String(quantity.hex));
-                formData.append(`quantity[${index}][colorName]`, String(quantity.colorName));
-                formData.append(`quantity[${index}][size]`, String(quantity.size));
-                formData.append(`quantity[${index}][count]`, String(quantity.count));
+            moreCreateItem.variants.forEach((variant, index) => {
+                formData.append(`variants[${index}][hex]`, String(variant.hex));
+                formData.append(`variants[${index}][colorName]`, String(variant.colorName));
+                formData.append(`variants[${index}][size]`, String(variant.size));
+                formData.append(`variants[${index}][count]`, String(variant.count));
             });
             formData.append('sku', createProductForm.value.sku);
             formData.append(`collection[condition]`, String(createProductForm.value.collection.condition));

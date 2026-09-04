@@ -72,11 +72,11 @@ export const useUpdateCart = () => {
             const basePrice =  Number(product?.price)
             const currentPrice = Number(productCart?.price);
 
-            const currentItem = productCart?.quantity.find(
+            const currentItem = productCart?.variants.find(
                 p => p.count !== undefined);
             const currentQuantity = Number(currentItem?.count);
 
-            const stockItem = product?.quantity.find(
+            const stockItem = product?.variants.find(
                 p => p.hex === currentItem?.hex && p.size === currentItem?.size)
             const stock = Number(stockItem?.count);
 
@@ -90,7 +90,7 @@ export const useUpdateCart = () => {
                             method: "PATCH",
                             body: JSON.stringify({
                                 price: newPrice,
-                                quantity: productCart?.quantity.map(item => ({
+                                variants: productCart?.variants.map(item => ({
                                     ...item,
                                     count: newQuantity,
                                 })),
@@ -113,7 +113,7 @@ export const useUpdateCart = () => {
                             method: "PATCH",
                             body: JSON.stringify({
                                 price: newPrice,
-                                quantity: productCart?.quantity.map(item => ({
+                                variants: productCart?.variants.map(item => ({
                                     ...item,
                                     count: newQuantity,
                                 })),
@@ -124,7 +124,7 @@ export const useUpdateCart = () => {
             }
             await getCartProducts();
         }catch(err){
-            console.error(`Failed to update the cart product quantity:`, err);
+            console.error(`Failed to update the cart product variants:`, err);
         }
     };
 
@@ -171,7 +171,7 @@ export const useUpdateCart = () => {
                     continue;
                 }
 
-                const cartObj = item?.quantity?.find(
+                const cartObj = item?.variants?.find(
                     p => p.count !== undefined);
                 if (!cartObj) {
                     console.log(`У товара ${item.productId} в корзине нет данных о варианте`, item);
@@ -180,7 +180,7 @@ export const useUpdateCart = () => {
 
                 const cartQuantity = Number(cartObj.count);
 
-                const newQuantityArr = product.quantity.map(
+                const newQuantityArr = product.variants.map(
                     v => {
                         const isSame = v.hex === cartObj.hex && String(v.size) === String(cartObj.size);
                         if (!isSame) return { ...v };
@@ -192,7 +192,7 @@ export const useUpdateCart = () => {
                 const isExhausted = newQuantityArr.every(v => Number(v.count) <= 0);
 
                 const updatedData = {
-                    quantity: newQuantityArr,
+                    variants: newQuantityArr,
                     status: isExhausted ? 'Exhausted' : product.status
                 };
 
@@ -209,7 +209,7 @@ export const useUpdateCart = () => {
 
             localStorage.removeItem("ordersItem");
         } catch (err) {
-            console.error(`Failed to update the status or quantity:`, err);
+            console.error(`Failed to update the status or variants:`, err);
         }
     };
 

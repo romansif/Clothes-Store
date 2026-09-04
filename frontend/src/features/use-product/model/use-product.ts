@@ -17,8 +17,8 @@ const { products, product, productId, sizes, outerwearSizeGuide, underWearSizeGu
 export const productsCover = () => {
     // const toggleAllVariants = (val: number | string | undefined) => {
     //     const countNum = Math.max(0, Number(val) || 0);
-    //     if(!moreCreateItem.quantity || moreCreateItem.quantity.length === 0) {
-    //         moreCreateItem.quantity = [{count: countNum}]
+    //     if(!moreCreateItem.variants || moreCreateItem.variants.length === 0) {
+    //         moreCreateItem.variants = [{count: countNum}]
     //         return
     //     }
     //
@@ -30,7 +30,7 @@ export const productsCover = () => {
     // };
 
     const toggleQuantity = (hex?: string, colorName?: string, size?: string) => {
-        let item = moreCreateItem.quantity.find(
+        let item = moreCreateItem.variants.find(
             (v) => v.hex === hex && v.size === size);
 
         if(!item) {
@@ -40,7 +40,7 @@ export const productsCover = () => {
                 size,
                 count: 0
             }
-            moreCreateItem.quantity.push(item);
+            moreCreateItem.variants.push(item);
         }
         return item;
     };
@@ -182,8 +182,8 @@ export const productsCover = () => {
         }
 
         const product = array?.find(p => p.id === id)
-        if(product && Array.isArray(product.quantity) && product.quantity[0]){
-            return product.quantity[0]
+        if(product && Array.isArray(product.variants) && product.variants[0]){
+            return product.variants[0]
         }
         return;
     };
@@ -246,10 +246,10 @@ export const productsCover = () => {
 
     const isInStock = computed(() => {
         const product = products.value.find(p => p.id === productId.value);
-        if(!product?.id || !Array.isArray(product.quantity)){
+        if(!product?.id || !Array.isArray(product.variants)){
             return null;
         }
-        return product.quantity.reduce((sum, variant) => sum + (variant.count ?? 0), 0);
+        return product.variants.reduce((sum, variant) => sum + (variant.count ?? 0), 0);
     });
 
     const isInCart = computed(() => {
@@ -272,15 +272,15 @@ export const productsCover = () => {
     };
 
     const isOutOfStack = (product: Product) => {
-        const quantity = product.quantity.find(p => p.count !== undefined)
+        const variants = product.variants.find(p => p.count !== undefined)
 
-        return quantity?.count === 0 && product.status === 'Exhausted';
+        return variants?.count === 0 && product.status === 'Exhausted';
     };
 
-    const quantityInfo = (product: Product) => {
-        const quantityList = product?.quantity || [];
+    const variantsInfo = (product: Product) => {
+        const variantsList = product?.variants || [];
 
-        const totalCount = quantityList.find(
+        const totalCount = variantsList.find(
             p => p.hex === cartForm.value.colors.hex && p.size === cartForm.value.sizes);
 
         const count = totalCount?.count ?? 0;
@@ -341,7 +341,7 @@ export const productsCover = () => {
         toggleSize,
         changeImg,
         isOutOfStack,
-        quantityInfo,
+        variantsInfo,
 
         formatterSizeGuide,
     }

@@ -19,7 +19,7 @@ const createProductForm = ref<ProductForm>({
 const moreCreateItem = reactive({
     colors: [] as ProductColor[],
     sizes: [] as string[],
-    quantity: [] as Variant[],
+    variants: [] as Variant[],
 })
 
 const createProductFormMessages = ref<ProductFormMessage>({
@@ -32,7 +32,7 @@ const createProductFormMessages = ref<ProductFormMessage>({
     colorMessage: '',
     sizeMessage: '',
     genderMessage: '',
-    quantityMessage: '',
+    variantMessage: '',
     skuMessage: '',
     collectionsMessage: '',
 })

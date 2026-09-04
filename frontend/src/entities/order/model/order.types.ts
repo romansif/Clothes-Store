@@ -13,7 +13,7 @@ export interface OrderItem {
     colors: ColorItem[],
     sizes: string,
     gender: string,
-    quantity: Variant[],
+    variants: Variant[],
     sku: string,
     status: string,
     checked: boolean,

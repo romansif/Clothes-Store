@@ -48,7 +48,7 @@ export const useToggleFavorite = () => {
                         color: currentProduct?.colors,
                         size: currentProduct?.sizes,
                         gender: currentProduct?.gender,
-                        quantity: currentProduct?.quantity,
+                        variants: currentProduct?.variants,
                         status: currentProduct?.status
                     })
                 });

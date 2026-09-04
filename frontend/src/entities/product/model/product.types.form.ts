@@ -1,4 +1,4 @@
-import type {Collection} from "@/entities/product/model/product.types.ts";
+import type {Collection, Variant} from "@/entities/product/model/product.types.ts";
 
 export interface ProductForm {
     productUrl: string,
@@ -8,7 +8,7 @@ export interface ProductForm {
     description: string,
     price: string,
     gender: string,
-    quantity: number,
+    variants: Variant[],
     sku: string,
     collection: Collection,
 }
@@ -29,7 +29,7 @@ export interface ProductFormMessage {
     sizeMessage: string,
     genderMessage: string,
     skuMessage: string,
-    quantityMessage: string,
+    variantMessage: string,
     collectionsMessage: string,
 }
 
@@ -44,6 +44,6 @@ export interface ProductFormError {
     sizeError: boolean,
     genderError: boolean,
     skuError: boolean,
-    quantityError: boolean,
+    variantError: boolean,
     collectionsError: boolean,
 }
