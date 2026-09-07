@@ -70,14 +70,14 @@ const authController = {
 
             res.cookie('accessToken', accessToken, {
                 httpOnly: true,
-                sameSite: 'lax',
+                sameSite: 'strict',
                 secure: false,
                 maxAge: 60 * 60 * 1000
             });
 
             res.cookie('refreshToken', refreshToken, {
                 httpOnly: true,
-                sameSite: 'lax',
+                sameSite: 'strict',
                 path: '/',
                 secure: false,
                 maxAge: 7 * 24 * 60 * 60 * 1000
