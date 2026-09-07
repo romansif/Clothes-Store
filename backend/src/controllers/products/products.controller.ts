@@ -166,7 +166,7 @@ export const productsController = {
                         (p.material && String(p.material).toLowerCase().includes(search)) ||
                         (p.description && String(p.description).toLowerCase().includes(search)) ||
                         (p.gender && String(p.gender).toLowerCase().includes(search)) ||
-                        (p.collection && String(p.collection).toLowerCase().includes(search))
+                        (p.collection.name && String(p.collection.name).toLowerCase().includes(search))
                     );
                 });
             }

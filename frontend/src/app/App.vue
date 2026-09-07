@@ -6,6 +6,9 @@
   <router-view />
 </template>
 
-<style scoped>
-
+<style>
+::selection {
+  background-color: #3B3C36;
+  color: #ffffff;
+}
 </style>

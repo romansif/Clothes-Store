@@ -16,10 +16,58 @@
       <main class="flex flex-col gap-6 mt-12">
         <HeaderSelections />
         <div class="flex flex-col gap-14">
+<!--          <section class="font-raleway flex flex-col">-->
+<!--            <div v-if="seasonalSelections.length > 0" class="flex flex-col gap-2.5">-->
+<!--              <h2 class="font-extrabold text-5xl">-->
+<!--                SEARCH RESULTS-->
+<!--              </h2>-->
+<!--              <span class="border-b-4 w-120"></span>-->
+<!--              <h3 class="text-2xl font-medium text-[#A3A3A3]">-->
+<!--                Products matching your selected filters and query-->
+<!--              </h3>-->
+<!--            </div>-->
+<!--            <SeasonalList />-->
+<!--          </section>-->
           <section class="font-raleway flex flex-col">
             <div v-if="seasonalSelections.length > 0" class="flex flex-col gap-2.5">
               <h2 class="font-extrabold text-5xl">
-                SEARCH RESULTS
+                AFTER DARK
+              </h2>
+              <span class="border-b-4 w-120"></span>
+              <h3 class="text-2xl font-medium text-[#A3A3A3]">
+                Products matching your selected filters and query
+              </h3>
+            </div>
+            <SeasonalList />
+          </section>
+          <section class="font-raleway flex flex-col">
+            <div v-if="seasonalSelections.length > 0" class="flex flex-col gap-2.5">
+              <h2 class="font-extrabold text-5xl">
+                FIRST LIGHT
+              </h2>
+              <span class="border-b-4 w-120"></span>
+              <h3 class="text-2xl font-medium text-[#A3A3A3]">
+                Products matching your selected filters and query
+              </h3>
+            </div>
+            <SeasonalList />
+          </section>
+          <section class="font-raleway flex flex-col">
+            <div v-if="seasonalSelections.length > 0" class="flex flex-col gap-2.5">
+              <h2 class="font-extrabold text-5xl">
+                BARE SKIN
+              </h2>
+              <span class="border-b-4 w-120"></span>
+              <h3 class="text-2xl font-medium text-[#A3A3A3]">
+                Products matching your selected filters and query
+              </h3>
+            </div>
+            <SeasonalList />
+          </section>
+          <section class="font-raleway flex flex-col">
+            <div v-if="seasonalSelections.length > 0" class="flex flex-col gap-2.5">
+              <h2 class="font-extrabold text-5xl">
+                GOLDEN HOUR
               </h2>
               <span class="border-b-4 w-120"></span>
               <h3 class="text-2xl font-medium text-[#A3A3A3]">

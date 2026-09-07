@@ -2,42 +2,42 @@
   <form @keydown.enter="signUp('Buyer')" action="" class="mt-10">
     <div class="flex flex-col gap-4">
       <div class="flex gap-3">
-        <div class="flex flex-col gap-2 w-full">
+        <div class="flex flex-col gap-3 w-full">
           <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">NAME</label>
           <BaseInput v-model=registerForm.name type="text" placeholder="name"
                      :error="registerFormErrors.nameError" variant="auth" required
                      :error-message="registerFormErrors.nameError ? registerFormMessages.nameMessage : ''" />
         </div>
-        <div class="flex flex-col gap-2 w-full">
+        <div class="flex flex-col gap-3 w-full">
           <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">SURNAME</label>
           <BaseInput v-model=registerForm.surName type="text" placeholder="surname"
                      :error="registerFormErrors.surNameError" variant="auth" required
                      :error-message="registerFormErrors.surNameError ? registerFormMessages.surNameMessage : ''" />
         </div>
       </div>
-      <div class="flex flex-col gap-2">
+      <div class="flex flex-col gap-3">
         <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">PRIVATE PHONE</label>
-        <div class="flex items-center gap-3">
+        <div class="flex flex-col gap-3 sm:flex-row">
           <select name="" id="" v-model="selectedCountryCode" @change="changeCountry" :class="selectPhoneCodeClass()">
             <option v-for="country in countries" :key="country.code" :value="country.code">
-              {{ country.name }}
+                {{ country.name }}
             </option>
           </select>
           <IMask v-model:value=registerForm.phone type="tel" :mask="currentMask.mask" :key="selectedCountryCode"
                  :class="signUpPhoneClass" :placeholder="currentCountry?.placeholder" />
         </div>
         <span v-if=registerFormErrors.phoneError class="text-red-600 text-xs">
-              {{ registerFormMessages.phoneMessage }}
-            </span>
+          {{ registerFormMessages.phoneMessage }}
+        </span>
       </div>
-      <div class="flex gap-3">
-        <div class="flex flex-col gap-2 w-full">
+      <div class="flex flex-col gap-3 sm:flex-row">
+        <div class="flex flex-col gap-3 w-full">
           <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">EMAIL</label>
           <BaseInput v-model=registerForm.email type="text" placeholder="example@mail.com"
                      :error="registerFormErrors.emailError" variant="auth" required
                      :error-message="registerFormErrors.emailError ? registerFormMessages.emailMessage : ''" />
         </div>
-        <div class="flex flex-col gap-2 w-full">
+        <div class="flex flex-col gap-3 w-full">
           <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">PASSWORD</label>
           <div class="relative">
             <BaseInput v-model=registerForm.password :type="showPassword.password ? 'text' : 'password'" placeholder="••••••••"

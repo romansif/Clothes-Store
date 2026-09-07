@@ -1,13 +1,13 @@
 <template>
   <form @keydown.enter="signIn" action="" class="mt-10">
     <div class="flex flex-col gap-4">
-      <div class="flex flex-col gap-2">
+      <div class="flex flex-col gap-3">
         <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">EMAIL OR PHONE</label>
         <BaseInput v-model=loginForm.email type="email" placeholder="example@mail.com"
                    :error="loginFormErrors.emailError" variant="auth" required
                    :error-message="loginFormErrors.emailError ? loginFormMessages.emailMessage : ''" />
       </div>
-      <div class="flex flex-col gap-2">
+      <div class="flex flex-col gap-3">
         <div class="flex">
           <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">PASSWORD</label>
           <label class="text-xs text-gray-400 ml-auto">Forgot a password?</label>
@@ -20,7 +20,7 @@
                :class="['absolute w-7.5 top-1/4 left-57 sm:left-82', loginFormErrors.passwordError ? 'top-1/6' : '']">
         </div>
       </div>
-      <div class="flex flex-col gap-2">
+      <div class="flex flex-col gap-3">
         <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">ROLE</label>
         <div class="flex gap-3">
           <div :class="signInRoleClass">

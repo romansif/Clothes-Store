@@ -19,6 +19,11 @@
             New
           </router-link>
         </div>
+        <router-link v-if="!isProfile" :to="{name: 'shop'}">
+          <div class="flex md:hidden">
+            <img :src=back alt="" class="rotate-180 transition duration-400 hover:scale-110 w-18">
+          </div>
+        </router-link>
       </div>
       <div class="xl:flex xl:gap-10
           lg:flex lg:gap-10
@@ -27,11 +32,11 @@
           flex gap-3">
         <router-link :to="{name: 'favorite'}">
           <div class="xl:flex lg:flex md:flex sm:hidden hidden">
-            <img :src=liked alt="" class=" transition duration-400 hover:scale-110">
+            <img :src=liked alt="" class="transition duration-400 hover:scale-110">
           </div>
         </router-link>
         <router-link :to="{name: 'cart'}">
-          <div class="xl:flex xl:items-center lg:flex md:flex  transition duration-400 hover:scale-110 gap-1">
+          <div class="xl:flex xl:items-center lg:flex md:flex transition duration-400 hover:scale-110 gap-1">
             <span class="px-7 py-3.5 bg-black rounded-3xl text-white items-center md:flex hidden">
                 Cart
             </span>
@@ -63,13 +68,14 @@ import { cartStore } from "@/entities/cart/model/cart.store.ts";
 import cartImg from "@/assets/icons/nav/cart.png";
 import liked from "@/assets/icons/nav/favorite.png";
 import profile from "@/assets/icons/nav/profile.png";
+import back from "@/assets/icons/arrows/right-long-arrow.png";
 
 const route = useRoute();
 
 const isHome = computed(() => route.name === "");
+const isCart = computed(() => route.name !== "cart");
 const isProducts = computed(() => route.name === "shop");
 const isProfile = computed(() => route.name !== "profile");
-const isCart = computed(() => route.name !== "cart");
 const isNewCollections = computed(() => route.name === "shop/new-collections");
 const isSeasonCollections = computed(() => route.name === "shop/seasonal-collections");
 </script>

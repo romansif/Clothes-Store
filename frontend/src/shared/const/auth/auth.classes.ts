@@ -7,12 +7,12 @@ const { loginFormErrors, registerFormErrors } = authFormsErrors();
 
 export const authClasses = () => {
     const getSignUpPasswordClass = (hasError: boolean) => [
-        'absolute w-7.5 top-1/4 left-57 sm:left-51.5', hasError ? 'top-1/9' : ''
+        'absolute w-7.5 top-1/4 left-58 sm:left-51', hasError ? 'top-1/9' : ''
     ];
 
     const selectPhoneCodeClass = () => [
-        `text-xs outline-none bg-[#D9D9D9]/40 transition duration-400 border border-gray-300
-        font-dm-sans hover:bg-gray-50 rounded-md py-5 px-3`
+        `text-sm outline-none bg-[#D9D9D9]/40 transition duration-400 border border-gray-300
+        font-dm-sans hover:bg-gray-50 rounded-md py-5 px-3 appearance-none`
     ];
 
     const signInRoleClass = computed(() => [

@@ -1,7 +1,7 @@
 <template>
   <div class="bg-white h-screen">
     <main class='fixed font-raleway inset-0 flex items-center justify-center'>
-      <div class="w-87.5 sm:w-150 rounded-lg px-8 py-8">
+      <div class="w-87.5 sm:w-140 rounded-lg px-4 py-8">
         <div class="flex items-center justify-center">
           <div class="w-58.75 sm:w-75">
             <div class="font-medium flex items-center justify-between">
@@ -21,7 +21,7 @@
           <div class="relative duration-400 hover:scale-105 cursor-pointer">
             <BaseButton @click="signUp(currentRole)" variant="register"
                         :name="isRole ? 'SIGN UP BY SELLER' : 'SIGN UP BY BUYER'" />
-            <img :src=maki_arrow alt="" class="absolute w-6.25 top-9.5 left-58 sm:left-121">
+            <img :src=maki_arrow alt="" class="absolute w-6.25 top-9.5 left-58 sm:left-118">
           </div>
           <BaseButton @click="toggleSignUp" :name="isRole ? 'Sign up as a buyer' : 'Sign up as a seller'" variant="changeRegister" />
         </div>

@@ -1,11 +1,27 @@
 <template>
   <div class="flex gap-10">
     <div class="flex flex-col gap-4 mt-4 w-full">
-      <div class="flex gap-2 w-84">
+      <div class="flex gap-2">
+        <span class="font-semibold text-lg">Role:</span>
+        <span class="font-medium text-lg text-[#A3A3A3]">
+              {{ user?.role }}
+            </span>
+      </div>
+      <div v-if="user?.role === 'Seller'" class="flex gap-2 w-full">
+        <span class="font-semibold text-lg">Company:</span>
+        <span class="font-medium text-lg text-[#A3A3A3] font-dm-sans">NOIR</span>
+      </div>
+      <div v-if="user?.role === 'Buyer'" class="flex gap-2 w-84">
         <span class="font-semibold text-lg">Phone:</span>
         <span class="font-medium text-lg text-[#A3A3A3] font-dm-sans">{{ user.phone }}</span>
       </div>
-      <div class="flex gap-2 w-full ">
+    </div>
+    <div class="flex flex-col gap-4 mt-4 w-full">
+      <div v-if="user?.role === 'Seller'" class="flex gap-2 w-84">
+        <span class="font-semibold text-lg">Phone:</span>
+        <span class="font-medium text-lg text-[#A3A3A3] font-dm-sans">{{ user.phone }}</span>
+      </div>
+      <div class="flex gap-2 w-full">
         <span class="font-semibold text-lg">Email:</span>
         <span class="font-medium text-lg text-[#A3A3A3] font-dm-sans">{{ user.email }}</span>
       </div>

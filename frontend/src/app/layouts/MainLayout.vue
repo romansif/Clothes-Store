@@ -3,17 +3,20 @@
 </template>
 
 <script setup lang="ts">
+import {searchForm} from "@/widgets/navigation/model/search.form.ts";
+
 const { loading } = useBaseModals();
 const { getCartProducts } = useGetCart();
 const { componentError } = errorHandler();
+const { searchProductForm } = searchForm();
 const { productInfoPreview } = productsCover();
 const { getFavoriteProducts } = useGetFavorite();
-const { product, activeProductImg } = productStore();
+const { products, seasonalSelections, product, activeProductImg } = productStore();
 const { getProduct, getAllProducts, getFilteredProducts, getSeasonal,
   getWeekProducts, getYearProducts } = useGetProduct();
 
-import { useRoute } from "vue-router";
 import { watch } from "vue";
+import { useRoute } from "vue-router";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
@@ -52,8 +55,15 @@ const load = async () => {
 watch(
     () => [route.name, route.params.id],
     load,
-    { immediate: true }
+    { immediate: true },
 );
+
+watch(() => searchProductForm.value.search, (search) => {
+  if (search.length === 0) {
+    products.value = [];
+    seasonalSelections.value = [];
+  }
+});
 </script>
 
 <style scoped>
