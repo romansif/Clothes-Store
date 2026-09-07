@@ -37,7 +37,6 @@ export const useAuth = () => {
             });
 
             if(authData.accessToken){
-                localStorage.setItem("accessToken", authData.accessToken);
                 localStorage.setItem("user", JSON.stringify(authData));
                 console.log("auth data:", authData.accessToken);
             }else{
@@ -76,7 +75,6 @@ export const useAuth = () => {
                 console.log('Email and password are required.')
                 return
             }else{
-                localStorage.setItem("accessToken", foundedUser.accessToken)
                 localStorage.setItem("user", JSON.stringify(foundedUser));
             }
             user.value = foundedUser.user
@@ -112,7 +110,6 @@ export const useAuth = () => {
                 console.log('Email and password are required.')
                 return
             }else{
-                localStorage.setItem("accessToken", foundedUser.accessToken)
                 localStorage.setItem("user", JSON.stringify(foundedUser));
             }
             user.value = foundedUser.user
@@ -136,7 +133,6 @@ export const useAuth = () => {
         }catch(err){
             console.log(`Failed to logout:`, err);
         }finally {
-            localStorage.clear()
             await router.push({ name: 'signIn' })
         }
     };
@@ -146,7 +142,6 @@ export const useAuth = () => {
             await handler(`/users/${user.value.id}`, {
                 method: "DELETE",
             });
-            localStorage.clear()
 
             await router.push({ name: 'signIn' });
         }catch(err){

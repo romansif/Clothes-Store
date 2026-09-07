@@ -57,7 +57,6 @@ const authController = {
                 password: hashedPassword,
                 avatarUrl: 'uploads/avatars/default-avatar.png',
                 created_at: created_at,
-                refreshTokens: [],
             };
 
             users.push(newUser);
@@ -67,8 +66,6 @@ const authController = {
             const accessToken = generateAccessToken(newUser);
             const refreshToken = generateRefreshToken(newUser);
 
-            // @ts-ignore
-            newUser.refreshTokens.push(refreshToken);
             dbService.writeDB(db);
 
             res.cookie('accessToken', accessToken, {
@@ -86,7 +83,7 @@ const authController = {
                 maxAge: 7 * 24 * 60 * 60 * 1000
             });
 
-            const { password: _, refreshTokens: __, ...userWithoutPassword } = newUser;
+            const { password: _, ...userWithoutPassword } = newUser;
             res.status(201).json({ ...userWithoutPassword, accessToken });
         } catch (err) {
             console.error(`Failed to register the new user: ${req.body?.email}`, err);
@@ -125,10 +122,6 @@ const authController = {
             const accessToken = generateAccessToken(user);
             const refreshToken = generateRefreshToken(user);
 
-            if (!Array.isArray(user.refreshTokens)) {
-                user.refreshTokens = [];
-            }
-            user.refreshTokens.push(refreshToken);
             dbService.writeDB(db);
 
             res.cookie('accessToken', accessToken, {
@@ -146,7 +139,7 @@ const authController = {
                 maxAge: 7 * 24 * 60 * 60 * 1000
             });
 
-            const { password: _, refreshTokens: __, ...userWithoutPassword } = user;
+            const { password: _, ...userWithoutPassword } = user;
 
             return res.json({ ...userWithoutPassword, accessToken });
         } catch (err) {
@@ -203,7 +196,6 @@ const authController = {
                     googleId: sub,
                     created_at: created_at,
                     password: '',
-                    refreshTokens: []
                 };
 
                 users.push(user);
@@ -212,10 +204,6 @@ const authController = {
             const accessToken = generateAccessToken(user);
             const refreshToken = generateRefreshToken(user);
 
-            if (!Array.isArray(user.refreshTokens)) {
-                user.refreshTokens = [];
-            }
-            user.refreshTokens.push(refreshToken);
             user.googleId = user.googleId || sub;
 
             dbService.writeDB(db);
@@ -235,7 +223,7 @@ const authController = {
                 maxAge: 7 * 24 * 60 * 60 * 1000
             });
 
-            const { password, refreshTokens, ...userWithoutPassword } = user;
+            const { password, ...userWithoutPassword } = user;
 
             return res.json({ ...userWithoutPassword, accessToken });
 
@@ -258,15 +246,10 @@ const authController = {
 
         if (refreshToken) {
             try {
-                const db = dbService.readDB();
-                const users: any[] = db.users || [];
+                localStorage.removeItem('user');
 
-                const user = users.find(u => Array.isArray(u.refreshTokens) && u.refreshTokens.includes(refreshToken));
-
-                if (user) {
-                    user.refreshTokens = user.refreshTokens.filter((t: string) => t !== refreshToken);
-                    dbService.writeDB(db);
-                }
+                res.clearCookie('accessToken');
+                res.clearCookie('refreshToken', { path: '/' });
             } catch (err) {
                 console.log(`Failed to logout`, err);
             }
