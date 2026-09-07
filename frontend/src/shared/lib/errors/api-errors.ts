@@ -31,13 +31,13 @@ export const useFormsErrors = () => {
             if(errors){
                 registerFormErrors.value.nameError = !!errors.name;
                 registerFormErrors.value.surNameError = !!errors.surName;
-                registerFormErrors.value.phoneError = !!errors.privatePhone;
+                registerFormErrors.value.phoneError = !!errors.phone;
                 registerFormErrors.value.emailError = !!errors.email;
                 registerFormErrors.value.passwordError = !!errors.password;
 
                 registerFormMessages.value.nameMessage = errors.name || '';
                 registerFormMessages.value.surNameMessage = errors.surName || '';
-                registerFormMessages.value.phoneMessage = errors.privatePhone || '';
+                registerFormMessages.value.phoneMessage = errors.phone || '';
                 registerFormMessages.value.emailMessage = errors.email || '';
                 registerFormMessages.value.passwordMessage = errors.password || '';
 
@@ -73,7 +73,7 @@ export const useFormsErrors = () => {
                 createProductFormErrors.value.colorError = !!errors.color;
                 createProductFormErrors.value.sizeError = !!errors.size;
                 createProductFormErrors.value.genderError = !!errors.gender;
-                createProductFormErrors.value.quantityError = !!errors.quantity;
+                createProductFormErrors.value.variantError = !!errors.quantity;
 
                 createProductFormMessages.value.titleMessage = errors.title || '';
                 createProductFormMessages.value.collectionsMessage = errors.collection || '';
@@ -84,7 +84,7 @@ export const useFormsErrors = () => {
                 createProductFormMessages.value.colorMessage = errors.color || '';
                 createProductFormMessages.value.sizeMessage = errors.size || '';
                 createProductFormMessages.value.genderMessage = errors.gender || '';
-                createProductFormMessages.value.quantityMessage = errors.quantity || '';
+                createProductFormMessages.value.variantMessage = errors.quantity || '';
             }
         }
     };

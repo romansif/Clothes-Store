@@ -77,7 +77,7 @@ import opened from "@/assets/icons/auth/opened.png";
 import BaseInput from "@/shared/ui/BaseInput.vue";
 
 watch(() => [registerForm.value.name, registerForm.value.surName, registerForm.value.phone,
-  registerForm.value.email, registerForm.value.password],([name, surName, phone, email, password]) => {
+      registerForm.value.email, registerForm.value.password],([name, surName, phone, email, password]) => {
       if(name){
         registerFormErrors.value.nameError = false;
       }

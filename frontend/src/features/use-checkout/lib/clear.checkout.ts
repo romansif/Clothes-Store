@@ -41,9 +41,7 @@ export const clearCheckoutForm = () => {
 
     const clearShippingForm = () => {
         shipping.value.delivery = '';
-
         shippingMessages.value.deliveryMessage = '';
-
         shippingErrors.value.deliveryError = false;
     };
 

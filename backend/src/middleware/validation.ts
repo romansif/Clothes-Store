@@ -14,7 +14,6 @@ export const validation = {
             .withMessage('SurName required to registration.'),
 
         body('phone')
-            .if(body('role').equals('Buyer'))
             .notEmpty().withMessage('Private phone required to registration.'),
 
         body('email')
@@ -80,12 +79,6 @@ export const validation = {
         body('companyName')
             .trim()
             .notEmpty().withMessage('Company Name required to update company name.'),
-    ],
-
-    updateUserPublicPhoneValidation: [
-        body('publicPhone')
-            .trim()
-            .notEmpty().withMessage('Public Phone required to update phone.'),
     ],
 
     updateUserEmailValidation: [

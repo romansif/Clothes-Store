@@ -14,7 +14,6 @@ export const clearAuthForms = () => {
 
         registerFormMessages.value.nameMessage = '';
         registerFormMessages.value.surNameMessage = '';
-
         registerFormMessages.value.emailMessage = '';
         registerFormMessages.value.passwordMessage = '';
 

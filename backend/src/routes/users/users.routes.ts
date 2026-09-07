@@ -19,7 +19,7 @@ router.patch('/phone/:id', authMiddleware, validation.updateUserPhoneValidation,
     usersController.updateUser);
 router.patch('/companyName/:id', authMiddleware, validation.updateUserCompanyNameValidation, validation.handleValidationErrors,
     usersController.updateUser);
-router.patch('/publicPhone/:id', authMiddleware, validation.updateUserPublicPhoneValidation, validation.handleValidationErrors,
+router.patch('/publicPhone/:id', authMiddleware, validation.updateUserPhoneValidation, validation.handleValidationErrors,
     usersController.updateUser);
 router.patch('/email/:id', authMiddleware, validation.updateUserEmailValidation, validation.handleValidationErrors,
     usersController.updateUser);

@@ -85,10 +85,10 @@
 const { updateUserFormErrors } = userFormsErrors();
 const { countries, selectedCountryCode } = userStore();
 const { updateUserForm, updateUserFormMessage } = userForms();
-const { updatePhoneAccount, updateEmailAccount } = profileApi();
 const { changeCountry, currentCountry, currentMask } = usePhoneForm();
 const { profilePhoneClass, profileSelectPhoneCodeClass } = profileClasses();
-const { updatePasswordAccount, updateNameAccount, updateSurNameAccount } = profileApi();
+const { updatePasswordAccount, updateNameAccount, updateSurNameAccount,
+    updatePhoneAccount, updateEmailAccount } = profileApi();
 
 import { ref, watch } from 'vue'
 import { IMaskComponent as IMask } from "vue-imask";
