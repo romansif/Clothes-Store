@@ -20,11 +20,11 @@ export const authMiddleware: RequestHandler = (req, res, next) => {
     }
 };
 
-export const roleMiddleware = (requireRole: string) => {
-    return(req: AuthenticatedRequest, res: Response, next: NextFunction) => {
-        if(!req.user || req.user?.role !== requireRole){
-            return res.status(403).json({ message: `Access is permitted only for the role.` });
+export const roleMiddleware = (requiredRole: string) => {
+    return (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+        if (!req.user || req.user.role !== requiredRole) {
+            return res.status(403).json({ message: 'Access is forbidden for this role.' });
         }
-        return next()
-    }
-}
+        next();
+    };
+};

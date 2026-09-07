@@ -1,6 +1,6 @@
 import express from "express";
 import { upload } from "#middleware/upload.products.ts";
-import { authMiddleware } from "#middleware/auth.middleware.ts";
+import {authMiddleware, roleMiddleware} from "#middleware/auth.middleware.ts";
 import { productsController } from "#controllers/products/products.controller.ts";
 
 const router = express.Router();
@@ -17,13 +17,17 @@ router.get('/products/collections/:collection', productsController.getCollection
 
 router.get('/products/:id', productsController.getProductsById);
 
-router.post('/products', authMiddleware, upload.array('images', 5), productsController.createdProduct);
+router.post('/products', authMiddleware, roleMiddleware('Seller'),
+    upload.array('images', 5), productsController.createdProduct);
 
-router.patch('/products/:id/:index/images', authMiddleware, upload.array('images', 5),
+router.patch('/products/:id/:index/images', authMiddleware, roleMiddleware('Seller'),
+    upload.array('images', 5),
     productsController.updateProductImages);
-router.patch('/products/:id', authMiddleware, productsController.updateProductItem);
+router.patch('/products/:id', authMiddleware, roleMiddleware('Seller'),
+    productsController.updateProductItem);
 
-router.delete('/products/:id', authMiddleware, productsController.deleteProduct);
+router.delete('/products/:id', authMiddleware, roleMiddleware('Seller'),
+    productsController.deleteProduct);
 
 
 export default router;
