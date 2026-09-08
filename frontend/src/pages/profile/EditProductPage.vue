@@ -3,50 +3,95 @@
     <div class="font-dm-sans fixed inset-0 z-50">
       <div class="py-2 px-4 bg-[#F0F0F0] shadow-md overflow-hidden h-full overflow-y-auto no-scrollbar">
         <div class="flex">
-          <router-link :to="{ name: 'my/products' }" class="text-start ml-auto h-fit w-fit px-10 py-2 bg-red-600 text-white
+          <router-link :to="{ name: 'profile' }" class="text-start ml-auto h-fit w-fit px-10 py-2 bg-red-600 text-white
               font-medium text-xs rounded-md cursor-pointer transition duration-300 transform hover:scale-108 hover:bg-red-500">
             Exit
           </router-link>
         </div>
         <div class="flex justify-center">
           <div class="flex flex-col gap-5">
-            <div class="flex flex-col items-center gap-2.5 w-full pb-6.5 border-b">
-              <span class="text-start font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
-                  PRODUCT IMAGES PREVIEW
-              </span>
-              <div class="flex gap-7 w-full">
-                <div v-for="(img, index) in pureCards(product)" :key="img" @click="openSelectProductCard(index)"
-                     class="bg-white h-68.5 w-50 border border-gray-200 transition duration-400
-                       hover:scale-105 cursor-pointer flex items-center justify-center overflow-hidden rounded-sm">
-                  <img v-if="img" :src="img" alt="" class="h-full object-cover transition duration-400">
-                  <span v-else class="text-gray-500 text-sm font-light">+</span>
+            <div class="flex flex-col gap-6 bg-white w-full p-6.5 rounded shadow-xl">
+              <div class="flex flex-col gap-1">
+                <h1 class="text-2xl font-semibold">Image slots</h1>
+                <h2 class="text-sm text-[#A3A3A3] font-medium">
+                  5 slots: 1 main photo + 4 additional ones. Click on a slot to select a file
+                </h2>
+              </div>
+              <div class="flex gap-6">
+                <div @click="openSelectProductCard(0)" :key="0" class="bg-gray-50 h-90 w-90 border border-gray-300 transition duration-400 hover:scale-105
+                          hover:bg-gray-100 cursor-pointer overflow-hidden rounded-lg">
+                  <img v-if="pureCards(product)[0]" :src="pureCards(product)[0]" alt=""
+                       class="h-90 w-90 transition duration-400">
+                  <div v-else class="p-4 text-mauve-100">
+                    <span class="bg-black font-bold px-2 py-1.5 rounded-full">
+                      Main Photo
+                    </span>
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                  <div v-for="index in [1, 2, 3, 4]" :key="index" @click="openSelectProductCard(index)"
+                       class="bg-gray-50 h-43.5 w-43.5 border border-gray-300 transition duration-400 hover:scale-105
+                       hover:bg-gray-100 cursor-pointer overflow-hidden rounded-lg">
+                    <img v-if="pureCards(product)[index]" :src="pureCards(product)[index]" alt=""
+                         class="h-43.5 w-43.5 transition duration-400">
+                    <div v-else class="p-4 text-mauve-500">
+                      <span class="bg-gray-100 font-bold px-2 py-1.5 rounded-full border border-gray-400">
+                        Photo {{ index }}
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
+              <span v-if="createProductFormErrors.productUrlError" class="text-red-600 text-xs">
+                {{ createProductFormMessages.productUrlMessage }}
+              </span>
+              <div class="flex flex-col gap-4">
+                <h2 class="text-sm text-[#A3A3A3] font-medium">The first photo is used in the catalog</h2>
+                <h2 class="text-sm text-[#A3A3A3] font-medium">Formats: JPG · PNG · WEBP Max. size: 5 MB Aspect ratio: 4:5</h2>
+              </div>
             </div>
-            <form @keydown.enter="createProduct" action="" class="flex flex-col justify-center gap-5 mt-2">
-              <div class="flex items-center gap-3 pb-5.5 border-b">
-                <div class="flex flex-col gap-2.5 w-full">
-                  <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
-                    TITLE:
-                    <span class="text-black">
-                      {{ product.title }}
-                    </span>
+            <form @keydown.enter="createProduct" action=""
+                  class="bg-white p-6.5 mt-6 flex flex-col justify-center gap-8 rounded shadow-xl">
+              <div class="flex flex-col gap-1">
+                <label for="" class="text-2xl font-semibold tracking-wider">
+                  Basic information
+                </label>
+                <span class="text-sm text-[#A3A3A3] font-medium">Product name, collection, and category</span>
+              </div>
+              <div class="flex gap-6 mt-3 border-b-2 pb-4">
+                <div class="flex flex-col gap-3 w-full">
+                  <label for="" class="font-semibold tracking-wider text-xs">
+                    <div class="flex gap-1">
+                      <span>TITLE · НАЗВАНИЕ</span>
+                      <span class="text-red-500">*</span>
+                      <span>/</span>
+                      <span class="text-black uppercase">
+                         {{ product.title }}
+                      </span>
+                      <span class="text-[#A3A3A3] ml-auto font-medium">{{ createProductForm.title.length }} / 50</span>
+                    </div>
                   </label>
                   <BaseInput v-model="createProductForm.title" type="text" placeholder="title, name etc."
                              :error="createProductFormErrors.titleError" variant="createProduct" required
                              :error-message="createProductFormErrors.titleError ? createProductFormMessages.titleMessage : ''"/>
                 </div>
-                <div class="flex flex-col gap-2 w-full">
-                  <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
-                    COLLECTION:
-                    <span class="text-black">
-                      {{ product.collection.name }}
-                    </span>
+              </div>
+              <div class="flex gap-6">
+                <div class="flex flex-col gap-3 w-full">
+                  <label for="" class="font-semibold tracking-wider text-xs">
+                    <div class="flex gap-1">
+                      <span>COLLECTION · КОЛЛЕКЦИЯ</span>
+                      <span class="text-red-500">*</span>
+                      <span>/</span>
+                      <span class="text-black uppercase">
+                         {{ product.collection.name }}
+                      </span>
+                    </div>
                   </label>
                   <select v-model="createProductForm.collection" :class="[`w-full border border-gray-300 rounded-sm
-                            outline-none px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,
-                              createProductForm.collection ? 'text-black' : '',
-                              createProductFormErrors.collectionsError ? 'border-red-500' : '']">
+                          outline-none px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,
+                            createProductForm.collection ? 'text-black' : '',
+                            createProductFormErrors.collectionsError ? 'border-red-500' : '']">
                     <option disabled hidden value="">
                       Void
                     </option>
@@ -61,14 +106,16 @@
                     {{ createProductFormMessages.collectionsMessage }}
                   </span>
                 </div>
-              </div>
-              <div class="flex items-center gap-3 pb-5.5 border-b">
-                <div class="flex flex-col gap-2.5 w-full">
-                  <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
-                    CATEGORY:
-                    <span class="text-black">
-                      {{ product.category }}
-                    </span>
+                <div class="flex flex-col gap-3 w-full">
+                  <label for="" class="font-semibold tracking-wider text-xs">
+                    <div class="flex gap-1">
+                      <span>CATEGORY · КАТЕГОРИЯ</span>
+                      <span class="text-red-500">*</span>
+                      <span>/</span>
+                      <span class="text-black uppercase">
+                         {{ product.category }}
+                      </span>
+                    </div>
                   </label>
                   <select v-model="createProductForm.category" :class="[`w-full border border-gray-300 rounded-sm
                           outline-none px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,
@@ -83,12 +130,18 @@
                     {{ createProductFormMessages.categoryMessage }}
                   </span>
                 </div>
-                <div class="flex flex-col gap-2.5 w-full">
-                  <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
-                    MATERIAL:
-                    <span class="text-black">
-                      {{ product.material }}
-                    </span>
+              </div>
+              <div class="flex gap-6 w-full">
+                <div class="flex flex-col gap-3 w-full">
+                  <label for="" class="font-semibold tracking-wider text-xs">
+                    <div class="flex gap-1">
+                      <span>MATERIAL · МАТЕРИАЛ</span>
+                      <span class="text-red-500">*</span>
+                      <span>/</span>
+                      <span class="text-black uppercase">
+                         {{ product.material }}
+                      </span>
+                    </div>
                   </label>
                   <select v-model="createProductForm.material" :class="[`w-full border border-gray-300 rounded-sm
                           outline-none px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,
@@ -100,19 +153,21 @@
                     <option v-for="material in materials" class="text-black">{{ material.material }}</option>
                   </select>
                   <span v-if="createProductFormErrors.materialError" class="text-red-600 text-xs">
-                  {{ createProductFormMessages.materialMessage }}
-                </span>
+                    {{ createProductFormMessages.materialMessage }}
+                  </span>
                 </div>
-              </div>
-              <div class="flex gap-3 w-full pb-5.5 border-b">
-                <div class="flex flex-col gap-2.5 w-full">
-                  <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
-                    GENDER:
-                    <span class="text-black">
-                      {{ product.gender }}
-                    </span>
+                <div class="flex flex-col gap-3 w-full">
+                  <label for="" class="font-semibold tracking-wider text-xs">
+                    <div class="flex gap-1">
+                      <span>GENDER · ПОЛ</span>
+                      <span class="text-red-500">*</span>
+                      <span>/</span>
+                      <span class="text-black uppercase">
+                         {{ product.gender }}
+                      </span>
+                    </div>
                   </label>
-                  <div class="flex flex-col gap-2.5">
+                  <div class="flex flex-col gap-3">
                     <select v-model="createProductForm.gender" :class="[`border border-gray-300 rounded-sm outline-none
                             px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,
                               createProductForm.gender ? 'text-black' : '',
@@ -127,29 +182,52 @@
                     </span>
                   </div>
                 </div>
-                <div class="flex flex-col gap-2.5 w-full">
-                  <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
-                    QUANTITY: <span class="text-black">{{ product.quantity }}</span>
+              </div>
+              <div class="flex gap-6 w-full">
+                <div class="flex flex-col gap-3 w-full">
+                  <label for="" class="font-semibold tracking-wider text-xs">
+                    <div class="flex gap-1">
+                      <span>SKU · АРТИКУЛ</span>
+                      <span class="text-red-500">*</span>
+                      <span>/</span>
+                      <span class="text-black uppercase">
+                         {{ product.sku }}
+                      </span>
+                    </div>
                   </label>
-                  <BaseInput v-model="createProductForm.quantity" type="number" placeholder="quantity of product"
-                             :error="createProductFormErrors.quantityError" variant="createProduct" required
-                             :error-message="createProductFormErrors.quantityError ? createProductFormMessages.quantityMessage : ''"/>
+                  <IMask v-model:value="createProductForm.sku" type="text" inputmode="numeric" placeholder="BLC-XS-001" :mask="skuMask.mask"
+                         :class="['uppercase border border-gray-300 rounded-sm outline-none px-6 py-5 text-sm bg-white ' +
+                          'transition duration-400 font-dm-sans', createProductFormErrors.skuError ? 'border-red-500' : '']" />
+                  <span v-if="createProductFormErrors.skuError" class="text-red-600 text-xs">
+                    {{ createProductFormMessages.skuMessage }}
+                  </span>
                 </div>
-                <div class="flex flex-col gap-2.5 w-full">
-                  <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
-                    PRICE: <span class="text-black">${{ product.price }}</span>
+                <div class="flex flex-col gap-3 w-full">
+                  <label for="" class="font-semibold tracking-wider text-xs">
+                    <div class="flex gap-1">
+                      <span>PRICE · ЦЕНА</span>
+                      <span class="text-red-500">*</span>
+                      <span>/</span>
+                      <span class="text-black uppercase">
+                         {{ product.price }}
+                      </span>
+                    </div>
                   </label>
                   <BaseInput v-model="createProductForm.price" type="number" placeholder="$00.00 "
                              :error="createProductFormErrors.priceError" variant="createProduct" required
                              :error-message="createProductFormErrors.priceError ? createProductFormMessages.priceMessage : ''"/>
                 </div>
               </div>
-              <div class="flex flex-col gap-2.5 pb-5.5 border-b">
-                <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
-                  DESCRIPTION:
-                  <span class="text-black">
-                    {{ product.description }}
-                  </span>
+              <div class="flex flex-col gap-3">
+                <label for="" class="font-semibold tracking-wider text-xs">
+                  <div class="flex gap-1">
+                    <span>DESC. · ОПИСАНИЕ</span>
+                    <span class="text-red-500">*</span>
+                    <span>/</span>
+                    <span class="text-black uppercase">
+                      {{ product.description }}
+                    </span>
+                  </div>
                 </label>
                 <textarea v-model="createProductForm.description" type="text" placeholder="short desc. product"
                           :class="['h-25 border border-gray-200 rounded-sm outline-none px-6 py-5 text-sm bg-white',
@@ -157,47 +235,127 @@
                 <span v-if="createProductFormErrors.descriptionError" class="text-red-600 text-xs">
                   {{ createProductFormMessages.descriptionMessage }}
                 </span>
-              </div>
-              <div class="flex items-center gap-6 w-full">
-                <div class="flex flex-col gap-2.5 w-full">
-                  <div class="flex items-center justify-between">
-                    <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
-                      SIZES:
-                      <span class="text-black">
-                        {{ pureSizesName(product) }}
-                      </span>
-                    </label>
-                  </div>
-                  <div class="flex gap-6">
-                    <img v-for="size in isAvailableSizes" :key="size.name" :src=size.url alt=""
-                         :class="[size.class, 'w-17.5']">
-                  </div>
-                  <span v-if="createProductFormErrors.sizeError" class="text-red-600 text-xs">
-                    {{ createProductFormMessages.sizeMessage }}
-                  </span>
-                </div>
-                <div class="flex flex-col gap-2.5 w-full">
-                  <div class="flex items-center justify-between">
-                    <label for="" class="font-semibold uppercase tracking-wider text-sm text-[#A3A3A3]">
-                      COLORS:
-                      <span class="text-black">
-                        {{ pureColorsName(product) }}
-                      </span>
-                    </label>
-                  </div>
-                  <div class="flex gap-6">
-                    <label v-for="(color, index) in pureInfoColors(product)" :key="color.hex" :title="color.hex"
-                           :style="{ background: color.hex }"  class="w-17.5 h-17.5">
-                      <input @change="(e) => updateProductColors(product, index, e)" type="color"
-                             class="h-full opacity-0 cursor-pointer" />
-                    </label>
-                  </div>
-                  <span v-if="createProductFormErrors.colorError" class="text-red-600 text-xs">
-                    {{ createProductFormMessages.colorMessage }}
-                  </span>
-                </div>
+                <span class="ml-auto text-[#A3A3A3] text-xs font-medium">{{ createProductForm.title.length }} / 100</span>
               </div>
             </form>
+            <div class="bg-white p-6.5 mt-6 flex flex-col justify-center gap-8 rounded shadow-xl">
+              <div class="flex flex-col gap-3 w-full">
+                <div class="flex items-center justify-between">
+                  <label for="" class="font-semibold tracking-wider text-xs">
+                    <div class="flex gap-1">
+                      <span>QUANTITY · КОЛИЧЕСТВО</span>
+                      <span class="text-red-500">*</span>
+                    </div>
+                  </label>
+                  <div class="flex gap-2 justify-end items-center font-semibold">
+                    <button type="button" @click="countMode = 'SAME'"
+                            :class="['transition duration-700 rounded-full px-3 py-2 text-sm tracking-widest',
+                            countMode === 'SAME' ? 'bg-black text-white' : 'text-neutral-500 hover:text-black']">
+                      The same
+                    </button>
+                    <button type="button" @click="countMode = 'DIFFER'"
+                            :class="['transition duration-700 rounded-full px-3 py-2 text-sm tracking-widest',
+                            countMode === 'DIFFER' ? 'bg-black text-white' : 'text-neutral-500 hover:text-black']">
+                      Different
+                    </button>
+                  </div>
+                </div>
+                <!--                <div v-if="countMode === 'SAME'" class="flex">-->
+                <!--                  <BaseInput v-model="createProductForm.quantity" @input="toggleAllVariants(createProductForm.quantity)"-->
+                <!--                             type="number" placeholder="product ptc." class="w-75"-->
+                <!--                             :error="createProductFormErrors.quantityError" variant="createProduct" required-->
+                <!--                             :error-message="createProductFormErrors.quantityError ? createProductFormMessages.quantityMessage : ''"/>-->
+                <!--                  <span class="ml-auto mt-auto text-sm text-[#A3A3A3] font-medium">-->
+                <!--                    An equal quantity will be selected for all sizes and colors-->
+                <!--                  </span>-->
+                <!--                </div>-->
+                <div class="pt-3">
+                  <table class="w-full text-left border-collapse">
+                    <thead class="border-b-2">
+                    <tr>
+                      <th class="font-medium pb-4">
+                        Colors
+                      </th>
+                      <th v-for="size in uniqueSizes(product)" :key="size" class="text-center font-medium min-w-16 pb-4">
+                        {{ size }}
+                      </th>
+                    </tr>
+                    </thead>
+                    <tbody class="divide-y divide-neutral-200">
+                    <tr v-for="color in uniqueColors(product)" :key="color.colorName">
+                      <td :title="color.hex">
+                        <div class="flex items-center gap-2">
+                          <span :style="{ background: color.hex }" class="w-10 h-10 shrink-0 rounded-full
+                              border-2 border-gray-300 shadow-sm"/>
+                          <span class="text-xs font-bold text-black uppercase whitespace-nowrap">
+                            {{ color.colorName }}
+                          </span>
+                        </div>
+                      </td>
+                      <td v-for="size in uniqueSizes(product)" :key="`${color.colorName}-${size}`" class="py-6 text-center">
+                        <input type="number" min="0" step="1" :value="product.variants.find(variant =>
+                               variant.colorName === color.colorName && variant.size === size)?.count ?? 0"
+                               @input="updateProductCount(product, color, size, ($event.target as HTMLInputElement).value)"
+                               class="w-20 h-10 outline-none border-2 border-gray-300 rounded-sm text-center"/>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="flex flex-col gap-3 w-full">
+                <div class="flex items-center justify-between">
+                  <label for="" class="font-semibold tracking-wider text-xs">
+                    <div class="flex gap-1">
+                      <span>SIZES · РАЗМЕРЫ</span>
+                      <span class="text-red-500">*</span>
+                      <span>/</span>
+                      <span class="text-black uppercase">
+                         {{ pureSizesName(product) }}
+                      </span>
+                    </div>
+                  </label>
+                  <span class="ml-auto text-[#A3A3A3] text-xs font-medium">
+                    Sizes: {{ uniqueSizes(product).length }} / 6
+                  </span>
+                </div>
+                <div class="flex gap-6">
+                  <img v-for="size in isAvailableSizes" :key="size.name" :src="size.url" alt=""
+                       :class="[size.class, 'transition duration-400 scale-110 w-15 rounded-full']">
+                </div>
+                <span v-if="createProductFormErrors.sizeError" class="text-red-600 text-xs">
+                  {{ createProductFormMessages.sizeMessage }}
+                </span>
+              </div>
+              <div class="flex flex-col gap-3 w-full">
+                <div class="flex items-center justify-between">
+                  <label for="" class="font-semibold tracking-wider text-xs">
+                    <div class="flex gap-1">
+                      <span>COLORS · ЦВЕТА</span>
+                      <span class="text-red-500">*</span>
+                      <span> / </span>
+                      <span class="text-black uppercase">
+                        {{ pureColorsName(product) }}
+                      </span>
+                    </div>
+                  </label>
+                  <span class="ml-auto text-[#A3A3A3] text-xs font-medium">
+                    Colors: {{ uniqueColors(product).length }} / 6
+                  </span>
+                </div>
+                <div class="flex gap-6">
+                  <label v-for="(color, index) in pureInfoColors(product)" :key="color.hex" :title="color.hex"
+                         :style="{ background: color.hex }"
+                         class="w-15 h-15 border-2 border-[#A3A3A3] rounded-full transition-all duration-300 scale-110">
+                    <input @change="(e) => updateProductColors(product, index, e)" type="color"
+                           class="absolute inset-0 h-full opacity-0 cursor-pointer" />
+                  </label>
+                </div>
+                <span v-if="createProductFormErrors.colorError" class="text-red-600 text-xs">
+                  {{ createProductFormMessages.colorMessage }}
+                </span>
+              </div>
+            </div>
             <div class="w-full mt-4 mb-6">
               <BaseButton @click="updateProductDesc(product.id)" name="EDIT PRODUCT" variant="useProduct" />
             </div>
@@ -219,12 +377,14 @@ const { createProduct } = useAddProduct();
 const { loading, notify } = useBaseModals();
 const { createProductFormErrors } = productsFormErrors();
 const { openSelectProductCard, fileInput } = useProductsModals();
-const { createProductForm, moreCreateItem, createProductFormMessages } = productForms();
-const { updateProductImages, updateProductColors, updateProductDesc } = useUpdateProduct();
-const { product, collections, categories, materials, genders, activeProductImg } = productStore();
-const { productInfoPreview, pureCards, pureInfoColors, pureColorsName, pureSizesName, isAvailableSizes } = productsCover();
+const { createProductForm, createProductFormMessages } = productForms();
+const { updateProductCount, updateProductImages, updateProductColors, updateProductDesc } = useUpdateProduct();
+const { product, collections, categories, materials, genders, activeProductImg, countMode, skuMask } = productStore();
+const { productInfoPreview, pureCards, pureInfoColors, pureColorsName,
+  pureSizesName, isAvailableSizes, uniqueSizes, uniqueColors } = productsCover();
 
 import { onMounted, watch } from "vue";
+import { IMaskComponent as IMask } from "vue-imask";
 import { productsCover } from "@/features/use-product/model/use-product.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
@@ -240,18 +400,17 @@ import BaseButton from "@/shared/ui/BaseButton.vue";
 import Notification from "@/shared/ui/Notification.vue";
 
 watch(() => [
-      createProductForm.value.title, createProductForm.value.collection,
-      createProductForm.value.category, createProductForm.value.material,
-      createProductForm.value.price, createProductForm.value.description,
-      moreCreateItem.colors, moreCreateItem.sizes,
-      createProductForm.value.gender, createProductForm.value.quantity
-    ],
-
-    ([title, collections, category, material, price, description, color, size, gender, quantity]) => {
+      createProductForm.value.productUrl, createProductForm.value.title, createProductForm.value.collection,
+      createProductForm.value.category, createProductForm.value.material, createProductForm.value.gender,
+      createProductForm.value.sku, createProductForm.value.price, createProductForm.value.description],
+    ([url, title, collection, category, material, gender, sku, price, description]) => {
+      if(url){
+        createProductFormErrors.value.productUrlError = false;
+      }
       if(title){
         createProductFormErrors.value.titleError = false;
       }
-      if(collections){
+      if(collection){
         createProductFormErrors.value.collectionsError = false;
       }
       if(category){
@@ -260,26 +419,19 @@ watch(() => [
       if(material){
         createProductFormErrors.value.materialError = false;
       }
+      if(gender){
+        createProductFormErrors.value.genderError = false;
+      }
+      if(sku){
+        createProductFormErrors.value.skuError = false;
+      }
       if(price){
         createProductFormErrors.value.priceError = false;
       }
       if(description){
         createProductFormErrors.value.descriptionError = false;
       }
-      if(color){
-        createProductFormErrors.value.colorError = false;
-      }
-      if(size){
-        createProductFormErrors.value.sizeError = false;
-      }
-      if(gender){
-        createProductFormErrors.value.genderError = false;
-      }
-      if(quantity){
-        createProductFormErrors.value.quantityError = false;
-      }
-    });
-
+    })
 onMounted(async () => {
   if(product.value && Array.isArray(product.value.images) && product.value.images[0]) {
     activeProductImg.value = productInfoPreview(product.value) ?? '';

@@ -10,7 +10,7 @@
         </div>
         <div class="flex justify-center">
           <div class="flex flex-col gap-5">
-            <div class="flex flex-col gap-6 bg-white w-full p-6.5 rounded">
+            <div class="flex flex-col gap-6 bg-white w-full p-6.5 rounded shadow-xl">
               <div class="flex flex-col gap-1">
                 <h1 class="text-2xl font-semibold">Image slots</h1>
                 <h2 class="text-sm text-[#A3A3A3] font-medium">
@@ -42,12 +42,16 @@
                   </div>
                 </div>
               </div>
+              <span v-if="createProductFormErrors.productUrlError" class="text-red-600 text-xs">
+                {{ createProductFormMessages.productUrlMessage }}
+              </span>
               <div class="flex flex-col gap-4">
                 <h2 class="text-sm text-[#A3A3A3] font-medium">The first photo is used in the catalog</h2>
                 <h2 class="text-sm text-[#A3A3A3] font-medium">Formats: JPG · PNG · WEBP Max. size: 5 MB Aspect ratio: 4:5</h2>
               </div>
             </div>
-            <form @keydown.enter="createProduct" action="" class="bg-white p-6.5 mt-6 flex flex-col justify-center gap-8 rounded">
+            <form @keydown.enter="createProduct" action=""
+                  class="bg-white p-6.5 mt-6 flex flex-col justify-center gap-8 rounded shadow-xl">
               <div class="flex flex-col gap-1">
                 <label for="" class="text-2xl font-semibold tracking-wider">
                   Basic information
@@ -168,7 +172,11 @@
                     </div>
                   </label>
                   <IMask v-model:value="createProductForm.sku" type="text" inputmode="numeric" placeholder="BLC-XS-001" :mask="skuMask.mask"
-                         class="uppercase border border-gray-300 rounded-sm outline-none px-6 py-5 text-sm bg-white transition duration-400 font-dm-sans" />
+                         :class="['uppercase border border-gray-300 rounded-sm outline-none px-6 py-5 text-sm bg-white ' +
+                          'transition duration-400 font-dm-sans', createProductFormErrors.skuError ? 'border-red-500' : '']" />
+                  <span v-if="createProductFormErrors.skuError" class="text-red-600 text-xs">
+                    {{ createProductFormMessages.skuMessage }}
+                  </span>
                 </div>
                 <div class="flex flex-col gap-3 w-full">
                   <label for="" class="font-semibold tracking-wider text-xs">
@@ -198,7 +206,7 @@
                 <span class="ml-auto text-[#A3A3A3] text-xs font-medium">{{ createProductForm.title.length }} / 100</span>
               </div>
             </form>
-            <div class="bg-white p-6.5 mt-6 flex flex-col justify-center gap-8 rounded">
+            <div class="bg-white p-6.5 mt-6 flex flex-col justify-center gap-8 rounded shadow-xl">
               <div class="flex flex-col gap-3 w-full">
                 <div class="flex items-center justify-between">
                   <label for="" class="font-semibold tracking-wider text-xs">
@@ -257,23 +265,23 @@
                                class="w-20 h-10 outline-none border-2 border-gray-300 rounded-sm text-center" />
                       </td>
                     </tr>
-                    <tr v-if="!moreCreateItem.colors?.length && !moreCreateItem.sizes?.length">
-                      <td :colspan="(moreCreateItem.sizes?.length || 0) + 1" class="py-8 text-center text-[#A3A3A3]">
-                        Select sizes and colors to populate the stock levels.
-                      </td>
-                    </tr>
-                    <tr v-else-if="!moreCreateItem.colors?.length">
-                      <td :colspan="(moreCreateItem.sizes?.length || 0) + 1" class="py-8 text-center text-[#A3A3A3]">
-                        Select colors to populate the stock levels.
-                      </td>
-                    </tr>
-                    <tr v-else-if="!moreCreateItem.sizes?.length">
-                      <td :colspan="(moreCreateItem.sizes?.length || 0) + 1" class="py-8 text-center text-[#A3A3A3]">
-                        Select sizes to populate the stock levels.
-                      </td>
-                    </tr>
                     </tbody>
                   </table>
+                  <div class="flex justify-center">
+                    <span v-if="!moreCreateItem.colors?.length && !moreCreateItem.sizes?.length"
+                          class="py-8 text-center text-[#A3A3A3]">
+                      Select sizes and colors to populate the stock levels.
+                    </span>
+                    <span v-else-if="!moreCreateItem.colors?.length" class="py-8 text-center text-[#A3A3A3]">
+                      Select colors to populate the stock levels.
+                    </span>
+                    <span v-else-if="!moreCreateItem.sizes?.length" class="py-8 text-center text-[#A3A3A3]">
+                      Select sizes to populate the stock levels.
+                    </span>
+                  </div>
+                  <span v-if="createProductFormErrors.variantError" class="text-red-600 text-xs">
+                    {{ createProductFormMessages.variantMessage }}
+                  </span>
                 </div>
               </div>
               <div class="flex flex-col gap-3 w-full">
@@ -295,8 +303,8 @@
                               : 'transition duration-400 hover:scale-110 w-15 rounded-full']">
                 </div>
                 <span v-if="createProductFormErrors.sizeError" class="text-red-600 text-xs">
-                    {{ createProductFormMessages.sizeMessage }}
-                  </span>
+                  {{ createProductFormMessages.sizeMessage }}
+                </span>
               </div>
               <div class="flex flex-col gap-3 w-full">
                 <div class="flex items-center justify-between">
@@ -323,8 +331,8 @@
                   </label>
                 </div>
                 <span v-if="createProductFormErrors.colorError" class="text-red-600 text-xs">
-                      {{ createProductFormMessages.colorMessage }}
-                  </span>
+                  {{ createProductFormMessages.colorMessage }}
+                </span>
               </div>
             </div>
             <div class="w-full mt-4 mb-6">
@@ -367,15 +375,28 @@ import Loading from "@/widgets/Loading.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import Notification from "@/shared/ui/Notification.vue";
 
-watch(() => [
-      createProductForm.value.title, createProductForm.value.collection,
-      createProductForm.value.category, createProductForm.value.material,
-      createProductForm.value.price, createProductForm.value.description,
-      createProductForm.value.sku, moreCreateItem.colors, moreCreateItem.sizes,
-      createProductForm.value.gender, moreCreateItem.quantity
-    ],
+watch(() => [moreCreateItem.sizes, moreCreateItem.colors, moreCreateItem.variants], ([sizes, colors, variants]) => {
+  if(sizes){
+    createProductFormErrors.value.sizeError = false;
+  }
+  if(colors){
+    createProductFormErrors.value.colorError = false;
+  }
+  if(variants){
+    createProductFormErrors.value.variantError = false;
+  }
 
-    ([title, collection, category, material, price, description, sku, color, size, gender, quantity]) => {
+  console.log(moreCreateItem.colors, moreCreateItem.sizes, moreCreateItem.variants);
+  })
+
+watch(() => [
+    createProductForm.value.productUrl, createProductForm.value.title, createProductForm.value.collection,
+    createProductForm.value.category, createProductForm.value.material, createProductForm.value.gender,
+    createProductForm.value.sku, createProductForm.value.price, createProductForm.value.description],
+    ([url, title, collection, category, material, gender, sku, price, description]) => {
+      if(url){
+        createProductFormErrors.value.productUrlError = false;
+      }
       if(title){
         createProductFormErrors.value.titleError = false;
       }
@@ -388,28 +409,19 @@ watch(() => [
       if(material){
         createProductFormErrors.value.materialError = false;
       }
+      if(gender){
+        createProductFormErrors.value.genderError = false;
+      }
+      if(sku){
+        createProductFormErrors.value.skuError = false;
+      }
       if(price){
         createProductFormErrors.value.priceError = false;
       }
       if(description){
         createProductFormErrors.value.descriptionError = false;
       }
-      if(sku){
-        createProductFormErrors.value.skuError = false;
-      }
-      if(color){
-        createProductFormErrors.value.colorError = false;
-      }
-      if(size){
-        createProductFormErrors.value.sizeError = false;
-      }
-      if(gender){
-        createProductFormErrors.value.genderError = false;
-      }
-      if(quantity){
-        createProductFormErrors.value.quantityError = false;
-      }
-    })
+  })
 </script>
 
 <style scoped>

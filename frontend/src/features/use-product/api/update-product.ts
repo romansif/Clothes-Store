@@ -1,4 +1,4 @@
-import type {Product} from "@/entities/product/model/product.types.ts";
+import type {ColorItem, Product} from "@/entities/product/model/product.types.ts";
 import {handler} from "@/shared/api/http.ts";
 import router from "@/app/router";
 import namer from "color-namer";
@@ -38,9 +38,8 @@ export const useUpdateProduct = () => {
 
             await getProduct(product.id);
 
-            await openNotify('You have successfully changed the product card images.', '', '')
+            await openNotify('You have successfully changed the product card images.', '', 'edit/product')
         }catch(err){
-
             await openNotify(`You haven't entered anything to change.`, '', '');
             console.error(`Failed to edit the product cover:`, err);
         }
@@ -61,12 +60,39 @@ export const useUpdateProduct = () => {
                 })
             });
 
-            await openNotify('You have successfully changed the product card description.', '', '');
+            await openNotify('You have successfully changed the product card description.', '', 'my/products');
             await router.push({ name: 'my/products'})
         }catch(err){
 
             await openNotify(`You haven't entered anything to change.`, '', '');
             console.error(`Failed to edit the product cover:`, err);
+        }
+    };
+
+    const updateProductCount = async (
+        product: Product, color: ColorItem, size: string, value: string) => {
+        try{
+            if(!product || !color.hex || !size || !value){
+                console.log('Вы не добавили никаких значений дл изменения');
+                return
+            }
+            const variant = product.variants.find(v => v.hex === color.hex && v.size === size);
+            if(!variant){
+                console.log('Variant not found');
+                return;
+            }
+
+            variant.count = Number(value);
+
+            await handler(`/products/${product.id}`, {
+                method: "PATCH",
+                body: JSON.stringify({
+                    variants: product.variants,
+                })
+            })
+        }catch(err){
+            await openNotify(`You haven't entered anything to change.`, '', '');
+            console.error(`Failed to edit the variants product cover:`, err);
         }
     };
 
@@ -100,7 +126,7 @@ export const useUpdateProduct = () => {
                 });
             }
 
-            await openNotify('You have successfully changed the product colors on the product card.', '', '')
+            await openNotify('You have successfully changed the product colors on the product card.', '', 'edit/product')
         }catch(err){
             await openNotify(`You haven't entered anything to change.`, '', '');
             console.error(`Failed to edit the colors product cover:`, err);
@@ -110,6 +136,7 @@ export const useUpdateProduct = () => {
     return {
         updateProductImages,
         updateProductDesc,
+        updateProductCount,
         updateProductColors
     }
 }

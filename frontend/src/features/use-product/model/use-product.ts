@@ -29,7 +29,7 @@ export const productsCover = () => {
     //     }
     // };
 
-    const toggleQuantity = (hex?: string, colorName?: string, size?: string) => {
+    const toggleQuantity = (hex: string, colorName: string, size: string) => {
         let item = moreCreateItem.variants.find(
             (v) => v.hex === hex && v.size === size);
 
@@ -43,6 +43,7 @@ export const productsCover = () => {
             moreCreateItem.variants.push(item);
         }
         return item;
+
     };
 
     const toggleColor = (color: string, eventOrColor: Event | string) => {
@@ -317,6 +318,24 @@ export const productsCover = () => {
         return unit.value === 'IN' ? convertSizeToInches(shoesSizeGuide) : shoesSizeGuide;
     });
 
+    const uniqueColors = (product: Product) => {
+        return [
+            ...new Map(
+                product.variants.map((variant) => [
+                    variant.colorName,
+                    {
+                        colorName: variant.colorName,
+                        hex: variant.hex,
+                    }
+                ])
+            ).values()
+        ]
+    };
+
+    const uniqueSizes = (product: Product) => {
+        return [...new Set(product.variants.map((variant) => variant.size))]
+    }
+
     return {
         productPreview,
         orderPreview,
@@ -344,5 +363,8 @@ export const productsCover = () => {
         variantsInfo,
 
         formatterSizeGuide,
+
+        uniqueColors,
+        uniqueSizes,
     }
 }

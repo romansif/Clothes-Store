@@ -8,10 +8,10 @@ export interface ImageItem {
 }
 
 export interface Variant {
-    hex?: string,
-    colorName?: string,
-    size?: string,
-    count?: number,
+    hex: string,
+    colorName: string,
+    size: string,
+    count: number,
 }
 
 export interface Product {

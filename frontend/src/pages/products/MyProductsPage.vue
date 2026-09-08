@@ -18,14 +18,20 @@
       </div>
     </div>
     <Transition name="notify">
-      <DeleteModal v-if="deleteChoice"/>
+      <MyProductStackInfo v-if="stackInfo" />
+    </Transition>
+    <Transition name="notify">
+      <DeleteModal v-if="deleteChoice" />
     </Transition>
   </div>
 </template>
 
 <script setup lang="ts">
+import MyProductStackInfo from "@/entities/product/ui/MyProductStackInfo.vue";
+
 const { loading } = useBaseModals();
 const { myProducts } = productStore();
+const { stackInfo } = useProductsModals();
 const { deleteChoice } = useProfileModals();
 
 import { productStore } from "@/entities/product/model/product.store.ts";
@@ -37,6 +43,7 @@ import icon_products from "@/assets/icons/products/icon-products.svg";
 import DeleteModal from "@/shared/ui/DeleteModal.vue";
 import MyProductsList from "@/entities/product/ui/MyProductsList.vue";
 import Loading from "@/widgets/Loading.vue";
+import {useProductsModals} from "@/features/use-product/lib/product.modal.ts";
 </script>
 
 <style scoped>

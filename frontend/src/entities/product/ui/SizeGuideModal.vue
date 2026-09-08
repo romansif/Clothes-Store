@@ -1,7 +1,7 @@
 <template>
-<div class="font-raleway fixed inset-0 z-50
+<div @click="toggleSizeGuide" class="font-raleway fixed inset-0 z-50
      bg-[rgba(0,0,0,0.5)] flex items-center justify-center">
-  <div class="flex flex-col gap-2 bg-white rounded-xl p-5 w-175">
+  <div @click.stop class="flex flex-col gap-2 bg-white rounded-xl p-5 w-175">
     <div class="flex items-center">
       <h1 class="text-2xl font-medium">Size Guide</h1>
       <img @click="toggleSizeGuide" :src="close" alt="" class="w-6.5 ml-auto cursor-pointer">

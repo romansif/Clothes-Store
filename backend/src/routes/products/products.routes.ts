@@ -1,6 +1,6 @@
 import express from "express";
 import { upload } from "#middleware/upload.products.ts";
-import {authMiddleware, roleMiddleware} from "#middleware/auth.middleware.ts";
+import { authMiddleware, roleMiddleware } from "#middleware/auth.middleware.ts";
 import { productsController } from "#controllers/products/products.controller.ts";
 
 const router = express.Router();
@@ -9,7 +9,7 @@ router.get('/products', productsController.getAllProducts);
 router.get('/searched', productsController.getSearchedProducts);
 router.get('/filtered/:type/:filter', productsController.getFilteredProducts);
 
-router.get('/my/products/:userId', productsController.getMyProducts);
+router.get('/my/products/:id', productsController.getMyProducts);
 
 router.get('/products/week/:type/:filter', productsController.getWeekProducts);
 router.get('/products/year/:type/:filter', productsController.getYearProducts);
@@ -21,8 +21,7 @@ router.post('/products', authMiddleware, roleMiddleware('Seller'),
     upload.array('images', 5), productsController.createdProduct);
 
 router.patch('/products/:id/:index/images', authMiddleware, roleMiddleware('Seller'),
-    upload.array('images', 5),
-    productsController.updateProductImages);
+    upload.array('images', 5), productsController.updateProductImages);
 router.patch('/products/:id', authMiddleware, roleMiddleware('Seller'),
     productsController.updateProductItem);
 

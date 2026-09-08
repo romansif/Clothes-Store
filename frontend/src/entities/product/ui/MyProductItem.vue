@@ -39,13 +39,11 @@
             </p>
           </div>
         </div>
-        <div class="border-t border-gray-100 flex items-center justify-between">
+        <div class="flex items-center justify-between">
           <span class="font-bold text-gray-900 text-base sm:text-lg font-dm-sans">
             $ {{ product.price }}
           </span>
-          <span class="font-medium text-xs text-gray-400 font-dm-sans">
-            In Stack: {{ product.quantity }} pcs.
-          </span>
+          <BaseButton @click="toggleStackInfo(product)" name="Stack Info" variant="stackInfo"/>
         </div>
       </div>
     </li>
@@ -56,10 +54,12 @@
 const { myProducts } = productStore();
 const { getProduct } = useGetProduct();
 const { productPreviewClass } = baseClasses();
+const { toggleStackInfo } = useProductsModals();
 const { toggleDeleteChoice } = useProfileModals();
 const { isOutOfStack, productPreview } = productsCover();
 
 import { baseClasses } from "@/shared/const/base.classes.ts";
+import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { productsCover } from "@/features/use-product/model/use-product.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
@@ -67,6 +67,7 @@ import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
 
 import del from '@/assets/icons/delete-close/delete.svg'
 import pencil from "@/assets/icons/products/pencil.svg";
+import BaseButton from "@/shared/ui/BaseButton.vue";
 </script>
 
 <style scoped>

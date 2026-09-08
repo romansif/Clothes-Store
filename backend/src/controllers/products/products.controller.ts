@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { type Request, type Response } from 'express';
-import { type AuthenticatedRequest } from '../../interfaces.ts';
 import { dbService } from '../../db/db.config.ts';
+import type {ProductCustomPayload} from "../../interfaces.ts";
 
 export const productsController = {
     async getAllProducts(_req: Request, res: Response) {
@@ -183,11 +183,10 @@ export const productsController = {
 
     async getMyProducts(req: Request, res: Response) {
         try {
-            const { userId } = req.params;
             const db = dbService.readDB();
             const products: any[] = db.products || [];
 
-            const myProducts = products.filter(p => String(p.userId) === String(userId));
+            const myProducts = products.filter(p => String(p.userId) === String(req.params.id));
             myProducts.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
 
             res.json(myProducts);
@@ -214,8 +213,10 @@ export const productsController = {
         }
     },
 
-    async createdProduct(req: AuthenticatedRequest, res: Response) {
+    async createdProduct(req: ProductCustomPayload, res: Response) {
         try {
+            console.log('BODY:', req.body);
+            console.log('FILES:', req.files);
             if (!req.files || (req.files as Express.Multer.File[]).length === 0) {
                 return res.status(400).json({ message: 'Product photos are mandatory.' });
             }
@@ -225,7 +226,7 @@ export const productsController = {
             const db = dbService.readDB();
             const products: any[] = db.products || [];
 
-            const quantity = (req.body.quantity ?? []).filter((v: any) => v?.hex && v?.size).map((v: any) => ({
+            const variants = (req.body.variants ?? []).filter((v: any) => v?.hex && v?.size).map((v: any) => ({
                 hex: v.hex,
                 colorName: v.colorName,
                 size: v.size,
@@ -234,10 +235,10 @@ export const productsController = {
 
             const newProduct = {
                 id: uuidv4(),
-                userId: req.user?.id || req.user?.userId,
+                userId: req.user?.id,
                 images,
                 ...req.body,
-                quantity: quantity,
+                variants: variants,
                 price: Number(req.body.price) || 0,
                 created_at: new Date(),
             };

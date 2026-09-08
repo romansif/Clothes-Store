@@ -46,7 +46,7 @@ import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import OrdersList from "@/entities/order/ui/OrderList.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import ClipboardNotify from "@/shared/ui/ClipboardNotify.vue";
-import ReplacementChoice from "@/shared/ui/ReplacementChoice.vue";
+import ReplacementChoice from "@/entities/order/ui/ReplacementChoice.vue";
 
 onMounted(async () => {
   await getOrders();
