@@ -12,11 +12,11 @@ const ACCESS_SECRET = 'your_access_secret_key_123';
 const REFRESH_SECRET = 'your_refresh_secret_key_123';
 
 const generateAccessToken = (user: Pick<User, any>) => {
-    return jwt.sign({ userId: user.id, email: user.email }, ACCESS_SECRET, { expiresIn: '1h' });
+    return jwt.sign({ userId: user.id, email: user.email, role: user.role }, ACCESS_SECRET, { expiresIn: '1h' });
 };
 
 const generateRefreshToken = (user: Pick<User, any>) => {
-    return jwt.sign({ userId: user.id }, REFRESH_SECRET, { expiresIn: '7d' });
+    return jwt.sign({ userId: user.id, email: user.email, }, REFRESH_SECRET, { expiresIn: '7d' });
 };
 
 const authController = {
