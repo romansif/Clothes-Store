@@ -36,7 +36,7 @@ import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { useDeleteOrder } from "@/features/use-order/api/delete-order.ts";
 
 import BaseButton from "@/shared/ui/BaseButton.vue";
-import ReplacementInput from "@/shared/ui/ReplacementInput.vue";
+import ReplacementInput from "@/entities/order/ui/ReplacementInput.vue";
 
 watch(() => [cancelChoice.value],([choice]) => {
       if(choice){

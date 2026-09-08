@@ -42,7 +42,7 @@ import OrderList from "./OrderList.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import ClipboardNotify from "@/shared/ui/ClipboardNotify.vue";
 
-import ReplacementChoice from "@/shared/ui/ReplacementChoice.vue";
+import ReplacementChoice from "@/entities/order/ui/ReplacementChoice.vue";
 
 onMounted(async () => {
   await getFilteredOrders();
