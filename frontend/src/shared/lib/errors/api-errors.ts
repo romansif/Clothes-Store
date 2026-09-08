@@ -13,13 +13,13 @@ import { addToCartErrors } from "@/features/use-cart/lib/cart.errors.ts";
 
 const { cartFormMessages } = addToCartForm();
 const { cartFormErrors } = addToCartErrors();
-const { createProductFormMessages } = productForms();
 const { createProductFormErrors } = productsFormErrors();
 const { registerFormMessages, loginFormMessages } = authForms();
 const { registerFormErrors, loginFormErrors } = authFormsErrors();
+const { cancelChoiceMessage, cancelChoiceError } = useBaseModals();
+const { moreCreateItem, createProductFormMessages } = productForms();
 const { informationErrors, shippingErrors, paymentErrors} = checkoutErrors();
 const { informationMessages, shippingMessages, paymentMessages } = checkoutForm();
-const { cancelChoiceMessage, cancelChoiceError } = useBaseModals();
 
 const { updateUserFormMessage } = userForms();
 const { updateUserFormErrors } = userFormsErrors()
@@ -64,27 +64,35 @@ export const useFormsErrors = () => {
         if(err instanceof ApiError){
             const errors = err.response as Record<string, string> | undefined;
             if(errors){
+                createProductFormErrors.value.productUrlError = !!errors.images;
                 createProductFormErrors.value.titleError = !!errors.title;
                 createProductFormErrors.value.collectionsError = !!errors.collection;
                 createProductFormErrors.value.categoryError = !!errors.category;
                 createProductFormErrors.value.materialError = !!errors.material;
+                createProductFormErrors.value.genderError = !!errors.gender;
+                createProductFormErrors.value.skuError = !!errors.sku;
                 createProductFormErrors.value.priceError = !!errors.price;
                 createProductFormErrors.value.descriptionError = !!errors.description;
-                createProductFormErrors.value.colorError = !!errors.color;
-                createProductFormErrors.value.sizeError = !!errors.size;
-                createProductFormErrors.value.genderError = !!errors.gender;
-                createProductFormErrors.value.variantError = !!errors.quantity;
+                createProductFormErrors.value.colorError = !!errors.colors;
+                createProductFormErrors.value.sizeError = !!errors.sizes;
 
+                createProductFormMessages.value.productUrlMessage = errors.images || '';
                 createProductFormMessages.value.titleMessage = errors.title || '';
                 createProductFormMessages.value.collectionsMessage = errors.collection || '';
                 createProductFormMessages.value.categoryMessage = errors.category || '';
                 createProductFormMessages.value.materialMessage = errors.material || '';
+                createProductFormMessages.value.genderMessage = errors.gender || '';
+                createProductFormMessages.value.skuMessage = errors.sku || '';
                 createProductFormMessages.value.priceMessage = errors.price || '';
                 createProductFormMessages.value.descriptionMessage = errors.description || '';
-                createProductFormMessages.value.colorMessage = errors.color || '';
-                createProductFormMessages.value.sizeMessage = errors.size || '';
-                createProductFormMessages.value.genderMessage = errors.gender || '';
-                createProductFormMessages.value.variantMessage = errors.quantity || '';
+                createProductFormMessages.value.colorMessage = errors.colors || '';
+                createProductFormMessages.value.sizeMessage = errors.sizes || '';
+
+                createProductFormErrors.value.variantError = moreCreateItem.colors.length > 0 &&
+                    moreCreateItem.sizes.length > 0 && !!errors.variants;
+
+                createProductFormMessages.value.variantMessage = moreCreateItem.colors.length > 0 &&
+                    moreCreateItem.sizes.length > 0 ? errors.variants || '' : '';
             }
         }
     };

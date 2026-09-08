@@ -44,10 +44,6 @@ export const handler = async <T = any>(
                 new Error('Session expired, please log in again.');
             }
 
-            const data = await refreshRes.json();
-
-            localStorage.setItem('accessToken', data.accessToken);
-
             return handler(endpoints, options, true);
 
         }catch(err){

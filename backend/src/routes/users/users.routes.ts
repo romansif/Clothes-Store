@@ -17,8 +17,6 @@ router.patch('/surname/:id', authMiddleware, validation.updateUserSurNameValidat
     usersController.updateUser);
 router.patch('/phone/:id', authMiddleware, validation.updateUserPhoneValidation, validation.handleValidationErrors,
     usersController.updateUser);
-router.patch('/companyName/:id', authMiddleware, validation.updateUserCompanyNameValidation, validation.handleValidationErrors,
-    usersController.updateUser);
 router.patch('/publicPhone/:id', authMiddleware, validation.updateUserPhoneValidation, validation.handleValidationErrors,
     usersController.updateUser);
 router.patch('/email/:id', authMiddleware, validation.updateUserEmailValidation, validation.handleValidationErrors,

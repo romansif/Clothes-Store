@@ -2,15 +2,15 @@ import { type Request } from "express";
 import { type JwtPayload } from "jsonwebtoken";
 
 export interface AuthenticatedRequest extends Request {
-    user?: CustomJwtPayload
+    user?: CustomJwtPayload;
     file?: Express.Multer.File;
 }
 
 export interface CustomJwtPayload extends JwtPayload {
     userId: string;
+    role: string;
     id?: string;
     email?: string;
-    role?: string;
 }
 
 export interface User {
@@ -44,4 +44,35 @@ export interface TokenPayload {
 export interface JwtCustomPayload {
     userId: string;
     email?: string;
+}
+
+
+export interface ProductCustomPayload extends Request {
+    user?: CustomJwtPayload;
+    file?: Express.Multer.File;
+    body: {
+        title: string;
+        collection: {
+            name: string;
+            season: string;
+            condition: string;
+        };
+        category: string;
+        material: string;
+        gender: string;
+        sku: string;
+        price: number;
+        description: string;
+        colors: Array<{
+            hex: string;
+            colorName: string;
+        }>;
+        sizes: string[];
+        variants: Array<{
+            hex: string;
+            colorName: string;
+            size: string;
+            count: number;
+        }>;
+    };
 }

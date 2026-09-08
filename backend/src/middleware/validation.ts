@@ -3,257 +3,151 @@ import { body, validationResult } from 'express-validator';
 
 export const validation = {
     registerValidation: [
-        body('name')
-            .trim()
-            .notEmpty()
-            .withMessage('Name required to registration.'),
+        body('name').trim().notEmpty().withMessage('Name is required'),
 
-        body('surName')
-            .trim()
-            .notEmpty()
-            .withMessage('SurName required to registration.'),
+        body('surName').trim().notEmpty().withMessage('Last name is required'),
 
-        body('phone')
-            .notEmpty().withMessage('Private phone required to registration.'),
+        body('phone').trim().notEmpty().withMessage('Phone is required'),
 
-        body('email')
-            .isEmail().withMessage('Invalid email format entered.')
-            .normalizeEmail(),
+        body('email').trim().notEmpty().withMessage('Email is required').isEmail()
+            .withMessage('Invalid email'),
+
+        body('password').trim().notEmpty().withMessage('Password is required'),
 
         body('password')
-            .notEmpty().withMessage('A password required to registration.'),
-
-        body('password')
-            .isLength({ min: 6, max: 12 }).withMessage('The password must be longer than 6 characters.')
+            .isLength({ min: 6, max: 12 }).withMessage('The password must be longer than 6 characters')
             .matches(/^(?=.*[A-Za-zА-Яа-я])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-zА-Яа-я\d@$!%*#?&]{8,}$/)
-            .withMessage('The password must contain at least one letter, one digit, and one special character (@$!%*#?&).'),
+            .withMessage('The password must contain at least one letter, one digit, and one special character (@$!%*#?&)'),
     ],
 
     loginValidation: [
-        body('email')
-            .trim()
-            .notEmpty().withMessage('Email required to registration.'),
+        body('email').trim().notEmpty().withMessage('Email is required').isEmail()
+            .withMessage('Invalid email'),
 
-        body('email')
-            .isEmail()
-            .withMessage('Invalid email format entered.').normalizeEmail(),
+        body('password').trim().notEmpty().withMessage('Password is required'),
 
-        body('password')
-            .notEmpty().withMessage('A password required to login.'),
-
-        body('role')
-            .notEmpty().withMessage('You need to select a role to determine how you want to login.')
+        body('role').notEmpty().withMessage('You need to select a role to determine how you want to login')
     ],
 
     loginSendSmsValidation: [
-        body('phone')
-            .trim()
-            .notEmpty().withMessage('Phone required to login'),
+        body('phone').trim().notEmpty().withMessage('Phone required to login'),
     ],
 
     loginVerifySmsValidation: [
-        body('validCode')
-            .trim()
-            .notEmpty().withMessage('The code required to login'),
+        body('validCode').trim().notEmpty().withMessage('The code required to login'),
     ],
 
     updateUserNameValidation: [
-        body('name')
-            .trim()
-            .notEmpty().withMessage('Name required to update name.'),
+        body('name').trim().notEmpty().withMessage('Name is required'),
     ],
 
     updateUserSurNameValidation: [
-        body('surName')
-            .trim()
-            .notEmpty().withMessage('SurName required to update surName.'),
+        body('surName').trim().notEmpty().withMessage('Last name is required'),
     ],
 
     updateUserPhoneValidation: [
-        body('phone')
-            .trim()
-            .notEmpty().withMessage('Phone required to update phone.'),
-    ],
-
-    updateUserCompanyNameValidation: [
-        body('companyName')
-            .trim()
-            .notEmpty().withMessage('Company Name required to update company name.'),
+        body('phone').trim().notEmpty().withMessage('Phone is required'),
     ],
 
     updateUserEmailValidation: [
-        body('email')
-            .isEmail().withMessage('Invalid email format entered.')
-            .normalizeEmail(),
+        body('email').trim().notEmpty().withMessage('Email is required').isEmail()
+            .withMessage('Invalid email'),
     ],
 
     updateUserPasswordValidation: [
-        body('oldPassword')
-            .trim()
-            .notEmpty().withMessage('OldPassword required to update password.'),
+        body('oldPassword').trim().notEmpty().withMessage('OldPassword required to update password'),
 
         body('newPassword')
-            .isLength({ min: 6, max: 12 }).withMessage('The password must be longer than 6 characters.')
+            .isLength({ min: 6, max: 12 }).withMessage('The password must be longer than 6 characters')
             .matches(/^(?=.*[A-Za-zА-Яа-я])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-zА-Яа-я\d@$!%*#?&]{8,}$/)
-            .withMessage('The password must contain at least one letter, one digit, and one special character (@$!%*#?&).'),
+            .withMessage('The password must contain at least one letter, one digit, and one special character (@$!%*#?&)'),
     ],
 
     createProductValidation: [
-        body('collection')
-            .notEmpty().withMessage('Collection required to create product.')
-            .isObject().withMessage('Collection must be an object.'),
+        body('title').trim().notEmpty().withMessage('Title is required'),
 
-        body('collection.name')
-            .isString()
-            .notEmpty()
-            .trim(),
+        body('collection').isObject().withMessage('Collection must be an object'),
 
-        body('collection.season')
-            .isString()
-            .notEmpty()
-            .trim(),
+        body('collection.name').isString().notEmpty().withMessage('Collection name is required'),
 
-        body('collection.condition')
-            .isString()
-            .notEmpty()
-            .trim(),
+        body('collection.season').isString().notEmpty().withMessage('Season is required'),
 
-        body('title')
-            .trim()
-            .notEmpty().withMessage('Title or name required to create product.'),
+        body('collection.condition').isString().notEmpty().withMessage('Condition is required'),
 
-        body('category')
-            .trim()
-            .notEmpty().withMessage('Category required to create product.'),
+        body('category').trim().notEmpty().withMessage('Category is required'),
 
-        body('material')
-            .trim()
-            .notEmpty().withMessage('Material required to create product.'),
+        body('material').trim().notEmpty().withMessage('Material is required'),
 
-        body('price')
-            .trim()
-            .notEmpty().withMessage('Price required to create product.'),
+        body('gender').trim().notEmpty().withMessage('Gender is required'),
 
-        body('description')
-            .trim()
-            .notEmpty().withMessage('Description required to create product.'),
+        body('sku').trim().notEmpty().withMessage('SKU is required'),
 
-        body('colors')
-            .isArray({ min: 1 })
-            .withMessage('The color of the pillar should be substantial.'),
+        body('price').notEmpty().withMessage('Price is required')
+            .isNumeric().withMessage('Price must be a number'),
 
-        body('colors.*.hex')
-            .isString()
-            .notEmpty()
-            .withMessage('Hex is mandatory.'),
+        body('description').trim().notEmpty().withMessage('Description is required'),
 
-        body('colors.*.colorName')
-            .isString()
-            .notEmpty()
-            .withMessage('ColorName is required.'),
+        body('colors').isArray().withMessage('Colors must be an array')
+            .notEmpty().withMessage('Colors are required'),
 
-        body('sizes')
-            .notEmpty().withMessage('Size required to create product.'),
+        body('sizes').isArray().withMessage('Sizes must be an array')
+            .notEmpty().withMessage('Sizes are required'),
 
-        body('gender')
-            .trim()
-            .notEmpty().withMessage('Gender required to create product.'),
-
-        body('quantity')
-            .trim()
-            .notEmpty().withMessage('Quantity required to create product.'),
+        body('variants').isArray().withMessage('Variants must be an array')
+            .notEmpty().withMessage('Variants are required'),
     ],
 
     addProductToCartValidation: [
-        body('colors')
-            .isArray()
-            .withMessage('The color of the pillar should be substantial.'),
+        body('colors').isArray().withMessage('The color of the pillar should be substantial'),
 
-        body('colors.*.hex')
-            .isString()
-            .notEmpty()
-            .withMessage('Hex is mandatory.'),
+        body('colors.*.hex').isString().notEmpty().withMessage('Hex is mandatory'),
 
-        body('colors.*.colorName')
-            .isString()
-            .notEmpty()
-            .withMessage('ColorName is required.'),
+        body('colors.*.colorName').isString().notEmpty().withMessage('ColorName is required'),
 
-        body('sizes')
-            .trim()
-            .notEmpty().withMessage('Size required to adding product to cart.'),
+        body('sizes').trim().notEmpty().withMessage('Size required to adding product to cart'),
     ],
 
     addAddressValidation: [
-        body('email')
-            .trim()
-            .notEmpty().withMessage('Email required to order.'),
+        body('email').trim().notEmpty().withMessage('Email is required'),
 
-        body('phone')
-            .trim()
-            .notEmpty().withMessage('Phone required to order.'),
+        body('phone').trim().notEmpty().withMessage('Phone is required'),
 
-        body('firstName')
-            .trim()
-            .notEmpty().withMessage('FirstName required to order.'),
+        body('firstName').trim().notEmpty().withMessage('First name is required'),
 
-        body('lastName')
-            .trim()
-            .notEmpty().withMessage('LastName required to order.'),
+        body('lastName').trim().notEmpty().withMessage('Last name is required'),
 
-        body('country')
-            .trim()
-            .notEmpty().withMessage('Country required to order.'),
+        body('country').trim().notEmpty().withMessage('Country is required'),
 
-        body('stateRegion')
-            .trim()
-            .notEmpty().withMessage('State or Region required to order.'),
+        body('stateRegion').trim().notEmpty().withMessage('State or region is required'),
 
-        body('address')
-            .trim()
-            .notEmpty().withMessage('Address required to order.'),
+        body('address').trim().notEmpty().withMessage('Address is required'),
 
-        body('city')
-            .trim()
-            .notEmpty().withMessage('City required to order.'),
+        body('city').trim().notEmpty().withMessage('City is required'),
 
-        body('postalCode')
-            .trim()
-            .notEmpty().withMessage('Postal Code required to order.'),
+        body('postalCode').trim().notEmpty().withMessage('Postal code is required'),
     ],
 
     shippingValidation: [
-        body('delivery')
-            .trim()
-            .notEmpty().withMessage('Shipping Method Code required to order.'),
+        body('delivery').trim().notEmpty().withMessage('Shipping Method Code required to order'),
     ],
 
     paymentValidation: [
-        body('paymentMethod')
-            .trim()
-            .notEmpty().withMessage('Select a payment method.')
-            .isIn(['card', 'apple', 'google', 'paypal']).withMessage('Invalid payment method.'),
+        body('paymentMethod').trim().notEmpty().withMessage('Select a payment method')
+            .isIn(['card', 'apple', 'google', 'paypal']).withMessage('Invalid payment method'),
 
-        body('cardNumber')
-            .if(body('paymentMethod').equals('card'))
-            .trim()
-            .notEmpty().withMessage('Enter the card number.'),
+        body('cardNumber').if(body('paymentMethod').equals('card')).trim()
+            .notEmpty().withMessage('Enter the card number'),
 
-        body('expiryDate')
-            .if(body('paymentMethod').equals('card'))
-            .notEmpty().withMessage('Enter the card\'s expiration date.'),
+        body('expiryDate').if(body('paymentMethod').equals('card'))
+            .notEmpty().withMessage('Enter the card\'s expiration date'),
 
-        body('cardCvv')
-            .if(body('paymentMethod').equals('card'))
-            .trim()
-            .notEmpty().withMessage('Enter the card cvv.')
-            .isLength({ min: 3, max: 4 }).withMessage('Enter the card cvv.')
+        body('cardCvv').if(body('paymentMethod').equals('card')).trim()
+            .notEmpty().withMessage('Enter the card cvv')
+            .isLength({ min: 3, max: 4 }).withMessage('Enter the card cvv')
     ],
 
     replaceOrderValidation: [
-        body('cause_replace')
-            .trim()
-            .notEmpty().withMessage('Select a reason for cancellation.'),
+        body('cause_replace').trim().notEmpty().withMessage('Select a reason for cancellation'),
     ],
 
     handleValidationErrors (req: Request, res: Response, next: NextFunction) {
