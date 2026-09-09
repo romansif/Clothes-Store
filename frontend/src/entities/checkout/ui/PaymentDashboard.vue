@@ -6,7 +6,7 @@
     <SavedCheckoutPayment v-if="isSavedPayment"/>
     <div class="relative mt-5 sm:ml-auto transition duration-400 hover:scale-110">
       <BaseButton v-if="!isSavedPayment" @click="addPayment" name="Pay" variant="checkOut"/>
-      <BaseButton v-if="isSavedPayment" @click="useSavedPayment" name="Shipping" variant="checkOut"/>
+      <BaseButton v-if="isSavedPayment" @click="useSavedPayment" name="Pay" variant="checkOut"/>
       <img :src=arrow alt="" class="h-13 absolute left-75 top-1/2 -translate-y-1/2
           sm:left-60 md:left-75 lg:left-34 xl:left-46">
     </div>

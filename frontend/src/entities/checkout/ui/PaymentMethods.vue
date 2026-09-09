@@ -10,8 +10,8 @@
       </span>
     </div>
     <div class="flex gap-3">
-      <form @keydown.enter="addPayment" action="" class="flex flex-col gap-6 w-full">
-          <PaymentForm v-if="isDebitCard" />
+      <form @keydown.enter="addPayment" action="" class="flex flex-col gap-4 w-full font-dm-sans">
+        <PaymentForm v-if="isDebitCard" />
         <div v-if="!isDebitCard" @click="openCardForm('card')"
              :class="paymentMethodClass('card')">
           <div class="flex items-center gap-3">

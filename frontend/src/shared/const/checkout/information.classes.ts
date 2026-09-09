@@ -9,25 +9,25 @@ const { getSavedInfoClass } = checkoutClasses();
 
 export const informationClasses = () => {
     const addressNameClass = () => [
-        `bg-[#D9D9D9]/40 border border-gray-300 transition duration-400
-        hover:bg-gray-50 rounded-xl outline-none px-4 py-3 text-xs placeholder:text-gray-600 w-full`
+        `bg-gray-50 border border-gray-400 font-dm-sans transition duration-400
+        hover:bg-white rounded-xl outline-none px-4 py-3 text-xs w-full`
     ];
 
     const postalCodeClass = computed(() => [
-        `w-full bg-[#D9D9D9]/40 border border-gray-300 transition duration-400 hover:bg-gray-50
+        `w-full bg-gray-50 border border-gray-400 transition duration-400 hover:bg-white
         rounded-xl outline-none px-4 py-3 text-xs font-dm-sans`,
-        informationErrors.value.postalCodeError ? `placeholder:text-red-500 border-red-400` : `placeholder:text-gray-600`
+        informationErrors.value.postalCodeError ? `placeholder:text-red-500 border-red-500` : ``
     ]);
 
     const informationSelectPhoneCodeClass = computed(() => [
-        `text-xs outline-none bg-[#D9D9D9]/40 border font-dm-sans border-gray-300 transition duration-400 
-        hover:bg-gray-50 rounded-xl px-2 py-3`
+        `text-xs outline-none bg-gray-50 border border-gray-400 font-dm-sans transition duration-400 
+        hover:bg-white rounded-xl px-2 py-3`
     ])
 
     const informationPhoneClass = computed(() => [
-        `bg-[#D9D9D9]/40 border border-gray-300 transition duration-400 hover:bg-gray-50 
+        `bg-gray-50 border border-gray-400 transition duration-400 hover:bg-white 
         font-dm-sans rounded-xl outline-none px-4 py-3 text-xs w-full`,
-        informationErrors.value.phoneError ? `placeholder:text-red-500 border-red-400` : `placeholder:text-gray-600`
+        informationErrors.value.phoneError ? `placeholder:text-red-500 border-red-500` : ``
     ]);
 
     const savedAddressClass = computed(() => getSavedInfoClass(isChosenAddress.value))

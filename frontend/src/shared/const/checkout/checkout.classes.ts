@@ -1,8 +1,8 @@
 export const checkoutClasses = () => {
     const getSavedInfoClass = (isChosen: boolean) => [
-        `flex flex-col mt-5 transition duration-400 bg-[#D9D9D9]/40
-        hover:bg-gray-50 border border-gray-300 rounded-xl p-2`,
-        isChosen ? 'bg-gray-50' : ''
+        `flex flex-col mt-5 transition duration-400 bg-gray-50
+        hover:bg-white border border-gray-400 rounded-xl p-2`,
+        isChosen ? 'bg-white' : ''
     ];
 
     const checkoutClass = () => [

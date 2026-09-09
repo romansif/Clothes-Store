@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col mt-8 gap-5">
-    <div class="flex flex-col px-3 py-6 border border-gray-300 rounded-xl
-          transition duration-400 bg-[#D9D9D9]/40 hover:bg-gray-50">
+    <div class="flex flex-col px-3 py-6 border border-gray-400 rounded-xl
+          transition duration-400 bg-gray-50 hover:bg-white">
       <div class="flex justify-between">
         <span class="font-semibold">
           SHIP TO
