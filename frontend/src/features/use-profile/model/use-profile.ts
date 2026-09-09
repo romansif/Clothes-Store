@@ -23,13 +23,18 @@ export const useProfile = () => {
 
     const continueToOrder = async () =>  {
         try{
-            if(!isAgreeFormError.value.agreeError || !orderItems.value?.length) {
+            if(!isAgreeFormError.value.agreeError && !orderItems.value?.length){
+                isAgreeForm.value.agreeMessage = 'You must select the items for your order, agree to the Terms and Conditions';
+                return;
+            }else if(!isAgreeFormError.value.agreeError) {
                 isAgreeForm.value.agreeMessage = 'You must agree to the Terms and Conditions';
                 return;
+            }else if(!orderItems.value?.length){
+                isAgreeForm.value.agreeMessage = 'You must select the items for your order';
+                return ;
             }else{
                 isAgreeForm.value.agreeMessage = '';
-                isAgreeFormError.value.agreeError = false;
-
+                isAgreeFormError.value.agreeMessageError = false
                 await router.push({ name: 'information' });
             }
         }catch(err){

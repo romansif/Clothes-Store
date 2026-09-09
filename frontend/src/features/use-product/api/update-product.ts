@@ -37,8 +37,6 @@ export const useUpdateProduct = () => {
 
 
             await getProduct(product.id);
-
-            await openNotify('You have successfully changed the product card images.', '', 'edit/product')
         }catch(err){
             await openNotify(`You haven't entered anything to change.`, '', '');
             console.error(`Failed to edit the product cover:`, err);
@@ -125,8 +123,6 @@ export const useUpdateProduct = () => {
                     }),
                 });
             }
-
-            await openNotify('You have successfully changed the product colors on the product card.', '', 'edit/product')
         }catch(err){
             await openNotify(`You haven't entered anything to change.`, '', '');
             console.error(`Failed to edit the colors product cover:`, err);

@@ -42,31 +42,23 @@ export const useAddProduct = () => {
             }
             const formData = new FormData();
 
-            formData.append('userId', userData.id);
-            formData.append('title', createProductForm.value.title);
-            formData.append('category', createProductForm.value.category);
-            formData.append('material', createProductForm.value.material);
-            formData.append('price', createProductForm.value.price);
-            formData.append('description', createProductForm.value.description);
-            moreCreateItem.colors.forEach((color, index) => {
-                formData.append(`colors[${index}][hex]`, String(color.hex));
-                formData.append(`colors[${index}][colorName]`, String(color.colorName));
-            });
-            moreCreateItem.sizes.forEach((size) => {
-                formData.append('sizes', String(size))
-            });
-            formData.append('gender', createProductForm.value.gender);
-            moreCreateItem.variants.forEach((variant, index) => {
-                formData.append(`variants[${index}][hex]`, String(variant.hex));
-                formData.append(`variants[${index}][colorName]`, String(variant.colorName));
-                formData.append(`variants[${index}][size]`, String(variant.size));
-                formData.append(`variants[${index}][count]`, String(variant.count));
-            });
-            formData.append('sku', createProductForm.value.sku);
-            formData.append(`collection[condition]`, String(createProductForm.value.collection.condition));
-            formData.append(`collection[season]`, String(createProductForm.value.collection.season));
-            formData.append(`collection[name]`, String(createProductForm.value.collection.name));
-            formData.append('status', 'Availability');
+            const productData = {
+                userId: userData.id,
+                title: createProductForm.value.title,
+                collection: createProductForm.value.collection,
+                category: createProductForm.value.category,
+                material: createProductForm.value.material,
+                gender: createProductForm.value.gender,
+                sku: createProductForm.value.sku,
+                price: createProductForm.value.price,
+                description: createProductForm.value.description,
+                sizes: moreCreateItem.sizes,
+                colors: moreCreateItem.colors,
+                variants: moreCreateItem.variants,
+                status: 'Availability',
+            }
+
+            formData.append('product', JSON.stringify(productData));
 
             productFiles.value.forEach((file) => {
                 if(file){

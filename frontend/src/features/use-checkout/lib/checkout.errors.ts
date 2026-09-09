@@ -28,6 +28,7 @@ const paymentErrors = ref<PaymentError>({
 
 const isAgreeFormError = ref<IsAgreeError>({
     agreeError: false,
+    agreeMessageError: false,
 })
 
 export const checkoutErrors = () => {

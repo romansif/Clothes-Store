@@ -75,4 +75,5 @@ export interface PaymentError {
 
 export interface IsAgreeError {
     agreeError: boolean,
+    agreeMessageError: boolean,
 }

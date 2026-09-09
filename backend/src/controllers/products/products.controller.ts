@@ -1,7 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
-import { type Request, type Response } from 'express';
+import {type NextFunction, type Request, type Response} from 'express';
 import { dbService } from '../../db/db.config.ts';
-import type {ProductCustomPayload} from "../../interfaces.ts";
 
 export const productsController = {
     async getAllProducts(_req: Request, res: Response) {
@@ -213,10 +212,10 @@ export const productsController = {
         }
     },
 
-    async createdProduct(req: ProductCustomPayload, res: Response) {
-        try {
+    async createdProduct(req: Request, res: Response) {
             console.log('BODY:', req.body);
             console.log('FILES:', req.files);
+        try {
             if (!req.files || (req.files as Express.Multer.File[]).length === 0) {
                 return res.status(400).json({ message: 'Product photos are mandatory.' });
             }
@@ -235,11 +234,20 @@ export const productsController = {
 
             const newProduct = {
                 id: uuidv4(),
-                userId: req.user?.id,
+                userId: req.body.userId,
                 images,
-                ...req.body,
-                variants: variants,
+                title: req.body.title,
+                collection: req.body.collection,
+                category: req.body.category,
+                material: req.body.material,
+                gender: req.body.gender,
+                sku: req.body.sku,
                 price: Number(req.body.price) || 0,
+                description: req.body.description,
+                sizes: req.body.sizes,
+                colors: req.body.colors,
+                variants: variants,
+                status: req.body.status,
                 created_at: new Date(),
             };
 
@@ -252,6 +260,15 @@ export const productsController = {
             console.error('Failed to create the product cover:', err);
             const message = err instanceof Error ? err.message : 'Unknown Error';
             res.status(500).json({ error: message });
+        }
+    },
+
+    async productParse(req: Request, _res: Response, next: NextFunction) {
+        try {
+            req.body = JSON.parse(req.body.product);
+            next();
+        } catch (error) {
+            next(error);
         }
     },
 

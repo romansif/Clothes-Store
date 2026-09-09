@@ -8,13 +8,15 @@ import { useGetProduct } from "@/features/use-product/api/get-product.ts"
 import { useDeleteCart } from "@/features/use-cart/api/delete-cart.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { checkoutErrors } from "@/features/use-checkout/lib/checkout.errors.ts";
 
 const { cart } = cartStore();
 const { userData } = userStore();
 const { orderItems } = orderStore();
-const { getCartProducts } = useGetCart();
 const { openNotify } = useBaseModals();
+const { getCartProducts } = useGetCart();
 const { getAllProducts } = useGetProduct();
+const { isAgreeFormError } = checkoutErrors();
 const { deleteProductCart } = useDeleteCart();
 const { allProducts, products } = productStore();
 
@@ -44,6 +46,7 @@ export const useUpdateCart = () => {
                     item => item.id === product.id);
                 if(index === -1) {
                     orderItems.value.push(product);
+                    isAgreeFormError.value.agreeMessageError = false
                     localStorage.setItem('orderItems', JSON.stringify(orderItems.value));
                 }else{
                     orderItems.value.splice(index, 1);
@@ -56,11 +59,11 @@ export const useUpdateCart = () => {
         }
     };
 
-    const updateCartItem = async (type: string, id: string, status: string) => {
+    const updateCartItem = async (type: string, id: string) => {
         try{
-            const productCart = cart.value?.find(
+            const productCart = cart.value.find(
                 c => c.id === id);
-            const product = products.value?.find(
+            const product = products.value.find(
                 p => p.id === productCart?.productId
             );
 
@@ -69,57 +72,64 @@ export const useUpdateCart = () => {
                 return
             }
 
-            const basePrice =  Number(product?.price)
-            const currentPrice = Number(productCart?.price);
+            const basePrice =  Number(product.price)
+            const currentPrice = Number(productCart.price);
 
-            const currentItem = productCart?.variants.find(
-                p => p.count !== undefined);
-            const currentQuantity = Number(currentItem?.count);
+            const currentItem = productCart.variants[0]
+            if(!currentItem) {
+                console.log('Варианты товара в корзине не найден')
+                return
+            }
 
-            const stockItem = product?.variants.find(
-                p => p.hex === currentItem?.hex && p.size === currentItem?.size)
-            const stock = Number(stockItem?.count);
+            const currentQuantity = Number(currentItem.count);
 
-            if(status === 'Availability'){
-                if(type === 'add'){
-                    if(currentQuantity < stock){
-                        const newPrice = currentPrice + basePrice;
-                        const newQuantity = currentQuantity + 1;
+            const stockItem = product.variants.find(
+                v => v.hex === currentItem.hex && v.size === currentItem.size)
+            if(!stockItem) {
+                console.log('Варианты товара каталоге не найден')
+                return
+            }
 
-                        await handler(`/cart/${id}`, {
-                            method: "PATCH",
-                            body: JSON.stringify({
-                                price: newPrice,
-                                variants: productCart?.variants.map(item => ({
-                                    ...item,
-                                    count: newQuantity,
-                                })),
-                            })
-                        });
-                    }else{
-                        console.warn('Достигнуто максимальное количество товара на складе.');
-                        await openNotify('The item is no longer in stock.',
-                            'The maximum stock level for the item has been reached.', 'cart')
-                        return;
-                    }
-                }else if(type === 'away') {
-                    if(currentQuantity <= 1){
-                        await deleteProductCart(id);
-                    }else{
-                        const newPrice = currentPrice - basePrice;
-                        const newQuantity = currentQuantity - 1;
+            const stock = Number(stockItem.count);
 
-                        await handler(`/cart/${id}`, {
-                            method: "PATCH",
-                            body: JSON.stringify({
-                                price: newPrice,
-                                variants: productCart?.variants.map(item => ({
-                                    ...item,
-                                    count: newQuantity,
-                                })),
-                            })
-                        });
-                    }
+            if(type === 'add'){
+                if(currentQuantity < stock){
+                    const newPrice = currentPrice + basePrice;
+                    const newQuantity = currentQuantity + 1;
+
+                    await handler(`/cart/${id}`, {
+                        method: "PATCH",
+                        body: JSON.stringify({
+                            price: newPrice,
+                            variants: productCart.variants.map(item => ({
+                                ...item,
+                                count: newQuantity,
+                            })),
+                        })
+                    });
+                }else{
+                    console.warn('Достигнуто максимальное количество товара на складе.');
+                    await openNotify('The item is no longer in stock.',
+                        'The maximum stock level for the item has been reached.', 'cart')
+                    return;
+                }
+            }else if(type === 'away') {
+                if(currentQuantity <= 1){
+                    await deleteProductCart(id);
+                }else{
+                    const newPrice = currentPrice - basePrice;
+                    const newQuantity = currentQuantity - 1;
+
+                    await handler(`/cart/${id}`, {
+                        method: "PATCH",
+                        body: JSON.stringify({
+                            price: newPrice,
+                            variants: productCart.variants.map(item => ({
+                                ...item,
+                                count: newQuantity,
+                            })),
+                        })
+                    });
                 }
             }
             await getCartProducts();
@@ -153,7 +163,8 @@ export const useUpdateCart = () => {
         await getCartProducts();
         await getAllProducts();
 
-        const checkedItems = cart.value.filter(item => item.checked).map(item => ({ ...item }));
+        const checkedItems = cart.value.filter(
+            item => item.checked).map(item => ({ ...item }));
 
         if (!checkedItems.length) {
             console.log('Нет выбранных (checked) товаров в корзине!', checkedItems);
@@ -189,11 +200,8 @@ export const useUpdateCart = () => {
                     }
                 );
 
-                const isExhausted = newQuantityArr.every(v => Number(v.count) <= 0);
-
                 const updatedData = {
                     variants: newQuantityArr,
-                    status: isExhausted ? 'Exhausted' : product.status
                 };
 
                 await handler(`/products/${product.id}`, {

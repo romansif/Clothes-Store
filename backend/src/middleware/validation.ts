@@ -68,11 +68,11 @@ export const validation = {
 
         body('collection').isObject().withMessage('Collection must be an object'),
 
-        body('collection.name').isString().notEmpty().withMessage('Collection name is required'),
+        body('collection.name').trim().notEmpty().withMessage('Collection name is required'),
 
-        body('collection.season').isString().notEmpty().withMessage('Season is required'),
+        body('collection.season').trim().notEmpty().withMessage('Season is required'),
 
-        body('collection.condition').isString().notEmpty().withMessage('Condition is required'),
+        body('collection.condition').trim().notEmpty().withMessage('Condition is required'),
 
         body('category').trim().notEmpty().withMessage('Category is required'),
 
@@ -82,29 +82,43 @@ export const validation = {
 
         body('sku').trim().notEmpty().withMessage('SKU is required'),
 
-        body('price').notEmpty().withMessage('Price is required')
-            .isNumeric().withMessage('Price must be a number'),
+        body('price').notEmpty().withMessage('Price is required').isNumeric()
+            .withMessage('Price must be a number'),
 
         body('description').trim().notEmpty().withMessage('Description is required'),
 
-        body('colors').isArray().withMessage('Colors must be an array')
-            .notEmpty().withMessage('Colors are required'),
+        body('status').trim().notEmpty().withMessage('Status is required'),
 
-        body('sizes').isArray().withMessage('Sizes must be an array')
-            .notEmpty().withMessage('Sizes are required'),
+        body('colors').isArray({ min: 1 }).withMessage('Colors are required'),
 
-        body('variants').isArray().withMessage('Variants must be an array')
-            .notEmpty().withMessage('Variants are required'),
+        body('colors.*.hex').trim().notEmpty().withMessage('Color hex is required'),
+
+        body('colors.*.colorName').trim().notEmpty().withMessage('Color name is required'),
+
+        body('sizes').isArray({ min: 1 }).withMessage('Sizes are required'),
+
+        body('sizes.*').trim().notEmpty().withMessage('Size is required'),
+
+        body('variants').isArray({ min: 1 }).withMessage('Variants are required'),
+
+        body('variants.*.hex').trim().notEmpty().withMessage('Variant hex is required'),
+
+        body('variants.*.colorName').trim().notEmpty().withMessage('Variant color name is required'),
+
+        body('variants.*.size').trim().notEmpty().withMessage('Variant size is required'),
+
+        body('variants.*.count').notEmpty().withMessage('Count is required').isNumeric()
+            .withMessage('Count must be a number'),
     ],
 
     addProductToCartValidation: [
-        body('colors').isArray().withMessage('The color of the pillar should be substantial'),
+        body('colors').isArray({ min: 1 }).notEmpty().withMessage('Color is required'),
 
-        body('colors.*.hex').isString().notEmpty().withMessage('Hex is mandatory'),
+        body('colors.*.hex').trim().notEmpty().withMessage('Color is required'),
 
-        body('colors.*.colorName').isString().notEmpty().withMessage('ColorName is required'),
+        body('colors.*.colorName').trim().notEmpty().withMessage('Color is required'),
 
-        body('sizes').trim().notEmpty().withMessage('Size required to adding product to cart'),
+        body('sizes').trim().notEmpty().withMessage('Size is required to add product to cart'),
     ],
 
     addAddressValidation: [

@@ -88,11 +88,11 @@ export const useFormsErrors = () => {
                 createProductFormMessages.value.colorMessage = errors.colors || '';
                 createProductFormMessages.value.sizeMessage = errors.sizes || '';
 
-                createProductFormErrors.value.variantError = moreCreateItem.colors.length > 0 &&
-                    moreCreateItem.sizes.length > 0 && !!errors.variants;
+                if(moreCreateItem.sizes.length || moreCreateItem.colors.length || !moreCreateItem.variants.length) {
+                    createProductFormErrors.value.variantError = !!errors.variant;
 
-                createProductFormMessages.value.variantMessage = moreCreateItem.colors.length > 0 &&
-                    moreCreateItem.sizes.length > 0 ? errors.variants || '' : '';
+                    createProductFormMessages.value.variantMessage = errors.variant || '';
+                }
             }
         }
     };
@@ -101,10 +101,22 @@ export const useFormsErrors = () => {
         if(err instanceof ApiError){
             const errors = err.response as Record<string, string> | undefined;
             if(errors){
-                cartFormErrors.value.colorError = !!errors.colors;
+                const hasColorError = Object.keys(errors).some(
+                    key =>
+                        key.startsWith('colors[') ||
+                        key === 'colors'
+                );
+
+                const colorError = Object.entries(errors).find(
+                    ([key]) =>
+                        key.startsWith('colors[') ||
+                        key === 'colors'
+                );
+
+                cartFormErrors.value.colorError = hasColorError;
                 cartFormErrors.value.sizeError = !!errors.sizes;
 
-                cartFormMessages.value.colorMessage = errors.colors || '';
+                cartFormMessages.value.colorMessage = colorError?.[1] || '';
                 cartFormMessages.value.sizeMessage = errors.sizes || '';
             }
         }

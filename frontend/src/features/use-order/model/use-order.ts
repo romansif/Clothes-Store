@@ -22,7 +22,7 @@ export const useOrder = () => {
     };
 
     const orderQuantity = (product: Product) => {
-        const quantityList = product.quantity || [];
+        const quantityList = product.variants || [];
 
         const totalCount = quantityList.find(p => p.size === product.sizes);
 

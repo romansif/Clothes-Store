@@ -27,7 +27,7 @@
         </div>
       </div>
       <div v-for="item in order.orderItems" :key="item.id"  @click="getProduct(item.productId)">
-        <router-link :to="{ name: 'product/info', params: { id: item.id } }">
+        <router-link :to="{ name: 'product/info', params: { id: item.productId } }">
           <div class="flex py-5 px-3">
             <div class="flex gap-5">
               <img :src="orderPreview(item.id, 'ADDED')" alt="" class="w-30 h-39 rounded-2xl border border-gray-400
