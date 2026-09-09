@@ -27,8 +27,8 @@ export const productsClasses = () => {
     ];
 
     const isColorAvailable = (color: ColorItem, product: Product) =>
-        product.variants.some(p => p.hex === color.hex &&
-            (!cartForm.value.sizes || p.size === cartForm.value.sizes) && Number(p.count) > 0
+        product.variants.some(v => v.hex === color.hex &&
+            (!cartForm.value.sizes || v.size === cartForm.value.sizes) && Number(v.count) > 0
         );
 
     const isSizeAvailable = (size: Size, product: Product) =>
@@ -37,7 +37,7 @@ export const productsClasses = () => {
         );
 
     const selectedColorClass = (color: ColorItem, product: Product, role: string) => {
-        const available = product.status !== 'Exhausted' && role !== 'Seller' && isColorAvailable(color, product);
+        const available = product.variants.every(v => v.count !== 0) && role !== 'Seller' && isColorAvailable(color, product);
 
         return [
             'w-[62px] h-[62px] transition duration-500 border-2 border-dashed border-[#A3A3A3]',
@@ -50,7 +50,7 @@ export const productsClasses = () => {
     };
 
     const selectedSizesClass = (size: Size, product: Product, role: string) => {
-        const available = product.status !== 'Exhausted' && role !== 'Seller' && isSizeAvailable(size, product);
+        const available = product.variants.every(v => v.count !== 0) && role !== 'Seller' && isSizeAvailable(size, product);
 
         return [
             size.class,

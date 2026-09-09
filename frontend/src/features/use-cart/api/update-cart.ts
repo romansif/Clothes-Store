@@ -166,6 +166,7 @@ export const useUpdateCart = () => {
         const checkedItems = cart.value.filter(
             item => item.checked).map(item => ({ ...item }));
 
+        console.log(checkedItems)
         if (!checkedItems.length) {
             console.log('Нет выбранных (checked) товаров в корзине!', checkedItems);
             return;

@@ -10,9 +10,14 @@ export const clearProductsForms = () => {
         createProductForm.value.category = '';
         createProductForm.value.material = '';
         createProductForm.value.description = '';
+        createProductForm.value.sku = '';
         createProductForm.value.price = '';
         createProductForm.value.variants = [];
-        createProductForm.value.collection = { condition: '', season: '', name: '' };
+        createProductForm.value.collection = {
+            condition: '',
+            season: '',
+            name: ''
+        };
         moreCreateItem.sizes = [];
         moreCreateItem.colors = [];
 

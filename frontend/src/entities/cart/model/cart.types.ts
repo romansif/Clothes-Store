@@ -15,7 +15,6 @@ export interface CartItem {
     gender: string,
     variants: Variant[],
     sku: string,
-    status: string,
     checked: boolean,
     collection: Collection,
     created_at: string,

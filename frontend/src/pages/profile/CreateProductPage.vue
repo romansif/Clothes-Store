@@ -228,16 +228,16 @@
                     </button>
                   </div>
                 </div>
-<!--                <div v-if="countMode === 'SAME'" class="flex">-->
-<!--                  <BaseInput v-model="createProductForm.quantity" @input="toggleAllVariants(createProductForm.quantity)"-->
-<!--                             type="number" placeholder="product ptc." class="w-75"-->
-<!--                             :error="createProductFormErrors.quantityError" variant="createProduct" required-->
-<!--                             :error-message="createProductFormErrors.quantityError ? createProductFormMessages.quantityMessage : ''"/>-->
-<!--                  <span class="ml-auto mt-auto text-sm text-[#A3A3A3] font-medium">-->
-<!--                    An equal quantity will be selected for all sizes and colors-->
-<!--                  </span>-->
-<!--                </div>-->
-                <div class="pt-3">
+                <div v-if="countMode === 'SAME'" class="flex">
+                  <BaseInput v-model="createProductForm.quantity" @input="toggleAllVariants"
+                             type="number" placeholder="product ptc." class="w-75"
+                             :error="createProductFormErrors.quantityError" variant="createProduct" required
+                             :error-message="createProductFormErrors.quantityError ? createProductFormMessages.quantityMessage : ''"/>
+                  <span class="ml-auto mt-auto text-sm text-[#A3A3A3] font-medium">
+                    An equal quantity will be selected for all sizes and colors
+                  </span>
+                </div>
+                <div v-else class="pt-3">
                   <table class="w-full text-left border-collapse">
                     <thead class="border-b-2">
                     <tr class="">
@@ -356,7 +356,7 @@ const { loading, notify } = useBaseModals();
 const { createProductFormErrors } = productsFormErrors();
 const { createProduct, onFilesSelected } = useAddProduct();
 const { openSelectProductCard, fileInput } = useProductsModals();
-const { toggleQuantity, toggleSize, toggleColor } = productsCover();
+const { toggleAllVariants, toggleQuantity, toggleSize, toggleColor } = productsCover();
 const { createProductForm, moreCreateItem, createProductFormMessages } = productForms();
 const { collections, categories, materials, genders, sizes, productsPreview, countMode, skuMask } = productStore();
 

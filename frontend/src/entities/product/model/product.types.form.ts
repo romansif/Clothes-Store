@@ -5,11 +5,12 @@ export interface ProductForm {
     title: string,
     category: string,
     material: string,
-    description: string,
-    price: string,
     gender: string,
-    variants: Variant[],
     sku: string,
+    price: string,
+    description: string,
+    quantity: number
+    variants: Variant[],
     collection: Collection,
 }
 
@@ -29,12 +30,12 @@ export interface ProductFormMessage {
     sizeMessage: string,
     genderMessage: string,
     skuMessage: string,
+    quantityMessage: string,
     variantMessage: string,
     collectionsMessage: string,
 }
 
 export interface ProductFormError {
-    productUrlError: boolean,
     titleError: boolean,
     categoryError: boolean,
     materialError: boolean,
@@ -44,6 +45,7 @@ export interface ProductFormError {
     sizeError: boolean,
     genderError: boolean,
     skuError: boolean,
+    quantityError: boolean,
     variantError: boolean,
     collectionsError: boolean,
 }

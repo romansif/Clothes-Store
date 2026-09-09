@@ -27,7 +27,7 @@
       </p>
     </div>
     <div class="flex flex-col mt-3.5 gap-7">
-      <div class="flex flex-col gap-2">
+      <div class="flex flex-col gap-3">
         <span class="font-medium text-[#A3A3A3]">
           Colors
         </span>
@@ -35,22 +35,24 @@
           <div v-for="color in pureInfoColors(product)" :key="color.hex" :style="{ background: color.hex }" :title="color.hex"
                @click="addColor(color, userData, product)" :class="selectedColorClass(color, product, userData.role)"></div>
           </div>
-          <span v-if=cartFormErrors.colorError class="text-red-600 text-xs">
-            {{ cartFormMessages.colorMessage }}
-          </span>
       </div>
-      <div class="flex flex-col gap-2">
+      <div class="flex flex-col gap-3">
         <span class="font-medium text-[#A3A3A3]">Sizes</span>
         <div class="flex justify-start items-center lg:gap-5">
           <img v-for="size in isAvailableSizes" :key="size.name" :src=size.url alt="" @click="addSize(size, userData, product)"
                :class="selectedSizesClass(size, product, userData.role)">
         </div>
-        <span v-if=cartFormErrors.sizeError class="text-red-600 text-xs">
-          {{ cartFormMessages.sizeMessage }}
-        </span>
+        <div class="flex gap-1">
+          <span v-if=cartFormErrors.colorError class="text-red-600 text-xs">
+            {{ cartFormMessages.colorMessage }} /
+          </span>
+            <span v-if=cartFormErrors.sizeError class="text-red-600 text-xs">
+            {{ cartFormMessages.sizeMessage }}
+          </span>
+        </div>
       </div>
     </div>
-    <div class="flex flex-col gap-8 mt-6">
+    <div class="flex flex-col gap-6 mt-4">
       <button @click="toggleSizeGuide" class="text-[#A3A3A3] text-left transition duration-400 cursor-pointer hover:scale-105">
         What's my size?
       </button>
@@ -65,10 +67,10 @@
       <BaseButton v-if="isInStock === 0 && userData.id" name="OUT OF STACK" variant="outOfStack" />
       <div v-if="userData.id && isInCart" class="flex items-center gap-18">
         <div class="flex gap-6 bg-zinc-800 py-4 px-3 text-lg transition duration-300 hover:scale-108">
-          <img :src="plus" @click="updateCartItem('add', isInCart.id, isInCart.status)" alt=""
+          <img :src="plus" @click="updateCartItem('add', isInCart.id)" alt=""
                class="bg-zinc-600 text-white px-2 w-8.75 rounded-md transition duration-300 hover:bg-zinc-400" />
           <span class="text-white font-dm-sans">{{ isInCart.variants }}</span>
-          <img :src="minus" @click="updateCartItem('away', isInCart.id, isInCart.status)" alt=""
+          <img :src="minus" @click="updateCartItem('away', isInCart.id)" alt=""
                class="bg-zinc-600 text-white px-2 w-8.75 rounded-md transition duration-300 hover:bg-zinc-400" />
         </div>
         <router-link :to="{ name: 'cart' }">

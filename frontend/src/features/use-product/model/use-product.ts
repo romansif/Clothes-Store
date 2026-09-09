@@ -9,25 +9,31 @@ import type { ColorItem, Product, SizeGuide, Size } from "@/entities/product/mod
 
 const { cart } = cartStore();
 const { orders, items } = orderStore();
-const { moreCreateItem } = productForms();
+const { createProductForm, moreCreateItem } = productForms();
 const { cartForm } = addToCartForm();
 const { products, product, productId, sizes, outerwearSizeGuide, underWearSizeGuide, shoesSizeGuide,
     outerWear, underWear, activeProductImg, unit } = productStore();
 
 export const productsCover = () => {
-    // const toggleAllVariants = (val: number | string | undefined) => {
-    //     const countNum = Math.max(0, Number(val) || 0);
-    //     if(!moreCreateItem.variants || moreCreateItem.variants.length === 0) {
-    //         moreCreateItem.variants = [{count: countNum}]
-    //         return
-    //     }
-    //
-    //     for(const color of moreCreateItem.colors ?? []) {
-    //         for(const size of moreCreateItem.sizes ?? []) {
-    //             toggleQuantity(color.hex, color.colorName, size).count = countNum
-    //         }
-    //     }
-    // };
+    const toggleAllVariants = () => {
+        const quantity = Number(createProductForm.value.quantity);
+        if(!quantity) {
+            return;
+        }
+
+        moreCreateItem.variants = []
+
+        moreCreateItem.colors.forEach((color) => {
+            moreCreateItem.sizes.forEach((size) => {
+                moreCreateItem.variants.push({
+                    hex: color.hex,
+                    colorName: color.colorName,
+                    size: size,
+                    count: quantity
+                })
+            })
+        })
+    };
 
     const toggleQuantity = (hex: string, colorName: string, size: string) => {
         let item = moreCreateItem.variants.find(
@@ -273,16 +279,16 @@ export const productsCover = () => {
     };
 
     const isOutOfStack = (product: Product) => {
-        const variants = product.variants.find(p => p.count !== undefined)
+        const variants = product.variants.every(v => v.count === 0)
 
-        return variants?.count === 0 && product.status === 'Exhausted';
+        return variants
     };
 
     const variantsInfo = (product: Product) => {
         const variantsList = product?.variants || [];
 
         const totalCount = variantsList.find(
-            p => p.hex === cartForm.value.colors.hex && p.size === cartForm.value.sizes);
+            v => v.hex === cartForm.value.colors.hex && v.size === cartForm.value.sizes);
 
         const count = totalCount?.count ?? 0;
 
@@ -354,7 +360,7 @@ export const productsCover = () => {
         isInCart,
         vHorizontalScroll,
 
-        // toggleAllVariants,
+        toggleAllVariants,
         toggleQuantity,
         toggleColor,
         toggleSize,
