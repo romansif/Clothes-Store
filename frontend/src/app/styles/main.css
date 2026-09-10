@@ -7,6 +7,21 @@
     --font-dm-sans: "DM Sans", sans-serif;
 }
 
+::-webkit-scrollbar {
+    width: 6px;
+    scroll-behavior: smooth;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.15);
+    border-radius: 20px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0,0,0,0.35);
+}
+
 .no-scrollbar::-webkit-scrollbar {
     display: none;
 }
@@ -15,4 +30,5 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
+
 
