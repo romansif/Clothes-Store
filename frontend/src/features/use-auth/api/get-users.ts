@@ -1,5 +1,5 @@
 import { handler } from '@/shared/api/http.ts'
-import { userStore } from "@/entities/profile/model/user.store.ts";
+import { userStore } from "@/features/use-profile/model/user.store.ts";
 
 const { users, user, userData } = userStore();
 

@@ -1,15 +1,15 @@
 import { handler } from "@/shared/api/http.ts";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
-import { productStore } from "@/entities/product/model/product.store.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { addToCartForm } from "@/features/use-cart/model/cart.form.ts";
 import { clearAddToCartForm } from "@/features/use-cart/lib/clear.cart.ts";
-import { cartStore } from "@/entities/cart/model/cart.store.ts";
-import { userStore } from "@/entities/profile/model/user.store.ts";
+import { cartStore } from "@/features/use-cart/model/cart.store.ts";
+import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
+import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 
 const { userData } = userStore();
-const { product } = productStore();
+const { product } = useGetProduct();
 const { unreadCount } = cartStore();
 const { cartForm } = addToCartForm();
 const { getCartProducts } = useGetCart();
@@ -47,7 +47,6 @@ export const useAddToCart = () => {
                         size: cartForm.value.sizes,
                         count: 1
                     }],
-                    status: currentProduct.status,
                     checked: false,
                 })
             });

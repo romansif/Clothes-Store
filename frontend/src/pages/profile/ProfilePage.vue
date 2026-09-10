@@ -1,62 +1,28 @@
 <template>
-  <div class='bg-[#F0F0F0] h-screen'>
-    <Loading v-if="loading" />
-    <div class="xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
-      <MainNavBar />
+  <main :class="isProfileLoginClass(user)" class="font-raleway">
+    <div class="w-87.5 sm:w-150 md:w-175 lg:w-237.5 xl:w-175">
+      <ProfileNotLoggedIn v-if="!user.id" />
+      <ProfileSettings v-if="user.id" />
     </div>
-    <main :class="isProfileLoginClass(user)" class="font-raleway">
-      <div class="w-87.5 sm:w-150 md:w-175 lg:w-237.5 xl:w-175">
-        <ProfileNotLoggedIn v-if="!user.id" />
-        <ProfileSettings v-if="user.id" />
-      </div>
-    </main>
-    <Transition name="notify">
-      <ChangeAvatar v-if="avatarModal" />
-    </Transition>
-    <Transition name="notify">
-      <Orders v-if="orderHistory" />
-    </Transition>
-    <Transition name="notify">
-      <CurrentOrder v-if="currentOrder" />
-    </Transition>
-    <Transition name="notify">
-      <AddressPaymentInfo v-if="addressesAndCards" />
-    </Transition>
-    <Transition name="notify">
-      <UserDataModal v-if="confidentialityData" />
-    </Transition>
-    <Transition name="notify">
-      <Notification v-if="notify" />
-    </Transition>
-    <Transition name="notify">
-      <DeleteModal v-if="deleteChoice" />
-    </Transition>
-  </div>
+  </main>
 </template>
 
 <script setup lang="ts">
-const { user } = userStore();
-const { notify, loading } = useBaseModals();
-const { isProfileLoginClass } = profileClasses();
-const { avatarModal, orderHistory, currentOrder, addressesAndCards, confidentialityData, deleteChoice } = useProfileModals();
-
-import { userStore } from "@/entities/profile/model/user.store.ts";
-import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
-import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { onMounted } from "vue";
+import { useGetUsers } from "@/features/use-auth/api/get-users.ts";
+import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { profileClasses } from "@/shared/const/user/profile.classes.ts";
 
-import MainNavBar from '@/widgets/navigation/ui/MainNavBar.vue'
-import DeleteModal from "@/shared/ui/DeleteModal.vue";
-import ProfileSettings from "@/widgets/ProfileSettings.vue";
-import ProfileNotLoggedIn from "@/entities/profile/ui/ProfileNotLoggedIn.vue";
-import Notification from "@/shared/ui/Notification.vue";
-import ChangeAvatar from "@/entities/profile/ui/ChangeAvatar.vue";
-import Orders from "@/entities/order/ui/Orders.vue";
-import CurrentOrder from "@/entities/order/ui/CurrentOrder.vue";
-import AddressPaymentInfo from "@/entities/profile/ui/AddressPaymentInfo.vue";
-import UserDataModal from "@/entities/profile/ui/privacy/UserDataModal.vue";
-import Loading from "@/widgets/Loading.vue";
+import ProfileSettings from "@/features/use-profile/ui/ProfileSettings.vue";
+import ProfileNotLoggedIn from "@/features/use-profile/ui/ProfileNotLoggedIn.vue";
 
+const { user } = userStore();
+const { getUser } = useGetUsers();
+const { isProfileLoginClass } = profileClasses();
+
+onMounted(async () => {
+  await getUser();
+})
 </script>
 
 <style scoped>

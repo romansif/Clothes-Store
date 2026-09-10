@@ -42,9 +42,6 @@
                   </div>
                 </div>
               </div>
-              <span v-if="createProductFormErrors.productUrlError" class="text-red-600 text-xs">
-                {{ createProductFormMessages.productUrlMessage }}
-              </span>
               <div class="flex flex-col gap-4">
                 <h2 class="text-sm text-[#A3A3A3] font-medium">The first photo is used in the catalog</h2>
                 <h2 class="text-sm text-[#A3A3A3] font-medium">Formats: JPG · PNG · WEBP Max. size: 5 MB Aspect ratio: 4:5</h2>
@@ -352,19 +349,11 @@
 </template>
 
 <script setup lang="ts">
-const { loading, notify } = useBaseModals();
-const { createProductFormErrors } = productsFormErrors();
-const { createProduct, onFilesSelected } = useAddProduct();
-const { openSelectProductCard, fileInput } = useProductsModals();
-const { toggleAllVariants, toggleQuantity, toggleSize, toggleColor } = productsCover();
-const { createProductForm, moreCreateItem, createProductFormMessages } = productForms();
-const { collections, categories, materials, genders, sizes, productsPreview, countMode, skuMask } = productStore();
-
 import { watch } from "vue";
 import { IMaskComponent as IMask } from "vue-imask";
-import { productsCover } from "@/features/use-product/model/use-product.ts";
+import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { productStore } from "@/entities/product/model/product.store.ts";
+import { productStore } from "@/features/use-product/model/product.store.ts";
 import { useAddProduct } from "@/features/use-product/api/add-product.ts";
 import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
 import { productForms } from "@/features/use-product/model/product.forms.ts";
@@ -374,6 +363,14 @@ import BaseInput from "@/shared/ui/BaseInput.vue";
 import Loading from "@/widgets/Loading.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import Notification from "@/shared/ui/Notification.vue";
+
+const { loading, notify } = useBaseModals();
+const { createProductFormErrors } = productsFormErrors();
+const { createProduct, onFilesSelected } = useAddProduct();
+const { openSelectProductCard, fileInput } = useProductsModals();
+const { toggleAllVariants, toggleQuantity, toggleSize, toggleColor } = useGetProduct();
+const { createProductForm, moreCreateItem, createProductFormMessages } = productForms();
+const { collections, categories, materials, genders, sizes, productsPreview, countMode, skuMask } = productStore();
 
 watch(() => [moreCreateItem.sizes.length, moreCreateItem.colors.length, moreCreateItem.variants.length], ([sizes, colors, variants]) => {
   if(sizes){
@@ -390,13 +387,10 @@ watch(() => [moreCreateItem.sizes.length, moreCreateItem.colors.length, moreCrea
   })
 
 watch(() => [
-    createProductForm.value.productUrl, createProductForm.value.title, createProductForm.value.collection,
+    createProductForm.value.title, createProductForm.value.collection,
     createProductForm.value.category, createProductForm.value.material, createProductForm.value.gender,
     createProductForm.value.sku, createProductForm.value.price, createProductForm.value.description],
-    ([url, title, collection, category, material, gender, sku, price, description]) => {
-      if(url){
-        createProductFormErrors.value.productUrlError = false;
-      }
+    ([title, collection, category, material, gender, sku, price, description]) => {
       if(title){
         createProductFormErrors.value.titleError = false;
       }

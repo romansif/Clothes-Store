@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import { type InformationErrors, type ShippingError,
-    type PaymentError, type IsAgreeError } from "@/entities/checkout/model/checkout.types.form.ts";
+    type PaymentError, type IsAgreeError } from "@/features/use-checkout/model/checkout.types.form.ts";
 
 const informationErrors = ref<InformationErrors>({
     emailError: false,

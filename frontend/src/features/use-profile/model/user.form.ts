@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import { type UserForm, type UserFormMessage } from "@/entities/profile/model/user.types.form.ts";
+import { type UserForm, type UserFormMessage } from "@/features/use-profile/model/user.types.form.ts";
 
 const updateUserForm = ref<UserForm>({
     name: '',

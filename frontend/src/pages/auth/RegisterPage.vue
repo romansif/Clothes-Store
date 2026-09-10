@@ -1,57 +1,45 @@
 <template>
-  <div class="bg-white h-screen">
-    <main class='fixed font-raleway inset-0 flex items-center justify-center'>
-      <div class="w-87.5 sm:w-140 rounded-lg px-4 py-8">
-        <div class="flex items-center justify-center">
-          <div class="w-58.75 sm:w-75">
-            <div class="font-medium flex items-center justify-between">
-              <router-link :to="{name: 'signIn'}" @click="clearRegisterForm" class="transition duration-400 hover:scale-120">
-                <span class="text-[#A3A3A3]">SIGN IN</span>
-              </router-link>
-              <span class="cursor-pointer transition duration-400 hover:scale-120">SIGN UP</span>
-            </div>
-          </div>
-        </div>
-        <div class="flex flex-col mt-10 font-bold text-3xl w-55 transition duration-400 hover:scale-110">
-          <span>WELCOME TO</span>
-          <span class="text-[#A3A3A3]">THE NOIR</span>
-        </div>
-        <RegisterForm />
-        <div class="flex flex-col gap-3">
-          <div class="relative duration-400 hover:scale-105 cursor-pointer">
-            <BaseButton @click="signUp(currentRole)" variant="register"
-                        :name="isRole ? 'SIGN UP BY SELLER' : 'SIGN UP BY BUYER'" />
-            <img :src=maki_arrow alt="" class="absolute w-6.25 top-9.5 left-58 sm:left-118">
-          </div>
-          <BaseButton @click="toggleSignUp" :name="isRole ? 'Sign up as a buyer' : 'Sign up as a seller'" variant="changeRegister" />
+  <div class="w-87.5 sm:w-140 rounded-lg px-4 py-8">
+    <div class="flex items-center justify-center">
+      <div class="w-58.75 sm:w-75">
+        <div class="font-medium flex items-center justify-between">
+          <router-link :to="{name: 'signIn'}" @click="clearRegisterForm" class="transition duration-400 hover:scale-120">
+            <span class="text-[#A3A3A3]">SIGN IN</span>
+          </router-link>
+          <span class="cursor-pointer transition duration-400 hover:scale-120">SIGN UP</span>
         </div>
       </div>
-    </main>
-    <Loading v-if="loading"/>
-    <Transition name="notify">
-      <Notification v-if="notify"/>
-    </Transition>
+    </div>
+    <div class="flex flex-col mt-10 font-bold text-3xl w-55 transition duration-400 hover:scale-110">
+      <span>WELCOME TO</span>
+      <span class="text-[#A3A3A3]">THE NOIR</span>
+    </div>
+    <RegisterForm />
+    <div class="flex flex-col gap-3">
+      <div class="relative duration-400 hover:scale-105 cursor-pointer">
+        <BaseButton @click="signUp(currentRole)" variant="register"
+                    :name="isRole ? 'SIGN UP BY SELLER' : 'SIGN UP BY BUYER'" />
+        <img :src=maki_arrow alt="" class="absolute w-6.25 top-9.5 left-58 sm:left-118">
+      </div>
+      <BaseButton @click="toggleSignUp" :name="isRole ? 'Sign up as a buyer' : 'Sign up as a seller'" variant="changeRegister" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useAuth } from "@/features/use-auth/api/use-auth.ts";
+import { clearAuthForms } from "@/features/use-auth/lib/clear.auth.ts";
+import { toggleAuth } from "@/features/use-auth/lib/toggle-auth.ts";
+import { authStore } from "@/features/use-auth/model/auth.store.ts";
+
+import RegisterForm from "@/features/use-auth/ui/RegisterForm.vue";
+import maki_arrow from "@/assets/icons/arrows/right-short-arrow.svg";
+import BaseButton from "@/shared/ui/BaseButton.vue";
+
 const { signUp } = useAuth();
 const { toggleSignUp } = toggleAuth();
 const { currentRole, isRole } = authStore();
-const { loading, notify } = useBaseModals();
 const { clearRegisterForm } = clearAuthForms();
-
-import { useAuth } from "@/features/use-auth/api/use-auth.ts";
-import { clearAuthForms } from "@/features/use-auth/lib/clear.auth.ts";
-import { toggleAuth } from "@/features/use-auth/model/toggle-auth.ts";
-import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { authStore } from "@/entities/auth/model/auth.store.ts";
-
-import RegisterForm from "@/entities/auth/ui/RegisterForm.vue";
-import Loading from "@/widgets/Loading.vue";
-import Notification from "@/shared/ui/Notification.vue";
-import maki_arrow from "@/assets/icons/arrows/right-short-arrow.svg";
-import BaseButton from "@/shared/ui/BaseButton.vue";
 </script>
 
 <style scoped>

@@ -1,5 +1,5 @@
 import {ref} from "vue";
-import { type AddForm, type AddFormMessage } from "@/entities/cart/model/cart.types.form.ts";
+import { type AddForm, type AddFormMessage } from "@/features/use-cart/model/cart.types.form.ts";
 
 const cartForm = ref<AddForm>({
     colors: {

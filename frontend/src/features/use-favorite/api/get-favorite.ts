@@ -1,6 +1,6 @@
 import { handler } from "@/shared/api/http.ts";
-import { userStore } from "@/entities/profile/model/user.store.ts";
-import { favoriteStore } from "@/entities/favorite/model/favorite.store.ts";
+import { userStore } from "@/features/use-profile/model/user.store.ts";
+import { favoriteStore } from "@/features/use-favorite/model/favorite.store.ts";
 
 const { userData } = userStore();
 const { favorite } = favoriteStore();

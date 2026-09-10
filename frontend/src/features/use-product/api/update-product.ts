@@ -1,10 +1,10 @@
-import type {ColorItem, Product} from "@/entities/product/model/product.types.ts";
+import type {ColorItem, Product} from "@/features/use-product/model/product.types.ts";
 import {handler} from "@/shared/api/http.ts";
 import router from "@/app/router";
 import namer from "color-namer";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { productForms } from "@/features/use-product/model/product.forms.ts";
-import { productStore } from "@/entities/product/model/product.store.ts";
+import { productStore } from "@/features/use-product/model/product.store.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 
 const { currentFile } = productStore();

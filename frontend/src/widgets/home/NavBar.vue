@@ -49,8 +49,6 @@
 </template>
 
 <script setup lang="ts">
-const { toggleFilterAside } = useProductsModals();
-
 import { computed }  from "vue";
 import { useRoute } from "vue-router";
 import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
@@ -59,6 +57,8 @@ import cart from "@/assets/icons/nav/cart.png";
 import liked from "@/assets/icons/nav/favorite.png";
 import profile from "@/assets/icons/nav/profile.png";
 import catalog from "@/assets/icons/nav/catalog.png";
+
+const { toggleFilterAside } = useProductsModals();
 
 const route = useRoute();
 

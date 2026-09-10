@@ -60,9 +60,6 @@
 </template>
 
 <script setup lang="ts">
-const { notify } = useBaseModals()
-const { getWeekProducts, getYearProducts } = useGetProduct();
-
 import { onMounted } from "vue";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
@@ -74,6 +71,9 @@ import Notification from "@/shared/ui/Notification.vue";
 import WeekList from "@/widgets/home/home-week-collections/WeekList.vue";
 import YearList from "@/widgets/home/home-year-collections/YearList.vue";
 import FilterGender from "@/widgets/home/FilterGender.vue";
+
+const { notify } = useBaseModals()
+const { getWeekProducts, getYearProducts } = useGetProduct();
 
 onMounted(async () => {
   await getWeekProducts('ALL', 'ALL');

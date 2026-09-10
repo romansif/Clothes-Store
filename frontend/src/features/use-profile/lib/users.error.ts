@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import { type UserFormErrors } from "@/entities/profile/model/user.types.form.ts";
+import { type UserFormErrors } from "@/features/use-profile/model/user.types.form.ts";
 
 const updateUserFormErrors = ref<UserFormErrors>({
     nameError: false,

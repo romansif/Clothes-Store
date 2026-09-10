@@ -22,7 +22,7 @@
             <span>{{ stackName }}</span>
             <span>
               (<span class="text-blue-700 font-medium font-dm-sans">
-                {{ allProducts.filter(p => p.status === stackName).length }}
+                {{ allProducts.filter(p => p.variants.every(v => v.count !== 0)).length }}
               </span>)
             </span>
           </div>
@@ -71,17 +71,19 @@
 </template>
 
 <script setup lang="ts">
-const { allProducts, sizes } = productStore();
-const { selectedSizeClass, selectedFilterClass } = productsClasses();
-const { toggleFilter, toggleSize, stackProducts, genders, colors } = filterProduct();
-
 import { filterProduct } from "@/features/use-navigation/model/filter-product.ts";
-import { productStore } from "@/entities/product/model/product.store.ts";
+import { productStore } from "@/features/use-product/model/product.store.ts";
+import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { productsClasses } from "@/shared/const/product/products.classes.ts";
 
 import square from '@/assets/icons/squares/square.png'
 import checked from '@/assets/icons/squares/check-square.png'
 import availability from '@/assets/icons/arrows/arrow-up.png'
+
+const { sizes } = productStore();
+const { allProducts } = useGetProduct();
+const { selectedSizeClass, selectedFilterClass } = productsClasses();
+const { toggleFilter, toggleSize, stackProducts, genders, colors } = filterProduct();
 </script>
 
 <style scoped>

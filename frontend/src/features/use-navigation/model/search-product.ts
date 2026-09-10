@@ -2,7 +2,7 @@ import type { Ref } from 'vue';
 import { useDebounceFn } from "@vueuse/core";
 import { handler } from "@/shared/api/http.ts";
 import { searchForm } from "@/widgets/navigation/model/search.form.ts";
-import type { Product } from "@/entities/product/model/product.types.ts";
+import type { Product } from "@/features/use-product/model/product.types.ts";
 
 const { searchProductForm } = searchForm();
 

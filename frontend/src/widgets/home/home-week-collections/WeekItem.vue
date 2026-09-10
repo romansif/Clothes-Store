@@ -25,24 +25,20 @@
 </template>
 
 <script setup lang="ts">
-const { userData } = userStore();
-const { isFavorite } = useFavorite();
-const { getProduct } = useGetProduct();
-const { productsWeek } = productStore();
-const { productPreviewClass } = baseClasses();
-const { toggleToFavorite } = useToggleFavorite();
-const { isOutOfStack, productPreview } = productsCover();
-
-import { userStore } from "@/entities/profile/model/user.store.ts";
+import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { baseClasses } from "@/shared/const/base.classes.ts";
-import { productsCover } from "@/features/use-product/model/use-product.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
-import { productStore } from "@/entities/product/model/product.store.ts";
 import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
-import { useFavorite } from "@/features/use-favorite/model/use-favorite.ts";
+import { useFavorite } from "@/features/use-favorite/lib/use-favorite.ts";
 
 import liked from "@/assets/icons/nav/liked.png";
 import like from "@/assets/icons/nav/like.png";
+
+const { userData } = userStore();
+const { isFavorite } = useFavorite();
+const { productPreviewClass } = baseClasses();
+const { toggleToFavorite } = useToggleFavorite();
+const { getProduct, isOutOfStack, productPreview, productsWeek } = useGetProduct();
 </script>
 
 <style scoped>

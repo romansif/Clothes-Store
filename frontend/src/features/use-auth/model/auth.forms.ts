@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import { type RegisterForm,
-    type LoginForm, type RegisterFormMessage, type LoginFormMessage} from "@/entities/auth/model/auth.types.form.ts";
+    type LoginForm, type RegisterFormMessage, type LoginFormMessage} from "@/features/use-auth/model/auth.types.form.ts";
 
 const registerForm = ref<RegisterForm>({
     name: '',

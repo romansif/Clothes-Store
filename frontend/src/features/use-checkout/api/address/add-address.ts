@@ -2,10 +2,10 @@ import { handler } from "@/shared/api/http.ts";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
 import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { useCheckout } from "@/features/use-checkout/model/use-checkout.ts";
+import { useCheckout } from "@/features/use-checkout/lib/use-checkout.ts";
 import { clearCheckoutForm } from "@/features/use-checkout/lib/clear.checkout.ts";
-import type { UserCheckoutAddress } from "@/entities/checkout/model/checkout.types.ts";
-import { userStore } from "@/entities/profile/model/user.store.ts";
+import type { UserCheckoutAddress } from "@/features/use-checkout/model/checkout.types.ts";
+import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useGetAddress } from "@/features/use-checkout/api/address/get-address.ts";
 
 const { userData } = userStore();

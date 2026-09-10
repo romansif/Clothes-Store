@@ -13,8 +13,9 @@
 </template>
 
 <script setup lang="ts">
-const { filterAside } = useProductsModals();
-
+import { onMounted } from "vue";
+import { useGetProduct } from "@/features/use-product/api/get-product.ts";
+import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
 import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
 
 import NavBar from "@/widgets/home/NavBar.vue";
@@ -22,6 +23,16 @@ import HomeSlideBar from "@/widgets/home/HomeSlideBar.vue";
 import Main from "../../widgets/home/Main.vue";
 import Footer from "../../widgets/home/Footer.vue";
 import AsideFilter from "@/widgets/AsideFilter.vue";
+
+const { filterAside } = useProductsModals();
+const { getFavoriteProducts } = useGetFavorite();
+const { getWeekProducts, getYearProducts } = useGetProduct();
+
+onMounted(async() => {
+  await getFavoriteProducts();
+  await getWeekProducts('ALL', 'ALL')
+  await getYearProducts('ALL', 'ALL')
+})
 </script>
 
 <style scoped>

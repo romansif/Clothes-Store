@@ -2,14 +2,9 @@ import type { RouteRecordRaw } from 'vue-router'
 
 const routes: RouteRecordRaw[] = [
     {
-        path: '/',
+        path: '/auth',
         component: () => import('@/app/layouts/AuthLayout.vue'),
         children: [
-            {
-                path: '',
-                name: 'home',
-                component: () => import('@/pages/home/HomePage.vue'),
-            },
             {
                 path: 'signUp',
                 name: 'signUp',
@@ -21,6 +16,11 @@ const routes: RouteRecordRaw[] = [
                 component: () => import('@/pages/auth/LoginPage.vue'),
             },
         ]
+    },
+    {
+        path: '/',
+        name: 'home',
+        component: () => import('@/pages/home/HomePage.vue'),
     },
     {
         path: '/',
@@ -64,7 +64,7 @@ const routes: RouteRecordRaw[] = [
             {
                 path: 'product/info/:id',
                 name: 'product/info',
-                component: () => import('@/pages/product/ProductDetailPage.vue'),
+                component: () => import('@/pages/products/ProductDetailPage.vue'),
             },
             {
                 path: 'cart',

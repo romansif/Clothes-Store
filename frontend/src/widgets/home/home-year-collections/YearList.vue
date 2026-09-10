@@ -13,14 +13,12 @@
 </template>
 
 <script setup lang="ts">
-const { productsYear } = productStore();
-const { vHorizontalScroll } = productsCover();
-
-import { productStore } from "@/entities/product/model/product.store.ts"
-import { productsCover } from "@/features/use-product/model/use-product.ts";
+import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 
 import YearItem from "@/widgets/home/home-year-collections/YearItem.vue";
 import empty_products from "@/assets/icons/products/icon-products.svg";
+
+const { productsYear, vHorizontalScroll } = useGetProduct();
 </script>
 
 

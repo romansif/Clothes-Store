@@ -1,11 +1,11 @@
 import { handler } from "@/shared/api/http.ts";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
-import { userStore } from "@/entities/profile/model/user.store.ts";
+import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { userForms } from "@/features/use-profile/model/user.form.ts";
 import { clearUsersForms } from "@/features/use-profile/lib/clear.users.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { useGetUsers } from "@/features/use-auth/api/get-users.ts";
-import type { UserDataUpdate } from "@/entities/profile/model/user.types.ts";
+import type { UserDataUpdate } from "@/features/use-profile/model/user.types.ts";
 
 const { user, userData } = userStore();
 const { getUser } = useGetUsers();

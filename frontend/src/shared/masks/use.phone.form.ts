@@ -1,5 +1,5 @@
 import { computed } from "vue";
-import { userStore } from "@/entities/profile/model/user.store.ts";
+import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { authForms } from "@/features/use-auth/model/auth.forms.ts";
 import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
 

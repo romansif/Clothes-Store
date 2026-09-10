@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import { type RegisterFormErrors, type LoginFormErrors} from "@/entities/auth/model/auth.types.form.ts";
+import { type RegisterFormErrors, type LoginFormErrors} from "@/features/use-auth/model/auth.types.form.ts";
 
 const registerFormErrors = ref<RegisterFormErrors>({
     nameError: false,

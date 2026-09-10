@@ -1,5 +1,5 @@
 import { handler } from "@/shared/api/http.ts";
-import { checkoutStore } from "@/entities/checkout/model/checkout.store.ts";
+import { checkoutStore } from "@/features/use-checkout/model/checkout.store.ts";
 
 const { userShipping } = checkoutStore();
 

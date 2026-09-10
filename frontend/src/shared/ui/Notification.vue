@@ -10,9 +10,9 @@
 </template>
 
 <script setup lang="ts">
-const { notifyTitle, notifyMessage } =  useBaseModals();
-
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
+
+const { notifyTitle, notifyMessage } =  useBaseModals();
 </script>
 
 <style scoped>

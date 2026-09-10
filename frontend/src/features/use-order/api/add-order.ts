@@ -1,8 +1,8 @@
 import { handler } from "@/shared/api/http.ts";
-import { useCheckout } from "@/features/use-checkout/model/use-checkout.ts";
+import { useCheckout } from "@/features/use-checkout/lib/use-checkout.ts";
 import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
-import { orderStore } from "@/entities/order/model/order.store.ts";
-import { userStore } from "@/entities/profile/model/user.store.ts";
+import { orderStore } from "@/features/use-order/model/order.store.ts";
+import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 
 const { items } = orderStore();

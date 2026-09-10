@@ -1,0 +1,368 @@
+{
+  "users": [
+    {
+      "id": "3898fdbc-7763-4395-8ea9-7254e2c5ef15",
+      "email": "akmalmavlonov25@gmail.com",
+      "role": "Seller",
+      "name": "Plagiat555",
+      "surName": "",
+      "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocJzHyeN95wO6MAZzH4E9FkqrC9pDZ_IsEztiiZDoWZD08A2Osv2=s96-c",
+      "privatePhone": "",
+      "googleId": "117192309001137738940",
+      "created_at": "2026-09-09T05:01:30.951Z",
+      "password": ""
+    },
+    {
+      "id": "a6bce7ed-41f1-4e9e-a57f-d267cdb467ca",
+      "email": "icecityland@gmail.com",
+      "role": "Buyer",
+      "name": "Misterio",
+      "surName": "",
+      "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocI_x7qgDLevnmrmvy2xxOJsLmz7BtasLX64CA8TSeR3nn4F8IY=s96-c",
+      "privatePhone": "",
+      "googleId": "100649871042356442319",
+      "created_at": "2026-09-09T05:48:34.107Z",
+      "password": ""
+    },
+    {
+      "id": "6950cab9-bc53-45ae-91f7-41469d5650aa",
+      "role": "Buyer",
+      "name": "Akmal",
+      "surName": "Movlonov",
+      "phone": "+998 (12) 345-67-89",
+      "email": "akmalmavlonov25@gmail.com",
+      "password": "$2b$10$uS9KCf2SRHQ5DieOpYZrZ.kGJk0z/4tQzBgImuSehUGBL7qcofjJq",
+      "avatarUrl": "uploads/avatars/default-avatar.png",
+      "created_at": "2026-09-10T11:20:37.939Z"
+    }
+  ],
+  "products": [
+    {
+      "id": "06be11e1-a719-475b-9d38-46b77c068a75",
+      "userId": "3898fdbc-7763-4395-8ea9-7254e2c5ef15",
+      "images": [
+        "uploads/products/product-1788936898694-632916574.png",
+        "uploads/products/product-1788936898695-150169104.png",
+        "uploads/products/product-1788936898701-153173880.png",
+        "uploads/products/product-1788936898706-918926110.png",
+        "uploads/products/product-1788936898706-454516258.png"
+      ],
+      "title": "AAA",
+      "collection": {
+        "season": "Autumn",
+        "name": "Silence",
+        "condition": "Old"
+      },
+      "category": "Underpants",
+      "material": "Flax",
+      "gender": "Man",
+      "sku": "F2C-TV-5V3",
+      "price": 98,
+      "description": "WWW",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        {
+          "hex": "#ffffff",
+          "colorName": "White"
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black"
+        }
+      ],
+      "variants": [
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "XS",
+          "count": 0
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "S",
+          "count": 10
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "M",
+          "count": 10
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "L",
+          "count": 10
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "XL",
+          "count": 10
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "XXL",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "XS",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "S",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "M",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "L",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "XL",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "XXL",
+          "count": 10
+        }
+      ],
+      "status": "Availability",
+      "created_at": "2026-09-09T06:54:58.720Z"
+    },
+    {
+      "id": "06be11e1-a719-475b-9d38",
+      "userId": "3898c-73-4395-8ea9-74e2c5ef15",
+      "images": [
+        "uploads/products/product-1788936898694-632916574.png",
+        "uploads/products/product-1788936898695-150169104.png",
+        "uploads/products/product-1788936898701-153173880.png"
+      ],
+      "title": "BBB",
+      "collection": {
+        "season": "Autumn",
+        "name": "Silence",
+        "condition": "Old"
+      },
+      "category": "Underpants",
+      "material": "Flax",
+      "gender": "Man",
+      "sku": "F2C-TV-5V3",
+      "price": 98,
+      "description": "WWW",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        {
+          "hex": "#ffffff",
+          "colorName": "White"
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black"
+        }
+      ],
+      "variants": [
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "XS",
+          "count": 10
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "S",
+          "count": 10
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "M",
+          "count": 10
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "L",
+          "count": 10
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "XL",
+          "count": 10
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "XXL",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "XS",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "S",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "M",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "L",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "XL",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "XXL",
+          "count": 10
+        }
+      ],
+      "status": "Availability",
+      "created_at": "2026-09-09T06:54:58.720Z"
+    }
+  ],
+  "cart": [],
+  "favorites": [],
+  "addresses": [
+    {
+      "id": "951bca71-8ec2-45f1-be40-e1ebcf38ec7b",
+      "userId": "6950cab9-bc53-45ae-91f7-41469d5650aa",
+      "address": "Ташкент, Чиланзар_5, 26",
+      "postalCode": 10035,
+      "addressName": "Ташкент, Чиланзар_5, 26",
+      "email": "akmalmavlonov25@gmail.com",
+      "phone": "+998 (12) 345-67-89",
+      "firstName": "Akmal",
+      "lastName": "Movlonov",
+      "country": "Узбекистан",
+      "stateRegion": "QR",
+      "city": "R"
+    }
+  ],
+  "shipping": [
+    {
+      "id": "b7d2837f-9690-4831-9c12-cd1003b874bf",
+      "userId": "6950cab9-bc53-45ae-91f7-41469d5650aa",
+      "paymentId": "d5be26c6-b0ce-4631-9f51-ef71e57b2a6e",
+      "delivery": "standard"
+    },
+    {
+      "id": "36624ca5-e6a0-4557-a502-6607f51df2df",
+      "userId": "6950cab9-bc53-45ae-91f7-41469d5650aa",
+      "paymentId": "0a9c0cfe-0357-42c8-a131-890b26ba7997",
+      "delivery": "standard"
+    },
+    {
+      "id": "6d82b686-ce60-4a57-bac5-4969e6a45df7",
+      "userId": "6950cab9-bc53-45ae-91f7-41469d5650aa",
+      "paymentId": "28c23e22-68f0-4b0a-a11a-f4a2ab394ab4",
+      "delivery": "express"
+    }
+  ],
+  "payments": [
+    {
+      "id": "707aa51d-dcac-4a56-9b8a-a5cc7de103fd",
+      "userId": "6950cab9-bc53-45ae-91f7-41469d5650aa",
+      "paymentId": "28c23e22-68f0-4b0a-a11a-f4a2ab394ab4",
+      "paymentMethod": "apple"
+    }
+  ],
+  "orders": [
+    {
+      "id": "10afa2c2-ed93-4461-a689-2b91eb9656a6",
+      "userId": "6950cab9-bc53-45ae-91f7-41469d5650aa",
+      "orderItems": [
+        {
+          "id": "e66c941d-24b5-488d-a0c0-f365a30bb7ba",
+          "userId": "6950cab9-bc53-45ae-91f7-41469d5650aa",
+          "productId": "06be11e1-a719-475b-9d38-46b77c068a75",
+          "images": [
+            "uploads/products/product-1788936898694-632916574.png",
+            "uploads/products/product-1788936898695-150169104.png",
+            "uploads/products/product-1788936898701-153173880.png",
+            "uploads/products/product-1788936898706-918926110.png",
+            "uploads/products/product-1788936898706-454516258.png"
+          ],
+          "title": "AAA",
+          "category": "Underpants",
+          "material": "Flax",
+          "price": 980,
+          "description": "WWW",
+          "colors": [
+            {
+              "hex": "#ffffff",
+              "colorName": "White"
+            }
+          ],
+          "sizes": "XS",
+          "gender": "Man",
+          "variants": [
+            {
+              "hex": "#ffffff",
+              "colorName": "White",
+              "size": "XS",
+              "count": 10
+            }
+          ],
+          "checked": false,
+          "created_at": "2026-09-10T11:20:49.971Z"
+        }
+      ],
+      "orderTotal": 1073,
+      "delivery": "express",
+      "status": "Convene",
+      "created_at": "2026-09-10T11:24:23.738Z",
+      "date_created_at": "10.09.2026",
+      "time_created_at": "16:24"
+    }
+  ]
+}

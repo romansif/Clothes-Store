@@ -2,10 +2,10 @@ import router from "@/app/router";
 import { handler } from "@/shared/api/http.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
-import { productStore } from "@/entities/product/model/product.store.ts";
+import { productStore } from "@/features/use-product/model/product.store.ts";
 import { productForms } from "@/features/use-product/model/product.forms.ts";
 import { clearProductsForms } from "@/features/use-product/lib/clear.product.ts";
-import { userStore } from "@/entities/profile/model/user.store.ts";
+import { userStore } from "@/features/use-profile/model/user.store.ts";
 
 const { userData } = userStore();
 const { openNotify } = useBaseModals();

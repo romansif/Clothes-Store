@@ -1,6 +1,6 @@
 import { handler } from "@/shared/api/http.ts";
-import { userStore } from "@/entities/profile/model/user.store.ts";
-import { cartStore } from "@/entities/cart/model/cart.store.ts";
+import { userStore } from "@/features/use-profile/model/user.store.ts";
+import { cartStore } from "@/features/use-cart/model/cart.store.ts";
 
 const { cart } = cartStore();
 const { userData } = userStore();

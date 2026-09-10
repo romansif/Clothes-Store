@@ -1,0 +1,50 @@
+<template>
+  <TransitionGroup name="list">
+    <li @click="getProduct(product.id)" v-for="product in springCatalog" :key="product.id"
+        class="flex flex-col shrink-0 lg:w-80 w-50">
+      <div class="relative">
+        <router-link :to="{ name: 'product/info', params: { id: product.id } }">
+          <img :src="productPreview(product.id, springCatalog)" alt=""
+               :class="productPreviewClass('', product)" />
+          <span v-if="isOutOfStack(product)" class="absolute top-40 -left-8 text-6xl font-semibold -rotate-50">
+            Out Of Stack
+          </span>
+        </router-link>
+        <img @click="toggleToFavorite(product.id, 'product', product.id)" :src="isFavorite(product.id, userData.id) ? liked : like" alt=""
+             class="absolute top-0.5 left-31 w-6.25 cursor-pointer sm:w-8.75 sm:left-58.5 md:left-66.5 lg:left-58.5 xl:left-71">
+      </div>
+      <span class="whitespace-normal mt-2 text-[#A3A3A3] text-sm sm:text-lg">
+        {{ product.material }} {{ product.category }}
+      </span>
+      <div class="flex items-center justify-between font-medium text-sm sm:text-lg">
+        <span class="whitespace-normal w-20 sm:w-50">
+          {{ product.title }}
+        </span>
+        <span class="font-dm-sans">
+          $ {{ product.price }}
+        </span>
+      </div>
+    </li>
+  </TransitionGroup>
+</template>
+
+<script setup lang="ts">
+import { userStore } from "@/features/use-profile/model/user.store.ts";
+import { useFavorite } from "@/features/use-favorite/lib/use-favorite.ts";
+import { baseClasses } from "@/shared/const/base.classes.ts";
+import { useGetProduct } from "@/features/use-product/api/get-product.ts";
+import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
+
+import like from '@/assets/icons/nav/like.png';
+import liked from '@/assets/icons/nav/liked.png';
+
+const { userData } = userStore();
+const { isFavorite } = useFavorite();
+const { productPreviewClass } = baseClasses();
+const { toggleToFavorite } = useToggleFavorite();
+const { getProduct, isOutOfStack, productPreview, springCatalog } = useGetProduct();
+</script>
+
+<style scoped>
+
+</style>

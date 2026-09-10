@@ -42,9 +42,6 @@
                   </div>
                 </div>
               </div>
-              <span v-if="createProductFormErrors.productUrlError" class="text-red-600 text-xs">
-                {{ createProductFormMessages.productUrlMessage }}
-              </span>
               <div class="flex flex-col gap-4">
                 <h2 class="text-sm text-[#A3A3A3] font-medium">The first photo is used in the catalog</h2>
                 <h2 class="text-sm text-[#A3A3A3] font-medium">Formats: JPG · PNG · WEBP Max. size: 5 MB Aspect ratio: 4:5</h2>
@@ -261,7 +258,7 @@
                   </div>
                 </div>
                 <!--                <div v-if="countMode === 'SAME'" class="flex">-->
-                <!--                  <BaseInput v-model="createProductForm.quantity" @input="toggleAllVariants(createProductForm.quantity)"-->
+                <!--                  <BaseInput v-lib="createProductForm.quantity" @input="toggleAllVariants(createProductForm.quantity)"-->
                 <!--                             type="number" placeholder="product ptc." class="w-75"-->
                 <!--                             :error="createProductFormErrors.quantityError" variant="createProduct" required-->
                 <!--                             :error-message="createProductFormErrors.quantityError ? createProductFormMessages.quantityMessage : ''"/>-->
@@ -320,7 +317,7 @@
                   </span>
                 </div>
                 <div class="flex gap-6">
-                  <img v-for="size in isAvailableSizes" :key="size.name" :src="size.url" alt=""
+                  <img v-for="size in isAvailableSizes(product)" :key="size?.name" :src="size.url" alt=""
                        :class="[size.class, 'transition duration-400 scale-110 w-15 rounded-full']">
                 </div>
                 <span v-if="createProductFormErrors.sizeError" class="text-red-600 text-xs">
@@ -373,21 +370,11 @@
 </template>
 
 <script setup lang="ts">
-const { createProduct } = useAddProduct();
-const { loading, notify } = useBaseModals();
-const { createProductFormErrors } = productsFormErrors();
-const { openSelectProductCard, fileInput } = useProductsModals();
-const { createProductForm, createProductFormMessages } = productForms();
-const { updateProductCount, updateProductImages, updateProductColors, updateProductDesc } = useUpdateProduct();
-const { product, collections, categories, materials, genders, activeProductImg, countMode, skuMask } = productStore();
-const { productInfoPreview, pureCards, pureInfoColors, pureColorsName,
-  pureSizesName, isAvailableSizes, uniqueSizes, uniqueColors } = productsCover();
-
 import { onMounted, watch } from "vue";
 import { IMaskComponent as IMask } from "vue-imask";
-import { productsCover } from "@/features/use-product/model/use-product.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { productStore } from "@/entities/product/model/product.store.ts";
+import { useGetProduct } from "@/features/use-product/api/get-product.ts";
+import { productStore } from "@/features/use-product/model/product.store.ts";
 import { useAddProduct } from "@/features/use-product/api/add-product.ts";
 import { useUpdateProduct } from "@/features/use-product/api/update-product.ts";
 import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
@@ -399,14 +386,21 @@ import Loading from "@/widgets/Loading.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import Notification from "@/shared/ui/Notification.vue";
 
+const { createProduct } = useAddProduct();
+const { loading, notify } = useBaseModals();
+const { createProductFormErrors } = productsFormErrors();
+const { openSelectProductCard, fileInput } = useProductsModals();
+const { createProductForm, createProductFormMessages } = productForms();
+const { updateProductCount, updateProductImages, updateProductColors, updateProductDesc } = useUpdateProduct();
+const { collections, categories, materials, genders, activeProductImg, countMode, skuMask } = productStore();
+const { productInfoPreview, pureCards, pureInfoColors, pureColorsName,
+  pureSizesName, isAvailableSizes, uniqueSizes, uniqueColors, product } = useGetProduct();
+
 watch(() => [
-      createProductForm.value.productUrl, createProductForm.value.title, createProductForm.value.collection,
+      createProductForm.value.title, createProductForm.value.collection,
       createProductForm.value.category, createProductForm.value.material, createProductForm.value.gender,
       createProductForm.value.sku, createProductForm.value.price, createProductForm.value.description],
-    ([url, title, collection, category, material, gender, sku, price, description]) => {
-      if(url){
-        createProductFormErrors.value.productUrlError = false;
-      }
+    ([title, collection, category, material, gender, sku, price, description]) => {
       if(title){
         createProductFormErrors.value.titleError = false;
       }

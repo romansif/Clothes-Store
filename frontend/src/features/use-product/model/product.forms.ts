@@ -1,6 +1,6 @@
 import { reactive, ref } from 'vue'
-import type { ProductForm, ProductColor, ProductFormMessage } from "@/entities/product/model/product.types.form.ts";
-import type {Variant} from "@/entities/product/model/product.types.ts";
+import type { ProductForm, ProductColor, ProductFormMessage } from "@/features/use-product/model/product.types.form.ts";
+import type {Variant} from "@/features/use-product/model/product.types.ts";
 
 const createProductForm = ref<ProductForm>({
     productUrl: '',

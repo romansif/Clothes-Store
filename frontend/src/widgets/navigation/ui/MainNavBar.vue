@@ -57,18 +57,18 @@
 </template>
 
 <script setup lang="ts">
-const { unreadCount } = cartStore();
-const { selectedPageClass } = baseClasses();
-
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { baseClasses } from "@/shared/const/base.classes.ts";
-import { cartStore } from "@/entities/cart/model/cart.store.ts";
+import { cartStore } from "@/features/use-cart/model/cart.store.ts";
 
 import cartImg from "@/assets/icons/nav/cart.png";
 import liked from "@/assets/icons/nav/favorite.png";
 import profile from "@/assets/icons/nav/profile.png";
 import back from "@/assets/icons/arrows/right-long-arrow.png";
+
+const { unreadCount } = cartStore();
+const { selectedPageClass } = baseClasses();
 
 const route = useRoute();
 

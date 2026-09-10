@@ -27,7 +27,7 @@
               <span>{{ stackName }}</span>
               <span>
               (<span class="text-blue-700 font-medium font-dm-sans">
-                {{ allProducts.filter(p => p.status === stackName).length }}
+                {{ allProducts.filter(p => p.variants.every(v => v.count !== 0)).length }}
               </span>)
             </span>
             </div>
@@ -93,24 +93,25 @@
 </template>
 
 <script setup lang="ts">
-const { getAllProducts } = useGetProduct();
-const { allProducts, sizes } = productStore();
-const { toggleFilterAside } = useProductsModals();
-const { selectedSidebarCategoryClass } = productsClasses();
-const { toggleFilter, toggleSize, stackProducts, genders, colors, category, categories } = filterProduct();
-
 import { useRoute } from 'vue-router';
 import { computed, onMounted } from "vue";
 import { filterProduct } from "@/features/use-navigation/model/filter-product.ts";
 import { productsClasses } from "@/shared/const/product/products.classes.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
-import { productStore } from "@/entities/product/model/product.store.ts";
+import { productStore } from "@/features/use-product/model/product.store.ts";
 import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
 
 import square from "@/assets/icons/squares/square.png";
 import availability from "@/assets/icons/arrows/arrow-up.png";
 import left_arrow from "@/assets/icons/arrows/left-arrow.png";
-import checked from '@/assets/icons/squares/check-square.png'
+import checked from '@/assets/icons/squares/check-square.png';
+
+const { sizes } = productStore();
+const { allProducts} = useGetProduct();
+const { getAllProducts } = useGetProduct();
+const { toggleFilterAside } = useProductsModals();
+const { selectedSidebarCategoryClass } = productsClasses();
+const { toggleFilter, toggleSize, stackProducts, genders, colors, category, categories } = filterProduct();
 
 const route = useRoute();
 

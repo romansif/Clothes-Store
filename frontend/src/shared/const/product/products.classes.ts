@@ -1,5 +1,5 @@
 import { addToCartForm } from "@/features/use-cart/model/cart.form.ts";
-import {type ColorItem, type Product, type Size} from "@/entities/product/model/product.types.ts";
+import {type ColorItem, type Product, type Size} from "@/features/use-product/model/product.types.ts";
 
 const { cartForm } = addToCartForm();
 
@@ -37,7 +37,7 @@ export const productsClasses = () => {
         );
 
     const selectedColorClass = (color: ColorItem, product: Product, role: string) => {
-        const available = product.variants.every(v => v.count !== 0) && role !== 'Seller' && isColorAvailable(color, product);
+        const available = role !== 'Seller' && isColorAvailable(color, product);
 
         return [
             'w-[62px] h-[62px] transition duration-500 border-2 border-dashed border-[#A3A3A3]',
@@ -50,7 +50,7 @@ export const productsClasses = () => {
     };
 
     const selectedSizesClass = (size: Size, product: Product, role: string) => {
-        const available = product.variants.every(v => v.count !== 0) && role !== 'Seller' && isSizeAvailable(size, product);
+        const available = role !== 'Seller' && isSizeAvailable(size, product);
 
         return [
             size.class,

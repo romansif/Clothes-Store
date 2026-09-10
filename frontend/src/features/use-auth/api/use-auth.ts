@@ -1,7 +1,7 @@
 import router from '@/app/router';
 import { handler } from "@/shared/api/http.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { userStore } from "@/entities/profile/model/user.store.ts";
+import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
 import { authForms } from "@/features/use-auth/model/auth.forms.ts";
 import { clearAuthForms } from "@/features/use-auth/lib/clear.auth.ts";

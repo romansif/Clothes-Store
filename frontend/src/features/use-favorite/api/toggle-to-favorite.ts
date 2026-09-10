@@ -1,16 +1,16 @@
 import { handler } from "@/shared/api/http.ts";
-import { productStore } from "@/entities/product/model/product.store.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { favoriteStore } from "@/entities/favorite/model/favorite.store.ts";
-import { cartStore } from "@/entities/cart/model/cart.store.ts";
-import { userStore } from "@/entities/profile/model/user.store.ts";
+import { cartStore } from "@/features/use-cart/model/cart.store.ts";
+import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
+import { useGetProduct } from "@/features/use-product/api/get-product.ts";
+import {useFavorite} from "@/features/use-favorite/lib/use-favorite.ts";
 
 const { cart } = cartStore();
 const { userData } = userStore();
-const { products } = productStore();
-const { favorite } = favoriteStore();
+const { products } = useGetProduct();
 const { openNotify } = useBaseModals();
+const { isFavorite } = useFavorite()
 const { getFavoriteProducts } = useGetFavorite();
 
 export const useToggleFavorite = () => {
@@ -25,10 +25,7 @@ export const useToggleFavorite = () => {
                 return;
             }
 
-            const favoriteItem = favorite.value?.find(
-                item => item?.productId === currentId);
-
-            if(!favoriteItem?.status){
+            if(!isFavorite(currentId, userData?.id)){
                 if (!userData?.id) {
                     console.error("User ID is missing");
                     return;
@@ -49,7 +46,6 @@ export const useToggleFavorite = () => {
                         size: currentProduct?.sizes,
                         gender: currentProduct?.gender,
                         variants: currentProduct?.variants,
-                        status: currentProduct?.status
                     })
                 });
                 await getFavoriteProducts();

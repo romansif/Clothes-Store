@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import type { ProductFormError } from "@/entities/product/model/product.types.form.ts";
+import type { ProductFormError } from "@/features/use-product/model/product.types.form.ts";
 
 const createProductFormErrors = ref<ProductFormError>({
     titleError: false,

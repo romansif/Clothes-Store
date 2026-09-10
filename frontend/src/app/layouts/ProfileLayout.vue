@@ -1,31 +1,51 @@
 <template>
-<router-view />
+  <div class='bg-[#F0F0F0] h-screen'>
+    <Loading v-if="loading" />
+    <div class="xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
+      <MainNavBar />
+    </div>
+      <router-view />
+    <Transition name="notify">
+      <ChangeAvatar v-if="avatarModal" />
+    </Transition>
+    <Transition name="notify">
+      <Orders v-if="orderHistory" />
+    </Transition>
+    <Transition name="notify">
+      <CurrentOrder v-if="currentOrder" />
+    </Transition>
+    <Transition name="notify">
+      <AddressPaymentInfo v-if="addressesAndCards" />
+    </Transition>
+    <Transition name="notify">
+      <UserDataModal v-if="confidentialityData" />
+    </Transition>
+    <Transition name="notify">
+      <Notification v-if="notify" />
+    </Transition>
+    <Transition name="notify">
+      <DeleteModal v-if="deleteChoice" />
+    </Transition>
+  </div>
 </template>
 
 <script setup lang="ts">
-const { user } = userStore();
-const { getUser } = useGetUsers();
-const { loading } = useBaseModals();
-const { getMyProducts } = useGetProduct();
-
-import { onMounted } from "vue";
-import { userStore } from "@/entities/profile/model/user.store.ts";
+import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { useGetProduct } from "@/features/use-product/api/get-product.ts";
-import { useGetUsers } from "@/features/use-auth/api/get-users.ts";
 
-onMounted(async () => {
-  loading.value = true;
+import Loading from "@/widgets/Loading.vue";
+import AddressPaymentInfo from "@/features/use-profile/ui/AddressPaymentInfo.vue";
+import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
+import DeleteModal from "@/shared/ui/DeleteModal.vue";
+import ChangeAvatar from "@/features/use-profile/ui/ChangeAvatar.vue";
+import Orders from "@/features/use-order/ui/Orders.vue";
+import CurrentOrder from "@/features/use-order/ui/CurrentOrder.vue";
+import UserDataModal from "@/features/use-profile/ui/privacy/UserDataModal.vue";
+import Notification from "@/shared/ui/Notification.vue";
 
-  await getUser();
-  if(user.value.role === 'Seller'){
-      await getMyProducts();
-  }
-
-  loading.value = false;
-})
+const { loading, notify } = useBaseModals();
+const { avatarModal, orderHistory, currentOrder, addressesAndCards, confidentialityData, deleteChoice } = useProfileModals();
 </script>
-
 
 <style scoped>
 

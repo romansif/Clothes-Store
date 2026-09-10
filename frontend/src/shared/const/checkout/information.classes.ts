@@ -1,6 +1,6 @@
 import { computed } from "vue";
 import { checkoutErrors } from "@/features/use-checkout/lib/checkout.errors.ts";
-import { useCheckout } from "@/features/use-checkout/model/use-checkout.ts";
+import { useCheckout } from "@/features/use-checkout/lib/use-checkout.ts";
 import { checkoutClasses } from "@/shared/const/checkout/checkout.classes.ts";
 
 const { informationErrors } = checkoutErrors();

@@ -1,6 +1,6 @@
 import { handler } from "@/shared/api/http.ts";
-import { checkoutStore } from "@/entities/checkout/model/checkout.store.ts";
-import { userStore } from "@/entities/profile/model/user.store.ts";
+import { checkoutStore } from "@/features/use-checkout/model/checkout.store.ts";
+import { userStore } from "@/features/use-profile/model/user.store.ts";
 
 const { userData } = userStore();
 const { userPayments, userPayment } = checkoutStore();

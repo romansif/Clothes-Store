@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import { type Information, type Shipping, type Payment, type IsAgree,
-    type InformationMessages, type ShippingMessage, type PaymentMessage } from "@/entities/checkout/model/checkout.types.form.ts";
+    type InformationMessages, type ShippingMessage, type PaymentMessage } from "@/features/use-checkout/model/checkout.types.form.ts";
 
 const information = ref<Information>({
     addressName: '',
