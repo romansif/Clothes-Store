@@ -372,50 +372,40 @@ const { toggleAllVariants, toggleQuantity, toggleSize, toggleColor } = useGetPro
 const { createProductForm, moreCreateItem, createProductFormMessages } = productForms();
 const { collections, categories, materials, genders, sizes, productsPreview, countMode, skuMask } = productStore();
 
-watch(() => [moreCreateItem.sizes.length, moreCreateItem.colors.length, moreCreateItem.variants.length], ([sizes, colors, variants]) => {
+watch(() => [moreCreateItem.sizes.length, moreCreateItem.colors.length, moreCreateItem.variants.length],
+    ([sizes, colors, variants]) => {
   if(sizes){
     createProductFormErrors.value.sizeError = false;
-  }
-  if(colors){
+  }if(colors){
     createProductFormErrors.value.colorError = false;
-  }
-  if(variants){
+  }if(variants){
     createProductFormErrors.value.variantError = false;
   }
-
-  console.log(moreCreateItem.colors, moreCreateItem.sizes, moreCreateItem.variants);
-  })
+});
 
 watch(() => [
     createProductForm.value.title, createProductForm.value.collection,
     createProductForm.value.category, createProductForm.value.material, createProductForm.value.gender,
     createProductForm.value.sku, createProductForm.value.price, createProductForm.value.description],
     ([title, collection, category, material, gender, sku, price, description]) => {
-      if(title){
-        createProductFormErrors.value.titleError = false;
-      }
-      if(collection){
-        createProductFormErrors.value.collectionsError = false;
-      }
-      if(category){
-        createProductFormErrors.value.categoryError = false;
-      }
-      if(material){
-        createProductFormErrors.value.materialError = false;
-      }
-      if(gender){
-        createProductFormErrors.value.genderError = false;
-      }
-      if(sku){
-        createProductFormErrors.value.skuError = false;
-      }
-      if(price){
-        createProductFormErrors.value.priceError = false;
-      }
-      if(description){
-        createProductFormErrors.value.descriptionError = false;
-      }
-  })
+  if(title){
+    createProductFormErrors.value.titleError = false;
+  }if(collection){
+    createProductFormErrors.value.collectionsError = false;
+  }if(category){
+    createProductFormErrors.value.categoryError = false;
+  }if(material){
+    createProductFormErrors.value.materialError = false;
+  }if(gender){
+    createProductFormErrors.value.genderError = false;
+  }if(sku){
+    createProductFormErrors.value.skuError = false;
+  }if(price){
+    createProductFormErrors.value.priceError = false;
+  }if(description){
+    createProductFormErrors.value.descriptionError = false;
+  }
+});
 </script>
 
 <style scoped>

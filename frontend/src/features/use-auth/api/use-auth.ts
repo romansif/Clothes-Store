@@ -47,14 +47,13 @@ export const useAuth = () => {
 
             (role === 'Buyer' ? clearRegisterForm() : clearRegisterForm());
 
-            loading.value = false;
             await openNotify('You have successfully sign up.',
                 'You will now be taken to your profile page.', 'profile');
         }catch(err){
-            loading.value = false;
-
             registerErrors(err)
             console.log(`Failed to register new user:`, err);
+        }finally {
+            loading.value = false;
         }
     };
 
@@ -79,16 +78,15 @@ export const useAuth = () => {
             }
             user.value = foundedUser.user
 
-            loading.value = false;
             await openNotify('You have successfully sign in.',
                 'You will now be taken to your profile page.', 'profile')
 
             clearLoginForm()
         }catch(err){
-            loading.value = false;
-
             loginErrors(err)
             console.log(`Failed to login:`, err);
+        }finally {
+            loading.value = false;
         }
     };
 
@@ -114,13 +112,14 @@ export const useAuth = () => {
             }
             user.value = foundedUser.user
 
-            loading.value = false;
             await openNotify('You have successfully sign in.',
                 'You will now be taken to your profile page.', 'profile');
         }catch(err){
             await openNotify('You were unable to login with google.',
                 '', '')
             console.log(`Failed to login:`, err);
+        }finally {
+            loading.value = false;
         }
     };
 

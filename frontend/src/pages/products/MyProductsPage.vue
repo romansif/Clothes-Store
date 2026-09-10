@@ -18,7 +18,7 @@
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 
 import icon_products from "@/assets/icons/products/icon-products.svg";
-import MyProductsList from "@/entities/product/ui/my-product/MyProductsList.vue";
+import MyProductsList from "@/features/use-product/ui/my-product/MyProductsList.vue";
 
 const { myProducts } = useGetProduct();
 </script>

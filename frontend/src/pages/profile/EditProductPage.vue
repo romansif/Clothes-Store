@@ -401,31 +401,24 @@ watch(() => [
       createProductForm.value.category, createProductForm.value.material, createProductForm.value.gender,
       createProductForm.value.sku, createProductForm.value.price, createProductForm.value.description],
     ([title, collection, category, material, gender, sku, price, description]) => {
-      if(title){
-        createProductFormErrors.value.titleError = false;
-      }
-      if(collection){
-        createProductFormErrors.value.collectionsError = false;
-      }
-      if(category){
-        createProductFormErrors.value.categoryError = false;
-      }
-      if(material){
-        createProductFormErrors.value.materialError = false;
-      }
-      if(gender){
-        createProductFormErrors.value.genderError = false;
-      }
-      if(sku){
-        createProductFormErrors.value.skuError = false;
-      }
-      if(price){
-        createProductFormErrors.value.priceError = false;
-      }
-      if(description){
-        createProductFormErrors.value.descriptionError = false;
-      }
-    })
+  if(title){
+    createProductFormErrors.value.titleError = false;
+  }if(collection){
+    createProductFormErrors.value.collectionsError = false;
+  }if(category){
+    createProductFormErrors.value.categoryError = false;
+  }if(material){
+    createProductFormErrors.value.materialError = false;
+  }if(gender){
+    createProductFormErrors.value.genderError = false;
+  }if(sku){
+    createProductFormErrors.value.skuError = false;
+  }if(price){
+    createProductFormErrors.value.priceError = false;
+  }if(description){
+    createProductFormErrors.value.descriptionError = false;}
+});
+
 onMounted(async () => {
   if(product.value && Array.isArray(product.value.images) && product.value.images[0]) {
     activeProductImg.value = productInfoPreview(product.value) ?? '';
