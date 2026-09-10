@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import {type NextFunction, type Request, type Response} from 'express';
-import { dbService } from '../../db/db.config.ts';
+import { dbService } from '../../../db/db.config.ts';
 
 export const productsController = {
     async getAllProducts(_req: Request, res: Response) {

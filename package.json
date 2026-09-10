@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently -n backend,frontend -c blue,green \"pnpm run dev:backend\" \"pnpm run dev:frontend\"",
-    "dev:frontend": "cd frontend && pnpm run dev",
-    "dev:backend": "node backend/src/server.ts",
+    "dev:frontend": "pnpm --dir frontend dev",
+    "dev:backend": "pnpm --dir backend dev",
     "build": "vue-tsc -b && vite build",
     "install:all": "cd frontend && pnpm install && cd ../backend && pnpm install",
     "preview": "vite preview"

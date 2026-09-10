@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { type Request, type Response } from 'express';
 import { type AuthenticatedRequest } from '../../interfaces.ts';
-import { dbService } from '../../db/db.config.ts';
+import { dbService } from '../../../db/db.config.ts';
 
 export const favoritesController = {
     async getFavorites(req: Request, res: Response) {

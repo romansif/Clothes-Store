@@ -2,7 +2,7 @@ import fs from "fs";
 import bcrypt from "bcryptjs";
 import { type Request, type Response } from "express";
 import { type AuthenticatedRequest } from '../../interfaces.ts';
-import { dbService } from '../../db/db.config.ts';
+import { dbService } from '../../../db/db.config.ts';
 
 export const usersController = {
     async getUsers(_req: Request, res: Response) {
