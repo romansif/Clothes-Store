@@ -1,5 +1,5 @@
 <template>
-  <div class="relative overflow-hidden w-230">
+  <div class="font-montserrat relative overflow-hidden w-230">
     <Transition name="slide" mode="out-in">
       <div :key="mainSlides[activeSlide].id" class="bg-black flex justify-between h-45 rounded-2xl">
         <div style="filter: drop-shadow(0 0 8px rgba(255, 255, 255, 1))"

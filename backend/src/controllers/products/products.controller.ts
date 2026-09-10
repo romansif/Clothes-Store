@@ -139,9 +139,7 @@ export const productsController = {
                 return collectionName === collection || collectionSeason === collection;
             });
 
-            filteredProducts.sort(
-                (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-            );
+            filteredProducts.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
 
             res.json(filteredProducts);
         } catch (err) {

@@ -3,23 +3,21 @@
 </template>
 
 <script setup lang="ts">
-import {searchForm} from "@/widgets/navigation/model/search.form.ts";
-
 const { loading } = useBaseModals();
 const { getCartProducts } = useGetCart();
 const { componentError } = errorHandler();
 const { searchProductForm } = searchForm();
 const { productInfoPreview } = productsCover();
 const { getFavoriteProducts } = useGetFavorite();
-const { products, seasonalSelections, product, activeProductImg } = productStore();
-const { getProduct, getAllProducts, getFilteredProducts, getSeasonal,
-  getWeekProducts, getYearProducts } = useGetProduct();
+const { products,  product, activeProductImg } = productStore();
+const { getProduct, getAllProducts, getFilteredProducts, getWeekProducts, getYearProducts } = useGetProduct();
 
 import { watch } from "vue";
 import { useRoute } from "vue-router";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
+import { searchForm } from "@/widgets/navigation/model/search.form.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
 import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
@@ -35,7 +33,6 @@ const load = async () => {
     await getFilteredProducts('ALL', 'ALL');
     await getWeekProducts('ALL', 'ALL');
     await getYearProducts('ALL', 'ALL');
-    await getSeasonal('ALL');
     await getCartProducts();
     await getFavoriteProducts();
 
@@ -61,7 +58,6 @@ watch(
 watch(() => searchProductForm.value.search, (search) => {
   if (search.length === 0) {
     products.value = [];
-    seasonalSelections.value = [];
   }
 });
 </script>

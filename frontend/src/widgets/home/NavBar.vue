@@ -11,7 +11,7 @@
                 isHome ? 'text-black scale-120' : '']">
             Home
           </span>
-          <router-link :to="{name: 'shop/seasonal-collections'}"
+          <router-link :to="{name: 'shop/seasons-catalog'}"
                        class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120">
             Seasonal
           </router-link>

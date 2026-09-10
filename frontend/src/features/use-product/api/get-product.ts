@@ -3,7 +3,8 @@ import { productStore } from "@/entities/product/model/product.store.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
 
 const { userData } = userStore();
-const { allProducts, products, product, productsWeek, productsYear, seasonalSelections, myProducts } = productStore();
+const { allProducts, products, product, productsWeek, productsYear,
+    springCatalog, summerCatalog, autumnCatalog, winterCatalog, myProducts } = productStore();
 
 export const useGetProduct = () => {
     const getAllProducts = async () => {
@@ -56,7 +57,23 @@ export const useGetProduct = () => {
             const res = await handler(`/products/collections/${collection}`, {
                 method: 'GET',
             })
-            seasonalSelections.value = res
+
+            switch (collection) {
+                case "Spring":
+                    springCatalog.value = res;
+                    break;
+                case "Summer":
+                    summerCatalog.value = res;
+                    break;
+                case "Autumn":
+                    autumnCatalog.value = res;
+                    break;
+                case "Winter":
+                    winterCatalog.value = res;
+                    break;
+            }
+
+            console.log(autumnCatalog.value);
         }catch(err){
             console.error(`Failed to get the filtered products:`, err);
         }

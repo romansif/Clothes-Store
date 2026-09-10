@@ -9,7 +9,7 @@
           <router-link :to="{name: 'home'}" :class="selectedPageClass(isHome)">
             Home
           </router-link>
-          <router-link :to="{name: 'shop/seasonal-collections'}" :class="selectedPageClass(isSeasonCollections)">
+          <router-link :to="{name: 'shop/seasons-catalog'}" :class="selectedPageClass(isSeasonCollections)">
             Seasonal
           </router-link>
           <router-link :to="{name: 'shop'}" :class="selectedPageClass(isProducts)">
@@ -77,7 +77,7 @@ const isCart = computed(() => route.name !== "cart");
 const isProducts = computed(() => route.name === "shop");
 const isProfile = computed(() => route.name !== "profile");
 const isNewCollections = computed(() => route.name === "shop/new-collections");
-const isSeasonCollections = computed(() => route.name === "shop/seasonal-collections");
+const isSeasonCollections = computed(() => route.name === "shop/seasons-catalog");
 </script>
 
 <style scoped>

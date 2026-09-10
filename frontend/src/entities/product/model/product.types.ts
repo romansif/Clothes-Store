@@ -77,3 +77,12 @@ export interface Slide {
     routeName?: string,
     url: string,
 }
+export interface Catalog {
+    id: string,
+    name: string,
+    title: string,
+    text: string,
+    slogan: string,
+    route: string,
+    url: string,
+}
