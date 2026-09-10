@@ -41,7 +41,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="row in formatterSizeGuide" :key="row.name" class="text-sm border-b border-neutral-200">
+          <tr v-for="row in formatterSizeGuide()" :key="row.name" class="text-sm border-b border-neutral-200">
             <th class="px-4 py-4 text-left font-normal">
               {{ row.name }}
             </th>

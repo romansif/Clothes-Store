@@ -13,12 +13,12 @@
 </template>
 
 <script setup lang="ts">
-import { productStore } from "@/features/use-product/model/product.store.ts";
+import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 
-import MyProductItem from "@/entities/product/ui/my-product/MyProductItem.vue";
+import MyProductItem from "@/features/use-product/ui/my-product/MyProductItem.vue";
 import empty_products from "@/assets/icons/products/icon-products.svg";
 
-const { myProducts } = productStore();
+const { myProducts } = useGetProduct();
 </script>
 
 <style scoped>

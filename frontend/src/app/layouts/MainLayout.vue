@@ -43,7 +43,7 @@ import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import DeleteModal from "@/shared/ui/DeleteModal.vue";
 import SizeGuideModal from "@/features/use-product/ui/SizeGuideModal.vue";
-import MyProductStackInfo from "@/entities/product/ui/my-product/MyProductStackInfo.vue";
+import MyProductStackInfo from "@/features/use-product/ui/my-product/MyProductStackInfo.vue";
 
 const { notify, loading } = useBaseModals();
 const { deleteChoice } = useProfileModals();

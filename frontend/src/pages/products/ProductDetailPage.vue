@@ -32,7 +32,7 @@ import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 
-import ProductInfo from "@/entities/product/ui/product/ProductInfo.vue";
+import ProductInfo from "@/features/use-product/ui/product/ProductInfo.vue";
 
 const { userData } = userStore();
 const { getProduct, product } = useGetProduct();
