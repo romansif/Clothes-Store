@@ -1,5 +1,6 @@
 <template>
-  <div v-for="season in seasonsCatalog" :key="season.id" class="font-montserrat text-white w-92 h-100 rounded-2xl"
+  <div v-for="season in seasonsCatalog" :key="season.id" class="font-montserrat text-white w-92 h-100 rounded-2xl
+        transition duration-500 hover:scale-108"
        :style="{ backgroundImage: `url(${season.url})` }">
     <div style="filter: drop-shadow(0 0 8px rgba(255, 255, 255, 1))" class="flex flex-col gap-29 px-8 py-12">
       <div class="flex items-center gap-3">
