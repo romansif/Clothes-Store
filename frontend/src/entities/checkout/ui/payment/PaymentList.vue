@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import PaymentItem from "@/entities/checkout/ui/PaymentItem.vue";
+import PaymentItem from "@/entities/checkout/ui/payment/PaymentItem.vue";
 </script>
 
 <style scoped>

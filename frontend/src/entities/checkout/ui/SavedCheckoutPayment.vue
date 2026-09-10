@@ -20,7 +20,7 @@ const { toggleShowPayment } = useCheckout();
 
 import { useCheckout } from "@/features/use-checkout/model/use-checkout.ts";
 
-import PaymentList from "@/entities/checkout/ui/PaymentList.vue";
+import PaymentList from "@/entities/checkout/ui/payment/PaymentList.vue";
 </script>
 
 <style scoped>

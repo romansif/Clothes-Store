@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import MyProductStackInfo from "@/entities/product/ui/MyProductStackInfo.vue";
+import MyProductStackInfo from "@/entities/product/ui/my-product/MyProductStackInfo.vue";
 
 const { loading } = useBaseModals();
 const { myProducts } = productStore();
@@ -41,7 +41,7 @@ import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
 import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
 import icon_products from "@/assets/icons/products/icon-products.svg";
 import DeleteModal from "@/shared/ui/DeleteModal.vue";
-import MyProductsList from "@/entities/product/ui/MyProductsList.vue";
+import MyProductsList from "@/entities/product/ui/my-product/MyProductsList.vue";
 import Loading from "@/widgets/Loading.vue";
 import {useProductsModals} from "@/features/use-product/lib/product.modal.ts";
 </script>

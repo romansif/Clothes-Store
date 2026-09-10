@@ -66,7 +66,7 @@ import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { userStore } from "@/entities/profile/model/user.store.ts";
 import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
 
-import ProductInfo from "@/entities/product/ui/ProductInfo.vue";
+import ProductInfo from "@/entities/product/ui/product/ProductInfo.vue";
 import cart from '@/assets/icons/nav/cart.png';
 import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
 import profile from '@/assets/icons/nav/profile.png';

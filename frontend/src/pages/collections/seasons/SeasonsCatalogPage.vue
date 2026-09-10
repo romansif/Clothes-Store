@@ -42,7 +42,7 @@ import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
 
 import Loading from "@/widgets/Loading.vue";
 import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
-import HeaderCatalog from "@/entities/collection/ui/HeaderCatalog.vue";
+import HeaderCatalog from "@/entities/collection/ui/header-catalog/HeaderCatalog.vue";
 import AsideFilter from "@/widgets/AsideFilter.vue";
 import Notification from "@/shared/ui/Notification.vue";
 </script>

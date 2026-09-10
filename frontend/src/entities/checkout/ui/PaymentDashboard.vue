@@ -27,7 +27,7 @@ import { useCheckout } from "@/features/use-checkout/model/use-checkout.ts";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";
-import PaymentMethods from "./PaymentMethods.vue";
+import PaymentMethods from "./forms/PaymentMethods.vue";
 import SavedCheckoutPayment from "@/entities/checkout/ui/SavedCheckoutPayment.vue";
 
 watch(() => [payment.value.cardNumber, payment.value.expiryDate, payment.value.cardCvv, payment.value.paymentMethod],

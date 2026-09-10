@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import AddressItem from "@/entities/checkout/ui/AddressItem.vue";
+import AddressItem from "@/entities/checkout/ui/address/AddressItem.vue";
 </script>
 
 <style scoped>

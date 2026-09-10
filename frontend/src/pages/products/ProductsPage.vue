@@ -40,7 +40,7 @@ import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 
 import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
-import ProductList from "@/entities/product/ui/ProductList.vue";
+import ProductList from "@/entities/product/ui/product/ProductList.vue";
 import MainHeader from "@/entities/product/ui/MainHeader.vue";
 import FilterProducts from "@/widgets/navigation/ui/FilterProducts.vue";
 import Notification from "@/shared/ui/Notification.vue";

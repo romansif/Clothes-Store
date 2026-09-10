@@ -13,7 +13,7 @@
     </div>
     <div v-else class="xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
       <MainNavBar />
-      <main class="flex flex-col mt-12">
+      <main class="flex flex-col mt-14">
         <HeaderCatalog />
       </main>
     </div>
@@ -30,7 +30,7 @@ import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
 
 import Loading from "@/widgets/Loading.vue";
-import HeaderCatalog from "@/entities/collection/ui/HeaderCatalog.vue";
+import HeaderCatalog from "@/entities/collection/ui/header-catalog/HeaderCatalog.vue";
 </script>
 
 <style scoped>

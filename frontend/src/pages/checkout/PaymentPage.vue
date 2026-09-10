@@ -37,7 +37,7 @@ import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { checkoutClasses } from "@/shared/const/checkout/checkout.classes.ts";
 
 import PaymentDashboard from "@/entities/checkout/ui/PaymentDashboard.vue";
-import OrderInfo from "@/entities/checkout/ui/OrderInfo.vue";
+import OrderInfo from "@/entities/checkout/ui/order/OrderInfo.vue";
 import go_to_shop from "@/assets/icons/arrows/right-long-arrow.png";
 import Notification from "@/shared/ui/Notification.vue";
 </script>

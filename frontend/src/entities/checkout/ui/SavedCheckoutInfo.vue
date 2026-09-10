@@ -21,8 +21,8 @@ const { toggleShowContact } = useCheckout();
 
 import { useCheckout } from "@/features/use-checkout/model/use-checkout.ts";
 
-import ContactList from "@/entities/checkout/ui/ContactList.vue";
-import AddressList from "@/entities/checkout/ui/AddressList.vue";
+import ContactList from "@/entities/checkout/ui/address/ContactList.vue";
+import AddressList from "@/entities/checkout/ui/address/AddressList.vue";
 </script>
 
 <style scoped>

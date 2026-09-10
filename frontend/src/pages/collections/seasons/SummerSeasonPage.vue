@@ -1,5 +1,5 @@
 <template>
-  <div :class="['bg-[#F0F0F0] font-raleway', winterCatalog.length ? '' : 'h-screen']">
+  <div :class="['bg-[#F0F0F0] font-raleway', summerCatalog.length ? '' : 'h-screen']">
     <Loading v-if="loading" />
     <div v-else-if="componentError" class="flex flex-col items-center justify-center pt-80 p-6 text-red-700 rounded-xl">
       <span class="text-lg font-semibold mb-2">
@@ -15,8 +15,8 @@
       <MainNavBar />
       <main class="flex flex-col gap-6 mt-14">
         <SeasonsHeader />
-        <div :class="['flex gap-10', winterCatalog.length ? '' : 'justify-center']">
-          <WinterList />
+        <div :class="['flex gap-10', summerCatalog.length ? '' : 'justify-center']">
+          <SummerList />
         </div>
       </main>
     </div>
@@ -26,22 +26,22 @@
 <script setup lang="ts">
 const { loading } = useBaseModals();
 const { getSeasonal } = useGetProduct();
-const { winterCatalog } = productStore();
+const { summerCatalog } = productStore();
 const { componentError, resetError } = errorHandler();
 
 import { onMounted } from "vue";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { productStore } from "@/entities/product/model/product.store.ts";
+import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
 
-import Loading from "@/widgets/Loading.vue";
 import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
-import SeasonsHeader from "@/entities/collection/ui/SeasonsHeader.vue";
-import WinterList from "@/entities/collection/ui/WinterList.vue";
+import Loading from "@/widgets/Loading.vue";
+import SummerList from "@/entities/collection/ui/summer/SummerList.vue";
+import SeasonsHeader from "@/entities/collection/ui/header-catalog/SeasonsHeader.vue";
 
 onMounted(async () => {
-  await getSeasonal('Winter');
+  await getSeasonal('Summer');
 })
 </script>
 

@@ -28,8 +28,8 @@ import { useCheckout } from "@/features/use-checkout/model/use-checkout.ts";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";
-import ContactForm from "@/entities/checkout/ui/ContactForm.vue";
-import AddressForm from "@/entities/checkout/ui/AddressForm.vue";
+import ContactForm from "@/entities/checkout/ui/forms/ContactForm.vue";
+import AddressForm from "@/entities/checkout/ui/forms/AddressForm.vue";
 import SavedCheckoutInfo from "@/entities/checkout/ui/SavedCheckoutInfo.vue";
 
 watch(() => [

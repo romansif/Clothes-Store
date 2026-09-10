@@ -22,8 +22,8 @@ import { checkoutErrors } from "@/features/use-checkout/lib/checkout.errors.ts";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";
-import ShippingMethods from "./ShippingMethods.vue";
-import ShippingAddress from "./ShippingAddress.vue";
+import ShippingMethods from "./forms/ShippingMethods.vue";
+import ShippingAddress from "./payment/ShippingAddress.vue";
 
 watch(() => shipping.value.delivery, (delivery) => {
   if(delivery){

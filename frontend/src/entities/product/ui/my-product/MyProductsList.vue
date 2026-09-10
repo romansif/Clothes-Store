@@ -17,7 +17,7 @@ const { myProducts } = productStore();
 
 import { productStore } from "@/entities/product/model/product.store.ts";
 
-import MyProductItem from "@/entities/product/ui/MyProductItem.vue";
+import MyProductItem from "@/entities/product/ui/my-product/MyProductItem.vue";
 import empty_products from "@/assets/icons/products/icon-products.svg";
 </script>
 

@@ -36,9 +36,9 @@ import { productStore } from "@/entities/product/model/product.store.ts";
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
 
 import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
-import SeasonsHeader from "@/entities/collection/ui/SeasonsHeader.vue";
+import SeasonsHeader from "@/entities/collection/ui/header-catalog/SeasonsHeader.vue";
 import Loading from "@/widgets/Loading.vue";
-import AutumnList from "@/entities/collection/ui/AutumnList.vue";
+import AutumnList from "@/entities/collection/ui/autumn/AutumnList.vue";
 
 onMounted(async () => {
   await getSeasonal('Autumn');
