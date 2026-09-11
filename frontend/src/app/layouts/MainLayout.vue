@@ -15,7 +15,7 @@
       <AsideFilter v-if="filterAside" />
     </Transition>
     <Transition name="notify">
-      <SizeGuideModal v-if="guideModel"/>
+      <SizeGuideModal v-if="sizeGuideModel"/>
     </Transition>
     <Transition name="notify">
       <Notification v-if="notify"/>
@@ -28,9 +28,10 @@
 
 <script setup lang="ts">
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
-import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
+import { useProductsModals } from "@/features/use-all-product/lib/product.modal.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { sizeGuideModel } from "@/features/use-product/lib/toggle.size.guide.ts";
 
 import Notification from "@/shared/ui/Notification.vue";
 import AsideFilter from "@/widgets/AsideFilter.vue";
@@ -41,8 +42,8 @@ import SizeGuideModal from "@/features/use-all-product/ui/SizeGuideModal.vue";
 
 const { notify } = useBaseModals();
 const { deleteChoice } = useProfileModals();
+const { filterAside } = useProductsModals();
 const { componentError, resetError } = errorHandler();
-const { filterAside, guideModel } = useProductsModals();
 </script>
 
 <style scoped>
