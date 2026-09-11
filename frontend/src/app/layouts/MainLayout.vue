@@ -1,7 +1,6 @@
 <template>
   <div class="bg-[#F0F0F0] h-screen">
-    <Loading v-if="loading" />
-    <div v-else-if="componentError" class="flex flex-col items-center justify-center pt-80 p-6 text-red-700 rounded-xl">
+    <div v-if="componentError" class="flex flex-col items-center justify-center pt-80 p-6 text-red-700 rounded-xl">
       <span class="text-lg font-semibold mb-2">
         Something went wrong 😔
       </span>
@@ -17,9 +16,6 @@
     </Transition>
     <Transition name="notify">
       <SizeGuideModal v-if="guideModel"/>
-    </Transition>
-    <Transition name="notify">
-      <MyProductStackInfo v-if="stackInfo" />
     </Transition>
     <Transition name="notify">
       <Notification v-if="notify"/>
@@ -38,17 +34,15 @@ import { useBaseModals } from "@/shared/lib/base.modal.ts";
 
 import Notification from "@/shared/ui/Notification.vue";
 import AsideFilter from "@/widgets/AsideFilter.vue";
-import Loading from "@/widgets/Loading.vue";
 import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import DeleteModal from "@/shared/ui/DeleteModal.vue";
 import SizeGuideModal from "@/features/use-product/ui/SizeGuideModal.vue";
-import MyProductStackInfo from "@/features/use-product/ui/my-product/MyProductStackInfo.vue";
 
-const { notify, loading } = useBaseModals();
+const { notify } = useBaseModals();
 const { deleteChoice } = useProfileModals();
 const { componentError, resetError } = errorHandler();
-const { filterAside, guideModel, stackInfo } = useProductsModals();
+const { filterAside, guideModel } = useProductsModals();
 </script>
 
 <style scoped>

@@ -1,6 +1,6 @@
 <template>
   <TransitionGroup name="list">
-    <li @click="getProduct(product.id)" v-for="product in myProducts" :key="product.id" class="flex pl-10 gap-8">
+    <li v-for="product in myProducts" :key="product.id" class="flex pl-10 gap-8">
       <div class="flex flex-col">
         <div class="relative">
           <router-link :to="{ name: 'product/info', params: { id: product.id } }">
@@ -15,8 +15,8 @@
       <div class="flex flex-col gap-25">
         <div class="flex flex-col gap-20">
           <div class="flex items-center ml-auto gap-10">
-            <router-link :to="{ name: 'edit/product' }">
-              <img :src="pencil" alt="" class="w-7 transition duration-400 hover:scale-120 cursor-pointer">
+            <router-link :to="{ name: 'edit/product', params: { id: product.id } }">
+              <img @click="getProduct(product.id)" :src="pencil" alt="" class="w-7 transition duration-400 hover:scale-120 cursor-pointer">
             </router-link>
             <img @click="toggleDeleteChoice(
             'Are you sure you want to delete this product?', 'DELETE_PROUCT_ITEM', product.id
@@ -60,11 +60,10 @@ import del from '@/assets/icons/delete-close/delete.svg'
 import pencil from "@/assets/icons/products/pencil.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 
-const { getProduct } = useGetProduct();
 const { productPreviewClass } = baseClasses();
 const { toggleStackInfo } = useProductsModals();
 const { toggleDeleteChoice } = useProfileModals();
-const { myProducts, isOutOfStack, productPreview } = useGetProduct();
+const { getProduct, isOutOfStack, productPreview, myProducts } = useGetProduct();
 </script>
 
 <style scoped>

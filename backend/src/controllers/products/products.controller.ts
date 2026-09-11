@@ -30,7 +30,11 @@ export const productsController = {
                 } else if (type === "COLOR") {
                     products = products.filter(p => Array.isArray(p.colors) && p.colors.some((c: any) => c.colorName === filter));
                 } else if (type === "STATUS") {
-                    products = products.filter(p => p.status === filter);
+                    if(filter === 'AVAILABLE'){
+                        products = products.filter(p => p.variants.some((variant: any) => variant.count > 0));
+                    }if(filter === 'EXHAUSTED'){
+                        products = products.filter(p => p.variants.every((variant: any) => variant.count === 0));
+                    }
                 } else if (type === "GENDER") {
                     products = products.filter(p => p.gender === filter);
                 }

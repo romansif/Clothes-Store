@@ -15,14 +15,26 @@
         <img :src=availability alt="" class="ml-auto">
       </div>
       <div class="flex flex-col gap-2">
-        <div v-for="(isActive, stackName) in stackProducts" class="flex gap-3">
-          <img @click="toggleFilter('STATUS', stackName)" :src="isActive ? checked : square" alt=""
-               :class="selectedFilterClass(isActive)">
+        <div class="flex gap-3">
+          <img @click="toggleFilter('STATUS', 'AVAILABLE')" :src="stackProducts.Availability ? checked : square" alt=""
+               :class="selectedFilterClass(stackProducts.Availability)">
           <div class="flex gap-1">
-            <span>{{ stackName }}</span>
+            <span>Availability</span>
             <span>
               (<span class="text-blue-700 font-medium font-dm-sans">
-                {{ allProducts.filter(p => p.variants.every(v => v.count !== 0)).length }}
+                {{ allProducts.filter(p => p.variants.some(v => v.count > 0)).length }}
+              </span>)
+            </span>
+          </div>
+        </div>
+        <div class="flex gap-3">
+          <img @click="toggleFilter('STATUS', 'EXHAUSTED')" :src="stackProducts.Exhausted ? checked : square" alt=""
+               :class="selectedFilterClass(stackProducts.Exhausted)">
+          <div class="flex gap-1">
+            <span>Exhausted</span>
+            <span>
+              (<span class="text-blue-700 font-medium font-dm-sans">
+                {{ allProducts.filter(p => p.variants.every(v => v.count === 0)).length }}
               </span>)
             </span>
           </div>

@@ -7,12 +7,10 @@ import { cartStore } from "@/features/use-cart/model/cart.store.ts";
 import { orderStore } from "@/features/use-order/model/order.store.ts";
 import { productForms } from "@/features/use-product/model/product.forms.ts";
 import { addToCartForm } from "@/features/use-cart/model/cart.form.ts";
-import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import type {ColorItem, Product, Size, SizeGuide} from "@/features/use-product/model/product.types.ts";
 
 const { cart } = cartStore();
 const { userData } = userStore();
-const { loading } = useBaseModals();
 const { cartForm } = addToCartForm();
 const { orders, items } = orderStore();
 const { createProductForm, moreCreateItem } = productForms();
@@ -37,7 +35,6 @@ const product = ref<Product>({} as Product);
 
 export const useGetProduct = () => {
     const getAllProducts = async () => {
-        loading.value = true;
         try{
             const res = await handler(`/products`, {
                 method: 'GET',
@@ -46,13 +43,10 @@ export const useGetProduct = () => {
             allProducts.value = res;
         }catch(err){
             console.error(`Failed to get the all products:`, err);
-        }finally {
-            loading.value = false;
         }
     };
 
     const getFilteredProducts = async (type: string, filter: string) => {
-        loading.value = true;
         try{
             const res = await handler(`/filtered/${type}/${filter}`, {
                 method: 'GET',
@@ -60,13 +54,10 @@ export const useGetProduct = () => {
             products.value = res;
         }catch(err){
             console.error(`Failed to get the filtered products:`, err);
-        }finally {
-            loading.value = false;
         }
     };
 
     const getWeekProducts = async (type: string, filter: string) => {
-        loading.value = true;
         try{
             const res = await handler(`/products/week/${type}/${filter}`, {
                 method: 'GET',
@@ -74,13 +65,10 @@ export const useGetProduct = () => {
             productsWeek.value = res;
         }catch(err){
             console.error(`Failed to get the filtered products:`, err);
-        }finally {
-            loading.value = false;
         }
     };
 
     const getYearProducts = async (type: string, filter: string) => {
-        loading.value = true;
         try{
             const res = await handler(`/products/year/${type}/${filter}`, {
                 method: 'GET',
@@ -88,13 +76,10 @@ export const useGetProduct = () => {
             productsYear.value = res;
         }catch(err){
             console.error(`Failed to get the filtered products:`, err);
-        }finally {
-            loading.value = false;
         }
     };
 
     const getSeasonal = async (collection: string) => {
-        loading.value = true;
         try{
             const res = await handler(`/products/collections/${collection}`, {
                 method: 'GET',
@@ -118,13 +103,10 @@ export const useGetProduct = () => {
             console.log(autumnCatalog.value);
         }catch(err){
             console.error(`Failed to get the filtered products:`, err);
-        }finally {
-            loading.value = false;
         }
     };
 
     const getProduct = async (id: string | string[]) => {
-        loading.value = true;
         try{
             const data = await handler(`/products/${id}`, {
                 method: 'GET',
@@ -132,13 +114,10 @@ export const useGetProduct = () => {
             product.value = data
         }catch(err){
             console.error(`Failed to get the product by id:`, err);
-        }finally {
-            loading.value = false;
         }
     };
 
     const getMyProducts = async () => {
-        loading.value = true;
         try{
             const res = await handler(`/my/products/${userData.id}`, {
                 method: 'GET',
@@ -146,8 +125,6 @@ export const useGetProduct = () => {
             myProducts.value = res;
         }catch(err){
             console.error(`Failed to get the all my products:`, err);
-        }finally {
-            loading.value = false;
         }
     };
 
@@ -443,8 +420,8 @@ export const useGetProduct = () => {
         )
     };
 
-    const formatterSizeGuide = () => {
-        const category = product.value.category;
+    const formatterSizeGuide = (product: Product) => {
+        const category = product.category;
         console.log(category);
 
         const isOuterWear = outerWear.includes(category);
@@ -473,7 +450,7 @@ export const useGetProduct = () => {
     };
 
     const uniqueSizes = (product: Product) => {
-        return [...new Set(product.variants.map((variant) => variant.size))]
+        return [...new Set(product.variants.map((variant: any) => variant.size))]
     }
 
     return {

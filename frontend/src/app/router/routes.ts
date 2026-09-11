@@ -93,6 +93,12 @@ const routes: RouteRecordRaw[] = [
                 component: () => import('@/pages/products/MyProductsPage.vue'),
 
             },
+        ]
+    },
+    {
+        path: '/',
+        component: () => import('@/app/layouts/ProductFormLayout.vue'),
+        children: [
             {
                 path: 'create/product',
                 name: 'create/product',
@@ -100,7 +106,7 @@ const routes: RouteRecordRaw[] = [
 
             },
             {
-                path: 'edit/product',
+                path: 'edit/product/:id',
                 name: 'edit/product',
                 component: () => import('@/pages/profile/EditProductPage.vue'),
 
