@@ -56,7 +56,6 @@ const { cartCount, favoritesCount } = useProfile();
 const route = useRoute();
 
 const isShoppingCart = computed(() => route.name !== 'cart')
-
 const isFavoriteProducts = computed(() => route.name !== 'favorite')
 
 onMounted(async() => {
