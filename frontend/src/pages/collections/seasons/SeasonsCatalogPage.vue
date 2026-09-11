@@ -8,8 +8,8 @@
 </template>
 
 <script setup lang="ts">
-import HeaderCatalog from "@/features/use-product/ui/season/header-catalog/HeaderCatalog.vue";
-import SeasonsCatalog from "@/features/use-product/ui/season/SeasonsCatalog.vue";
+import HeaderCatalog from "@/features/use-all-product/ui/season/header-catalog/HeaderCatalog.vue";
+import SeasonsCatalog from "@/features/use-all-product/ui/season/SeasonsCatalog.vue";
 </script>
 
 <style scoped>

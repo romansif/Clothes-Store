@@ -10,15 +10,14 @@
 </template>
 
 <script setup lang="ts">
-import { useAddProduct } from "@/features/use-product/api/add-product.ts";
-import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
+import { useAddProduct } from "@/features/use-all-product/api/add-product.ts";
+import { fileInput } from "@/features/use-product-form/lib/toggle.imge.product.ts";
 
 import BaseButton from "@/shared/ui/BaseButton.vue";
-import CreateImageUpload from "@/features/use-profile/ui/create-product/CreateImageUpload.vue";
-import CreateBasicInfo from "@/features/use-profile/ui/create-product/CreateBasicInfo.vue";
-import CreateVariants from "@/features/use-profile/ui/create-product/CreateVariants.vue";
+import CreateImageUpload from "@/features/use-product-form/ui/CreateImageUpload.vue";
+import CreateBasicInfo from "@/features/use-product-form/ui/CreateBasicInfo.vue";
+import CreateVariants from "@/features/use-product-form/ui/CreateVariants.vue";
 
-const { fileInput } = useProductsModals();
 const { createProduct, onFilesSelected } = useAddProduct();
 </script>
 

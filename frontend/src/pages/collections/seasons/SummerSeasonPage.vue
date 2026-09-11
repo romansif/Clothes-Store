@@ -12,8 +12,8 @@ import { onMounted } from "vue";
 import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 
-import SummerList from "@/features/use-product/ui/season/summer/SummerList.vue";
-import SeasonsHeader from "@/features/use-product/ui/season/header-catalog/SeasonsHeader.vue";
+import SummerList from "@/features/use-all-product/ui/season/summer/SummerList.vue";
+import SeasonsHeader from "@/features/use-all-product/ui/season/header-catalog/SeasonsHeader.vue";
 
 const { getFavoriteProducts } = useGetFavorite();
 const { getSeasonal, summerCatalog } = useGetProduct();

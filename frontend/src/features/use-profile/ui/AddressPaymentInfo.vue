@@ -51,8 +51,8 @@
 import { onMounted } from "vue";
 import { checkoutStore } from "@/features/use-checkout/model/checkout.store.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
-import { useGetAddress } from "@/features/use-checkout/api/address/get-address.ts";
-import { useGetPayment } from "@/features/use-checkout/api/payment/get-payment.ts";
+import { useGetAddress } from "@/features/use-information/api/get-address.ts";
+import { useGetPayment } from "@/features/use-payment/api/get-payment.ts";
 
 import PaymentsList from "@/features/use-profile/ui/payment/PaymentsList.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";

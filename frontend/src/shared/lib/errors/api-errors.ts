@@ -1,16 +1,22 @@
 import { ApiError } from "../../api/http.ts";
 import { authForms } from "@/features/use-auth/model/auth.forms.ts";
 import { userForms } from "@/features/use-profile/model/user.form.ts";
-import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
 import { productForms } from "@/features/use-product/model/product.forms.ts";
 import { authFormsErrors } from "@/features/use-auth/lib/auth.errors.ts";
 import { userFormsErrors } from "@/features/use-profile/lib/users.error.ts";
-import { checkoutErrors } from "@/features/use-checkout/lib/checkout.errors.ts";
 import { productsFormErrors } from "@/features/use-product/lib/product.error.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { addToCartForm } from "@/features/use-cart/model/cart.form.ts";
 import { addToCartErrors } from "@/features/use-cart/lib/cart.errors.ts";
+import { informationFormErrorMessages } from "@/features/use-information/model/address.form.ts";
+import { informationFormErrors } from "@/features/use-information/lib/address.errors.ts";
+import { shippingFormErrorMessage } from "@/features/use-shipping/model/shipping.form.ts";
+import { shippingFormError } from "@/features/use-shipping/lib/shipping.errors.ts";
+import { paymentFormErrorMessage } from "@/features/use-payment/model/payment.form.ts";
+import { paymentFormErrors } from "@/features/use-payment/lib/payment.errors.ts";
 
+const { updateUserFormMessage } = userForms();
+const { updateUserFormErrors } = userFormsErrors()
 const { cartFormMessages } = addToCartForm();
 const { cartFormErrors } = addToCartErrors();
 const { createProductFormErrors } = productsFormErrors();
@@ -18,11 +24,7 @@ const { registerFormMessages, loginFormMessages } = authForms();
 const { registerFormErrors, loginFormErrors } = authFormsErrors();
 const { cancelChoiceMessage, cancelChoiceError } = useBaseModals();
 const { moreCreateItem, createProductFormMessages } = productForms();
-const { informationErrors, shippingErrors, paymentErrors} = checkoutErrors();
-const { informationMessages, shippingMessages, paymentMessages } = checkoutForm();
 
-const { updateUserFormMessage } = userForms();
-const { updateUserFormErrors } = userFormsErrors()
 
 export const useFormsErrors = () => {
     const registerErrors = (err: any) => {
@@ -64,7 +66,6 @@ export const useFormsErrors = () => {
         if(err instanceof ApiError){
             const errors = err.response as Record<string, string> | undefined;
             if(errors){
-                createProductFormErrors.value.productUrlError = !!errors.images;
                 createProductFormErrors.value.titleError = !!errors.title;
                 createProductFormErrors.value.collectionsError = !!errors.collection;
                 createProductFormErrors.value.categoryError = !!errors.category;
@@ -126,25 +127,25 @@ export const useFormsErrors = () => {
         if(err instanceof ApiError){
             const errors = err.response as Record<string, string> | undefined;
             if(errors){
-                informationErrors.value.emailError = !!errors.email;
-                informationErrors.value.phoneError = !!errors.phone;
-                informationErrors.value.firstNameError = !!errors.firstName;
-                informationErrors.value.lastNameError = !!errors.lastName;
-                informationErrors.value.countryError = !!errors.country;
-                informationErrors.value.stateRegionError = !!errors.stateRegion;
-                informationErrors.value.addressError = !!errors.address;
-                informationErrors.value.cityError = !!errors.city;
-                informationErrors.value.postalCodeError = !!errors.postalCode;
+                informationFormErrors.value.emailError = !!errors.email;
+                informationFormErrors.value.phoneError = !!errors.phone;
+                informationFormErrors.value.firstNameError = !!errors.firstName;
+                informationFormErrors.value.lastNameError = !!errors.lastName;
+                informationFormErrors.value.countryError = !!errors.country;
+                informationFormErrors.value.stateRegionError = !!errors.stateRegion;
+                informationFormErrors.value.addressError = !!errors.address;
+                informationFormErrors.value.cityError = !!errors.city;
+                informationFormErrors.value.postalCodeError = !!errors.postalCode;
 
-                informationMessages.value.emailMessage = errors.email || '';
-                informationMessages.value.phoneMessage = errors.phone || '';
-                informationMessages.value.firstNameMessage = errors.firstName || '';
-                informationMessages.value.lastNameMessage = errors.lastName || '';
-                informationMessages.value.countryMessage = errors.country || '';
-                informationMessages.value.stateRegionMessage = errors.stateRegion || '';
-                informationMessages.value.addressMessage = errors.address || '';
-                informationMessages.value.cityMessage = errors.city || '';
-                informationMessages.value.postalCodeMessage = errors.postalCode || '';
+                informationFormErrorMessages.value.emailMessage = errors.email || '';
+                informationFormErrorMessages.value.phoneMessage = errors.phone || '';
+                informationFormErrorMessages.value.firstNameMessage = errors.firstName || '';
+                informationFormErrorMessages.value.lastNameMessage = errors.lastName || '';
+                informationFormErrorMessages.value.countryMessage = errors.country || '';
+                informationFormErrorMessages.value.stateRegionMessage = errors.stateRegion || '';
+                informationFormErrorMessages.value.addressMessage = errors.address || '';
+                informationFormErrorMessages.value.cityMessage = errors.city || '';
+                informationFormErrorMessages.value.postalCodeMessage = errors.postalCode || '';
             }
         }
     };
@@ -153,9 +154,9 @@ export const useFormsErrors = () => {
         if(err instanceof ApiError){
             const errors = err.response as Record<string, string> | undefined;
             if(errors){
-                shippingErrors.value.deliveryError = !!errors.delivery;
+                shippingFormError.value.deliveryError = !!errors.delivery;
 
-                shippingMessages.value.deliveryMessage = errors.delivery || '';
+                shippingFormErrorMessage.value.deliveryMessage = errors.delivery || '';
             }
         }
     };
@@ -164,13 +165,13 @@ export const useFormsErrors = () => {
         if(err instanceof ApiError){
             const errors = err.response as Record<string, string> | undefined;
             if(errors){
-                paymentErrors.value.cardNumberError = !!errors.cardNumber;
-                paymentErrors.value.expiryDateError = !!errors.expiryDate;
-                paymentErrors.value.cardCvvError = !!errors.cardCvv;
+                paymentFormErrors.value.cardNumberError = !!errors.cardNumber;
+                paymentFormErrors.value.expiryDateError = !!errors.expiryDate;
+                paymentFormErrors.value.cardCvvError = !!errors.cardCvv;
 
-                paymentMessages.value.cardNumberMessage = errors.cardNumber || '';
-                paymentMessages.value.expiryDateMessage = errors.expiryDate || '';
-                paymentMessages.value.cardCvvMessage = errors.cardCvv || '';
+                paymentFormErrorMessage.value.cardNumberMessage = errors.cardNumber || '';
+                paymentFormErrorMessage.value.expiryDateMessage = errors.expiryDate || '';
+                paymentFormErrorMessage.value.cardCvvMessage = errors.cardCvv || '';
             }
         }
     };
@@ -179,9 +180,9 @@ export const useFormsErrors = () => {
         if(err instanceof ApiError){
             const errors = err.response as Record<string, string> | undefined;
             if(errors){
-                paymentErrors.value.paymentMethodError = !!errors.paymentMethod;
+                paymentFormErrors.value.paymentMethodError = !!errors.paymentMethod;
 
-                paymentMessages.value.paymentMethodMessage = errors.paymentMethod || '';
+                paymentFormErrorMessage.value.paymentMethodMessage = errors.paymentMethod || '';
             }
         }
     };

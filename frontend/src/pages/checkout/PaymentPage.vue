@@ -4,9 +4,9 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useGetPayment } from "@/features/use-checkout/api/payment/get-payment.ts";
+import { useGetPayment } from "@/features/use-payment/api/get-payment.ts";
 
-import PaymentDashboard from "@/features/use-checkout/ui/PaymentDashboard.vue";
+import PaymentDashboard from "@/features/use-payment/ui/PaymentDashboard.vue";
 
 const { getPayments } = useGetPayment();
 

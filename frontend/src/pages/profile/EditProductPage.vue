@@ -19,9 +19,9 @@ import { useUpdateProduct } from "@/features/use-product/api/update-product.ts";
 import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
 
 import BaseButton from "@/shared/ui/BaseButton.vue";
-import EditImageUpload from "@/features/use-profile/ui/edit-product/EditImageUpload.vue";
-import EditBasicInfo from "@/features/use-profile/ui/edit-product/EditBasicInfo.vue";
-import EditVariants from "@/features/use-profile/ui/edit-product/EditVariants.vue";
+import EditImageUpload from "@/features/use-product-form/ui/EditImageUpload.vue";
+import EditBasicInfo from "@/features/use-product-form/ui/EditBasicInfo.vue";
+import EditVariants from "@/features/use-product-form/ui/EditVariants.vue";
 
 const route = useRoute();
 

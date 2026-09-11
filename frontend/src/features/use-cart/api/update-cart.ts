@@ -7,15 +7,15 @@ import { useGetProduct } from "@/features/use-product/api/get-product.ts"
 import { useDeleteCart } from "@/features/use-cart/api/delete-cart.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { checkoutErrors } from "@/features/use-checkout/lib/checkout.errors.ts";
+import { addToCartErrors } from "@/features/use-cart/lib/cart.errors.ts";
 
 const { cart } = cartStore();
 const { userData } = userStore();
 const { orderItems } = orderStore();
 const { openNotify } = useBaseModals();
 const { getCartProducts } = useGetCart();
-const { isAgreeFormError } = checkoutErrors();
 const { deleteProductCart } = useDeleteCart();
+const { isAgreeFormError } = addToCartErrors();
 const { getAllProducts, allProducts, products } = useGetProduct();
 
 export const useUpdateCart = () => {

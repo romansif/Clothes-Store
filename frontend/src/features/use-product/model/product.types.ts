@@ -77,6 +77,7 @@ export interface Slide {
     routeName?: string,
     url: string,
 }
+
 export interface Catalog {
     id: string,
     name: string,

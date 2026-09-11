@@ -37,7 +37,7 @@ import AsideFilter from "@/widgets/AsideFilter.vue";
 import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import DeleteModal from "@/shared/ui/DeleteModal.vue";
-import SizeGuideModal from "@/features/use-product/ui/SizeGuideModal.vue";
+import SizeGuideModal from "@/features/use-all-product/ui/SizeGuideModal.vue";
 
 const { notify } = useBaseModals();
 const { deleteChoice } = useProfileModals();

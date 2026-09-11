@@ -36,7 +36,7 @@
           I agree to the Terms and Conditions
         </span>
         </div>
-        <span class="text-red-600 text-xs">{{ isAgreeForm.agreeMessage }}</span>
+        <span class="text-red-600 text-xs">{{ isAgreeFormError.agreeMessageError }}</span>
       </div>
       <BaseButton @click="continueToOrder" name="CONTINUE" variant="addToOrder" />
     </div>
@@ -46,20 +46,20 @@
 <script setup lang="ts">
 import { watch } from "vue";
 import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
-import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
-import { checkoutErrors } from "@/features/use-checkout/lib/checkout.errors.ts";
+import {addToCartForm} from "@/features/use-cart/model/cart.form.ts";
+import {addToCartErrors} from "@/features/use-cart/lib/cart.errors.ts";
 
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import square from '@/assets/icons/squares/square.png';
 import check_square from '@/assets/icons/squares/check-square.png';
 
-const { isAgreeForm } = checkoutForm();
-const { isAgreeFormError } = checkoutErrors();
+const { isAgreeFormMessage } = addToCartForm();
+const { isAgreeFormError } = addToCartErrors();
 const { toggleAgree, continueToOrder, price, totalPrice, commissionPrice } = useProfile();
 
 watch(() => isAgreeFormError.value.agreeError, (agreeError) => {
-  if(agreeError === true) {
-    isAgreeForm.value.agreeMessage = '';
+  if(agreeError) {
+    isAgreeFormMessage.value.agreeMessage = '';
   }
 })
 </script>

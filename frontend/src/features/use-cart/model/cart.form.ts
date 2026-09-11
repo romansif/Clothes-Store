@@ -1,5 +1,5 @@
 import {ref} from "vue";
-import { type AddForm, type AddFormMessage } from "@/features/use-cart/model/cart.types.form.ts";
+import {type AddForm, type AddFormMessage, type IsAgreeFormMessage} from "@/features/use-cart/model/cart.types.form.ts";
 
 const cartForm = ref<AddForm>({
     colors: {
@@ -14,9 +14,15 @@ const cartFormMessages = ref<AddFormMessage>({
     sizeMessage: '',
 });
 
+const isAgreeFormMessage = ref<IsAgreeFormMessage>({
+    agreeMessage: ''
+})
+
+
 export const addToCartForm = () => {
     return {
         cartForm,
         cartFormMessages,
+        isAgreeFormMessage
     }
 }

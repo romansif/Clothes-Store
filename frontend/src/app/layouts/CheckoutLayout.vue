@@ -29,24 +29,32 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { useCheckout } from "@/features/use-checkout/lib/use-checkout.ts";
 import { checkoutClasses } from "@/shared/const/checkout/checkout.classes.ts";
+import { useUpdateCart } from "@/features/use-cart/api/update-cart.ts";
 
 import Notification from "@/shared/ui/Notification.vue";
-import OrderInfo from "@/features/use-checkout/ui/order/OrderInfo.vue";
+import OrderInfo from "@/features/use-checkout-order/ui/OrderInfo.vue";
 import go_to_shop from "@/assets/icons/arrows/right-long-arrow.png";
 
 const route = useRoute();
+const router = useRouter();
 
-const { goBack } = useCheckout();
 const { notify } = useBaseModals();
 const { checkoutClass } = checkoutClasses();
+const { updateCartChecked } = useUpdateCart();
 
 const isInfo = computed(() => route.name === 'information')
 const isShipping = computed(() => route.name === 'shipping')
 const isPayment = computed(() => route.name === 'payment')
+
+const goBack = async () => {
+  router.back();
+  if(route.name === 'information') {
+    await updateCartChecked()
+  }
+};
 </script>
 
 <style scoped>

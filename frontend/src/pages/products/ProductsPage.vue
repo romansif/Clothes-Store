@@ -14,7 +14,7 @@ import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 
 import ProductList from "@/features/use-product/ui/product/ProductList.vue";
-import MainHeader from "@/features/use-product/ui/MainHeader.vue";
+import MainHeader from "@/features/use-all-product/ui/MainHeader.vue";
 import FilterProducts from "@/widgets/navigation/ui/FilterProducts.vue";
 
 const { getFavoriteProducts } = useGetFavorite();

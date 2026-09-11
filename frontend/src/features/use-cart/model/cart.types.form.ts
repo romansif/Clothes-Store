@@ -14,3 +14,12 @@ export interface AddFormError {
     colorError: boolean,
     sizeError: boolean,
 }
+
+export interface IsAgreeFormMessage {
+    agreeMessage: string,
+}
+
+export interface IsAgreeFormError {
+    agreeError: boolean,
+    agreeMessageError: boolean,
+}
