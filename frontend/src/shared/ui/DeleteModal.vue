@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
+
+import BaseButton from "@/shared/ui/BaseButton.vue";
+
+const { toggleDeleteChoice, generalDelete, deleteMessage } = useProfileModals();
+</script>
+
 <template>
   <div @click="toggleDeleteChoice('', '', '')" class="font-montserrat fixed inset-0 z-50
       bg-[rgba(0,0,0,0.5)] flex items-center justify-center">
@@ -12,14 +20,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
-
-import BaseButton from "@/shared/ui/BaseButton.vue";
-
-const { toggleDeleteChoice, generalDelete, deleteMessage } = useProfileModals();
-</script>
 
 <style scoped>
 

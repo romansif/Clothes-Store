@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center items-center mt-25">
-    <div class="overflow-y-auto no-scrollbar mt-6 lg:mt-0 lg:w-300">
+    <main class="overflow-y-auto no-scrollbar mt-6 lg:mt-0 lg:w-300">
       <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-10">
         <div v-if="product && product.id && product.id.length > 0" class="flex gap-18 lg:gap-20">
           <div class="flex flex-col items-center gap-3">
@@ -21,7 +21,7 @@
           </router-link>
         </div>
       </div>
-    </div>
+    </main>
   </div>
 </template>
 

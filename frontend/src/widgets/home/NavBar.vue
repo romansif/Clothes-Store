@@ -27,21 +27,21 @@
       </div>
       <div class="xl:flex xl:gap-10 lg:flex lg:gap-10 md:flex md:gap-5
           sm:flex sm:gap-3 flex gap-3">
-        <router-link :to="{name: 'favorite'}">
+        <router-link :to="{name: 'favorite'}" class="transition duration-400 hover:scale-110">
           <div class="xl:flex lg:flex md:flex sm:hidden hidden">
-            <img :src=liked alt="" class="">
+            <img :src=liked alt="" class="w-12.5 rounded-full">
           </div>
         </router-link>
-        <router-link :to="{name: 'cart'}">
+        <router-link :to="{name: 'cart'}" class="transition duration-400 hover:scale-110">
           <div class="xl:flex xl:items-center lg:flex md:flex gap-1">
             <span class="px-7 py-3.5 bg-black rounded-4xl text-white items-center md:flex hidden">
               Cart
             </span>
-            <img :src=cart alt="" class="">
+            <img :src=cart alt="" class="w-12.5 rounded-full">
           </div>
         </router-link>
         <router-link :to="{name: 'profile'}">
-          <img :src=profile alt="" class="">
+          <img :src=profile alt="" class="bg-white transition duration-400 hover:scale-110 w-12.5 rounded-full">
         </router-link>
       </div>
     </div>
@@ -54,9 +54,9 @@ import { useRoute } from "vue-router";
 import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
 
 import cart from "@/assets/icons/nav/cart.png";
-import liked from "@/assets/icons/nav/favorite.png";
+import liked from "@/assets/icons/nav/favorite.jpeg";
 import profile from "@/assets/icons/nav/profile.png";
-import catalog from "@/assets/icons/nav/catalog.png";
+import catalog from "@/assets/icons/nav/catalog.svg";
 
 const { toggleFilterAside } = useProductsModals();
 

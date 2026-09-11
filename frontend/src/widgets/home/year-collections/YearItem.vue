@@ -1,6 +1,6 @@
 <template>
   <TransitionGroup name="list">
-    <li @click="getProduct(product.id)" v-for="product in productsYear" :key="product.id"
+    <li v-for="product in productsYear" :key="product.id"
         class="flex flex-col shrink-0 lg:w-95 md:w-70 w-50">
       <div class="relative">
         <router-link :to="{ name: 'product/info', params: { id: product.id } }">
@@ -39,7 +39,7 @@ const { userData } = userStore();
 const { isFavorite } = useFavorite();
 const { productPreviewClass } = baseClasses();
 const { toggleToFavorite } = useToggleFavorite();
-const { getProduct, isOutOfStack, productPreview, productsYear } = useGetProduct();
+const { isOutOfStack, productPreview, productsYear } = useGetProduct();
 </script>
 
 <style scoped>

@@ -156,7 +156,7 @@
     },
     {
       "id": "06be11e1-a719-475b-9d38",
-      "userId": "3898c-73-4395-8ea9-74e2c5ef15",
+      "userId": "3898fdbc-7763-4395-8ea9-7254e2c5ef15",
       "images": [
         "uploads/products/product-1788936898694-632916574.png",
         "uploads/products/product-1788936898695-150169104.png",
@@ -268,6 +268,123 @@
       ],
       "status": "Availability",
       "created_at": "2026-09-09T06:54:58.720Z"
+    },
+    {
+      "id": "64e17d19-32a0-4cbb-a96e-56dbb09dcf0c",
+      "userId": "3898fdbc-7763-4395-8ea9-7254e2c5ef15",
+      "images": [
+        "uploads/products/product-1789107254245-997686835.png",
+        "uploads/products/product-1789107254247-943672339.png",
+        "uploads/products/product-1789107254254-119099625.png",
+        "uploads/products/product-1789107254264-208879334.png",
+        "uploads/products/product-1789107254270-838370799.png"
+      ],
+      "title": "AAA",
+      "collection": {
+        "season": "Summer",
+        "name": "Blueprint",
+        "condition": "New"
+      },
+      "category": "Jeans",
+      "material": "Wool",
+      "gender": "Man",
+      "sku": "234-C4-5V4",
+      "price": 99,
+      "description": "BBB",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        {
+          "hex": "#ffffff",
+          "colorName": "White"
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black"
+        }
+      ],
+      "variants": [
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "XS",
+          "count": 10
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "S",
+          "count": 10
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "M",
+          "count": 10
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "L",
+          "count": 10
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "XL",
+          "count": 10
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "XXL",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "XS",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "S",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "M",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "L",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "XL",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "XXL",
+          "count": 10
+        }
+      ],
+      "status": "Availability",
+      "created_at": "2026-09-11T06:14:14.320Z"
     }
   ],
   "cart": [],

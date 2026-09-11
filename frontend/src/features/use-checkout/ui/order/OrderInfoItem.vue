@@ -1,6 +1,6 @@
 <template>
   <TransitionGroup name="list">
-    <li @click="getProduct(product.productId)" v-for="product in items" :key="product?.id"
+    <li v-for="product in items" :key="product?.id"
         class="flex justify-between gap-3 w-full">
       <div class="flex items-center gap-3 font-medium text-xs">
         <router-link :to="{ name: 'product/info', params: { id: product.id } }">
@@ -29,7 +29,6 @@ import { orderStore } from "@/features/use-order/model/order.store.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 
 const { items } = orderStore();
-const { getProduct } = useGetProduct();
 const { orderPreview, pureQuantity, pureColorsName } = useGetProduct();
 </script>
 

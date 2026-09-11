@@ -15,7 +15,7 @@
 <script setup lang="ts">
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 
-import YearItem from "@/widgets/home/home-year-collections/YearItem.vue";
+import YearItem from "@/widgets/home/year-collections/YearItem.vue";
 import empty_products from "@/assets/icons/products/icon-products.svg";
 
 const { productsYear, vHorizontalScroll } = useGetProduct();

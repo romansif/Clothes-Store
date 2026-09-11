@@ -62,17 +62,17 @@ const routes: RouteRecordRaw[] = [
                 component: () => import('@/pages/collections/seasons/AutumnSeasonPage.vue'),
             },
             {
-                path: 'product/info/:id',
+                path: 'shop/product/info/:id',
                 name: 'product/info',
                 component: () => import('@/pages/products/ProductDetailPage.vue'),
             },
             {
-                path: 'cart',
+                path: 'shop/my-cart',
                 name: 'cart',
                 component: () => import('@/pages/cart/CartPage.vue')
             },
             {
-                path: 'favorite',
+                path: 'shop/my-favorite',
                 name: 'favorite',
                 component: () => import('@/pages/favorite/FavoritePage.vue')
             },
@@ -88,7 +88,7 @@ const routes: RouteRecordRaw[] = [
                 component: () => import('@/pages/profile/ProfilePage.vue'),
             },
             {
-                path: 'my/products',
+                path: 'my-products',
                 name: 'my/products',
                 component: () => import('@/pages/products/MyProductsPage.vue'),
 
@@ -100,13 +100,13 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/app/layouts/ProductFormLayout.vue'),
         children: [
             {
-                path: 'create/product',
+                path: 'create-product',
                 name: 'create/product',
                 component: () => import('@/pages/profile/CreateProductPage.vue'),
 
             },
             {
-                path: 'edit/product/:id',
+                path: 'edit-product/:id',
                 name: 'edit/product',
                 component: () => import('@/pages/profile/EditProductPage.vue'),
 

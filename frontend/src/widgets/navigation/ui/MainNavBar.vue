@@ -32,7 +32,7 @@
           flex gap-3">
         <router-link :to="{name: 'favorite'}">
           <div class="xl:flex lg:flex md:flex sm:hidden hidden">
-            <img :src=liked alt="" class="transition duration-400 hover:scale-110">
+            <img :src=liked alt="" class="w-12.5 transition duration-400 hover:scale-110 rounded-full">
           </div>
         </router-link>
         <router-link :to="{name: 'cart'}">
@@ -41,7 +41,7 @@
                 Cart
             </span>
             <div class="relative">
-              <img :src=cartImg alt="">
+              <img :src=cart alt="" class="w-12.5 rounded-full">
               <div v-if="unreadCount > 0 && isCart" class="absolute bottom-7 left-8 bg-black px-3 py-0.5 rounded-full">
                 <span class="text-white text-lg font-dm-sans">{{ unreadCount }}</span>
               </div>
@@ -49,7 +49,7 @@
           </div>
         </router-link>
         <router-link v-if="isProfile" :to="{name: 'profile'}">
-          <img :src=profile alt="" class="transition duration-400 hover:scale-120">
+          <img :src=profile alt="" class="bg-white transition duration-400 hover:scale-110 w-13.5 rounded-full">
         </router-link>
       </div>
     </div>
@@ -62,8 +62,8 @@ import { useRoute } from "vue-router";
 import { baseClasses } from "@/shared/const/base.classes.ts";
 import { cartStore } from "@/features/use-cart/model/cart.store.ts";
 
-import cartImg from "@/assets/icons/nav/cart.png";
-import liked from "@/assets/icons/nav/favorite.png";
+import cart from "@/assets/icons/nav/cart.png";
+import liked from "@/assets/icons/nav/favorite.jpeg";
 import profile from "@/assets/icons/nav/profile.png";
 import back from "@/assets/icons/arrows/right-long-arrow.png";
 

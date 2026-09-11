@@ -26,7 +26,7 @@
           <span class="text-[#A3A3A3] font-normal ml-auto">{{ order.delivery }}</span>
         </div>
       </div>
-      <div v-for="item in order.orderItems" :key="item.id"  @click="getProduct(item.productId)">
+      <div v-for="item in order.orderItems" :key="item.id">
         <router-link :to="{ name: 'product/info', params: { id: item.productId } }">
           <div class="flex py-5 px-3">
             <div class="flex gap-5">
@@ -85,7 +85,7 @@ const { orders } = orderStore();
 const { toggleOrder } = useBaseModals();
 const { orderStatus } = ordersClasses();
 const { copyText, orderQuantity } = useOrder();
-const { getProduct, orderPreview, pureColorsName } = useGetProduct();
+const { orderPreview, pureColorsName } = useGetProduct();
 </script>
 
 <style scoped>

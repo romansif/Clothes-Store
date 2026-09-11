@@ -15,7 +15,7 @@
 <script setup lang="ts">
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 
-import WeekItem from "@/widgets/home/home-week-collections/WeekItem.vue";
+import WeekItem from "@/widgets/home/week-collections/WeekItem.vue";
 import empty_products from "@/assets/icons/products/icon-products.svg";
 
 const { productsWeek, vHorizontalScroll } = useGetProduct();

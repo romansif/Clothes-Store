@@ -2,7 +2,7 @@
   <TransitionGroup name="list">
     <li v-for="product in favorite" :key="product.id" class="flex gap-5">
       <div class="flex flex-col">
-        <div @click="getProduct(product.productId)" class="relative">
+        <div class="relative">
           <router-link :to="{ name: 'product/info', params: { id: product.productId } }">
             <img :src="productPreview(product.id, favorite)" alt=""
                  :class="productPreviewClass('w-83.75 h-45 sm:h-78.5 xl:h-100', product)">
@@ -50,7 +50,7 @@ const { favorite } = favoriteStore();
 const { isFavorite } = useFavorite();
 const { productPreviewClass } = baseClasses();
 const { toggleToFavorite } = useToggleFavorite();
-const { getProduct, isOutOfStack, productPreview } = useGetProduct();
+const { isOutOfStack, productPreview } = useGetProduct();
 
 const refreshPage = () => {
   window.location.reload();

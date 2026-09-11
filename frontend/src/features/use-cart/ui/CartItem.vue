@@ -2,7 +2,7 @@
   <TransitionGroup name="list">
     <li v-for="product in cart" :key="product.id" class="flex gap-5">
       <div class="flex flex-col">
-        <div @click="getProduct(product.productId)" class="relative">
+        <div class="relative">
           <router-link :to="{ name: 'product/info', params: { id: product.productId } }">
             <img :src="productPreview(product.id, cart)" alt=""
                  :class="productPreviewClass('w-83.75 h-45 sm:h-78.5 xl:h-100', product)">
@@ -64,11 +64,11 @@ import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
 import { baseClasses } from "@/shared/const/base.classes.ts";
 
+import like from '@/assets/icons/nav/like.png';
+import liked from '@/assets/icons/nav/liked.png';
 import del from '@/assets/icons/delete-close/delete.svg';
 import square from '@/assets/icons/squares/square.png';
 import update from '@/assets/icons/products/refresh.svg';
-import like from '@/assets/icons/nav/like.png';
-import liked from '@/assets/icons/nav/liked.png';
 import check_square from '@/assets/icons/squares/check-square.png';
 
 const { cart } = cartStore();
@@ -79,8 +79,7 @@ const { productPreviewClass } = baseClasses();
 const { toggleToFavorite } = useToggleFavorite();
 const { toggleDeleteChoice } = useProfileModals();
 const { updateCartItem, checkCartItem } = useUpdateCart();
-const { getProduct, isOutOfStack, productPreview, pureQuantity, pureColors } = useGetProduct();
-
+const { isOutOfStack, productPreview, pureQuantity, pureColors } = useGetProduct();
 
 const refreshPage = () => {
   window.location.reload();

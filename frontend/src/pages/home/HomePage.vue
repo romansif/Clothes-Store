@@ -3,7 +3,7 @@
     <div class="xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
       <NavBar />
       <HomeSlideBar />
-      <Main />
+      <MainHome />
     </div>
     <Footer />
     <Transition name="sidebar">
@@ -20,7 +20,7 @@ import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
 
 import NavBar from "@/widgets/home/NavBar.vue";
 import HomeSlideBar from "@/widgets/home/HomeSlideBar.vue";
-import Main from "../../widgets/home/Main.vue";
+import MainHome from "../../widgets/home/MainHome.vue";
 import Footer from "../../widgets/home/Footer.vue";
 import AsideFilter from "@/widgets/AsideFilter.vue";
 

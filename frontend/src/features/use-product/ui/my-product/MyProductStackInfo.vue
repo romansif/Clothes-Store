@@ -9,9 +9,8 @@
       <div class="grid grid-cols-6 gap-3">
         <div v-for="variant in product.variants" :key="variant.hex + variant.size"
              class="flex items-center gap-2 px-3 py-4 rounded-lg
-              bg-white border border-gray-200
-              hover:border-gray-400 hover:shadow-sm
-              transition-all duration-200 cursor-default">
+              bg-white border border-gray-200 hover:shadow-md hover:scale-105
+              transition-all duration-400 cursor-default">
           <span class="w-6 h-6 rounded-full border-2 border-gray-200 shadow-sm"
                 :style="{ backgroundColor: variant.hex }"></span>
           <span class="text-xs text-center leading-tight font-bold">{{ variant.colorName }}</span>

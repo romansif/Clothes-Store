@@ -68,8 +68,8 @@ import photo_1 from '@/assets/photos/8.png'
 import photo_2 from '@/assets/photos/9.png'
 import photo_3 from '@/assets/photos/pants.png'
 import Notification from "@/shared/ui/Notification.vue";
-import WeekList from "@/widgets/home/home-week-collections/WeekList.vue";
-import YearList from "@/widgets/home/home-year-collections/YearList.vue";
+import WeekList from "@/widgets/home/week-collections/WeekList.vue";
+import YearList from "@/widgets/home/year-collections/YearList.vue";
 import FilterGender from "@/widgets/home/FilterGender.vue";
 
 const { notify } = useBaseModals()
