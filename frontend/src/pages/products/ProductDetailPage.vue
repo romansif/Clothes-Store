@@ -30,14 +30,15 @@ import { onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
+import { productHelper } from "@/features/use-product/lib/product.helper.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 
-import ProductInfo from "@/features/use-product/ui/product/ProductInfo.vue";
+import ProductInfo from "@/features/use-product/ui/ProductInfo.vue";
 
 const { userData } = userStore();
 const { getProduct, product } = useGetProduct();
 const { getFavoriteProducts } = useGetFavorite();
-const { changeImg, productInfoPreview, angelCards } = useGetProduct();
+const { changeImg, productInfoPreview, angelCards } = productHelper();
 
 const route = useRoute();
 

@@ -1,7 +1,7 @@
 import { computed } from "vue";
-import { useGetProducts } from "@/features/use-all-product/api/get-product.ts";
+import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
 import { cartStore } from "@/features/use-cart/model/cart.store.ts";
-import { productStore}  from "@/features/use-all-product/model/product.store.ts";
+import { productStore}  from "@/features/use-main-product/model/product.store.ts";
 
 const { cart } = cartStore();
 const { productId } = productStore();

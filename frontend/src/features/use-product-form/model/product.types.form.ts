@@ -19,7 +19,7 @@ export interface ProductColor {
     colorName: string
 }
 
-export interface ProductFormMessage {
+export interface ProductFormErrorMessage {
     titleMessage: string,
     categoryMessage: string,
     materialMessage: string,

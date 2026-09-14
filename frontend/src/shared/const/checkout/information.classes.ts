@@ -1,11 +1,10 @@
 import { computed } from "vue";
-import { checkoutErrors } from "@/features/use-checkout/lib/checkout.errors.ts";
-import { useCheckout } from "@/features/use-checkout/lib/use-checkout.ts";
 import { checkoutClasses } from "@/shared/const/checkout/checkout.classes.ts";
+import { informationFormErrors } from "@/features/use-checkout-contact-info/lib/address.errors.ts";
+import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle.information.ts";
 
-const { informationErrors } = checkoutErrors();
-const { isChosenAddress, isChosenContactInfo } = useCheckout();
 const { getSavedInfoClass } = checkoutClasses();
+const { isChosenAddress, isChosenContactInfo  } = toggleInformation();
 
 export const informationClasses = () => {
     const addressNameClass = () => [
@@ -16,7 +15,7 @@ export const informationClasses = () => {
     const postalCodeClass = computed(() => [
         `w-full bg-gray-50 border border-gray-400 transition duration-400 hover:bg-white
         rounded-xl outline-none px-4 py-3 text-xs font-dm-sans`,
-        informationErrors.value.postalCodeError ? `placeholder:text-red-500 border-red-500` : ``
+        informationFormErrors.value.postalCodeError ? `placeholder:text-red-500 border-red-500` : ``
     ]);
 
     const informationSelectPhoneCodeClass = computed(() => [
@@ -27,7 +26,7 @@ export const informationClasses = () => {
     const informationPhoneClass = computed(() => [
         `bg-gray-50 border border-gray-400 transition duration-400 hover:bg-white 
         font-dm-sans rounded-xl outline-none px-4 py-3 text-xs w-full`,
-        informationErrors.value.phoneError ? `placeholder:text-red-500 border-red-500` : ``
+        informationFormErrors.value.phoneError ? `placeholder:text-red-500 border-red-500` : ``
     ]);
 
     const savedAddressClass = computed(() => getSavedInfoClass(isChosenAddress.value))

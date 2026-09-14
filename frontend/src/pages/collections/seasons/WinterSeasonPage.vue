@@ -8,20 +8,12 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
-import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
-import { useGetProduct } from "@/features/use-product/api/get-product.ts";
+import { useGetSeasonProducts } from "@/features/use-season-product/api/get-season-product.ts";
 
-import SeasonsHeader from "@/features/use-all-product/ui/season/header-catalog/SeasonsHeader.vue";
-import WinterList from "@/features/use-all-product/ui/season/winter/WinterList.vue";
+import SeasonsHeader from "@/features/use-season-product/ui/header-catalog/SeasonsHeader.vue";
+import WinterList from "@/features/use-season-product/ui/winter/WinterList.vue";
 
-const { getFavoriteProducts } = useGetFavorite();
-const { getSeasonal, winterCatalog } = useGetProduct();
-
-onMounted(async () => {
-  await getSeasonal('Winter');
-  await getFavoriteProducts();
-})
+const { winterCatalog } = useGetSeasonProducts();
 </script>
 
 <style scoped>

@@ -1,30 +1,21 @@
 import { ApiError } from "../../api/http.ts";
-import { authForms } from "@/features/use-auth/model/auth.forms.ts";
-import { userForms } from "@/features/use-profile/model/user.form.ts";
-import { productForms } from "@/features/use-product/model/product.forms.ts";
-import { authFormsErrors } from "@/features/use-auth/lib/auth.errors.ts";
-import { userFormsErrors } from "@/features/use-profile/lib/users.error.ts";
-import { productsFormErrors } from "@/features/use-product/lib/product.error.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { addToCartForm } from "@/features/use-cart/model/cart.form.ts";
-import { addToCartErrors } from "@/features/use-cart/lib/cart.errors.ts";
-import { informationFormErrorMessages } from "@/features/use-information/model/address.form.ts";
-import { informationFormErrors } from "@/features/use-information/lib/address.errors.ts";
+import { loginFormErrorMessages, registerFormErrorMessages } from "@/features/use-auth/model/auth.forms.ts";
+import { loginFormErrors, registerFormErrors } from "@/features/use-auth/lib/auth.errors.ts";
+import { updateUserFormErrors } from "@/features/use-profile-form/lib/user.update.error.ts";
+import { updateUserFormMessage } from "@/features/use-profile-form/model/user.update.form.ts";
+import { moreCreateItemForm, createProductFormErrorMessages } from "@/features/use-product-form/model/product.forms.ts";
+import { createProductFormErrors } from "@/features/use-product-form/lib/product.error.ts";
+import { cartFormErrorMessages } from "@/features/use-cart/model/cart.form.ts";
+import { cartFormErrors } from "@/features/use-cart/lib/cart.errors.ts";
+import { informationFormErrorMessages } from "@/features/use-checkout-contact-info/model/address.form.ts";
+import { informationFormErrors } from "@/features/use-checkout-contact-info/lib/address.errors.ts";
 import { shippingFormErrorMessage } from "@/features/use-shipping/model/shipping.form.ts";
 import { shippingFormError } from "@/features/use-shipping/lib/shipping.errors.ts";
-import { paymentFormErrorMessage } from "@/features/use-payment/model/payment.form.ts";
-import { paymentFormErrors } from "@/features/use-payment/lib/payment.errors.ts";
+import { paymentFormErrorMessage } from "@/features/use-chekout-payment-info/model/payment.form.ts";
+import { paymentFormErrors } from "@/features/use-chekout-payment-info/lib/payment.errors.ts";
 
-const { updateUserFormMessage } = userForms();
-const { updateUserFormErrors } = userFormsErrors()
-const { cartFormMessages } = addToCartForm();
-const { cartFormErrors } = addToCartErrors();
-const { createProductFormErrors } = productsFormErrors();
-const { registerFormMessages, loginFormMessages } = authForms();
-const { registerFormErrors, loginFormErrors } = authFormsErrors();
 const { cancelChoiceMessage, cancelChoiceError } = useBaseModals();
-const { moreCreateItem, createProductFormMessages } = productForms();
-
 
 export const useFormsErrors = () => {
     const registerErrors = (err: any) => {
@@ -37,11 +28,11 @@ export const useFormsErrors = () => {
                 registerFormErrors.value.emailError = !!errors.email;
                 registerFormErrors.value.passwordError = !!errors.password;
 
-                registerFormMessages.value.nameMessage = errors.name || '';
-                registerFormMessages.value.surNameMessage = errors.surName || '';
-                registerFormMessages.value.phoneMessage = errors.phone || '';
-                registerFormMessages.value.emailMessage = errors.email || '';
-                registerFormMessages.value.passwordMessage = errors.password || '';
+                registerFormErrorMessages.value.nameMessage = errors.name || '';
+                registerFormErrorMessages.value.surNameMessage = errors.surName || '';
+                registerFormErrorMessages.value.phoneMessage = errors.phone || '';
+                registerFormErrorMessages.value.emailMessage = errors.email || '';
+                registerFormErrorMessages.value.passwordMessage = errors.password || '';
 
             }
         }
@@ -55,9 +46,9 @@ export const useFormsErrors = () => {
                 loginFormErrors.value.passwordError = !!errors.password;
                 loginFormErrors.value.roleError= !!errors.role;
 
-                loginFormMessages.value.emailMessage = errors.email || '';
-                loginFormMessages.value.passwordMessage = errors.password || '';
-                loginFormMessages.value.roleMessage = errors.role || '';
+                loginFormErrorMessages.value.emailMessage = errors.email || '';
+                loginFormErrorMessages.value.passwordMessage = errors.password || '';
+                loginFormErrorMessages.value.roleMessage = errors.role || '';
             }
         }
     };
@@ -77,22 +68,21 @@ export const useFormsErrors = () => {
                 createProductFormErrors.value.colorError = !!errors.colors;
                 createProductFormErrors.value.sizeError = !!errors.sizes;
 
-                createProductFormMessages.value.productUrlMessage = errors.images || '';
-                createProductFormMessages.value.titleMessage = errors.title || '';
-                createProductFormMessages.value.collectionsMessage = errors.collection || '';
-                createProductFormMessages.value.categoryMessage = errors.category || '';
-                createProductFormMessages.value.materialMessage = errors.material || '';
-                createProductFormMessages.value.genderMessage = errors.gender || '';
-                createProductFormMessages.value.skuMessage = errors.sku || '';
-                createProductFormMessages.value.priceMessage = errors.price || '';
-                createProductFormMessages.value.descriptionMessage = errors.description || '';
-                createProductFormMessages.value.colorMessage = errors.colors || '';
-                createProductFormMessages.value.sizeMessage = errors.sizes || '';
+                createProductFormErrorMessages.value.titleMessage = errors.title || '';
+                createProductFormErrorMessages.value.collectionsMessage = errors.collection || '';
+                createProductFormErrorMessages.value.categoryMessage = errors.category || '';
+                createProductFormErrorMessages.value.materialMessage = errors.material || '';
+                createProductFormErrorMessages.value.genderMessage = errors.gender || '';
+                createProductFormErrorMessages.value.skuMessage = errors.sku || '';
+                createProductFormErrorMessages.value.priceMessage = errors.price || '';
+                createProductFormErrorMessages.value.descriptionMessage = errors.description || '';
+                createProductFormErrorMessages.value.colorMessage = errors.colors || '';
+                createProductFormErrorMessages.value.sizeMessage = errors.sizes || '';
 
-                if(moreCreateItem.sizes.length || moreCreateItem.colors.length || !moreCreateItem.variants.length) {
+                if(moreCreateItemForm.sizes.length || moreCreateItemForm.colors.length || !moreCreateItemForm.variants.length) {
                     createProductFormErrors.value.variantError = !!errors.variant;
 
-                    createProductFormMessages.value.variantMessage = errors.variant || '';
+                    createProductFormErrorMessages.value.variantMessage = errors.variant || '';
                 }
             }
         }
@@ -117,8 +107,8 @@ export const useFormsErrors = () => {
                 cartFormErrors.value.colorError = hasColorError;
                 cartFormErrors.value.sizeError = !!errors.sizes;
 
-                cartFormMessages.value.colorMessage = colorError?.[1] || '';
-                cartFormMessages.value.sizeMessage = errors.sizes || '';
+                cartFormErrorMessages.value.colorMessage = colorError?.[1] || '';
+                cartFormErrorMessages.value.sizeMessage = errors.sizes || '';
             }
         }
     };

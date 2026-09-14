@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
-import { useProductsModals } from "@/features/use-all-product/lib/product.modal.ts";
+import { useProductsModals } from "@/features/use-main-product/lib/product.modal.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { sizeGuideModel } from "@/features/use-product/lib/toggle.size.guide.ts";
@@ -38,7 +38,7 @@ import AsideFilter from "@/widgets/AsideFilter.vue";
 import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import DeleteModal from "@/shared/ui/DeleteModal.vue";
-import SizeGuideModal from "@/features/use-all-product/ui/SizeGuideModal.vue";
+import SizeGuideModal from "@/features/use-product/ui/SizeGuideModal.vue";
 
 const { notify } = useBaseModals();
 const { deleteChoice } = useProfileModals();

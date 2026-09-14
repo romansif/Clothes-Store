@@ -15,17 +15,12 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
-import { useGetProduct } from "@/features/use-product/api/get-product.ts";
+import { useGetMyProduct } from "@/features/use-my-product/api/get-my-product.ts";
 
 import icon_products from "@/assets/icons/products/icon-products.svg";
-import MyProductsList from "@/features/use-product/ui/my-product/MyProductsList.vue";
+import MyProductsList from "@/features/use-my-product/ui/MyProductsList.vue";
 
-const { getMyProducts, myProducts } = useGetProduct();
-
-onMounted(async () => {
-  await getMyProducts();
-})
+const { myProducts } = useGetMyProduct();
 </script>
 
 <style scoped>

@@ -1,7 +1,5 @@
 import namer from "color-namer";
-import { productForms } from "@/features/use-product-form/model/product.forms.ts";
-
-const { createProductForm, moreCreateItem } = productForms()
+import { createProductForm, moreCreateItemForm } from "@/features/use-product-form/model/product.forms.ts";
 
 export const productFormHelper  = () => {
     const toggleAllVariants = () => {
@@ -10,11 +8,11 @@ export const productFormHelper  = () => {
             return;
         }
 
-        moreCreateItem.variants = []
+        moreCreateItemForm.variants = []
 
-        moreCreateItem.colors.forEach((color: any) => {
-            moreCreateItem.sizes.forEach((size) => {
-                moreCreateItem.variants.push({
+        moreCreateItemForm.colors.forEach((color: any) => {
+            moreCreateItemForm.sizes.forEach((size) => {
+                moreCreateItemForm.variants.push({
                     hex: color.hex,
                     colorName: color.colorName,
                     size: size,
@@ -25,7 +23,7 @@ export const productFormHelper  = () => {
     };
 
     const toggleQuantity = (hex: string, colorName: string, size: string) => {
-        let item = moreCreateItem.variants.find((v: any) => v.hex === hex && v.size === size);
+        let item = moreCreateItemForm.variants.find((v: any) => v.hex === hex && v.size === size);
 
         if(!item) {
             item = {
@@ -34,22 +32,22 @@ export const productFormHelper  = () => {
                 size,
                 count: 0
             }
-            moreCreateItem.variants.push(item);
+            moreCreateItemForm.variants.push(item);
         }
         return item;
 
     };
 
     const toggleColor = (color: string, eventOrColor: Event | string) => {
-        if (!Array.isArray(moreCreateItem.colors)) {
-            moreCreateItem.colors = [];
+        if (!Array.isArray(moreCreateItemForm.colors)) {
+            moreCreateItemForm.colors = [];
         }
 
         if (eventOrColor instanceof Event && eventOrColor.target instanceof HTMLInputElement && eventOrColor.target.type === 'color') {
             const hexColor = eventOrColor.target.value;
             if (!hexColor) return;
 
-            const exists = moreCreateItem.colors.some((c: any) =>
+            const exists = moreCreateItemForm.colors.some((c: any) =>
                 typeof c === 'string' ? c === hexColor : c.hex === hexColor
             );
 
@@ -57,7 +55,7 @@ export const productFormHelper  = () => {
                 const names = namer(hexColor);
                 const colorName = names.ntc[0].name;
 
-                moreCreateItem.colors.push({
+                moreCreateItemForm.colors.push({
                     hex: hexColor,
                     colorName: colorName,
                 });
@@ -65,26 +63,26 @@ export const productFormHelper  = () => {
             return;
         }
 
-        const index = moreCreateItem.colors.findIndex((c: any) =>
+        const index = moreCreateItemForm.colors.findIndex((c: any) =>
             typeof c === 'string' ? c === color : c.hex === color
         );
         if (typeof eventOrColor === 'string') {
             return;
         }
         if (index !== -1) {
-            moreCreateItem.colors.splice(index, 1);
+            moreCreateItemForm.colors.splice(index, 1);
         }
     };
 
     const toggleSize = (sizeName: string) => {
-        const index = moreCreateItem.sizes.indexOf(sizeName);
-        if (!Array.isArray(moreCreateItem.sizes)) {
-            moreCreateItem.sizes = [];
+        const index = moreCreateItemForm.sizes.indexOf(sizeName);
+        if (!Array.isArray(moreCreateItemForm.sizes)) {
+            moreCreateItemForm.sizes = [];
         }
         if(index === -1){
-            moreCreateItem.sizes.push(sizeName);
+            moreCreateItemForm.sizes.push(sizeName);
         }else{
-            moreCreateItem.sizes.splice(index, 1);
+            moreCreateItemForm.sizes.splice(index, 1);
         }
     };
 

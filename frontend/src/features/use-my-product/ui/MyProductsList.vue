@@ -7,18 +7,23 @@
       </div>
     </div>
     <ul v-else class="font-raleway flex flex-col gap-20">
-      <MyProductItem />
+      <MyProductItem v-for="product in myProducts" :product="product" :myProducts="myProducts" />
     </ul>
   </Transition>
 </template>
 
 <script setup lang="ts">
-import { useGetProduct } from "@/features/use-product/api/get-product.ts";
+import { onMounted } from "vue";
+import { useGetMyProduct } from "@/features/use-my-product/api/get-my-product.ts";
 
 import MyProductItem from "@/features/use-my-product/ui/MyProductItem.vue";
 import empty_products from "@/assets/icons/products/icon-products.svg";
 
-const { myProducts } = useGetProduct();
+const { getMyProducts, myProducts } = useGetMyProduct();
+
+onMounted(async () => {
+  await getMyProducts();
+})
 </script>
 
 <style scoped>

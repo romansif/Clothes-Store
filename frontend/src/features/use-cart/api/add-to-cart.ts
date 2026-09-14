@@ -1,7 +1,7 @@
 import { handler } from "@/shared/api/http.ts";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { addToCartForm } from "@/features/use-cart/model/cart.form.ts";
+import { cartForm } from "@/features/use-cart/model/cart.form.ts";
 import { clearAddToCartForm } from "@/features/use-cart/lib/clear.cart.ts";
 import { cartStore } from "@/features/use-cart/model/cart.store.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
@@ -11,7 +11,6 @@ import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 const { userData } = userStore();
 const { product } = useGetProduct();
 const { unreadCount } = cartStore();
-const { cartForm } = addToCartForm();
 const { getCartProducts } = useGetCart();
 const { openNotify } = useBaseModals();
 const { addToCartErrors } = useFormsErrors();

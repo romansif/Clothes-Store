@@ -1,10 +1,10 @@
 import { ref } from "vue";
-import { useGetProduct } from "@/features/use-product/api/get-product.ts";
+import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
 import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
 import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
 
 const { getCartProducts } = useGetCart();
-const { getFilteredProducts } = useGetProduct();
+const { getFilteredProducts } = useGetProducts();
 const { getFavoriteProducts } = useGetFavorite();
 
 export const errorHandler = () => {

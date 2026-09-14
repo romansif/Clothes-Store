@@ -1,17 +1,7 @@
 <template>
   <TransitionGroup name="list">
-    <li v-for="product in myProducts" :key="product.id" class="flex pl-10 gap-8">
-      <div class="flex flex-col">
-        <div class="relative">
-          <router-link :to="{ name: 'product/info', params: { id: product.id } }">
-            <img :src="productPreview(product.id, myProducts)" alt=""
-                 :class="productPreviewClass('w-83.75 h-h-78.5m:h-[314px] xl:h-100', product)">
-            <span v-if="isOutOfStack(product)" class="absolute top-45 -left-5 text-6xl font-semibold -rotate-50 w-90">
-              Out Of Stack
-            </span>
-          </router-link>
-        </div>
-      </div>
+    <li :key="product.id" class="flex pl-10 gap-8">
+      <BaseProductCard :product="product" :array="myProducts" :size="'w-83.75 h-h-78.5m:h-[314px] xl:h-100'" />
       <div class="flex flex-col gap-25">
         <div class="flex flex-col gap-20">
           <div class="flex items-center ml-auto gap-10">
@@ -51,22 +41,22 @@
 </template>
 
 <script setup lang="ts">
-import { useGetMyProduct } from "@/features/use-my-product/api/get-my-product.ts";
-import { baseClasses } from "@/shared/const/base.classes.ts";
 import { toggleStackInfo } from "@/features/use-my-product/lib/toggle.my.product.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
-import { productHelper } from "@/features/use-product/lib/product.helper.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
 
+defineProps<{
+  product: Product
+  myProducts: Product[]
+}>();
 import del from '@/assets/icons/delete-close/delete.svg'
 import pencil from "@/assets/icons/products/pencil.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";
+import BaseProductCard from "@/widgets/BaseProductCard.vue";
+import type {Product} from "@/features/use-product/model/product.types.ts";
 
 const { getProduct } = useGetProduct();
-const { myProducts } = useGetMyProduct();
-const { productPreviewClass } = baseClasses();
 const { toggleDeleteChoice } = useProfileModals();
-const { isOutOfStack, productPreview } = productHelper();
 </script>
 
 <style scoped>

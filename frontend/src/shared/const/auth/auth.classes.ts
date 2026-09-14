@@ -1,9 +1,8 @@
 import { computed } from "vue";
-import { authFormsErrors } from "@/features/use-auth/lib/auth.errors.ts";
+import { loginFormErrors, registerFormErrors } from "@/features/use-auth/lib/auth.errors.ts";
 import { baseClasses } from "@/shared/const/base.classes.ts";
 
 const { getPhoneClass } = baseClasses();
-const { loginFormErrors, registerFormErrors } = authFormsErrors();
 
 export const authClasses = () => {
     const getSignUpPasswordClass = (hasError: boolean) => [

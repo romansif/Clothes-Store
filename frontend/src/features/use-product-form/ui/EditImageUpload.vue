@@ -41,7 +41,7 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { openSelectProductCard } from "@/features/use-product-form/lib/toggle.imge.product.ts";
-import { productStore } from "@/features/use-all-product/model/product.store.ts";
+import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import { productHelper } from "@/features/use-product/lib/product.helper.ts";
 import type {Product} from "@/features/use-product/model/product.types.ts";
 

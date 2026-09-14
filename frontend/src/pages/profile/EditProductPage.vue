@@ -15,8 +15,8 @@
 import { onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
-import { useUpdateProduct } from "@/features/use-product/api/update-product.ts";
-import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
+import { useUpdateProduct } from "@/features/use-product-form/api/update-product.ts";
+import { fileInput } from "@/features/use-product-form/lib/toggle.imge.product.ts";
 
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import EditImageUpload from "@/features/use-product-form/ui/EditImageUpload.vue";
@@ -25,7 +25,6 @@ import EditVariants from "@/features/use-product-form/ui/EditVariants.vue";
 
 const route = useRoute();
 
-const { fileInput } = useProductsModals();
 const { getProduct, product } = useGetProduct();
 const { updateProductImages, updateProductDesc } = useUpdateProduct();
 

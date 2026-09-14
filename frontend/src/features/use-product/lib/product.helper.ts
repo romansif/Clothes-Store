@@ -1,10 +1,9 @@
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
-import { productStore } from "@/features/use-all-product/model/product.store.ts";
-import { addToCartForm } from "@/features/use-cart/model/cart.form.ts";
+import { productStore } from "@/features/use-main-product/model/product.store.ts";
+import { cartForm } from "@/features/use-cart/model/cart.form.ts";
 import type { Product, ColorItem, Size, SizeGuide } from "@/features/use-product/model/product.types.ts";
 
 const { product } = useGetProduct();
-const { cartForm } = addToCartForm();
 const { activeProductImg, sizes, outerWear, underWear,
     outerwearSizeGuide, underWearSizeGuide, unit, shoesSizeGuide } = productStore();
 

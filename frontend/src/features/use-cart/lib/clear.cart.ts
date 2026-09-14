@@ -1,8 +1,5 @@
-import { addToCartForm } from "@/features/use-cart/model/cart.form.ts";
-import { addToCartErrors } from "@/features/use-cart/lib/cart.errors.ts";
-
-const { cartFormErrors } = addToCartErrors();
-const { cartForm, cartFormMessages } = addToCartForm();
+import { cartForm, cartFormErrorMessages } from "@/features/use-cart/model/cart.form.ts";
+import { cartFormErrors } from "@/features/use-cart/lib/cart.errors.ts";
 
 export const clearAddToCartForm = () => {
     const clearCartForm = () => {
@@ -12,8 +9,8 @@ export const clearAddToCartForm = () => {
         };
         cartForm.value.sizes = '';
 
-        cartFormMessages.value.colorMessage = '';
-        cartFormMessages.value.sizeMessage = '';
+        cartFormErrorMessages.value.colorMessage = '';
+        cartFormErrorMessages.value.sizeMessage = '';
 
         cartFormErrors.value.colorError = false;
         cartFormErrors.value.sizeError = false;

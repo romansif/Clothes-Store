@@ -60,25 +60,17 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 
 import photo_1 from '@/assets/photos/8.png'
 import photo_2 from '@/assets/photos/9.png'
 import photo_3 from '@/assets/photos/pants.png'
 import Notification from "@/shared/ui/Notification.vue";
-import WeekList from "@/widgets/home/week-collections/WeekList.vue";
-import YearList from "@/widgets/home/year-collections/YearList.vue";
+import WeekList from "@/features/use-week-product/ui/WeekList.vue";
+import YearList from "@/features/use-year-product/ui/YearList.vue";
 import FilterGender from "@/widgets/home/FilterGender.vue";
 
 const { notify } = useBaseModals()
-const { getWeekProducts, getYearProducts } = useGetProduct();
-
-onMounted(async () => {
-  await getWeekProducts('ALL', 'ALL');
-  await getYearProducts('ALL', 'ALL');
-})
 </script>
 
 <style scoped>

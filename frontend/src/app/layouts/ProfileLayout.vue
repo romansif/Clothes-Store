@@ -43,10 +43,10 @@ import Loading from "@/widgets/Loading.vue";
 import AddressPaymentInfo from "@/features/use-profile/ui/AddressPaymentInfo.vue";
 import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
 import DeleteModal from "@/shared/ui/DeleteModal.vue";
-import ChangeAvatar from "@/features/use-profile/ui/ChangeAvatar.vue";
+import ChangeAvatar from "@/features/use-profile-form/ui/ChangeAvatar.vue";
 import Orders from "@/features/use-order/ui/Orders.vue";
 import CurrentOrder from "@/features/use-order/ui/CurrentOrder.vue";
-import UserDataModal from "@/features/use-profile/ui/privacy/UserDataModal.vue";
+import UserDataModal from "@/features/use-profile/ui/UserDataModal.vue";
 import Notification from "@/shared/ui/Notification.vue";
 import MyProductStackInfo from "@/features/use-my-product/ui/MyProductStackInfo.vue";
 

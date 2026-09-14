@@ -1,19 +1,8 @@
 <template>
   <TransitionGroup name="list">
-    <li v-for="product in cart" :key="product.id" class="flex gap-5">
+    <li :key="product.id" class="flex gap-5">
       <div class="flex flex-col">
-        <div class="relative">
-          <router-link :to="{ name: 'product/info', params: { id: product.productId } }">
-            <img :src="productPreview(product.id, cart)" alt=""
-                 :class="productPreviewClass('w-83.75 h-45 sm:h-78.5 xl:h-100', product)">
-            <span v-if="isOutOfStack(product)" class="absolute top-45 -left-5 text-6xl font-semibold -rotate-50 w-90">
-              Out Of Stack
-            </span>
-          </router-link>
-          <img @click="toggleToFavorite(product.productId, 'favorite', product.productId)"
-               :src="isFavorite(product.productId, userData.id) ? liked : like" alt=""
-               class="absolute top-0.5 left-75.5 w-8 cursor-pointer">
-        </div>
+        <BaseProductCard :array="cart" :product="product" :size="'w-83.75 h-45 sm:h-78.5 xl:h-100'"/>
         <span class="whitespace-normal mt-2 text-[#A3A3A3] text-sm sm:text-lg">
           {{ product.material }} {{ product.category }}
         </span>
@@ -54,32 +43,27 @@
 </template>
 
 <script setup lang="ts">
-import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useUpdateCart } from "@/features/use-cart/api/update-cart.ts";
-import { useFavorite } from "@/features/use-favorite/lib/use-favorite.ts";
-import { cartStore } from "@/features/use-cart/model/cart.store.ts";
-import { useGetProduct } from "@/features/use-product/api/get-product.ts";
-import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
 import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
-import { baseClasses } from "@/shared/const/base.classes.ts";
+import { productHelper } from "@/features/use-product/lib/product.helper.ts";
+import type {Product} from "@/features/use-product/model/product.types.ts";
 
-import like from '@/assets/icons/nav/like.png';
-import liked from '@/assets/icons/nav/liked.png';
+defineProps<{
+  product: Product;
+  cart: Product[]
+}>();
+
 import del from '@/assets/icons/delete-close/delete.svg';
 import square from '@/assets/icons/squares/square.png';
 import update from '@/assets/icons/products/refresh.svg';
 import check_square from '@/assets/icons/squares/check-square.png';
+import BaseProductCard from "@/widgets/BaseProductCard.vue";
 
-const { cart } = cartStore();
-const { userData } = userStore();
-const { isFavorite } = useFavorite();
 const { sizeClass, sizeUrl } = useProfile();
-const { productPreviewClass } = baseClasses();
-const { toggleToFavorite } = useToggleFavorite();
 const { toggleDeleteChoice } = useProfileModals();
+const { pureQuantity, pureColors } = productHelper();
 const { updateCartItem, checkCartItem } = useUpdateCart();
-const { isOutOfStack, productPreview, pureQuantity, pureColors } = useGetProduct();
 
 const refreshPage = () => {
   window.location.reload();

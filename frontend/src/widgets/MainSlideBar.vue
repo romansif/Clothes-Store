@@ -20,10 +20,10 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted } from "vue";
 import { filterProduct } from "@/features/use-navigation/model/filter-product.ts";
-import { productStore } from "@/features/use-product/model/product.store.ts";
+import { productStore } from "@/features/use-main-product/model/product.store.ts";
 
-const { activeSlide } = filterProduct();
 const { mainSlides } = productStore();
+const { activeSlide } = filterProduct();
 
 let interval: ReturnType<typeof setInterval>
 

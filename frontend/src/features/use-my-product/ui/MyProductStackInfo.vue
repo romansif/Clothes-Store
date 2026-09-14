@@ -24,12 +24,11 @@
 
 <script setup lang="ts">
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
-import { useProductsModals } from "@/features/use-all-product/lib/product.modal.ts";
+import { toggleStackInfo } from "@/features/use-my-product/lib/toggle.my.product.ts";
 
 import close from "@/assets/icons/delete-close/delete.svg";
 
 const { product } = useGetProduct();
-const { toggleStackInfo } = useProductsModals();
 </script>
 
 <style scoped>

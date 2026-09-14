@@ -49,21 +49,23 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { checkoutStore } from "@/features/use-checkout/model/checkout.store.ts";
+import { informationContactStore } from "@/features/use-user-address/model/address.store.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
-import { useGetAddress } from "@/features/use-information/api/get-address.ts";
-import { useGetPayment } from "@/features/use-payment/api/get-payment.ts";
+import { useGetAddress } from "@/features/use-user-address/api/get-address.ts";
+import { useGetPayment } from "@/features/use-user-payment/api/get-payment.ts";
+import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
 
-import PaymentsList from "@/features/use-profile/ui/payment/PaymentsList.vue";
+import PaymentsList from "@/features/use-user-payment/ui/PaymentsList.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";
-import AddressesList from "@/features/use-profile/ui/address/AddressesList.vue";
+import AddressesList from "@/features/use-user-address/ui/AddressesList.vue";
 import icon_card from "@/assets/icons/checkout/payment/icon_card.svg";
 import icon_address from "@/assets/icons/checkout/icon_address.svg";
 import DeleteModal from "@/shared/ui/DeleteModal.vue";
 
+const { userPayments } = paymentStore();
 const { getPayments } = useGetPayment();
 const { getAddresses } = useGetAddress();
-const { userAddresses, userPayments } = checkoutStore();
+const { userAddresses } = informationContactStore();
 const { toggleAddressesAndCards, deleteChoice } = useProfileModals();
 
 onMounted(async () => {

@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { type RegisterFormErrors, type LoginFormErrors} from "@/features/use-auth/model/auth.types.form.ts";
 
-const registerFormErrors = ref<RegisterFormErrors>({
+export const registerFormErrors = ref<RegisterFormErrors>({
     nameError: false,
     surNameError: false,
     phoneError: false,
@@ -9,17 +9,10 @@ const registerFormErrors = ref<RegisterFormErrors>({
     passwordError: false
 })
 
-const loginFormErrors = ref<LoginFormErrors>({
+export const loginFormErrors = ref<LoginFormErrors>({
     emailError: false,
     passwordError: false,
     phoneError: false,
     validCodeError: false,
     roleError: false,
 })
-
-export const authFormsErrors = () => {
-    return{
-        registerFormErrors,
-        loginFormErrors
-    }
-}

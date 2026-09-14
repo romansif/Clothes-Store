@@ -1,15 +1,14 @@
 import { handler } from "@/shared/api/http.ts";
-import { useCheckout } from "@/features/use-checkout/lib/use-checkout.ts";
-import { checkoutForm } from "@/features/use-checkout/model/checkout.form.ts";
+import { shippingForm } from "@/features/use-shipping/model/shipping.form.ts";
 import { orderStore } from "@/features/use-order/model/order.store.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { orderPriceInfo } from "@/features/use-checkout-order/lib/order.price.info.ts";
 
 const { items } = orderStore();
 const { userData } = userStore();
-const { shipping } = checkoutForm();
-const { totalPrice } = useCheckout();
 const { openNotify } = useBaseModals();
+const { totalPrice } = orderPriceInfo();
 
 export const useAddOrder = () => {
     const addOrder = async () => {
@@ -20,7 +19,7 @@ export const useAddOrder = () => {
                     userId: userData.id,
                     orderItems: items.value,
                     orderTotal: Number(totalPrice.value),
-                    delivery: shipping.value.delivery,
+                    delivery: shippingForm.value.delivery,
                     status: 'Convene'
                 })
             })

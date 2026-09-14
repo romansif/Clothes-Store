@@ -24,7 +24,7 @@
         </label>
         <BaseInput v-model="createProductForm.title" type="text" placeholder="title, name etc."
                    :error="createProductFormErrors.titleError" variant="createProduct" required
-                   :error-message="createProductFormErrors.titleError ? createProductFormMessages.titleMessage : ''"/>
+                   :error-message="createProductFormErrors.titleError ? createProductFormErrorMessages.titleMessage : ''"/>
       </div>
     </div>
     <div class="flex gap-6">
@@ -54,7 +54,7 @@
           </option>
         </select>
         <span v-if="createProductFormErrors.collectionsError" class="text-red-600 text-xs">
-          {{ createProductFormMessages.collectionsMessage }}
+          {{ createProductFormErrorMessages.collectionsMessage }}
         </span>
       </div>
       <div class="flex flex-col gap-3 w-full">
@@ -78,7 +78,7 @@
           <option v-for="category in categories" class="text-black">{{ category.category }}</option>
         </select>
         <span v-if="createProductFormErrors.categoryError" class="text-red-600 text-xs">
-          {{ createProductFormMessages.categoryMessage }}
+          {{ createProductFormErrorMessages.categoryMessage }}
         </span>
       </div>
     </div>
@@ -104,7 +104,7 @@
           <option v-for="material in materials" class="text-black">{{ material.material }}</option>
         </select>
         <span v-if="createProductFormErrors.materialError" class="text-red-600 text-xs">
-          {{ createProductFormMessages.materialMessage }}
+          {{ createProductFormErrorMessages.materialMessage }}
         </span>
       </div>
       <div class="flex flex-col gap-3 w-full">
@@ -129,7 +129,7 @@
             <option v-for="gender in genders" class="text-black">{{ gender.gender }}</option>
           </select>
           <span v-if="createProductFormErrors.genderError" class="text-red-600 text-xs">
-            {{ createProductFormMessages.genderMessage }}
+            {{ createProductFormErrorMessages.genderMessage }}
           </span>
         </div>
       </div>
@@ -150,7 +150,7 @@
                :class="['uppercase border border-gray-300 rounded-sm outline-none px-6 py-5 text-sm bg-white ' +
                'transition duration-400 font-dm-sans', createProductFormErrors.skuError ? 'border-red-500' : '']" />
         <span v-if="createProductFormErrors.skuError" class="text-red-600 text-xs">
-          {{ createProductFormMessages.skuMessage }}
+          {{ createProductFormErrorMessages.skuMessage }}
         </span>
       </div>
       <div class="flex flex-col gap-3 w-full">
@@ -166,7 +166,7 @@
         </label>
         <BaseInput v-model="createProductForm.price" type="number" placeholder="$00.00 "
                    :error="createProductFormErrors.priceError" variant="createProduct" required
-                   :error-message="createProductFormErrors.priceError ? createProductFormMessages.priceMessage : ''"/>
+                   :error-message="createProductFormErrors.priceError ? createProductFormErrorMessages.priceMessage : ''"/>
       </div>
     </div>
     <div class="flex flex-col gap-3">
@@ -184,7 +184,7 @@
                 :class="['h-25 border border-gray-200 rounded-sm outline-none px-6 py-5 text-sm bg-white',
                 createProductFormErrors.descriptionError ? 'border-red-500' : '']" />
       <span v-if="createProductFormErrors.descriptionError" class="text-red-600 text-xs">
-        {{ createProductFormMessages.descriptionMessage }}
+        {{ createProductFormErrorMessages.descriptionMessage }}
       </span>
       <span class="ml-auto text-[#A3A3A3] text-xs font-medium">
         {{ createProductForm.title.length }} / 100
@@ -197,11 +197,11 @@
 import { watch } from "vue";
 import { IMaskComponent as IMask } from "vue-imask";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
-import { productStore } from "@/features/use-all-product/model/product.store.ts";
-import { useAddProduct } from "@/features/use-all-product/api/add-product.ts";
-import { productForms } from "@/features/use-product-form/model/product.forms.ts";
-import { productsFormErrors } from "@/features/use-product-form/lib/product.error.ts";
+import { productStore } from "@/features/use-main-product/model/product.store.ts";
+import { useAddProduct } from "@/features/use-main-product/api/add-product.ts";
 import type {Product} from "@/features/use-product/model/product.types.ts";
+import { createProductForm, createProductFormErrorMessages } from "@/features/use-product-form/model/product.forms.ts";
+import { createProductFormErrors } from "@/features/use-product-form/lib/product.error.ts";
 
 import BaseInput from "@/shared/ui/BaseInput.vue";
 
@@ -211,8 +211,6 @@ defineProps<{
 
 const { product } = useGetProduct();
 const { createProduct } = useAddProduct();
-const { createProductFormErrors } = productsFormErrors();
-const { createProductForm, createProductFormMessages } = productForms();
 const { collections, categories, materials, genders, skuMask } = productStore();
 
 

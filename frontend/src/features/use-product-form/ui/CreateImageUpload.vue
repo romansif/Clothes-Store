@@ -39,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { productStore } from "@/features/use-all-product/model/product.store.ts";
+import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import { openSelectProductCard } from "@/features/use-product-form/lib/toggle.imge.product.ts";
 
 const { productsPreview } = productStore();

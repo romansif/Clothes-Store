@@ -15,7 +15,7 @@ export interface LoginForm {
     role: string,
 }
 
-export interface RegisterFormMessage {
+export interface RegisterFormErrorMessage {
     nameMessage: string,
     surNameMessage: string,
     phoneMessage: string,
@@ -23,7 +23,7 @@ export interface RegisterFormMessage {
     passwordMessage: string,
 }
 
-export interface LoginFormMessage {
+export interface LoginFormErrorMessage {
     emailMessage: string,
     passwordMessage: string,
     phoneMessage: string,

@@ -44,10 +44,10 @@
         </div>
         <div class="flex gap-1">
           <span v-if=cartFormErrors.colorError class="text-red-600 text-xs">
-            {{ cartFormMessages.colorMessage }} /
+            {{ cartFormErrorMessages.colorMessage }} /
           </span>
             <span v-if=cartFormErrors.sizeError class="text-red-600 text-xs">
-            {{ cartFormMessages.sizeMessage }}
+            {{ cartFormErrorMessages.sizeMessage }}
           </span>
         </div>
       </div>
@@ -84,7 +84,7 @@
 
 <script setup lang="ts">
 import { watch } from "vue";
-import { productsHelper } from "@/features/use-all-product/lib/products.helper.ts";
+import { productsHelper } from "@/features/use-main-product/lib/products.helper.ts";
 import { cartHelper } from "@/features/use-cart/lib/cart.helper.ts";
 import { useUpdateCart } from "@/features/use-cart/api/update-cart.ts";
 import { useAddToCart} from "@/features/use-cart/api/add-to-cart.ts";
@@ -94,10 +94,10 @@ import { useFavorite } from "@/features/use-favorite/lib/use-favorite.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
 import { productsClasses } from "@/shared/const/product/products.classes.ts";
-import { addToCartForm } from "@/features/use-cart/model/cart.form.ts";
-import { addToCartErrors } from "@/features/use-cart/lib/cart.errors.ts";
 import { productHelper } from "@/features/use-product/lib/product.helper.ts";
 import { type Product } from "@/features/use-product/model/product.types.ts";
+import { cartForm, cartFormErrorMessages} from "@/features/use-cart/model/cart.form.ts";
+import { cartFormErrors } from "@/features/use-cart/lib/cart.errors.ts";
 
 import plus from '@/assets/icons/products/plus.svg';
 import minus from '@/assets/icons/products/minus.svg';
@@ -116,9 +116,7 @@ const { addToCart } = useAddToCart();
 const { isInStock } = productsHelper();
 const { addColor, addSize } = useCart();
 const { updateCartItem } = useUpdateCart();
-const { cartFormErrors } = addToCartErrors();
 const { toggleToFavorite } = useToggleFavorite();
-const { cartForm, cartFormMessages } = addToCartForm();
 const { selectedColorClass, selectedSizesClass } = productsClasses();
 const { variantsInfo, pureInfoColors, isAvailableSizes } = productHelper();
 

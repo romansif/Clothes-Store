@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import type { ProductFormError } from "@/features/use-product-form/model/product.types.form.ts";
 
-const createProductFormErrors = ref<ProductFormError>({
+export const createProductFormErrors = ref<ProductFormError>({
     titleError: false,
     categoryError: false,
     materialError: false,
@@ -15,9 +15,3 @@ const createProductFormErrors = ref<ProductFormError>({
     variantError: false,
     collectionsError: false,
 })
-
-export const productsFormErrors = () => {
-    return {
-        createProductFormErrors,
-    }
-}

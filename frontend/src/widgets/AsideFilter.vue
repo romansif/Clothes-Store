@@ -97,9 +97,9 @@ import { useRoute } from 'vue-router';
 import { computed, onMounted } from "vue";
 import { filterProduct } from "@/features/use-navigation/model/filter-product.ts";
 import { productsClasses } from "@/shared/const/product/products.classes.ts";
-import { useGetProduct } from "@/features/use-product/api/get-product.ts";
-import { productStore } from "@/features/use-product/model/product.store.ts";
-import { useProductsModals } from "@/features/use-product/lib/product.modal.ts";
+import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
+import { productStore } from "@/features/use-main-product/model/product.store.ts";
+import { useProductsModals } from "@/features/use-main-product/lib/product.modal.ts";
 
 import square from "@/assets/icons/squares/square.png";
 import availability from "@/assets/icons/arrows/arrow-up.png";
@@ -107,9 +107,8 @@ import left_arrow from "@/assets/icons/arrows/left-arrow.png";
 import checked from '@/assets/icons/squares/check-square.png';
 
 const { sizes } = productStore();
-const { allProducts} = useGetProduct();
-const { getAllProducts } = useGetProduct();
 const { toggleFilterAside } = useProductsModals();
+const { getAllProducts, allProducts } = useGetProducts();
 const { selectedSidebarCategoryClass } = productsClasses();
 const { toggleFilter, toggleSize, stackProducts, genders, colors, category, categories } = filterProduct();
 

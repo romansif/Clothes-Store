@@ -15,8 +15,6 @@
       <span class="text-[#A3A3A3]">THE NOIR</span>
     </div>
     <LoginForm v-if="!showSignSection.signIn" />
-    <PhoneSignIn v-if="showSignSection.signIn" />
-    <ReCaptcha />
     <div class="relative duration-400 hover:scale-105 cursor-pointer">
       <BaseButton @click="signIn" name="SIGN IN" variant="login" />
       <img :src=maki_arrow alt="" class="absolute w-6.25 top-9.5 left-58 sm:left-83">
@@ -38,11 +36,9 @@ import { clearAuthForms } from "@/features/use-auth/lib/clear.auth.ts";
 import { authStore } from "@/features/use-auth/model/auth.store.ts";
 
 import LoginForm from "@/features/use-auth/ui/LoginForm.vue";
-import PhoneSignIn from "@/features/use-auth/ui/PhoneSignIn.vue";
 import maki_arrow from "@/assets/icons/arrows/right-short-arrow.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import GoogleSignIn from "@/features/use-auth/ui/GoogleSignIn.vue";
-import ReCaptcha from "@/features/use-auth/ui/ReCaptcha.vue";
 
 const { signIn } = useAuth();
 const { showSignSection } = authStore();

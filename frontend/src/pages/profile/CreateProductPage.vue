@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { useAddProduct } from "@/features/use-all-product/api/add-product.ts";
+import { useAddProduct } from "@/features/use-main-product/api/add-product.ts";
 import { fileInput } from "@/features/use-product-form/lib/toggle.imge.product.ts";
 
 import BaseButton from "@/shared/ui/BaseButton.vue";

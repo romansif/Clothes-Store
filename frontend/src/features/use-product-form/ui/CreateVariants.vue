@@ -25,7 +25,7 @@
         <BaseInput v-model="createProductForm.quantity" @input="toggleAllVariants"
                    type="number" placeholder="product ptc." class="w-75"
                    :error="createProductFormErrors.quantityError" variant="createProduct" required
-                   :error-message="createProductFormErrors.quantityError ? createProductFormMessages.quantityMessage : ''"/>
+                   :error-message="createProductFormErrors.quantityError ? createProductFormErrorMessages.quantityMessage : ''"/>
         <span class="ml-auto mt-auto text-sm text-[#A3A3A3] font-medium">
           An equal quantity will be selected for all sizes and colors
         </span>
@@ -35,14 +35,14 @@
           <thead class="border-b-2">
           <tr class="">
             <th class="font-medium pb-4">Colors</th>
-            <th v-for="size in moreCreateItem.sizes" :key="size"
+            <th v-for="size in moreCreateItemForm.sizes" :key="size"
                 class="text-center font-medium min-w-16 pb-4">
               {{ size }}
             </th>
           </tr>
           </thead>
           <tbody class="divide-y divide-neutral-200">
-          <tr v-for="color in moreCreateItem.colors" :key="color.hex">
+          <tr v-for="color in moreCreateItemForm.colors" :key="color.hex">
             <td :title="color.hex">
               <div class="flex items-center gap-2">
                           <span :style="{ background: color.hex }"
@@ -52,7 +52,7 @@
                 </span>
               </div>
             </td>
-            <td v-for="size in moreCreateItem.sizes" :key="size" class="py-6 text-center">
+            <td v-for="size in moreCreateItemForm.sizes" :key="size" class="py-6 text-center">
               <input v-model="toggleQuantity(color.hex, color.colorName, size).count"
                      type="number" min="0" step="1" placeholder="0" :aria-label="`${color.colorName}, размер ${size}`"
                      class="w-20 h-10 outline-none border-2 border-gray-300 rounded-sm text-center" />
@@ -61,19 +61,19 @@
           </tbody>
         </table>
         <div class="flex justify-center">
-          <span v-if="!moreCreateItem.colors?.length && !moreCreateItem.sizes?.length"
+          <span v-if="!moreCreateItemForm.colors?.length && !moreCreateItemForm.sizes?.length"
                 class="py-8 text-center text-[#A3A3A3]">
             Select sizes and colors to populate the stock levels.
           </span>
-          <span v-else-if="!moreCreateItem.colors?.length" class="py-8 text-center text-[#A3A3A3]">
+          <span v-else-if="!moreCreateItemForm.colors?.length" class="py-8 text-center text-[#A3A3A3]">
             Select colors to populate the stock levels.
           </span>
-          <span v-else-if="!moreCreateItem.sizes?.length" class="py-8 text-center text-[#A3A3A3]">
+          <span v-else-if="!moreCreateItemForm.sizes?.length" class="py-8 text-center text-[#A3A3A3]">
             Select sizes to populate the stock levels.
           </span>
         </div>
         <span v-if="createProductFormErrors.variantError" class="text-red-600 text-xs">
-          {{ createProductFormMessages.variantMessage }}
+          {{ createProductFormErrorMessages.variantMessage }}
         </span>
       </div>
     </div>
@@ -86,17 +86,17 @@
           </div>
         </label>
         <span class="ml-auto text-[#A3A3A3] text-xs font-medium">
-          Sizes: {{ moreCreateItem.sizes.length }} / 6
+          Sizes: {{ moreCreateItemForm.sizes.length }} / 6
         </span>
       </div>
       <div class="flex gap-6">
         <img v-for="size in sizes" :key="size.name" :src=size.url alt="" @click="toggleSize(size.name)"
-             :class="[size.class, moreCreateItem.sizes.includes(size.name)
+             :class="[size.class, moreCreateItemForm.sizes.includes(size.name)
                               ? 'transition duration-400 scale-110 w-15 rounded-full'
                               : 'transition duration-400 hover:scale-110 w-15 rounded-full']">
       </div>
       <span v-if="createProductFormErrors.sizeError" class="text-red-600 text-xs">
-        {{ createProductFormMessages.sizeMessage }}
+        {{ createProductFormErrorMessages.sizeMessage }}
       </span>
     </div>
     <div class="flex flex-col gap-3 w-full">
@@ -108,14 +108,14 @@
           </div>
         </label>
         <span class="ml-auto text-[#A3A3A3] text-xs font-medium">
-          Colors: {{ moreCreateItem.colors.length }} / 6
+          Colors: {{ moreCreateItemForm.colors.length }} / 6
         </span>
       </div>
       <div class="flex gap-6">
-        <div v-for="color in moreCreateItem.colors" :key="color.hex" :title="color.hex"
+        <div v-for="color in moreCreateItemForm.colors" :key="color.hex" :title="color.hex"
              :style="{ background: color.hex }" @click="toggleColor(color.hex, $event)"
              class="w-15 h-15 border-2 border-[#A3A3A3] rounded-full transition-all duration-300 scale-110"></div>
-        <label v-if="moreCreateItem.colors?.length < 6" title="Выбрать любой цвет"
+        <label v-if="moreCreateItemForm.colors?.length < 6" title="Выбрать любой цвет"
                class="w-16 h-16 border-2 rounded-full border-dashed border-gray-300 bg-white
                            flex items-center justify-center text-gray-400 cursor-pointer transition-all duration-400
                            hover:scale-108 hover:border-black hover:text-black text-2xl font-light relative overflow-hidden">+
@@ -124,7 +124,7 @@
         </label>
       </div>
       <span v-if="createProductFormErrors.colorError" class="text-red-600 text-xs">
-        {{ createProductFormMessages.colorMessage }}
+        {{ createProductFormErrorMessages.colorMessage }}
       </span>
     </div>
   </div>
@@ -132,19 +132,17 @@
 
 <script setup lang="ts">
 import { watch } from "vue";
-import { productStore } from "@/features/use-all-product/model/product.store.ts";
-import { productForms } from "@/features/use-product-form/model/product.forms.ts";
-import { productsFormErrors } from "@/features/use-product-form/lib/product.error.ts";
+import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import { productFormHelper } from "@/features/use-product-form/lib/product.form.helper.ts";
+import { createProductForm, moreCreateItemForm, createProductFormErrorMessages } from "@/features/use-product-form/model/product.forms.ts";
+import { createProductFormErrors } from "@/features/use-product-form/lib/product.error.ts";
 
 import BaseInput from "@/shared/ui/BaseInput.vue";
 
 const { sizes, countMode } = productStore();
-const { createProductFormErrors } = productsFormErrors();
-const { createProductForm, moreCreateItem, createProductFormMessages } = productForms();
 const { toggleAllVariants, toggleQuantity, toggleSize, toggleColor } = productFormHelper();
 
-watch(() => [moreCreateItem.sizes.length, moreCreateItem.colors.length, moreCreateItem.variants.length],
+watch(() => [moreCreateItemForm.sizes.length, moreCreateItemForm.colors.length, moreCreateItemForm.variants.length],
     ([sizes, colors, variants]) => {
       if(sizes){
         createProductFormErrors.value.sizeError = false;

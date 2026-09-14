@@ -1,7 +1,6 @@
-import { addToCartForm } from "@/features/use-cart/model/cart.form.ts";
-import {type ColorItem, type Product, type Size} from "@/features/use-product/model/product.types.ts";
+import { cartForm } from "@/features/use-cart/model/cart.form.ts";
+import type { ColorItem, Product, Size } from "@/features/use-product/model/product.types.ts";
 
-const { cartForm } = addToCartForm();
 
 export const productsClasses = () => {
     const selectedSizeClass = (style: string, isActive: boolean) => [

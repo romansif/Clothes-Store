@@ -1,8 +1,5 @@
-import { productForms } from "@/features/use-product-form/model/product.forms.ts";
-import { productsFormErrors } from "@/features/use-product-form/lib/product.error.ts";
-
-const { createProductFormErrors } = productsFormErrors();
-const { createProductForm, createProductFormMessages, moreCreateItem } = productForms();
+import { createProductForm, moreCreateItemForm, createProductFormErrorMessages } from "@/features/use-product-form/model/product.forms.ts";
+import { createProductFormErrors } from "@/features/use-product-form/lib/product.error.ts";
 
 export const clearProductForm = () => {
     createProductForm.value.title = '';
@@ -17,18 +14,18 @@ export const clearProductForm = () => {
         season: '',
         name: ''
     };
-    moreCreateItem.sizes = [];
-    moreCreateItem.colors = [];
+    moreCreateItemForm.sizes = [];
+    moreCreateItemForm.colors = [];
 
-    createProductFormMessages.value.titleMessage = '';
-    createProductFormMessages.value.colorMessage = '';
-    createProductFormMessages.value.materialMessage = '';
-    createProductFormMessages.value.descriptionMessage = '';
-    createProductFormMessages.value.priceMessage = '';
-    createProductFormMessages.value.colorMessage = '';
-    createProductFormMessages.value.sizeMessage = '';
-    createProductFormMessages.value.variantMessage = '';
-    createProductFormMessages.value.collectionsMessage = '';
+    createProductFormErrorMessages.value.titleMessage = '';
+    createProductFormErrorMessages.value.colorMessage = '';
+    createProductFormErrorMessages.value.materialMessage = '';
+    createProductFormErrorMessages.value.descriptionMessage = '';
+    createProductFormErrorMessages.value.priceMessage = '';
+    createProductFormErrorMessages.value.colorMessage = '';
+    createProductFormErrorMessages.value.sizeMessage = '';
+    createProductFormErrorMessages.value.variantMessage = '';
+    createProductFormErrorMessages.value.collectionsMessage = '';
 
     createProductFormErrors.value.titleError = false;
     createProductFormErrors.value.categoryError = false;

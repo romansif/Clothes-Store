@@ -4,9 +4,9 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useGetAddress } from "@/features/use-information/api/get-address.ts";
+import { useGetAddress } from "@/features/use-user-address/api/get-address.ts";
 
-import CheckoutInfo from "@/features/use-information/ui/CheckoutInfo.vue";
+import CheckoutInfo from "@/features/use-checkout-contact-info/ui/CheckoutInfo.vue";
 
 const { getAddresses } = useGetAddress();
 

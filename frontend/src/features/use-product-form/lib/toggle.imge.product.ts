@@ -1,5 +1,5 @@
-import {ref} from "vue";
-import {productStore} from "@/features/use-all-product/model/product.store.ts";
+import { ref } from "vue";
+import { productStore } from "@/features/use-main-product/model/product.store.ts";
 
 const { currentFile } = productStore();
 

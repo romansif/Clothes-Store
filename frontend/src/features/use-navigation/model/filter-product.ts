@@ -1,9 +1,15 @@
 import { ref } from "vue";
-import { useGetProduct } from "@/features/use-product/api/get-product.ts";
-import { productStore } from "@/features/use-product/model/product.store.ts";
+import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
+import { productStore } from "@/features/use-main-product/model/product.store.ts";
+import { useGetWeekProduct } from "@/features/use-week-product/api/get-week-product.ts";
+import { useGetYearProduct } from "@/features/use-year-product/api/get-year-product.ts";
+import { useGetSeasonProducts } from "@/features/use-season-product/api/get-season-product.ts";
 
 const { sizes } = productStore();
-const { getFilteredProducts, getWeekProducts, getYearProducts, getSeasonal } = useGetProduct();
+const { getFilteredProducts } = useGetProducts();
+const { getWeekProducts } = useGetWeekProduct();
+const { getYearProducts } = useGetYearProduct();
+const { getSeasonal } = useGetSeasonProducts();
 
 export const filterProduct = () => {
     const selectedGender = ref<string>('ALL');

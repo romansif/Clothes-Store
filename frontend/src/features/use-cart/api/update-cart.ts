@@ -3,11 +3,11 @@ import type {CartItem} from "@/features/use-cart/model/cart.types.ts";
 import { orderStore } from "@/features/use-order/model/order.store.ts";
 import { cartStore } from "@/features/use-cart/model/cart.store.ts";
 import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
-import { useGetProduct } from "@/features/use-product/api/get-product.ts"
+import { useGetProducts } from "@/features/use-main-product/api/get-product.ts"
 import { useDeleteCart } from "@/features/use-cart/api/delete-cart.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { addToCartErrors } from "@/features/use-cart/lib/cart.errors.ts";
+import { isAgreeFormError } from "@/features/use-cart/lib/cart.errors.ts";
 
 const { cart } = cartStore();
 const { userData } = userStore();
@@ -15,8 +15,7 @@ const { orderItems } = orderStore();
 const { openNotify } = useBaseModals();
 const { getCartProducts } = useGetCart();
 const { deleteProductCart } = useDeleteCart();
-const { isAgreeFormError } = addToCartErrors();
-const { getAllProducts, allProducts, products } = useGetProduct();
+const { getAllProducts, allProducts, products } = useGetProducts();
 
 export const useUpdateCart = () => {
     const checkCartItem = async (id: string, product: CartItem) => {

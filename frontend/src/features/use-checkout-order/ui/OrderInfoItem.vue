@@ -1,7 +1,6 @@
 <template>
   <TransitionGroup name="list">
-    <li v-for="product in items" :key="product?.id"
-        class="flex justify-between gap-3 w-full">
+    <li :key="product?.id" class="flex justify-between gap-3 w-full">
       <div class="flex items-center gap-3 font-medium text-xs">
         <router-link :to="{ name: 'product/info', params: { id: product.id } }">
           <img :src="orderPreview(product?.id, 'ADD')" alt="" class="w-28.25 cursor-pointer">
@@ -25,11 +24,17 @@
 </template>
 
 <script setup lang="ts">
-import { orderStore } from "@/features/use-order/model/order.store.ts";
-import { useGetProduct } from "@/features/use-product/api/get-product.ts";
+import type { OrderItem } from "@/features/use-order/model/order.types.ts";
+import { productHelper } from "@/features/use-product/lib/product.helper.ts";
+import { orderPreview } from "@/features/use-checkout-order/lib/checkout.order.helper.ts";
+import type {Product} from "@/features/use-product/model/product.types.ts";
 
-const { items } = orderStore();
-const { orderPreview, pureQuantity, pureColorsName } = useGetProduct();
+defineProps<{
+  product: Product
+  items: OrderItem[];
+}>()
+
+const { pureQuantity, pureColorsName } = productHelper();
 </script>
 
 <style scoped>

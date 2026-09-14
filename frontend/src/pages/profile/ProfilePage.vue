@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useGetUsers } from "@/features/use-auth/api/get-users.ts";
+import { useGetUsers } from "@/features/use-profile/api/get-users.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { profileClasses } from "@/shared/const/user/profile.classes.ts";
 

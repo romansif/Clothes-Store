@@ -84,8 +84,8 @@
 
 <script setup lang="ts">
 import { filterProduct } from "@/features/use-navigation/model/filter-product.ts";
-import { productStore } from "@/features/use-product/model/product.store.ts";
-import { useGetProduct } from "@/features/use-product/api/get-product.ts";
+import { productStore } from "@/features/use-main-product/model/product.store.ts";
+import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
 import { productsClasses } from "@/shared/const/product/products.classes.ts";
 
 import square from '@/assets/icons/squares/square.png'
@@ -93,7 +93,7 @@ import checked from '@/assets/icons/squares/check-square.png'
 import availability from '@/assets/icons/arrows/arrow-up.png'
 
 const { sizes } = productStore();
-const { allProducts } = useGetProduct();
+const { allProducts } = useGetProducts();
 const { selectedSizeClass, selectedFilterClass } = productsClasses();
 const { toggleFilter, toggleSize, stackProducts, genders, colors } = filterProduct();
 </script>

@@ -25,7 +25,7 @@
         <BaseInput v-model="createProductForm.quantity" @input="toggleAllVariants"
                    type="number" placeholder="product ptc." class="w-75"
                    :error="createProductFormErrors.quantityError" variant="createProduct" required
-                   :error-message="createProductFormErrors.quantityError ? createProductFormMessages.quantityMessage : ''"/>
+                   :error-message="createProductFormErrors.quantityError ? createProductFormErrorMessages.quantityMessage : ''"/>
         <span class="ml-auto mt-auto text-sm text-[#A3A3A3] font-medium">
             An equal quantity will be selected for all sizes and colors
           </span>
@@ -72,8 +72,8 @@
             <span class="text-red-500">*</span>
             <span>/</span>
             <span class="text-black uppercase">
-                         {{ pureSizesName(product) }}
-                      </span>
+              {{ pureSizesName(product) }}
+            </span>
           </div>
         </label>
         <span class="ml-auto text-[#A3A3A3] text-xs font-medium">
@@ -85,7 +85,7 @@
              :class="[size.class, 'transition duration-400 scale-110 w-15 rounded-full']">
       </div>
       <span v-if="createProductFormErrors.sizeError" class="text-red-600 text-xs">
-        {{ createProductFormMessages.sizeMessage }}
+        {{ createProductFormErrorMessages.sizeMessage }}
       </span>
     </div>
     <div class="flex flex-col gap-3 w-full">
@@ -113,19 +113,19 @@
         </label>
       </div>
       <span v-if="createProductFormErrors.colorError" class="text-red-600 text-xs">
-        {{ createProductFormMessages.colorMessage }}
+        {{ createProductFormErrorMessages.colorMessage }}
       </span>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { productStore } from "@/features/use-all-product/model/product.store.ts";
+import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import { useUpdateProduct } from "@/features/use-product-form/api/update-product.ts";
-import { productForms } from "@/features/use-product-form/model/product.forms.ts";
-import { productsFormErrors } from "@/features/use-product-form/lib/product.error.ts";
-import {productHelper} from "@/features/use-product/lib/product.helper.ts";
-import {productFormHelper} from "@/features/use-product-form/lib/product.form.helper.ts";
+import { productHelper } from "@/features/use-product/lib/product.helper.ts";
+import { productFormHelper } from "@/features/use-product-form/lib/product.form.helper.ts";
+import { createProductForm, createProductFormErrorMessages } from "@/features/use-product-form/model/product.forms.ts";
+import { createProductFormErrors } from "@/features/use-product-form/lib/product.error.ts";
 import type {Product} from "@/features/use-product/model/product.types.ts";
 
 import BaseInput from "@/shared/ui/BaseInput.vue";
@@ -136,9 +136,7 @@ defineProps<{
 
 const { countMode } = productStore();
 const { toggleAllVariants } = productFormHelper();
-const { createProductFormErrors } = productsFormErrors();
 const { updateProductCount, updateProductColors } = useUpdateProduct();
-const { createProductForm, createProductFormMessages } = productForms();
 const { pureInfoColors, pureColorsName, pureSizesName, isAvailableSizes, uniqueSizes, uniqueColors } = productHelper();
 </script>
 

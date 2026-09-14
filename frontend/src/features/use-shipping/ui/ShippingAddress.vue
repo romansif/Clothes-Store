@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { informationContactStore } from "@/features/use-information/model/address.store.ts";
+import { informationContactStore } from "@/features/use-user-address/model/address.store.ts";
 
 const { userAddress } = informationContactStore();
 </script>

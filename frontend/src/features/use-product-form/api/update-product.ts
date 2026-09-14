@@ -3,14 +3,13 @@ import router from "@/app/router";
 import {handler} from "@/shared/api/http.ts";
 import type { ColorItem, Product} from "@/features/use-product/model/product.types.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { productForms } from "@/features/use-product-form/model/product.forms.ts";
-import { productStore } from "@/features/use-all-product/model/product.store.ts";
+import { createProductForm } from "@/features/use-product-form/model/product.forms.ts";
+import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 
 const { getProduct } = useGetProduct();
 const { currentFile } = productStore();
 const { openNotify } = useBaseModals();
-const { createProductForm } = productForms();
 
 export const useUpdateProduct = () => {
     const updateProductImages = async (product: Product, event: Event) => {

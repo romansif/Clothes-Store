@@ -1,8 +1,8 @@
 import { reactive, ref } from 'vue'
-import type { ProductForm, ProductColor, ProductFormMessage} from "@/features/use-product-form/model/product.types.form.ts";
-import type {Variant} from "@/features/use-product/model/product.types.ts";
+import type { ProductForm, ProductColor, ProductFormErrorMessage} from "@/features/use-product-form/model/product.types.form.ts";
+import type { Variant } from "@/features/use-product/model/product.types.ts";
 
-const createProductForm = ref<ProductForm>({
+export const createProductForm = ref<ProductForm>({
     productUrl: '',
     title: '',
     category: '',
@@ -16,13 +16,13 @@ const createProductForm = ref<ProductForm>({
     collection: '',
 })
 
-const moreCreateItem = reactive({
+export const moreCreateItemForm = reactive({
     colors: [] as ProductColor[],
     sizes: [] as string[],
     variants: [] as Variant[],
 })
 
-const createProductFormMessages = ref<ProductFormMessage>({
+export const createProductFormErrorMessages = ref<ProductFormErrorMessage>({
     titleMessage: '',
     categoryMessage: '',
     materialMessage: '',
@@ -36,11 +36,3 @@ const createProductFormMessages = ref<ProductFormMessage>({
     variantMessage: '',
     collectionsMessage: '',
 })
-
-export const productForms = () => {
-    return {
-        createProductForm,
-        moreCreateItem,
-        createProductFormMessages,
-    }
-}

@@ -12,7 +12,7 @@
       </div>
     </div>
     <ul v-else class="flex flex-col gap-8 overflow-y-auto no-scrollbar h-125 mt-6">
-      <OrderItem />
+      <OrderItem v-for="order in orders" :order="order" />
     </ul>
   </Transition>
 </template>

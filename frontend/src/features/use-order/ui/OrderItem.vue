@@ -1,6 +1,6 @@
 <template>
   <TransitionGroup name="list">
-    <li v-for="order in orders" :key="order.id" class="flex flex-col">
+    <li :key="order.id" class="flex flex-col">
       <div class="flex bg-gray-50 p-3 border-b border-gray-300">
         <div class="flex flex-col gap-2">
           <div class="flex flex-col gap-2">
@@ -72,20 +72,24 @@
 
 <script setup lang="ts">
 import { useOrder } from "@/features/use-order/lib/use-order.ts";
-import { orderStore } from "@/features/use-order/model/order.store.ts";
-import { useGetProduct } from "@/features/use-product/api/get-product.ts";
+import { orderPreview } from "@/features/use-checkout-order/lib/checkout.order.helper.ts";
+import { productHelper } from "@/features/use-product/lib/product.helper.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { ordersClasses } from "@/shared/const/product/orders.classes.ts";
+import type { Order } from "@/features/use-order/model/order.types.ts";
+
+defineProps<{
+  order: Order
+}>();
 
 import copy_btn from '@/assets/icons/squares/copy.svg';
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import OrderStatus from "@/features/use-order/ui/OrderStatus.vue";
 
-const { orders } = orderStore();
 const { toggleOrder } = useBaseModals();
 const { orderStatus } = ordersClasses();
 const { copyText, orderQuantity } = useOrder();
-const { orderPreview, pureColorsName } = useGetProduct();
+const { pureColorsName } = productHelper();
 </script>
 
 <style scoped>

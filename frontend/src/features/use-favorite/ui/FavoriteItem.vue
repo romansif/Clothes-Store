@@ -1,19 +1,8 @@
 <template>
   <TransitionGroup name="list">
-    <li v-for="product in favorite" :key="product.id" class="flex gap-5">
+    <li :key="product.id" class="flex gap-5">
       <div class="flex flex-col">
-        <div class="relative">
-          <router-link :to="{ name: 'product/info', params: { id: product.productId } }">
-            <img :src="productPreview(product.id, favorite)" alt=""
-                 :class="productPreviewClass('w-83.75 h-45 sm:h-78.5 xl:h-100', product)">
-            <span v-if="isOutOfStack(product)" class="absolute top-45 -left-5 text-6xl font-semibold -rotate-50 w-90">
-              Out Of Stack
-            </span>
-          </router-link>
-          <img @click="toggleToFavorite(product.productId, 'favorite', product.productId)"
-               :src="isFavorite(product.productId, userData.id) ? liked : like" alt=""
-               class="absolute top-0.5 left-75.5 w-8 cursor-pointer">
-        </div>
+        <BaseProductCard :product="product" :array="favorite" :size="'w-83.75 h-45 sm:h-78.5 xl:h-100'" />
         <span class="whitespace-normal mt-2 text-[#A3A3A3] text-sm sm:text-lg">
           {{ product.material }} {{ product.category }}
         </span>
@@ -34,23 +23,15 @@
 </template>
 
 <script setup lang="ts">
-import { useFavorite } from "@/features/use-favorite/lib/use-favorite.ts";
-import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { baseClasses } from "@/shared/const/base.classes.ts";
-import { useGetProduct } from "@/features/use-product/api/get-product.ts";
-import { favoriteStore } from "@/features/use-favorite/model/favorite.store.ts";
-import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
+import type {Product} from "@/features/use-product/model/product.types.ts";
 
-import like from "@/assets/icons/nav/like.png";
+defineProps<{
+  product: Product
+  favorite: Product[]
+}>();
+
 import update from "@/assets/icons/products/refresh.svg";
-import liked from "@/assets/icons/nav/liked.png";
-
-const { userData } = userStore();
-const { favorite } = favoriteStore();
-const { isFavorite } = useFavorite();
-const { productPreviewClass } = baseClasses();
-const { toggleToFavorite } = useToggleFavorite();
-const { isOutOfStack, productPreview } = useGetProduct();
+import BaseProductCard from "@/widgets/BaseProductCard.vue";
 
 const refreshPage = () => {
   window.location.reload();

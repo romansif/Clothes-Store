@@ -5,7 +5,7 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { useGetShipping } from "@/features/use-shipping/api/get-shipping.ts";
-import { useGetAddress } from "@/features/use-information/api/get-address.ts";
+import { useGetAddress } from "@/features/use-user-address/api/get-address.ts";
 
 import CheckoutShipping from "@/features/use-shipping/ui/CheckoutShipping.vue";
 

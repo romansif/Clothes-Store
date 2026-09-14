@@ -46,20 +46,18 @@
 <script setup lang="ts">
 import { watch } from "vue";
 import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
-import {addToCartForm} from "@/features/use-cart/model/cart.form.ts";
-import {addToCartErrors} from "@/features/use-cart/lib/cart.errors.ts";
+import { isAgreeFormErrorMessage} from "@/features/use-cart/model/cart.form.ts";
+import { isAgreeFormError } from "@/features/use-cart/lib/cart.errors.ts";
 
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import square from '@/assets/icons/squares/square.png';
 import check_square from '@/assets/icons/squares/check-square.png';
 
-const { isAgreeFormMessage } = addToCartForm();
-const { isAgreeFormError } = addToCartErrors();
 const { toggleAgree, continueToOrder, price, totalPrice, commissionPrice } = useProfile();
 
 watch(() => isAgreeFormError.value.agreeError, (agreeError) => {
   if(agreeError) {
-    isAgreeFormMessage.value.agreeMessage = '';
+    isAgreeFormErrorMessage.value.agreeMessage = '';
   }
 })
 </script>
