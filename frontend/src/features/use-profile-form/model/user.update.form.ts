@@ -11,10 +11,10 @@ export const updateUserForm = ref<UserForm>({
 })
 
 export const updateUserFormMessage = ref<UserFormMessage>({
-    nameMessage: '',
-    surNameMessage: '',
-    phoneMessage: '',
-    emailMessage: '',
-    oldPasswordMessage: '',
-    newPasswordMessage: '',
+    name: '',
+    surName: '',
+    phone: '',
+    email: '',
+    oldPassword: '',
+    newPassword: '',
 })

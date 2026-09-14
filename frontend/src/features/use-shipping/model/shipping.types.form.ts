@@ -3,9 +3,9 @@ export interface ShippingForm {
 }
 
 export interface ShippingFormErrorMessage {
-    deliveryMessage: string,
+    delivery: string,
 }
 
 export interface ShippingFormError {
-    deliveryError: boolean
+    delivery: boolean
 }

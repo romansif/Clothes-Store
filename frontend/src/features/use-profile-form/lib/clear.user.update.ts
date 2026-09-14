@@ -1,40 +1,40 @@
 import { updateUserForm, updateUserFormMessage } from "@/features/use-profile-form/model/user.update.form";
-import { updateUserFormErrors } from "@/features/use-profile-form/lib/user.update.error.ts";
+import { updateUserFormErrors } from "@/features/use-profile-form/model/user.update.error.ts";
 
 export const clearUsersForms = () => {
     const clearUpdateUserFormName = () => {
         updateUserForm.value.name = '';
-        updateUserFormMessage.value.nameMessage = '';
-        updateUserFormErrors.value.nameError = false;
+        updateUserFormMessage.value.name = '';
+        updateUserFormErrors.value.name = false;
     }
 
     const clearUpdateUserFormSurName = () => {
         updateUserForm.value.surName = '';
-        updateUserFormMessage.value.surNameMessage = '';
-        updateUserFormErrors.value.surNameError = false;
+        updateUserFormMessage.value.surName = '';
+        updateUserFormErrors.value.surName = false;
     }
 
     const clearUpdateUserFormPhone = () => {
         updateUserForm.value.phone = '';
-        updateUserFormMessage.value.phoneMessage = '';
-        updateUserFormErrors.value.phoneError = false;
+        updateUserFormMessage.value.phone = '';
+        updateUserFormErrors.value.phone = false;
     }
 
 
     const clearUpdateUserFormEmail = () => {
         updateUserForm.value.email = '';
-        updateUserFormMessage.value.emailMessage = '';
-        updateUserFormErrors.value.emailError = false;
+        updateUserFormMessage.value.email = '';
+        updateUserFormErrors.value.email = false;
     }
 
     const clearUpdateUserFormPassword = () => {
         updateUserForm.value.oldPassword = '';
-        updateUserFormMessage.value.oldPasswordMessage = '';
-        updateUserFormErrors.value.oldPasswordError = false;
+        updateUserFormMessage.value.oldPassword = '';
+        updateUserFormErrors.value.oldPassword = false;
 
         updateUserForm.value.newPassword = '';
-        updateUserFormMessage.value.newPasswordMessage = '';
-        updateUserFormErrors.value.newPasswordError = false;
+        updateUserFormMessage.value.newPassword = '';
+        updateUserFormErrors.value.newPassword = false;
     }
 
     const clearUpdateUserForm = () => {
@@ -45,19 +45,19 @@ export const clearUsersForms = () => {
         updateUserForm.value.newPassword = '';
         updateUserForm.value.oldPassword = '';
 
-        updateUserFormMessage.value.nameMessage = '';
-        updateUserFormMessage.value.phoneMessage = '';
-        updateUserFormMessage.value.emailMessage = '';
-        updateUserFormMessage.value.surNameMessage = '';
-        updateUserFormMessage.value.newPasswordMessage = '';
-        updateUserFormMessage.value.oldPasswordMessage = '';
+        updateUserFormMessage.value.name = '';
+        updateUserFormMessage.value.phone = '';
+        updateUserFormMessage.value.email = '';
+        updateUserFormMessage.value.surName = '';
+        updateUserFormMessage.value.newPassword = '';
+        updateUserFormMessage.value.oldPassword = '';
 
-        updateUserFormErrors.value.nameError = false;
-        updateUserFormErrors.value.phoneError = false;
-        updateUserFormErrors.value.emailError = false;
-        updateUserFormErrors.value.surNameError = false;
-        updateUserFormErrors.value.oldPasswordError = false;
-        updateUserFormErrors.value.newPasswordError = false;
+        updateUserFormErrors.value.name = false;
+        updateUserFormErrors.value.phone = false;
+        updateUserFormErrors.value.email = false;
+        updateUserFormErrors.value.surName = false;
+        updateUserFormErrors.value.oldPassword = false;
+        updateUserFormErrors.value.newPassword = false;
     }
 
     return{

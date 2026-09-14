@@ -13,22 +13,22 @@
       <input v-model="informationForm.addressName" type="text" placeholder="Address Name is optional" :class="addressNameClass()" />
       <div class="flex gap-2">
         <CheckoutInput v-model="informationForm.firstName" type="text" variant="checkoutInfo"
-            :placeholder="firstNamePlaceholder" :error="informationFormErrors.firstNameError" />
+            :placeholder="firstNamePlaceholder" :error="informationFormErrors.firstName" />
         <CheckoutInput v-model="informationForm.lastName" type="text" variant="checkoutInfo"
-            :placeholder="lastNamePlaceholder" :error="informationFormErrors.lastNameError" />
+            :placeholder="lastNamePlaceholder" :error="informationFormErrors.lastName" />
       </div>
       <div class="flex flex-col gap-3">
         <CheckoutInput v-model="informationForm.country" type="text" variant="checkoutInfo"
-             :placeholder="countryPlaceholder" :error="informationFormErrors.countryError" />
+             :placeholder="countryPlaceholder" :error="informationFormErrors.country" />
         <CheckoutInput v-model="informationForm.stateRegion" type="text" variant="checkoutInfo"
-            :placeholder="statePlaceholder" :error="informationFormErrors.stateRegionError"  />
+            :placeholder="statePlaceholder" :error="informationFormErrors.stateRegion"  />
         <CheckoutInput v-model="informationForm.address" type="text" :placeholder="addressPlaceholder"
-            :error="informationFormErrors.addressError" variant="checkoutInfo" />
+            :error="informationFormErrors.address" variant="checkoutInfo" />
       </div>
       <div class="flex gap-2">
         <div class="flex flex-col w-full">
           <CheckoutInput v-model="informationForm.city" type="text" variant="checkoutInfo"
-            :placeholder="cityPlaceholder" :error="informationFormErrors.cityError" />
+            :placeholder="cityPlaceholder" :error="informationFormErrors.city" />
         </div>
         <div class="flex flex-col w-full">
           <IMask v-model:value="informationForm.postalCode" type="text" :placeholder="postalCodePlaceholder"
@@ -42,7 +42,7 @@
 <script setup lang="ts">
 import { IMaskComponent as IMask } from "vue-imask";
 import { informationForm } from "@/features/use-checkout-contact-info/model/address.form.ts";
-import { informationFormErrors } from "@/features/use-checkout-contact-info/lib/address.errors.ts";
+import { informationFormErrors } from "@/features/use-checkout-contact-info/model/address.errors.ts";
 import { useInformationFormInput } from "@/features/use-checkout-contact-info/lib/address-input.ts";
 import { informationContactStore } from "@/features/use-user-address/model/address.store.ts";
 import { informationClasses } from "@/shared/const/checkout/information.classes.ts";

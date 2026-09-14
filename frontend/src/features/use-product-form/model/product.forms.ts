@@ -23,16 +23,16 @@ export const moreCreateItemForm = reactive({
 })
 
 export const createProductFormErrorMessages = ref<ProductFormErrorMessage>({
-    titleMessage: '',
-    categoryMessage: '',
-    materialMessage: '',
-    descriptionMessage: '',
-    priceMessage: '',
-    colorMessage: '',
-    sizeMessage: '',
-    genderMessage: '',
-    skuMessage: '',
-    quantityMessage: '',
-    variantMessage: '',
-    collectionsMessage: '',
+    title: '',
+    category: '',
+    material: '',
+    description: '',
+    price: '',
+    color: '',
+    size: '',
+    gender: '',
+    sku: '',
+    quantity: '',
+    variant: '',
+    collections: '',
 })

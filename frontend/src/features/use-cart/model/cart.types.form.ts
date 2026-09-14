@@ -6,20 +6,20 @@ export interface AddForm {
 }
 
 export interface AddFormErrorMessage {
-    colorMessage: string,
-    sizeMessage: string,
+    color: string,
+    size: string,
 }
 
 export interface AddFormError {
-    colorError: boolean,
-    sizeError: boolean,
+    color: boolean,
+    size: boolean,
 }
 
 export interface IsAgreeFormErrorMessage {
-    agreeMessage: string,
+    agree: string,
 }
 
 export interface IsAgreeFormError {
-    agreeError: boolean,
-    agreeMessageError: boolean,
+    agree: boolean,
+    agreeMessage: boolean,
 }

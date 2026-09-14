@@ -14,7 +14,7 @@
 import { watch } from "vue";
 import { useAddShipping } from "@/features/use-shipping/api/add-shipping.ts";
 import { shippingForm } from "@/features/use-shipping/model/shipping.form.ts";
-import { shippingFormError } from "@/features/use-shipping/lib/shipping.errors.ts";
+import { shippingFormError } from "@/features/use-shipping/model/shipping.errors.ts";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";
@@ -25,7 +25,7 @@ const { addShipping } = useAddShipping();
 
 watch(() => shippingForm.value.delivery, (delivery) => {
   if(delivery){
-    shippingFormError.value.deliveryError = false;
+    shippingFormError.value.delivery = false;
   }
 })
 </script>

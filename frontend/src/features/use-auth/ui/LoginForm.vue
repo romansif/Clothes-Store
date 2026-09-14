@@ -4,8 +4,8 @@
       <div class="flex flex-col gap-3">
         <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">EMAIL OR PHONE</label>
         <BaseInput v-model=loginForm.email type="email" placeholder="example@mail.com"
-                   :error="loginFormErrors.emailError" variant="auth" required
-                   :error-message="loginFormErrors.emailError ? loginFormErrorMessages.emailMessage : ''" />
+                   :error="loginFormErrors.email" variant="auth" required
+                   :error-message="loginFormErrors.email ? loginFormErrorMessages.email : ''" />
       </div>
       <div class="flex flex-col gap-3">
         <div class="flex">
@@ -14,10 +14,10 @@
         </div>
         <div class="relative">
           <BaseInput v-model=loginForm.password :type="showPassword.password ? 'text' : 'password'" placeholder="••••••••"
-                     :error="loginFormErrors.passwordError" variant="auth" required
-                     :error-message="loginFormErrors.passwordError ? loginFormErrorMessages.passwordMessage : ''" />
+                     :error="loginFormErrors.password" variant="auth" required
+                     :error-message="loginFormErrors.password ? loginFormErrorMessages.password : ''" />
           <img @click=togglePassword :src="showPassword.password ? opened : closed" alt=""
-               :class="['absolute w-7.5 top-1/4 left-57 sm:left-82', loginFormErrors.passwordError ? 'top-1/6' : '']">
+               :class="['absolute w-7.5 top-1/4 left-57 sm:left-82', loginFormErrors.password ? 'top-1/6' : '']">
         </div>
       </div>
       <div class="flex flex-col gap-3">
@@ -36,7 +36,7 @@
             </span>
           </div>
         </div>
-        <span v-if=loginFormErrors.roleError class="text-red-600 text-xs">{{ loginFormErrorMessages.roleMessage }}</span>
+        <span v-if=loginFormErrors.role class="text-red-600 text-xs">{{ loginFormErrorMessages.role }}</span>
       </div>
     </div>
   </form>
@@ -49,7 +49,7 @@ import { toggleAuth } from "@/features/use-auth/lib/toggle-auth.ts";
 import { authStore } from "@/features/use-auth/model/auth.store.ts";
 import { authClasses } from "@/shared/const/auth/auth.classes.ts";
 import { loginForm, loginFormErrorMessages } from "@/features/use-auth/model/auth.forms.ts";
-import { loginFormErrors } from "@/features/use-auth/lib/auth.errors.ts";
+import { loginFormErrors } from "@/features/use-auth/model/auth.errors.ts";
 
 import closed from "@/assets/icons/auth/closed.png";
 import opened from "@/assets/icons/auth/opened.png";
@@ -62,13 +62,13 @@ const { signInRoleClass } = authClasses();
 
 watch(() => [loginForm.value.email, loginForm.value.password, loginForm.value.role],([email, password, role]) => {
       if(email){
-        loginFormErrors.value.emailError = false;
+        loginFormErrors.value.email = false;
       }
       if(password){
-        loginFormErrors.value.passwordError = false;
+        loginFormErrors.value.password = false;
       }
       if(role){
-        loginFormErrors.value.roleError = false;
+        loginFormErrors.value.role = false;
       }
     }
 );

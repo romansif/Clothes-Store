@@ -15,9 +15,9 @@ export const validation = {
         body('password').trim().notEmpty().withMessage('Password is required'),
 
         body('password')
-            .isLength({ min: 6, max: 12 }).withMessage('The password must be longer than 6 characters')
+            .isLength({ min: 8, max: 12 }).withMessage('The password must be longer than 6 characters')
             .matches(/^(?=.*[A-Za-zА-Яа-я])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-zА-Яа-я\d@$!%*#?&]{8,}$/)
-            .withMessage('The password must contain at least one letter, one digit, and one special character (@$!%*#?&)'),
+            .withMessage('Include a letter, number, and special character ($!%*#?&)'),
     ],
 
     loginValidation: [
@@ -60,7 +60,7 @@ export const validation = {
         body('newPassword')
             .isLength({ min: 6, max: 12 }).withMessage('The password must be longer than 6 characters')
             .matches(/^(?=.*[A-Za-zА-Яа-я])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-zА-Яа-я\d@$!%*#?&]{8,}$/)
-            .withMessage('The password must contain at least one letter, one digit, and one special character (@$!%*#?&)'),
+            .withMessage('Include a letter, number, and special character ($!%*#?&)'),
     ],
 
     createProductValidation: [

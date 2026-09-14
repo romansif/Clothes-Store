@@ -10,11 +10,11 @@ export const cartForm = ref<AddForm>({
 });
 
 export const cartFormErrorMessages = ref<AddFormErrorMessage>({
-    colorMessage: '',
-    sizeMessage: '',
+    color: '',
+    size: '',
 });
 
 
 export const isAgreeFormErrorMessage = ref<IsAgreeFormErrorMessage>({
-    agreeMessage: ''
+    agree: ''
 })

@@ -6,6 +6,6 @@ export const shippingForm = ref<ShippingForm>({
 })
 
 export const shippingFormErrorMessage = ref<ShippingFormErrorMessage>({
-    deliveryMessage: ''
+    delivery: ''
 })
 

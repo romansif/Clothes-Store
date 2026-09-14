@@ -18,19 +18,18 @@ export const loginForm = ref<LoginForm>({
 });
 
 export const registerFormErrorMessages = ref<RegisterFormErrorMessage>({
-    nameMessage: '',
-    surNameMessage: '',
-    phoneMessage: '',
-    emailMessage: '',
-    passwordMessage: '',
+    name: '',
+    surName: '',
+    phone: '',
+    email: '',
+    password: '',
 });
 
 export const loginFormErrorMessages = ref<LoginFormErrorMessage>({
-    emailMessage: '',
-    passwordMessage: '',
-    validCodeMessage: '',
-    phoneMessage: '',
-    roleMessage: '',
+    email: '',
+    password: '',
+    phone: '',
+    role: '',
 });
 
 const CODE_LENGTH = 6;
@@ -45,11 +44,6 @@ const timerInterval = ref<number>(0);
 
 export const authForms = () => {
     return{
-        registerForm,
-        registerFormErrorMessages,
-        loginForm,
-        loginFormErrorMessages,
-
         CODE_LENGTH,
         codeDigits,
         inputRefs,

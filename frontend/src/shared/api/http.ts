@@ -1,13 +1,14 @@
 import router from '@/app/router/index'
+import type { ApiErrorResponse } from "@/shared/model/error.types.ts";
 
 export class ApiError extends Error {
-    response?: {
-        data: any
-    };
+    response?: ApiErrorResponse
+
     constructor(error: any, message: string) {
-        super(message);
-        this.name = 'ApiError';
-        this.response = error?.errors || error?.response;
+        super(message)
+
+        this.name = 'ApiError'
+        this.response = error?.response?.data ?? error
     }
 }
 

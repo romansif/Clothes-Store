@@ -76,8 +76,8 @@
           </div>
           <img :src="pay_pal" alt="" class="w-22.5">
         </div>
-        <span v-if="paymentFormErrors.paymentMethodError" class="text-red-600 text-xs">
-          {{ paymentFormErrorMessage.paymentMethodMessage }}
+        <span v-if="paymentFormErrors.paymentMethod" class="text-red-600 text-xs">
+          {{ paymentFormErrorMessage.paymentMethod }}
         </span>
       </form>
     </div>
@@ -90,7 +90,7 @@ import { paymentClasses } from "@/shared/const/checkout/payment.classes.ts";
 import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle.payment.ts";
 import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
 import { paymentForm, paymentFormErrorMessage} from "@/features/use-chekout-payment-info/model/payment.form.ts";
-import { paymentFormErrors } from "@/features/use-chekout-payment-info/lib/payment.errors.ts";
+import { paymentFormErrors } from "@/features/use-chekout-payment-info/model/payment.errors.ts";
 
 import PaymentForm from "./PaymentForm.vue";
 import visa_pay from '@/assets/icons/checkout/payment/visa.png';

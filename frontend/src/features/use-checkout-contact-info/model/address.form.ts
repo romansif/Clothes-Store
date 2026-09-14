@@ -18,14 +18,14 @@ export const informationForm = ref<InformationForm>({
 })
 
 export const informationFormErrorMessages = ref<InformationFormErrorMessage>({
-    emailMessage: 'example@gmail.com',
-    phoneMessage: '+000 (00) 000-00-00',
-    firstNameMessage: 'FirstName',
-    lastNameMessage: 'LastName',
-    countryMessage: 'Country',
-    stateRegionMessage: 'State/Region',
-    addressMessage: 'Address',
-    cityMessage: 'City',
-    postalCodeMessage: 'Postal Code',
+    email: 'example@gmail.com',
+    phone: '+000 (00) 000-00-00',
+    firstName: 'FirstName',
+    lastName: 'LastName',
+    country: 'Country',
+    stateRegion: 'State/Region',
+    address: 'Address',
+    city: 'City',
+    postalCode: 'Postal Code',
 })
 

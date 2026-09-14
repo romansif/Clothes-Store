@@ -43,11 +43,11 @@
                :class="selectedSizesClass(size, product, userData.role)">
         </div>
         <div class="flex gap-1">
-          <span v-if=cartFormErrors.colorError class="text-red-600 text-xs">
-            {{ cartFormErrorMessages.colorMessage }} /
+          <span v-if=cartFormErrors.color class="text-red-600 text-xs">
+            {{ cartFormErrorMessages.color }} /
           </span>
-            <span v-if=cartFormErrors.sizeError class="text-red-600 text-xs">
-            {{ cartFormErrorMessages.sizeMessage }}
+            <span v-if=cartFormErrors.size class="text-red-600 text-xs">
+            {{ cartFormErrorMessages.size }}
           </span>
         </div>
       </div>
@@ -97,7 +97,7 @@ import { productsClasses } from "@/shared/const/product/products.classes.ts";
 import { productHelper } from "@/shared/lib/product.helper.ts";
 import { type Product } from "@/features/use-product/model/product.types.ts";
 import { cartForm, cartFormErrorMessages} from "@/features/use-cart/model/cart.form.ts";
-import { cartFormErrors } from "@/features/use-cart/lib/cart.errors.ts";
+import { cartFormErrors } from "@/features/use-cart/model/cart.errors.ts";
 
 import plus from '@/assets/icons/products/plus.svg';
 import minus from '@/assets/icons/products/minus.svg';
@@ -123,10 +123,10 @@ const { variantsInfo, pureInfoColors, isAvailableSizes } = productHelper();
 
 watch(() => [cartForm.value.colors, cartForm.value.sizes], ([color, size]) => {
   if(color){
-    cartFormErrors.value.colorError = false
+    cartFormErrors.value.color = false
   }
   if(size){
-    cartFormErrors.value.sizeError = false
+    cartFormErrors.value.size = false
   }
 })
 </script>

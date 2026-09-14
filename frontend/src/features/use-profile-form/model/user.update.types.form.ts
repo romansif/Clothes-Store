@@ -8,19 +8,19 @@ export interface UserForm {
 }
 
 export interface UserFormMessage {
-    nameMessage: string,
-    surNameMessage: string,
-    phoneMessage: string,
-    emailMessage: string,
-    oldPasswordMessage: string,
-    newPasswordMessage: string,
+    name: string,
+    surName: string,
+    phone: string,
+    email: string,
+    oldPassword: string,
+    newPassword: string,
 }
 
 export interface UserFormErrors {
-    nameError: boolean,
-    surNameError: boolean,
-    phoneError: boolean,
-    emailError: boolean,
-    oldPasswordError: boolean,
-    newPasswordError: boolean,
+    name: boolean,
+    surName: boolean,
+    phone: boolean,
+    email: boolean,
+    oldPassword: boolean,
+    newPassword: boolean,
 }

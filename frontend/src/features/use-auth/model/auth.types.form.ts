@@ -16,35 +16,33 @@ export interface LoginForm {
 }
 
 export interface RegisterFormErrorMessage {
-    nameMessage: string,
-    surNameMessage: string,
-    phoneMessage: string,
-    emailMessage: string,
-    passwordMessage: string,
+    name: string,
+    surName: string,
+    phone: string,
+    email: string,
+    password: string,
 }
 
 export interface LoginFormErrorMessage {
-    emailMessage: string,
-    passwordMessage: string,
-    phoneMessage: string,
-    validCodeMessage: string,
-    roleMessage: string
+    email: string,
+    password: string,
+    phone: string,
+    role: string
 }
 
 export interface RegisterFormErrors {
-    nameError: boolean,
-    surNameError: boolean,
-    phoneError: boolean,
-    emailError: boolean,
-    passwordError: boolean
+    name: boolean,
+    surName: boolean,
+    phone: boolean,
+    email: boolean,
+    password: boolean
 }
 
 export interface LoginFormErrors {
-    emailError: boolean,
-    passwordError: boolean,
-    phoneError: boolean,
-    validCodeError: boolean,
-    roleError: boolean,
+    email: boolean,
+    password: boolean,
+    phone: boolean,
+    role: boolean,
 }
 
 

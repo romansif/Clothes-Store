@@ -1,5 +1,5 @@
 import { informationForm, informationFormErrorMessages } from "@/features/use-checkout-contact-info/model/address.form.ts";
-import { informationFormErrors } from "@/features/use-checkout-contact-info/lib/address.errors.ts";
+import { informationFormErrors } from "@/features/use-checkout-contact-info/model/address.errors.ts";
 
 export const clearInformationForm = () => {
     informationForm.value.addressName = '';

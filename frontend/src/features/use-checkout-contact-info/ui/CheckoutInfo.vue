@@ -19,7 +19,7 @@ import { watch } from "vue";
 import { useAddAddress } from "@/features/use-checkout-contact-info/api/add-address.ts";
 import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle.information.ts";
 import { informationForm } from "@/features/use-checkout-contact-info/model/address.form.ts";
-import { informationFormErrors } from "@/features/use-checkout-contact-info/lib/address.errors.ts";
+import { informationFormErrors } from "@/features/use-checkout-contact-info/model/address.errors.ts";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";

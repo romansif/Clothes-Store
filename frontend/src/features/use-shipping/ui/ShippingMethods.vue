@@ -23,8 +23,8 @@
               Free
             </span>
           </div>
-          <span v-if="shippingFormError.deliveryError" class="text-red-500 text-xs">
-            {{ shippingFormErrorMessage.deliveryMessage }}
+          <span v-if="shippingFormError.delivery" class="text-red-500 text-xs">
+            {{ shippingFormErrorMessage.delivery }}
           </span>
         </div>
         <div>
@@ -45,8 +45,8 @@
               $15.00
             </span>
           </div>
-          <span v-if="shippingFormError.deliveryError" class="text-red-500 text-xs">
-            {{ shippingFormErrorMessage.deliveryMessage }}
+          <span v-if="shippingFormError.delivery" class="text-red-500 text-xs">
+            {{ shippingFormErrorMessage.delivery }}
           </span>
         </div>
       </form>
@@ -56,7 +56,7 @@
 
 <script setup lang="ts">
 import { shippingForm, shippingFormErrorMessage } from "@/features/use-shipping/model/shipping.form.ts";
-import { shippingFormError } from "@/features/use-shipping/lib/shipping.errors.ts";
+import { shippingFormError } from "@/features/use-shipping/model/shipping.errors.ts";
 import { shippingClasses } from "@/shared/const/checkout/shipping.classes.ts";
 
 const { shippingMethodClass } = shippingClasses();

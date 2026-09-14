@@ -24,8 +24,8 @@
       <div v-if="countMode === 'SAME'" class="flex">
         <BaseInput v-model="createProductForm.quantity" @input="toggleAllVariants"
                    type="number" placeholder="product ptc." class="w-75"
-                   :error="createProductFormErrors.quantityError" variant="createProduct" required
-                   :error-message="createProductFormErrors.quantityError ? createProductFormErrorMessages.quantityMessage : ''"/>
+                   :error="createProductFormErrors.quantity" variant="createProduct" required
+                   :error-message="createProductFormErrors.quantity ? createProductFormErrorMessages.quantity : ''"/>
         <span class="ml-auto mt-auto text-sm text-[#A3A3A3] font-medium">
           An equal quantity will be selected for all sizes and colors
         </span>
@@ -72,8 +72,8 @@
             Select sizes to populate the stock levels.
           </span>
         </div>
-        <span v-if="createProductFormErrors.variantError" class="text-red-600 text-xs">
-          {{ createProductFormErrorMessages.variantMessage }}
+        <span v-if="createProductFormErrors.variant" class="text-red-600 text-xs">
+          {{ createProductFormErrorMessages.variant }}
         </span>
       </div>
     </div>
@@ -95,8 +95,8 @@
                               ? 'transition duration-400 scale-110 w-15 rounded-full'
                               : 'transition duration-400 hover:scale-110 w-15 rounded-full']">
       </div>
-      <span v-if="createProductFormErrors.sizeError" class="text-red-600 text-xs">
-        {{ createProductFormErrorMessages.sizeMessage }}
+      <span v-if="createProductFormErrors.size" class="text-red-600 text-xs">
+        {{ createProductFormErrorMessages.size }}
       </span>
     </div>
     <div class="flex flex-col gap-3 w-full">
@@ -123,8 +123,8 @@
                  class="absolute inset-0 h-full opacity-0 cursor-pointer" />
         </label>
       </div>
-      <span v-if="createProductFormErrors.colorError" class="text-red-600 text-xs">
-        {{ createProductFormErrorMessages.colorMessage }}
+      <span v-if="createProductFormErrors.color" class="text-red-600 text-xs">
+        {{ createProductFormErrorMessages.color }}
       </span>
     </div>
   </div>
@@ -135,7 +135,7 @@ import { watch } from "vue";
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import { productFormHelper } from "@/features/use-product-form/lib/product.form.helper.ts";
 import { createProductForm, moreCreateItemForm, createProductFormErrorMessages } from "@/features/use-product-form/model/product.forms.ts";
-import { createProductFormErrors } from "@/features/use-product-form/lib/product.error.ts";
+import { createProductFormErrors } from "@/features/use-product-form/model/product.error.ts";
 
 import BaseInput from "@/shared/ui/BaseInput.vue";
 
@@ -145,11 +145,11 @@ const { toggleAllVariants, toggleQuantity, toggleSize, toggleColor } = productFo
 watch(() => [moreCreateItemForm.sizes.length, moreCreateItemForm.colors.length, moreCreateItemForm.variants.length],
     ([sizes, colors, variants]) => {
       if(sizes){
-        createProductFormErrors.value.sizeError = false;
+        createProductFormErrors.value.size = false;
       }if(colors){
-        createProductFormErrors.value.colorError = false;
+        createProductFormErrors.value.color = false;
       }if(variants){
-        createProductFormErrors.value.variantError = false;
+        createProductFormErrors.value.variant = false;
       }
 });
 </script>

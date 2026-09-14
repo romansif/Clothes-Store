@@ -1,6 +1,6 @@
 import {ref} from "vue";
 import {paymentStore} from "@/features/use-user-payment/model/payment.store.ts";
-import { paymentFormErrors } from "@/features/use-chekout-payment-info/lib/payment.errors.ts";
+import { paymentFormErrors } from "@/features/use-chekout-payment-info/model/payment.errors.ts";
 
 const { paymentMethod } = paymentStore();
 

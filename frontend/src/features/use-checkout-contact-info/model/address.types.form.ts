@@ -12,25 +12,25 @@ export interface InformationForm {
 }
 
 export interface InformationFormErrorMessage {
-    emailMessage: string,
-    phoneMessage: string,
-    firstNameMessage: string,
-    lastNameMessage: string,
-    countryMessage: string,
-    stateRegionMessage: string,
-    addressMessage: string,
-    cityMessage: string,
-    postalCodeMessage: string,
+    email: string,
+    phone: string,
+    firstName: string,
+    lastName: string,
+    country: string,
+    stateRegion: string,
+    address: string,
+    city: string,
+    postalCode: string,
 }
 
 export interface InformationFormError {
-    emailError: boolean,
-    phoneError: boolean,
-    firstNameError: boolean,
-    lastNameError: boolean,
-    countryError: boolean,
-    stateRegionError: boolean,
-    addressError: boolean,
-    cityError: boolean,
-    postalCodeError: boolean,
+    email: boolean,
+    phone: boolean,
+    firstName: boolean,
+    lastName: boolean,
+    country: boolean,
+    stateRegion: boolean,
+    address: boolean,
+    city: boolean,
+    postalCode: boolean,
 }

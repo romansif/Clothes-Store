@@ -1,6 +1,6 @@
 import {computed} from "vue";
 import { informationFormErrorMessages } from "@/features/use-checkout-contact-info/model/address.form.ts";
-import { informationFormErrors } from "@/features/use-checkout-contact-info/lib/address.errors.ts";
+import { informationFormErrors } from "@/features/use-checkout-contact-info/model/address.errors.ts";
 import { informationContactStore } from "@/features/use-user-address/model/address.store.ts";
 import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
 

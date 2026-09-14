@@ -7,7 +7,7 @@ import { useGetProducts } from "@/features/use-main-product/api/get-product.ts"
 import { useDeleteCart } from "@/features/use-cart/api/delete-cart.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { isAgreeFormError } from "@/features/use-cart/lib/cart.errors.ts";
+import { isAgreeFormError } from "@/features/use-cart/model/cart.errors.ts";
 
 const { cart } = cartStore();
 const { userData } = userStore();
@@ -43,7 +43,7 @@ export const useUpdateCart = () => {
                     item => item.id === product.id);
                 if(index === -1) {
                     orderItems.value.push(product);
-                    isAgreeFormError.value.agreeMessageError = false
+                    isAgreeFormError.value.agreeMessage = false
                     localStorage.setItem('orderItems', JSON.stringify(orderItems.value));
                 }else{
                     orderItems.value.splice(index, 1);

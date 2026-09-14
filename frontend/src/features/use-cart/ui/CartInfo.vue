@@ -31,12 +31,12 @@
     <div class="flex flex-col mt-2 xl:block">
       <div class="flex flex-col gap-4">
         <div class="flex gap-4 items-center">
-          <img @click="toggleAgree" :src="isAgreeFormError.agreeError ? check_square : square" alt="" class="w-6.25 cursor-pointer">
+          <img @click="toggleAgree" :src="isAgreeFormError.agree ? check_square : square" alt="" class="w-6.25 cursor-pointer">
           <span class="text-xs text-[#A3A3A3]">
           I agree to the Terms and Conditions
         </span>
         </div>
-        <span class="text-red-600 text-xs">{{ isAgreeFormErrorMessage.agreeMessage }}</span>
+        <span class="text-red-600 text-xs">{{ isAgreeFormErrorMessage.agree }}</span>
       </div>
       <BaseButton @click="continueToOrder" name="CONTINUE" variant="addToOrder" />
     </div>
@@ -47,7 +47,7 @@
 import { watch } from "vue";
 import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
 import { isAgreeFormErrorMessage} from "@/features/use-cart/model/cart.form.ts";
-import { isAgreeFormError } from "@/features/use-cart/lib/cart.errors.ts";
+import { isAgreeFormError } from "@/features/use-cart/model/cart.errors.ts";
 
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import square from '@/assets/icons/squares/square.png';
@@ -55,9 +55,9 @@ import check_square from '@/assets/icons/squares/check-square.png';
 
 const { toggleAgree, continueToOrder, price, totalPrice, commissionPrice } = useProfile();
 
-watch(() => isAgreeFormError.value.agreeError, (agreeError) => {
+watch(() => isAgreeFormError.value.agree, (agreeError) => {
   if(agreeError) {
-    isAgreeFormErrorMessage.value.agreeMessage = '';
+    isAgreeFormErrorMessage.value.agree = '';
   }
 })
 </script>

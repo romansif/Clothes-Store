@@ -1,5 +1,5 @@
 import { cartForm, cartFormErrorMessages } from "@/features/use-cart/model/cart.form.ts";
-import { cartFormErrors } from "@/features/use-cart/lib/cart.errors.ts";
+import { cartFormErrors } from "@/features/use-cart/model/cart.errors.ts";
 
 export const clearAddToCartForm = () => {
     const clearCartForm = () => {
@@ -9,11 +9,11 @@ export const clearAddToCartForm = () => {
         };
         cartForm.value.sizes = '';
 
-        cartFormErrorMessages.value.colorMessage = '';
-        cartFormErrorMessages.value.sizeMessage = '';
+        cartFormErrorMessages.value.color = '';
+        cartFormErrorMessages.value.size = '';
 
-        cartFormErrors.value.colorError = false;
-        cartFormErrors.value.sizeError = false;
+        cartFormErrors.value.color = false;
+        cartFormErrors.value.size = false;
     };
 
     return {

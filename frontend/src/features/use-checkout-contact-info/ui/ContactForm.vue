@@ -3,7 +3,7 @@
     <label class="font-medium text-xs md:text-sm">CONTACT INFO</label>
     <div class="flex flex-col gap-2">
       <CheckoutInput v-model="informationForm.email" type="text" :placeholder="emailPlaceholder"
-          :error="informationFormErrors.emailError" variant="checkoutInfo"/>
+          :error="informationFormErrors.email" variant="checkoutInfo"/>
       <div class="flex gap-2">
         <select name="" id="" v-model="selectedCountryCode" @change="changeCountry" :class="informationSelectPhoneCodeClass">
           <option v-for="country in countries" :key="country.code" :value="country.code">
@@ -24,8 +24,8 @@ import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
 import { informationClasses } from "@/shared/const/checkout/information.classes.ts";
 import { useInformationFormInput } from "@/features/use-checkout-contact-info/lib/address-input.ts";
 import { informationForm } from "@/features/use-checkout-contact-info/model/address.form.ts";
-import { informationFormErrors } from "@/features/use-checkout-contact-info/lib/address.errors.ts";
-import { countries, selectedCountryCode } from "@/features/use-profile-form/model/select.phone.form.ts";
+import { informationFormErrors } from "@/features/use-checkout-contact-info/model/address.errors.ts";
+import { countries, selectedCountryCode } from "@/features/use-profile-form/lib/select.phone.form.ts";
 
 import CheckoutInput from "@/shared/ui/CheckoutInput.vue";
 

@@ -1,5 +1,5 @@
 import { loginForm, registerForm, loginFormErrorMessages, registerFormErrorMessages } from "@/features/use-auth/model/auth.forms.ts";
-import { loginFormErrors, registerFormErrors } from "@/features/use-auth/lib/auth.errors.ts";
+import { loginFormErrors, registerFormErrors } from "@/features/use-auth/model/auth.errors.ts";
 
 export const clearAuthForms = () => {
     const clearRegisterForm = () => {
@@ -9,24 +9,24 @@ export const clearAuthForms = () => {
         registerForm.value.email = '';
         registerForm.value.password = '';
 
-        registerFormErrorMessages.value.nameMessage = '';
-        registerFormErrorMessages.value.surNameMessage = '';
-        registerFormErrorMessages.value.emailMessage = '';
-        registerFormErrorMessages.value.passwordMessage = '';
+        registerFormErrorMessages.value.name = '';
+        registerFormErrorMessages.value.surName = '';
+        registerFormErrorMessages.value.email = '';
+        registerFormErrorMessages.value.password = '';
 
-        registerFormErrors.value.nameError = false;
-        registerFormErrors.value.surNameError = false;
-        registerFormErrors.value.phoneError = false;
-        registerFormErrors.value.emailError = false;
-        registerFormErrors.value.passwordError = false;
+        registerFormErrors.value.name = false;
+        registerFormErrors.value.surName = false;
+        registerFormErrors.value.phone = false;
+        registerFormErrors.value.email = false;
+        registerFormErrors.value.password = false;
 
     };
 
     const clearRegisterFormMessages = () => {
-        registerFormErrorMessages.value.nameMessage = '';
-        registerFormErrorMessages.value.surNameMessage = '';
-        registerFormErrorMessages.value.emailMessage = '';
-        registerFormErrorMessages.value.passwordMessage = '';
+        registerFormErrorMessages.value.name = '';
+        registerFormErrorMessages.value.surName = '';
+        registerFormErrorMessages.value.email = '';
+        registerFormErrorMessages.value.password = '';
     }
 
     const clearLoginForm = () => {
@@ -35,22 +35,22 @@ export const clearAuthForms = () => {
         loginForm.value.phone = '';
         loginForm.value.role = '';
 
-        loginFormErrorMessages.value.emailMessage = '';
-        loginFormErrorMessages.value.passwordMessage = '';
-        loginFormErrorMessages.value.phoneMessage = '';
-        loginFormErrorMessages.value.roleMessage = '';
+        loginFormErrorMessages.value.email= '';
+        loginFormErrorMessages.value.password= '';
+        loginFormErrorMessages.value.phone= '';
+        loginFormErrorMessages.value.role= '';
 
-        loginFormErrors.value.emailError = false;
-        loginFormErrors.value.passwordError = false;
-        loginFormErrors.value.phoneError = false;
-        loginFormErrors.value.roleError = false;
+        loginFormErrors.value.email = false;
+        loginFormErrors.value.password = false;
+        loginFormErrors.value.phone = false;
+        loginFormErrors.value.role = false;
     }
 
     const clearLoginFormMessages = () => {
-        loginFormErrorMessages.value.emailMessage = '';
-        loginFormErrorMessages.value.passwordMessage = '';
-        loginFormErrorMessages.value.phoneMessage = '';
-        loginFormErrorMessages.value.roleMessage = '';
+        loginFormErrorMessages.value.email= '';
+        loginFormErrorMessages.value.password= '';
+        loginFormErrorMessages.value.phone= '';
+        loginFormErrorMessages.value.role= '';
     }
 
     return{

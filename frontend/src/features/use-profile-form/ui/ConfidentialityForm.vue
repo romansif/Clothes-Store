@@ -5,8 +5,8 @@
         <form @keydown.enter.prevent="updateNameAccount" class="flex flex-col gap-3 w-full">
           <label>Name</label>
           <BaseInput v-model="updateUserForm.name" type="text" inputmode="numeric" placeholder="New Name"
-              :error="updateUserFormErrors.nameError" variant="confidentialityData" required
-              :error-message="updateUserFormErrors.nameError ? updateUserFormMessage.nameMessage : ''" />
+              :error="updateUserFormErrors.name" variant="confidentialityData" required
+              :error-message="updateUserFormErrors.name ? updateUserFormMessage.name : ''" />
           <div class="flex">
             <BaseButton @click.prevent="updateNameAccount()" name="Save Name" variant="profileForm" />
           </div>
@@ -14,8 +14,8 @@
         <form @keydown.enter.prevent="updateSurNameAccount" class="flex flex-col gap-3 w-full">
           <label>SurName</label>
           <BaseInput v-model="updateUserForm.surName" type="text" inputmode="numeric" placeholder="New SurName"
-              :error="updateUserFormErrors.surNameError" variant="confidentialityData" required
-              :error-message="updateUserFormErrors.surNameError ? updateUserFormMessage.surNameMessage : ''" />
+              :error="updateUserFormErrors.surName" variant="confidentialityData" required
+              :error-message="updateUserFormErrors.surName ? updateUserFormMessage.surName : ''" />
           <div class="flex">
             <BaseButton @click.prevent="updateSurNameAccount()" name="Save SurName" variant="profileForm" />
           </div>
@@ -26,8 +26,8 @@
       <form @keydown.enter.prevent="updateEmailAccount" class="flex flex-col gap-3 w-full">
         <label>Email</label>
         <BaseInput v-model="updateUserForm.email" type="text" inputmode="numeric" placeholder="example@mail.com"
-                   :error="updateUserFormErrors.emailError" variant="confidentialityData" reqiured
-                   :error-message="updateUserFormErrors.emailError ? updateUserFormMessage.emailMessage : ''"/>
+                   :error="updateUserFormErrors.email" variant="confidentialityData" reqiured
+                   :error-message="updateUserFormErrors.email ? updateUserFormMessage.email : ''"/>
         <div class="flex">
           <BaseButton @click.prevent="updateEmailAccount()" name="Save Email" variant="profileForm" />
         </div>
@@ -41,10 +41,10 @@
             </option>
           </select>
           <IMask v-model:value="updateUserForm.phone" type="text" inputmode="numeric" :placeholder="currentCountry?.placeholder"
-                 :class="profilePhoneClass(updateUserFormErrors.phoneError)" :key="selectedCountryCode" :mask="currentMask.mask"/>
+                 :class="profilePhoneClass(updateUserFormErrors.phone)" :key="selectedCountryCode" :mask="currentMask.mask"/>
         </div>
-        <span v-if="updateUserFormErrors.phoneError" class="text-red-600 text-xs">
-        {{ updateUserFormMessage.phoneMessage }}
+        <span v-if="updateUserFormErrors.phone" class="text-red-600 text-xs">
+        {{ updateUserFormMessage.phone }}
       </span>
         <div class="flex">
           <BaseButton @click.prevent="updatePhoneAccount()" name="Save Phone" variant="profileForm" />
@@ -57,20 +57,20 @@
           <label>Old password</label>
           <div class="relative">
             <BaseInput v-model="updateUserForm.oldPassword" :type="showOldPassword ? 'text' : 'password'" inputmode="numeric"
-                :error="updateUserFormErrors.oldPasswordError" variant="confidentialityData" placeholder="Old Password"
-                :error-message="updateUserFormErrors.oldPasswordError ? updateUserFormMessage.oldPasswordMessage : ''" />
+                :error="updateUserFormErrors.oldPassword" variant="confidentialityData" placeholder="Old Password"
+                :error-message="updateUserFormErrors.oldPassword ? updateUserFormMessage.oldPassword : ''" />
             <img @click.prevent="toggleOldPassword" :src="showOldPassword ? opened : closed" alt=""
-                 :class="['absolute w-7.5 top-1/4 left-115', updateUserFormErrors.oldPasswordError ? 'top-1/6' : '']">
+                 :class="['absolute w-7.5 top-1/4 left-115', updateUserFormErrors.oldPassword ? 'top-1/6' : '']">
           </div>
         </div>
         <div class="flex flex-col gap-3 w-full">
           <label>New password</label>
           <div class="relative">
             <BaseInput v-model="updateUserForm.newPassword" :type="showNewPassword ? 'text' : 'password'" inputmode="numeric"
-                :error="updateUserFormErrors.newPasswordError" variant="confidentialityData" placeholder="New Password"
-                :error-message="updateUserFormErrors.newPasswordError ? updateUserFormMessage.newPasswordMessage : ''"/>
+                :error="updateUserFormErrors.newPassword" variant="confidentialityData" placeholder="New Password"
+                :error-message="updateUserFormErrors.newPassword ? updateUserFormMessage.newPassword : ''"/>
             <img @click.prevent="toggleNewPassword" :src="showNewPassword ? opened : closed" alt=""
-                :class="['absolute w-7.5 top-1/4 left-115', updateUserFormErrors.newPasswordError ? 'top-1/8' : '']">
+                :class="['absolute w-7.5 top-1/4 left-115', updateUserFormErrors.newPassword ? 'top-1/8' : '']">
           </div>
         </div>
       </form>
@@ -87,9 +87,9 @@ import { IMaskComponent as IMask } from "vue-imask";
 import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
 import { updateUserForm, updateUserFormMessage } from "@/features/use-profile-form/model/user.update.form.ts";
 import { profileApi } from "@/features/use-profile-form/api/profile.api.ts";
-import { updateUserFormErrors } from "@/features/use-profile-form/lib/user.update.error.ts";
+import { updateUserFormErrors } from "@/features/use-profile-form/model/user.update.error.ts";
 import { profileClasses } from "@/shared/const/user/profile.classes.ts";
-import { selectedCountryCode, countries } from "@/features/use-profile-form/model/select.phone.form.ts";
+import { selectedCountryCode, countries } from "@/features/use-profile-form/lib/select.phone.form.ts";
 
 import BaseButton  from "@/shared/ui/BaseButton.vue";
 import opened from '@/assets/icons/auth/opened.png'
@@ -107,22 +107,22 @@ watch(() => [
       updateUserForm.value.oldPassword, updateUserForm.value.newPassword],
     ([name, surName, phone, email, oldPassword, newPassword]) => {
       if(name){
-        updateUserFormErrors.value.nameError = false;
+        updateUserFormErrors.value.name = false;
       }
       if(surName){
-        updateUserFormErrors.value.surNameError = false;
+        updateUserFormErrors.value.surName = false;
       }
       if(phone){
-        updateUserFormErrors.value.phoneError = false;
+        updateUserFormErrors.value.phone = false;
       }
       if(email){
-        updateUserFormErrors.value.emailError = false;
+        updateUserFormErrors.value.email = false;
       }
       if(oldPassword){
-        updateUserFormErrors.value.oldPasswordError = false;
+        updateUserFormErrors.value.oldPassword = false;
       }
       if(newPassword){
-        updateUserFormErrors.value.newPasswordError = false;
+        updateUserFormErrors.value.newPassword = false;
       }
     }
 )

@@ -1,244 +1,244 @@
 import { ApiError } from "../../api/http.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { loginFormErrorMessages, registerFormErrorMessages } from "@/features/use-auth/model/auth.forms.ts";
-import { loginFormErrors, registerFormErrors } from "@/features/use-auth/lib/auth.errors.ts";
-import { updateUserFormErrors } from "@/features/use-profile-form/lib/user.update.error.ts";
+import { loginFormErrors, registerFormErrors } from "@/features/use-auth/model/auth.errors.ts";
+import { updateUserFormErrors } from "@/features/use-profile-form/model/user.update.error.ts";
 import { updateUserFormMessage } from "@/features/use-profile-form/model/user.update.form.ts";
 import { moreCreateItemForm, createProductFormErrorMessages } from "@/features/use-product-form/model/product.forms.ts";
-import { createProductFormErrors } from "@/features/use-product-form/lib/product.error.ts";
+import { createProductFormErrors } from "@/features/use-product-form/model/product.error.ts";
 import { cartFormErrorMessages } from "@/features/use-cart/model/cart.form.ts";
-import { cartFormErrors } from "@/features/use-cart/lib/cart.errors.ts";
+import { cartFormErrors } from "@/features/use-cart/model/cart.errors.ts";
 import { informationFormErrorMessages } from "@/features/use-checkout-contact-info/model/address.form.ts";
-import { informationFormErrors } from "@/features/use-checkout-contact-info/lib/address.errors.ts";
+import { informationFormErrors } from "@/features/use-checkout-contact-info/model/address.errors.ts";
 import { shippingFormErrorMessage } from "@/features/use-shipping/model/shipping.form.ts";
-import { shippingFormError } from "@/features/use-shipping/lib/shipping.errors.ts";
+import { shippingFormError } from "@/features/use-shipping/model/shipping.errors.ts";
 import { paymentFormErrorMessage } from "@/features/use-chekout-payment-info/model/payment.form.ts";
-import { paymentFormErrors } from "@/features/use-chekout-payment-info/lib/payment.errors.ts";
+import { paymentFormErrors } from "@/features/use-chekout-payment-info/model/payment.errors.ts";
 
 const { cancelChoiceMessage, cancelChoiceError } = useBaseModals();
 
 export const useFormsErrors = () => {
     const registerErrors = (err: any) => {
-        if(err instanceof ApiError){
-            const errors = err.response as Record<string, string> | undefined;
-            if(errors){
-                registerFormErrors.value.nameError = !!errors.name;
-                registerFormErrors.value.surNameError = !!errors.surName;
-                registerFormErrors.value.phoneError = !!errors.phone;
-                registerFormErrors.value.emailError = !!errors.email;
-                registerFormErrors.value.passwordError = !!errors.password;
+        if(!(err instanceof ApiError)) return
 
-                registerFormErrorMessages.value.nameMessage = errors.name || '';
-                registerFormErrorMessages.value.surNameMessage = errors.surName || '';
-                registerFormErrorMessages.value.phoneMessage = errors.phone || '';
-                registerFormErrorMessages.value.emailMessage = errors.email || '';
-                registerFormErrorMessages.value.passwordMessage = errors.password || '';
+        const errors = err.response?.errors
+        if (!errors) return
 
-            }
-        }
+        registerFormErrors.value.name = !!errors?.name;
+        registerFormErrors.value.surName = !!errors.surName;
+        registerFormErrors.value.phone = !!errors.phone;
+        registerFormErrors.value.email = !!errors.email;
+        registerFormErrors.value.password = !!errors.password;
+
+        registerFormErrorMessages.value.name = errors.name || '';
+        registerFormErrorMessages.value.surName = errors.surName || '';
+        registerFormErrorMessages.value.phone = errors.phone || '';
+        registerFormErrorMessages.value.email = errors.email || '';
+        registerFormErrorMessages.value.password = errors.password || '';
+
     };
 
     const loginErrors = (err: any) => {
-        if(err instanceof ApiError){
-            const errors = err.response as Record<string, string> | undefined;
-            if(errors){
-                loginFormErrors.value.emailError = !!errors.email;
-                loginFormErrors.value.passwordError = !!errors.password;
-                loginFormErrors.value.roleError= !!errors.role;
+        if(!(err instanceof ApiError)) return
 
-                loginFormErrorMessages.value.emailMessage = errors.email || '';
-                loginFormErrorMessages.value.passwordMessage = errors.password || '';
-                loginFormErrorMessages.value.roleMessage = errors.role || '';
-            }
-        }
+        const errors = err.response?.errors
+        if (!errors) return
+
+        loginFormErrors.value.email = !!errors.email;
+        loginFormErrors.value.password = !!errors.password;
+        loginFormErrors.value.role = !!errors.role;
+
+        loginFormErrorMessages.value.email = errors.email || '';
+        loginFormErrorMessages.value.password = errors.password || '';
+        loginFormErrorMessages.value.role = errors.role || '';
     };
 
     const createProductErrors = (err: any) => {
-        if(err instanceof ApiError){
-            const errors = err.response as Record<string, string> | undefined;
-            if(errors){
-                createProductFormErrors.value.titleError = !!errors.title;
-                createProductFormErrors.value.collectionsError = !!errors.collection;
-                createProductFormErrors.value.categoryError = !!errors.category;
-                createProductFormErrors.value.materialError = !!errors.material;
-                createProductFormErrors.value.genderError = !!errors.gender;
-                createProductFormErrors.value.skuError = !!errors.sku;
-                createProductFormErrors.value.priceError = !!errors.price;
-                createProductFormErrors.value.descriptionError = !!errors.description;
-                createProductFormErrors.value.colorError = !!errors.colors;
-                createProductFormErrors.value.sizeError = !!errors.sizes;
+        if(!(err instanceof ApiError)) return
 
-                createProductFormErrorMessages.value.titleMessage = errors.title || '';
-                createProductFormErrorMessages.value.collectionsMessage = errors.collection || '';
-                createProductFormErrorMessages.value.categoryMessage = errors.category || '';
-                createProductFormErrorMessages.value.materialMessage = errors.material || '';
-                createProductFormErrorMessages.value.genderMessage = errors.gender || '';
-                createProductFormErrorMessages.value.skuMessage = errors.sku || '';
-                createProductFormErrorMessages.value.priceMessage = errors.price || '';
-                createProductFormErrorMessages.value.descriptionMessage = errors.description || '';
-                createProductFormErrorMessages.value.colorMessage = errors.colors || '';
-                createProductFormErrorMessages.value.sizeMessage = errors.sizes || '';
+        const errors = err.response?.errors
+        if (!errors) return
 
-                if(moreCreateItemForm.sizes.length || moreCreateItemForm.colors.length || !moreCreateItemForm.variants.length) {
-                    createProductFormErrors.value.variantError = !!errors.variant;
+        createProductFormErrors.value.title = !!errors.title;
+        createProductFormErrors.value.collections = !!errors.collection;
+        createProductFormErrors.value.category = !!errors.category;
+        createProductFormErrors.value.material = !!errors.material;
+        createProductFormErrors.value.gender = !!errors.gender;
+        createProductFormErrors.value.sku = !!errors.sku;
+        createProductFormErrors.value.price = !!errors.price;
+        createProductFormErrors.value.description = !!errors.description;
+        createProductFormErrors.value.color = !!errors.colors;
+        createProductFormErrors.value.size = !!errors.sizes;
 
-                    createProductFormErrorMessages.value.variantMessage = errors.variant || '';
-                }
-            }
+        createProductFormErrorMessages.value.title = errors.title || '';
+        createProductFormErrorMessages.value.collections = errors.collection || '';
+        createProductFormErrorMessages.value.category = errors.category || '';
+        createProductFormErrorMessages.value.material = errors.material || '';
+        createProductFormErrorMessages.value.gender = errors.gender || '';
+        createProductFormErrorMessages.value.sku = errors.sku || '';
+        createProductFormErrorMessages.value.price = errors.price || '';
+        createProductFormErrorMessages.value.description = errors.description || '';
+        createProductFormErrorMessages.value.color = errors.colors || '';
+        createProductFormErrorMessages.value.size = errors.sizes || '';
+
+        if(moreCreateItemForm.sizes.length || moreCreateItemForm.colors.length || !moreCreateItemForm.variants.length) {
+            createProductFormErrors.value.variant = !!errors.variant;
+
+            createProductFormErrorMessages.value.variant = errors.variant || '';
         }
     };
 
     const addToCartErrors = (err: any) => {
-        if(err instanceof ApiError){
-            const errors = err.response as Record<string, string> | undefined;
-            if(errors){
-                const hasColorError = Object.keys(errors).some(
-                    key =>
-                        key.startsWith('colors[') ||
-                        key === 'colors'
-                );
+        if(!(err instanceof ApiError)) return
 
-                const colorError = Object.entries(errors).find(
-                    ([key]) =>
-                        key.startsWith('colors[') ||
-                        key === 'colors'
-                );
+        const errors = err.response?.errors
+        if (!errors) return
 
-                cartFormErrors.value.colorError = hasColorError;
-                cartFormErrors.value.sizeError = !!errors.sizes;
+        const hasColorError = Object.keys(errors).some(
+            key =>
+                key.startsWith('colors[') ||
+                key === 'colors'
+        );
 
-                cartFormErrorMessages.value.colorMessage = colorError?.[1] || '';
-                cartFormErrorMessages.value.sizeMessage = errors.sizes || '';
-            }
-        }
+        const colorError = Object.entries(errors).find(
+            ([key]) =>
+                key.startsWith('colors[') ||
+                key === 'colors'
+        );
+
+        cartFormErrors.value.color = hasColorError;
+        cartFormErrors.value.size = !!errors.sizes;
+
+        cartFormErrorMessages.value.color = colorError?.[1] || '';
+        cartFormErrorMessages.value.size = errors.sizes || '';
     };
 
     const createInformationErrors = (err: any) => {
-        if(err instanceof ApiError){
-            const errors = err.response as Record<string, string> | undefined;
-            if(errors){
-                informationFormErrors.value.emailError = !!errors.email;
-                informationFormErrors.value.phoneError = !!errors.phone;
-                informationFormErrors.value.firstNameError = !!errors.firstName;
-                informationFormErrors.value.lastNameError = !!errors.lastName;
-                informationFormErrors.value.countryError = !!errors.country;
-                informationFormErrors.value.stateRegionError = !!errors.stateRegion;
-                informationFormErrors.value.addressError = !!errors.address;
-                informationFormErrors.value.cityError = !!errors.city;
-                informationFormErrors.value.postalCodeError = !!errors.postalCode;
+        if(!(err instanceof ApiError)) return
 
-                informationFormErrorMessages.value.emailMessage = errors.email || '';
-                informationFormErrorMessages.value.phoneMessage = errors.phone || '';
-                informationFormErrorMessages.value.firstNameMessage = errors.firstName || '';
-                informationFormErrorMessages.value.lastNameMessage = errors.lastName || '';
-                informationFormErrorMessages.value.countryMessage = errors.country || '';
-                informationFormErrorMessages.value.stateRegionMessage = errors.stateRegion || '';
-                informationFormErrorMessages.value.addressMessage = errors.address || '';
-                informationFormErrorMessages.value.cityMessage = errors.city || '';
-                informationFormErrorMessages.value.postalCodeMessage = errors.postalCode || '';
-            }
-        }
+        const errors = err.response?.errors
+        if (!errors) return
+
+        informationFormErrors.value.email = !!errors.email;
+        informationFormErrors.value.phone = !!errors.phone;
+        informationFormErrors.value.firstName = !!errors.firstName;
+        informationFormErrors.value.lastName = !!errors.lastName;
+        informationFormErrors.value.country = !!errors.country;
+        informationFormErrors.value.stateRegion = !!errors.stateRegion;
+        informationFormErrors.value.address = !!errors.address;
+        informationFormErrors.value.city = !!errors.city;
+        informationFormErrors.value.postalCode = !!errors.postalCode;
+
+        informationFormErrorMessages.value.email = errors.email || '';
+        informationFormErrorMessages.value.phone = errors.phone || '';
+        informationFormErrorMessages.value.firstName = errors.firstName || '';
+        informationFormErrorMessages.value.lastName = errors.lastName || '';
+        informationFormErrorMessages.value.country = errors.country || '';
+        informationFormErrorMessages.value.stateRegion = errors.stateRegion || '';
+        informationFormErrorMessages.value.address = errors.address || '';
+        informationFormErrorMessages.value.city = errors.city || '';
+        informationFormErrorMessages.value.postalCode = errors.postalCode || '';
     };
 
     const createSippingErrors = (err: any) => {
-        if(err instanceof ApiError){
-            const errors = err.response as Record<string, string> | undefined;
-            if(errors){
-                shippingFormError.value.deliveryError = !!errors.delivery;
+        if(!(err instanceof ApiError)) return
 
-                shippingFormErrorMessage.value.deliveryMessage = errors.delivery || '';
-            }
-        }
+        const errors = err.response?.errors
+        if (!errors) return
+
+        shippingFormError.value.delivery = !!errors.delivery;
+
+        shippingFormErrorMessage.value.delivery = errors.delivery || '';
     };
 
     const createPaymentCardErrors = (err: any) => {
-        if(err instanceof ApiError){
-            const errors = err.response as Record<string, string> | undefined;
-            if(errors){
-                paymentFormErrors.value.cardNumberError = !!errors.cardNumber;
-                paymentFormErrors.value.expiryDateError = !!errors.expiryDate;
-                paymentFormErrors.value.cardCvvError = !!errors.cardCvv;
+        if(!(err instanceof ApiError)) return
 
-                paymentFormErrorMessage.value.cardNumberMessage = errors.cardNumber || '';
-                paymentFormErrorMessage.value.expiryDateMessage = errors.expiryDate || '';
-                paymentFormErrorMessage.value.cardCvvMessage = errors.cardCvv || '';
-            }
-        }
+        const errors = err.response?.errors
+        if (!errors) return
+
+        paymentFormErrors.value.cardNumber = !!errors.cardNumber;
+        paymentFormErrors.value.expiryDate = !!errors.expiryDate;
+        paymentFormErrors.value.cardCvv = !!errors.cardCvv;
+
+        paymentFormErrorMessage.value.cardNumber = errors.cardNumber || '';
+        paymentFormErrorMessage.value.expiryDate = errors.expiryDate || '';
+        paymentFormErrorMessage.value.cardCvv = errors.cardCvv || '';
     };
 
     const createPaymentMethodError = (err: any) => {
-        if(err instanceof ApiError){
-            const errors = err.response as Record<string, string> | undefined;
-            if(errors){
-                paymentFormErrors.value.paymentMethodError = !!errors.paymentMethod;
+        if(!(err instanceof ApiError)) return
 
-                paymentFormErrorMessage.value.paymentMethodMessage = errors.paymentMethod || '';
-            }
-        }
+        const errors = err.response?.errors
+        if (!errors) return
+
+        paymentFormErrors.value.paymentMethod = !!errors.paymentMethod;
+
+        paymentFormErrorMessage.value.paymentMethod = errors.paymentMethod || '';
     };
 
     const updateNameErrors = (err: any) => {
-        if(err instanceof ApiError){
-            const errors = err.response as Record<string, string> | undefined;
-            if(errors){
-                updateUserFormErrors.value.nameError = !!errors.name;
-                updateUserFormMessage.value.nameMessage = errors.name || '';
-            }
-        }
+        if(!(err instanceof ApiError)) return
+
+        const errors = err.response?.errors
+        if (!errors) return
+
+        updateUserFormErrors.value.name = !!errors.name;
+        updateUserFormMessage.value.name = errors.name || '';
     };
 
     const updateSurNameErrors = (err: any) => {
-        if(err instanceof ApiError){
-            const errors = err.response as Record<string, string> | undefined;
-            if(errors){
-                updateUserFormErrors.value.surNameError = !!errors.surName;
-                updateUserFormMessage.value.surNameMessage = errors.surName || '';
-            }
-        }
+        if(!(err instanceof ApiError)) return
+
+        const errors = err.response?.errors
+        if (!errors) return
+
+        updateUserFormErrors.value.surName = !!errors.surName;
+        updateUserFormMessage.value.surName = errors.surName || '';
     };
 
     const updatePhoneErrors = (err: any) => {
-        if(err instanceof ApiError){
-            const errors = err.response as Record<string, string> | undefined;
-            if(errors){
-                updateUserFormErrors.value.phoneError = !!errors.phone;
-                updateUserFormMessage.value.phoneMessage = errors.phone || '';
-            }
-        }
+        if(!(err instanceof ApiError)) return
+
+        const errors = err.response?.errors
+        if (!errors) return
+
+        updateUserFormErrors.value.phone = !!errors.phone;
+        updateUserFormMessage.value.phone = errors.phone || '';
     };
 
     const updateEmailErrors = (err: any) => {
-        if(err instanceof ApiError){
-            const errors = err.response as Record<string, string> | undefined;
-            if(errors){
-                updateUserFormErrors.value.emailError = !!errors.email;
-                updateUserFormMessage.value.emailMessage = errors.email || '';
-            }
-        }
+        if(!(err instanceof ApiError)) return
+
+        const errors = err.response?.errors
+        if (!errors) return
+
+        updateUserFormErrors.value.email = !!errors.email;
+        updateUserFormMessage.value.email = errors.email || '';
     };
 
     const updatePasswordErrors = (err: any) => {
-        if(err instanceof ApiError){
-            const errors = err.response as Record<string, string> | undefined;
-            if(errors){
-                updateUserFormErrors.value.oldPasswordError = !!errors.oldPassword;
-                updateUserFormErrors.value.newPasswordError = !!errors.newPassword;
+        if(!(err instanceof ApiError)) return
 
-                updateUserFormMessage.value.oldPasswordMessage = errors.oldPassword || '';
-                updateUserFormMessage.value.newPasswordMessage = errors.newPassword || '';
-            }
-        }
+        const errors = err.response?.errors
+        if (!errors) return
+
+        updateUserFormErrors.value.oldPassword = !!errors.oldPassword;
+        updateUserFormErrors.value.newPassword = !!errors.newPassword;
+
+        updateUserFormMessage.value.oldPassword = errors.oldPassword || '';
+        updateUserFormMessage.value.newPassword = errors.newPassword || '';
     };
 
     const replaceOrderErrors = (err: any) => {
-        if(err instanceof ApiError){
-            const errors = err.response as Record<string, string> | undefined;
-            if(errors){
-                cancelChoiceError.value = !!errors.cause_replace;
+        if(!(err instanceof ApiError)) return
 
-                cancelChoiceMessage.value = errors.cause_replace || '';
-            }
-        }
+        const errors = err.response?.errors
+        if (!errors) return
+
+        cancelChoiceError.value = !!errors.cause_replace;
+
+        cancelChoiceMessage.value = errors.cause_replace || '';
     };
 
     return{

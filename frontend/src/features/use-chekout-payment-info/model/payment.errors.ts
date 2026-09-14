@@ -2,9 +2,9 @@ import {ref} from "vue";
 import type { PaymentFormError } from "@/features/use-chekout-payment-info/model/payment.type.form.ts";
 
 export const paymentFormErrors = ref<PaymentFormError>({
-    cardNumberError: false,
-    expiryDateError: false,
-    cardCvvError: false,
-    paymentMethodError: false,
+    cardNumber: false,
+    expiryDate: false,
+    cardCvv: false,
+    paymentMethod: false,
 })
 

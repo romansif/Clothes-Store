@@ -17,8 +17,8 @@
           </div>
         </label>
         <BaseInput v-model="createProductForm.title" type="text" placeholder="title, name etc."
-                   :error="createProductFormErrors.titleError" variant="createProduct" required
-                   :error-message="createProductFormErrors.titleError ? createProductFormErrorMessages.titleMessage : ''"/>
+                   :error="createProductFormErrors.title" variant="createProduct" required
+                   :error-message="createProductFormErrors.title ? createProductFormErrorMessages.title : ''"/>
       </div>
     </div>
     <div class="flex gap-6">
@@ -32,7 +32,7 @@
         <select v-model="createProductForm.collection" :class="[`w-full border border-gray-300 rounded-sm
                           outline-none px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,
                             createProductForm.collection ? 'text-black' : '',
-                            createProductFormErrors.collectionsError ? 'border-red-500' : '']">
+                            createProductFormErrors.collections ? 'border-red-500' : '']">
           <option disabled hidden value="">
             Void
           </option>
@@ -43,8 +43,8 @@
             Condition: {{ collection.condition }}
           </option>
         </select>
-        <span v-if="createProductFormErrors.collectionsError" class="text-red-600 text-xs">
-                    {{ createProductFormErrorMessages.collectionsMessage }}
+        <span v-if="createProductFormErrors.collections" class="text-red-600 text-xs">
+                    {{ createProductFormErrorMessages.collections }}
                   </span>
       </div>
       <div class="flex flex-col gap-3 w-full">
@@ -57,14 +57,14 @@
         <select v-model="createProductForm.category" :class="[`w-full border border-gray-300 rounded-sm
                           outline-none px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,
                             createProductForm.category ? 'text-black' : '',
-                            createProductFormErrors.categoryError ? 'border-red-500' : '']">
+                            createProductFormErrors.category ? 'border-red-500' : '']">
           <option disabled hidden value="">
             Shirt
           </option>
           <option v-for="category in categories" class="text-black">{{ category.category }}</option>
         </select>
-        <span v-if="createProductFormErrors.categoryError" class="text-red-600 text-xs">
-                    {{ createProductFormErrorMessages.categoryMessage }}
+        <span v-if="createProductFormErrors.category" class="text-red-600 text-xs">
+                    {{ createProductFormErrorMessages.category }}
                   </span>
       </div>
     </div>
@@ -79,14 +79,14 @@
         <select v-model="createProductForm.material" :class="[`w-full border border-gray-300 rounded-sm
                           outline-none px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,
                             createProductForm.material ? 'text-black' : '',
-                            createProductFormErrors.materialError ? 'border-red-500' : '']">
+                            createProductFormErrors.material ? 'border-red-500' : '']">
           <option disabled hidden value="">
             Cotton
           </option>
           <option v-for="material in materials" class="text-black">{{ material.material }}</option>
         </select>
-        <span v-if="createProductFormErrors.materialError" class="text-red-600 text-xs">
-                    {{ createProductFormErrorMessages.materialMessage }}
+        <span v-if="createProductFormErrors.material" class="text-red-600 text-xs">
+                    {{ createProductFormErrorMessages.material }}
                   </span>
       </div>
       <div class="flex flex-col gap-3 w-full">
@@ -100,14 +100,14 @@
           <select v-model="createProductForm.gender" :class="[`border border-gray-300 rounded-sm outline-none
                             px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,
                               createProductForm.gender ? 'text-black' : '',
-                              createProductFormErrors.genderError ? 'border-red-500' : '']">
+                              createProductFormErrors.gender ? 'border-red-500' : '']">
             <option disabled hidden value="">
               man, woman, kids
             </option>
             <option v-for="gender in genders" class="text-black">{{ gender.gender }}</option>
           </select>
-          <span v-if="createProductFormErrors.genderError" class="text-red-600 text-xs">
-                      {{ createProductFormErrorMessages.genderMessage }}
+          <span v-if="createProductFormErrors.gender" class="text-red-600 text-xs">
+                      {{ createProductFormErrorMessages.gender }}
                     </span>
         </div>
       </div>
@@ -122,9 +122,9 @@
         </label>
         <IMask v-model:value="createProductForm.sku" type="text" inputmode="numeric" placeholder="BLC-XS-001" :mask="skuMask.mask"
                :class="['uppercase border border-gray-300 rounded-sm outline-none px-6 py-5 text-sm bg-white ' +
-                          'transition duration-400 font-dm-sans', createProductFormErrors.skuError ? 'border-red-500' : '']" />
-        <span v-if="createProductFormErrors.skuError" class="text-red-600 text-xs">
-                    {{ createProductFormErrorMessages.skuMessage }}
+                          'transition duration-400 font-dm-sans', createProductFormErrors.sku ? 'border-red-500' : '']" />
+        <span v-if="createProductFormErrors.sku" class="text-red-600 text-xs">
+                    {{ createProductFormErrorMessages.sku }}
                   </span>
       </div>
       <div class="flex flex-col gap-3 w-full">
@@ -135,8 +135,8 @@
           </div>
         </label>
         <BaseInput v-model="createProductForm.price" type="number" placeholder="$00.00 "
-                   :error="createProductFormErrors.priceError" variant="createProduct" required
-                   :error-message="createProductFormErrors.priceError ? createProductFormErrorMessages.priceMessage : ''"/>
+                   :error="createProductFormErrors.price" variant="createProduct" required
+                   :error-message="createProductFormErrors.price ? createProductFormErrorMessages.price : ''"/>
       </div>
     </div>
     <div class="flex flex-col gap-3">
@@ -148,9 +148,9 @@
       </label>
       <textarea v-model="createProductForm.description" type="text" placeholder="short desc. product"
                 :class="['h-25 border border-gray-200 rounded-sm outline-none px-6 py-5 text-sm bg-white',
-                            createProductFormErrors.descriptionError ? 'border-red-500' : '']" />
-      <span v-if="createProductFormErrors.descriptionError" class="text-red-600 text-xs">
-                  {{ createProductFormErrorMessages.descriptionMessage }}
+                            createProductFormErrors.description ? 'border-red-500' : '']" />
+      <span v-if="createProductFormErrors.description" class="text-red-600 text-xs">
+                  {{ createProductFormErrorMessages.description }}
                 </span>
       <span class="ml-auto text-[#A3A3A3] text-xs font-medium">{{ createProductForm.title.length }} / 100</span>
     </div>
@@ -163,7 +163,7 @@ import { IMaskComponent as IMask } from "vue-imask";
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import { useAddProduct } from "@/features/use-main-product/api/add-product.ts";
 import { createProductForm, createProductFormErrorMessages } from "@/features/use-product-form/model/product.forms.ts";
-import { createProductFormErrors } from "@/features/use-product-form/lib/product.error.ts";
+import { createProductFormErrors } from "@/features/use-product-form/model/product.error.ts";
 
 import BaseInput from "@/shared/ui/BaseInput.vue";
 
@@ -177,21 +177,21 @@ watch(() => [
       createProductForm.value.sku, createProductForm.value.price, createProductForm.value.description],
     ([title, collection, category, material, gender, sku, price, description]) => {
       if(title){
-        createProductFormErrors.value.titleError = false;
+        createProductFormErrors.value.title = false;
       }if(collection){
-        createProductFormErrors.value.collectionsError = false;
+        createProductFormErrors.value.collections = false;
       }if(category){
-        createProductFormErrors.value.categoryError = false;
+        createProductFormErrors.value.category = false;
       }if(material){
-        createProductFormErrors.value.materialError = false;
+        createProductFormErrors.value.material = false;
       }if(gender){
-        createProductFormErrors.value.genderError = false;
+        createProductFormErrors.value.gender = false;
       }if(sku){
-        createProductFormErrors.value.skuError = false;
+        createProductFormErrors.value.sku = false;
       }if(price){
-        createProductFormErrors.value.priceError = false;
+        createProductFormErrors.value.price = false;
       }if(description){
-        createProductFormErrors.value.descriptionError = false;
+        createProductFormErrors.value.description = false;
       }
     });
 </script>

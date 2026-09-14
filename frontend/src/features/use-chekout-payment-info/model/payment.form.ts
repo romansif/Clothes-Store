@@ -10,8 +10,8 @@ export const paymentForm = ref<PaymentForm>({
 })
 
 export const paymentFormErrorMessage = ref<PaymentFormErrorMessage>({
-    cardNumberMessage: '',
-    expiryDateMessage: '',
-    cardCvvMessage: '',
-    paymentMethodMessage: '',
+    cardNumber: '',
+    expiryDate: '',
+    cardCvv: '',
+    paymentMethod: '',
 })
