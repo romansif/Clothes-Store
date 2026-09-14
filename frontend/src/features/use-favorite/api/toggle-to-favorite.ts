@@ -1,66 +1,71 @@
 import { handler } from "@/shared/api/http.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { cartStore } from "@/features/use-cart/model/cart.store.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
-import { useGetProduct } from "@/features/use-product/api/get-product.ts";
-import {useFavorite} from "@/features/use-favorite/lib/use-favorite.ts";
+import { useFavorite } from "@/features/use-favorite/lib/use-favorite.ts";
+import { favoriteStore } from "@/features/use-favorite/model/favorite.store.ts";
+import type {Product} from "@/features/use-product/model/product.types.ts";
 
-const { cart } = cartStore();
 const { userData } = userStore();
-const { products } = useGetProduct();
+const { favorite } = favoriteStore();
 const { openNotify } = useBaseModals();
-const { isFavorite } = useFavorite()
 const { getFavoriteProducts } = useGetFavorite();
+const { isFavorite, getProductId } = useFavorite();
 
 export const useToggleFavorite = () => {
-    const toggleToFavorite = async (id: string, type: string, productId: string) => {
+    const toggleToFavorite = async (product: Product) => {
         try{
-            const sourceList = type === 'cart' ? cart?.value : products?.value;
-            const currentProduct = sourceList?.find(item => item?.id === id);
+            const productId = getProductId(product);
 
-            const currentId = type === 'cart' ? currentProduct?.productId : currentProduct?.id
-            if (!currentId) {
-                console.warn("Product ID not found for core operation");
+            if(!productId){
+                console.warn('Product ID not found');
                 return;
             }
 
-            if(!isFavorite(currentId, userData?.id)){
-                if (!userData?.id) {
-                    console.error("User ID is missing");
-                    return;
-                }
+            if(!userData?.id){
+                console.error('User ID is missing');
+                return;
+            }
 
-                await handler(`/favorites`, {
-                    method: "POST",
+            if(!isFavorite(product)){
+                await handler('/favorites', {
+                    method: 'POST',
                     body: JSON.stringify({
                         userId: userData?.id,
-                        productId: currentId,
-                        images: currentProduct?.images,
-                        title: currentProduct?.title,
-                        category: currentProduct?.category,
-                        material: currentProduct?.material,
-                        price: currentProduct?.price,
-                        description: currentProduct?.description,
-                        color: currentProduct?.colors,
-                        size: currentProduct?.sizes,
-                        gender: currentProduct?.gender,
-                        variants: currentProduct?.variants,
-                    })
+                        productId,
+                        images: product.images,
+                        title: product.title,
+                        category: product.category,
+                        material: product.material,
+                        price: product.price,
+                        description: product.description,
+                        color: product.colors,
+                        size: product.sizes,
+                        gender: product.gender,
+                        variants: product.variants,
+                    }),
                 });
+
                 await getFavoriteProducts();
 
-                await openNotify('You have successfully added the item to your favorite.',
-                    'You will now be redirected to the "Favorite" page.', 'favorite');
+                await openNotify(
+                    'You have successfully added the item to your favorite.',
+                    'You will now be redirected to the "Favorite" page.',
+                    'favorite'
+                );
             }else{
-                await deleteFavoriteProduct(productId);
+                const favoriteItem = favorite.value.find(
+                    item => item.productId === productId &&
+                        item.userId === userData?.id
+                );
+                await deleteFavoriteProduct(favoriteItem?.id);
             }
         }catch(err){
-            console.error(`Failed to add the favorite:`, err);
+            console.error('Failed to toggle favorite:', err);
         }
     };
 
-    const deleteFavoriteProduct = async (id: string) => {
+    const deleteFavoriteProduct = async (id: string | undefined) => {
         try{
             await handler(`/favorites/${id}`, {
                 method: "DELETE",

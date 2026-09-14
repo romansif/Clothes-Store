@@ -14,12 +14,21 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from "vue";
+import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
 import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
 
 import ProductItem from "./ProductItem.vue";
 import empty_products from "@/assets/icons/products/icon-products.svg";
 
-const { products } = useGetProducts();
+const { getFavoriteProducts } = useGetFavorite();
+const { getAllProducts, getFilteredProducts, products } = useGetProducts();
+
+onMounted(async() => {
+  await getAllProducts();
+  await getFilteredProducts('ALL', 'ALL');
+  await getFavoriteProducts();
+})
 </script>
 
 <style scoped>

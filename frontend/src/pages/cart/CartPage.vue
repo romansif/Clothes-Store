@@ -51,9 +51,11 @@
 </template>
 
 <script setup lang="ts">
-import { watch } from "vue";
+import { onMounted, watch } from "vue";
 import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
 import { cartStore } from "@/features/use-cart/model/cart.store.ts";
+import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
+import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
 import { isAgreeFormErrorMessage } from "@/features/use-cart/model/cart.form.ts";
 import { isAgreeFormError } from "@/features/use-cart/lib/cart.errors.ts";
 
@@ -66,6 +68,8 @@ import empty_cart from '@/assets/icons/products/empty-cart.svg';
 import check_square from "@/assets/icons/squares/check-square.png";
 
 const { cart } = cartStore();
+const { getCartProducts } = useGetCart();
+const { getFavoriteProducts } = useGetFavorite();
 const { toggleAgree, continueToOrder, cartCount, favoritesCount } = useProfile();
 
 watch(() => isAgreeFormError.value.agreeError, (agreeError) => {
@@ -73,6 +77,11 @@ watch(() => isAgreeFormError.value.agreeError, (agreeError) => {
     isAgreeFormErrorMessage.value.agreeMessage = ''
   }
 });
+
+onMounted(async () => {
+  await getCartProducts();
+  await getFavoriteProducts();
+})
 </script>
 
 <style scoped>

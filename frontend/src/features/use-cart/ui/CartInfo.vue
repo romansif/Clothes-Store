@@ -36,7 +36,7 @@
           I agree to the Terms and Conditions
         </span>
         </div>
-        <span class="text-red-600 text-xs">{{ isAgreeFormError.agreeMessageError }}</span>
+        <span class="text-red-600 text-xs">{{ isAgreeFormErrorMessage.agreeMessage }}</span>
       </div>
       <BaseButton @click="continueToOrder" name="CONTINUE" variant="addToOrder" />
     </div>

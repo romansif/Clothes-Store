@@ -2,19 +2,17 @@ import { computed } from "vue";
 import router from "@/app/router";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
-import { addToCartForm } from "@/features/use-cart/model/cart.form.ts";
-import { addToCartErrors } from "@/features/use-cart/lib/cart.errors.ts";
 import { cartStore } from "@/features/use-cart/model/cart.store.ts";
 import { favoriteStore } from "@/features/use-favorite/model/favorite.store.ts";
 import { orderStore } from "@/features/use-order/model/order.store.ts";
+import { isAgreeFormErrorMessage } from "@/features/use-cart/model/cart.form.ts";
+import { isAgreeFormError } from "@/features/use-cart/lib/cart.errors.ts";
 
 const { cart } = cartStore();
 const { user } = userStore();
 const { sizes } = productStore();
 const { orderItems } = orderStore();
 const { favorite } = favoriteStore();
-const { isAgreeFormMessage } = addToCartForm();
-const { isAgreeFormError } = addToCartErrors();
 
 export const useProfile = () => {
     const checkedItems = computed(() => {
@@ -24,16 +22,16 @@ export const useProfile = () => {
     const continueToOrder = async () =>  {
         try{
             if(!isAgreeFormError.value.agreeError && !orderItems.value?.length){
-                isAgreeFormMessage.value.agreeMessage = 'You must select the items for your order, agree to the Terms and Conditions';
+                isAgreeFormErrorMessage.value.agreeMessage = 'You must select the items for your order, agree to the Terms and Conditions';
                 return;
             }else if(!isAgreeFormError.value.agreeError) {
-                isAgreeFormMessage.value.agreeMessage = 'You must agree to the Terms and Conditions';
+                isAgreeFormErrorMessage.value.agreeMessage = 'You must agree to the Terms and Conditions';
                 return;
             }else if(!orderItems.value?.length){
-                isAgreeFormMessage.value.agreeMessage = 'You must select the items for your order';
+                isAgreeFormErrorMessage.value.agreeMessage = 'You must select the items for your order';
                 return ;
             }else{
-                isAgreeFormMessage.value.agreeMessage = '';
+                isAgreeFormErrorMessage.value.agreeMessage = '';
                 isAgreeFormError.value.agreeMessageError = false
                 await router.push({ name: 'information' });
             }

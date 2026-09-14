@@ -102,13 +102,13 @@ const routes: RouteRecordRaw[] = [
             {
                 path: 'create-product',
                 name: 'create/product',
-                component: () => import('@/pages/profile/CreateProductPage.vue'),
+                component: () => import('@/pages/product-form/CreateProductPage.vue'),
 
             },
             {
                 path: 'edit-product/:id',
                 name: 'edit/product',
-                component: () => import('@/pages/profile/EditProductPage.vue'),
+                component: () => import('@/pages/product-form/EditProductPage.vue'),
 
             },
         ]

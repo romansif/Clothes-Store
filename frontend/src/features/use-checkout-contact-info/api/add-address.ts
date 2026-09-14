@@ -1,18 +1,18 @@
 import { handler } from "@/shared/api/http.ts";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { useCheckout } from "@/features/use-checkout/lib/use-checkout.ts";
 import { informationForm } from "@/features/use-checkout-contact-info/model/address.form.ts";
 import { clearInformationForm } from "@/features/use-checkout-contact-info/lib/clear.address.ts";
 import { type UserContactInfo } from "@/features/use-checkout-contact-info/model/address.types.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useGetAddress } from "@/features/use-user-address/api/get-address.ts";
+import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle.information.ts";
 
 const { userData } = userStore();
 const { openNotify } = useBaseModals();
 const { getAddresses } = useGetAddress();
 const { createInformationErrors } = useFormsErrors();
-const { isChosenAddress, isChosenContactInfo, informationId } = useCheckout();
+const { isChosenAddress, isChosenContactInfo, informationId } = toggleInformation();
 
 export const useAddAddress = () => {
     const useSavedContactInfo = (info: UserContactInfo) => {

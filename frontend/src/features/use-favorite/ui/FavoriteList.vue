@@ -7,18 +7,11 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
-import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
 import { favoriteStore } from "@/features/use-favorite/model/favorite.store.ts";
 
 import FavoriteItem from "./FavoriteItem.vue";
 
 const { favorite } = favoriteStore();
-const { getFavoriteProducts } = useGetFavorite();
-
-onMounted(async() => {
-  await getFavoriteProducts();
-})
 </script>
 
 <style scoped>

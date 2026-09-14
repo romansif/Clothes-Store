@@ -9,8 +9,8 @@
           </h2>
         </div>
         <div class="flex flex-col gap-3 ml-auto font-medium">
-          <img @click="toggleToFavorite(product.id, 'product', product.id)"
-               :src="isFavorite(product.id, userData.id) ? liked : like" alt=""
+          <img @click="toggleToFavorite(product)"
+               :src="isFavorite(product) ? liked : like" alt=""
                class="w-8.75  cursor-pointer">
         </div>
       </div>

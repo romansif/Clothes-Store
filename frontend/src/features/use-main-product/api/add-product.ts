@@ -3,14 +3,13 @@ import { handler } from "@/shared/api/http.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
-import { productForms } from "@/features/use-product-form/model/product.forms.ts";
 import { clearProductForm } from "@/features/use-product-form/lib/clear.product.form.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
+import { createProductForm, moreCreateItemForm } from "@/features/use-product-form/model/product.forms.ts";
 
 const { userData } = userStore();
 const { openNotify } = useBaseModals();
 const { createProductErrors } = useFormsErrors();
-const { createProductForm, moreCreateItem } = productForms();
 const { productFiles, currentFile, productsPreview } = productStore();
 
 export const useAddProduct = () => {
@@ -51,9 +50,9 @@ export const useAddProduct = () => {
                 sku: createProductForm.value.sku,
                 price: createProductForm.value.price,
                 description: createProductForm.value.description,
-                sizes: moreCreateItem.sizes,
-                colors: moreCreateItem.colors,
-                variants: moreCreateItem.variants,
+                sizes: moreCreateItemForm.sizes,
+                colors: moreCreateItemForm.colors,
+                variants: moreCreateItemForm.variants,
                 status: 'Availability',
             }
 

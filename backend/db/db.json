@@ -88,218 +88,91 @@
           "hex": "#ffffff",
           "colorName": "White",
           "size": "S",
-          "count": 10
+          "count": 0
         },
         {
           "hex": "#ffffff",
           "colorName": "White",
           "size": "M",
-          "count": 10
+          "count": 0
         },
         {
           "hex": "#ffffff",
           "colorName": "White",
           "size": "L",
-          "count": 10
+          "count": 0
         },
         {
           "hex": "#ffffff",
           "colorName": "White",
           "size": "XL",
-          "count": 10
+          "count": 0
         },
         {
           "hex": "#ffffff",
           "colorName": "White",
           "size": "XXL",
-          "count": 10
+          "count": 0
         },
         {
           "hex": "#000000",
           "colorName": "Black",
           "size": "XS",
-          "count": 10
+          "count": 0
         },
         {
           "hex": "#000000",
           "colorName": "Black",
           "size": "S",
-          "count": 10
+          "count": 0
         },
         {
           "hex": "#000000",
           "colorName": "Black",
           "size": "M",
-          "count": 10
+          "count": 1
         },
         {
           "hex": "#000000",
           "colorName": "Black",
           "size": "L",
-          "count": 10
+          "count": 0
         },
         {
           "hex": "#000000",
           "colorName": "Black",
           "size": "XL",
-          "count": 10
+          "count": 0
         },
         {
           "hex": "#000000",
           "colorName": "Black",
           "size": "XXL",
-          "count": 10
+          "count": 0
         }
       ],
       "status": "Availability",
       "created_at": "2026-09-09T06:54:58.720Z"
-    },
+    }
+  ],
+  "cart": [
     {
-      "id": "06be11e1-a719-475b-9d38",
+      "id": "c18c9148-49a4-4a5c-9fbc-42bc7dfe5029",
       "userId": "3898fdbc-7763-4395-8ea9-7254e2c5ef15",
+      "productId": "06be11e1-a719-475b-9d38-46b77c068a75",
       "images": [
         "uploads/products/product-1788936898694-632916574.png",
         "uploads/products/product-1788936898695-150169104.png",
-        "uploads/products/product-1788936898701-153173880.png"
-      ],
-      "title": "BBB",
-      "collection": {
-        "season": "Autumn",
-        "name": "Silence",
-        "condition": "Old"
-      },
-      "category": "Underpants",
-      "material": "Flax",
-      "gender": "Man",
-      "sku": "F2C-TV-5V3",
-      "price": 98,
-      "description": "WWW",
-      "sizes": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL",
-        "XXL"
-      ],
-      "colors": [
-        {
-          "hex": "#ffffff",
-          "colorName": "White"
-        },
-        {
-          "hex": "#000000",
-          "colorName": "Black"
-        }
-      ],
-      "variants": [
-        {
-          "hex": "#ffffff",
-          "colorName": "White",
-          "size": "XS",
-          "count": 10
-        },
-        {
-          "hex": "#ffffff",
-          "colorName": "White",
-          "size": "S",
-          "count": 10
-        },
-        {
-          "hex": "#ffffff",
-          "colorName": "White",
-          "size": "M",
-          "count": 10
-        },
-        {
-          "hex": "#ffffff",
-          "colorName": "White",
-          "size": "L",
-          "count": 10
-        },
-        {
-          "hex": "#ffffff",
-          "colorName": "White",
-          "size": "XL",
-          "count": 10
-        },
-        {
-          "hex": "#ffffff",
-          "colorName": "White",
-          "size": "XXL",
-          "count": 10
-        },
-        {
-          "hex": "#000000",
-          "colorName": "Black",
-          "size": "XS",
-          "count": 10
-        },
-        {
-          "hex": "#000000",
-          "colorName": "Black",
-          "size": "S",
-          "count": 10
-        },
-        {
-          "hex": "#000000",
-          "colorName": "Black",
-          "size": "M",
-          "count": 10
-        },
-        {
-          "hex": "#000000",
-          "colorName": "Black",
-          "size": "L",
-          "count": 10
-        },
-        {
-          "hex": "#000000",
-          "colorName": "Black",
-          "size": "XL",
-          "count": 10
-        },
-        {
-          "hex": "#000000",
-          "colorName": "Black",
-          "size": "XXL",
-          "count": 10
-        }
-      ],
-      "status": "Availability",
-      "created_at": "2026-09-09T06:54:58.720Z"
-    },
-    {
-      "id": "64e17d19-32a0-4cbb-a96e-56dbb09dcf0c",
-      "userId": "3898fdbc-7763-4395-8ea9-7254e2c5ef15",
-      "images": [
-        "uploads/products/product-1789107254245-997686835.png",
-        "uploads/products/product-1789107254247-943672339.png",
-        "uploads/products/product-1789107254254-119099625.png",
-        "uploads/products/product-1789107254264-208879334.png",
-        "uploads/products/product-1789107254270-838370799.png"
+        "uploads/products/product-1788936898701-153173880.png",
+        "uploads/products/product-1788936898706-918926110.png",
+        "uploads/products/product-1788936898706-454516258.png"
       ],
       "title": "AAA",
-      "collection": {
-        "season": "Summer",
-        "name": "Blueprint",
-        "condition": "New"
-      },
-      "category": "Jeans",
-      "material": "Wool",
-      "gender": "Man",
-      "sku": "234-C4-5V4",
-      "price": 99,
-      "description": "BBB",
-      "sizes": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL",
-        "XXL"
-      ],
-      "colors": [
+      "category": "Underpants",
+      "material": "Flax",
+      "price": 98,
+      "description": "WWW",
+      "color": [
         {
           "hex": "#ffffff",
           "colorName": "White"
@@ -309,86 +182,351 @@
           "colorName": "Black"
         }
       ],
+      "size": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "gender": "Man",
       "variants": [
         {
           "hex": "#ffffff",
           "colorName": "White",
           "size": "XS",
-          "count": 10
+          "count": 0
         },
         {
           "hex": "#ffffff",
           "colorName": "White",
           "size": "S",
-          "count": 10
+          "count": 0
         },
         {
           "hex": "#ffffff",
           "colorName": "White",
           "size": "M",
-          "count": 10
+          "count": 0
         },
         {
           "hex": "#ffffff",
           "colorName": "White",
           "size": "L",
-          "count": 10
+          "count": 0
         },
         {
           "hex": "#ffffff",
           "colorName": "White",
           "size": "XL",
-          "count": 10
+          "count": 0
         },
         {
           "hex": "#ffffff",
           "colorName": "White",
           "size": "XXL",
-          "count": 10
+          "count": 0
         },
         {
           "hex": "#000000",
           "colorName": "Black",
           "size": "XS",
-          "count": 10
+          "count": 0
         },
         {
           "hex": "#000000",
           "colorName": "Black",
           "size": "S",
-          "count": 10
+          "count": 0
         },
         {
           "hex": "#000000",
           "colorName": "Black",
           "size": "M",
-          "count": 10
+          "count": 0
         },
         {
           "hex": "#000000",
           "colorName": "Black",
           "size": "L",
-          "count": 10
+          "count": 0
         },
         {
           "hex": "#000000",
           "colorName": "Black",
           "size": "XL",
-          "count": 10
+          "count": 0
         },
         {
           "hex": "#000000",
           "colorName": "Black",
           "size": "XXL",
-          "count": 10
+          "count": 0
         }
       ],
-      "status": "Availability",
-      "created_at": "2026-09-11T06:14:14.320Z"
+      "created_at": "2026-09-14T07:26:59.999Z"
+    },
+    {
+      "id": "55c93456-6d8b-4f83-bf69-2a6e7f6c0d14",
+      "userId": "a6bce7ed-41f1-4e9e-a57f-d267cdb467ca",
+      "productId": "06be11e1-a719-475b-9d38-46b77c068a75",
+      "images": [
+        "uploads/products/product-1788936898694-632916574.png",
+        "uploads/products/product-1788936898695-150169104.png",
+        "uploads/products/product-1788936898701-153173880.png",
+        "uploads/products/product-1788936898706-918926110.png",
+        "uploads/products/product-1788936898706-454516258.png"
+      ],
+      "title": "AAA",
+      "category": "Underpants",
+      "material": "Flax",
+      "price": 98,
+      "description": "WWW",
+      "colors": [
+        {
+          "hex": "#000000",
+          "colorName": "Black"
+        }
+      ],
+      "sizes": "M",
+      "gender": "Man",
+      "variants": [
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "M",
+          "count": 1
+        }
+      ],
+      "checked": true,
+      "created_at": "2026-09-14T07:29:37.265Z"
     }
   ],
-  "cart": [],
-  "favorites": [],
+  "favorites": [
+    {
+      "id": "c18c9148-49a4-4a5c-9fbc-42bc7dfe5029",
+      "userId": "3898fdbc-7763-4395-8ea9-7254e2c5ef15",
+      "productId": "06be11e1-a719-475b-9d38-46b77c068a75",
+      "images": [
+        "uploads/products/product-1788936898694-632916574.png",
+        "uploads/products/product-1788936898695-150169104.png",
+        "uploads/products/product-1788936898701-153173880.png",
+        "uploads/products/product-1788936898706-918926110.png",
+        "uploads/products/product-1788936898706-454516258.png"
+      ],
+      "title": "AAA",
+      "category": "Underpants",
+      "material": "Flax",
+      "price": 98,
+      "description": "WWW",
+      "color": [
+        {
+          "hex": "#ffffff",
+          "colorName": "White"
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black"
+        }
+      ],
+      "size": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "gender": "Man",
+      "variants": [
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "XS",
+          "count": 0
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "S",
+          "count": 0
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "M",
+          "count": 0
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "L",
+          "count": 0
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "XL",
+          "count": 0
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "XXL",
+          "count": 0
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "XS",
+          "count": 0
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "S",
+          "count": 0
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "M",
+          "count": 0
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "L",
+          "count": 0
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "XL",
+          "count": 0
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "XXL",
+          "count": 0
+        }
+      ],
+      "created_at": "2026-09-14T07:26:59.999Z"
+    },
+    {
+      "id": "56309a06-547f-4b01-99bd-2b52a1573cc4",
+      "userId": "a6bce7ed-41f1-4e9e-a57f-d267cdb467ca",
+      "productId": "06be11e1-a719-475b-9d38-46b77c068a75",
+      "images": [
+        "uploads/products/product-1788936898694-632916574.png",
+        "uploads/products/product-1788936898695-150169104.png",
+        "uploads/products/product-1788936898701-153173880.png",
+        "uploads/products/product-1788936898706-918926110.png",
+        "uploads/products/product-1788936898706-454516258.png"
+      ],
+      "title": "AAA",
+      "category": "Underpants",
+      "material": "Flax",
+      "price": 98,
+      "description": "WWW",
+      "color": [
+        {
+          "hex": "#ffffff",
+          "colorName": "White"
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black"
+        }
+      ],
+      "size": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "gender": "Man",
+      "variants": [
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "XS",
+          "count": 0
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "S",
+          "count": 0
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "M",
+          "count": 0
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "L",
+          "count": 0
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "XL",
+          "count": 0
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "XXL",
+          "count": 0
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "XS",
+          "count": 0
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "S",
+          "count": 0
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "M",
+          "count": 1
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "L",
+          "count": 0
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "XL",
+          "count": 0
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "XXL",
+          "count": 0
+        }
+      ],
+      "created_at": "2026-09-14T07:29:59.070Z"
+    }
+  ],
   "addresses": [
     {
       "id": "951bca71-8ec2-45f1-be40-e1ebcf38ec7b",

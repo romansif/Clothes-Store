@@ -35,6 +35,8 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from "vue";
+import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
 import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
 import { favoriteStore } from "@/features/use-favorite/model/favorite.store.ts";
 
@@ -42,9 +44,13 @@ import liked from "@/assets/icons/nav/liked.png";
 import favorite_cart from '@/assets/icons/products/favorute_empty.svg';
 import FavoriteList from "@/features/use-favorite/ui/FavoriteList.vue";
 
-const { favorite } = favoriteStore();
+const { favorite } = favoriteStore()
+const { getFavoriteProducts } = useGetFavorite();
 const { cartCount, favoritesCount } = useProfile();
 
+onMounted(async() => {
+  await getFavoriteProducts();
+})
 </script>
 
 <style scoped>

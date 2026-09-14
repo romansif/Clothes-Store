@@ -6,21 +6,11 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
-import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
 import { cartStore } from "@/features/use-cart/model/cart.store.ts";
-import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
 
 import CartItem from "./CartItem.vue";
 
 const { cart } = cartStore();
-const { getCartProducts } = useGetCart();
-const { getFavoriteProducts } = useGetFavorite();
-
-onMounted(async () => {
-  await getCartProducts();
-  await getFavoriteProducts();
-})
 </script>
 
 <style scoped>
