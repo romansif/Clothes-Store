@@ -1,5 +1,5 @@
 <template>
-  <main class="flex justify-center mt-12 xl:justify-between">
+  <main class="flex justify-center mt-10 xl:justify-between">
     <FilterProducts />
     <div class="flex flex-col">
       <MainHeader />

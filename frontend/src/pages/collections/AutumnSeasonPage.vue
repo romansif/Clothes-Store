@@ -1,5 +1,5 @@
 <template>
-  <main class="flex flex-col mt-14">
+  <main class="flex flex-col mt-10">
     <SeasonsHeader />
     <div :class="['flex gap-10', autumnCatalog.length ? '' : 'justify-center']">
       <AutumnList />

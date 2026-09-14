@@ -1,21 +1,21 @@
 <template>
   <TransitionGroup name="list">
-    <li @click="useSavedCard(checkout)" v-for="checkout in userPayments" :key="checkout.id" :class="savedPaymentClass">
+    <li @click="useSavedCard(payment)" :key="payment.id" :class="savedPaymentClass">
       <div class="flex flex-col gap-5">
         <div class="flex gap-5">
           <span class="text-sm font-semibold">
-            Expiry Date: <span class="font-normal font-dm-sans">{{ checkout.expiryDate }},</span>
+            Expiry Date: <span class="font-normal font-dm-sans">{{ payment.expiryDate }},</span>
           </span>
           <span class="text-sm font-semibold">
-            CVV: <span class="font-normal font-dm-sans">{{ checkout.cardCvv }}</span>
+            CVV: <span class="font-normal font-dm-sans">{{ payment.cardCvv }}</span>
           </span>
         </div>
         <div class="flex gap-5">
-          <span v-if="checkout.cardName" class="text-sm font-semibold">
-            Card Name: <span class="font-normal font-dm-sans">{{ checkout.cardName }}</span>
+          <span v-if="payment.cardName" class="text-sm font-semibold">
+            Card Name: <span class="font-normal font-dm-sans">{{ payment.cardName }}</span>
           </span>
           <span class="text-sm font-semibold">
-            Card Number: <span class="font-normal">{{ checkout.cardNumber }}</span>
+            Card Number: <span class="font-normal">{{ payment.cardNumber }}</span>
           </span>
         </div>
       </div>
@@ -26,9 +26,12 @@
 <script setup lang="ts">
 import { paymentClasses } from "@/shared/const/checkout/payment.classes.ts";
 import { useAddPayment } from "@/features/use-chekout-payment-info/api/add-payment.ts";
-import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
+import type {UserPayment} from "@/features/use-chekout-payment-info/model/payment.type.ts";
 
-const { userPayments } = paymentStore();
+defineProps<{
+  payment: UserPayment
+}>();
+
 const { useSavedCard } = useAddPayment();
 const { savedPaymentClass } = paymentClasses();
 </script>

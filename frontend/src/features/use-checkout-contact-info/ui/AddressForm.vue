@@ -46,9 +46,9 @@ import { informationFormErrors } from "@/features/use-checkout-contact-info/lib/
 import { useInformationFormInput } from "@/features/use-checkout-contact-info/lib/address-input.ts";
 import { informationContactStore } from "@/features/use-user-address/model/address.store.ts";
 import { informationClasses } from "@/shared/const/checkout/information.classes.ts";
+import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle.information.ts";
 
 import CheckoutInput from "@/shared/ui/CheckoutInput.vue";
-import {toggleInformation} from "@/features/use-checkout-contact-info/lib/toggle.information.ts";
 
 const { toggleShowContact } = toggleInformation();
 const { postalCode, userAddresses } = informationContactStore()

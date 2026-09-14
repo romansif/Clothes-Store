@@ -9,7 +9,7 @@
           <div class="flex">
             <span class="text-sm text-[#A3A3A3]">Purchase history and status tracking.</span>
             <span class="ml-auto h-fit px-3 py-1 bg-gray-100 text-gray-700 font-medium text-xs rounded-md">
-              Всего заказов: {{ items?.length }}
+              Всего заказов: {{ orders?.length }}
             </span>
           </div>
         </header>
@@ -31,13 +31,14 @@ import { useOrder } from "@/features/use-order/lib/use-order.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
 import { useGetOrder } from "@/features/use-order/api/get-order.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { orderStore } from "@/features/use-order/model/order.store.ts";
 
 import OrderList from "./OrderList.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import ClipboardNotify from "@/shared/ui/ClipboardNotify.vue";
 import ReplacementChoice from "@/features/use-order/ui/ReplacementChoice.vue";
 
-const { items } = useOrder();
+const { orders } = orderStore();
 const { clipboard } = useOrder();
 const { choiceModal } = useBaseModals();
 const { getFilteredOrders } = useGetOrder();

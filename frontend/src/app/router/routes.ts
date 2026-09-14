@@ -39,27 +39,27 @@ const routes: RouteRecordRaw[] = [
             {
                 path: 'shop/seasons-catalog',
                 name: 'shop/seasons-catalog',
-                component: () => import('@/pages/collections/seasons/SeasonsCatalogPage.vue'),
+                component: () => import('@/pages/collections/SeasonsCatalogPage.vue'),
             },
             {
                 path: 'shop/winter-catalog',
                 name: 'shop/winter-catalog',
-                component: () => import('@/pages/collections/seasons/WinterSeasonPage.vue'),
+                component: () => import('@/pages/collections/WinterSeasonPage.vue'),
             },
             {
                 path: 'shop/spring-catalog',
                 name: 'shop/spring-catalog',
-                component: () => import('@/pages/collections/seasons/SpringSeasonPage.vue'),
+                component: () => import('@/pages/collections/SpringSeasonPage.vue'),
             },
             {
                 path: 'shop/summer-catalog',
                 name: 'shop/summer-catalog',
-                component: () => import('@/pages/collections/seasons/SummerSeasonPage.vue'),
+                component: () => import('@/pages/collections/SummerSeasonPage.vue'),
             },
             {
                 path: 'shop/autumn-catalog',
                 name: 'shop/autumn-catalog',
-                component: () => import('@/pages/collections/seasons/AutumnSeasonPage.vue'),
+                component: () => import('@/pages/collections/AutumnSeasonPage.vue'),
             },
             {
                 path: 'shop/product/info/:id',

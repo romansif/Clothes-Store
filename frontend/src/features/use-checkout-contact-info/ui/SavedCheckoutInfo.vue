@@ -23,7 +23,6 @@ import ContactList from "@/features/use-checkout-contact-info/ui/ContactList.vue
 import AddressList from "@/features/use-checkout-contact-info/ui/AddressList.vue";
 
 const { toggleShowContact } = toggleInformation();
-
 </script>
 
 <style scoped>

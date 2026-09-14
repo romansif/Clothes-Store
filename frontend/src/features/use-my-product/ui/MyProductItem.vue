@@ -1,7 +1,10 @@
 <template>
   <TransitionGroup name="list">
     <li :key="product.id" class="flex pl-10 gap-8">
-      <BaseProductCard :product="product" :array="myProducts" :size="'w-83.75 h-h-78.5m:h-[314px] xl:h-100'" />
+      <BaseProductCard :product="product" :array="myProducts"
+                       :size="'w-83.75 h-h-78.5m:h-[314px] xl:h-100'"
+                       :stack-class="'absolute top-41 -left-12 text-7xl font-semibold -rotate-50 w-110'"
+                       :favorite-btn="'absolute top-0.5 left-75.5 w-8 cursor-pointer'" />
       <div class="flex flex-col gap-25">
         <div class="flex flex-col gap-20">
           <div class="flex items-center ml-auto gap-10">
@@ -49,6 +52,7 @@ defineProps<{
   product: Product
   myProducts: Product[]
 }>();
+
 import del from '@/assets/icons/delete-close/delete.svg'
 import pencil from "@/assets/icons/products/pencil.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";
