@@ -1,5 +1,5 @@
 <template>
-  <form class="flex flex-col mt-5 gap-5">
+  <template>
     <label class="font-medium text-xs md:text-sm">CONTACT INFO</label>
     <div class="flex flex-col gap-2">
       <CheckoutInput v-model="informationForm.email"
@@ -21,7 +21,7 @@
         </IMask>
       </div>
     </div>
-  </form>
+  </template>
 </template>
 
 <script setup lang="ts">

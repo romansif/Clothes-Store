@@ -1,53 +1,51 @@
 <template>
-  <form class="flex flex-col mt-5 gap-5">
-    <div class="flex justify-between">
-      <label class="font-medium text-xs md:text-sm">
-        SHIPPING ADDRESS
-      </label>
-      <span v-if="userAddresses.length > 0" @click="toggleShowContact"
-            class="text-xs text-indigo-600 cursor-pointer hover:text-violet-600">
+  <div class="flex justify-between">
+    <label class="font-medium text-xs md:text-sm">
+      SHIPPING ADDRESS
+    </label>
+    <span v-if="userAddresses.length > 0" @click="toggleShowContact"
+          class="text-xs text-indigo-600 cursor-pointer hover:text-violet-600">
         Show saved contact
       </span>
+  </div>
+  <div class="flex flex-col gap-3">
+    <input v-model="informationForm.addressName"
+           type="text"
+           placeholder="Address Name is optional"
+           :class="addressNameClass()" />
+    <div class="flex gap-2">
+      <CheckoutInput v-model="informationForm.firstName"
+                     :placeholder="firstNamePlaceholder"
+                     :error="informationFormErrors.firstName" />
+      <CheckoutInput v-model="informationForm.lastName"
+                     :placeholder="lastNamePlaceholder"
+                     :error="informationFormErrors.lastName" />
     </div>
     <div class="flex flex-col gap-3">
-      <input v-model="informationForm.addressName"
-             type="text"
-             placeholder="Address Name is optional"
-             :class="addressNameClass()" />
-      <div class="flex gap-2">
-        <CheckoutInput v-model="informationForm.firstName"
-                       :placeholder="firstNamePlaceholder"
-                       :error="informationFormErrors.firstName" />
-        <CheckoutInput v-model="informationForm.lastName"
-                       :placeholder="lastNamePlaceholder"
-                       :error="informationFormErrors.lastName" />
+      <CheckoutInput v-model="informationForm.country"
+                     :placeholder="countryPlaceholder"
+                     :error="informationFormErrors.country" />
+      <CheckoutInput v-model="informationForm.stateRegion"
+                     :placeholder="statePlaceholder"
+                     :error="informationFormErrors.stateRegion"  />
+      <CheckoutInput v-model="informationForm.address"
+                     :placeholder="addressPlaceholder"
+                     :error="informationFormErrors.address" />
+    </div>
+    <div class="flex gap-2">
+      <div class="flex flex-col w-full">
+        <CheckoutInput v-model="informationForm.city"
+                       :placeholder="cityPlaceholder"
+                       :error="informationFormErrors.city" />
       </div>
-      <div class="flex flex-col gap-3">
-        <CheckoutInput v-model="informationForm.country"
-                       :placeholder="countryPlaceholder"
-                       :error="informationFormErrors.country" />
-        <CheckoutInput v-model="informationForm.stateRegion"
-                       :placeholder="statePlaceholder"
-                       :error="informationFormErrors.stateRegion"  />
-        <CheckoutInput v-model="informationForm.address"
-                       :placeholder="addressPlaceholder"
-                       :error="informationFormErrors.address" />
-      </div>
-      <div class="flex gap-2">
-        <div class="flex flex-col w-full">
-          <CheckoutInput v-model="informationForm.city"
-                         :placeholder="cityPlaceholder"
-                         :error="informationFormErrors.city" />
-        </div>
-        <div class="flex flex-col w-full">
-          <IMask v-model:value="informationForm.postalCode"
-                 :placeholder="postalCodePlaceholder"
-                 :class="postalCodeClass"
-                 :mask="postalCode.mask"  />
-        </div>
+      <div class="flex flex-col w-full">
+        <IMask v-model:value="informationForm.postalCode"
+               :placeholder="postalCodePlaceholder"
+               :class="postalCodeClass"
+               :mask="postalCode.mask"  />
       </div>
     </div>
-  </form>
+  </div>
 </template>
 
 <script setup lang="ts">

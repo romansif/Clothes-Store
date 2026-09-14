@@ -1,7 +1,7 @@
 <template>
   <input v-model="model" type="text" :class="[
       variantClasses[props.variant], props.error ? 'border border-red-500' : 'border-gray-300'
-      ]" v-bind="$attrs" required />
+      ]" v-bind="$attrs" />
   <span v-if=props.errorMessage class="text-red-600 text-xs">{{ props.errorMessage }}</span>
 </template>
 

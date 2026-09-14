@@ -10,8 +10,8 @@ import { cartFormErrorMessages } from "@/features/use-cart/model/cart.form.ts";
 import { cartFormErrors } from "@/features/use-cart/model/cart.errors.ts";
 import { informationFormErrorMessages } from "@/features/use-checkout-contact-info/model/address.form.ts";
 import { informationFormErrors } from "@/features/use-checkout-contact-info/model/address.errors.ts";
-import { shippingFormErrorMessage } from "@/features/use-shipping/model/shipping.form.ts";
-import { shippingFormError } from "@/features/use-shipping/model/shipping.errors.ts";
+import { shippingFormErrorMessage } from "@/features/use-checkout-shipping-info/model/shipping.form.ts";
+import { shippingFormError } from "@/features/use-checkout-shipping-info/model/shipping.errors.ts";
 import { paymentFormErrorMessage } from "@/features/use-chekout-payment-info/model/payment.form.ts";
 import { paymentFormErrors } from "@/features/use-chekout-payment-info/model/payment.errors.ts";
 

@@ -2,7 +2,7 @@
   <div class="flex font-medium flex-col gap-5 pt-5">
     <div class="flex flex-col gap-5">
       <div class="flex gap-10">
-        <form @keydown.enter.prevent="updateNameAccount" class="flex flex-col gap-3 w-full">
+        <form @submit.prevent="updateNameAccount" class="flex flex-col gap-3 w-full">
           <label>Name</label>
           <BaseInput v-model="updateUserForm.name"
                      placeholder="New Name"
@@ -10,10 +10,10 @@
                      variant="confidentialityData"
                      :error-message="updateUserFormErrors.name ? updateUserFormMessage.name : ''" />
           <div class="flex">
-            <BaseButton @click.prevent="updateNameAccount()" name="Save Name" variant="profileForm" />
+            <BaseButton type="submit" name="Save Name" variant="profileForm" />
           </div>
         </form>
-        <form @keydown.enter.prevent="updateSurNameAccount" class="flex flex-col gap-3 w-full">
+        <form @submit.prevent="updateSurNameAccount" class="flex flex-col gap-3 w-full">
           <label>SurName</label>
           <BaseInput v-model="updateUserForm.surName"
                      placeholder="New SurName"
@@ -21,13 +21,13 @@
                      variant="confidentialityData"
                      :error-message="updateUserFormErrors.surName ? updateUserFormMessage.surName : ''" />
           <div class="flex">
-            <BaseButton @click.prevent="updateSurNameAccount()" name="Save SurName" variant="profileForm" />
+            <BaseButton type="submit" name="Save SurName" variant="profileForm" />
           </div>
         </form>
       </div>
     </div>
     <div class="flex flex-col gap-10 sm:flex-row">
-      <form @keydown.enter.prevent="updateEmailAccount" class="flex flex-col gap-3 w-full">
+      <form @submit.prevent="updateEmailAccount" class="flex flex-col gap-3 w-full">
         <label>Email</label>
         <BaseInput v-model="updateUserForm.email"
                    placeholder="example@mail.com"
@@ -35,10 +35,10 @@
                    variant="confidentialityData"
                    :error-message="updateUserFormErrors.email ? updateUserFormMessage.email : ''"/>
         <div class="flex">
-          <BaseButton @click.prevent="updateEmailAccount()" name="Save Email" variant="profileForm" />
+          <BaseButton type="submit" name="Save Email" variant="profileForm" />
         </div>
       </form>
-      <form @keydown.enter.prevent="updatePhoneAccount" class="flex flex-col gap-3 w-full">
+      <form @submit.prevent="updatePhoneAccount" class="flex flex-col gap-3 w-full">
         <label>Private Phone</label>
         <div class="flex gap-3">
           <select v-model="selectedCountryCode"
@@ -58,12 +58,12 @@
         {{ updateUserFormMessage.phone }}
       </span>
         <div class="flex">
-          <BaseButton @click.prevent="updatePhoneAccount()" name="Save Phone" variant="profileForm" />
+          <BaseButton type="submit" name="Save Phone" variant="profileForm" />
         </div>
       </form>
     </div>
     <div class="flex flex-col">
-      <form @keydown.enter.prevent="updatePasswordAccount" class="flex flex-col gap-10 sm:flex-row">
+      <form @submit.prevent="updatePasswordAccount" class="flex flex-col gap-10 sm:flex-row">
         <div class="flex flex-col gap-3 w-full">
           <label>Old password</label>
           <div class="relative">
@@ -91,7 +91,7 @@
         </div>
       </form>
       <div class="flex mt-3">
-        <BaseButton @click.prevent="updatePasswordAccount()" name="Save Password" variant="profileForm" />
+        <BaseButton type="submit" name="Save Password" variant="profileForm" />
       </div>
     </div>
   </div>

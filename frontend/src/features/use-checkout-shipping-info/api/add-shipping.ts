@@ -2,10 +2,10 @@ import { v4 as uuidv4 } from 'uuid';
 import { handler } from "@/shared/api/http.ts";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { clearShippingForm } from "@/features/use-shipping/lib/clear.shipping.ts";
-import { shippingForm } from "@/features/use-shipping/model/shipping.form.ts";
+import { clearShippingForm } from "@/features/use-checkout-shipping-info/lib/clear.shipping.ts";
+import { shippingForm } from "@/features/use-checkout-shipping-info/model/shipping.form.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { useGetShipping } from "@/features/use-shipping/api/get-shipping.ts";
+import { useGetShipping } from "@/features/use-checkout-shipping-info/api/get-shipping.ts";
 
 const { userData } = userStore();
 const { openNotify  } = useBaseModals();

@@ -24,8 +24,8 @@
           <div class="flex flex-col gap-2 items-center">
             <span class="font-bold">Cart is empty</span>
             <span class="text-[#A3A3A3]">
-                It’s the perfect time to go shopping or check out this year’s new releases.
-              </span>
+              It’s the perfect time to go shopping or check out this year’s new releases.
+            </span>
           </div>
         </div>
         <div v-else class="flex flex-col xl:flex-row xl:gap-35">
@@ -37,13 +37,13 @@
     <div class="font-montserrat flex flex-col mt-3 xl:hidden">
       <div class="flex flex-col gap-4">
         <div class="flex gap-4 items-center">
-          <img @click="toggleAgree" :src="isAgreeFormError.agreeError ? check_square : square"
+          <img @click="toggleAgree" :src="isAgreeFormError.agree ? check_square : square"
                alt="" class="w-6.25 transition duration-400 hover:scale-120">
           <span class="text-xs text-[#A3A3A3]">
-                I agree to the Terms and Conditions
-              </span>
+            I agree to the Terms and Conditions
+          </span>
         </div>
-        <span class="text-red-600 text-xs">{{ isAgreeFormErrorMessage.agreeMessage }}</span>
+        <span class="text-red-600 text-xs">{{ isAgreeFormErrorMessage.agree }}</span>
       </div>
       <BaseButton @click="continueToOrder" name="CONTINUE" variant="addToOrder" />
     </div>
@@ -51,7 +51,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, watch } from "vue";
+import { onMounted } from "vue";
 import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
 import { cartStore } from "@/features/use-cart/model/cart.store.ts";
 import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
@@ -71,12 +71,6 @@ const { cart } = cartStore();
 const { getCartProducts } = useGetCart();
 const { getFavoriteProducts } = useGetFavorite();
 const { toggleAgree, continueToOrder, cartCount, favoritesCount } = useProfile();
-
-watch(() => isAgreeFormError.value.agreeError, (agreeError) => {
-  if(agreeError === true) {
-    isAgreeFormErrorMessage.value.agreeMessage = ''
-  }
-});
 
 onMounted(async () => {
   await getCartProducts();

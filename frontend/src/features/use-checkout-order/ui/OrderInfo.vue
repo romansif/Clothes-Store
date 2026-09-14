@@ -41,7 +41,7 @@
 
 <script setup lang="ts">
 import { orderStore } from "@/features/use-order/model/order.store.ts";
-import { shippingForm } from "@/features/use-shipping/model/shipping.form.ts";
+import { shippingForm } from "@/features/use-checkout-shipping-info/model/shipping.form.ts";
 import { orderPriceInfo } from "@/features/use-checkout-order/lib/order.price.info.ts";
 
 import OrderInfoList from "./OrderInfoList.vue";

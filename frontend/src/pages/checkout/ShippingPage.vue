@@ -4,10 +4,10 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useGetShipping } from "@/features/use-shipping/api/get-shipping.ts";
+import { useGetShipping } from "@/features/use-checkout-shipping-info/api/get-shipping.ts";
 import { useGetAddress } from "@/features/use-user-address/api/get-address.ts";
 
-import CheckoutShipping from "@/features/use-shipping/ui/CheckoutShipping.vue";
+import CheckoutShipping from "@/features/use-checkout-shipping-info/ui/CheckoutShipping.vue";
 
 const { getAddress } = useGetAddress();
 const { getShipping } = useGetShipping();
