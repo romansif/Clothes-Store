@@ -15,8 +15,12 @@
         <div v-if="!isDebitCard" @click="openCardForm('card')"
              :class="paymentMethodClass('card')">
           <div class="flex items-center gap-3">
-            <input v-model="paymentForm.paymentMethod" type="radio" value="card" name="shipping-method"
-                class="accent-black w-4 h-4" placeholder="Email">
+            <input v-model="paymentForm.paymentMethod"
+                   type="radio"
+                   placeholder="Email"
+                   value="card"
+                   name="shipping-method"
+                   class="accent-black w-4 h-4" />
             <div class="flex flex-col">
               <span class="font-semibold">
                 DEBIT OR CREDIT CARD
@@ -33,8 +37,13 @@
         </div>
         <div :class="paymentMethodClass('apple')">
           <div class="flex items-center gap-3">
-            <input @click="closeCardForm('apple')" v-model="paymentForm.paymentMethod" type="radio" placeholder="Email"
-                   value="apple" class="accent-black w-4 h-4" name="shipping-method">
+            <input @click="closeCardForm('apple')"
+                   v-model="paymentForm.paymentMethod"
+                   type="radio"
+                   placeholder="Email"
+                   value="apple"
+                   name="shipping-method"
+                   class="accent-black w-4 h-4" />
             <div class="flex flex-col">
               <span class="font-semibold">
                 APPLE PAY
@@ -48,8 +57,13 @@
         </div>
         <div :class="paymentMethodClass('google')">
           <div class="flex items-center gap-3">
-            <input @click="closeCardForm('google')" v-model="paymentForm.paymentMethod" type="radio" placeholder="Email"
-                   value="google" class="accent-black w-4 h-4" name="shipping-method">
+            <input @click="closeCardForm('google')"
+                   v-model="paymentForm.paymentMethod"
+                   type="radio"
+                   placeholder="Email"
+                   value="google"
+                   name="shipping-method"
+                   class="accent-black w-4 h-4" />
             <div class="flex flex-col">
               <span class="font-semibold">
                 GOOGLE PAY
@@ -63,8 +77,13 @@
         </div>
         <div :class="paymentMethodClass('paypal')">
           <div class="flex items-center gap-3">
-            <input @click="closeCardForm('paypal')" v-model="paymentForm.paymentMethod" type="radio" placeholder="Email"
-                   value="paypal" class="accent-black w-4 h-4" name="shipping-method">
+            <input @click="closeCardForm('paypal')"
+                   v-model="paymentForm.paymentMethod"
+                   type="radio"
+                   placeholder="Email"
+                   value="paypal"
+                   name="shipping-method"
+                   class="accent-black w-4 h-4" />
             <div class="flex flex-col">
               <span class="font-semibold">
                 PAYPAL

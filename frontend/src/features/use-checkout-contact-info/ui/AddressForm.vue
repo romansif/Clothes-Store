@@ -10,29 +10,40 @@
       </span>
     </div>
     <div class="flex flex-col gap-3">
-      <input v-model="informationForm.addressName" type="text" placeholder="Address Name is optional" :class="addressNameClass()" />
+      <input v-model="informationForm.addressName"
+             type="text"
+             placeholder="Address Name is optional"
+             :class="addressNameClass()" />
       <div class="flex gap-2">
-        <CheckoutInput v-model="informationForm.firstName" type="text" variant="checkoutInfo"
-            :placeholder="firstNamePlaceholder" :error="informationFormErrors.firstName" />
-        <CheckoutInput v-model="informationForm.lastName" type="text" variant="checkoutInfo"
-            :placeholder="lastNamePlaceholder" :error="informationFormErrors.lastName" />
+        <CheckoutInput v-model="informationForm.firstName"
+                       :placeholder="firstNamePlaceholder"
+                       :error="informationFormErrors.firstName" />
+        <CheckoutInput v-model="informationForm.lastName"
+                       :placeholder="lastNamePlaceholder"
+                       :error="informationFormErrors.lastName" />
       </div>
       <div class="flex flex-col gap-3">
-        <CheckoutInput v-model="informationForm.country" type="text" variant="checkoutInfo"
-             :placeholder="countryPlaceholder" :error="informationFormErrors.country" />
-        <CheckoutInput v-model="informationForm.stateRegion" type="text" variant="checkoutInfo"
-            :placeholder="statePlaceholder" :error="informationFormErrors.stateRegion"  />
-        <CheckoutInput v-model="informationForm.address" type="text" :placeholder="addressPlaceholder"
-            :error="informationFormErrors.address" variant="checkoutInfo" />
+        <CheckoutInput v-model="informationForm.country"
+                       :placeholder="countryPlaceholder"
+                       :error="informationFormErrors.country" />
+        <CheckoutInput v-model="informationForm.stateRegion"
+                       :placeholder="statePlaceholder"
+                       :error="informationFormErrors.stateRegion"  />
+        <CheckoutInput v-model="informationForm.address"
+                       :placeholder="addressPlaceholder"
+                       :error="informationFormErrors.address" />
       </div>
       <div class="flex gap-2">
         <div class="flex flex-col w-full">
-          <CheckoutInput v-model="informationForm.city" type="text" variant="checkoutInfo"
-            :placeholder="cityPlaceholder" :error="informationFormErrors.city" />
+          <CheckoutInput v-model="informationForm.city"
+                         :placeholder="cityPlaceholder"
+                         :error="informationFormErrors.city" />
         </div>
         <div class="flex flex-col w-full">
-          <IMask v-model:value="informationForm.postalCode" type="text" :placeholder="postalCodePlaceholder"
-                 :class="postalCodeClass" :mask="postalCode.mask"  />
+          <IMask v-model:value="informationForm.postalCode"
+                 :placeholder="postalCodePlaceholder"
+                 :class="postalCodeClass"
+                 :mask="postalCode.mask"  />
         </div>
       </div>
     </div>

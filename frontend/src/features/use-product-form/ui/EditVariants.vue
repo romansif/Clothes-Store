@@ -22,9 +22,13 @@
         </div>
       </div>
       <div v-if="countMode === 'SAME'" class="flex">
-        <BaseInput v-model="createProductForm.quantity" @input="toggleAllVariants"
-                   type="number" placeholder="product ptc." class="w-75"
-                   :error="createProductFormErrors.quantity" variant="createProduct" required
+        <BaseInput v-model="createProductForm.quantity"
+                   @input="toggleAllVariants"
+                   type="number"
+                   placeholder="product ptc."
+                   class="w-75"
+                   :error="createProductFormErrors.quantity"
+                   variant="createProduct"
                    :error-message="createProductFormErrors.quantity ? createProductFormErrorMessages.quantity: ''"/>
         <span class="ml-auto mt-auto text-sm text-[#A3A3A3] font-medium">
             An equal quantity will be selected for all sizes and colors
@@ -54,7 +58,10 @@
               </div>
             </td>
             <td v-for="size in uniqueSizes(product)" :key="`${color.colorName}-${size}`" class="py-6 text-center">
-              <input type="number" min="0" step="1" :value="product.variants.find(variant =>
+              <input type="number"
+                     min="0"
+                     step="1"
+                     :value="product.variants.find(variant =>
                      variant.colorName === color.colorName && variant.size === size)?.count ?? 0"
                      @input="updateProductCount(product, color, size, ($event.target as HTMLInputElement).value)"
                      class="w-20 h-10 outline-none border-2 border-gray-300 rounded-sm text-center"/>

@@ -1,6 +1,5 @@
 <template>
-  <form @keydown.enter="createProduct" action=""
-        class="bg-white p-6.5 mt-6 flex flex-col justify-center gap-8 rounded shadow-xl">
+  <div @keydown.enter="" class="bg-white p-6.5 mt-6 flex flex-col justify-center gap-8 rounded shadow-xl">
     <div class="flex flex-col gap-1">
       <label for="" class="text-2xl font-semibold tracking-wider">
         Basic information
@@ -22,8 +21,10 @@
             </span>
           </div>
         </label>
-        <BaseInput v-model="createProductForm.title" type="text" placeholder="title, name etc."
-                   :error="createProductFormErrors.title" variant="createProduct" required
+        <BaseInput v-model="createProductForm.title"
+                   placeholder="title, name etc."
+                   :error="createProductFormErrors.title"
+                   variant="createProduct"
                    :error-message="createProductFormErrors.title ? createProductFormErrorMessages.title : ''"/>
       </div>
     </div>
@@ -39,10 +40,11 @@
             </span>
           </div>
         </label>
-        <select v-model="createProductForm.collection" :class="[`w-full border border-gray-300 rounded-sm
-                          outline-none px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,
-                          createProductForm.collection ? 'text-black' : '',
-                          createProductFormErrors.collections ? 'border-red-500' : '']">
+        <select v-model="createProductForm.collection"
+                :class="[`w-full border border-gray-300 rounded-sm
+                outline-none px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,
+                createProductForm.collection ? 'text-black' : '',
+                createProductFormErrors.collections ? 'border-red-500' : '']">
           <option disabled hidden value="">
             Void
           </option>
@@ -68,10 +70,11 @@
             </span>
           </div>
         </label>
-        <select v-model="createProductForm.category" :class="[`w-full border border-gray-300 rounded-sm
-                          outline-none px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,
-                          createProductForm.category ? 'text-black' : '',
-                          createProductFormErrors.category ? 'border-red-500' : '']">
+        <select v-model="createProductForm.category"
+                :class="[`w-full border border-gray-300 rounded-sm
+                outline-none px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,
+                createProductForm.category ? 'text-black' : '',
+                createProductFormErrors.category ? 'border-red-500' : '']">
           <option disabled hidden value="">
             Shirt
           </option>
@@ -94,10 +97,11 @@
             </span>
           </div>
         </label>
-        <select v-model="createProductForm.material" :class="[`w-full border border-gray-300 rounded-sm
-                          outline-none px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,
-                          createProductForm.material ? 'text-black' : '',
-                          createProductFormErrors.material ? 'border-red-500' : '']">
+        <select v-model="createProductForm.material"
+                :class="[`w-full border border-gray-300 rounded-sm
+                outline-none px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,
+                createProductForm.material ? 'text-black' : '',
+                createProductFormErrors.material ? 'border-red-500' : '']">
           <option disabled hidden value="">
             Cotton
           </option>
@@ -119,10 +123,11 @@
           </div>
         </label>
         <div class="flex flex-col gap-3">
-          <select v-model="createProductForm.gender" :class="[`border border-gray-300 rounded-sm outline-none
-                            px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,
-                            createProductForm.gender ? 'text-black' : '',
-                            createProductFormErrors.gender ? 'border-red-500' : '']">
+          <select v-model="createProductForm.gender"
+                  :class="[`border border-gray-300 rounded-sm outline-none
+                  px-5 py-5 text-sm bg-white appearance-none text-[#A3A3A3]`,
+                  createProductForm.gender ? 'text-black' : '',
+                  createProductFormErrors.gender ? 'border-red-500' : '']">
             <option disabled hidden value="">
               man, woman, kids
             </option>
@@ -146,7 +151,9 @@
             </span>
           </div>
         </label>
-        <IMask v-model:value="createProductForm.sku" type="text" inputmode="numeric" placeholder="BLC-XS-001" :mask="skuMask.mask"
+        <IMask v-model:value="createProductForm.sku"
+               placeholder="BLC-XS-001"
+               :mask="skuMask.mask"
                :class="['uppercase border border-gray-300 rounded-sm outline-none px-6 py-5 text-sm bg-white ' +
                'transition duration-400 font-dm-sans', createProductFormErrors.sku ? 'border-red-500' : '']" />
         <span v-if="createProductFormErrors.sku" class="text-red-600 text-xs">
@@ -164,8 +171,11 @@
             </span>
           </div>
         </label>
-        <BaseInput v-model="createProductForm.price" type="number" placeholder="$00.00 "
-                   :error="createProductFormErrors.price" variant="createProduct" required
+        <BaseInput v-model="createProductForm.price"
+                   type="number"
+                   placeholder="$00.00 "
+                   :error="createProductFormErrors.price"
+                   variant="createProduct"
                    :error-message="createProductFormErrors.price ? createProductFormErrorMessages.price : ''"/>
       </div>
     </div>
@@ -180,7 +190,9 @@
           </span>
         </div>
       </label>
-      <textarea v-model="createProductForm.description" type="text" placeholder="short desc. product"
+      <textarea v-model="createProductForm.description"
+                type="text"
+                placeholder="short desc. product"
                 :class="['h-25 border border-gray-200 rounded-sm outline-none px-6 py-5 text-sm bg-white',
                 createProductFormErrors.description ? 'border-red-500' : '']" />
       <span v-if="createProductFormErrors.description" class="text-red-600 text-xs">
@@ -190,7 +202,7 @@
         {{ createProductForm.title.length }} / 100
       </span>
     </div>
-  </form>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -198,7 +210,6 @@ import { watch } from "vue";
 import { IMaskComponent as IMask } from "vue-imask";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
-import { useAddProduct } from "@/features/use-main-product/api/add-product.ts";
 import type {Product} from "@/features/use-product/model/product.types.ts";
 import { createProductForm, createProductFormErrorMessages } from "@/features/use-product-form/model/product.forms.ts";
 import { createProductFormErrors } from "@/features/use-product-form/model/product.error.ts";
@@ -210,9 +221,7 @@ defineProps<{
 }>();
 
 const { product } = useGetProduct();
-const { createProduct } = useAddProduct();
 const { collections, categories, materials, genders, skuMask } = productStore();
-
 
 watch(() => [
       createProductForm.value.title, createProductForm.value.collection,

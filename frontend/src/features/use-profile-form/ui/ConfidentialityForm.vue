@@ -4,18 +4,22 @@
       <div class="flex gap-10">
         <form @keydown.enter.prevent="updateNameAccount" class="flex flex-col gap-3 w-full">
           <label>Name</label>
-          <BaseInput v-model="updateUserForm.name" type="text" inputmode="numeric" placeholder="New Name"
-              :error="updateUserFormErrors.name" variant="confidentialityData" required
-              :error-message="updateUserFormErrors.name ? updateUserFormMessage.name : ''" />
+          <BaseInput v-model="updateUserForm.name"
+                     placeholder="New Name"
+                     :error="updateUserFormErrors.name"
+                     variant="confidentialityData"
+                     :error-message="updateUserFormErrors.name ? updateUserFormMessage.name : ''" />
           <div class="flex">
             <BaseButton @click.prevent="updateNameAccount()" name="Save Name" variant="profileForm" />
           </div>
         </form>
         <form @keydown.enter.prevent="updateSurNameAccount" class="flex flex-col gap-3 w-full">
           <label>SurName</label>
-          <BaseInput v-model="updateUserForm.surName" type="text" inputmode="numeric" placeholder="New SurName"
-              :error="updateUserFormErrors.surName" variant="confidentialityData" required
-              :error-message="updateUserFormErrors.surName ? updateUserFormMessage.surName : ''" />
+          <BaseInput v-model="updateUserForm.surName"
+                     placeholder="New SurName"
+                     :error="updateUserFormErrors.surName"
+                     variant="confidentialityData"
+                     :error-message="updateUserFormErrors.surName ? updateUserFormMessage.surName : ''" />
           <div class="flex">
             <BaseButton @click.prevent="updateSurNameAccount()" name="Save SurName" variant="profileForm" />
           </div>
@@ -25,8 +29,10 @@
     <div class="flex flex-col gap-10 sm:flex-row">
       <form @keydown.enter.prevent="updateEmailAccount" class="flex flex-col gap-3 w-full">
         <label>Email</label>
-        <BaseInput v-model="updateUserForm.email" type="text" inputmode="numeric" placeholder="example@mail.com"
-                   :error="updateUserFormErrors.email" variant="confidentialityData" reqiured
+        <BaseInput v-model="updateUserForm.email"
+                   placeholder="example@mail.com"
+                   :error="updateUserFormErrors.email"
+                   variant="confidentialityData"
                    :error-message="updateUserFormErrors.email ? updateUserFormMessage.email : ''"/>
         <div class="flex">
           <BaseButton @click.prevent="updateEmailAccount()" name="Save Email" variant="profileForm" />
@@ -35,13 +41,18 @@
       <form @keydown.enter.prevent="updatePhoneAccount" class="flex flex-col gap-3 w-full">
         <label>Private Phone</label>
         <div class="flex gap-3">
-          <select name="" id="" v-model="selectedCountryCode" @change="changeCountry" :class="profileSelectPhoneCodeClass">
+          <select v-model="selectedCountryCode"
+                  @change="changeCountry"
+                  :class="profileSelectPhoneCodeClass">
             <option v-for="country in countries" :key="country.code" :value="country.code">
               {{ country.name }}
             </option>
           </select>
-          <IMask v-model:value="updateUserForm.phone" type="text" inputmode="numeric" :placeholder="currentCountry?.placeholder"
-                 :class="profilePhoneClass(updateUserFormErrors.phone)" :key="selectedCountryCode" :mask="currentMask.mask"/>
+          <IMask v-model:value="updateUserForm.phone"
+                 :placeholder="currentCountry?.placeholder"
+                 :class="profilePhoneClass(updateUserFormErrors.phone)"
+                 :key="selectedCountryCode"
+                 :mask="currentMask.mask"/>
         </div>
         <span v-if="updateUserFormErrors.phone" class="text-red-600 text-xs">
         {{ updateUserFormMessage.phone }}
@@ -56,9 +67,12 @@
         <div class="flex flex-col gap-3 w-full">
           <label>Old password</label>
           <div class="relative">
-            <BaseInput v-model="updateUserForm.oldPassword" :type="showOldPassword ? 'text' : 'password'" inputmode="numeric"
-                :error="updateUserFormErrors.oldPassword" variant="confidentialityData" placeholder="Old Password"
-                :error-message="updateUserFormErrors.oldPassword ? updateUserFormMessage.oldPassword : ''" />
+            <BaseInput v-model="updateUserForm.oldPassword"
+                       :type="showOldPassword ? 'text' : 'password'"
+                       :error="updateUserFormErrors.oldPassword"
+                       variant="confidentialityData"
+                       placeholder="Old Password"
+                       :error-message="updateUserFormErrors.oldPassword ? updateUserFormMessage.oldPassword : ''" />
             <img @click.prevent="toggleOldPassword" :src="showOldPassword ? opened : closed" alt=""
                  :class="['absolute w-7.5 top-1/4 left-115', updateUserFormErrors.oldPassword ? 'top-1/6' : '']">
           </div>
@@ -66,9 +80,11 @@
         <div class="flex flex-col gap-3 w-full">
           <label>New password</label>
           <div class="relative">
-            <BaseInput v-model="updateUserForm.newPassword" :type="showNewPassword ? 'text' : 'password'" inputmode="numeric"
-                :error="updateUserFormErrors.newPassword" variant="confidentialityData" placeholder="New Password"
-                :error-message="updateUserFormErrors.newPassword ? updateUserFormMessage.newPassword : ''"/>
+            <BaseInput v-model="updateUserForm.newPassword"
+                       :type="showNewPassword ? 'text' : 'password'"
+                       :error="updateUserFormErrors.newPassword"
+                       variant="confidentialityData" placeholder="New Password"
+                       :error-message="updateUserFormErrors.newPassword ? updateUserFormMessage.newPassword : ''"/>
             <img @click.prevent="toggleNewPassword" :src="showNewPassword ? opened : closed" alt=""
                 :class="['absolute w-7.5 top-1/4 left-115', updateUserFormErrors.newPassword ? 'top-1/8' : '']">
           </div>

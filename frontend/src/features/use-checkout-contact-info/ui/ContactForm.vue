@@ -2,16 +2,22 @@
   <form class="flex flex-col mt-5 gap-5">
     <label class="font-medium text-xs md:text-sm">CONTACT INFO</label>
     <div class="flex flex-col gap-2">
-      <CheckoutInput v-model="informationForm.email" type="text" :placeholder="emailPlaceholder"
-          :error="informationFormErrors.email" variant="checkoutInfo"/>
+      <CheckoutInput v-model="informationForm.email"
+                     :placeholder="emailPlaceholder"
+                     :error="informationFormErrors.email" />
       <div class="flex gap-2">
-        <select name="" id="" v-model="selectedCountryCode" @change="changeCountry" :class="informationSelectPhoneCodeClass">
+        <select v-model="selectedCountryCode"
+                @change="changeCountry"
+                :class="informationSelectPhoneCodeClass">
           <option v-for="country in countries" :key="country.code" :value="country.code">
             {{ country.name }}
           </option>
         </select>
-        <IMask v-model:value="informationForm.phone" type="tel" :placeholder="phonePlaceholder" :class="informationPhoneClass"
-               :mask="currentMask.mask" :key="selectedCountryCode">
+        <IMask v-model:value="informationForm.phone"
+               :placeholder="phonePlaceholder"
+               :class="informationPhoneClass"
+               :mask="currentMask.mask"
+               :key="selectedCountryCode">
         </IMask>
       </div>
     </div>

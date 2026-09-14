@@ -11,20 +11,23 @@
         <div class="flex gap-2 justify-end items-center font-semibold">
           <button type="button" @click="countMode = 'SAME'"
                   :class="['transition duration-700 rounded-full px-3 py-2 text-sm tracking-widest',
-                            countMode === 'SAME' ? 'bg-black text-white' : 'text-neutral-500 hover:text-black']">
+                  countMode === 'SAME' ? 'bg-black text-white' : 'text-neutral-500 hover:text-black']">
             The same
           </button>
           <button type="button" @click="countMode = 'DIFFER'"
                   :class="['transition duration-700 rounded-full px-3 py-2 text-sm tracking-widest',
-                            countMode === 'DIFFER' ? 'bg-black text-white' : 'text-neutral-500 hover:text-black']">
+                  countMode === 'DIFFER' ? 'bg-black text-white' : 'text-neutral-500 hover:text-black']">
             Different
           </button>
         </div>
       </div>
       <div v-if="countMode === 'SAME'" class="flex">
-        <BaseInput v-model="createProductForm.quantity" @input="toggleAllVariants"
-                   type="number" placeholder="product ptc." class="w-75"
-                   :error="createProductFormErrors.quantity" variant="createProduct" required
+        <BaseInput v-model="createProductForm.quantity"
+                   @input="toggleAllVariants"
+                   placeholder="product ptc."
+                   class="w-75"
+                   :error="createProductFormErrors.quantity"
+                   variant="createProduct"
                    :error-message="createProductFormErrors.quantity ? createProductFormErrorMessages.quantity : ''"/>
         <span class="ml-auto mt-auto text-sm text-[#A3A3A3] font-medium">
           An equal quantity will be selected for all sizes and colors
@@ -45,8 +48,8 @@
           <tr v-for="color in moreCreateItemForm.colors" :key="color.hex">
             <td :title="color.hex">
               <div class="flex items-center gap-2">
-                          <span :style="{ background: color.hex }"
-                                class="w-10 h-10 shrink-0 rounded-full border-2 border-gray-300 shadow-sm"></span>
+                <span :style="{ background: color.hex }"
+                      class="w-10 h-10 shrink-0 rounded-full border-2 border-gray-300 shadow-sm"></span>
                 <span class="text-xs font-bold text-black uppercase whitespace-nowrap">
                   {{ color.colorName }}
                 </span>
@@ -54,7 +57,11 @@
             </td>
             <td v-for="size in moreCreateItemForm.sizes" :key="size" class="py-6 text-center">
               <input v-model="toggleQuantity(color.hex, color.colorName, size).count"
-                     type="number" min="0" step="1" placeholder="0" :aria-label="`${color.colorName}, размер ${size}`"
+                     type="number"
+                     min="0"
+                     step="1"
+                     placeholder="0"
+                     :aria-label="`${color.colorName}, размер ${size}`"
                      class="w-20 h-10 outline-none border-2 border-gray-300 rounded-sm text-center" />
             </td>
           </tr>
@@ -91,9 +98,9 @@
       </div>
       <div class="flex gap-6">
         <img v-for="size in sizes" :key="size.name" :src=size.url alt="" @click="toggleSize(size.name)"
-             :class="[size.class, moreCreateItemForm.sizes.includes(size.name)
-                              ? 'transition duration-400 scale-110 w-15 rounded-full'
-                              : 'transition duration-400 hover:scale-110 w-15 rounded-full']">
+             :class="[size.class, moreCreateItemForm.sizes.includes(size.name) ?
+             'transition duration-400 scale-110 w-15 rounded-full' :
+             'transition duration-400 hover:scale-110 w-15 rounded-full']">
       </div>
       <span v-if="createProductFormErrors.size" class="text-red-600 text-xs">
         {{ createProductFormErrorMessages.size }}
@@ -117,8 +124,8 @@
              class="w-15 h-15 border-2 border-[#A3A3A3] rounded-full transition-all duration-300 scale-110"></div>
         <label v-if="moreCreateItemForm.colors?.length < 6" title="Выбрать любой цвет"
                class="w-16 h-16 border-2 rounded-full border-dashed border-gray-300 bg-white
-                           flex items-center justify-center text-gray-400 cursor-pointer transition-all duration-400
-                           hover:scale-108 hover:border-black hover:text-black text-2xl font-light relative overflow-hidden">+
+               flex items-center justify-center text-gray-400 cursor-pointer transition-all duration-400
+               hover:scale-108 hover:border-black hover:text-black text-2xl font-light relative overflow-hidden">+
           <input @change="toggleColor(($event.target as HTMLInputElement).value, $event)" type="color"
                  class="absolute inset-0 h-full opacity-0 cursor-pointer" />
         </label>

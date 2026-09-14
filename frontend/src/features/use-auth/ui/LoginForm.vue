@@ -3,8 +3,10 @@
     <div class="flex flex-col gap-4">
       <div class="flex flex-col gap-3">
         <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">EMAIL OR PHONE</label>
-        <BaseInput v-model=loginForm.email type="email" placeholder="example@mail.com"
-                   :error="loginFormErrors.email" variant="auth" required
+        <BaseInput v-model=loginForm.email
+                   type="email"
+                   placeholder="example@mail.com"
+                   :error="loginFormErrors.email"
                    :error-message="loginFormErrors.email ? loginFormErrorMessages.email : ''" />
       </div>
       <div class="flex flex-col gap-3">
@@ -13,8 +15,10 @@
           <label class="text-xs text-gray-400 ml-auto">Forgot a password?</label>
         </div>
         <div class="relative">
-          <BaseInput v-model=loginForm.password :type="showPassword.password ? 'text' : 'password'" placeholder="••••••••"
-                     :error="loginFormErrors.password" variant="auth" required
+          <BaseInput v-model=loginForm.password
+                     :type="showPassword.password ? 'text' : 'password'"
+                     placeholder="••••••••"
+                     :error="loginFormErrors.password"
                      :error-message="loginFormErrors.password ? loginFormErrorMessages.password : ''" />
           <img @click=togglePassword :src="showPassword.password ? opened : closed" alt=""
                :class="['absolute w-7.5 top-1/4 left-57 sm:left-82', loginFormErrors.password ? 'top-1/6' : '']">
@@ -24,13 +28,22 @@
         <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">ROLE</label>
         <div class="flex gap-3">
           <div :class="signInRoleClass">
-            <input v-model="loginForm.role" value="Buyer" type="radio" name="role" class="accent-black w-4 h-4 cursor-pointer">
+            <input v-model="loginForm.role"
+                   value="Buyer"
+                   type="radio"
+                   name="role"
+                   class="accent-black w-4 h-4 cursor-pointer">
             <span class="font-semibold">
               Buyer
             </span>
           </div>
           <div :class="signInRoleClass">
-            <input v-model="loginForm.role" value="Seller" type="radio" name="role" class="accent-black w-4 h-4 cursor-pointer">
+            <input
+                v-model="loginForm.role"
+                value="Seller"
+                type="radio"
+                name="role"
+                class="accent-black w-4 h-4 cursor-pointer">
             <span class="font-semibold">
               Seller
             </span>

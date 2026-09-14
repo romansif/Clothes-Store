@@ -31,19 +31,19 @@ const { addPayment, useSavedPayment } = useAddPayment();
 watch(() => [paymentForm.value.cardNumber, paymentForm.value.expiryDate, paymentForm.value.cardCvv, paymentForm.value.paymentMethod],
     ([cardNumber, expiryDate, cardCvv, paymentMethod]) => {
   if(cardNumber) {
-    paymentFormErrors.value.cardNumberError = false
-    paymentFormErrors.value.paymentMethodError = false
+    paymentFormErrors.value.cardNumber = false
+    paymentFormErrors.value.paymentMethod = false
   }
   if(expiryDate) {
-    paymentFormErrors.value.expiryDateError = false
-    paymentFormErrors.value.paymentMethodError = false
+    paymentFormErrors.value.expiryDate = false
+    paymentFormErrors.value.paymentMethod = false
   }
   if(cardCvv) {
-    paymentFormErrors.value.cardCvvError = false
-    paymentFormErrors.value.paymentMethodError = false
+    paymentFormErrors.value.cardCvv = false
+    paymentFormErrors.value.paymentMethod = false
   }
   if(paymentMethod) {
-    paymentFormErrors.value.paymentMethodError = false
+    paymentFormErrors.value.paymentMethod = false
   }
 })
 </script>

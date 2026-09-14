@@ -1,7 +1,7 @@
 <template>
-  <input v-model="model" :class="[
+  <input v-model="model" type="text" :class="[
       checkoutClasses[props.variant], props.error ? 'placeholder:text-red-500 border-red-500' : ''
-      ]" v-bind="$attrs">
+      ]" v-bind="$attrs" required />
 </template>
 
 <script setup lang="ts">

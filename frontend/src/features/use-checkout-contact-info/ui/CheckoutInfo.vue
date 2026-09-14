@@ -36,31 +36,31 @@ watch(() => [
   informationForm.value.postalCode], ([email, phone, firstName, lastName, country, stateRegion, address, city , postalCode]) => {
 
   if(email){
-    informationFormErrors.value.emailError = false;
+    informationFormErrors.value.email = false;
   }
   if(phone){
-    informationFormErrors.value.phoneError = false;
+    informationFormErrors.value.phone = false;
   }
   if(firstName){
-    informationFormErrors.value.firstNameError = false;
+    informationFormErrors.value.firstName = false;
   }
   if(lastName){
-    informationFormErrors.value.lastNameError = false;
+    informationFormErrors.value.lastName = false;
   }
   if(country){
-    informationFormErrors.value.countryError = false;
+    informationFormErrors.value.country = false;
   }
   if(stateRegion){
-    informationFormErrors.value.stateRegionError = false;
+    informationFormErrors.value.stateRegion = false;
   }
   if(address){
-    informationFormErrors.value.addressError = false;
+    informationFormErrors.value.address = false;
   }
   if(city){
-    informationFormErrors.value.cityError = false;
+    informationFormErrors.value.city = false;
   }
   if(postalCode){
-    informationFormErrors.value.postalCodeError = false;
+    informationFormErrors.value.postalCode = false;
   }
 });
 </script>

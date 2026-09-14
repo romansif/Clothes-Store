@@ -4,14 +4,18 @@
       <div class="flex gap-3">
         <div class="flex flex-col gap-3 w-full">
           <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">NAME</label>
-          <BaseInput v-model=registerForm.name type="text" placeholder="name"
-                     :error="registerFormErrors.name" variant="auth" required
+          <BaseInput v-model=registerForm.name
+                     type="text"
+                     placeholder="name"
+                     :error="registerFormErrors.name"
                      :error-message="registerFormErrors.name ? registerFormErrorMessages.name : ''" />
         </div>
         <div class="flex flex-col gap-3 w-full">
           <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">SURNAME</label>
-          <BaseInput v-model=registerForm.surName type="text" placeholder="surname"
-                     :error="registerFormErrors.surName" variant="auth" required
+          <BaseInput v-model=registerForm.surName
+                     type="text"
+                     placeholder="surname"
+                     :error="registerFormErrors.surName"
                      :error-message="registerFormErrors.surName ? registerFormErrorMessages.surName : ''" />
         </div>
       </div>
@@ -23,8 +27,11 @@
                 {{ country.name }}
             </option>
           </select>
-          <IMask v-model:value=registerForm.phone type="tel" :mask="currentMask.mask" :key="selectedCountryCode"
-                 :class="signUpPhoneClass" :placeholder="currentCountry?.placeholder" />
+          <IMask v-model:value=registerForm.phone
+                 :mask="currentMask.mask"
+                 :key="selectedCountryCode"
+                 :class="signUpPhoneClass"
+                 :placeholder="currentCountry?.placeholder" />
         </div>
         <span v-if=registerFormErrors.phone class="text-red-600 text-xs">
           {{ registerFormErrorMessages.phone }}
@@ -33,15 +40,19 @@
       <div class="flex flex-col gap-3 sm:flex-row">
         <div class="flex flex-col gap-3 w-full">
           <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">EMAIL</label>
-          <BaseInput v-model=registerForm.email type="text" placeholder="example@mail.com"
-                     :error="registerFormErrors.email" variant="auth" required
+          <BaseInput v-model=registerForm.email
+                     type="text"
+                     placeholder="example@mail.com"
+                     :error="registerFormErrors.email"
                      :error-message="registerFormErrors.email ? registerFormErrorMessages.email : ''" />
         </div>
         <div class="flex flex-col gap-3 w-full">
           <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">PASSWORD</label>
           <div class="relative">
-            <BaseInput v-model=registerForm.password :type="showPassword.password ? 'text' : 'password'" placeholder="••••••••"
-                       :error="registerFormErrors.password" variant="auth" required
+            <BaseInput v-model=registerForm.password
+                       :type="showPassword.password ? 'text' : 'password'"
+                       placeholder="••••••••"
+                       :error="registerFormErrors.password"
                        :error-message="registerFormErrors.password ? registerFormErrorMessages.password : ''" />
             <img @click=togglePassword :src="showPassword.password ? opened : closed" alt="" :class="signUpPasswordClass">
           </div>

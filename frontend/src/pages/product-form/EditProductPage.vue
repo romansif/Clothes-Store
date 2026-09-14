@@ -1,14 +1,16 @@
 <template>
-  <template v-if="product">
-    <EditImageUpload :product="product" />
-    <EditBasicInfo :product="product" />
-    <EditVariants :product="product" />
-  </template>
-  <div class="w-full mt-4 mb-6">
-    <BaseButton @click="updateProductDesc(product.id)" name="EDIT PRODUCT" variant="useProduct" />
-  </div>
-  <input type="file" @change="(e) => updateProductImages(product, e)" class="hidden"
-         :ref="(el) => { fileInput = el as HTMLInputElement }" multiple accept="image/*">
+  <form @keydown.enter="updateProductDesc(product.id)" action="">
+    <template v-if="product">
+      <EditImageUpload :product="product" />
+      <EditBasicInfo :product="product" />
+      <EditVariants :product="product" />
+    </template>
+    <div class="w-full mt-4 mb-6">
+      <BaseButton @click="updateProductDesc(product.id)" name="EDIT PRODUCT" variant="useProduct" />
+    </div>
+    <input type="file" @change="(e) => updateProductImages(product, e)" class="hidden"
+           :ref="(el) => { fileInput = el as HTMLInputElement }" multiple accept="image/*">
+  </form>
 </template>
 
 <script setup lang="ts">
