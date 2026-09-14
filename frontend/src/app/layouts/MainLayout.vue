@@ -34,7 +34,7 @@ import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { sizeGuideModel } from "@/features/use-product/lib/toggle.size.guide.ts";
 
 import Notification from "@/shared/ui/Notification.vue";
-import AsideFilter from "@/widgets/AsideFilter.vue";
+import AsideFilter from "@/widgets/product/ui/AsideFilter.vue";
 import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import DeleteModal from "@/shared/ui/DeleteModal.vue";

@@ -94,7 +94,7 @@ import { useFavorite } from "@/features/use-favorite/lib/use-favorite.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
 import { productsClasses } from "@/shared/const/product/products.classes.ts";
-import { productHelper } from "@/features/use-product/lib/product.helper.ts";
+import { productHelper } from "@/shared/lib/product.helper.ts";
 import { type Product } from "@/features/use-product/model/product.types.ts";
 import { cartForm, cartFormErrorMessages} from "@/features/use-cart/model/cart.form.ts";
 import { cartFormErrors } from "@/features/use-cart/lib/cart.errors.ts";

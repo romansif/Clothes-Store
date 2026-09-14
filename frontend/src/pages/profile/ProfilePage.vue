@@ -13,8 +13,8 @@ import { useGetUsers } from "@/features/use-profile/api/get-users.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { profileClasses } from "@/shared/const/user/profile.classes.ts";
 
-import ProfileSettings from "@/features/use-profile/ui/ProfileSettings.vue";
-import ProfileNotLoggedIn from "@/features/use-profile/ui/ProfileNotLoggedIn.vue";
+import ProfileSettings from "@/widgets/profile/ui/ProfileSettings.vue";
+import ProfileNotLoggedIn from "@/widgets/profile/ui/ProfileNotLoggedIn.vue";
 
 const { user } = userStore();
 const { getUser } = useGetUsers();

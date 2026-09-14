@@ -3,7 +3,7 @@
                                 flex items-center justify-center">
     <div @click.stop class="bg-white rounded-2xl w-112.5 shadow-xl">
       <div class="flex flex-col justify-center py-8 gap-6">
-        <h2 class="text-2xl text-center font-bold">Change your avatar</h2>
+        <h2 class="text-2xl text-center font-bold">Click on the avatar to change</h2>
         <div class="flex flex-col items-center gap-6">
           <img @click="openSelectAvatar" :src="userAvatar" alt="" class="w-35 rounded-full transition duration-400 hover:scale-110" />
           <div class="flex gap-12">

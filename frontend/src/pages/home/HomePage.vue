@@ -15,11 +15,11 @@
 <script setup lang="ts">
 import { useProductsModals } from "@/features/use-main-product/lib/product.modal.ts";
 
-import NavBar from "@/widgets/home/NavBar.vue";
-import HomeSlideBar from "@/widgets/home/HomeSlideBar.vue";
-import MainHome from "../../widgets/home/MainHome.vue";
-import Footer from "../../widgets/home/Footer.vue";
-import AsideFilter from "@/widgets/AsideFilter.vue";
+import NavBar from "@/widgets/home/ui/NavBar.vue";
+import HomeSlideBar from "@/widgets/home/ui/HomeSlideBar.vue";
+import MainHome from "../../widgets/home/ui/MainHome.vue";
+import Footer from "../../widgets/home/ui/Footer.vue";
+import AsideFilter from "@/widgets/product/ui/AsideFilter.vue";
 
 const { filterAside } = useProductsModals();
 </script>

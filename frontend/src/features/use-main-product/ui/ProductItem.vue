@@ -24,7 +24,7 @@
 import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
 import type {Product} from "@/features/use-product/model/product.types.ts";
 
-import BaseProductCard from "@/widgets/BaseProductCard.vue";
+import BaseProductCard from "@/widgets/ui/BaseProductCard.vue";
 
 defineProps<{
   product: Product,

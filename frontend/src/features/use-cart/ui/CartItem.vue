@@ -49,7 +49,7 @@
 import { useUpdateCart } from "@/features/use-cart/api/update-cart.ts";
 import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
-import { productHelper } from "@/features/use-product/lib/product.helper.ts";
+import { productHelper } from "@/shared/lib/product.helper.ts";
 import type {Product} from "@/features/use-product/model/product.types.ts";
 
 defineProps<{
@@ -61,7 +61,7 @@ import del from '@/assets/icons/delete-close/delete.svg';
 import square from '@/assets/icons/squares/square.png';
 import update from '@/assets/icons/products/refresh.svg';
 import check_square from '@/assets/icons/squares/check-square.png';
-import BaseProductCard from "@/widgets/BaseProductCard.vue";
+import BaseProductCard from "@/widgets/ui/BaseProductCard.vue";
 
 const { sizeClass, sizeUrl } = useProfile();
 const { toggleDeleteChoice } = useProfileModals();

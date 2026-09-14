@@ -34,7 +34,7 @@ defineProps<{
 }>();
 
 import update from "@/assets/icons/products/refresh.svg";
-import BaseProductCard from "@/widgets/BaseProductCard.vue";
+import BaseProductCard from "@/widgets/ui/BaseProductCard.vue";
 
 const refreshPage = () => {
   window.location.reload();

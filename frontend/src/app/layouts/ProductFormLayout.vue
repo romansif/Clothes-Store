@@ -24,7 +24,7 @@
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 
 import Notification from "@/shared/ui/Notification.vue";
-import Loading from "@/widgets/Loading.vue";
+import Loading from "@/widgets/ui/Loading.vue";
 
 const { loading, notify } = useBaseModals();
 </script>

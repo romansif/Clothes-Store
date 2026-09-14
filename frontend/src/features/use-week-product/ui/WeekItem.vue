@@ -25,7 +25,7 @@ defineProps<{
   productWeek: Product[]
 }>()
 
-import BaseProductCard from "@/widgets/BaseProductCard.vue";
+import BaseProductCard from "@/widgets/ui/BaseProductCard.vue";
 </script>
 
 <style scoped>

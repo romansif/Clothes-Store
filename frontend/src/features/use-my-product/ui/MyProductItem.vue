@@ -5,8 +5,8 @@
                        :size="'w-83.75 h-h-78.5m:h-[314px] xl:h-100'"
                        :stack-class="'absolute top-41 -left-12 text-7xl font-semibold -rotate-50 w-110'"
                        :favorite-btn="'absolute top-0.5 left-75.5 w-8 cursor-pointer'" />
-      <div class="flex flex-col gap-25">
-        <div class="flex flex-col gap-20">
+      <div class="flex flex-col">
+        <div class="flex flex-col gap-10">
           <div class="flex items-center ml-auto gap-10">
             <router-link :to="{ name: 'edit/product', params: { id: product.id } }">
               <img @click="getProduct(product.id)" :src="pencil" alt="" class="w-7 transition duration-400 hover:scale-120 cursor-pointer">
@@ -32,7 +32,7 @@
             </p>
           </div>
         </div>
-        <div class="flex items-center justify-between">
+        <div class="fixed top-110 flex items-center gap-208">
           <span class="font-bold text-gray-900 text-base sm:text-lg font-dm-sans">
             $ {{ product.price }}
           </span>
@@ -56,7 +56,7 @@ defineProps<{
 import del from '@/assets/icons/delete-close/delete.svg'
 import pencil from "@/assets/icons/products/pencil.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";
-import BaseProductCard from "@/widgets/BaseProductCard.vue";
+import BaseProductCard from "@/widgets/ui/BaseProductCard.vue";
 import type {Product} from "@/features/use-product/model/product.types.ts";
 
 const { getProduct } = useGetProduct();

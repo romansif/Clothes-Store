@@ -11,7 +11,7 @@
 <script setup lang="ts">
 import ProductList from "@/features/use-main-product/ui/ProductList.vue";
 import MainHeader from "@/features/use-main-product/ui/MainHeader.vue";
-import FilterProducts from "@/widgets/navigation/ui/FilterProducts.vue";
+import FilterProducts from "@/widgets/product/ui/FilterProducts.vue";
 </script>
 
 <style scoped>

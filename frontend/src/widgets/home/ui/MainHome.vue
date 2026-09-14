@@ -68,7 +68,7 @@ import photo_3 from '@/assets/photos/pants.png'
 import Notification from "@/shared/ui/Notification.vue";
 import WeekList from "@/features/use-week-product/ui/WeekList.vue";
 import YearList from "@/features/use-year-product/ui/YearList.vue";
-import FilterGender from "@/widgets/home/FilterGender.vue";
+import FilterGender from "@/widgets/home/ui/FilterGender.vue";
 
 const { notify } = useBaseModals()
 </script>

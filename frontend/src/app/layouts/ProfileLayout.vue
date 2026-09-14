@@ -1,5 +1,5 @@
 <template>
-  <div :class="['bg-[#F0F0F0]', isMyProducts ? 'h-screen' : '']">
+  <div class="bg-[#F0F0F0] h-screen">
     <Loading v-if="loading" />
     <div class="xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
       <MainNavBar />
@@ -33,13 +33,11 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-import { useRoute } from "vue-router";
 import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
 import { stackInfo } from "@/features/use-my-product/lib/toggle.my.product.ts";
 import { useBaseModals } from "@/shared/lib/base.modal.ts";
 
-import Loading from "@/widgets/Loading.vue";
+import Loading from "@/widgets/ui/Loading.vue";
 import AddressPaymentInfo from "@/features/use-profile/ui/AddressPaymentInfo.vue";
 import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
 import DeleteModal from "@/shared/ui/DeleteModal.vue";
@@ -50,12 +48,8 @@ import UserDataModal from "@/features/use-profile/ui/UserDataModal.vue";
 import Notification from "@/shared/ui/Notification.vue";
 import MyProductStackInfo from "@/features/use-my-product/ui/MyProductStackInfo.vue";
 
-const route = useRoute();
-
 const { loading, notify } = useBaseModals();
 const { avatarModal, orderHistory, currentOrder, addressesAndCards, confidentialityData, deleteChoice } = useProfileModals();
-
-const isMyProducts = computed(() => route.name === 'my/products');
 </script>
 
 <style scoped>
