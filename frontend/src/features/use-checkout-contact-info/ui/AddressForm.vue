@@ -1,4 +1,7 @@
 <template>
+  <label class="font-medium text-xs md:text-sm">
+    SHIPPING ADDRESS
+  </label>
   <div class="flex flex-col gap-3">
     <CheckoutInput v-model="informationForm.addressName"
            :placeholder="'Address Name is optional'"

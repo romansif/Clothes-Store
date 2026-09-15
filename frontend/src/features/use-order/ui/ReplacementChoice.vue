@@ -2,7 +2,9 @@
   <div @click="toggleOrder('')" class="font-montserrat fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)]
       flex items-center justify-center">
     <div @click.stop class="flex flex-col gap-2 bg-white w-175 h-152.5 rounded-xl p-5">
-      <BaseButton @click="toggleOrder" name="Exit" variant="exitClose" />
+      <BaseButton @click="toggleOrder"
+                  name="Exit"
+                  variant="exitClose" />
       <div class="flex flex-col gap-4 border-b pb-4">
         <h1 class="font-bold text-2xl">
           REPLACEMENT OF ORDER
@@ -11,7 +13,7 @@
           Select the reason why you want to cancel the order
         </span>
       </div>
-      <div class="flex flex-col items-start gap-5">
+      <form @submit.prevent="replaceOrder" class="flex flex-col items-start gap-3.5">
         <ReplacementInput v-model="cancelChoice"
                           name="Incorrect payment method"
                           :value="'Incorrect payment method'"/>
@@ -27,11 +29,13 @@
         <ReplacementInput v-model="cancelChoice"
                           name="I found a better product"
                           :value="'I found a better product'"/>
-      </div>
-      <span v-if="cancelChoiceError" class="text-red-600 text-xs px-4">{{ cancelChoiceMessage }}</span>
-      <div class="flex ml-auto">
-        <BaseButton @click.stop="replaceOrder" name="REPLACEMENT" variant="profileForm" />
-      </div>
+        <span v-if="cancelChoiceError" class="text-red-600 text-xs px-4">{{ cancelChoiceMessage }}</span>
+        <div class="flex ml-auto">
+          <BaseButton type="submit"
+                      name="REPLACEMENT"
+                      variant="profileForm" />
+        </div>
+      </form>
     </div>
   </div>
 </template>

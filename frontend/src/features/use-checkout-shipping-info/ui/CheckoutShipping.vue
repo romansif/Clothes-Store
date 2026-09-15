@@ -7,19 +7,21 @@
       </label>
       <div class="flex gap-3">
         <form @submit.prevent="addShipping" class="flex flex-col gap-6 w-full">
-          <ShippingMethod :title="'STANDARD SHIPPING'"
-                               :text="'Delivery in 3-5 business days'"
-                               :price="'Free'" />
-          <ShippingMethod :title="'EXPRESS COURIER'"
-                               :text="'Delivery tomorrow morning'"
-                               :price="'$15.00'" />
+          <ShippingMethod :method="'standard'"
+                          :title="'STANDARD SHIPPING'"
+                          :text="'Delivery in 3-5 business days'"
+                          :price="'Free'" />
+          <ShippingMethod :method="'express'"
+                          :title="'EXPRESS COURIER'"
+                          :text="'Delivery tomorrow morning'"
+                          :price="'$15.00'" />
+          <div class="relative mt-5 ml-auto transition duration-400 hover:scale-110">
+            <BaseButton type="submit" name="Payment" variant="checkOut"/>
+            <img :src=arrow alt="" class="h-13 absolute left-75 top-1/2 -translate-y-1/2
+            sm:left-60 md:left-77 lg:left-34 xl:left-46">
+          </div>
         </form>
       </div>
-    </div>
-    <div class="relative mt-5 ml-auto transition duration-400 hover:scale-110">
-      <BaseButton type="submit" name="Payment" variant="checkOut"/>
-      <img :src=arrow alt="" class="h-13 absolute left-75 top-1/2 -translate-y-1/2
-            sm:left-60 md:left-77 lg:left-34 xl:left-46">
     </div>
   </div>
 </template>

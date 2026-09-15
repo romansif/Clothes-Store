@@ -1,6 +1,7 @@
 <template>
   <div class="flex flex-col lg:w-100 xl:w-125">
-    <div class="flex flex-col mt-8 gap-5">
+    <SavedCheckoutPayment v-if="isSavedPayment"/>
+    <div v-else class="flex flex-col mt-8 gap-5">
       <div v-if="userPayments.length > 0" class="flex justify-between">
         <label class="font-medium text-xs md:text-sm">
           PAYMENT METHODS
@@ -13,15 +14,18 @@
       <div class="flex gap-3">
         <form @submit.prevent="addPayment" action="" class="flex flex-col gap-4 w-full font-dm-sans">
           <PaymentMethods />
+          <div class="relative mt-5 sm:ml-auto transition duration-400 hover:scale-110">
+            <BaseButton v-if="!isSavedPayment" type="submit" name="Pay" variant="checkOut"/>
+            <img :src=arrow alt="" class="h-13 absolute left-75 top-1/2 -translate-y-1/2
+                 sm:left-60 md:left-75 lg:left-34 xl:left-46">
+          </div>
         </form>
       </div>
     </div>
-    <SavedCheckoutPayment v-if="isSavedPayment"/>
     <div class="relative mt-5 sm:ml-auto transition duration-400 hover:scale-110">
-      <BaseButton v-if="!isSavedPayment" type="submit" name="Pay" variant="checkOut"/>
       <BaseButton v-if="isSavedPayment" @click="useSavedPayment" name="Pay" variant="checkOut"/>
       <img :src=arrow alt="" class="h-13 absolute left-75 top-1/2 -translate-y-1/2
-          sm:left-60 md:left-75 lg:left-34 xl:left-46">
+           sm:left-60 md:left-75 lg:left-34 xl:left-46">
     </div>
   </div>
 </template>
