@@ -1,9 +1,9 @@
 import router from "@/app/router";
 import { handler } from "@/shared/api/http.ts";
-import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
-import { clearProductForm } from "@/features/use-product-form/lib/clear.product.form.ts";
+import { clearProductForm } from "@/features/use-product-form/lib/clear-product-form.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { createProductForm, moreCreateItemForm } from "@/features/use-product-form/model/product.forms.ts";
 

@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
-import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
+import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import { profileApi } from "@/features/use-profile-form/api/profile.api.ts";
 
 import BaseButton from "@/shared/ui/BaseButton.vue";

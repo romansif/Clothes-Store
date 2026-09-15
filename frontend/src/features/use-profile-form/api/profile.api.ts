@@ -2,8 +2,8 @@ import { handler } from "@/shared/api/http.ts";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { updateUserForm } from "@/features/use-profile-form/model/user.update.form.ts";
-import { clearUsersForms } from "@/features/use-profile-form/lib/clear.user.update.ts";
-import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { clearUsersForms } from "@/features/use-profile-form/lib/clear-user-update.ts";
+import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { useGetUsers } from "@/features/use-profile/api/get-users.ts";
 import type { UserDataUpdate } from "@/features/use-profile-form/model/user.update.types.ts";
 

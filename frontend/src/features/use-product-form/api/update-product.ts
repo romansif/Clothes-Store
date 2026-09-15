@@ -2,7 +2,7 @@ import namer from "color-namer";
 import router from "@/app/router";
 import {handler} from "@/shared/api/http.ts";
 import type { ColorItem, Product} from "@/features/use-product/model/product.types.ts";
-import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { createProductForm } from "@/features/use-product-form/model/product.forms.ts";
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";

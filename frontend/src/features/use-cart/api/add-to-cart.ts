@@ -1,8 +1,8 @@
 import { handler } from "@/shared/api/http.ts";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
-import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { cartForm } from "@/features/use-cart/model/cart.form.ts";
-import { clearAddToCartForm } from "@/features/use-cart/lib/clear.cart.ts";
+import { useBaseModals } from "@/shared/lib/base-modal.ts";
+import { addToCartForm } from "@/features/use-product/model/add.to.cart.form.ts";
+import { clearAddToCartForm } from "@/features/use-cart/lib/clear-cart.ts";
 import { cartStore } from "@/features/use-cart/model/cart.store.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
@@ -21,7 +21,7 @@ export const useAddToCart = () => {
         try{
             const currentProduct = product.value;
             const currentQuantity = product.value.variants.find(
-                q => q.hex === cartForm.value.colors.hex);
+                q => q.hex === addToCartForm.value.colors.hex);
 
             await handler(`/cart`, {
                 method: "POST",
@@ -35,15 +35,15 @@ export const useAddToCart = () => {
                     price: currentProduct.price,
                     description: currentProduct.description,
                     colors: [{
-                        hex: cartForm.value.colors.hex,
-                        colorName: cartForm.value.colors.colorName
+                        hex: addToCartForm.value.colors.hex,
+                        colorName: addToCartForm.value.colors.colorName
                     }],
-                    sizes: cartForm.value.sizes,
+                    sizes: addToCartForm.value.sizes,
                     gender: currentProduct.gender,
                     variants: [{
                         hex: currentQuantity?.hex,
                         colorName: currentQuantity?.colorName,
-                        size: cartForm.value.sizes,
+                        size: addToCartForm.value.sizes,
                         count: 1
                     }],
                     checked: false,

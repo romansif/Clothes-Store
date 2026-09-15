@@ -99,7 +99,7 @@ import { filterProduct } from "@/features/use-navigation/model/filter-product.ts
 import { productsClasses } from "@/shared/const/product/products.classes.ts";
 import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
-import { useProductsModals } from "@/features/use-main-product/lib/product.modal.ts";
+import { useProductsModals } from "@/features/use-main-product/lib/product-modal.ts";
 
 import square from "@/assets/icons/squares/square.png";
 import availability from "@/assets/icons/arrows/arrow-up.png";

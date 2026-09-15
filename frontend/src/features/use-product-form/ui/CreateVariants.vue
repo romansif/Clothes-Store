@@ -140,7 +140,7 @@
 <script setup lang="ts">
 import { watch } from "vue";
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
-import { productFormHelper } from "@/features/use-product-form/lib/product.form.helper.ts";
+import { productFormHelper } from "@/features/use-product-form/lib/product-form-helper.ts";
 import { createProductForm, moreCreateItemForm, createProductFormErrorMessages } from "@/features/use-product-form/model/product.forms.ts";
 import { createProductFormErrors } from "@/features/use-product-form/model/product.error.ts";
 

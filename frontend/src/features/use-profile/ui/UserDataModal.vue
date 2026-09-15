@@ -23,8 +23,8 @@
 </template>
 
 <script setup lang="ts">
-import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
-import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
+import { useBaseModals } from "@/shared/lib/base-modal.ts";
 
 import ConfidentialityData from "../../use-profile-form/ui/ConfidentialityData.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";

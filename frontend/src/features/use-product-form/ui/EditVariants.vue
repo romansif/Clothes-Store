@@ -31,8 +31,8 @@
                    variant="createProduct"
                    :error-message="createProductFormErrors.quantity ? createProductFormErrorMessages.quantity: ''"/>
         <span class="ml-auto mt-auto text-sm text-[#A3A3A3] font-medium">
-            An equal quantity will be selected for all sizes and colors
-          </span>
+          An equal quantity will be selected for all sizes and colors
+        </span>
       </div>
       <div v-else class="pt-3">
         <table class="w-full text-left border-collapse">
@@ -129,8 +129,8 @@
 <script setup lang="ts">
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import { useUpdateProduct } from "@/features/use-product-form/api/update-product.ts";
-import { productHelper } from "@/shared/lib/product.helper.ts";
-import { productFormHelper } from "@/features/use-product-form/lib/product.form.helper.ts";
+import { productHelper } from "@/shared/lib/product-helper.ts";
+import { productFormHelper } from "@/features/use-product-form/lib/product-form-helper.ts";
 import { createProductForm, createProductFormErrorMessages } from "@/features/use-product-form/model/product.forms.ts";
 import { createProductFormErrors } from "@/features/use-product-form/model/product.error.ts";
 import type {Product} from "@/features/use-product/model/product.types.ts";

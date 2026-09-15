@@ -50,7 +50,7 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { informationContactStore } from "@/features/use-user-address/model/address.store.ts";
-import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
+import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import { useGetAddress } from "@/features/use-user-address/api/get-address.ts";
 import { useGetPayment } from "@/features/use-user-payment/api/get-payment.ts";
 import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";

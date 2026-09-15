@@ -1,5 +1,5 @@
 import { handler } from "@/shared/api/http.ts";
-import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
 import { useFavorite } from "@/features/use-favorite/lib/use-favorite.ts";

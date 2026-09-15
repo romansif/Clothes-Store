@@ -56,8 +56,8 @@ import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
 import { cartStore } from "@/features/use-cart/model/cart.store.ts";
 import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
 import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
-import { isAgreeFormErrorMessage } from "@/features/use-cart/model/cart.form.ts";
-import { isAgreeFormError } from "@/features/use-cart/model/cart.errors.ts";
+import { isAgreeFormErrorMessage } from "@/features/use-product/model/add.to.cart.form.ts";
+import { isAgreeFormError } from "@/features/use-product/model/add.to.cart.errors.ts";
 
 import square from "@/assets/icons/squares/square.png";
 import CartList from "@/features/use-cart/ui/CartList.vue";

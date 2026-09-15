@@ -31,7 +31,7 @@ import { informationClasses } from "@/shared/const/checkout/information.classes.
 import { useInformationFormInput } from "@/features/use-checkout-contact-info/lib/address-input.ts";
 import { informationForm } from "@/features/use-checkout-contact-info/model/address.form.ts";
 import { informationFormErrors } from "@/features/use-checkout-contact-info/model/address.errors.ts";
-import { countries, selectedCountryCode } from "@/features/use-profile-form/lib/select.phone.form.ts";
+import { countries, selectedCountryCode } from "@/shared/lib/select-phone-form.ts";
 
 import CheckoutInput from "@/shared/ui/CheckoutInput.vue";
 

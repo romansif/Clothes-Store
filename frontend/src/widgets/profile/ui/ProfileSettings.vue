@@ -74,7 +74,7 @@
 <script setup lang="ts">
 import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
+import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import { profileClasses } from "@/shared/const/user/profile.classes.ts";
 
 import ProfileMenu from "./ProfileMenu.vue";

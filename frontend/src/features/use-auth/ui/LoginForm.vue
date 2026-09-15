@@ -6,8 +6,8 @@
         <BaseInput v-model=loginForm.email
                    type="email"
                    placeholder="example@mail.com"
-                   :error="loginFormErrors.email"
-                   :error-message="loginFormErrors.email ? loginFormErrorMessages.email : ''" />
+                   :error="loginFormErrors.email || loginFormErrors.password"
+                   :error-message="''" />
       </div>
       <div class="flex flex-col gap-3">
         <div class="flex">
@@ -18,10 +18,11 @@
           <BaseInput v-model=loginForm.password
                      :type="showPassword.password ? 'text' : 'password'"
                      placeholder="••••••••"
-                     :error="loginFormErrors.password"
-                     :error-message="loginFormErrors.password ? loginFormErrorMessages.password : ''" />
-          <img @click=togglePassword :src="showPassword.password ? opened : closed" alt=""
-               :class="['absolute w-7.5 top-1/4 left-57 sm:left-82', loginFormErrors.password ? 'top-1/6' : '']">
+                     :error="loginFormErrors.password || loginFormErrors.email"
+                     :error-message="loginErrorMessage" />
+          <img @click=togglePassword
+               :src="showPassword.password ? opened : closed" alt=""
+               :class="['absolute w-7.5 top-1/4 left-57 sm:left-82', loginError ? 'top-1/6' : '']">
         </div>
       </div>
       <div class="flex flex-col gap-3">
@@ -56,7 +57,7 @@
 </template>
 
 <script setup lang="ts">
-import { watch } from "vue";
+import { computed, watch } from "vue";
 import { useAuth } from "@/features/use-auth/api/use-auth.ts";
 import { toggleAuth } from "@/features/use-auth/lib/toggle-auth.ts";
 import { authStore } from "@/features/use-auth/model/auth.store.ts";
@@ -72,6 +73,26 @@ const { signIn } = useAuth();
 const { showPassword } = authStore();
 const { togglePassword } = toggleAuth();
 const { signInRoleClass } = authClasses();
+
+const loginErrorMessage = computed(() => {
+  if (loginFormErrors.value.email) {
+    return loginFormErrorMessages.value.email
+  }
+  if (loginFormErrors.value.password) {
+    return loginFormErrorMessages.value.password
+  }
+  return ''
+})
+
+const loginError = computed(() => {
+  if (loginFormErrors.value.email) {
+    return loginFormErrors.value.email
+  }if (loginFormErrors.value.password) {
+    return loginFormErrors.value.password
+  }
+
+  return false
+})
 
 watch(() => [loginForm.value.email, loginForm.value.password, loginForm.value.role],([email, password, role]) => {
       if(email){

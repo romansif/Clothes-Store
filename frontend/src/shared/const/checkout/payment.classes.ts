@@ -1,6 +1,6 @@
 import { computed } from "vue";
 import { checkoutClasses } from "@/shared/const/checkout/checkout.classes.ts";
-import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle.payment.ts";
+import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment.ts";
 import { paymentForm } from "@/features/use-chekout-payment-info/model/payment.form.ts";
 import { paymentFormErrors } from "@/features/use-chekout-payment-info/model/payment.errors.ts";
 

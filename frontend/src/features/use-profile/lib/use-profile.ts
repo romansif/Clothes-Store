@@ -5,8 +5,8 @@ import { productStore } from "@/features/use-main-product/model/product.store.ts
 import { cartStore } from "@/features/use-cart/model/cart.store.ts";
 import { favoriteStore } from "@/features/use-favorite/model/favorite.store.ts";
 import { orderStore } from "@/features/use-order/model/order.store.ts";
-import { isAgreeFormErrorMessage } from "@/features/use-cart/model/cart.form.ts";
-import { isAgreeFormError } from "@/features/use-cart/model/cart.errors.ts";
+import { isAgreeFormErrorMessage } from "@/features/use-product/model/add.to.cart.form.ts";
+import { isAgreeFormError } from "@/features/use-product/model/add.to.cart.errors.ts";
 
 const { cart } = cartStore();
 const { user } = userStore();

@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import { watch } from "vue";
 import { useAddAddress } from "@/features/use-checkout-contact-info/api/add-address.ts";
-import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle.information.ts";
+import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle-contact-info.ts";
 import { informationForm } from "@/features/use-checkout-contact-info/model/address.form.ts";
 import { informationFormErrors } from "@/features/use-checkout-contact-info/model/address.errors.ts";
 

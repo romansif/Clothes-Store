@@ -1,12 +1,12 @@
 import { handler } from "@/shared/api/http.ts";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
-import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { informationForm } from "@/features/use-checkout-contact-info/model/address.form.ts";
-import { clearInformationForm } from "@/features/use-checkout-contact-info/lib/clear.address.ts";
+import { clearInformationForm } from "@/features/use-checkout-contact-info/lib/clear-address.ts";
 import { type UserContactInfo } from "@/features/use-checkout-contact-info/model/address.types.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useGetAddress } from "@/features/use-user-address/api/get-address.ts";
-import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle.information.ts";
+import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle-contact-info.ts";
 
 const { userData } = userStore();
 const { openNotify } = useBaseModals();

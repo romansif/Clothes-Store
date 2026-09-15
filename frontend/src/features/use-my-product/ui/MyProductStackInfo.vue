@@ -24,7 +24,7 @@
 
 <script setup lang="ts">
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
-import { toggleStackInfo } from "@/features/use-my-product/lib/toggle.my.product.ts";
+import { toggleStackInfo } from "@/features/use-my-product/lib/toggle-stack-info.ts";
 
 import close from "@/assets/icons/delete-close/delete.svg";
 

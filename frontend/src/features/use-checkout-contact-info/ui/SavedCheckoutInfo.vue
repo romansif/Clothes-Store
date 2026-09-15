@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle.information.ts";
+import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle-contact-info.ts";
 
 import ContactList from "@/features/use-checkout-contact-info/ui/ContactList.vue";
 import AddressList from "@/features/use-checkout-contact-info/ui/AddressList.vue";

@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { clearUsersForms } from "@/features/use-profile-form/lib/clear.user.update.ts";
+import { clearUsersForms } from "@/features/use-profile-form/lib/clear-user-update.ts";
 import { useDeleteProduct } from "@/features/use-main-product/api/delete-product.ts";
 import { useDeleteCart } from "@/features/use-cart/api/delete-cart";
 import { useDeleteAddress } from "@/features/use-user-address/api/delete-address.ts";

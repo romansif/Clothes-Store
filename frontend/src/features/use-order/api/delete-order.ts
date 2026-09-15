@@ -1,6 +1,6 @@
 import { handler } from "@/shared/api/http.ts";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
-import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import {useGetOrder} from "@/features/use-order/api/get-order.ts";
 
 const { getOrders } = useGetOrder();

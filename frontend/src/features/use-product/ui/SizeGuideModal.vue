@@ -63,10 +63,10 @@
 <script setup lang="ts">
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
-import { toggleSizeGuide } from "@/features/use-product/lib/toggle.size.guide.ts";
+import { toggleSizeGuide } from "@/features/use-product/lib/toggle-size-guide.ts";
 
 import close from '@/assets/icons/delete-close/delete.svg'
-import {productHelper} from "@/shared/lib/product.helper.ts";
+import {productHelper} from "@/shared/lib/product-helper.ts";
 
 const { product } = useGetProduct();
 const { formatterSizeGuide } = productHelper();

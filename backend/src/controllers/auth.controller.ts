@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { v4 as uuidv4 } from 'uuid';
-import { dbService } from '../../db/db.config.ts';
+import { dbService } from '../db/db.config.ts';
 import { OAuth2Client } from "google-auth-library";
 import { type Request, type Response } from "express";
 import { type User, type JwtCustomPayload, type TokenPayload } from '../interfaces.ts';
@@ -115,7 +115,7 @@ const authController = {
             if (!isPasswordValid) {
                 return res.status(400).json({
                     message: 'Invalid email or password',
-                    errors: { password: 'Invalid password' }
+                    errors: { password: 'Invalid email or password' }
                 });
             }
 

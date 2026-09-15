@@ -33,9 +33,9 @@
 </template>
 
 <script setup lang="ts">
-import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
-import { stackInfo } from "@/features/use-my-product/lib/toggle.my.product.ts";
-import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
+import { stackInfo } from "@/features/use-my-product/lib/toggle-stack-info.ts";
+import { useBaseModals } from "@/shared/lib/base-modal.ts";
 
 import Loading from "@/widgets/ui/Loading.vue";
 import AddressPaymentInfo from "@/features/use-profile/ui/AddressPaymentInfo.vue";

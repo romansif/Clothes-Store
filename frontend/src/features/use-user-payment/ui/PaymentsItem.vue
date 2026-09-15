@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
+import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import type {UserPayment} from "@/features/use-chekout-payment-info/model/payment.type.ts";
 
 defineProps<{

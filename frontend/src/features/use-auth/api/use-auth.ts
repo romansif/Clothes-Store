@@ -1,9 +1,9 @@
 import router from '@/app/router';
 import { handler } from "@/shared/api/http.ts";
-import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
-import { clearAuthForms } from "@/features/use-auth/lib/clear.auth.ts";
+import { clearAuthForms } from "@/features/use-auth/lib/clear-auth.ts";
 import { loginForm, registerForm } from "@/features/use-auth/model/auth.forms.ts";
 
 const { users, user } = userStore();

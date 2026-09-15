@@ -1,6 +1,6 @@
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
-import { cartForm } from "@/features/use-cart/model/cart.form.ts";
+import { addToCartForm } from "@/features/use-product/model/add.to.cart.form.ts";
 import type { Product, ColorItem, Size, SizeGuide } from "@/features/use-product/model/product.types.ts";
 
 const { product } = useGetProduct();
@@ -145,13 +145,13 @@ export const productHelper = () => {
         const variantsList = product?.variants || [];
 
         const totalCount = variantsList.find(
-            v => v.hex === cartForm.value.colors.hex && v.size === cartForm.value.sizes);
+            v => v.hex === addToCartForm.value.colors.hex && v.size === addToCartForm.value.sizes);
 
         const count = totalCount?.count ?? 0;
 
         if(count < 4 && count !== 0){
             return `🔥 Only ${count} left`;
-        }else if(cartForm.value.colors.hex && cartForm.value.sizes){
+        }else if(addToCartForm.value.colors.hex && addToCartForm.value.sizes){
             return `In stock ${count} pcs.`;
         }else if(count === 0){
             return `Select specific.`;

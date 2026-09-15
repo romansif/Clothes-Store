@@ -43,11 +43,11 @@
                :class="selectedSizesClass(size, product, userData.role)">
         </div>
         <div class="flex gap-1">
-          <span v-if=cartFormErrors.color class="text-red-600 text-xs">
-            {{ cartFormErrorMessages.color }} /
+          <span v-if=addToCartFormErrors.color class="text-red-600 text-xs">
+            {{ addToCartFormErrorMessages.color }} /
           </span>
-            <span v-if=cartFormErrors.size class="text-red-600 text-xs">
-            {{ cartFormErrorMessages.size }}
+            <span v-if=addToCartFormErrors.size class="text-red-600 text-xs">
+            {{ addToCartFormErrorMessages.size }}
           </span>
         </div>
       </div>
@@ -84,20 +84,20 @@
 
 <script setup lang="ts">
 import { watch } from "vue";
-import { productsHelper } from "@/features/use-main-product/lib/products.helper.ts";
-import { cartHelper } from "@/features/use-cart/lib/cart.helper.ts";
+import { productsHelper } from "@/features/use-main-product/lib/products-helper.ts";
+import { cartHelper } from "@/features/use-cart/lib/cart-helper.ts";
 import { useUpdateCart } from "@/features/use-cart/api/update-cart.ts";
 import { useAddToCart} from "@/features/use-cart/api/add-to-cart.ts";
 import { useCart } from "@/features/use-cart/lib/use-cart.ts";
-import { toggleSizeGuide } from "@/features/use-product/lib/toggle.size.guide.ts";
+import { toggleSizeGuide } from "@/features/use-product/lib/toggle-size-guide.ts";
 import { useFavorite } from "@/features/use-favorite/lib/use-favorite.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
 import { productsClasses } from "@/shared/const/product/products.classes.ts";
-import { productHelper } from "@/shared/lib/product.helper.ts";
+import { productHelper } from "@/shared/lib/product-helper.ts";
 import { type Product } from "@/features/use-product/model/product.types.ts";
-import { cartForm, cartFormErrorMessages} from "@/features/use-cart/model/cart.form.ts";
-import { cartFormErrors } from "@/features/use-cart/model/cart.errors.ts";
+import { addToCartForm, addToCartFormErrorMessages} from "@/features/use-product/model/add.to.cart.form.ts";
+import { addToCartFormErrors } from "@/features/use-product/model/add.to.cart.errors.ts";
 
 import plus from '@/assets/icons/products/plus.svg';
 import minus from '@/assets/icons/products/minus.svg';
@@ -121,12 +121,12 @@ const { selectedColorClass, selectedSizesClass } = productsClasses();
 const { variantsInfo, pureInfoColors, isAvailableSizes } = productHelper();
 
 
-watch(() => [cartForm.value.colors, cartForm.value.sizes], ([color, size]) => {
+watch(() => [addToCartForm.value.colors, addToCartForm.value.sizes], ([color, size]) => {
   if(color){
-    cartFormErrors.value.color = false
+    addToCartFormErrors.value.color = false
   }
   if(size){
-    cartFormErrors.value.size = false
+    addToCartFormErrors.value.size = false
   }
 })
 </script>

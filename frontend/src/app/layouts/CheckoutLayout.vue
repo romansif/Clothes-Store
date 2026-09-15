@@ -30,7 +30,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { checkoutClasses } from "@/shared/const/checkout/checkout.classes.ts";
 import { useUpdateCart } from "@/features/use-cart/api/update-cart.ts";
 

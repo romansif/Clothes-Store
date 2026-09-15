@@ -1,5 +1,5 @@
 import { handler } from "@/shared/api/http.ts";
-import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import {shippingStore} from "@/features/use-checkout-shipping-info/model/shipping.store.ts";
 
 const { loading } = useBaseModals();

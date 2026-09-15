@@ -9,8 +9,9 @@ const loading = ref<boolean>(false);
 
 const choiceModal = ref<boolean>(false);
 const cancelChoice = ref<string>('');
-const cancelChoiceMessage = ref<string>('');
-const cancelChoiceError = ref<boolean>(false);
+
+export const cancelChoiceMessage = ref<string>('');
+export const cancelChoiceError = ref<boolean>(false);
 
 const orderId = ref<string>('');
 
@@ -47,8 +48,6 @@ export const useBaseModals = () => {
         toggleOrder,
 
         cancelChoice,
-        cancelChoiceMessage,
-        cancelChoiceError,
 
         choiceModal,
         orderId,

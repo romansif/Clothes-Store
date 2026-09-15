@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 import { useAuth } from "@/features/use-auth/api/use-auth.ts";
-import { clearAuthForms } from "@/features/use-auth/lib/clear.auth.ts";
+import { clearAuthForms } from "@/features/use-auth/lib/clear-auth.ts";
 import { toggleAuth } from "@/features/use-auth/lib/toggle-auth.ts";
 import { authStore } from "@/features/use-auth/model/auth.store.ts";
 

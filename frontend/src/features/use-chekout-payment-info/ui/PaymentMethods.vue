@@ -92,7 +92,7 @@
 
 <script setup lang="ts">
 import { paymentClasses } from "@/shared/const/checkout/payment.classes.ts";
-import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle.payment.ts";
+import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment.ts";
 import { paymentForm, paymentFormErrorMessage} from "@/features/use-chekout-payment-info/model/payment.form.ts";
 import { paymentFormErrors } from "@/features/use-chekout-payment-info/model/payment.errors.ts";
 

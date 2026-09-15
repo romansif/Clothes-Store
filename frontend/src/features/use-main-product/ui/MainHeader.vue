@@ -54,9 +54,9 @@ import { filterProduct } from "@/features/use-navigation/model/filter-product.ts
 import { productsClasses } from "@/shared/const/product/products.classes.ts";
 import { searchForm } from "@/widgets/navigation/model/search.form.ts";
 import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
-import { clearSearchProductForm } from "@/features/use-navigation/lib/clear.search.ts";
+import { clearSearchProductForm } from "@/features/use-navigation/lib/clear-search.ts";
 import { useGetSearchedProducts } from "@/features/use-navigation/model/search-product.ts";
-import { useProductsModals } from "@/features/use-main-product/lib/product.modal.ts";
+import { useProductsModals } from "@/features/use-main-product/lib/product-modal.ts";
 
 import del from '@/assets/icons/delete-close/clean_search.svg';
 import search from "@/assets/icons/nav/search.png";

@@ -60,7 +60,7 @@
 </template>
 
 <script setup lang="ts">
-import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { useBaseModals } from "@/shared/lib/base-modal.ts";
 
 import photo_1 from '@/assets/photos/8.png'
 import photo_2 from '@/assets/photos/9.png'

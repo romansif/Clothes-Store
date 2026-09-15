@@ -1,7 +1,7 @@
 import { handler } from "@/shared/api/http.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { favoriteStore } from "@/features/use-favorite/model/favorite.store.ts";
-import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { useBaseModals } from "@/shared/lib/base-modal.ts";
 
 const { userData } = userStore();
 const { loading } = useBaseModals();

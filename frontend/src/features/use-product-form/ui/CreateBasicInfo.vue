@@ -131,8 +131,8 @@
                :class="[`uppercase border border-gray-300 rounded-sm outline-none px-6 py-5 text-sm bg-white
                transition duration-400 font-dm-sans`, createProductFormErrors.sku ? 'border-red-500' : '']" />
         <span v-if="createProductFormErrors.sku" class="text-red-600 text-xs">
-                    {{ createProductFormErrorMessages.sku }}
-                  </span>
+          {{ createProductFormErrorMessages.sku }}
+        </span>
       </div>
       <div class="flex flex-col gap-3 w-full">
         <label for="" class="font-semibold tracking-wider text-xs">

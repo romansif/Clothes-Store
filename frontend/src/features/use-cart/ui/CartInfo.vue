@@ -46,8 +46,8 @@
 <script setup lang="ts">
 import { watch } from "vue";
 import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
-import { isAgreeFormErrorMessage} from "@/features/use-cart/model/cart.form.ts";
-import { isAgreeFormError } from "@/features/use-cart/model/cart.errors.ts";
+import { isAgreeFormErrorMessage} from "@/features/use-product/model/add.to.cart.form.ts";
+import { isAgreeFormError } from "@/features/use-product/model/add.to.cart.errors.ts";
 
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import square from '@/assets/icons/squares/square.png';

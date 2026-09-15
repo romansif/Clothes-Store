@@ -105,7 +105,7 @@ import { updateUserForm, updateUserFormMessage } from "@/features/use-profile-fo
 import { profileApi } from "@/features/use-profile-form/api/profile.api.ts";
 import { updateUserFormErrors } from "@/features/use-profile-form/model/user.update.error.ts";
 import { profileClasses } from "@/shared/const/user/profile.classes.ts";
-import { selectedCountryCode, countries } from "@/features/use-profile-form/lib/select.phone.form.ts";
+import { selectedCountryCode, countries } from "@/shared/lib/select-phone-form.ts";
 
 import BaseButton  from "@/shared/ui/BaseButton.vue";
 import opened from '@/assets/icons/auth/opened.png'

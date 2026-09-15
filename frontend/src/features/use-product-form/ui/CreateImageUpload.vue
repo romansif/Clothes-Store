@@ -12,9 +12,9 @@
         <img v-if="productsPreview[1]" :src="productsPreview[1]" alt=""
              class="h-90 w-90 transition duration-400">
         <div v-else class="p-4 text-mauve-100">
-                    <span class="bg-black font-bold px-2 py-1.5 rounded-full">
-                      Main Photo
-                    </span>
+          <span class="bg-black font-bold px-2 py-1.5 rounded-full">
+            Main Photo
+          </span>
         </div>
       </div>
       <div class="grid grid-cols-2 gap-3">
@@ -24,9 +24,9 @@
           <img v-if="productsPreview[index]" :src="productsPreview[index]" alt=""
                class="h-43.5 w-43.5 transition duration-400">
           <div v-else class="p-4 text-mauve-500">
-                      <span class="bg-gray-100 font-bold px-2 py-1.5 rounded-full border border-gray-400">
-                        Photo {{ index }}
-                      </span>
+            <span class="bg-gray-100 font-bold px-2 py-1.5 rounded-full border border-gray-400">
+              Photo {{ index }}
+            </span>
           </div>
         </div>
       </div>
@@ -40,7 +40,7 @@
 
 <script setup lang="ts">
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
-import { openSelectProductCard } from "@/features/use-product-form/lib/toggle.imge.product.ts";
+import { openSelectProductCard } from "@/features/use-product-form/lib/toggle-image-product.ts";
 
 const { productsPreview } = productStore();
 </script>

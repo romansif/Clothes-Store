@@ -4,11 +4,13 @@
       <router-link :to="{ name: 'product/info', params: { id: product.id } }">
         <img :src="productPreview(product.id, array)" alt=""
              :class="productPreviewClass(size, product)">
-        <span v-if="isOutOfStack(product)" :class="stackClass">
+        <span v-if="isOutOfStack(product)"
+              :class="stackClass">
           Out Of Stack
         </span>
       </router-link>
-      <img @click="toggleToFavorite(product)" :src="isFavorite(product) ? liked : like" alt=""
+      <img @click="toggleToFavorite(product)"
+           :src="isFavorite(product) ? liked : like" alt=""
            :class="favoriteBtn">
     </div>
   </template>
@@ -16,7 +18,7 @@
 
 <script setup lang="ts">
 import { useFavorite } from "@/features/use-favorite/lib/use-favorite.ts";
-import { productHelper } from "@/shared/lib/product.helper.ts";
+import { productHelper } from "@/shared/lib/product-helper.ts";
 import { baseClasses } from "@/shared/const/base.classes.ts";
 import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
 import type {Product} from "@/features/use-product/model/product.types.ts";

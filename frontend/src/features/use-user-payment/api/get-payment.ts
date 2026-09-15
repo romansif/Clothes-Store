@@ -1,7 +1,7 @@
 import { handler } from "@/shared/api/http.ts";
 import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { useBaseModals } from "@/shared/lib/base-modal.ts";
 
 const { userData } = userStore();
 const { loading } = useBaseModals();

@@ -28,10 +28,10 @@
 
 <script setup lang="ts">
 import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
-import { useProductsModals } from "@/features/use-main-product/lib/product.modal.ts";
-import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
-import { useBaseModals } from "@/shared/lib/base.modal.ts";
-import { sizeGuideModel } from "@/features/use-product/lib/toggle.size.guide.ts";
+import { useProductsModals } from "@/features/use-main-product/lib/product-modal.ts";
+import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
+import { useBaseModals } from "@/shared/lib/base-modal.ts";
+import { sizeGuideModel } from "@/features/use-product/lib/toggle-size-guide.ts";
 
 import Notification from "@/shared/ui/Notification.vue";
 import AsideFilter from "@/widgets/product/ui/AsideFilter.vue";

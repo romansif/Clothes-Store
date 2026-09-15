@@ -34,8 +34,8 @@ import { onMounted } from "vue";
 import { useOrder } from "@/features/use-order/lib/use-order.ts";
 import { orderStore } from "@/features/use-order/model/order.store.ts";
 import { useGetOrder } from "@/features/use-order/api/get-order.ts";
-import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
-import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
+import { useBaseModals } from "@/shared/lib/base-modal.ts";
 
 import OrdersList from "@/features/use-order/ui/OrderList.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";

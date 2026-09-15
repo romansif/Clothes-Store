@@ -44,9 +44,9 @@
 </template>
 
 <script setup lang="ts">
-import { toggleStackInfo } from "@/features/use-my-product/lib/toggle.my.product.ts";
+import { toggleStackInfo } from "@/features/use-my-product/lib/toggle-stack-info.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
-import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
+import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 
 defineProps<{
   product: Product

@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { useBaseModals } from "@/shared/lib/base.modal.ts";
+import { useBaseModals } from "@/shared/lib/base-modal.ts";
 
 import Loading from "@/widgets/ui/Loading.vue";
 import Notification from "@/shared/ui/Notification.vue";

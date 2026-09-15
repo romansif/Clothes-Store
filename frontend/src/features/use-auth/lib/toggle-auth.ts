@@ -1,6 +1,6 @@
 import { type ComponentPublicInstance, computed } from "vue";
 import { authStore } from "@/features/use-auth/model/auth.store.ts";
-import { clearAuthForms } from "@/features/use-auth/lib/clear.auth.ts";
+import { clearAuthForms } from "@/features/use-auth/lib/clear-auth.ts";
 import { authForms } from "@/features/use-auth/model/auth.forms.ts";
 
 const { showPassword, showSignSection, currentRole, isRole } = authStore();

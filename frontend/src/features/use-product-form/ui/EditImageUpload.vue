@@ -40,9 +40,9 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { openSelectProductCard } from "@/features/use-product-form/lib/toggle.imge.product.ts";
+import { openSelectProductCard } from "@/features/use-product-form/lib/toggle-image-product.ts";
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
-import { productHelper } from "@/shared/lib/product.helper.ts";
+import { productHelper } from "@/shared/lib/product-helper.ts";
 import type {Product} from "@/features/use-product/model/product.types.ts";
 
 const props = defineProps<{

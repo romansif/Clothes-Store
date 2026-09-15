@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { useProfileModals } from "@/features/use-profile/lib/profile.modal.ts";
+import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import type {UserContactInfo} from "@/features/use-checkout-contact-info/model/address.types.ts";
 
 defineProps<{

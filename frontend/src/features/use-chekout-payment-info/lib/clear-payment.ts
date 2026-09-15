@@ -8,13 +8,13 @@ export const clearPaymentForm = () => {
     paymentForm.value.cardCvv = '';
     paymentForm.value.paymentMethod = '';
 
-    paymentFormErrorMessage.value.cardNumberMessage = '';
-    paymentFormErrorMessage.value.expiryDateMessage = '';
-    paymentFormErrorMessage.value.cardCvvMessage = '';
-    paymentFormErrorMessage.value.paymentMethodMessage = '';
+    paymentFormErrorMessage.value.cardNumber = '';
+    paymentFormErrorMessage.value.expiryDate = '';
+    paymentFormErrorMessage.value.cardCvv = '';
+    paymentFormErrorMessage.value.paymentMethod = '';
 
-    paymentFormErrors.value.cardNumberError = false;
-    paymentFormErrors.value.expiryDateError = false;
-    paymentFormErrors.value.cardCvvError = false;
-    paymentFormErrors.value.paymentMethodError = false;
+    paymentFormErrors.value.cardNumber = false;
+    paymentFormErrors.value.expiryDate = false;
+    paymentFormErrors.value.cardCvv = false;
+    paymentFormErrors.value.paymentMethod = false;
 };

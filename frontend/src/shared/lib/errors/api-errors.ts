@@ -1,21 +1,19 @@
 import { ApiError } from "../../api/http.ts";
-import { useBaseModals } from "@/shared/lib/base.modal.ts";
 import { loginFormErrorMessages, registerFormErrorMessages } from "@/features/use-auth/model/auth.forms.ts";
 import { loginFormErrors, registerFormErrors } from "@/features/use-auth/model/auth.errors.ts";
-import { updateUserFormErrors } from "@/features/use-profile-form/model/user.update.error.ts";
-import { updateUserFormMessage } from "@/features/use-profile-form/model/user.update.form.ts";
 import { moreCreateItemForm, createProductFormErrorMessages } from "@/features/use-product-form/model/product.forms.ts";
 import { createProductFormErrors } from "@/features/use-product-form/model/product.error.ts";
-import { cartFormErrorMessages } from "@/features/use-cart/model/cart.form.ts";
-import { cartFormErrors } from "@/features/use-cart/model/cart.errors.ts";
+import { addToCartFormErrorMessages } from "@/features/use-product/model/add.to.cart.form.ts";
+import { addToCartFormErrors } from "@/features/use-product/model/add.to.cart.errors.ts";
 import { informationFormErrorMessages } from "@/features/use-checkout-contact-info/model/address.form.ts";
 import { informationFormErrors } from "@/features/use-checkout-contact-info/model/address.errors.ts";
 import { shippingFormErrorMessage } from "@/features/use-checkout-shipping-info/model/shipping.form.ts";
 import { shippingFormError } from "@/features/use-checkout-shipping-info/model/shipping.errors.ts";
 import { paymentFormErrorMessage } from "@/features/use-chekout-payment-info/model/payment.form.ts";
 import { paymentFormErrors } from "@/features/use-chekout-payment-info/model/payment.errors.ts";
-
-const { cancelChoiceMessage, cancelChoiceError } = useBaseModals();
+import { updateUserFormErrors } from "@/features/use-profile-form/model/user.update.error.ts";
+import { updateUserFormMessage } from "@/features/use-profile-form/model/user.update.form.ts";
+import { cancelChoiceError, cancelChoiceMessage } from "@/shared/lib/base-modal.ts";
 
 export const useFormsErrors = () => {
     const registerErrors = (err: any) => {
@@ -24,7 +22,7 @@ export const useFormsErrors = () => {
         const errors = err.response?.errors
         if (!errors) return
 
-        registerFormErrors.value.name = !!errors?.name;
+        registerFormErrors.value.name = !!errors.name;
         registerFormErrors.value.surName = !!errors.surName;
         registerFormErrors.value.phone = !!errors.phone;
         registerFormErrors.value.email = !!errors.email;
@@ -106,11 +104,11 @@ export const useFormsErrors = () => {
                 key === 'colors'
         );
 
-        cartFormErrors.value.color = hasColorError;
-        cartFormErrors.value.size = !!errors.sizes;
+        addToCartFormErrors.value.color = hasColorError;
+        addToCartFormErrors.value.size = !!errors.sizes;
 
-        cartFormErrorMessages.value.color = colorError?.[1] || '';
-        cartFormErrorMessages.value.size = errors.sizes || '';
+        addToCartFormErrorMessages.value.color = colorError?.[1] || '';
+        addToCartFormErrorMessages.value.size = errors.sizes || '';
     };
 
     const createInformationErrors = (err: any) => {

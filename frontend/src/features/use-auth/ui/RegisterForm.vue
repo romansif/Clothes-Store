@@ -22,7 +22,9 @@
       <div class="flex flex-col gap-3">
         <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">PRIVATE PHONE</label>
         <div class="flex flex-col gap-3 sm:flex-row">
-          <select name="" id="" v-model="selectedCountryCode" @change="changeCountry" :class="selectPhoneCodeClass()">
+          <select v-model="selectedCountryCode"
+                  @change="changeCountry"
+                  :class="selectPhoneCodeClass()">
             <option v-for="country in countries" :key="country.code" :value="country.code">
                 {{ country.name }}
             </option>
@@ -70,7 +72,7 @@ import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
 import { authStore } from "@/features/use-auth/model/auth.store.ts";
 import { authClasses } from "@/shared/const/auth/auth.classes.ts";
 import { toggleAuth } from "@/features/use-auth/lib/toggle-auth.ts";
-import { selectedCountryCode, countries } from "@/features/use-profile-form/lib/select.phone.form.ts";
+import { selectedCountryCode, countries } from "@/shared/lib/select-phone-form.ts";
 import { registerForm, registerFormErrorMessages } from "@/features/use-auth/model/auth.forms.ts";
 import { registerFormErrors } from "@/features/use-auth/model/auth.errors.ts";
 

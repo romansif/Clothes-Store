@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { useProductsModals } from "@/features/use-main-product/lib/product.modal.ts";
+import { useProductsModals } from "@/features/use-main-product/lib/product-modal.ts";
 
 import NavBar from "@/widgets/home/ui/NavBar.vue";
 import HomeSlideBar from "@/widgets/home/ui/HomeSlideBar.vue";

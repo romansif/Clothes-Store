@@ -1,7 +1,7 @@
 import {ref} from "vue";
-import {type AddFormError, type IsAgreeFormError} from "@/features/use-cart/model/cart.types.form.ts";
+import {type AddFormError, type IsAgreeFormError} from "@/features/use-product/model/add.to.cart.types.form.ts";
 
-export const cartFormErrors = ref<AddFormError>({
+export const addToCartFormErrors = ref<AddFormError>({
     color: false,
     size: false,
 });

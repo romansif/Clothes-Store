@@ -21,10 +21,10 @@ export const validation = {
     ],
 
     loginValidation: [
-        body('email').trim().notEmpty().withMessage('Email is required').isEmail()
-            .withMessage('Invalid email'),
+        body('email').trim().notEmpty().withMessage('Invalid email').isEmail()
+            .withMessage('Email is required'),
 
-        body('password').trim().notEmpty().withMessage('Password is required'),
+        body('password').trim().notEmpty().withMessage('Email and Password is required'),
 
         body('role').notEmpty().withMessage('You need to select a role to determine how you want to login')
     ],
