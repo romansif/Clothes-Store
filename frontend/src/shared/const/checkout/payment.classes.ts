@@ -8,11 +8,6 @@ const { isChosenPayment } = togglePaymentForm();
 const { getSavedInfoClass } = checkoutClasses();
 
 export const paymentClasses = () => {
-    const carNameClass = () => [
-        `border border-gray-300 rounded-xl outline-none px-4 py-4 text-xs transition duration-400 
-        bg-gray-50 hover:bg-white appearance-none`
-    ];
-
     const paymentMethodClass = (method: string) => [
         `flex justify-between items-center px-3 border border-gray-400 rounded-xl h-[80px] 
         transition duration-400 bg-gray-50 hover:bg-white`,
@@ -47,7 +42,6 @@ export const paymentClasses = () => {
 
         savedPaymentClass,
 
-        carNameClass,
         paymentMethodClass,
     }
 }

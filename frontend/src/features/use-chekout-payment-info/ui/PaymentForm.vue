@@ -2,9 +2,10 @@
   <div class="flex gap-2">
     <div class="flex flex-col gap-2 w-full">
       <label class="text-sm">Card Name</label>
-      <input v-model="paymentForm.cardName"
-             placeholder="Card Name is optional"
-             :class="carNameClass()" />
+      <CheckoutInput v-model="paymentForm.cardName"
+             :placeholder="'Card Name is optional'"
+             variant="payment"
+             :error="false" />
     </div>
     <div class="flex flex-col gap-2 w-full">
       <label class="text-sm">Card Number</label>
@@ -38,9 +39,10 @@ import { paymentClasses } from "@/shared/const/checkout/payment.classes.ts";
 import { usePaymentFormInput } from "@/features/use-chekout-payment-info/lib/payment-input.ts";
 import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
 import { paymentForm } from "@/features/use-chekout-payment-info/model/payment.form.ts";
+import CheckoutInput from "@/shared/ui/checkout/CheckoutInput.vue";
 
 const { cardNumberMask, expiryDateMask, cardCvvMask } = paymentStore();
-const { carNameClass, cardNumberClass, expiryDateClass, cardCvvClass } = paymentClasses();
+const { cardNumberClass, expiryDateClass, cardCvvClass } = paymentClasses();
 const { cardNumberPlaceholder, expiryDatePlaceholder, cardCvvPlaceholder } = usePaymentFormInput();
 </script>
 

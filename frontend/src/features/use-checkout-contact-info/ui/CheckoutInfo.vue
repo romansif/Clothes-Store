@@ -1,5 +1,14 @@
 <template>
   <div class="flex flex-col lg:w-100 xl:w-125">
+    <div v-if="userAddresses.length > 0" class="flex justify-between">
+      <label class="font-medium text-xs md:text-sm">
+        SHIPPING ADDRESS
+      </label>
+      <span @click="toggleShowContact"
+            class="text-xs text-indigo-600 cursor-pointer hover:text-violet-600">
+        Show saved contact
+      </span>
+    </div>
     <form @submit.prevent="addInformation" v-if="!isSavedAddress" class="flex flex-col mt-5 gap-5">
       <ContactForm />
       <AddressForm />
@@ -18,6 +27,7 @@
 import { watch } from "vue";
 import { useAddAddress } from "@/features/use-checkout-contact-info/api/add-address.ts";
 import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle-contact-info.ts";
+import { informationContactStore } from "@/features/use-user-address/model/address.store.ts";
 import { informationForm } from "@/features/use-checkout-contact-info/model/address.form.ts";
 import { informationFormErrors } from "@/features/use-checkout-contact-info/model/address.errors.ts";
 
@@ -28,6 +38,8 @@ import AddressForm from "@/features/use-checkout-contact-info/ui/AddressForm.vue
 import SavedCheckoutInfo from "@/features/use-checkout-contact-info/ui/SavedCheckoutInfo.vue";
 
 const { isSavedAddress } = toggleInformation();
+const { toggleShowContact } = toggleInformation();
+const { userAddresses } = informationContactStore();
 const { addInformation, useInformation } = useAddAddress();
 
 watch(() => [

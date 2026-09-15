@@ -7,7 +7,12 @@
       </label>
       <div class="flex gap-3">
         <form @submit.prevent="addShipping" class="flex flex-col gap-6 w-full">
-          <ShippingMethods />
+          <ShippingMethod :title="'STANDARD SHIPPING'"
+                               :text="'Delivery in 3-5 business days'"
+                               :price="'Free'" />
+          <ShippingMethod :title="'EXPRESS COURIER'"
+                               :text="'Delivery tomorrow morning'"
+                               :price="'$15.00'" />
         </form>
       </div>
     </div>
@@ -27,8 +32,8 @@ import { shippingFormError } from "@/features/use-checkout-shipping-info/model/s
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";
-import ShippingMethods from "./ShippingMethods.vue";
 import ShippingAddress from "./ShippingAddress.vue";
+import ShippingMethod from "@/shared/ui/checkout/ShippingMethod.vue";
 
 const { addShipping } = useAddShipping();
 

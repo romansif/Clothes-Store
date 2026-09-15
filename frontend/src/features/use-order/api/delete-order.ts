@@ -1,10 +1,9 @@
 import { handler } from "@/shared/api/http.ts";
-import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
-import {useGetOrder} from "@/features/use-order/api/get-order.ts";
+import { useGetOrder } from "@/features/use-order/api/get-order.ts";
+import { replaceOrderErrors } from "@/shared/lib/errors/api-replace-order-errors.ts";
 
 const { getOrders } = useGetOrder();
-const { replaceOrderErrors } = useFormsErrors();
 const { openNotify, cancelChoice, orderId } = useBaseModals();
 
 export const useDeleteOrder = () => {

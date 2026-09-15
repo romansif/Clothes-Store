@@ -1,9 +1,9 @@
 import { handler } from "@/shared/api/http.ts";
-import { shippingForm } from "@/features/use-checkout-shipping-info/model/shipping.form.ts";
 import { orderStore } from "@/features/use-order/model/order.store.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { orderPriceInfo } from "@/features/use-checkout-order/lib/order-price-info.ts";
+import { shippingForm } from "@/features/use-checkout-shipping-info/model/shipping.form.ts";
 
 const { items } = orderStore();
 const { userData } = userStore();

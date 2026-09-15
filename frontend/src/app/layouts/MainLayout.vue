@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { errorHandler } from "@/shared/lib/errors/error-handler.ts";
+import { errorHandler } from "@/shared/lib/error-handler.ts";
 import { useProductsModals } from "@/features/use-main-product/lib/product-modal.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";

@@ -1,78 +1,54 @@
 <template>
-  <form @keydown.enter="signIn" action="" class="mt-10">
-    <div class="flex flex-col gap-4">
-      <div class="flex flex-col gap-3">
-        <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">EMAIL OR PHONE</label>
-        <BaseInput v-model=loginForm.email
-                   type="email"
-                   placeholder="example@mail.com"
-                   :error="loginFormErrors.email || loginFormErrors.password"
-                   :error-message="''" />
+  <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-3">
+      <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">EMAIL OR PHONE</label>
+      <BaseInput v-model=loginForm.email
+                 type="email"
+                 placeholder="example@mail.com"
+                 :error="loginFormErrors.email || loginFormErrors.password"
+                 :error-message="''" />
+    </div>
+    <div class="flex flex-col gap-3">
+      <div class="flex">
+        <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">PASSWORD</label>
+        <label class="text-xs text-gray-400 ml-auto">Forgot a password?</label>
       </div>
-      <div class="flex flex-col gap-3">
-        <div class="flex">
-          <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">PASSWORD</label>
-          <label class="text-xs text-gray-400 ml-auto">Forgot a password?</label>
-        </div>
-        <div class="relative">
-          <BaseInput v-model=loginForm.password
-                     :type="showPassword.password ? 'text' : 'password'"
-                     placeholder="••••••••"
-                     :error="loginFormErrors.password || loginFormErrors.email"
-                     :error-message="loginErrorMessage" />
-          <img @click=togglePassword
-               :src="showPassword.password ? opened : closed" alt=""
-               :class="['absolute w-7.5 top-1/4 left-57 sm:left-82', loginError ? 'top-1/6' : '']">
-        </div>
-      </div>
-      <div class="flex flex-col gap-3">
-        <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">ROLE</label>
-        <div class="flex gap-3">
-          <div :class="signInRoleClass">
-            <input v-model="loginForm.role"
-                   value="Buyer"
-                   type="radio"
-                   name="role"
-                   class="accent-black w-4 h-4 cursor-pointer">
-            <span class="font-semibold">
-              Buyer
-            </span>
-          </div>
-          <div :class="signInRoleClass">
-            <input
-                v-model="loginForm.role"
-                value="Seller"
-                type="radio"
-                name="role"
-                class="accent-black w-4 h-4 cursor-pointer">
-            <span class="font-semibold">
-              Seller
-            </span>
-          </div>
-        </div>
-        <span v-if=loginFormErrors.role class="text-red-600 text-xs">{{ loginFormErrorMessages.role }}</span>
+      <div class="relative">
+        <BaseInput v-model=loginForm.password
+                   :type="showPassword.password ? 'text' : 'password'"
+                   placeholder="••••••••"
+                   :error="loginFormErrors.password || loginFormErrors.email"
+                   :error-message="loginErrorMessage" />
+        <img @click=togglePassword
+             :src="showPassword.password ? opened : closed" alt=""
+             :class="['absolute w-7.5 top-1/4 left-57 sm:left-82', loginError ? 'top-1/6' : '']">
       </div>
     </div>
-  </form>
+    <div class="flex flex-col gap-3">
+      <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">ROLE</label>
+      <div class="flex gap-3">
+        <LoginRoleInput :role="'Buyer'" />
+        <LoginRoleInput :role="'Seller'" />
+      </div>
+      <span v-if=loginFormErrors.role class="text-red-600 text-xs">{{ loginFormErrorMessages.role }}</span>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { computed, watch } from "vue";
-import { useAuth } from "@/features/use-auth/api/use-auth.ts";
 import { toggleAuth } from "@/features/use-auth/lib/toggle-auth.ts";
 import { authStore } from "@/features/use-auth/model/auth.store.ts";
-import { authClasses } from "@/shared/const/auth/auth.classes.ts";
 import { loginForm, loginFormErrorMessages } from "@/features/use-auth/model/auth.forms.ts";
 import { loginFormErrors } from "@/features/use-auth/model/auth.errors.ts";
 
 import closed from "@/assets/icons/auth/closed.png";
 import opened from "@/assets/icons/auth/opened.png";
 import BaseInput from "@/shared/ui/BaseInput.vue";
+import LoginRoleInput from "@/shared/ui/auth/LoginRoleInput.vue";
 
-const { signIn } = useAuth();
 const { showPassword } = authStore();
 const { togglePassword } = toggleAuth();
-const { signInRoleClass } = authClasses();
 
 const loginErrorMessage = computed(() => {
   if (loginFormErrors.value.email) {

@@ -51,9 +51,9 @@
 <script setup lang="ts">
 import { watch } from "vue";
 import { filterProduct } from "@/features/use-navigation/model/filter-product.ts";
-import { productsClasses } from "@/shared/const/product/products.classes.ts";
 import { searchForm } from "@/widgets/navigation/model/search.form.ts";
 import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
+import { filterClasses } from "@/shared/const/filter/filter.classes.ts";
 import { clearSearchProductForm } from "@/features/use-navigation/lib/clear-search.ts";
 import { useGetSearchedProducts } from "@/features/use-navigation/model/search-product.ts";
 import { useProductsModals } from "@/features/use-main-product/lib/product-modal.ts";
@@ -64,7 +64,7 @@ import right_arrow from '@/assets/icons/arrows/right-arrow.png';
 
 const { searchProductForm } = searchForm();
 const { toggleFilterAside } = useProductsModals();
-const { selectedCategoryClass } = productsClasses();
+const { selectedCategoryClass } = filterClasses();
 const { debouncedSearch } = useGetSearchedProducts();
 const { getFilteredProducts, products } = useGetProducts();
 const { toggleFilter, categories, category } = filterProduct();

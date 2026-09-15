@@ -14,9 +14,13 @@
       <span>WELCOME TO</span>
       <span class="text-[#A3A3A3]">THE NOIR</span>
     </div>
-    <LoginForm v-if="!showSignSection.signIn" />
+    <form @submit.prevent="signIn" action="" class="mt-10">
+      <LoginForm v-if="!showSignSection.signIn" />
+    </form>
     <div class="relative duration-400 hover:scale-105 cursor-pointer">
-      <BaseButton @click="signIn" name="SIGN IN" variant="login" />
+      <BaseButton type="submit"
+                  variant="login"
+                  name="SIGN IN" />
       <img :src=maki_arrow alt="" class="absolute w-6.25 top-9.5 left-58 sm:left-83">
     </div>
     <div class="flex justify-center items-center mt-6 gap-2">

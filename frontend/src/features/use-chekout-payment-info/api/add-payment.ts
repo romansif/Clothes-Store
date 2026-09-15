@@ -1,14 +1,14 @@
 import { handler } from "@/shared/api/http.ts";
-import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { useAddOrder } from "@/features/use-order/api/add-order.ts";
 import { useUpdateCart } from "@/features/use-cart/api/update-cart.ts";
-import { paymentForm } from "@/features/use-chekout-payment-info/model/payment.form.ts";
 import { clearPaymentForm } from "@/features/use-chekout-payment-info/lib/clear-payment.ts";
-import type { UserPayment } from "@/features/use-chekout-payment-info/model/payment.type.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
 import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment.ts";
+import type { UserPayment } from "@/features/use-chekout-payment-info/model/payment.type.ts";
+import { paymentForm } from "@/features/use-chekout-payment-info/model/payment.form.ts";
+import { createPaymentCardErrors, createPaymentMethodError } from "@/shared/lib/errors/api-create-payment-methods-errors.ts";
 
 const { userData } = userStore();
 const { addOrder } = useAddOrder();
@@ -16,7 +16,6 @@ const { openNotify } = useBaseModals();
 const { paymentMethod } = paymentStore();
 const { updateCheckedQuantity } = useUpdateCart();
 const { isChosenPayment, paymentId } = togglePaymentForm();
-const { createPaymentMethodError, createPaymentCardErrors } = useFormsErrors();
 
 export const useAddPayment = () => {
     const useSavedCard = (card: UserPayment) => {

@@ -78,9 +78,7 @@
             <span>SIZES · РАЗМЕРЫ</span>
             <span class="text-red-500">*</span>
             <span>/</span>
-            <span class="text-black uppercase">
-              {{ pureSizesName(product) }}
-            </span>
+            <span class="text-black uppercase">{{ pureSizesName(product) }}</span>
           </div>
         </label>
         <span class="ml-auto text-[#A3A3A3] text-xs font-medium">
@@ -102,9 +100,7 @@
             <span>COLORS · ЦВЕТА</span>
             <span class="text-red-500">*</span>
             <span> / </span>
-            <span class="text-black uppercase">
-              {{ pureColorsName(product) }}
-            </span>
+            <span class="text-black uppercase">{{ pureColorsName(product) }}</span>
           </div>
         </label>
         <span class="ml-auto text-[#A3A3A3] text-xs font-medium">

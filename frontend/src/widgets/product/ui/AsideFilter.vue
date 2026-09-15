@@ -96,7 +96,7 @@
 import { useRoute } from 'vue-router';
 import { computed, onMounted } from "vue";
 import { filterProduct } from "@/features/use-navigation/model/filter-product.ts";
-import { productsClasses } from "@/shared/const/product/products.classes.ts";
+import { filterClasses } from "@/shared/const/filter/filter.classes.ts";
 import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import { useProductsModals } from "@/features/use-main-product/lib/product-modal.ts";
@@ -109,7 +109,7 @@ import checked from '@/assets/icons/squares/check-square.png';
 const { sizes } = productStore();
 const { toggleFilterAside } = useProductsModals();
 const { getAllProducts, allProducts } = useGetProducts();
-const { selectedSidebarCategoryClass } = productsClasses();
+const { selectedSidebarCategoryClass } = filterClasses();
 const { toggleFilter, toggleSize, stackProducts, genders, colors, category, categories } = filterProduct();
 
 const route = useRoute();

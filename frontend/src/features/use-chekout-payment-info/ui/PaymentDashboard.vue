@@ -1,14 +1,14 @@
 <template>
   <div class="flex flex-col lg:w-100 xl:w-125">
     <div class="flex flex-col mt-8 gap-5">
-      <div class="flex justify-between">
+      <div v-if="userPayments.length > 0" class="flex justify-between">
         <label class="font-medium text-xs md:text-sm">
           PAYMENT METHODS
         </label>
-        <span v-if="userPayments.length > 0" @click="toggleShowPayment()"
+        <span @click="toggleShowPayment()"
               class="text-xs text-indigo-600 cursor-pointer hover:text-violet-600">
-        Show saved payment
-      </span>
+          Show saved payment
+        </span>
       </div>
       <div class="flex gap-3">
         <form @submit.prevent="addPayment" action="" class="flex flex-col gap-4 w-full font-dm-sans">

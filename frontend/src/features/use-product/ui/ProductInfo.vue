@@ -32,14 +32,19 @@
           Colors
         </span>
         <div class="flex justify-start items-center lg:gap-5">
-          <div v-for="color in pureInfoColors(product)" :key="color.hex" :style="{ background: color.hex }" :title="color.hex"
-               @click="addColor(color, userData, product)" :class="selectedColorClass(color, product, userData.role)"></div>
+          <div v-for="color in pureInfoColors(product)" :key="color.hex"
+               :style="{ background: color.hex }"
+               :title="color.hex"
+               @click="addColor(color, userData, product)"
+               :class="selectedColorClass(color, product, userData.role)"></div>
           </div>
       </div>
       <div class="flex flex-col gap-3">
         <span class="font-medium text-[#A3A3A3]">Sizes</span>
         <div class="flex justify-start items-center lg:gap-5">
-          <img v-for="size in isAvailableSizes(product)" :key="size.name" :src=size.url alt="" @click="addSize(size, userData, product)"
+          <img v-for="size in isAvailableSizes(product)" :key="size.name"
+               :src=size.url alt=""
+               @click="addSize(size, userData, product)"
                :class="selectedSizesClass(size, product, userData.role)">
         </div>
         <div class="flex gap-1">
@@ -93,7 +98,7 @@ import { toggleSizeGuide } from "@/features/use-product/lib/toggle-size-guide.ts
 import { useFavorite } from "@/features/use-favorite/lib/use-favorite.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
-import { productsClasses } from "@/shared/const/product/products.classes.ts";
+import { addToCartClasses } from "@/shared/const/cart/add.to.cart.classes.ts";
 import { productHelper } from "@/shared/lib/product-helper.ts";
 import { type Product } from "@/features/use-product/model/product.types.ts";
 import { addToCartForm, addToCartFormErrorMessages} from "@/features/use-product/model/add.to.cart.form.ts";
@@ -117,7 +122,7 @@ const { isInStock } = productsHelper();
 const { addColor, addSize } = useCart();
 const { updateCartItem } = useUpdateCart();
 const { toggleToFavorite } = useToggleFavorite();
-const { selectedColorClass, selectedSizesClass } = productsClasses();
+const { selectedColorClass, selectedSizesClass } = addToCartClasses();
 const { variantsInfo, pureInfoColors, isAvailableSizes } = productHelper();
 
 

@@ -1,17 +1,15 @@
 import { v4 as uuidv4 } from 'uuid';
 import { handler } from "@/shared/api/http.ts";
-import { useFormsErrors } from "@/shared/lib/errors/api-errors.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { clearShippingForm } from "@/features/use-checkout-shipping-info/lib/clear-shipping.ts";
-import { shippingForm } from "@/features/use-checkout-shipping-info/model/shipping.form.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useGetShipping } from "@/features/use-checkout-shipping-info/api/get-shipping.ts";
+import { shippingForm } from "@/features/use-checkout-shipping-info/model/shipping.form.ts";
+import { createSippingErrors } from "@/shared/lib/errors/api-create-shipping-errors.ts";
 
 const { userData } = userStore();
 const { openNotify  } = useBaseModals();
 const { getShipping } = useGetShipping();
-
-const { createSippingErrors } = useFormsErrors();
 
 export const useAddShipping = () => {
     const addShipping = async () => {

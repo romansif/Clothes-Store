@@ -7,11 +7,6 @@ const { getSavedInfoClass } = checkoutClasses();
 const { isChosenAddress, isChosenContactInfo  } = toggleInformation();
 
 export const informationClasses = () => {
-    const addressNameClass = () => [
-        `bg-gray-50 border border-gray-400 font-dm-sans transition duration-400
-        hover:bg-white rounded-xl outline-none px-4 py-3 text-xs w-full`
-    ];
-
     const postalCodeClass = computed(() => [
         `w-full bg-gray-50 border border-gray-400 transition duration-400 hover:bg-white
         rounded-xl outline-none px-4 py-3 text-xs font-dm-sans`,
@@ -39,7 +34,5 @@ export const informationClasses = () => {
 
         savedAddressClass,
         savedContactClass,
-
-        addressNameClass
     }
 }
