@@ -3,12 +3,20 @@ import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { clearUsersForms } from "@/features/use-profile-form/lib/clear-user-update.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { useGetUsers } from "@/features/use-profile/api/get-users.ts";
+import {
+    updateNameApiErrors, updateSurNameApiErrors, updateEmailApiErrors,
+    updatePhoneApiErrors, updatePasswordApiErrors
+} from "@/shared/lib/api-errors/update-user-errors.ts";
+import {
+    updateUserNameValidationErrors, updateUserSurNameValidationErrors, updateUserPhoneValidationErrors,
+    updateUserEmailValidationErrors, updateUserPasswordValidationErrors
+} from "@/shared/lib/validation-errors/validation-update-user.ts";
 import type { UserDataUpdate } from "@/features/use-profile-form/model/user.update.types.ts";
 import { updateUserForm } from "@/features/use-profile-form/model/user.update.form.ts";
 import {
-    updateNameErrors, updateSurNameErrors, updateEmailErrors,
-    updatePhoneErrors, updatePasswordErrors
-} from "@/shared/lib/errors/api-update-user-errors.ts";
+    updateUserNameSchema, updateUserSurNameSchema, updateUserPhoneSchema,
+    updateUserEmailSchema, updateUserPasswordSchema
+} from "@/features/use-profile-form/model/user.update.schemas.ts";
 
 const { getUser } = useGetUsers();
 const { user, userData } = userStore();
@@ -49,50 +57,81 @@ export const profileApi = () => {
     }
 
     const updateNameAccount = async () => {
+        const result = updateUserNameSchema.safeParse(updateUserForm.value)
+        if(!result.success){
+            updateUserNameValidationErrors(result.error);
+            return
+        }
+
         try{
             await baseUpdateAccount({name: updateUserForm.value.name}, 'name',
                 'You have successfully changed your name.')
             clearUpdateUserFormName();
         }catch(err){
-            updateNameErrors(err);
+            updateNameApiErrors(err);
             console.error(`Failed to the change user name:`, err);
         }
     };
 
     const updateSurNameAccount = async () => {
+        const result = updateUserSurNameSchema.safeParse(updateUserForm.value)
+        if(!result.success){
+            updateUserSurNameValidationErrors(result.error);
+            return
+        }
+
         try{
             await baseUpdateAccount({surName: updateUserForm.value.surName}, 'surname',
                 'You have successfully changed your surname.')
             clearUpdateUserFormSurName();
         }catch(err){
-            updateSurNameErrors(err);
+            updateSurNameApiErrors(err);
             console.error(`Failed to the change user surname:`, err);
         }
     };
 
     const updatePhoneAccount = async () => {
+        const result = updateUserPhoneSchema.safeParse(updateUserForm.value)
+        if(!result.success){
+            updateUserPhoneValidationErrors(result.error);
+            return
+        }
+
         try{
             await baseUpdateAccount({phone: updateUserForm.value.phone}, 'phone',
                 'You have successfully changed your phone number.')
             clearUpdateUserFormPhone();
         }catch(err){
-            updatePhoneErrors(err);
+            updatePhoneApiErrors(err);
             console.error(`Failed to the change user phone:`, err);
         }
     };
 
     const updateEmailAccount = async () => {
+        const result = updateUserEmailSchema.safeParse(updateUserForm.value)
+        if(!result.success){
+            updateUserEmailValidationErrors(result.error);
+            return
+        }
+
         try{
             await baseUpdateAccount({email: updateUserForm.value.email}, 'email',
                 'You have successfully changed your email address.')
             clearUpdateUserFormEmail();
         }catch(err){
-            updateEmailErrors(err);
+            updateEmailApiErrors(err);
             console.error(`Failed to the change email:`, err);
         }
     };
 
     const updatePasswordAccount = async () => {
+        const result = updateUserPasswordSchema.safeParse(updateUserForm.value)
+        console.log(result)
+        if(!result.success){
+            updateUserPasswordValidationErrors(result.error);
+            return
+        }
+
         try{
             const updatePassword = await handler(`/password/${userData.id}`, {
                 method: "POST",
@@ -105,7 +144,7 @@ export const profileApi = () => {
             clearUpdateUserFormPassword();
             await openNotify('You have successfully changed your password.', '', '')
         }catch(err){
-            updatePasswordErrors(err);
+            updatePasswordApiErrors(err);
             console.error(`Failed to the change password:`, err);
         }
     };

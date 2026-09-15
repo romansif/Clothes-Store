@@ -6,9 +6,11 @@ import { clearPaymentForm } from "@/features/use-chekout-payment-info/lib/clear-
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
 import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment.ts";
+import { createPaymentCardApiErrors, createPaymentMethoApiError } from "@/shared/lib/api-errors/create-payment-methods-errors.ts";
+import { createPaymentValidationErrors } from "@/shared/lib/validation-errors/validation-create-payment-methods.ts";
 import type { UserPayment } from "@/features/use-chekout-payment-info/model/payment.type.ts";
 import { paymentForm } from "@/features/use-chekout-payment-info/model/payment.form.ts";
-import { createPaymentCardErrors, createPaymentMethodError } from "@/shared/lib/errors/api-create-payment-methods-errors.ts";
+import { addPaymentSchema } from "@/features/use-chekout-payment-info/model/payment.schemas.ts";
 
 const { userData } = userStore();
 const { addOrder } = useAddOrder();
@@ -56,6 +58,13 @@ export const useAddPayment = () => {
 
     const addPayment = async () => {
         const paymentId =  localStorage.getItem("paymentId");
+
+        const result = addPaymentSchema.safeParse(paymentForm.value)
+        if(!result.success){
+            createPaymentValidationErrors(result.error);
+            return
+        }
+
         try{
             if(paymentMethod.value === 'card'){
                 await handler(`/payment`, {
@@ -88,9 +97,9 @@ export const useAddPayment = () => {
             clearPaymentForm();
         }catch(err){
             if (paymentMethod.value === 'card'){
-                createPaymentCardErrors(err);
+                createPaymentCardApiErrors(err);
             }else{
-                createPaymentMethodError(err);
+                createPaymentMethoApiError(err);
             }
             console.error(`Failed to register new payment:`, err);
         }

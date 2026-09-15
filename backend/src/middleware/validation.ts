@@ -22,7 +22,7 @@ export const validation = {
 
     loginValidation: [
         body('email').trim().notEmpty().withMessage('Invalid email').isEmail()
-            .withMessage('Email is required'),
+            .withMessage('Email and Password is required'),
 
         body('password').trim().notEmpty().withMessage('Email and Password is required'),
 

@@ -10,8 +10,8 @@ export const addToCartForm = ref<AddForm>({
 });
 
 export const addToCartFormErrorMessages = ref<AddFormErrorMessage>({
-    color: '',
-    size: '',
+    colors: '',
+    sizes: '',
 });
 
 

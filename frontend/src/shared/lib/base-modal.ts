@@ -1,17 +1,14 @@
 import { ref } from "vue";
 import router from "@/app/router";
+import { orderStore } from "@/features/use-order/model/order.store.ts";
+
+const { choiceModal, cancelChoice } = orderStore();
 
 const notify = ref<boolean>(false);
 const notifyTitle = ref<string>('');
 const notifyMessage= ref<string>('');
 
 const loading = ref<boolean>(false);
-
-const choiceModal = ref<boolean>(false);
-const cancelChoice = ref<string>('');
-
-export const cancelChoiceMessage = ref<string>('');
-export const cancelChoiceError = ref<boolean>(false);
 
 const orderId = ref<string>('');
 

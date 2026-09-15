@@ -30,11 +30,8 @@
             <span class="text-red-500">*</span>
           </div>
         </label>
-        <select v-model="createProductForm.collection"
-                :class="baseSelectClass(createProductForm.collection, createProductFormErrors.collections)">
-          <option disabled hidden value="">
-            Void
-          </option>
+        <select v-model="createProductForm.collections"
+                :class="baseSelectClass(createProductForm.collections, createProductFormErrors.collections)">
           <option v-for="collection in collections" :key="collection.name" class="text-black"
                   :value="{ season: collection.season, name: collection.name, condition: collection.condition}">
             Name: {{ collection.name }} ,
@@ -163,7 +160,7 @@ import DescriptionForm from "@/shared/ui/product-form/DescriptionForm.vue";
 const { collections, categories, materials, genders, skuMask } = productStore();
 
 watch(() => [
-      createProductForm.value.title, createProductForm.value.collection,
+      createProductForm.value.title, createProductForm.value.collections,
       createProductForm.value.category, createProductForm.value.material, createProductForm.value.gender,
       createProductForm.value.sku, createProductForm.value.price, createProductForm.value.description],
     ([title, collection, category, material, gender, sku, price, description]) => {

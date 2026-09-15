@@ -3,17 +3,19 @@ import type { ProductForm, ProductColor, ProductFormErrorMessage} from "@/featur
 import type { Variant } from "@/features/use-product/model/product.types.ts";
 
 export const createProductForm = ref<ProductForm>({
-    productUrl: '',
     title: '',
     category: '',
     material: '',
     description: '',
-    price: '',
+    price: 0,
     gender: '',
     sku: '',
     quantity: 0,
-// @ts-ignore
-    collection: '',
+    collections: {
+        season: '',
+        condition: '',
+        name: '',
+    },
 })
 
 export const moreCreateItemForm = reactive({
@@ -28,11 +30,11 @@ export const createProductFormErrorMessages = ref<ProductFormErrorMessage>({
     material: '',
     description: '',
     price: '',
-    color: '',
-    size: '',
+    colors: '',
+    sizes: '',
     gender: '',
     sku: '',
     quantity: '',
-    variant: '',
+    variants: '',
     collections: '',
 })

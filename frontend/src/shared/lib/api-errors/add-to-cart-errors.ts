@@ -2,7 +2,7 @@ import {ApiError} from "@/shared/api/http.ts";
 import {addToCartFormErrors} from "@/features/use-product/model/add.to.cart.errors.ts";
 import {addToCartFormErrorMessages} from "@/features/use-product/model/add.to.cart.form.ts";
 
-export const addToCartErrors = (err: any) => {
+export const addToCartApiErrors = (err: any) => {
     if(!(err instanceof ApiError)) return
 
     const errors = err.response?.errors

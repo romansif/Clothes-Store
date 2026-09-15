@@ -5,16 +5,17 @@ export const clearProductForm = () => {
     createProductForm.value.title = '';
 
     // @ts-ignore
-    createProductForm.value.collection = '';
+    createProductForm.value.collections = '';
     createProductForm.value.category = '';
     createProductForm.value.material = '';
     createProductForm.value.gender = '';
     createProductForm.value.sku = '';
-    createProductForm.value.price = '';
+    createProductForm.value.price = 0;
     createProductForm.value.description = '';
-    createProductForm.value.variants = [];
+
     moreCreateItemForm.sizes = [];
     moreCreateItemForm.colors = [];
+    moreCreateItemForm.variants = []
 
     createProductFormErrorMessages.value.title = '';
     createProductFormErrorMessages.value.collections = '';
@@ -24,9 +25,9 @@ export const clearProductForm = () => {
     createProductFormErrorMessages.value.sku = '';
     createProductFormErrorMessages.value.price = '';
     createProductFormErrorMessages.value.description = '';
-    createProductFormErrorMessages.value.variant = '';
-    createProductFormErrorMessages.value.color = '';
-    createProductFormErrorMessages.value.size = '';
+    createProductFormErrorMessages.value.variants = '';
+    createProductFormErrorMessages.value.colors = '';
+    createProductFormErrorMessages.value.sizes = '';
 
     createProductFormErrors.value.title = false;
     createProductFormErrors.value.collections = false;
@@ -36,7 +37,7 @@ export const clearProductForm = () => {
     createProductFormErrors.value.sku = false;
     createProductFormErrors.value.price = false;
     createProductFormErrors.value.description = false;
-    createProductFormErrors.value.variant = false;
-    createProductFormErrors.value.color = false;
-    createProductFormErrors.value.size = false;
+    createProductFormErrors.value.variants = false;
+    createProductFormErrors.value.colors = false;
+    createProductFormErrors.value.sizes = false;
 };

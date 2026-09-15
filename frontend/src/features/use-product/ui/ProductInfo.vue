@@ -48,11 +48,11 @@
                :class="selectedSizesClass(size, product, userData.role)">
         </div>
         <div class="flex gap-1">
-          <span v-if=addToCartFormErrors.color class="text-red-600 text-xs">
-            {{ addToCartFormErrorMessages.color }} /
+          <span v-if=addToCartFormErrors.colors class="text-red-600 text-xs">
+            {{ addToCartFormErrorMessages.colors }} /
           </span>
-            <span v-if=addToCartFormErrors.size class="text-red-600 text-xs">
-            {{ addToCartFormErrorMessages.size }}
+          <span v-if=addToCartFormErrors.sizes class="text-red-600 text-xs">
+            {{ addToCartFormErrorMessages.sizes }}
           </span>
         </div>
       </div>
@@ -90,10 +90,10 @@
 <script setup lang="ts">
 import { watch } from "vue";
 import { productsHelper } from "@/features/use-main-product/lib/products-helper.ts";
-import { cartHelper } from "@/features/use-cart/lib/cart-helper.ts";
+import { cartHelper } from "@/features/use-product/lib/cart-helper.ts";
 import { useUpdateCart } from "@/features/use-cart/api/update-cart.ts";
-import { useAddToCart} from "@/features/use-cart/api/add-to-cart.ts";
-import { useCart } from "@/features/use-cart/lib/use-cart.ts";
+import { useAddToCart} from "@/features/use-product/api/add-to-cart.ts";
+import { useCart } from "@/features/use-product/lib/use-cart.ts";
 import { toggleSizeGuide } from "@/features/use-product/lib/toggle-size-guide.ts";
 import { useFavorite } from "@/features/use-favorite/lib/use-favorite.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
@@ -128,10 +128,10 @@ const { variantsInfo, pureInfoColors, isAvailableSizes } = productHelper();
 
 watch(() => [addToCartForm.value.colors, addToCartForm.value.sizes], ([color, size]) => {
   if(color){
-    addToCartFormErrors.value.color = false
+    addToCartFormErrors.value.colors = false
   }
   if(size){
-    addToCartFormErrors.value.size = false
+    addToCartFormErrors.value.sizes = false
   }
 })
 </script>

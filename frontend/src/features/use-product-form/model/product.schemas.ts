@@ -6,7 +6,7 @@ export const createProductSchema = z.object({
         .trim()
         .min(1, 'Title is required'),
 
-    collection: z.object({
+    collections: z.object({
         name: z
             .string()
             .trim()
@@ -20,7 +20,7 @@ export const createProductSchema = z.object({
         condition: z
             .string()
             .trim()
-            .min(1, 'Condition is required'),
+            .min(1, 'Condition is required')
     }),
 
     category: z
@@ -44,21 +44,16 @@ export const createProductSchema = z.object({
         .min(1, 'SKU is required'),
 
     price: z
-        .number({
-            message: 'Price must be a number',
-        })
-        .min(0, 'Price must be a positive number'),
+        .number()
+        .min(1, 'Price is required'),
 
     description: z
         .string()
         .trim()
         .min(1, 'Description is required'),
+})
 
-    status: z
-        .string()
-        .trim()
-        .min(1, 'Status is required'),
-
+export const moreCreateItemsSchema = z.object({
     colors: z
         .array(
             z.object({
@@ -80,7 +75,8 @@ export const createProductSchema = z.object({
             z
                 .string()
                 .trim()
-                .min(1, 'Size is required')
+                .min(1, 'Size is required'),
+
         )
         .min(1, 'Sizes are required'),
 

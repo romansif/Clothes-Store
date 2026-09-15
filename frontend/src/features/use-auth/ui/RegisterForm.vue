@@ -4,7 +4,6 @@
       <div class="flex flex-col gap-3 w-full">
         <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">NAME</label>
         <BaseInput v-model=registerForm.name
-                   type="text"
                    placeholder="name"
                    :error="registerFormErrors.name"
                    :error-message="registerFormErrors.name ? registerFormErrorMessages.name : ''" />
@@ -12,7 +11,6 @@
       <div class="flex flex-col gap-3 w-full">
         <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">SURNAME</label>
         <BaseInput v-model=registerForm.surName
-                   type="text"
                    placeholder="surname"
                    :error="registerFormErrors.surName"
                    :error-message="registerFormErrors.surName ? registerFormErrorMessages.surName : ''" />
@@ -42,7 +40,7 @@
       <div class="flex flex-col gap-3 w-full">
         <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">EMAIL</label>
         <BaseInput v-model=registerForm.email
-                   type="text"
+                   type="email"
                    placeholder="example@mail.com"
                    :error="registerFormErrors.email"
                    :error-message="registerFormErrors.email ? registerFormErrorMessages.email : ''" />

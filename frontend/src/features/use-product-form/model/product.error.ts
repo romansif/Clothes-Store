@@ -3,15 +3,15 @@ import type { ProductFormError } from "@/features/use-product-form/model/product
 
 export const createProductFormErrors = ref<ProductFormError>({
     title: false,
+    collections: false,
     category: false,
     material: false,
-    description: false,
+    gender: false,
     sku: false,
     price: false,
-    color: false,
-    size: false,
-    gender: false,
+    description: false,
+    colors: false,
+    sizes: false,
     quantity: false,
-    variant: false,
-    collections: false,
+    variants: false,
 })

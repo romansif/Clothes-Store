@@ -9,11 +9,11 @@ export const clearAddToCartForm = () => {
         };
         addToCartForm.value.sizes = '';
 
-        addToCartFormErrorMessages.value.color = '';
-        addToCartFormErrorMessages.value.size = '';
+        addToCartFormErrorMessages.value.colors = '';
+        addToCartFormErrorMessages.value.sizes = '';
 
-        addToCartFormErrors.value.color = false;
-        addToCartFormErrors.value.size = false;
+        addToCartFormErrors.value.colors = false;
+        addToCartFormErrors.value.sizes = false;
     };
 
     return {

@@ -1,17 +1,15 @@
-import type { Collection, Variant } from "@/features/use-product/model/product.types";
+import type { Collection } from "@/features/use-product/model/product.types";
 
 export interface ProductForm {
-    productUrl: string,
     title: string,
     category: string,
     material: string,
     gender: string,
     sku: string,
-    price: string,
+    price: number,
     description: string,
     quantity: number
-    variants: Variant[],
-    collection: Collection,
+    collections: Collection,
 }
 
 export interface ProductColor {
@@ -25,12 +23,12 @@ export interface ProductFormErrorMessage {
     material: string,
     description: string,
     price: string,
-    color: string,
-    size: string,
+    colors: string,
+    sizes: string,
     gender: string,
     sku: string,
     quantity: string,
-    variant: string,
+    variants: string,
     collections: string,
 }
 
@@ -40,11 +38,11 @@ export interface ProductFormError {
     material: boolean,
     description: boolean,
     price: boolean,
-    color: boolean,
-    size: boolean,
+    colors: boolean,
+    sizes: boolean,
     gender: boolean,
     sku: boolean,
     quantity: boolean,
-    variant: boolean,
+    variants: boolean,
     collections: boolean,
 }

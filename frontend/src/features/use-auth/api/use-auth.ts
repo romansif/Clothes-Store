@@ -3,8 +3,13 @@ import { handler } from "@/shared/api/http.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { clearAuthForms } from "@/features/use-auth/lib/clear-auth.ts";
+import { loginApiErrors, registerApiErrors } from "@/shared/lib/api-errors/auth-errors.ts";
 import { loginForm, registerForm } from "@/features/use-auth/model/auth.forms.ts";
-import { loginErrors, registerErrors } from "@/shared/lib/errors/api-auth-errors.ts";
+import { loginSchema, registerSchema } from "@/features/use-auth/model/auth.schemas.ts";
+import {
+    loginValidationErrors,
+    registerValidationErrors
+} from "@/shared/lib/validation-errors/validation-auth.ts";
 
 const { users, user } = userStore();
 const { loading, openNotify } = useBaseModals();
@@ -13,9 +18,17 @@ const { clearRegisterForm, clearRegisterFormMessages,
 
 export const useAuth = () => {
     const signUp = async (role: string) => {
+        clearRegisterFormMessages();
+
+        console.log(registerForm.value.name)
+        const result = registerSchema.safeParse(loginForm.value)
+        if(!result.success){
+            registerValidationErrors(result.error);
+            return
+        }
+
         loading.value = true;
 
-        clearRegisterFormMessages();
         try{
             const date = new Date();
 
@@ -48,7 +61,7 @@ export const useAuth = () => {
             await openNotify('You have successfully sign up.',
                 'You will now be taken to your profile page.', 'profile');
         }catch(err){
-            registerErrors(err)
+            registerApiErrors(err)
             console.log(`Failed to register new user:`, err);
         }finally {
             loading.value = false;
@@ -56,9 +69,16 @@ export const useAuth = () => {
     };
 
     const signIn = async () => {
+        clearLoginFormMessages();
+
+        const result = loginSchema.safeParse(loginForm.value)
+        if(!result.success){
+            loginValidationErrors(result.error);
+            return
+        }
+
         loading.value = true;
 
-        clearLoginFormMessages();
         try{
             const foundedUser = await handler('/auth/signIn', {
                 method: "POST",
@@ -81,7 +101,7 @@ export const useAuth = () => {
 
             clearLoginForm()
         }catch(err){
-            loginErrors(err)
+            loginApiErrors(err)
             console.log(`Failed to login:`, err);
         }finally {
             loading.value = false;

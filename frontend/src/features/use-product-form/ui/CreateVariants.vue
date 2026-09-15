@@ -79,8 +79,8 @@
             Select sizes to populate the stock levels.
           </span>
         </div>
-        <span v-if="createProductFormErrors.variant" class="text-red-600 text-xs">
-          {{ createProductFormErrorMessages.variant }}
+        <span v-if="createProductFormErrors.variants" class="text-red-600 text-xs">
+          {{ createProductFormErrorMessages.variants }}
         </span>
       </div>
     </div>
@@ -102,8 +102,8 @@
              'transition duration-400 scale-110 w-15 rounded-full' :
              'transition duration-400 hover:scale-110 w-15 rounded-full']">
       </div>
-      <span v-if="createProductFormErrors.size" class="text-red-600 text-xs">
-        {{ createProductFormErrorMessages.size }}
+      <span v-if="createProductFormErrors.sizes" class="text-red-600 text-xs">
+        {{ createProductFormErrorMessages.sizes }}
       </span>
     </div>
     <div class="flex flex-col gap-3 w-full">
@@ -130,8 +130,8 @@
                  class="absolute inset-0 h-full opacity-0 cursor-pointer" />
         </label>
       </div>
-      <span v-if="createProductFormErrors.color" class="text-red-600 text-xs">
-        {{ createProductFormErrorMessages.color }}
+      <span v-if="createProductFormErrors.colors" class="text-red-600 text-xs">
+        {{ createProductFormErrorMessages.colors }}
       </span>
     </div>
   </div>
@@ -152,11 +152,11 @@ const { toggleAllVariants, toggleQuantity, toggleSize, toggleColor } = productFo
 watch(() => [moreCreateItemForm.sizes.length, moreCreateItemForm.colors.length, moreCreateItemForm.variants.length],
     ([sizes, colors, variants]) => {
       if(sizes){
-        createProductFormErrors.value.size = false;
+        createProductFormErrors.value.sizes = false;
       }if(colors){
-        createProductFormErrors.value.color = false;
+        createProductFormErrors.value.colors = false;
       }if(variants){
-        createProductFormErrors.value.variant = false;
+        createProductFormErrors.value.variants = false;
       }
 });
 </script>

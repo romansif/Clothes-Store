@@ -1,13 +1,21 @@
 import { handler } from "@/shared/api/http.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { useGetOrder } from "@/features/use-order/api/get-order.ts";
-import { replaceOrderErrors } from "@/shared/lib/errors/api-replace-order-errors.ts";
+import { replaceOrderApiErrors } from "@/shared/lib/api-errors/replace-order-errors.ts";
+import { replaceOrderValidationErrors } from "@/shared/lib/validation-errors/validation-replace-order.ts";
+import { replaceOrderSchema } from "@/features/use-order/model/replace.order.schemas.ts";
 
 const { getOrders } = useGetOrder();
 const { openNotify, cancelChoice, orderId } = useBaseModals();
 
 export const useDeleteOrder = () => {
     const replaceOrder = async () => {
+        const result = replaceOrderSchema.safeParse(cancelChoice.value)
+        if(!result.success){
+            replaceOrderValidationErrors(result.error);
+            return
+        }
+
         try{
             const date = new Date();
             const dateCreated = date.toLocaleDateString();
@@ -31,7 +39,7 @@ export const useDeleteOrder = () => {
 
             await getOrders();
         }catch(err){
-            replaceOrderErrors(err);
+            replaceOrderApiErrors(err);
             console.error(`Failed to delete the order:`, err);
         }
     };

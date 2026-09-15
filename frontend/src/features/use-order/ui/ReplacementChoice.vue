@@ -44,7 +44,9 @@
 import { watch } from "vue";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { useDeleteOrder } from "@/features/use-order/api/delete-order.ts";
-import { cancelChoiceError, cancelChoiceMessage } from "@/shared/lib/base-modal.ts";
+import { cancelChoiceError, cancelChoiceMessage } from "@/features/use-order/model/order.store.ts";
+
+
 
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import ReplacementInput from "@/features/use-order/ui/ReplacementInput.vue";
@@ -54,7 +56,7 @@ const { toggleOrder, cancelChoice } = useBaseModals();
 
 watch(() => [cancelChoice.value],([choice]) => {
       if(choice){
-        cancelChoiceError.value = false;
+        cancelChoiceError.value.cancelChoice = false;
       }
     }
 );
