@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="updateProductDesc(product.id)" action="">
-    <template v-if="product">
+    <template v-if="product?.id">
       <EditImageUpload :product="product" />
       <EditBasicInfo :product="product" />
       <EditVariants :product="product" />
@@ -25,10 +25,10 @@ import EditImageUpload from "@/features/use-product-form/ui/EditImageUpload.vue"
 import EditBasicInfo from "@/features/use-product-form/ui/EditBasicInfo.vue";
 import EditVariants from "@/features/use-product-form/ui/EditVariants.vue";
 
-const route = useRoute();
-
 const { getProduct, product } = useGetProduct();
 const { updateProductImages, updateProductDesc } = useUpdateProduct();
+
+const route = useRoute();
 
 onMounted(async () => {
   await getProduct(route.params.id)

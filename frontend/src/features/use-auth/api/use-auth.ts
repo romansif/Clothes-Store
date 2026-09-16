@@ -20,8 +20,7 @@ export const useAuth = () => {
     const signUp = async (role: string) => {
         clearRegisterFormMessages();
 
-        console.log(registerForm.value.name)
-        const result = registerSchema.safeParse(loginForm.value)
+        const result = registerSchema.safeParse(registerForm.value)
         if(!result.success){
             registerValidationErrors(result.error);
             return

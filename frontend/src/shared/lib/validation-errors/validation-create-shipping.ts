@@ -12,4 +12,4 @@ export const createShippingValidationErrors = (err: ZodError<CreateShippingData>
         shippingFormError.value[field] = true;
         shippingFormErrorMessage.value[field] = issue.message;
     })
-}
+};

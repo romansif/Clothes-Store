@@ -1,5 +1,5 @@
 import { ApiError } from "../../api/http.ts";
-import { applyErrors } from "@/shared/lib/error-helper/error-helper.ts";
+import { applyErrors } from "@/shared/lib/error-helper/errors-helper.ts";
 import { cancelChoiceError, cancelChoiceMessage } from "@/features/use-order/model/order.store.ts";
 import { replaceOrderSchema } from "@/features/use-order/model/replace.order.schemas.ts";
 

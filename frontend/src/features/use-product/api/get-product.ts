@@ -11,10 +11,11 @@ export const useGetProduct = () => {
                 method: 'GET',
             });
             product.value = data
+
+            return product
         }catch(err){
             console.error(`Failed to get the product by id:`, err);
         }
-
     }
 
     return {

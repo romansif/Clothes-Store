@@ -3,14 +3,15 @@ import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { useGetOrder } from "@/features/use-order/api/get-order.ts";
 import { replaceOrderApiErrors } from "@/shared/lib/api-errors/replace-order-errors.ts";
 import { replaceOrderValidationErrors } from "@/shared/lib/validation-errors/validation-replace-order.ts";
+import { cancelChoiceForm } from "@/features/use-order/model/order.store.ts";
 import { replaceOrderSchema } from "@/features/use-order/model/replace.order.schemas.ts";
 
 const { getOrders } = useGetOrder();
-const { openNotify, cancelChoice, orderId } = useBaseModals();
+const { openNotify, orderId } = useBaseModals();
 
 export const useDeleteOrder = () => {
     const replaceOrder = async () => {
-        const result = replaceOrderSchema.safeParse(cancelChoice.value)
+        const result = replaceOrderSchema.safeParse(cancelChoiceForm.value)
         if(!result.success){
             replaceOrderValidationErrors(result.error);
             return
@@ -28,7 +29,7 @@ export const useDeleteOrder = () => {
                 method: "PATCH",
                 body: JSON.stringify({
                     status: 'Cancelled',
-                    cause_replace: cancelChoice.value,
+                    cause_replace: cancelChoiceForm.value.cancelChoice,
                     cancelled_at: date,
                     date_cancelled_at: dateCreated,
                     time_cancelled_at: time,

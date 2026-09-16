@@ -7,7 +7,7 @@ export interface UserForm {
     newPassword: string,
 }
 
-export interface UserFormMessage {
+export interface UserFormErrorMessages {
     name: string,
     surName: string,
     phone: string,

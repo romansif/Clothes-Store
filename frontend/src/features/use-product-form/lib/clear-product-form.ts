@@ -1,5 +1,10 @@
-import { createProductForm, moreCreateItemForm, createProductFormErrorMessages } from "@/features/use-product-form/model/product.forms.ts";
-import { createProductFormErrors } from "@/features/use-product-form/model/product.error.ts";
+import {
+    createProductForm,
+    moreCreateItemForm,
+    createProductFormErrorMessages,
+    moreCreateItemFormErrorMessages
+} from "@/features/use-product-form/model/product.forms.ts";
+import {createProductFormErrors, moreCreateItemFormErrors} from "@/features/use-product-form/model/product.error.ts";
 
 export const clearProductForm = () => {
     createProductForm.value.title = '';
@@ -15,7 +20,7 @@ export const clearProductForm = () => {
 
     moreCreateItemForm.sizes = [];
     moreCreateItemForm.colors = [];
-    moreCreateItemForm.variants = []
+    moreCreateItemForm.variants = [];
 
     createProductFormErrorMessages.value.title = '';
     createProductFormErrorMessages.value.collections = '';
@@ -25,9 +30,10 @@ export const clearProductForm = () => {
     createProductFormErrorMessages.value.sku = '';
     createProductFormErrorMessages.value.price = '';
     createProductFormErrorMessages.value.description = '';
-    createProductFormErrorMessages.value.variants = '';
-    createProductFormErrorMessages.value.colors = '';
-    createProductFormErrorMessages.value.sizes = '';
+
+    moreCreateItemFormErrorMessages.value.colors = '';
+    moreCreateItemFormErrorMessages.value.sizes = '';
+    moreCreateItemFormErrorMessages.value.variants = '';
 
     createProductFormErrors.value.title = false;
     createProductFormErrors.value.collections = false;
@@ -37,7 +43,8 @@ export const clearProductForm = () => {
     createProductFormErrors.value.sku = false;
     createProductFormErrors.value.price = false;
     createProductFormErrors.value.description = false;
-    createProductFormErrors.value.variants = false;
-    createProductFormErrors.value.colors = false;
-    createProductFormErrors.value.sizes = false;
+
+    moreCreateItemFormErrors.value.colors = false;
+    moreCreateItemFormErrors.value.sizes = false;
+    moreCreateItemFormErrors.value.variants = false;
 };

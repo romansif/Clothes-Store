@@ -6,7 +6,7 @@ const { getPhoneClass } = baseClasses();
 
 export const authClasses = () => {
     const getSignUpPasswordClass = (hasError: boolean) => [
-        'absolute w-7.5 top-1/4 left-58 sm:left-51', hasError ? 'top-1/9' : ''
+        'absolute w-7.5 top-1/4 left-58 sm:left-51', hasError ? 'top-1/6' : ''
     ];
 
     const selectPhoneCodeClass = () => [

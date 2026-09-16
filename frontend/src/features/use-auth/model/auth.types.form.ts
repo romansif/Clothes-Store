@@ -6,12 +6,10 @@ export interface RegisterForm {
     password: string
 }
 
-
 export interface LoginForm {
     email: string,
     password: string,
     phone: string,
-    validCode: string,
     role: string,
 }
 

@@ -1,7 +1,7 @@
 import {ApiError} from "@/shared/api/http.ts";
-import {applyErrors} from "@/shared/lib/error-helper/error-helper.ts";
+import {applyErrors} from "@/shared/lib/error-helper/errors-helper.ts";
 import {updateUserFormErrors} from "@/features/use-profile-form/model/user.update.error.ts";
-import {updateUserFormMessage} from "@/features/use-profile-form/model/user.update.form.ts";
+import {updateUserFormErrorMessages} from "@/features/use-profile-form/model/user.update.form.ts";
 import {
     updateUserEmailSchema,
     updateUserNameSchema, updateUserPasswordSchema,
@@ -19,7 +19,7 @@ export const updateNameApiErrors = (err: any) => {
         updateUserNameSchema,
         errors,
         updateUserFormErrors.value,
-        updateUserFormMessage.value
+        updateUserFormErrorMessages.value
     )
 };
 
@@ -33,7 +33,7 @@ export const updateSurNameApiErrors = (err: any) => {
         updateUserSurNameSchema,
         errors,
         updateUserFormErrors.value,
-        updateUserFormMessage.value
+        updateUserFormErrorMessages.value
     )
 };
 
@@ -47,7 +47,7 @@ export const updatePhoneApiErrors = (err: any) => {
         updateUserPhoneSchema,
         errors,
         updateUserFormErrors.value,
-        updateUserFormMessage.value
+        updateUserFormErrorMessages.value
     )
 };
 
@@ -61,7 +61,7 @@ export const updateEmailApiErrors = (err: any) => {
         updateUserEmailSchema,
         errors,
         updateUserFormErrors.value,
-        updateUserFormMessage.value
+        updateUserFormErrorMessages.value
     )
 };
 
@@ -75,6 +75,6 @@ export const updatePasswordApiErrors = (err: any) => {
         updateUserPasswordSchema,
         errors,
         updateUserFormErrors.value,
-        updateUserFormMessage.value
+        updateUserFormErrorMessages.value
     )
 };

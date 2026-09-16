@@ -27,10 +27,11 @@
 </template>
 
 <script setup lang="ts">
-import { watch } from "vue";
+
+import { refClearErrorsOnChange } from "@/shared/lib/error-helper/errors-helper.ts";
 import { useAddShipping } from "@/features/use-checkout-shipping-info/api/add-shipping.ts";
-import { shippingForm } from "@/features/use-checkout-shipping-info/model/shipping.form.ts";
 import { shippingFormError } from "@/features/use-checkout-shipping-info/model/shipping.errors.ts";
+import { shippingForm, shippingFormErrorMessage } from "@/features/use-checkout-shipping-info/model/shipping.form.ts";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";
@@ -39,11 +40,11 @@ import ShippingMethod from "@/shared/ui/checkout/ShippingMethod.vue";
 
 const { addShipping } = useAddShipping();
 
-watch(() => shippingForm.value.delivery, (delivery) => {
-  if(delivery){
-    shippingFormError.value.delivery = false;
-  }
-})
+refClearErrorsOnChange(
+    shippingForm,
+    shippingFormError,
+    shippingFormErrorMessage
+)
 </script>
 
 <style scoped>

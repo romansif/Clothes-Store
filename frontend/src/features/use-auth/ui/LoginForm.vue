@@ -18,10 +18,10 @@
                    :type="showPassword.password ? 'text' : 'password'"
                    placeholder="••••••••"
                    :error="loginFormErrors.password || loginFormErrors.email"
-                   :error-message="loginErrorMessage" />
+                   :error-message="useLoginErrorMessage" />
         <img @click=togglePassword
              :src="showPassword.password ? opened : closed" alt=""
-             :class="['absolute w-7.5 top-1/4 left-57 sm:left-82', loginError ? 'top-1/6' : '']">
+             :class="['absolute w-7.5 top-1/4 left-57 sm:left-82', useLoginError ? 'top-1/6' : '']">
       </div>
     </div>
     <div class="flex flex-col gap-3">
@@ -36,11 +36,12 @@
 </template>
 
 <script setup lang="ts">
-import { computed, watch } from "vue";
 import { toggleAuth } from "@/features/use-auth/lib/toggle-auth.ts";
 import { authStore } from "@/features/use-auth/model/auth.store.ts";
-import { loginForm, loginFormErrorMessages } from "@/features/use-auth/model/auth.forms.ts";
+import { refClearErrorsOnChange } from "@/shared/lib/error-helper/errors-helper.ts";
 import { loginFormErrors } from "@/features/use-auth/model/auth.errors.ts";
+import { loginForm, loginFormErrorMessages } from "@/features/use-auth/model/auth.forms.ts";
+import { useLoginErrorMessage, useLoginError } from "@/features/use-auth/lib/auth-error-messages.ts";
 
 import closed from "@/assets/icons/auth/closed.png";
 import opened from "@/assets/icons/auth/opened.png";
@@ -50,38 +51,11 @@ import LoginRoleInput from "@/shared/ui/auth/LoginRoleInput.vue";
 const { showPassword } = authStore();
 const { togglePassword } = toggleAuth();
 
-const loginErrorMessage = computed(() => {
-  if (loginFormErrors.value.email) {
-    return loginFormErrorMessages.value.email
-  }
-  if (loginFormErrors.value.password) {
-    return loginFormErrorMessages.value.password
-  }
-  return ''
-})
-
-const loginError = computed(() => {
-  if (loginFormErrors.value.email) {
-    return loginFormErrors.value.email
-  }if (loginFormErrors.value.password) {
-    return loginFormErrors.value.password
-  }
-
-  return false
-})
-
-watch(() => [loginForm.value.email, loginForm.value.password, loginForm.value.role],([email, password, role]) => {
-      if(email){
-        loginFormErrors.value.email = false;
-      }
-      if(password){
-        loginFormErrors.value.password = false;
-      }
-      if(role){
-        loginFormErrors.value.role = false;
-      }
-    }
-);
+refClearErrorsOnChange(
+    loginForm,
+    loginFormErrors,
+    loginFormErrorMessages
+)
 </script>
 
 <style scoped>

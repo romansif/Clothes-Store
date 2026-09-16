@@ -8,14 +8,12 @@
     </div>
     <div class="flex gap-6 mt-3 border-b-2 pb-4">
       <div class="flex flex-col gap-3 w-full">
-        <label for="" class="font-semibold tracking-wider text-xs">
-          <div class="flex gap-1">
-            <span>TITLE · НАЗВАНИЕ</span>
-            <span class="text-red-500">*</span>
-            <span>/</span>
-            <span class="text-black uppercase">{{ product.title }}</span>
-            <span class="text-[#A3A3A3] ml-auto font-medium">{{ createProductForm.title.length }} / 50</span>
-          </div>
+        <label for="title" class="flex gap-1 font-semibold tracking-wider text-xs">
+          TITLE · НАЗВАНИЕ
+          <span class="text-red-500">*</span>
+          <span>/</span>
+          <span class="text-black uppercase">{{ product.title }}</span>
+          <span class="text-[#A3A3A3] ml-auto font-medium">{{ createProductForm.title.length }} / 50</span>
         </label>
         <BaseInput v-model="createProductForm.title"
                    placeholder="title, name etc."
@@ -26,35 +24,37 @@
     </div>
     <div class="flex gap-6">
       <div class="flex flex-col gap-3 w-full">
-        <label for="" class="font-semibold tracking-wider text-xs">
-          <div class="flex gap-1">
-            <span>COLLECTION · КОЛЛЕКЦИЯ</span>
-            <span class="text-red-500">*</span>
-            <span>/</span>
-            <span class="text-black uppercase">{{ product.collection.name }}</span>
-          </div>
+        <label for="collection" class="flex gap-1 font-semibold tracking-wider text-xs">
+          COLLECTION · КОЛЛЕКЦИЯ
+          <span class="text-red-500">*</span>
+          <span>/</span>
+          <span class="text-black uppercase">{{ product.collection.name }}</span>
         </label>
-        <select v-model="createProductForm.collections"
-                :class="baseSelectClass(createProductForm.collections, createProductFormErrors.collections)">
-          <option v-for="collection in collections" :key="collection.name" class="text-black"
-                  :value="{ season: collection.season, name: collection.name, condition: collection.condition}">
-            Name: {{ collection.name }} ,
-            Season: {{ collection.season }} ,
-            Condition: {{ collection.condition }}
-          </option>
-        </select>
+        <div class="relative">
+          <select v-model="createProductForm.collections"
+                  :class="baseSelectClass(createProductForm.collections, createProductFormErrors.collections)">
+            <option v-for="collection in collections" :key="collection.name" class="text-black"
+                    :value="{ season: collection.season, name: collection.name, condition: collection.condition}">
+              Name: {{ collection.name }} ,
+              Season: {{ collection.season }} ,
+              Condition: {{ collection.condition }}
+            </option>
+          </select>
+          <span v-if="createProductForm.collections.name.length === 0"
+                class="absolute top-1/3 left-5 text-sm text-gray-400">
+            Void
+          </span>
+        </div>
         <span v-if="createProductFormErrors.collections" class="text-red-600 text-xs">
           {{ createProductFormErrorMessages.collections }}
         </span>
       </div>
       <div class="flex flex-col gap-3 w-full">
-        <label for="" class="font-semibold tracking-wider text-xs">
-          <div class="flex gap-1">
-            <span>CATEGORY · КАТЕГОРИЯ</span>
-            <span class="text-red-500">*</span>
-            <span>/</span>
-            <span class="text-black uppercase">{{ product.category }}</span>
-          </div>
+        <label for="category" class="flex gap-1 font-semibold tracking-wider text-xs">
+          CATEGORY · КАТЕГОРИЯ
+          <span class="text-red-500">*</span>
+          <span>/</span>
+          <span class="text-black uppercase">{{ product.category }}</span>
         </label>
         <select v-model="createProductForm.category"
                 :class="baseSelectClass(createProductForm.category, createProductFormErrors.category)">
@@ -70,13 +70,11 @@
     </div>
     <div class="flex gap-6 w-full">
       <div class="flex flex-col gap-3 w-full">
-        <label for="" class="font-semibold tracking-wider text-xs">
-          <div class="flex gap-1">
-            <span>MATERIAL · МАТЕРИАЛ</span>
-            <span class="text-red-500">*</span>
-            <span>/</span>
-            <span class="text-black uppercase">{{ product.material }}</span>
-          </div>
+        <label for="material" class="flex gap-1 font-semibold tracking-wider text-xs">
+          MATERIAL · МАТЕРИАЛ
+          <span class="text-red-500">*</span>
+          <span>/</span>
+          <span class="text-black uppercase">{{ product.material }}</span>
         </label>
         <select v-model="createProductForm.material"
                 :class="baseSelectClass(createProductForm.material, createProductFormErrors.material)">
@@ -90,13 +88,11 @@
         </span>
       </div>
       <div class="flex flex-col gap-3 w-full">
-        <label for="" class="font-semibold tracking-wider text-xs">
-          <div class="flex gap-1">
-            <span>GENDER · ПОЛ</span>
-            <span class="text-red-500">*</span>
-            <span>/</span>
-            <span class="text-black uppercase">{{ product.gender }}</span>
-          </div>
+        <label for="gender" class="flex gap-1 font-semibold tracking-wider text-xs">
+          GENDER · ПОЛ
+          <span class="text-red-500">*</span>
+          <span>/</span>
+          <span class="text-black uppercase">{{ product.gender }}</span>
         </label>
         <div class="flex flex-col gap-3">
           <select v-model="createProductForm.gender"
@@ -114,13 +110,11 @@
     </div>
     <div class="flex gap-6 w-full">
       <div class="flex flex-col gap-3 w-full">
-        <label for="" class="font-semibold tracking-wider text-xs">
-          <div class="flex gap-1">
-            <span>SKU · АРТИКУЛ</span>
-            <span class="text-red-500">*</span>
-            <span>/</span>
-            <span class="text-black uppercase">{{ product.sku }}</span>
-          </div>
+        <label for="sku" class="flex gap-1 font-semibold tracking-wider text-xs">
+          SKU · АРТИКУЛ
+          <span class="text-red-500">*</span>
+          <span>/</span>
+          <span class="text-black uppercase">{{ product.sku }}</span>
         </label>
         <IMask v-model:value="createProductForm.sku"
                placeholder="BLC-XS-001"
@@ -131,13 +125,11 @@
         </span>
       </div>
       <div class="flex flex-col gap-3 w-full">
-        <label for="" class="font-semibold tracking-wider text-xs">
-          <div class="flex gap-1">
-            <span>PRICE · ЦЕНА</span>
-            <span class="text-red-500">*</span>
-            <span>/</span>
-            <span class="text-black uppercase">{{ product.price }}</span>
-          </div>
+        <label for="price" class="flex gap-1 font-semibold tracking-wider text-xs">
+          PRICE · ЦЕНА
+          <span class="text-red-500">*</span>
+          <span>/</span>
+          <span class="text-black uppercase">{{ product.price }}</span>
         </label>
         <BaseInput v-model="createProductForm.price"
                    type="number"
@@ -148,13 +140,11 @@
       </div>
     </div>
     <div class="flex flex-col gap-3">
-      <label for="" class="font-semibold tracking-wider text-xs">
-        <div class="flex gap-1">
-          <span>DESC. · ОПИСАНИЕ</span>
-          <span class="text-red-500">*</span>
-          <span>/</span>
-          <span class="text-black uppercase">{{ product.description }}</span>
-        </div>
+      <label for="description" class="flex gap-1 font-semibold tracking-wider text-xs">
+        DESC. · ОПИСАНИЕ
+        <span class="text-red-500">*</span>
+        <span>/</span>
+        <span class="text-black uppercase">{{ product.description }}</span>
       </label>
       <DescriptionForm />
       <span class="ml-auto text-[#A3A3A3] text-xs font-medium">{{ createProductForm.title.length }} / 100</span>
@@ -163,11 +153,10 @@
 </template>
 
 <script setup lang="ts">
-import { watch } from "vue";
 import { IMaskComponent as IMask } from "vue-imask";
-import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import { baseSelectClass, skuClass } from "@/shared/const/product-form/form.classes.ts";
+import { refClearErrorsOnChange } from "@/shared/lib/error-helper/errors-helper.ts";
 import type {Product} from "@/features/use-product/model/product.types.ts";
 import { createProductForm, createProductFormErrorMessages } from "@/features/use-product-form/model/product.forms.ts";
 import { createProductFormErrors } from "@/features/use-product-form/model/product.error.ts";
@@ -179,33 +168,14 @@ defineProps<{
   product: Product,
 }>();
 
-const { product } = useGetProduct();
 const { collections, categories, materials, genders, skuMask } = productStore();
 
-watch(() => [
-      createProductForm.value.title, createProductForm.value.collections,
-      createProductForm.value.category, createProductForm.value.material, createProductForm.value.gender,
-      createProductForm.value.sku, createProductForm.value.price, createProductForm.value.description],
-    ([title, collection, category, material, gender, sku, price, description]) => {
-      if(title){
-        createProductFormErrors.value.title = false;
-      }if(collection){
-        createProductFormErrors.value.collections = false;
-      }if(category){
-        createProductFormErrors.value.category = false;
-      }if(material){
-        createProductFormErrors.value.material = false;
-      }if(gender){
-        createProductFormErrors.value.gender = false;
-      }if(sku){
-        createProductFormErrors.value.sku = false;
-      }if(price){
-        createProductFormErrors.value.price = false;
-      }if(description){
-        createProductFormErrors.value.description = false;}
-    });
+refClearErrorsOnChange(
+    createProductForm,
+    createProductFormErrors,
+    createProductFormErrorMessages
+)
 </script>
-
 
 <style scoped>
 

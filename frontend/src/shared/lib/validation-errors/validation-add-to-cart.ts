@@ -13,4 +13,4 @@ export const addToCartValidationErrors = (err: ZodError<AddToCartData>) => {
         addToCartFormErrorMessages.value[field] = issue.message;
 
     })
-}
+};

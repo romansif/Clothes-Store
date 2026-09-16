@@ -11,5 +11,4 @@ export const informationFormErrors = ref<InformationFormError>({
     address: false,
     city: false,
     postalCode: false,
-
 })

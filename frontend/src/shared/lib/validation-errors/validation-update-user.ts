@@ -1,12 +1,10 @@
 import type { z, ZodError } from "zod";
 import {
-    updateUserEmailSchema,
-    type updateUserNameSchema, updateUserPasswordSchema,
-    updateUserPhoneSchema,
-    updateUserSurNameSchema
+    updateUserEmailSchema, updateUserNameSchema, updateUserPasswordSchema,
+    updateUserPhoneSchema, updateUserSurNameSchema
 } from "@/features/use-profile-form/model/user.update.schemas.ts";
-import {updateUserFormMessage} from "@/features/use-profile-form/model/user.update.form.ts";
 import {updateUserFormErrors} from "@/features/use-profile-form/model/user.update.error.ts";
+import {updateUserFormErrorMessages} from "@/features/use-profile-form/model/user.update.form.ts";
 
 type UpdateUserNameData = z.infer<typeof updateUserNameSchema>;
 type UpdateUserSurNameData = z.infer<typeof updateUserSurNameSchema>;
@@ -19,7 +17,7 @@ export const updateUserNameValidationErrors = (err: ZodError<UpdateUserNameData>
         const field = issue.path[0] as keyof typeof updateUserFormErrors.value;
 
         updateUserFormErrors.value[field] = true;
-        updateUserFormMessage.value[field] = issue.message;
+        updateUserFormErrorMessages.value[field] = issue.message;
     })
 }
 
@@ -28,7 +26,7 @@ export const updateUserSurNameValidationErrors = (err: ZodError<UpdateUserSurNam
         const field = issue.path[0] as keyof typeof updateUserFormErrors.value;
 
         updateUserFormErrors.value[field] = true;
-        updateUserFormMessage.value[field] = issue.message;
+        updateUserFormErrorMessages.value[field] = issue.message;
     })
 }
 
@@ -37,27 +35,27 @@ export const updateUserPhoneValidationErrors = (err: ZodError<UpdateUserPhoneDat
         const field = issue.path[0] as keyof typeof updateUserFormErrors.value;
 
         updateUserFormErrors.value[field] = true;
-        updateUserFormMessage.value[field] = issue.message;
+        updateUserFormErrorMessages.value[field] = issue.message;
     })
-}
+};
 
 export const updateUserEmailValidationErrors = (err: ZodError<UpdateUserEmailData>) => {
     err.issues.forEach((issue) => {
         const field = issue.path[0] as keyof typeof updateUserFormErrors.value;
 
         updateUserFormErrors.value[field] = true;
-        updateUserFormMessage.value[field] = issue.message;
+        updateUserFormErrorMessages.value[field] = issue.message;
     })
-}
+};
 
 export const updateUserPasswordValidationErrors = (err: ZodError<UpdateUserPasswordData>) => {
     err.issues.forEach((issue) => {
         const field = issue.path[0] as keyof typeof updateUserFormErrors.value;
 
         updateUserFormErrors.value[field] = true;
-        updateUserFormMessage.value[field] = issue.message;
+        updateUserFormErrorMessages.value[field] = issue.message;
 
         updateUserFormErrors.value[field] = true;
-        updateUserFormMessage.value[field] = issue.message;
+        updateUserFormErrorMessages.value[field] = issue.message;
     })
-}
+};

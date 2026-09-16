@@ -1,6 +1,9 @@
 import type { z, ZodError } from "zod";
-import {createProductFormErrors} from "@/features/use-product-form/model/product.error.ts";
-import {createProductFormErrorMessages} from "@/features/use-product-form/model/product.forms.ts";
+import {createProductFormErrors, moreCreateItemFormErrors} from "@/features/use-product-form/model/product.error.ts";
+import {
+    createProductFormErrorMessages,
+    moreCreateItemFormErrorMessages
+} from "@/features/use-product-form/model/product.forms.ts";
 import {type createProductSchema, moreCreateItemsSchema} from "@/features/use-product-form/model/product.schemas.ts";
 
 type CreateProductData = z.infer<typeof createProductSchema>;
@@ -13,14 +16,14 @@ export const createProductValidationErrors = (err: ZodError<CreateProductData>) 
         createProductFormErrors.value[field] = true;
         createProductFormErrorMessages.value[field] = issue.message;
     })
-}
+};
 
 export const moreCreateItemsValidationErrors = (err: ZodError<MoreCreateItemsData>) => {
     err.issues.forEach((issue) => {
-        const field = issue.path[0] as keyof typeof createProductFormErrors.value;
+        const field = issue.path[0] as keyof typeof moreCreateItemFormErrors.value;
 
-        createProductFormErrors.value[field] = true;
-        createProductFormErrorMessages.value[field] = issue.message;
+        moreCreateItemFormErrors.value[field] = true;
+        moreCreateItemFormErrorMessages.value[field] = issue.message;
     })
 
-}
+};

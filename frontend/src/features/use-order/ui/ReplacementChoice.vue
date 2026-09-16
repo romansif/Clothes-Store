@@ -14,26 +14,24 @@
         </span>
       </div>
       <form @submit.prevent="replaceOrder" class="flex flex-col items-start gap-3.5">
-        <ReplacementInput v-model="cancelChoice"
+        <ReplacementInput v-model="cancelChoiceForm.cancelChoice"
                           name="Incorrect payment method"
                           :value="'Incorrect payment method'"/>
-        <ReplacementInput v-model="cancelChoice"
+        <ReplacementInput v-model="cancelChoiceForm.cancelChoice"
                           name="I entered the wrong address"
                           :value="'I entered the wrong address'"/>
-        <ReplacementInput v-model="cancelChoice"
+        <ReplacementInput v-model="cancelChoiceForm.cancelChoice"
                           name="I no longer need this item"
                           :value="'I no longer need this item'"/>
-        <ReplacementInput v-model="cancelChoice"
+        <ReplacementInput v-model="cancelChoiceForm.cancelChoice"
                           name="Ordered it by mistake"
                           :value="'Ordered it by mistake'"/>
-        <ReplacementInput v-model="cancelChoice"
+        <ReplacementInput v-model="cancelChoiceForm.cancelChoice"
                           name="I found a better product"
                           :value="'I found a better product'"/>
-        <span v-if="cancelChoiceError" class="text-red-600 text-xs px-4">{{ cancelChoiceMessage }}</span>
+        <span v-if="cancelChoiceError.cancelChoice" class="text-red-600 text-xs px-4">{{ cancelChoiceMessage.cancelChoice }}</span>
         <div class="flex ml-auto">
-          <BaseButton type="submit"
-                      name="REPLACEMENT"
-                      variant="profileForm" />
+          <BaseButton type="submit" name="REPLACEMENT" variant="profileForm" />
         </div>
       </form>
     </div>
@@ -41,25 +39,22 @@
 </template>
 
 <script setup lang="ts">
-import { watch } from "vue";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { useDeleteOrder } from "@/features/use-order/api/delete-order.ts";
-import { cancelChoiceError, cancelChoiceMessage } from "@/features/use-order/model/order.store.ts";
-
-
+import { cancelChoiceForm, cancelChoiceError, cancelChoiceMessage } from "@/features/use-order/model/order.store.ts";
 
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import ReplacementInput from "@/features/use-order/ui/ReplacementInput.vue";
+import {refClearErrorsOnChange} from "@/shared/lib/error-helper/errors-helper.ts";
 
 const { replaceOrder } = useDeleteOrder();
-const { toggleOrder, cancelChoice } = useBaseModals();
+const { toggleOrder } = useBaseModals();
 
-watch(() => [cancelChoice.value],([choice]) => {
-      if(choice){
-        cancelChoiceError.value.cancelChoice = false;
-      }
-    }
-);
+refClearErrorsOnChange(
+    cancelChoiceForm,
+    cancelChoiceError,
+    cancelChoiceMessage
+)
 </script>
 
 <style scoped>

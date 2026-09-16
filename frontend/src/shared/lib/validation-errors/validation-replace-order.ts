@@ -11,4 +11,4 @@ export const replaceOrderValidationErrors = (err: ZodError<ReplaceOrderData>) =>
         cancelChoiceError.value[field] = true;
         cancelChoiceMessage.value[field] = issue.message;
     })
-}
+};

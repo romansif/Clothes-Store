@@ -8,7 +8,10 @@ const orderItems = ref<OrderItem[]>([]);
 const items = ref<OrderItem[]>(JSON.parse(localStorage.getItem('orderItems') || '[]'));
 
 const choiceModal = ref<boolean>(false);
-const cancelChoice = ref<string>('');
+
+export const cancelChoiceForm = ref({
+    cancelChoice: ''
+})
 
 export const cancelChoiceMessage = ref({
     cancelChoice: ''
@@ -24,7 +27,6 @@ export const orderStore = () => {
         orderItems,
         items,
 
-        cancelChoice,
         choiceModal
     }
 }

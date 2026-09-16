@@ -12,4 +12,4 @@ export const createPaymentValidationErrors = (err: ZodError<CreatePaymentData>) 
         paymentFormErrors.value[field] = true;
         paymentFormErrorMessage.value[field] = issue.message;
     })
-}
+};

@@ -2,11 +2,9 @@
   <div class="bg-white p-6.5 mt-6 flex flex-col justify-center gap-8 rounded shadow-xl">
     <div class="flex flex-col gap-3 w-full">
       <div class="flex items-center justify-between">
-        <label for="" class="font-semibold tracking-wider text-xs">
-          <div class="flex gap-1">
-            <span>QUANTITY · КОЛИЧЕСТВО</span>
-            <span class="text-red-500">*</span>
-          </div>
+        <label for="quantity" class="flex gap-1 font-semibold tracking-wider text-xs">
+          QUANTITY · КОЛИЧЕСТВО
+          <span class="text-red-500">*</span>
         </label>
         <div class="flex gap-2 justify-end items-center font-semibold">
           <button type="button" @click="countMode = 'SAME'"
@@ -79,18 +77,16 @@
             Select sizes to populate the stock levels.
           </span>
         </div>
-        <span v-if="createProductFormErrors.variants" class="text-red-600 text-xs">
-          {{ createProductFormErrorMessages.variants }}
+        <span v-if="moreCreateItemFormErrors.variants" class="text-red-600 text-xs">
+          {{ moreCreateItemFormErrorMessages.variants }}
         </span>
       </div>
     </div>
     <div class="flex flex-col gap-3 w-full">
       <div class="flex items-center justify-between">
-        <label for="" class="font-semibold tracking-wider text-xs">
-          <div class="flex gap-1">
-            <span>SIZES · РАЗМЕРЫ</span>
-            <span class="text-red-500">*</span>
-          </div>
+        <label for="sizes" class="flex gap-1 font-semibold tracking-wider text-xs">
+          SIZES · РАЗМЕРЫ
+          <span class="text-red-500">*</span>
         </label>
         <span class="ml-auto text-[#A3A3A3] text-xs font-medium">
           Sizes: {{ moreCreateItemForm.sizes.length }} / 6
@@ -102,17 +98,15 @@
              'transition duration-400 scale-110 w-15 rounded-full' :
              'transition duration-400 hover:scale-110 w-15 rounded-full']">
       </div>
-      <span v-if="createProductFormErrors.sizes" class="text-red-600 text-xs">
-        {{ createProductFormErrorMessages.sizes }}
+      <span v-if="moreCreateItemFormErrors.sizes" class="text-red-600 text-xs">
+        {{ moreCreateItemFormErrorMessages.sizes }}
       </span>
     </div>
     <div class="flex flex-col gap-3 w-full">
       <div class="flex items-center justify-between">
-        <label for="" class="font-semibold tracking-wider text-xs">
-          <div class="flex gap-1">
-            <span>COLORS · ЦВЕТА</span>
-            <span class="text-red-500">*</span>
-          </div>
+        <label for="colors" class="flex gap-1 font-semibold tracking-wider text-xs">
+          COLORS · ЦВЕТА
+          <span class="text-red-500">*</span>
         </label>
         <span class="ml-auto text-[#A3A3A3] text-xs font-medium">
           Colors: {{ moreCreateItemForm.colors.length }} / 6
@@ -130,35 +124,33 @@
                  class="absolute inset-0 h-full opacity-0 cursor-pointer" />
         </label>
       </div>
-      <span v-if="createProductFormErrors.colors" class="text-red-600 text-xs">
-        {{ createProductFormErrorMessages.colors }}
+      <span v-if="moreCreateItemFormErrors.colors" class="text-red-600 text-xs">
+        {{ moreCreateItemFormErrorMessages.colors }}
       </span>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { watch } from "vue";
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import { productFormHelper } from "@/features/use-product-form/lib/product-form-helper.ts";
-import { createProductForm, moreCreateItemForm, createProductFormErrorMessages } from "@/features/use-product-form/model/product.forms.ts";
-import { createProductFormErrors } from "@/features/use-product-form/model/product.error.ts";
+import { reactiveClearErrorsOnChange } from "@/shared/lib/error-helper/errors-helper.ts";
+import { createProductFormErrors, moreCreateItemFormErrors } from "@/features/use-product-form/model/product.error.ts";
+import {
+  createProductForm, moreCreateItemForm,
+  createProductFormErrorMessages, moreCreateItemFormErrorMessages
+} from "@/features/use-product-form/model/product.forms.ts";
 
 import BaseInput from "@/shared/ui/BaseInput.vue";
 
 const { sizes, countMode } = productStore();
 const { toggleAllVariants, toggleQuantity, toggleSize, toggleColor } = productFormHelper();
 
-watch(() => [moreCreateItemForm.sizes.length, moreCreateItemForm.colors.length, moreCreateItemForm.variants.length],
-    ([sizes, colors, variants]) => {
-      if(sizes){
-        createProductFormErrors.value.sizes = false;
-      }if(colors){
-        createProductFormErrors.value.colors = false;
-      }if(variants){
-        createProductFormErrors.value.variants = false;
-      }
-});
+reactiveClearErrorsOnChange(
+  moreCreateItemForm,
+  moreCreateItemFormErrors,
+  moreCreateItemFormErrorMessages,
+)
 </script>
 
 

@@ -31,12 +31,12 @@
 </template>
 
 <script setup lang="ts">
-import { watch } from "vue";
 import { useAddPayment } from "@/features/use-chekout-payment-info/api/add-payment.ts";
 import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment.ts";
 import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
-import { paymentForm } from "@/features/use-chekout-payment-info/model/payment.form.ts";
+import { refClearErrorsOnChange } from "@/shared/lib/error-helper/errors-helper.ts";
 import { paymentFormErrors } from "@/features/use-chekout-payment-info/model/payment.errors.ts";
+import { paymentForm, paymentFormErrorMessage } from "@/features/use-chekout-payment-info/model/payment.form.ts";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";
@@ -44,27 +44,14 @@ import PaymentMethods from "./PaymentMethods.vue";
 import SavedCheckoutPayment from "@/features/use-chekout-payment-info/ui/SavedCheckoutPayment.vue";
 
 const { userPayments } = paymentStore();
-const { toggleShowPayment, isSavedPayment } = togglePaymentForm();
 const { addPayment, useSavedPayment } = useAddPayment();
+const { toggleShowPayment, isSavedPayment } = togglePaymentForm();
 
-watch(() => [paymentForm.value.cardNumber, paymentForm.value.expiryDate, paymentForm.value.cardCvv, paymentForm.value.paymentMethod],
-    ([cardNumber, expiryDate, cardCvv, paymentMethod]) => {
-  if(cardNumber) {
-    paymentFormErrors.value.cardNumber = false
-    paymentFormErrors.value.paymentMethod = false
-  }
-  if(expiryDate) {
-    paymentFormErrors.value.expiryDate = false
-    paymentFormErrors.value.paymentMethod = false
-  }
-  if(cardCvv) {
-    paymentFormErrors.value.cardCvv = false
-    paymentFormErrors.value.paymentMethod = false
-  }
-  if(paymentMethod) {
-    paymentFormErrors.value.paymentMethod = false
-  }
-})
+refClearErrorsOnChange(
+  paymentForm,
+  paymentFormErrors,
+  paymentFormErrorMessage
+)
 </script>
 
 <style scoped>

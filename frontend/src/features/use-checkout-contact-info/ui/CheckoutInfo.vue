@@ -19,10 +19,13 @@
 </template>
 
 <script setup lang="ts">
-import { watch } from "vue";
 import { useAddAddress } from "@/features/use-checkout-contact-info/api/add-address.ts";
+import { refClearErrorsOnChange } from "@/shared/lib/error-helper/errors-helper.ts";
 import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle-contact-info.ts";;
-import { informationForm } from "@/features/use-checkout-contact-info/model/address.form.ts";
+import {
+  informationForm,
+  informationFormErrorMessages
+} from "@/features/use-checkout-contact-info/model/address.form.ts";
 import { informationFormErrors } from "@/features/use-checkout-contact-info/model/address.errors.ts";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
@@ -34,39 +37,11 @@ import SavedCheckoutInfo from "@/features/use-checkout-contact-info/ui/SavedChec
 const { isSavedAddress } = toggleInformation();
 const { addInformation, useInformation } = useAddAddress();
 
-watch(() => [
-  informationForm.value.email, informationForm.value.phone, informationForm.value.firstName, informationForm.value.lastName,
-  informationForm.value.country, informationForm.value.stateRegion, informationForm.value.address, informationForm.value.city,
-  informationForm.value.postalCode], ([email, phone, firstName, lastName, country, stateRegion, address, city , postalCode]) => {
-
-  if(email){
-    informationFormErrors.value.email = false;
-  }
-  if(phone){
-    informationFormErrors.value.phone = false;
-  }
-  if(firstName){
-    informationFormErrors.value.firstName = false;
-  }
-  if(lastName){
-    informationFormErrors.value.lastName = false;
-  }
-  if(country){
-    informationFormErrors.value.country = false;
-  }
-  if(stateRegion){
-    informationFormErrors.value.stateRegion = false;
-  }
-  if(address){
-    informationFormErrors.value.address = false;
-  }
-  if(city){
-    informationFormErrors.value.city = false;
-  }
-  if(postalCode){
-    informationFormErrors.value.postalCode = false;
-  }
-});
+refClearErrorsOnChange(
+    informationForm,
+    informationFormErrors,
+    informationFormErrorMessages
+)
 </script>
 
 <style scoped>

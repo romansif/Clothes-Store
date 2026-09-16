@@ -2,11 +2,9 @@
   <div class="bg-white p-6.5 mt-6 flex flex-col justify-center gap-8 rounded shadow-xl">
     <div class="flex flex-col gap-3 w-full">
       <div class="flex items-center justify-between">
-        <label for="" class="font-semibold tracking-wider text-xs">
-          <div class="flex gap-1">
-            <span>QUANTITY · КОЛИЧЕСТВО</span>
-            <span class="text-red-500">*</span>
-          </div>
+        <label for="quantity" class="flex gap-1 font-semibold tracking-wider text-xs">
+          QUANTITY · КОЛИЧЕСТВО
+          <span class="text-red-500">*</span>
         </label>
         <div class="flex gap-2 justify-end items-center font-semibold">
           <button type="button" @click="countMode = 'SAME'"
@@ -73,13 +71,11 @@
     </div>
     <div class="flex flex-col gap-3 w-full">
       <div class="flex items-center justify-between">
-        <label for="" class="font-semibold tracking-wider text-xs">
-          <div class="flex gap-1">
-            <span>SIZES · РАЗМЕРЫ</span>
-            <span class="text-red-500">*</span>
-            <span>/</span>
-            <span class="text-black uppercase">{{ pureSizesName(product) }}</span>
-          </div>
+        <label for="sizes" class="flex gap-1 font-semibold tracking-wider text-xs">
+          SIZES · РАЗМЕРЫ
+          <span class="text-red-500">*</span>
+          <span>/</span>
+          <span class="text-black uppercase">{{ pureSizesName(product) }}</span>
         </label>
         <span class="ml-auto text-[#A3A3A3] text-xs font-medium">
           Sizes: {{ uniqueSizes(product).length }} / 6
@@ -89,19 +85,17 @@
         <img v-for="size in isAvailableSizes(product)" :key="size?.name" :src="size.url" alt=""
              :class="[size.class, 'transition duration-400 scale-110 w-15 rounded-full']">
       </div>
-      <span v-if="createProductFormErrors.sizes" class="text-red-600 text-xs">
-        {{ createProductFormErrorMessages.sizes }}
+      <span v-if="moreCreateItemFormErrors.sizes" class="text-red-600 text-xs">
+        {{ moreCreateItemFormErrorMessages.sizes }}
       </span>
     </div>
     <div class="flex flex-col gap-3 w-full">
       <div class="flex items-center justify-between">
-        <label for="" class="font-semibold tracking-wider text-xs">
-          <div class="flex gap-1">
-            <span>COLORS · ЦВЕТА</span>
-            <span class="text-red-500">*</span>
-            <span> / </span>
-            <span class="text-black uppercase">{{ pureColorsName(product) }}</span>
-          </div>
+        <label for="colors" class="flex gap-1 font-semibold tracking-wider text-xs">
+          COLORS · ЦВЕТА
+          <span class="text-red-500">*</span>
+          <span> / </span>
+          <span class="text-black uppercase">{{ pureColorsName(product) }}</span>
         </label>
         <span class="ml-auto text-[#A3A3A3] text-xs font-medium">
           Colors: {{ uniqueColors(product).length }} / 6
@@ -115,8 +109,8 @@
                  class="absolute inset-0 h-full opacity-0 cursor-pointer" />
         </label>
       </div>
-      <span v-if="createProductFormErrors.colors" class="text-red-600 text-xs">
-        {{ createProductFormErrorMessages.colors }}
+      <span v-if="moreCreateItemFormErrors.colors" class="text-red-600 text-xs">
+        {{ moreCreateItemFormErrorMessages.colors }}
       </span>
     </div>
   </div>
@@ -127,8 +121,10 @@ import { productStore } from "@/features/use-main-product/model/product.store.ts
 import { useUpdateProduct } from "@/features/use-product-form/api/update-product.ts";
 import { productHelper } from "@/shared/lib/product-helper.ts";
 import { productFormHelper } from "@/features/use-product-form/lib/product-form-helper.ts";
-import { createProductForm, createProductFormErrorMessages } from "@/features/use-product-form/model/product.forms.ts";
-import { createProductFormErrors } from "@/features/use-product-form/model/product.error.ts";
+import { createProductFormErrors, moreCreateItemFormErrors } from "@/features/use-product-form/model/product.error.ts";
+import {
+  createProductForm, createProductFormErrorMessages, moreCreateItemFormErrorMessages
+} from "@/features/use-product-form/model/product.forms.ts";
 import type {Product} from "@/features/use-product/model/product.types.ts";
 
 import BaseInput from "@/shared/ui/BaseInput.vue";
@@ -142,7 +138,6 @@ const { toggleAllVariants } = productFormHelper();
 const { updateProductCount, updateProductColors } = useUpdateProduct();
 const { pureInfoColors, pureColorsName, pureSizesName, isAvailableSizes, uniqueSizes, uniqueColors } = productHelper();
 </script>
-
 
 <style scoped>
 

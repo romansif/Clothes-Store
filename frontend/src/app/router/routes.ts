@@ -109,7 +109,6 @@ const routes: RouteRecordRaw[] = [
                 path: 'edit-product/:id',
                 name: 'edit/product',
                 component: () => import('@/pages/product-form/EditProductPage.vue'),
-
             },
         ]
     },

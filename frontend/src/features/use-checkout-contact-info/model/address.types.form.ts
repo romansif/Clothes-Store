@@ -1,5 +1,5 @@
 export interface InformationForm {
-    addressName: string
+    addressName?: string
     email: string,
     phone: string,
     firstName: string,

@@ -13,7 +13,6 @@ export const loginForm = ref<LoginForm>({
     email: '',
     phone: '',
     password: '',
-    validCode: '',
     role: '',
 });
 

@@ -1,5 +1,5 @@
 import {ApiError} from "@/shared/api/http.ts";
-import { applyErrors } from "@/shared/lib/error-helper/error-helper.ts";
+import { applyErrors } from "@/shared/lib/error-helper/errors-helper.ts";
 import { paymentFormErrors } from "@/features/use-chekout-payment-info/model/payment.errors.ts";
 import { paymentFormErrorMessage } from "@/features/use-chekout-payment-info/model/payment.form.ts";
 import { addPaymentSchema } from "@/features/use-chekout-payment-info/model/payment.schemas.ts";

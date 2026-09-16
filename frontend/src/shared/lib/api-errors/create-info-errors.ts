@@ -1,5 +1,5 @@
 import {ApiError} from "@/shared/api/http.ts";
-import { applyErrors } from "@/shared/lib/error-helper/error-helper.ts";
+import { applyErrors } from "@/shared/lib/error-helper/errors-helper.ts";
 import { informationFormErrors } from "@/features/use-checkout-contact-info/model/address.errors.ts";
 import { informationFormErrorMessages } from "@/features/use-checkout-contact-info/model/address.form.ts";
 import { addContactInfoSchema } from "@/features/use-checkout-contact-info/model/address.schemas.ts";

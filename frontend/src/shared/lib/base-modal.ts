@@ -1,8 +1,9 @@
 import { ref } from "vue";
 import router from "@/app/router";
 import { orderStore } from "@/features/use-order/model/order.store.ts";
+import { cancelChoiceForm } from "@/features/use-order/model/order.store.ts";
 
-const { choiceModal, cancelChoice } = orderStore();
+const { choiceModal } = orderStore();
 
 const notify = ref<boolean>(false);
 const notifyTitle = ref<string>('');
@@ -29,7 +30,7 @@ export const useBaseModals = () => {
         notifyMessage.value = '';
 
         choiceModal.value = false;
-        cancelChoice.value = '';
+        cancelChoiceForm.value.cancelChoice = '';
 
         await router.push({name: `${name}`});
     };
@@ -37,14 +38,12 @@ export const useBaseModals = () => {
     const toggleOrder = (id: string) => {
         choiceModal.value = !choiceModal.value;
         orderId.value = id;
-        cancelChoice.value = '';
+        cancelChoiceForm.value.cancelChoice = '';
     };
 
     return {
         openNotify,
         toggleOrder,
-
-        cancelChoice,
 
         choiceModal,
         orderId,

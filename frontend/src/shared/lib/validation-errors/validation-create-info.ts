@@ -12,4 +12,4 @@ export const createInfoValidationErrors = (err: ZodError<CreateInfoData>) => {
         informationFormErrors.value[field] = true;
         informationFormErrorMessages.value[field] = issue.message;
     })
-}
+};

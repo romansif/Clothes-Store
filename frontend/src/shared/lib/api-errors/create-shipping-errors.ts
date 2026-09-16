@@ -1,5 +1,5 @@
 import {ApiError} from "@/shared/api/http.ts";
-import {applyErrors} from "@/shared/lib/error-helper/error-helper.ts";
+import {applyErrors} from "@/shared/lib/error-helper/errors-helper.ts";
 import {shippingFormError} from "@/features/use-checkout-shipping-info/model/shipping.errors.ts";
 import {shippingFormErrorMessage} from "@/features/use-checkout-shipping-info/model/shipping.form.ts";
 import {addShippingSchema} from "@/features/use-checkout-shipping-info/model/shipping.schemas.ts";

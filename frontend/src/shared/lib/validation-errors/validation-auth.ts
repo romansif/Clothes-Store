@@ -13,7 +13,7 @@ export const loginValidationErrors = (err: ZodError<LoginData>) => {
         loginFormErrors.value[field] = true;
         loginFormErrorMessages.value[field] = issue.message;
     })
-}
+};
 
 export const registerValidationErrors = (err: ZodError<RegisterData>) => {
     err.issues.forEach((issue) => {

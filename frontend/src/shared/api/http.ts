@@ -1,5 +1,5 @@
 import router from '@/app/router/index'
-import type { ApiErrorResponse } from "@/shared/model/error.types.ts";
+import type { ApiErrorResponse } from "@/shared/model/api.error.types.ts";
 
 export class ApiError extends Error {
     response?: ApiErrorResponse

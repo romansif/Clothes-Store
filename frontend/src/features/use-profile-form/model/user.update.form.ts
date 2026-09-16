@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import type { UserForm, UserFormMessage } from "@/features/use-profile-form/model/user.update.types.form.ts";
+import type {UserForm, UserFormErrorMessages } from "@/features/use-profile-form/model/user.update.types.form.ts";
 
 export const updateUserForm = ref<UserForm>({
     name: '',
@@ -10,7 +10,7 @@ export const updateUserForm = ref<UserForm>({
     newPassword: '',
 })
 
-export const updateUserFormMessage = ref<UserFormMessage>({
+export const updateUserFormErrorMessages = ref<UserFormErrorMessages>({
     name: '',
     surName: '',
     phone: '',

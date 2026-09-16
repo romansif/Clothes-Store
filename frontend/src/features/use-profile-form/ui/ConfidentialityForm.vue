@@ -8,7 +8,7 @@
                      placeholder="New Name"
                      :error="updateUserFormErrors.name"
                      variant="confidentialityData"
-                     :error-message="updateUserFormErrors.name ? updateUserFormMessage.name : ''" />
+                     :error-message="updateUserFormErrors.name ? updateUserFormErrorMessages.name : ''" />
           <div class="flex">
             <BaseButton type="submit" name="Save Name" variant="profileForm" />
           </div>
@@ -19,7 +19,7 @@
                      placeholder="New SurName"
                      :error="updateUserFormErrors.surName"
                      variant="confidentialityData"
-                     :error-message="updateUserFormErrors.surName ? updateUserFormMessage.surName : ''" />
+                     :error-message="updateUserFormErrors.surName ? updateUserFormErrorMessages.surName : ''" />
           <div class="flex">
             <BaseButton type="submit" name="Save SurName" variant="profileForm" />
           </div>
@@ -33,7 +33,7 @@
                    placeholder="example@mail.com"
                    :error="updateUserFormErrors.email"
                    variant="confidentialityData"
-                   :error-message="updateUserFormErrors.email ? updateUserFormMessage.email : ''"/>
+                   :error-message="updateUserFormErrors.email ? updateUserFormErrorMessages.email : ''"/>
         <div class="flex">
           <BaseButton type="submit" name="Save Email" variant="profileForm" />
         </div>
@@ -55,7 +55,7 @@
                  :mask="currentMask.mask"/>
         </div>
         <span v-if="updateUserFormErrors.phone" class="text-red-600 text-xs">
-          {{ updateUserFormMessage.phone }}
+          {{ updateUserFormErrorMessages.phone }}
         </span>
         <div class="flex">
           <BaseButton type="submit" name="Save Phone" variant="profileForm" />
@@ -73,7 +73,7 @@
                          :error="updateUserFormErrors.oldPassword"
                          variant="confidentialityData"
                          placeholder="Old Password"
-                         :error-message="updateUserFormErrors.oldPassword ? updateUserFormMessage.oldPassword : ''" />
+                         :error-message="updateUserFormErrors.oldPassword ? updateUserFormErrorMessages.oldPassword : ''" />
             </div>
             <img @click.prevent="toggleOldPassword" :src="showOldPassword ? opened : closed" alt=""
                  :class="['absolute w-7.5 top-1/4 left-115', updateUserFormErrors.oldPassword ? 'top-1/6' : '']">
@@ -87,7 +87,7 @@
                          :type="showNewPassword ? 'text' : 'password'"
                          :error="updateUserFormErrors.newPassword"
                          variant="confidentialityData" placeholder="New Password"
-                         :error-message="updateUserFormErrors.newPassword ? updateUserFormMessage.newPassword : ''"/>
+                         :error-message="updateUserFormErrors.newPassword ? updateUserFormErrorMessages.newPassword : ''"/>
             </div>
             <img @click.prevent="toggleNewPassword" :src="showNewPassword ? opened : closed" alt=""
                 :class="['absolute w-7.5 top-1/4 left-115', updateUserFormErrors.newPassword ? 'top-1/6' : '']">
@@ -102,13 +102,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
 import { IMaskComponent as IMask } from "vue-imask";
 import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
-import { updateUserForm, updateUserFormMessage } from "@/features/use-profile-form/model/user.update.form.ts";
 import { profileApi } from "@/features/use-profile-form/api/profile.api.ts";
-import { updateUserFormErrors } from "@/features/use-profile-form/model/user.update.error.ts";
 import { profileClasses } from "@/shared/const/user/profile.classes.ts";
+import { refClearErrorsOnChange } from "@/shared/lib/error-helper/errors-helper.ts";
+import { useTogglePassword } from "@/features/use-profile-form/lib/toggle-password.ts";
+import { updateUserForm, updateUserFormErrorMessages } from "@/features/use-profile-form/model/user.update.form.ts";
+import { updateUserFormErrors } from "@/features/use-profile-form/model/user.update.error.ts";
 import { selectedCountryCode, countries } from "@/shared/lib/select-phone-form.ts";
 
 import BaseButton  from "@/shared/ui/BaseButton.vue";
@@ -118,45 +119,14 @@ import BaseInput from "@/shared/ui/BaseInput.vue";
 
 const { changeCountry, currentCountry, currentMask } = usePhoneForm();
 const { profilePhoneClass, profileSelectPhoneCodeClass } = profileClasses();
-const { updatePasswordAccount, updateNameAccount, updateSurNameAccount,
-    updatePhoneAccount, updateEmailAccount } = profileApi();
+const { toggleOldPassword, toggleNewPassword, showOldPassword, showNewPassword } = useTogglePassword()
+const { updatePasswordAccount, updateNameAccount, updateSurNameAccount, updatePhoneAccount, updateEmailAccount } = profileApi();
 
-watch(() => [
-      updateUserForm.value.name, updateUserForm.value.surName,
-      updateUserForm.value.phone, updateUserForm.value.email,
-      updateUserForm.value.oldPassword, updateUserForm.value.newPassword],
-    ([name, surName, phone, email, oldPassword, newPassword]) => {
-      if(name){
-        updateUserFormErrors.value.name = false;
-      }
-      if(surName){
-        updateUserFormErrors.value.surName = false;
-      }
-      if(phone){
-        updateUserFormErrors.value.phone = false;
-      }
-      if(email){
-        updateUserFormErrors.value.email = false;
-      }
-      if(oldPassword){
-        updateUserFormErrors.value.oldPassword = false;
-      }
-      if(newPassword){
-        updateUserFormErrors.value.newPassword = false;
-      }
-    }
+refClearErrorsOnChange(
+  updateUserForm,
+  updateUserFormErrors,
+  updateUserFormErrorMessages,
 )
-
-const showOldPassword = ref(false)
-const showNewPassword = ref(false)
-
-const toggleOldPassword = () => {
-  showOldPassword.value = !showOldPassword.value
-}
-
-const toggleNewPassword = () => {
-  showNewPassword.value = !showNewPassword.value
-}
 </script>
 
 

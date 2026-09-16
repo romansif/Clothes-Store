@@ -23,13 +23,16 @@ export interface ProductFormErrorMessage {
     material: string,
     description: string,
     price: string,
-    colors: string,
-    sizes: string,
     gender: string,
     sku: string,
     quantity: string,
-    variants: string,
     collections: string,
+}
+
+export interface MoreCreateItemFormErrorMessage {
+    colors: string,
+    sizes: string,
+    variants: string,
 }
 
 export interface ProductFormError {
@@ -38,11 +41,14 @@ export interface ProductFormError {
     material: boolean,
     description: boolean,
     price: boolean,
-    colors: boolean,
-    sizes: boolean,
     gender: boolean,
     sku: boolean,
     quantity: boolean,
-    variants: boolean,
     collections: boolean,
+}
+
+export interface MoreCreateItemFormError {
+    colors: boolean,
+    sizes: boolean,
+    variants: boolean,
 }
