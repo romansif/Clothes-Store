@@ -1,6 +1,6 @@
 import {ref} from "vue";
 import type {
-    InformationForm,
+    InformationForm, InformationFormError,
     InformationFormErrorMessage
 } from "@/features/use-checkout-contact-info/model/address.types.form.ts";
 
@@ -15,7 +15,7 @@ export const informationForm = ref<InformationForm>({
     address: '',
     city: '',
     postalCode: '',
-})
+});
 
 export const informationFormErrorMessages = ref<InformationFormErrorMessage>({
     email: 'example@gmail.com',
@@ -27,5 +27,17 @@ export const informationFormErrorMessages = ref<InformationFormErrorMessage>({
     address: 'Address',
     city: 'City',
     postalCode: 'Postal Code',
-})
+});
+
+export const informationFormErrors = ref<InformationFormError>({
+    email: false,
+    phone: false,
+    firstName: false,
+    lastName: false,
+    country: false,
+    stateRegion: false,
+    address: false,
+    city: false,
+    postalCode: false,
+});
 

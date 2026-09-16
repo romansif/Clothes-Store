@@ -1,9 +1,8 @@
 import { handler } from "@/shared/api/http.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { useGetOrder } from "@/features/use-order/api/get-order.ts";
-import { replaceOrderApiErrors } from "@/shared/lib/api-errors/replace-order-errors.ts";
-import { replaceOrderValidationErrors } from "@/shared/lib/validation-errors/validation-replace-order.ts";
-import { cancelChoiceForm } from "@/features/use-order/model/order.store.ts";
+import { applyZodErrors, applyErrors} from "@/shared/lib/helper/errors-helper.ts";
+import { cancelChoiceError, cancelChoiceForm, cancelChoiceMessage } from "@/features/use-order/model/order.store.ts";
 import { replaceOrderSchema } from "@/features/use-order/model/replace.order.schemas.ts";
 
 const { getOrders } = useGetOrder();
@@ -13,7 +12,11 @@ export const useDeleteOrder = () => {
     const replaceOrder = async () => {
         const result = replaceOrderSchema.safeParse(cancelChoiceForm.value)
         if(!result.success){
-            replaceOrderValidationErrors(result.error);
+            applyZodErrors(
+                result.error,
+                cancelChoiceError,
+                cancelChoiceMessage
+            );
             return
         }
 
@@ -40,7 +43,11 @@ export const useDeleteOrder = () => {
 
             await getOrders();
         }catch(err){
-            replaceOrderApiErrors(err);
+            applyErrors(
+                err,
+                cancelChoiceError,
+                cancelChoiceMessage
+            );
             console.error(`Failed to delete the order:`, err);
         }
     };

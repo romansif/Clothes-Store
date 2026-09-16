@@ -1,6 +1,5 @@
-import {computed} from "vue";
-import {loginFormErrors} from "@/features/use-auth/model/auth.errors.ts";
-import {loginFormErrorMessages} from "@/features/use-auth/model/auth.forms.ts";
+import { computed } from "vue";
+import { loginFormErrorMessages, loginFormErrors } from "@/features/use-auth/model/auth.forms.ts";
 
 export const useLoginErrorMessage = computed(() => {
     if (loginFormErrors.value.email) {

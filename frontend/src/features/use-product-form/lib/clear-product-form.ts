@@ -1,10 +1,8 @@
 import {
-    createProductForm,
-    moreCreateItemForm,
-    createProductFormErrorMessages,
-    moreCreateItemFormErrorMessages
+    createProductForm, moreCreateItemForm,
+    createProductFormErrors, moreCreateItemFormErrors,
+    createProductFormErrorMessages, moreCreateItemFormErrorMessages
 } from "@/features/use-product-form/model/product.forms.ts";
-import {createProductFormErrors, moreCreateItemFormErrors} from "@/features/use-product-form/model/product.error.ts";
 
 export const clearProductForm = () => {
     createProductForm.value.title = '';

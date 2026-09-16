@@ -38,9 +38,8 @@
 <script setup lang="ts">
 import { toggleAuth } from "@/features/use-auth/lib/toggle-auth.ts";
 import { authStore } from "@/features/use-auth/model/auth.store.ts";
-import { refClearErrorsOnChange } from "@/shared/lib/error-helper/errors-helper.ts";
-import { loginFormErrors } from "@/features/use-auth/model/auth.errors.ts";
-import { loginForm, loginFormErrorMessages } from "@/features/use-auth/model/auth.forms.ts";
+import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
+import { loginForm, loginFormErrorMessages, loginFormErrors } from "@/features/use-auth/model/auth.forms.ts";
 import { useLoginErrorMessage, useLoginError } from "@/features/use-auth/lib/auth-error-messages.ts";
 
 import closed from "@/assets/icons/auth/closed.png";

@@ -4,13 +4,13 @@ import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import { clearProductForm } from "@/features/use-product-form/lib/clear-product-form.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { createProductApiErrors } from "@/shared/lib/api-errors/create-product-errors.ts";
+import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.ts";
 import {
-    createProductValidationErrors,
-    moreCreateItemsValidationErrors
-} from "@/shared/lib/validation-errors/validation-product.ts";
-import { createProductForm, moreCreateItemForm } from "@/features/use-product-form/model/product.forms.ts";
-import {createProductSchema, moreCreateItemsSchema} from "@/features/use-product-form/model/product.schemas.ts";
+    createProductForm, moreCreateItemForm,
+    createProductFormErrors, moreCreateItemFormErrors,
+    createProductFormErrorMessages, moreCreateItemFormErrorMessages
+} from "@/features/use-product-form/model/product.forms.ts";
+import { createProductSchema, moreCreateItemsSchema } from "@/features/use-product-form/model/product.schemas.ts";
 
 const { userData } = userStore();
 const { openNotify } = useBaseModals();
@@ -42,10 +42,18 @@ export const useAddProduct = () => {
         const result2 = moreCreateItemsSchema.safeParse(moreCreateItemForm)
 
         if(!result1.success){
-            createProductValidationErrors(result1.error);
+            applyZodErrors(
+                result1.error,
+                createProductFormErrors,
+                createProductFormErrorMessages
+            );
         }
         if(!result2.success){
-            moreCreateItemsValidationErrors(result2.error);
+            applyZodErrors(
+                result2.error,
+                moreCreateItemFormErrors,
+                moreCreateItemFormErrorMessages
+            );
         }
         if (!result1.success || !result2.success) return;
 
@@ -94,7 +102,16 @@ export const useAddProduct = () => {
 
             clearProductForm();
         }catch(err){
-            createProductApiErrors(err);
+            applyErrors(
+                err,
+                createProductFormErrors,
+                createProductFormErrorMessages,
+            );
+            applyErrors(
+                err,
+                moreCreateItemFormErrors,
+                moreCreateItemFormErrorMessages
+            )
             console.error(`Failed to create the products cover:`, err);
         }
     };

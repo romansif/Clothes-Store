@@ -1,18 +1,14 @@
+import type { ZodError } from "zod";
 import { handler } from "@/shared/api/http.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { clearUsersForms } from "@/features/use-profile-form/lib/clear-user-update.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { useGetUsers } from "@/features/use-profile/api/get-users.ts";
-import {
-    updateNameApiErrors, updateSurNameApiErrors, updateEmailApiErrors,
-    updatePhoneApiErrors, updatePasswordApiErrors
-} from "@/shared/lib/api-errors/update-user-errors.ts";
-import {
-    updateUserNameValidationErrors, updateUserSurNameValidationErrors, updateUserPhoneValidationErrors,
-    updateUserEmailValidationErrors, updateUserPasswordValidationErrors
-} from "@/shared/lib/validation-errors/validation-update-user.ts";
+import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.ts";
 import type { UserDataUpdate } from "@/features/use-profile-form/model/user.update.types.ts";
-import { updateUserForm } from "@/features/use-profile-form/model/user.update.form.ts";
+import {
+    updateUserForm, updateUserFormErrorMessages, updateUserFormErrors
+} from "@/features/use-profile-form/model/user.update.form.ts";
 import {
     updateUserNameSchema, updateUserSurNameSchema, updateUserPhoneSchema,
     updateUserEmailSchema, updateUserPasswordSchema
@@ -27,6 +23,32 @@ const {
 } = clearUsersForms();
 
 export const profileApi = () => {
+    const baseUpdateAccount = async (dataToUpdate: UserDataUpdate, type: string, title: string) => {
+        await handler(`/${type}/${userData.id}`, {
+            method: "PATCH",
+            body: JSON.stringify(dataToUpdate),
+        });
+        await getUser();
+
+        await openNotify(title, '', '')
+    };
+
+    const updateUserApplyZodErrors = (err: ZodError) => {
+        applyZodErrors(
+            err,
+            updateUserFormErrors,
+            updateUserFormErrorMessages
+        )
+    };
+
+    const updateUserApplyErrors = (err: unknown) => {
+        applyErrors(
+            err,
+            updateUserFormErrors,
+            updateUserFormErrorMessages
+        )
+    };
+
     const updateAvatarAccount = async (event: Event) => {
         const target = event.target as HTMLInputElement;
         if(!target.files || target.files.length === 0) return;
@@ -46,20 +68,11 @@ export const profileApi = () => {
         }
     };
 
-    const baseUpdateAccount = async (dataToUpdate: UserDataUpdate, type: string, title: string) => {
-        await handler(`/${type}/${userData.id}`, {
-            method: "PATCH",
-            body: JSON.stringify(dataToUpdate),
-        });
-        await getUser();
-
-        await openNotify(title, '', '')
-    }
 
     const updateNameAccount = async () => {
         const result = updateUserNameSchema.safeParse(updateUserForm.value)
         if(!result.success){
-            updateUserNameValidationErrors(result.error);
+            updateUserApplyZodErrors(result.error)
             return
         }
 
@@ -68,7 +81,7 @@ export const profileApi = () => {
                 'You have successfully changed your name.')
             clearUpdateUserFormName();
         }catch(err){
-            updateNameApiErrors(err);
+            updateUserApplyErrors(err);
             console.error(`Failed to the change user name:`, err);
         }
     };
@@ -76,7 +89,7 @@ export const profileApi = () => {
     const updateSurNameAccount = async () => {
         const result = updateUserSurNameSchema.safeParse(updateUserForm.value)
         if(!result.success){
-            updateUserSurNameValidationErrors(result.error);
+            updateUserApplyZodErrors(result.error)
             return
         }
 
@@ -85,7 +98,7 @@ export const profileApi = () => {
                 'You have successfully changed your surname.')
             clearUpdateUserFormSurName();
         }catch(err){
-            updateSurNameApiErrors(err);
+            updateUserApplyErrors(err);
             console.error(`Failed to the change user surname:`, err);
         }
     };
@@ -93,7 +106,7 @@ export const profileApi = () => {
     const updatePhoneAccount = async () => {
         const result = updateUserPhoneSchema.safeParse(updateUserForm.value)
         if(!result.success){
-            updateUserPhoneValidationErrors(result.error);
+            updateUserApplyZodErrors(result.error)
             return
         }
 
@@ -102,7 +115,7 @@ export const profileApi = () => {
                 'You have successfully changed your phone number.')
             clearUpdateUserFormPhone();
         }catch(err){
-            updatePhoneApiErrors(err);
+            updateUserApplyErrors(err);
             console.error(`Failed to the change user phone:`, err);
         }
     };
@@ -110,7 +123,7 @@ export const profileApi = () => {
     const updateEmailAccount = async () => {
         const result = updateUserEmailSchema.safeParse(updateUserForm.value)
         if(!result.success){
-            updateUserEmailValidationErrors(result.error);
+            updateUserApplyZodErrors(result.error)
             return
         }
 
@@ -119,7 +132,7 @@ export const profileApi = () => {
                 'You have successfully changed your email address.')
             clearUpdateUserFormEmail();
         }catch(err){
-            updateEmailApiErrors(err);
+            updateUserApplyErrors(err);
             console.error(`Failed to the change email:`, err);
         }
     };
@@ -128,7 +141,7 @@ export const profileApi = () => {
         const result = updateUserPasswordSchema.safeParse(updateUserForm.value)
         console.log(result)
         if(!result.success){
-            updateUserPasswordValidationErrors(result.error);
+            updateUserApplyZodErrors(result.error)
             return
         }
 
@@ -144,7 +157,7 @@ export const profileApi = () => {
             clearUpdateUserFormPassword();
             await openNotify('You have successfully changed your password.', '', '')
         }catch(err){
-            updatePasswordApiErrors(err);
+            updateUserApplyErrors(err);
             console.error(`Failed to the change password:`, err);
         }
     };

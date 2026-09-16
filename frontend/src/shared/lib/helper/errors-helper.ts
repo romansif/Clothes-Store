@@ -1,14 +1,19 @@
-import { z } from "zod";
 import { watch } from "vue";
 import type { Ref } from "vue";
+import { type ZodError } from "zod";
+import {ApiError} from "@/shared/api/http.ts";
 
-export const applyErrors = <T extends z.ZodRawShape>(
-    schema: z.ZodObject<T>,
-    errors: Record<string, string>,
-    formErrors: Record<string, boolean>,
-    formErrorMessages: Record<string, string>
+export const applyErrors = (
+    err: unknown,
+    formErrors: Ref<Record<string, boolean>>,
+    formErrorMessages: Ref<Record<string, string>>
 ) => {
-    schema.keyof().options.forEach((field) => {
+    if(!(err instanceof ApiError)) return
+
+    const errors = err.response?.errors
+    if (!errors) return
+
+    Object.keys(formErrors).forEach((field) => {
         const errorEntry = Object.entries(errors).find(
             ([key]) =>
                 key === field ||
@@ -16,9 +21,24 @@ export const applyErrors = <T extends z.ZodRawShape>(
                 key.startsWith(`${field}.`)
         );
 
-        formErrors[field] = !!errorEntry;
-        formErrorMessages[field] = errorEntry?.[1] ?? '';
+        formErrors.value[field] = !!errorEntry;
+        formErrorMessages.value[field] = errorEntry?.[1] ?? '';
     });
+};
+
+export const applyZodErrors = (
+    errors: ZodError,
+    formErrors: Ref<Record<string, boolean>>,
+    formErrorMessages: Ref<Record<string, string>>
+) => {
+    errors.issues.forEach((issue) => {
+        const field = issue.path[0];
+
+        if (typeof field !== 'string') return;
+
+        formErrors.value[field] = true;
+        formErrorMessages.value[field] = issue.message;
+    })
 };
 
 export const refClearErrorsOnChange = <T extends Record<string, any>>(

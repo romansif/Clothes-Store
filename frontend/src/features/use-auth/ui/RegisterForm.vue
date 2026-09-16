@@ -66,9 +66,8 @@ import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
 import { authStore } from "@/features/use-auth/model/auth.store.ts";
 import { authClasses } from "@/shared/const/auth/auth.classes.ts";
 import { toggleAuth } from "@/features/use-auth/lib/toggle-auth.ts";
-import { refClearErrorsOnChange } from "@/shared/lib/error-helper/errors-helper.ts";
-import { registerFormErrors } from "@/features/use-auth/model/auth.errors.ts";
-import { registerForm, registerFormErrorMessages } from "@/features/use-auth/model/auth.forms.ts";
+import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
+import { registerForm, registerFormErrorMessages, registerFormErrors } from "@/features/use-auth/model/auth.forms.ts";
 import { selectedCountryCode, countries } from "@/shared/lib/select-phone-form.ts";
 
 import closed from "@/assets/icons/auth/closed.png";

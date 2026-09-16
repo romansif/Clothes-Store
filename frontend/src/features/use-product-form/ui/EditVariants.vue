@@ -2,7 +2,7 @@
   <div class="bg-white p-6.5 mt-6 flex flex-col justify-center gap-8 rounded shadow-xl">
     <div class="flex flex-col gap-3 w-full">
       <div class="flex items-center justify-between">
-        <label for="quantity" class="flex gap-1 font-semibold tracking-wider text-xs">
+        <label class="flex gap-1 font-semibold tracking-wider text-xs">
           QUANTITY · КОЛИЧЕСТВО
           <span class="text-red-500">*</span>
         </label>
@@ -24,7 +24,6 @@
                    @input="toggleAllVariants"
                    type="number"
                    placeholder="product ptc."
-                   class="w-75"
                    :error="createProductFormErrors.quantity"
                    variant="createProduct"
                    :error-message="createProductFormErrors.quantity ? createProductFormErrorMessages.quantity: ''"/>
@@ -71,12 +70,12 @@
     </div>
     <div class="flex flex-col gap-3 w-full">
       <div class="flex items-center justify-between">
-        <label for="sizes" class="flex gap-1 font-semibold tracking-wider text-xs">
+        <span class="flex gap-1 font-semibold tracking-wider text-xs">
           SIZES · РАЗМЕРЫ
           <span class="text-red-500">*</span>
           <span>/</span>
           <span class="text-black uppercase">{{ pureSizesName(product) }}</span>
-        </label>
+        </span>
         <span class="ml-auto text-[#A3A3A3] text-xs font-medium">
           Sizes: {{ uniqueSizes(product).length }} / 6
         </span>
@@ -91,7 +90,7 @@
     </div>
     <div class="flex flex-col gap-3 w-full">
       <div class="flex items-center justify-between">
-        <label for="colors" class="flex gap-1 font-semibold tracking-wider text-xs">
+        <label class="flex gap-1 font-semibold tracking-wider text-xs">
           COLORS · ЦВЕТА
           <span class="text-red-500">*</span>
           <span> / </span>
@@ -121,9 +120,10 @@ import { productStore } from "@/features/use-main-product/model/product.store.ts
 import { useUpdateProduct } from "@/features/use-product-form/api/update-product.ts";
 import { productHelper } from "@/shared/lib/product-helper.ts";
 import { productFormHelper } from "@/features/use-product-form/lib/product-form-helper.ts";
-import { createProductFormErrors, moreCreateItemFormErrors } from "@/features/use-product-form/model/product.error.ts";
 import {
-  createProductForm, createProductFormErrorMessages, moreCreateItemFormErrorMessages
+  createProductForm,
+  createProductFormErrors, moreCreateItemFormErrors,
+  createProductFormErrorMessages, moreCreateItemFormErrorMessages
 } from "@/features/use-product-form/model/product.forms.ts";
 import type {Product} from "@/features/use-product/model/product.types.ts";
 

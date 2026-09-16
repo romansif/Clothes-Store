@@ -26,7 +26,7 @@
         </form>
       </div>
     </div>
-    <div class="flex flex-col gap-10 sm:flex-row sm:items-center">
+    <div class="flex flex-col gap-10 sm:flex-row">
       <form @submit.prevent="updateEmailAccount" class="flex flex-col gap-3 w-full">
         <label>Email</label>
         <BaseInput v-model="updateUserForm.email"
@@ -63,40 +63,42 @@
       </form>
     </div>
     <div class="flex flex-col">
-      <form @submit.prevent="updatePasswordAccount" class="flex gap-10">
-        <div class="flex flex-col gap-3 w-full">
-          <label>Old password</label>
-          <div class="relative">
-            <div class="flex flex-col gap-3">
-              <BaseInput v-model="updateUserForm.oldPassword"
-                         :type="showOldPassword ? 'text' : 'password'"
-                         :error="updateUserFormErrors.oldPassword"
-                         variant="confidentialityData"
-                         placeholder="Old Password"
-                         :error-message="updateUserFormErrors.oldPassword ? updateUserFormErrorMessages.oldPassword : ''" />
+      <form @submit.prevent="updatePasswordAccount" class="flex flex-col">
+        <div class="flex gap-10">
+          <div class="flex flex-col gap-3 w-full">
+            <label>Old password</label>
+            <div class="relative">
+              <div class="flex flex-col gap-3">
+                <BaseInput v-model="updateUserForm.oldPassword"
+                           :type="showOldPassword ? 'text' : 'password'"
+                           :error="updateUserFormErrors.oldPassword"
+                           variant="confidentialityData"
+                           placeholder="Old Password"
+                           :error-message="updateUserFormErrors.oldPassword ? updateUserFormErrorMessages.oldPassword : ''" />
+              </div>
+              <img @click.prevent="toggleOldPassword" :src="showOldPassword ? opened : closed" alt=""
+                   :class="['absolute w-7.5 top-1/4 left-115', updateUserFormErrors.oldPassword ? 'top-1/6' : '']">
             </div>
-            <img @click.prevent="toggleOldPassword" :src="showOldPassword ? opened : closed" alt=""
-                 :class="['absolute w-7.5 top-1/4 left-115', updateUserFormErrors.oldPassword ? 'top-1/6' : '']">
+          </div>
+          <div class="flex flex-col gap-3 w-full">
+            <label>New password</label>
+            <div class="relative">
+              <div class="flex flex-col gap-3">
+                <BaseInput v-model="updateUserForm.newPassword"
+                           :type="showNewPassword ? 'text' : 'password'"
+                           :error="updateUserFormErrors.newPassword"
+                           variant="confidentialityData" placeholder="New Password"
+                           :error-message="updateUserFormErrors.newPassword ? updateUserFormErrorMessages.newPassword : ''"/>
+              </div>
+              <img @click.prevent="toggleNewPassword" :src="showNewPassword ? opened : closed" alt=""
+                  :class="['absolute w-7.5 top-1/4 left-115', updateUserFormErrors.newPassword ? 'top-1/6' : '']">
+            </div>
           </div>
         </div>
-        <div class="flex flex-col gap-3 w-full">
-          <label>New password</label>
-          <div class="relative">
-            <div class="flex flex-col gap-3">
-              <BaseInput v-model="updateUserForm.newPassword"
-                         :type="showNewPassword ? 'text' : 'password'"
-                         :error="updateUserFormErrors.newPassword"
-                         variant="confidentialityData" placeholder="New Password"
-                         :error-message="updateUserFormErrors.newPassword ? updateUserFormErrorMessages.newPassword : ''"/>
-            </div>
-            <img @click.prevent="toggleNewPassword" :src="showNewPassword ? opened : closed" alt=""
-                :class="['absolute w-7.5 top-1/4 left-115', updateUserFormErrors.newPassword ? 'top-1/6' : '']">
-          </div>
+        <div class="flex mt-3">
+          <BaseButton type="submit" name="Save Password" variant="profileForm" />
         </div>
       </form>
-      <div class="flex mt-3">
-        <BaseButton type="submit" name="Save Password" variant="profileForm" />
-      </div>
     </div>
   </div>
 </template>
@@ -106,10 +108,11 @@ import { IMaskComponent as IMask } from "vue-imask";
 import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
 import { profileApi } from "@/features/use-profile-form/api/profile.api.ts";
 import { profileClasses } from "@/shared/const/user/profile.classes.ts";
-import { refClearErrorsOnChange } from "@/shared/lib/error-helper/errors-helper.ts";
+import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
 import { useTogglePassword } from "@/features/use-profile-form/lib/toggle-password.ts";
-import { updateUserForm, updateUserFormErrorMessages } from "@/features/use-profile-form/model/user.update.form.ts";
-import { updateUserFormErrors } from "@/features/use-profile-form/model/user.update.error.ts";
+import {
+  updateUserForm, updateUserFormErrorMessages, updateUserFormErrors
+} from "@/features/use-profile-form/model/user.update.form.ts";
 import { selectedCountryCode, countries } from "@/shared/lib/select-phone-form.ts";
 
 import BaseButton  from "@/shared/ui/BaseButton.vue";

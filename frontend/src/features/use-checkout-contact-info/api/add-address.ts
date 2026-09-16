@@ -4,10 +4,11 @@ import { clearInformationForm } from "@/features/use-checkout-contact-info/lib/c
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useGetAddress } from "@/features/use-user-address/api/get-address.ts";
 import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle-contact-info.ts";
-import { createInformationApiErrors } from "@/shared/lib/api-errors/create-info-errors.ts";
-import {createInfoValidationErrors} from "@/shared/lib/validation-errors/validation-create-info.ts";
+import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.ts";
 import { type UserContactInfo } from "@/features/use-checkout-contact-info/model/address.types.ts";
-import { informationForm } from "@/features/use-checkout-contact-info/model/address.form.ts";
+import {
+    informationForm, informationFormErrorMessages, informationFormErrors
+} from "@/features/use-checkout-contact-info/model/address.form.ts";
 import { addContactInfoSchema } from "@/features/use-checkout-contact-info/model/address.schemas.ts";
 
 const { userData } = userStore();
@@ -81,7 +82,11 @@ export const useAddAddress = () => {
     const addInformation = async () => {
         const result = addContactInfoSchema.safeParse(informationForm.value);
         if(!result.success){
-            createInfoValidationErrors(result.error);
+            applyZodErrors(
+                result.error,
+                informationFormErrors,
+                informationFormErrorMessages
+            );
             return
         }
 
@@ -115,7 +120,11 @@ export const useAddAddress = () => {
                 'You will now be redirected to the shipping method selection page.', 'shipping')
             clearInformationForm();
         }catch(err){
-            createInformationApiErrors(err);
+            applyErrors(
+                err,
+                informationFormErrors,
+                informationFormErrorMessages
+            );
             console.error(`Failed to create the new address:`, err);
         }
     };

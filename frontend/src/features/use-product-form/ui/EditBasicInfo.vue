@@ -1,14 +1,14 @@
 <template>
   <div @keydown.enter="" class="bg-white p-6.5 mt-6 flex flex-col justify-center gap-8 rounded shadow-xl">
     <div class="flex flex-col gap-1">
-      <label for="" class="text-2xl font-semibold tracking-wider">
+      <h2 class="text-2xl font-semibold tracking-wider">
         Basic information
-      </label>
+      </h2>
       <span class="text-sm text-[#A3A3A3] font-medium">Product name, collection, and category</span>
     </div>
     <div class="flex gap-6 mt-3 border-b-2 pb-4">
       <div class="flex flex-col gap-3 w-full">
-        <label for="title" class="flex gap-1 font-semibold tracking-wider text-xs">
+        <label class="flex gap-1 font-semibold tracking-wider text-xs">
           TITLE · НАЗВАНИЕ
           <span class="text-red-500">*</span>
           <span>/</span>
@@ -24,7 +24,7 @@
     </div>
     <div class="flex gap-6">
       <div class="flex flex-col gap-3 w-full">
-        <label for="collection" class="flex gap-1 font-semibold tracking-wider text-xs">
+        <label class="flex gap-1 font-semibold tracking-wider text-xs">
           COLLECTION · КОЛЛЕКЦИЯ
           <span class="text-red-500">*</span>
           <span>/</span>
@@ -50,7 +50,7 @@
         </span>
       </div>
       <div class="flex flex-col gap-3 w-full">
-        <label for="category" class="flex gap-1 font-semibold tracking-wider text-xs">
+        <label class="flex gap-1 font-semibold tracking-wider text-xs">
           CATEGORY · КАТЕГОРИЯ
           <span class="text-red-500">*</span>
           <span>/</span>
@@ -70,7 +70,7 @@
     </div>
     <div class="flex gap-6 w-full">
       <div class="flex flex-col gap-3 w-full">
-        <label for="material" class="flex gap-1 font-semibold tracking-wider text-xs">
+        <label class="flex gap-1 font-semibold tracking-wider text-xs">
           MATERIAL · МАТЕРИАЛ
           <span class="text-red-500">*</span>
           <span>/</span>
@@ -88,7 +88,7 @@
         </span>
       </div>
       <div class="flex flex-col gap-3 w-full">
-        <label for="gender" class="flex gap-1 font-semibold tracking-wider text-xs">
+        <label class="flex gap-1 font-semibold tracking-wider text-xs">
           GENDER · ПОЛ
           <span class="text-red-500">*</span>
           <span>/</span>
@@ -110,7 +110,7 @@
     </div>
     <div class="flex gap-6 w-full">
       <div class="flex flex-col gap-3 w-full">
-        <label for="sku" class="flex gap-1 font-semibold tracking-wider text-xs">
+        <label class="flex gap-1 font-semibold tracking-wider text-xs">
           SKU · АРТИКУЛ
           <span class="text-red-500">*</span>
           <span>/</span>
@@ -125,7 +125,7 @@
         </span>
       </div>
       <div class="flex flex-col gap-3 w-full">
-        <label for="price" class="flex gap-1 font-semibold tracking-wider text-xs">
+        <label class="flex gap-1 font-semibold tracking-wider text-xs">
           PRICE · ЦЕНА
           <span class="text-red-500">*</span>
           <span>/</span>
@@ -140,7 +140,7 @@
       </div>
     </div>
     <div class="flex flex-col gap-3">
-      <label for="description" class="flex gap-1 font-semibold tracking-wider text-xs">
+      <label class="flex gap-1 font-semibold tracking-wider text-xs">
         DESC. · ОПИСАНИЕ
         <span class="text-red-500">*</span>
         <span>/</span>
@@ -156,10 +156,11 @@
 import { IMaskComponent as IMask } from "vue-imask";
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import { baseSelectClass, skuClass } from "@/shared/const/product-form/form.classes.ts";
-import { refClearErrorsOnChange } from "@/shared/lib/error-helper/errors-helper.ts";
+import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
 import type {Product} from "@/features/use-product/model/product.types.ts";
-import { createProductForm, createProductFormErrorMessages } from "@/features/use-product-form/model/product.forms.ts";
-import { createProductFormErrors } from "@/features/use-product-form/model/product.error.ts";
+import {
+  createProductForm, createProductFormErrorMessages, createProductFormErrors
+} from "@/features/use-product-form/model/product.forms.ts";
 
 import BaseInput from "@/shared/ui/BaseInput.vue";
 import DescriptionForm from "@/shared/ui/product-form/DescriptionForm.vue";

@@ -1,5 +1,9 @@
 import { ref } from "vue";
-import type {UserForm, UserFormErrorMessages } from "@/features/use-profile-form/model/user.update.types.form.ts";
+import type {
+    UserForm,
+    UserFormErrorMessages,
+    UserFormErrors
+} from "@/features/use-profile-form/model/user.update.types.form.ts";
 
 export const updateUserForm = ref<UserForm>({
     name: '',
@@ -8,7 +12,7 @@ export const updateUserForm = ref<UserForm>({
     email: '',
     oldPassword: '',
     newPassword: '',
-})
+});
 
 export const updateUserFormErrorMessages = ref<UserFormErrorMessages>({
     name: '',
@@ -17,4 +21,13 @@ export const updateUserFormErrorMessages = ref<UserFormErrorMessages>({
     email: '',
     oldPassword: '',
     newPassword: '',
+});
+
+export const updateUserFormErrors = ref<UserFormErrors>({
+    name: false,
+    surName: false,
+    phone: false,
+    email: false,
+    oldPassword: false,
+    newPassword: false,
 })

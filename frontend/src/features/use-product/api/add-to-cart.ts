@@ -5,9 +5,10 @@ import { cartStore } from "@/features/use-cart/model/cart.store.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
-import { addToCartApiErrors } from "@/shared/lib/api-errors/add-to-cart-errors.ts";
-import { addToCartValidationErrors } from "@/shared/lib/validation-errors/validation-add-to-cart.ts";
-import { addToCartForm } from "@/features/use-product/model/add.to.cart.form.ts";
+import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.ts";
+import {
+    addToCartForm, addToCartFormErrorMessages, addToCartFormErrors
+} from "@/features/use-product/model/add.to.cart.form.ts";
 import { addToCartSchema } from "@/features/use-product/model/add.to.cart.schemas.ts";
 
 const { userData } = userStore();
@@ -21,7 +22,11 @@ export const useAddToCart = () => {
     const addToCart = async () => {
         const result = addToCartSchema.safeParse(addToCartForm.value)
         if(!result.success){
-            addToCartValidationErrors(result.error);
+            applyZodErrors(
+                result.error,
+                addToCartFormErrors,
+                addToCartFormErrorMessages
+            );
             return
         }
 
@@ -65,7 +70,11 @@ export const useAddToCart = () => {
             await openNotify('You have successfully added the item to your cart.',
                 'You will now be redirected to the "Cart" page.', 'cart');
         }catch(err){
-            addToCartApiErrors(err);
+            applyErrors(
+                err,
+                addToCartFormErrors,
+                addToCartFormErrorMessages
+            );
             console.error(`Failed to add the cart:`, err);
         }
     };

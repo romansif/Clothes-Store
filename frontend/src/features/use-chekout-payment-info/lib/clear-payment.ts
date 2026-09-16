@@ -1,5 +1,6 @@
-import { paymentForm, paymentFormErrorMessage } from "@/features/use-chekout-payment-info/model/payment.form.ts";
-import { paymentFormErrors } from "@/features/use-chekout-payment-info/model/payment.errors.ts";
+import {
+    paymentForm, paymentFormErrorMessage, paymentFormErrors
+} from "@/features/use-chekout-payment-info/model/payment.form.ts";
 
 export const clearPaymentForm = () => {
     paymentForm.value.cardName = '';

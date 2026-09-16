@@ -43,8 +43,7 @@
 
 <script setup lang="ts">
 import { IMaskComponent as IMask } from "vue-imask";
-import { informationForm } from "@/features/use-checkout-contact-info/model/address.form.ts";
-import { informationFormErrors } from "@/features/use-checkout-contact-info/model/address.errors.ts";
+import { informationForm, informationFormErrors } from "@/features/use-checkout-contact-info/model/address.form.ts";
 import { useInformationFormInput } from "@/features/use-checkout-contact-info/lib/address-input.ts";
 import { informationContactStore } from "@/features/use-user-address/model/address.store.ts";
 import { informationClasses } from "@/shared/const/checkout/information.classes.ts";

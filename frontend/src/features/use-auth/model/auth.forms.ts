@@ -1,5 +1,11 @@
 import { ref } from 'vue'
-import type { LoginForm, RegisterForm, LoginFormErrorMessage, RegisterFormErrorMessage} from "@/features/use-auth/model/auth.types.form.ts";
+import type {
+    LoginForm,
+    RegisterForm,
+    LoginFormErrorMessage,
+    RegisterFormErrorMessage,
+    RegisterFormErrors, LoginFormErrors
+} from "@/features/use-auth/model/auth.types.form.ts";
 
 export const registerForm = ref<RegisterForm>({
     name: '',
@@ -31,25 +37,17 @@ export const loginFormErrorMessages = ref<LoginFormErrorMessage>({
     role: '',
 });
 
-const CODE_LENGTH = 6;
-const codeDigits = ref<string[]>(Array(CODE_LENGTH).fill(''));
-const inputRefs = ref<HTMLInputElement[]>([]);
+export const registerFormErrors = ref<RegisterFormErrors>({
+    name: false,
+    surName: false,
+    phone: false,
+    email: false,
+    password: false
+});
 
-const isSendCode = ref<boolean>(false);
-const isNewCode = ref<boolean>(false);
-
-const timeLeft = ref<number>(59);
-const timerInterval = ref<number>(0);
-
-export const authForms = () => {
-    return{
-        CODE_LENGTH,
-        codeDigits,
-        inputRefs,
-
-        isSendCode,
-        isNewCode,
-        timeLeft,
-        timerInterval
-    }
-}
+export const loginFormErrors = ref<LoginFormErrors>({
+    email: false,
+    password: false,
+    phone: false,
+    role: false,
+});

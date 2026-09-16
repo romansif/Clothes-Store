@@ -1,5 +1,6 @@
-import { updateUserForm, updateUserFormErrorMessages } from "@/features/use-profile-form/model/user.update.form";
-import { updateUserFormErrors } from "@/features/use-profile-form/model/user.update.error.ts";
+import {
+    updateUserForm, updateUserFormErrorMessages, updateUserFormErrors
+} from "@/features/use-profile-form/model/user.update.form";
 
 export const clearUsersForms = () => {
     const clearUpdateUserFormName = () => {

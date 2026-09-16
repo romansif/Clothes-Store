@@ -1,8 +1,8 @@
 import {
     loginForm, registerForm,
+    loginFormErrors, registerFormErrors,
     loginFormErrorMessages, registerFormErrorMessages
 } from "@/features/use-auth/model/auth.forms.ts";
-import { loginFormErrors, registerFormErrors } from "@/features/use-auth/model/auth.errors.ts";
 
 export const clearAuthForms = () => {
     const clearRegisterForm = () => {

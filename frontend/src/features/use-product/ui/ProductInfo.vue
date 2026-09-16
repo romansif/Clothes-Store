@@ -99,11 +99,12 @@ import { useFavorite } from "@/features/use-favorite/lib/use-favorite.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
 import { addToCartClasses } from "@/shared/const/product/add.to.cart.classes.ts";
-import { refClearErrorsOnChange } from "@/shared/lib/error-helper/errors-helper.ts";
+import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
 import { productHelper } from "@/shared/lib/product-helper.ts";
 import { type Product } from "@/features/use-product/model/product.types.ts";
-import { addToCartFormErrors } from "@/features/use-product/model/add.to.cart.errors.ts";
-import { addToCartForm, addToCartFormErrorMessages} from "@/features/use-product/model/add.to.cart.form.ts";
+import {
+  addToCartForm, addToCartFormErrorMessages, addToCartFormErrors
+} from "@/features/use-product/model/add.to.cart.form.ts";
 
 import plus from '@/assets/icons/products/plus.svg';
 import minus from '@/assets/icons/products/minus.svg';

@@ -41,11 +41,11 @@
 <script setup lang="ts">
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { useDeleteOrder } from "@/features/use-order/api/delete-order.ts";
+import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
 import { cancelChoiceForm, cancelChoiceError, cancelChoiceMessage } from "@/features/use-order/model/order.store.ts";
 
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import ReplacementInput from "@/features/use-order/ui/ReplacementInput.vue";
-import {refClearErrorsOnChange} from "@/shared/lib/error-helper/errors-helper.ts";
 
 const { replaceOrder } = useDeleteOrder();
 const { toggleOrder } = useBaseModals();

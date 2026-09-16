@@ -2,7 +2,7 @@
   <div class="bg-white p-6.5 mt-6 flex flex-col justify-center gap-8 rounded shadow-xl">
     <div class="flex flex-col gap-3 w-full">
       <div class="flex items-center justify-between">
-        <label for="quantity" class="flex gap-1 font-semibold tracking-wider text-xs">
+        <label class="flex gap-1 font-semibold tracking-wider text-xs">
           QUANTITY · КОЛИЧЕСТВО
           <span class="text-red-500">*</span>
         </label>
@@ -84,10 +84,10 @@
     </div>
     <div class="flex flex-col gap-3 w-full">
       <div class="flex items-center justify-between">
-        <label for="sizes" class="flex gap-1 font-semibold tracking-wider text-xs">
+        <span class="flex gap-1 font-semibold tracking-wider text-xs">
           SIZES · РАЗМЕРЫ
           <span class="text-red-500">*</span>
-        </label>
+        </span>
         <span class="ml-auto text-[#A3A3A3] text-xs font-medium">
           Sizes: {{ moreCreateItemForm.sizes.length }} / 6
         </span>
@@ -104,7 +104,7 @@
     </div>
     <div class="flex flex-col gap-3 w-full">
       <div class="flex items-center justify-between">
-        <label for="colors" class="flex gap-1 font-semibold tracking-wider text-xs">
+        <label class="flex gap-1 font-semibold tracking-wider text-xs">
           COLORS · ЦВЕТА
           <span class="text-red-500">*</span>
         </label>
@@ -134,10 +134,10 @@
 <script setup lang="ts">
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import { productFormHelper } from "@/features/use-product-form/lib/product-form-helper.ts";
-import { reactiveClearErrorsOnChange } from "@/shared/lib/error-helper/errors-helper.ts";
-import { createProductFormErrors, moreCreateItemFormErrors } from "@/features/use-product-form/model/product.error.ts";
+import { reactiveClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
 import {
   createProductForm, moreCreateItemForm,
+  createProductFormErrors, moreCreateItemFormErrors,
   createProductFormErrorMessages, moreCreateItemFormErrorMessages
 } from "@/features/use-product-form/model/product.forms.ts";
 

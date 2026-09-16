@@ -7,7 +7,7 @@ import { useGetProducts } from "@/features/use-main-product/api/get-product.ts"
 import { useDeleteCart } from "@/features/use-cart/api/delete-cart.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
-import { isAgreeFormError } from "@/features/use-product/model/add.to.cart.errors.ts";
+import { isAgreeFormError } from "@/features/use-product/model/add.to.cart.form.ts";
 
 const { cart } = cartStore();
 const { userData } = userStore();

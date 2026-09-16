@@ -3,13 +3,13 @@ import { handler } from "@/shared/api/http.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { clearAuthForms } from "@/features/use-auth/lib/clear-auth.ts";
-import { loginApiErrors, registerApiErrors } from "@/shared/lib/api-errors/auth-errors.ts";
-import { loginForm, registerForm } from "@/features/use-auth/model/auth.forms.ts";
-import { loginSchema, registerSchema } from "@/features/use-auth/model/auth.schemas.ts";
+import { applyZodErrors, applyErrors } from "@/shared/lib/error-helper/errors-helper.ts";
 import {
-    loginValidationErrors,
-    registerValidationErrors
-} from "@/shared/lib/validation-errors/validation-auth.ts";
+    loginForm, registerForm,
+    loginFormErrorMessages, registerFormErrorMessages
+} from "@/features/use-auth/model/auth.forms.ts";
+import { loginSchema, registerSchema } from "@/features/use-auth/model/auth.schemas.ts";
+import { loginFormErrors, registerFormErrors} from "@/features/use-auth/model/auth.errors.ts";
 
 const { users, user } = userStore();
 const { loading, openNotify } = useBaseModals();
@@ -22,7 +22,11 @@ export const useAuth = () => {
 
         const result = registerSchema.safeParse(registerForm.value)
         if(!result.success){
-            registerValidationErrors(result.error);
+            applyZodErrors(
+                result.error,
+                registerFormErrors,
+                registerFormErrorMessages
+            )
             return
         }
 
@@ -60,7 +64,11 @@ export const useAuth = () => {
             await openNotify('You have successfully sign up.',
                 'You will now be taken to your profile page.', 'profile');
         }catch(err){
-            registerApiErrors(err)
+            applyErrors(
+                err,
+                registerFormErrors,
+                registerFormErrorMessages
+            )
             console.log(`Failed to register new user:`, err);
         }finally {
             loading.value = false;
@@ -72,7 +80,11 @@ export const useAuth = () => {
 
         const result = loginSchema.safeParse(loginForm.value)
         if(!result.success){
-            loginValidationErrors(result.error);
+            applyZodErrors(
+                result.error,
+                loginFormErrors,
+                loginFormErrorMessages
+            )
             return
         }
 
@@ -100,7 +112,11 @@ export const useAuth = () => {
 
             clearLoginForm()
         }catch(err){
-            loginApiErrors(err)
+            applyErrors(
+                err,
+                loginFormErrors,
+                loginFormErrorMessages
+            )
             console.log(`Failed to login:`, err);
         }finally {
             loading.value = false;

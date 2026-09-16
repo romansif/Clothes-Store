@@ -6,10 +6,11 @@ import { clearPaymentForm } from "@/features/use-chekout-payment-info/lib/clear-
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
 import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment.ts";
-import { createPaymentCardApiErrors, createPaymentMethoApiError } from "@/shared/lib/api-errors/create-payment-methods-errors.ts";
-import { createPaymentValidationErrors } from "@/shared/lib/validation-errors/validation-create-payment-methods.ts";
+import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.ts";
 import type { UserPayment } from "@/features/use-chekout-payment-info/model/payment.type.ts";
-import { paymentForm } from "@/features/use-chekout-payment-info/model/payment.form.ts";
+import {
+    paymentForm, paymentFormErrorMessage, paymentFormErrors
+} from "@/features/use-chekout-payment-info/model/payment.form.ts";
 import { addPaymentSchema } from "@/features/use-chekout-payment-info/model/payment.schemas.ts";
 
 const { userData } = userStore();
@@ -61,7 +62,11 @@ export const useAddPayment = () => {
 
         const result = addPaymentSchema.safeParse(paymentForm.value)
         if(!result.success){
-            createPaymentValidationErrors(result.error);
+            applyZodErrors(
+                result.error,
+                paymentFormErrors,
+                paymentFormErrorMessage
+            );
             return
         }
 
@@ -96,11 +101,11 @@ export const useAddPayment = () => {
                 'You will now be redirected to the profile page.', 'profile')
             clearPaymentForm();
         }catch(err){
-            if (paymentMethod.value === 'card'){
-                createPaymentCardApiErrors(err);
-            }else{
-                createPaymentMethoApiError(err);
-            }
+            applyErrors(
+                err,
+                paymentFormErrors,
+                paymentFormErrorMessage
+            );
             console.error(`Failed to register new payment:`, err);
         }
     };

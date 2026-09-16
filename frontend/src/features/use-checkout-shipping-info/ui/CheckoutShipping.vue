@@ -27,11 +27,11 @@
 </template>
 
 <script setup lang="ts">
-
-import { refClearErrorsOnChange } from "@/shared/lib/error-helper/errors-helper.ts";
+import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
 import { useAddShipping } from "@/features/use-checkout-shipping-info/api/add-shipping.ts";
-import { shippingFormError } from "@/features/use-checkout-shipping-info/model/shipping.errors.ts";
-import { shippingForm, shippingFormErrorMessage } from "@/features/use-checkout-shipping-info/model/shipping.form.ts";
+import {
+  shippingForm, shippingFormErrorMessage, shippingFormError
+} from "@/features/use-checkout-shipping-info/model/shipping.form.ts";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";

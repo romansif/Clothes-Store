@@ -4,9 +4,10 @@ import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { clearShippingForm } from "@/features/use-checkout-shipping-info/lib/clear-shipping.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useGetShipping } from "@/features/use-checkout-shipping-info/api/get-shipping.ts";
-import { createSippingApiErrors } from "@/shared/lib/api-errors/create-shipping-errors.ts";
-import { createShippingValidationErrors } from "@/shared/lib/validation-errors/validation-create-shipping.ts";
-import { shippingForm } from "@/features/use-checkout-shipping-info/model/shipping.form.ts";
+import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.ts";
+import {
+    shippingForm, shippingFormErrorMessage, shippingFormError
+} from "@/features/use-checkout-shipping-info/model/shipping.form.ts";
 import { addShippingSchema } from "@/features/use-checkout-shipping-info/model/shipping.schemas.ts";
 
 const { userData } = userStore();
@@ -17,7 +18,11 @@ export const useAddShipping = () => {
     const addShipping = async () => {
         const result = addShippingSchema.safeParse(shippingForm.value)
         if(!result.success){
-            createShippingValidationErrors(result.error);
+            applyZodErrors(
+                result.error,
+                shippingFormError,
+                shippingFormErrorMessage
+            );
             return
         }
 
@@ -42,7 +47,11 @@ export const useAddShipping = () => {
                 'You will now be redirected to the payment method selection page.', 'payment')
             clearShippingForm();
         }catch(err){
-            createSippingApiErrors(err)
+            applyErrors(
+                err,
+                shippingFormError,
+                shippingFormErrorMessage
+            )
             console.error(`Failed to register new sipping:`, err);
         }
     };
