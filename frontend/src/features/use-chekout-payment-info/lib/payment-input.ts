@@ -1,39 +1,38 @@
-import {computed} from "vue";
-import { paymentFormErrorMessage } from "@/features/use-chekout-payment-info/model/payment.form.ts";
-import { paymentFormErrors } from "@/features/use-chekout-payment-info/model/payment.errors.ts";
+import { computed } from "vue";
 import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
+import { paymentFormErrorMessage } from "@/features/use-chekout-payment-info/model/payment.form.ts";
 
 const { userPayment } = paymentStore();
 
 export const usePaymentFormInput = () => {
     const cardNumberPlaceholder = computed(() => {
-        if(paymentFormErrors.value.cardNumberError){
-            return paymentFormErrorMessage.value.cardNumberMessage;
+        if(paymentFormErrorMessage.value.cardNumber){
+            return paymentFormErrorMessage.value.cardNumber;
         }
         if(userPayment.value.cardNumber){
             return userPayment.value.cardNumber;
         }
-        return paymentFormErrorMessage.value.cardNumberMessage = 'XXXX-XXXX-XXXX-XXXX';
+        return paymentFormErrorMessage.value.cardNumber = 'XXXX-XXXX-XXXX-XXXX';
     });
 
     const expiryDatePlaceholder = computed(() => {
-        if(paymentFormErrors.value.expiryDateError){
-            return paymentFormErrorMessage.value.expiryDateMessage;
+        if(paymentFormErrorMessage.value.expiryDate){
+            return paymentFormErrorMessage.value.expiryDate;
         }
         if(userPayment.value.expiryDate){
             return userPayment.value.expiryDate;
         }
-        return paymentFormErrorMessage.value.expiryDateMessage = 'MM / YY';
+        return paymentFormErrorMessage.value.expiryDate = 'MM / YY';
     });
 
     const cardCvvPlaceholder = computed(() => {
-        if(paymentFormErrors.value.cardCvvError){
-            return paymentFormErrorMessage.value.cardCvvMessage;
+        if(paymentFormErrorMessage.value.cardCvv){
+            return paymentFormErrorMessage.value.cardCvv;
         }
         if(userPayment.value.cardCvv){
             return String(userPayment.value.cardCvv);
         }
-        return paymentFormErrorMessage.value.cardCvvMessage = '•••';
+        return paymentFormErrorMessage.value.cardCvv = '•••';
     });
 
     return {

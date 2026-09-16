@@ -1,6 +1,5 @@
 import {
     createProductForm, moreCreateItemForm,
-    createProductFormErrors, moreCreateItemFormErrors,
     createProductFormErrorMessages, moreCreateItemFormErrorMessages
 } from "@/features/use-product-form/model/product.forms.ts";
 
@@ -33,16 +32,5 @@ export const clearProductForm = () => {
     moreCreateItemFormErrorMessages.value.sizes = '';
     moreCreateItemFormErrorMessages.value.variants = '';
 
-    createProductFormErrors.value.title = false;
-    createProductFormErrors.value.collections = false;
-    createProductFormErrors.value.category = false;
-    createProductFormErrors.value.material = false;
-    createProductFormErrors.value.gender = false;
-    createProductFormErrors.value.sku = false;
-    createProductFormErrors.value.price = false;
-    createProductFormErrors.value.description = false;
 
-    moreCreateItemFormErrors.value.colors = false;
-    moreCreateItemFormErrors.value.sizes = false;
-    moreCreateItemFormErrors.value.variants = false;
 };

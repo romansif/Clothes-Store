@@ -6,9 +6,7 @@ import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.ts";
-import {
-    addToCartForm, addToCartFormErrorMessages, addToCartFormErrors
-} from "@/features/use-product/model/add.to.cart.form.ts";
+import { addToCartForm, addToCartFormErrorMessages } from "@/features/use-product/model/add.to.cart.form.ts";
 import { addToCartSchema } from "@/features/use-product/model/add.to.cart.schemas.ts";
 
 const { userData } = userStore();
@@ -24,7 +22,6 @@ export const useAddToCart = () => {
         if(!result.success){
             applyZodErrors(
                 result.error,
-                addToCartFormErrors,
                 addToCartFormErrorMessages
             );
             return
@@ -72,7 +69,6 @@ export const useAddToCart = () => {
         }catch(err){
             applyErrors(
                 err,
-                addToCartFormErrors,
                 addToCartFormErrorMessages
             );
             console.error(`Failed to add the cart:`, err);

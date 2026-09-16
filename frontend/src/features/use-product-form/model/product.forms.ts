@@ -3,7 +3,7 @@ import type {
     ProductForm,
     ProductColor,
     ProductFormErrorMessage,
-    MoreCreateItemFormErrorMessage, ProductFormError, MoreCreateItemFormError
+    MoreCreateItemFormErrorMessage,
 } from "@/features/use-product-form/model/product.types.form.ts";
 import type { Variant } from "@/features/use-product/model/product.types.ts";
 
@@ -47,20 +47,3 @@ export const moreCreateItemFormErrorMessages = ref<MoreCreateItemFormErrorMessag
     variants: ''
 });
 
-export const createProductFormErrors = ref<ProductFormError>({
-    title: false,
-    collections: false,
-    category: false,
-    material: false,
-    gender: false,
-    sku: false,
-    price: false,
-    description: false,
-    quantity: false,
-})
-
-export const moreCreateItemFormErrors = ref<MoreCreateItemFormError>({
-    colors: false,
-    sizes: false,
-    variants: false
-})

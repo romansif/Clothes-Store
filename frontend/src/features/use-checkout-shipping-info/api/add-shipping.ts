@@ -5,9 +5,7 @@ import { clearShippingForm } from "@/features/use-checkout-shipping-info/lib/cle
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useGetShipping } from "@/features/use-checkout-shipping-info/api/get-shipping.ts";
 import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.ts";
-import {
-    shippingForm, shippingFormErrorMessage, shippingFormError
-} from "@/features/use-checkout-shipping-info/model/shipping.form.ts";
+import { shippingForm, shippingFormErrorMessage } from "@/features/use-checkout-shipping-info/model/shipping.form.ts";
 import { addShippingSchema } from "@/features/use-checkout-shipping-info/model/shipping.schemas.ts";
 
 const { userData } = userStore();
@@ -20,7 +18,6 @@ export const useAddShipping = () => {
         if(!result.success){
             applyZodErrors(
                 result.error,
-                shippingFormError,
                 shippingFormErrorMessage
             );
             return
@@ -49,7 +46,6 @@ export const useAddShipping = () => {
         }catch(err){
             applyErrors(
                 err,
-                shippingFormError,
                 shippingFormErrorMessage
             )
             console.error(`Failed to register new sipping:`, err);

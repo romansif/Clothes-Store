@@ -5,15 +5,13 @@
         <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">NAME</label>
         <BaseInput v-model=registerForm.name
                    placeholder="name"
-                   :error="registerFormErrors.name"
-                   :error-message="registerFormErrors.name ? registerFormErrorMessages.name : ''" />
+                   :error-message="registerFormErrorMessages.name ? registerFormErrorMessages.name : ''" />
       </div>
       <div class="flex flex-col gap-3 w-full">
         <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">SURNAME</label>
         <BaseInput v-model=registerForm.surName
                    placeholder="surname"
-                   :error="registerFormErrors.surName"
-                   :error-message="registerFormErrors.surName ? registerFormErrorMessages.surName : ''" />
+                   :error-message="registerFormErrorMessages.surName ? registerFormErrorMessages.surName : ''" />
       </div>
     </div>
     <div class="flex flex-col gap-3">
@@ -32,7 +30,7 @@
                :class="signUpPhoneClass"
                :placeholder="currentCountry?.placeholder" />
       </div>
-      <span v-if=registerFormErrors.phone class="text-red-600 text-xs">
+      <span v-if=registerFormErrorMessages.phone class="text-red-600 text-xs">
         {{ registerFormErrorMessages.phone }}
       </span>
     </div>
@@ -42,8 +40,7 @@
         <BaseInput v-model=registerForm.email
                    type="email"
                    placeholder="example@mail.com"
-                   :error="registerFormErrors.email"
-                   :error-message="registerFormErrors.email ? registerFormErrorMessages.email : ''" />
+                   :error-message="registerFormErrorMessages.email ? registerFormErrorMessages.email : ''" />
       </div>
       <div class="flex flex-col gap-3 w-full">
         <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">PASSWORD</label>
@@ -51,8 +48,7 @@
           <BaseInput v-model=registerForm.password
                      :type="showPassword.password ? 'text' : 'password'"
                      placeholder="••••••••"
-                     :error="registerFormErrors.password"
-                     :error-message="registerFormErrors.password ? registerFormErrorMessages.password : ''" />
+                     :error-message="registerFormErrorMessages.password ? registerFormErrorMessages.password : ''" />
           <img @click=togglePassword :src="showPassword.password ? opened : closed" alt="" :class="signUpPasswordClass">
         </div>
       </div>
@@ -67,7 +63,7 @@ import { authStore } from "@/features/use-auth/model/auth.store.ts";
 import { authClasses } from "@/shared/const/auth/auth.classes.ts";
 import { toggleAuth } from "@/features/use-auth/lib/toggle-auth.ts";
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
-import { registerForm, registerFormErrorMessages, registerFormErrors } from "@/features/use-auth/model/auth.forms.ts";
+import { registerForm, registerFormErrorMessages } from "@/features/use-auth/model/auth.forms.ts";
 import { selectedCountryCode, countries } from "@/shared/lib/select-phone-form.ts";
 
 import closed from "@/assets/icons/auth/closed.png";
@@ -81,7 +77,6 @@ const { selectPhoneCodeClass, signUpPhoneClass, signUpPasswordClass } = authClas
 
 refClearErrorsOnChange(
     registerForm,
-    registerFormErrors,
     registerFormErrorMessages
 )
 </script>

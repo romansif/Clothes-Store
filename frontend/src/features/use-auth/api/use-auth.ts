@@ -3,13 +3,12 @@ import { handler } from "@/shared/api/http.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { clearAuthForms } from "@/features/use-auth/lib/clear-auth.ts";
-import { applyZodErrors, applyErrors } from "@/shared/lib/error-helper/errors-helper.ts";
+import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.ts";
 import {
     loginForm, registerForm,
     loginFormErrorMessages, registerFormErrorMessages
 } from "@/features/use-auth/model/auth.forms.ts";
 import { loginSchema, registerSchema } from "@/features/use-auth/model/auth.schemas.ts";
-import { loginFormErrors, registerFormErrors} from "@/features/use-auth/model/auth.errors.ts";
 
 const { users, user } = userStore();
 const { loading, openNotify } = useBaseModals();
@@ -24,7 +23,7 @@ export const useAuth = () => {
         if(!result.success){
             applyZodErrors(
                 result.error,
-                registerFormErrors,
+
                 registerFormErrorMessages
             )
             return
@@ -66,7 +65,6 @@ export const useAuth = () => {
         }catch(err){
             applyErrors(
                 err,
-                registerFormErrors,
                 registerFormErrorMessages
             )
             console.log(`Failed to register new user:`, err);
@@ -82,7 +80,7 @@ export const useAuth = () => {
         if(!result.success){
             applyZodErrors(
                 result.error,
-                loginFormErrors,
+
                 loginFormErrorMessages
             )
             return
@@ -114,7 +112,7 @@ export const useAuth = () => {
         }catch(err){
             applyErrors(
                 err,
-                loginFormErrors,
+
                 loginFormErrorMessages
             )
             console.log(`Failed to login:`, err);

@@ -24,9 +24,8 @@
                    @input="toggleAllVariants"
                    type="number"
                    placeholder="product ptc."
-                   :error="createProductFormErrors.quantity"
                    variant="createProduct"
-                   :error-message="createProductFormErrors.quantity ? createProductFormErrorMessages.quantity: ''"/>
+                   :error-message="createProductFormErrorMessages.quantity ? createProductFormErrorMessages.quantity: ''"/>
         <span class="ml-auto mt-auto text-sm text-[#A3A3A3] font-medium">
           An equal quantity will be selected for all sizes and colors
         </span>
@@ -84,7 +83,7 @@
         <img v-for="size in isAvailableSizes(product)" :key="size?.name" :src="size.url" alt=""
              :class="[size.class, 'transition duration-400 scale-110 w-15 rounded-full']">
       </div>
-      <span v-if="moreCreateItemFormErrors.sizes" class="text-red-600 text-xs">
+      <span v-if="moreCreateItemFormErrorMessages.sizes" class="text-red-600 text-xs">
         {{ moreCreateItemFormErrorMessages.sizes }}
       </span>
     </div>
@@ -108,7 +107,7 @@
                  class="absolute inset-0 h-full opacity-0 cursor-pointer" />
         </label>
       </div>
-      <span v-if="moreCreateItemFormErrors.colors" class="text-red-600 text-xs">
+      <span v-if="moreCreateItemFormErrorMessages.colors" class="text-red-600 text-xs">
         {{ moreCreateItemFormErrorMessages.colors }}
       </span>
     </div>
@@ -118,11 +117,10 @@
 <script setup lang="ts">
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import { useUpdateProduct } from "@/features/use-product-form/api/update-product.ts";
-import { productHelper } from "@/shared/lib/product-helper.ts";
+import { productHelper } from "@/shared/lib/helper/product-helper.ts";
 import { productFormHelper } from "@/features/use-product-form/lib/product-form-helper.ts";
 import {
   createProductForm,
-  createProductFormErrors, moreCreateItemFormErrors,
   createProductFormErrorMessages, moreCreateItemFormErrorMessages
 } from "@/features/use-product-form/model/product.forms.ts";
 import type {Product} from "@/features/use-product/model/product.types.ts";

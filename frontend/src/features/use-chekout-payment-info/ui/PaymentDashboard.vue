@@ -35,9 +35,7 @@ import { useAddPayment } from "@/features/use-chekout-payment-info/api/add-payme
 import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment.ts";
 import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
-import {
-  paymentForm, paymentFormErrorMessage, paymentFormErrors
-} from "@/features/use-chekout-payment-info/model/payment.form.ts";
+import { paymentForm, paymentFormErrorMessage } from "@/features/use-chekout-payment-info/model/payment.form.ts";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";
@@ -50,7 +48,6 @@ const { toggleShowPayment, isSavedPayment } = togglePaymentForm();
 
 refClearErrorsOnChange(
   paymentForm,
-  paymentFormErrors,
   paymentFormErrorMessage
 )
 </script>

@@ -1,6 +1,4 @@
-import {
-    paymentForm, paymentFormErrorMessage, paymentFormErrors
-} from "@/features/use-chekout-payment-info/model/payment.form.ts";
+import { paymentForm, paymentFormErrorMessage } from "@/features/use-chekout-payment-info/model/payment.form.ts";
 
 export const clearPaymentForm = () => {
     paymentForm.value.cardName = '';
@@ -13,9 +11,4 @@ export const clearPaymentForm = () => {
     paymentFormErrorMessage.value.expiryDate = '';
     paymentFormErrorMessage.value.cardCvv = '';
     paymentFormErrorMessage.value.paymentMethod = '';
-
-    paymentFormErrors.value.cardNumber = false;
-    paymentFormErrors.value.expiryDate = false;
-    paymentFormErrors.value.cardCvv = false;
-    paymentFormErrors.value.paymentMethod = false;
 };

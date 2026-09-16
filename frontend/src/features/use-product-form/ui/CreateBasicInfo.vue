@@ -15,9 +15,8 @@
         </label>
         <BaseInput v-model="createProductForm.title"
                    placeholder="title, name etc."
-                   :error="createProductFormErrors.title"
                    variant="createProduct"
-                   :error-message="createProductFormErrors.title ? createProductFormErrorMessages.title : ''"/>
+                   :error-message="createProductFormErrorMessages.title"/>
       </div>
     </div>
     <div class="flex gap-6">
@@ -28,7 +27,7 @@
         </label>
         <div class="relative">
           <select v-model="createProductForm.collections"
-                  :class="baseSelectClass(createProductForm.collections, createProductFormErrors.collections)">
+                  :class="baseSelectClass(createProductForm.collections, createProductFormErrorMessages.collections)">
             <option v-for="collection in collections" :key="collection.name"
                     :value="{
                         season: collection.season,
@@ -45,7 +44,7 @@
             Void
           </span>
         </div>
-        <span v-if="createProductFormErrors.collections" class="text-red-600 text-xs">
+        <span v-if="createProductFormErrorMessages.collections" class="text-red-600 text-xs">
           {{ createProductFormErrorMessages.collections }}
         </span>
       </div>
@@ -55,13 +54,13 @@
           <span class="text-red-500">*</span>
         </label>
         <select v-model="createProductForm.category"
-                :class="baseSelectClass(createProductForm.category, createProductFormErrors.category)">
+                :class="baseSelectClass(createProductForm.category, createProductFormErrorMessages.category)">
           <option disabled hidden value="">
             Shirt
           </option>
           <option v-for="category in categories" class="text-black">{{ category.category }}</option>
         </select>
-        <span v-if="createProductFormErrors.category" class="text-red-600 text-xs">
+        <span v-if="createProductFormErrorMessages.category" class="text-red-600 text-xs">
           {{ createProductFormErrorMessages.category }}
         </span>
       </div>
@@ -73,13 +72,13 @@
           <span class="text-red-500">*</span>
         </label>
         <select v-model="createProductForm.material"
-                :class="baseSelectClass(createProductForm.material, createProductFormErrors.material)">
+                :class="baseSelectClass(createProductForm.material, createProductFormErrorMessages.material)">
           <option disabled hidden value="">
             Cotton
           </option>
           <option v-for="material in materials" class="text-black">{{ material.material }}</option>
         </select>
-        <span v-if="createProductFormErrors.material" class="text-red-600 text-xs">
+        <span v-if="createProductFormErrorMessages.material" class="text-red-600 text-xs">
           {{ createProductFormErrorMessages.material }}
         </span>
       </div>
@@ -90,13 +89,13 @@
         </label>
         <div class="flex flex-col gap-3">
           <select v-model="createProductForm.gender"
-                  :class="baseSelectClass(createProductForm.gender, createProductFormErrors.gender)">
+                  :class="baseSelectClass(createProductForm.gender, createProductFormErrorMessages.gender)">
             <option disabled hidden value="">
               man, woman, kids
             </option>
             <option v-for="gender in genders" class="text-black">{{ gender.gender }}</option>
           </select>
-          <span v-if="createProductFormErrors.gender" class="text-red-600 text-xs">
+          <span v-if="createProductFormErrorMessages.gender" class="text-red-600 text-xs">
             {{ createProductFormErrorMessages.gender }}
           </span>
         </div>
@@ -111,8 +110,8 @@
         <IMask v-model:value="createProductForm.sku"
                placeholder="BLC-XS-001"
                :mask="skuMask.mask"
-               :class="skuClass(createProductFormErrors.sku)" />
-        <span v-if="createProductFormErrors.sku" class="text-red-600 text-xs">
+               :class="skuClass(createProductFormErrorMessages.sku)" />
+        <span v-if="createProductFormErrorMessages.sku" class="text-red-600 text-xs">
           {{ createProductFormErrorMessages.sku }}
         </span>
       </div>
@@ -124,9 +123,8 @@
         <BaseInput v-model="createProductForm.price"
                    type="number"
                    placeholder="$00.00"
-                   :error="createProductFormErrors.price"
                    variant="createProduct"
-                   :error-message="createProductFormErrors.price ? createProductFormErrorMessages.price : ''"/>
+                   :error-message="createProductFormErrorMessages.price"/>
       </div>
     </div>
     <div class="flex flex-col gap-3">
@@ -145,9 +143,7 @@ import { IMaskComponent as IMask } from "vue-imask";
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import { baseSelectClass, skuClass } from "@/shared/const/product-form/form.classes.ts";
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
-import {
-  createProductForm, createProductFormErrorMessages, createProductFormErrors
-} from "@/features/use-product-form/model/product.forms.ts";
+import { createProductForm, createProductFormErrorMessages } from "@/features/use-product-form/model/product.forms.ts";
 
 import BaseInput from "@/shared/ui/BaseInput.vue";
 import DescriptionForm from "@/shared/ui/product-form/DescriptionForm.vue";
@@ -156,7 +152,6 @@ const { collections, categories, materials, genders, skuMask } = productStore();
 
 refClearErrorsOnChange(
   createProductForm,
-  createProductFormErrors,
   createProductFormErrorMessages
 )
 </script>

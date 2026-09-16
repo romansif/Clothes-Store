@@ -30,7 +30,7 @@ import { onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
-import { productHelper } from "@/shared/lib/product-helper.ts";
+import { productHelper } from "@/shared/lib/helper/product-helper.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 
 import ProductInfo from "@/features/use-product/ui/ProductInfo.vue";

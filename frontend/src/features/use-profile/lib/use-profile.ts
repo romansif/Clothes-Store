@@ -5,8 +5,7 @@ import { productStore } from "@/features/use-main-product/model/product.store.ts
 import { cartStore } from "@/features/use-cart/model/cart.store.ts";
 import { favoriteStore } from "@/features/use-favorite/model/favorite.store.ts";
 import { orderStore } from "@/features/use-order/model/order.store.ts";
-import { isAgreeFormErrorMessage } from "@/features/use-product/model/add.to.cart.form.ts";
-import { isAgreeFormError } from "@/features/use-product/model/add.to.cart.errors.ts";
+import { isAgreeFormErrorMessage, isAgreeFormError } from "@/features/use-product/model/add.to.cart.form.ts";
 
 const { cart } = cartStore();
 const { user } = userStore();
@@ -21,18 +20,18 @@ export const useProfile = () => {
 
     const continueToOrder = async () =>  {
         try{
-            if(!isAgreeFormError.value.agreeError && !orderItems.value?.length){
-                isAgreeFormErrorMessage.value.agreeMessage = 'You must select the items for your order, agree to the Terms and Conditions';
+            if(!isAgreeFormError.value.agree && !orderItems.value?.length){
+                isAgreeFormErrorMessage.value.agree = 'You must select the items for your order, agree to the Terms and Conditions';
                 return;
-            }else if(!isAgreeFormError.value.agreeError) {
-                isAgreeFormErrorMessage.value.agreeMessage = 'You must agree to the Terms and Conditions';
+            }else if(!isAgreeFormError.value.agree) {
+                isAgreeFormErrorMessage.value.agree = 'You must agree to the Terms and Conditions';
                 return;
             }else if(!orderItems.value?.length){
-                isAgreeFormErrorMessage.value.agreeMessage = 'You must select the items for your order';
+                isAgreeFormErrorMessage.value.agree = 'You must select the items for your order';
                 return ;
             }else{
-                isAgreeFormErrorMessage.value.agreeMessage = '';
-                isAgreeFormError.value.agreeMessageError = false
+                isAgreeFormErrorMessage.value.agree = '';
+                isAgreeFormError.value.agreeMessage = false
                 await router.push({ name: 'information' });
             }
         }catch(err){
@@ -51,7 +50,7 @@ export const useProfile = () => {
     };
 
     const toggleAgree= () => {
-        isAgreeFormError.value.agreeError = !isAgreeFormError.value.agreeError;
+        isAgreeFormError.value.agree = !isAgreeFormError.value.agree;
     };
 
     const userAvatar = computed(() => {

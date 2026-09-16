@@ -6,9 +6,8 @@
           <label>Name</label>
           <BaseInput v-model="updateUserForm.name"
                      placeholder="New Name"
-                     :error="updateUserFormErrors.name"
                      variant="confidentialityData"
-                     :error-message="updateUserFormErrors.name ? updateUserFormErrorMessages.name : ''" />
+                     :error-message="updateUserFormErrorMessages.name" />
           <div class="flex">
             <BaseButton type="submit" name="Save Name" variant="profileForm" />
           </div>
@@ -17,9 +16,8 @@
           <label>SurName</label>
           <BaseInput v-model="updateUserForm.surName"
                      placeholder="New SurName"
-                     :error="updateUserFormErrors.surName"
                      variant="confidentialityData"
-                     :error-message="updateUserFormErrors.surName ? updateUserFormErrorMessages.surName : ''" />
+                     :error-message="updateUserFormErrorMessages.surName" />
           <div class="flex">
             <BaseButton type="submit" name="Save SurName" variant="profileForm" />
           </div>
@@ -31,9 +29,8 @@
         <label>Email</label>
         <BaseInput v-model="updateUserForm.email"
                    placeholder="example@mail.com"
-                   :error="updateUserFormErrors.email"
                    variant="confidentialityData"
-                   :error-message="updateUserFormErrors.email ? updateUserFormErrorMessages.email : ''"/>
+                   :error-message="updateUserFormErrorMessages.email" />
         <div class="flex">
           <BaseButton type="submit" name="Save Email" variant="profileForm" />
         </div>
@@ -50,11 +47,11 @@
           </select>
           <IMask v-model:value="updateUserForm.phone"
                  :placeholder="currentCountry?.placeholder"
-                 :class="profilePhoneClass(updateUserFormErrors.phone)"
+                 :class="profilePhoneClass(updateUserFormErrorMessages.phone)"
                  :key="selectedCountryCode"
                  :mask="currentMask.mask"/>
         </div>
-        <span v-if="updateUserFormErrors.phone" class="text-red-600 text-xs">
+        <span v-if="updateUserFormErrorMessages.phone" class="text-red-600 text-xs">
           {{ updateUserFormErrorMessages.phone }}
         </span>
         <div class="flex">
@@ -71,13 +68,12 @@
               <div class="flex flex-col gap-3">
                 <BaseInput v-model="updateUserForm.oldPassword"
                            :type="showOldPassword ? 'text' : 'password'"
-                           :error="updateUserFormErrors.oldPassword"
                            variant="confidentialityData"
                            placeholder="Old Password"
-                           :error-message="updateUserFormErrors.oldPassword ? updateUserFormErrorMessages.oldPassword : ''" />
+                           :error-message="updateUserFormErrorMessages.oldPassword" />
               </div>
               <img @click.prevent="toggleOldPassword" :src="showOldPassword ? opened : closed" alt=""
-                   :class="['absolute w-7.5 top-1/4 left-115', updateUserFormErrors.oldPassword ? 'top-1/6' : '']">
+                   :class="['absolute w-7.5 top-1/4 left-115', updateUserFormErrorMessages.oldPassword ? 'top-1/6' : '']">
             </div>
           </div>
           <div class="flex flex-col gap-3 w-full">
@@ -86,12 +82,11 @@
               <div class="flex flex-col gap-3">
                 <BaseInput v-model="updateUserForm.newPassword"
                            :type="showNewPassword ? 'text' : 'password'"
-                           :error="updateUserFormErrors.newPassword"
                            variant="confidentialityData" placeholder="New Password"
-                           :error-message="updateUserFormErrors.newPassword ? updateUserFormErrorMessages.newPassword : ''"/>
+                           :error-message="updateUserFormErrorMessages.newPassword"/>
               </div>
               <img @click.prevent="toggleNewPassword" :src="showNewPassword ? opened : closed" alt=""
-                  :class="['absolute w-7.5 top-1/4 left-115', updateUserFormErrors.newPassword ? 'top-1/6' : '']">
+                  :class="['absolute w-7.5 top-1/4 left-115', updateUserFormErrorMessages.newPassword ? 'top-1/6' : '']">
             </div>
           </div>
         </div>
@@ -110,9 +105,7 @@ import { profileApi } from "@/features/use-profile-form/api/profile.api.ts";
 import { profileClasses } from "@/shared/const/user/profile.classes.ts";
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
 import { useTogglePassword } from "@/features/use-profile-form/lib/toggle-password.ts";
-import {
-  updateUserForm, updateUserFormErrorMessages, updateUserFormErrors
-} from "@/features/use-profile-form/model/user.update.form.ts";
+import { updateUserForm, updateUserFormErrorMessages } from "@/features/use-profile-form/model/user.update.form.ts";
 import { selectedCountryCode, countries } from "@/shared/lib/select-phone-form.ts";
 
 import BaseButton  from "@/shared/ui/BaseButton.vue";
@@ -127,7 +120,6 @@ const { updatePasswordAccount, updateNameAccount, updateSurNameAccount, updatePh
 
 refClearErrorsOnChange(
   updateUserForm,
-  updateUserFormErrors,
   updateUserFormErrorMessages,
 )
 </script>

@@ -7,7 +7,6 @@ import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.ts";
 import {
     createProductForm, moreCreateItemForm,
-    createProductFormErrors, moreCreateItemFormErrors,
     createProductFormErrorMessages, moreCreateItemFormErrorMessages
 } from "@/features/use-product-form/model/product.forms.ts";
 import { createProductSchema, moreCreateItemsSchema } from "@/features/use-product-form/model/product.schemas.ts";
@@ -44,14 +43,12 @@ export const useAddProduct = () => {
         if(!result1.success){
             applyZodErrors(
                 result1.error,
-                createProductFormErrors,
                 createProductFormErrorMessages
             );
         }
         if(!result2.success){
             applyZodErrors(
                 result2.error,
-                moreCreateItemFormErrors,
                 moreCreateItemFormErrorMessages
             );
         }
@@ -104,12 +101,10 @@ export const useAddProduct = () => {
         }catch(err){
             applyErrors(
                 err,
-                createProductFormErrors,
                 createProductFormErrorMessages,
             );
             applyErrors(
                 err,
-                moreCreateItemFormErrors,
                 moreCreateItemFormErrorMessages
             )
             console.error(`Failed to create the products cover:`, err);

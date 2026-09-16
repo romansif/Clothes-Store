@@ -8,9 +8,7 @@ import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts
 import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment.ts";
 import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.ts";
 import type { UserPayment } from "@/features/use-chekout-payment-info/model/payment.type.ts";
-import {
-    paymentForm, paymentFormErrorMessage, paymentFormErrors
-} from "@/features/use-chekout-payment-info/model/payment.form.ts";
+import { paymentForm, paymentFormErrorMessage } from "@/features/use-chekout-payment-info/model/payment.form.ts";
 import { addPaymentSchema } from "@/features/use-chekout-payment-info/model/payment.schemas.ts";
 
 const { userData } = userStore();
@@ -64,7 +62,6 @@ export const useAddPayment = () => {
         if(!result.success){
             applyZodErrors(
                 result.error,
-                paymentFormErrors,
                 paymentFormErrorMessage
             );
             return
@@ -103,7 +100,6 @@ export const useAddPayment = () => {
         }catch(err){
             applyErrors(
                 err,
-                paymentFormErrors,
                 paymentFormErrorMessage
             );
             console.error(`Failed to register new payment:`, err);

@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { useFavorite } from "@/features/use-favorite/lib/use-favorite.ts";
-import { productHelper } from "@/shared/lib/product-helper.ts";
+import { productHelper } from "@/shared/lib/helper/product-helper.ts";
 import { baseClasses } from "@/shared/const/base.classes.ts";
 import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
 import type {Product} from "@/features/use-product/model/product.types.ts";

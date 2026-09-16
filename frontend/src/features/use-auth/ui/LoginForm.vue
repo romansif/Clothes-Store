@@ -5,8 +5,7 @@
       <BaseInput v-model=loginForm.email
                  type="email"
                  placeholder="example@mail.com"
-                 :error="loginFormErrors.email || loginFormErrors.password"
-                 :error-message="''" />
+                 :error-message="loginFormErrorMessages.email || loginFormErrorMessages.password" />
     </div>
     <div class="flex flex-col gap-3">
       <div class="flex">
@@ -17,11 +16,10 @@
         <BaseInput v-model=loginForm.password
                    :type="showPassword.password ? 'text' : 'password'"
                    placeholder="••••••••"
-                   :error="loginFormErrors.password || loginFormErrors.email"
-                   :error-message="useLoginErrorMessage" />
+                   :error-message="loginFormErrorMessages.password" />
         <img @click=togglePassword
              :src="showPassword.password ? opened : closed" alt=""
-             :class="['absolute w-7.5 top-1/4 left-57 sm:left-82', useLoginError ? 'top-1/6' : '']">
+             :class="['absolute w-7.5 top-1/4 left-57 sm:left-82', useLoginErrorMessage ? 'top-1/6' : '']">
       </div>
     </div>
     <div class="flex flex-col gap-3">
@@ -30,7 +28,7 @@
         <LoginRoleInput :role="'Buyer'" />
         <LoginRoleInput :role="'Seller'" />
       </div>
-      <span v-if=loginFormErrors.role class="text-red-600 text-xs">{{ loginFormErrorMessages.role }}</span>
+      <span v-if=loginFormErrorMessages.role class="text-red-600 text-xs">{{ loginFormErrorMessages.role }}</span>
     </div>
   </div>
 </template>
@@ -39,8 +37,8 @@
 import { toggleAuth } from "@/features/use-auth/lib/toggle-auth.ts";
 import { authStore } from "@/features/use-auth/model/auth.store.ts";
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
-import { loginForm, loginFormErrorMessages, loginFormErrors } from "@/features/use-auth/model/auth.forms.ts";
-import { useLoginErrorMessage, useLoginError } from "@/features/use-auth/lib/auth-error-messages.ts";
+import { loginForm, loginFormErrorMessages } from "@/features/use-auth/model/auth.forms.ts";
+import { useLoginErrorMessage } from "@/features/use-auth/lib/auth-error-messages.ts";
 
 import closed from "@/assets/icons/auth/closed.png";
 import opened from "@/assets/icons/auth/opened.png";
@@ -52,7 +50,6 @@ const { togglePassword } = toggleAuth();
 
 refClearErrorsOnChange(
     loginForm,
-    loginFormErrors,
     loginFormErrorMessages
 )
 </script>

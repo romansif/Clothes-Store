@@ -48,11 +48,11 @@
                :class="selectedSizesClass(size, product, userData.role)">
         </div>
         <div class="flex items-center gap-1">
-          <span v-if="addToCartFormErrors.colors" class="text-red-600 text-xs">
+          <span v-if="addToCartFormErrorMessages.colors" class="text-red-600 text-xs">
             {{ addToCartFormErrorMessages.colors }}
           </span>
-          <span v-if="addToCartFormErrors.colors && addToCartFormErrors.sizes" class="text-red-600 text-xs">/</span>
-          <span v-if="addToCartFormErrors.sizes" class="text-red-600 text-xs">
+          <span v-if="addToCartFormErrorMessages.colors && addToCartFormErrorMessages.sizes" class="text-red-600 text-xs">/</span>
+          <span v-if="addToCartFormErrorMessages.sizes" class="text-red-600 text-xs">
             {{ addToCartFormErrorMessages.sizes }}
           </span>
         </div>
@@ -100,10 +100,10 @@ import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
 import { addToCartClasses } from "@/shared/const/product/add.to.cart.classes.ts";
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
-import { productHelper } from "@/shared/lib/product-helper.ts";
+import { productHelper } from "@/shared/lib/helper/product-helper.ts";
 import { type Product } from "@/features/use-product/model/product.types.ts";
 import {
-  addToCartForm, addToCartFormErrorMessages, addToCartFormErrors
+  addToCartForm, addToCartFormErrorMessages
 } from "@/features/use-product/model/add.to.cart.form.ts";
 
 import plus from '@/assets/icons/products/plus.svg';
@@ -130,7 +130,6 @@ const { variantsInfo, pureInfoColors, isAvailableSizes } = productHelper();
 
 refClearErrorsOnChange(
   addToCartForm,
-  addToCartFormErrors,
   addToCartFormErrorMessages
 )
 </script>

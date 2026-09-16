@@ -1,5 +1,4 @@
 import { addToCartForm, addToCartFormErrorMessages } from "@/features/use-product/model/add.to.cart.form.ts";
-import { addToCartFormErrors } from "@/features/use-product/model/add.to.cart.errors.ts";
 
 export const clearAddToCartForm = () => {
     const clearCartForm = () => {
@@ -11,9 +10,6 @@ export const clearAddToCartForm = () => {
 
         addToCartFormErrorMessages.value.colors = '';
         addToCartFormErrorMessages.value.sizes = '';
-
-        addToCartFormErrors.value.colors = false;
-        addToCartFormErrors.value.sizes = false;
     };
 
     return {

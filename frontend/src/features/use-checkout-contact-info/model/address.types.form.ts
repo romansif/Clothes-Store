@@ -23,14 +23,4 @@ export interface InformationFormErrorMessage {
     postalCode: string,
 }
 
-export interface InformationFormError {
-    email: boolean,
-    phone: boolean,
-    firstName: boolean,
-    lastName: boolean,
-    country: boolean,
-    stateRegion: boolean,
-    address: boolean,
-    city: boolean,
-    postalCode: boolean,
-}
+

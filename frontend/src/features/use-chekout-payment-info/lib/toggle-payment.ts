@@ -1,6 +1,6 @@
-import {ref} from "vue";
-import {paymentStore} from "@/features/use-user-payment/model/payment.store.ts";
-import { paymentFormErrors } from "@/features/use-chekout-payment-info/model/payment.errors.ts";
+import { ref } from "vue";
+import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
+import { paymentFormErrorMessage } from "@/features/use-chekout-payment-info/model/payment.form.ts";
 
 const { paymentMethod } = paymentStore();
 
@@ -14,7 +14,7 @@ export const togglePaymentForm = () => {
     const openCardForm = (method: string) => {
         isDebitCard.value = true;
         paymentMethod.value = method;
-        paymentFormErrors.value.paymentMethodError = false
+        paymentFormErrorMessage.value.paymentMethod= ''
     };
 
     const closeCardForm = (method: string) => {

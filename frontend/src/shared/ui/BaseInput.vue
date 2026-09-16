@@ -1,6 +1,6 @@
 <template>
   <input v-model="model" type="text" :class="[
-      variantClasses[props.variant], props.error ? 'border border-red-500' : 'border-gray-300'
+      variantClasses[props.variant], props.errorMessage ? 'border border-red-500' : 'border-gray-300'
       ]" v-bind="$attrs" />
   <span v-if=props.errorMessage class="text-red-600 text-xs">{{ props.errorMessage }}</span>
 </template>
@@ -9,16 +9,14 @@
 interface Props {
   name?: string,
   variant?: keyof typeof variantClasses;
-  error: boolean;
-  errorMessage: string;
+  errorMessage?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   name: 'base',
   variant: 'auth',
-  error: false,
   errorMessage: '',
-})
+});
 
 const model = defineModel<string | number>();
 

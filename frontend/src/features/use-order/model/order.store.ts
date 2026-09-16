@@ -17,10 +17,6 @@ export const cancelChoiceMessage = ref({
     cancelChoice: ''
 });
 
-export const cancelChoiceError = ref({
-    cancelChoice: false
-});
-
 export const orderStore = () => {
     return {
         orders,

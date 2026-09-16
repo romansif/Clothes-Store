@@ -12,10 +12,3 @@ export interface PaymentFormErrorMessage {
     cardCvv: string,
     paymentMethod: string,
 }
-
-export interface PaymentFormError {
-    cardNumber: boolean,
-    expiryDate: boolean,
-    cardCvv: boolean,
-    paymentMethod: boolean,
-}

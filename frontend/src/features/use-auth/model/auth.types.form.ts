@@ -28,19 +28,6 @@ export interface LoginFormErrorMessage {
     role: string
 }
 
-export interface RegisterFormErrors {
-    name: boolean,
-    surName: boolean,
-    phone: boolean,
-    email: boolean,
-    password: boolean
-}
 
-export interface LoginFormErrors {
-    email: boolean,
-    password: boolean,
-    phone: boolean,
-    role: boolean,
-}
 
 

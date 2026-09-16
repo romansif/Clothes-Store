@@ -6,9 +6,7 @@ import { useGetAddress } from "@/features/use-user-address/api/get-address.ts";
 import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle-contact-info.ts";
 import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.ts";
 import { type UserContactInfo } from "@/features/use-checkout-contact-info/model/address.types.ts";
-import {
-    informationForm, informationFormErrorMessages, informationFormErrors
-} from "@/features/use-checkout-contact-info/model/address.form.ts";
+import { informationForm, informationFormErrorMessages } from "@/features/use-checkout-contact-info/model/address.form.ts";
 import { addContactInfoSchema } from "@/features/use-checkout-contact-info/model/address.schemas.ts";
 
 const { userData } = userStore();
@@ -84,7 +82,6 @@ export const useAddAddress = () => {
         if(!result.success){
             applyZodErrors(
                 result.error,
-                informationFormErrors,
                 informationFormErrorMessages
             );
             return
@@ -122,7 +119,6 @@ export const useAddAddress = () => {
         }catch(err){
             applyErrors(
                 err,
-                informationFormErrors,
                 informationFormErrorMessages
             );
             console.error(`Failed to create the new address:`, err);

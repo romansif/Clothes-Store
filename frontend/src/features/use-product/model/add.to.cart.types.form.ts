@@ -10,11 +10,6 @@ export interface AddFormErrorMessage {
     sizes: string,
 }
 
-export interface AddFormError {
-    colors: boolean,
-    sizes: boolean,
-}
-
 export interface IsAgreeFormErrorMessage {
     agree: string,
 }

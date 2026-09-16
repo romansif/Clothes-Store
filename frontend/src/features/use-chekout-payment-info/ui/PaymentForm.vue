@@ -5,7 +5,7 @@
       <CheckoutInput v-model="paymentForm.cardName"
              :placeholder="'Card Name is optional'"
              variant="payment"
-             :error="false" />
+             :error-message="''" />
     </div>
     <div class="flex flex-col gap-2 w-full">
       <label class="text-sm">Card Number</label>

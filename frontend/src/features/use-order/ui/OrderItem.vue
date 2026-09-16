@@ -73,7 +73,7 @@
 <script setup lang="ts">
 import { useOrder } from "@/features/use-order/lib/use-order.ts";
 import { orderPreview } from "@/features/use-checkout-order/lib/checkout-order-helper.ts";
-import { productHelper } from "@/shared/lib/product-helper.ts";
+import { productHelper } from "@/shared/lib/helper/product-helper.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { ordersClasses } from "@/shared/const/order/orders.classes.ts";
 import type { Order } from "@/features/use-order/model/order.types.ts";

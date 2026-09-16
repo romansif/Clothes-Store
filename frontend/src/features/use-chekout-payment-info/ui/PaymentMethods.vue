@@ -28,7 +28,7 @@
                    :text="'International wallet'" />
     <img :src="pay_pal" alt="" class="w-22.5">
   </div>
-  <span v-if="paymentFormErrors.paymentMethod" class="text-red-600 text-xs">
+  <span v-if="paymentFormErrorMessage.paymentMethod" class="text-red-600 text-xs">
     {{ paymentFormErrorMessage.paymentMethod }}
   </span>
 </template>
@@ -36,7 +36,7 @@
 <script setup lang="ts">
 import { paymentClasses } from "@/shared/const/checkout/payment.classes.ts";
 import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment.ts";
-import { paymentFormErrorMessage, paymentFormErrors } from "@/features/use-chekout-payment-info/model/payment.form.ts";
+import { paymentFormErrorMessage } from "@/features/use-chekout-payment-info/model/payment.form.ts";
 
 import PaymentForm from "./PaymentForm.vue";
 import visa_pay from '@/assets/icons/checkout/payment/visa.png';

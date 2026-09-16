@@ -4,7 +4,6 @@ import type {
     RegisterForm,
     LoginFormErrorMessage,
     RegisterFormErrorMessage,
-    RegisterFormErrors, LoginFormErrors
 } from "@/features/use-auth/model/auth.types.form.ts";
 
 export const registerForm = ref<RegisterForm>({
@@ -35,19 +34,4 @@ export const loginFormErrorMessages = ref<LoginFormErrorMessage>({
     password: '',
     phone: '',
     role: '',
-});
-
-export const registerFormErrors = ref<RegisterFormErrors>({
-    name: false,
-    surName: false,
-    phone: false,
-    email: false,
-    password: false
-});
-
-export const loginFormErrors = ref<LoginFormErrors>({
-    email: false,
-    password: false,
-    phone: false,
-    role: false,
 });

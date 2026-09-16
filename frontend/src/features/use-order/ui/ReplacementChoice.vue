@@ -29,7 +29,7 @@
         <ReplacementInput v-model="cancelChoiceForm.cancelChoice"
                           name="I found a better product"
                           :value="'I found a better product'"/>
-        <span v-if="cancelChoiceError.cancelChoice" class="text-red-600 text-xs px-4">{{ cancelChoiceMessage.cancelChoice }}</span>
+        <span v-if="cancelChoiceMessage.cancelChoice" class="text-red-600 text-xs px-4">{{ cancelChoiceMessage.cancelChoice }}</span>
         <div class="flex ml-auto">
           <BaseButton type="submit" name="REPLACEMENT" variant="profileForm" />
         </div>
@@ -42,7 +42,7 @@
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { useDeleteOrder } from "@/features/use-order/api/delete-order.ts";
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
-import { cancelChoiceForm, cancelChoiceError, cancelChoiceMessage } from "@/features/use-order/model/order.store.ts";
+import { cancelChoiceForm, cancelChoiceMessage } from "@/features/use-order/model/order.store.ts";
 
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import ReplacementInput from "@/features/use-order/ui/ReplacementInput.vue";
@@ -52,7 +52,6 @@ const { toggleOrder } = useBaseModals();
 
 refClearErrorsOnChange(
     cancelChoiceForm,
-    cancelChoiceError,
     cancelChoiceMessage
 )
 </script>

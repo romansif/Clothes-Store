@@ -20,13 +20,9 @@
 
 <script setup lang="ts">
 import { useAddAddress } from "@/features/use-checkout-contact-info/api/add-address.ts";
-import { refClearErrorsOnChange } from "@/shared/lib/error-helper/errors-helper.ts";
+import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
 import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle-contact-info.ts";;
-import {
-  informationForm,
-  informationFormErrorMessages
-} from "@/features/use-checkout-contact-info/model/address.form.ts";
-import { informationFormErrors } from "@/features/use-checkout-contact-info/model/address.errors.ts";
+import { informationForm, informationFormErrorMessages } from "@/features/use-checkout-contact-info/model/address.form.ts";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";
@@ -39,7 +35,6 @@ const { addInformation, useInformation } = useAddAddress();
 
 refClearErrorsOnChange(
     informationForm,
-    informationFormErrors,
     informationFormErrorMessages
 )
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex gap-10 font-semibold text-lg">
+  <div class="flex gap-10 font-semibold text-lg font-dm-sans">
     <div class="flex flex-col gap-4 mt-4 w-full">
       <div class="flex gap-2">
         <span>Role:</span>
@@ -12,7 +12,7 @@
         <span>NOIR</span>
       </div>
       <div v-if="user?.role === 'Buyer'" class="flex gap-2">
-        <div v-if="hasPhone">
+        <div v-if="hasPhone" class="flex gap-2">
           <span>Phone:</span>
           <span>{{ user.phone }}</span>
         </div>
@@ -23,7 +23,7 @@
     </div>
     <div class="flex flex-col gap-4 mt-4 w-full">
       <div v-if="user?.role === 'Seller'" class="flex gap-2">
-        <div v-if="hasPhone">
+        <div v-if="hasPhone" class="flex gap-2">
           <span>Phone:</span>
           <span>{{ user.phone }}</span>
         </div>
@@ -31,7 +31,7 @@
           Phone not provided
         </span>
       </div>
-      <div class="flex gap-2 w-full">
+      <div class="flex gap-2">
         <span>Email:</span>
         <span>{{ user.email }}</span>
       </div>

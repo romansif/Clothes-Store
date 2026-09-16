@@ -49,7 +49,7 @@
 import { useUpdateCart } from "@/features/use-cart/api/update-cart.ts";
 import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
-import { productHelper } from "@/shared/lib/product-helper.ts";
+import { productHelper } from "@/shared/lib/helper/product-helper.ts";
 import type {Product} from "@/features/use-product/model/product.types.ts";
 
 defineProps<{

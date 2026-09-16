@@ -1,6 +1,5 @@
 import {
     loginForm, registerForm,
-    loginFormErrors, registerFormErrors,
     loginFormErrorMessages, registerFormErrorMessages
 } from "@/features/use-auth/model/auth.forms.ts";
 
@@ -16,13 +15,6 @@ export const clearAuthForms = () => {
         registerFormErrorMessages.value.surName = '';
         registerFormErrorMessages.value.email = '';
         registerFormErrorMessages.value.password = '';
-
-        registerFormErrors.value.name = false;
-        registerFormErrors.value.surName = false;
-        registerFormErrors.value.phone = false;
-        registerFormErrors.value.email = false;
-        registerFormErrors.value.password = false;
-
     };
 
     const clearRegisterFormMessages = () => {
@@ -42,11 +34,6 @@ export const clearAuthForms = () => {
         loginFormErrorMessages.value.password= '';
         loginFormErrorMessages.value.phone= '';
         loginFormErrorMessages.value.role= '';
-
-        loginFormErrors.value.email = false;
-        loginFormErrors.value.password = false;
-        loginFormErrors.value.phone = false;
-        loginFormErrors.value.role = false;
     }
 
     const clearLoginFormMessages = () => {

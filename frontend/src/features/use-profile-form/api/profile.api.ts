@@ -6,9 +6,7 @@ import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { useGetUsers } from "@/features/use-profile/api/get-users.ts";
 import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.ts";
 import type { UserDataUpdate } from "@/features/use-profile-form/model/user.update.types.ts";
-import {
-    updateUserForm, updateUserFormErrorMessages, updateUserFormErrors
-} from "@/features/use-profile-form/model/user.update.form.ts";
+import { updateUserForm, updateUserFormErrorMessages } from "@/features/use-profile-form/model/user.update.form.ts";
 import {
     updateUserNameSchema, updateUserSurNameSchema, updateUserPhoneSchema,
     updateUserEmailSchema, updateUserPasswordSchema
@@ -36,7 +34,6 @@ export const profileApi = () => {
     const updateUserApplyZodErrors = (err: ZodError) => {
         applyZodErrors(
             err,
-            updateUserFormErrors,
             updateUserFormErrorMessages
         )
     };
@@ -44,7 +41,6 @@ export const profileApi = () => {
     const updateUserApplyErrors = (err: unknown) => {
         applyErrors(
             err,
-            updateUserFormErrors,
             updateUserFormErrorMessages
         )
     };

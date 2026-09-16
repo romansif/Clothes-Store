@@ -5,7 +5,3 @@ export interface ShippingForm {
 export interface ShippingFormErrorMessage {
     delivery: string,
 }
-
-export interface ShippingFormError {
-    delivery: boolean
-}

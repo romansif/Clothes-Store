@@ -34,21 +34,3 @@ export interface MoreCreateItemFormErrorMessage {
     sizes: string,
     variants: string,
 }
-
-export interface ProductFormError {
-    title: boolean,
-    category: boolean,
-    material: boolean,
-    description: boolean,
-    price: boolean,
-    gender: boolean,
-    sku: boolean,
-    quantity: boolean,
-    collections: boolean,
-}
-
-export interface MoreCreateItemFormError {
-    colors: boolean,
-    sizes: boolean,
-    variants: boolean,
-}

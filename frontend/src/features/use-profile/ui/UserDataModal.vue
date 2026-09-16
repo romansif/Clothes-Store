@@ -26,7 +26,7 @@
 import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 
-import ConfidentialityData from "../../use-profile-form/ui/ConfidentialityData.vue";
+import ConfidentialityData from "./ConfidentialityData.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import ConfidentialityForm from "../../use-profile-form/ui/ConfidentialityForm.vue";
 import Notification from "@/shared/ui/Notification.vue";

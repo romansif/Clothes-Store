@@ -17,7 +17,7 @@
         {{ price }}
       </span>
     </div>
-    <span v-if="shippingFormError.delivery" class="text-red-500 text-xs">
+    <span v-if="shippingFormErrorMessage.delivery" class="text-red-500 text-xs">
       {{ shippingFormErrorMessage.delivery }}
     </span>
   </div>
@@ -26,7 +26,6 @@
 <script setup lang="ts">
 import { shippingClasses } from "@/shared/const/checkout/shipping.classes.ts";
 import { shippingForm, shippingFormErrorMessage } from "@/features/use-checkout-shipping-info/model/shipping.form.ts";
-import { shippingFormError } from "@/features/use-checkout-shipping-info/model/shipping.errors.ts";
 
 defineProps<{
   method: string;

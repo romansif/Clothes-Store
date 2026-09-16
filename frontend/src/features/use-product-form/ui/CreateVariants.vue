@@ -24,9 +24,8 @@
                    @input="toggleAllVariants"
                    placeholder="product ptc."
                    class="w-75"
-                   :error="createProductFormErrors.quantity"
                    variant="createProduct"
-                   :error-message="createProductFormErrors.quantity ? createProductFormErrorMessages.quantity : ''"/>
+                   :error-message="createProductFormErrorMessages.quantity ? createProductFormErrorMessages.quantity : ''"/>
         <span class="ml-auto mt-auto text-sm text-[#A3A3A3] font-medium">
           An equal quantity will be selected for all sizes and colors
         </span>
@@ -77,7 +76,7 @@
             Select sizes to populate the stock levels.
           </span>
         </div>
-        <span v-if="moreCreateItemFormErrors.variants" class="text-red-600 text-xs">
+        <span v-if="moreCreateItemFormErrorMessages.variants" class="text-red-600 text-xs">
           {{ moreCreateItemFormErrorMessages.variants }}
         </span>
       </div>
@@ -98,7 +97,7 @@
              'transition duration-400 scale-110 w-15 rounded-full' :
              'transition duration-400 hover:scale-110 w-15 rounded-full']">
       </div>
-      <span v-if="moreCreateItemFormErrors.sizes" class="text-red-600 text-xs">
+      <span v-if="moreCreateItemFormErrorMessages.sizes" class="text-red-600 text-xs">
         {{ moreCreateItemFormErrorMessages.sizes }}
       </span>
     </div>
@@ -124,7 +123,7 @@
                  class="absolute inset-0 h-full opacity-0 cursor-pointer" />
         </label>
       </div>
-      <span v-if="moreCreateItemFormErrors.colors" class="text-red-600 text-xs">
+      <span v-if="moreCreateItemFormErrorMessages.colors" class="text-red-600 text-xs">
         {{ moreCreateItemFormErrorMessages.colors }}
       </span>
     </div>
@@ -137,7 +136,6 @@ import { productFormHelper } from "@/features/use-product-form/lib/product-form-
 import { reactiveClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
 import {
   createProductForm, moreCreateItemForm,
-  createProductFormErrors, moreCreateItemFormErrors,
   createProductFormErrorMessages, moreCreateItemFormErrorMessages
 } from "@/features/use-product-form/model/product.forms.ts";
 
@@ -148,7 +146,6 @@ const { toggleAllVariants, toggleQuantity, toggleSize, toggleColor } = productFo
 
 reactiveClearErrorsOnChange(
   moreCreateItemForm,
-  moreCreateItemFormErrors,
   moreCreateItemFormErrorMessages,
 )
 </script>

@@ -1,6 +1,4 @@
-import {
-    informationForm, informationFormErrorMessages, informationFormErrors
-} from "@/features/use-checkout-contact-info/model/address.form.ts";
+import { informationForm, informationFormErrorMessages } from "@/features/use-checkout-contact-info/model/address.form.ts";
 
 export const clearInformationForm = () => {
     informationForm.value.addressName = '';
@@ -23,14 +21,4 @@ export const clearInformationForm = () => {
     informationFormErrorMessages.value.address = '';
     informationFormErrorMessages.value.city = '';
     informationFormErrorMessages.value.postalCode = '';
-
-    informationFormErrors.value.email = false;
-    informationFormErrors.value.phone = false;
-    informationFormErrors.value.firstName = false;
-    informationFormErrors.value.lastName = false;
-    informationFormErrors.value.country = false;
-    informationFormErrors.value.stateRegion = false;
-    informationFormErrors.value.address = false;
-    informationFormErrors.value.city = false;
-    informationFormErrors.value.postalCode = false;
 };

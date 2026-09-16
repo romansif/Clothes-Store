@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import type { OrderItem } from "@/features/use-order/model/order.types.ts";
-import { productHelper } from "@/shared/lib/product-helper.ts";
+import { productHelper } from "@/shared/lib/helper/product-helper.ts";
 import { orderPreview } from "@/features/use-checkout-order/lib/checkout-order-helper.ts";
 import type {Product} from "@/features/use-product/model/product.types.ts";
 
