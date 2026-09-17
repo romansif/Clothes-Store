@@ -8,11 +8,9 @@ const products = ref<Product[]>([]);
 export const useGetProducts = () => {
     const getAllProducts = async () => {
         try{
-            const res = await handler(`/products`, {
+            allProducts.value = await handler(`/products`, {
                 method: 'GET',
-            })
-            products.value = res;
-            allProducts.value = res;
+            });
         }catch(err){
             console.error(`Failed to get the all products:`, err);
         }
@@ -20,10 +18,9 @@ export const useGetProducts = () => {
 
     const getFilteredProducts = async (type: string, filter: string) => {
         try{
-            const res = await handler(`/filtered/${type}/${filter}`, {
+            products.value = await handler(`/filtered/${type}/${filter}`, {
                 method: 'GET',
-            })
-            products.value = res;
+            });
         }catch(err){
             console.error(`Failed to get the filtered products:`, err);
         }

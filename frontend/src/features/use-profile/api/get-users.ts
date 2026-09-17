@@ -10,10 +10,9 @@ export const useGetUsers = () => {
         loading.value = true;
 
         try{
-            const res = await handler('/useProfile', {
+            users.value = await handler('/useProfile', {
                 method: "GET",
-            })
-            users.value = res;
+            });
         }catch(err){
             console.log(`Failed to get the users:`, err);
         }finally {
@@ -27,10 +26,9 @@ export const useGetUsers = () => {
         try{
             if(!userData.value) return
 
-            const res = await handler(`/users/${userData.value.id}`, {
+            userData.value = await handler(`/users/${userData.value.id}`, {
                 method: "GET",
             });
-            userData.value = res;
         }catch(err){
             console.log(`Failed to get the user:`, err);
         }finally {

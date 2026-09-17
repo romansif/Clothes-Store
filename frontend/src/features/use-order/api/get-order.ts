@@ -14,10 +14,9 @@ export const useGetOrder = () => {
         try{
             if(!userData.value) return
 
-            const res = await handler(`/orders/${userData.value.id}`, {
+            orders.value = await handler(`/orders/${userData.value.id}`, {
                 method: 'GET',
-            })
-            orders.value = res;
+            });
         }catch(err){
             console.error(`Failed to get the all orders:`, err);
         }finally {
@@ -31,10 +30,9 @@ export const useGetOrder = () => {
         try{
             if(!userData.value) return
 
-            const res = await handler(`/orders/active/${userData.value.id}`, {
+            orders.value = await handler(`/orders/active/${userData.value.id}`, {
                 method: 'GET',
-            })
-            orders.value = res;
+            });
         }catch(err){
             console.error(`Failed to get the current orders:`, err);
         }finally {

@@ -58,11 +58,10 @@ export const profileApi = () => {
         try{
             if(!userData.value) return
 
-            const newAvatar = await handler(`/avatar/${userData.value.id}`, {
+            userData.value.avatarUrl = await handler(`/avatar/${userData.value.id}`, {
                 method: "PATCH",
                 body: formData,
             });
-            userData.value.avatarUrl = newAvatar.avatarUrl;
         }catch(err){
             console.log('Failed to change the avatar', err);
         }
@@ -147,14 +146,13 @@ export const profileApi = () => {
         try{
             if(!userData.value) return
 
-            const updatePassword = await handler(`/password/${userData.value.id}`, {
+            userData.value.password =  await handler(`/password/${userData.value.id}`, {
                 method: "POST",
                 body: JSON.stringify({
                     oldPassword: updateUserForm.value.oldPassword,
                     newPassword: updateUserForm.value.newPassword,
                 })
             });
-            userData.value.password = updatePassword.password;
             clearUpdateUserFormPassword();
             await openNotify('You have successfully changed your password.', '', '')
         }catch(err){

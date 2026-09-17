@@ -12,10 +12,11 @@ export const useGetCart = () => {
         loading.value = true;
 
         try{
-            const res = await handler(`/cart/${userData.id}`, {
+            if(!userData.value) return;
+
+            cart.value = await handler(`/cart/${userData.value.id}`, {
                 method: 'GET',
-            })
-            cart.value = res;
+            });
         }catch(err){
             console.error(`Failed to get the cart products:`, err);
         }finally {

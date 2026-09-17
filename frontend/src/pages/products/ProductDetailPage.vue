@@ -12,9 +12,11 @@
             </div>
           </div>
         </div>
-        <ProductInfo :product="product" />
+        <template v-if="product">
+          <ProductInfo :product="product" />
+        </template>
         <div class="flex justify-center lg:hidden">
-          <router-link v-if="!userData.id" :to="{name: 'signIn'}">
+          <router-link v-if="!userData?.id" :to="{name: 'signIn'}">
             <span class="bg-black font-semibold text-sm py-8 px-46 text-white font-[Montserrat] lg:block">
               ADD TO CART
             </span>

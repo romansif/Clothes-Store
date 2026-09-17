@@ -12,10 +12,9 @@ export const useGetMyProduct = () => {
         if(!userData.value) return
 
         try{
-            const res = await handler(`/my/products/${userData.value.id}`, {
+            myProducts.value = await handler(`/my/products/${userData.value.id}`, {
                 method: 'GET',
-            })
-            myProducts.value = res;
+            });
         }catch(err){
             console.error(`Failed to get the all my products:`, err);
         }

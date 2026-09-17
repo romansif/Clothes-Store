@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="updateProductDesc(product.id)" action="">
+  <form @submit.prevent="updateProductDesc(product)" action="">
     <template v-if="product?.id">
       <EditImageUpload :product="product" />
       <EditBasicInfo :product="product" />

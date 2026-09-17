@@ -11,8 +11,12 @@
           <span class="text-sm text-[#A3A3A3]">You can view or change your confidential data.</span>
         </div>
         <div class="flex flex-col overflow-y-auto no-scrollbar h-150">
-          <ConfidentialityData :user="userData"/>
-          <ConfidentialityForm />
+          <div class="flex gap-10 font-semibold text-lg font-dm-sans">
+            <ConfidentialityData :user="userData"/>
+          </div>
+          <div class="flex font-medium flex-col gap-5 pt-5">
+            <ConfidentialityForm />
+          </div>
         </div>
       </div>
     </div>

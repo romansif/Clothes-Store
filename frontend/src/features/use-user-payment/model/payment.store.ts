@@ -3,8 +3,7 @@ import { IMask } from "vue-imask";
 import type { UserPayment } from "@/features/use-chekout-payment-info/model/payment.type.ts";
 
 const userPayments = ref<UserPayment[]>([])
-const userPayment = ref<UserPayment>({} as UserPayment)
-
+const userPayment = ref<UserPayment | null>(null)
 const paymentMethod = ref<string>('')
 
 const cardNumberMask = {

@@ -9,7 +9,7 @@ const { activeProductImg, sizes, outerWear, underWear,
 
 export const productHelper = () => {
     const changeImg =  (index: number)=> {
-        if(!product.value || !product.value.images) return;
+        if(!product.value) return;
 
         const realIndex = index + 1;
         const mainPath = product.value.images[0];
@@ -124,7 +124,7 @@ export const productHelper = () => {
             return '';
         }
 
-        if(product && Array.isArray(product.sizes) && product.sizes.length > 0){
+        if(Array.isArray(product.sizes) && product.sizes.length > 0){
             return product.sizes.map(size => size).join(', ')
         }
         return '';
@@ -168,7 +168,6 @@ export const productHelper = () => {
 
     const formatterSizeGuide = (product: Product) => {
         const category = product.category;
-        console.log(category);
 
         const isOuterWear = outerWear.includes(category);
         const isUnderWear = underWear.includes(category);

@@ -3,7 +3,7 @@ import { type CartItem } from "@/features/use-cart/model/cart.types.ts";
 
 const cart = ref<CartItem[]>([]);
 
-const cartItem = ref<CartItem>({} as CartItem);
+const cartItem = ref<CartItem | null>(null);
 
 const unreadCount = ref<number>(0);
 

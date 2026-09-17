@@ -3,10 +3,9 @@ import { type FavoriteItem } from "@/features/use-favorite/model/favorite.types.
 
 const favorite = ref<FavoriteItem[]>([]);
 
-const favoriteItem = ref<FavoriteItem>({} as FavoriteItem);
+const favoriteItem = ref<FavoriteItem | null>(null);
 
 export const favoriteStore = () => {
-
     return {
         favorite,
         favoriteItem,

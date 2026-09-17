@@ -2,15 +2,14 @@ import { ref } from "vue";
 import { handler } from "@/shared/api/http.ts";
 import type {Product} from "@/features/use-product/model/product.types.ts";
 
-const product = ref<Product>({} as Product);
+const product = ref<Product | null>(null);
 
 export const useGetProduct = () => {
     const getProduct = async (id: string | string[]) => {
         try{
-            const data = await handler(`/products/${id}`, {
+            product.value = await handler(`/products/${id}`, {
                 method: 'GET',
             });
-            product.value = data
 
             return product
         }catch(err){

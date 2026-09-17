@@ -14,10 +14,9 @@ export const useGetFavorite = () => {
         try{
             if(!userData.value) return
 
-            const res = await handler(`/favorites/${userData.value.id}`, {
+            favorite.value = await handler(`/favorites/${userData.value.id}`, {
                 method: 'GET',
-            })
-            favorite.value = res;
+            });
         }catch(err){
             console.error(`Failed to get the favorite products:`, err);
         }finally {

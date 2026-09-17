@@ -1,18 +1,18 @@
 import namer from "color-namer";
 import router from "@/app/router";
-import {handler} from "@/shared/api/http.ts";
-import type { ColorItem, Product} from "@/features/use-product/model/product.types.ts";
+import { handler } from "@/shared/api/http.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
-import { createProductForm } from "@/features/use-product-form/model/product.forms.ts";
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
+import type { ColorItem, Product} from "@/features/use-product/model/product.types.ts";
+import { createProductForm } from "@/features/use-product-form/model/product.forms.ts";
 
 const { getProduct } = useGetProduct();
 const { currentFile } = productStore();
 const { openNotify } = useBaseModals();
 
 export const useUpdateProduct = () => {
-    const updateProductImages = async (product: Product, event: Event) => {
+    const updateProductImages = async (product: Product | null, event: Event) => {
         try{
             if(!product){
                 console.log('Такого продукта не существует');
@@ -29,22 +29,22 @@ export const useUpdateProduct = () => {
             formData.append(`images`, file);
 
 
-            await handler(`/products/${product.id}/${currentFile.value}/images`, {
+            await handler(`/products/${product?.id}/${currentFile.value}/images`, {
                 method: "PATCH",
                 body: formData
             });
 
 
-            await getProduct(product.id);
+            await getProduct(product?.id);
         }catch(err){
             await openNotify(`You haven't entered anything to change.`, '', '');
             console.error(`Failed to edit the product cover:`, err);
         }
     };
 
-    const updateProductDesc = async (id: string) => {
+    const updateProductDesc = async (product: Product | null) => {
         try{
-            await handler(`/products/${id}`, {
+            await handler(`/products/${product?.id}`, {
                 method: "PATCH",
                 body: JSON.stringify({
                     collections: createProductForm.value.collections,
@@ -67,13 +67,13 @@ export const useUpdateProduct = () => {
     };
 
     const updateProductCount = async (
-        product: Product, color: ColorItem, size: string, value: string) => {
+        product: Product | null, color: ColorItem, size: string, value: string) => {
         try{
             if(!product || !color.hex || !size || !value){
                 console.log('Вы не добавили никаких значений дл изменения');
                 return
             }
-            const variant = product.variants.find(v => v.hex === color.hex && v.size === size);
+            const variant = product?.variants.find(v => v.hex === color.hex && v.size === size);
             if(!variant){
                 console.log('Variant not found');
                 return;
@@ -81,10 +81,10 @@ export const useUpdateProduct = () => {
 
             variant.count = Number(value);
 
-            await handler(`/products/${product.id}`, {
+            await handler(`/products/${product?.id}`, {
                 method: "PATCH",
                 body: JSON.stringify({
-                    variants: product.variants,
+                    variants: product?.variants,
                 })
             })
         }catch(err){
@@ -93,7 +93,7 @@ export const useUpdateProduct = () => {
         }
     };
 
-    const updateProductColors = async (product: Product, index: number, eventOrColor: Event | string) => {
+    const updateProductColors = async (product: Product | null, index: number, eventOrColor: Event | string) => {
         try{
             if(!product){
                 console.log('Такого продукта не существует');
@@ -110,15 +110,15 @@ export const useUpdateProduct = () => {
                 const colorName = names.ntc[0].name;
 
                 product.colors[index] = {
-                    ...product.colors[index],
+                    ...product?.colors[index],
                     hex: hexColor,
                     colorName: colorName
                 };
 
-                await handler(`/products/${product.id}`, {
+                await handler(`/products/${product?.id}`, {
                     method: "PATCH",
                     body: JSON.stringify({
-                        colors: product.colors,
+                        colors: product?.colors,
                     }),
                 });
             }

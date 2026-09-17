@@ -14,10 +14,9 @@ export const useGetAddress = () => {
         try{
             if(!userData.value) return
 
-            const res = await handler(`/address/${userData.value.id}`, {
+            userAddresses.value = await handler(`/address/${userData.value.id}`, {
                 method: "GET",
             });
-            userAddresses.value = res;
         }catch(err){
             console.error(`Failed to get the user addresses:`, err);
         }finally {
@@ -30,10 +29,9 @@ export const useGetAddress = () => {
 
         const addressId = localStorage.getItem("addressId");
         try{
-            const res = await handler(`/address/item/${addressId}`, {
+            userAddress.value = await handler(`/address/item/${addressId}`, {
                 method: "GET",
             });
-            userAddress.value = res;
         }catch(err){
             console.error(`Failed to get the user address:`, err);
         }finally {

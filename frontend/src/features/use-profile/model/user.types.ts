@@ -8,7 +8,6 @@ export interface User {
     password: string,
     avatarUrl: string,
     created_at: string,
-    refreshTokens: object,
     userId: string
 }
 

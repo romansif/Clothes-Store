@@ -14,10 +14,9 @@ export const useGetPayment = () => {
         try{
             if(!userData.value) return
 
-            const res = await handler(`/payment/${userData.value.id}`, {
+            userPayments.value = await handler(`/payment/${userData.value.id}`, {
                 method: "GET",
             });
-            userPayments.value = res;
         }catch(err){
             console.error(`Failed to get the user res:`, err);
         }finally {
@@ -30,10 +29,10 @@ export const useGetPayment = () => {
 
         const paymentId = localStorage.getItem("paymentId");
         try{
-            const res = await handler(`/payment/item/${paymentId}`, {
+
+            userPayment.value = await handler(`/payment/item/${paymentId}`, {
                 method: "GET",
             });
-            userPayment.value = res;
         }catch(err){
             console.error(`Failed to get the user payment:`, err);
         }finally {
