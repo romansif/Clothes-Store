@@ -14,7 +14,19 @@ export const productsHelper = () => {
         return product.variants.reduce((sum: any, variant: any) => sum + (variant.count ?? 0), 0);
     };
 
+    const vHorizontalScroll = {
+        mounted(el: HTMLElement) {
+            const onWheel = (e: WheelEvent) => {
+                if(e.deltaY === 0) return;
+                e.preventDefault();
+                el.scrollLeft += e.deltaY;
+            }
+            el.addEventListener('wheel', onWheel, { passive: false});
+        }
+    };
+
     return {
         isInStock,
+        vHorizontalScroll,
     }
 }

@@ -15,13 +15,13 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
-import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
+import { productsHelper } from "@/features/use-main-product/lib/products-helper.ts";
 import { useGetSeasonProducts } from "@/features/use-season-product/api/get-season-product.ts";
 
 import empty_products from "@/assets/icons/products/icon-products.svg";
 import SummerItem from "@/features/use-season-product/ui/summer/SummerItem.vue";
 
-const { vHorizontalScroll } = useGetProducts();
+const { vHorizontalScroll } = productsHelper();
 const { getFavoriteProducts } = useGetFavorite();
 const { getSeasonal, summerCatalog } = useGetSeasonProducts();
 

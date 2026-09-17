@@ -4,7 +4,7 @@ import { type ZodError } from "zod";
 import {ApiError} from "@/shared/api/http.ts";
 
 export const applyErrors = (
-    err: any,
+    err: unknown,
 
     formErrorMessages: Ref<Record<string, string>>
 ) => {
@@ -35,11 +35,13 @@ export const applyZodErrors = (
 
         if (typeof field !== 'string') return;
 
-        formErrorMessages.value[field] = issue.message;
+        if (!formErrorMessages.value[field]) {
+            formErrorMessages.value[field] = issue.message;
+        }
     })
 };
 
-export const refClearErrorsOnChange = <T extends Record<string, any>>(
+export const refClearErrorsOnChange = <T extends Record<string, unknown>>(
     form: Ref<T>,
 
     formErrorMessages: Ref<Partial<Record<keyof T, string>>>
@@ -55,7 +57,7 @@ export const refClearErrorsOnChange = <T extends Record<string, any>>(
 };
 
 export const reactiveClearErrorsOnChange = (
-    form: Record<string, any>,
+    form: Record<string, unknown>,
     formErrorMessages: Ref<Partial<Record<string, string | undefined>>>
 ) => {
     Object.keys(form).forEach((field) => {

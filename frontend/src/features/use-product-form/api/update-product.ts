@@ -47,7 +47,7 @@ export const useUpdateProduct = () => {
             await handler(`/products/${id}`, {
                 method: "PATCH",
                 body: JSON.stringify({
-                    collections: createProductForm.value.collection,
+                    collections: createProductForm.value.collections,
                     title: createProductForm.value.title,
                     category: createProductForm.value.category,
                     material: createProductForm.value.material,

@@ -215,6 +215,13 @@ const underWear = [
     'Pants',
 ];
 
+const skuMask = {
+    mask: '***-**-***',
+    definitions: {
+        '*': /[a-zA-Z0-9]/
+    }
+};
+
 const productId = ref<string>(localStorage.getItem("productId") || '');
 
 const activeIndex = ref<number>();
@@ -226,13 +233,6 @@ const currentFile = ref<(number | null)>(null);
 
 const unit = ref<string>('CM')
 const countMode = ref<string>('SAME')
-
-const skuMask = {
-    mask: '***-**-***',
-    definitions: {
-        '*': /[a-zA-Z0-9]/
-    }
-};
 
 export const productStore = () => {
     return {

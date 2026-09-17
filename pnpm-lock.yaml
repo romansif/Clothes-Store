@@ -142,18 +142,12 @@ importers:
       '@headlessui/vue':
         specifier: ^1.7.23
         version: 1.7.23(vue@3.5.41(typescript@6.0.3))
-      '@heroicons/vue':
-        specifier: ^2.2.0
-        version: 2.2.0(vue@3.5.41(typescript@6.0.3))
       '@tanstack/vue-query':
         specifier: ^5.101.4
         version: 5.102.2(vue@3.5.41(typescript@6.0.3))
       '@vueuse/core':
         specifier: ^14.4.0
         version: 14.4.0(vue@3.5.41(typescript@6.0.3))
-      bcryptjs:
-        specifier: ^3.0.3
-        version: 3.0.3
       color-namer:
         specifier: ^1.4.0
         version: 1.4.0
@@ -163,9 +157,6 @@ importers:
       vue:
         specifier: ^3.5.34
         version: 3.5.41(typescript@6.0.3)
-      vue-color-kit:
-        specifier: ^1.0.6
-        version: 1.0.6(vue@3.5.41(typescript@6.0.3))
       vue-imask:
         specifier: ^7.6.1
         version: 7.6.1(vue@3.5.41(typescript@6.0.3))
@@ -532,11 +523,6 @@ packages:
     engines: {node: '>=10'}
     peerDependencies:
       vue: ^3.2.0
-
-  '@heroicons/vue@2.2.0':
-    resolution: {integrity: sha512-G3dbSxoeEKqbi/DFalhRxJU4mTXJn7GwZ7ae8NuEQzd1bqdd0jAbdaBZlHPcvPD2xI1iGzNVB4k20Un2AguYPw==}
-    peerDependencies:
-      vue: '>= 3'
 
   '@img/colour@1.1.0':
     resolution: {integrity: sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ==}
@@ -2496,11 +2482,6 @@ packages:
   vscode-uri@3.1.0:
     resolution: {integrity: sha512-/BpdSx+yCQGnCvecbyXdxHDkuk55/G3xwnC0GqY4gmQ3j+A+g8kzzgB4Nk/SINjqn6+waqw3EgbVF2QKExkRxQ==}
 
-  vue-color-kit@1.0.6:
-    resolution: {integrity: sha512-56oSUp8hGIZ3E4ayZLqTDAb2C7VzaWAC1EVUsZEvPCD2wiiiFd2L2BiEGN1ingfz538sYWKNXxMZQGslqbMiBg==}
-    peerDependencies:
-      vue: ^3.0.5
-
   vue-demi@0.14.10:
     resolution: {integrity: sha512-nMZBOwuzabUO0nLgIcc6rycZEebF6eeUfaiQx9+WSk8e29IbLvPU9feI6tqW4kTo3hvoYAJkMh8n8D0fuISphg==}
     engines: {node: '>=12'}
@@ -2861,10 +2842,6 @@ snapshots:
   '@headlessui/vue@1.7.23(vue@3.5.41(typescript@6.0.3))':
     dependencies:
       '@tanstack/vue-virtual': 3.13.36(vue@3.5.41(typescript@6.0.3))
-      vue: 3.5.41(typescript@6.0.3)
-
-  '@heroicons/vue@2.2.0(vue@3.5.41(typescript@6.0.3))':
-    dependencies:
       vue: 3.5.41(typescript@6.0.3)
 
   '@img/colour@1.1.0': {}
@@ -4654,10 +4631,6 @@ snapshots:
       tsx: 4.23.12
 
   vscode-uri@3.1.0: {}
-
-  vue-color-kit@1.0.6(vue@3.5.41(typescript@6.0.3)):
-    dependencies:
-      vue: 3.5.41(typescript@6.0.3)
 
   vue-demi@0.14.10(vue@3.5.41(typescript@6.0.3)):
     dependencies:

@@ -58,10 +58,10 @@ export const useAuth = () => {
             }
             users.value = authData;
 
-            (role === 'Buyer' ? clearRegisterForm() : clearRegisterForm());
-
             await openNotify('You have successfully sign up.',
                 'You will now be taken to your profile page.', 'profile');
+
+            clearRegisterForm()
         }catch(err){
             applyErrors(
                 err,

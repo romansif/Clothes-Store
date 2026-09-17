@@ -1,5 +1,5 @@
 <template>
-  <input v-model="model" type="text" :class="[
+  <input v-model="model" :class="[
       checkoutClasses[props.variant], props.errorMessage ?
       'placeholder:text-red-500 border-red-500' : 'placeholder:text-gray-500 border-gray-300'
       ]" v-bind="$attrs" />
@@ -7,13 +7,11 @@
 
 <script setup lang="ts">
 interface Props {
-  name?: string,
   variant?: keyof typeof checkoutClasses;
   errorMessage?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  name: 'base',
   variant: 'contactInfo',
   errorMessage: ''
 });
