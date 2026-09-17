@@ -10,7 +10,7 @@ import {
 } from "@/features/use-auth/model/auth.forms.ts";
 import { loginSchema, registerSchema } from "@/features/use-auth/model/auth.schemas.ts";
 
-const { users, user } = userStore();
+const { users, userData } = userStore();
 const { loading, openNotify } = useBaseModals();
 const { clearRegisterForm, clearRegisterFormMessages,
     clearLoginForm, clearLoginFormMessages } = clearAuthForms();
@@ -103,7 +103,7 @@ export const useAuth = () => {
             }else{
                 localStorage.setItem("user", JSON.stringify(foundedUser));
             }
-            user.value = foundedUser.user
+            userData.value = foundedUser.user
 
             await openNotify('You have successfully sign in.',
                 'You will now be taken to your profile page.', 'profile')
@@ -141,7 +141,7 @@ export const useAuth = () => {
             }else{
                 localStorage.setItem("user", JSON.stringify(foundedUser));
             }
-            user.value = foundedUser.user
+            userData.value = foundedUser.user
 
             await openNotify('You have successfully sign in.',
                 'You will now be taken to your profile page.', 'profile');
@@ -163,13 +163,16 @@ export const useAuth = () => {
         }catch(err){
             console.log(`Failed to logout:`, err);
         }finally {
+            localStorage.clear();
             await router.push({ name: 'signIn' })
         }
     };
 
     const deleteAccount = async () => {
+        if(!userData.value) return
+
         try{
-            await handler(`/users/${user.value.id}`, {
+            await handler(`/users/${userData.value.id}`, {
                 method: "DELETE",
             });
 

@@ -19,7 +19,7 @@
         </div>
       </div>
       <div class="flex flex-col w-7.5 gap-5">
-        <img @click="refreshPage()" :src="update" alt="" class="transition duration-400 hover:scale-120 cursor-pointer">
+        <img :src="update" alt="" class="transition duration-400 hover:scale-120 cursor-pointer">
       </div>
     </li>
   </TransitionGroup>
@@ -35,10 +35,6 @@ defineProps<{
 
 import update from "@/assets/icons/products/refresh.svg";
 import BaseProductCard from "@/widgets/ui/BaseProductCard.vue";
-
-const refreshPage = () => {
-  window.location.reload();
-}
 </script>
 
 <style scoped>

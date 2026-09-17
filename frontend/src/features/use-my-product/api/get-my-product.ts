@@ -9,8 +9,10 @@ const myProducts = ref<Product[]>([]);
 
 export const useGetMyProduct = () => {
     const getMyProducts = async () => {
+        if(!userData.value) return
+
         try{
-            const res = await handler(`/my/products/${userData.id}`, {
+            const res = await handler(`/my/products/${userData.value.id}`, {
                 method: 'GET',
             })
             myProducts.value = res;

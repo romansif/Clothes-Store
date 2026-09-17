@@ -8,10 +8,10 @@
           <div class="flex gap-2 font-dm-sans">
             <span>Name:</span>
             <span>
-              {{ user?.name }}
+              {{ user.name }}
             </span>
           </div>
-          <div v-if="user?.surName.length === 0" class="flex gap-2">
+          <div v-if="!user.surName" class="flex gap-2">
             <span class="font-medium text-sm opacity-50">
               Surname not provided
             </span>
@@ -19,7 +19,7 @@
           <div v-else class="flex gap-2 font-dm-sans">
             <span>Surname:</span>
             <span>
-              {{ user?.surName }}
+              {{ user.surName }}
             </span>
           </div>
         </div>
@@ -29,60 +29,33 @@
       </div>
     </div>
     <div class="flex flex-col border-t border-gray-300 font-medium">
-      <div @click="toggleOrderHistory" :class="profileTabsClass()">
-        <div :class="profileTabsSpanClass()">
-          <span>ALL ORDERS</span>
-          <img :src="arrow_down" alt="">
-        </div>
-      </div>
-      <div @click="toggleCurrentOrder" :class="profileTabsClass()">
-        <div :class="profileTabsSpanClass()">
-          <span>ACTIVE ORDERS</span>
-          <img :src="arrow_down" alt="">
-        </div>
-      </div>
-      <router-link :to="{ name: 'my/products' }">
-        <div v-if="user?.role === 'Seller'" :class="profileTabsClass()">
-          <div :class="profileTabsSpanClass()">
-            <span>ALL MY PRODUCTS</span>
-            <img :src="arrow_down" alt="">
-          </div>
-        </div>
+      <ProfileTab @click="toggleOrderHistory" name="ALL ORDERS" />
+      <ProfileTab @click="toggleCurrentOrder" name="ACTIVE ORDERS" />
+      <router-link :to="{ name: 'my/products' }" v-if="user.role === 'Seller'">
+        <ProfileTab name="ALL MY PRODUCTS"/>
       </router-link>
-      <div @click="toggleConfidentialityData" :class="profileTabsClass()">
-        <div :class="profileTabsSpanClass()">
-          <span>CONFIDENTIALITY DATA</span>
-          <img :src="arrow_down" alt="">
-        </div>
-      </div>
-      <router-link :to="{ name: 'create/product' }" v-if="user?.role === 'Seller'" :class="profileTabsClass()">
-        <div :class="profileTabsSpanClass()">
-          <span>CREATE PRODUCT COVER</span>
-          <img :src="arrow_down" alt="">
-        </div>
+      <ProfileTab @click="toggleConfidentialityData" name="CONFIDENTIAL DATA" />
+      <router-link :to="{ name: 'create/product' }" v-if="user.role === 'Seller'">
+        <ProfileTab name="CREATE PRODUCT COVER"/>
       </router-link>
-      <div @click="toggleAddressesAndCards" :class="profileTabsClass()">
-        <div :class="profileTabsSpanClass()">
-          <span>SAVED ADDRESSES AND CARDS</span>
-          <img :src="arrow_down" alt="">
-        </div>
-      </div>
+      <ProfileTab @click="toggleAddressesAndCards" name="SAVED ADDRESSES AND CARDS" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
-import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
-import { profileClasses } from "@/shared/const/user/profile.classes.ts";
+
+defineProps<{
+  user: User
+}>();
 
 import ProfileMenu from "./ProfileMenu.vue";
-import arrow_down from '@/assets/icons/arrows/arrow-down.png';
+import ProfileTab from "@/shared/ui/profile/ProfileTab.vue";
+import type {User} from "@/features/use-profile/model/user.types.ts";
 
-const { user } = userStore();
 const { userAvatar } = useProfile();
-const { profileTabsClass, profileTabsSpanClass } = profileClasses();
 const {
   toggleAvatar, toggleOrderHistory, toggleCurrentOrder,
   toggleConfidentialityData, toggleAddressesAndCards

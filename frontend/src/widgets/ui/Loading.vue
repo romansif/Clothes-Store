@@ -1,13 +1,10 @@
 <template>
-  <div class="font-montserrat fixed inset-0 z-50 bg-[#F0F0F0] flex flex-col items-center justify-center
-        transition-opacity duration-500">
+  <div class="font-montserrat fixed inset-0 z-50 bg-[#F0F0F0] flex items-center justify-center">
     <div class="flex flex-col items-center gap-12">
-      <h1 class="font-semibold text-6xl md:text-7xl tracking-widest text-neutral-900">
+      <h1 class="font-semibold text-6xl md:text-7xl tracking-widest text-[#414141]">
         THE NOIR
       </h1>
-      <div class="">
-        <img :src="loading" alt="Loading" class="w-full object-contain" />
-      </div>
+      <img :src="loading" alt="Loading" class="w-50 object-contain" />
     </div>
   </div>
 </template>

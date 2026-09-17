@@ -10,6 +10,7 @@ const { loading } = useBaseModals();
 export const useGetCart = () => {
     const getCartProducts = async () => {
         loading.value = true;
+
         try{
             const res = await handler(`/cart/${userData.id}`, {
                 method: 'GET',

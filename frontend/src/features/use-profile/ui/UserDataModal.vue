@@ -11,7 +11,7 @@
           <span class="text-sm text-[#A3A3A3]">You can view or change your confidential data.</span>
         </div>
         <div class="flex flex-col overflow-y-auto no-scrollbar h-150">
-          <ConfidentialityData />
+          <ConfidentialityData :user="userData"/>
           <ConfidentialityForm />
         </div>
       </div>
@@ -24,6 +24,7 @@
 
 <script setup lang="ts">
 import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
+import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 
 import ConfidentialityData from "./ConfidentialityData.vue";
@@ -31,9 +32,9 @@ import BaseButton from "@/shared/ui/BaseButton.vue";
 import ConfidentialityForm from "../../use-profile-form/ui/ConfidentialityForm.vue";
 import Notification from "@/shared/ui/Notification.vue";
 
+const { userData } = userStore();
 const { notify } = useBaseModals();
 const { toggleConfidentialityData } = useProfileModals();
-
 </script>
 
 

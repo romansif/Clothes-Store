@@ -1,7 +1,7 @@
 import express from "express";
 import { validation } from "#middleware/validation.ts";
 import { authMiddleware } from "#middleware/auth.middleware.ts";
-import { addressesController } from "#controllers/users/addresses.controller.ts";
+import { addressesController } from "#controllers/address/addresses.controller.ts";
 
 const router = express.Router();
 

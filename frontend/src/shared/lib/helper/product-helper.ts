@@ -1,7 +1,7 @@
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import { addToCartForm } from "@/features/use-product/model/add.to.cart.form.ts";
-import type { Product, ColorItem, Size, SizeGuide } from "@/features/use-product/model/product.types.ts";
+import type { Product, SizeGuide } from "@/features/use-product/model/product.types.ts";
 
 const { product } = useGetProduct();
 const { activeProductImg, sizes, outerWear, underWear,
@@ -9,7 +9,7 @@ const { activeProductImg, sizes, outerWear, underWear,
 
 export const productHelper = () => {
     const changeImg =  (index: number)=> {
-        if(!product.value || !Array.isArray(product.value.images)) return;
+        if(!product.value || !product.value.images) return;
 
         const realIndex = index + 1;
         const mainPath = product.value.images[0];
@@ -27,7 +27,7 @@ export const productHelper = () => {
         }
 
         const product = array?.find((p: Product) => p.id === id)
-        if(product && Array.isArray(product.images) && product.images[0]){
+        if(product && product.images && product.images[0]){
             return `${import.meta.env.VITE_BASE_URL}/${product.images[0]}`
         }
 
@@ -39,7 +39,7 @@ export const productHelper = () => {
             console.log('Product not found');
             return;
         }
-        if(product && Array.isArray(product.images) && product.images[0]){
+        if(product && product.images && product.images[0]){
             return `${import.meta.env.VITE_BASE_URL}/${product.images[0]}`;
         }
     };
@@ -50,7 +50,7 @@ export const productHelper = () => {
             return [];
         }
 
-        if(product && Array.isArray(product.images) && product.images.length > 0){
+        if(product && product.images && product.images.length > 0){
             return product.images.slice(1).map(img => `${import.meta.env.VITE_BASE_URL}/${img}`);
         }
         return [];
@@ -62,7 +62,7 @@ export const productHelper = () => {
             return [];
         }
 
-        if(product && Array.isArray(product.images) && product.images.length > 0){
+        if(product && product.images && product.images.length > 0){
             return product.images.slice(0).map(img => `${import.meta.env.VITE_BASE_URL}/${img}`);
         }
         return [];
@@ -75,7 +75,7 @@ export const productHelper = () => {
         }
 
         const product = array?.find(p => p.id === id)
-        if(product && Array.isArray(product.variants) && product.variants[0]){
+        if(product && product.variants && product.variants[0]){
             return product.variants[0]
         }
         return;
@@ -88,7 +88,7 @@ export const productHelper = () => {
         }
 
         const product = array?.find(p => p.id === id)
-        if(product && Array.isArray(product.colors) && product.colors[0]){
+        if(product && product.colors && product.colors[0]){
             return product.colors[0]
         }
         return;
@@ -100,7 +100,7 @@ export const productHelper = () => {
             return [];
         }
 
-        if(product && Array.isArray(product.colors) && product.colors.length > 0){
+        if(product && product.colors && product.colors.length > 0){
             return product.colors
         }
         return [];
@@ -112,8 +112,8 @@ export const productHelper = () => {
             return '';
         }
 
-        if(product && Array.isArray(product.colors) && product.colors.length > 0){
-            return product.colors.map((color: ColorItem) => color.colorName).join(', ')
+        if(product && product.colors && product.colors.length > 0){
+            return product.colors.map(color => color.colorName).join(', ')
         }
         return '';
     };
@@ -125,7 +125,7 @@ export const productHelper = () => {
         }
 
         if(product && Array.isArray(product.sizes) && product.sizes.length > 0){
-            return product.sizes.map((size: Size) => size).join(', ')
+            return product.sizes.map(size => size).join(', ')
         }
         return '';
     };
@@ -196,7 +196,7 @@ export const productHelper = () => {
     };
 
     const uniqueSizes = (product: Product) => {
-        return [...new Set(product.variants.map((variant: any) => variant.size))]
+        return [...new Set(product.variants.map(variant => variant.size))]
     }
 
     return {

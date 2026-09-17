@@ -56,13 +56,12 @@ export const useAddProduct = () => {
 
 
         try{
-            if(!userData.id){
-                return
-            }
+            if(!userData.value) return
+
             const formData = new FormData();
 
             const productData = {
-                userId: userData.id,
+                userId: userData.value.id,
                 title: createProductForm.value.title,
                 collection: createProductForm.value.collections,
                 category: createProductForm.value.category,

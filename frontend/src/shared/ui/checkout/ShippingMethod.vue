@@ -5,9 +5,9 @@
         <input v-model="shippingForm.delivery" :value="method" type="radio"
                class="accent-black w-4 h-4" name="shipping-method">
         <div class="flex flex-col gap-1">
-            <span class="font-semibold">
-              {{ title }}
-            </span>
+          <span class="font-semibold">
+            {{ title }}
+          </span>
           <span class="text-xs text-gray-500">
             {{ text }}
           </span>

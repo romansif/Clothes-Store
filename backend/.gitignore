@@ -7,7 +7,6 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-env
 node_modules
 dist
 dist-ssr
@@ -24,4 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
-/src/generated/prisma
+.env
+.env.*
+!.env.example

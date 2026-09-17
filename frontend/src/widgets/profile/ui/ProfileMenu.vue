@@ -1,5 +1,5 @@
 <template>
-  <Menu as="div" class="relative inline-block font-raleway">
+  <Menu v-if="userData" as="div" class="relative inline-block font-raleway">
     <MenuButton class="border border-gray-300 inline-flex w-full justify-center gap-x-1.5 rounded-xl
         px-3 py-2 text-sm font-semibold inset-ring-1 inset-ring-white/5 transition duration-400 hover:scale-108">
       Account
@@ -32,7 +32,7 @@
           </MenuItem>
         </div>
         <div class="py-1">
-          <MenuItem v-slot="{ active }" v-if="user.role === 'Seller'">
+          <MenuItem v-slot="{ active }" v-if="userData.role === 'Seller'">
             <router-link :to="{name: 'signUp'}">
               <button :class="['transition duration-400 cursor-pointer', active ? 'bg-white/5 text-black outline-hidden scale-110' : 'text-[#A3A3A3]',
                   'block px-4 py-2 text-sm']">
@@ -40,7 +40,7 @@
               </button>
             </router-link>
           </MenuItem>
-          <MenuItem v-slot="{ active }" v-if="user.role === 'Buyer'">
+          <MenuItem v-slot="{ active }" v-if="userData.role === 'Buyer'">
             <router-link :to="{name: 'signUp'}">
               <button :class="['transition duration-400 cursor-pointer', active ? 'bg-white/5 text-black outline-hidden scale-110' : 'text-[#A3A3A3]',
                   'block px-4 py-2 text-sm']">
@@ -59,7 +59,7 @@ import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { Menu, MenuItems, MenuItem, MenuButton} from "@headlessui/vue";
 import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 
-const { user } = userStore();
+const { userData } = userStore();
 const { toggleDeleteChoice } = useProfileModals();
 </script>
 

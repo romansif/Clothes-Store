@@ -13,8 +13,10 @@ export class ApiError extends Error {
 }
 
 export const handler = async <T = any>(
-    endpoints: string, options: RequestInit = {}, retry = false
-): Promise<T | null> => {
+    endpoints: string,
+    options: RequestInit = {},
+    retry = false
+): Promise<T> => {
     options.credentials = 'include'
 
     const headers: Record<string, string> = {
@@ -39,12 +41,15 @@ export const handler = async <T = any>(
                 method: 'POST',
                 credentials: 'include'
             })
-            if(!refreshRes.ok){
-                await router.replace({ name: 'signIn' })
+            if (!refreshRes.ok) {
+                localStorage.clear();
 
-                new Error('Session expired, please log in again.');
+                await router.replace({ name: 'signIn' });
+
+                throw new Error(
+                    'Session expired, please log in again.'
+                );
             }
-
             return handler(endpoints, options, true);
 
         }catch(err){

@@ -45,14 +45,14 @@
 
 <script setup lang="ts">
 import { watch } from "vue";
-import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
+import { useCartOrderInfo } from "@/features/use-cart/lib/cart-order-info.ts";
 import { isAgreeFormErrorMessage, isAgreeFormError } from "@/features/use-product/model/add.to.cart.form.ts";
 
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import square from '@/assets/icons/squares/square.png';
 import check_square from '@/assets/icons/squares/check-square.png';
 
-const { toggleAgree, continueToOrder, price, totalPrice, commissionPrice } = useProfile();
+const { toggleAgree, continueToOrder, price, commissionPrice, totalPrice } = useCartOrderInfo();
 
 watch(() => isAgreeFormError.value.agree, (agreeError) => {
   if(agreeError) {

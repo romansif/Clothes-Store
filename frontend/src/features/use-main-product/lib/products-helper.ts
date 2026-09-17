@@ -8,10 +8,9 @@ const { products } = useGetProducts();
 export const productsHelper = () => {
     const isInStock = () => {
         const product = products.value.find((p: Product) => p.id === productId.value);
-        if(!product?.id || !Array.isArray(product.variants)){
-            return null;
-        }
-        return product.variants.reduce((sum: any, variant: any) => sum + (variant.count ?? 0), 0);
+        if(!product?.id || !product.variants) return;
+
+        return product.variants.reduce((sum, variant) => sum + (variant.count ?? 0), 0);
     };
 
     const vHorizontalScroll = {

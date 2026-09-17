@@ -1,6 +1,6 @@
 <template>
   <input v-model="model" :class="[
-      checkoutClasses[props.variant], props.errorMessage ?
+      checkoutClasses[variant], errorMessage ?
       'placeholder:text-red-500 border-red-500' : 'placeholder:text-gray-500 border-gray-300'
       ]" v-bind="$attrs" />
 </template>
@@ -11,7 +11,7 @@ interface Props {
   errorMessage?: string;
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   variant: 'contactInfo',
   errorMessage: ''
 });

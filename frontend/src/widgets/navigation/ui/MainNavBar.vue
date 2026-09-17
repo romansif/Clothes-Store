@@ -72,7 +72,7 @@ const { selectedPageClass } = baseClasses();
 
 const route = useRoute();
 
-const isHome = computed(() => route.name === "");
+const isHome = computed(() => route.name === "home");
 const isCart = computed(() => route.name !== "cart");
 const isProducts = computed(() => route.name === "shop");
 const isProfile = computed(() => route.name !== "profile");

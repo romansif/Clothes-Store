@@ -13,7 +13,7 @@ import {
 } from "@/features/use-profile-form/model/user.update.schemas.ts";
 
 const { getUser } = useGetUsers();
-const { user, userData } = userStore();
+const { userData } = userStore();
 const { openNotify } = useBaseModals();
 const {
     clearUpdateUserFormPhone, clearUpdateUserFormEmail, clearUpdateUserFormName,
@@ -22,7 +22,9 @@ const {
 
 export const profileApi = () => {
     const baseUpdateAccount = async (dataToUpdate: UserDataUpdate, type: string, title: string) => {
-        await handler(`/${type}/${userData.id}`, {
+        if(!userData.value) return
+
+        await handler(`/${type}/${userData.value.id}`, {
             method: "PATCH",
             body: JSON.stringify(dataToUpdate),
         });
@@ -54,11 +56,13 @@ export const profileApi = () => {
         formData.append("avatar", selectedFile);
 
         try{
-            const newAvatar = await handler(`/avatar/${userData.id}`, {
+            if(!userData.value) return
+
+            const newAvatar = await handler(`/avatar/${userData.value.id}`, {
                 method: "PATCH",
                 body: formData,
             });
-            user.value.avatarUrl = newAvatar.avatarUrl;
+            userData.value.avatarUrl = newAvatar.avatarUrl;
         }catch(err){
             console.log('Failed to change the avatar', err);
         }
@@ -135,21 +139,22 @@ export const profileApi = () => {
 
     const updatePasswordAccount = async () => {
         const result = updateUserPasswordSchema.safeParse(updateUserForm.value)
-        console.log(result)
         if(!result.success){
             updateUserApplyZodErrors(result.error)
             return
         }
 
         try{
-            const updatePassword = await handler(`/password/${userData.id}`, {
+            if(!userData.value) return
+
+            const updatePassword = await handler(`/password/${userData.value.id}`, {
                 method: "POST",
                 body: JSON.stringify({
                     oldPassword: updateUserForm.value.oldPassword,
                     newPassword: updateUserForm.value.newPassword,
                 })
             });
-            user.value.password = updatePassword.password;
+            userData.value.password = updatePassword.password;
             clearUpdateUserFormPassword();
             await openNotify('You have successfully changed your password.', '', '')
         }catch(err){

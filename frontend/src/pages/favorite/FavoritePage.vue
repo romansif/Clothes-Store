@@ -3,16 +3,14 @@
     <header class="flex flex-col">
       <div class="flex gap-14 items-center font-semibold text-sm">
         <router-link :to="{name: 'cart'}">
-            <span class="text-[#A3A3A3]">
-              SHOPPING BAG <span class="font-dm-sans">({{ cartCount }})</span>
-            </span>
+          <span class="text-[#A3A3A3]">SHOPPING BAG</span>
+          <span class="font-dm-sans">({{ cartCount }})</span>
         </router-link>
         <div class="flex items-center gap-2">
           <img :src="liked" alt="" class="w-8.75">
           <router-link :to="{name: 'favorite'}">
-              <span>
-                FAVORITES <span class="font-dm-sans">({{ favoritesCount }})</span>
-              </span>
+            <span>FAVORITES</span>
+            <span class="font-dm-sans">({{ favoritesCount }})</span>
           </router-link>
         </div>
       </div>
@@ -36,17 +34,19 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
+import { useFavorite } from "@/features/use-favorite/lib/use-favorite.ts";
 import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
-import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
 import { favoriteStore } from "@/features/use-favorite/model/favorite.store.ts";
+import { useCartOrderInfo } from "@/features/use-cart/lib/cart-order-info.ts";
 
 import liked from "@/assets/icons/nav/liked.png";
 import favorite_cart from '@/assets/icons/products/favorute_empty.svg';
 import FavoriteList from "@/features/use-favorite/ui/FavoriteList.vue";
 
-const { favorite } = favoriteStore()
+const { favorite } = favoriteStore();
+const { favoritesCount } = useFavorite();
+const { cartCount } = useCartOrderInfo();
 const { getFavoriteProducts } = useGetFavorite();
-const { cartCount, favoritesCount } = useProfile();
 
 onMounted(async() => {
   await getFavoriteProducts();

@@ -10,8 +10,11 @@ const { userAddresses, userAddress } = informationContactStore();
 export const useGetAddress = () => {
     const getAddresses = async () => {
         loading.value = true;
+
         try{
-            const res = await handler(`/address/${userData.id}`, {
+            if(!userData.value) return
+
+            const res = await handler(`/address/${userData.value.id}`, {
                 method: "GET",
             });
             userAddresses.value = res;

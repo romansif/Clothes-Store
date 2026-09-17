@@ -29,10 +29,10 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute, useRouter} from "vue-router";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
-import { checkoutClasses } from "@/shared/const/checkout/checkout.classes.ts";
 import { useUpdateCart } from "@/features/use-cart/api/update-cart.ts";
+import { checkoutClasses } from "@/shared/const/checkout/checkout.classes.ts";
 
 import Notification from "@/shared/ui/Notification.vue";
 import OrderInfo from "@/features/use-checkout-order/ui/OrderInfo.vue";
@@ -50,10 +50,11 @@ const isShipping = computed(() => route.name === 'shipping')
 const isPayment = computed(() => route.name === 'payment')
 
 const goBack = async () => {
-  router.back();
   if(route.name === 'information') {
     await updateCartChecked()
   }
+
+  router.back();
 };
 </script>
 

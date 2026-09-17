@@ -12,7 +12,7 @@ import { paymentForm, paymentFormErrorMessage } from "@/features/use-chekout-pay
 import { addPaymentSchema } from "@/features/use-chekout-payment-info/model/payment.schemas.ts";
 
 const { userData } = userStore();
-const { addOrder } = useAddOrder();
+const { createOrder } = useAddOrder();
 const { openNotify } = useBaseModals();
 const { paymentMethod } = paymentStore();
 const { updateCheckedQuantity } = useUpdateCart();
@@ -43,7 +43,7 @@ export const useAddPayment = () => {
                 })
             });
             await updateCheckedQuantity();
-            await addOrder();
+            await createOrder();
 
             await openNotify('You have successfully paid and created order.',
                 'You will now be redirected to the profile page.', 'profile')
@@ -68,11 +68,13 @@ export const useAddPayment = () => {
         }
 
         try{
+            if(!userData.value) return
+
             if(paymentMethod.value === 'card'){
                 await handler(`/payment`, {
                     method: "POST",
                     body: JSON.stringify({
-                        userId: userData.id,
+                        userId: userData.value.id,
                         paymentId: paymentId,
                         paymentMethod: 'card',
                         cardName: paymentForm,
@@ -85,14 +87,14 @@ export const useAddPayment = () => {
                 await handler(`/payment`, {
                     method: "POST",
                     body: JSON.stringify({
-                        userId: userData.id,
+                        userId: userData.value.id,
                         paymentId: paymentId,
                         paymentMethod: paymentForm.value.paymentMethod
                     })
                 });
             }
             await updateCheckedQuantity();
-            await addOrder();
+            await createOrder();
 
             await openNotify('You have successfully paid and created order.',
                 'You will now be redirected to the profile page.', 'profile')

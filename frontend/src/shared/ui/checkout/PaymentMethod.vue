@@ -7,9 +7,9 @@
            name="shipping-method"
            class="accent-black w-4 h-4" />
     <div class="flex flex-col">
-        <span class="font-semibold">
-          {{ title }}
-        </span>
+      <span class="font-semibold">
+        {{ title }}
+      </span>
       <span class="text-xs text-gray-500">
         {{ text }}
       </span>

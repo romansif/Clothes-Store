@@ -1,10 +1,12 @@
 <template>
-  <main :class="isProfileLoginClass(user)" class="font-raleway">
-    <div class="w-87.5 sm:w-150 md:w-175 lg:w-237.5 xl:w-175">
-      <ProfileNotLoggedIn v-if="!user.id" />
-      <ProfileSettings v-if="user.id" />
-    </div>
-  </main>
+  <template v-if="userData">
+    <main :class="isProfileLoginClass(userData)" class="font-raleway">
+      <div class="w-87.5 sm:w-150 md:w-175 lg:w-237.5 xl:w-175">
+        <ProfileNotLoggedIn v-if="!userData.id" />
+        <ProfileSettings v-if="userData.name" :user="userData" />
+      </div>
+    </main>
+  </template>
 </template>
 
 <script setup lang="ts">
@@ -16,7 +18,7 @@ import { profileClasses } from "@/shared/const/user/profile.classes.ts";
 import ProfileSettings from "@/widgets/profile/ui/ProfileSettings.vue";
 import ProfileNotLoggedIn from "@/widgets/profile/ui/ProfileNotLoggedIn.vue";
 
-const { user } = userStore();
+const { userData } = userStore();
 const { getUser } = useGetUsers();
 const { isProfileLoginClass } = profileClasses();
 

@@ -38,23 +38,27 @@ export const useUpdateCart = () => {
                         })
                     });
                 }
-
-                const index = orderItems.value.findIndex(
-                    item => item.id === product.id);
-                if(index === -1) {
-                    orderItems.value.push(product);
-                    isAgreeFormError.value.agreeMessage = false
-                    localStorage.setItem('orderItems', JSON.stringify(orderItems.value));
-                }else{
-                    orderItems.value.splice(index, 1);
-                    localStorage.setItem('orderItems', JSON.stringify(orderItems.value));
-                }
             }
+            addToOrder(product);
+
             await getCartProducts();
         }catch(err){
             console.error(`Failed to add the product to order:`, err);
         }
     };
+
+    const addToOrder = (product: CartItem) => {
+        const index = orderItems.value.findIndex(
+            item => item.id === product.id);
+        if(index === -1) {
+            orderItems.value.push(product);
+            isAgreeFormError.value.agreeMessage = false
+            localStorage.setItem('orderItems', JSON.stringify(orderItems.value));
+        }else{
+            orderItems.value.splice(index, 1);
+            localStorage.setItem('orderItems', JSON.stringify(orderItems.value));
+        }
+    }
 
     const updateCartItem = async (type: string, id: string) => {
         try{
@@ -136,8 +140,10 @@ export const useUpdateCart = () => {
     };
 
     const updateCartChecked = async () => {
+        if(!userData.value) return
+
         try{
-            const allCartItems = await handler(`/cart/${userData.id}`, {
+            const allCartItems = await handler(`/cart/${userData.value.id}`, {
                 method: "GET"
             });
             for(const item of allCartItems) {
@@ -163,7 +169,6 @@ export const useUpdateCart = () => {
         const checkedItems = cart.value.filter(
             item => item.checked).map(item => ({ ...item }));
 
-        console.log(checkedItems)
         if (!checkedItems.length) {
             console.log('Нет выбранных (checked) товаров в корзине!', checkedItems);
             return;

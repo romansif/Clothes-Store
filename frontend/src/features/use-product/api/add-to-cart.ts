@@ -28,6 +28,8 @@ export const useAddToCart = () => {
         }
 
         try{
+            if(!userData.value) return
+
             const currentProduct = product.value;
             const currentQuantity = currentProduct.variants.find(
                 q => q.hex === addToCartForm.value.colors.hex);
@@ -35,7 +37,7 @@ export const useAddToCart = () => {
             await handler(`/cart`, {
                 method: "POST",
                 body: JSON.stringify({
-                    userId: userData.id,
+                    userId: userData.value.id,
                     productId: currentProduct.id,
                     images: currentProduct.images,
                     title: currentProduct.title,

@@ -10,8 +10,11 @@ const { favorite } = favoriteStore();
 export const useGetFavorite = () => {
     const getFavoriteProducts = async () => {
         loading.value = true;
+
         try{
-            const res = await handler(`/favorites/${userData.id}`, {
+            if(!userData.value) return
+
+            const res = await handler(`/favorites/${userData.value.id}`, {
                 method: 'GET',
             })
             favorite.value = res;

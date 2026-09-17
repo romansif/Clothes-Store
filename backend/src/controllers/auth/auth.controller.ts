@@ -1,10 +1,10 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { v4 as uuidv4 } from 'uuid';
-import { dbService } from '../db/db.config.ts';
+import { dbService } from '../../db/db.config.ts';
 import { OAuth2Client } from "google-auth-library";
 import { type Request, type Response } from "express";
-import { type User, type JwtCustomPayload, type TokenPayload } from '../interfaces.ts';
+import { type User, type JwtCustomPayload, type TokenPayload } from '../../interfaces.ts';
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 

@@ -6,6 +6,7 @@ import { useGetYearProduct } from "@/features/use-year-product/api/get-year-prod
 import { useGetSeasonProducts } from "@/features/use-season-product/api/get-season-product.ts";
 
 const { sizes } = productStore();
+const { allProducts } = useGetProducts();
 const { getFilteredProducts } = useGetProducts();
 const { getWeekProducts } = useGetWeekProduct();
 const { getYearProducts } = useGetYearProduct();
@@ -116,11 +117,21 @@ export const filterProduct = () => {
         })
     };
 
+    const getStackCount = (stackName: string) => {
+        if (stackName === 'Availability') {
+            return allProducts.value.filter(p =>
+                p.variants.some(v => v.count > 0)).length;
+        }
+
+        if (stackName === 'Exhausted') {
+            return allProducts.value.filter(p =>
+                p.variants.every(v => v.count === 0)).length;
+        }
+    };
+
     const selectGender = async (type: string, filter: string) => {
         selectedGender.value = filter;
-
-        console.log(selectedGender.value)
-
+        clearActiveKey();
         await getYearProducts(type, filter);
     }
 
@@ -137,6 +148,7 @@ export const filterProduct = () => {
         activeSlide,
 
         toggleFilter,
+        getStackCount,
         selectGender,
         toggleSize,
 

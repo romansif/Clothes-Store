@@ -2,14 +2,6 @@ import { computed } from "vue";
 import { type User } from "@/features/use-profile/model/user.types.ts";
 
 export const profileClasses = () => {
-    const profileTabsClass = () => [
-        `border-b border-gray-300 py-6 px-6 cursor-pointer`
-    ];
-
-    const profileTabsSpanClass = () => [
-        `flex items-center justify-between transition duration-400 hover:scale-105`
-    ];
-
     const isProfileLoginClass = (user: User) => [
         `font-raleway flex justify-center my-items-center'`,
         user?.role === 'Buyer' ? 'p-35' : 'p-15'
@@ -29,9 +21,6 @@ export const profileClasses = () => {
     return {
         profileSelectPhoneCodeClass,
         profilePhoneClass,
-
-        profileTabsClass,
-        profileTabsSpanClass,
         isProfileLoginClass
     }
 }

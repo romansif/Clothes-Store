@@ -10,8 +10,8 @@ export const productFormHelper  = () => {
 
         moreCreateItemForm.variants = []
 
-        moreCreateItemForm.colors.forEach((color: any) => {
-            moreCreateItemForm.sizes.forEach((size) => {
+        moreCreateItemForm.colors.forEach(color => {
+            moreCreateItemForm.sizes.forEach(size => {
                 moreCreateItemForm.variants.push({
                     hex: color.hex,
                     colorName: color.colorName,
@@ -23,7 +23,7 @@ export const productFormHelper  = () => {
     };
 
     const toggleQuantity = (hex: string, colorName: string, size: string) => {
-        let item = moreCreateItemForm.variants.find((v: any) => v.hex === hex && v.size === size);
+        let item = moreCreateItemForm.variants.find(v => v.hex === hex && v.size === size);
 
         if(!item) {
             item = {
@@ -47,7 +47,7 @@ export const productFormHelper  = () => {
             const hexColor = eventOrColor.target.value;
             if (!hexColor) return;
 
-            const exists = moreCreateItemForm.colors.some((c: any) =>
+            const exists = moreCreateItemForm.colors.some(c =>
                 typeof c === 'string' ? c === hexColor : c.hex === hexColor
             );
 
@@ -63,7 +63,7 @@ export const productFormHelper  = () => {
             return;
         }
 
-        const index = moreCreateItemForm.colors.findIndex((c: any) =>
+        const index = moreCreateItemForm.colors.findIndex(c =>
             typeof c === 'string' ? c === color : c.hex === color
         );
         if (typeof eventOrColor === 'string') {

@@ -1,5 +1,31 @@
 import type { RouteRecordRaw } from 'vue-router'
 
+import RegisterPage  from "@/pages/auth/RegisterPage.vue";
+import LoginPage  from "@/pages/auth/LoginPage.vue";
+
+import HomePage from "@/pages/home/HomePage.vue";
+
+import ProductsPage from "@/pages/products/ProductsPage.vue";
+import CollectionPage from "@/pages/collections/CollectionPage.vue";
+import SeasonsCatalogPage from "@/pages/collections/SeasonsCatalogPage.vue";
+import WinterSeasonPage from "@/pages/collections/WinterSeasonPage.vue";
+import SpringSeasonPage from "@/pages/collections/SpringSeasonPage.vue";
+import SummerSeasonPage from "@/pages/collections/SummerSeasonPage.vue";
+import AutumnSeasonPage from "@/pages/collections/AutumnSeasonPage.vue";
+import ProductDetailPage from "@/pages/products/ProductDetailPage.vue";
+import CartPage from "@/pages/cart/CartPage.vue";
+import FavoritePage from "@/pages/favorite/FavoritePage.vue";
+
+import ProfilePage from "@/pages/profile/ProfilePage.vue";
+import MyProductsPage from "@/pages/products/MyProductsPage.vue";
+
+import CreateProductPage from "@/pages/product-form/CreateProductPage.vue";
+import EditProductPage from "@/pages/product-form/EditProductPage.vue";
+
+import InformationPage from "@/pages/checkout/InformationPage.vue";
+import ShippingPage from "@/pages/checkout/ShippingPage.vue";
+import PaymentPage from "@/pages/checkout/PaymentPage.vue";
+
 const routes: RouteRecordRaw[] = [
     {
         path: '/auth',
@@ -8,19 +34,19 @@ const routes: RouteRecordRaw[] = [
             {
                 path: 'signUp',
                 name: 'signUp',
-                component: () => import('@/pages/auth/RegisterPage.vue'),
+                component: RegisterPage
             },
             {
                 path: 'signIn',
                 name: 'signIn',
-                component: () => import('@/pages/auth/LoginPage.vue'),
+                component: LoginPage
             },
         ]
     },
     {
         path: '/',
         name: 'home',
-        component: () => import('@/pages/home/HomePage.vue'),
+        component: HomePage
     },
     {
         path: '/',
@@ -29,52 +55,52 @@ const routes: RouteRecordRaw[] = [
             {
                 path: 'shop',
                 name: 'shop',
-                component: () => import('@/pages/products/ProductsPage.vue'),
+                component: ProductsPage
             },
             {
                 path: 'shop/new-collections',
                 name: 'shop/new-collections',
-                component: () => import('@/pages/collections/CollectionPage.vue'),
+                component: CollectionPage
             },
             {
                 path: 'shop/seasons-catalog',
                 name: 'shop/seasons-catalog',
-                component: () => import('@/pages/collections/SeasonsCatalogPage.vue'),
+                component: SeasonsCatalogPage
             },
             {
                 path: 'shop/winter-catalog',
                 name: 'shop/winter-catalog',
-                component: () => import('@/pages/collections/WinterSeasonPage.vue'),
+                component: WinterSeasonPage
             },
             {
                 path: 'shop/spring-catalog',
                 name: 'shop/spring-catalog',
-                component: () => import('@/pages/collections/SpringSeasonPage.vue'),
+                component: SpringSeasonPage
             },
             {
                 path: 'shop/summer-catalog',
                 name: 'shop/summer-catalog',
-                component: () => import('@/pages/collections/SummerSeasonPage.vue'),
+                component: SummerSeasonPage
             },
             {
                 path: 'shop/autumn-catalog',
                 name: 'shop/autumn-catalog',
-                component: () => import('@/pages/collections/AutumnSeasonPage.vue'),
+                component: AutumnSeasonPage
             },
             {
                 path: 'shop/product/info/:id',
                 name: 'product/info',
-                component: () => import('@/pages/products/ProductDetailPage.vue'),
+                component: ProductDetailPage
             },
             {
                 path: 'shop/my-cart',
                 name: 'cart',
-                component: () => import('@/pages/cart/CartPage.vue')
+                component: CartPage
             },
             {
                 path: 'shop/my-favorite',
                 name: 'favorite',
-                component: () => import('@/pages/favorite/FavoritePage.vue')
+                component: FavoritePage
             },
         ]
     },
@@ -85,12 +111,12 @@ const routes: RouteRecordRaw[] = [
             {
                 path: 'profile',
                 name: 'profile',
-                component: () => import('@/pages/profile/ProfilePage.vue'),
+                component: ProfilePage
             },
             {
                 path: 'my-products',
                 name: 'my/products',
-                component: () => import('@/pages/products/MyProductsPage.vue'),
+                component: MyProductsPage
 
             },
         ]
@@ -102,13 +128,13 @@ const routes: RouteRecordRaw[] = [
             {
                 path: 'create-product',
                 name: 'create/product',
-                component: () => import('@/pages/product-form/CreateProductPage.vue'),
+                component: CreateProductPage
 
             },
             {
                 path: 'edit-product/:id',
                 name: 'edit/product',
-                component: () => import('@/pages/product-form/EditProductPage.vue'),
+                component: EditProductPage
             },
         ]
     },
@@ -119,17 +145,17 @@ const routes: RouteRecordRaw[] = [
             {
                 path: 'information',
                 name: 'information',
-                component: () => import('@/pages/checkout/InformationPage.vue'),
+                component: InformationPage
             },
             {
                 path: 'shipping',
                 name: 'shipping',
-                component: () => import('@/pages/checkout/ShippingPage.vue'),
+                component: ShippingPage
             },
             {
                 path: 'payment',
                 name: 'payment',
-                component: () => import('@/pages/checkout/PaymentPage.vue'),
+                component: PaymentPage
             }
         ]
     },

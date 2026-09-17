@@ -10,8 +10,11 @@ const { loading } = useBaseModals();
 export const useGetOrder = () => {
     const getOrders = async () => {
         loading.value = true;
+
         try{
-            const res = await handler(`/orders/${userData.id}`, {
+            if(!userData.value) return
+
+            const res = await handler(`/orders/${userData.value.id}`, {
                 method: 'GET',
             })
             orders.value = res;
@@ -24,8 +27,11 @@ export const useGetOrder = () => {
 
     const getFilteredOrders = async () => {
         loading.value = true;
+
         try{
-            const res = await handler(`/orders/active/${userData.id}`, {
+            if(!userData.value) return
+
+            const res = await handler(`/orders/active/${userData.value.id}`, {
                 method: 'GET',
             })
             orders.value = res;

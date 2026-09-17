@@ -15,26 +15,14 @@
         <img :src=availability alt="" class="ml-auto">
       </div>
       <div class="flex flex-col gap-2">
-        <div class="flex gap-3">
-          <img @click="toggleFilter('STATUS', 'AVAILABLE')" :src="stackProducts.Availability ? checked : square" alt=""
-               :class="selectedFilterClass(stackProducts.Availability)">
+        <div v-for="(isActive, stackName) in stackProducts" class="flex gap-3">
+          <img @click="toggleFilter('STATUS', stackName)" :src="isActive ? checked : square" alt=""
+               :class="selectedFilterClass(isActive)">
           <div class="flex gap-1">
-            <span>Availability</span>
+            <span>{{ stackName }}</span>
             <span>
               (<span class="text-blue-700 font-medium font-dm-sans">
-                {{ allProducts.filter(p => p.variants.some(v => v.count > 0)).length }}
-              </span>)
-            </span>
-          </div>
-        </div>
-        <div class="flex gap-3">
-          <img @click="toggleFilter('STATUS', 'EXHAUSTED')" :src="stackProducts.Exhausted ? checked : square" alt=""
-               :class="selectedFilterClass(stackProducts.Exhausted)">
-          <div class="flex gap-1">
-            <span>Exhausted</span>
-            <span>
-              (<span class="text-blue-700 font-medium font-dm-sans">
-                {{ allProducts.filter(p => p.variants.every(v => v.count === 0)).length }}
+                {{ getStackCount(stackName) }}
               </span>)
             </span>
           </div>
@@ -95,7 +83,7 @@ import availability from '@/assets/icons/arrows/arrow-up.png'
 const { sizes } = productStore();
 const { allProducts } = useGetProducts();
 const { selectedSizeClass, selectedFilterClass } = filterClasses();
-const { toggleFilter, toggleSize, stackProducts, genders, colors } = filterProduct();
+const { toggleFilter, getStackCount, toggleSize, stackProducts, genders, colors } = filterProduct();
 </script>
 
 <style scoped>

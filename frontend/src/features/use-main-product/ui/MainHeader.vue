@@ -51,29 +51,27 @@
 <script setup lang="ts">
 import { watch } from "vue";
 import { filterProduct } from "@/features/use-navigation/model/filter-product.ts";
-import { searchForm } from "@/widgets/navigation/model/search.form.ts";
 import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
 import { filterClasses } from "@/shared/const/filter/filter.classes.ts";
 import { clearSearchProductForm } from "@/features/use-navigation/lib/clear-search.ts";
-import { useGetSearchedProducts } from "@/features/use-navigation/model/search-product.ts";
 import { useProductsModals } from "@/features/use-main-product/lib/product-modal.ts";
+import { searchProductForm } from "@/widgets/navigation/model/search.form.ts";
+import { debouncedSearch, getSearchedProducts } from "@/features/use-navigation/model/search-product.ts";
 
 import del from '@/assets/icons/delete-close/clean_search.svg';
 import search from "@/assets/icons/nav/search.png";
 import right_arrow from '@/assets/icons/arrows/right-arrow.png';
 
-const { searchProductForm } = searchForm();
 const { toggleFilterAside } = useProductsModals();
 const { selectedCategoryClass } = filterClasses();
-const { debouncedSearch } = useGetSearchedProducts();
 const { getFilteredProducts, products } = useGetProducts();
 const { toggleFilter, categories, category } = filterProduct();
 
-watch(() => searchProductForm.value.search, async (newValue) => {
-  if(newValue) {
-    await debouncedSearch(products);
+watch(debouncedSearch, async (value) => {
+  if(!value) {
+    await getFilteredProducts('ALL', 'ALL')
   }else{
-    await getFilteredProducts('ALL', 'Availability');
+    await getSearchedProducts(products)
   }
 })
 </script>

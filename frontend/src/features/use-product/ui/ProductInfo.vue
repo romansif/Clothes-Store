@@ -127,7 +127,6 @@ const { toggleToFavorite } = useToggleFavorite();
 const { selectedColorClass, selectedSizesClass } = addToCartClasses();
 const { variantsInfo, pureInfoColors, isAvailableSizes } = productHelper();
 
-
 refClearErrorsOnChange(
   addToCartForm,
   addToCartFormErrorMessages

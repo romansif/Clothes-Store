@@ -11,12 +11,14 @@ const { openNotify } = useBaseModals();
 const { totalPrice } = orderPriceInfo();
 
 export const useAddOrder = () => {
-    const addOrder = async () => {
+    const createOrder = async () => {
+        if(!userData.value) return
+
         try{
             await handler(`/orders`, {
                 method: "POST",
                 body: JSON.stringify({
-                    userId: userData.id,
+                    userId: userData.value.id,
                     orderItems: items.value,
                     orderTotal: Number(totalPrice.value),
                     delivery: shippingForm.value.delivery,
@@ -31,7 +33,7 @@ export const useAddOrder = () => {
     };
 
     return{
-        addOrder,
+        createOrder,
     }
 }
 

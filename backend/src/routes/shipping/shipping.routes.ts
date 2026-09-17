@@ -1,7 +1,7 @@
 import express from "express";
 import { validation } from "#middleware/validation.ts";
 import { authMiddleware } from "#middleware/auth.middleware.ts";
-import { shippingController } from "#controllers/users/shipping.controller.ts";
+import { shippingController } from "#controllers/shipping/shipping.controller.ts";
 
 const router = express.Router();
 

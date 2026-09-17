@@ -1,6 +1,6 @@
 <template>
-  <button :class="variantClasses[props.variant]" v-bind="$attrs" :type="type">
-    <slot>{{ props.name }}</slot>
+  <button :class="variantClasses[variant]" v-bind="$attrs" :type="type">
+    <slot>{{ name }}</slot>
   </button>
 </template>
 
@@ -11,7 +11,7 @@ interface Props {
   type?: 'button' | 'submit' | 'reset';
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   name: 'base',
   variant: 'login',
   type: 'button',

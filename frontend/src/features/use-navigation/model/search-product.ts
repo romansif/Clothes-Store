@@ -1,33 +1,22 @@
-import type { Ref } from 'vue';
-import { useDebounceFn } from "@vueuse/core";
+import { computed, type Ref } from 'vue';
+import { refDebounced } from "@vueuse/core";
 import { handler } from "@/shared/api/http.ts";
-import { searchForm } from "@/widgets/navigation/model/search.form.ts";
-import type { Product } from "@/features/use-product/model/product.types.ts";
+import { searchProductForm } from "@/widgets/navigation/model/search.form.ts";
+import type {Product} from "@/features/use-product/model/product.types.ts";
 
-const { searchProductForm } = searchForm();
-
-export const useGetSearchedProducts = () => {
-    const getSearchedProducts = async (products: Ref<Product[]>) => {
-        try{
-            const res = await handler(`/searched?search=${searchProductForm.value.search}`, {
-                method: 'GET',
-            })
-            console.log(res);
-            products.value = res;
-        }catch(err){
-            console.log('Не удалось получить данные по всем товарам', err);
-        }
-    };
-
-    const debouncedSearch = useDebounceFn(async (products: Ref<Product[]>) => {
-        await getSearchedProducts(products);
-
-        return products;
-    }, 700)
+export const search = computed(() => searchProductForm.value.search);
+export const debouncedSearch = refDebounced(search, 700);
 
 
-    return{
-        getSearchedProducts,
-        debouncedSearch,
+export const getSearchedProducts = async (products: Ref<Product[]>) => {
+    try{
+        const res = await handler(`/searched?search=${searchProductForm.value.search}`, {
+            method: 'GET',
+        })
+
+        products.value = res;
+    }catch(err){
+        console.log('Не удалось получить данные по всем товарам', err);
     }
-}
+};
+

@@ -1,7 +1,7 @@
 <template>
   <div :class="signInRoleClass">
     <input v-model="loginForm.role"
-           value="Buyer"
+           :value="role"
            type="radio"
            name="role"
            class="accent-black w-4 h-4 cursor-pointer">

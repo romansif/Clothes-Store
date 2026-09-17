@@ -24,10 +24,12 @@ export const useAddShipping = () => {
         }
 
         try{
+            if(!userData.value) return
+
             const newShipping = await handler(`/shipping`, {
                 method: "POST",
                 body: JSON.stringify({
-                    userId: userData.id,
+                    userId: userData.value.id,
                     paymentId: uuidv4(),
                     delivery: shippingForm.value.delivery,
                 })

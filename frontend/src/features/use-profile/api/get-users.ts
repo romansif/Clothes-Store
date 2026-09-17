@@ -3,11 +3,12 @@ import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 
 const { loading } = useBaseModals();
-const { users, user, userData } = userStore();
+const { users, userData } = userStore();
 
 export const useGetUsers = () => {
     const getUsers = async () => {
         loading.value = true;
+
         try{
             const res = await handler('/useProfile', {
                 method: "GET",
@@ -22,11 +23,14 @@ export const useGetUsers = () => {
 
     const getUser = async () => {
         loading.value = true;
+
         try{
-            const res = await handler(`/users/${userData.id}`, {
+            if(!userData.value) return
+
+            const res = await handler(`/users/${userData.value.id}`, {
                 method: "GET",
             });
-            user.value = res;
+            userData.value = res;
         }catch(err){
             console.log(`Failed to get the user:`, err);
         }finally {

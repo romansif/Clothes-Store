@@ -3,16 +3,14 @@
     <header class="flex flex-col">
       <div class="flex gap-14 items-center font-semibold text-sm">
         <router-link :to="{name: 'cart'}">
-            <span>
-              SHOPPING BAG <span class="font-dm-sans">({{ cartCount }})</span>
-            </span>
+          <span>SHOPPING BAG</span>
+          <span class="font-dm-sans">({{ cartCount }})</span>
         </router-link>
         <div class="flex items-center gap-2">
           <img :src="liked" alt="" class="w-8.75">
           <router-link :to="{name: 'favorite'}">
-              <span class="text-[#A3A3A3]">
-                FAVORITES <span class="font-dm-sans">({{ favoritesCount }})</span>
-              </span>
+            <span class="text-[#A3A3A3]">FAVORITES</span>
+            <span class="font-dm-sans">({{ favoritesCount }})</span>
           </router-link>
         </div>
       </div>
@@ -52,9 +50,10 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
 import { cartStore } from "@/features/use-cart/model/cart.store.ts";
 import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
+import { useFavorite } from "@/features/use-favorite/lib/use-favorite.ts";
+import { useCartOrderInfo } from "@/features/use-cart/lib/cart-order-info.ts";
 import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
 import { isAgreeFormErrorMessage, isAgreeFormError } from "@/features/use-product/model/add.to.cart.form.ts";
 
@@ -68,8 +67,9 @@ import check_square from "@/assets/icons/squares/check-square.png";
 
 const { cart } = cartStore();
 const { getCartProducts } = useGetCart();
+const { favoritesCount } = useFavorite();
 const { getFavoriteProducts } = useGetFavorite();
-const { toggleAgree, continueToOrder, cartCount, favoritesCount } = useProfile();
+const { toggleAgree, continueToOrder, cartCount } = useCartOrderInfo();
 
 onMounted(async () => {
   await getCartProducts();

@@ -38,7 +38,7 @@
             <button @click="updateCartItem('away', product.id)"
                     class="border-b transition duration-400 hover:bg-zinc-300 cursor-pointer">-</button>
           </div>
-          <img @click="refreshPage" :src="update" alt="" class="transition duration-400 hover:scale-120 cursor-pointer">
+          <img :src="update" alt="" class="transition duration-400 hover:scale-120 cursor-pointer">
         </div>
       </div>
     </li>
@@ -47,10 +47,10 @@
 
 <script setup lang="ts">
 import { useUpdateCart } from "@/features/use-cart/api/update-cart.ts";
-import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import { productHelper } from "@/shared/lib/helper/product-helper.ts";
-import type {Product} from "@/features/use-product/model/product.types.ts";
+import { sizeUrl, sizeClass } from "@/features/use-cart/lib/cart-specific.ts";
+import type { Product } from "@/features/use-product/model/product.types.ts";
 
 defineProps<{
   product: Product;
@@ -63,14 +63,9 @@ import update from '@/assets/icons/products/refresh.svg';
 import check_square from '@/assets/icons/squares/check-square.png';
 import BaseProductCard from "@/widgets/ui/BaseProductCard.vue";
 
-const { sizeClass, sizeUrl } = useProfile();
 const { toggleDeleteChoice } = useProfileModals();
 const { pureQuantity, pureColors } = productHelper();
 const { updateCartItem, checkCartItem } = useUpdateCart();
-
-const refreshPage = () => {
-  window.location.reload();
-}
 </script>
 
 

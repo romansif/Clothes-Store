@@ -10,8 +10,11 @@ const { userPayments, userPayment } = paymentStore();
 export const useGetPayment = () => {
     const getPayments = async () => {
         loading.value = true;
+
         try{
-            const res = await handler(`/payment/${userData.id}`, {
+            if(!userData.value) return
+
+            const res = await handler(`/payment/${userData.value.id}`, {
                 method: "GET",
             });
             userPayments.value = res;

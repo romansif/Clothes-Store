@@ -37,6 +37,8 @@ export const useAddAddress = () => {
     };
 
     const useInformation = async () => {
+        if(!userData.value) return
+
         try{
             if(!informationId.value){
                 console.error("Ошибка: ID чекаута не найден в localStorage!");
@@ -45,7 +47,7 @@ export const useAddAddress = () => {
             const newAddress = await handler(`/address/${informationId.value}`, {
                 method: "PUT",
                 body: JSON.stringify({
-                    userId: userData.id,
+                    userId: userData.value.id,
                     addressName: informationForm.value.addressName,
                     email: informationForm.value.email,
                     phone: informationForm.value.phone,
@@ -88,10 +90,12 @@ export const useAddAddress = () => {
         }
 
         try{
+            if(!userData.value) return
+
             const newAddress = await handler(`/address`, {
                 method: "POST",
                 body: JSON.stringify({
-                    userId: userData.id,
+                    userId: userData.value.id,
                     addressName: informationForm.value.addressName,
                     email: informationForm.value.email,
                     phone: informationForm.value.phone,
