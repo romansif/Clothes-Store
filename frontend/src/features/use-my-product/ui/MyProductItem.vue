@@ -8,7 +8,7 @@
       <div class="flex flex-col">
         <div class="flex flex-col gap-10">
           <div class="flex items-center ml-auto gap-10">
-            <router-link :to="{ name: 'edit/product', params: { id: product.id } }">
+            <router-link :to="{ name: 'edit/product', params: { id: getProductId(product) } }">
               <img :src="pencil" alt="" class="w-7 transition duration-400 hover:scale-120 cursor-pointer">
             </router-link>
             <img @click="toggleDeleteChoice(
@@ -46,6 +46,7 @@
 <script setup lang="ts">
 import { toggleStackInfo } from "@/features/use-my-product/lib/toggle-stack-info.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
+import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 
 defineProps<{
   product: Product
@@ -58,6 +59,7 @@ import BaseButton from "@/shared/ui/BaseButton.vue";
 import BaseProductCard from "@/widgets/ui/BaseProductCard.vue";
 import type {Product} from "@/features/use-product/model/product.types.ts";
 
+const { getProductId } = useGetProduct();
 const { toggleDeleteChoice } = useProfileModals();
 </script>
 

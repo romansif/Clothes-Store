@@ -1,20 +1,14 @@
-import { computed } from "vue";
-import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
 import { cartStore } from "@/features/use-cart/model/cart.store.ts";
-import { productStore}  from "@/features/use-main-product/model/product.store.ts";
+import type {Product} from "@/features/use-product/model/product.types.ts";
 
 const { cart } = cartStore();
-const { productId } = productStore();
-const { products } = useGetProducts();
 
 export const cartHelper = () => {
-    const isInCart = computed(() => {
-        const product = products.value.find(p => p.id === productId.value);
-        if(!product?.id || !Array.isArray(cart.value)){
-            return null;
-        }
-        return cart.value.find(c => c.productId === product.id)
-    });
+    const isInCart = (product: Product) => {
+        if (!cart.value || !product?.id) return;
+
+        return cart.value.find(item => item.productId === product.id);
+    };
 
     return {
         isInCart,

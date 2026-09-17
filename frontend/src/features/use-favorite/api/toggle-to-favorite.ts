@@ -14,6 +14,9 @@ const { isFavorite, getProductId } = useFavorite();
 
 export const useToggleFavorite = () => {
     const toggleToFavorite = async (product: Product) => {
+        const user = userData.value
+        if(!user) return;
+
         try{
             const productId = getProductId(product);
 
@@ -22,16 +25,11 @@ export const useToggleFavorite = () => {
                 return;
             }
 
-            if(!userData?.id){
-                console.error('User ID is missing');
-                return;
-            }
-
             if(!isFavorite(product)){
                 await handler('/favorites', {
                     method: 'POST',
                     body: JSON.stringify({
-                        userId: userData?.id,
+                        userId: user.id,
                         productId,
                         images: product.images,
                         title: product.title,
@@ -54,9 +52,10 @@ export const useToggleFavorite = () => {
                     'favorite'
                 );
             }else{
+
                 const favoriteItem = favorite.value.find(
                     item => item.productId === productId &&
-                        item.userId === userData?.id
+                        item.userId === user.id
                 );
                 await deleteFavoriteProduct(favoriteItem?.id);
             }

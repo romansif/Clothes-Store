@@ -22,13 +22,11 @@
           </span>
         </div>
       </div>
-      <div class="mt-3.5">
-        <p class="font-medium break-all">
+      <p @click="toggleReadMore" :class="['font-medium break-after-all mt-3 cursor-pointer', fullDescription ? 'line-clamp-0' : 'line-clamp-2']">
           {{ product.description }}
-        </p>
-      </div>
+      </p>
       <ProductSpecific :product="product" :user="userData" />
-      <ProductToCart :user="userData" />
+      <ProductToCart :product="product" :user="userData" />
     </div>
   </template>
 </template>
@@ -40,6 +38,7 @@ import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
 import { productHelper } from "@/shared/lib/helper/product-helper.ts";
+import { toggleReadMore, fullDescription } from "@/features/use-product/lib/toggle-more-info.ts";
 import { type Product } from "@/features/use-product/model/product.types.ts";
 import {
   addToCartForm, addToCartFormErrorMessages

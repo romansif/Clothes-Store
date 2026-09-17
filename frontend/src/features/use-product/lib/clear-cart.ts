@@ -1,18 +1,12 @@
 import { addToCartForm, addToCartFormErrorMessages } from "@/features/use-product/model/add.to.cart.form.ts";
 
-export const clearAddToCartForm = () => {
-    const clearCartForm = () => {
-        addToCartForm.value.colors = {
-            hex: '',
-            colorName: ''
-        };
-        addToCartForm.value.sizes = '';
-
-        addToCartFormErrorMessages.value.colors = '';
-        addToCartFormErrorMessages.value.sizes = '';
+export const clearCartForm = () => {
+    addToCartForm.value.colors = {
+        hex: '',
+        colorName: ''
     };
+    addToCartForm.value.sizes = '';
 
-    return {
-        clearCartForm,
-    }
-}
+    addToCartFormErrorMessages.value.colors = '';
+    addToCartFormErrorMessages.value.sizes = '';
+};

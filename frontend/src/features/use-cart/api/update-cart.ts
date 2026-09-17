@@ -15,7 +15,7 @@ const { orderItems } = orderStore();
 const { openNotify } = useBaseModals();
 const { getCartProducts } = useGetCart();
 const { deleteProductCart } = useDeleteCart();
-const { getAllProducts, allProducts, products } = useGetProducts();
+const { getAllProducts, allProducts } = useGetProducts();
 
 export const useUpdateCart = () => {
     const checkCartItem = async (id: string, product: CartItem) => {
@@ -61,22 +61,31 @@ export const useUpdateCart = () => {
     }
 
     const updateCartItem = async (type: string, id: string) => {
-        try{
-            const productCart = cart.value.find(
-                c => c.id === id);
-            const product = products.value.find(
-                p => p.id === productCart?.productId
-            );
+        await getCartProducts();
+        await getAllProducts();
 
-            if(!productCart || !product) {
-                console.log('Товар в корзине или в каталоге не найден')
+        if(!id) return;
+
+        try{
+            const product = allProducts.value.find(
+                p => p.id === id
+            )
+            if(!product) {
+                console.log('Товар в каталоге не найден')
+                return
+            }
+
+            const cartItem = cart.value.find(
+                c => c.productId === id);
+            if(!cartItem) {
+                console.log('Товар в корзине не найден')
                 return
             }
 
             const basePrice =  Number(product.price)
-            const currentPrice = Number(productCart.price);
+            const currentPrice = Number(cartItem.price);
 
-            const currentItem = productCart.variants[0]
+            const currentItem = cartItem.variants[0]
             if(!currentItem) {
                 console.log('Варианты товара в корзине не найден')
                 return
@@ -98,11 +107,11 @@ export const useUpdateCart = () => {
                     const newPrice = currentPrice + basePrice;
                     const newQuantity = currentQuantity + 1;
 
-                    await handler(`/cart/${id}`, {
+                    await handler(`/cart/${product.id}`, {
                         method: "PATCH",
                         body: JSON.stringify({
                             price: newPrice,
-                            variants: productCart.variants.map(item => ({
+                            variants: cartItem.variants.map(item => ({
                                 ...item,
                                 count: newQuantity,
                             })),
@@ -116,16 +125,16 @@ export const useUpdateCart = () => {
                 }
             }else if(type === 'away') {
                 if(currentQuantity <= 1){
-                    await deleteProductCart(id);
+                    await deleteProductCart(cartItem.id);
                 }else{
                     const newPrice = currentPrice - basePrice;
                     const newQuantity = currentQuantity - 1;
 
-                    await handler(`/cart/${id}`, {
+                    await handler(`/cart/${cartItem.id}`, {
                         method: "PATCH",
                         body: JSON.stringify({
                             price: newPrice,
-                            variants: productCart.variants.map(item => ({
+                            variants: cartItem.variants.map(item => ({
                                 ...item,
                                 count: newQuantity,
                             })),

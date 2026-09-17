@@ -23,13 +23,13 @@
              :class="selectedSizesClass(size, product, user.role)">
       </div>
       <div class="flex items-center gap-1">
-            <span v-if="addToCartFormErrorMessages.colors" class="text-red-600 text-xs">
-              {{ addToCartFormErrorMessages.colors }}
-            </span>
+        <span v-if="addToCartFormErrorMessages.colors" class="text-red-600 text-xs">
+          {{ addToCartFormErrorMessages.colors }}
+        </span>
         <span v-if="addToCartFormErrorMessages.colors && addToCartFormErrorMessages.sizes" class="text-red-600 text-xs">/</span>
         <span v-if="addToCartFormErrorMessages.sizes" class="text-red-600 text-xs">
-              {{ addToCartFormErrorMessages.sizes }}
-            </span>
+          {{ addToCartFormErrorMessages.sizes }}
+        </span>
       </div>
     </div>
   </div>

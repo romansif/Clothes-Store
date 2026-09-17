@@ -1,13 +1,7 @@
-import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
-import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import type {Product} from "@/features/use-product/model/product.types.ts";
 
-const { productId } = productStore();
-const { products } = useGetProducts();
-
 export const productsHelper = () => {
-    const isInStock = () => {
-        const product = products.value.find((p: Product) => p.id === productId.value);
+    const isInStock = (product: Product) => {
         if(!product?.id || !product.variants) return;
 
         return product.variants.reduce((sum, variant) => sum + (variant.count ?? 0), 0);

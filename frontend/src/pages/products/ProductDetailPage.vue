@@ -14,14 +14,8 @@
         </div>
         <template v-if="product">
           <ProductInfo :product="product" />
+          <ProductReviews :product="product" />
         </template>
-        <div class="flex justify-center lg:hidden">
-          <router-link v-if="!userData?.id" :to="{name: 'signIn'}">
-            <span class="bg-black font-semibold text-sm py-8 px-46 text-white font-[Montserrat] lg:block">
-              ADD TO CART
-            </span>
-          </router-link>
-        </div>
       </div>
     </main>
   </div>
@@ -30,14 +24,15 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { useRoute } from "vue-router";
+import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
 import { productHelper } from "@/shared/lib/helper/product-helper.ts";
-import { userStore } from "@/features/use-profile/model/user.store.ts";
 
 import ProductInfo from "@/features/use-product/ui/ProductInfo.vue";
+import ProductReviews from "@/features/use-product-reviews/ui/ProductReviews.vue";
 
-const { userData } = userStore();
+const { getCartProducts } = useGetCart();
 const { getProduct, product } = useGetProduct();
 const { getFavoriteProducts } = useGetFavorite();
 const { changeImg, productInfoPreview, angelCards } = productHelper();
@@ -45,8 +40,9 @@ const { changeImg, productInfoPreview, angelCards } = productHelper();
 const route = useRoute();
 
 onMounted(async () => {
-  await getProduct(route.params.id);
+  await getCartProducts();
   await getFavoriteProducts();
+  await getProduct(route.params.id);
 })
 </script>
 <style scoped>

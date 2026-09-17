@@ -5,13 +5,15 @@ import type {Product} from "@/features/use-product/model/product.types.ts";
 const product = ref<Product | null>(null);
 
 export const useGetProduct = () => {
+    const getProductId = (product: Product): string => {
+        return product.productId ?? product.id ?? '';
+    };
+
     const getProduct = async (id: string | string[]) => {
         try{
             product.value = await handler(`/products/${id}`, {
                 method: 'GET',
             });
-
-            return product
         }catch(err){
             console.error(`Failed to get the product by id:`, err);
         }
@@ -19,6 +21,7 @@ export const useGetProduct = () => {
 
     return {
         getProduct,
+        getProductId,
         product
     }
 };

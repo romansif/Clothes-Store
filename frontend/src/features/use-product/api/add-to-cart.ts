@@ -1,6 +1,6 @@
 import { handler } from "@/shared/api/http.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
-import { clearAddToCartForm } from "@/features/use-product/lib/clear-cart.ts";
+import { clearCartForm } from "@/features/use-product/lib/clear-cart.ts";
 import { cartStore } from "@/features/use-cart/model/cart.store.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
@@ -14,7 +14,6 @@ const { product } = useGetProduct();
 const { unreadCount } = cartStore();
 const { openNotify } = useBaseModals();
 const { getCartProducts } = useGetCart();
-const { clearCartForm } = clearAddToCartForm();
 
 export const useAddToCart = () => {
     const addToCart = async () => {
@@ -31,6 +30,8 @@ export const useAddToCart = () => {
             if(!userData.value) return
 
             const currentProduct = product.value;
+            if(!currentProduct) return
+
             const currentQuantity = currentProduct.variants.find(
                 q => q.hex === addToCartForm.value.colors.hex);
 

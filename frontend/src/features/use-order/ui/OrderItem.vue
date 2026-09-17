@@ -27,7 +27,7 @@
         </div>
       </div>
       <div v-for="item in order.orderItems" :key="item.id">
-        <router-link :to="{ name: 'product/info', params: { id: item.productId } }">
+        <router-link :to="{ name: 'product/info', params: { id: getProductId(item) } }">
           <div class="flex py-5 px-3">
             <div class="flex gap-5">
               <img :src="orderPreview(item.id, 'ADDED')" alt="" class="w-30 h-39 rounded-2xl border border-gray-400
@@ -62,9 +62,11 @@
           </div>
         </router-link>
       </div>
-      <div class="flex justify-end gap-8 p-3 border-t bg-gray-50 border-gray-300">
-        <BaseButton name="Repeat Order" variant="repeatOrder" />
-        <BaseButton v-if="order.status !== 'Cancelled'" variant="repeatOrder" name="Cancel Order" @click="toggleOrder(order.id)" />
+      <div class="flex justify-end gap-8 bg-gray-50 border-gray-300 border-t p-3">
+        <BaseButton name="Write a review" variant="writeReview" />
+        <BaseButton v-if="order.status !== 'Cancelled'" name="Cancel Order"
+                    variant="cancelOrder"
+                    @click="toggleOrder(order.id)" />
       </div>
     </li>
   </TransitionGroup>
@@ -76,6 +78,7 @@ import { orderPreview } from "@/features/use-checkout-order/lib/checkout-order-h
 import { productHelper } from "@/shared/lib/helper/product-helper.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { ordersClasses } from "@/shared/const/order/orders.classes.ts";
+import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import type { Order } from "@/features/use-order/model/order.types.ts";
 
 defineProps<{
@@ -88,8 +91,9 @@ import OrderStatus from "@/features/use-order/ui/OrderStatus.vue";
 
 const { toggleOrder } = useBaseModals();
 const { orderStatus } = ordersClasses();
-const { copyText, orderQuantity } = useOrder();
+const { getProductId } = useGetProduct();
 const { pureColorsName } = productHelper();
+const { copyText, orderQuantity } = useOrder();
 </script>
 
 <style scoped>

@@ -21,7 +21,7 @@
           CM
         </button>
       </div>
-      <table class="w-full border-collapse items-center">
+      <table v-if="product" class="w-full border-collapse items-center">
         <thead>
           <tr v-if="product.category !== 'Shoes'" class="border-b border-neutral-400">
             <th class="px-4 py-4 text-left uppercase tracking-wider">
@@ -63,7 +63,7 @@
 <script setup lang="ts">
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
-import { toggleSizeGuide } from "@/features/use-product/lib/toggle-size-guide.ts";
+import { toggleSizeGuide } from "@/features/use-product/lib/toggle-more-info.ts";
 
 import close from '@/assets/icons/delete-close/delete.svg'
 import {productHelper} from "@/shared/lib/helper/product-helper.ts";

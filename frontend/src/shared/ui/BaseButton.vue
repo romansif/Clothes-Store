@@ -34,8 +34,10 @@ const variantClasses = {
       transition duration-400 hover:scale-105`,
   toggleAvatar: `bg-black text-white rounded px-8 py-3.5 font-semibold text-start cursor-pointer
       transition duration-400 hover:scale-120`,
-  repeatOrder: `px-4 py-2 text-xs font-semibold border bg-black text-white rounded-md cursor-pointer
-      transition duration-400 hover:scale-108`,
+  writeReview: `text-start h-fit w-fit px-4 py-2 bg-blue-700 text-white font-medium text-xs rounded-md cursor-pointer
+          transition duration-400 transform hover:bg-blue-800 hover:scale-110`,
+  cancelOrder: `text-start h-fit w-fit px-4 py-2 bg-red-600 text-white font-medium text-xs rounded-md cursor-pointer
+      transition duration-400 hover:bg-red-700 hover:scale-110`,
   outOfStack: `w-full font-semibold bg-[#A3A3A3] text-white py-4`,
   exitClose: `text-start ml-auto h-fit w-fit px-10 py-2 bg-[#3B3C36] text-white font-medium text-xs rounded-md cursor-pointer
           transition duration-400 transform hover:scale-108 hover:bg-[#1d1e1b]`,

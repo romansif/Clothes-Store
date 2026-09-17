@@ -133,7 +133,7 @@
         <span class="text-red-500">*</span>
       </label>
       <DescriptionForm />
-      <span class="ml-auto text-[#A3A3A3] text-xs font-medium">{{ createProductForm.title.length }} / 100</span>
+      <span class="ml-auto text-[#A3A3A3] text-xs font-medium">{{ createProductForm.description.length }} / 400</span>
     </div>
   </div>
 </template>
