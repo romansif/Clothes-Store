@@ -2,11 +2,14 @@ import { handler } from "@/shared/api/http.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { useGetOrder } from "@/features/use-order/api/get-order.ts";
 import { applyZodErrors, applyErrors} from "@/shared/lib/helper/errors-helper.ts";
-import { cancelChoiceForm, cancelChoiceMessage } from "@/features/use-order/model/order.store.ts";
+import { orderStore } from "@/features/use-order/model/order.store.ts";
+import { clearReplaceForm } from "@/features/use-order/lib/clear-order-form.ts";
+import { cancelChoiceForm, cancelChoiceMessage } from "@/features/use-order/model/order.forms.ts";
 import { replaceOrderSchema } from "@/features/use-order/model/replace.order.schemas.ts";
 
+const { orderId } = orderStore();
 const { getOrders } = useGetOrder();
-const { openNotify, orderId } = useBaseModals();
+const { openNotify } = useBaseModals();
 
 export const useDeleteOrder = () => {
     const replaceOrder = async () => {
@@ -37,6 +40,8 @@ export const useDeleteOrder = () => {
                     time_cancelled_at: time,
                 })
             });
+
+            clearReplaceForm()
             await openNotify('You have successfully cancelled the order.',
                 'Thank you for providing us with this information, it helps us improve our service.', 'profile')
 

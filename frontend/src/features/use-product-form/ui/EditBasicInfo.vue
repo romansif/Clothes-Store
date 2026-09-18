@@ -144,7 +144,8 @@
         <span>/</span>
         <span class="text-black uppercase">{{ product.description }}</span>
       </label>
-      <DescriptionForm />
+      <DescriptionForm v-model="createProductForm.description" :error-message="createProductFormErrorMessages.description"
+                       :placeholder="'short desc. of product'" />
       <span class="ml-auto text-[#A3A3A3] text-xs font-medium">{{ createProductForm.title.length }} / 100</span>
     </div>
   </div>

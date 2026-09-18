@@ -26,8 +26,8 @@ export const useAddOrder = () => {
                 })
             })
         }catch(err){
-            await openNotify('An error occurred',
-                'We are working on this issue please try again later', '')
+            await openNotify('An error occurred.',
+                'We are working on this issue please try again later.', '')
             console.error(`Failed to create the order:`, err);
         }
     };

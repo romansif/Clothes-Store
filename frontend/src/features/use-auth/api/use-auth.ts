@@ -159,9 +159,6 @@ export const useAuth = () => {
             users.value = await handler('/auth/logout', {
                 method: "POST",
             })
-
-            await openNotify('You have successfully logout',
-                'You will now be taken to sign in page', 'signIn');
         }catch(err){
             console.log(`Failed to logout:`, err);
         }finally {

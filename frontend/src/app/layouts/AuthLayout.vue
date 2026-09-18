@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white h-screen">
+  <div class="bg-white min-h-screen">
     <main class="font-raleway fixed inset-0 flex items-center justify-center">
       <router-view />
     </main>

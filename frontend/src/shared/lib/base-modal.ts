@@ -1,17 +1,15 @@
 import { ref } from "vue";
 import router from "@/app/router";
-import { orderStore } from "@/features/use-order/model/order.store.ts";
-import { cancelChoiceForm } from "@/features/use-order/model/order.store.ts";
+import { useOrderModal } from "@/features/use-order/lib/order-modal.ts";
+import { cancelChoiceForm } from "@/features/use-order/model/order.forms.ts";
 
-const { choiceModal } = orderStore();
+const { choiceModal, reviewModal } = useOrderModal();
 
 const notify = ref<boolean>(false);
 const notifyTitle = ref<string>('');
 const notifyMessage= ref<string>('');
 
 const loading = ref<boolean>(false);
-
-const orderId = ref<string>('');
 
 export const useBaseModals = () => {
     const delay = (ms: number) =>
@@ -30,24 +28,15 @@ export const useBaseModals = () => {
         notifyMessage.value = '';
 
         choiceModal.value = false;
+        reviewModal.value = false;
+
         cancelChoiceForm.value.cancelChoice = '';
 
         await router.push({name: `${name}`});
     };
 
-    const toggleOrder = (id: string) => {
-        choiceModal.value = !choiceModal.value;
-        orderId.value = id;
-        cancelChoiceForm.value.cancelChoice = '';
-    };
-
     return {
         openNotify,
-        toggleOrder,
-
-        choiceModal,
-        orderId,
-
         loading,
 
         notify,

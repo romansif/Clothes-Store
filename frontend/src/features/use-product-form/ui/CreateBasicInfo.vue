@@ -132,7 +132,8 @@
         DESC. · ОПИСАНИЕ
         <span class="text-red-500">*</span>
       </label>
-      <DescriptionForm />
+      <DescriptionForm v-model="createProductForm.description" :error-message="createProductFormErrorMessages.description"
+                       :placeholder="'short desc. of product'" />
       <span class="ml-auto text-[#A3A3A3] text-xs font-medium">{{ createProductForm.description.length }} / 400</span>
     </div>
   </div>

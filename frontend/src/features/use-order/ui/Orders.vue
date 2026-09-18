@@ -26,6 +26,9 @@
     <Transition name="notify">
       <ReplacementChoice v-if="choiceModal" />
     </Transition>
+    <Transition name="notify">
+      <CreateReview v-if="reviewModal" />
+    </Transition>
   </div>
 </template>
 
@@ -33,20 +36,21 @@
 import { onMounted } from "vue";
 import { useOrder } from "@/features/use-order/lib/use-order.ts";
 import { orderStore } from "@/features/use-order/model/order.store.ts";
+import { useOrderModal } from "@/features/use-order/lib/order-modal.ts";
 import { useGetOrder } from "@/features/use-order/api/get-order.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
-import { useBaseModals } from "@/shared/lib/base-modal.ts";
 
 import OrdersList from "@/features/use-order/ui/OrderList.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import ClipboardNotify from "@/shared/ui/ClipboardNotify.vue";
 import ReplacementChoice from "@/features/use-order/ui/ReplacementChoice.vue";
+import CreateReview from "@/features/use-order/ui/CreateReview.vue";
 
 const { orders } = orderStore();
 const { clipboard } = useOrder();
 const { getOrders } = useGetOrder();
-const { choiceModal } = useBaseModals();
 const { toggleOrderHistory } = useProfileModals();
+const { choiceModal, reviewModal } = useOrderModal();
 
 onMounted(async () => {
   await getOrders();

@@ -34,10 +34,8 @@ const variantClasses = {
       transition duration-400 hover:scale-105`,
   toggleAvatar: `bg-black text-white rounded px-8 py-3.5 font-semibold text-start cursor-pointer
       transition duration-400 hover:scale-120`,
-  writeReview: `text-start h-fit w-fit px-4 py-2 bg-blue-700 text-white font-medium text-xs rounded-md cursor-pointer
-          transition duration-400 transform hover:bg-blue-800 hover:scale-110`,
-  cancelOrder: `text-start h-fit w-fit px-4 py-2 bg-red-600 text-white font-medium text-xs rounded-md cursor-pointer
-      transition duration-400 hover:bg-red-700 hover:scale-110`,
+  useOrder: `text-start h-fit w-fit px-10 py-2 bg-[#3B3C36] text-white font-medium text-xs rounded-md cursor-pointer
+          transition duration-400 transform hover:scale-108 hover:bg-[#1d1e1b]`,
   outOfStack: `w-full font-semibold bg-[#A3A3A3] text-white py-4`,
   exitClose: `text-start ml-auto h-fit w-fit px-10 py-2 bg-[#3B3C36] text-white font-medium text-xs rounded-md cursor-pointer
           transition duration-400 transform hover:scale-108 hover:bg-[#1d1e1b]`,
@@ -47,6 +45,7 @@ const variantClasses = {
       transition duration-400 hover:scale-108 hover:bg-blue-800`,
   refresh: `transition duration-400 px-4 py-2 mt-5 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors`,
   stackInfo: `ml-auto text-start h-fit w-fit px-10 py-2 bg-[#3B3C36] text-white font-medium text-xs rounded-md cursor-pointer
-          transition duration-400 transform hover:bg-[#1d1e1b]`
+          transition duration-400 transform hover:bg-[#1d1e1b]`,
+  loadReviews: `font-semibold border border-[#D9D9D9] w-150 p-2.5 transition duration-400 hover:bg-white hover:scale-105`
 }
 </script>

@@ -1,34 +1,298 @@
 {
   "users": [
     {
-      "id": "41010098-abb3-4648-a05e-933ef3171352",
-      "role": "Seller",
-      "name": "21e123",
-      "surName": "21313",
-      "phone": "+998 (13) 213-2",
+      "id": "5635e842-8786-4ec4-8663-bf918161c73c",
       "email": "akmalmavlonov25@gmail.com",
-      "password": "$2b$10$j.KaskZ2a02L5NUnF8VPY..BRAOkgLndHXoeDjJM9eKqwJGTIm1dq",
-      "avatarUrl": "uploads/avatars/default-avatar.png",
-      "created_at": "2026-09-16T06:43:42.635Z",
-      "googleId": "117192309001137738940"
+      "role": "Seller",
+      "name": "Plagiat555",
+      "surName": "",
+      "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocJzHyeN95wO6MAZzH4E9FkqrC9pDZ_IsEztiiZDoWZD08A2Osv2=s96-c",
+      "privatePhone": "",
+      "googleId": "117192309001137738940",
+      "created_at": "2026-09-17T09:20:34.668Z",
+      "password": ""
     },
     {
-      "id": "b55dcba9-7305-4747-be3f-437f6d9fe28b",
+      "id": "88d02997-e638-4aac-beb9-f986f55cda1c",
+      "email": "icecityland@gmail.com",
       "role": "Buyer",
-      "name": "asdaad",
-      "surName": "Movlonov",
-      "phone": "+998 (12) 345-67-89",
-      "email": "akmalmavlonov25@gmail.com",
-      "password": "$2b$10$RhBU/qxalm6Q2lvorpAWeOlZDnDEkLJ6Hh0dVsY5tpcO7jsq3S3Om",
-      "avatarUrl": "uploads/avatars/default-avatar.png",
-      "created_at": "2026-09-16T07:01:33.779Z"
+      "name": "Misterio",
+      "surName": "",
+      "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocI_x7qgDLevnmrmvy2xxOJsLmz7BtasLX64CA8TSeR3nn4F8IY=s96-c",
+      "privatePhone": "",
+      "googleId": "100649871042356442319",
+      "created_at": "2026-09-17T09:54:59.265Z",
+      "password": ""
     }
   ],
-  "products": [],
+  "products": [
+    {
+      "id": "15d2ee98-53e7-4b4e-ac46-7639d5d84e39",
+      "userId": "5635e842-8786-4ec4-8663-bf918161c73c",
+      "images": [
+        "uploads/products/product-1789638864451-396590289.png",
+        "uploads/products/product-1789638864459-523254742.png",
+        "uploads/products/product-1789638864467-630456836.png",
+        "uploads/products/product-1789638864470-448504727.png",
+        "uploads/products/product-1789638864474-439651088.png"
+      ],
+      "title": "Padink",
+      "collection": {
+        "season": "Autumn",
+        "name": "Chapter |",
+        "condition": "Old"
+      },
+      "category": "T-shirts",
+      "material": "Cotton",
+      "gender": "Man",
+      "sku": "e3u-fh-283",
+      "price": 25,
+      "description": "PADINK is a premium cotton T-shirt built around simplicity, comfort, and everyday wear. Crafted from soft, breathable cotton with a clean silhouette and relaxed feel, it’s an effortless essential made to fit into any wardrobe.",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        {
+          "hex": "#ffffff",
+          "colorName": "White"
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black"
+        },
+        {
+          "hex": "#a80b0b",
+          "colorName": "Bright Red"
+        }
+      ],
+      "variants": [
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "XS",
+          "count": 200
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "S",
+          "count": 200
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "M",
+          "count": 200
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "L",
+          "count": 200
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "XL",
+          "count": 200
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "XXL",
+          "count": 200
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "XS",
+          "count": 200
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "S",
+          "count": 199
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "M",
+          "count": 200
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "L",
+          "count": 200
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "XL",
+          "count": 200
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "XXL",
+          "count": 200
+        },
+        {
+          "hex": "#a80b0b",
+          "colorName": "Bright Red",
+          "size": "XS",
+          "count": 200
+        },
+        {
+          "hex": "#a80b0b",
+          "colorName": "Bright Red",
+          "size": "S",
+          "count": 200
+        },
+        {
+          "hex": "#a80b0b",
+          "colorName": "Bright Red",
+          "size": "M",
+          "count": 200
+        },
+        {
+          "hex": "#a80b0b",
+          "colorName": "Bright Red",
+          "size": "L",
+          "count": 200
+        },
+        {
+          "hex": "#a80b0b",
+          "colorName": "Bright Red",
+          "size": "XL",
+          "count": 200
+        },
+        {
+          "hex": "#a80b0b",
+          "colorName": "Bright Red",
+          "size": "XXL",
+          "count": 200
+        }
+      ],
+      "status": "Availability",
+      "created_at": "2026-09-17T09:54:24.515Z"
+    }
+  ],
   "cart": [],
   "favorites": [],
-  "addresses": [],
-  "shipping": [],
-  "payments": [],
-  "orders": []
+  "addresses": [
+    {
+      "id": "8be222fc-ced7-438a-af88-9d867523bcb1",
+      "userId": "88d02997-e638-4aac-beb9-f986f55cda1c",
+      "address": "123ewqe",
+      "postalCode": 21131,
+      "addressName": "1e3",
+      "email": "icecityland@gmail.com",
+      "phone": "+998 (12) 345-67-89",
+      "firstName": "A",
+      "lastName": "Misterio",
+      "country": "123",
+      "stateRegion": "123",
+      "city": "qwe"
+    }
+  ],
+  "shipping": [
+    {
+      "id": "d217eeb4-bd05-491d-90dd-1dfd7a33375a",
+      "userId": "88d02997-e638-4aac-beb9-f986f55cda1c",
+      "paymentId": "7d818296-3e29-4ccf-8a61-cba7ee057505",
+      "delivery": "standard"
+    }
+  ],
+  "payments": [
+    {
+      "id": "7c426365-e1ac-49ee-a3fe-2ccb53a94c3e",
+      "userId": "88d02997-e638-4aac-beb9-f986f55cda1c",
+      "paymentId": "7d818296-3e29-4ccf-8a61-cba7ee057505",
+      "paymentMethod": "apple"
+    }
+  ],
+  "orders": [
+    {
+      "id": "1f2828b6-5bdf-41f9-ac98-79a416e5936b",
+      "userId": "88d02997-e638-4aac-beb9-f986f55cda1c",
+      "orderItems": [
+        {
+          "id": "fb67382f-8b72-46e7-886b-bec9dc53b702",
+          "userId": "88d02997-e638-4aac-beb9-f986f55cda1c",
+          "productId": "15d2ee98-53e7-4b4e-ac46-7639d5d84e39",
+          "images": [
+            "uploads/products/product-1789638864451-396590289.png",
+            "uploads/products/product-1789638864459-523254742.png",
+            "uploads/products/product-1789638864467-630456836.png",
+            "uploads/products/product-1789638864470-448504727.png",
+            "uploads/products/product-1789638864474-439651088.png"
+          ],
+          "title": "Padink",
+          "category": "T-shirts",
+          "material": "Cotton",
+          "price": 25,
+          "description": "PADINK is a premium cotton T-shirt built around simplicity, comfort, and everyday wear. Crafted from soft, breathable cotton with a clean silhouette and relaxed feel, it’s an effortless essential made to fit into any wardrobe.",
+          "colors": [
+            {
+              "hex": "#000000",
+              "colorName": "Black"
+            }
+          ],
+          "sizes": "S",
+          "gender": "Man",
+          "variants": [
+            {
+              "hex": "#000000",
+              "colorName": "Black",
+              "size": "S",
+              "count": 1
+            }
+          ],
+          "checked": false,
+          "created_at": "2026-09-17T11:49:52.664Z"
+        }
+      ],
+      "orderTotal": 27,
+      "delivery": "",
+      "status": "Convene",
+      "created_at": "2026-09-17T11:50:25.631Z",
+      "date_created_at": "17.09.2026",
+      "time_created_at": "16:50"
+    }
+  ],
+  "reviews": [
+    {
+      "id": "5c10ff91-5199-4f6d-be09-7a55d9228e33",
+      "userId": "88d02997-e638-4aac-beb9-f986f55cda1c",
+      "productId": "15d2ee98-53e7-4b4e-ac46-7639d5d84e39",
+      "user": {
+        "name": "Misterio",
+        "surName": "Dweqwew",
+        "avatar": "https://lh3.googleusercontent.com/a/ACg8ocI_x7qgDLevnmrmvy2xxOJsLmz7BtasLX64CA8TSeR3nn4F8IY=s96-c"
+      },
+      "rating": 3,
+      "comment": "qfqqwqrqrqwqwr",
+      "created_at": "Sep 18, 2026"
+    },
+    {
+      "id": "3533f285-cda2-4247-9a05-325c8f45dcf2",
+      "userId": "88d02997-e638-4aac-beb9-f986f55cda1c",
+      "productId": "15d2ee98-53e7-4b4e-ac46-7639d5d84e39",
+      "user": {
+        "name": "Misterio",
+        "surName": "Ijnjbu",
+        "avatar": "https://lh3.googleusercontent.com/a/ACg8ocI_x7qgDLevnmrmvy2xxOJsLmz7BtasLX64CA8TSeR3nn4F8IY=s96-c"
+      },
+      "rating": 3,
+      "comment": "123131311 41v4b14235n45",
+      "created_at": "Sep 18, 2026"
+    }
+  ]
 }

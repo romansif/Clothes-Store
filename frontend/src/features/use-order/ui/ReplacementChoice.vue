@@ -1,8 +1,8 @@
 <template>
-  <div @click="toggleOrder('')" class="font-montserrat fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)]
+  <div @click="toggleReplaceChoice('')" class="font-montserrat fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)]
       flex items-center justify-center">
-    <div @click.stop class="flex flex-col gap-2 bg-white w-175 h-152.5 rounded-xl p-5">
-      <BaseButton @click="toggleOrder"
+    <div @click.stop class="flex flex-col gap-2 bg-white w-175 h-fit rounded-xl p-5">
+      <BaseButton @click="toggleReplaceChoice"
                   name="Exit"
                   variant="exitClose" />
       <div class="flex flex-col gap-4 border-b pb-4">
@@ -39,16 +39,16 @@
 </template>
 
 <script setup lang="ts">
-import { useBaseModals } from "@/shared/lib/base-modal.ts";
+import { useOrderModal } from "@/features/use-order/lib/order-modal.ts";
 import { useDeleteOrder } from "@/features/use-order/api/delete-order.ts";
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
-import { cancelChoiceForm, cancelChoiceMessage } from "@/features/use-order/model/order.store.ts";
+import { cancelChoiceForm, cancelChoiceMessage } from "@/features/use-order/model/order.forms.ts";
 
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import ReplacementInput from "@/features/use-order/ui/ReplacementInput.vue";
 
 const { replaceOrder } = useDeleteOrder();
-const { toggleOrder } = useBaseModals();
+const { toggleReplaceChoice } = useOrderModal();
 
 refClearErrorsOnChange(
     cancelChoiceForm,

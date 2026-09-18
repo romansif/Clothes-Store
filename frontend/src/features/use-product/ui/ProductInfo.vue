@@ -1,6 +1,6 @@
 <template>
   <template v-if="userData">
-    <div class="flex flex-col mt-5 px-4 lg:mt-0 w-125">
+    <div class="flex flex-col mt-20 px-4 w-125">
       <div class="flex flex-col gap-2">
         <div class="flex">
           <div class="flex flex-col gap-1 mt-1 font-medium">

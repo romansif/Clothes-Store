@@ -61,12 +61,12 @@
             </div>
           </div>
         </router-link>
-      </div>
-      <div class="flex justify-end gap-8 bg-gray-50 border-gray-300 border-t p-3">
-        <BaseButton name="Write a review" variant="writeReview" />
-        <BaseButton v-if="order.status !== 'Cancelled'" name="Cancel Order"
-                    variant="cancelOrder"
-                    @click="toggleOrder(order.id)" />
+        <div class="flex justify-end gap-8 bg-gray-50 border-gray-300 border-t p-3">
+          <BaseButton v-if="isInReview" @click="toggleReviewChoice(item.productId)" name="Write a review" variant="useOrder" />
+          <BaseButton v-if="order.status !== 'Cancelled'" name="Cancel Order"
+                      variant="useOrder"
+                      @click="toggleReplaceChoice(order.id)" />
+        </div>
       </div>
     </li>
   </TransitionGroup>
@@ -76,10 +76,11 @@
 import { useOrder } from "@/features/use-order/lib/use-order.ts";
 import { orderPreview } from "@/features/use-checkout-order/lib/checkout-order-helper.ts";
 import { productHelper } from "@/shared/lib/helper/product-helper.ts";
-import { useBaseModals } from "@/shared/lib/base-modal.ts";
+import { useOrderModal } from "@/features/use-order/lib/order-modal.ts";
 import { ordersClasses } from "@/shared/const/order/orders.classes.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import type { Order } from "@/features/use-order/model/order.types.ts";
+import { isInReview } from "@/features/use-order/lib/add-rating-star.ts";
 
 defineProps<{
   order: Order
@@ -89,11 +90,11 @@ import copy_btn from '@/assets/icons/squares/copy.svg';
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import OrderStatus from "@/features/use-order/ui/OrderStatus.vue";
 
-const { toggleOrder } = useBaseModals();
 const { orderStatus } = ordersClasses();
 const { getProductId } = useGetProduct();
 const { pureColorsName } = productHelper();
 const { copyText, orderQuantity } = useOrder();
+const { toggleReviewChoice, toggleReplaceChoice } = useOrderModal();
 </script>
 
 <style scoped>

@@ -1,5 +1,5 @@
 <template>
-  <div :class="['bg-[#F0F0F0]', isProductDetail ? '' : 'h-screen']">
+  <div class="bg-[#F0F0F0] min-h-screen">
     <div v-if="componentError" class="flex flex-col items-center justify-center pt-80 p-6 text-red-700 rounded-xl">
       <span class="text-lg font-semibold mb-2">
         Something went wrong 😔
@@ -27,8 +27,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-import { useRoute } from "vue-router";
 import { errorHandler } from "@/shared/lib/error-handler.ts";
 import { useProductsModals } from "@/features/use-main-product/lib/product-modal.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
@@ -42,14 +40,10 @@ import BaseButton from "@/shared/ui/BaseButton.vue";
 import DeleteModal from "@/shared/ui/DeleteModal.vue";
 import SizeGuideModal from "@/features/use-product/ui/SizeGuideModal.vue";
 
-const route = useRoute();
-
 const { notify } = useBaseModals();
 const { deleteChoice } = useProfileModals();
 const { filterAside } = useProductsModals();
 const { componentError, resetError } = errorHandler();
-
-const isProductDetail = computed(() => route.name === 'product/info')
 </script>
 
 <style scoped>

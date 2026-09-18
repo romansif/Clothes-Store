@@ -1,4 +1,4 @@
-import {ref} from "vue";
+import { ref } from "vue";
 import type { OrderItem, Order } from "@/features/use-order/model/order.types.ts";
 
 const orders = ref<Order[]>([]);
@@ -7,22 +7,27 @@ const orderItems = ref<OrderItem[]>([]);
 
 const items = ref<OrderItem[]>(JSON.parse(localStorage.getItem('orderItems') || '[]'));
 
-const choiceModal = ref<boolean>(false);
+const orderId = ref<string>('');
+const productId = ref<string>('');
 
-export const cancelChoiceForm = ref({
-    cancelChoice: ''
-})
+const ratingDirection = ref<'up' | 'down'>('up');
 
-export const cancelChoiceMessage = ref({
-    cancelChoice: ''
-});
+const ratings = [
+    1,
+    2,
+    3,
+    4,
+    5,
+]
 
 export const orderStore = () => {
     return {
         orders,
         orderItems,
         items,
-
-        choiceModal
+        orderId,
+        productId,
+        ratings,
+        ratingDirection
     }
 }

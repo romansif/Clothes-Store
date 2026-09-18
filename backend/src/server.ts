@@ -18,6 +18,7 @@ import productsRoutes from "#routes/products/products.routes.ts";
 import cartRoutes from "#routes/cart/cart.routes.ts";
 import favoritesRoutes from "#routes/favorite/favorite.routes.ts";
 import ordersRoutes from "#routes/order/orders.routes.ts";
+import reviewsRoutes from "#routes/reviews/reviews.routes.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -49,6 +50,7 @@ const apiRoutes = [
     cartRoutes,
     favoritesRoutes,
     ordersRoutes,
+    reviewsRoutes
 ]
 
 app.use('/api', apiRoutes);

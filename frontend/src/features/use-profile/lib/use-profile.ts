@@ -15,7 +15,7 @@ export const useProfile = () => {
             return url;
         }
 
-        return `${import.meta.env.VITE_BASE_URL}/${userData.value.avatarUrl}`
+        return `${import.meta.env.VITE_BASE_URL}/${url}`
     });
 
     return{

@@ -1,8 +1,8 @@
 <template>
-  <div class="flex justify-center items-center mt-25">
-    <main class="overflow-y-auto no-scrollbar mt-6 lg:mt-0 lg:w-300">
+  <div class="flex justify-center items-center mt-10">
+    <main v-if="product" class="flex flex-col gap-35 lg:mt-0 lg:w-300">
       <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-10">
-        <div v-if="product && product.id && product.id.length > 0" class="flex gap-18 lg:gap-20">
+        <div class="flex gap-18 lg:gap-20">
           <div class="flex flex-col items-center gap-3">
             <img :src="productInfoPreview(product)" alt="" class="w-97.5">
           </div>
@@ -12,11 +12,9 @@
             </div>
           </div>
         </div>
-        <template v-if="product">
-          <ProductInfo :product="product" />
-          <ProductReviews :product="product" />
-        </template>
+        <ProductInfo :product="product" />
       </div>
+      <ProductReviews :reviews="reviews"/>
     </main>
   </div>
 </template>
@@ -28,10 +26,12 @@ import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
 import { productHelper } from "@/shared/lib/helper/product-helper.ts";
+import { useGetReviews } from "@/features/use-product-reviews/api/get-reviews.ts";
 
 import ProductInfo from "@/features/use-product/ui/ProductInfo.vue";
 import ProductReviews from "@/features/use-product-reviews/ui/ProductReviews.vue";
 
+const { getReviews, reviews } = useGetReviews();
 const { getCartProducts } = useGetCart();
 const { getProduct, product } = useGetProduct();
 const { getFavoriteProducts } = useGetFavorite();
@@ -43,6 +43,7 @@ onMounted(async () => {
   await getCartProducts();
   await getFavoriteProducts();
   await getProduct(route.params.id);
+  await getReviews(route.params.id)
 })
 </script>
 <style scoped>
