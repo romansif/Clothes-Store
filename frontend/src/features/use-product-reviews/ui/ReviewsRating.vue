@@ -30,10 +30,7 @@
 <script setup lang="ts">
 import { orderStore } from "@/features/use-order/model/order.store.ts";
 import {
-  averageRating,
-  percentage,
-  ratingCount,
-  starCountSrc
+  reviewsHelper
 } from "@/features/use-product-reviews/lib/reviews-halper.ts";
 import type {Review} from "@/features/use-product-reviews/model/reviews.types.ts";
 
@@ -44,6 +41,7 @@ defineProps<{
 import star from "@/assets/icons/products/full-star.png";
 
 const { ratings } = orderStore();
+const { averageRating, percentage, ratingCount, starCountSrc } = reviewsHelper();
 </script>
 
 <style scoped>

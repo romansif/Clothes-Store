@@ -2,7 +2,7 @@
   <div class="flex flex-col bg-white rounded-xl shadow-2xl">
     <div class="flex p-5">
       <div class="flex items-center gap-10">
-        <img @click="toggleAvatar" :src="userAvatar" alt=""
+        <img @click="toggleAvatar" :src="userAvatar(userData)" alt=""
              class="rounded-full w-25 transition duration-400 hover:scale-108">
         <div class="flex flex-col gap-4 font-semibold text-xl">
           <div class="flex gap-2 font-dm-sans">
@@ -44,6 +44,7 @@
 </template>
 
 <script setup lang="ts">
+import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 
@@ -56,6 +57,7 @@ import ProfileTab from "@/shared/ui/profile/ProfileTab.vue";
 import type {User} from "@/features/use-profile/model/user.types.ts";
 
 const { userAvatar } = useProfile();
+const { userData } = userStore();
 const {
   toggleAvatar, toggleOrderHistory, toggleCurrentOrder,
   toggleConfidentialityData, toggleAddressesAndCards

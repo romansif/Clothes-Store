@@ -15,13 +15,15 @@
       <ReviewsFilter :reviews="reviews" />
       <CommentList />
       <div class="flex flex-col items-center gap-2.5">
-        <BaseButton name="Load more reviews" variant="loadReviews" />
+        <BaseButton v-if="visibleReviewsCount < reviews.length" @click="loadFiveReviews" name="Load more reviews" variant="loadReviews" />
+        <BaseButton v-else @click="closeFiveReviews" name="Close more reviews" variant="loadReviews" />
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { reviewsHelper } from "@/features/use-product-reviews/lib/reviews-halper.ts";
 import { useGetReviews } from "@/features/use-product-reviews/api/get-reviews.ts";
 import type {Review} from "@/features/use-product-reviews/model/reviews.types.ts";
 
@@ -34,7 +36,8 @@ import ReviewsFilter from "@/features/use-product-reviews/ui/ReviewsFilter.vue";
 import CommentList from "@/features/use-product-reviews/ui/CommentList.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 
-const { reviews } = useGetReviews();
+const { reviews, visibleReviewsCount } = useGetReviews();
+const { loadFiveReviews, closeFiveReviews } = reviewsHelper();
 </script>
 
 <style scoped>

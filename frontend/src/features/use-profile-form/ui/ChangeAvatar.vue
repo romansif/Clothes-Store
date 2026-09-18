@@ -5,7 +5,7 @@
       <div class="flex flex-col justify-center py-8 gap-6">
         <h2 class="text-2xl text-center font-bold">Click on the avatar to change</h2>
         <div class="flex flex-col items-center gap-6">
-          <img @click="openSelectAvatar" :src="userAvatar" alt="" class="w-35 rounded-full transition duration-400 hover:scale-110" />
+          <img @click="openSelectAvatar" :src="userAvatar(userData)" alt="" class="w-35 rounded-full transition duration-400 hover:scale-110" />
           <div class="flex gap-12">
             <BaseButton @click="toggleAvatar" name="Confirm" variant="toggleAvatar" />
           </div>
@@ -18,6 +18,7 @@
 </template>
 
 <script setup lang="ts">
+import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import { profileApi } from "@/features/use-profile-form/api/profile.api.ts";
@@ -25,6 +26,7 @@ import { profileApi } from "@/features/use-profile-form/api/profile.api.ts";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 
 const { userAvatar } = useProfile();
+const { userData } = userStore();
 const { updateAvatarAccount } = profileApi();
 const { toggleAvatar, openSelectAvatar, fileInput } = useProfileModals();
 </script>
