@@ -1,6 +1,6 @@
 <template>
   <main class="mt-10 xl:mt-30 xl:px-10">
-    <FavoriteHeader />
+    <FavoriteCartHeader />
     <Transition name="view">
       <div v-if="favorite.length === 0" class="flex flex-col gap-5 items-center justify-center pt-55">
         <img :src="favorite_cart" alt="">
@@ -25,7 +25,7 @@ import { favoriteStore } from "@/features/use-favorite/model/favorite.store.ts";
 
 import favorite_cart from '@/assets/icons/products/favorute_empty.svg';
 import FavoriteList from "@/features/use-favorite/ui/FavoriteList.vue";
-import FavoriteHeader from "@/features/use-favorite/ui/FavoriteHeader.vue";
+import FavoriteCartHeader from "@/widgets/navigation/ui/FavoriteCartHeader.vue";
 
 const { favorite } = favoriteStore();
 const { getFavoriteProducts } = useGetFavorite();

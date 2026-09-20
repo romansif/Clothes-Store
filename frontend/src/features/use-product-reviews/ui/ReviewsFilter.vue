@@ -1,5 +1,5 @@
 <template>
-  <div class="font-medium flex justify-between">
+  <div class="flex justify-between">
     <div class="font-bold flex flex-col gap-2">
       <span class="text-lg transition duration-500 hover:scale-120 cursor-pointer">
         All reviews

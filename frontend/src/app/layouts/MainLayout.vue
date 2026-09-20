@@ -11,38 +11,17 @@
       <MainNavBar />
       <router-view />
     </div>
-    <Transition name="sidebar">
-      <AsideFilter v-if="filterAside" />
-    </Transition>
-    <Transition name="notify">
-      <SizeGuideModal v-if="sizeGuideModel"/>
-    </Transition>
-    <Transition name="notify">
-      <Notification v-if="notify"/>
-    </Transition>
-    <Transition name="notify">
-      <DeleteModal v-if="deleteChoice"/>
-    </Transition>
+    <MainLayoutModal />
   </div>
 </template>
 
 <script setup lang="ts">
 import { errorHandler } from "@/shared/lib/error-handler.ts";
-import { useProductsModals } from "@/features/use-main-product/lib/product-modal.ts";
-import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
-import { useBaseModals } from "@/shared/lib/base-modal.ts";
-import { sizeGuideModel } from "@/features/use-product/lib/toggle-more-info.ts";
 
-import Notification from "@/shared/ui/Notification.vue";
-import AsideFilter from "@/widgets/product/ui/AsideFilter.vue";
 import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";
-import DeleteModal from "@/shared/ui/DeleteModal.vue";
-import SizeGuideModal from "@/features/use-product/ui/SizeGuideModal.vue";
+import MainLayoutModal from "@/shared/ui/MainLayoutModal.vue";
 
-const { notify } = useBaseModals();
-const { deleteChoice } = useProfileModals();
-const { filterAside } = useProductsModals();
 const { componentError, resetError } = errorHandler();
 </script>
 

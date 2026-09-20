@@ -1,5 +1,5 @@
 <template>
-  <div class="flex font-dm-sans justify-between">
+  <div class="flex font-dm-sans gap-63">
     <div class="flex flex-col">
       <div class="flex items-baseline gap-2.5">
         <span class="text-8xl font-semibold leading-none">{{ averageRating() }}</span>

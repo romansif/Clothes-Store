@@ -1,6 +1,7 @@
 import { ref } from "vue";
 import { cancelChoiceForm } from "@/features/use-order/model/order.forms.ts";
 import { orderStore } from "@/features/use-order/model/order.store.ts";
+import { clearReplaceForm, clearReviewForm } from "@/features/use-order/lib/clear-order-form.ts";
 
 const { orderId, productId } = orderStore();
 
@@ -9,12 +10,16 @@ const reviewModal = ref<boolean>(false);
 
 export const useOrderModal = () => {
     const toggleReplaceChoice = (id: string) => {
+        clearReplaceForm();
+
         choiceModal.value = !choiceModal.value;
         orderId.value = id;
         cancelChoiceForm.value.cancelChoice = '';
     };
 
     const toggleReviewChoice = (id: string) => {
+        clearReviewForm();
+
         reviewModal.value = !reviewModal.value;
         productId.value = id
     };

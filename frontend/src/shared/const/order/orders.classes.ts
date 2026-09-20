@@ -12,8 +12,8 @@ export const ordersClasses = () => {
     ];
 
     const ratingStar = (rating: number) => [
-        'w-14 transition duration-400',
-        rating <= reviewForm.value.rating ? 'scale-110' : reviewForm.value.rating === rating - 0.5 ? 'scale-110' : 'hover:scale-110'
+        'w-12 transition duration-400',
+        rating <= reviewForm.value.rating ? 'scale-145' : reviewForm.value.rating === rating - 0.5 ? 'scale-145' : 'hover:scale-120'
     ]
 
     return {
