@@ -1,5 +1,5 @@
 import { handler } from "@/shared/api/http.ts";
-import type {CartItem} from "@/features/use-cart/model/cart.types.ts";
+import type {CartItem} from "@/entities/cart/model/cart.types.ts";
 import { orderStore } from "@/features/use-order/model/order.store.ts";
 import { cartStore } from "@/features/use-cart/model/cart.store.ts";
 import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
@@ -7,7 +7,7 @@ import { useGetProducts } from "@/features/use-main-product/api/get-product.ts"
 import { useDeleteCart } from "@/features/use-cart/api/delete-cart.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
-import { isAgreeFormError } from "@/features/use-product/model/add.to.cart.form.ts";
+import { isAgreeFormError } from "@/entities/product/model/add.to.cart.form.ts";
 
 const { cart } = cartStore();
 const { userData } = userStore();

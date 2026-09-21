@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import { authClasses } from "@/shared/const/auth/auth.classes.ts";
-import { loginForm } from "@/features/use-auth/model/auth.forms.ts";
+import { loginForm } from "@/entities/auth/model/auth.forms.ts";
 
 defineProps<{
   role: string;

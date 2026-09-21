@@ -7,9 +7,9 @@ import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
 import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment.ts";
 import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.ts";
-import type { UserPayment } from "@/features/use-chekout-payment-info/model/payment.type.ts";
-import { paymentForm, paymentFormErrorMessage } from "@/features/use-chekout-payment-info/model/payment.form.ts";
-import { addPaymentSchema } from "@/features/use-chekout-payment-info/model/payment.schemas.ts";
+import type { UserPayment } from "@/entities/checkout-payment/model/payment.type.ts";
+import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment.form.ts";
+import { addPaymentSchema } from "@/entities/checkout-payment/model/payment.schemas.ts";
 
 const { userData } = userStore();
 const { createOrder } = useAddOrder();

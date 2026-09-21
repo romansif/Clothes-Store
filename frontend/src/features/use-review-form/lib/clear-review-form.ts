@@ -1,4 +1,4 @@
-import { reviewForm, reviewFormMessages } from "@/features/use-review-form/model/review.form.ts";
+import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/review.form.ts";
 import { imageFiles } from "@/shared/lib/helper/product-helper.ts";
 
 export const clearReviewForm = () => {

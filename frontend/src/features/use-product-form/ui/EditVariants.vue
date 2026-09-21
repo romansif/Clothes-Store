@@ -122,8 +122,8 @@ import { productFormHelper } from "@/features/use-product-form/lib/product-form-
 import {
   createProductForm,
   createProductFormErrorMessages, moreCreateItemFormErrorMessages
-} from "@/features/use-product-form/model/product.forms.ts";
-import type {Product} from "@/features/use-product/model/product.types.ts";
+} from "@/entities/product-form/model/product.forms.ts";
+import type {Product} from "@/entities/product/model/product.types.ts";
 
 import BaseInput from "@/shared/ui/BaseInput.vue";
 

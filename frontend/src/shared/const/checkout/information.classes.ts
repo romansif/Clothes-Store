@@ -1,7 +1,7 @@
 import { computed } from "vue";
 import { checkoutClasses } from "@/shared/const/checkout/checkout.classes.ts";
 import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle-contact-info.ts";
-import { informationFormErrorMessages } from "@/features/use-checkout-contact-info/model/address.form.ts";
+import { informationFormErrorMessages } from "@/entities/checkout-contact-info/model/address.form.ts";
 
 const { getSavedInfoClass } = checkoutClasses();
 const { isChosenAddress, isChosenContactInfo  } = toggleInformation();

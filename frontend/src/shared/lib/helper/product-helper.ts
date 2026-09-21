@@ -1,8 +1,8 @@
 import {ref} from "vue";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
-import type { Product, SizeGuide } from "@/features/use-product/model/product.types.ts";
-import { addToCartForm } from "@/features/use-product/model/add.to.cart.form.ts";
+import type { Product, SizeGuide } from "@/entities/product/model/product.types.ts";
+import { addToCartForm } from "@/entities/product/model/add.to.cart.form.ts";
 
 const { product } = useGetProduct();
 const { activeProductImg, sizes, outerWear, underWear,

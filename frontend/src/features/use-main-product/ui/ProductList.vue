@@ -18,7 +18,7 @@ import { onMounted } from "vue";
 import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
 import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
 
-import ProductItem from "./ProductItem.vue";
+import ProductItem from "../../../entities/main-products/ui/ProductItem.vue";
 import empty_products from "@/assets/icons/products/icon-products.svg";
 
 const { getFavoriteProducts } = useGetFavorite();

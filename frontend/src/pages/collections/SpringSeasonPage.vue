@@ -10,8 +10,8 @@
 <script setup lang="ts">
 import { useGetSeasonProducts } from "@/features/use-season-product/api/get-season-product.ts";
 
-import SeasonsHeader from "@/features/use-season-product/ui/header-catalog/SeasonsHeader.vue";
-import SpringList from "@/features/use-season-product/ui/spring/SpringList.vue";
+import SeasonsHeader from "@/entities/season-product/ui/SeasonsHeader.vue";
+import SpringList from "@/features/use-season-product/ui/SpringList.vue";
 
 const { springCatalog } = useGetSeasonProducts();
 </script>

@@ -27,10 +27,10 @@ import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
 import { productHelper } from "@/shared/lib/helper/product-helper.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { useGetReviews } from "@/features/use-product-reviews/api/get-reviews.ts";
+import { useGetReviews } from "@/features/use-product-review/api/get-reviews.ts";
 
 import ProductInfo from "@/features/use-product/ui/ProductInfo.vue";
-import ProductReviews from "@/features/use-product-reviews/ui/ProductReviews.vue";
+import ProductReviews from "@/features/use-product-review/ui/ProductReviews.vue";
 
 const { userData } = userStore();
 const { getCartProducts } = useGetCart();

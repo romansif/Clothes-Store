@@ -8,8 +8,8 @@ import { imageFiles } from "@/shared/lib/helper/product-helper.ts";
 import {
     createProductForm, moreCreateItemForm,
     createProductFormErrorMessages, moreCreateItemFormErrorMessages
-} from "@/features/use-product-form/model/product.forms.ts";
-import { createProductSchema, moreCreateItemsSchema } from "@/features/use-product-form/model/product.schemas.ts";
+} from "@/entities/product-form/model/product.forms.ts";
+import { createProductSchema, moreCreateItemsSchema } from "@/entities/product-form/model/product.schemas.ts";
 
 const { userData } = userStore();
 const { openNotify } = useBaseModals();

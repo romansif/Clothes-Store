@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { filterProduct } from "@/features/use-navigation/model/filter-product.ts";
+import { filterProduct } from "@/features/use-navigation/lib/filter-product.ts";
 
 const { selectGender, selectedGender } = filterProduct();
 </script>

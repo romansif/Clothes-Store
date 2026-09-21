@@ -4,8 +4,8 @@ import { handler } from "@/shared/api/http.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
-import type { ColorItem, Product} from "@/features/use-product/model/product.types.ts";
-import { createProductForm } from "@/features/use-product-form/model/product.forms.ts";
+import type { ColorItem, Product} from "@/entities/product/model/product.types.ts";
+import { createProductForm } from "@/entities/product-form/model/product.forms.ts";
 
 const { getProduct } = useGetProduct();
 const { currentFile } = productStore();

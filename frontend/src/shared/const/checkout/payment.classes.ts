@@ -1,7 +1,7 @@
 import { computed } from "vue";
 import { checkoutClasses } from "@/shared/const/checkout/checkout.classes.ts";
 import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment.ts";
-import { paymentForm, paymentFormErrorMessage } from "@/features/use-chekout-payment-info/model/payment.form.ts";
+import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment.form.ts";
 
 const { isChosenPayment } = togglePaymentForm();
 const { getSavedInfoClass } = checkoutClasses();

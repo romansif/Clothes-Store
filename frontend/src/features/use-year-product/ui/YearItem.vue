@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import type {Product} from "@/features/use-product/model/product.types.ts";
+import type {Product} from "@/entities/product/model/product.types.ts";
 import BaseProductCard from "@/widgets/ui/BaseProductCard.vue";
 
 defineProps<{

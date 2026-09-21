@@ -1,6 +1,6 @@
 import { ref } from "vue";
 import { handler } from "@/shared/api/http.ts";
-import type { Product } from "@/features/use-product/model/product.types.ts";
+import type { Product } from "@/entities/product/model/product.types.ts";
 
 const productsWeek = ref<Product[]>([]);
 

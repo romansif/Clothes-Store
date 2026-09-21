@@ -1,4 +1,4 @@
-import { shippingForm, shippingFormErrorMessage } from "@/features/use-checkout-shipping-info/model/shipping.form.ts";
+import { shippingForm, shippingFormErrorMessage } from "@/entities/checkout-shipping/model/shipping.form.ts";
 
 export const shippingClasses = () => {
     const shippingMethodClass = (method: string) => [

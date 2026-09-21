@@ -22,31 +22,34 @@
           </span>
         </div>
       </div>
-      <p @click="toggleReadMore" :class="['font-medium break-after-all mt-3 cursor-pointer', fullDescription ? 'line-clamp-0' : 'line-clamp-2']">
+      <p @click="toggleReadMore"
+         :class="['font-medium break-after-all mt-3 cursor-pointer',
+         fullDescription ? 'line-clamp-0' : 'line-clamp-2']">
           {{ product.description }}
       </p>
-      <ProductSpecific :product="product" :user="userData" />
+      <ProductSpecific :product="product" :user="userData" @add-color="addColor" @add-size="addSize"/>
       <ProductToCart :product="product" :user="userData" />
     </div>
   </template>
 </template>
 
 <script setup lang="ts">
+import {useCart} from "@/features/use-product/lib/use-cart.ts";
 import { useFavorite } from "@/features/use-favorite/lib/use-favorite.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
 import { productHelper } from "@/shared/lib/helper/product-helper.ts";
 import { toggleReadMore, fullDescription } from "@/features/use-product/lib/toggle-more-info.ts";
-import { type Product } from "@/features/use-product/model/product.types.ts";
+import { type Product } from "@/entities/product/model/product.types.ts";
 import {
   addToCartForm, addToCartFormErrorMessages
-} from "@/features/use-product/model/add.to.cart.form.ts";
+} from "@/entities/product/model/add.to.cart.form.ts";
 
 
 import like from '@/assets/icons/nav/like.png';
 import liked from '@/assets/icons/nav/liked.png';
-import ProductSpecific from "@/features/use-product/ui/ProductSpecific.vue";
+import ProductSpecific from "@/entities/product/ui/ProductSpecific.vue";
 import ProductToCart from "@/features/use-product/ui/ProductToCart.vue";
 
 defineProps<{
@@ -56,6 +59,7 @@ defineProps<{
 const { userData } = userStore();
 const { isFavorite } = useFavorite();
 const { variantsInfo} = productHelper();
+const { addColor, addSize } = useCart();
 const { toggleToFavorite } = useToggleFavorite();
 
 refClearErrorsOnChange(

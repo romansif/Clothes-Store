@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import { shippingClasses } from "@/shared/const/checkout/shipping.classes.ts";
-import { shippingForm, shippingFormErrorMessage } from "@/features/use-checkout-shipping-info/model/shipping.form.ts";
+import { shippingForm, shippingFormErrorMessage } from "@/entities/checkout-shipping/model/shipping.form.ts";
 
 defineProps<{
   method: string;

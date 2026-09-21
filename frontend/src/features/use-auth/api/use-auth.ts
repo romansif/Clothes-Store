@@ -7,8 +7,8 @@ import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.t
 import {
     loginForm, registerForm,
     loginFormErrorMessages, registerFormErrorMessages
-} from "@/features/use-auth/model/auth.forms.ts";
-import { loginSchema, registerSchema } from "@/features/use-auth/model/auth.schemas.ts";
+} from "@/entities/auth/model/auth.forms.ts";
+import { loginSchema, registerSchema } from "@/entities/auth/model/auth.schemas.ts";
 
 const { users, userData } = userStore();
 const { loading, openNotify } = useBaseModals();

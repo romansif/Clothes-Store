@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import HeaderCatalog from "@/features/use-season-product/ui/header-catalog/HeaderCatalog.vue";
+import HeaderCatalog from "@/entities/season-product/ui/HeaderCatalog.vue";
 import SeasonsCatalog from "@/features/use-season-product/ui/SeasonsCatalog.vue";
 </script>
 

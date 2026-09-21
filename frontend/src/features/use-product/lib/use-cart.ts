@@ -1,6 +1,6 @@
-import { type User } from "@/features/use-profile/model/user.types.ts";
-import {type ColorItem, type Product, type Size} from "@/features/use-product/model/product.types.ts";
-import { addToCartForm } from "@/features/use-product/model/add.to.cart.form.ts";
+import { type User } from "@/entities/profile/model/user.types.ts";
+import {type ColorItem, type Product, type Size} from "@/entities/product/model/product.types.ts";
+import { addToCartForm } from "@/entities/product/model/add.to.cart.form.ts";
 
 export const useCart = () => {
     const addColor = (color: ColorItem, user: User, product: Product) => {

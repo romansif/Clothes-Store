@@ -16,7 +16,7 @@
 import { onMounted } from "vue";
 import { useGetMyProduct } from "@/features/use-my-product/api/get-my-product.ts";
 
-import MyProductItem from "@/features/use-my-product/ui/MyProductItem.vue";
+import MyProductItem from "@/entities/my-products/ui/MyProductItem.vue";
 import empty_products from "@/assets/icons/products/icon-products.svg";
 
 const { getMyProducts, myProducts } = useGetMyProduct();

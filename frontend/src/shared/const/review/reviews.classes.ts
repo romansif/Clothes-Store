@@ -1,4 +1,4 @@
-import { reviewForm } from "@/features/use-review-form/model/review.form.ts";
+import { reviewForm } from "@/entities/review-form/model/review.form.ts";
 
 export const reviewsClasses = () => {
     const ratingStar = (rating: number) => [

@@ -4,7 +4,7 @@ import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
 import { useFavorite } from "@/features/use-favorite/lib/use-favorite.ts";
 import { favoriteStore } from "@/features/use-favorite/model/favorite.store.ts";
-import type {Product} from "@/features/use-product/model/product.types.ts";
+import type {Product} from "@/entities/product/model/product.types.ts";
 
 const { userData } = userStore();
 const { favorite } = favoriteStore();

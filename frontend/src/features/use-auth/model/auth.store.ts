@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import {type AuthPassword, type Role, type SignSection} from "@/features/use-auth/model/auth.types.ts";
+import {type AuthPassword, type Role, type SignSection} from "@/entities/auth/model/auth.types.ts";
 
 const showPassword = ref<AuthPassword>({
     password: false,

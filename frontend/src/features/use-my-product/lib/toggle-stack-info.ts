@@ -1,4 +1,4 @@
-import type { Product } from "@/features/use-product/model/product.types.ts";
+import type { Product } from "@/entities/product/model/product.types.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import {ref} from "vue";
 

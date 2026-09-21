@@ -5,12 +5,12 @@ import { clearUsersForms } from "@/features/use-profile-form/lib/clear-user-upda
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { useGetUsers } from "@/features/use-profile/api/get-users.ts";
 import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.ts";
-import type { UserDataUpdate } from "@/features/use-profile-form/model/user.update.types.ts";
-import { updateUserForm, updateUserFormErrorMessages } from "@/features/use-profile-form/model/user.update.form.ts";
+import type { UserDataUpdate } from "@/entities/profile-form/model/user.update.types.ts";
+import { updateUserForm, updateUserFormErrorMessages } from "@/entities/profile-form/model/user.update.form.ts";
 import {
     updateUserNameSchema, updateUserSurNameSchema, updateUserPhoneSchema,
     updateUserEmailSchema, updateUserPasswordSchema
-} from "@/features/use-profile-form/model/user.update.schemas.ts";
+} from "@/entities/profile-form/model/user.update.schemas.ts";
 
 const { getUser } = useGetUsers();
 const { userData } = userStore();

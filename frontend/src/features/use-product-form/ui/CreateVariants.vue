@@ -137,7 +137,7 @@ import { reactiveClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.t
 import {
   createProductForm, moreCreateItemForm,
   createProductFormErrorMessages, moreCreateItemFormErrorMessages
-} from "@/features/use-product-form/model/product.forms.ts";
+} from "@/entities/product-form/model/product.forms.ts";
 
 import BaseInput from "@/shared/ui/BaseInput.vue";
 

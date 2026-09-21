@@ -34,7 +34,7 @@
 
 <script setup lang="ts">
 import { onMounted, onUnmounted } from "vue";
-import { filterProduct } from "@/features/use-navigation/model/filter-product.ts";
+import { filterProduct } from "@/features/use-navigation/lib/filter-product.ts";
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
 
 import right_shop from '@/assets/icons/arrows/go-shop.svg'

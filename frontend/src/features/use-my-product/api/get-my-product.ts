@@ -1,7 +1,7 @@
 import {ref} from "vue";
 import { handler } from "@/shared/api/http.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
-import type { Product } from "@/features/use-product/model/product.types.ts";
+import type { Product } from "@/entities/product/model/product.types.ts";
 
 const { userData } = userStore();
 

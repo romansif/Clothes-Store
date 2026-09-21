@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import { orderStore } from "@/features/use-order/model/order.store.ts";
 
-import OrderInfoItem from "./OrderInfoItem.vue";
+import OrderInfoItem from "../../../entities/checkout-order/ui/OrderInfoItem.vue";
 
 const { items } = orderStore();
 </script>

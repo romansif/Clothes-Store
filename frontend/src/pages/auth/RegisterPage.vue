@@ -37,7 +37,7 @@ import { clearAuthForms } from "@/features/use-auth/lib/clear-auth.ts";
 import { toggleAuth } from "@/features/use-auth/lib/toggle-auth.ts";
 import { authStore } from "@/features/use-auth/model/auth.store.ts";
 
-import RegisterForm from "@/features/use-auth/ui/RegisterForm.vue";
+import RegisterForm from "@/entities/auth/ui/RegisterForm.vue";
 import maki_arrow from "@/assets/icons/arrows/right-short-arrow.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 

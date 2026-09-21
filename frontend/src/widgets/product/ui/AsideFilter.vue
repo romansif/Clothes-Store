@@ -95,7 +95,7 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
 import { computed, onMounted } from "vue";
-import { filterProduct } from "@/features/use-navigation/model/filter-product.ts";
+import { filterProduct } from "@/features/use-navigation/lib/filter-product.ts";
 import { filterClasses } from "@/shared/const/filter/filter.classes.ts";
 import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
 import { productStore } from "@/features/use-main-product/model/product.store.ts";

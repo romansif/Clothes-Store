@@ -1,6 +1,6 @@
 import { computed } from "vue";
-import { registerForm } from "@/features/use-auth/model/auth.forms.ts";
-import { informationForm } from "@/features/use-checkout-contact-info/model/address.form.ts";
+import { registerForm } from "@/entities/auth/model/auth.forms.ts";
+import { informationForm } from "@/entities/checkout-contact-info/model/address.form.ts";
 import { selectedCountryCode, countries} from "@/shared/lib/select-phone-form.ts";
 
 export const usePhoneForm = () => {

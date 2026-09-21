@@ -1,7 +1,7 @@
 import {
     createProductForm, moreCreateItemForm,
     createProductFormErrorMessages, moreCreateItemFormErrorMessages
-} from "@/features/use-product-form/model/product.forms.ts";
+} from "@/entities/product-form/model/product.forms.ts";
 import { imageFiles } from "@/shared/lib/helper/product-helper.ts";
 
 export const clearProductForm = () => {

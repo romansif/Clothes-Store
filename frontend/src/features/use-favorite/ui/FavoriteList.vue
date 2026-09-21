@@ -9,7 +9,7 @@
 <script setup lang="ts">
 import { favoriteStore } from "@/features/use-favorite/model/favorite.store.ts";
 
-import FavoriteItem from "./FavoriteItem.vue";
+import FavoriteItem from "../../../entities/favorite/ui/FavoriteItem.vue";
 
 const { favorite } = favoriteStore();
 </script>

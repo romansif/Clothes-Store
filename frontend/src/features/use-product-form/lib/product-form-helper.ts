@@ -1,5 +1,5 @@
 import namer from "color-namer";
-import { createProductForm, moreCreateItemForm } from "@/features/use-product-form/model/product.forms.ts";
+import { createProductForm, moreCreateItemForm } from "@/entities/product-form/model/product.forms.ts";
 
 export const productFormHelper  = () => {
     const toggleAllVariants = () => {

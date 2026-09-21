@@ -22,7 +22,7 @@ import { fileInput } from "@/shared/lib/helper/product-helper.ts";
 
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import EditImageUpload from "@/features/use-product-form/ui/EditImageUpload.vue";
-import EditBasicInfo from "@/features/use-product-form/ui/EditBasicInfo.vue";
+import EditBasicInfo from "@/entities/product-form/ui/EditBasicInfo.vue";
 import EditVariants from "@/features/use-product-form/ui/EditVariants.vue";
 
 const { getProduct, product } = useGetProduct();

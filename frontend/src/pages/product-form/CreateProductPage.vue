@@ -17,7 +17,7 @@ import { fileInput, productHelper } from "@/shared/lib/helper/product-helper.ts"
 
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import CreateImageUpload from "@/features/use-product-form/ui/CreateImageUpload.vue";
-import CreateBasicInfo from "@/features/use-product-form/ui/CreateBasicInfo.vue";
+import CreateBasicInfo from "@/entities/product-form/ui/CreateBasicInfo.vue";
 import CreateVariants from "@/features/use-product-form/ui/CreateVariants.vue";
 
 const { createProduct } = useAddProduct();

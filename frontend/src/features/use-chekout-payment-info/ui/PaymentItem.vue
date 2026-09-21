@@ -26,7 +26,7 @@
 <script setup lang="ts">
 import { paymentClasses } from "@/shared/const/checkout/payment.classes.ts";
 import { useAddPayment } from "@/features/use-chekout-payment-info/api/add-payment.ts";
-import type {UserPayment} from "@/features/use-chekout-payment-info/model/payment.type.ts";
+import type {UserPayment} from "@/entities/checkout-payment/model/payment.type.ts";
 
 defineProps<{
   payment: UserPayment

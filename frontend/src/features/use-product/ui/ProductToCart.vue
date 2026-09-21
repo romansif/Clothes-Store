@@ -44,8 +44,8 @@ defineProps<{
 import plus from "@/assets/icons/products/plus.svg";
 import minus from "@/assets/icons/products/minus.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";
-import type {User} from "@/features/use-profile/model/user.types.ts";
-import type {Product} from "@/features/use-product/model/product.types.ts";
+import type {User} from "@/entities/profile/model/user.types.ts";
+import type {Product} from "@/entities/product/model/product.types.ts";
 
 const { isInCart } = cartHelper();
 const { addToCart } = useAddToCart();

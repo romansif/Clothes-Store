@@ -57,7 +57,7 @@ defineProps<{
 
 import ProfileMenu from "./ProfileMenu.vue";
 import ProfileTab from "@/shared/ui/profile/ProfileTab.vue";
-import type {User} from "@/features/use-profile/model/user.types.ts";
+import type {User} from "@/entities/profile/model/user.types.ts";
 
 const { userData } = userStore();
 const { userAvatar } = useProfile();

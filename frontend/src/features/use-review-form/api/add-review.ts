@@ -2,8 +2,8 @@ import { handler } from "@/shared/api/http.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { clearReviewForm } from "@/features/use-review-form/lib/clear-review-form.ts";
-import { reviewsStore } from "@/features/use-product-reviews/model/reviews.store.ts";
-import { reviewForm } from "@/features/use-review-form/model/review.form.ts";
+import { reviewsStore } from "@/features/use-product-review/model/reviews.store.ts";
+import { reviewForm } from "@/entities/review-form/model/review.form.ts";
 import { imageFiles } from "@/shared/lib/helper/product-helper.ts";
 
 const { userData } = userStore();

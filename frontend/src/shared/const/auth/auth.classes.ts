@@ -1,5 +1,5 @@
 import { computed } from "vue";
-import { loginFormErrorMessages, registerFormErrorMessages } from "@/features/use-auth/model/auth.forms.ts";
+import { loginFormErrorMessages, registerFormErrorMessages } from "@/entities/auth/model/auth.forms.ts";
 import { baseClasses } from "@/shared/const/base.classes.ts";
 
 const { getPhoneClass } = baseClasses();

@@ -15,7 +15,7 @@
             <ConfidentialityData :user="userData"/>
           </div>
           <div class="flex font-medium flex-col gap-5 pt-5">
-            <ConfidentialityForm />
+            <UpdateProfileForm />
           </div>
         </div>
       </div>
@@ -31,9 +31,9 @@ import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 
-import ConfidentialityData from "./ConfidentialityData.vue";
+import ConfidentialityData from "../../../entities/profile/ui/ConfidentialityData.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";
-import ConfidentialityForm from "../../use-profile-form/ui/ConfidentialityForm.vue";
+import UpdateProfileForm from "../../use-profile-form/ui/UpdateProfileForm.vue";
 import Notification from "@/shared/ui/Notification.vue";
 
 const { userData } = userStore();

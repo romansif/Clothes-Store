@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment.ts";
-import { paymentForm } from "@/features/use-chekout-payment-info/model/payment.form.ts";
+import { paymentForm } from "@/entities/checkout-payment/model/payment.form.ts";
 
 defineProps<{
   method: string;

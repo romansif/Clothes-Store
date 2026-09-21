@@ -29,11 +29,11 @@
 <script setup lang="ts">
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
 import { useAddShipping } from "@/features/use-checkout-shipping-info/api/add-shipping.ts";
-import { shippingForm, shippingFormErrorMessage } from "@/features/use-checkout-shipping-info/model/shipping.form.ts";
+import { shippingForm, shippingFormErrorMessage } from "@/entities/checkout-shipping/model/shipping.form.ts";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";
-import ShippingAddress from "./ShippingAddress.vue";
+import ShippingAddress from "../../../entities/checkout-shipping/ui/ShippingAddress.vue";
 import ShippingMethod from "@/shared/ui/checkout/ShippingMethod.vue";
 
 const { addShipping } = useAddShipping();

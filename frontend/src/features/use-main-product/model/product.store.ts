@@ -10,7 +10,7 @@ import type {
     SizesShoes,
     Slide,
     Catalog
-} from "@/features/use-product/model/product.types.ts";
+} from "@/entities/product/model/product.types.ts";
 
 import xs from '@/assets/icons/size/xs.svg';
 import s from '@/assets/icons/size/s.svg';

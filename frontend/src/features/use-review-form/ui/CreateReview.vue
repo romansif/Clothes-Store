@@ -13,9 +13,9 @@
         </span>
       </div>
       <div class="font-semibold flex flex-col gap-5.5 mt-5">
-        <AddRating />
+        <AddRating :ratings="ratings" @add-rating="addRating"/>
         <AddReview />
-        <AddPhotos />
+        <AddPhotos @open-select-image="openSelectImage"/>
       </div>
       <div class="flex justify-end mt-5">
         <BaseButton @click="createReview" name="Create Review"
@@ -28,17 +28,20 @@
 </template>
 
 <script setup lang="ts">
+import { addRating } from "@/features/use-review-form/lib/add-rating-star.ts";
+import { reviewsStore } from "@/features/use-product-review/model/reviews.store.ts";
 import { useAddReview } from "@/features/use-review-form/api/add-review.ts";
 import { toggleReviewChoice } from "@/features/use-review-form/lib/review-form-modal.ts";
 import { fileInput, productHelper } from "@/shared/lib/helper/product-helper.ts";
 
 import BaseButton from "@/shared/ui/BaseButton.vue";
-import AddRating from "@/features/use-review-form/ui/AddRating.vue";
-import AddReview from "@/features/use-review-form/ui/AddReview.vue";
-import AddPhotos from "@/features/use-review-form/ui/AddPhotos.vue";
+import AddRating from "@/entities/review-form/ui/AddRating.vue";
+import AddReview from "@/entities/review-form/ui/AddReview.vue";
+import AddPhotos from "@/entities/review-form/ui/AddPhotos.vue";
 
+const { ratings } = reviewsStore();
 const { createReview } = useAddReview();
-const { onFilesSelected } = productHelper();
+const { onFilesSelected, openSelectImage } = productHelper();
 </script>
 
 <style scoped>

@@ -1,12 +1,12 @@
 <template>
-  <CheckoutInfo />
+  <ContactInfo />
 </template>
 
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { useGetAddress } from "@/features/use-user-address/api/get-address.ts";
 
-import CheckoutInfo from "@/features/use-checkout-contact-info/ui/CheckoutInfo.vue";
+import ContactInfo from "@/features/use-checkout-contact-info/ui/ContactInfo.vue";
 
 const { getAddresses } = useGetAddress();
 

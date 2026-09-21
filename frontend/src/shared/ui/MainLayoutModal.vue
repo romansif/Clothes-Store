@@ -22,7 +22,7 @@ import { sizeGuideModel } from "@/features/use-product/lib/toggle-more-info.ts";
 
 import AsideFilter from "@/widgets/product/ui/AsideFilter.vue";
 import Notification from "@/shared/ui/Notification.vue";
-import SizeGuideModal from "@/features/use-product/ui/SizeGuideModal.vue";
+import SizeGuideModal from "@/entities/product/ui/SizeGuideModal.vue";
 import DeleteModal from "@/shared/ui/DeleteModal.vue";
 
 const { notify } = useBaseModals();

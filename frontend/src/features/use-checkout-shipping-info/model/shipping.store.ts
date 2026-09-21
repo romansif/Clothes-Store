@@ -1,5 +1,5 @@
-import {ref} from "vue";
-import { type UserShipping } from "@/features/use-checkout-shipping-info/model/shipping.types.ts";
+import { ref } from "vue";
+import { type UserShipping } from "@/entities/checkout-shipping/model/shipping.types.ts";
 
 const userShipping = ref<UserShipping[]>([])
 

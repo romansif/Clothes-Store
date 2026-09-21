@@ -1,6 +1,6 @@
 import { computed } from "vue";
 import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
-import { paymentFormErrorMessage } from "@/features/use-chekout-payment-info/model/payment.form.ts";
+import { paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment.form.ts";
 
 const { userPayment } = paymentStore();
 

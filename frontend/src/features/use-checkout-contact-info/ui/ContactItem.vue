@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import { useAddAddress } from "@/features/use-checkout-contact-info/api/add-address.ts";
 import { informationClasses } from "@/shared/const/checkout/information.classes.ts";
-import type {UserContactInfo} from "@/features/use-checkout-contact-info/model/address.types.ts";
+import type {UserContactInfo} from "@/entities/checkout-contact-info/model/address.types.ts";
 
 defineProps<{
   address: UserContactInfo
