@@ -9,17 +9,13 @@
           reviews
         </h2>
       </div>
-      <ReviewsRating :reviews="reviews" />
+      <ProductRating :reviews="reviews" />
     </div>
     <div class="flex flex-col gap-5 w-full">
       <ReviewsFilter :reviews="reviews" />
-      <CommentList />
+      <ReviewList />
       <div class="flex flex-col items-center gap-2.5">
-        <BaseButton v-if="visibleReviewsCount < reviews.length"
-                    @click="loadFiveReviews"
-                    name="Load more reviews"
-                    variant="loadReviews" />
-        <BaseButton v-else-if="reviews.length > visibleReviewsCount"
+        <BaseButton v-if="visibleReviews.length === visibleReviewsCount"
                     @click="closeFiveReviews"
                     name="Close more reviews"
                     variant="loadReviews" />
@@ -31,19 +27,14 @@
 <script setup lang="ts">
 import { reviewsHelper } from "@/features/use-product-reviews/lib/reviews-helper.ts";
 import { useGetReviews } from "@/features/use-product-reviews/api/get-reviews.ts";
-import type {Review} from "@/features/use-product-reviews/model/reviews.types.ts";
 
-defineProps<{
-  reviews: Review[],
-}>();
-
-import ReviewsRating from "@/features/use-product-reviews/ui/ReviewsRating.vue";
+import ProductRating from "@/features/use-product-reviews/ui/ProductRating.vue";
 import ReviewsFilter from "@/features/use-product-reviews/ui/ReviewsFilter.vue";
-import CommentList from "@/features/use-product-reviews/ui/CommentList.vue";
+import ReviewList from "@/features/use-product-reviews/ui/ReviewList.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 
-const { reviews, visibleReviewsCount } = useGetReviews();
-const { loadFiveReviews, closeFiveReviews } = reviewsHelper();
+const { reviews } = useGetReviews();
+const { closeFiveReviews, visibleReviews, visibleReviewsCount } = reviewsHelper();
 </script>
 
 <style scoped>

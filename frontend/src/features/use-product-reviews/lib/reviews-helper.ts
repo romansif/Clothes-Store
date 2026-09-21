@@ -47,11 +47,11 @@ export const reviewsHelper = () => {
     })
 
     const loadFiveReviews = () => {
-        visibleReviewsCount.value += 5
+        visibleReviewsCount.value += 3
     };
 
     const closeFiveReviews = () => {
-        visibleReviewsCount.value -= 5
+        visibleReviewsCount.value = 3
     };
 
     return {

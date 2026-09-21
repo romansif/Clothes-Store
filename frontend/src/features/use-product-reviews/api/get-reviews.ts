@@ -4,7 +4,7 @@ import type {Review} from "@/features/use-product-reviews/model/reviews.types.ts
 
 const reviews = ref<Review[]>([]);
 
-const visibleReviewsCount = ref<number>(5)
+const visibleReviewsCount = ref<number>(3)
 
 export const useGetReviews = () => {
     const getReviews = async (id: string | string[], filter: string) => {
