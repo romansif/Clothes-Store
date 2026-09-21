@@ -2,7 +2,7 @@
   <div class="flex flex-col bg-white rounded-xl shadow-2xl">
     <div class="flex p-5">
       <div class="flex items-center gap-10">
-        <img @click="toggleAvatar" :src="userAvatar(userData)" alt=""
+        <img v-if="userData" @click="toggleAvatar" :src="userAvatar(userData.avatarUrl)" alt=""
              class="rounded-full w-25 transition duration-400 hover:scale-108">
         <div class="flex flex-col gap-4 font-semibold text-xl">
           <div class="flex gap-2 font-dm-sans">
@@ -29,8 +29,10 @@
       </div>
     </div>
     <div class="flex flex-col border-t border-gray-300 font-medium">
-      <ProfileTab @click="toggleOrderHistory" name="ALL ORDERS" />
-      <ProfileTab @click="toggleCurrentOrder" name="ACTIVE ORDERS" />
+      <ProfileTab @click="toggleOrderHistory" v-if="user.role === 'Buyer'"
+                  name="ALL ORDERS" />
+      <ProfileTab @click="toggleCurrentOrder" v-if="user.role === 'Buyer'"
+                  name="ACTIVE ORDERS" />
       <router-link :to="{ name: 'my/products' }" v-if="user.role === 'Seller'">
         <ProfileTab name="ALL MY PRODUCTS"/>
       </router-link>
@@ -38,7 +40,8 @@
       <router-link :to="{ name: 'create/product' }" v-if="user.role === 'Seller'">
         <ProfileTab name="CREATE PRODUCT COVER"/>
       </router-link>
-      <ProfileTab @click="toggleAddressesAndCards" name="SAVED ADDRESSES AND CARDS" />
+      <ProfileTab @click="toggleAddressesAndCards" v-if="user.role === 'Buyer'"
+                  name="SAVED ADDRESSES AND CARDS" />
     </div>
   </div>
 </template>
@@ -56,8 +59,8 @@ import ProfileMenu from "./ProfileMenu.vue";
 import ProfileTab from "@/shared/ui/profile/ProfileTab.vue";
 import type {User} from "@/features/use-profile/model/user.types.ts";
 
-const { userAvatar } = useProfile();
 const { userData } = userStore();
+const { userAvatar } = useProfile();
 const {
   toggleAvatar, toggleOrderHistory, toggleCurrentOrder,
   toggleConfidentialityData, toggleAddressesAndCards

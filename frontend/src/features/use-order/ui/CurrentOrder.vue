@@ -33,20 +33,20 @@ import { onMounted } from "vue";
 import { useOrder } from "@/features/use-order/lib/use-order.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import { useGetOrder } from "@/features/use-order/api/get-order.ts";
-import { useOrderModal } from "@/features/use-order/lib/order-modal.ts";
 import { orderStore } from "@/features/use-order/model/order.store.ts";
+import { reviewModal } from "@/features/use-review-form/lib/review-modal.ts";
+import { choiceModal } from "@/features/use-order/lib/order-modal.ts";
 
 import OrderList from "./OrderList.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import ClipboardNotify from "@/shared/ui/ClipboardNotify.vue";
 import ReplacementChoice from "@/features/use-order/ui/ReplacementChoice.vue";
-import CreateReview from "@/features/use-order/ui/CreateReview.vue";
+import CreateReview from "@/features/use-review-form/ui/CreateReview.vue";
 
 const { orders } = orderStore();
 const { clipboard } = useOrder();
 const { getFilteredOrders } = useGetOrder();
 const { toggleCurrentOrder } = useProfileModals();
-const { choiceModal, reviewModal } = useOrderModal();
 
 onMounted(async () => {
   await getFilteredOrders();

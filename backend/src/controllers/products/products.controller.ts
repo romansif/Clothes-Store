@@ -215,8 +215,6 @@ export const productsController = {
     },
 
     async createdProduct(req: Request, res: Response) {
-            console.log('BODY:', req.body);
-            console.log('FILES:', req.files);
         try {
             if (!req.files || (req.files as Express.Multer.File[]).length === 0) {
                 return res.status(400).json({ message: 'Product photos are mandatory.' });

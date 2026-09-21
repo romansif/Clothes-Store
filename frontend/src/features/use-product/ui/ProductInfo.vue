@@ -32,7 +32,6 @@
 </template>
 
 <script setup lang="ts">
-
 import { useFavorite } from "@/features/use-favorite/lib/use-favorite.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";

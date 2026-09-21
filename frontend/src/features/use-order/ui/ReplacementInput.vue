@@ -8,8 +8,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-const isChecked = computed(() => model.value === props.value);
-
 interface Props {
   name?: string,
   variant?: keyof typeof cancelOrderClasses;
@@ -26,4 +24,6 @@ const model = defineModel<string | number>();
 const cancelOrderClasses = {
   choice: `flex items-center gap-5 w-full p-4 transition duration-400 hover:scale-105`,
 }
+
+const isChecked = computed(() => model.value === props.value);
 </script>

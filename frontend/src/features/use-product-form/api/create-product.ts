@@ -1,10 +1,10 @@
 import router from "@/app/router";
 import { handler } from "@/shared/api/http.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
-import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import { clearProductForm } from "@/features/use-product-form/lib/clear-product-form.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.ts";
+import { imageFiles } from "@/shared/lib/helper/product-helper.ts";
 import {
     createProductForm, moreCreateItemForm,
     createProductFormErrorMessages, moreCreateItemFormErrorMessages
@@ -13,29 +13,8 @@ import { createProductSchema, moreCreateItemsSchema } from "@/features/use-produ
 
 const { userData } = userStore();
 const { openNotify } = useBaseModals();
-const { productFiles, currentFile, productsPreview } = productStore();
 
 export const useAddProduct = () => {
-    const onFilesSelected = (event: Event) => {
-        const target = event.target as HTMLInputElement;
-        if (!target.files || target.files.length === 0 || currentFile.value === null) {
-            return;
-        }
-
-        const file = target.files[0];
-        const index = currentFile.value;
-
-        if(productFiles.value){
-            productFiles.value[index] = file;
-        }
-        if(productsPreview.value){
-            productsPreview.value[index] = URL.createObjectURL(file);
-        }
-
-        target.value = '';
-    };
-
-
     const createProduct = async () => {
         const result1 = createProductSchema.safeParse(createProductForm.value)
         const result2 = moreCreateItemsSchema.safeParse(moreCreateItemForm)
@@ -78,7 +57,7 @@ export const useAddProduct = () => {
 
             formData.append('product', JSON.stringify(productData));
 
-            productFiles.value.forEach((file) => {
+            imageFiles.value.forEach((file) => {
                 if(file){
                     formData.append('images', file)
                 }else{
@@ -111,7 +90,6 @@ export const useAddProduct = () => {
     };
 
     return{
-        onFilesSelected,
         createProduct,
     }
 }

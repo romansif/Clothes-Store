@@ -1,5 +1,4 @@
 import { type Order } from "@/features/use-order/model/order.types.ts";
-import { reviewForm } from "@/features/use-order/model/order.forms.ts";
 
 export const ordersClasses = () => {
     const orderStatus = (order: Order) => [
@@ -11,13 +10,7 @@ export const ordersClasses = () => {
         }
     ];
 
-    const ratingStar = (rating: number) => [
-        'w-12 transition duration-400',
-        rating <= reviewForm.value.rating ? 'scale-145' : reviewForm.value.rating === rating - 0.5 ? 'scale-145' : 'hover:scale-120'
-    ]
-
     return {
         orderStatus,
-        ratingStar
     }
 }

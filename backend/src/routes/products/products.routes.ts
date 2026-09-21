@@ -1,5 +1,5 @@
 import express from "express";
-import { upload } from "#middleware/upload.products.ts";
+import { productUpload } from "#middleware/multer.uploads.ts";
 import { authMiddleware, roleMiddleware } from "#middleware/auth.middleware.ts";
 import { productsController } from "#controllers/products/products.controller.ts";
 import { validation } from "#middleware/validation.ts";
@@ -18,12 +18,12 @@ router.get('/products/collections/:collection', productsController.getCollection
 
 router.get('/products/:id', productsController.getProductsById);
 
-router.post('/products', authMiddleware, roleMiddleware('Seller'), upload.array('images', 5),
+router.post('/products', authMiddleware, roleMiddleware('Seller'), productUpload.array('images', 5),
     productsController.productParse, validation.createProductValidation, validation.handleValidationErrors,
     productsController.createdProduct);
 
 router.patch('/products/:id/:index/images', authMiddleware, roleMiddleware('Seller'),
-    upload.array('images', 5), productsController.updateProductImages);
+    productUpload.array('images', 5), productsController.updateProductImages);
 router.patch('/products/:id', authMiddleware, productsController.updateProductItem);
 
 router.delete('/products/:id', authMiddleware, roleMiddleware('Seller'),

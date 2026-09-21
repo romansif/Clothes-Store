@@ -4,7 +4,7 @@ import { type User } from "@/features/use-profile/model/user.types.ts";
 export const profileClasses = () => {
     const isProfileLoginClass = (user: User) => [
         `font-raleway flex justify-center my-items-center'`,
-        user?.role === 'Buyer' ? 'p-35' : 'p-15'
+        user?.role === 'Buyer' ? 'p-35' : 'p-45'
     ];
 
     const profileSelectPhoneCodeClass = computed(() => [

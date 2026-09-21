@@ -1,16 +1,15 @@
 export const useProfile = () => {
-    const userAvatar = (user: any) => {
-        if(!user || !user.avatarUrl){
+    const userAvatar = (avatar: string | undefined) => {
+        if(!avatar){
            return '@/app/assets/photos/default-avatar.png'
         }
 
-        const url = user.avatarUrl;
 
-        if(url.startsWith('http://') || url.startsWith('https://')){
-            return url;
+        if(avatar.startsWith('http://') || avatar.startsWith('https://')){
+            return avatar;
         }
 
-        return `${import.meta.env.VITE_BASE_URL}/${url}`
+        return `${import.meta.env.VITE_BASE_URL}/${avatar}`
     };
 
     return{

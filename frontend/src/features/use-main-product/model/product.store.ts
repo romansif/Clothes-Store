@@ -227,10 +227,6 @@ const productId = ref<string>(localStorage.getItem("productId") || '');
 const activeIndex = ref<number>();
 const activeProductImg = ref<string>('');
 
-const productFiles = ref<(File | null)[]>([null, null, null, null, null]);
-const productsPreview = ref<string[]>([]);
-const currentFile = ref<(number | null)>(null);
-
 const unit = ref<string>('CM')
 const countMode = ref<string>('SAME')
 
@@ -258,9 +254,6 @@ export const productStore = () => {
 
         activeIndex,
         activeProductImg,
-        productFiles,
-        productsPreview,
-        currentFile,
 
         unit,
         countMode,

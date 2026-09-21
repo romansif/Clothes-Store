@@ -5,7 +5,7 @@
                        :size="'w-83.75 h-h-78.5m:h-[314px] xl:h-100'"
                        :stack-class="'absolute top-41 -left-12 text-7xl font-semibold -rotate-50 w-110'"
                        :favorite-btn="'absolute top-0.5 left-75.5 w-8 cursor-pointer'" />
-      <div class="flex flex-col">
+      <div class="flex flex-col gap-35">
         <div class="flex flex-col gap-10">
           <div class="flex items-center ml-auto gap-10">
             <router-link :to="{ name: 'edit/product', params: { id: getProductId(product) } }">
@@ -32,7 +32,7 @@
             </p>
           </div>
         </div>
-        <div class="fixed top-110 flex items-center gap-208">
+        <div class="flex items-center gap-208">
           <span class="font-bold text-gray-900 text-base sm:text-lg font-dm-sans">
             $ {{ product.price }}
           </span>

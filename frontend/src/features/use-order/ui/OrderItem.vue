@@ -76,11 +76,12 @@
 import { useOrder } from "@/features/use-order/lib/use-order.ts";
 import { orderPreview } from "@/features/use-checkout-order/lib/checkout-order-helper.ts";
 import { productHelper } from "@/shared/lib/helper/product-helper.ts";
-import { useOrderModal } from "@/features/use-order/lib/order-modal.ts";
+import { toggleReplaceChoice } from "@/features/use-order/lib/order-modal.ts";
+import { toggleReviewChoice } from "@/features/use-review-form/lib/review-modal.ts";
 import { ordersClasses } from "@/shared/const/order/orders.classes.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import type { Order } from "@/features/use-order/model/order.types.ts";
-import { isInReview } from "@/features/use-order/lib/add-rating-star.ts";
+import { isInReview } from "@/features/use-review-form/lib/add-rating-star.ts";
 
 defineProps<{
   order: Order
@@ -94,7 +95,6 @@ const { orderStatus } = ordersClasses();
 const { getProductId } = useGetProduct();
 const { pureColorsName } = productHelper();
 const { copyText, orderQuantity } = useOrder();
-const { toggleReviewChoice, toggleReplaceChoice } = useOrderModal();
 </script>
 
 <style scoped>

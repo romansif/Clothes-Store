@@ -39,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { useOrderModal } from "@/features/use-order/lib/order-modal.ts";
+import { toggleReplaceChoice } from "@/features/use-order/lib/order-modal.ts";
 import { useDeleteOrder } from "@/features/use-order/api/delete-order.ts";
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
 import { cancelChoiceForm, cancelChoiceMessage } from "@/features/use-order/model/order.forms.ts";
@@ -48,7 +48,6 @@ import BaseButton from "@/shared/ui/BaseButton.vue";
 import ReplacementInput from "@/features/use-order/ui/ReplacementInput.vue";
 
 const { replaceOrder } = useDeleteOrder();
-const { toggleReplaceChoice } = useOrderModal();
 
 refClearErrorsOnChange(
     cancelChoiceForm,

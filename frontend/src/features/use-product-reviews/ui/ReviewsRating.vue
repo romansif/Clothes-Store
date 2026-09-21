@@ -28,10 +28,10 @@
 </template>
 
 <script setup lang="ts">
-import { orderStore } from "@/features/use-order/model/order.store.ts";
+import { ratings } from "@/features/use-product-reviews/model/reviews.store.ts";
 import {
   reviewsHelper
-} from "@/features/use-product-reviews/lib/reviews-halper.ts";
+} from "@/features/use-product-reviews/lib/reviews-helper.ts";
 import type {Review} from "@/features/use-product-reviews/model/reviews.types.ts";
 
 defineProps<{
@@ -40,7 +40,6 @@ defineProps<{
 
 import star from "@/assets/icons/products/full-star.png";
 
-const { ratings } = orderStore();
 const { averageRating, percentage, ratingCount, starCountSrc } = reviewsHelper();
 </script>
 

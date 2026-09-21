@@ -100,7 +100,7 @@
 import { IMaskComponent as IMask } from "vue-imask";
 import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
 import { profileApi } from "@/features/use-profile-form/api/profile.api.ts";
-import { profileClasses } from "@/shared/const/user/profile.classes.ts";
+import { profileClasses } from "@/shared/const/profile/profile.classes.ts";
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
 import { useTogglePassword } from "@/features/use-profile-form/lib/toggle-password.ts";
 import { updateUserForm, updateUserFormErrorMessages } from "@/features/use-profile-form/model/user.update.form.ts";

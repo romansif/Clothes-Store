@@ -1,8 +1,8 @@
 import express from "express";
-import { upload } from '#middleware/upload.avatar.ts'
 import { validation } from "#middleware/validation.ts";
 import { authMiddleware } from "#middleware/auth.middleware.ts";
 import { usersController } from '#controllers/users/users.controller.ts'
+import { avatarUpload } from "#middleware/multer.uploads.ts";
 
 const router = express.Router();
 
@@ -10,7 +10,7 @@ router.get('/users', usersController.getUsers);
 router.get('/users/:id', usersController.getUserById);
 router.get('/checkout', authMiddleware, usersController.getAllCheckout);
 
-router.patch('/avatar/:id', authMiddleware, upload.single('avatar'), usersController.updateUserAvatar);
+router.patch('/avatar/:id', authMiddleware, avatarUpload.single('avatar'), usersController.updateUserAvatar);
 router.patch('/name/:id', authMiddleware, validation.updateUserNameValidation, validation.handleValidationErrors,
     usersController.updateUser);
 router.patch('/surname/:id', authMiddleware, validation.updateUserSurNameValidation, validation.handleValidationErrors,

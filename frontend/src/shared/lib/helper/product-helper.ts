@@ -1,13 +1,43 @@
+import {ref} from "vue";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
-import { addToCartForm } from "@/features/use-product/model/add.to.cart.form.ts";
 import type { Product, SizeGuide } from "@/features/use-product/model/product.types.ts";
+import { addToCartForm } from "@/features/use-product/model/add.to.cart.form.ts";
 
 const { product } = useGetProduct();
 const { activeProductImg, sizes, outerWear, underWear,
     outerwearSizeGuide, underWearSizeGuide, unit, shoesSizeGuide } = productStore();
 
+export const itemPreview = ref<string[]>([]);
+export const currentFile = ref<(number | null)>(null);
+export const fileInput = ref<HTMLInputElement | null>(null)
+export const imageFiles = ref<(File | null)[]>([null, null, null, null, null]);
+
 export const productHelper = () => {
+    const openSelectImage = (index: number) => {
+        currentFile.value = index;
+        fileInput.value?.click();
+    };
+
+    const onFilesSelected = (event: Event) => {
+        const target = event.target as HTMLInputElement;
+        if (!target.files || target.files.length === 0 || currentFile.value === null) {
+            return;
+        }
+
+        const file = target.files[0];
+        const index = currentFile.value;
+
+        if(imageFiles.value){
+            imageFiles.value[index] = file;
+        }
+        if(itemPreview.value){
+            itemPreview.value[index] = URL.createObjectURL(file);
+        }
+
+        target.value = '';
+    };
+
     const changeImg =  (index: number)=> {
         if(!product.value) return;
 
@@ -199,20 +229,27 @@ export const productHelper = () => {
     }
 
     return {
+        openSelectImage,
+        onFilesSelected,
+
         changeImg,
         productPreview,
         productInfoPreview,
         angelCards,
+
         pureCards,
         pureQuantity,
         pureColors,
         pureInfoColors,
         pureColorsName,
         pureSizesName,
+
         isAvailableSizes,
         isOutOfStack,
         variantsInfo,
+
         formatterSizeGuide,
+
         uniqueColors,
         uniqueSizes,
     }

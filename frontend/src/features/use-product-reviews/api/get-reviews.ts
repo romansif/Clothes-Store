@@ -7,9 +7,9 @@ const reviews = ref<Review[]>([]);
 const visibleReviewsCount = ref<number>(5)
 
 export const useGetReviews = () => {
-    const getReviews = async (id: string | string[]) => {
+    const getReviews = async (id: string | string[], filter: string) => {
         try{
-            reviews.value = await handler(`/reviews/${id}`, {
+            reviews.value = await handler(`/reviews/${id}/${filter}`, {
                 method: "GET",
             });
         }catch(err){
@@ -17,8 +17,28 @@ export const useGetReviews = () => {
         }
     };
 
+    const filteredReviews = async (id: string | string[], filter: string) => {
+        switch (filter) {
+            case "ALL":
+                await getReviews(id, filter);
+                break;
+            case "Photos":
+                await getReviews(id, filter);
+                break;
+            case "Latest":
+                await getReviews(id, filter);
+                break;
+            case "Highest":
+                await getReviews(id, filter);
+                break;
+            case "Lowest":
+                await getReviews(id, filter);
+                break;
+        }
+    }
+
     return {
-        getReviews,
+        filteredReviews,
         reviews,
         visibleReviewsCount,
     }

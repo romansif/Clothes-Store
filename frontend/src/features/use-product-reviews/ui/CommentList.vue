@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import { useGetReviews } from "@/features/use-product-reviews/api/get-reviews.ts";
-import { reviewsHelper } from "@/features/use-product-reviews/lib/reviews-halper.ts";
+import { reviewsHelper } from "@/features/use-product-reviews/lib/reviews-helper.ts";
 
 import ReviewsComment from "@/features/use-product-reviews/ui/ReviewsComment.vue"
 

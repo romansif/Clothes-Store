@@ -7,7 +7,7 @@
       </h2>
     </div>
     <div class="flex gap-6">
-      <div @click="openSelectProductCard(0)" :key="0" class="bg-gray-50 h-90 w-90 border border-gray-300 transition duration-400 hover:scale-105
+      <div @click="openSelectImage(0)" :key="0" class="bg-gray-50 h-90 w-90 border border-gray-300 transition duration-400 hover:scale-105
                           hover:bg-gray-100 cursor-pointer overflow-hidden rounded-lg">
         <img v-if="pureCards(product)[0]" :src="pureCards(product)[0]" alt=""
              class="h-90 w-90 transition duration-400">
@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="grid grid-cols-2 gap-3">
-        <div v-for="index in [1, 2, 3, 4]" :key="index" @click="openSelectProductCard(index)"
+        <div v-for="index in [1, 2, 3, 4]" :key="index" @click="openSelectImage(index)"
              class="bg-gray-50 h-43.5 w-43.5 border border-gray-300 transition duration-400 hover:scale-105
                        hover:bg-gray-100 cursor-pointer overflow-hidden rounded-lg">
           <img v-if="pureCards(product)[index]" :src="pureCards(product)[index]" alt=""
@@ -40,7 +40,6 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { openSelectProductCard } from "@/features/use-product-form/lib/toggle-image-product.ts";
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import { productHelper } from "@/shared/lib/helper/product-helper.ts";
 import type {Product} from "@/features/use-product/model/product.types.ts";
@@ -50,7 +49,7 @@ const props = defineProps<{
 }>();
 
 const { activeProductImg } = productStore();
-const { pureCards, productInfoPreview } = productHelper();
+const { openSelectImage, pureCards, productInfoPreview } = productHelper();
 
 onMounted(async () => {
   if(props.product && Array.isArray(props.product.images) && props.product.images[0]) {
