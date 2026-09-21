@@ -13,13 +13,14 @@
           </span>
           <div class="flex items-center gap-2.5">
             <img v-for="index in Math.ceil(review.rating)" :key="index"
-                :src="starCountSrc(index, review.rating)" alt="" class="w-10">
+                :src="starCountSrc(index, review.rating)" alt="" class="w-8">
           </div>
         </div>
         <p>{{ review.comment }}</p>
         <div class="flex gap-5 mt-2.5">
-          <img v-for="(img, index) in reviewAngel(review)" :key="index" :src="img" alt=""
-               class="bg-gray-50 h-25 w-25 border border-gray-300 transition duration-400 hover:scale-110
+          <img v-for="(img, index) in reviewAngel(review.images)" :key="index" :src="img" alt=""
+               @click="toggleReviewPhotos(review.images, index)"
+               class="bg-gray-50 h-45 w-45 border border-gray-300 transition duration-400 hover:scale-110
                cursor-pointer overflow-hidden rounded-lg">
         </div>
       </div>
@@ -30,6 +31,7 @@
 <script setup lang="ts">
 import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
 import { reviewsHelper } from "@/features/use-product-reviews/lib/reviews-helper.ts";
+import { toggleReviewPhotos } from "@/features/use-product-reviews/lib/review-photo-modal.ts";
 import type {Review} from "@/features/use-product-reviews/model/reviews.types.ts";
 
 defineProps<{

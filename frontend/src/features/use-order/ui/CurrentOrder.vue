@@ -23,7 +23,7 @@
       <ReplacementChoice v-if="choiceModal" />
     </Transition>
     <Transition name="notify">
-      <CreateReview v-if="reviewModal" />
+      <CreateReview v-if="reviewFormModal" />
     </Transition>
   </div>
 </template>
@@ -34,7 +34,7 @@ import { useOrder } from "@/features/use-order/lib/use-order.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import { useGetOrder } from "@/features/use-order/api/get-order.ts";
 import { orderStore } from "@/features/use-order/model/order.store.ts";
-import { reviewModal } from "@/features/use-review-form/lib/review-modal.ts";
+import { reviewFormModal } from "@/features/use-review-form/lib/review-form-modal.ts";
 import { choiceModal } from "@/features/use-order/lib/order-modal.ts";
 
 import OrderList from "./OrderList.vue";

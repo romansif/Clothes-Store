@@ -1,6 +1,6 @@
 import { ref } from "vue";
 import router from "@/app/router";
-import { reviewModal } from "@/features/use-review-form/lib/review-modal.ts";
+import { reviewFormModal } from "@/features/use-review-form/lib/review-form-modal.ts";
 import { choiceModal } from "@/features/use-order/lib/order-modal.ts";
 import { cancelChoiceForm } from "@/features/use-order/model/order.forms.ts";
 
@@ -27,7 +27,7 @@ export const useBaseModals = () => {
         notifyMessage.value = '';
 
         choiceModal.value = false;
-        reviewModal.value = false;
+        reviewFormModal.value = false;
 
         cancelChoiceForm.value.cancelChoice = '';
 

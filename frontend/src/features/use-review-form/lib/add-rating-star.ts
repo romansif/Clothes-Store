@@ -1,8 +1,7 @@
-import { computed } from "vue";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useGetReviews } from "@/features/use-product-reviews/api/get-reviews.ts";
 import { reviewForm } from "@/features/use-review-form/model/review.form.ts";
-import { ratingDirection } from "@/features/use-product-reviews/model/reviews.store.ts";
+import { reviewsStore } from "@/features/use-product-reviews/model/reviews.store.ts";
 
 import star from "@/assets/icons/products/full-star.png";
 import half_star from "@/assets/icons/products/half-star.png";
@@ -10,6 +9,7 @@ import empty_star from "@/assets/icons/products/empty-star.png";
 
 const { userData } = userStore();
 const { reviews } = useGetReviews();
+const { ratingDirection } = reviewsStore();
 
 export const addRating = (rating: number) => {
     const half = rating - 0.5
@@ -43,7 +43,7 @@ export const ratingSrc = (rating: number) => {
     return rating <= reviewForm.value.rating ? star : reviewForm.value.rating === rating - 0.5 ? half_star : empty_star
 };
 
-export const isInReview = computed(() => {
+export const isInReview = () => {
     const user = userData.value;
 
     if (!user) return false;
@@ -51,4 +51,4 @@ export const isInReview = computed(() => {
     return reviews.value.some(
         review => review.userId === user.id
     );
-});
+};

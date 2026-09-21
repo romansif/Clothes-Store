@@ -1,21 +1,20 @@
 <template>
-  <div class="font-dm-sans flex justify-between">
-    <div v-for="filter in reviewsFilter"
+  <div class="font-dm-sans flex gap-30">
+    <div v-for="(isActive, filter) in reviewsType"
          :class="['flex flex-col gap-2',
-         filter.isActive ? 'font-bold' : 'font-normal']">
-      <span @click="filteredReviews(route.params.id, filter.type)" :class="['text-lg transition duration-500 hover:scale-120 cursor-pointer',
-            filter.isActive ? 'text-black' : 'text-[#A3A3A3] hover:text-black']">
-        {{ filter.review }}
+         isActive ? 'font-semibold' : 'font-normal']">
+      <span @click="toggleFilter(route.params.id, filter)" :class="['text-lg transition duration-500 hover:scale-120 cursor-pointer',
+            isActive ? 'text-black' : 'text-[#8F8F8F] hover:text-black']">
+        {{ filter }}
       </span>
-      <div v-if="filter.isActive" class="border-t-2"></div>
+      <div v-if="isActive" class="border-t-2"></div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useRoute } from "vue-router";
-import { useGetReviews } from "@/features/use-product-reviews/api/get-reviews.ts";
-import { reviewsStore } from "@/features/use-product-reviews/model/reviews.store.ts";
+import { filterReviews } from "@/features/use-product-reviews/lib/filter-reviews.ts";
 import type {Review} from "@/features/use-product-reviews/model/reviews.types.ts";
 
 defineProps<{
@@ -24,8 +23,7 @@ defineProps<{
 
 const route = useRoute();
 
-const { reviewsFilter } = reviewsStore();
-const { filteredReviews } = useGetReviews();
+const { reviewsType, toggleFilter} = filterReviews()
 </script>
 
 <style scoped>

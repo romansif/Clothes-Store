@@ -31,7 +31,7 @@
                           :value="'I found a better product'"/>
         <span v-if="cancelChoiceMessage.cancelChoice" class="text-red-600 text-xs px-4">{{ cancelChoiceMessage.cancelChoice }}</span>
         <div class="flex ml-auto">
-          <BaseButton type="submit" name="REPLACEMENT" variant="profileForm" />
+          <BaseButton type="submit" name="Replacement" variant="replaceAndReview" />
         </div>
       </form>
     </div>

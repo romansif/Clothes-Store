@@ -60,7 +60,7 @@ import { debouncedSearch, getSearchedProducts } from "@/features/use-navigation/
 
 import del from '@/assets/icons/delete-close/clean_search.svg';
 import search from "@/assets/icons/nav/search.png";
-import right_arrow from '@/assets/icons/arrows/right-arrow.png';
+import right_arrow from '@/assets/icons/arrows/arrow-right.svg';
 
 const { toggleFilterAside } = useProductsModals();
 const { selectedCategoryClass } = filterClasses();

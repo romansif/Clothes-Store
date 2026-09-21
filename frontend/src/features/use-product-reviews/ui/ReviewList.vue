@@ -1,5 +1,6 @@
 <template>
-  <ul v-if="reviews.length" @scroll="loadFiveReviews" class="flex flex-col overflow-y-auto no-scrollbar h-200">
+  <ul v-if="reviews.length" @scroll="loadFiveReviews"
+      class="flex flex-col overflow-y-auto no-scrollbar h-200">
     <ReviewItem v-for="review in visibleReviews" :review="review" />
   </ul>
 </template>

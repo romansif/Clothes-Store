@@ -2,6 +2,7 @@ import {
     createProductForm, moreCreateItemForm,
     createProductFormErrorMessages, moreCreateItemFormErrorMessages
 } from "@/features/use-product-form/model/product.forms.ts";
+import { imageFiles } from "@/shared/lib/helper/product-helper.ts";
 
 export const clearProductForm = () => {
     createProductForm.value.title = '';
@@ -15,6 +16,7 @@ export const clearProductForm = () => {
     createProductForm.value.price = 0;
     createProductForm.value.description = '';
 
+    imageFiles.value = []
     moreCreateItemForm.sizes = [];
     moreCreateItemForm.colors = [];
     moreCreateItemForm.variants = [];

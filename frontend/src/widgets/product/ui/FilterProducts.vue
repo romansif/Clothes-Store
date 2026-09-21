@@ -12,7 +12,7 @@
     <div class="flex flex-col gap-2 mt-3.5">
       <div class="flex items-center font-medium">
         <span class="font-bold">Availability</span>
-        <img :src=availability alt="" class="ml-auto">
+        <img :src=availability alt="" class="ml-auto w-5">
       </div>
       <div class="flex flex-col gap-2">
         <div v-for="(isActive, stackName) in stackProducts" class="flex gap-3">
@@ -33,7 +33,7 @@
     <div class="flex flex-col gap-2 mt-3.5">
       <div class="flex items-center font-medium">
         <span class="font-bold">Gender</span>
-        <img :src=availability alt="" class="ml-auto">
+        <img :src=availability alt="" class="ml-auto w-5">
       </div>
       <div class="flex flex-col gap-2">
         <div v-for="(isActive, genderName) in genders" class="flex gap-3">
@@ -54,7 +54,7 @@
     <div class="flex flex-col gap-2 mt-3.5">
       <div class="flex items-center font-medium">
         <span class="font-bold">Color</span>
-        <img :src=availability alt="" class="ml-auto">
+        <img :src=availability alt="" class="ml-auto w-5">
       </div>
       <div class="grid grid-cols-2 gap-y-2 gap-x-6">
         <div v-for="(isActive, colorName) in colors" :key="colorName" class="flex gap-3">
@@ -78,7 +78,7 @@ import { filterClasses } from "@/shared/const/filter/filter.classes.ts";
 
 import square from '@/assets/icons/squares/square.png'
 import checked from '@/assets/icons/squares/check-square.png'
-import availability from '@/assets/icons/arrows/arrow-up.png'
+import availability from '@/assets/icons/arrows/arrow-up.svg'
 
 const { sizes } = productStore();
 const { allProducts } = useGetProducts();

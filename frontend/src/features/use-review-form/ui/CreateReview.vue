@@ -19,7 +19,7 @@
       </div>
       <div class="flex justify-end mt-5">
         <BaseButton @click="createReview" name="Create Review"
-                    variant="profileForm" />
+                    variant="replaceAndReview" />
       </div>
       <input type="file" @change="onFilesSelected" class="hidden"
              :ref="(el) => { fileInput = el as HTMLInputElement }" multiple accept="image/*">
@@ -29,7 +29,7 @@
 
 <script setup lang="ts">
 import { useAddReview } from "@/features/use-review-form/api/add-review.ts";
-import { toggleReviewChoice } from "@/features/use-review-form/lib/review-modal.ts";
+import { toggleReviewChoice } from "@/features/use-review-form/lib/review-form-modal.ts";
 import { fileInput, productHelper } from "@/shared/lib/helper/product-helper.ts";
 
 import BaseButton from "@/shared/ui/BaseButton.vue";

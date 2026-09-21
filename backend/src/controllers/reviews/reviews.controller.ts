@@ -13,15 +13,15 @@ export const reviewsController = {
 
             reviews = reviews.filter(review => review.productId === productId)
 
-            if(filter && filter !== 'ALL'){
-                if(filter === 'Photos'){
+            if(filter && filter !== 'All reviews'){
+                if(filter === 'With photos'){
                     reviews = reviews.filter(review => review.images.length > 0);
                 }else if(filter === 'Latest'){
                     reviews = reviews.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
-                }else if(filter === 'Highest'){
-                    reviews = reviews.filter(review => review.rating > 3);
-                }else if(filter === 'Lowest'){
-                    reviews = reviews.filter(review => review.rating < 4)
+                }else if(filter === 'Highest rated'){
+                    reviews.sort((a, b) => b.rating - a.rating);
+                }else if(filter === 'Lowest rated'){
+                    reviews.sort((a, b) => a.rating - b.rating);
                 }
             }
 

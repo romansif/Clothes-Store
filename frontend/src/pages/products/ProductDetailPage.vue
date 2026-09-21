@@ -34,7 +34,7 @@ import ProductReviews from "@/features/use-product-reviews/ui/ProductReviews.vue
 
 const { userData } = userStore();
 const { getCartProducts } = useGetCart();
-const { filteredReviews, reviews } = useGetReviews();
+const { getReviews, reviews } = useGetReviews();
 const { getProduct, product } = useGetProduct();
 const { getFavoriteProducts } = useGetFavorite();
 const { changeImg, productInfoPreview, angelCards } = productHelper();
@@ -45,7 +45,7 @@ onMounted(async () => {
   await getCartProducts();
   await getFavoriteProducts();
   await getProduct(route.params.id);
-  await filteredReviews(route.params.id, 'ALL')
+  await getReviews(route.params.id, 'ALL')
 })
 
 const isBuyer = computed(() => {

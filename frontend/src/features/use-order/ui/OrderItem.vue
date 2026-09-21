@@ -77,7 +77,7 @@ import { useOrder } from "@/features/use-order/lib/use-order.ts";
 import { orderPreview } from "@/features/use-checkout-order/lib/checkout-order-helper.ts";
 import { productHelper } from "@/shared/lib/helper/product-helper.ts";
 import { toggleReplaceChoice } from "@/features/use-order/lib/order-modal.ts";
-import { toggleReviewChoice } from "@/features/use-review-form/lib/review-modal.ts";
+import { toggleReviewChoice } from "@/features/use-review-form/lib/review-form-modal.ts";
 import { ordersClasses } from "@/shared/const/order/orders.classes.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import type { Order } from "@/features/use-order/model/order.types.ts";

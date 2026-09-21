@@ -3,7 +3,7 @@
     <div class="font-raleway flex flex-col h-screen bg-white px-6 py-6 sm:w-76.25 md:w-82.5">
       <div class="flex gap-5 items-center" @click="toggleFilterAside">
         <span class="font-bold text-xl cursor-pointer">Filters</span>
-        <img :src=left_arrow alt="">
+        <img :src=left_arrow alt="" class="w-5">
       </div>
       <div class="flex flex-col mt-6 sm:mt-7.5">
         <span class="font-medium">Size</span>
@@ -17,7 +17,7 @@
       <div class="flex flex-col gap-2 mt-3.5">
         <div class="flex items-center font-medium">
           <span class="font-bold">Availability</span>
-          <img :src=availability alt="" class="ml-auto">
+          <img :src=availability alt="" class="ml-auto w-5">
         </div>
         <div class="flex flex-col gap-2">
           <div v-for="(isActive, stackName) in stackProducts" class="flex gap-3">
@@ -38,7 +38,7 @@
       <div class="flex flex-col gap-2 mt-3.5">
         <div class="flex items-center font-medium">
           <span class="font-bold">Gender</span>
-          <img :src=availability alt="" class="ml-auto">
+          <img :src=availability alt="" class="ml-auto w-5">
         </div>
         <div class="flex flex-col gap-2">
           <div v-for="(isActive, genderName) in genders" class="flex gap-3">
@@ -59,7 +59,7 @@
       <div class="flex flex-col gap-2 mt-3.5">
         <div class="flex items-center font-medium">
           <span class="font-bold">Color</span>
-          <img :src=availability alt="" class="ml-auto">
+          <img :src=availability alt="" class="ml-auto w-5">
         </div>
         <div class="grid grid-cols-2 gap-y-2 gap-x-6">
           <div v-for="(isActive, colorName) in colors" :key="colorName" class="flex gap-3">
@@ -75,7 +75,7 @@
       <div class="flex flex-col gap-2 mt-3.5">
         <div class="flex items-center font-medium">
           <span class="font-bold">Category</span>
-          <img :src=availability alt="" class="ml-auto">
+          <img :src=availability alt="" class="ml-auto w-5">
         </div>
         <div v-if="isHome" class="font-medium grid grid-cols-2 gap-y-2 gap-x-6">
           <button v-for="(isActive, categoryName) in category" @click="toggleFilter('ALL', categoryName)"
@@ -102,8 +102,8 @@ import { productStore } from "@/features/use-main-product/model/product.store.ts
 import { useProductsModals } from "@/features/use-main-product/lib/product-modal.ts";
 
 import square from "@/assets/icons/squares/square.png";
-import availability from "@/assets/icons/arrows/arrow-up.png";
-import left_arrow from "@/assets/icons/arrows/left-arrow.png";
+import availability from "@/assets/icons/arrows/arrow-up.svg";
+import left_arrow from "@/assets/icons/arrows/arrow-left.svg";
 import checked from '@/assets/icons/squares/check-square.png';
 
 const { sizes } = productStore();

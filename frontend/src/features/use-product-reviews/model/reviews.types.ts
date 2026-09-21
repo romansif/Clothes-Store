@@ -19,8 +19,3 @@ export interface Review {
     created_at: string;
 }
 
-export interface ReviewFilter {
-    isActive: boolean;
-    type: string;
-    review: string;
-}

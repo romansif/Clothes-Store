@@ -36,6 +36,8 @@ const variantClasses = {
       transition duration-400 hover:scale-120`,
   useOrder: `text-start h-fit w-fit px-10 py-2 bg-[#3B3C36] text-white font-medium text-xs rounded-md cursor-pointer
           transition duration-400 transform hover:scale-108 hover:bg-[#1d1e1b]`,
+  replaceAndReview: `bg-black text-white rounded text-center py-4 px-6 font-semibold cursor-pointer
+      transition duration-400 hover:scale-105`,
   outOfStack: `w-full font-semibold bg-[#A3A3A3] text-white py-4`,
   exitClose: `text-start ml-auto h-fit w-fit px-10 py-2 bg-[#3B3C36] text-white font-medium text-xs rounded-md cursor-pointer
           transition duration-400 transform hover:scale-108 hover:bg-[#1d1e1b]`,

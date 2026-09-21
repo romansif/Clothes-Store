@@ -19,9 +19,10 @@
 <script setup lang="ts">
 import { addRating, ratingSrc } from "@/features/use-review-form/lib/add-rating-star.ts";
 import { reviewsClasses } from "@/shared/const/review/reviews.classes.ts";
-import { ratings } from "@/features/use-product-reviews/model/reviews.store.ts";
+import { reviewsStore } from "@/features/use-product-reviews/model/reviews.store.ts";
 
 const { ratingStar } = reviewsClasses();
+const { ratings } = reviewsStore();
 </script>
 
 <style scoped>
