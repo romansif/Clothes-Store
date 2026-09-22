@@ -3,7 +3,7 @@
     <main class="font-raleway fixed inset-0 flex items-center justify-center">
       <router-view />
     </main>
-    <Loading v-if="loading"/>
+    <Loading v-if="loading" />
     <Transition name="notify">
       <Notification v-if="notify"/>
     </Transition>
@@ -13,7 +13,7 @@
 <script setup lang="ts">
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 
-import Loading from "@/widgets/ui/Loading.vue";
+import Loading from "@/widgets/base/Loading.vue";
 import Notification from "@/shared/ui/Notification.vue";
 
 const { loading, notify } = useBaseModals();

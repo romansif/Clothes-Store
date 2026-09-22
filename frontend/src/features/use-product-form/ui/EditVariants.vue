@@ -22,8 +22,8 @@
       <div v-if="countMode === 'SAME'" class="flex">
         <BaseInput v-model="createProductForm.quantity"
                    @input="toggleAllVariants"
-                   type="number"
                    placeholder="product ptc."
+                   class="w-75"
                    variant="createProduct"
                    :error-message="createProductFormErrorMessages.quantity ? createProductFormErrorMessages.quantity: ''"/>
         <span class="ml-auto mt-auto text-sm text-[#A3A3A3] font-medium">

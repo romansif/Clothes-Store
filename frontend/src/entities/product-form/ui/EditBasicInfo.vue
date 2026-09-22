@@ -142,7 +142,7 @@
         DESC. · ОПИСАНИЕ
         <span class="text-red-500">*</span>
         <span>/</span>
-        <span class="text-black uppercase">{{ product.description }}</span>
+        <span class="text-black uppercase w-123 line-clamp-1">{{ product.description }}</span>
       </label>
       <DescriptionForm v-model="createProductForm.description" :error-message="createProductFormErrorMessages.description"
                        :placeholder="'short desc. of product'" />

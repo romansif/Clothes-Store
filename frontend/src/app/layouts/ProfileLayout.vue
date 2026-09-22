@@ -12,7 +12,7 @@
 <script setup lang="ts">
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 
-import Loading from "@/widgets/ui/Loading.vue";
+import Loading from "@/widgets/base/Loading.vue";
 import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
 import ProfileLayoutModal from "@/widgets/profile-modal/ProfileLayoutModal.vue";
 
