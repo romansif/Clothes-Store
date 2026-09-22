@@ -31,78 +31,29 @@
       </div>
     </div>
     <div class="flex flex-col border-t border-gray-300 font-medium">
-      <template v-if="user.role === 'Buyer'">
-        <ProfileTab @click="toggleOrderHistory"
-                    name="ALL ORDERS" />
-        <ProfileTab @click="toggleCurrentOrder"
-                    name="ACTIVE ORDERS" />
-      </template>
-      <template v-else>
-        <router-link :to="{ name: 'my/products' }">
-          <ProfileTab name="ALL MY PRODUCTS"/>
-        </router-link>
-        <ProfileTab @click="toggleConfidentialityData"
-                    name="CONFIDENTIAL DATA" />
-        <router-link :to="{ name: 'create/product' }" >
-          <ProfileTab name="CREATE PRODUCT COVER"/>
-        </router-link>
-      </template>
-      <ProfileTab v-if="user.role === 'Buyer'"
-                  @click="toggleSavedPaymentCard"
-                  name="SAVED CARDS" />
-      <ProfileTab v-if="user.role === 'Buyer'"
-                  @click="toggleSavedAddresses"
-                  name="SAVED ADDRESSES" />
+      <OpenProfileModals :user="user" />
     </div>
   </div>
-  <Transition name="notify">
-    <ChangeAvatarModal v-if="avatarModal" />
-  </Transition>
-  <Transition name="notify">
-    <AllOrderModal v-if="orderHistory" />
-  </Transition>
-  <Transition name="notify">
-    <CurrentOrderModal v-if="currentOrder" />
-  </Transition>
-  <Transition name="notify">
-    <SavedAddressModal v-if="savedAddresses" />
-  </Transition>
-  <Transition name="notify">
-    <SavedPaymentModal v-if="savedPaymentCard" />
-  </Transition>
-  <Transition name="notify">
-    <UserDataModal v-if="confidentialityData" />
-  </Transition>
+  <ProfileModals />
 </template>
 
 <script setup lang="ts">
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
-import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
+import { useProfileModals } from "@/shared/lib/profile-modal.ts";
+import type {User} from "@/entities/profile/model/user.types.ts";
 
 defineProps<{
   user: User
 }>();
 
 import ProfileMenu from "./ProfileMenu.vue";
-import ProfileTab from "@/shared/ui/profile/ProfileTab.vue";
-import type {User} from "@/entities/profile/model/user.types.ts";
-import ChangeAvatarModal from "@/features/use-profile-form/ui/ChangeAvatarModal.vue";
-import CurrentOrderModal from "@/features/use-order/ui/CurrentOrderModal.vue";
-import AllOrderModal from "@/features/use-order/ui/AllOrderModal.vue";
-import UserDataModal from "@/features/use-profile/ui/UserDataModal.vue";
-import SavedAddressModal from "@/features/use-profile/ui/SavedAddressModal.vue";
-import SavedPaymentModal from "@/features/use-profile/ui/SavedPaymentModal.vue";
+import OpenProfileModals from "@/widgets/ui/profile/OpenProfileModals.vue";
+import ProfileModals from "@/widgets/ui/profile/ProfileModals.vue";
 
 const { userData } = userStore();
 const { userAvatar } = useProfile();
-const {
-  toggleAvatar, toggleOrderHistory, toggleCurrentOrder,
-  toggleConfidentialityData, toggleSavedAddresses,
-  toggleSavedPaymentCard, avatarModal, orderHistory,
-  currentOrder, savedAddresses, savedPaymentCard,
-  confidentialityData
-} = useProfileModals()
+const { toggleAvatar } = useProfileModals();
 </script>
 
 <style scoped>

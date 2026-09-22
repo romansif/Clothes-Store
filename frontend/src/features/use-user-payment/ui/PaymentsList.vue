@@ -20,14 +20,14 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
+import { baseDeleteModal } from "@/widgets/lib/base-delete-modal.ts";
 import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
 
 import PaymentsItem from "../../../entities/user-payment/ui/PaymentsItem.vue";
 import icon_card from "@/assets/icons/checkout/payment/icon_card.svg";
 
 const { userPayments } = paymentStore();
-const { toggleDeleteChoice } = useProfileModals();
+const { toggleDeleteChoice } = baseDeleteModal();
 
 const userPaymentsCard = computed(() => {
   return userPayments.value.some(item => 'cardNumber' in item);

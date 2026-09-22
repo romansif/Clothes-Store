@@ -1,6 +1,6 @@
 export const authClasses = () => {
     const getSignUpPasswordClass = (hasError: string) => [
-        'absolute w-7.5 top-1/4 left-58 sm:left-51', hasError ? 'top-1/6' : ''
+        'absolute w-7.5 top-1/4 left-58 sm:left-50', hasError ? 'top-1/6' : ''
     ];
 
     const selectPhoneCodeClass = () => [
@@ -13,7 +13,6 @@ export const authClasses = () => {
         transition duration-400 hover:bg-gray-50 placeholder:text-xl w-full cursor-pointer`,
         error ? 'border border-red-500' : ''
     ];
-
 
     return {
         signInRoleClass,

@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
+import { baseDeleteModal } from "@/widgets/lib/base-delete-modal.ts";
 import { productHelper } from "@/shared/lib/helper/product-helper.ts";
 import { useUpdateCart } from "@/features/use-cart/api/update-cart.ts";
 import { sizeClass, sizeUrl } from "@/features/use-cart/lib/cart-specific.ts";
@@ -41,7 +41,7 @@ import check_square from "@/assets/icons/squares/check-square.png";
 import square from "@/assets/icons/squares/square.png";
 import update from "@/assets/icons/products/refresh.svg";
 
-const { toggleDeleteChoice } = useProfileModals();
+const { toggleDeleteChoice } = baseDeleteModal();
 const { pureQuantity, pureColors } = productHelper();
 const { updateCartItem, checkCartItem } = useUpdateCart();
 </script>

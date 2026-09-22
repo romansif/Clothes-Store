@@ -1,7 +1,5 @@
 import { ref } from "vue";
 import router from "@/app/router";
-import { reviewFormModal } from "@/features/use-review-form/lib/review-form-modal.ts";
-import { choiceModal } from "@/features/use-order/lib/order-modal.ts";
 
 const notify = ref<boolean>(false);
 const notifyTitle = ref<string>('');
@@ -24,9 +22,6 @@ export const useBaseModals = () => {
         notify.value = false;
         notifyTitle.value = '';
         notifyMessage.value = '';
-
-        choiceModal.value = false;
-        reviewFormModal.value = false;
 
         await router.push({name: `${name}`});
     };

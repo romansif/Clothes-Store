@@ -20,7 +20,7 @@ const { toggleShowPayment } = togglePaymentForm();
 
 import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment.ts";
 
-import PaymentList from "@/widgets/payment/PaymentList.vue";
+import PaymentList from "@/widgets/ui/payment/PaymentList.vue";
 </script>
 
 <style scoped>

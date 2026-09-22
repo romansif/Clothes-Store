@@ -71,7 +71,7 @@
 import { useOrder } from "@/features/use-order/lib/use-order.ts";
 import { orderPreview } from "@/features/use-checkout-order/lib/checkout-order-helper.ts";
 import { productHelper } from "@/shared/lib/helper/product-helper.ts";
-import { ordersClasses } from "@/shared/const/order/orders.classes.ts";
+import { ordersClasses } from "@/features/use-order/const/orders.classes.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import type { Order } from "@/entities/order/model/order.types.ts";
 

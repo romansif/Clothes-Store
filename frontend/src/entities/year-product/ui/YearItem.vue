@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
 import type {Product} from "@/shared/model/product.types.ts";
-import BaseProductCard from "@/widgets/base/BaseProductCard.vue";
+import BaseProductCard from "@/widgets/ui/BaseProductCard.vue";
 
 defineProps<{
   product: Product

@@ -36,10 +36,6 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
-import { useRoute } from "vue-router";
-import { useGetProduct } from "@/features/use-product/api/get-product.ts";
-import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
 import { useCart } from "@/features/use-product/lib/use-cart.ts";
 import { useFavorite } from "@/features/use-favorite/lib/use-favorite.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
@@ -47,11 +43,14 @@ import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorit
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
 import { productHelper } from "@/shared/lib/helper/product-helper.ts";
 import { toggleReadMore, fullDescription } from "@/features/use-product/lib/toggle-more-info.ts";
-
+import type {Product} from "@/shared/model/product.types.ts";
 import {
   addToCartForm, addToCartFormErrorMessages
 } from "@/entities/product/model/add.to.cart.form.ts";
 
+defineProps<{
+  product: Product,
+}>();
 
 import like from '@/assets/icons/nav/like.png';
 import liked from '@/assets/icons/nav/liked.png';
@@ -59,20 +58,11 @@ import ProductSpecific from "@/features/use-product/ui/ProductSpecific.vue";
 import ProductToCart from "@/features/use-product/ui/ProductToCart.vue";
 import ProductPhotos from "@/features/use-product/ui/ProductPhotos.vue";
 
-const route = useRoute();
-
 const { userData } = userStore();
 const { isFavorite } = useFavorite();
 const { addColor, addSize } = useCart();
 const { variantsInfo } = productHelper();
-const { getProduct, product } = useGetProduct();
-const { getFavoriteProducts } = useGetFavorite();
 const { toggleToFavorite } = useToggleFavorite();
-
-onMounted(async () => {
-  await getFavoriteProducts();
-  await getProduct(route.params.id);
-});
 
 refClearErrorsOnChange(
   addToCartForm,

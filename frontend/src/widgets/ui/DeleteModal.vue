@@ -14,11 +14,11 @@
 </template>
 
 <script setup lang="ts">
-import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
+import { baseDeleteModal } from "@/widgets/lib/base-delete-modal.ts";
 
 import BaseButton from "@/shared/ui/base/BaseButton.vue";
 
-const { toggleDeleteChoice, generalDelete, deleteMessage } = useProfileModals();
+const { toggleDeleteChoice, generalDelete, deleteMessage } = baseDeleteModal();
 </script>
 
 <style scoped>

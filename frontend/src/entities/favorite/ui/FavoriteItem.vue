@@ -34,7 +34,7 @@ defineProps<{
 }>();
 
 import update from "@/assets/icons/products/refresh.svg";
-import BaseProductCard from "@/widgets/base/BaseProductCard.vue";
+import BaseProductCard from "@/widgets/ui/BaseProductCard.vue";
 </script>
 
 <style scoped>

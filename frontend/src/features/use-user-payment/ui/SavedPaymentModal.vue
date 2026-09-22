@@ -19,22 +19,24 @@
       </div>
     </div>
     <Transition name="notify">
-      <DeleteModal v-if="deleteChoice" />
+      <DeleteModal v-if="deleteModal" />
     </Transition>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
+import { baseDeleteModal } from "@/widgets/lib/base-delete-modal.ts";
+import { useProfileModals } from "@/shared/lib/profile-modal.ts";
 import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
 
+import BaseButton from "@/shared/ui/base/BaseButton.vue";
+import DeleteModal from "@/widgets/ui/DeleteModal.vue";
 import PaymentCardEmpty from "@/entities/profile/ui/PaymentCardEmpty.vue";
 import PaymentsList from "@/features/use-user-payment/ui/PaymentsList.vue";
-import BaseButton from "@/shared/ui/base/BaseButton.vue";
-import DeleteModal from "@/widgets/base/DeleteModal.vue";
 
 const { userPayments } = paymentStore();
-const { toggleSavedPaymentCard, deleteChoice } = useProfileModals();
+const { deleteModal } = baseDeleteModal();
+const { toggleSavedPaymentCard } = useProfileModals();
 </script>
 
 

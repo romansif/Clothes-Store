@@ -31,7 +31,7 @@ defineProps<{
   cart: Product[]
 }>();
 
-import BaseProductCard from "@/widgets/base/BaseProductCard.vue";
+import BaseProductCard from "@/widgets/ui/BaseProductCard.vue";
 import UseCart from "@/features/use-cart/ui/UseCart.vue";
 
 </script>

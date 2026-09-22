@@ -19,22 +19,24 @@
       </div>
     </div>
     <Transition name="notify">
-      <DeleteModal v-if="deleteChoice" />
+      <DeleteModal v-if="deleteModal" />
     </Transition>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
+import { baseDeleteModal } from "@/widgets/lib/base-delete-modal.ts";
+import { useProfileModals } from "@/shared/lib/profile-modal.ts";
 import { informationContactStore } from "@/features/use-user-address/model/address.store.ts";
 
-import AddressesList from "@/features/use-user-address/ui/AddressesList.vue";
 import BaseButton from "@/shared/ui/base/BaseButton.vue";
-import DeleteModal from "@/widgets/base/DeleteModal.vue";
+import DeleteModal from "@/widgets/ui/DeleteModal.vue";
 import AddressesEmpty from "@/entities/profile/ui/AddressesEmpty.vue";
+import AddressesList from "@/features/use-user-address/ui/AddressesList.vue";
 
+const { deleteModal } = baseDeleteModal();
 const { userAddresses } = informationContactStore();
-const { toggleSavedAddresses, deleteChoice } = useProfileModals();
+const { toggleSavedAddresses } = useProfileModals();
 </script>
 
 

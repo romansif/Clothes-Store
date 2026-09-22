@@ -18,7 +18,7 @@ import { useProductsModals } from "@/features/use-main-product/lib/product-modal
 import NavBar from "@/widgets/ui/home/NavBar.vue";
 import HomeSlideBar from "@/widgets/ui/home/HomeSlideBar.vue";
 import MainHome from "@/widgets/ui/home/MainHome.vue";
-import Footer from "@/widgets/ui/home/Footer.vue";
+import Footer from "@/entities/home/ui/Footer.vue";
 import AsideFilter from "@/widgets/ui/product/AsideFilter.vue";
 
 const { filterAside } = useProductsModals();

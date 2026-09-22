@@ -13,7 +13,7 @@
 import { onMounted } from "vue";
 import { useGetUsers } from "@/features/use-profile/api/get-users.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { profileClasses } from "@/shared/const/profile/profile.classes.ts";
+import { profileClasses } from "@/features/use-profile/const/profile.classes.ts";
 
 import ProfileSettings from "@/widgets/ui/profile/ProfileSettings.vue";
 import ProfileNotLoggedIn from "@/widgets/ui/profile/ProfileNotLoggedIn.vue";

@@ -65,7 +65,7 @@ import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import photo_1 from '@/assets/photos/8.png'
 import photo_2 from '@/assets/photos/9.png'
 import photo_3 from '@/assets/photos/pants.png'
-import Notification from "@/widgets/base/Notification.vue";
+import Notification from "@/widgets/ui/Notification.vue";
 import WeekList from "@/features/use-week-product/ui/WeekList.vue";
 import YearList from "@/features/use-year-product/ui/YearList.vue";
 import FilterGender from "@/widgets/ui/home/FilterGender.vue";

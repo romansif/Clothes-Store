@@ -1,26 +1,11 @@
 import { ref } from "vue";
-import { clearUsersForms } from "@/features/use-profile-form/lib/clear-user-update.ts";
-import { useDeleteProduct } from "@/features/use-my-product/api/delete-product.ts";
-import { useDeleteCart } from "@/features/use-cart/api/delete-cart";
-import { useDeleteAddress } from "@/features/use-user-address/api/delete-address.ts";
-import { useDeletePayment } from "@/features/use-user-payment/api/delete-payment.ts";
-import { useDeleteOrder } from "@/features/use-order/api/delete-order.ts";
 import { useAuth } from "@/features/use-auth/api/use-auth.ts";
+import { useDeletePayment } from "@/features/use-user-payment/api/delete-payment.ts";
+import { useDeleteProduct } from "@/features/use-my-product/api/delete-product.ts";
+import { useDeleteCart } from "@/features/use-cart/api/delete-cart.ts";
+import { useDeleteAddress } from "@/features/use-user-address/api/delete-address.ts";
+import { useDeleteOrder } from "@/features/use-order/api/delete-order.ts";
 import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
-
-const avatarModal = ref<boolean>(false);
-const fileInput = ref<HTMLInputElement | null>(null);
-
-const currentOrder= ref<boolean>(false);
-const orderHistory = ref<boolean>(false);
-const savedAddresses = ref<boolean>(false);
-const savedPaymentCard = ref<boolean>(false);
-const confidentialityData = ref<boolean>(false);
-
-const generalId = ref<string>('');
-const deleteType = ref<string>('');
-const deleteMessage = ref<string>('');
-const deleteChoice = ref<boolean>(false);
 
 const { logout, deleteAccount } = useAuth();
 const { deletePayment } = useDeletePayment();
@@ -28,44 +13,19 @@ const { deleteProduct } = useDeleteProduct();
 const { deleteProductCart } = useDeleteCart();
 const { deleteAddress } = useDeleteAddress();
 const { deleteOrderProducts } = useDeleteOrder();
-const { clearUpdateUserForm } = clearUsersForms();
 const { deleteFavoriteProduct } = useToggleFavorite();
 
-export const useProfileModals = () => {
-    const toggleAvatar = () => {
-        avatarModal.value = !avatarModal.value;
-    }
+const generalId = ref<string>('');
+const deleteType = ref<string>('');
+const deleteMessage = ref<string>('');
+const deleteModal = ref<boolean>(false);
 
-    const openSelectAvatar = () => {
-        fileInput.value?.click()
-    }
-
-    const toggleOrderHistory = () => {
-        orderHistory.value = !orderHistory.value;
-    }
-
-    const toggleCurrentOrder = () => {
-        currentOrder.value = !currentOrder.value;
-    }
-
-    const toggleConfidentialityData = () => {
-        confidentialityData.value = !confidentialityData.value;
-        clearUpdateUserForm();
-    }
-
-    const toggleSavedAddresses = () => {
-        savedAddresses.value = !savedAddresses.value;
-    }
-
-    const toggleSavedPaymentCard = () => {
-        savedPaymentCard.value = !savedPaymentCard.value;
-    }
-
+export const baseDeleteModal = () => {
     const toggleDeleteChoice = (message: string, type: string, id: string) => {
         generalId.value = id;
         deleteType.value = type;
         deleteMessage.value = message;
-        deleteChoice.value = !deleteChoice.value;
+        deleteModal.value = !deleteModal.value;
     }
 
     const generalDelete = async () => {
@@ -103,34 +63,16 @@ export const useProfileModals = () => {
                     await deletePayment(generalId.value)
                     break;
             }
-            deleteChoice.value = false
+            deleteModal.value = false
         }catch(err){
             console.log(`Не удалось провести ${deleteType.value}`, err);
         }
     };
 
     return {
-        toggleAvatar,
-        openSelectAvatar,
-
-        toggleOrderHistory,
-        toggleCurrentOrder,
-        toggleConfidentialityData,
-        toggleSavedAddresses,
-        toggleSavedPaymentCard,
-
-        orderHistory,
-        currentOrder,
-        confidentialityData,
-        savedAddresses,
-        savedPaymentCard,
-
-        avatarModal,
-        fileInput,
-
-        deleteType,
+        generalId,
         deleteMessage,
-        deleteChoice,
+        deleteModal,
 
         toggleDeleteChoice,
         generalDelete,

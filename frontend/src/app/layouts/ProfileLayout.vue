@@ -14,9 +14,9 @@
 <script setup lang="ts">
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 
-import Loading from "@/widgets/ui/base-component/Loading.vue";
+import Loading from "@/widgets/ui/Loading.vue";
 import MainNavBar from "@/widgets/ui/navigation/MainNavBar.vue";
-import Notification from "@/widgets/ui/base-component/Notification.vue";
+import Notification from "@/widgets/ui/Notification.vue";
 
 const { notify, loading } = useBaseModals();
 </script>

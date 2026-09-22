@@ -20,13 +20,13 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
+import { baseDeleteModal } from "@/widgets/lib/base-delete-modal.ts";
 import { informationContactStore } from "@/features/use-user-address/model/address.store.ts";
 
 import AddressesItem from "../../../entities/user-address/ui/AddressesItem.vue";
 import icon_address from "@/assets/icons/checkout/icon_address.svg";
 
-const { toggleDeleteChoice } = useProfileModals();
+const { toggleDeleteChoice } = baseDeleteModal();
 const { userAddresses } = informationContactStore();
 
 const userAddressesCity = computed(() => {

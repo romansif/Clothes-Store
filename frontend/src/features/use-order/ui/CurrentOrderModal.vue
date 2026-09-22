@@ -31,7 +31,7 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { useOrder } from "@/features/use-order/lib/use-order.ts";
-import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
+import { useProfileModals } from "@/shared/lib/profile-modal.ts";
 import { useGetOrder } from "@/features/use-order/api/get-order.ts";
 import { orderStore } from "@/features/use-order/model/order.store.ts";
 import { reviewFormModal } from "@/features/use-review-form/lib/review-form-modal.ts";

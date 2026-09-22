@@ -20,24 +20,18 @@
         </div>
       </div>
     </div>
-    <Transition name="notify">
-      <Notification v-if="notify" />
-    </Transition>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
+import { useProfileModals } from "@/shared/lib/profile-modal.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { useBaseModals } from "@/shared/lib/base-modal.ts";
 
 import ConfidentialityData from "../../../entities/profile/ui/ConfidentialityData.vue";
 import BaseButton from "@/shared/ui/base/BaseButton.vue";
 import UpdateProfileForm from "../../use-profile-form/ui/UpdateProfileForm.vue";
-import Notification from "@/widgets/base/Notification.vue";
 
 const { userData } = userStore();
-const { notify } = useBaseModals();
 const { toggleConfidentialityData } = useProfileModals();
 </script>
 

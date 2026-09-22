@@ -10,8 +10,9 @@
 </template>
 
 <script setup lang="ts">
+import { baseDeleteModal } from "@/widgets/lib/base-delete-modal.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
-import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
+import type {Product} from "@/shared/model/product.types.ts";
 
 defineProps<{
   product: Product
@@ -19,10 +20,9 @@ defineProps<{
 
 import pencil from "@/assets/icons/products/pencil.svg";
 import del from "@/assets/icons/delete-close/delete.svg";
-import type {Product} from "@/shared/model/product.types.ts";
 
 const { getProductId } = useGetProduct();
-const { toggleDeleteChoice } = useProfileModals();
+const { toggleDeleteChoice } = baseDeleteModal();
 </script>
 
 <style scoped>
