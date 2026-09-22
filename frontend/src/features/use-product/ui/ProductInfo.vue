@@ -41,7 +41,7 @@ import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorit
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
 import { productHelper } from "@/shared/lib/helper/product-helper.ts";
 import { toggleReadMore, fullDescription } from "@/features/use-product/lib/toggle-more-info.ts";
-import { type Product } from "@/entities/product/model/product.types.ts";
+import { type Product } from "@/shared/model/product.types.ts";
 import {
   addToCartForm, addToCartFormErrorMessages
 } from "@/entities/product/model/add.to.cart.form.ts";
@@ -49,7 +49,7 @@ import {
 
 import like from '@/assets/icons/nav/like.png';
 import liked from '@/assets/icons/nav/liked.png';
-import ProductSpecific from "@/entities/product/ui/ProductSpecific.vue";
+import ProductSpecific from "@/features/use-product/ui/ProductSpecific.vue";
 import ProductToCart from "@/features/use-product/ui/ProductToCart.vue";
 
 defineProps<{

@@ -1,7 +1,7 @@
 import { computed } from "vue";
 import { favoriteStore } from "@/features/use-favorite/model/favorite.store.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
-import type {Product} from "@/entities/product/model/product.types.ts";
+import type {Product} from "@/shared/model/product.types.ts";
 
 const { userData } = userStore();
 const { favorite } = favoriteStore();

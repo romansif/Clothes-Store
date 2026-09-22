@@ -1,5 +1,5 @@
 <template>
-  <div @click="toggleStackInfo(product)" class="font-raleway fixed inset-0 z-50
+  <div v-if="product" @click="toggleStackInfo(product)" class="font-raleway fixed inset-0 z-50
      bg-[rgba(0,0,0,0.5)] flex items-center justify-center">
     <div @click.stop class="flex flex-col gap-8 bg-white rounded-xl p-5 w-fit">
       <div class="flex items-center ">

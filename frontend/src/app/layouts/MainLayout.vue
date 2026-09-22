@@ -20,7 +20,7 @@ import { errorHandler } from "@/shared/lib/error-handler.ts";
 
 import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";
-import MainLayoutModal from "@/shared/ui/MainLayoutModal.vue";
+import MainLayoutModal from "@/widgets/main-modal/MainLayoutModal.vue";
 
 const { componentError, resetError } = errorHandler();
 </script>

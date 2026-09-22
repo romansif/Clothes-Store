@@ -40,15 +40,13 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { productStore } from "@/features/use-main-product/model/product.store.ts";
-import { productHelper } from "@/shared/lib/helper/product-helper.ts";
-import type {Product} from "@/entities/product/model/product.types.ts";
+import { productHelper, activeProductImg } from "@/shared/lib/helper/product-helper.ts";
+import type {Product} from "@/shared/model/product.types.ts";
 
 const props = defineProps<{
   product: Product,
 }>();
 
-const { activeProductImg } = productStore();
 const { openSelectImage, pureCards, productInfoPreview } = productHelper();
 
 onMounted(async () => {

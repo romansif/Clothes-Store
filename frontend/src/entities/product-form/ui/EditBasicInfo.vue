@@ -153,10 +153,10 @@
 
 <script setup lang="ts">
 import { IMaskComponent as IMask } from "vue-imask";
-import { productStore } from "@/features/use-main-product/model/product.store.ts";
+import { productSpecific } from "@/entities/product-form/model/product.specific.ts";
 import { baseSelectClass, skuClass } from "@/shared/const/product-form/form.classes.ts";
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
-import type {Product} from "@/entities/product/model/product.types.ts";
+import type {Product} from "@/shared/model/product.types.ts";
 import {
   createProductForm, createProductFormErrorMessages
 } from "@/entities/product-form/model/product.forms.ts";
@@ -168,7 +168,7 @@ defineProps<{
   product: Product,
 }>();
 
-const { collections, categories, materials, genders, skuMask } = productStore();
+const { collections, categories, materials, genders, skuMask } = productSpecific();
 
 refClearErrorsOnChange(
     createProductForm,

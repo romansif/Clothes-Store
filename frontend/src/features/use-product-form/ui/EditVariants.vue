@@ -115,7 +115,6 @@
 </template>
 
 <script setup lang="ts">
-import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import { useUpdateProduct } from "@/features/use-product-form/api/update-product.ts";
 import { productHelper } from "@/shared/lib/helper/product-helper.ts";
 import { productFormHelper } from "@/features/use-product-form/lib/product-form-helper.ts";
@@ -123,7 +122,7 @@ import {
   createProductForm,
   createProductFormErrorMessages, moreCreateItemFormErrorMessages
 } from "@/entities/product-form/model/product.forms.ts";
-import type {Product} from "@/entities/product/model/product.types.ts";
+import type {Product} from "@/shared/model/product.types.ts";
 
 import BaseInput from "@/shared/ui/BaseInput.vue";
 
@@ -131,8 +130,7 @@ defineProps<{
   product: Product,
 }>();
 
-const { countMode } = productStore();
-const { toggleAllVariants } = productFormHelper();
+const { toggleAllVariants, countMode } = productFormHelper();
 const { updateProductCount, updateProductColors } = useUpdateProduct();
 const { pureInfoColors, pureColorsName, pureSizesName, isAvailableSizes, uniqueSizes, uniqueColors } = productHelper();
 </script>

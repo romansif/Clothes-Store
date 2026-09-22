@@ -41,7 +41,7 @@ import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import { reviewFormModal } from "@/features/use-review-form/lib/review-form-modal.ts";
 import { choiceModal } from "@/features/use-order/lib/order-modal.ts";
 
-import OrdersList from "@/entities/order/ui/OrderList.vue";
+import OrdersList from "@/features/use-order/ui/OrderList.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import ClipboardNotify from "@/shared/ui/order/ClipboardNotify.vue";
 import ReplacementModal from "@/features/use-order/ui/ReplacementModal.vue";

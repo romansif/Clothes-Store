@@ -1,8 +1,10 @@
 <template>
-  <PaymentForm v-if="isDebitCard" />
+  <PaymentForm v-if="isDebitCard" :user-payment="userPayment" />
   <div v-if="!isDebitCard" @click="openCardForm('card')"
-       :class="paymentMethodClass('card')">
-    <PaymentMethod :method="'card'"
+       :class="paymentMethodClass(paymentForm.paymentMethod,
+       'card', paymentFormErrorMessage.paymentMethod)">
+    <PaymentMethod v-model="paymentForm.paymentMethod"
+                   :method="'card'"
                    :title="'DEBIT OR CREDIT CARD'"
                    :text="'Visa, Mastercard'" />
     <div class="flex gap-5">
@@ -10,20 +12,26 @@
       <img :src="mastercard_pay" alt="" class="w-11.25">
     </div>
   </div>
-  <div :class="paymentMethodClass('apple')">
-    <PaymentMethod :method="'apple'"
+  <div :class="paymentMethodClass(paymentForm.paymentMethod,
+       'apple', paymentFormErrorMessage.paymentMethod)">
+    <PaymentMethod v-model="paymentForm.paymentMethod"
+                   :method="'apple'"
                    :title="'APPLE PAY'"
                    :text="'Fast payment with Apple'" />
     <img :src="apple_pay" alt="" class="w-15">
   </div>
-  <div :class="paymentMethodClass('google')">
-    <PaymentMethod :method="'google'"
+  <div :class="paymentMethodClass(paymentForm.paymentMethod,
+       'google', paymentFormErrorMessage.paymentMethod)">
+    <PaymentMethod v-model="paymentForm.paymentMethod"
+                   :method="'google'"
                    :title="'GOOGLE PAY'"
                    :text="'Payment via Google account'" />
     <img :src="google_pay" alt="" class="w-15">
   </div>
-  <div :class="paymentMethodClass('paypal')">
-    <PaymentMethod :method="'paypal'"
+  <div :class="paymentMethodClass(paymentForm.paymentMethod,
+       'paypal', paymentFormErrorMessage.paymentMethod)">
+    <PaymentMethod v-model="paymentForm.paymentMethod"
+                   :method="'paypal'"
                    :title="'PAYPAL'"
                    :text="'International wallet'" />
     <img :src="pay_pal" alt="" class="w-22.5">
@@ -35,8 +43,21 @@
 
 <script setup lang="ts">
 import { paymentClasses } from "@/shared/const/checkout/payment.classes.ts";
-import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment.ts";
-import { paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment.form.ts";
+import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment.form.ts";
+import type {UserPayment} from "@/entities/checkout-payment/model/payment.type.ts";
+
+defineProps<{
+  userPayment: UserPayment | null;
+  isDebitCard: boolean;
+}>();
+
+const emit = defineEmits<{
+  openCardForm: [type: string];
+}>();
+
+const openCardForm = (type: string) => {
+  emit("openCardForm", type);
+};
 
 import PaymentForm from "./PaymentForm.vue";
 import visa_pay from '@/assets/icons/checkout/payment/visa.png';
@@ -47,7 +68,6 @@ import mastercard_pay from '@/assets/icons/checkout/payment/mastercard.svg';
 import PaymentMethod from "@/shared/ui/checkout/PaymentMethod.vue";
 
 const { paymentMethodClass } = paymentClasses();
-const { openCardForm, isDebitCard } = togglePaymentForm();
 </script>
 
 <style scoped>

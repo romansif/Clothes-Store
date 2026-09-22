@@ -5,7 +5,7 @@ import type {
     ProductFormErrorMessage,
     MoreCreateItemFormErrorMessage,
 } from "@/entities/product-form/model/product.types.form.ts";
-import type { Variant } from "@/entities/product/model/product.types.ts";
+import type { Variant } from "@/shared/model/product.types.ts";
 
 export const createProductForm = ref<ProductForm>({
     title: '',

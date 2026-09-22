@@ -4,13 +4,13 @@
     <AsideFilter v-if="filterAside" />
   </Transition>
   <Transition name="notify">
-    <SizeGuideModal v-if="sizeGuideModel"/>
+    <SizeGuideModal v-if="sizeGuideModel" />
   </Transition>
   <Transition name="notify">
-    <Notification v-if="notify"/>
+    <Notification v-if="notify" />
   </Transition>
   <Transition name="notify">
-    <DeleteModal v-if="deleteChoice"/>
+    <DeleteModal v-if="deleteChoice" />
   </Transition>
 </template>
 
@@ -22,8 +22,8 @@ import { sizeGuideModel } from "@/features/use-product/lib/toggle-more-info.ts";
 
 import AsideFilter from "@/widgets/product/ui/AsideFilter.vue";
 import Notification from "@/shared/ui/Notification.vue";
-import SizeGuideModal from "@/entities/product/ui/SizeGuideModal.vue";
-import DeleteModal from "@/shared/ui/DeleteModal.vue";
+import SizeGuideModal from "@/features/use-product/ui/SizeGuideModal.vue";
+import DeleteModal from "@/widgets/base/DeleteModal.vue";
 
 const { notify } = useBaseModals();
 const { deleteChoice } = useProfileModals();

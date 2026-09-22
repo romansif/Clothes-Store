@@ -16,8 +16,13 @@
 </template>
 
 <script setup lang="ts">
-import { reviewsHelper } from "@/features/use-product-review/lib/reviews-helper.ts";
-import { currentIndex, reviewImages } from "@/features/use-product-review/lib/review-photo-modal.ts";
+import { ratingHelper } from "@/entities/product-review/lib/rating-helper.ts";
+import type {ImageItem} from "@/entities/product-review/model/reviews.types.ts";
+
+defineProps<{
+  currentIndex: number;
+  reviewImages: ImageItem[];
+}>();
 
 const emit = defineEmits<{
   toggleReview: [array: [], index: number];
@@ -33,9 +38,8 @@ const changeReviewPhoto = (type: string, images: ImageItem[]) => {
 }
 
 import arrow from "@/assets/icons/arrows/arrow-gray.svg";
-import type {ImageItem} from "@/entities/product-review/model/reviews.types.ts";
 
-const { reviewAngel } = reviewsHelper();
+const { reviewAngel } = ratingHelper();
 </script>
 
 <style scoped>

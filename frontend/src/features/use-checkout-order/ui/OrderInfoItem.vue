@@ -28,7 +28,7 @@ import type { OrderItem } from "@/entities/order/model/order.types.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { productHelper } from "@/shared/lib/helper/product-helper.ts";
 import { orderPreview } from "@/features/use-checkout-order/lib/checkout-order-helper.ts";
-import type {Product} from "@/entities/product/model/product.types.ts";
+import type {Product} from "@/shared/model/product.types.ts";
 
 defineProps<{
   product: Product

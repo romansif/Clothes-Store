@@ -39,7 +39,7 @@ import { useAuth } from "@/features/use-auth/api/use-auth.ts";
 import { clearAuthForms } from "@/features/use-auth/lib/clear-auth.ts";
 import { authStore } from "@/features/use-auth/model/auth.store.ts";
 
-import LoginForm from "@/entities/auth/ui/LoginForm.vue";
+import LoginForm from "@/features/use-auth/ui/LoginForm.vue";
 import maki_arrow from "@/assets/icons/arrows/right-short-arrow.svg";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import GoogleSignIn from "@/features/use-auth/ui/GoogleSignIn.vue";

@@ -14,7 +14,7 @@ import { useBaseModals } from "@/shared/lib/base-modal.ts";
 
 import Loading from "@/widgets/ui/Loading.vue";
 import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
-import ProfileLayoutModal from "@/shared/ui/ProfileLayoutModal.vue";
+import ProfileLayoutModal from "@/widgets/profile-modal/ProfileLayoutModal.vue";
 
 const { loading } = useBaseModals();
 </script>

@@ -13,7 +13,7 @@
       </div>
       <div class="flex gap-3">
         <form @submit.prevent="addPayment" action="" class="flex flex-col gap-4 w-full font-dm-sans">
-          <PaymentMethods />
+          <PaymentMethods :user-payment="userPayment" :is-debit-card="isDebitCard" @open-card-form="openCardForm" />
           <div class="relative mt-5 sm:ml-auto transition duration-400 hover:scale-110">
             <BaseButton v-if="!isSavedPayment" type="submit" name="Pay" variant="checkOut"/>
             <img :src=arrow alt="" class="h-13 absolute left-75 top-1/2 -translate-y-1/2
@@ -42,9 +42,9 @@ import BaseButton from "@/shared/ui/BaseButton.vue";
 import PaymentMethods from "../../../entities/checkout-payment/ui/PaymentMethods.vue";
 import SavedCheckoutPayment from "@/features/use-chekout-payment-info/ui/SavedCheckoutPayment.vue";
 
-const { userPayments } = paymentStore();
+const { userPayments, userPayment } = paymentStore();
 const { addPayment, useSavedPayment } = useAddPayment();
-const { toggleShowPayment, isSavedPayment } = togglePaymentForm();
+const { openCardForm, toggleShowPayment, isSavedPayment, isDebitCard } = togglePaymentForm();
 
 refClearErrorsOnChange(
   paymentForm,

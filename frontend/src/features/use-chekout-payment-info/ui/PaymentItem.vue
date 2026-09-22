@@ -1,6 +1,7 @@
 <template>
   <TransitionGroup name="list">
-    <li @click="useSavedCard(payment)" :key="payment.id" :class="savedPaymentClass">
+    <li @click="useSavedCard(payment)" :key="payment.id"
+        :class="getSavedInfoClass(isChosenPayment)">
       <div class="flex flex-col gap-5">
         <div class="flex gap-5">
           <span class="text-sm font-semibold">
@@ -24,8 +25,9 @@
 </template>
 
 <script setup lang="ts">
-import { paymentClasses } from "@/shared/const/checkout/payment.classes.ts";
 import { useAddPayment } from "@/features/use-chekout-payment-info/api/add-payment.ts";
+import { checkoutClasses } from "@/shared/const/checkout/checkout.classes.ts";
+import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment.ts";
 import type {UserPayment} from "@/entities/checkout-payment/model/payment.type.ts";
 
 defineProps<{
@@ -33,7 +35,8 @@ defineProps<{
 }>();
 
 const { useSavedCard } = useAddPayment();
-const { savedPaymentClass } = paymentClasses();
+const { isChosenPayment } = togglePaymentForm();
+const { getSavedInfoClass } = checkoutClasses();
 </script>
 
 <style scoped>

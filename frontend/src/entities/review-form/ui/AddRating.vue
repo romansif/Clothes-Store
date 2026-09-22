@@ -8,7 +8,7 @@
       <div class="flex items-center gap-5">
         <img v-for="rating in ratings" :key="rating"
              :src="ratingSrc(rating)" alt=""
-             :class="ratingStar(rating)"
+             :class="ratingStar(reviewForm.rating, rating)"
              @click="addRating(rating)">
       </div>
       <span class="text-sm text-[#A3A3A3]">Tap to rate (1-5 star)</span>
@@ -17,8 +17,9 @@
 </template>
 
 <script setup lang="ts">
-import { ratingSrc } from "@/features/use-review-form/lib/add-rating-star.ts";
+import { ratingSrc } from "@/entities/review-form/lib/rating.display.ts";
 import { reviewsClasses } from "@/shared/const/review/reviews.classes.ts";
+import { reviewForm } from "@/entities/review-form/model/review.form.ts";
 
 defineProps<{
   ratings: number[]

@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import {reviewForm, reviewFormMessages} from "@/entities/review-form/model/review.form.ts";
+import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/review.form.ts";
 
 import DescriptionForm from "@/shared/ui/product-form/DescriptionForm.vue";
 </script>

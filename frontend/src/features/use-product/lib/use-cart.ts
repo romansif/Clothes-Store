@@ -1,5 +1,5 @@
 import { type User } from "@/entities/profile/model/user.types.ts";
-import {type ColorItem, type Product, type Size} from "@/entities/product/model/product.types.ts";
+import {type ColorItem, type Product, type Size} from "@/shared/model/product.types.ts";
 import { addToCartForm } from "@/entities/product/model/add.to.cart.form.ts";
 
 export const useCart = () => {

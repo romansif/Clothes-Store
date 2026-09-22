@@ -1,4 +1,4 @@
-import {type Collection, type ColorItem, type ImageItem, type Variant} from "@/entities/product/model/product.types.ts";
+import {type Collection, type ColorItem, type ImageItem, type Variant} from "@/shared/model/product.types.ts";
 
 export interface CartItem {
     id: string,

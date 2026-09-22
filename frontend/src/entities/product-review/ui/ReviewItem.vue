@@ -29,12 +29,12 @@
 </template>
 
 <script setup lang="ts">
-import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
-import { reviewsHelper } from "@/features/use-product-review/lib/reviews-helper.ts";
+import { ratingHelper } from "@/entities/product-review/lib/rating-helper.ts";
 import type {ImageItem, Review} from "@/entities/product-review/model/reviews.types.ts";
 
 defineProps<{
   review: Review;
+  userAvatar: (avatar: string | undefined) => string;
 }>();
 
 const emit = defineEmits<{
@@ -45,8 +45,7 @@ const toggleReviewPhotos = (array: ImageItem[] | undefined, index: number) => {
   emit('toggleReview', array, index);
 };
 
-const { userAvatar } = useProfile();
-const { starCountSrc, reviewAngel } = reviewsHelper();
+const { starCountSrc, reviewAngel } = ratingHelper();
 </script>
 
 <style scoped>

@@ -1,5 +1,8 @@
+import { ref } from "vue";
 import namer from "color-namer";
 import { createProductForm, moreCreateItemForm } from "@/entities/product-form/model/product.forms.ts";
+
+const countMode = ref<string>('SAME')
 
 export const productFormHelper  = () => {
     const toggleAllVariants = () => {
@@ -87,6 +90,10 @@ export const productFormHelper  = () => {
     };
 
     return {
-        toggleAllVariants, toggleQuantity, toggleColor, toggleSize
+        countMode,
+        toggleAllVariants,
+        toggleQuantity,
+        toggleColor,
+        toggleSize
     }
 }

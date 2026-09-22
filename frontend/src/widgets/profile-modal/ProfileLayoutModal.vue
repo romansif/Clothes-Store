@@ -36,7 +36,7 @@ import ChangeAvatar from "@/features/use-profile-form/ui/ChangeAvatar.vue";
 import Notification from "@/shared/ui/Notification.vue";
 import UserDataModal from "@/features/use-profile/ui/UserDataModal.vue";
 import CurrentOrder from "@/features/use-order/ui/CurrentOrder.vue";
-import DeleteModal from "@/shared/ui/DeleteModal.vue";
+import DeleteModal from "@/widgets/base/DeleteModal.vue";
 import Orders from "@/features/use-order/ui/Orders.vue";
 
 const { notify } = useBaseModals();

@@ -1,5 +1,5 @@
 import { addToCartForm } from "@/entities/product/model/add.to.cart.form.ts";
-import type { ColorItem, Product, Size } from "@/entities/product/model/product.types.ts";
+import type { ColorItem, Product, Size } from "@/shared/model/product.types.ts";
 
 export const addToCartClasses = () => {
     const isColorAvailable = (color: ColorItem, product: Product) =>

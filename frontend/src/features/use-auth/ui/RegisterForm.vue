@@ -27,7 +27,7 @@
         <IMask v-model:value=registerForm.phone
                :mask="currentMask.mask"
                :key="selectedCountryCode"
-               :class="signUpPhoneClass"
+               :class="getPhoneClass(registerFormErrorMessages.phone)"
                :placeholder="currentCountry?.placeholder" />
       </div>
       <span v-if=registerFormErrorMessages.phone class="text-red-600 text-xs">
@@ -49,7 +49,9 @@
                      :type="showPassword.password ? 'text' : 'password'"
                      placeholder="••••••••"
                      :error-message="registerFormErrorMessages.password ? registerFormErrorMessages.password : ''" />
-          <img @click=togglePassword :src="showPassword.password ? opened : closed" alt="" :class="signUpPasswordClass">
+          <img @click=togglePassword
+               :src="showPassword.password ? opened : closed" alt=""
+               :class="getSignUpPasswordClass(registerFormErrorMessages.password)">
         </div>
       </div>
     </div>
@@ -58,6 +60,7 @@
 
 <script setup lang="ts">
 import { IMaskComponent as IMask } from "vue-imask";
+import { baseClasses } from "@/shared/const/base.classes.ts";
 import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
 import { authStore } from "@/features/use-auth/model/auth.store.ts";
 import { authClasses } from "@/shared/const/auth/auth.classes.ts";
@@ -72,8 +75,9 @@ import BaseInput from "@/shared/ui/BaseInput.vue";
 
 const { showPassword } = authStore();
 const { togglePassword } = toggleAuth();
+const { getPhoneClass } = baseClasses();
 const { changeCountry, currentCountry, currentMask } = usePhoneForm();
-const { selectPhoneCodeClass, signUpPhoneClass, signUpPasswordClass } = authClasses();
+const { selectPhoneCodeClass, getSignUpPasswordClass } = authClasses();
 
 refClearErrorsOnChange(
     registerForm,

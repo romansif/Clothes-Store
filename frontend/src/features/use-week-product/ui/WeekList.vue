@@ -7,7 +7,8 @@
       </div>
     </div>
     <ul v-else v-horizontal-scroll class="flex gap-10 xl:gap-22.5 overflow-x-auto whitespace-nowrap no-scrollbar pt-6">
-      <WeekItem v-for="product in productsWeek" :product="product" :product-week="productsWeek" />
+      <WeekItem v-for="product in productsWeek" :product="product"
+                :product-week="productsWeek" />
     </ul>
   </Transition>
 </template>

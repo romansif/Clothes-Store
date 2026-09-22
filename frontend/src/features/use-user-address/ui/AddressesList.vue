@@ -12,7 +12,8 @@
       </div>
     </div>
     <ul v-else class="flex flex-col overflow-y-auto no-scrollbar h-92.5 pb-4">
-      <AddressesItem v-for="address in userAddresses" :address="address" @delete-address="toggleDeleteChoice"  />
+      <AddressesItem v-for="address in userAddresses" :address="address"
+                     @delete-address="toggleDeleteChoice"  />
     </ul>
   </Transition>
 </template>

@@ -1,6 +1,6 @@
 <template>
-  <div :class="signInRoleClass">
-    <input v-model="loginForm.role"
+  <div :class="signInRoleClass(errorMessage)">
+    <input v-model="model"
            :value="role"
            type="radio"
            name="role"
@@ -13,11 +13,13 @@
 
 <script setup lang="ts">
 import { authClasses } from "@/shared/const/auth/auth.classes.ts";
-import { loginForm } from "@/entities/auth/model/auth.forms.ts";
 
 defineProps<{
   role: string;
+  errorMessage: string;
 }>();
+
+const model = defineModel<string | number>();
 
 const { signInRoleClass } = authClasses();
 </script>

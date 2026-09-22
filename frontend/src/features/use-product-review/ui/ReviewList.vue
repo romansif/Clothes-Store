@@ -1,11 +1,15 @@
 <template>
   <ul v-if="reviews.length" @scroll="loadFiveReviews"
       class="flex flex-col overflow-y-auto no-scrollbar h-200">
-    <ReviewItem v-for="review in visibleReviews" :review="review" @toggle-review="toggleReviewPhotos"/>
+    <ReviewItem v-for="review in visibleReviews" :review="review"
+                @toggle-review="toggleReviewPhotos"
+                :user-avatar="userAvatar"
+    />
   </ul>
 </template>
 
 <script setup lang="ts">
+import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
 import { useGetReviews } from "@/features/use-product-review/api/get-reviews.ts";
 import { reviewsHelper } from "@/features/use-product-review/lib/reviews-helper.ts";
 import { toggleReviewPhotos } from "@/features/use-product-review/lib/review-photo-modal.ts";
@@ -13,6 +17,7 @@ import { toggleReviewPhotos } from "@/features/use-product-review/lib/review-pho
 import ReviewItem from "@/entities/product-review/ui/ReviewItem.vue"
 
 const { reviews } = useGetReviews();
+const { userAvatar } = useProfile();
 const { loadFiveReviews, visibleReviews } = reviewsHelper();
 </script>
 

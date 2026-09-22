@@ -29,7 +29,7 @@ import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import { productHelper } from "@/shared/lib/helper/product-helper.ts";
 import { useUpdateCart } from "@/features/use-cart/api/update-cart.ts";
 import { sizeClass, sizeUrl } from "@/features/use-cart/lib/cart-specific.ts";
-import type {Product} from "@/entities/product/model/product.types.ts";
+import type {Product} from "@/shared/model/product.types.ts";
 
 defineProps<{
   product: Product;

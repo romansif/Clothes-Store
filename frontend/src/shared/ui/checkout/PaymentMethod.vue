@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center gap-3">
     <input @click="closeCardForm(method)"
-           v-model="paymentForm.paymentMethod"
+           v-model="model"
            type="radio"
            :value="method"
            name="shipping-method"
@@ -19,13 +19,14 @@
 
 <script setup lang="ts">
 import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment.ts";
-import { paymentForm } from "@/entities/checkout-payment/model/payment.form.ts";
 
 defineProps<{
   method: string;
   title: string;
   text: string;
 }>();
+
+const model = defineModel<string | number>();
 
 const { closeCardForm } = togglePaymentForm();
 </script>

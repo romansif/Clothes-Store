@@ -2,7 +2,6 @@ import { ref } from "vue";
 import router from "@/app/router";
 import { reviewFormModal } from "@/features/use-review-form/lib/review-form-modal.ts";
 import { choiceModal } from "@/features/use-order/lib/order-modal.ts";
-import { cancelChoiceForm } from "@/entities/order/model/order.forms.ts";
 
 const notify = ref<boolean>(false);
 const notifyTitle = ref<string>('');
@@ -28,8 +27,6 @@ export const useBaseModals = () => {
 
         choiceModal.value = false;
         reviewFormModal.value = false;
-
-        cancelChoiceForm.value.cancelChoice = '';
 
         await router.push({name: `${name}`});
     };

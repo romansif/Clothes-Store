@@ -34,13 +34,11 @@
 
 <script setup lang="ts">
 import { IMaskComponent as IMask } from "vue-imask";
-import { informationForm, informationFormErrorMessages } from "@/entities/checkout-contact-info/model/address.form.ts";
-import { informationContactStore } from "@/features/use-user-address/model/address.store.ts";
 import { informationClasses } from "@/shared/const/checkout/information.classes.ts";
+import { postalCode } from "@/entities/checkout-contact-info/model/address.mask.ts";
+import { informationForm, informationFormErrorMessages } from "@/entities/checkout-contact-info/model/address.form.ts";
 
 import CheckoutInput from "@/shared/ui/checkout/CheckoutInput.vue";
-
-const { postalCode } = informationContactStore();
 const { postalCodeClass } = informationClasses();
 </script>
 <style scoped>

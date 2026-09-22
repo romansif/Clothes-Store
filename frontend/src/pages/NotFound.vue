@@ -1,7 +1,3 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
   <router-link :to="{ name: 'home' }">
     <div class="bg-[#D9D9D9] h-screen font-[Montserrat]">
@@ -14,6 +10,10 @@
     </div>
   </router-link>
 </template>
+
+<script setup lang="ts">
+
+</script>
 
 <style scoped>
 

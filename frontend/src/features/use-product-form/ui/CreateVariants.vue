@@ -141,8 +141,8 @@ import {
 
 import BaseInput from "@/shared/ui/BaseInput.vue";
 
-const { sizes, countMode } = productStore();
-const { toggleAllVariants, toggleQuantity, toggleSize, toggleColor } = productFormHelper();
+const { sizes } = productStore();
+const { toggleAllVariants, toggleQuantity, toggleSize, toggleColor, countMode } = productFormHelper();
 
 reactiveClearErrorsOnChange(
   moreCreateItemForm,

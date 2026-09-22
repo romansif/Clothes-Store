@@ -4,15 +4,9 @@ import type {UserContactInfo} from "@/entities/checkout-contact-info/model/addre
 const userAddresses = ref<UserContactInfo[]>([])
 const userAddress = ref<UserContactInfo | null>(null)
 
-const postalCode = {
-    mask: '0000[00]',
-    lazy: false
-}
-
 export const informationContactStore = () => {
     return {
         userAddresses,
         userAddress,
-        postalCode,
     }
 }

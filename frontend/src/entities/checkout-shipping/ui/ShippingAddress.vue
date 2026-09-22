@@ -18,9 +18,11 @@
 </template>
 
 <script setup lang="ts">
-import { informationContactStore } from "@/features/use-user-address/model/address.store.ts";
+import type {UserContactInfo} from "@/entities/checkout-contact-info/model/address.types.ts";
 
-const { userAddress } = informationContactStore();
+defineProps<{
+  userAddress: UserContactInfo | null;
+}>();
 </script>
 
 <style scoped>

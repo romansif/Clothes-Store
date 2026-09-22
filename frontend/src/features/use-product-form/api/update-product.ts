@@ -2,13 +2,12 @@ import namer from "color-namer";
 import router from "@/app/router";
 import { handler } from "@/shared/api/http.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
-import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
-import type { ColorItem, Product} from "@/entities/product/model/product.types.ts";
+import type { ColorItem, Product} from "@/shared/model/product.types.ts";
+import { currentFile } from "@/shared/lib/helper/product-helper.ts";
 import { createProductForm } from "@/entities/product-form/model/product.forms.ts";
 
 const { getProduct } = useGetProduct();
-const { currentFile } = productStore();
 const { openNotify } = useBaseModals();
 
 export const useUpdateProduct = () => {

@@ -22,7 +22,7 @@ import { productHelper } from "@/shared/lib/helper/product-helper.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { baseClasses } from "@/shared/const/base.classes.ts";
 import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
-import type {Product} from "@/entities/product/model/product.types.ts";
+import type {Product} from "@/shared/model/product.types.ts";
 
 defineProps<{
   product: Product,

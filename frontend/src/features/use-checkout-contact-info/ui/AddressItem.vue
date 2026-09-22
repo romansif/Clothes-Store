@@ -1,7 +1,7 @@
 <template>
   <TransitionGroup name="list">
     <li @click="useSavedAddress(address)" :key="address.id"
-        :class="savedAddressClass">
+        :class="getSavedInfoClass(isChosenAddress)">
       <div class="flex flex-col gap-5">
         <div class="flex">
           <span class="text-sm font-semibold">
@@ -26,7 +26,8 @@
 
 <script setup lang="ts">
 import { useAddAddress } from "@/features/use-checkout-contact-info/api/add-address.ts";
-import { informationClasses } from "@/shared/const/checkout/information.classes.ts";
+import { checkoutClasses } from "@/shared/const/checkout/checkout.classes.ts";
+import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle-contact-info.ts";
 import type {UserContactInfo} from "@/entities/checkout-contact-info/model/address.types.ts";
 
 defineProps<{
@@ -34,7 +35,8 @@ defineProps<{
 }>();
 
 const { useSavedAddress } = useAddAddress();
-const { savedAddressClass } = informationClasses()
+const { isChosenAddress } = toggleInformation();
+const { getSavedInfoClass } = checkoutClasses();
 </script>
 
 <style scoped>

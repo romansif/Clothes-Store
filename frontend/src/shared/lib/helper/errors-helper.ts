@@ -1,7 +1,7 @@
 import { watch } from "vue";
 import type { Ref } from "vue";
 import { type ZodError } from "zod";
-import {ApiError} from "@/shared/api/http.ts";
+import { ApiError } from "@/shared/api/http.ts";
 
 export const applyErrors = (
     err: unknown,

@@ -37,7 +37,7 @@ import { orderStore } from "@/features/use-order/model/order.store.ts";
 import { reviewFormModal } from "@/features/use-review-form/lib/review-form-modal.ts";
 import { choiceModal } from "@/features/use-order/lib/order-modal.ts";
 
-import OrderList from "../../../entities/order/ui/OrderList.vue";
+import OrderList from "./OrderList.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import ClipboardNotify from "@/shared/ui/order/ClipboardNotify.vue";
 import ReplacementModal from "@/features/use-order/ui/ReplacementModal.vue";

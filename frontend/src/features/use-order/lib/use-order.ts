@@ -1,6 +1,6 @@
 import { ref } from "vue";
 import { orderStore } from "@/features/use-order/model/order.store.ts";
-import type {Product} from "@/entities/product/model/product.types.ts";
+import type {Product} from "@/shared/model/product.types.ts";
 
 const { items } = orderStore();
 

@@ -21,17 +21,14 @@
 </template>
 
 <script setup lang="ts">
-import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
-import type {Product} from "@/entities/product/model/product.types.ts";
+import type {Product} from "@/shared/model/product.types.ts";
 
-import BaseProductCard from "@/widgets/ui/BaseProductCard.vue";
+import BaseProductCard from "@/widgets/base/BaseProductCard.vue";
 
 defineProps<{
   product: Product,
   products: Product[],
 }>();
-
-const { products } = useGetProducts();
 </script>
 
 <style scoped>

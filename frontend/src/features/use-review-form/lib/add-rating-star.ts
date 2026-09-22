@@ -3,10 +3,6 @@ import { useGetReviews } from "@/features/use-product-review/api/get-reviews.ts"
 import { reviewForm } from "@/entities/review-form/model/review.form.ts";
 import { reviewsStore } from "@/features/use-product-review/model/reviews.store.ts";
 
-import star from "@/assets/icons/products/full-star.png";
-import half_star from "@/assets/icons/products/half-star.png";
-import empty_star from "@/assets/icons/products/empty-star.png";
-
 const { userData } = userStore();
 const { reviews } = useGetReviews();
 const { ratingDirection } = reviewsStore();
@@ -37,10 +33,6 @@ export const addRating = (rating: number) => {
         reviewForm.value.rating = rating - 1
         ratingDirection.value = 'up';
     }
-};
-
-export const ratingSrc = (rating: number) => {
-    return rating <= reviewForm.value.rating ? star : reviewForm.value.rating === rating - 0.5 ? half_star : empty_star
 };
 
 export const isInReview = () => {

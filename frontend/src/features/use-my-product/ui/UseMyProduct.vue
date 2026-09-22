@@ -19,7 +19,7 @@ defineProps<{
 
 import pencil from "@/assets/icons/products/pencil.svg";
 import del from "@/assets/icons/delete-close/delete.svg";
-import type {Product} from "@/entities/product/model/product.types.ts";
+import type {Product} from "@/shared/model/product.types.ts";
 
 const { getProductId } = useGetProduct();
 const { toggleDeleteChoice } = useProfileModals();

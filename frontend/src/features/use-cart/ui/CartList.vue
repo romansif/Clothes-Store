@@ -8,7 +8,7 @@
 <script setup lang="ts">
 import { cartStore } from "@/features/use-cart/model/cart.store.ts";
 
-import CartItem from "../../../entities/cart/ui/CartItem.vue";
+import CartItem from "./CartItem.vue";
 
 const { cart } = cartStore();
 </script>

@@ -56,8 +56,8 @@
 
 <script setup lang="ts">
 import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { Menu, MenuItems, MenuItem, MenuButton} from "@headlessui/vue";
 import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
+import { Menu, MenuItems, MenuItem, MenuButton} from "@headlessui/vue";
 
 const { userData } = userStore();
 const { toggleDeleteChoice } = useProfileModals();

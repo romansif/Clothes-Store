@@ -38,13 +38,11 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useRoute } from "vue-router";
-import { productStore } from "@/features/use-main-product/model/product.store.ts";
+import { seasonsCatalog } from "@/entities/season-product/model/seasons.specific.ts";
 
 import MainSlideBar from "@/widgets/product-season/ui/MainSlideBar.vue";
 
 const route = useRoute();
-
-const { seasonsCatalog } = productStore();
 
 const isNew = computed(() => route.name === 'shop/new-collections')
 </script>

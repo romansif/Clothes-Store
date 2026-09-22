@@ -81,7 +81,7 @@ defineProps<{
 
 import copy_btn from '@/assets/icons/squares/copy.svg';
 import OrderStatus from "@/entities/order/ui/OrderStatus.vue";
-import UseOrder  from "@/features/use-order/ui/UseOrder.vue";
+import UseOrder from "@/features/use-order/ui/UseOrder.vue";
 
 const { orderStatus } = ordersClasses();
 const { getProductId } = useGetProduct();

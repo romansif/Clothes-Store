@@ -44,7 +44,7 @@ import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts
 import PaymentsList from "@/features/use-user-payment/ui/PaymentsList.vue";
 import BaseButton from "@/shared/ui/BaseButton.vue";
 import AddressesList from "@/features/use-user-address/ui/AddressesList.vue";
-import DeleteModal from "@/shared/ui/DeleteModal.vue";
+import DeleteModal from "@/widgets/base/DeleteModal.vue";
 import AddressPaymentEmpty from "@/entities/profile/ui/AddressPaymentEmpty.vue";
 
 const { userPayments } = paymentStore();

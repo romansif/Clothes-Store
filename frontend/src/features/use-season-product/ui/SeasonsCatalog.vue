@@ -1,5 +1,6 @@
 <template>
-  <div v-for="season in seasonsCatalog" :key="season.id" @click="router.push({ name: `${season.route}`})"
+  <div v-for="season in seasonsCatalog" :key="season.id"
+       @click="router.push({ name: `${season.route}`})"
        class="font-montserrat text-white w-92 h-100 rounded-2xl transition duration-500 hover:scale-108 cursor-pointer"
        :style="{ backgroundImage: `url(${season.url})` }">
     <div style="filter: drop-shadow(0 0 8px rgba(255, 255, 255, 1))" class="flex flex-col gap-29 px-8 py-12">
@@ -23,11 +24,9 @@
 
 <script setup lang="ts">
 import router from "@/app/router";
-import { productStore } from "@/features/use-main-product/model/product.store.ts";
+import { seasonsCatalog } from "@/entities/season-product/model/seasons.specific.ts";
 
 import right_shop from "@/assets/icons/arrows/go-shop.svg";
-
-const { seasonsCatalog } = productStore();
 </script>
 
 <style scoped>

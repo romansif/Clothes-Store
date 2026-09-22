@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import type {Product} from "@/entities/product/model/product.types.ts";
+import type {Product} from "@/shared/model/product.types.ts";
 
 defineProps<{
   product: Product
@@ -34,7 +34,7 @@ defineProps<{
 }>();
 
 import update from "@/assets/icons/products/refresh.svg";
-import BaseProductCard from "@/widgets/ui/BaseProductCard.vue";
+import BaseProductCard from "@/widgets/base/BaseProductCard.vue";
 </script>
 
 <style scoped>

@@ -21,7 +21,7 @@
 import { orderStore } from "@/features/use-order/model/order.store.ts";
 
 import icon_shop from "@/assets/icons/products/icon_shop.svg";
-import OrderItem from "@/entities/order/ui/OrderItem.vue";
+import OrderItem from "@/features/use-order/ui/OrderItem.vue";
 
 const { orders } = orderStore();
 </script>

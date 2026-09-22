@@ -12,7 +12,8 @@
       </div>
     </div>
     <ul v-else class="flex-col overflow-y-auto no-scrollbar h-92.5 pb-4">
-      <PaymentsItem v-for="payment in userPayments" :payment="payment" @delete-payment="toggleDeleteChoice" />
+      <PaymentsItem v-for="payment in userPayments" :payment="payment"
+                    @delete-payment="toggleDeleteChoice" />
     </ul>
   </Transition>
 </template>

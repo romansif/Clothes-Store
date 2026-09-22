@@ -1,14 +1,13 @@
-import {ref} from "vue";
+import { ref } from "vue";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { productStore } from "@/features/use-main-product/model/product.store.ts";
-import type { Product, SizeGuide } from "@/entities/product/model/product.types.ts";
-import { addToCartForm } from "@/entities/product/model/add.to.cart.form.ts";
+import type { Product } from "@/shared/model/product.types.ts";
 
+const { sizes } = productStore();
 const { product } = useGetProduct();
-const { activeProductImg, sizes, outerWear, underWear,
-    outerwearSizeGuide, underWearSizeGuide, unit, shoesSizeGuide } = productStore();
 
 export const itemPreview = ref<string[]>([]);
+export const activeProductImg = ref<string>('');
 export const currentFile = ref<(number | null)>(null);
 export const fileInput = ref<HTMLInputElement | null>(null)
 export const imageFiles = ref<(File | null)[]>([null, null, null, null, null]);
@@ -171,43 +170,21 @@ export const productHelper = () => {
         return product.variants.every(v => v.count === 0)
     };
 
-    const variantsInfo = (product: Product) => {
+    const variantsInfo = (form: any, product: Product) => {
         const variantsList = product?.variants || [];
 
         const totalCount = variantsList.find(
-            v => v.hex === addToCartForm.value.colors.hex && v.size === addToCartForm.value.sizes);
+            v => v.hex === form.hex && v.size === form.sizes);
 
         const count = totalCount?.count ?? 0;
 
         if(count < 4 && count !== 0){
             return `🔥 Only ${count} left`;
-        }else if(addToCartForm.value.colors.hex && addToCartForm.value.sizes){
+        }else if(form.hex && form.sizes){
             return `In stock ${count} pcs.`;
         }else if(count === 0){
             return `Select specific.`;
         }
-    };
-
-    const convertSizeToInches = (sizes: SizeGuide[]) => {
-        return sizes.map(size => ({
-                ...size,
-                values: size.values.map(value => Math.round(Number(value) / 2.54))
-            })
-        )
-    };
-
-    const formatterSizeGuide = (product: Product) => {
-        const category = product.category;
-
-        const isOuterWear = outerWear.includes(category);
-        const isUnderWear = underWear.includes(category);
-
-        if(isOuterWear){
-            return unit.value === 'IN' ? convertSizeToInches(outerwearSizeGuide) : outerwearSizeGuide;
-        }else if(isUnderWear){
-            return unit.value === 'IN' ? convertSizeToInches(underWearSizeGuide) : underWearSizeGuide;
-        }
-        return unit.value === 'IN' ? convertSizeToInches(shoesSizeGuide) : shoesSizeGuide;
     };
 
     const uniqueColors = (product: Product) => {
@@ -247,8 +224,6 @@ export const productHelper = () => {
         isAvailableSizes,
         isOutOfStack,
         variantsInfo,
-
-        formatterSizeGuide,
 
         uniqueColors,
         uniqueSizes,

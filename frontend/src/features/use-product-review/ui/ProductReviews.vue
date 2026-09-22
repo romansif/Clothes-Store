@@ -23,15 +23,20 @@
     </div>
   </div>
   <Transition name="notify">
-    <ReviewPhotos v-if="reviewModal" @toggle-review="toggleReviewPhotos" @change-photo="changeReviewPhoto"/>
+    <ReviewPhotos v-if="reviewModal"
+                  :current-index="currentIndex"
+                  :review-images="reviewImages"
+                  @toggle-review="toggleReviewPhotos"
+                  @change-photo="changeReviewPhoto" />
   </Transition>
 </template>
 
 <script setup lang="ts">
 import { reviewsHelper } from "@/features/use-product-review/lib/reviews-helper.ts";
 import { useGetReviews } from "@/features/use-product-review/api/get-reviews.ts";
-import { reviewModal } from "@/features/use-product-review/lib/review-photo-modal.ts";
 import { changeReviewPhoto, toggleReviewPhotos } from "@/features/use-product-review/lib/review-photo-modal.ts";
+import { reviewModal } from "@/features/use-product-review/lib/review-photo-modal.ts";
+import { currentIndex, reviewImages } from "@/features/use-product-review/lib/review-photo-modal.ts";
 
 import ProductRating from "@/entities/product-review/ui/ProductRating.vue";
 import ReviewsFilter from "@/features/use-product-review/ui/ReviewsFilter.vue";

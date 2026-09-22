@@ -141,7 +141,7 @@
 
 <script setup lang="ts">
 import { IMaskComponent as IMask } from "vue-imask";
-import { productStore } from "@/features/use-main-product/model/product.store.ts";
+import { productSpecific } from "@/entities/product-form/model/product.specific.ts";
 import { baseSelectClass, skuClass } from "@/shared/const/product-form/form.classes.ts";
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
 import { createProductForm, createProductFormErrorMessages } from "@/entities/product-form/model/product.forms.ts";
@@ -149,7 +149,7 @@ import { createProductForm, createProductFormErrorMessages } from "@/entities/pr
 import BaseInput from "@/shared/ui/BaseInput.vue";
 import DescriptionForm from "@/shared/ui/product-form/DescriptionForm.vue";
 
-const { collections, categories, materials, genders, skuMask } = productStore();
+const { collections, categories, materials, genders, skuMask } = productSpecific();
 
 refClearErrorsOnChange(
   createProductForm,

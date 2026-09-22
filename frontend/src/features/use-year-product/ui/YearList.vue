@@ -7,7 +7,8 @@
       </div>
     </div>
     <ul v-else v-horizontal-scroll class="flex gap-10 xl:gap-40 overflow-x-auto whitespace-nowrap no-scrollbar">
-      <YearItem v-for="product in productsYear" :product="product" :product-year="productsYear" />
+      <YearItem v-for="product in productsYear" :product="product"
+                :product-year="productsYear" />
     </ul>
   </Transition>
 </template>
