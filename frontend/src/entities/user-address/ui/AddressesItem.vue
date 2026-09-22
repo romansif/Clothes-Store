@@ -27,16 +27,21 @@
 </template>
 
 <script setup lang="ts">
-import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import type {UserContactInfo} from "@/entities/checkout-contact-info/model/address.types.ts";
 
 defineProps<{
   address: UserContactInfo
 }>();
 
-import del from '@/assets/icons/delete-close/del_address_card.svg'
+const emit = defineEmits<{
+  deleteAddress: [title: string, type: string, id: string];
+}>();
 
-const { toggleDeleteChoice } = useProfileModals();
+const toggleDeleteChoice = (title: string, type: string, id: string) => {
+  emit('deleteAddress', title, type, id);
+};
+
+import del from "@/assets/icons/delete-close/del_address_card.svg";
 </script>
 
 <style scoped>

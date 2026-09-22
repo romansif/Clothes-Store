@@ -12,19 +12,21 @@
       </div>
     </div>
     <ul v-else class="flex-col overflow-y-auto no-scrollbar h-92.5 pb-4">
-      <PaymentsItem v-for="payment in userPayments" :payment="payment" />
+      <PaymentsItem v-for="payment in userPayments" :payment="payment" @delete-payment="toggleDeleteChoice" />
     </ul>
   </Transition>
 </template>
 
 <script setup lang="ts">
 import { computed } from "vue";
+import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
 
-import PaymentsItem from "./PaymentsItem.vue";
+import PaymentsItem from "../../../entities/user-payment/ui/PaymentsItem.vue";
 import icon_card from "@/assets/icons/checkout/payment/icon_card.svg";
 
 const { userPayments } = paymentStore();
+const { toggleDeleteChoice } = useProfileModals();
 
 const userPaymentsCard = computed(() => {
   return userPayments.value.some(item => 'cardNumber' in item);

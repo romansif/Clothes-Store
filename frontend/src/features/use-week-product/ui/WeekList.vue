@@ -7,7 +7,7 @@
       </div>
     </div>
     <ul v-else v-horizontal-scroll class="flex gap-10 xl:gap-22.5 overflow-x-auto whitespace-nowrap no-scrollbar pt-6">
-      <WeekItem v-for="product in productsWeek" :product="product" :product-week="productsWeek"/>
+      <WeekItem v-for="product in productsWeek" :product="product" :product-week="productsWeek" />
     </ul>
   </Transition>
 </template>
@@ -18,7 +18,7 @@ import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
 import { productsHelper } from "@/features/use-main-product/lib/products-helper.ts";
 import { useGetWeekProduct } from "@/features/use-week-product/api/get-week-product.ts";
 
-import WeekItem from "@/features/use-week-product/ui/WeekItem.vue";
+import WeekItem from "@/entities/week-product/ui/WeekItem.vue";
 import empty_products from "@/assets/icons/products/icon-products.svg";
 
 const { vHorizontalScroll } = productsHelper();

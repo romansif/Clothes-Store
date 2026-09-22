@@ -27,16 +27,21 @@
 </template>
 
 <script setup lang="ts">
-import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import type {UserPayment} from "@/entities/checkout-payment/model/payment.type.ts";
 
 defineProps<{
   payment: UserPayment;
 }>();
 
-import del from "@/assets/icons/delete-close/del_address_card.svg";
+const emit = defineEmits<{
+  deletePayment: [title: string, type: string, id: string];
+}>();
 
-const { toggleDeleteChoice } = useProfileModals();
+const toggleDeleteChoice = (title: string, type: string, id: string) => {
+  emit('deletePayment', title, type, id);
+};
+
+import del from "@/assets/icons/delete-close/del_address_card.svg";
 </script>
 
 

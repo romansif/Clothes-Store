@@ -7,7 +7,7 @@
       </div>
     </div>
     <ul v-else v-horizontal-scroll class="flex gap-10 xl:gap-40 overflow-x-auto whitespace-nowrap no-scrollbar">
-      <YearItem v-for="product in productsYear" :product="product" :product-year="productsYear"/>
+      <YearItem v-for="product in productsYear" :product="product" :product-year="productsYear" />
     </ul>
   </Transition>
 </template>
@@ -18,7 +18,7 @@ import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
 import { useGetYearProduct } from "@/features/use-year-product/api/get-year-product.ts";
 import { productsHelper } from "@/features/use-main-product/lib/products-helper.ts";
 
-import YearItem from "@/features/use-year-product/ui/YearItem.vue";
+import YearItem from "@/entities/year-product/ui/YearItem.vue";
 import empty_products from "@/assets/icons/products/icon-products.svg";
 
 const { vHorizontalScroll } = productsHelper();

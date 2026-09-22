@@ -12,18 +12,20 @@
       </div>
     </div>
     <ul v-else class="flex flex-col overflow-y-auto no-scrollbar h-92.5 pb-4">
-      <AddressesItem  v-for="address in userAddresses" :address="address" />
+      <AddressesItem v-for="address in userAddresses" :address="address" @delete-address="toggleDeleteChoice"  />
     </ul>
   </Transition>
 </template>
 
 <script setup lang="ts">
 import { computed } from "vue";
+import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import { informationContactStore } from "@/features/use-user-address/model/address.store.ts";
 
-import AddressesItem from "./AddressesItem.vue";
+import AddressesItem from "../../../entities/user-address/ui/AddressesItem.vue";
 import icon_address from "@/assets/icons/checkout/icon_address.svg";
 
+const { toggleDeleteChoice } = useProfileModals();
 const { userAddresses } = informationContactStore();
 
 const userAddressesCity = computed(() => {
