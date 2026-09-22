@@ -34,7 +34,7 @@ import { useAddReview } from "@/features/use-review-form/api/add-review.ts";
 import { toggleReviewChoice } from "@/features/use-review-form/lib/review-form-modal.ts";
 import { fileInput, productHelper } from "@/shared/lib/helper/product-helper.ts";
 
-import BaseButton from "@/shared/ui/BaseButton.vue";
+import BaseButton from "@/shared/ui/base/BaseButton.vue";
 import AddRating from "@/entities/review-form/ui/AddRating.vue";
 import AddReview from "@/entities/review-form/ui/AddReview.vue";
 import AddPhotos from "@/entities/review-form/ui/AddPhotos.vue";

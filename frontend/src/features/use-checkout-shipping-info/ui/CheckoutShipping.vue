@@ -39,7 +39,7 @@ import { useAddShipping } from "@/features/use-checkout-shipping-info/api/add-sh
 import { shippingForm, shippingFormErrorMessage } from "@/entities/checkout-shipping/model/shipping.form.ts";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
-import BaseButton from "@/shared/ui/BaseButton.vue";
+import BaseButton from "@/shared/ui/base/BaseButton.vue";
 import ShippingAddress from "../../../entities/checkout-shipping/ui/ShippingAddress.vue";
 import ShippingMethod from "@/shared/ui/checkout/ShippingMethod.vue";
 

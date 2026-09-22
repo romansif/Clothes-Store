@@ -38,7 +38,7 @@ import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
 import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment.form.ts";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
-import BaseButton from "@/shared/ui/BaseButton.vue";
+import BaseButton from "@/shared/ui/base/BaseButton.vue";
 import PaymentMethods from "../../../entities/checkout-payment/ui/PaymentMethods.vue";
 import SavedCheckoutPayment from "@/features/use-chekout-payment-info/ui/SavedCheckoutPayment.vue";
 

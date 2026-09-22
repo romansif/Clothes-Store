@@ -146,7 +146,7 @@ import { baseSelectClass, skuClass } from "@/shared/const/product-form/form.clas
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
 import { createProductForm, createProductFormErrorMessages } from "@/entities/product-form/model/product.forms.ts";
 
-import BaseInput from "@/shared/ui/BaseInput.vue";
+import BaseInput from "@/shared/ui/base/BaseInput.vue";
 import DescriptionForm from "@/shared/ui/product-form/DescriptionForm.vue";
 
 const { collections, categories, materials, genders, skuMask } = productSpecific();

@@ -35,7 +35,7 @@
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 
-import MainSlideBar from "@/widgets/product-season/ui/MainSlideBar.vue";
+import MainSlideBar from "@/widgets/ui/product/MainSlideBar.vue";
 
 const route = useRoute();
 

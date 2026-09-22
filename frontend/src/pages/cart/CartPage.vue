@@ -22,22 +22,15 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
 import { cartStore } from "@/features/use-cart/model/cart.store.ts";
-import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
 
 import CartList from "@/features/use-cart/ui/CartList.vue";
 import CartInfo from "@/features/use-cart/ui/CartInfo.vue";
 
 import empty_cart from '@/assets/icons/products/empty-cart.svg';
-import FavoriteCartHeader from "@/widgets/navigation/ui/FavoriteCartHeader.vue";
+import FavoriteCartHeader from "@/widgets/ui/navigation/FavoriteCartHeader.vue";
 
 const { cart } = cartStore();
-const { getCartProducts } = useGetCart();
-
-onMounted(async () => {
-  await getCartProducts();
-})
 </script>
 
 <style scoped>

@@ -20,7 +20,7 @@
 import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle-contact-info.ts";
 
 import ContactList from "@/features/use-checkout-contact-info/ui/ContactList.vue";
-import AddressList from "@/widgets/contact-info/AddressList.vue";
+import AddressList from "@/widgets/ui/contact-info/AddressList.vue";
 
 const { toggleShowContact } = toggleInformation();
 </script>

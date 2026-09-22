@@ -11,17 +11,21 @@
       <MainNavBar />
       <router-view />
     </div>
-    <MainLayoutModal />
   </div>
+  <Transition name="notify">
+    <Notification v-if="notify" />
+  </Transition>
 </template>
 
 <script setup lang="ts">
 import { errorHandler } from "@/shared/lib/error-handler.ts";
+import { useBaseModals } from "@/shared/lib/base-modal.ts";
 
-import MainNavBar from "@/widgets/navigation/ui/MainNavBar.vue";
-import BaseButton from "@/shared/ui/BaseButton.vue";
-import MainLayoutModal from "@/widgets/main-modal/MainLayoutModal.vue";
+import MainNavBar from "@/widgets/ui/navigation/MainNavBar.vue";
+import BaseButton from "@/shared/ui/base/BaseButton.vue";
+import Notification from "@/widgets/ui/base-component/Notification.vue";
 
+const { notify } = useBaseModals();
 const { componentError, resetError } = errorHandler();
 </script>
 

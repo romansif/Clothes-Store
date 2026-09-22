@@ -71,7 +71,7 @@ import { selectedCountryCode, countries } from "@/shared/lib/select-phone-form.t
 
 import closed from "@/assets/icons/auth/closed.png";
 import opened from "@/assets/icons/auth/opened.png";
-import BaseInput from "@/shared/ui/BaseInput.vue";
+import BaseInput from "@/shared/ui/base/BaseInput.vue";
 
 const { showPassword } = authStore();
 const { togglePassword } = toggleAuth();

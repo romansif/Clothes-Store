@@ -27,14 +27,19 @@
       </router-link>
     </div>
   </div>
+  <Transition name="notify">
+    <SizeGuideModal v-if="sizeGuideModel" />
+  </Transition>
 </template>
 
 <script setup lang="ts">
+import { onMounted } from "vue";
+import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
 import { cartHelper } from "@/features/use-product/lib/cart-helper.ts";
 import { useAddToCart } from "@/features/use-product/api/add-to-cart.ts";
 import { useUpdateCart } from "@/features/use-cart/api/update-cart.ts";
 import { productsHelper } from "@/features/use-main-product/lib/products-helper.ts";
-import { toggleSizeGuide } from "@/features/use-product/lib/toggle-more-info.ts";
+import { sizeGuideModel, toggleSizeGuide } from "@/features/use-product/lib/toggle-more-info.ts";
 
 defineProps<{
   product: Product
@@ -43,14 +48,20 @@ defineProps<{
 
 import plus from "@/assets/icons/products/plus.svg";
 import minus from "@/assets/icons/products/minus.svg";
-import BaseButton from "@/shared/ui/BaseButton.vue";
+import BaseButton from "@/shared/ui/base/BaseButton.vue";
 import type {User} from "@/entities/profile/model/user.types.ts";
 import type {Product} from "@/shared/model/product.types.ts";
+import SizeGuideModal from "@/features/use-product/ui/SizeGuideModal.vue";
 
 const { isInCart } = cartHelper();
 const { addToCart } = useAddToCart();
 const { isInStock } = productsHelper();
+const { getCartProducts } = useGetCart();
 const { updateCartItem } = useUpdateCart();
+
+onMounted(async () => {
+  await getCartProducts();
+})
 </script>
 
 <style scoped>

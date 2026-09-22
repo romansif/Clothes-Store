@@ -1,4 +1,5 @@
 <template>
+  <Loading v-if="loading" />
   <div class="font-dm-sans fixed inset-0">
     <div class="py-2 px-4 bg-[#F0F0F0] shadow-md overflow-hidden h-full overflow-y-auto no-scrollbar">
       <div class="flex">
@@ -13,19 +14,18 @@
         </main>
       </div>
     </div>
-    <Loading v-if="loading" />
-    <Transition name="notify">
-      <Notification v-if="notify"/>
-    </Transition>
   </div>
+  <Transition name="notify">
+    <Notification v-if="notify"/>
+  </Transition>
 </template>
 
 <script setup lang="ts">
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { clearProductForm } from "@/features/use-product-form/lib/clear-product-form.ts";
 
-import Notification from "@/shared/ui/Notification.vue";
-import Loading from "@/widgets/base/Loading.vue";
+import Notification from "@/widgets/ui/base-component/Notification.vue";
+import Loading from "@/widgets/ui/base-component/Loading.vue";
 
 const { loading, notify } = useBaseModals();
 </script>

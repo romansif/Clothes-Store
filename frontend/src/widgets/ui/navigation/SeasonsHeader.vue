@@ -40,7 +40,7 @@ import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { seasonsCatalog } from "@/entities/season-product/model/seasons.specific.ts";
 
-import MainSlideBar from "@/widgets/product-season/ui/MainSlideBar.vue";
+import MainSlideBar from "@/widgets/ui/product/MainSlideBar.vue";
 
 const route = useRoute();
 

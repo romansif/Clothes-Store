@@ -106,10 +106,10 @@ import { useTogglePassword } from "@/features/use-profile-form/lib/toggle-passwo
 import { updateUserForm, updateUserFormErrorMessages } from "@/entities/profile-form/model/user.update.form.ts";
 import { selectedCountryCode, countries } from "@/shared/lib/select-phone-form.ts";
 
-import BaseButton  from "@/shared/ui/BaseButton.vue";
+import BaseButton  from "@/shared/ui/base/BaseButton.vue";
 import opened from '@/assets/icons/auth/opened.png'
 import closed from '@/assets/icons/auth/closed.png'
-import BaseInput from "@/shared/ui/BaseInput.vue";
+import BaseInput from "@/shared/ui/base/BaseInput.vue";
 
 const { changeCountry, currentCountry, currentMask } = usePhoneForm();
 const { profilePhoneClass, profileSelectPhoneCodeClass } = profileClasses();

@@ -47,7 +47,7 @@ import { useLoginErrorMessage } from "@/features/use-auth/lib/auth-error-message
 
 import closed from "@/assets/icons/auth/closed.png";
 import opened from "@/assets/icons/auth/opened.png";
-import BaseInput from "@/shared/ui/BaseInput.vue";
+import BaseInput from "@/shared/ui/base/BaseInput.vue";
 import LoginRoleInput from "@/shared/ui/auth/LoginRoleInput.vue";
 
 const { showPassword } = authStore();

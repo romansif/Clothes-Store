@@ -15,8 +15,8 @@ import { useGetUsers } from "@/features/use-profile/api/get-users.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { profileClasses } from "@/shared/const/profile/profile.classes.ts";
 
-import ProfileSettings from "@/widgets/profile/ui/ProfileSettings.vue";
-import ProfileNotLoggedIn from "@/widgets/profile/ui/ProfileNotLoggedIn.vue";
+import ProfileSettings from "@/widgets/ui/profile/ProfileSettings.vue";
+import ProfileNotLoggedIn from "@/widgets/ui/profile/ProfileNotLoggedIn.vue";
 
 const { userData } = userStore();
 const { getUser } = useGetUsers();

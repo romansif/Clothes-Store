@@ -10,7 +10,7 @@
 <script setup lang="ts">
 import { useGetSeasonProducts } from "@/features/use-season-product/api/get-season-product.ts";
 
-import SeasonsHeader from "@/entities/season-product/ui/SeasonsHeader.vue";
+import SeasonsHeader from "@/widgets/ui/navigation/SeasonsHeader.vue";
 import AutumnList from "@/features/use-season-product/ui/AutumnList.vue";
 
 const { autumnCatalog } = useGetSeasonProducts();

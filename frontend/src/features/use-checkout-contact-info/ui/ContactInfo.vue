@@ -35,7 +35,7 @@ import { informationContactStore } from "@/features/use-user-address/model/addre
 import { informationForm, informationFormErrorMessages } from "@/entities/checkout-contact-info/model/address.form.ts";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
-import BaseButton from "@/shared/ui/BaseButton.vue";
+import BaseButton from "@/shared/ui/base/BaseButton.vue";
 import ContactForm from "@/entities/checkout-contact-info/ui/ContactForm.vue";
 import AddressForm from "@/entities/checkout-contact-info/ui/AddressForm.vue";
 import SavedCheckoutInfo from "@/features/use-checkout-contact-info/ui/SavedCheckoutInfo.vue";

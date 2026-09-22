@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import HeaderCatalog from "@/entities/season-product/ui/HeaderCatalog.vue";
+import HeaderCatalog from "@/widgets/ui/navigation/HeaderCatalog.vue";
 </script>
 
 <style scoped>

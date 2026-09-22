@@ -19,7 +19,7 @@ defineProps<{
   item: OrderItem
 }>();
 
-import BaseButton from "@/shared/ui/BaseButton.vue";
+import BaseButton from "@/shared/ui/base/BaseButton.vue";
 </script>
 
 <style scoped>

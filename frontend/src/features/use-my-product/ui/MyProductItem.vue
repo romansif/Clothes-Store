@@ -44,7 +44,7 @@ defineProps<{
   myProducts: Product[]
 }>();
 
-import BaseButton from "@/shared/ui/BaseButton.vue";
+import BaseButton from "@/shared/ui/base/BaseButton.vue";
 import BaseProductCard from "@/widgets/base/BaseProductCard.vue";
 import type {Product} from "@/shared/model/product.types.ts";
 import UseMyProduct from "@/features/use-my-product/ui/UseMyProduct.vue";

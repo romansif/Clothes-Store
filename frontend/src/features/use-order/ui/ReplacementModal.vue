@@ -29,7 +29,7 @@ import { useDeleteOrder } from "@/features/use-order/api/delete-order.ts";
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
 import { cancelChoiceForm, cancelChoiceMessage } from "@/entities/order/model/order.forms.ts";
 
-import BaseButton from "@/shared/ui/BaseButton.vue";
+import BaseButton from "@/shared/ui/base/BaseButton.vue";
 import ReplacementForm from "@/entities/order/ui/ReplacementForm.vue";
 
 const { replaceOrder } = useDeleteOrder();

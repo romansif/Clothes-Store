@@ -10,14 +10,19 @@
       <MyProductItem v-for="product in myProducts" :product="product" :myProducts="myProducts" />
     </ul>
   </Transition>
+  <Transition name="notify">
+    <StackInfoModal v-if="stackInfo" />
+  </Transition>
 </template>
 
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { useGetMyProduct } from "@/features/use-my-product/api/get-my-product.ts";
+import { stackInfo } from "@/features/use-my-product/lib/toggle-stack-info.ts";
 
 import MyProductItem from "@/features/use-my-product/ui/MyProductItem.vue";
 import empty_products from "@/assets/icons/products/icon-products.svg";
+import StackInfoModal from "@/features/use-my-product/ui/StackInfoModal.vue";
 
 const { getMyProducts, myProducts } = useGetMyProduct();
 

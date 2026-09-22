@@ -13,7 +13,8 @@ const fileInput = ref<HTMLInputElement | null>(null);
 
 const currentOrder= ref<boolean>(false);
 const orderHistory = ref<boolean>(false);
-const addressesAndCards = ref<boolean>(false);
+const savedAddresses = ref<boolean>(false);
+const savedPaymentCard = ref<boolean>(false);
 const confidentialityData = ref<boolean>(false);
 
 const generalId = ref<string>('');
@@ -52,8 +53,12 @@ export const useProfileModals = () => {
         clearUpdateUserForm();
     }
 
-    const toggleAddressesAndCards = () => {
-        addressesAndCards.value = !addressesAndCards.value;
+    const toggleSavedAddresses = () => {
+        savedAddresses.value = !savedAddresses.value;
+    }
+
+    const toggleSavedPaymentCard = () => {
+        savedPaymentCard.value = !savedPaymentCard.value;
     }
 
     const toggleDeleteChoice = (message: string, type: string, id: string) => {
@@ -111,12 +116,14 @@ export const useProfileModals = () => {
         toggleOrderHistory,
         toggleCurrentOrder,
         toggleConfidentialityData,
-        toggleAddressesAndCards,
+        toggleSavedAddresses,
+        toggleSavedPaymentCard,
 
         orderHistory,
         currentOrder,
         confidentialityData,
-        addressesAndCards,
+        savedAddresses,
+        savedPaymentCard,
 
         avatarModal,
         fileInput,

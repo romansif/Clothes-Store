@@ -11,7 +11,7 @@
 import { useGetSeasonProducts } from "@/features/use-season-product/api/get-season-product.ts";
 
 import SummerList from "@/features/use-season-product/ui/SummerList.vue";
-import SeasonsHeader from "@/entities/season-product/ui/SeasonsHeader.vue";
+import SeasonsHeader from "@/widgets/ui/navigation/SeasonsHeader.vue";
 
 const { summerCatalog } = useGetSeasonProducts();
 </script>

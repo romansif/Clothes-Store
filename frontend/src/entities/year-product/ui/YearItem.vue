@@ -9,8 +9,12 @@
         {{ product.material }} {{ product.category }}
       </span>
       <div class="flex items-center justify-between font-medium text-base">
-        <span class="whitespace-normal">{{ product.title }}</span>
-        <span class="font-dm-sans">$ {{ product.price }}</span>
+        <span class="whitespace-normal">
+          {{ product.title }}
+        </span>
+        <span class="font-dm-sans">
+          $ {{ product.price }}
+        </span>
       </div>
     </li>
   </TransitionGroup>

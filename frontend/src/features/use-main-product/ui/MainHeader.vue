@@ -55,7 +55,7 @@ import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
 import { filterClasses } from "@/shared/const/filter/filter.classes.ts";
 import { clearSearchProductForm } from "@/features/use-navigation/lib/clear-search.ts";
 import { useProductsModals } from "@/features/use-main-product/lib/product-modal.ts";
-import { searchProductForm } from "@/widgets/navigation/model/search.form.ts";
+import { searchProductForm } from "@/widgets/model/search.form.ts";
 import { debouncedSearch, getSearchedProducts } from "@/features/use-navigation/api/search-product.ts";
 
 import del from '@/assets/icons/delete-close/clean_search.svg';

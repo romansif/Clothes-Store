@@ -20,7 +20,7 @@ import { isAgreeFormError, isAgreeFormErrorMessage } from "@/entities/product/mo
 
 import check_square from "@/assets/icons/squares/check-square.png";
 import square from "@/assets/icons/squares/square.png";
-import BaseButton from "@/shared/ui/BaseButton.vue";
+import BaseButton from "@/shared/ui/base/BaseButton.vue";
 
 const { toggleAgree, continueToOrder } = useCartOrderInfo();
 

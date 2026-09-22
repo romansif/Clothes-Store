@@ -139,7 +139,7 @@ import {
   createProductFormErrorMessages, moreCreateItemFormErrorMessages
 } from "@/entities/product-form/model/product.forms.ts";
 
-import BaseInput from "@/shared/ui/BaseInput.vue";
+import BaseInput from "@/shared/ui/base/BaseInput.vue";
 
 const { sizes } = productStore();
 const { toggleAllVariants, toggleQuantity, toggleSize, toggleColor, countMode } = productFormHelper();

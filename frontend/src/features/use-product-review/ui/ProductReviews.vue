@@ -32,6 +32,8 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from "vue";
+import { useRoute } from "vue-router";
 import { reviewsHelper } from "@/features/use-product-review/lib/reviews-helper.ts";
 import { useGetReviews } from "@/features/use-product-review/api/get-reviews.ts";
 import { changeReviewPhoto, toggleReviewPhotos } from "@/features/use-product-review/lib/review-photo-modal.ts";
@@ -41,11 +43,17 @@ import { currentIndex, reviewImages } from "@/features/use-product-review/lib/re
 import ProductRating from "@/entities/product-review/ui/ProductRating.vue";
 import ReviewsFilter from "@/features/use-product-review/ui/ReviewsFilter.vue";
 import ReviewList from "@/features/use-product-review/ui/ReviewList.vue";
-import BaseButton from "@/shared/ui/BaseButton.vue";
+import BaseButton from "@/shared/ui/base/BaseButton.vue";
 import ReviewPhotos from "@/entities/product-review/ui/ReviewPhotos.vue";
 
-const { reviews } = useGetReviews();
+const route = useRoute();
+
+const { getReviews, reviews } = useGetReviews();
 const { closeFiveReviews, visibleReviews, visibleReviewsCount } = reviewsHelper();
+
+onMounted(async() => {
+  await getReviews(route.params.id, 'ALL')
+})
 </script>
 
 <style scoped>

@@ -124,7 +124,7 @@ import {
 } from "@/entities/product-form/model/product.forms.ts";
 import type {Product} from "@/shared/model/product.types.ts";
 
-import BaseInput from "@/shared/ui/BaseInput.vue";
+import BaseInput from "@/shared/ui/base/BaseInput.vue";
 
 defineProps<{
   product: Product,
