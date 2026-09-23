@@ -36,7 +36,7 @@ export const useUpdateProduct = () => {
 
             await getProduct(product?.id);
         }catch(err){
-            await openNotify(`You haven't entered anything to change.`, '', '');
+            await openNotify(`You haven't entered anything to change.`, '');
             console.error(`Failed to edit the product cover:`, err);
         }
     };
@@ -56,11 +56,11 @@ export const useUpdateProduct = () => {
                 })
             });
 
-            await openNotify('You have successfully changed the product card description.', '', 'my/products');
+            await openNotify('You have successfully changed the product card description',
+                'Now, if you go to the my products page, your product will be there, and on the useProfile page as well');
             await router.push({ name: 'my/products'})
         }catch(err){
-
-            await openNotify(`You haven't entered anything to change.`, '', '');
+            await openNotify(`You haven't entered anything to change.`, '');
             console.error(`Failed to edit the product cover:`, err);
         }
     };
@@ -87,7 +87,7 @@ export const useUpdateProduct = () => {
                 })
             })
         }catch(err){
-            await openNotify(`You haven't entered anything to change.`, '', '');
+            await openNotify(`You haven't entered anything to change.`, '');
             console.error(`Failed to edit the variants product cover:`, err);
         }
     };
@@ -122,7 +122,7 @@ export const useUpdateProduct = () => {
                 });
             }
         }catch(err){
-            await openNotify(`You haven't entered anything to change.`, '', '');
+            await openNotify(`You haven't entered anything to change.`, '');
             console.error(`Failed to edit the colors product cover:`, err);
         }
     };

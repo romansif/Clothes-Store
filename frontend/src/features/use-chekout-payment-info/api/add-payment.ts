@@ -9,6 +9,7 @@ import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.t
 import type { UserPayment } from "@/entities/checkout-payment/model/payment.type.ts";
 import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment.form.ts";
 import { addPaymentSchema } from "@/entities/checkout-payment/model/payment.schemas.ts";
+import router from "@/app/router";
 
 const { userData } = userStore();
 const { createOrder } = useAddOrder();
@@ -43,12 +44,14 @@ export const useAddPayment = () => {
             await updateCheckedQuantity();
             await createOrder();
 
-            await openNotify('You have successfully paid and created order.',
-                'You will now be redirected to the profile page.', 'profile')
+            await openNotify('You have successfully paid and created order',
+                'You will now be redirected to the profile page')
+            await router.push({name: 'profile'})
+
             clearPaymentForm();
         }catch(err){
             await openNotify('You must choose',
-                'Which card and payment method should we use for payment?', '')
+                'Which card and payment method should we use for payment?')
             console.error(`Failed to register new payment:`, err);
         }
     }
@@ -98,8 +101,10 @@ export const useAddPayment = () => {
             await updateCheckedQuantity();
             await createOrder();
 
-            await openNotify('You have successfully paid and created order.',
-                'You will now be redirected to the profile page.', 'profile')
+            await openNotify('You have successfully paid and created order',
+                'You will now be redirected to the profile page')
+            await router.push({name: 'profile'})
+
             clearPaymentForm();
         }catch(err){
             applyErrors(

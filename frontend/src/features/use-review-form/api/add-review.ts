@@ -43,12 +43,13 @@ export const useAddReview = () => {
             });
 
             clearReviewForm();
-            await openNotify('You have successfully add review for product.',
-                'Thank you for providing your feedback helps other customers make the right choice', '')
+
+            await openNotify('You have successfully add review for product',
+                'Thank you for providing your feedback helps other customers make the right choice')
             toggleReviewModal('')
         }catch(err){
             await openNotify('An error occurred.',
-                'We are working on this issue please try again later.', '')
+                'We are working on this issue please try again later')
             console.error(`Failed to create the order:`, err);
         }
     };

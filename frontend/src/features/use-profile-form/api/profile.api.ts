@@ -30,7 +30,7 @@ export const profileApi = () => {
         });
         await getUser();
 
-        await openNotify(title, '', '')
+        await openNotify(title, '')
     };
 
     const updateUserApplyZodErrors = (err: ZodError) => {
@@ -154,7 +154,7 @@ export const profileApi = () => {
                 })
             });
             clearUpdateUserFormPassword();
-            await openNotify('You have successfully changed your password.', '', '')
+            await openNotify('You have successfully changed your password.', '')
         }catch(err){
             updateUserApplyErrors(err);
             console.error(`Failed to the change password:`, err);

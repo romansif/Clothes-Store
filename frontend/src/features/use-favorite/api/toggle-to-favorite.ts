@@ -46,11 +46,8 @@ export const useToggleFavorite = () => {
 
                 await getFavoriteProducts();
 
-                await openNotify(
-                    'You have successfully added the item to your favorite.',
-                    'You will now be redirected to the "Favorite" page.',
-                    'favorite'
-                );
+                await openNotify('You have successfully added the item to your favorite',
+                    'You will now be redirected to the "Favorite" page');
             }else{
 
                 const favoriteItem = favorite.value.find(

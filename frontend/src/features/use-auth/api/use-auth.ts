@@ -58,8 +58,9 @@ export const useAuth = () => {
             }
             users.value = authData;
 
-            await openNotify('You have successfully sign up.',
-                'You will now be taken to your profile page.', 'profile');
+            await openNotify('You have successfully sign up',
+                'You will now be taken to your profile page');
+            await router.push({name: 'profile'})
 
             clearRegisterForm()
         }catch(err){
@@ -105,8 +106,9 @@ export const useAuth = () => {
             }
             userData.value = foundedUser.user
 
-            await openNotify('You have successfully sign in.',
-                'You will now be taken to your profile page.', 'profile')
+            await openNotify('You have successfully sign in',
+                'You will now be taken to your profile page');
+            await router.push({name: 'profile'})
 
             clearLoginForm()
         }catch(err){
@@ -143,11 +145,11 @@ export const useAuth = () => {
             }
             userData.value = foundedUser.user
 
-            await openNotify('You have successfully sign in.',
-                'You will now be taken to your profile page.', 'profile');
+            await openNotify('You have successfully sign in',
+                'You will now be taken to your profile page');
+            await router.push({name: 'profile'})
         }catch(err){
-            await openNotify('You were unable to login with google.',
-                '', '')
+            await openNotify('You were unable to login with google', '')
             console.log(`Failed to login:`, err);
         }finally {
             loading.value = false;
@@ -163,7 +165,7 @@ export const useAuth = () => {
             console.log(`Failed to logout:`, err);
         }finally {
             localStorage.clear();
-            await router.push({ name: 'signIn' })
+            await router.push({name: 'signIn'})
         }
     };
 
@@ -176,7 +178,8 @@ export const useAuth = () => {
             });
 
             await openNotify('You have successfully delete account',
-                'You will now be taken to sign in page', 'signIn');
+                'You will now be taken to sign in page');
+            await router.push({name: 'signIn'})
         }catch(err){
             console.error(`Failed to delete the user:`, err);
         }

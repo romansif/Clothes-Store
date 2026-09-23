@@ -8,6 +8,7 @@ import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.t
 import { type UserContactInfo } from "@/entities/checkout-contact-info/model/address.types.ts";
 import { informationForm, informationFormErrorMessages } from "@/entities/checkout-contact-info/model/address.form.ts";
 import { addContactInfoSchema } from "@/entities/checkout-contact-info/model/address.schemas.ts";
+import router from "@/app/router";
 
 const { userData } = userStore();
 const { openNotify } = useBaseModals();
@@ -69,12 +70,14 @@ export const useAddAddress = () => {
 
             await getAddresses();
 
-            await openNotify('You have successfully added the shipping address.',
-                'You will now be redirected to the shipping method selection page.', 'shipping');
+            await openNotify('You have successfully added the shipping address',
+                'You will now be redirected to the shipping method selection page');
+            await router.push({name: 'shipping'})
+
             clearInformationForm();
         }catch(err){
             await openNotify('You must choose.',
-                'What contact and address information should we use for delivery?', '');
+                'What contact and address information should we use for delivery?');
             console.error(`Failed to create the new address:`, err);
         }
     }
@@ -117,8 +120,10 @@ export const useAddAddress = () => {
 
             await getAddresses();
 
-            await openNotify('You have successfully added the shipping address.',
-                'You will now be redirected to the shipping method selection page.', 'shipping')
+            await openNotify('You have successfully added the shipping address',
+                'You will now be redirected to the shipping method selection page')
+            await router.push({name: 'shipping'})
+
             clearInformationForm();
         }catch(err){
             applyErrors(

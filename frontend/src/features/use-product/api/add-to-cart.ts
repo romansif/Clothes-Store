@@ -67,8 +67,8 @@ export const useAddToCart = () => {
 
             clearCartForm();
 
-            await openNotify('You have successfully added the item to your cart.',
-                'You will now be redirected to the "Cart" page.', 'cart');
+            await openNotify('You have successfully added the item to your cart',
+                'You will now be redirected to the "Cart" page');
         }catch(err){
             applyErrors(
                 err,

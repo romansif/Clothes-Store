@@ -7,6 +7,7 @@ import { useGetShipping } from "@/features/use-checkout-shipping-info/api/get-sh
 import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.ts";
 import { shippingForm, shippingFormErrorMessage } from "@/entities/checkout-shipping/model/shipping.form.ts";
 import { addShippingSchema } from "@/entities/checkout-shipping/model/shipping.schemas.ts";
+import router from "@/app/router";
 
 const { userData } = userStore();
 const { openNotify  } = useBaseModals();
@@ -37,13 +38,15 @@ export const useAddShipping = () => {
             if(newShipping){
                 localStorage.setItem("paymentId", newShipping.paymentId);
             }else{
-                console.log('Не удалос получить id оплаты')
+                console.log('Не удалось получить id оплаты')
             }
 
             await getShipping();
 
-            await openNotify('You have successfully added the shipping method.',
-                'You will now be redirected to the payment method selection page.', 'payment')
+            await openNotify('You have successfully added the shipping method',
+                'You will now be redirected to the payment method selection page')
+            await router.push({name: 'payment'})
+
             clearShippingForm();
         }catch(err){
             applyErrors(

@@ -71,9 +71,9 @@ export const useAddProduct = () => {
                 body: formData,
             });
 
-            await openNotify('You have successfully created a new product card.',
-                'Now, if you go to the products page, your product will be there, and on the useProfile page as well.', 'my/products')
-            await router.push({ name: 'profile'})
+            await openNotify('You have successfully created a new product card',
+                'Now, if you go to the products page, your product will be there, and on the useProfile page as well')
+            await router.push({ name: 'my/products'})
 
             clearProductForm();
         }catch(err){

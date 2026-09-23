@@ -118,9 +118,9 @@ export const useUpdateCart = () => {
                         })
                     });
                 }else{
-                    await openNotify('The item is no longer in stock.',
-                        'The maximum stock level for the item has been reached.', 'cart')
-                    console.warn('Достигнуто максимальное количество товара на складе.');
+                    await openNotify('The item is no longer in stock',
+                        'The maximum stock level for the item has been reached')
+                    console.warn('Достигнуто максимальное количество товара на складе');
                     return;
                 }
             }else if(type === 'away') {
