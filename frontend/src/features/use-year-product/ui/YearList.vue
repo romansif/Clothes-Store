@@ -8,13 +8,11 @@
     </div>
     <ul v-else v-horizontal-scroll class="flex gap-10 xl:gap-40 overflow-x-auto whitespace-nowrap no-scrollbar">
       <ProductCard v-for="product in productsYear"
-                :user="userData"
-                :product="product"
-                :array="productsYear"
-                :size="'w-full h-50 md:h-70 lg:h-105'"
-                :stack-class="'absolute top-45 -left-10 text-7xl font-semibold -rotate-50 w-110'"
-                :favorite-btn="'absolute top-0.5 left-79.5 w-8 cursor-pointer'"
-                @toggle-to-favorite="toggleToFavorite" />
+                   :user="userData"
+                   :product="product"
+                   :array="productsYear"
+                   :variant="'year'"
+                   @toggle-to-favorite="toggleToFavorite"/>
     </ul>
   </Transition>
 </template>

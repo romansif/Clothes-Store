@@ -43,9 +43,8 @@ import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
 import { productHelper } from "@/shared/lib/helper/product-helper.ts";
 import { toggleReadMore, fullDescription } from "@/features/use-product/lib/toggle-more-info.ts";
 import type {Product} from "@/shared/model/product.types.ts";
-import {
-  addToCartForm, addToCartFormErrorMessages
-} from "@/shared/model/add.to.cart.form.ts";
+import type {User} from "@/entities/profile/model/user.types.ts";
+import { addToCartForm, addToCartFormErrorMessages } from "@/shared/model/add.to.cart.form.ts";
 
 defineProps<{
   user: User | null
@@ -57,7 +56,6 @@ import liked from '@/assets/icons/nav/liked.png';
 import ProductSpecific from "@/features/use-product/ui/ProductSpecific.vue";
 import ProductToCart from "@/features/use-product/ui/ProductToCart.vue";
 import ProductPhotos from "@/features/use-product/ui/ProductPhotos.vue";
-import type {User} from "@/entities/profile/model/user.types.ts";
 
 const { isFavorite } = previewHelper();
 const { addColor, addSize } = useCart();

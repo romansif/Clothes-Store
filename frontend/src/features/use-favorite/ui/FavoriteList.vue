@@ -15,13 +15,11 @@
         md:w-full md:grid md:grid-cols-2 md:gap-x-30 md:gap-y-15 lg:h-142.5 lg:grid-cols-3 lg:gap-15
         xl:grid-cols-3 xl:gap-30 xl:w-full xl:h-117.5">
       <ProductCard v-for="product in favorite"
-                    :user="userData"
-                    :product="product"
-                    :array="favorite"
-                    :size="'w-83.75 h-45 sm:h-78.5 xl:h-100'"
-                    :stack-class="'absolute top-41 -left-12 text-7xl font-semibold -rotate-50 w-110'"
-                    :favorite-btn="'absolute top-0.5 left-75.5 w-8 cursor-pointer'"
-                    @toggle-to-favorite="toggleToFavorite" />
+                   :user="userData"
+                   :product="product"
+                   :array="favorite"
+                   :variant="'main&favorite&Cart'"
+                   @toggle-to-favorite="toggleToFavorite" />
     </ul>
   </div>
 </template>

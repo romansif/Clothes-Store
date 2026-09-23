@@ -2,12 +2,10 @@
   <TransitionGroup name="list">
     <li :key="product.id" class="flex pl-10 gap-8">
       <ProductPreview :user="user"
-                       :product="product"
-                       :array="myProducts"
-                       :size="'w-83.75 h-h-78.5m:h-[314px] xl:h-100'"
-                       :stack-class="'absolute top-41 -left-12 text-7xl font-semibold -rotate-50 w-110'"
-                       :favorite-btn="'absolute top-0.5 left-75.5 w-8 cursor-pointer'"
-                       @toggle-to-favorite="toggleToFavorite" />
+                      :product="product"
+                      :array="myProducts"
+                      :variant="'myProduct'"
+                      @toggle-to-favorite="toggleToFavorite" />
       <div class="flex flex-col gap-35">
         <div class="flex flex-col gap-10">
           <UseMyProduct :product="product" />

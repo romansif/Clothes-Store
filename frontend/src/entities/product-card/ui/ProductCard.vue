@@ -4,9 +4,7 @@
       <ProductPreview :user="user"
                       :product="product"
                       :array="array"
-                      :size="size"
-                      :stack-class="stackClass"
-                      :favorite-btn="favoriteBtn"
+                      :variant="variant"
                       @toggle-to-favorite="toggleToFavorite" />
       <span class="whitespace-normal mt-2 text-[#A3A3A3] text-lg">
         {{ product.material }} {{ product.category }}
@@ -26,14 +24,13 @@
 <script setup lang="ts">
 import type {Product} from "@/shared/model/product.types.ts";
 import type {User} from "@/entities/profile/model/user.types.ts";
+import type {ProductCardVariant} from "@/entities/product-card/model/product.class.types.ts";
 
-defineProps<{
+const props = defineProps<{
   user: User | null
   product: Product
   array: Product[];
-  size: string,
-  stackClass: string,
-  favoriteBtn: string,
+  variant: ProductCardVariant
 }>();
 
 const emit = defineEmits<{

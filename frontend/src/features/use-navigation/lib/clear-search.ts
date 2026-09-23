@@ -1,4 +1,4 @@
-import { searchProductForm } from "@/widgets/model/search.form.ts";
+import { searchProductForm } from "@/features/use-navigation/lib/search.form.ts";
 
 export const clearSearchProductForm = () => {
     searchProductForm.value.search = '';

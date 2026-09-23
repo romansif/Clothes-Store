@@ -11,9 +11,7 @@
                    :user="userData"
                    :product="product"
                    :array="array"
-                   :size="'w-83.75 h-45 sm:h-78.5 xl:h-95'"
-                   :stack-class="'absolute top-35 -left-6 text-6xl font-semibold -rotate-50 w-110'"
-                   :favorite-btn="'absolute top-0.5 left-75.5 w-8 cursor-pointer'"
+                   :variant="'season'"
                    @toggle-to-favorite="toggleToFavorite" />
     </ul>
   </Transition>
