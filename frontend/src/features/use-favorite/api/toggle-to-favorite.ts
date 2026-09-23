@@ -2,15 +2,15 @@ import { handler } from "@/shared/api/http.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
-import { useFavorite } from "@/features/use-favorite/lib/use-favorite.ts";
-import { favoriteStore } from "@/features/use-favorite/model/favorite.store.ts";
+import { previewHelper } from "@/entities/product-card/lib/preview-helper.ts";
+import { favoriteStore } from "@/entities/favorite/model/favorite.store.ts";
 import type {Product} from "@/shared/model/product.types.ts";
 
 const { userData } = userStore();
 const { favorite } = favoriteStore();
 const { openNotify } = useBaseModals();
 const { getFavoriteProducts } = useGetFavorite();
-const { isFavorite, getProductId } = useFavorite();
+const { isFavorite, getProductId } = previewHelper();
 
 export const useToggleFavorite = () => {
     const toggleToFavorite = async (product: Product) => {
@@ -25,7 +25,7 @@ export const useToggleFavorite = () => {
                 return;
             }
 
-            if(!isFavorite(product)){
+            if(!isFavorite(product, user)){
                 await handler('/favorites', {
                     method: 'POST',
                     body: JSON.stringify({

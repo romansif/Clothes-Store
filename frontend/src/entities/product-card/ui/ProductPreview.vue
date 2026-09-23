@@ -9,22 +9,20 @@
           Out Of Stack
         </span>
       </router-link>
-      <img @click="toggleToFavorite(product)"
-           :src="isFavorite(product) ? liked : like" alt=""
-           :class="favoriteBtn">
+      <img v-if="user" :src="isFavorite(product, user) ? liked : like" alt=""
+           :class="favoriteBtn"
+           @click="toggleToFavorite(product)">
     </div>
   </template>
 </template>
 
 <script setup lang="ts">
-import { useFavorite } from "@/features/use-favorite/lib/use-favorite.ts";
-import { productHelper } from "@/shared/lib/helper/product-helper.ts";
-import { useGetProduct } from "@/features/use-product/api/get-product.ts";
+import { previewHelper } from "@/entities/product-card/lib/preview-helper.ts";
 import { baseClasses } from "@/shared/const/base.classes.ts";
-import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
 import type {Product} from "@/shared/model/product.types.ts";
 
 defineProps<{
+  user: User | null
   product: Product,
   array: Product[],
   size: string,
@@ -32,14 +30,20 @@ defineProps<{
   favoriteBtn: string,
 }>();
 
+const emit = defineEmits<{
+  toggleToFavorite: [product: Product],
+}>()
+
+const toggleToFavorite = (product: Product) => {
+  emit("toggleToFavorite", product)
+}
+
 import liked from "@/assets/icons/nav/liked.png";
 import like from "@/assets/icons/nav/like.png";
+import type {User} from "@/entities/profile/model/user.types.ts";
 
-const { isFavorite } = useFavorite();
-const { getProductId } = useGetProduct();
 const { productPreviewClass } = baseClasses();
-const { toggleToFavorite } = useToggleFavorite();
-const { isOutOfStack, productPreview } = productHelper();
+const { getProductId, isOutOfStack, productPreview, isFavorite } = previewHelper();
 </script>
 
 <style scoped>

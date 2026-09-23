@@ -1,5 +1,5 @@
 <template>
-  <template v-if="userData && product">
+  <template v-if="user && product">
     <ProductPhotos :product="product" />
     <div class="flex flex-col mt-20 px-4 w-125">
       <div class="flex flex-col gap-2">
@@ -12,7 +12,7 @@
           </div>
           <div class="flex flex-col gap-3 ml-auto font-medium">
             <img @click="toggleToFavorite(product)"
-                 :src="isFavorite(product) ? liked : like" alt=""
+                 :src="isFavorite(product, user) ? liked : like" alt=""
                  class="w-8.75  cursor-pointer">
           </div>
         </div>
@@ -28,17 +28,16 @@
          fullDescription ? 'line-clamp-0' : 'line-clamp-2']">
           {{ product.description }}
       </p>
-      <ProductSpecific :product="product" :user="userData"
+      <ProductSpecific :product="product" :user="user"
                        @add-color="addColor" @add-size="addSize"/>
-      <ProductToCart :product="product" :user="userData" />
+      <ProductToCart :product="product" :user="user" />
     </div>
   </template>
 </template>
 
 <script setup lang="ts">
 import { useCart } from "@/features/use-product/lib/use-cart.ts";
-import { useFavorite } from "@/features/use-favorite/lib/use-favorite.ts";
-import { userStore } from "@/features/use-profile/model/user.store.ts";
+import { previewHelper } from "@/entities/product-card/lib/preview-helper.ts";
 import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
 import { productHelper } from "@/shared/lib/helper/product-helper.ts";
@@ -49,7 +48,8 @@ import {
 } from "@/shared/model/add.to.cart.form.ts";
 
 defineProps<{
-  product: Product,
+  user: User | null
+  product: Product
 }>();
 
 import like from '@/assets/icons/nav/like.png';
@@ -57,9 +57,9 @@ import liked from '@/assets/icons/nav/liked.png';
 import ProductSpecific from "@/features/use-product/ui/ProductSpecific.vue";
 import ProductToCart from "@/features/use-product/ui/ProductToCart.vue";
 import ProductPhotos from "@/features/use-product/ui/ProductPhotos.vue";
+import type {User} from "@/entities/profile/model/user.types.ts";
 
-const { userData } = userStore();
-const { isFavorite } = useFavorite();
+const { isFavorite } = previewHelper();
 const { addColor, addSize } = useCart();
 const { variantsInfo } = productHelper();
 const { toggleToFavorite } = useToggleFavorite();

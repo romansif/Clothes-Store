@@ -7,22 +7,32 @@
       </div>
     </div>
     <ul v-else v-horizontal-scroll class="flex gap-10 xl:gap-40 overflow-x-auto whitespace-nowrap no-scrollbar">
-      <YearItem v-for="product in productsYear" :product="product"
-                :product-year="productsYear" />
+      <ProductCard v-for="product in productsYear"
+                :user="userData"
+                :product="product"
+                :array="productsYear"
+                :size="'w-full h-50 md:h-70 lg:h-105'"
+                :stack-class="'absolute top-45 -left-10 text-7xl font-semibold -rotate-50 w-110'"
+                :favorite-btn="'absolute top-0.5 left-79.5 w-8 cursor-pointer'"
+                @toggle-to-favorite="toggleToFavorite" />
     </ul>
   </Transition>
 </template>
 
 <script setup lang="ts">
 import { onMounted } from "vue";
+import { userStore } from "@/features/use-profile/model/user.store.ts";
+import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
 import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
 import { useGetYearProduct } from "@/features/use-year-product/api/get-year-product.ts";
 import { productsHelper } from "@/features/use-main-product/lib/products-helper.ts";
 
-import YearItem from "@/entities/year-product/ui/YearItem.vue";
 import empty_products from "@/assets/icons/products/icon-products.svg";
+import ProductCard from "@/entities/product-card/ui/ProductCard.vue";
 
+const { userData } = userStore();
 const { vHorizontalScroll } = productsHelper();
+const { toggleToFavorite } = useToggleFavorite();
 const { getFavoriteProducts } = useGetFavorite();
 const { getYearProducts, productsYear } = useGetYearProduct();
 

@@ -15,8 +15,8 @@
       </div>
     </div>
   </div>
-  <Transition name="notify">
-    <Notification v-if="notify"/>
+  <Transition name="modal">
+    <Notification v-if="notify" />
   </Transition>
 </template>
 

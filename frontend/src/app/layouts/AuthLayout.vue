@@ -15,8 +15,8 @@
         <router-view />
       </div>
     </main>
-    <Transition name="notify">
-      <Notification v-if="notify"/>
+    <Transition name="modal">
+      <Notification v-if="notify" />
     </Transition>
   </div>
 </template>

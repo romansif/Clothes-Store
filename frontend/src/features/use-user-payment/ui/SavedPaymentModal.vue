@@ -18,7 +18,7 @@
         <PaymentCardEmpty v-else />
       </div>
     </div>
-    <Transition name="notify">
+    <Transition name="modal">
       <DeleteModal v-if="deleteModal" />
     </Transition>
   </div>

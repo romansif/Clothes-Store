@@ -22,6 +22,7 @@ const deleteModal = ref<boolean>(false);
 
 export const baseDeleteModal = () => {
     const toggleDeleteChoice = (message: string, type: string, id: string) => {
+        console.log('SADA')
         generalId.value = id;
         deleteType.value = type;
         deleteMessage.value = message;

@@ -32,7 +32,7 @@ import { sizeClass, sizeUrl } from "@/features/use-cart/lib/cart-specific.ts";
 import type {Product} from "@/shared/model/product.types.ts";
 
 defineProps<{
-  product: Product;
+  product: Product
   cart: Product[]
 }>();
 

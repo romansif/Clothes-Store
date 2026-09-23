@@ -7,22 +7,32 @@
       </div>
     </div>
     <ul v-else v-horizontal-scroll class="flex gap-10 xl:gap-22.5 overflow-x-auto whitespace-nowrap no-scrollbar pt-6">
-      <WeekItem v-for="product in productsWeek" :product="product"
-                :product-week="productsWeek" />
+      <ProductCard v-for="product in productsWeek"
+                :user="userData"
+                :product="product"
+                :array="productsWeek"
+                :size="'w-full h-50 md:h-60 lg:h-85'"
+                :stack-class="'absolute top-28 -left-13 text-6xl font-semibold -rotate-52 w-110'"
+                :favorite-btn="'absolute top-0.5 left-63 w-8 cursor-pointer'"
+                @toggle-to-favorite="toggleToFavorite" />
     </ul>
   </Transition>
 </template>
 
 <script setup lang="ts">
 import { onMounted } from "vue";
+import { userStore } from "@/features/use-profile/model/user.store.ts";
+import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
 import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
 import { productsHelper } from "@/features/use-main-product/lib/products-helper.ts";
 import { useGetWeekProduct } from "@/features/use-week-product/api/get-week-product.ts";
 
-import WeekItem from "@/entities/week-product/ui/WeekItem.vue";
 import empty_products from "@/assets/icons/products/icon-products.svg";
+import ProductCard from "@/entities/product-card/ui/ProductCard.vue";
 
+const { userData } = userStore();
 const { vHorizontalScroll } = productsHelper();
+const { toggleToFavorite } = useToggleFavorite();
 const { getFavoriteProducts } = useGetFavorite();
 const { getWeekProducts, productsWeek } = useGetWeekProduct();
 

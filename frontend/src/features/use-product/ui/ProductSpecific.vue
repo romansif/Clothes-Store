@@ -43,8 +43,8 @@ import type {ColorItem, Product, Size} from "@/shared/model/product.types.ts";
 import { addToCartFormErrorMessages } from "@/shared/model/add.to.cart.form.ts";
 
 defineProps<{
-  product: Product,
-  user: User,
+  user: User
+  product: Product
 }>();
 
 const emit = defineEmits<{

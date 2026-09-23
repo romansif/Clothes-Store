@@ -18,7 +18,7 @@ import { productHelper } from "@/shared/lib/helper/product-helper.ts";
 import type {Product} from "@/shared/model/product.types.ts";
 
 defineProps<{
-  product: Product,
+  product: Product
 }>();
 
 const { changeImg, productInfoPreview, angelCards } = productHelper();

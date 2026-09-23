@@ -8,20 +8,31 @@
     </div>
     <ul v-else class="font-raleway grid grid-cols-2 gap-5 overflow-y-auto max-h-132.5
        sm:max-h-197.5 sm:grid-cols-2 no-scrollbar sm:gap-8 md:gap-10 md:max-h-200 lg:grid-cols-3 xl:max-h-116 mt-5 xl:mt-0">
-      <ProductItem v-for="product in products" :product="product" :products="products" />
+      <ProductCard v-for="product in products"
+                   :user="userData"
+                   :product="product"
+                   :array="products"
+                   :size="'w-[344.5px] h-45 sm:h-78.5 xl:h-100'"
+                   :stack-class="'absolute top-42 -left-12 text-7xl font-semibold -rotate-50 w-110'"
+                   :favorite-btn="'absolute top-0.5 left-78 w-8 cursor-pointer'"
+                   @toggle-to-favorite="toggleToFavorite" />
     </ul>
   </Transition>
 </template>
 
 <script setup lang="ts">
 import { onMounted } from "vue";
+import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
 import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
+import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
 
-import ProductItem from "../../../entities/main-products/ui/ProductItem.vue";
 import empty_products from "@/assets/icons/products/icon-products.svg";
+import ProductCard from "@/entities/product-card/ui/ProductCard.vue";
 
+const { userData } = userStore();
 const { getFavoriteProducts } = useGetFavorite();
+const { toggleToFavorite } = useToggleFavorite();
 const { getAllProducts, getFilteredProducts, products } = useGetProducts();
 
 onMounted(async() => {

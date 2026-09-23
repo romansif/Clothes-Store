@@ -53,7 +53,7 @@
         </ul>
       </div>
     </div>
-    <Transition name="notify">
+    <Transition name="modal">
       <Notification v-if="notify" />
     </Transition>
   </main>

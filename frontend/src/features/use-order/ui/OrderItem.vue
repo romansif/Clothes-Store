@@ -72,7 +72,7 @@ import { useOrder } from "@/features/use-order/lib/use-order.ts";
 import { orderPreview } from "@/features/use-checkout-order/lib/checkout-order-helper.ts";
 import { productHelper } from "@/shared/lib/helper/product-helper.ts";
 import { ordersClasses } from "@/features/use-order/const/orders.classes.ts";
-import { useGetProduct } from "@/features/use-product/api/get-product.ts";
+import { previewHelper } from "@/entities/product-card/lib/preview-helper.ts";
 import type { Order } from "@/entities/order/model/order.types.ts";
 
 defineProps<{
@@ -84,7 +84,7 @@ import OrderStatus from "@/entities/order/ui/OrderStatus.vue";
 import UseOrder from "@/features/use-order/ui/UseOrder.vue";
 
 const { orderStatus } = ordersClasses();
-const { getProductId } = useGetProduct();
+const { getProductId } = previewHelper();
 const { pureColorsName } = productHelper();
 const { copyText, orderQuantity } = useOrder();
 </script>

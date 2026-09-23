@@ -2,7 +2,8 @@
   <main class="flex flex-col mt-10">
     <SeasonsHeader />
     <div :class="['flex gap-10', autumnCatalog.length ? '' : 'justify-center']">
-      <AutumnList />
+      <SeasonList :array="autumnCatalog"
+                  season="Autumn" />
     </div>
   </main>
 </template>
@@ -11,7 +12,7 @@
 import { useGetSeasonProducts } from "@/features/use-season-product/api/get-season-product.ts";
 
 import SeasonsHeader from "@/widgets/ui/navigation/SeasonsHeader.vue";
-import AutumnList from "@/features/use-season-product/ui/AutumnList.vue";
+import SeasonList from "@/features/use-season-product/ui/SeasonList.vue";
 
 const { autumnCatalog } = useGetSeasonProducts();
 </script>

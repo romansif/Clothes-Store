@@ -1,23 +1,23 @@
 <template>
-  <Transition name="notify">
+  <Transition name="modal">
     <ChangeAvatarModal v-if="avatarModal" />
   </Transition>
-  <Transition name="notify">
+  <Transition name="modal">
     <AllOrderModal v-if="orderHistory" />
   </Transition>
-  <Transition name="notify">
+  <Transition name="modal">
     <CurrentOrderModal v-if="currentOrder" />
   </Transition>
-  <Transition name="notify">
+  <Transition name="modal">
     <SavedAddressModal v-if="savedAddresses" />
   </Transition>
-  <Transition name="notify">
+  <Transition name="modal">
     <SavedPaymentModal v-if="savedPaymentCard" />
   </Transition>
-  <Transition name="notify">
+  <Transition name="modal">
     <UserDataModal v-if="confidentialityData" />
   </Transition>
-  <Transition name="notify">
+  <Transition name="modal">
     <DeleteModal v-if="deleteModal" />
   </Transition>
 </template>

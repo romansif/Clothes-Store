@@ -46,20 +46,6 @@ export const productHelper = () => {
         activeProductImg.value = `${import.meta.env.VITE_BASE_URL}/${product.images[0]}`;
     };
 
-    const productPreview = (id: string, array: Product[]) => {
-        if(!id){
-            console.log('Id не найден')
-            return
-        }
-
-        const product = array?.find((p: Product) => p.id === id)
-        if(product && product.images && product.images[0]){
-            return `${import.meta.env.VITE_BASE_URL}/${product.images[0]}`
-        }
-
-        return undefined
-    };
-
     const productInfoPreview = (product: Product) => {
         if(!product){
             console.log('Product not found');
@@ -163,10 +149,6 @@ export const productHelper = () => {
         return sizes.value.filter(size => product.sizes.includes(size.name));
     };
 
-    const isOutOfStack = (product: Product) => {
-        return product.variants.every(v => v.count === 0)
-    };
-
     const variantsInfo = (form: AddForm, product: Product) => {
         const variantsList = product?.variants || [];
 
@@ -207,7 +189,6 @@ export const productHelper = () => {
         onFilesSelected,
 
         changeImg,
-        productPreview,
         productInfoPreview,
         angelCards,
 
@@ -219,7 +200,6 @@ export const productHelper = () => {
         pureSizesName,
 
         isAvailableSizes,
-        isOutOfStack,
         variantsInfo,
 
         uniqueColors,

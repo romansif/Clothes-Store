@@ -27,7 +27,7 @@
       </router-link>
     </div>
   </div>
-  <Transition name="notify">
+  <Transition name="modal">
     <SizeGuideModal v-if="sizeGuideModel" />
   </Transition>
 </template>
@@ -42,8 +42,8 @@ import { productsHelper } from "@/features/use-main-product/lib/products-helper.
 import { sizeGuideModel, toggleSizeGuide } from "@/features/use-product/lib/toggle-more-info.ts";
 
 defineProps<{
+  user: User
   product: Product
-  user: User,
 }>();
 
 import plus from "@/assets/icons/products/plus.svg";

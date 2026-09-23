@@ -2,7 +2,8 @@
   <main class="flex flex-col mt-10">
     <SeasonsHeader />
     <div :class="['flex gap-10', springCatalog.length ? '' : 'justify-center']">
-      <SpringList />
+      <SeasonList :array="springCatalog"
+                  season="Spring" />
     </div>
   </main>
 </template>
@@ -11,7 +12,7 @@
 import { useGetSeasonProducts } from "@/features/use-season-product/api/get-season-product.ts";
 
 import SeasonsHeader from "@/widgets/ui/navigation/SeasonsHeader.vue";
-import SpringList from "@/features/use-season-product/ui/SpringList.vue";
+import SeasonList from "@/features/use-season-product/ui/SeasonList.vue";
 
 const { springCatalog } = useGetSeasonProducts();
 </script>

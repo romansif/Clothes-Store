@@ -22,7 +22,7 @@
       </div>
     </div>
   </div>
-  <Transition name="notify">
+  <Transition name="modal">
     <ReviewPhotos v-if="reviewModal"
                   :current-index="currentIndex"
                   :review-images="reviewImages"

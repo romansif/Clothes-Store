@@ -1,10 +1,13 @@
 <template>
   <TransitionGroup name="list">
     <li :key="product.id" class="flex pl-10 gap-8">
-      <BaseProductCard :product="product" :array="myProducts"
+      <ProductPreview :user="user"
+                       :product="product"
+                       :array="myProducts"
                        :size="'w-83.75 h-h-78.5m:h-[314px] xl:h-100'"
                        :stack-class="'absolute top-41 -left-12 text-7xl font-semibold -rotate-50 w-110'"
-                       :favorite-btn="'absolute top-0.5 left-75.5 w-8 cursor-pointer'" />
+                       :favorite-btn="'absolute top-0.5 left-75.5 w-8 cursor-pointer'"
+                       @toggle-to-favorite="toggleToFavorite" />
       <div class="flex flex-col gap-35">
         <div class="flex flex-col gap-10">
           <UseMyProduct :product="product" />
@@ -38,15 +41,25 @@
 
 <script setup lang="ts">
 import { toggleStackInfo } from "@/features/use-my-product/lib/toggle-stack-info.ts";
+import type {Product} from "@/shared/model/product.types.ts";
+import type {User} from "@/entities/profile/model/user.types.ts";
 
 defineProps<{
+  user: User | null
   product: Product
   myProducts: Product[]
 }>();
 
+const emit = defineEmits<{
+  toggleToFavorite: [product: Product],
+}>()
+
+const toggleToFavorite = (product: Product) => {
+  emit("toggleToFavorite", product)
+}
+
 import BaseButton from "@/shared/ui/base/BaseButton.vue";
-import BaseProductCard from "@/widgets/ui/BaseProductCard.vue";
-import type {Product} from "@/shared/model/product.types.ts";
+import ProductPreview from "@/entities/product-card/ui/ProductPreview.vue";
 import UseMyProduct from "@/features/use-my-product/ui/UseMyProduct.vue";
 </script>
 

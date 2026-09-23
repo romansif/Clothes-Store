@@ -18,15 +18,15 @@
           </div>
         </header>
         <OrdersList/>
-        <Transition name="notify">
+        <Transition name="modal">
           <ClipboardNotify v-if="clipboard" />
         </Transition>
       </main>
     </div>
-    <Transition name="notify">
+    <Transition name="modal">
       <ReplacementModal v-if="choiceModal" />
     </Transition>
-    <Transition name="notify">
+    <Transition name="modal">
       <CreateReview v-if="reviewFormModal" />
     </Transition>
   </div>
