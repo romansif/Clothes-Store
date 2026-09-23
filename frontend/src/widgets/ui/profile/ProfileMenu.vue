@@ -56,7 +56,7 @@
 
 <script setup lang="ts">
 import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { baseDeleteModal } from "@/widgets/lib/base-delete-modal.ts";
+import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal.ts";
 import { Menu, MenuItems, MenuItem, MenuButton} from "@headlessui/vue";
 
 const { userData } = userStore();

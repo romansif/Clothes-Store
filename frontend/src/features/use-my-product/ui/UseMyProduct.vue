@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { baseDeleteModal } from "@/widgets/lib/base-delete-modal.ts";
+import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import type {Product} from "@/shared/model/product.types.ts";
 

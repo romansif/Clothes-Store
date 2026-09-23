@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { baseDeleteModal } from "@/widgets/lib/base-delete-modal.ts";
+import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal.ts";
 
 import BaseButton from "@/shared/ui/base/BaseButton.vue";
 

@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import { baseDeleteModal } from "@/widgets/lib/base-delete-modal.ts";
+import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 
 import SavedPaymentModal from "@/features/use-user-payment/ui/SavedPaymentModal.vue";
@@ -32,7 +32,7 @@ import CurrentOrderModal from "@/features/use-order/ui/CurrentOrderModal.vue";
 import AllOrderModal from "@/features/use-order/ui/AllOrderModal.vue";
 import SavedAddressModal from "@/features/use-user-address/ui/SavedAddressModal.vue";
 import UserDataModal from "@/features/use-profile/ui/UserDataModal.vue";
-import DeleteModal from "@/widgets/ui/DeleteModal.vue";
+import DeleteModal from "@/features/use-general-delete/ui/DeleteModal.vue";
 
 const { deleteModal } = baseDeleteModal();
 const {

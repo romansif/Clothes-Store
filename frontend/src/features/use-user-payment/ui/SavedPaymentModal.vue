@@ -26,13 +26,13 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { baseDeleteModal } from "@/widgets/lib/base-delete-modal.ts";
+import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal.ts";
 import { useGetPayment } from "@/features/use-user-payment/api/get-payment.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
 
 import BaseButton from "@/shared/ui/base/BaseButton.vue";
-import DeleteModal from "@/widgets/ui/DeleteModal.vue";
+import DeleteModal from "@/features/use-general-delete/ui/DeleteModal.vue";
 import PaymentCardEmpty from "@/entities/profile/ui/PaymentCardEmpty.vue";
 import PaymentsList from "@/features/use-user-payment/ui/PaymentsList.vue";
 

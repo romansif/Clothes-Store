@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { baseDeleteModal } from "@/widgets/lib/base-delete-modal.ts";
+import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal.ts";
 import { informationContactStore } from "@/features/use-user-address/model/address.store.ts";
 
 import AddressItem from "@/entities/user-address/ui/AddressItem.vue";

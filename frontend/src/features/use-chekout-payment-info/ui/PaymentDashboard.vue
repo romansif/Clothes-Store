@@ -13,7 +13,8 @@
       </div>
       <div class="flex gap-3">
         <form @submit.prevent="addPayment" action="" class="flex flex-col gap-4 w-full font-dm-sans">
-          <PaymentMethods :user-payment="userPayment" :is-debit-card="isDebitCard" @open-card-form="openCardForm" />
+          <PaymentMethodsForm :user-payment="userPayment" :is-debit-card="isDebitCard"
+                              @open-card-form="openCardForm" @close-card-form="closeCardForm" />
           <div class="relative mt-5 sm:ml-auto transition duration-400 hover:scale-110">
             <BaseButton v-if="!isSavedPayment" type="submit" name="Pay" variant="checkOut"/>
             <img :src=arrow alt="" class="h-13 absolute left-75 top-1/2 -translate-y-1/2
@@ -39,12 +40,12 @@ import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-paymen
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 import BaseButton from "@/shared/ui/base/BaseButton.vue";
-import PaymentMethods from "@/entities/checkout-payment/ui/PaymentMethods.vue";
+import PaymentMethodsForm from "@/entities/checkout-payment/ui/PaymentMethodsForm.vue";
 import SavedCheckoutPayment from "@/features/use-chekout-payment-info/ui/SavedCheckoutPayment.vue";
 
 const { userPayments, userPayment } = paymentStore();
 const { addPayment, useSavedPayment } = useAddPayment();
-const { openCardForm, toggleShowPayment, isSavedPayment, isDebitCard } = togglePaymentForm();
+const { openCardForm, closeCardForm, toggleShowPayment, isSavedPayment, isDebitCard } = togglePaymentForm();
 
 refClearErrorsOnChange(
   paymentForm,

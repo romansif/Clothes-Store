@@ -26,13 +26,13 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { baseDeleteModal } from "@/widgets/lib/base-delete-modal.ts";
+import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal.ts";
 import { useGetAddress } from "@/features/use-user-address/api/get-address.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import { informationContactStore } from "@/features/use-user-address/model/address.store.ts";
 
 import BaseButton from "@/shared/ui/base/BaseButton.vue";
-import DeleteModal from "@/widgets/ui/DeleteModal.vue";
+import DeleteModal from "@/features/use-general-delete/ui/DeleteModal.vue";
 import AddressesEmpty from "@/entities/profile/ui/AddressesEmpty.vue";
 import AddressesList from "@/features/use-user-address/ui/AddressesList.vue";
 

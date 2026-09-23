@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { baseDeleteModal } from "@/widgets/lib/base-delete-modal.ts";
+import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal.ts";
 import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
 
 import PaymentItem from "@/entities/user-payment/ui/PaymentItem.vue";

@@ -9,7 +9,7 @@
       </div>
       <span class="text-red-600 text-xs">{{ isAgreeFormErrorMessage.agree }}</span>
     </div>
-    <BaseButton @click="continueToOrder" name="CONTINUE" variant="addToOrder" />
+    <BaseButton @click="continueToOrder()" name="CONTINUE" variant="addToOrder" />
   </div>
 </template>
 

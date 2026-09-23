@@ -18,17 +18,21 @@
 </template>
 
 <script setup lang="ts">
-import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment.ts";
-
 defineProps<{
   method: string;
   title: string;
   text: string;
 }>();
 
-const model = defineModel<string | number>();
+const emit = defineEmits<{
+  closeCardForm: [method: string];
+}>();
 
-const { closeCardForm } = togglePaymentForm();
+const closeCardForm = (method: string) => {
+  emit("closeCardForm", method);
+};
+
+const model = defineModel<string | number>();
 </script>
 
 <style scoped>
