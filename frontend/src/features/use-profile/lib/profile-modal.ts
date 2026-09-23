@@ -15,32 +15,32 @@ const { clearUpdateUserForm } = clearUsersForms();
 export const useProfileModals = () => {
     const toggleAvatar = () => {
         avatarModal.value = !avatarModal.value;
-    }
+    };
 
     const openSelectAvatar = () => {
         fileInput.value?.click()
-    }
+    };
 
     const toggleOrderHistory = () => {
         orderHistory.value = !orderHistory.value;
-    }
+    };
 
     const toggleCurrentOrder = () => {
         currentOrder.value = !currentOrder.value;
-    }
+    };
 
     const toggleConfidentialityData = () => {
         confidentialityData.value = !confidentialityData.value;
         clearUpdateUserForm();
-    }
+    };
 
     const toggleSavedAddresses = () => {
         savedAddresses.value = !savedAddresses.value;
-    }
+    };
 
     const toggleSavedPaymentCard = () => {
         savedPaymentCard.value = !savedPaymentCard.value;
-    }
+    };
 
     return {
         toggleAvatar,

@@ -39,7 +39,7 @@ import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-paymen
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 import BaseButton from "@/shared/ui/base/BaseButton.vue";
-import PaymentMethods from "../../../entities/checkout-payment/ui/PaymentMethods.vue";
+import PaymentMethods from "@/entities/checkout-payment/ui/PaymentMethods.vue";
 import SavedCheckoutPayment from "@/features/use-chekout-payment-info/ui/SavedCheckoutPayment.vue";
 
 const { userPayments, userPayment } = paymentStore();

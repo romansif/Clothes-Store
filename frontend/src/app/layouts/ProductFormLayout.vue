@@ -24,8 +24,8 @@
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { clearProductForm } from "@/features/use-product-form/lib/clear-product-form.ts";
 
-import Notification from "@/widgets/ui/Notification.vue";
-import Loading from "@/widgets/ui/Loading.vue";
+import Notification from "@/shared/ui/Notification.vue";
+import Loading from "@/shared/ui/Loading.vue";
 
 const { loading, notify } = useBaseModals();
 </script>

@@ -1,4 +1,4 @@
-import { addToCartForm } from "@/entities/product/model/add.to.cart.form.ts";
+import { addToCartForm } from "@/shared/model/add.to.cart.form.ts";
 import type { ColorItem, Product, Size } from "@/shared/model/product.types.ts";
 
 export const addToCartClasses = () => {

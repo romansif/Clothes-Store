@@ -2,6 +2,7 @@ import { handler } from "@/shared/api/http.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { clearReviewForm } from "@/features/use-review-form/lib/clear-review-form.ts";
+import { toggleReviewModal } from "@/features/use-review-form/lib/review-form-modal.ts";
 import { reviewsStore } from "@/features/use-product-review/model/reviews.store.ts";
 import { reviewForm } from "@/entities/review-form/model/review.form.ts";
 import { imageFiles } from "@/shared/lib/helper/product-helper.ts";
@@ -44,7 +45,7 @@ export const useAddReview = () => {
             clearReviewForm();
             await openNotify('You have successfully add review for product.',
                 'Thank you for providing your feedback helps other customers make the right choice', '')
-
+            toggleReviewModal('')
         }catch(err){
             await openNotify('An error occurred.',
                 'We are working on this issue please try again later.', '')

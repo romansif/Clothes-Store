@@ -1,8 +1,7 @@
 <template>
-  <input v-model="model" :class="[
-      checkoutClasses[variant], errorMessage ?
-      'placeholder:text-red-500 border-red-500' : 'placeholder:text-gray-500 border-gray-300'
-      ]" v-bind="$attrs" />
+  <input v-model="model" :class="[checkoutClasses[variant],
+                         errorMessage ? 'placeholder:text-red-500 border-red-500' : '']"
+         v-bind="$attrs" />
 </template>
 
 <script setup lang="ts">

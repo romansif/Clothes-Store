@@ -4,6 +4,7 @@ import { useGetOrder } from "@/features/use-order/api/get-order.ts";
 import { applyZodErrors, applyErrors} from "@/shared/lib/helper/errors-helper.ts";
 import { orderStore } from "@/features/use-order/model/order.store.ts";
 import { clearReplaceForm } from "@/features/use-order/lib/clear-order-form.ts";
+import { toggleReplaceChoice } from "@/features/use-order/lib/order-modal.ts";
 import { cancelChoiceForm, cancelChoiceMessage } from "@/entities/order/model/order.forms.ts";
 import { replaceOrderSchema } from "@/entities/order/model/replace.order.schemas.ts";
 
@@ -44,7 +45,7 @@ export const useDeleteOrder = () => {
             clearReplaceForm()
             await openNotify('You have successfully cancelled the order.',
                 'Thank you for providing us with this information, it helps us improve our service.', 'profile')
-
+            toggleReplaceChoice('')
             await getOrders();
         }catch(err){
             applyErrors(

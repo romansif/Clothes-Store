@@ -17,7 +17,7 @@
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { checkoutClasses } from "@/shared/const/checkout/checkout.classes.ts";
 
-import Notification from "@/widgets/ui/Notification.vue";
+import Notification from "@/shared/ui/Notification.vue";
 import OrderInfo from "@/features/use-checkout-order/ui/OrderInfo.vue";
 import CheckoutHeader from "@/widgets/ui/checkout/CheckoutHeader.vue";
 

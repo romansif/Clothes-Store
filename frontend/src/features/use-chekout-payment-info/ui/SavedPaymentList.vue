@@ -5,18 +5,11 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
-import { useGetPayment } from "@/features/use-user-payment/api/get-payment.ts";
 import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
 
 import PaymentItem from "@/features/use-chekout-payment-info/ui/PaymentItem.vue";
 
-const { getPayments } = useGetPayment();
 const { userPayments } = paymentStore();
-
-onMounted(async () => {
-  await getPayments();
-})
 </script>
 
 <style scoped>

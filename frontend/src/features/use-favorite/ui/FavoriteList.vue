@@ -18,19 +18,12 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
-import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
 import { favoriteStore } from "@/features/use-favorite/model/favorite.store.ts";
 
 import FavoriteItem from "../../../entities/favorite/ui/FavoriteItem.vue";
 import favorite_cart from "@/assets/icons/products/favorute_empty.svg";
 
 const { favorite } = favoriteStore();
-const { getFavoriteProducts } = useGetFavorite();
-
-onMounted(async() => {
-  await getFavoriteProducts();
-})
 </script>
 
 <style scoped>

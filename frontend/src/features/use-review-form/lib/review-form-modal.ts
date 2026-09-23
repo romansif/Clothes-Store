@@ -7,7 +7,7 @@ const { productId } = reviewsStore();
 
 export const reviewFormModal = ref<boolean>(false);
 
-export const toggleReviewChoice = (id: string) => {
+export const toggleReviewModal = (id: string) => {
     clearReviewForm();
 
     reviewFormModal.value = !reviewFormModal.value;

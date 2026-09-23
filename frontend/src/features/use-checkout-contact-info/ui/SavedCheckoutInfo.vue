@@ -17,12 +17,19 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from "vue";
+import { useGetAddress } from "@/features/use-user-address/api/get-address.ts";
 import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle-contact-info.ts";
 
 import ContactList from "@/features/use-checkout-contact-info/ui/ContactList.vue";
-import AddressList from "@/widgets/ui/contact-info/AddressList.vue";
+import AddressList from "@/features/use-checkout-contact-info/ui/AddressList.vue";
 
+const { getAddresses } = useGetAddress();
 const { toggleShowContact } = toggleInformation();
+
+onMounted(async () => {
+  await getAddresses();
+})
 </script>
 
 <style scoped>

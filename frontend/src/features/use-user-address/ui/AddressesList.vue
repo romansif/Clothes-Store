@@ -12,7 +12,7 @@
       </div>
     </div>
     <ul v-else class="flex flex-col overflow-y-auto no-scrollbar h-92.5 pb-4">
-      <AddressesItem v-for="address in userAddresses" :address="address"
+      <AddressItem v-for="address in userAddresses" :address="address"
                      @delete-address="toggleDeleteChoice"  />
     </ul>
   </Transition>
@@ -23,7 +23,7 @@ import { computed } from "vue";
 import { baseDeleteModal } from "@/widgets/lib/base-delete-modal.ts";
 import { informationContactStore } from "@/features/use-user-address/model/address.store.ts";
 
-import AddressesItem from "../../../entities/user-address/ui/AddressesItem.vue";
+import AddressItem from "@/entities/user-address/ui/AddressItem.vue";
 import icon_address from "@/assets/icons/checkout/icon_address.svg";
 
 const { toggleDeleteChoice } = baseDeleteModal();

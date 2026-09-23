@@ -98,15 +98,14 @@ import { computed, onMounted } from "vue";
 import { filterProduct } from "@/features/use-navigation/lib/filter-product.ts";
 import { filterClasses } from "@/shared/const/filter/filter.classes.ts";
 import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
-import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import { useProductsModals } from "@/features/use-main-product/lib/product-modal.ts";
+import { sizes } from "@/shared/model/product.sizes.ts";
 
 import square from "@/assets/icons/squares/square.png";
 import availability from "@/assets/icons/arrows/arrow-up.svg";
 import left_arrow from "@/assets/icons/arrows/arrow-left.svg";
 import checked from '@/assets/icons/squares/check-square.png';
 
-const { sizes } = productStore();
 const { toggleFilterAside } = useProductsModals();
 const { getAllProducts, allProducts } = useGetProducts();
 const { selectedSidebarCategoryClass } = filterClasses();

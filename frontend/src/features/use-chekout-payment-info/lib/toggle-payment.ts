@@ -1,8 +1,5 @@
 import { ref } from "vue";
-import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
-import { paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment.form.ts";
-
-const { paymentMethod } = paymentStore();
+import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment.form.ts";
 
 const paymentId = ref<string>('');
 
@@ -13,13 +10,13 @@ const isChosenPayment = ref<boolean>(false);
 export const togglePaymentForm = () => {
     const openCardForm = (method: string) => {
         isDebitCard.value = true;
-        paymentMethod.value = method;
+        paymentForm.value.paymentMethod = method;
         paymentFormErrorMessage.value.paymentMethod= ''
     };
 
     const closeCardForm = (method: string) => {
         isDebitCard.value = false;
-        paymentMethod.value = method
+        paymentForm.value.paymentMethod = method
     };
 
     const toggleShowPayment = () => {

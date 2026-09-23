@@ -72,15 +72,14 @@
 
 <script setup lang="ts">
 import { filterProduct } from "@/features/use-navigation/lib/filter-product.ts";
-import { productStore } from "@/features/use-main-product/model/product.store.ts";
 import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
 import { filterClasses } from "@/shared/const/filter/filter.classes.ts";
+import { sizes } from "@/shared/model/product.sizes.ts";
 
 import square from '@/assets/icons/squares/square.png'
 import checked from '@/assets/icons/squares/check-square.png'
 import availability from '@/assets/icons/arrows/arrow-up.svg'
 
-const { sizes } = productStore();
 const { allProducts } = useGetProducts();
 const { selectedSizeClass, selectedFilterClass } = filterClasses();
 const { toggleFilter, getStackCount, toggleSize, stackProducts, genders, colors } = filterProduct();

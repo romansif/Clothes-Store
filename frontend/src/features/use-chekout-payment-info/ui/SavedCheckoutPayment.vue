@@ -10,17 +10,24 @@
           Hide saved payment
         </span>
       </div>
-      <PaymentList />
+      <SavedPaymentList />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-const { toggleShowPayment } = togglePaymentForm();
-
+import { onMounted } from "vue";
+import { useGetPayment } from "@/features/use-user-payment/api/get-payment.ts";
 import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment.ts";
 
-import PaymentList from "@/widgets/ui/payment/PaymentList.vue";
+import SavedPaymentList from "@/features/use-chekout-payment-info/ui/SavedPaymentList.vue";
+
+const { getPayments } = useGetPayment();
+const { toggleShowPayment } = togglePaymentForm();
+
+onMounted(async () => {
+  await getPayments();
+})
 </script>
 
 <style scoped>

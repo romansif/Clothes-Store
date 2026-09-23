@@ -40,7 +40,7 @@ import { productHelper } from "@/shared/lib/helper/product-helper.ts";
 import { addToCartClasses } from "@/features/use-product/const/add.to.cart.classes.ts";
 import type {User} from "@/entities/profile/model/user.types.ts";
 import type {ColorItem, Product, Size} from "@/shared/model/product.types.ts";
-import { addToCartFormErrorMessages } from "@/entities/product/model/add.to.cart.form.ts";
+import { addToCartFormErrorMessages } from "@/shared/model/add.to.cart.form.ts";
 
 defineProps<{
   product: Product,

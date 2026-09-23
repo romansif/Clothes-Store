@@ -74,9 +74,9 @@ import opened from "@/assets/icons/auth/opened.png";
 import BaseInput from "@/shared/ui/base/BaseInput.vue";
 
 const { showPassword } = authStore();
-const { togglePassword } = toggleAuth();
 const { getPhoneClass } = baseClasses();
-const { changeCountry, currentCountry, currentMask } = usePhoneForm();
+const { togglePassword, changeCountry } = toggleAuth();
+const { currentCountry, currentMask } = usePhoneForm();
 const { selectPhoneCodeClass, getSignUpPasswordClass } = authClasses();
 
 refClearErrorsOnChange(

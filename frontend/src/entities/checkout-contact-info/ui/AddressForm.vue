@@ -25,7 +25,7 @@
       <div class="flex flex-col w-full">
         <IMask v-model:value="informationForm.postalCode"
                placeholder="Postal Code"
-               :class="postalCodeClass"
+               :class="postalCodeClass(informationForm.postalCode)"
                :mask="postalCode.mask" />
       </div>
     </div>
@@ -39,6 +39,7 @@ import { postalCode } from "@/entities/checkout-contact-info/model/address.mask.
 import { informationForm, informationFormErrorMessages } from "@/entities/checkout-contact-info/model/address.form.ts";
 
 import CheckoutInput from "@/shared/ui/checkout/CheckoutInput.vue";
+
 const { postalCodeClass } = informationClasses();
 </script>
 <style scoped>

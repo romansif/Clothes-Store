@@ -12,7 +12,7 @@
       </div>
     </div>
     <ul v-else class="flex-col overflow-y-auto no-scrollbar h-92.5 pb-4">
-      <PaymentsItem v-for="payment in userPayments" :payment="payment"
+      <PaymentItem v-for="payment in userPayments" :payment="payment"
                     @delete-payment="toggleDeleteChoice" />
     </ul>
   </Transition>
@@ -23,7 +23,7 @@ import { computed } from "vue";
 import { baseDeleteModal } from "@/widgets/lib/base-delete-modal.ts";
 import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
 
-import PaymentsItem from "../../../entities/user-payment/ui/PaymentsItem.vue";
+import PaymentItem from "@/entities/user-payment/ui/PaymentItem.vue";
 import icon_card from "@/assets/icons/checkout/payment/icon_card.svg";
 
 const { userPayments } = paymentStore();

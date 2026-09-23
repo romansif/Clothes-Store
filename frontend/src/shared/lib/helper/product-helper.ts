@@ -1,10 +1,7 @@
 import { ref } from "vue";
-import { useGetProduct } from "@/features/use-product/api/get-product.ts";
-import { productStore } from "@/features/use-main-product/model/product.store.ts";
+import { sizes } from "@/shared/model/product.sizes.ts";
 import type { Product } from "@/shared/model/product.types.ts";
-
-const { sizes } = productStore();
-const { product } = useGetProduct();
+import type { AddForm } from "@/shared/model/add.to.cart.types.form.ts";
 
 export const itemPreview = ref<string[]>([]);
 export const activeProductImg = ref<string>('');
@@ -37,16 +34,16 @@ export const productHelper = () => {
         target.value = '';
     };
 
-    const changeImg =  (index: number)=> {
-        if(!product.value) return;
+    const changeImg =  (product: Product, index: number)=> {
+        if(!product) return;
 
         const realIndex = index + 1;
-        const mainPath = product.value.images[0];
+        const mainPath = product.images[0];
 
-        product.value.images[0] = product.value.images[realIndex];
-        product.value.images[realIndex] = mainPath;
+        product.images[0] = product.images[realIndex];
+        product.images[realIndex] = mainPath;
 
-        activeProductImg.value = `${import.meta.env.VITE_BASE_URL}/${product.value.images[0]}`;
+        activeProductImg.value = `${import.meta.env.VITE_BASE_URL}/${product.images[0]}`;
     };
 
     const productPreview = (id: string, array: Product[]) => {
@@ -170,17 +167,17 @@ export const productHelper = () => {
         return product.variants.every(v => v.count === 0)
     };
 
-    const variantsInfo = (form: any, product: Product) => {
+    const variantsInfo = (form: AddForm, product: Product) => {
         const variantsList = product?.variants || [];
 
         const totalCount = variantsList.find(
-            v => v.hex === form.hex && v.size === form.sizes);
+            v => v.hex === form.colors.hex && v.size === form.sizes);
 
         const count = totalCount?.count ?? 0;
 
         if(count < 4 && count !== 0){
             return `🔥 Only ${count} left`;
-        }else if(form.hex && form.sizes){
+        }else if(form.colors.hex && form.sizes){
             return `In stock ${count} pcs.`;
         }else if(count === 0){
             return `Select specific.`;

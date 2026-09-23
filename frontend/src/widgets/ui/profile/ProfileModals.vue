@@ -24,7 +24,7 @@
 
 <script setup lang="ts">
 import { baseDeleteModal } from "@/widgets/lib/base-delete-modal.ts";
-import { useProfileModals } from "@/shared/lib/profile-modal.ts";
+import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 
 import SavedPaymentModal from "@/features/use-user-payment/ui/SavedPaymentModal.vue";
 import ChangeAvatarModal from "@/features/use-profile/ui/ChangeAvatarModal.vue";

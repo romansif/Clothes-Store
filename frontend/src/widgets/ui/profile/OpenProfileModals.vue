@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { useProfileModals } from "@/shared/lib/profile-modal.ts";
+import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import type {User} from "@/entities/profile/model/user.types.ts";
 
 defineProps<{

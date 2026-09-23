@@ -5,7 +5,6 @@ import { ApiError } from "@/shared/api/http.ts";
 
 export const applyErrors = (
     err: unknown,
-
     formErrorMessages: Ref<Record<string, string>>
 ) => {
     if(!(err instanceof ApiError)) return
@@ -43,7 +42,6 @@ export const applyZodErrors = (
 
 export const refClearErrorsOnChange = <T extends Record<string, unknown>>(
     form: Ref<T>,
-
     formErrorMessages: Ref<Partial<Record<keyof T, string>>>
 ) => {
     (Object.keys(form.value) as Array<keyof T>).forEach((field) => {

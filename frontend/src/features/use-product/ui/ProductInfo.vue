@@ -46,7 +46,7 @@ import { toggleReadMore, fullDescription } from "@/features/use-product/lib/togg
 import type {Product} from "@/shared/model/product.types.ts";
 import {
   addToCartForm, addToCartFormErrorMessages
-} from "@/entities/product/model/add.to.cart.form.ts";
+} from "@/shared/model/add.to.cart.form.ts";
 
 defineProps<{
   product: Product,

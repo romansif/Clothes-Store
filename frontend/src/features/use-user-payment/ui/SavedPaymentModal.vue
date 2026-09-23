@@ -25,8 +25,10 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from "vue";
 import { baseDeleteModal } from "@/widgets/lib/base-delete-modal.ts";
-import { useProfileModals } from "@/shared/lib/profile-modal.ts";
+import { useGetPayment } from "@/features/use-user-payment/api/get-payment.ts";
+import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
 
 import BaseButton from "@/shared/ui/base/BaseButton.vue";
@@ -34,9 +36,14 @@ import DeleteModal from "@/widgets/ui/DeleteModal.vue";
 import PaymentCardEmpty from "@/entities/profile/ui/PaymentCardEmpty.vue";
 import PaymentsList from "@/features/use-user-payment/ui/PaymentsList.vue";
 
+const { getPayments } = useGetPayment();
 const { userPayments } = paymentStore();
 const { deleteModal } = baseDeleteModal();
 const { toggleSavedPaymentCard } = useProfileModals();
+
+onMounted(async () => {
+  await getPayments();
+})
 </script>
 
 

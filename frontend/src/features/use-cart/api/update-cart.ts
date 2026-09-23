@@ -7,7 +7,7 @@ import { useDeleteCart } from "@/features/use-cart/api/delete-cart.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import type {CartItem} from "@/entities/cart/model/cart.types.ts";
-import { isAgreeFormError } from "@/entities/product/model/add.to.cart.form.ts";
+import { isAgreeFormError } from "@/shared/model/add.to.cart.form.ts";
 
 const { cart } = cartStore();
 const { userData } = userStore();
@@ -118,9 +118,9 @@ export const useUpdateCart = () => {
                         })
                     });
                 }else{
-                    console.warn('Достигнуто максимальное количество товара на складе.');
                     await openNotify('The item is no longer in stock.',
                         'The maximum stock level for the item has been reached.', 'cart')
+                    console.warn('Достигнуто максимальное количество товара на складе.');
                     return;
                 }
             }else if(type === 'away') {

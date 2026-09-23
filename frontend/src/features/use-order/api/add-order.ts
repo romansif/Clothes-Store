@@ -15,6 +15,9 @@ export const useAddOrder = () => {
         if(!userData.value) return
 
         try{
+            console.log(items.value);
+            console.log(JSON.stringify(items.value));
+
             await handler(`/orders`, {
                 method: "POST",
                 body: JSON.stringify({

@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { useProfileModals } from "@/shared/lib/profile-modal.ts";
+import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 
 import ConfidentialityData from "../../../entities/profile/ui/ConfidentialityData.vue";

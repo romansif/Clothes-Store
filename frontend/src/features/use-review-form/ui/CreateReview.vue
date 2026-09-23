@@ -1,8 +1,8 @@
 <template>
-  <div @click="toggleReviewChoice('')" class="font-montserrat fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)]
+  <div @click="toggleReviewModal('')" class="font-montserrat fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)]
       flex items-center justify-center">
     <form @click.stop class="flex flex-col gap-2 bg-white w-150 h-fit rounded-xl p-5">
-      <BaseButton @click="toggleReviewChoice" name="Exit"
+      <BaseButton @click="toggleReviewModal" name="Exit"
                   variant="exitClose" />
       <div class="flex flex-col gap-4 border-b pb-4">
         <h1 class="font-bold text-2xl">
@@ -13,9 +13,10 @@
         </span>
       </div>
       <div class="font-semibold flex flex-col gap-5.5 mt-5">
-        <AddRating :ratings="ratings" @add-rating="addRating"/>
+        <AddRating :ratings="ratings"
+                   @add-rating="addRating"/>
         <AddReview />
-        <AddPhotos @open-select-image="openSelectImage"/>
+        <AddPhotos />
       </div>
       <div class="flex justify-end mt-5">
         <BaseButton @click="createReview" name="Create Review"
@@ -31,7 +32,7 @@
 import { addRating } from "@/features/use-review-form/lib/add-rating-star.ts";
 import { reviewsStore } from "@/features/use-product-review/model/reviews.store.ts";
 import { useAddReview } from "@/features/use-review-form/api/add-review.ts";
-import { toggleReviewChoice } from "@/features/use-review-form/lib/review-form-modal.ts";
+import { toggleReviewModal } from "@/features/use-review-form/lib/review-form-modal.ts";
 import { fileInput, productHelper } from "@/shared/lib/helper/product-helper.ts";
 
 import BaseButton from "@/shared/ui/base/BaseButton.vue";
@@ -41,7 +42,7 @@ import AddPhotos from "@/entities/review-form/ui/AddPhotos.vue";
 
 const { ratings } = reviewsStore();
 const { createReview } = useAddReview();
-const { onFilesSelected, openSelectImage } = productHelper();
+const { onFilesSelected } = productHelper();
 </script>
 
 <style scoped>

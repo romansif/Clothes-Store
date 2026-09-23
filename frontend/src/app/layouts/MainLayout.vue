@@ -23,7 +23,7 @@ import { useBaseModals } from "@/shared/lib/base-modal.ts";
 
 import MainNavBar from "@/widgets/ui/navigation/MainNavBar.vue";
 import BaseButton from "@/shared/ui/base/BaseButton.vue";
-import Notification from "@/widgets/ui/Notification.vue";
+import Notification from "@/shared/ui/Notification.vue";
 
 const { notify } = useBaseModals();
 const { componentError, resetError } = errorHandler();

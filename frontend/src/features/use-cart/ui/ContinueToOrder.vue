@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { watch } from "vue";
 import { useCartOrderInfo } from "@/features/use-cart/lib/cart-order-info.ts";
-import { isAgreeFormError, isAgreeFormErrorMessage } from "@/entities/product/model/add.to.cart.form.ts";
+import { isAgreeFormError, isAgreeFormErrorMessage } from "@/shared/model/add.to.cart.form.ts";
 
 import check_square from "@/assets/icons/squares/check-square.png";
 import square from "@/assets/icons/squares/square.png";

@@ -4,7 +4,6 @@ import { useAddOrder } from "@/features/use-order/api/add-order.ts";
 import { useUpdateCart } from "@/features/use-cart/api/update-cart.ts";
 import { clearPaymentForm } from "@/features/use-chekout-payment-info/lib/clear-payment.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
 import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment.ts";
 import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.ts";
 import type { UserPayment } from "@/entities/checkout-payment/model/payment.type.ts";
@@ -14,7 +13,6 @@ import { addPaymentSchema } from "@/entities/checkout-payment/model/payment.sche
 const { userData } = userStore();
 const { createOrder } = useAddOrder();
 const { openNotify } = useBaseModals();
-const { paymentMethod } = paymentStore();
 const { updateCheckedQuantity } = useUpdateCart();
 const { isChosenPayment, paymentId } = togglePaymentForm();
 
@@ -56,6 +54,8 @@ export const useAddPayment = () => {
     }
 
     const addPayment = async () => {
+        console.log('1 START');
+
         const paymentId =  localStorage.getItem("paymentId");
 
         const result = addPaymentSchema.safeParse(paymentForm.value)
@@ -70,14 +70,16 @@ export const useAddPayment = () => {
         try{
             if(!userData.value) return
 
-            if(paymentMethod.value === 'card'){
+            console.log('2 BEFORE PAYMENT');
+
+            if(paymentForm.value.paymentMethod === 'card'){
                 await handler(`/payment`, {
                     method: "POST",
                     body: JSON.stringify({
                         userId: userData.value.id,
                         paymentId: paymentId,
                         paymentMethod: 'card',
-                        cardName: paymentForm,
+                        cardName: paymentForm.value.paymentMethod,
                         cardNumber: paymentForm.value.cardNumber,
                         expiryDate: paymentForm.value.expiryDate,
                         cardCvv: String(paymentForm.value.cardCvv),

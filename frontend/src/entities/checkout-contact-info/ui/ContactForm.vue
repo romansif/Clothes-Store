@@ -33,12 +33,13 @@
 import { IMaskComponent as IMask } from "vue-imask";
 import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
 import { informationClasses } from "@/shared/const/checkout/information.classes.ts";
+import { changeCountry } from "@/entities/checkout-contact-info/lib/change-country.ts";
 import { informationForm, informationFormErrorMessages } from "@/entities/checkout-contact-info/model/address.form.ts";
 import { countries, selectedCountryCode } from "@/shared/lib/select-phone-form.ts";
 
 import CheckoutInput from "@/shared/ui/checkout/CheckoutInput.vue";
 
-const { currentMask, currentCountry, changeCountry } = usePhoneForm();
+const { currentMask, currentCountry } = usePhoneForm();
 const { informationPhoneClass, informationSelectPhoneCodeClass } = informationClasses();
 </script>
 

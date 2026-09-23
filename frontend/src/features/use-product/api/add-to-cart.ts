@@ -6,8 +6,8 @@ import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.ts";
-import { addToCartForm, addToCartFormErrorMessages } from "@/entities/product/model/add.to.cart.form.ts";
-import { addToCartSchema } from "@/entities/product/model/add.to.cart.schemas.ts";
+import { addToCartForm, addToCartFormErrorMessages } from "@/shared/model/add.to.cart.form.ts";
+import { addToCartSchema } from "@/shared/model/add.to.cart.schemas.ts";
 
 const { userData } = userStore();
 const { product } = useGetProduct();

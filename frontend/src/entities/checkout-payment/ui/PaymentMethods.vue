@@ -52,11 +52,11 @@ defineProps<{
 }>();
 
 const emit = defineEmits<{
-  openCardForm: [type: string];
+  openCardForm: [method: string];
 }>();
 
-const openCardForm = (type: string) => {
-  emit("openCardForm", type);
+const openCardForm = (method: string) => {
+  emit("openCardForm", method);
 };
 
 import PaymentForm from "./PaymentForm.vue";

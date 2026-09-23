@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import router from "@/app/router";
+import { useRouter } from "vue-router";
 
 const notify = ref<boolean>(false);
 const notifyTitle = ref<string>('');
@@ -12,6 +12,8 @@ export const useBaseModals = () => {
         new Promise(resolve => setTimeout(resolve, ms));
 
     const openNotify= async (title: string, message: string, name: string) => {
+        const router = useRouter();
+
         notifyTitle.value = title;
         notifyMessage.value = message;
 
