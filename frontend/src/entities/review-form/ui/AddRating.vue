@@ -13,7 +13,7 @@
       </div>
       <span class="text-sm text-[#A3A3A3]">Tap to rate (1-5 star)</span>
     </div>
-    <span v-if="reviewFormMessages.rating" class="text-xs text-red-600 mt-6">{{ reviewFormMessages.rating }}</span>
+    <span v-if="reviewFormMessages.rating" class="font-semibold text-xs text-red-600 mt-4">{{ reviewFormMessages.rating }}</span>
   </div>
 </template>
 

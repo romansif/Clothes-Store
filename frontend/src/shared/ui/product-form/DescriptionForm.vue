@@ -1,6 +1,6 @@
 <template>
  <textarea v-model="model" :placeholder="placeholder"
-           :class="['h-25 border border-gray-200 rounded-sm outline-none px-6 py-5 text-sm bg-white',
+           :class="['font-medium h-25 border border-gray-200 rounded-sm outline-none px-6 py-5 text-sm bg-white',
                 errorMessage ? 'border-red-500' : '']" />
   <span v-if="errorMessage" class="text-red-600 text-xs">
     {{ errorMessage }}

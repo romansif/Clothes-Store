@@ -61,7 +61,7 @@
 </template>
 
 <script setup lang="ts">
-import { productStore } from "@/features/use-main-product/model/product.store.ts";
+import { sizes } from "@/shared/model/product.sizes.ts";
 import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { toggleSizeGuide } from "@/features/use-product/lib/toggle-more-info.ts";
 import { productSpecific } from "@/entities/product-form/model/product.specific.ts";
@@ -69,7 +69,6 @@ import { formatterSizeGuide, unit } from "@/features/use-product/lib/formatter-s
 
 import close from '@/assets/icons/delete-close/delete.svg'
 
-const { sizes } = productStore();
 const { product } = useGetProduct();
 const { sizesShoes } = productSpecific();
 </script>

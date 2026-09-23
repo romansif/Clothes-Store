@@ -12,7 +12,7 @@
           Your feedback helps other customers make the right choice
         </span>
       </div>
-      <div class="font-semibold flex flex-col gap-4 mt-5">
+      <div class="font-medium flex flex-col gap-4 mt-4">
         <AddRating :ratings="ratings"
                    @add-rating="addRating"/>
         <AddReview />
