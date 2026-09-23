@@ -25,8 +25,8 @@
 
 <script setup lang="ts">
 import type { OrderItem } from "@/entities/order/model/order.types.ts";
-import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { productHelper } from "@/shared/lib/helper/product-helper.ts";
+import { previewHelper } from "@/entities/product-card/lib/preview-helper.ts";
 import { orderPreview } from "@/features/use-checkout-order/lib/checkout-order-helper.ts";
 import type {Product} from "@/shared/model/product.types.ts";
 
@@ -35,7 +35,7 @@ defineProps<{
   items: OrderItem[];
 }>()
 
-const { getProductId } = useGetProduct();
+const { getProductId } = previewHelper();
 const { pureQuantity, pureColorsName } = productHelper();
 </script>
 

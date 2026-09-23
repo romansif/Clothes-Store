@@ -131,7 +131,7 @@
 </template>
 
 <script setup lang="ts">
-import { productStore } from "@/features/use-main-product/model/product.store.ts";
+import { sizes } from "@/shared/model/product.sizes.ts";
 import { productFormHelper } from "@/features/use-product-form/lib/product-form-helper.ts";
 import { reactiveClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
 import {
@@ -141,7 +141,6 @@ import {
 
 import BaseInput from "@/shared/ui/base/BaseInput.vue";
 
-const { sizes } = productStore();
 const { toggleAllVariants, toggleQuantity, toggleSize, toggleColor, countMode } = productFormHelper();
 
 reactiveClearErrorsOnChange(

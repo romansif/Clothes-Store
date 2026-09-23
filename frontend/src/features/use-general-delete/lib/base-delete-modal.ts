@@ -6,7 +6,9 @@ import { useDeleteCart } from "@/features/use-cart/api/delete-cart.ts";
 import { useDeleteAddress } from "@/features/use-user-address/api/delete-address.ts";
 import { useDeleteOrder } from "@/features/use-order/api/delete-order.ts";
 import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
+import { useGetMyProduct } from "@/features/use-my-product/api/get-my-product.ts";
 
+const { getMyProducts } = useGetMyProduct()
 const { logout, deleteAccount } = useAuth();
 const { deletePayment } = useDeletePayment();
 const { deleteProduct } = useDeleteProduct();
@@ -42,6 +44,7 @@ export const baseDeleteModal = () => {
 
                 case "DELETE_PROUCT_ITEM":
                     await deleteProduct(generalId.value)
+                    await getMyProducts()
                     break
 
                 case "DELETE_CART_ITEM":

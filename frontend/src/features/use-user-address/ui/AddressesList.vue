@@ -11,7 +11,7 @@
         </div>
       </div>
     </div>
-    <ul v-else class="flex flex-col overflow-y-auto no-scrollbar h-92.5 pb-4">
+    <ul v-else class="grid grid-cols-2 overflow-y-auto no-scrollbar h-92.5 pb-4">
       <AddressItem v-for="address in userAddresses" :address="address"
                      @delete-address="toggleDeleteChoice"  />
     </ul>

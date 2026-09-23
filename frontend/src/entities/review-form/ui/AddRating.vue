@@ -4,7 +4,7 @@
       <h2 class="text-lg">Your rating</h2>
       <span class="text-red-500">*</span>
     </div>
-    <div class="flex items-center gap-15 mt-5">
+    <div class="flex items-center gap-10 mt-5">
       <div class="flex items-center gap-5">
         <img v-for="rating in ratings" :key="rating"
              :src="ratingSrc(rating)" alt=""
@@ -13,13 +13,14 @@
       </div>
       <span class="text-sm text-[#A3A3A3]">Tap to rate (1-5 star)</span>
     </div>
+    <span v-if="reviewFormMessages.rating" class="text-xs text-red-600 mt-6">{{ reviewFormMessages.rating }}</span>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ratingSrc } from "@/entities/review-form/lib/rating.display.ts";
 import { reviewsClasses } from "@/shared/const/review/reviews.classes.ts";
-import { reviewForm } from "@/entities/review-form/model/review.form.ts";
+import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/review.form.ts";
 
 defineProps<{
   ratings: number[]

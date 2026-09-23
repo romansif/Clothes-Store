@@ -4,7 +4,7 @@
     <form @click.stop class="flex flex-col gap-2 bg-white w-150 h-fit rounded-xl p-5">
       <BaseButton @click="toggleReviewModal" name="Exit"
                   variant="exitClose" />
-      <div class="flex flex-col gap-4 border-b pb-4">
+      <div class="flex flex-col gap-2 border-b pb-4">
         <h1 class="font-bold text-2xl">
           WRITE A REVIEW
         </h1>
@@ -12,13 +12,13 @@
           Your feedback helps other customers make the right choice
         </span>
       </div>
-      <div class="font-semibold flex flex-col gap-5.5 mt-5">
+      <div class="font-semibold flex flex-col gap-4 mt-5">
         <AddRating :ratings="ratings"
                    @add-rating="addRating"/>
         <AddReview />
         <AddPhotos />
       </div>
-      <div class="flex justify-end mt-5">
+      <div class="flex justify-end mt-4">
         <BaseButton @click="createReview" name="Create Review"
                     variant="replaceAndReview" />
       </div>
@@ -32,8 +32,10 @@
 import { addRating } from "@/features/use-review-form/lib/add-rating-star.ts";
 import { reviewsStore } from "@/features/use-product-review/model/reviews.store.ts";
 import { useAddReview } from "@/features/use-review-form/api/add-review.ts";
+import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
 import { toggleReviewModal } from "@/features/use-review-form/lib/review-form-modal.ts";
 import { fileInput, productHelper } from "@/shared/lib/helper/product-helper.ts";
+import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/review.form.ts";
 
 import BaseButton from "@/shared/ui/base/BaseButton.vue";
 import AddRating from "@/entities/review-form/ui/AddRating.vue";
@@ -43,6 +45,11 @@ import AddPhotos from "@/entities/review-form/ui/AddPhotos.vue";
 const { ratings } = reviewsStore();
 const { createReview } = useAddReview();
 const { onFilesSelected } = productHelper();
+
+refClearErrorsOnChange(
+    reviewForm,
+    reviewFormMessages
+)
 </script>
 
 <style scoped>

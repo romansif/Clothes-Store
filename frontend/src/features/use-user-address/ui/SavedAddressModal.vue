@@ -12,7 +12,7 @@
             </span>
           </div>
         </div>
-        <div v-if="userAddresses.length" class="flex flex-col w-full pr-5">
+        <div v-if="userAddresses.length" class="flex flex-col w-full">
           <AddressesList />
         </div>
         <AddressesEmpty v-else />

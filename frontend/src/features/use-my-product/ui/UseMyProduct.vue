@@ -10,8 +10,8 @@
 </template>
 
 <script setup lang="ts">
+import { previewHelper } from "@/entities/product-card/lib/preview-helper.ts";
 import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal.ts";
-import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import type {Product} from "@/shared/model/product.types.ts";
 
 defineProps<{
@@ -21,7 +21,7 @@ defineProps<{
 import pencil from "@/assets/icons/products/pencil.svg";
 import del from "@/assets/icons/delete-close/delete.svg";
 
-const { getProductId } = useGetProduct();
+const { getProductId } = previewHelper();
 const { toggleDeleteChoice } = baseDeleteModal();
 </script>
 

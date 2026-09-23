@@ -12,7 +12,7 @@
             </span>
           </div>
         </div>
-        <div v-if="userPayments.length" class="flex flex-col w-full pl-5">
+        <div v-if="userPayments.length" class="flex flex-col w-full">
           <PaymentsList />
         </div>
         <PaymentCardEmpty v-else />

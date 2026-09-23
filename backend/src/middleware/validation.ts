@@ -164,6 +164,11 @@ export const validation = {
         body('cause_replace').trim().notEmpty().withMessage('Select a reason for cancellation'),
     ],
 
+    createReviewValidation: [
+        body('rating').notEmpty().withMessage('Rating is required'),
+        body('comment').notEmpty().withMessage('Comment is required'),
+    ],
+
     handleValidationErrors (req: Request, res: Response, next: NextFunction) {
         const errors = validationResult(req);
 

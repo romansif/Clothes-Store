@@ -1,6 +1,6 @@
 <template>
-  <TransitionGroup name="list" mode="out-in">
-    <li :key="payment.id" class="flex flex-col mt-5 border border-gray-200 rounded-xl shadow-lg p-2">
+  <TransitionGroup name="list">
+    <li :key="payment.id" class="flex flex-col h-fit mt-5 border border-gray-200 rounded-xl shadow-lg p-2">
       <div class="flex flex-col gap-5">
         <div class="flex gap-5">
           <span class="text-sm font-semibold">
