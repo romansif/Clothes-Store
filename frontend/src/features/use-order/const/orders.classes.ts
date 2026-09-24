@@ -2,6 +2,8 @@ import { type Order } from "@/entities/order/model/order.types.ts";
 
 export const ordersClasses = () => {
     const orderStatus = (order: Order) => [
+        'text-xs px-2.5 py-1 rounded-md',
+
         {
             'bg-teal-50 text-teal-700 border border-teal-200 w-19.5' : order.status === 'Delivered',
             'bg-sky-50 text-sky-700 border border-sky-200 w-18.5' : order.status === 'En route',

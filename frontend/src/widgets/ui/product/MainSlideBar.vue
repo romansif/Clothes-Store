@@ -1,7 +1,8 @@
 <template>
   <div class="font-montserrat relative overflow-hidden w-230">
     <Transition name="slide" mode="out-in">
-      <div :key="mainSlides[activeSlide].id" class="bg-black flex justify-between h-45 rounded-2xl">
+      <div :key="mainSlides[activeSlide].id"
+           class="bg-black flex justify-between h-45 rounded-2xl">
         <div style="filter: drop-shadow(0 0 8px rgba(255, 255, 255, 1))"
              class="flex flex-col justify-center gap-3 px-15 w-100">
           <h2 class="text-2xl font-semibold text-gray-50 break-after-all">
@@ -11,7 +12,8 @@
             {{ mainSlides[activeSlide].text }}
           </p>
         </div>
-        <img :src="mainSlides[activeSlide].url" alt="" class="w-115 opacity-90 rounded-r-2xl" />
+        <img :src="mainSlides[activeSlide].url" alt=""
+             class="w-115 opacity-90 rounded-r-2xl" />
       </div>
     </Transition>
   </div>

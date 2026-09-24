@@ -20,21 +20,30 @@
       <div class="flex items-center">
         <span>Shipping</span>
         <div class="flex ml-auto gap-2">
-          <span v-if="!shippingForm.delivery" class="text-gray-400">Calculated at next step</span>
-          <span v-if="shippingForm.delivery === 'express'" class="text-gray-400">
+          <span v-if="!shippingForm.delivery"
+                class="text-gray-400">
+            Calculated at next step
+          </span>
+          <span v-if="shippingForm.delivery === 'express'"
+                class="text-gray-400">
             {{ shippingForm.delivery }}
           </span>
-          <span v-if="shippingForm.delivery === 'standard'" class="text-gray-400">
+          <span v-if="shippingForm.delivery === 'standard'"
+                class="text-gray-400">
             {{ shippingForm.delivery }}
           </span>
         </div>
       </div>
     </div>
     <div class="border-b border-gray-300 mt-3 mb-1"></div>
-    <span class="text-xs text-[#A3A3A3] font-dm-sans">$ {{ commissionPrice }} commission and service operation</span>
+    <span class="text-xs text-[#A3A3A3] font-dm-sans">
+      $ {{ commissionPrice }} commission and service operation
+    </span>
     <div class="flex justify-between font-medium mt-3 text-sm">
       <span>Total</span>
-      <span class="font-dm-sans">$ {{ totalPrice }}</span>
+      <span class="font-dm-sans">
+        $ {{ totalPrice }}
+      </span>
     </div>
   </div>
 </template>

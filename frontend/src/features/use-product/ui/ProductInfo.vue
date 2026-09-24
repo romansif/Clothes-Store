@@ -11,9 +11,9 @@
             </h2>
           </div>
           <div class="flex flex-col gap-3 ml-auto font-medium">
-            <img @click="toggleToFavorite(product)"
-                 :src="isFavorite(product, user) ? liked : like" alt=""
-                 class="w-8.75  cursor-pointer">
+            <img :src="isFavorite(product, user) ? liked : like" alt=""
+                 class="w-8.75  cursor-pointer"
+                 @click="toggleToFavorite(product)">
           </div>
         </div>
         <div class="flex text-sm font-medium text-[#A3A3A3] mt-1 font-dm-sans">

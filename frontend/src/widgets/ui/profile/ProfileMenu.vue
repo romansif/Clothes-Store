@@ -1,5 +1,6 @@
 <template>
-  <Menu v-if="userData" as="div" class="relative inline-block font-raleway">
+  <Menu v-if="userData" as="div"
+        class="relative inline-block font-raleway">
     <MenuButton class="border border-gray-300 inline-flex w-full justify-center gap-x-1.5 rounded-xl
         px-3 py-2 text-sm font-semibold inset-ring-1 inset-ring-white/5 transition duration-400 hover:scale-108">
       Account
@@ -11,22 +12,20 @@
           rounded-xl bg-white border border-gray-300">
         <div class="py-1">
           <MenuItem v-slot="{ active }">
-            <button @click="toggleDeleteChoice('Are you sure you want to log out of this account?', 'EXIT', '')"
-                    :class="['transition duration-400 cursor-pointer', active ?
-                    'bg-white/5 text-black outline-hidden scale-110' :
-                    'text-[#A3A3A3]',
-                'block px-4 py-2 text-sm']">
+            <button :class="['transition duration-400 cursor-pointer',
+                    active ? 'bg-white/5 text-black outline-hidden scale-110' :
+                    'text-[#A3A3A3] block px-4 py-2 text-sm']"
+                    @click="toggleDeleteChoice('Are you sure you want to log out of this account?', 'EXIT', '')">
               Exit Account
             </button>
           </MenuItem>
         </div>
         <div class="py-1">
           <MenuItem v-slot="{ active }">
-            <button @click="toggleDeleteChoice('Are you sure you want to delete this account?', 'DELETE_ACCOUNT', '')"
-                    :class="['transition duration-400 cursor-pointer', active ?
-                    'bg-white/5 text-black outline-hidden scale-110' :
-                    'text-[#A3A3A3]',
-                'block px-4 py-2 text-sm']">
+            <button :class="['transition duration-400 cursor-pointer',
+                    active ? 'bg-white/5 text-black outline-hidden scale-110' :
+                    'text-[#A3A3A3] block px-4 py-2 text-sm']"
+                    @click="toggleDeleteChoice('Are you sure you want to delete this account?', 'DELETE_ACCOUNT', '')">
               Delete Account
             </button>
           </MenuItem>
@@ -34,16 +33,16 @@
         <div class="py-1">
           <MenuItem v-slot="{ active }" v-if="userData.role === 'Seller'">
             <router-link :to="{name: 'signUp'}">
-              <button :class="['transition duration-400 cursor-pointer', active ? 'bg-white/5 text-black outline-hidden scale-110' : 'text-[#A3A3A3]',
-                  'block px-4 py-2 text-sm']">
+              <button :class="['transition duration-400 cursor-pointer',
+                      active ? 'bg-white/5 text-black outline-hidden scale-110' : 'text-[#A3A3A3] block px-4 py-2 text-sm']">
                 Become a buyer
               </button>
             </router-link>
           </MenuItem>
           <MenuItem v-slot="{ active }" v-if="userData.role === 'Buyer'">
             <router-link :to="{name: 'signUp'}">
-              <button :class="['transition duration-400 cursor-pointer', active ? 'bg-white/5 text-black outline-hidden scale-110' : 'text-[#A3A3A3]',
-                  'block px-4 py-2 text-sm']">
+              <button :class="['transition duration-400 cursor-pointer',
+                      active ? 'bg-white/5 text-black outline-hidden scale-110' : 'text-[#A3A3A3] block px-4 py-2 text-sm']">
                 Become a seller
               </button>
             </router-link>

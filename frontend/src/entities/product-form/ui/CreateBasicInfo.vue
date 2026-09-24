@@ -27,7 +27,8 @@
         </label>
         <div class="relative">
           <select v-model="createProductForm.collections"
-                  :class="baseSelectClass(createProductForm.collections, createProductFormErrorMessages.collections)">
+                  :class="baseSelectClass(createProductForm.collections,
+                  createProductFormErrorMessages.collections)">
             <option v-for="collection in collections" :key="collection.name"
                     :value="{
                         season: collection.season,
@@ -44,7 +45,8 @@
             Void
           </span>
         </div>
-        <span v-if="createProductFormErrorMessages.collections" class="text-red-600 text-xs">
+        <span v-if="createProductFormErrorMessages.collections"
+              class="text-red-600 text-xs">
           {{ createProductFormErrorMessages.collections }}
         </span>
       </div>
@@ -54,13 +56,15 @@
           <span class="text-red-500">*</span>
         </label>
         <select v-model="createProductForm.category"
-                :class="baseSelectClass(createProductForm.category, createProductFormErrorMessages.category)">
+                :class="baseSelectClass(createProductForm.category,
+                createProductFormErrorMessages.category)">
           <option disabled hidden value="">
             Shirt
           </option>
           <option v-for="category in categories" class="text-black">{{ category.category }}</option>
         </select>
-        <span v-if="createProductFormErrorMessages.category" class="text-red-600 text-xs">
+        <span v-if="createProductFormErrorMessages.category"
+              class="text-red-600 text-xs">
           {{ createProductFormErrorMessages.category }}
         </span>
       </div>
@@ -72,13 +76,15 @@
           <span class="text-red-500">*</span>
         </label>
         <select v-model="createProductForm.material"
-                :class="baseSelectClass(createProductForm.material, createProductFormErrorMessages.material)">
+                :class="baseSelectClass(createProductForm.material,
+                createProductFormErrorMessages.material)">
           <option disabled hidden value="">
             Cotton
           </option>
           <option v-for="material in materials" class="text-black">{{ material.material }}</option>
         </select>
-        <span v-if="createProductFormErrorMessages.material" class="text-red-600 text-xs">
+        <span v-if="createProductFormErrorMessages.material"
+              class="text-red-600 text-xs">
           {{ createProductFormErrorMessages.material }}
         </span>
       </div>
@@ -89,7 +95,8 @@
         </label>
         <div class="flex flex-col gap-3">
           <select v-model="createProductForm.gender"
-                  :class="baseSelectClass(createProductForm.gender, createProductFormErrorMessages.gender)">
+                  :class="baseSelectClass(createProductForm.gender,
+                  createProductFormErrorMessages.gender)">
             <option disabled hidden value="">
               man, woman, kids
             </option>
@@ -132,8 +139,9 @@
         DESC. · ОПИСАНИЕ
         <span class="text-red-500">*</span>
       </label>
-      <DescriptionForm v-model="createProductForm.description" :error-message="createProductFormErrorMessages.description"
-                       :placeholder="'short desc. of product'" />
+      <DescriptionForm v-model="createProductForm.description"
+                       :placeholder="'short desc. of product'"
+                       :error-message="createProductFormErrorMessages.description" />
       <span class="ml-auto text-[#A3A3A3] text-xs font-medium">{{ createProductForm.description.length }} / 400</span>
     </div>
   </div>

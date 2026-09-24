@@ -37,7 +37,8 @@
             <th class="font-medium pb-4">
               Colors
             </th>
-            <th v-for="size in uniqueSizes(product)" :key="size" class="text-center font-medium min-w-16 pb-4">
+            <th v-for="size in uniqueSizes(product)" :key="size"
+                class="text-center font-medium min-w-16 pb-4">
               {{ size }}
             </th>
           </tr>
@@ -46,14 +47,16 @@
           <tr v-for="color in uniqueColors(product)" :key="color.colorName">
             <td :title="color.hex">
               <div class="flex items-center gap-2">
-                <span :style="{ background: color.hex }" class="w-10 h-10 shrink-0 rounded-full
+                <span :style="{ background: color.hex }"
+                      class="w-10 h-10 shrink-0 rounded-full
                       border-2 border-gray-300 shadow-sm"/>
                 <span class="text-xs font-bold text-black uppercase whitespace-nowrap">
                   {{ color.colorName }}
                 </span>
               </div>
             </td>
-            <td v-for="size in uniqueSizes(product)" :key="`${color.colorName}-${size}`" class="py-6 text-center">
+            <td v-for="size in uniqueSizes(product)" :key="`${color.colorName}-${size}`"
+                class="py-6 text-center">
               <input type="number"
                      min="0"
                      step="1"
@@ -80,7 +83,8 @@
         </span>
       </div>
       <div class="flex gap-6">
-        <img v-for="size in isAvailableSizes(product)" :key="size?.name" :src="size.url" alt=""
+        <img v-for="size in isAvailableSizes(product)" :key="size?.name"
+             :src="size.url" alt=""
              :class="[size.class, 'transition duration-400 scale-110 w-15 rounded-full']">
       </div>
       <span v-if="moreCreateItemFormErrorMessages.sizes" class="text-red-600 text-xs">
@@ -100,7 +104,8 @@
         </span>
       </div>
       <div class="flex gap-6">
-        <label v-for="(color, index) in pureInfoColors(product)" :key="color.hex" :title="color.hex"
+        <label v-for="(color, index) in pureInfoColors(product)" :key="color.hex"
+               :title="color.hex"
                :style="{ background: color.hex }"
                class="w-15 h-15 border-2 border-[#A3A3A3] rounded-full transition-all duration-300 scale-110">
           <input @change="(e) => updateProductColors(product, index, e)" type="color"

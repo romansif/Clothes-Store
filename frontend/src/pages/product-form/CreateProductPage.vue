@@ -1,12 +1,15 @@
 <template>
-  <form @submit.prevent="createProduct" action="">
+  <form action="" @submit.prevent="createProduct">
     <CreateImageUpload />
     <CreateBasicInfo />
     <CreateVariants />
     <div class="w-full mt-4 mb-6">
-      <BaseButton type="submit" name="CREATE PRODUCT" variant="useProduct" />
+      <BaseButton type="submit"
+                  name="CREATE PRODUCT"
+                  variant="useProduct" />
     </div>
-    <input type="file" @change="onFilesSelected" class="hidden"
+    <input type="file" @change="onFilesSelected"
+           class="hidden"
            :ref="(el) => { fileInput = el as HTMLInputElement }" multiple accept="image/*">
   </form>
 </template>

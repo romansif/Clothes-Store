@@ -1,9 +1,12 @@
 <template>
-  <div @click="toggleReviewModal('')" class="font-montserrat fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)]
-      flex items-center justify-center">
-    <form @click.stop class="flex flex-col gap-2 bg-white w-150 h-fit rounded-xl p-5">
-      <BaseButton @click="toggleReviewModal" name="Exit"
-                  variant="exitClose" />
+  <div class="font-montserrat fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)]
+       flex items-center justify-center"
+       @click="toggleReviewModal('')" >
+    <form class="flex flex-col gap-2 bg-white w-150 h-fit rounded-xl p-5"
+          @click.stop="createReview">
+      <BaseButton name="Exit"
+                  variant="exitClose"
+                  @click="toggleReviewModal" />
       <div class="flex flex-col gap-2 border-b pb-4">
         <h1 class="font-bold text-2xl">
           WRITE A REVIEW
@@ -19,10 +22,12 @@
         <AddPhotos />
       </div>
       <div class="flex justify-end mt-4">
-        <BaseButton @click="createReview" name="Create Review"
+        <BaseButton type="submit"
+                    name="Create Review"
                     variant="replaceAndReview" />
       </div>
-      <input type="file" @change="onFilesSelected" class="hidden"
+      <input type="file" @change="onFilesSelected"
+             class="hidden"
              :ref="(el) => { fileInput = el as HTMLInputElement }" multiple accept="image/*">
     </form>
   </div>

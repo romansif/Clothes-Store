@@ -1,9 +1,12 @@
 <template>
   <div>
-    <div @click="toggleSavedPaymentCard" class="font-raleway fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)]
-                                  flex items-center justify-center">
+    <div class="font-raleway fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)]
+         flex items-center justify-center"
+         @click="toggleSavedPaymentCard">
       <div @click.stop class="flex flex-col bg-white w-222.5 h-150 rounded-xl p-5">
-        <BaseButton @click="toggleSavedPaymentCard" name="Exit" variant="exitClose"/>
+        <BaseButton name="Exit"
+                    variant="exitClose"
+                    @click="toggleSavedPaymentCard" />
         <div class="flex flex-col gap-2 border-b py-4">
           <h1 class="font-bold text-2xl">CARDS</h1>
           <div class="flex">
@@ -12,7 +15,8 @@
             </span>
           </div>
         </div>
-        <div v-if="userPayments.length" class="flex flex-col w-full">
+        <div v-if="userPayments.length"
+             class="flex flex-col w-full">
           <PaymentsList />
         </div>
         <PaymentCardEmpty v-else />

@@ -1,9 +1,13 @@
 <template>
   <div>
-    <div v-if="!choiceModal" @click="toggleOrderHistory" class="font-raleway fixed inset-0 z-50
-        bg-[rgba(0,0,0,0.5)] flex items-center justify-center">
+    <div v-if="!choiceModal"
+         class="font-raleway fixed inset-0 z-50
+        bg-[rgba(0,0,0,0.5)] flex items-center justify-center"
+         @click="toggleOrderHistory">
       <main @click.stop class="flex flex-col bg-white w-222.5 h-162.5 rounded-xl p-5">
-        <BaseButton @click="toggleOrderHistory" name="Exit" variant="exitClose"/>
+        <BaseButton name="Exit"
+                    variant="exitClose"
+                    @click="toggleOrderHistory" />
         <header class="flex flex-col gap-2 border-b py-4">
           <h1 class="font-bold text-2xl">
             ALL ORDERS

@@ -15,7 +15,7 @@ import { useRoute } from "vue-router";
 import { computed, onMounted } from "vue";
 import { useQuery } from "@tanstack/vue-query";
 import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
-import { useGetProduct } from "@/features/use-product/api/get-product.ts";
+import { getProduct } from "@/features/use-product/api/get-product.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 
 import ProductInfo from "@/features/use-product/ui/ProductInfo.vue";
@@ -24,7 +24,6 @@ import ProductReviews from "@/features/use-product-review/ui/ProductReviews.vue"
 const route = useRoute();
 
 const { userData } = userStore();
-const { getProduct } = useGetProduct();
 const { getFavoriteProducts } = useGetFavorite();
 
 const { data: product } = useQuery({

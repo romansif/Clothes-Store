@@ -4,8 +4,7 @@
       <MyProductItem v-for="product in myProducts"
                      :user="userData"
                      :product="product"
-                     :myProducts="myProducts"
-                     @toggle-to-favorite="toggleToFavorite" />
+                     :myProducts="myProducts" />
     </ul>
   </Transition>
   <Transition name="modal">
@@ -20,7 +19,6 @@
 import { onMounted } from "vue";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useGetMyProduct } from "@/features/use-my-product/api/get-my-product.ts";
-import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
 import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal.ts";
 import { stackInfo } from "@/features/use-my-product/lib/toggle-stack-info.ts";
 
@@ -30,7 +28,6 @@ import DeleteModal from "@/features/use-general-delete/ui/DeleteModal.vue";
 
 const { userData } = userStore();
 const { deleteModal } = baseDeleteModal();
-const { toggleToFavorite } = useToggleFavorite();
 const { getMyProducts, myProducts } = useGetMyProduct();
 
 onMounted(async () => {

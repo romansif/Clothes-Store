@@ -6,18 +6,13 @@
         SHIPPING METHODS
       </label>
       <div class="flex gap-3">
-        <form @submit.prevent="addShipping" class="flex flex-col gap-6 w-full">
+        <form @submit.prevent="addShipping"
+              class="flex flex-col gap-6 w-full">
           <ShippingMethod v-model="shippingForm.delivery"
-                          :method="'standard'"
-                          :title="'STANDARD SHIPPING'"
-                          :text="'Delivery in 3-5 business days'"
-                          :price="'Free'"
+                          :variant="'standard'"
                           :error-message="shippingFormErrorMessage.delivery" />
           <ShippingMethod v-model="shippingForm.delivery"
-                          :method="'express'"
-                          :title="'EXPRESS COURIER'"
-                          :text="'Delivery tomorrow morning'"
-                          :price="'$15.00'"
+                          :variant="'express'"
                           :error-message="shippingFormErrorMessage.delivery" />
           <div class="relative mt-5 ml-auto transition duration-400 hover:scale-110">
             <BaseButton type="submit"

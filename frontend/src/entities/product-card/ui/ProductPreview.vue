@@ -26,10 +26,10 @@ import type {ProductCardVariant} from "@/entities/product-card/model/product.cla
 import { productCardVariants } from "@/entities/product-card/config/product-card.variants.ts";
 
 const props = defineProps<{
-  user: User | null
-  product: Product,
-  array: Product[],
-  variant: ProductCardVariant
+  user: User | null;
+  product: Product;
+  array: Product[];
+  variant: ProductCardVariant;
 }>();
 
 const emit = defineEmits<{

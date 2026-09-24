@@ -2,16 +2,14 @@ import namer from "color-namer";
 import router from "@/app/router";
 import { handler } from "@/shared/api/http.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
-import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import type { ColorItem, Product} from "@/shared/model/product.types.ts";
 import { currentFile } from "@/shared/lib/helper/product-helper.ts";
 import { createProductForm } from "@/entities/product-form/model/product.forms.ts";
 
-const { getProduct } = useGetProduct();
 const { openNotify } = useBaseModals();
 
 export const useUpdateProduct = () => {
-    const updateProductImages = async (product: Product | null, event: Event) => {
+    const updateProductImages = async (product: Product | undefined, event: Event) => {
         try{
             if(!product){
                 console.log('Такого продукта не существует');
@@ -32,16 +30,13 @@ export const useUpdateProduct = () => {
                 method: "PATCH",
                 body: formData
             });
-
-
-            await getProduct(product?.id);
         }catch(err){
             await openNotify(`You haven't entered anything to change.`, '');
             console.error(`Failed to edit the product cover:`, err);
         }
     };
 
-    const updateProductDesc = async (product: Product | null) => {
+    const updateProductDesc = async (product: Product | undefined) => {
         try{
             await handler(`/products/${product?.id}`, {
                 method: "PATCH",

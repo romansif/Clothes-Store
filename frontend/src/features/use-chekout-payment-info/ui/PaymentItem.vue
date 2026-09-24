@@ -12,7 +12,8 @@
           </span>
         </div>
         <div class="flex gap-5">
-          <span v-if="payment.cardName" class="text-sm font-semibold">
+          <span v-if="payment.cardName"
+                class="text-sm font-semibold">
             Card Name: <span class="font-normal font-dm-sans">{{ payment.cardName }}</span>
           </span>
           <span class="text-sm font-semibold">

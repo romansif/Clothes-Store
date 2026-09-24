@@ -27,10 +27,10 @@ import type {User} from "@/entities/profile/model/user.types.ts";
 import type {ProductCardVariant} from "@/entities/product-card/model/product.class.types.ts";
 
 const props = defineProps<{
-  user: User | null
-  product: Product
+  user: User | null;
+  product: Product;
   array: Product[];
-  variant: ProductCardVariant
+  variant: ProductCardVariant;
 }>();
 
 const emit = defineEmits<{

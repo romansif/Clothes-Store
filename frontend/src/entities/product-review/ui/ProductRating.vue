@@ -33,7 +33,7 @@ import { reverseRatings } from "@/entities/product-review/model/review.rating.ts
 import type {Review} from "@/entities/product-review/model/reviews.types.ts";
 
 defineProps<{
-  reviews: Review[]
+  reviews: Review[];
 }>();
 
 import star from "@/assets/icons/products/full-star.png";

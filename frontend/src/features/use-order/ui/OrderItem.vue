@@ -4,7 +4,7 @@
       <div class="flex bg-gray-50 p-3 border-b border-gray-300">
         <div class="flex flex-col gap-2">
           <div class="flex flex-col gap-2">
-            <span class="text-xs px-2.5 py-1 rounded-md" :class="orderStatus(order)">
+            <span :class="orderStatus(order)">
                 {{ order.status }}
             </span>
             <div class="flex gap-2 items-center">
@@ -61,7 +61,8 @@
             </div>
           </div>
         </router-link>
-        <UseOrder :order="order" :item="item" />
+        <UseOrder :order="order"
+                  :item="item" />
       </div>
     </li>
   </TransitionGroup>

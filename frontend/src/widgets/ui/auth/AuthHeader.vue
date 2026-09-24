@@ -1,9 +1,13 @@
 <template>
   <div class="font-medium flex items-center justify-between">
-    <router-link :to="{name: 'signIn'}" @click="clearRegisterForm" class="transition duration-400 hover:scale-120">
+    <router-link :to="{name: 'signIn'}"
+                 class="transition duration-400 hover:scale-120"
+                 @click="clearRegisterForm">
       <span :class="[isLogin ? 'text-black' : 'text-[#A3A3A3]']">SIGN IN</span>
     </router-link>
-    <router-link :to="{ name: 'signUp'}" @click="clearLoginForm" class="transition duration-400 hover:scale-110">
+    <router-link :to="{ name: 'signUp'}"
+                 class="transition duration-400 hover:scale-110"
+                 @click="clearLoginForm">
       <span :class="[isRegister ? 'text-black' : 'text-[#A3A3A3]']">SIGN UP</span>
     </router-link>
   </div>

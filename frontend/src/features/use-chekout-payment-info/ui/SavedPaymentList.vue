@@ -1,6 +1,7 @@
 <template>
   <ul class="flex-col overflow-y-auto no-scrollbar h-92.5 pb-4">
-    <PaymentItem v-for="payment in userPayments" :payment="payment" />
+    <PaymentItem v-for="payment in userPayments"
+                 :payment="payment" />
   </ul>
 </template>
 

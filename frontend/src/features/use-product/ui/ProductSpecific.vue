@@ -8,8 +8,8 @@
         <div v-for="color in pureInfoColors(product)" :key="color.hex"
              :style="{ background: color.hex }"
              :title="color.hex"
-             @click="addColor(color, user, product)"
-             :class="selectedColorClass(color, product, user.role)"></div>
+             :class="selectedColorClass(color, product, user.role)"
+             @click="addColor(color, user, product)"></div>
       </div>
     </div>
     <div class="flex flex-col gap-3">
@@ -19,15 +19,18 @@
       <div class="flex justify-start items-center lg:gap-5">
         <img v-for="size in isAvailableSizes(product)" :key="size.name"
              :src=size.url alt=""
-             @click="addSize(size, user, product)"
-             :class="selectedSizesClass(size, product, user.role)">
+             :class="selectedSizesClass(size, product, user.role)"
+             @click="addSize(size, user, product)">
       </div>
       <div class="flex items-center gap-1">
-        <span v-if="addToCartFormErrorMessages.colors" class="text-red-600 text-xs">
+        <span v-if="addToCartFormErrorMessages.colors"
+              class="text-red-600 text-xs">
           {{ addToCartFormErrorMessages.colors }}
         </span>
-        <span v-if="addToCartFormErrorMessages.colors && addToCartFormErrorMessages.sizes" class="text-red-600 text-xs">/</span>
-        <span v-if="addToCartFormErrorMessages.sizes" class="text-red-600 text-xs">
+        <span v-if="addToCartFormErrorMessages.colors && addToCartFormErrorMessages.sizes"
+              class="text-red-600 text-xs">/</span>
+        <span v-if="addToCartFormErrorMessages.sizes"
+              class="text-red-600 text-xs">
           {{ addToCartFormErrorMessages.sizes }}
         </span>
       </div>

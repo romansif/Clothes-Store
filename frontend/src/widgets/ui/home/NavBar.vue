@@ -2,7 +2,9 @@
   <nav class="font-raleway">
     <div class="flex justify-between items-center md:justify-between">
       <div class="flex items-center gap-5 lg:gap-10">
-        <img @click="toggleFilterAside" :src=catalog alt="" class="w-7.5 cursor-pointer">
+        <img :src=catalog alt=""
+             class="w-7.5 cursor-pointer"
+             @click="toggleFilterAside">
         <div class="xl:flex xl:gap-10
             lg:flex lg:gap-10
             md:flex md:gap-5

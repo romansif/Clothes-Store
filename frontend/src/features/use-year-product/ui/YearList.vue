@@ -1,6 +1,7 @@
 <template>
   <Transition name="view">
-    <ul v-horizontal-scroll class="flex gap-10 xl:gap-40 overflow-x-auto whitespace-nowrap no-scrollbar">
+    <ul v-horizontal-scroll
+        class="flex gap-10 xl:gap-40 overflow-x-auto whitespace-nowrap no-scrollbar">
       <ProductCard v-for="product in productsYear"
                    :user="userData"
                    :product="product"

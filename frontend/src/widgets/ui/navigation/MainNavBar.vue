@@ -6,22 +6,27 @@
             lg:flex lg:gap-10
             md:flex md:gap-5
             sm:hidden hidden font-light">
-          <router-link :to="{name: 'home'}" :class="selectedPageClass(isHome)">
+          <router-link :to="{name: 'home'}"
+                       :class="selectedPageClass(isHome)">
             Home
           </router-link>
-          <router-link :to="{name: 'shop/seasons-catalog'}" :class="selectedPageClass(isSeasonCollections)">
+          <router-link :to="{name: 'shop/seasons-catalog'}"
+                       :class="selectedPageClass(isSeasonCollections)">
             Seasonal
           </router-link>
-          <router-link :to="{name: 'shop'}" :class="selectedPageClass(isProducts)">
+          <router-link :to="{name: 'shop'}"
+                       :class="selectedPageClass(isProducts)">
             Shop
           </router-link>
-          <router-link :to="{name: 'shop/new-collections'}" :class="selectedPageClass(isNewCollections)">
+          <router-link :to="{name: 'shop/new-collections'}"
+                       :class="selectedPageClass(isNewCollections)">
             New
           </router-link>
         </div>
         <router-link v-if="!isProfile" :to="{name: 'shop'}">
           <div class="flex md:hidden">
-            <img :src=back alt="" class="rotate-180 transition duration-400 hover:scale-110 w-18">
+            <img :src=back alt=""
+                 class="rotate-180 transition duration-400 hover:scale-110 w-18">
           </div>
         </router-link>
       </div>
@@ -32,7 +37,8 @@
           flex gap-3">
         <router-link :to="{name: 'favorite'}">
           <div class="xl:flex lg:flex md:flex sm:hidden hidden">
-            <img :src=liked alt="" class="w-12.5 transition duration-400 hover:scale-110 rounded-full">
+            <img :src=liked alt=""
+                 class="w-12.5 transition duration-400 hover:scale-110 rounded-full">
           </div>
         </router-link>
         <router-link :to="{name: 'cart'}">
@@ -41,15 +47,18 @@
                 Cart
             </span>
             <div class="relative">
-              <img :src=cart alt="" class="w-12.5 rounded-full">
-              <div v-if="unreadCount > 0 && isCart" class="absolute bottom-7 left-8 bg-black px-3 py-0.5 rounded-full">
+              <img :src=cart alt=""
+                   class="w-12.5 rounded-full">
+              <div v-if="unreadCount > 0 && isCart"
+                   class="absolute bottom-7 left-8 bg-black px-3 py-0.5 rounded-full">
                 <span class="text-white text-lg font-dm-sans">{{ unreadCount }}</span>
               </div>
             </div>
           </div>
         </router-link>
         <router-link v-if="isProfile" :to="{name: 'profile'}">
-          <img :src=profile alt="" class="bg-white transition duration-400 hover:scale-110 w-13.5 rounded-full">
+          <img :src=profile alt=""
+               class="bg-white transition duration-400 hover:scale-110 w-13.5 rounded-full">
         </router-link>
       </div>
     </div>

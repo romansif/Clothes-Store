@@ -8,7 +8,14 @@
                       @toggle-to-favorite="toggleToFavorite" />
       <div class="flex flex-col gap-35">
         <div class="flex flex-col gap-10">
-          <UseMyProduct :product="product" />
+          <div class="flex items-center ml-auto gap-10">
+            <router-link :to="{ name: 'edit/product', params: { id: getProductId(product) } }">
+              <img :src="pencil" alt="" class="w-7 transition duration-400 hover:scale-120 cursor-pointer">
+            </router-link>
+            <img @click="toggleDeleteChoice(
+            'Are you sure you want to delete this product?', 'DELETE_PROUCT_ITEM', product.id
+                 )" :src="del" alt="" class="w-7.5 transition duration-400 hover:scale-120 cursor-pointer">
+          </div>
           <div class="flex flex-col gap-4">
             <h3 class="font-semibold text-gray-900 text-base sm:text-lg line-clamp-1">
               {{ product.title }}
@@ -30,7 +37,9 @@
           <span class="font-bold text-gray-900 text-base sm:text-lg font-dm-sans">
             $ {{ product.price }}
           </span>
-          <BaseButton @click="toggleStackInfo(product)" name="Stack Info" variant="stackInfo"/>
+          <BaseButton name="Stack Info"
+                      variant="stackInfo"
+                      @click="toggleStackInfo(product)" />
         </div>
       </div>
     </li>
@@ -38,6 +47,9 @@
 </template>
 
 <script setup lang="ts">
+import { previewHelper } from "@/entities/product-card/lib/preview-helper.ts";
+import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
+import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal.ts";
 import { toggleStackInfo } from "@/features/use-my-product/lib/toggle-stack-info.ts";
 import type {Product} from "@/shared/model/product.types.ts";
 import type {User} from "@/entities/profile/model/user.types.ts";
@@ -48,17 +60,15 @@ defineProps<{
   myProducts: Product[]
 }>();
 
-const emit = defineEmits<{
-  toggleToFavorite: [product: Product],
-}>()
 
-const toggleToFavorite = (product: Product) => {
-  emit("toggleToFavorite", product)
-}
+const { getProductId } = previewHelper();
+const { toggleToFavorite } = useToggleFavorite();
+const { toggleDeleteChoice } = baseDeleteModal();
 
 import BaseButton from "@/shared/ui/base/BaseButton.vue";
 import ProductPreview from "@/entities/product-card/ui/ProductPreview.vue";
-import UseMyProduct from "@/features/use-my-product/ui/UseMyProduct.vue";
+import pencil from "@/assets/icons/products/pencil.svg";
+import del from "@/assets/icons/delete-close/delete.svg";
 </script>
 
 <style scoped>

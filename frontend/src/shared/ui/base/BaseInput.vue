@@ -1,8 +1,9 @@
 <template>
-  <input v-model="model" :class="[
-      variantClasses[variant], errorMessage ? 'border border-red-500' : 'border border-gray-300'
-      ]" v-bind="$attrs" />
-  <span v-if="errorMessage" class="text-red-600 text-xs">{{ errorMessage }}</span>
+  <input v-model="model"
+         :class="[variantClasses[variant], errorMessage ? 'border border-red-500' : 'border border-gray-300']"
+         v-bind="$attrs" />
+  <span v-if="errorMessage"
+        class="text-red-600 text-xs">{{ errorMessage }}</span>
 </template>
 
 <script setup lang="ts">

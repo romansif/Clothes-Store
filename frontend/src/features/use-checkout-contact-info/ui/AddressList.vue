@@ -1,6 +1,7 @@
 <template>
   <ul class="flex flex-col overflow-y-auto no-scrollbar h-35 pb-4">
-    <CheckoutAddressItem v-for="address in userAddresses" :address="address" />
+    <CheckoutAddressItem v-for="address in userAddresses"
+                         :address="address" />
   </ul>
 </template>
 

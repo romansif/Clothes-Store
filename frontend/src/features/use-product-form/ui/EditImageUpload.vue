@@ -7,9 +7,12 @@
       </h2>
     </div>
     <div class="flex gap-6">
-      <div @click="openSelectImage(0)" :key="0" class="bg-gray-50 h-90 w-90 border border-gray-300 transition duration-400 hover:scale-105
-                          hover:bg-gray-100 cursor-pointer overflow-hidden rounded-lg">
-        <img v-if="pureCards(product)[0]" :src="pureCards(product)[0]" alt=""
+      <div :key="0"
+           class="bg-gray-50 h-90 w-90 border border-gray-300 transition duration-400 hover:scale-105
+           hover:bg-gray-100 cursor-pointer overflow-hidden rounded-lg"
+           @click="openSelectImage(0)">
+        <img v-if="pureCards(product)[0]"
+             :src="pureCards(product)[0]" alt=""
              class="h-90 w-90 transition duration-400">
         <div v-else class="p-4 text-mauve-100">
           <span class="bg-black font-bold px-2 py-1.5 rounded-full">
@@ -18,10 +21,12 @@
         </div>
       </div>
       <div class="grid grid-cols-2 gap-3">
-        <div v-for="index in [1, 2, 3, 4]" :key="index" @click="openSelectImage(index)"
+        <div v-for="index in [1, 2, 3, 4]" :key="index"
              class="bg-gray-50 h-43.5 w-43.5 border border-gray-300 transition duration-400 hover:scale-105
-                       hover:bg-gray-100 cursor-pointer overflow-hidden rounded-lg">
-          <img v-if="pureCards(product)[index]" :src="pureCards(product)[index]" alt=""
+             hover:bg-gray-100 cursor-pointer overflow-hidden rounded-lg"
+             @click="openSelectImage(index)">
+          <img v-if="pureCards(product)[index]"
+               :src="pureCards(product)[index]" alt=""
                class="h-43.5 w-43.5 transition duration-400">
           <div v-else class="p-4 text-mauve-500">
             <span class="bg-gray-100 font-bold px-2 py-1.5 rounded-full border border-gray-400">

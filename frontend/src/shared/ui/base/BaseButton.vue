@@ -1,14 +1,16 @@
 <template>
-  <button :class="variantClasses[variant]" v-bind="$attrs" :type="type">
+  <button :class="variantClasses[variant]"
+          v-bind="$attrs"
+          :type="type">
     <slot>{{ name }}</slot>
   </button>
 </template>
 
 <script setup lang="ts">
 interface Props {
-  name?: string,
-  variant?: keyof typeof variantClasses;
-  type?: 'button' | 'submit' | 'reset';
+  name: string,
+  variant: keyof typeof variantClasses;
+  type: 'button' | 'submit' | 'reset';
 }
 
 withDefaults(defineProps<Props>(), {

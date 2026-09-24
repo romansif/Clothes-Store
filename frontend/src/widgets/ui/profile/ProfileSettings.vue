@@ -3,9 +3,9 @@
     <div class="flex p-5">
       <div class="flex items-center gap-10">
         <img v-if="userData"
-             @click="toggleAvatar"
              :src="userAvatar(userData.avatarUrl)" alt=""
-             class="rounded-full w-25 transition duration-400 hover:scale-108">
+             class="rounded-full w-25 transition duration-400 hover:scale-108"
+             @click="toggleAvatar">
         <div class="flex flex-col gap-4 font-semibold text-xl">
           <div class="flex gap-2 font-dm-sans">
             <span>Name:</span>

@@ -1,5 +1,7 @@
 <template>
-  <img @click="goBack" :src="go_to_shop" alt="" class="rotate-180">
+  <img :src="go_to_shop" alt=""
+       class="rotate-180"
+       @click="goBack">
   <header class="flex flex-col mt-16">
     <h1 class="font-extrabold text-xl md:text-2xl xl:text-4xl">CHECKOUT</h1>
     <div class="flex gap-14 font-medium mt-8 text-xs md:text-sm xl:text-lg">

@@ -3,7 +3,8 @@
     <div v-for="(isActive, filter) in reviewsType"
          :class="['flex flex-col gap-2',
          isActive ? 'font-semibold' : 'font-normal']">
-      <span @click="toggleFilter(route.params.id, filter)" :class="['text-lg transition duration-500 hover:scale-120 cursor-pointer',
+      <span @click="toggleFilter(route.params.id, filter)"
+            :class="['text-lg transition duration-500 hover:scale-120 cursor-pointer',
             isActive ? 'text-black scale-120' : 'text-[#8F8F8F] hover:text-black']">
         {{ filter }}
       </span>

@@ -1,5 +1,7 @@
 <template>
-  <form @submit.prevent="signUp(currentRole)" action="" class="mt-10">
+  <form action=""
+        class="mt-10"
+        @submit.prevent="signUp(currentRole)">
     <RegisterForm />
     <div class="relative duration-400 hover:scale-105 cursor-pointer">
       <BaseButton type="submit"

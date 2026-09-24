@@ -31,7 +31,7 @@ import { toggleInformation } from "@/features/use-checkout-contact-info/lib/togg
 import type {UserContactInfo} from "@/entities/checkout-contact-info/model/address.types.ts";
 
 defineProps<{
-  address: UserContactInfo
+  address: UserContactInfo;
 }>();
 
 const { useSavedAddress } = useAddAddress();

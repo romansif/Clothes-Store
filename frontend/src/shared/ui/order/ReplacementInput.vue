@@ -1,6 +1,10 @@
 <template>
   <div :class="[cancelOrderClasses[props.variant], isChecked ? 'scale-103' : '' ]">
-    <input v-model="model" type="radio" :value="props.value" class="accent-black w-5 h-5" v-bind="$attrs" />
+    <input v-model="model"
+           type="radio"
+           :value="props.value"
+           class="accent-black w-5 h-5"
+           v-bind="$attrs" />
     <span>{{ props.name }}</span>
   </div>
 </template>

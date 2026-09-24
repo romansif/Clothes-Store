@@ -19,28 +19,34 @@
       </div>
       <div class="flex mt-15 relative">
         <img :src=search alt="" class="absolute left-4 top-1/2 -translate-y-1/2">
-        <input v-model="searchProductForm.search" type="text" placeholder="Search"
+        <input v-model="searchProductForm.search"
+               type="text"
+               placeholder="Search"
                class="h-12.5 px-13 outline-none sm:placeholder:px-114
                   md:placeholder:px-134 lg:placeholder:px-195 xl:w-92.5 xl:placeholder:px-62 transition duration-400
                   border-b-2 border-[#D9D9D9] font-dm-sans" />
-        <img v-if="searchProductForm.search" @click="clearSearchProductForm" :src="del" alt=""
-             class="w-6.25 absolute top-1/4 left-85 cursor-pointer">
+        <img v-if="searchProductForm.search" :src="del" alt=""
+             class="w-6.25 absolute top-1/4 left-85 cursor-pointer"
+             @click="clearSearchProductForm" >
       </div>
     </div>
     <div class="flex flex-col h-10 sm:h-35 xl:h-53.75 gap-5 mt-12 xl:mt-5">
-      <div class="flex items-center gap-5 xl:hidden" @click="toggleFilterAside">
+      <div class="flex items-center gap-5 xl:hidden"
+           @click="toggleFilterAside">
         <span class="font-bold">
           Filter
         </span>
         <img :src=right_arrow alt="">
       </div>
       <div class="font-medium hidden gap-x-5 gap-y-2 sm:grid sm:grid-cols-4 xl:mt-19">
-        <button v-for="(isActive, categoryName) in category" @click="toggleFilter('ALL', categoryName)"
-                :class="selectedCategoryClass(isActive)">
+        <button v-for="(isActive, categoryName) in category"
+                :class="selectedCategoryClass(isActive)"
+                @click="toggleFilter('ALL', categoryName)">
           All
         </button>
-        <button v-for="(isActive, categoryName) in categories" @click="toggleFilter('CATEGORY', categoryName)"
-                :class="selectedCategoryClass(isActive)">
+        <button v-for="(isActive, categoryName) in categories"
+                :class="selectedCategoryClass(isActive)"
+                @click="toggleFilter('CATEGORY', categoryName)">
           {{ categoryName }}
         </button>
       </div>

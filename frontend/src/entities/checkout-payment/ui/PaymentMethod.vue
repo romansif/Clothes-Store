@@ -1,27 +1,29 @@
 <template>
   <div class="flex items-center gap-3">
-    <input @click="closeCardForm(method)"
+    <input @click="closeCardForm(methods.method)"
            v-model="model"
            type="radio"
-           :value="method"
+           :value="methods.method"
            name="shipping-method"
            class="accent-black w-4 h-4" />
     <div class="flex flex-col">
       <span class="font-semibold">
-        {{ title }}
+        {{ methods.title }}
       </span>
       <span class="text-xs text-gray-500">
-        {{ text }}
+        {{ methods.text }}
       </span>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-defineProps<{
-  method: string;
-  title: string;
-  text: string;
+import {computed} from "vue";
+import { paymentMethods } from "@/entities/checkout-payment/config/payment.methods.ts";
+import type {PaymentValueTypes} from "@/entities/checkout-payment/model/payment.value.types.ts";
+
+const props = defineProps<{
+  variant: PaymentValueTypes;
 }>();
 
 const emit = defineEmits<{
@@ -33,6 +35,10 @@ const closeCardForm = (method: string) => {
 };
 
 const model = defineModel<string | number>();
+
+const methods = computed(() => {
+  return paymentMethods[props.variant];
+});
 </script>
 
 <style scoped>

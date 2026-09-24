@@ -1,6 +1,7 @@
 <template>
   <div class="flex flex-col gap-6 mt-4">
-    <button @click="toggleSizeGuide" class="w-30 text-[#A3A3A3] text-left transition duration-400 cursor-pointer hover:scale-110">
+    <button @click="toggleSizeGuide"
+            class="w-30 text-[#A3A3A3] text-left transition duration-400 cursor-pointer hover:scale-110">
       What's my size?
     </button>
     <router-link v-if="!user.id" :to="{name: 'signIn'}"
@@ -9,15 +10,20 @@
 
         ADD TO CART
     </router-link>
-    <BaseButton v-if="user.role === 'Buyer' && isInStock(product) !== 0 && !isInCart(product)" name="ADD TO CART"
-                variant="addToCart" @click="addToCart()" />
+    <BaseButton v-if="user.role === 'Buyer' && isInStock(product) !== 0 && !isInCart(product)"
+                name="ADD TO CART"
+                variant="addToCart"
+                @click="addToCart()" />
     <BaseButton v-if="isInStock(product) === 0 && user.id" name="OUT OF STACK" variant="outOfStack" />
-    <div v-if="user.id && isInCart(product)" class="flex items-center gap-18">
+    <div v-if="user.id && isInCart(product)"
+         class="flex items-center gap-18">
       <div class="flex gap-6 bg-zinc-800 py-3.5 px-3 text-lg transition duration-300 hover:scale-108">
-        <img :src="plus" @click="updateCartItem('add', product.id)" alt=""
+        <img :src="plus"
+             @click="updateCartItem('add', product.id)" alt=""
              class="bg-zinc-600 text-white py-1.5 px-2 w-8.75 rounded-md transition duration-300 hover:bg-zinc-400" />
         <span class="text-white font-dm-sans">{{ isInCart(product)?.variants[0].count }}</span>
-        <img :src="minus" @click="updateCartItem('away', product.id)" alt=""
+        <img :src="minus"
+             @click="updateCartItem('away', product.id)" alt=""
              class="bg-zinc-600 text-white py-1.5 px-2 w-8.75 rounded-md transition duration-300 hover:bg-zinc-400" />
       </div>
       <router-link :to="{ name: 'cart' }"
@@ -28,7 +34,8 @@
     </div>
   </div>
   <Transition name="modal">
-    <SizeGuideModal v-if="sizeGuideModel" />
+    <SizeGuideModal v-if="sizeGuideModel"
+                    :product="product" />
   </Transition>
 </template>
 

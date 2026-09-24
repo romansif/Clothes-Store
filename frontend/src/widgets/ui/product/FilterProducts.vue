@@ -5,7 +5,8 @@
       <span class="font-medium">Size</span>
       <div class="flex items-center mt-2 gap-2">
         <img v-for="size in sizes" :key="size.name" :src=size.url alt=""
-             @click="toggleSize('SIZE', `${size.name}`)" :class="selectedSizeClass(size.class, size.isActive)">
+             :class="selectedSizeClass(size.class, size.isActive)"
+             @click="toggleSize('SIZE', `${size.name}`)">
       </div>
     </div>
     <div class="border-b border-gray-400 mt-3.5"></div>
@@ -16,8 +17,9 @@
       </div>
       <div class="flex flex-col gap-2">
         <div v-for="(isActive, stackName) in stackProducts" class="flex gap-3">
-          <img @click="toggleFilter('STATUS', stackName)" :src="isActive ? checked : square" alt=""
-               :class="selectedFilterClass(isActive)">
+          <img :src="isActive ? checked : square" alt=""
+               :class="selectedFilterClass(isActive)"
+               @click="toggleFilter('STATUS', stackName)" >
           <div class="flex gap-1">
             <span>{{ stackName }}</span>
             <span>
@@ -37,8 +39,9 @@
       </div>
       <div class="flex flex-col gap-2">
         <div v-for="(isActive, genderName) in genders" class="flex gap-3">
-          <img @click="toggleFilter('GENDER', genderName)" :src="isActive ? checked : square" alt=""
-               :class="selectedFilterClass(isActive)">
+          <img :src="isActive ? checked : square" alt=""
+               :class="selectedFilterClass(isActive)"
+               @click="toggleFilter('GENDER', genderName)">
           <div class="flex gap-1">
             <span>{{ genderName }}</span>
             <span>
@@ -58,8 +61,9 @@
       </div>
       <div class="grid grid-cols-2 gap-y-2 gap-x-6">
         <div v-for="(isActive, colorName) in colors" :key="colorName" class="flex gap-3">
-          <img @click="toggleFilter('COLOR', colorName)" :src="isActive ? checked : square" alt=""
-               :class="selectedFilterClass(isActive)">
+          <img :src="isActive ? checked : square" alt=""
+               :class="selectedFilterClass(isActive)"
+               @click="toggleFilter('COLOR', colorName)">
           <div class="flex gap-1">
             <span>{{ colorName }}</span>
           </div>

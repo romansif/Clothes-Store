@@ -1,5 +1,7 @@
 <template>
-  <form @submit.prevent="signIn" action="" class="mt-10">
+  <form action=""
+        class="mt-10"
+        @submit.prevent="signIn">
     <LoginForm v-if="!showSignSection.signIn" />
     <div class="relative duration-400 hover:scale-105 cursor-pointer">
       <BaseButton type="submit"

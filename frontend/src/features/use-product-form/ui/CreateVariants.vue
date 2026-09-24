@@ -69,14 +69,17 @@
                 class="py-8 text-center text-[#A3A3A3]">
             Select sizes and colors to populate the stock levels.
           </span>
-          <span v-else-if="!moreCreateItemForm.colors?.length" class="py-8 text-center text-[#A3A3A3]">
+          <span v-else-if="!moreCreateItemForm.colors?.length"
+                class="py-8 text-center text-[#A3A3A3]">
             Select colors to populate the stock levels.
           </span>
-          <span v-else-if="!moreCreateItemForm.sizes?.length" class="py-8 text-center text-[#A3A3A3]">
+          <span v-else-if="!moreCreateItemForm.sizes?.length"
+                class="py-8 text-center text-[#A3A3A3]">
             Select sizes to populate the stock levels.
           </span>
         </div>
-        <span v-if="moreCreateItemFormErrorMessages.variants" class="text-red-600 text-xs">
+        <span v-if="moreCreateItemFormErrorMessages.variants"
+              class="text-red-600 text-xs">
           {{ moreCreateItemFormErrorMessages.variants }}
         </span>
       </div>
@@ -92,10 +95,12 @@
         </span>
       </div>
       <div class="flex gap-6">
-        <img v-for="size in sizes" :key="size.name" :src=size.url alt="" @click="toggleSize(size.name)"
+        <img v-for="size in sizes" :key="size.name"
+             :src=size.url alt=""
              :class="[size.class, moreCreateItemForm.sizes.includes(size.name) ?
              'transition duration-400 scale-110 w-15 rounded-full' :
-             'transition duration-400 hover:scale-110 w-15 rounded-full']">
+             'transition duration-400 hover:scale-110 w-15 rounded-full']"
+             @click="toggleSize(size.name)">
       </div>
       <span v-if="moreCreateItemFormErrorMessages.sizes" class="text-red-600 text-xs">
         {{ moreCreateItemFormErrorMessages.sizes }}
@@ -112,14 +117,18 @@
         </span>
       </div>
       <div class="flex gap-6">
-        <div v-for="color in moreCreateItemForm.colors" :key="color.hex" :title="color.hex"
-             :style="{ background: color.hex }" @click="toggleColor(color.hex, $event)"
-             class="w-15 h-15 border-2 border-[#A3A3A3] rounded-full transition-all duration-300 scale-110"></div>
-        <label v-if="moreCreateItemForm.colors?.length < 6" title="Выбрать любой цвет"
+        <div v-for="color in moreCreateItemForm.colors" :key="color.hex"
+             class="w-15 h-15 border-2 border-[#A3A3A3] rounded-full transition-all duration-300 scale-110"
+             :title="color.hex"
+             :style="{ background: color.hex }"
+             @click="toggleColor(color.hex, $event)"></div>
+        <label v-if="moreCreateItemForm.colors?.length < 6"
+               title="Выбрать любой цвет"
                class="w-16 h-16 border-2 rounded-full border-dashed border-gray-300 bg-white
                flex items-center justify-center text-gray-400 cursor-pointer transition-all duration-400
                hover:scale-108 hover:border-black hover:text-black text-2xl font-light relative overflow-hidden">+
-          <input @change="toggleColor(($event.target as HTMLInputElement).value, $event)" type="color"
+          <input @change="toggleColor(($event.target as HTMLInputElement).value, $event)"
+                 type="color"
                  class="absolute inset-0 h-full opacity-0 cursor-pointer" />
         </label>
       </div>

@@ -1,46 +1,41 @@
 <template>
-  <PaymentCardForm v-if="isDebitCard" :user-payment="userPayment" />
-  <div v-if="!isDebitCard" @click="openCardForm('card')"
-       :class="paymentMethodClass(paymentForm.paymentMethod,
-       'card', paymentFormErrorMessage.paymentMethod)">
+  <PaymentCardForm v-if="isDebitCard"
+                   :user-payment="userPayment" />
+  <div v-if="!isDebitCard"
+       :class="paymentMethodClass(paymentForm.paymentMethod,'card',
+       paymentFormErrorMessage.paymentMethod)"
+       @click="openCardForm('card')">
     <PaymentMethod v-model="paymentForm.paymentMethod"
-                   :method="'card'"
-                   :title="'DEBIT OR CREDIT CARD'"
-                   :text="'Visa, Mastercard'"
+                   :variant="'card'"
                    @close-card-form="closeCardForm" />
     <div class="flex gap-5">
       <img :src="visa_pay" alt="" class="w-15">
       <img :src="mastercard_pay" alt="" class="w-11.25">
     </div>
   </div>
-  <div :class="paymentMethodClass(paymentForm.paymentMethod,
-       'apple', paymentFormErrorMessage.paymentMethod)">
+  <div :class="paymentMethodClass(paymentForm.paymentMethod,'apple',
+       paymentFormErrorMessage.paymentMethod)">
     <PaymentMethod v-model="paymentForm.paymentMethod"
-                   :method="'apple'"
-                   :title="'APPLE PAY'"
-                   :text="'Fast payment with Apple'"
+                   :variant="'apple'"
                    @close-card-form="closeCardForm" />
     <img :src="apple_pay" alt="" class="w-15">
   </div>
-  <div :class="paymentMethodClass(paymentForm.paymentMethod,
-       'google', paymentFormErrorMessage.paymentMethod)">
+  <div :class="paymentMethodClass(paymentForm.paymentMethod,'google',
+       paymentFormErrorMessage.paymentMethod)">
     <PaymentMethod v-model="paymentForm.paymentMethod"
-                   :method="'google'"
-                   :title="'GOOGLE PAY'"
-                   :text="'Payment via Google account'"
+                   :variant="'google'"
                    @close-card-form="closeCardForm" />
     <img :src="google_pay" alt="" class="w-15">
   </div>
-  <div :class="paymentMethodClass(paymentForm.paymentMethod,
-       'paypal', paymentFormErrorMessage.paymentMethod)">
+  <div :class="paymentMethodClass(paymentForm.paymentMethod,'paypal',
+       paymentFormErrorMessage.paymentMethod)">
     <PaymentMethod v-model="paymentForm.paymentMethod"
-                   :method="'paypal'"
-                   :title="'PAYPAL'"
-                   :text="'International wallet'"
+                   :variant="'paypal'"
                    @close-card-form="closeCardForm" />
     <img :src="pay_pal" alt="" class="w-22.5">
   </div>
-  <span v-if="paymentFormErrorMessage.paymentMethod" class="text-red-600 text-xs">
+  <span v-if="paymentFormErrorMessage.paymentMethod"
+        class="text-red-600 text-xs">
     {{ paymentFormErrorMessage.paymentMethod }}
   </span>
 </template>

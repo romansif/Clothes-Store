@@ -23,7 +23,7 @@ import { reviewsClasses } from "@/shared/const/review/reviews.classes.ts";
 import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/review.form.ts";
 
 defineProps<{
-  ratings: number[]
+  ratings: number[];
 }>();
 
 const emit = defineEmits<{

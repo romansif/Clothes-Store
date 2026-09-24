@@ -1,10 +1,11 @@
 <template>
-  <div @click="toggleReplaceChoice('')" class="font-montserrat fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)]
-      flex items-center justify-center">
+  <div class="font-montserrat fixed inset-0 z-50 bg-[rgba(0,0,0,0.5)]
+       flex items-center justify-center"
+       @click="toggleReplaceChoice('')" >
     <div @click.stop class="flex flex-col gap-2 bg-white w-175 h-fit rounded-xl p-5">
-      <BaseButton @click="toggleReplaceChoice"
-                  name="Exit"
-                  variant="exitClose" />
+      <BaseButton name="Exit"
+                  variant="exitClose"
+                  @click="toggleReplaceChoice" />
       <div class="flex flex-col gap-4 border-b pb-4">
         <h1 class="font-bold text-2xl">
           REPLACEMENT OF ORDER
@@ -13,10 +14,13 @@
           Select the reason why you want to cancel the order
         </span>
       </div>
-      <form @submit.prevent="replaceOrder" class="flex flex-col items-start gap-3.5">
+      <form class="flex flex-col items-start gap-3.5"
+            @submit.prevent="replaceOrder">
         <ReplacementForm />
         <div class="flex ml-auto">
-          <BaseButton type="submit" name="Replacement" variant="replaceAndReview" />
+          <BaseButton type="submit"
+                      name="Replacement"
+                      variant="replaceAndReview" />
         </div>
       </form>
     </div>
