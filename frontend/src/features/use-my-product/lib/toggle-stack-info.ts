@@ -1,8 +1,7 @@
+import { ref } from "vue";
 import type { Product } from "@/shared/model/product.types.ts";
-import { useGetProduct } from "@/features/use-product/api/get-product.ts";
-import {ref} from "vue";
+import { product } from "@/features/use-product/api/get-product.ts";
 
-const { product } = useGetProduct();
 export const stackInfo = ref<boolean>(false);
 
 export const toggleStackInfo = (obj: Product) => {

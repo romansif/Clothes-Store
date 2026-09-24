@@ -1,9 +1,5 @@
-import { ref } from "vue";
 import { handler } from "@/shared/api/http.ts";
 import type {Review} from "@/entities/product-review/model/reviews.types.ts";
-
-const reviews = ref<Review[]>([]);
-const filteredReviews = ref<Review[]>([]);
 
 export const useGetReviews = () => {
     const getReviews = () => {
@@ -21,7 +17,5 @@ export const useGetReviews = () => {
     return {
         getReviews,
         getFilteredReviews,
-        reviews,
-        filteredReviews,
     }
 }

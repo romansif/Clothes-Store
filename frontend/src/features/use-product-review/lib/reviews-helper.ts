@@ -1,6 +1,6 @@
-import { ref } from "vue";
+import { reviewsStore } from "@/features/use-product-review/model/reviews.store.ts";
 
-const visibleReviewsCount = ref<number>(4);
+const { visibleReviewsCount } = reviewsStore();
 
 export const reviewsHelper = () => {
     const loadFiveReviews = () => {
@@ -12,7 +12,6 @@ export const reviewsHelper = () => {
     };
 
     return {
-        visibleReviewsCount,
         loadFiveReviews,
         closeFiveReviews
     }
