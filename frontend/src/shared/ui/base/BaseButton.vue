@@ -10,7 +10,7 @@
 interface Props {
   name: string,
   variant: keyof typeof variantClasses;
-  type: 'button' | 'submit' | 'reset';
+  type?: 'button' | 'submit' | 'reset';
 }
 
 withDefaults(defineProps<Props>(), {

@@ -14,6 +14,7 @@
 import { useRoute } from "vue-router";
 import { computed, onMounted } from "vue";
 import { useQuery } from "@tanstack/vue-query";
+import { product } from "@/features/use-product/api/get-product.ts";
 import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
 import { getProduct } from "@/features/use-product/api/get-product.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
@@ -26,7 +27,7 @@ const route = useRoute();
 const { userData } = userStore();
 const { getFavoriteProducts } = useGetFavorite();
 
-const { data: product } = useQuery({
+useQuery({
   queryKey: ['product', route.params.id],
   queryFn: () => getProduct(route.params.id),
 })

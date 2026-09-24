@@ -1,16 +1,15 @@
 import { handler } from "@/shared/api/http.ts";
+import { product } from "@/features/use-product/api/get-product.ts";
 import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { clearCartForm } from "@/features/use-product/lib/clear-cart.ts";
 import { cartStore } from "@/features/use-cart/model/cart.store.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
-import { useGetProduct } from "@/features/use-product/api/get-product.ts";
 import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.ts";
 import { addToCartForm, addToCartFormErrorMessages } from "@/shared/model/add.to.cart.form.ts";
 import { addToCartSchema } from "@/shared/model/add.to.cart.schemas.ts";
 
 const { userData } = userStore();
-const { product } = useGetProduct();
 const { unreadCount } = cartStore();
 const { openNotify } = useBaseModals();
 const { getCartProducts } = useGetCart();
