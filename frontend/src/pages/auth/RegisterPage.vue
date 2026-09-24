@@ -7,14 +7,13 @@
       <BaseButton type="submit"
                   variant="register"
                   :name="isRole ? 'SIGN UP BY SELLER' : 'SIGN UP BY BUYER'" />
-      <img :src=maki_arrow alt=""
-           class="absolute w-6.25 top-9.5 left-58 sm:left-118">
+      <img :src=maki_arrow alt="" class="absolute w-6.25 top-9.5 left-58 sm:left-118">
     </div>
   </form>
   <div class="flex justify-center mt-3">
-    <BaseButton variant="changeRegister"
-                :name="isRole ? 'Sign up as a buyer' : 'Sign up as a seller'"
-                @click="toggleSignUp" />
+    <BaseButton @click="toggleSignUp"
+                variant="changeRegister"
+                :name="isRole ? 'Sign up as a buyer' : 'Sign up as a seller'" />
   </div>
 </template>
 
