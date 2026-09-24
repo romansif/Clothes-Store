@@ -15,15 +15,10 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router";
 import { filterReviews } from "@/features/use-product-review/lib/filter-reviews.ts";
-import type {Review} from "@/entities/product-review/model/reviews.types.ts";
-
-defineProps<{
-  reviews: Review[]
-}>();
 
 const route = useRoute();
 
-const { reviewsType, toggleFilter} = filterReviews()
+const { reviewsType, toggleFilter } = filterReviews()
 </script>
 
 <style scoped>

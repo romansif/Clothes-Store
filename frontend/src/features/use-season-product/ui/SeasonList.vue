@@ -1,12 +1,6 @@
 <template>
   <Transition name="view">
-    <div v-if="array.length === 0" class="pt-45">
-      <div class="flex flex-col gap-4 items-center">
-        <img :src="empty_products" alt="">
-        <span class="text-lg font-semibold">The seasonal selections is coming soon</span>
-      </div>
-    </div>
-    <ul v-horizontal-scroll v-else class="flex gap-16.5 mt-5 overflow-x-auto whitespace-nowrap no-scrollbar pt-5">
+    <ul v-horizontal-scroll class="flex gap-16.5 mt-5 overflow-x-auto whitespace-nowrap no-scrollbar pt-5">
       <ProductCard v-for="product in array"
                    :user="userData"
                    :product="product"
@@ -31,7 +25,6 @@ const props = defineProps<{
   season: string;
 }>();
 
-import empty_products from "@/assets/icons/products/icon-products.svg";
 import ProductCard from "@/entities/product-card/ui/ProductCard.vue";
 
 const { userData } = userStore();

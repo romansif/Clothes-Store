@@ -1,12 +1,6 @@
 <template>
   <Transition name="view">
-    <div v-if="myProducts.length === 0" class="flex ml-145 pt-75">
-      <div class="flex flex-col gap-4 items-center">
-        <img :src="empty_products" alt="">
-        <span class="text-lg font-semibold">You haven't created something product cover</span>
-      </div>
-    </div>
-    <ul v-else class="font-raleway flex flex-col gap-20">
+    <ul class="font-raleway flex flex-col gap-20">
       <MyProductItem v-for="product in myProducts"
                      :user="userData"
                      :product="product"
@@ -31,7 +25,6 @@ import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-m
 import { stackInfo } from "@/features/use-my-product/lib/toggle-stack-info.ts";
 
 import MyProductItem from "@/features/use-my-product/ui/MyProductItem.vue";
-import empty_products from "@/assets/icons/products/icon-products.svg";
 import StackInfoModal from "@/features/use-my-product/ui/StackInfoModal.vue";
 import DeleteModal from "@/features/use-general-delete/ui/DeleteModal.vue";
 

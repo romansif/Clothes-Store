@@ -16,7 +16,7 @@ router.get('/products/week/:type/:filter', productsController.getWeekProducts);
 router.get('/products/year/:type/:filter', productsController.getYearProducts);
 router.get('/products/collections/:collection', productsController.getCollections);
 
-router.get('/products/:id', productsController.getProductsById);
+router.get('/product/:id', productsController.getProductsById);
 
 router.post('/products', authMiddleware, roleMiddleware('Seller'), productUpload.array('images', 5),
     productsController.productParse, validation.createProductValidation, validation.handleValidationErrors,

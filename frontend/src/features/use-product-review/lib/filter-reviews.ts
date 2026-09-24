@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import { useGetReviews } from "@/features/use-product-review/api/get-reviews.ts";
 
-const { getReviews } = useGetReviews();
+const { getFilteredReviews } = useGetReviews();
 
 export const filterReviews = () => {
     const reviewsType = ref<Record<string, boolean>>({
@@ -21,7 +21,7 @@ export const filterReviews = () => {
     const toggleFilter = async (id: string | string[], value: string) => {
         setActiveKey(reviewsType.value, value);
 
-        await getReviews(id, value)
+        await getFilteredReviews(id, value)
     };
 
     return {

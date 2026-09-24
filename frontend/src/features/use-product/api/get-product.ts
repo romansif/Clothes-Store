@@ -6,13 +6,9 @@ const product = ref<Product | null>(null);
 
 export const useGetProduct = () => {
     const getProduct = async (id: string | string[]) => {
-        try{
-            product.value = await handler(`/products/${id}`, {
-                method: 'GET',
-            });
-        }catch(err){
-            console.error(`Failed to get the product by id:`, err);
-        }
+        return handler<Product>(`/product/${id}`, {
+            method: 'GET',
+        })
     };
 
     return {

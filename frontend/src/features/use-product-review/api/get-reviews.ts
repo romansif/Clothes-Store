@@ -6,22 +6,21 @@ const reviews = ref<Review[]>([]);
 const filteredReviews = ref<Review[]>([]);
 
 export const useGetReviews = () => {
-    const getReviews = async (id: string | string[], filter: string) => {
-        try{
-            reviews.value = await handler(`/reviews/${id}/ALL`, {
-                method: "GET",
-            });
+    const getReviews = () => {
+        return handler<Review[]>('/reviews', {
+            method: 'GET',
+        });
+    };
 
-            filteredReviews.value = await handler(`/reviews/${id}/${filter}`, {
-                method: "GET",
-            });
-        }catch(err){
-            console.error(`Failed to get the reviews:`, err);
-        }
+    const getFilteredReviews = (id: string | string[], filter: string) => {
+        return handler<Review[]>(`/reviews/${id}/${filter}`, {
+            method: 'GET',
+        });
     };
 
     return {
         getReviews,
+        getFilteredReviews,
         reviews,
         filteredReviews,
     }

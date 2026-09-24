@@ -28,9 +28,12 @@
          fullDescription ? 'line-clamp-0' : 'line-clamp-2']">
           {{ product.description }}
       </p>
-      <ProductSpecific :product="product" :user="user"
-                       @add-color="addColor" @add-size="addSize"/>
-      <ProductToCart :product="product" :user="user" />
+      <ProductSpecific :user="user"
+                       :product="product"
+                       @add-color="addColor"
+                       @add-size="addSize"/>
+      <ProductToCart :user="user"
+                     :product="product" />
     </div>
   </template>
 </template>

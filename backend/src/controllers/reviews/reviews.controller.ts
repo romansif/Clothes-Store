@@ -4,7 +4,20 @@ import {type NextFunction, type Request, type Response} from 'express';
 import type {AuthenticatedRequest} from "../../interfaces.ts";
 
 export const reviewsController = {
-    async getReviews(req: Request, res: Response) {
+    async getReviews(_req: Request, res: Response) {
+        try{
+            const db = dbService.readDB();
+            const reviews: any[] = db.reviews || [];
+
+            res.json(reviews);
+        }catch(err){
+            console.error('Failed to get the review list:', err);
+            const message = err instanceof Error ? err.message : 'Unknown Error';
+            res.status(500).json({ error: message });
+        }
+    },
+
+    async getFilteredReviews(req: Request, res: Response) {
         try{
             const { productId, filter } = req.params;
 
