@@ -29,7 +29,6 @@ export const paymentClasses = () => {
         cardNumberClass,
         expiryDateClass,
         cardCvvClass,
-
         paymentMethodClass,
     }
 }

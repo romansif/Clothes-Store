@@ -41,8 +41,3 @@ const {
   confidentialityData
 } = useProfileModals();
 </script>
-
-
-<style scoped>
-
-</style>

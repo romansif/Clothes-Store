@@ -34,7 +34,3 @@ onMounted(async () => {
   await getMyProducts();
 })
 </script>
-
-<style scoped>
-
-</style>

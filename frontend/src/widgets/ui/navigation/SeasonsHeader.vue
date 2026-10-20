@@ -9,16 +9,10 @@
                 Seasonal
               </router-link>
               <span>/</span>
-              <span v-if="isNew">
-                New
-              </span>
               <span>
                 {{ season.name }}
               </span>
             </div>
-            <h1 v-if="isNew" class="text-4xl font-extrabold">
-              NEW ARRIVALS
-            </h1>
             <h1 class="text-4xl font-extrabold">
               {{ season.slogan }}
             </h1>
@@ -36,17 +30,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
 import { useRoute } from "vue-router";
-import { seasonsCatalog } from "@/entities/season-product/model/seasons.specific.ts";
+import { seasonsCatalog } from "@/entities/season-product/model/seasons-specific.ts";
 
 import MainSlideBar from "@/widgets/ui/product/MainSlideBar.vue";
 
 const route = useRoute();
-
-const isNew = computed(() => route.name === 'shop/new-collections')
 </script>
-
-<style scoped>
-
-</style>

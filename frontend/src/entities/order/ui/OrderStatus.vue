@@ -20,7 +20,3 @@ const props = defineProps<{
   order: Order;
 }>();
 </script>
-
-<style scoped>
-
-</style>

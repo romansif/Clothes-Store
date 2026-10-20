@@ -5,8 +5,8 @@ import { applyZodErrors, applyErrors} from "@/shared/lib/helper/errors-helper.ts
 import { orderStore } from "@/features/use-order/model/order.store.ts";
 import { clearReplaceForm } from "@/features/use-order/lib/clear-order-form.ts";
 import { toggleReplaceChoice } from "@/features/use-order/lib/order-modal.ts";
-import { cancelChoiceForm, cancelChoiceMessage } from "@/entities/order/model/order.forms.ts";
-import { replaceOrderSchema } from "@/entities/order/model/replace.order.schemas.ts";
+import { cancelChoiceForm, cancelChoiceMessage } from "@/entities/order/model/order-forms.ts";
+import { replaceOrderSchema } from "@/entities/order/model/replace-order-schemas.ts";
 
 const { orderId } = orderStore();
 const { getOrders } = useGetOrder();

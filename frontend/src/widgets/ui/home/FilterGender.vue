@@ -20,7 +20,3 @@ import { filterProduct } from "@/features/use-navigation/lib/filter-product.ts";
 
 const { selectGender, selectedGender } = filterProduct();
 </script>
-
-<style scoped>
-
-</style>

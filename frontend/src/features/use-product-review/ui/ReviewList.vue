@@ -37,7 +37,3 @@ const visibleReviews = computed(() => {
   return filteredReviews.value.slice(0, visibleReviewsCount.value);
 });
 </script>
-
-<style scoped>
-
-</style>

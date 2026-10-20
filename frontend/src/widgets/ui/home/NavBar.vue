@@ -10,7 +10,7 @@
             md:flex md:gap-5
             sm:hidden hidden font-light">
           <span :class="['text-[#696969] cursor-pointer transition duration-400 hover:text-black hover:scale-120',
-                isHome ? 'text-black scale-120' : '']">
+                route.name === 'home' ? 'text-black scale-120' : '']">
             Home
           </span>
           <router-link :to="{name: 'shop/seasons-catalog'}"
@@ -51,7 +51,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed }  from "vue";
 import { useRoute } from "vue-router";
 import { useProductsModals } from "@/features/use-main-product/lib/product-modal.ts";
 
@@ -60,13 +59,7 @@ import liked from "@/assets/icons/nav/favorite.jpeg";
 import profile from "@/assets/icons/nav/profile.png";
 import catalog from "@/assets/icons/nav/catalog.svg";
 
-const { toggleFilterAside } = useProductsModals();
-
 const route = useRoute();
 
-const isHome = computed(() => route.name !== "");
+const { toggleFilterAside } = useProductsModals();
 </script>
-
-<style scoped>
-
-</style>

@@ -5,8 +5,8 @@ import { clearShippingForm } from "@/features/use-checkout-shipping-info/lib/cle
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useGetShipping } from "@/features/use-checkout-shipping-info/api/get-shipping.ts";
 import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.ts";
-import { shippingForm, shippingFormErrorMessage } from "@/entities/checkout-shipping/model/shipping.form.ts";
-import { addShippingSchema } from "@/entities/checkout-shipping/model/shipping.schemas.ts";
+import { shippingForm, shippingFormErrorMessage } from "@/entities/checkout-shipping/model/shipping-form.ts";
+import { addShippingSchema } from "@/entities/checkout-shipping/model/shipping-schemas.ts";
 import router from "@/app/router";
 
 const { userData } = userStore();

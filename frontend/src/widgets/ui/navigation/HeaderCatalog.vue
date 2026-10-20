@@ -8,14 +8,14 @@
               Shop
             </router-link>
             <span>/</span>
-            <span v-if="isSeasonal">
+            <span v-if="route.name === 'shop/seasons-catalog'">
               Seasonal
             </span>
             <span v-else>
               New
             </span>
           </div>
-          <h1 v-if="isSeasonal" class="text-4xl font-extrabold">
+          <h1 v-if="route.name === 'shop/seasons-catalog'" class="text-4xl font-extrabold">
             IN SEASONS
           </h1>
           <h1 v-else class="text-4xl font-extrabold">
@@ -32,16 +32,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
 import { useRoute } from "vue-router";
 
 import MainSlideBar from "@/widgets/ui/product/MainSlideBar.vue";
 
 const route = useRoute();
-
-const isSeasonal = computed(() => route.name !== "shop/seasonal-catalog");
 </script>
-
-<style scoped>
-
-</style>

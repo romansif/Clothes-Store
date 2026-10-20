@@ -14,8 +14,3 @@ import OrderItem from "@/features/use-order/ui/OrderItem.vue";
 
 const { orders } = orderStore();
 </script>
-
-
-<style scoped>
-
-</style>

@@ -9,13 +9,13 @@
         <form @submit.prevent="addShipping"
               class="flex flex-col gap-6 w-full">
           <ShippingMethod v-model="shippingForm.delivery"
-                          :variant="'standard'"
-                          :error-message="shippingFormErrorMessage.delivery" />
+                          :method="'standard'"
+                          :error-message="shippingFormErrorMessage.delivery"  />
           <ShippingMethod v-model="shippingForm.delivery"
-                          :variant="'express'"
+                          :method="'express'"
                           :error-message="shippingFormErrorMessage.delivery" />
           <div class="relative mt-5 ml-auto transition duration-400 hover:scale-110">
-            <BaseButton type="submit"
+            <UiButton type="submit"
                         name="Payment"
                         variant="checkOut"/>
             <img :src=arrow alt="" class="h-13 absolute left-75 top-1/2 -translate-y-1/2
@@ -31,12 +31,12 @@
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
 import { informationContactStore } from "@/features/use-user-address/model/address.store.ts";
 import { useAddShipping } from "@/features/use-checkout-shipping-info/api/add-shipping.ts";
-import { shippingForm, shippingFormErrorMessage } from "@/entities/checkout-shipping/model/shipping.form.ts";
+import { shippingForm, shippingFormErrorMessage } from "@/entities/checkout-shipping/model/shipping-form.ts";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
-import BaseButton from "@/shared/ui/base/BaseButton.vue";
+import UiButton from "@/shared/ui/button/UiButton.vue";
 import ShippingAddress from "../../../entities/checkout-shipping/ui/ShippingAddress.vue";
-import ShippingMethod from "@/shared/ui/checkout/ShippingMethod.vue";
+import ShippingMethod from "@/shared/ui/shipping-method/ShippingMethod.vue";
 
 const { addShipping } = useAddShipping();
 const { userAddress } = informationContactStore();
@@ -46,7 +46,3 @@ refClearErrorsOnChange(
     shippingFormErrorMessage
 )
 </script>
-
-<style scoped>
-
-</style>

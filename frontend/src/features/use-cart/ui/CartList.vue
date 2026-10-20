@@ -20,7 +20,3 @@ const { cart } = cartStore();
 const { userData } = userStore();
 const { toggleToFavorite } = useToggleFavorite();
 </script>
-
-<style scoped>
-
-</style>

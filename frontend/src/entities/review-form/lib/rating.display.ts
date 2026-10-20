@@ -1,4 +1,4 @@
-import { reviewForm } from "@/entities/review-form/model/review.form.ts";
+import { reviewForm } from "@/entities/review-form/model/review-form.ts";
 
 import star from "@/assets/icons/products/full-star.png";
 import half_star from "@/assets/icons/products/half-star.png";

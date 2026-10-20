@@ -11,7 +11,7 @@
                class="w-35 rounded-full transition duration-400 hover:scale-110"
                @click="openSelectAvatar" />
           <div class="flex gap-12">
-            <BaseButton name="Confirm"
+            <UiButton name="Confirm"
                         variant="toggleAvatar"
                         @click="toggleAvatar" />
           </div>
@@ -30,7 +30,7 @@ import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import { profileApi } from "@/features/use-profile-form/api/profile.api.ts";
 
-import BaseButton from "@/shared/ui/base/BaseButton.vue";
+import UiButton from "@/shared/ui/button/UiButton.vue";
 
 const { userData } = userStore();
 const { userAvatar } = useProfile();

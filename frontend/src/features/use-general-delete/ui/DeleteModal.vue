@@ -6,10 +6,10 @@
       <div class="flex flex-col items-center gap-8">
         <h1 class="text-center w-60 font-medium">{{ deleteMessage }}</h1>
         <div class="flex gap-10">
-          <BaseButton name="Cancel"
+          <UiButton name="Cancel"
                       variant="cancel"
                       @click="toggleDeleteChoice" />
-          <BaseButton name="Confirm"
+          <UiButton name="Confirm"
                       variant="confirm"
                       @click="generalDelete" />
         </div>
@@ -21,11 +21,7 @@
 <script setup lang="ts">
 import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal.ts";
 
-import BaseButton from "@/shared/ui/base/BaseButton.vue";
+import UiButton from "@/shared/ui/button/UiButton.vue";
 
 const { toggleDeleteChoice, generalDelete, deleteMessage } = baseDeleteModal();
 </script>
-
-<style scoped>
-
-</style>

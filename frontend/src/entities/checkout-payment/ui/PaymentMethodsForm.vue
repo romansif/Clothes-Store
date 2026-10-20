@@ -4,35 +4,28 @@
   <div v-if="!isDebitCard"
        :class="paymentMethodClass(paymentForm.paymentMethod,'card',
        paymentFormErrorMessage.paymentMethod)"
-       @click="openCardForm('card')">
+       @click="emit('openCardForm', paymentForm.paymentMethod)">
     <PaymentMethod v-model="paymentForm.paymentMethod"
                    :variant="'card'"
-                   @close-card-form="closeCardForm" />
-    <div class="flex gap-5">
-      <img :src="visa_pay" alt="" class="w-15">
-      <img :src="mastercard_pay" alt="" class="w-11.25">
-    </div>
+                   @click="emit('openCardForm', paymentForm.paymentMethod)" />
   </div>
   <div :class="paymentMethodClass(paymentForm.paymentMethod,'apple',
        paymentFormErrorMessage.paymentMethod)">
     <PaymentMethod v-model="paymentForm.paymentMethod"
                    :variant="'apple'"
-                   @close-card-form="closeCardForm" />
-    <img :src="apple_pay" alt="" class="w-15">
+                   @click="emit('openCardForm', paymentForm.paymentMethod)" />
   </div>
   <div :class="paymentMethodClass(paymentForm.paymentMethod,'google',
        paymentFormErrorMessage.paymentMethod)">
     <PaymentMethod v-model="paymentForm.paymentMethod"
                    :variant="'google'"
-                   @close-card-form="closeCardForm" />
-    <img :src="google_pay" alt="" class="w-15">
+                   @click="emit('openCardForm', paymentForm.paymentMethod)" />
   </div>
   <div :class="paymentMethodClass(paymentForm.paymentMethod,'paypal',
        paymentFormErrorMessage.paymentMethod)">
     <PaymentMethod v-model="paymentForm.paymentMethod"
                    :variant="'paypal'"
-                   @close-card-form="closeCardForm" />
-    <img :src="pay_pal" alt="" class="w-22.5">
+                   @click="emit('openCardForm', paymentForm.paymentMethod)" />
   </div>
   <span v-if="paymentFormErrorMessage.paymentMethod"
         class="text-red-600 text-xs">
@@ -42,8 +35,11 @@
 
 <script setup lang="ts">
 import { paymentClasses } from "@/shared/const/checkout/payment.classes.ts";
-import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment.form.ts";
+import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment-form.ts";
 import type {UserPayment} from "@/entities/checkout-payment/model/payment.type.ts";
+
+import PaymentCardForm from "./PaymentCardForm.vue";
+import PaymentMethod from "@/entities/checkout-payment/ui/PaymentMethod.vue";
 
 defineProps<{
   userPayment: UserPayment | null;
@@ -55,25 +51,5 @@ const emit = defineEmits<{
   closeCardForm: [method: string];
 }>();
 
-const openCardForm = (method: string) => {
-  emit("openCardForm", method);
-};
-
-const closeCardForm = (method: string) => {
-  emit("closeCardForm", method);
-}
-
-import PaymentCardForm from "./PaymentCardForm.vue";
-import visa_pay from '@/assets/icons/checkout/payment/visa.png';
-import pay_pal from '@/assets/icons/checkout/payment/paypal.png';
-import apple_pay from '@/assets/icons/checkout/payment/applepay.png';
-import google_pay from '@/assets/icons/checkout/payment/googlepay.png';
-import mastercard_pay from '@/assets/icons/checkout/payment/mastercard.svg';
-import PaymentMethod from "@/entities/checkout-payment/ui/PaymentMethod.vue";
-
 const { paymentMethodClass } = paymentClasses();
 </script>
-
-<style scoped>
-
-</style>

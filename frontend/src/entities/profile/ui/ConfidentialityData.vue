@@ -46,7 +46,3 @@ defineProps<{
   user: User | null;
 }>();
 </script>
-
-<style scoped>
-
-</style>

@@ -19,7 +19,3 @@ import { filterReviews } from "@/features/use-product-review/lib/filter-reviews.
 
 const { reviewsType, toggleFilter } = filterReviews()
 </script>
-
-<style scoped>
-
-</style>

@@ -33,7 +33,3 @@ onMounted(async() => {
   await getWeekProducts('ALL', 'ALL')
 })
 </script>
-
-<style scoped>
-
-</style>

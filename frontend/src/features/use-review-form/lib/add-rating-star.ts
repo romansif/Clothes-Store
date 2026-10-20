@@ -1,6 +1,6 @@
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useGetReviews } from "@/features/use-product-review/api/get-reviews.ts";
-import { reviewForm } from "@/entities/review-form/model/review.form.ts";
+import { reviewForm } from "@/entities/review-form/model/review-form.ts";
 import { reviewsStore } from "@/features/use-product-review/model/reviews.store.ts";
 
 const { userData } = userStore();

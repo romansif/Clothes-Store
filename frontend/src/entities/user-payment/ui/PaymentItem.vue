@@ -9,7 +9,7 @@
           <span class="text-sm font-semibold">
             CVV: <span class="font-normal font-dm-sans">{{ payment.cardCvv }}</span>
           </span>
-          <img @click="toggleDeleteChoice(
+          <img @click="emit('deletePayment',
               'Are you sure you want to delete this saved card?', 'DELETE_SAVED_CARD', payment.id)"
                :src="del" alt="" class="w-5 ml-auto transition duration-400 hover:scale-120">
         </div>
@@ -29,6 +29,8 @@
 <script setup lang="ts">
 import type {UserPayment} from "@/entities/checkout-payment/model/payment.type.ts";
 
+import del from "@/assets/icons/delete-close/del_address_card.svg";
+
 defineProps<{
   payment: UserPayment;
 }>();
@@ -36,16 +38,4 @@ defineProps<{
 const emit = defineEmits<{
   deletePayment: [title: string, type: string, id: string];
 }>();
-
-const toggleDeleteChoice = (title: string, type: string, id: string) => {
-  emit('deletePayment', title, type, id);
-};
-
-import del from "@/assets/icons/delete-close/del_address_card.svg";
 </script>
-
-
-<style scoped>
-
-
-</style>

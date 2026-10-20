@@ -66,7 +66,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { baseClasses } from "@/shared/const/base.classes.ts";
 import { cartStore } from "@/features/use-cart/model/cart.store.ts";
@@ -75,20 +74,11 @@ import cart from "@/assets/icons/nav/cart.png";
 import liked from "@/assets/icons/nav/favorite.jpeg";
 import profile from "@/assets/icons/nav/profile.png";
 import back from "@/assets/icons/arrows/right-long-arrow.png";
-
-const { unreadCount } = cartStore();
-const { selectedPageClass } = baseClasses();
+import {useMainNavBar} from "@/widgets/model/use-main-nav-bar.ts";
 
 const route = useRoute();
 
-const isHome = computed(() => route.name === "home");
-const isCart = computed(() => route.name !== "cart");
-const isProducts = computed(() => route.name === "shop");
-const isProfile = computed(() => route.name !== "profile");
-const isNewCollections = computed(() => route.name === "shop/new-collections");
-const isSeasonCollections = computed(() => route.name === "shop/seasons-catalog");
+const { unreadCount } = cartStore();
+const { selectedPageClass } = baseClasses();
+const { isHome, isCart, isProducts, isNewCollections, isSeasonCollections, isProfile} = useMainNavBar(route);
 </script>
-
-<style scoped>
-
-</style>

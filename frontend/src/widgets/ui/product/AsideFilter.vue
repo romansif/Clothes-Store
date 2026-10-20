@@ -81,7 +81,7 @@
           <span class="font-bold">Category</span>
           <img :src=availability alt="" class="ml-auto w-5">
         </div>
-        <div v-if="isHome" class="font-medium grid grid-cols-2 gap-y-2 gap-x-6">
+        <div v-if="route.name === 'home'" class="font-medium grid grid-cols-2 gap-y-2 gap-x-6">
           <button v-for="(isActive, categoryName) in category"
                   :class="selectedSidebarCategoryClass(isActive)"
                   @click="toggleFilter('ALL', categoryName)">
@@ -100,7 +100,7 @@
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
-import { computed, onMounted } from "vue";
+import { onMounted } from "vue";
 import { filterProduct } from "@/features/use-navigation/lib/filter-product.ts";
 import { filterClasses } from "@/shared/const/filter/filter.classes.ts";
 import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
@@ -112,20 +112,14 @@ import availability from "@/assets/icons/arrows/arrow-up.svg";
 import left_arrow from "@/assets/icons/arrows/arrow-left.svg";
 import checked from '@/assets/icons/squares/check-square.png';
 
+const route = useRoute();
+
 const { toggleFilterAside } = useProductsModals();
 const { getAllProducts, allProducts } = useGetProducts();
 const { selectedSidebarCategoryClass } = filterClasses();
 const { toggleFilter, toggleSize, stackProducts, genders, colors, category, categories } = filterProduct();
 
-const route = useRoute();
-
-const isHome = computed(() => route.name === 'home');
-
 onMounted(async() => {
   await getAllProducts();
 })
 </script>
-
-<style scoped>
-
-</style>

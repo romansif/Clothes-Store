@@ -146,9 +146,9 @@ import { reactiveClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.t
 import {
   createProductForm, moreCreateItemForm,
   createProductFormErrorMessages, moreCreateItemFormErrorMessages
-} from "@/entities/product-form/model/product.forms.ts";
+} from "@/entities/product-form/model/product-forms.ts";
 
-import BaseInput from "@/shared/ui/base/BaseInput.vue";
+import BaseInput from "@/shared/ui/input/BaseInput.vue";
 
 const { toggleAllVariants, toggleQuantity, toggleSize, toggleColor, countMode } = productFormHelper();
 
@@ -157,8 +157,3 @@ reactiveClearErrorsOnChange(
   moreCreateItemFormErrorMessages,
 )
 </script>
-
-
-<style scoped>
-
-</style>

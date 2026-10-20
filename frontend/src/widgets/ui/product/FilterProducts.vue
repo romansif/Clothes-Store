@@ -88,7 +88,3 @@ const { allProducts } = useGetProducts();
 const { selectedSizeClass, selectedFilterClass } = filterClasses();
 const { toggleFilter, getStackCount, toggleSize, stackProducts, genders, colors } = filterProduct();
 </script>
-
-<style scoped>
-
-</style>

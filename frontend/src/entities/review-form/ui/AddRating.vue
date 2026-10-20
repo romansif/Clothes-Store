@@ -9,7 +9,7 @@
         <img v-for="rating in ratings" :key="rating"
              :src="ratingSrc(rating)" alt=""
              :class="ratingStar(reviewForm.rating, rating)"
-             @click="addRating(rating)">
+             @click="emit('addRating', rating)">
       </div>
       <span class="text-sm text-[#A3A3A3]">Tap to rate (1-5 star)</span>
     </div>
@@ -20,7 +20,7 @@
 <script setup lang="ts">
 import { ratingSrc } from "@/entities/review-form/lib/rating.display.ts";
 import { reviewsClasses } from "@/shared/const/review/reviews.classes.ts";
-import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/review.form.ts";
+import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/review-form.ts";
 
 defineProps<{
   ratings: number[];
@@ -30,13 +30,5 @@ const emit = defineEmits<{
   addRating: [rating: number];
 }>();
 
-const addRating = (rating: number) => {
-  emit('addRating', rating);
-};
-
 const { ratingStar } = reviewsClasses();
 </script>
-
-<style scoped>
-
-</style>

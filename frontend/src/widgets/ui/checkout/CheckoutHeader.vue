@@ -19,28 +19,15 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { useUpdateCart } from "@/features/use-cart/api/update-cart.ts";
+import { useCheckoutHeader } from "@/widgets/model/use-checkout-header.ts";
 
 import go_to_shop from "@/assets/icons/arrows/right-long-arrow.png";
 
 const route = useRoute();
 const router = useRouter();
 
-const { updateCartChecked } = useUpdateCart();
-
-const isInfo = computed(() => route.name === 'information')
-const isShipping = computed(() => route.name === 'shipping')
-const isPayment = computed(() => route.name === 'payment')
-
-const goBack = async () => {
-  if(route.name === 'information') {
-    await updateCartChecked()
-  }
-
-  router.back();
-};
+const { goBack, isInfo, isShipping, isPayment} = useCheckoutHeader(route, router);
 </script>
 
 <style scoped>

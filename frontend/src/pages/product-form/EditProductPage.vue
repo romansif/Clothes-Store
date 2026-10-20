@@ -6,7 +6,7 @@
       <EditVariants :product="product" />
     </template>
     <div class="w-full mt-4 mb-6">
-      <BaseButton type="submit"
+      <UiButton type="submit"
                   name="EDIT PRODUCT"
                   variant="useProduct" />
     </div>
@@ -23,7 +23,7 @@ import { getProduct } from "@/features/use-product/api/get-product.ts";
 import { useUpdateProduct } from "@/features/use-product-form/api/update-product.ts";
 import { fileInput } from "@/shared/lib/helper/product-helper.ts";
 
-import BaseButton from "@/shared/ui/base/BaseButton.vue";
+import UiButton from "@/shared/ui/button/UiButton.vue";
 import EditImageUpload from "@/features/use-product-form/ui/EditImageUpload.vue";
 import EditBasicInfo from "@/entities/product-form/ui/EditBasicInfo.vue";
 import EditVariants from "@/features/use-product-form/ui/EditVariants.vue";

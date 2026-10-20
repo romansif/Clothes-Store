@@ -14,18 +14,12 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { clearAuthForms } from "@/features/use-auth/lib/clear-auth.ts";
+import { useAuthHeader } from "@/widgets/model/use-auth-header.ts";
 
 const route = useRoute();
 
+const { isLogin, isRegister} = useAuthHeader(route)
 const { clearLoginForm, clearRegisterForm } = clearAuthForms();
-
-const isLogin = computed(() => route.name === "signIn");
-const isRegister = computed(() => route.name === "signUp");
 </script>
-
-<style scoped>
-
-</style>

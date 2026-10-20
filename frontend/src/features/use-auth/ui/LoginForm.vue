@@ -42,12 +42,12 @@
 import { toggleAuth } from "@/features/use-auth/lib/toggle-auth.ts";
 import { authStore } from "@/features/use-auth/model/auth.store.ts";
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
-import { loginForm, loginFormErrorMessages } from "@/entities/auth/model/auth.forms.ts";
+import { loginForm, loginFormErrorMessages } from "@/entities/auth/model/auth-form.ts";
 import { useLoginErrorMessage } from "@/features/use-auth/lib/auth-error-messages.ts";
 
 import closed from "@/assets/icons/auth/closed.png";
 import opened from "@/assets/icons/auth/opened.png";
-import BaseInput from "@/shared/ui/base/BaseInput.vue";
+import BaseInput from "@/shared/ui/input/BaseInput.vue";
 import LoginRoleInput from "@/shared/ui/auth/LoginRoleInput.vue";
 
 const { showPassword } = authStore();
@@ -58,7 +58,3 @@ refClearErrorsOnChange(
     loginFormErrorMessages
 )
 </script>
-
-<style scoped>
-
-</style>

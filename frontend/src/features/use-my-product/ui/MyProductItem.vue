@@ -37,7 +37,7 @@
           <span class="font-bold text-gray-900 text-base sm:text-lg font-dm-sans">
             $ {{ product.price }}
           </span>
-          <BaseButton name="Stack Info"
+          <UiButton name="Stack Info"
                       variant="stackInfo"
                       @click="toggleStackInfo(product)" />
         </div>
@@ -65,12 +65,8 @@ const { getProductId } = previewHelper();
 const { toggleToFavorite } = useToggleFavorite();
 const { toggleDeleteChoice } = baseDeleteModal();
 
-import BaseButton from "@/shared/ui/base/BaseButton.vue";
+import UiButton from "@/shared/ui/button/UiButton.vue";
 import ProductPreview from "@/entities/product-card/ui/ProductPreview.vue";
 import pencil from "@/assets/icons/products/pencil.svg";
 import del from "@/assets/icons/delete-close/delete.svg";
 </script>
-
-<style scoped>
-
-</style>

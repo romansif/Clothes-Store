@@ -33,8 +33,3 @@ onMounted(async() => {
   await getYearProducts('ALL', 'ALL')
 })
 </script>
-
-
-<style scoped>
-
-</style>

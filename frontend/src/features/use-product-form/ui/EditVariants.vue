@@ -126,10 +126,10 @@ import { productFormHelper } from "@/features/use-product-form/lib/product-form-
 import {
   createProductForm,
   createProductFormErrorMessages, moreCreateItemFormErrorMessages
-} from "@/entities/product-form/model/product.forms.ts";
+} from "@/entities/product-form/model/product-forms.ts";
 import type {Product} from "@/shared/model/product.types.ts";
 
-import BaseInput from "@/shared/ui/base/BaseInput.vue";
+import BaseInput from "@/shared/ui/input/BaseInput.vue";
 
 defineProps<{
   product: Product,
@@ -139,7 +139,3 @@ const { toggleAllVariants, countMode } = productFormHelper();
 const { updateProductCount, updateProductColors } = useUpdateProduct();
 const { pureInfoColors, pureColorsName, pureSizesName, isAvailableSizes, uniqueSizes, uniqueColors } = productHelper();
 </script>
-
-<style scoped>
-
-</style>

@@ -53,7 +53,3 @@ onUnmounted(() => {
   clearInterval(interval);
 });
 </script>
-
-<style scoped>
-
-</style>

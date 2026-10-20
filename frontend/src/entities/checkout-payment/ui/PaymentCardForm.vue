@@ -36,19 +36,15 @@
 <script setup lang="ts">
 import { IMaskComponent as IMask } from "vue-imask";
 import { paymentClasses } from "@/shared/const/checkout/payment.classes.ts";
-import { cardNumberMask, expiryDateMask, cardCvvMask } from "@/entities/checkout-payment/model/payment.mask.ts";
-import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment.form.ts";
+import { cardNumberMask, expiryDateMask, cardCvvMask } from "@/entities/checkout-payment/model/payment-mask.ts";
+import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment-form.ts";
 import type {UserPayment} from "@/entities/checkout-payment/model/payment.type.ts";
 
 defineProps<{
   userPayment: UserPayment | null;
 }>();
 
-import CheckoutInput from "@/shared/ui/checkout/CheckoutInput.vue";
+import CheckoutInput from "@/shared/ui/checkout-input/CheckoutInput.vue";
 
 const { cardNumberClass, expiryDateClass, cardCvvClass } = paymentClasses();
 </script>
-
-<style scoped>
-
-</style>

@@ -6,7 +6,7 @@
           <span class="text-sm font-semibold">
             Address: <span class="font-normal">{{ address.address }}</span>
           </span>
-          <img @click="toggleDeleteChoice(
+          <img @click="emit('deleteAddress',
               'Are you sure you want to delete this saved address?', 'DELETE_SAVED_ADDRESS', address.id)"
                :src="del" alt="" class="w-5 ml-auto transition duration-400 hover:scale-120">
         </div>
@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import type {UserContactInfo} from "@/entities/checkout-contact-info/model/address.types.ts";
+import type {UserContactInfo} from "@/entities/checkout-contact-info/model/information.types.ts";
 
 defineProps<{
   address: UserContactInfo;
@@ -37,13 +37,5 @@ const emit = defineEmits<{
   deleteAddress: [title: string, type: string, id: string];
 }>();
 
-const toggleDeleteChoice = (title: string, type: string, id: string) => {
-  emit('deleteAddress', title, type, id);
-};
-
 import del from "@/assets/icons/delete-close/del_address_card.svg";
 </script>
-
-<style scoped>
-
-</style>

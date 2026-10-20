@@ -9,7 +9,7 @@
       </div>
       <span class="text-red-600 text-xs">{{ isAgreeFormErrorMessage.agree }}</span>
     </div>
-    <BaseButton @click="continueToOrder()" name="CONTINUE" variant="addToOrder" />
+    <UiButton @click="continueToOrder()" name="CONTINUE" variant="addToOrder" />
   </div>
 </template>
 
@@ -20,7 +20,7 @@ import { isAgreeFormError, isAgreeFormErrorMessage } from "@/shared/model/add.to
 
 import check_square from "@/assets/icons/squares/check-square.png";
 import square from "@/assets/icons/squares/square.png";
-import BaseButton from "@/shared/ui/base/BaseButton.vue";
+import UiButton from "@/shared/ui/button/UiButton.vue";
 
 const { toggleAgree, continueToOrder } = useCartOrderInfo();
 
@@ -30,7 +30,3 @@ watch(() => isAgreeFormError.value.agree, (agreeError) => {
   }
 })
 </script>
-
-<style scoped>
-
-</style>

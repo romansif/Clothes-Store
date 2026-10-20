@@ -3,7 +3,7 @@ import { useBaseModals } from "@/shared/lib/base-modal.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
 import { previewHelper } from "@/entities/product-card/lib/preview-helper.ts";
-import { favoriteStore } from "@/entities/favorite/model/favorite.store.ts";
+import { favoriteStore } from "@/entities/favorite/model/favorite-store.ts";
 import type {Product} from "@/shared/model/product.types.ts";
 
 const { userData } = userStore();

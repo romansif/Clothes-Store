@@ -45,7 +45,3 @@ import DeleteModal from "@/features/use-general-delete/ui/DeleteModal.vue";
 const { deleteModal } = baseDeleteModal();
 const { price, commissionPrice, totalPrice } = useCartOrderInfo();
 </script>
-
-<style scoped>
-
-</style>

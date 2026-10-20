@@ -70,7 +70,3 @@ refClearErrorsOnChange(
   addToCartFormErrorMessages
 );
 </script>
-
-<style scoped>
-
-</style>

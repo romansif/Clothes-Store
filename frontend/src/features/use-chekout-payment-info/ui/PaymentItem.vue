@@ -1,7 +1,7 @@
 <template>
   <TransitionGroup name="list">
     <li @click="useSavedCard(payment)" :key="payment.id"
-        :class="getSavedInfoClass(isChosenPayment)">
+        :class="[getSavedClass, isChosenPayment ? getSavedErrorClass : '']">
       <div class="flex flex-col gap-5">
         <div class="flex gap-5">
           <span class="text-sm font-semibold">
@@ -37,9 +37,5 @@ defineProps<{
 
 const { useSavedCard } = useAddPayment();
 const { isChosenPayment } = togglePaymentForm();
-const { getSavedInfoClass } = checkoutClasses();
+const { getSavedClass, getSavedErrorClass } = checkoutClasses();
 </script>
-
-<style scoped>
-
-</style>

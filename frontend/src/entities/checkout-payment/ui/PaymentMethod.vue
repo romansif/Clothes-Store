@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center gap-3">
-    <input @click="closeCardForm(methods.method)"
+    <input @click="emit('closeCardForm', methods.method)"
            v-model="model"
            type="radio"
            :value="methods.method"
@@ -15,32 +15,22 @@
       </span>
     </div>
   </div>
+  <img :src="methods.paymentImg" alt="" class="w-15">
 </template>
 
 <script setup lang="ts">
-import {computed} from "vue";
-import { paymentMethods } from "@/entities/checkout-payment/config/payment.methods.ts";
-import type {PaymentValueTypes} from "@/entities/checkout-payment/model/payment.value.types.ts";
+import { usePaymentMethod } from "@/entities/checkout-payment/lib/use-payment-method.ts";
+import type { PaymentMethod } from "@/entities/checkout-payment/model/payment-method.types.ts";
 
 const props = defineProps<{
-  variant: PaymentValueTypes;
+  variant: PaymentMethod;
 }>();
 
 const emit = defineEmits<{
   closeCardForm: [method: string];
 }>();
 
-const closeCardForm = (method: string) => {
-  emit("closeCardForm", method);
-};
-
 const model = defineModel<string | number>();
 
-const methods = computed(() => {
-  return paymentMethods[props.variant];
-});
+const { methods } = usePaymentMethod(props.variant);
 </script>
-
-<style scoped>
-
-</style>

@@ -39,7 +39,3 @@ onMounted(async () => {
   await getFavoriteProducts();
 })
 </script>
-
-<style scoped>
-
-</style>

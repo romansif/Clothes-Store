@@ -29,7 +29,7 @@
 
 <script setup lang="ts">
 import { ratingHelper } from "@/entities/product-review/lib/rating-helper.ts";
-import { reverseRatings } from "@/entities/product-review/model/review.rating.ts";
+import { reverseRatings } from "@/entities/product-review/model/review-rating.ts";
 import type {Review} from "@/entities/product-review/model/reviews.types.ts";
 
 defineProps<{
@@ -40,7 +40,3 @@ import star from "@/assets/icons/products/full-star.png";
 
 const { averageRating, percentage, ratingCount, starCountSrc } = ratingHelper();
 </script>
-
-<style scoped>
-
-</style>

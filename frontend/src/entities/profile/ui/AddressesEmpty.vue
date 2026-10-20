@@ -13,7 +13,3 @@
 <script setup lang="ts">
 import icon_address from "@/assets/icons/checkout/icon_address.svg";
 </script>
-
-<style scoped>
-
-</style>

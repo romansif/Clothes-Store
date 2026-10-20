@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { favoriteStore } from "@/entities/favorite/model/favorite.store.ts";
+import { favoriteStore } from "@/entities/favorite/model/favorite-store.ts";
 import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
 
 import ProductCard from "@/entities/product-card/ui/ProductCard.vue";
@@ -24,7 +24,3 @@ const { userData } = userStore();
 const { favorite } = favoriteStore();
 const { toggleToFavorite } = useToggleFavorite();
 </script>
-
-<style scoped>
-
-</style>

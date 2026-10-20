@@ -7,8 +7,8 @@ import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment.ts";
 import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.ts";
 import type { UserPayment } from "@/entities/checkout-payment/model/payment.type.ts";
-import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment.form.ts";
-import { addPaymentSchema } from "@/entities/checkout-payment/model/payment.schemas.ts";
+import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment-form.ts";
+import { addPaymentSchema } from "@/entities/checkout-payment/model/payment-schemas.ts";
 import router from "@/app/router";
 
 const { userData } = userStore();

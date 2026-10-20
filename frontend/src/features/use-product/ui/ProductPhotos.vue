@@ -24,7 +24,3 @@ defineProps<{
 
 const { changeImg, productInfoPreview, angelCards } = productHelper();
 </script>
-
-<style scoped>
-
-</style>

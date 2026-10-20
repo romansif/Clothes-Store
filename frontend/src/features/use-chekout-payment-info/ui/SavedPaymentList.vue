@@ -12,7 +12,3 @@ import PaymentItem from "@/features/use-chekout-payment-info/ui/PaymentItem.vue"
 
 const { userPayments } = paymentStore();
 </script>
-
-<style scoped>
-
-</style>

@@ -44,7 +44,3 @@ const { data: reviews } = useQuery({
   queryFn: () => getReviews()
 })
 </script>
-
-<style scoped>
-
-</style>

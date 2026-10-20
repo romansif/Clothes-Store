@@ -12,6 +12,3 @@ import OrderInfoItem from "./OrderInfoItem.vue";
 const { items } = orderStore();
 </script>
 
-<style scoped>
-
-</style>

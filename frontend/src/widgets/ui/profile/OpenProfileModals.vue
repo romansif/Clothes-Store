@@ -25,13 +25,13 @@
 
 <script setup lang="ts">
 import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
-import type {User} from "@/entities/profile/model/user.types.ts";
+import type { User } from "@/entities/profile/model/user.types.ts";
+
+import ProfileTab from "@/shared/ui/profile-tab/ProfileTab.vue";
 
 defineProps<{
   user: User
 }>();
-
-import ProfileTab from "@/shared/ui/profile/ProfileTab.vue";
 
 const {
   toggleOrderHistory, toggleCurrentOrder,
@@ -39,8 +39,3 @@ const {
   toggleSavedPaymentCard,
 } = useProfileModals();
 </script>
-
-
-<style scoped>
-
-</style>

@@ -19,7 +19,7 @@
                               @open-card-form="openCardForm"
                               @close-card-form="closeCardForm" />
           <div class="relative mt-5 sm:ml-auto transition duration-400 hover:scale-110">
-            <BaseButton v-if="!isSavedPayment"
+            <UiButton v-if="!isSavedPayment"
                         type="submit"
                         name="Pay"
                         variant="checkOut"/>
@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="relative mt-5 sm:ml-auto transition duration-400 hover:scale-110">
-      <BaseButton v-if="isSavedPayment"
+      <UiButton v-if="isSavedPayment"
                   name="Pay"
                   variant="checkOut"
                   @click="useSavedPayment" />
@@ -45,10 +45,10 @@ import { useAddPayment } from "@/features/use-chekout-payment-info/api/add-payme
 import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment.ts";
 import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
-import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment.form.ts";
+import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment-form.ts";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
-import BaseButton from "@/shared/ui/base/BaseButton.vue";
+import UiButton from "@/shared/ui/button/UiButton.vue";
 import PaymentMethodsForm from "@/entities/checkout-payment/ui/PaymentMethodsForm.vue";
 import SavedCheckoutPayment from "@/features/use-chekout-payment-info/ui/SavedCheckoutPayment.vue";
 
@@ -61,7 +61,3 @@ refClearErrorsOnChange(
   paymentFormErrorMessage
 )
 </script>
-
-<style scoped>
-
-</style>

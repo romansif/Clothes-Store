@@ -45,8 +45,3 @@ const toggleToFavorite = (product: Product) => {
 import ProductPreview from "@/entities/product-card/ui/ProductPreview.vue";
 import UseCart from "@/features/use-cart/ui/UseCart.vue";
 </script>
-
-
-<style scoped>
-
-</style>

@@ -61,7 +61,3 @@ import { Menu, MenuItems, MenuItem, MenuButton} from "@headlessui/vue";
 const { userData } = userStore();
 const { toggleDeleteChoice } = baseDeleteModal();
 </script>
-
-<style scoped>
-
-</style>

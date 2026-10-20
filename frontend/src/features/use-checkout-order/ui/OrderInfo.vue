@@ -50,7 +50,7 @@
 
 <script setup lang="ts">
 import { orderStore } from "@/features/use-order/model/order.store.ts";
-import { shippingForm } from "@/entities/checkout-shipping/model/shipping.form.ts";
+import { shippingForm } from "@/entities/checkout-shipping/model/shipping-form.ts";
 import { orderPriceInfo } from "@/features/use-checkout-order/lib/order-price-info.ts";
 
 import OrderInfoList from "./OrderInfoList.vue";
@@ -58,7 +58,3 @@ import OrderInfoList from "./OrderInfoList.vue";
 const { items } = orderStore();
 const { price, totalPrice, commissionPrice } = orderPriceInfo();
 </script>
-
-<style scoped>
-
-</style>

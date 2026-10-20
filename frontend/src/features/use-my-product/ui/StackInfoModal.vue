@@ -41,7 +41,3 @@ const { data: product } = useQuery({
 })
 
 </script>
-
-<style scoped>
-
-</style>

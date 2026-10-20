@@ -17,8 +17,3 @@ import PaymentItem from "@/entities/user-payment/ui/PaymentItem.vue";
 const { userPayments } = paymentStore();
 const { toggleDeleteChoice } = baseDeleteModal();
 </script>
-
-
-<style scoped>
-
-</style>

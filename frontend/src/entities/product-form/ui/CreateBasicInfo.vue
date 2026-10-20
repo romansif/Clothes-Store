@@ -139,9 +139,9 @@
         DESC. · ОПИСАНИЕ
         <span class="text-red-500">*</span>
       </label>
-      <DescriptionForm v-model="createProductForm.description"
-                       :placeholder="'short desc. of product'"
-                       :error-message="createProductFormErrorMessages.description" />
+      <UiTextarea v-model="createProductForm.description"
+                  :placeholder="'short desc. of product'"
+                  :error-message="createProductFormErrorMessages.description" />
       <span class="ml-auto text-[#A3A3A3] text-xs font-medium">{{ createProductForm.description.length }} / 400</span>
     </div>
   </div>
@@ -149,13 +149,13 @@
 
 <script setup lang="ts">
 import { IMaskComponent as IMask } from "vue-imask";
-import { productSpecific } from "@/entities/product-form/model/product.specific.ts";
+import { productSpecific } from "@/entities/product-form/model/product-specific.ts";
 import { baseSelectClass, skuClass } from "@/shared/const/product-form/form.classes.ts";
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
-import { createProductForm, createProductFormErrorMessages } from "@/entities/product-form/model/product.forms.ts";
+import { createProductForm, createProductFormErrorMessages } from "@/entities/product-form/model/product-forms.ts";
 
-import BaseInput from "@/shared/ui/base/BaseInput.vue";
-import DescriptionForm from "@/shared/ui/product-form/DescriptionForm.vue";
+import BaseInput from "@/shared/ui/input/BaseInput.vue";
+import UiTextarea from "@/shared/ui/product-textarea/UiTextarea.vue";
 
 const { collections, categories, materials, genders, skuMask } = productSpecific();
 
@@ -164,8 +164,3 @@ refClearErrorsOnChange(
   createProductFormErrorMessages
 )
 </script>
-
-
-<style scoped>
-
-</style>

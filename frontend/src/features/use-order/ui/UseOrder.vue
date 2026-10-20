@@ -1,10 +1,10 @@
 <template>
   <div class="flex justify-end gap-8 bg-gray-50 border-gray-300 border-t p-3">
-    <BaseButton v-if="isInReview"
+    <UiButton v-if="isInReview"
                 name="Write a review"
                 variant="useOrder"
                 @click="toggleReviewModal(item.productId)" />
-    <BaseButton v-if="order.status !== 'Cancelled'"
+    <UiButton v-if="order.status !== 'Cancelled'"
                 name="Cancel Order"
                 variant="useOrder"
                 @click="toggleReplaceChoice(order.id)" />
@@ -22,9 +22,5 @@ defineProps<{
   item: OrderItem
 }>();
 
-import BaseButton from "@/shared/ui/base/BaseButton.vue";
+import UiButton from "@/shared/ui/button/UiButton.vue";
 </script>
-
-<style scoped>
-
-</style>

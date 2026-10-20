@@ -32,7 +32,3 @@ onMounted(async () => {
   await getAddresses();
 })
 </script>
-
-<style scoped>
-
-</style>

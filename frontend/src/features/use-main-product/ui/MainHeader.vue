@@ -81,7 +81,3 @@ watch(debouncedSearch, async (value) => {
   }
 })
 </script>
-
-<style scoped>
-
-</style>

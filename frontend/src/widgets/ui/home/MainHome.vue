@@ -72,7 +72,3 @@ import FilterGender from "@/widgets/ui/home/FilterGender.vue";
 
 const { notify } = useBaseModals()
 </script>
-
-<style scoped>
-
-</style>

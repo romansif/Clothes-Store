@@ -35,7 +35,3 @@ import { itemPreview, productHelper } from "@/shared/lib/helper/product-helper.t
 
 const { openSelectImage } = productHelper();
 </script>
-
-<style scoped>
-
-</style>

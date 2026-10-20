@@ -9,7 +9,7 @@
              :style="{ background: color.hex }"
              :title="color.hex"
              :class="selectedColorClass(color, product, user.role)"
-             @click="addColor(color, user, product)"></div>
+             @click="emit('addColor', color, user, product)"></div>
       </div>
     </div>
     <div class="flex flex-col gap-3">
@@ -20,7 +20,7 @@
         <img v-for="size in isAvailableSizes(product)" :key="size.name"
              :src=size.url alt=""
              :class="selectedSizesClass(size, product, user.role)"
-             @click="addSize(size, user, product)">
+             @click="emit('addSize', size, user, product)">
       </div>
       <div class="flex items-center gap-1">
         <span v-if="addToCartFormErrorMessages.colors"
@@ -54,14 +54,6 @@ const emit = defineEmits<{
   addColor: [color: ColorItem, user: User, product: Product];
   addSize: [size: Size, user: User, product: Product];
 }>();
-
-const addColor = (color: ColorItem, user: User, product: Product) => {
-  emit('addColor', color, user, product);
-};
-
-const addSize = (size: Size, user: User, product: Product) => {
-  emit('addSize', size, user, product);
-}
 
 const { pureInfoColors, isAvailableSizes } = productHelper();
 const { selectedColorClass, selectedSizesClass } = addToCartClasses();

@@ -89,7 +89,3 @@ const { getProductId } = previewHelper();
 const { pureColorsName } = productHelper();
 const { copyText, orderQuantity } = useOrder();
 </script>
-
-<style scoped>
-
-</style>

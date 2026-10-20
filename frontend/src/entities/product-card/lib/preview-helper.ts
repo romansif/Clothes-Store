@@ -1,4 +1,4 @@
-import { favoriteStore } from "@/entities/favorite/model/favorite.store.ts";
+import { favoriteStore } from "@/entities/favorite/model/favorite-store.ts";
 import type {Product} from "@/shared/model/product.types.ts";
 import type {User} from "@/entities/profile/model/user.types.ts";
 

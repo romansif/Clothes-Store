@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { productSpecific } from "@/entities/product-form/model/product.specific.ts";
+import { productSpecific } from "@/entities/product-form/model/product-specific.ts";
 import type {Product, SizeGuide} from "@/shared/model/product.types.ts";
 
 const { outerWear, underWear, outerwearSizeGuide, underWearSizeGuide, shoesSizeGuide } = productSpecific();

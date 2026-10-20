@@ -5,31 +5,22 @@
         <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">NAME</label>
         <BaseInput v-model=registerForm.name
                    placeholder="name"
-                   :error-message="registerFormErrorMessages.name ? registerFormErrorMessages.name : ''" />
+                   :error-message="registerFormErrorMessages.name" />
       </div>
       <div class="flex flex-col gap-3 w-full">
         <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">SURNAME</label>
         <BaseInput v-model=registerForm.surName
                    placeholder="surname"
-                   :error-message="registerFormErrorMessages.surName ? registerFormErrorMessages.surName : ''" />
+                   :error-message="registerFormErrorMessages.surName" />
       </div>
     </div>
     <div class="flex flex-col gap-3">
       <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">PRIVATE PHONE</label>
-      <div class="flex flex-col gap-3 sm:flex-row">
-        <select v-model="selectedCountryCode"
-                @change="changeCountry"
-                :class="selectPhoneCodeClass()">
-          <option v-for="country in countries" :key="country.code" :value="country.code">
-            {{ country.name }}
-          </option>
-        </select>
-        <IMask v-model:value=registerForm.phone
-               :mask="currentMask.mask"
-               :key="selectedCountryCode"
-               :class="getPhoneClass(registerFormErrorMessages.phone)"
-               :placeholder="currentCountry?.placeholder" />
-      </div>
+      <PhoneInput v-model=registerForm.phone
+                  :select-class="selectPhoneCode"
+                  :input-class="[showSignInPassword.default,
+                  registerFormErrorMessages.phone ? showSignInPassword.error : '']"
+                  :error-message="registerFormErrorMessages.phone" />
       <span v-if=registerFormErrorMessages.phone class="text-red-600 text-xs">
         {{ registerFormErrorMessages.phone }}
       </span>
@@ -51,7 +42,7 @@
                      :error-message="registerFormErrorMessages.password ? registerFormErrorMessages.password : ''" />
           <img @click=togglePassword
                :src="showPassword.password ? opened : closed" alt=""
-               :class="getSignUpPasswordClass(registerFormErrorMessages.password)">
+               :class="registerFormErrorMessages.password ? showSignInPassword.error : showSignInPassword.default">
         </div>
       </div>
     </div>
@@ -59,32 +50,23 @@
 </template>
 
 <script setup lang="ts">
-import { IMaskComponent as IMask } from "vue-imask";
-import { baseClasses } from "@/shared/const/base.classes.ts";
-import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
 import { authStore } from "@/features/use-auth/model/auth.store.ts";
-import { authClasses } from "@/shared/const/auth/auth.classes.ts";
+import { showSignInPassword } from "@/shared/ui/auth/auth-form.variants.ts"
+import { selectPhoneCode } from "@/shared/ui/phone-input/phone-input.variants.ts";
 import { toggleAuth } from "@/features/use-auth/lib/toggle-auth.ts";
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
-import { registerForm, registerFormErrorMessages } from "@/entities/auth/model/auth.forms.ts";
-import { selectedCountryCode, countries } from "@/shared/lib/select-phone-form.ts";
+import { registerForm, registerFormErrorMessages } from "@/entities/auth/model/auth-form.ts";
 
 import closed from "@/assets/icons/auth/closed.png";
 import opened from "@/assets/icons/auth/opened.png";
-import BaseInput from "@/shared/ui/base/BaseInput.vue";
+import BaseInput from "@/shared/ui/input/BaseInput.vue";
+import PhoneInput from "@/shared/ui/phone-input/PhoneInput.vue";
 
 const { showPassword } = authStore();
-const { getPhoneClass } = baseClasses();
-const { togglePassword, changeCountry } = toggleAuth();
-const { currentCountry, currentMask } = usePhoneForm();
-const { selectPhoneCodeClass, getSignUpPasswordClass } = authClasses();
+const { togglePassword } = toggleAuth();
 
 refClearErrorsOnChange(
     registerForm,
     registerFormErrorMessages
 )
 </script>
-
-<style scoped>
-
-</style>

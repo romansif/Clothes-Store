@@ -4,7 +4,7 @@
     <CreateBasicInfo />
     <CreateVariants />
     <div class="w-full mt-4 mb-6">
-      <BaseButton type="submit"
+      <UiButton type="submit"
                   name="CREATE PRODUCT"
                   variant="useProduct" />
     </div>
@@ -18,7 +18,7 @@
 import { useAddProduct } from "@/features/use-product-form/api/create-product.ts";
 import { fileInput, productHelper } from "@/shared/lib/helper/product-helper.ts";
 
-import BaseButton from "@/shared/ui/base/BaseButton.vue";
+import UiButton from "@/shared/ui/button/UiButton.vue";
 import CreateImageUpload from "@/features/use-product-form/ui/CreateImageUpload.vue";
 import CreateBasicInfo from "@/entities/product-form/ui/CreateBasicInfo.vue";
 import CreateVariants from "@/features/use-product-form/ui/CreateVariants.vue";

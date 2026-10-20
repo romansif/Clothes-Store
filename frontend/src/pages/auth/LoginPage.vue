@@ -4,7 +4,7 @@
         @submit.prevent="signIn">
     <LoginForm v-if="!showSignSection.signIn" />
     <div class="relative duration-400 hover:scale-105 cursor-pointer">
-      <BaseButton type="submit"
+      <UiButton type="submit"
                   variant="login"
                   name="SIGN IN" />
       <img :src=maki_arrow alt="" class="absolute w-6.25 top-9.5 left-58 sm:left-83">
@@ -26,7 +26,7 @@ import { authStore } from "@/features/use-auth/model/auth.store.ts";
 
 import LoginForm from "@/features/use-auth/ui/LoginForm.vue";
 import maki_arrow from "@/assets/icons/arrows/right-short-arrow.svg";
-import BaseButton from "@/shared/ui/base/BaseButton.vue";
+import UiButton from "@/shared/ui/button/UiButton.vue";
 import GoogleSignIn from "@/features/use-auth/ui/GoogleSignIn.vue";
 
 const { signIn } = useAuth();

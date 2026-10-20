@@ -4,7 +4,7 @@
          flex items-center justify-center"
          @click="toggleSavedPaymentCard">
       <div @click.stop class="flex flex-col bg-white w-222.5 h-150 rounded-xl p-5">
-        <BaseButton name="Exit"
+        <UiButton name="Exit"
                     variant="exitClose"
                     @click="toggleSavedPaymentCard" />
         <div class="flex flex-col gap-2 border-b py-4">
@@ -35,7 +35,7 @@ import { useGetPayment } from "@/features/use-user-payment/api/get-payment.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
 
-import BaseButton from "@/shared/ui/base/BaseButton.vue";
+import UiButton from "@/shared/ui/button/UiButton.vue";
 import DeleteModal from "@/features/use-general-delete/ui/DeleteModal.vue";
 import PaymentCardEmpty from "@/entities/profile/ui/PaymentCardEmpty.vue";
 import PaymentsList from "@/features/use-user-payment/ui/PaymentsList.vue";
@@ -49,8 +49,3 @@ onMounted(async () => {
   await getPayments();
 })
 </script>
-
-
-<style scoped>
-
-</style>

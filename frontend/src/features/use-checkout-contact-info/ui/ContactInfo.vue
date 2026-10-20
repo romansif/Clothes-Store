@@ -16,7 +16,7 @@
       <ContactForm />
       <AddressForm />
       <div class="relative ml-auto mt-5 transition duration-400 hover:scale-110">
-        <BaseButton v-if="!isSavedAddress"
+        <UiButton v-if="!isSavedAddress"
                     type="submit"
                     name="Shipping"
                     variant="checkOut"/>
@@ -26,7 +26,7 @@
       </div>
     </form>
     <div class="relative ml-auto mt-5 transition duration-400 hover:scale-110">
-      <BaseButton v-if="isSavedAddress"
+      <UiButton v-if="isSavedAddress"
                   name="Shipping"
                   variant="checkOut"
                   @click="useInformation" />
@@ -42,10 +42,10 @@ import { useAddAddress } from "@/features/use-checkout-contact-info/api/add-addr
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
 import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle-contact-info.ts";;
 import { informationContactStore } from "@/features/use-user-address/model/address.store.ts";
-import { informationForm, informationFormErrorMessages } from "@/entities/checkout-contact-info/model/address.form.ts";
+import { informationForm, informationFormErrorMessages } from "@/entities/checkout-contact-info/model/information-form.ts";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
-import BaseButton from "@/shared/ui/base/BaseButton.vue";
+import UiButton from "@/shared/ui/button/UiButton.vue";
 import ContactForm from "@/entities/checkout-contact-info/ui/ContactForm.vue";
 import AddressForm from "@/entities/checkout-contact-info/ui/AddressForm.vue";
 import SavedCheckoutInfo from "@/features/use-checkout-contact-info/ui/SavedCheckoutInfo.vue";
@@ -59,7 +59,3 @@ refClearErrorsOnChange(
     informationFormErrorMessages
 )
 </script>
-
-<style scoped>
-
-</style>

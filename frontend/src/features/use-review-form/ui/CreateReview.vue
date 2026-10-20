@@ -4,7 +4,7 @@
        @click="toggleReviewModal('')" >
     <form class="flex flex-col gap-2 bg-white w-150 h-fit rounded-xl p-5"
           @click.stop="createReview">
-      <BaseButton name="Exit"
+      <UiButton name="Exit"
                   variant="exitClose"
                   @click="toggleReviewModal" />
       <div class="flex flex-col gap-2 border-b pb-4">
@@ -22,7 +22,7 @@
         <AddPhotos />
       </div>
       <div class="flex justify-end mt-4">
-        <BaseButton type="submit"
+        <UiButton type="submit"
                     name="Create Review"
                     variant="replaceAndReview" />
       </div>
@@ -40,9 +40,9 @@ import { useCreateReview } from "@/features/use-review-form/api/add-review.ts";
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
 import { toggleReviewModal } from "@/features/use-review-form/lib/review-form-modal.ts";
 import { fileInput, productHelper } from "@/shared/lib/helper/product-helper.ts";
-import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/review.form.ts";
+import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/review-form.ts";
 
-import BaseButton from "@/shared/ui/base/BaseButton.vue";
+import UiButton from "@/shared/ui/button/UiButton.vue";
 import AddRating from "@/entities/review-form/ui/AddRating.vue";
 import AddReview from "@/entities/review-form/ui/AddReview.vue";
 import AddPhotos from "@/entities/review-form/ui/AddPhotos.vue";
@@ -56,7 +56,3 @@ refClearErrorsOnChange(
     reviewFormMessages
 )
 </script>
-
-<style scoped>
-
-</style>

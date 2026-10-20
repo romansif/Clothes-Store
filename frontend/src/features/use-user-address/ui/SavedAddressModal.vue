@@ -4,7 +4,7 @@
          flex items-center justify-center"
          @click="toggleSavedAddresses">
       <div @click.stop class="flex flex-col bg-white w-222.5 h-150 rounded-xl p-5">
-        <BaseButton name="Exit"
+        <UiButton name="Exit"
                     variant="exitClose"
                     @click="toggleSavedAddresses" />
         <div class="flex flex-col gap-2 border-b py-4">
@@ -35,7 +35,7 @@ import { useGetAddress } from "@/features/use-user-address/api/get-address.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import { informationContactStore } from "@/features/use-user-address/model/address.store.ts";
 
-import BaseButton from "@/shared/ui/base/BaseButton.vue";
+import UiButton from "@/shared/ui/button/UiButton.vue";
 import DeleteModal from "@/features/use-general-delete/ui/DeleteModal.vue";
 import AddressesEmpty from "@/entities/profile/ui/AddressesEmpty.vue";
 import AddressesList from "@/features/use-user-address/ui/AddressesList.vue";
@@ -49,7 +49,3 @@ onMounted(async () => {
   await getAddresses();
 })
 </script>
-
-<style scoped>
-
-</style>

@@ -74,7 +74,7 @@
 <script setup lang="ts">
 import { sizes } from "@/shared/model/product.sizes.ts";
 import { toggleSizeGuide } from "@/features/use-product/lib/toggle-more-info.ts";
-import { productSpecific } from "@/entities/product-form/model/product.specific.ts";
+import { productSpecific } from "@/entities/product-form/model/product-specific.ts";
 import { formatterSizeGuide, unit } from "@/features/use-product/lib/formatter-size.ts";
 import type {Product} from "@/shared/model/product.types.ts";
 
@@ -86,7 +86,3 @@ import close from '@/assets/icons/delete-close/delete.svg'
 
 const { sizesShoes } = productSpecific();
 </script>
-
-<style scoped>
-
-</style>

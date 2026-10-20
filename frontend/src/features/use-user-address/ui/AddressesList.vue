@@ -17,7 +17,3 @@ import AddressItem from "@/entities/user-address/ui/AddressItem.vue";
 const { toggleDeleteChoice } = baseDeleteModal();
 const { userAddresses } = informationContactStore();
 </script>
-
-<style scoped>
-
-</style>

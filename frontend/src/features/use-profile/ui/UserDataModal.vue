@@ -7,7 +7,7 @@
         <div class="flex flex-col gap-2 border-b pb-4">
           <div class="flex items-center">
             <h1 class="font-bold text-2xl">CONFIDENTIALITY DATA</h1>
-            <BaseButton name="Exit"
+            <UiButton name="Exit"
                         variant="exitClose"
                         @click="toggleConfidentialityData" />
           </div>
@@ -30,15 +30,10 @@
 import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 
-import ConfidentialityData from "../../../entities/profile/ui/ConfidentialityData.vue";
-import BaseButton from "@/shared/ui/base/BaseButton.vue";
-import UpdateProfileForm from "../../use-profile-form/ui/UpdateProfileForm.vue";
+import UiButton from "@/shared/ui/button/UiButton.vue";
+import ConfidentialityData from "@/entities/profile/ui/ConfidentialityData.vue";
+import UpdateProfileForm from "@/features/use-profile-form/ui/UpdateProfileForm.vue";
 
 const { userData } = userStore();
 const { toggleConfidentialityData } = useProfileModals();
 </script>
-
-
-<style scoped>
-
-</style>

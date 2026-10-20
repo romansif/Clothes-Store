@@ -13,7 +13,3 @@
 <script setup lang="ts">
 import icon_card from "@/assets/icons/checkout/payment/icon_card.svg";
 </script>
-
-<style scoped>
-
-</style>

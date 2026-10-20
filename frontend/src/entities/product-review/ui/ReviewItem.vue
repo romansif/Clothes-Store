@@ -19,7 +19,7 @@
         <p>{{ review.comment }}</p>
         <div class="flex gap-5 mt-2.5">
           <img v-for="(img, index) in reviewAngel(review.images)" :key="index" :src="img" alt=""
-               @click="toggleReviewPhotos(review.images, index)"
+               @click="emit('toggleReview', review.images, index)"
                class="bg-gray-50 h-45 w-45 border border-gray-300 transition duration-400 hover:scale-110
                cursor-pointer overflow-hidden rounded-lg">
         </div>
@@ -41,13 +41,5 @@ const emit = defineEmits<{
   toggleReview: [array: ImageItem[] | undefined, index: number];
 }>();
 
-const toggleReviewPhotos = (array: ImageItem[] | undefined, index: number) => {
-  emit('toggleReview', array, index);
-};
-
 const { starCountSrc, reviewAngel } = ratingHelper();
 </script>
-
-<style scoped>
-
-</style>

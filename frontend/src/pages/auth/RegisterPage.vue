@@ -4,14 +4,14 @@
         @submit.prevent="signUp(currentRole)">
     <RegisterForm />
     <div class="relative duration-400 hover:scale-105 cursor-pointer">
-      <BaseButton type="submit"
+      <UiButton type="submit"
                   variant="register"
                   :name="isRole ? 'SIGN UP BY SELLER' : 'SIGN UP BY BUYER'" />
       <img :src=maki_arrow alt="" class="absolute w-6.25 top-9.5 left-58 sm:left-118">
     </div>
   </form>
   <div class="flex justify-center mt-3">
-    <BaseButton @click="toggleSignUp"
+    <UiButton @click="toggleSignUp"
                 variant="changeRegister"
                 :name="isRole ? 'Sign up as a buyer' : 'Sign up as a seller'" />
   </div>
@@ -24,7 +24,7 @@ import { authStore } from "@/features/use-auth/model/auth.store.ts";
 
 import RegisterForm from "@/features/use-auth/ui/RegisterForm.vue";
 import maki_arrow from "@/assets/icons/arrows/right-short-arrow.svg";
-import BaseButton from "@/shared/ui/base/BaseButton.vue";
+import UiButton from "@/shared/ui/button/UiButton.vue";
 
 const { signUp } = useAuth();
 const { toggleSignUp } = toggleAuth();

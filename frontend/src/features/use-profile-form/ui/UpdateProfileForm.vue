@@ -9,9 +9,9 @@
                    variant="confidentialityData"
                    :error-message="updateUserFormErrorMessages.name" />
         <div class="flex">
-          <BaseButton type="submit"
-                      name="Save Name"
-                      variant="profileForm" />
+          <UiButton type="submit"
+                    name="Save Name"
+                    variant="profileForm" />
         </div>
       </form>
       <form class="flex flex-col gap-3 w-full"
@@ -22,9 +22,9 @@
                    variant="confidentialityData"
                    :error-message="updateUserFormErrorMessages.surName" />
         <div class="flex">
-          <BaseButton type="submit"
-                      name="Save SurName"
-                      variant="profileForm" />
+          <UiButton type="submit"
+                    name="Save SurName"
+                    variant="profileForm" />
         </div>
       </form>
     </div>
@@ -38,36 +38,27 @@
                  variant="confidentialityData"
                  :error-message="updateUserFormErrorMessages.email" />
       <div class="flex">
-        <BaseButton type="submit"
-                    name="Save Email"
-                    variant="profileForm" />
+        <UiButton type="submit"
+                  name="Save Email"
+                  variant="profileForm" />
       </div>
     </form>
     <form class="flex flex-col gap-3 w-full"
           @submit.prevent="updatePhoneAccount">
       <label>Private Phone</label>
-      <div class="flex gap-3">
-        <select v-model="selectedCountryCode"
-                @change="changeCountry"
-                :class="profileSelectPhoneCodeClass">
-          <option v-for="country in countries" :key="country.code" :value="country.code">
-            {{ country.name }}
-          </option>
-        </select>
-        <IMask v-model:value="updateUserForm.phone"
-               :placeholder="currentCountry?.placeholder"
-               :class="profilePhoneClass(updateUserFormErrorMessages.phone)"
-               :key="selectedCountryCode"
-               :mask="currentMask.mask"/>
-      </div>
+     <PhoneInput v-model="updateUserForm.phone"
+                 :select-class="profileFormSelectPhoneCodeClass"
+                 :input-class="[profileFormPhoneInputClasses.default,
+                 updateUserFormErrorMessages.phone ? profileFormPhoneInputClasses.error : '']"
+                 :error-message="updateUserFormErrorMessages.phone" />
       <span v-if="updateUserFormErrorMessages.phone"
             class="text-red-600 text-xs">
           {{ updateUserFormErrorMessages.phone }}
         </span>
       <div class="flex">
-        <BaseButton type="submit"
-                    name="Save Phone"
-                    variant="profileForm" />
+        <UiButton type="submit"
+                  name="Save Phone"
+                  variant="profileForm" />
       </div>
     </form>
   </div>
@@ -108,33 +99,30 @@
         </div>
       </div>
       <div class="flex mt-3">
-        <BaseButton type="submit"
-                    name="Save Password"
-                    variant="profileForm" />
+        <UiButton type="submit"
+                  name="Save Password"
+                  variant="profileForm" />
       </div>
     </form>
   </div>
 </template>
 
 <script setup lang="ts">
-import { IMaskComponent as IMask } from "vue-imask";
-import { usePhoneForm } from "@/shared/masks/use.phone.form.ts";
-import { toggleAuth } from "@/features/use-auth/lib/toggle-auth.ts";
 import { profileApi } from "@/features/use-profile-form/api/profile.api.ts";
-import { profileClasses } from "@/features/use-profile/const/profile.classes.ts";
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
 import { useTogglePassword } from "@/features/use-profile-form/lib/toggle-password.ts";
-import { updateUserForm, updateUserFormErrorMessages } from "@/entities/profile-form/model/user.update.form.ts";
-import { selectedCountryCode, countries } from "@/shared/lib/select-phone-form.ts";
+import { updateUserForm, updateUserFormErrorMessages } from "@/entities/profile-form/model/user-update-form.ts";
 
-import BaseButton  from "@/shared/ui/base/BaseButton.vue";
+import UiButton  from "@/shared/ui/button/UiButton.vue";
 import opened from '@/assets/icons/auth/opened.png'
 import closed from '@/assets/icons/auth/closed.png'
-import BaseInput from "@/shared/ui/base/BaseInput.vue";
+import BaseInput from "@/shared/ui/input/BaseInput.vue";
+import PhoneInput from "@/shared/ui/phone-input/PhoneInput.vue";
+import {
+  profileFormPhoneInputClasses,
+  profileFormSelectPhoneCodeClass
+} from "@/features/use-profile-form/model/profile-phone.variants.ts";
 
-const { changeCountry } = toggleAuth();
-const { currentCountry, currentMask } = usePhoneForm();
-const { profilePhoneClass, profileSelectPhoneCodeClass } = profileClasses();
 const {
   toggleOldPassword, toggleNewPassword,
   showOldPassword, showNewPassword

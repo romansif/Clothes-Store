@@ -12,7 +12,3 @@ import CheckoutContactItem from "@/features/use-checkout-contact-info/ui/Checkou
 
 const { userAddresses } = informationContactStore();
 </script>
-
-<style scoped>
-
-</style>

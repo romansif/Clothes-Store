@@ -5,7 +5,7 @@
                       :product="product"
                       :array="array"
                       :variant="variant"
-                      @toggle-to-favorite="toggleToFavorite" />
+                      @toggle-to-favorite="emit('toggleToFavorite', product)" />
       <span class="whitespace-normal mt-2 text-[#A3A3A3] text-lg">
         {{ product.material }} {{ product.category }}
       </span>
@@ -24,7 +24,7 @@
 <script setup lang="ts">
 import type {Product} from "@/shared/model/product.types.ts";
 import type {User} from "@/entities/profile/model/user.types.ts";
-import type {ProductCardVariant} from "@/entities/product-card/model/product.class.types.ts";
+import type {ProductCardVariant} from "@/entities/product-card/model/product-card.types.ts";
 
 const props = defineProps<{
   user: User | null;
@@ -37,13 +37,5 @@ const emit = defineEmits<{
   toggleToFavorite: [product: Product],
 }>()
 
-const toggleToFavorite = (product: Product) => {
-  emit("toggleToFavorite", product)
-}
-
 import ProductPreview from "@/entities/product-card/ui/ProductPreview.vue";
 </script>
-
-<style scoped>
-
-</style>

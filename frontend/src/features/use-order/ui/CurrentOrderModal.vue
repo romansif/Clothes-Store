@@ -5,7 +5,7 @@
         bg-[rgba(0,0,0,0.5)] flex items-center justify-center"
          @click="toggleCurrentOrder">
       <main @click.stop class="flex flex-col bg-white w-222.5 h-162.5 rounded-xl p-5">
-        <BaseButton name="Exit"
+        <UiButton name="Exit"
                     variant="exitClose"
                     @click="toggleCurrentOrder" />
         <header class="flex flex-col gap-2 border-b py-4">
@@ -19,7 +19,7 @@
         </header>
         <OrderList />
         <Transition name="modal">
-          <ClipboardNotify v-if="clipboard" />
+          <Clipboard v-if="clipboard" />
         </Transition>
       </main>
     </div>
@@ -42,10 +42,10 @@ import { reviewFormModal } from "@/features/use-review-form/lib/review-form-moda
 import { choiceModal } from "@/features/use-order/lib/order-modal.ts";
 
 import OrderList from "./OrderList.vue";
-import BaseButton from "@/shared/ui/base/BaseButton.vue";
-import ClipboardNotify from "@/shared/ui/order/ClipboardNotify.vue";
+import UiButton from "@/shared/ui/button/UiButton.vue";
 import ReplacementModal from "@/features/use-order/ui/ReplacementModal.vue";
 import CreateReview from "@/features/use-review-form/ui/CreateReview.vue";
+import Clipboard from "@/shared/ui/clipboard/Clipboard.vue";
 
 const { orders } = orderStore();
 const { clipboard } = useOrder();

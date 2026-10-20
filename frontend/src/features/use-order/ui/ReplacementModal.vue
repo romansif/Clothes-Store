@@ -3,7 +3,7 @@
        flex items-center justify-center"
        @click="toggleReplaceChoice('')" >
     <div @click.stop class="flex flex-col gap-2 bg-white w-175 h-fit rounded-xl p-5">
-      <BaseButton name="Exit"
+      <UiButton name="Exit"
                   variant="exitClose"
                   @click="toggleReplaceChoice" />
       <div class="flex flex-col gap-4 border-b pb-4">
@@ -18,7 +18,7 @@
             @submit.prevent="replaceOrder">
         <ReplacementForm />
         <div class="flex ml-auto">
-          <BaseButton type="submit"
+          <UiButton type="submit"
                       name="Replacement"
                       variant="replaceAndReview" />
         </div>
@@ -31,9 +31,9 @@
 import { toggleReplaceChoice } from "@/features/use-order/lib/order-modal.ts";
 import { useDeleteOrder } from "@/features/use-order/api/delete-order.ts";
 import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
-import { cancelChoiceForm, cancelChoiceMessage } from "@/entities/order/model/order.forms.ts";
+import { cancelChoiceForm, cancelChoiceMessage } from "@/entities/order/model/order-forms.ts";
 
-import BaseButton from "@/shared/ui/base/BaseButton.vue";
+import UiButton from "@/shared/ui/button/UiButton.vue";
 import ReplacementForm from "@/entities/order/ui/ReplacementForm.vue";
 
 const { replaceOrder } = useDeleteOrder();
@@ -43,7 +43,3 @@ refClearErrorsOnChange(
     cancelChoiceMessage
 )
 </script>
-
-<style scoped>
-
-</style>

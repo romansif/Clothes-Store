@@ -45,8 +45,3 @@ const { toggleDeleteChoice } = baseDeleteModal();
 const { pureQuantity, pureColors } = productHelper();
 const { updateCartItem, checkCartItem } = useUpdateCart();
 </script>
-
-
-<style scoped>
-
-</style>

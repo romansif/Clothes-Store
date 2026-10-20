@@ -39,7 +39,3 @@ defineProps<{
 const { getProductId } = previewHelper();
 const { pureQuantity, pureColorsName } = productHelper();
 </script>
-
-<style scoped>
-
-</style>

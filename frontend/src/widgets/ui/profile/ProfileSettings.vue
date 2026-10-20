@@ -43,19 +43,15 @@ import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import type {User} from "@/entities/profile/model/user.types.ts";
 
-defineProps<{
-  user: User
-}>();
-
 import ProfileMenu from "./ProfileMenu.vue";
 import OpenProfileModals from "@/widgets/ui/profile/OpenProfileModals.vue";
 import ProfileModals from "@/widgets/ui/profile/ProfileModals.vue";
+
+defineProps<{
+  user: User
+}>();
 
 const { userData } = userStore();
 const { userAvatar } = useProfile();
 const { toggleAvatar } = useProfileModals();
 </script>
-
-<style scoped>
-
-</style>

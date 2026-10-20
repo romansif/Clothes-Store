@@ -18,12 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { cancelChoiceForm, cancelChoiceMessage } from "@/entities/order/model/order.forms.ts";
+import { cancelChoiceForm, cancelChoiceMessage } from "@/entities/order/model/order-forms.ts";
 
-import ReplacementInput from "@/shared/ui/order/ReplacementInput.vue";
+import ReplacementInput from "@/shared/ui/replacement-input/ReplacementInput.vue";
 </script>
-
-
-<style scoped>
-
-</style>

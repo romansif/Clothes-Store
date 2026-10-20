@@ -1,5 +1,5 @@
 import { computed } from "vue";
-import { favoriteStore } from "@/entities/favorite/model/favorite.store.ts";
+import { favoriteStore } from "@/entities/favorite/model/favorite-store.ts";
 
 const { favorite } = favoriteStore();
 

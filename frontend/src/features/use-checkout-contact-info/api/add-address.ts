@@ -5,9 +5,9 @@ import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useGetAddress } from "@/features/use-user-address/api/get-address.ts";
 import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle-contact-info.ts";
 import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.ts";
-import { type UserContactInfo } from "@/entities/checkout-contact-info/model/address.types.ts";
-import { informationForm, informationFormErrorMessages } from "@/entities/checkout-contact-info/model/address.form.ts";
-import { addContactInfoSchema } from "@/entities/checkout-contact-info/model/address.schemas.ts";
+import { type UserContactInfo } from "@/entities/checkout-contact-info/model/information.types.ts";
+import { informationForm, informationFormErrorMessages } from "@/entities/checkout-contact-info/model/information-form.ts";
+import { addContactInfoSchema } from "@/entities/checkout-contact-info/model/information-schemas.ts";
 import router from "@/app/router";
 
 const { userData } = userStore();
