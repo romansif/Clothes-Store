@@ -1,12 +1,12 @@
 <template>
-  <div v-if="product"
-       class="font-raleway fixed inset-0 z-50
+  <div v-if="product" class="font-raleway fixed inset-0 z-50
      bg-[rgba(0,0,0,0.5)] flex items-center justify-center"
-       @click="toggleStackInfo(product)">
+       @click="toggleStackInfo">
     <div @click.stop class="flex flex-col gap-8 bg-white rounded-xl p-5 w-fit">
       <div class="flex items-center ">
         <h1 class="text-2xl font-medium">Quantity of each item</h1>
-        <img @click="toggleStackInfo(product)" :src="close" alt="" class="w-6.5 ml-auto cursor-pointer" />
+        <img @click="toggleStackInfo" :src="close" alt=""
+             class="w-6.5 ml-auto cursor-pointer" />
       </div>
       <div class="grid grid-cols-6 gap-3">
         <div v-for="variant in product.variants"
@@ -26,18 +26,12 @@
 </template>
 
 <script setup lang="ts">
-import { useRoute } from "vue-router";
-import { useQuery } from "@tanstack/vue-query";
-import { getProduct } from "@/features/use-product/api/get-product.ts";
 import { toggleStackInfo } from "@/features/use-my-product/lib/toggle-stack-info.ts";
+import type { Product } from "@/shared/model/product.types.ts";
 
 import close from "@/assets/icons/delete-close/delete.svg";
 
-const route = useRoute();
-
-const { data: product } = useQuery({
-  queryKey: ['product', route.params.id],
-  queryFn: () => getProduct(route.params.id),
-})
-
+defineProps<{
+  product: Product
+}>();
 </script>

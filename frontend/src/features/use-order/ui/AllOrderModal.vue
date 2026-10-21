@@ -47,7 +47,7 @@ import { choiceModal } from "@/features/use-order/lib/order-modal.ts";
 
 import OrdersList from "@/features/use-order/ui/OrderList.vue";
 import UiButton from "@/shared/ui/button/UiButton.vue";
-import Clipboard from "@/shared/ui/clipboard/Clipboard.vue";
+import Clipboard from "@/widgets/ui/clipboard/Clipboard.vue";
 import ReplacementModal from "@/features/use-order/ui/ReplacementModal.vue";
 import CreateReview from "@/features/use-review-form/ui/CreateReview.vue";
 

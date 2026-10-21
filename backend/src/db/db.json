@@ -1,53 +1,47 @@
 {
   "users": [
     {
-      "id": "5635e842-8786-4ec4-8663-bf918161c73c",
+      "id": "57671fed-ac09-4ef1-9681-35b131dc7792",
+      "role": "Buyer",
+      "name": "Akmal",
+      "surName": "Movlonov",
+      "phone": "+998 (12) 345-67-89",
       "email": "akmalmavlonov25@gmail.com",
-      "role": "Seller",
-      "name": "Plagiat555",
-      "surName": "",
-      "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocJzHyeN95wO6MAZzH4E9FkqrC9pDZ_IsEztiiZDoWZD08A2Osv2=s96-c",
-      "privatePhone": "",
-      "googleId": "117192309001137738940",
-      "created_at": "2026-09-17T09:20:34.668Z",
-      "password": ""
+      "password": "$2b$10$W2Q7OVUx1qv2mEQ7qhbQce3eoaA/ito9CEWmPJsjBBcZd3/FS8Pdm",
+      "avatarUrl": "uploads/avatars/default-avatar.png",
+      "created_at": "2026-10-21T10:39:37.185Z"
     },
     {
-      "id": "88d02997-e638-4aac-beb9-f986f55cda1c",
-      "email": "icecityland@gmail.com",
-      "role": "Buyer",
+      "id": "649d136f-950d-4390-add5-d533bd33e99b",
+      "role": "Seller",
       "name": "Misterio",
-      "surName": "",
-      "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocI_x7qgDLevnmrmvy2xxOJsLmz7BtasLX64CA8TSeR3nn4F8IY=s96-c",
-      "privatePhone": "",
-      "googleId": "100649871042356442319",
-      "created_at": "2026-09-17T09:54:59.265Z",
-      "password": ""
+      "surName": "Plagiat555",
+      "phone": "+998 (12) 345-67-89",
+      "email": "icecityland@gmail.com",
+      "password": "$2b$10$9MBGPZn9ogDTTGU.M/uiG.QNmFa8J58Q.7RgiBVw/PxHPrCDDOHzG",
+      "avatarUrl": "uploads/avatars/default-avatar.png",
+      "created_at": "2026-10-21T10:40:21.214Z"
     }
   ],
   "products": [
     {
-      "id": "15d2ee98-53e7-4b4e-ac46-7639d5d84e39",
-      "userId": "5635e842-8786-4ec4-8663-bf918161c73c",
+      "id": "58dd42a5-0608-4ee7-8521-b1fd515bac35",
+      "userId": "649d136f-950d-4390-add5-d533bd33e99b",
       "images": [
-        "uploads/products/product-1789638864451-396590289.png",
-        "uploads/products/product-1789638864459-523254742.png",
-        "uploads/products/product-1789638864467-630456836.png",
-        "uploads/products/product-1789638864470-448504727.png",
-        "uploads/products/product-1789638864474-439651088.png"
+        "uploads/products/product-1792583920706-228057031.png"
       ],
-      "title": "Padink",
+      "title": "12c32112c31231c321",
       "collection": {
-        "season": "Autumn",
-        "name": "Chapter |",
-        "condition": "Old"
+        "season": "Summer",
+        "name": "Blueprint",
+        "condition": "New"
       },
-      "category": "T-shirts",
-      "material": "Cotton",
+      "category": "Jeans",
+      "material": "Flax",
       "gender": "Man",
-      "sku": "e3u-fh-283",
-      "price": 25,
-      "description": "PADINK is a premium cotton T-shirt built around simplicity, comfort, and everyday wear. Crafted from soft, breathable cotton with a clean silhouette and relaxed feel, it’s an effortless essential made to fit into any wardrobe.",
+      "sku": "c32-2c-4c1",
+      "price": 10,
+      "description": "weweqceqew",
       "sizes": [
         "XS",
         "S",
@@ -58,241 +52,214 @@
       ],
       "colors": [
         {
+          "hex": "#726565",
+          "colorName": "Scorpion"
+        },
+        {
           "hex": "#ffffff",
           "colorName": "White"
         },
         {
           "hex": "#000000",
           "colorName": "Black"
-        },
-        {
-          "hex": "#a80b0b",
-          "colorName": "Bright Red"
         }
       ],
       "variants": [
         {
-          "hex": "#ffffff",
-          "colorName": "White",
+          "hex": "#726565",
+          "colorName": "Scorpion",
           "size": "XS",
-          "count": 200
+          "count": 10
         },
         {
-          "hex": "#ffffff",
-          "colorName": "White",
+          "hex": "#726565",
+          "colorName": "Scorpion",
           "size": "S",
-          "count": 200
+          "count": 10
         },
         {
-          "hex": "#ffffff",
-          "colorName": "White",
+          "hex": "#726565",
+          "colorName": "Scorpion",
           "size": "M",
-          "count": 200
+          "count": 10
         },
         {
-          "hex": "#ffffff",
-          "colorName": "White",
+          "hex": "#726565",
+          "colorName": "Scorpion",
           "size": "L",
-          "count": 200
+          "count": 9
         },
         {
-          "hex": "#ffffff",
-          "colorName": "White",
+          "hex": "#726565",
+          "colorName": "Scorpion",
           "size": "XL",
-          "count": 200
+          "count": 10
         },
         {
-          "hex": "#ffffff",
-          "colorName": "White",
+          "hex": "#726565",
+          "colorName": "Scorpion",
           "size": "XXL",
-          "count": 200
-        },
-        {
-          "hex": "#000000",
-          "colorName": "Black",
-          "size": "XS",
-          "count": 200
-        },
-        {
-          "hex": "#000000",
-          "colorName": "Black",
-          "size": "S",
-          "count": 199
-        },
-        {
-          "hex": "#000000",
-          "colorName": "Black",
-          "size": "M",
-          "count": 200
-        },
-        {
-          "hex": "#000000",
-          "colorName": "Black",
-          "size": "L",
-          "count": 200
-        },
-        {
-          "hex": "#000000",
-          "colorName": "Black",
-          "size": "XL",
-          "count": 200
-        },
-        {
-          "hex": "#000000",
-          "colorName": "Black",
-          "size": "XXL",
-          "count": 200
-        },
-        {
-          "hex": "#a80b0b",
-          "colorName": "Bright Red",
-          "size": "XS",
-          "count": 200
-        },
-        {
-          "hex": "#a80b0b",
-          "colorName": "Bright Red",
-          "size": "S",
-          "count": 200
-        },
-        {
-          "hex": "#a80b0b",
-          "colorName": "Bright Red",
-          "size": "M",
-          "count": 200
-        },
-        {
-          "hex": "#a80b0b",
-          "colorName": "Bright Red",
-          "size": "L",
-          "count": 200
-        },
-        {
-          "hex": "#a80b0b",
-          "colorName": "Bright Red",
-          "size": "XL",
-          "count": 200
-        },
-        {
-          "hex": "#a80b0b",
-          "colorName": "Bright Red",
-          "size": "XXL",
-          "count": 200
+          "count": 10
         }
       ],
       "status": "Availability",
-      "created_at": "2026-09-17T09:54:24.515Z"
+      "created_at": "2026-10-21T11:58:40.732Z"
     }
   ],
   "cart": [],
-  "favorites": [],
+  "favorites": [
+    {
+      "id": "8140c387-d196-49f2-a55b-19b5ab1139ae",
+      "userId": "57671fed-ac09-4ef1-9681-35b131dc7792",
+      "productId": "58dd42a5-0608-4ee7-8521-b1fd515bac35",
+      "images": [
+        "uploads/products/product-1792583920706-228057031.png"
+      ],
+      "title": "12c32112c31231c321",
+      "category": "Jeans",
+      "material": "Flax",
+      "price": 10,
+      "description": "weweqceqew",
+      "color": [
+        {
+          "hex": "#726565",
+          "colorName": "Scorpion"
+        },
+        {
+          "hex": "#ffffff",
+          "colorName": "White"
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black"
+        }
+      ],
+      "size": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "gender": "Man",
+      "variants": [
+        {
+          "hex": "#726565",
+          "colorName": "Scorpion",
+          "size": "XS",
+          "count": 10
+        },
+        {
+          "hex": "#726565",
+          "colorName": "Scorpion",
+          "size": "S",
+          "count": 10
+        },
+        {
+          "hex": "#726565",
+          "colorName": "Scorpion",
+          "size": "M",
+          "count": 10
+        },
+        {
+          "hex": "#726565",
+          "colorName": "Scorpion",
+          "size": "L",
+          "count": 9
+        },
+        {
+          "hex": "#726565",
+          "colorName": "Scorpion",
+          "size": "XL",
+          "count": 10
+        },
+        {
+          "hex": "#726565",
+          "colorName": "Scorpion",
+          "size": "XXL",
+          "count": 10
+        }
+      ],
+      "created_at": "2026-10-21T11:59:01.048Z"
+    }
+  ],
   "addresses": [
     {
-      "id": "8be222fc-ced7-438a-af88-9d867523bcb1",
-      "userId": "88d02997-e638-4aac-beb9-f986f55cda1c",
-      "address": "123ewqe",
-      "postalCode": 21131,
-      "addressName": "1e3",
-      "email": "icecityland@gmail.com",
+      "id": "e83a9633-0050-4375-b79c-7fe3ec75e6c3",
+      "userId": "57671fed-ac09-4ef1-9681-35b131dc7792",
+      "address": "Ташкент, Чиланзар_5, 26",
+      "postalCode": 100091,
+      "addressName": "Ташкент, Чиланзар_5, 26",
+      "email": "akmalmavlonov25@gmail.com",
       "phone": "+998 (12) 345-67-89",
-      "firstName": "A",
-      "lastName": "Misterio",
-      "country": "123",
-      "stateRegion": "123",
-      "city": "qwe"
+      "firstName": "Akmal",
+      "lastName": "Movlonov",
+      "country": "Узбекистан",
+      "stateRegion": "Tashkent",
+      "city": "Ташкент"
     }
   ],
   "shipping": [
     {
-      "id": "d217eeb4-bd05-491d-90dd-1dfd7a33375a",
-      "userId": "88d02997-e638-4aac-beb9-f986f55cda1c",
-      "paymentId": "7d818296-3e29-4ccf-8a61-cba7ee057505",
-      "delivery": "standard"
+      "id": "da13f158-0336-4cc0-ac6a-78d9233bc3d9",
+      "userId": "57671fed-ac09-4ef1-9681-35b131dc7792",
+      "paymentId": "0d5b0159-3e1f-4353-aca3-869d0e928a45",
+      "delivery": "express"
     }
   ],
   "payments": [
     {
-      "id": "7c426365-e1ac-49ee-a3fe-2ccb53a94c3e",
-      "userId": "88d02997-e638-4aac-beb9-f986f55cda1c",
-      "paymentId": "7d818296-3e29-4ccf-8a61-cba7ee057505",
+      "id": "674592fd-1107-420c-ac91-0c782271ae09",
+      "userId": "57671fed-ac09-4ef1-9681-35b131dc7792",
+      "paymentId": "0d5b0159-3e1f-4353-aca3-869d0e928a45",
       "paymentMethod": "apple"
     }
   ],
   "orders": [
     {
-      "id": "1f2828b6-5bdf-41f9-ac98-79a416e5936b",
-      "userId": "88d02997-e638-4aac-beb9-f986f55cda1c",
+      "id": "7b2c390d-d538-446d-8ced-5b3ddb2892d4",
+      "userId": "57671fed-ac09-4ef1-9681-35b131dc7792",
       "orderItems": [
         {
-          "id": "fb67382f-8b72-46e7-886b-bec9dc53b702",
-          "userId": "88d02997-e638-4aac-beb9-f986f55cda1c",
-          "productId": "15d2ee98-53e7-4b4e-ac46-7639d5d84e39",
+          "id": "171bc87e-83d3-4730-887b-c5c83ce35913",
+          "userId": "57671fed-ac09-4ef1-9681-35b131dc7792",
+          "productId": "58dd42a5-0608-4ee7-8521-b1fd515bac35",
           "images": [
-            "uploads/products/product-1789638864451-396590289.png",
-            "uploads/products/product-1789638864459-523254742.png",
-            "uploads/products/product-1789638864467-630456836.png",
-            "uploads/products/product-1789638864470-448504727.png",
-            "uploads/products/product-1789638864474-439651088.png"
+            "uploads/products/product-1792583920706-228057031.png"
           ],
-          "title": "Padink",
-          "category": "T-shirts",
-          "material": "Cotton",
-          "price": 25,
-          "description": "PADINK is a premium cotton T-shirt built around simplicity, comfort, and everyday wear. Crafted from soft, breathable cotton with a clean silhouette and relaxed feel, it’s an effortless essential made to fit into any wardrobe.",
+          "title": "12c32112c31231c321",
+          "category": "Jeans",
+          "material": "Flax",
+          "price": 10,
+          "description": "weweqceqew",
           "colors": [
             {
-              "hex": "#000000",
-              "colorName": "Black"
+              "hex": "#726565",
+              "colorName": "Scorpion"
             }
           ],
-          "sizes": "S",
+          "sizes": "L",
           "gender": "Man",
           "variants": [
             {
-              "hex": "#000000",
-              "colorName": "Black",
-              "size": "S",
+              "hex": "#726565",
+              "colorName": "Scorpion",
+              "size": "L",
               "count": 1
             }
           ],
           "checked": false,
-          "created_at": "2026-09-17T11:49:52.664Z"
+          "created_at": "2026-10-21T11:59:04.534Z"
         }
       ],
-      "orderTotal": 27,
+      "orderTotal": 11,
       "delivery": "",
       "status": "Convene",
-      "created_at": "2026-09-17T11:50:25.631Z",
-      "date_created_at": "17.09.2026",
-      "time_created_at": "16:50"
+      "created_at": "2026-10-21T12:00:46.240Z",
+      "date_created_at": "21.10.2026",
+      "time_created_at": "17:00"
     }
   ],
-  "reviews": [
-    {
-      "id": "5c10ff91-5199-4f6d-be09-7a55d9228e33",
-      "userId": "88d02997-e638-4aac-beb9-f986f55cda1c",
-      "productId": "15d2ee98-53e7-4b4e-ac46-7639d5d84e39",
-      "user": {
-        "name": "Misterio",
-        "surName": "Dweqwew",
-        "avatar": "https://lh3.googleusercontent.com/a/ACg8ocI_x7qgDLevnmrmvy2xxOJsLmz7BtasLX64CA8TSeR3nn4F8IY=s96-c"
-      },
-      "rating": 3,
-      "comment": "qfqqwqrqrqwqwr",
-      "created_at": "Sep 18, 2026"
-    },
-    {
-      "id": "3533f285-cda2-4247-9a05-325c8f45dcf2",
-      "userId": "88d02997-e638-4aac-beb9-f986f55cda1c",
-      "productId": "15d2ee98-53e7-4b4e-ac46-7639d5d84e39",
-      "user": {
-        "name": "Misterio",
-        "surName": "Ijnjbu",
-        "avatar": "https://lh3.googleusercontent.com/a/ACg8ocI_x7qgDLevnmrmvy2xxOJsLmz7BtasLX64CA8TSeR3nn4F8IY=s96-c"
-      },
-      "rating": 3,
-      "comment": "123131311 41v4b14235n45",
-      "created_at": "Sep 18, 2026"
-    }
-  ]
+  "reviews": []
 }

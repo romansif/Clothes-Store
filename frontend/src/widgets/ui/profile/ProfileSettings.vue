@@ -2,8 +2,7 @@
   <div class="flex flex-col bg-white rounded-xl shadow-2xl">
     <div class="flex p-5">
       <div class="flex items-center gap-10">
-        <img v-if="userData"
-             :src="userAvatar(userData.avatarUrl)" alt=""
+        <img v-if="userData" :src="userAvatar(userData.avatarUrl)" alt=""
              class="rounded-full w-25 transition duration-400 hover:scale-108"
              @click="toggleAvatar">
         <div class="flex flex-col gap-4 font-semibold text-xl">
@@ -43,7 +42,7 @@ import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
 import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
 import type {User} from "@/entities/profile/model/user.types.ts";
 
-import ProfileMenu from "./ProfileMenu.vue";
+import ProfileMenu from "@/features/use-profile/ui/ProfileMenu.vue";
 import OpenProfileModals from "@/widgets/ui/profile/OpenProfileModals.vue";
 import ProfileModals from "@/widgets/ui/profile/ProfileModals.vue";
 

@@ -2,27 +2,27 @@
   <PaymentCardForm v-if="isDebitCard"
                    :user-payment="userPayment" />
   <div v-if="!isDebitCard"
-       :class="paymentMethodClass(paymentForm.paymentMethod,'card',
-       paymentFormErrorMessage.paymentMethod)"
+       :class="paymentMethodClass(paymentForm.paymentMethod,
+'card', paymentFormErrorMessage.paymentMethod)"
        @click="emit('openCardForm', paymentForm.paymentMethod)">
     <PaymentMethod v-model="paymentForm.paymentMethod"
                    :variant="'card'"
                    @click="emit('openCardForm', paymentForm.paymentMethod)" />
   </div>
-  <div :class="paymentMethodClass(paymentForm.paymentMethod,'apple',
-       paymentFormErrorMessage.paymentMethod)">
+  <div :class="paymentMethodClass(paymentForm.paymentMethod,
+'apple', paymentFormErrorMessage.paymentMethod)">
     <PaymentMethod v-model="paymentForm.paymentMethod"
                    :variant="'apple'"
                    @click="emit('openCardForm', paymentForm.paymentMethod)" />
   </div>
-  <div :class="paymentMethodClass(paymentForm.paymentMethod,'google',
-       paymentFormErrorMessage.paymentMethod)">
+  <div :class="paymentMethodClass(paymentForm.paymentMethod,
+'google',  paymentFormErrorMessage.paymentMethod)">
     <PaymentMethod v-model="paymentForm.paymentMethod"
                    :variant="'google'"
                    @click="emit('openCardForm', paymentForm.paymentMethod)" />
   </div>
-  <div :class="paymentMethodClass(paymentForm.paymentMethod,'paypal',
-       paymentFormErrorMessage.paymentMethod)">
+  <div :class="paymentMethodClass(paymentForm.paymentMethod,
+'paypal', paymentFormErrorMessage.paymentMethod)">
     <PaymentMethod v-model="paymentForm.paymentMethod"
                    :variant="'paypal'"
                    @click="emit('openCardForm', paymentForm.paymentMethod)" />

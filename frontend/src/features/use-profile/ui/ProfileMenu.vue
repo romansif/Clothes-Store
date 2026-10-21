@@ -11,40 +11,26 @@
       <MenuItems class="absolute right-0 z-10 mt-2 w-46 origin-top-right divide-y
           rounded-xl bg-white border border-gray-300">
         <div class="py-1">
-          <MenuItem v-slot="{ active }">
-            <button :class="['transition duration-400 cursor-pointer',
-                    active ? 'bg-white/5 text-black outline-hidden scale-110' :
-                    'text-[#A3A3A3] block px-4 py-2 text-sm']"
-                    @click="toggleDeleteChoice('Are you sure you want to log out of this account?', 'EXIT', '')">
-              Exit Account
-            </button>
+          <MenuItem>
+            <UiButton variant="profileMenu" name="Exit Account" @click="toggleDeleteChoice(
+                'Are you sure you want to log out of this account?', 'EXIT', '')" />
           </MenuItem>
         </div>
         <div class="py-1">
-          <MenuItem v-slot="{ active }">
-            <button :class="['transition duration-400 cursor-pointer',
-                    active ? 'bg-white/5 text-black outline-hidden scale-110' :
-                    'text-[#A3A3A3] block px-4 py-2 text-sm']"
-                    @click="toggleDeleteChoice('Are you sure you want to delete this account?', 'DELETE_ACCOUNT', '')">
-              Delete Account
-            </button>
+          <MenuItem>
+            <UiButton variant="profileMenu" name="Delete Account" @click="toggleDeleteChoice(
+                'Are you sure you want to delete this account?', 'DELETE_ACCOUNT', '')" />
           </MenuItem>
         </div>
         <div class="py-1">
-          <MenuItem v-slot="{ active }" v-if="userData.role === 'Seller'">
+          <MenuItem v-if="userData.role === 'Seller'">
             <router-link :to="{name: 'signUp'}">
-              <button :class="['transition duration-400 cursor-pointer',
-                      active ? 'bg-white/5 text-black outline-hidden scale-110' : 'text-[#A3A3A3] block px-4 py-2 text-sm']">
-                Become a buyer
-              </button>
+              <UiButton variant="profileMenu" name="Become a buyer" />
             </router-link>
           </MenuItem>
-          <MenuItem v-slot="{ active }" v-if="userData.role === 'Buyer'">
+          <MenuItem v-if="userData.role === 'Buyer'">
             <router-link :to="{name: 'signUp'}">
-              <button :class="['transition duration-400 cursor-pointer',
-                      active ? 'bg-white/5 text-black outline-hidden scale-110' : 'text-[#A3A3A3] block px-4 py-2 text-sm']">
-                Become a seller
-              </button>
+              <UiButton variant="profileMenu" name="Become a seller" />
             </router-link>
           </MenuItem>
         </div>
@@ -57,6 +43,7 @@
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal.ts";
 import { Menu, MenuItems, MenuItem, MenuButton} from "@headlessui/vue";
+import UiButton from "@/shared/ui/button/UiButton.vue";
 
 const { userData } = userStore();
 const { toggleDeleteChoice } = baseDeleteModal();

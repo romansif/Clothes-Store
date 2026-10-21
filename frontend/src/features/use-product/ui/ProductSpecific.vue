@@ -58,7 +58,3 @@ const emit = defineEmits<{
 const { pureInfoColors, isAvailableSizes } = productHelper();
 const { selectedColorClass, selectedSizesClass } = addToCartVariants();
 </script>
-
-<style scoped>
-
-</style>

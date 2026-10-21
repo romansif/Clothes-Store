@@ -4,7 +4,6 @@
       <div class="flex items-center justify-between">
         <label class="flex gap-1 font-semibold tracking-wider text-xs">
           QUANTITY · КОЛИЧЕСТВО
-          <span class="text-red-500">*</span>
         </label>
         <div class="flex gap-2 justify-end items-center font-semibold">
           <button type="button" @click="countMode = 'SAME'"
@@ -74,7 +73,6 @@
       <div class="flex items-center justify-between">
         <span class="flex gap-1 font-semibold tracking-wider text-xs">
           SIZES · РАЗМЕРЫ
-          <span class="text-red-500">*</span>
           <span>/</span>
           <span class="text-black uppercase">{{ pureSizesName(product) }}</span>
         </span>
@@ -95,7 +93,6 @@
       <div class="flex items-center justify-between">
         <label class="flex gap-1 font-semibold tracking-wider text-xs">
           COLORS · ЦВЕТА
-          <span class="text-red-500">*</span>
           <span> / </span>
           <span class="text-black uppercase">{{ pureColorsName(product) }}</span>
         </label>
@@ -137,5 +134,8 @@ defineProps<{
 
 const { toggleAllVariants, countMode } = productFormHelper();
 const { updateProductCount, updateProductColors } = useUpdateProduct();
-const { pureInfoColors, pureColorsName, pureSizesName, isAvailableSizes, uniqueSizes, uniqueColors } = productHelper();
+const {
+  pureInfoColors, pureColorsName, pureSizesName,
+  isAvailableSizes, uniqueSizes, uniqueColors
+} = productHelper();
 </script>

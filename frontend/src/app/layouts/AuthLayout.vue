@@ -28,7 +28,7 @@ import { useBaseModals } from "@/shared/lib/use-notify.ts";
 
 import Loading from "@/shared/ui/Loading.vue";
 import Notification from "@/shared/ui/Notification.vue";
-import AuthHeader from "@/widgets/ui/auth/AuthHeader.vue";
+import AuthHeader from "@/widgets/ui/auth-header/AuthHeader.vue";
 
 const route = useRoute();
 

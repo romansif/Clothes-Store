@@ -19,8 +19,8 @@
         <BaseInput v-model="createProductForm.title"
                    placeholder="title, name etc."
                    variant="createProduct"
+                   :max-length="50"
                    :error-message="createProductFormErrorMessages.title"/>
-        <span class="text-[#A3A3A3] ml-auto font-medium">{{ createProductForm.title.length }} / 50</span>
       </div>
     </div>
     <div class="flex gap-6">
@@ -30,7 +30,7 @@
           <span v-if="isCreate" class="text-red-500">*</span>
           <template v-else>
             <span>/</span>
-            <span class="text-black uppercase">{{ product.title }}</span>
+            <span class="text-black uppercase">{{ product.collection.name }}</span>
           </template>
         </label>
         <div class="relative">
@@ -64,7 +64,7 @@
           <span v-if="isCreate" class="text-red-500">*</span>
           <template v-else>
             <span>/</span>
-            <span class="text-black uppercase">{{ product.title }}</span>
+            <span class="text-black uppercase">{{ product.category }}</span>
           </template>
         </label>
         <select v-model="createProductForm.category"
@@ -88,7 +88,7 @@
           <span v-if="isCreate" class="text-red-500">*</span>
           <template v-else>
             <span>/</span>
-            <span class="text-black uppercase">{{ product.title }}</span>
+            <span class="text-black uppercase">{{ product.material }}</span>
           </template>
         </label>
         <select v-model="createProductForm.material"
@@ -110,7 +110,7 @@
           <span v-if="isCreate" class="text-red-500">*</span>
           <template v-else>
             <span>/</span>
-            <span class="text-black uppercase">{{ product.title }}</span>
+            <span class="text-black uppercase">{{ product.gender }}</span>
           </template>
         </label>
         <div class="flex flex-col gap-3">
@@ -135,7 +135,7 @@
           <span v-if="isCreate" class="text-red-500">*</span>
           <template v-else>
             <span>/</span>
-            <span class="text-black uppercase">{{ product.title }}</span>
+            <span class="text-black uppercase">{{ product.sku }}</span>
           </template>
         </label>
         <IMask v-model:value="createProductForm.sku"
@@ -152,7 +152,7 @@
           <span v-if="isCreate" class="text-red-500">*</span>
           <template v-else>
             <span>/</span>
-            <span class="text-black uppercase">{{ product.title }}</span>
+            <span class="text-black uppercase">{{ product.price }}</span>
           </template>
         </label>
         <BaseInput v-model="createProductForm.price"
@@ -168,13 +168,12 @@
         <span v-if="isCreate" class="text-red-500">*</span>
         <template v-else>
           <span>/</span>
-          <span class="text-black uppercase">{{ product.title }}</span>
+          <span class="text-black uppercase">{{ product.description }}</span>
         </template>
       </label>
       <UiTextarea v-model="createProductForm.description"
                   :placeholder="'short desc. of product'"
                   :error-message="createProductFormErrorMessages.description" />
-      <span class="ml-auto text-[#A3A3A3] text-xs font-medium">{{ createProductForm.description.length }} / 400</span>
     </div>
   </div>
 </template>

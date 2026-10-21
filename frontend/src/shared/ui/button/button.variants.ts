@@ -31,5 +31,6 @@ export const buttonVariantClasses: Record<ButtonVariant, string> = {
     refresh: `transition duration-400 px-4 py-2 mt-5 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors`,
     stackInfo: `ml-auto text-start h-fit w-fit px-10 py-2 bg-[#3B3C36] text-white font-medium text-xs rounded-md cursor-pointer
           transition duration-400 transform hover:bg-[#1d1e1b]`,
-    loadReviews: `font-semibold border border-[#D9D9D9] w-150 p-2.5 transition duration-400 hover:bg-white hover:scale-105`
+    loadReviews: `font-semibold border border-[#D9D9D9] w-150 p-2.5 transition duration-400 hover:bg-white hover:scale-105`,
+    profileMenu: `text-[#A3A3A3] block px-4 py-2 text-sm transition duration-400 hover:text-black hover:outline-hidden hover:scale-115`
 }

@@ -16,7 +16,8 @@ export type ButtonVariant =
     'confirm' |
     'refresh' |
     'stackInfo' |
-    'loadReviews'
+    'loadReviews' |
+    'profileMenu'
 
 
 export interface ButtonProps {

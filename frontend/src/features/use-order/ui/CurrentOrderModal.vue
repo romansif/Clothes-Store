@@ -45,7 +45,7 @@ import OrderList from "./OrderList.vue";
 import UiButton from "@/shared/ui/button/UiButton.vue";
 import ReplacementModal from "@/features/use-order/ui/ReplacementModal.vue";
 import CreateReview from "@/features/use-review-form/ui/CreateReview.vue";
-import Clipboard from "@/shared/ui/clipboard/Clipboard.vue";
+import Clipboard from "@/widgets/ui/clipboard/Clipboard.vue";
 
 const { orders } = orderStore();
 const { clipboard } = useOrder();

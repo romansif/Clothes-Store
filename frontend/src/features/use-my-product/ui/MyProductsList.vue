@@ -8,9 +8,6 @@
     </ul>
   </Transition>
   <Transition name="modal">
-    <StackInfoModal v-if="stackInfo" />
-  </Transition>
-  <Transition name="modal">
     <DeleteModal v-if="deleteModal" />
   </Transition>
 </template>
@@ -20,10 +17,8 @@ import { onMounted } from "vue";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useGetMyProduct } from "@/features/use-my-product/api/get-my-product.ts";
 import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal.ts";
-import { stackInfo } from "@/features/use-my-product/lib/toggle-stack-info.ts";
 
 import MyProductItem from "@/features/use-my-product/ui/MyProductItem.vue";
-import StackInfoModal from "@/features/use-my-product/ui/StackInfoModal.vue";
 import DeleteModal from "@/features/use-general-delete/ui/DeleteModal.vue";
 
 const { userData } = userStore();

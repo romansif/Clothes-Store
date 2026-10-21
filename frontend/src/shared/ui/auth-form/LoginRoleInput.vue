@@ -1,5 +1,5 @@
 <template>
-  <div :class="props.errorMessage ? signInRole.error : signInRole.default">
+  <div :class="[signInRole.default, props.errorMessage ? signInRole.error : '']">
     <input v-model="model"
            :value="props.role"
            type="radio"
@@ -12,8 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import { signInRole } from "@/shared/ui/auth/auth-form.variants.ts";
-import type {AuthFormProps} from "@/shared/ui/auth/auth-form.types.ts";
+import { signInRole } from "@/shared/ui/auth-form/auth-form.variants.ts";
+import type {AuthFormProps} from "@/shared/ui/auth-form/auth-form.types.ts";
 
 const props = defineProps<AuthFormProps>()
 

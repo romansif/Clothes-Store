@@ -9,21 +9,17 @@
       </div>
       <div class="flex flex-col gap-3 w-full">
         <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">SURNAME</label>
-        <BaseInput v-model=registerForm.surName
+        <BaseInput v-model="registerForm.surName"
                    placeholder="surname"
                    :error-message="registerFormErrorMessages.surName" />
       </div>
     </div>
     <div class="flex flex-col gap-3">
       <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">PRIVATE PHONE</label>
-      <PhoneInput v-model=registerForm.phone
+      <PhoneInput v-model="registerForm.phone"
                   :select-class="selectPhoneCode"
-                  :input-class="[showSignInPassword.default,
-                  registerFormErrorMessages.phone ? showSignInPassword.error : '']"
+                  :input-class="registerPhoneInputVariants"
                   :error-message="registerFormErrorMessages.phone" />
-      <span v-if=registerFormErrorMessages.phone class="text-red-600 text-xs">
-        {{ registerFormErrorMessages.phone }}
-      </span>
     </div>
     <div class="flex flex-col gap-3 sm:flex-row">
       <div class="flex flex-col gap-3 w-full">
@@ -51,11 +47,12 @@
 
 <script setup lang="ts">
 import { authStore } from "@/features/use-auth/model/auth.store.ts";
-import { showSignInPassword } from "@/shared/ui/auth/auth-form.variants.ts"
+import { showSignInPassword } from "@/shared/ui/auth-form/auth-form.variants.ts"
 import { selectPhoneCode } from "@/shared/ui/phone-input/phone-input.variants.ts";
 import { toggleAuth } from "@/features/use-auth/lib/toggle-auth.ts";
 import { refClearErrorsOnChange } from "@/shared/lib/errors-helper.ts";
 import { registerForm, registerFormErrorMessages } from "@/entities/auth/model/auth-form.ts";
+import { registerPhoneInputVariants } from "@/features/use-auth/model/register-phone-input.variants.ts";
 
 import closed from "@/assets/icons/auth/closed.png";
 import opened from "@/assets/icons/auth/opened.png";

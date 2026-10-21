@@ -1,12 +1,21 @@
 <template>
-  <input v-model="model"
-         :class="[inputVariantClasses[props.variant], props.errorMessage ? inputErrorClass : '']"
-         v-bind="$attrs" />
-  <span v-if="props.errorMessage"
-        class="text-red-600 text-xs">{{ props.errorMessage }}</span>
+  <div class="flex flex-col gap-3">
+    <input v-model="model"
+           :class="[inputVariantClasses[props.variant], props.errorMessage ? inputErrorClass : '']"
+           v-bind="$attrs"
+           :maxlength="props.maxLength" />
+    <div class="flex">
+      <span v-if="props.errorMessage"
+            class="text-red-600 text-xs">{{ props.errorMessage }}</span>
+      <span v-if="props.maxLength" class="ml-auto shrink-0 text-xs font-medium text-[#A3A3A3]">
+        {{ currentLength }} / {{ maxLength }}
+      </span>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
+import { useInput } from "@/shared/ui/input/use-input.ts";
 import { inputErrorClass, inputVariantClasses } from "@/shared/ui/input/input.variants.ts";
 import type { InputProps } from "@/shared/ui/input/input.types.ts";
 
@@ -15,4 +24,6 @@ const props = withDefaults(defineProps<InputProps>(), {
 });
 
 const model = defineModel<string | number>();
+
+const { currentLength } = useInput(model);
 </script>

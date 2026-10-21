@@ -2,10 +2,10 @@
   <div class="flex flex-col gap-4">
     <div class="flex flex-col gap-3">
       <label class="font-semibold uppercase tracking-wider text-xs text-gray-700">EMAIL OR PHONE</label>
-      <BaseInput v-model=loginForm.email
+      <BaseInput v-model="loginForm.email"
                  type="email"
                  placeholder="example@mail.com"
-                 :error-message="loginFormErrorMessages.email || loginFormErrorMessages.password" />
+                 :error-message="useLoginErrorMessage" />
     </div>
     <div class="flex flex-col gap-3">
       <div class="flex">
@@ -13,11 +13,11 @@
         <label class="text-xs text-gray-400 ml-auto">Forgot a password?</label>
       </div>
       <div class="relative">
-        <BaseInput v-model=loginForm.password
+        <BaseInput v-model="loginForm.password"
                    :type="showPassword.password ? 'text' : 'password'"
                    placeholder="••••••••"
-                   :error-message="loginFormErrorMessages.password" />
-        <img @click=togglePassword
+                   :error-message="useLoginErrorMessage" />
+        <img @click="togglePassword"
              :src="showPassword.password ? opened : closed" alt=""
              :class="['absolute w-7.5 top-1/4 left-57 sm:left-82',
              useLoginErrorMessage ? 'top-1/6' : '']">
@@ -43,12 +43,12 @@ import { toggleAuth } from "@/features/use-auth/lib/toggle-auth.ts";
 import { authStore } from "@/features/use-auth/model/auth.store.ts";
 import { refClearErrorsOnChange } from "@/shared/lib/errors-helper.ts";
 import { loginForm, loginFormErrorMessages } from "@/entities/auth/model/auth-form.ts";
-import { useLoginErrorMessage } from "@/features/use-auth/lib/auth-error-messages.ts";
+import { useLoginErrorMessage } from "@/features/use-auth/model/auth-error-messages.ts";
 
 import closed from "@/assets/icons/auth/closed.png";
 import opened from "@/assets/icons/auth/opened.png";
 import BaseInput from "@/shared/ui/input/BaseInput.vue";
-import LoginRoleInput from "@/shared/ui/auth/LoginRoleInput.vue";
+import LoginRoleInput from "@/shared/ui/auth-form/LoginRoleInput.vue";
 
 const { showPassword } = authStore();
 const { togglePassword } = toggleAuth();

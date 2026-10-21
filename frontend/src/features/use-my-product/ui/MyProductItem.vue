@@ -37,20 +37,23 @@
           <span class="font-bold text-gray-900 text-base sm:text-lg font-dm-sans">
             $ {{ product.price }}
           </span>
-          <UiButton name="Stack Info"
-                      variant="stackInfo"
-                      @click="toggleStackInfo(product)" />
+          <UiButton variant="stackInfo"
+                    name="Stack Info"
+                    @click="toggleStackInfo" />
         </div>
       </div>
     </li>
   </TransitionGroup>
+  <Transition name="modal">
+    <StackInfoModal v-if="stackInfo" :product="product" />
+  </Transition>
 </template>
 
 <script setup lang="ts">
 import { previewHelper } from "@/entities/product-card/lib/preview-helper.ts";
 import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
 import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal.ts";
-import { toggleStackInfo } from "@/features/use-my-product/lib/toggle-stack-info.ts";
+import {stackInfo, toggleStackInfo} from "@/features/use-my-product/lib/toggle-stack-info.ts";
 import type {Product} from "@/shared/model/product.types.ts";
 import type {User} from "@/entities/profile/model/user.types.ts";
 
@@ -69,4 +72,5 @@ import UiButton from "@/shared/ui/button/UiButton.vue";
 import ProductPreview from "@/entities/product-card/ui/ProductPreview.vue";
 import pencil from "@/assets/icons/products/pencil.svg";
 import del from "@/assets/icons/delete-close/delete.svg";
+import StackInfoModal from "@/features/use-my-product/ui/StackInfoModal.vue";
 </script>
