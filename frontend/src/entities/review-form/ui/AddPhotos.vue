@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { itemPreview, productHelper } from "@/shared/lib/helper/product-helper.ts";
+import { itemPreview, productHelper } from "@/shared/lib/product-helper.ts";
 
 const { openSelectImage } = productHelper();
 </script>

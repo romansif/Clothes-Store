@@ -34,9 +34,9 @@
 </template>
 
 <script setup lang="ts">
-import { paymentClasses } from "@/shared/const/checkout/payment.classes.ts";
+import { paymentMethodClass } from "@/shared/model/payment-form.variants.ts";
 import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment-form.ts";
-import type {UserPayment} from "@/entities/checkout-payment/model/payment.type.ts";
+import type { UserPayment } from "@/entities/checkout-payment/model/payment.type.ts";
 
 import PaymentCardForm from "./PaymentCardForm.vue";
 import PaymentMethod from "@/entities/checkout-payment/ui/PaymentMethod.vue";
@@ -50,6 +50,4 @@ const emit = defineEmits<{
   openCardForm: [method: string];
   closeCardForm: [method: string];
 }>();
-
-const { paymentMethodClass } = paymentClasses();
 </script>

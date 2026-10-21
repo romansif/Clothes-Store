@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { useBaseModals } from "@/shared/lib/base-modal.ts";
+import { useBaseModals } from "@/shared/lib/use-notify.ts";
 import { clearProductForm } from "@/features/use-product-form/lib/clear-product-form.ts";
 
 import Notification from "@/shared/ui/Notification.vue";

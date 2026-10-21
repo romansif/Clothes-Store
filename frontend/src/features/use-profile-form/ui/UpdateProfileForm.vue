@@ -109,7 +109,7 @@
 
 <script setup lang="ts">
 import { profileApi } from "@/features/use-profile-form/api/profile.api.ts";
-import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
+import { refClearErrorsOnChange } from "@/shared/lib/errors-helper.ts";
 import { useTogglePassword } from "@/features/use-profile-form/lib/toggle-password.ts";
 import { updateUserForm, updateUserFormErrorMessages } from "@/entities/profile-form/model/user-update-form.ts";
 

@@ -27,7 +27,7 @@
 
 <script setup lang="ts">
 import { useAddPayment } from "@/features/use-chekout-payment-info/api/add-payment.ts";
-import { checkoutClasses } from "@/shared/const/checkout/checkout.classes.ts";
+import { getSavedClass, getSavedErrorClass } from "@/shared/model/saved-checkout-info.variants.ts";
 import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment.ts";
 import type {UserPayment} from "@/entities/checkout-payment/model/payment.type.ts";
 
@@ -37,5 +37,4 @@ defineProps<{
 
 const { useSavedCard } = useAddPayment();
 const { isChosenPayment } = togglePaymentForm();
-const { getSavedClass, getSavedErrorClass } = checkoutClasses();
 </script>

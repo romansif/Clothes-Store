@@ -39,7 +39,7 @@
 
 <script setup lang="ts">
 import { useAddAddress } from "@/features/use-checkout-contact-info/api/add-address.ts";
-import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
+import { refClearErrorsOnChange } from "@/shared/lib/errors-helper.ts";
 import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle-contact-info.ts";;
 import { informationContactStore } from "@/features/use-user-address/model/address.store.ts";
 import { informationForm, informationFormErrorMessages } from "@/entities/checkout-contact-info/model/information-form.ts";

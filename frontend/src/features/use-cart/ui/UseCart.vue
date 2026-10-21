@@ -26,7 +26,7 @@
 
 <script setup lang="ts">
 import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal.ts";
-import { productHelper } from "@/shared/lib/helper/product-helper.ts";
+import { productHelper } from "@/shared/lib/product-helper.ts";
 import { useUpdateCart } from "@/features/use-cart/api/update-cart.ts";
 import { sizeClass, sizeUrl } from "@/features/use-cart/lib/cart-specific.ts";
 import type {Product} from "@/shared/model/product.types.ts";

@@ -3,7 +3,7 @@ import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
 import { useGetWeekProduct } from "@/features/use-week-product/api/get-week-product.ts";
 import { useGetYearProduct } from "@/features/use-year-product/api/get-year-product.ts";
 import { useGetSeasonProducts } from "@/features/use-season-product/api/get-season-product.ts";
-import { sizes } from "@/shared/model/product.sizes.ts";
+import { sizes } from "@/shared/model/product-sizes.ts";
 
 const { allProducts } = useGetProducts();
 const { getFilteredProducts } = useGetProducts();

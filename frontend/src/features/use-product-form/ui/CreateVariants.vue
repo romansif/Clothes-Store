@@ -140,9 +140,9 @@
 </template>
 
 <script setup lang="ts">
-import { sizes } from "@/shared/model/product.sizes.ts";
+import { sizes } from "@/shared/model/product-sizes.ts";
 import { productFormHelper } from "@/features/use-product-form/lib/product-form-helper.ts";
-import { reactiveClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
+import { reactiveClearErrorsOnChange } from "@/shared/lib/errors-helper.ts";
 import {
   createProductForm, moreCreateItemForm,
   createProductFormErrorMessages, moreCreateItemFormErrorMessages

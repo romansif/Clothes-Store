@@ -1,4 +1,4 @@
-import { sizes } from "@/shared/model/product.sizes.ts";
+import { sizes } from "@/shared/model/product-sizes.ts";
 
 export const sizeUrl = (sizeName: string) => {
     const target = sizes.value.find(s => s.name === sizeName);

@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router";
 import { clearAuthForms } from "@/features/use-auth/lib/clear-auth.ts";
-import { useAuthHeader } from "@/widgets/model/use-auth-header.ts";
+import { useAuthHeader } from "@/widgets/lib/use-auth-header.ts";
 
 const route = useRoute();
 

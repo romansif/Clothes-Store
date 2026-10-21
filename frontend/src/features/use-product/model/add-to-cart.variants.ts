@@ -1,7 +1,7 @@
-import { addToCartForm } from "@/shared/model/add.to.cart.form.ts";
+import { addToCartForm } from "@/features/use-product/model/add-to-cart-form.ts";
 import type { ColorItem, Product, Size } from "@/shared/model/product.types.ts";
 
-export const addToCartClasses = () => {
+export const addToCartVariants = () => {
     const isColorAvailable = (color: ColorItem, product: Product) =>
         product.variants.some(v => v.hex === color.hex &&
             (!addToCartForm.value.sizes || v.size === addToCartForm.value.sizes) && Number(v.count) > 0

@@ -5,7 +5,7 @@
       <span class="font-medium">Size</span>
       <div class="flex items-center mt-2 gap-2">
         <img v-for="size in sizes" :key="size.name" :src=size.url alt=""
-             :class="selectedSizeClass(size.class, size.isActive)"
+             :class="[filterSizeClass(size.class), size.isActive ? selectedFilterAndSizeClass : '']"
              @click="toggleSize('SIZE', `${size.name}`)">
       </div>
     </div>
@@ -18,7 +18,7 @@
       <div class="flex flex-col gap-2">
         <div v-for="(isActive, stackName) in stackProducts" class="flex gap-3">
           <img :src="isActive ? checked : square" alt=""
-               :class="selectedFilterClass(isActive)"
+               :class="[filterClass, isActive ? selectedFilterAndSizeClass : '']"
                @click="toggleFilter('STATUS', stackName)" >
           <div class="flex gap-1">
             <span>{{ stackName }}</span>
@@ -40,7 +40,7 @@
       <div class="flex flex-col gap-2">
         <div v-for="(isActive, genderName) in genders" class="flex gap-3">
           <img :src="isActive ? checked : square" alt=""
-               :class="selectedFilterClass(isActive)"
+               :class="[filterClass, isActive ? selectedFilterAndSizeClass : '']"
                @click="toggleFilter('GENDER', genderName)">
           <div class="flex gap-1">
             <span>{{ genderName }}</span>
@@ -62,7 +62,7 @@
       <div class="grid grid-cols-2 gap-y-2 gap-x-6">
         <div v-for="(isActive, colorName) in colors" :key="colorName" class="flex gap-3">
           <img :src="isActive ? checked : square" alt=""
-               :class="selectedFilterClass(isActive)"
+               :class="[filterClass, isActive ? selectedFilterAndSizeClass : '']"
                @click="toggleFilter('COLOR', colorName)">
           <div class="flex gap-1">
             <span>{{ colorName }}</span>
@@ -77,14 +77,13 @@
 <script setup lang="ts">
 import { filterProduct } from "@/features/use-navigation/lib/filter-product.ts";
 import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
-import { filterClasses } from "@/shared/const/filter/filter.classes.ts";
-import { sizes } from "@/shared/model/product.sizes.ts";
+import { sizes } from "@/shared/model/product-sizes.ts";
+import { filterSizeClass, filterClass, selectedFilterAndSizeClass } from "@/widgets/model/filter-item.variants.ts";
 
 import square from '@/assets/icons/squares/square.png'
 import checked from '@/assets/icons/squares/check-square.png'
 import availability from '@/assets/icons/arrows/arrow-up.svg'
 
 const { allProducts } = useGetProducts();
-const { selectedSizeClass, selectedFilterClass } = filterClasses();
 const { toggleFilter, getStackCount, toggleSize, stackProducts, genders, colors } = filterProduct();
 </script>

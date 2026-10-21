@@ -1,9 +1,9 @@
 import router from '@/app/router';
 import { handler } from "@/shared/api/http.ts";
-import { useBaseModals } from "@/shared/lib/base-modal.ts";
+import { useBaseModals } from "@/shared/lib/use-notify.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { clearAuthForms } from "@/features/use-auth/lib/clear-auth.ts";
-import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.ts";
+import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper.ts";
 import {
     loginForm, registerForm,
     loginFormErrorMessages, registerFormErrorMessages

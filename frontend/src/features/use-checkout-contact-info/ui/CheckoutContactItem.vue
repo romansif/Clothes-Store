@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import { useAddAddress } from "@/features/use-checkout-contact-info/api/add-address.ts";
-import { checkoutClasses } from "@/shared/const/checkout/checkout.classes.ts";
+import { getSavedClass, getSavedErrorClass } from "@/shared/model/saved-checkout-info.variants.ts";
 import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle-contact-info.ts";
 import type {UserContactInfo} from "@/entities/checkout-contact-info/model/information.types.ts";
 
@@ -26,5 +26,4 @@ defineProps<{
 
 const { useSavedContactInfo } = useAddAddress();
 const { isChosenContactInfo  } = toggleInformation();
-const { getSavedClass, getSavedErrorClass } = checkoutClasses();
 </script>

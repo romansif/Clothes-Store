@@ -2,9 +2,9 @@ import type { ZodError } from "zod";
 import { handler } from "@/shared/api/http.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { clearUsersForms } from "@/features/use-profile-form/lib/clear-user-update.ts";
-import { useBaseModals } from "@/shared/lib/base-modal.ts";
+import { useBaseModals } from "@/shared/lib/use-notify.ts";
 import { useGetUsers } from "@/features/use-profile/api/get-users.ts";
-import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.ts";
+import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper.ts";
 import type { UserDataUpdate } from "@/entities/profile-form/model/user-update.types.ts";
 import { updateUserForm, updateUserFormErrorMessages } from "@/entities/profile-form/model/user-update-form.ts";
 import {

@@ -10,7 +10,7 @@
         <span class="font-medium">Size</span>
         <div class="flex gap-4 sm:gap-1 mt-3.5 md:gap-2">
           <img v-for="size in sizes" :key="size.name" :src=size.url alt=""
-               :class="[size.class, 'w-10 transition duration-400 hover:scale-120 cursor-pointer', size.isActive ? 'scale-120' : '']"
+               :class="[filterSizeClass(size.class), size.isActive ? selectedFilterAndSizeClass : '']"
                @click="toggleSize('SIZE', `${size.name}`)">
         </div>
       </div>
@@ -23,7 +23,7 @@
         <div class="flex flex-col gap-2">
           <div v-for="(isActive, stackName) in stackProducts" class="flex gap-3">
             <img alt="" :src="isActive ? checked : square"
-                 :class="['w-5.75 h-5.75 transition duration-400 hover:scale-120 cursor-pointer', isActive ? 'scale-120' : '']"
+                 :class="[filterClass, isActive ? selectedFilterAndSizeClass : '']"
                  @click="toggleFilter('STATUS', stackName)">
             <div class="flex gap-1">
               <span>{{ stackName }}</span>
@@ -45,7 +45,7 @@
         <div class="flex flex-col gap-2">
           <div v-for="(isActive, genderName) in genders" class="flex gap-3">
             <img alt="" :src="isActive ? checked : square"
-                 :class="['w-5.75 h-5.75 transition duration-400 hover:scale-120 cursor-pointer', isActive ? 'scale-120' : '']"
+                 :class="[filterClass, isActive ? selectedFilterAndSizeClass : '']"
                  @click="toggleFilter('GENDER', genderName)">
             <div class="flex gap-1">
               <span>{{ genderName }}</span>
@@ -67,7 +67,7 @@
         <div class="grid grid-cols-2 gap-y-2 gap-x-6">
           <div v-for="(isActive, colorName) in colors" :key="colorName" class="flex gap-3">
             <img alt="" :src="isActive ? checked : square"
-                 :class="['w-5.75 h-5.75 transition duration-400 hover:scale-120 cursor-pointer', isActive ? 'scale-120' : '']"
+                 :class="[filterClass, isActive ? selectedFilterAndSizeClass : '']"
                  @click="toggleFilter('COLOR', colorName)">
             <div class="flex gap-1">
               <span>{{ colorName }}</span>
@@ -83,12 +83,12 @@
         </div>
         <div v-if="route.name === 'home'" class="font-medium grid grid-cols-2 gap-y-2 gap-x-6">
           <button v-for="(isActive, categoryName) in category"
-                  :class="selectedSidebarCategoryClass(isActive)"
+                  :class="[sidebarCategoryClass, isActive ? selectedCategoryAndCollectionClass : '']"
                   @click="toggleFilter('ALL', categoryName)">
             All
           </button>
           <button v-for="(isActive, categoryName) in categories"
-                  :class="selectedSidebarCategoryClass(isActive)"
+                  :class="[sidebarCategoryClass, isActive ? selectedCategoryAndCollectionClass : '']"
                   @click="toggleFilter('CATEGORY', categoryName)">
             {{ categoryName }}
           </button>
@@ -102,10 +102,14 @@
 import { useRoute } from 'vue-router';
 import { onMounted } from "vue";
 import { filterProduct } from "@/features/use-navigation/lib/filter-product.ts";
-import { filterClasses } from "@/shared/const/filter/filter.classes.ts";
+import {
+  sidebarCategoryClass,
+  selectedCategoryAndCollectionClass,
+  filterSizeClass, selectedFilterAndSizeClass, filterClass
+} from "@/widgets/model/filter-item.variants.ts";
 import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
 import { useProductsModals } from "@/features/use-main-product/lib/product-modal.ts";
-import { sizes } from "@/shared/model/product.sizes.ts";
+import { sizes } from "@/shared/model/product-sizes.ts";
 
 import square from "@/assets/icons/squares/square.png";
 import availability from "@/assets/icons/arrows/arrow-up.svg";
@@ -116,7 +120,6 @@ const route = useRoute();
 
 const { toggleFilterAside } = useProductsModals();
 const { getAllProducts, allProducts } = useGetProducts();
-const { selectedSidebarCategoryClass } = filterClasses();
 const { toggleFilter, toggleSize, stackProducts, genders, colors, category, categories } = filterProduct();
 
 onMounted(async() => {

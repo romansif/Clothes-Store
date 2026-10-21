@@ -11,7 +11,8 @@
       <label class="text-sm">Card Number</label>
       <IMask v-model:value="paymentForm.cardNumber"
              placeholder="XXXX-XXXX-XXXX-XXXX"
-             :class="cardNumberClass(paymentFormErrorMessage.cardNumber)"
+             :class="[cardNumberClass,
+             paymentFormErrorMessage.cardNumber ? paymentCardErrorClass : '']"
              :mask="cardNumberMask.mask" />
     </div>
   </div>
@@ -20,14 +21,16 @@
       <label class="text-sm">Expiry date</label>
       <IMask v-model:value="paymentForm.expiryDate"
              placeholder="MM / YY"
-             :class="expiryDateClass(paymentFormErrorMessage.expiryDate)"
+             :class="[expiryDateClass,
+             paymentFormErrorMessage.expiryDate ? paymentCardErrorClass : '']"
              :mask="expiryDateMask.mask" />
     </div>
     <div class="flex flex-col gap-2">
       <label class="text-sm">CVV</label>
       <IMask v-model:value="paymentForm.cardCvv"
              placeholder="•••"
-             :class="cardCvvClass(paymentFormErrorMessage.cardCvv)"
+             :class="[cardCvvClass,
+             paymentFormErrorMessage.cardCvv ? paymentCardErrorClass : '']"
              :mask="cardCvvMask.mask"/>
     </div>
   </div>
@@ -35,7 +38,7 @@
 
 <script setup lang="ts">
 import { IMaskComponent as IMask } from "vue-imask";
-import { paymentClasses } from "@/shared/const/checkout/payment.classes.ts";
+import { cardNumberClass, expiryDateClass, cardCvvClass, paymentCardErrorClass } from "@/shared/model/payment-form.variants.ts";
 import { cardNumberMask, expiryDateMask, cardCvvMask } from "@/entities/checkout-payment/model/payment-mask.ts";
 import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment-form.ts";
 import type {UserPayment} from "@/entities/checkout-payment/model/payment.type.ts";
@@ -45,6 +48,4 @@ defineProps<{
 }>();
 
 import CheckoutInput from "@/shared/ui/checkout-input/CheckoutInput.vue";
-
-const { cardNumberClass, expiryDateClass, cardCvvClass } = paymentClasses();
 </script>

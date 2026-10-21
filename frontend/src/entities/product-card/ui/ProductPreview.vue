@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { previewHelper } from "@/entities/product-card/lib/preview-helper.ts";
-import { baseClasses } from "@/shared/const/base.classes.ts";
+import { productPreviewClass } from "@/shared/model/product-preview.variants.ts";
 import { productCardVariants } from "@/entities/product-card/config/product-card.variants.ts";
 import type { Product } from "@/shared/model/product.types.ts";
 import type { User } from "@/entities/profile/model/user.types.ts";
@@ -38,7 +38,5 @@ const emit = defineEmits<{
   toggleToFavorite: [product: Product],
 }>()
 
-
-const { productPreviewClass } = baseClasses();
 const { getProductId, isOutOfStack, productPreview, isFavorite } = previewHelper();
 </script>

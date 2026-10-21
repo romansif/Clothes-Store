@@ -1,11 +1,11 @@
 import { handler } from "@/shared/api/http.ts";
-import { useBaseModals } from "@/shared/lib/base-modal.ts";
+import { useBaseModals } from "@/shared/lib/use-notify.ts";
 import { useAddOrder } from "@/features/use-order/api/add-order.ts";
 import { useUpdateCart } from "@/features/use-cart/api/update-cart.ts";
 import { clearPaymentForm } from "@/features/use-chekout-payment-info/lib/clear-payment.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment.ts";
-import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.ts";
+import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper.ts";
 import type { UserPayment } from "@/entities/checkout-payment/model/payment.type.ts";
 import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment-form.ts";
 import { addPaymentSchema } from "@/entities/checkout-payment/model/payment-schemas.ts";

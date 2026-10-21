@@ -54,7 +54,7 @@ import { authStore } from "@/features/use-auth/model/auth.store.ts";
 import { showSignInPassword } from "@/shared/ui/auth/auth-form.variants.ts"
 import { selectPhoneCode } from "@/shared/ui/phone-input/phone-input.variants.ts";
 import { toggleAuth } from "@/features/use-auth/lib/toggle-auth.ts";
-import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
+import { refClearErrorsOnChange } from "@/shared/lib/errors-helper.ts";
 import { registerForm, registerFormErrorMessages } from "@/entities/auth/model/auth-form.ts";
 
 import closed from "@/assets/icons/auth/closed.png";

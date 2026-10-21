@@ -42,12 +42,12 @@
 import { useCart } from "@/features/use-product/lib/use-cart.ts";
 import { previewHelper } from "@/entities/product-card/lib/preview-helper.ts";
 import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
-import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
-import { productHelper } from "@/shared/lib/helper/product-helper.ts";
+import { refClearErrorsOnChange } from "@/shared/lib/errors-helper.ts";
+import { productHelper } from "@/shared/lib/product-helper.ts";
 import { toggleReadMore, fullDescription } from "@/features/use-product/lib/toggle-more-info.ts";
 import type {Product} from "@/shared/model/product.types.ts";
 import type {User} from "@/entities/profile/model/user.types.ts";
-import { addToCartForm, addToCartFormErrorMessages } from "@/shared/model/add.to.cart.form.ts";
+import { addToCartForm, addToCartFormErrorMessages } from "@/features/use-product/model/add-to-cart-form.ts";
 
 defineProps<{
   user: User | null

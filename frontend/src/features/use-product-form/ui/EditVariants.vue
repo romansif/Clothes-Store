@@ -121,7 +121,7 @@
 
 <script setup lang="ts">
 import { useUpdateProduct } from "@/features/use-product-form/api/update-product.ts";
-import { productHelper } from "@/shared/lib/helper/product-helper.ts";
+import { productHelper } from "@/shared/lib/product-helper.ts";
 import { productFormHelper } from "@/features/use-product-form/lib/product-form-helper.ts";
 import {
   createProductForm,

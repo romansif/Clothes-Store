@@ -7,19 +7,19 @@
             md:flex md:gap-5
             sm:hidden hidden font-light">
           <router-link :to="{name: 'home'}"
-                       :class="selectedPageClass(isHome)">
+                       :class="[routeClass, isHome ? selectRouteClass : '']">
             Home
           </router-link>
           <router-link :to="{name: 'shop/seasons-catalog'}"
-                       :class="selectedPageClass(isSeasonCollections)">
+                       :class="[routeClass, isSeasonCollections ? selectRouteClass : '']">
             Seasonal
           </router-link>
           <router-link :to="{name: 'shop'}"
-                       :class="selectedPageClass(isProducts)">
+                       :class="[routeClass, isProducts ? selectRouteClass : '']">
             Shop
           </router-link>
           <router-link :to="{name: 'shop/new-collections'}"
-                       :class="selectedPageClass(isNewCollections)">
+                       :class="[routeClass, isNewCollections ? selectRouteClass : '']">
             New
           </router-link>
         </div>
@@ -67,18 +67,17 @@
 
 <script setup lang="ts">
 import { useRoute } from "vue-router";
-import { baseClasses } from "@/shared/const/base.classes.ts";
-import { cartStore } from "@/features/use-cart/model/cart.store.ts";
+import { useMainNavBar } from "@/widgets/lib/use-main-nav-bar.ts";
+import { routeClass, selectRouteClass } from "@/widgets/model/route.variants.ts";
+import { cartStore } from "@/features/use-cart/model/cart.store";
 
 import cart from "@/assets/icons/nav/cart.png";
 import liked from "@/assets/icons/nav/favorite.jpeg";
 import profile from "@/assets/icons/nav/profile.png";
 import back from "@/assets/icons/arrows/right-long-arrow.png";
-import {useMainNavBar} from "@/widgets/model/use-main-nav-bar.ts";
 
 const route = useRoute();
 
 const { unreadCount } = cartStore();
-const { selectedPageClass } = baseClasses();
 const { isHome, isCart, isProducts, isNewCollections, isSeasonCollections, isProfile} = useMainNavBar(route);
 </script>

@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { productHelper } from "@/shared/lib/helper/product-helper.ts";
+import { productHelper } from "@/shared/lib/product-helper.ts";
 import { previewHelper } from "@/entities/product-card/lib/preview-helper.ts";
 import { orderPreview } from "@/features/use-checkout-order/lib/checkout-order-helper.ts";
 import type {Product} from "@/shared/model/product.types.ts";

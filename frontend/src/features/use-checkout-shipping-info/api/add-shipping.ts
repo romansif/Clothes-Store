@@ -1,10 +1,10 @@
 import { v4 as uuidv4 } from 'uuid';
 import { handler } from "@/shared/api/http.ts";
-import { useBaseModals } from "@/shared/lib/base-modal.ts";
+import { useBaseModals } from "@/shared/lib/use-notify.ts";
 import { clearShippingForm } from "@/features/use-checkout-shipping-info/lib/clear-shipping.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { useGetShipping } from "@/features/use-checkout-shipping-info/api/get-shipping.ts";
-import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.ts";
+import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper.ts";
 import { shippingForm, shippingFormErrorMessage } from "@/entities/checkout-shipping/model/shipping-form.ts";
 import { addShippingSchema } from "@/entities/checkout-shipping/model/shipping-schemas.ts";
 import router from "@/app/router";

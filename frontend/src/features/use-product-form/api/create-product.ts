@@ -1,10 +1,10 @@
 import router from "@/app/router";
 import { handler } from "@/shared/api/http.ts";
-import { useBaseModals } from "@/shared/lib/base-modal.ts";
+import { useBaseModals } from "@/shared/lib/use-notify.ts";
 import { clearProductForm } from "@/features/use-product-form/lib/clear-product-form.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { applyZodErrors, applyErrors } from "@/shared/lib/helper/errors-helper.ts";
-import { imageFiles } from "@/shared/lib/helper/product-helper.ts";
+import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper.ts";
+import { imageFiles } from "@/shared/lib/product-helper.ts";
 import {
     createProductForm, moreCreateItemForm,
     createProductFormErrorMessages, moreCreateItemFormErrorMessages

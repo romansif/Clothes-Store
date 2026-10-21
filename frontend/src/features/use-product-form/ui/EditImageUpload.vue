@@ -7,8 +7,7 @@
       </h2>
     </div>
     <div class="flex gap-6">
-      <div :key="0"
-           class="bg-gray-50 h-90 w-90 border border-gray-300 transition duration-400 hover:scale-105
+      <div class="bg-gray-50 h-90 w-90 border border-gray-300 transition duration-400 hover:scale-105
            hover:bg-gray-100 cursor-pointer overflow-hidden rounded-lg"
            @click="openSelectImage(0)">
         <img v-if="pureCards(product)[0]"
@@ -45,7 +44,7 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { productHelper, activeProductImg } from "@/shared/lib/helper/product-helper.ts";
+import { productHelper, activeProductImg } from "@/shared/lib/product-helper.ts";
 import type {Product} from "@/shared/model/product.types.ts";
 
 const props = defineProps<{

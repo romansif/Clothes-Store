@@ -40,12 +40,12 @@
       </div>
       <div class="font-medium hidden gap-x-5 gap-y-2 sm:grid sm:grid-cols-4 xl:mt-19">
         <button v-for="(isActive, categoryName) in category"
-                :class="selectedCategoryClass(isActive)"
+                :class="[categoryAndCollectionClass, isActive ? selectedCategoryAndCollectionClass : '']"
                 @click="toggleFilter('ALL', categoryName)">
           All
         </button>
         <button v-for="(isActive, categoryName) in categories"
-                :class="selectedCategoryClass(isActive)"
+                :class="[categoryAndCollectionClass, isActive ? selectedCategoryAndCollectionClass : '']"
                 @click="toggleFilter('CATEGORY', categoryName)">
           {{ categoryName }}
         </button>
@@ -58,7 +58,7 @@
 import { watch } from "vue";
 import { filterProduct } from "@/features/use-navigation/lib/filter-product.ts";
 import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
-import { filterClasses } from "@/shared/const/filter/filter.classes.ts";
+import { categoryAndCollectionClass, selectedCategoryAndCollectionClass } from "@/widgets/model/filter-item.variants.ts";
 import { clearSearchProductForm } from "@/features/use-navigation/lib/clear-search.ts";
 import { useProductsModals } from "@/features/use-main-product/lib/product-modal.ts";
 import { searchProductForm } from "@/features/use-navigation/lib/search.form.ts";
@@ -69,7 +69,6 @@ import search from "@/assets/icons/nav/search.png";
 import right_arrow from '@/assets/icons/arrows/arrow-right.svg';
 
 const { toggleFilterAside } = useProductsModals();
-const { selectedCategoryClass } = filterClasses();
 const { getFilteredProducts, products } = useGetProducts();
 const { toggleFilter, categories, category } = filterProduct();
 

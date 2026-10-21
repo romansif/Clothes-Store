@@ -41,7 +41,7 @@
 <script setup lang="ts">
 import { toggleAuth } from "@/features/use-auth/lib/toggle-auth.ts";
 import { authStore } from "@/features/use-auth/model/auth.store.ts";
-import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
+import { refClearErrorsOnChange } from "@/shared/lib/errors-helper.ts";
 import { loginForm, loginFormErrorMessages } from "@/entities/auth/model/auth-form.ts";
 import { useLoginErrorMessage } from "@/features/use-auth/lib/auth-error-messages.ts";
 

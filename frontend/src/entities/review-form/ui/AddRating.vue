@@ -18,8 +18,8 @@
 </template>
 
 <script setup lang="ts">
-import { ratingSrc } from "@/entities/review-form/lib/rating.display.ts";
-import { reviewsClasses } from "@/shared/const/review/reviews.classes.ts";
+import { ratingSrc } from "@/entities/review-form/lib/show-rating.ts";
+import { ratingStar } from "@/entities/review-form/model/rating-star.variants.ts";
 import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/review-form.ts";
 
 defineProps<{
@@ -29,6 +29,4 @@ defineProps<{
 const emit = defineEmits<{
   addRating: [rating: number];
 }>();
-
-const { ratingStar } = reviewsClasses();
 </script>

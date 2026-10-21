@@ -1,6 +1,6 @@
 import { handler } from '@/shared/api/http.ts'
 import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { useBaseModals } from "@/shared/lib/base-modal.ts";
+import { useBaseModals } from "@/shared/lib/use-notify.ts";
 
 const { loading } = useBaseModals();
 const { users, userData } = userStore();

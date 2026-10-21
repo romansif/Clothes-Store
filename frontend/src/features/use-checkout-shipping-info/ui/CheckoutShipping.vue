@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
+import { refClearErrorsOnChange } from "@/shared/lib/errors-helper.ts";
 import { informationContactStore } from "@/features/use-user-address/model/address.store.ts";
 import { useAddShipping } from "@/features/use-checkout-shipping-info/api/add-shipping.ts";
 import { shippingForm, shippingFormErrorMessage } from "@/entities/checkout-shipping/model/shipping-form.ts";

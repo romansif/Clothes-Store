@@ -1,5 +1,5 @@
 import {ref} from "vue";
-import type {ReviewForm, ReviewFormMessage} from "@/entities/review-form/model/review.types.form.ts";
+import type {ReviewForm, ReviewFormMessage} from "@/entities/review-form/model/review-form.types.ts";
 
 export const reviewForm = ref<ReviewForm>({
     rating: 0,

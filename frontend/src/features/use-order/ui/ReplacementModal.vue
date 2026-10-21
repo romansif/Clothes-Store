@@ -30,7 +30,7 @@
 <script setup lang="ts">
 import { toggleReplaceChoice } from "@/features/use-order/lib/order-modal.ts";
 import { useDeleteOrder } from "@/features/use-order/api/delete-order.ts";
-import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
+import { refClearErrorsOnChange } from "@/shared/lib/errors-helper.ts";
 import { cancelChoiceForm, cancelChoiceMessage } from "@/entities/order/model/order-forms.ts";
 
 import UiButton from "@/shared/ui/button/UiButton.vue";

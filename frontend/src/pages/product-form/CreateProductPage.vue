@@ -1,7 +1,7 @@
 <template>
   <form action="" @submit.prevent="createProduct">
     <CreateImageUpload />
-    <CreateBasicInfo />
+    <ProductBaseInfo />
     <CreateVariants />
     <div class="w-full mt-4 mb-6">
       <UiButton type="submit"
@@ -16,11 +16,11 @@
 
 <script setup lang="ts">
 import { useAddProduct } from "@/features/use-product-form/api/create-product.ts";
-import { fileInput, productHelper } from "@/shared/lib/helper/product-helper.ts";
+import { fileInput, productHelper } from "@/shared/lib/product-helper.ts";
 
 import UiButton from "@/shared/ui/button/UiButton.vue";
 import CreateImageUpload from "@/features/use-product-form/ui/CreateImageUpload.vue";
-import CreateBasicInfo from "@/entities/product-form/ui/CreateBasicInfo.vue";
+import ProductBaseInfo from "@/entities/product-form/ui/ProductBaseInfo.vue";
 import CreateVariants from "@/features/use-product-form/ui/CreateVariants.vue";
 
 const { createProduct } = useAddProduct();

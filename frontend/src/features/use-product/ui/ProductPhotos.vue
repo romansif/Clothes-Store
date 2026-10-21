@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { productHelper } from "@/shared/lib/helper/product-helper.ts";
+import { productHelper } from "@/shared/lib/product-helper.ts";
 import type {Product} from "@/shared/model/product.types.ts";
 
 defineProps<{

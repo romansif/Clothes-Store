@@ -1,14 +1,14 @@
 import { handler } from "@/shared/api/http.ts";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
-import { useBaseModals } from "@/shared/lib/base-modal.ts";
+import { useBaseModals } from "@/shared/lib/use-notify.ts";
 import { userStore } from "@/features/use-profile/model/user.store.ts";
 import { reviewsStore } from "@/features/use-product-review/model/reviews.store.ts";
 import { clearReviewForm } from "@/features/use-review-form/lib/clear-review-form.ts";
 import { toggleReviewModal } from "@/features/use-review-form/lib/review-form-modal.ts";
-import { applyErrors, applyZodErrors } from "@/shared/lib/helper/errors-helper.ts";
+import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper.ts";
 import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/review-form.ts";
 import { reviewFormSchema } from "@/entities/review-form/model/review-schemas.ts";
-import { imageFiles } from "@/shared/lib/helper/product-helper.ts";
+import { imageFiles } from "@/shared/lib/product-helper.ts";
 
 const { userData } = userStore();
 const { productId } = reviewsStore();

@@ -1,7 +1,7 @@
 import { handler } from "@/shared/api/http.ts";
-import { useBaseModals } from "@/shared/lib/base-modal.ts";
+import { useBaseModals } from "@/shared/lib/use-notify.ts";
 import { useGetOrder } from "@/features/use-order/api/get-order.ts";
-import { applyZodErrors, applyErrors} from "@/shared/lib/helper/errors-helper.ts";
+import { applyZodErrors, applyErrors} from "@/shared/lib/errors-helper.ts";
 import { orderStore } from "@/features/use-order/model/order.store.ts";
 import { clearReplaceForm } from "@/features/use-order/lib/clear-order-form.ts";
 import { toggleReplaceChoice } from "@/features/use-order/lib/order-modal.ts";

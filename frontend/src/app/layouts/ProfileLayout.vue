@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { useBaseModals } from "@/shared/lib/base-modal.ts";
+import { useBaseModals } from "@/shared/lib/use-notify.ts";
 
 import Loading from "@/shared/ui/Loading.vue";
 import MainNavBar from "@/widgets/ui/navigation/MainNavBar.vue";

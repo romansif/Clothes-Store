@@ -37,9 +37,9 @@
 import { addRating } from "@/features/use-review-form/lib/add-rating-star.ts";
 import { reviewsStore } from "@/features/use-product-review/model/reviews.store.ts";
 import { useCreateReview } from "@/features/use-review-form/api/add-review.ts";
-import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
+import { refClearErrorsOnChange } from "@/shared/lib/errors-helper.ts";
 import { toggleReviewModal } from "@/features/use-review-form/lib/review-form-modal.ts";
-import { fileInput, productHelper } from "@/shared/lib/helper/product-helper.ts";
+import { fileInput, productHelper } from "@/shared/lib/product-helper.ts";
 import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/review-form.ts";
 
 import UiButton from "@/shared/ui/button/UiButton.vue";

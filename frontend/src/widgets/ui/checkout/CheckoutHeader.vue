@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 import { useRoute, useRouter } from "vue-router";
-import { useCheckoutHeader } from "@/widgets/model/use-checkout-header.ts";
+import { useCheckoutHeader } from "@/widgets/lib/use-checkout-header.ts";
 
 import go_to_shop from "@/assets/icons/arrows/right-long-arrow.png";
 

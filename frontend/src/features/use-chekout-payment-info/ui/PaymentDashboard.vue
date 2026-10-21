@@ -44,7 +44,7 @@
 import { useAddPayment } from "@/features/use-chekout-payment-info/api/add-payment.ts";
 import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment.ts";
 import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
-import { refClearErrorsOnChange } from "@/shared/lib/helper/errors-helper.ts";
+import { refClearErrorsOnChange } from "@/shared/lib/errors-helper.ts";
 import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment-form.ts";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
