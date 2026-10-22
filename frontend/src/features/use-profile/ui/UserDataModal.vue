@@ -27,12 +27,11 @@
 </template>
 
 <script setup lang="ts">
-import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
-import { userStore } from "@/features/use-profile/model/user.store.ts";
-
-import UiButton from "@/shared/ui/button/UiButton.vue";
-import ConfidentialityData from "@/entities/profile/ui/ConfidentialityData.vue";
-import UpdateProfileForm from "@/features/use-profile-form/ui/UpdateProfileForm.vue";
+import { useProfileModals } from "@/features/use-profile/lib/profile-modal";
+import { userStore } from "@/features/use-profile/model/user.store";
+import { UiButton } from "@/shared/ui/button";
+import { ConfidentialityData } from "@/entities/profile";
+import { UpdateProfileForm } from "@/features/use-profile-form";
 
 const { userData } = userStore();
 const { toggleConfidentialityData } = useProfileModals();

@@ -1,6 +1,6 @@
-import { favoriteStore } from "@/entities/favorite/model/favorite-store.ts";
-import type {Product} from "@/shared/model/product.types.ts";
-import type {User} from "@/entities/profile/model/user.types.ts";
+import { favoriteStore } from "@/entities/favorite/model/favorite-store";
+import type { Product } from "@/shared";
+import type { User } from "@/entities/profile";
 
 const { favorite } = favoriteStore();
 

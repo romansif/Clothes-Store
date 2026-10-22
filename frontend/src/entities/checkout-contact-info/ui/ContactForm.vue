@@ -11,7 +11,7 @@
     <CheckoutInput v-model="informationForm.email"
                    placeholder="example@gmail.com"
                    :error-message="informationFormErrorMessages.email" />
-    <PhoneInput v-model="informationForm.phone"
+    <UiPhoneInput v-model="informationForm.phone"
                 :select-class="informationSelectPhoneCodeClass"
                 :input-class="[informationPhoneClass.default,
                 informationFormErrorMessages.phone ? informationPhoneClass.error : '']"
@@ -20,9 +20,12 @@
 </template>
 
 <script setup lang="ts">
-import { informationPhoneClass, informationSelectPhoneCodeClass } from "@/entities/checkout-contact-info/model/information-form.variants.ts";
-import { informationForm, informationFormErrorMessages } from "@/entities/checkout-contact-info/model/information-form.ts";
+import { informationForm, informationFormErrorMessages } from "@/entities/checkout-contact-info/model/information-form";
+import {
+  informationPhoneClass,
+  informationSelectPhoneCodeClass
+} from "@/entities/checkout-contact-info/model/information-form.variants";
 
 import CheckoutInput from "@/shared/ui/checkout-input/CheckoutInput.vue";
-import PhoneInput from "@/shared/ui/phone-input/PhoneInput.vue";
+import UiPhoneInput from "@/shared/ui/phone-input/UiPhoneInput.vue";
 </script>

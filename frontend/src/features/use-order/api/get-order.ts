@@ -1,7 +1,7 @@
-import { handler } from "@/shared/api/http.ts";
-import { orderStore } from "@/features/use-order/model/order.store.ts";
-import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { useBaseModals } from "@/shared/lib/use-notify.ts";
+import { handler } from "@/shared/api/http";
+import { useBaseModals } from "@/shared/lib/use-notify";
+import { orderStore } from "@/features/use-order/model/order.store";
+import { userStore } from "@/features/use-profile/model/user.store";
 
 const { orders } = orderStore();
 const { userData } = userStore();

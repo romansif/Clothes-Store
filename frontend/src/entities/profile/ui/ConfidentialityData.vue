@@ -40,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-import type {User} from "@/entities/profile/model/user.types.ts";
+import type {User} from "@/entities/profile/model/user.types";
 
 defineProps<{
   user: User | null;

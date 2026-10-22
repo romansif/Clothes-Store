@@ -6,9 +6,9 @@
 </template>
 
 <script setup lang="ts">
-import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
+import { paymentStore } from "@/features/use-user-payment/model/payment.store";
 
-import PaymentItem from "@/features/use-chekout-payment-info/ui/PaymentItem.vue";
+import { PaymentItem } from "@/features/use-chekout-payment-info";
 
 const { userPayments } = paymentStore();
 </script>

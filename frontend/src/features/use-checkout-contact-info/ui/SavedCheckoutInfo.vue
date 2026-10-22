@@ -19,11 +19,11 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useGetAddress } from "@/features/use-user-address/api/get-address.ts";
-import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle-contact-info.ts";
+import { useGetAddress } from "@/features/use-user-address/api/get-address";
+import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle-contact-info";
 
-import ContactList from "@/features/use-checkout-contact-info/ui/ContactList.vue";
-import AddressList from "@/features/use-checkout-contact-info/ui/AddressList.vue";
+import { ContactList } from "@/features/use-checkout-contact-info";
+import { AddressList } from "@/features/use-checkout-contact-info";
 
 const { getAddresses } = useGetAddress();
 const { toggleShowContact } = toggleInformation();

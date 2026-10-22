@@ -4,7 +4,7 @@
       <form class="flex flex-col gap-3 w-full"
             @submit.prevent="updateNameAccount">
         <label>Name</label>
-        <BaseInput v-model="updateUserForm.name"
+        <UiInput v-model="updateUserForm.name"
                    placeholder="New Name"
                    variant="confidentialityData"
                    :error-message="updateUserFormErrorMessages.name" />
@@ -17,7 +17,7 @@
       <form class="flex flex-col gap-3 w-full"
             @submit.prevent="updateSurNameAccount">
         <label>SurName</label>
-        <BaseInput v-model="updateUserForm.surName"
+        <UiInput v-model="updateUserForm.surName"
                    placeholder="New SurName"
                    variant="confidentialityData"
                    :error-message="updateUserFormErrorMessages.surName" />
@@ -33,7 +33,7 @@
     <form class="flex flex-col gap-3 w-full"
           @submit.prevent="updateEmailAccount">
       <label>Email</label>
-      <BaseInput v-model="updateUserForm.email"
+      <UiInput v-model="updateUserForm.email"
                  placeholder="example@mail.com"
                  variant="confidentialityData"
                  :error-message="updateUserFormErrorMessages.email" />
@@ -46,7 +46,7 @@
     <form class="flex flex-col gap-3 w-full"
           @submit.prevent="updatePhoneAccount">
       <label>Private Phone</label>
-     <PhoneInput v-model="updateUserForm.phone"
+     <UiPhoneInput v-model="updateUserForm.phone"
                  :select-class="profileFormSelectPhoneCodeClass"
                  :input-class="[profileFormPhoneInputClasses.default,
                  updateUserFormErrorMessages.phone ? profileFormPhoneInputClasses.error : '']"
@@ -70,7 +70,7 @@
           <label>Old password</label>
           <div class="relative">
             <div class="flex flex-col gap-3">
-              <BaseInput v-model="updateUserForm.oldPassword"
+              <UiInput v-model="updateUserForm.oldPassword"
                          :type="showOldPassword ? 'text' : 'password'"
                          variant="confidentialityData"
                          placeholder="Old Password"
@@ -86,7 +86,7 @@
           <label>New password</label>
           <div class="relative">
             <div class="flex flex-col gap-3">
-              <BaseInput v-model="updateUserForm.newPassword"
+              <UiInput v-model="updateUserForm.newPassword"
                          :type="showNewPassword ? 'text' : 'password'"
                          variant="confidentialityData" placeholder="New Password"
                          :error-message="updateUserFormErrorMessages.newPassword"/>
@@ -108,20 +108,20 @@
 </template>
 
 <script setup lang="ts">
-import { profileApi } from "@/features/use-profile-form/api/profile.api.ts";
-import { refClearErrorsOnChange } from "@/shared/lib/errors-helper.ts";
-import { useTogglePassword } from "@/features/use-profile-form/lib/toggle-password.ts";
-import { updateUserForm, updateUserFormErrorMessages } from "@/entities/profile-form/model/user-update-form.ts";
-
-import UiButton  from "@/shared/ui/button/UiButton.vue";
-import opened from '@/assets/icons/auth/opened.png'
-import closed from '@/assets/icons/auth/closed.png'
-import BaseInput from "@/shared/ui/input/BaseInput.vue";
-import PhoneInput from "@/shared/ui/phone-input/PhoneInput.vue";
+import { profileApi } from "@/features/use-profile-form/api/profile.api";
+import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
+import { useTogglePassword } from "@/features/use-profile-form/lib/toggle-password";
+import { updateUserForm, updateUserFormErrorMessages } from "@/entities/profile-form/model/user-update-form";
 import {
   profileFormPhoneInputClasses,
   profileFormSelectPhoneCodeClass
-} from "@/features/use-profile-form/model/profile-phone.variants.ts";
+} from "@/features/use-profile-form/model/profile-phone.variants";
+import { UiButton } from "@/shared/ui/button";
+import { UiInput } from "@/shared/ui/input";
+import { UiPhoneInput } from "@/shared/ui/phone-input";
+
+import opened from '@/assets/icons/auth/opened.png'
+import closed from '@/assets/icons/auth/closed.png'
 
 const {
   toggleOldPassword, toggleNewPassword,

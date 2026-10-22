@@ -14,12 +14,11 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
+import { useGetCart } from "@/features/use-cart/api/get-cart";
 
-import CartList from "@/features/use-cart/ui/CartList.vue";
-import CartInfo from "@/features/use-cart/ui/CartInfo.vue";
-
-import FavoriteCartHeader from "@/widgets/ui/navigation/FavoriteCartHeader.vue";
+import { CartList } from "@/features/use-cart";
+import { CartInfo } from "@/features/use-cart";
+import { FavoriteCartHeader } from "@/widgets/ui/navigation";
 
 const { getCartProducts } = useGetCart();
 
@@ -27,7 +26,3 @@ onMounted(async () => {
   await getCartProducts();
 })
 </script>
-
-<style scoped>
-
-</style>

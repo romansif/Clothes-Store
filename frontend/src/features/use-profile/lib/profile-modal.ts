@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { clearUsersForms } from "@/features/use-profile-form/lib/clear-user-update.ts";
+import { clearUsersForms } from "@/features/use-profile-form/lib/clear-user-update";
 
 const avatarModal = ref<boolean>(false);
 const fileInput = ref<HTMLInputElement | null>(null);

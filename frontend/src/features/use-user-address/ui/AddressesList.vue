@@ -9,10 +9,10 @@
 </template>
 
 <script setup lang="ts">
-import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal.ts";
-import { informationContactStore } from "@/features/use-user-address/model/address.store.ts";
+import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal";
+import { informationContactStore } from "@/features/use-user-address/model/address.store";
 
-import AddressItem from "@/entities/user-address/ui/AddressItem.vue";
+import { AddressItem } from "@/entities/user-address";
 
 const { toggleDeleteChoice } = baseDeleteModal();
 const { userAddresses } = informationContactStore();

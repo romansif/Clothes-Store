@@ -1,9 +1,9 @@
-import { handler } from "@/shared/api/http.ts";
-import { orderStore } from "@/features/use-order/model/order.store.ts";
-import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { useBaseModals } from "@/shared/lib/use-notify.ts";
-import { orderPriceInfo } from "@/features/use-checkout-order/lib/order-price-info.ts";
-import { shippingForm } from "@/entities/checkout-shipping/model/shipping-form.ts";
+import { handler } from "@/shared/api/http";
+import { orderStore } from "@/features/use-order/model/order.store";
+import { userStore } from "@/features/use-profile/model/user.store";
+import { useBaseModals } from "@/shared/lib/use-notify";
+import { orderPriceInfo } from "@/features/use-checkout-order/lib/order-price-info";
+import { shippingForm } from "@/entities/checkout-shipping/model/shipping-form";
 
 const { items } = orderStore();
 const { userData } = userStore();
@@ -30,7 +30,7 @@ export const useAddOrder = () => {
             })
         }catch(err){
             await openNotify('An error occurred.',
-                'We are working on this issue please try again later.', '')
+                'We are working on this issue please try again later.')
             console.error(`Failed to create the order:`, err);
         }
     };

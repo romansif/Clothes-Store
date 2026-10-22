@@ -1,5 +1,5 @@
-import {computed} from "vue";
-import type {RouteLocationNormalizedLoaded} from "vue-router";
+import { computed } from "vue";
+import type { RouteLocationNormalizedLoaded } from "vue-router";
 
 export const useMainNavBar = (route: RouteLocationNormalizedLoaded) => {
     const isHome = computed(() => route.name === "home");

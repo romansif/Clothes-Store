@@ -67,9 +67,9 @@
 
 <script setup lang="ts">
 import { useRoute } from "vue-router";
-import { useMainNavBar } from "@/widgets/lib/use-main-nav-bar.ts";
-import { routeClass, selectRouteClass } from "@/widgets/model/route.variants.ts";
+import { useMainNavBar } from "@/widgets/lib/use-main-nav-bar";
 import { cartStore } from "@/features/use-cart/model/cart.store";
+import { routeClass, selectRouteClass } from "@/widgets/model/route.variants";
 
 import cart from "@/assets/icons/nav/cart.png";
 import liked from "@/assets/icons/nav/favorite.jpeg";

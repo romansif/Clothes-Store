@@ -24,10 +24,9 @@
 </template>
 
 <script setup lang="ts">
-import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
-import type { User } from "@/entities/profile/model/user.types.ts";
-
-import ProfileTab from "@/shared/ui/profile-tab/ProfileTab.vue";
+import { useProfileModals } from "@/features/use-profile/lib/profile-modal";
+import { ProfileTab } from "@/shared/ui/profile-tab";
+import type { User } from "@/entities/profile";
 
 defineProps<{
   user: User

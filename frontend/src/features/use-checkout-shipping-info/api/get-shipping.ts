@@ -1,6 +1,6 @@
-import { handler } from "@/shared/api/http.ts";
-import { useBaseModals } from "@/shared/lib/use-notify.ts";
-import {shippingStore} from "@/features/use-checkout-shipping-info/model/shipping.store.ts";
+import { handler } from "@/shared/api/http";
+import { useBaseModals } from "@/shared/lib/use-notify";
+import {shippingStore} from "@/features/use-checkout-shipping-info/model/shipping.store";
 
 const { loading } = useBaseModals();
 const { userShipping } = shippingStore();

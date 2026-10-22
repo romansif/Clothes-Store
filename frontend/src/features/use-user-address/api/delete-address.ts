@@ -1,5 +1,5 @@
-import { handler } from "@/shared/api/http.ts";
-import { useGetAddress } from "@/features/use-user-address/api/get-address.ts";
+import { handler } from "@/shared/api/http";
+import { useGetAddress } from "@/features/use-user-address/api/get-address";
 
 const { getAddresses } = useGetAddress();
 

@@ -15,13 +15,13 @@
 </template>
 
 <script setup lang="ts">
-import { useAddProduct } from "@/features/use-product-form/api/create-product.ts";
-import { fileInput, productHelper } from "@/shared/lib/product-helper.ts";
+import { useAddProduct } from "@/features/use-product-form/api/create-product";
+import { fileInput, productHelper } from "@/shared/lib/product-helper";
 
-import UiButton from "@/shared/ui/button/UiButton.vue";
-import CreateImageUpload from "@/features/use-product-form/ui/CreateImageUpload.vue";
-import ProductBaseInfo from "@/entities/product-form/ui/ProductBaseInfo.vue";
-import CreateVariants from "@/features/use-product-form/ui/CreateVariants.vue";
+import { UiButton } from "@/shared/ui/button";
+import { CreateImageUpload } from "@/features/use-product-form";
+import { ProductBaseInfo } from "@/entities/product-form";
+import { CreateVariants } from "@/features/use-product-form";
 
 const { createProduct } = useAddProduct();
 const { onFilesSelected } = productHelper();

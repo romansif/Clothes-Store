@@ -19,8 +19,8 @@
 </template>
 
 <script setup lang="ts">
-import { ratingHelper } from "@/entities/product-review/lib/rating-helper.ts";
-import type {ImageItem} from "@/entities/product-review/model/reviews.types.ts";
+import { ratingHelper } from "@/entities/product-review/lib/rating-helper";
+import type { ImageItem } from "@/entities/product-review";
 
 import arrow from "@/assets/icons/arrows/arrow-gray.svg";
 

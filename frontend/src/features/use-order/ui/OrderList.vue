@@ -8,9 +8,9 @@
 </template>
 
 <script setup lang="ts">
-import { orderStore } from "@/features/use-order/model/order.store.ts";
+import { orderStore } from "@/features/use-order/model/order.store";
 
-import OrderItem from "@/features/use-order/ui/OrderItem.vue";
+import { OrderItem } from "@/features/use-order";
 
 const { orders } = orderStore();
 </script>

@@ -40,10 +40,10 @@
 </template>
 
 <script setup lang="ts">
-import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal.ts";
+import { userStore } from "@/features/use-profile/model/user.store";
+import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal";
 import { Menu, MenuItems, MenuItem, MenuButton} from "@headlessui/vue";
-import UiButton from "@/shared/ui/button/UiButton.vue";
+import { UiButton } from "@/shared/ui/button";
 
 const { userData } = userStore();
 const { toggleDeleteChoice } = baseDeleteModal();

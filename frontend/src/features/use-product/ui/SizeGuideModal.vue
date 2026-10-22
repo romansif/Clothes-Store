@@ -72,11 +72,11 @@
 </template>
 
 <script setup lang="ts">
-import { sizes } from "@/shared/model/product-sizes.ts";
-import { toggleSizeGuide } from "@/features/use-product/lib/toggle-more-info.ts";
-import { productSpecific } from "@/entities/product-form/model/product-specific.ts";
-import { formatterSizeGuide, unit } from "@/features/use-product/lib/formatter-size.ts";
-import type {Product} from "@/shared/model/product.types.ts";
+import { sizes } from "@/shared/model/product-sizes";
+import { toggleSizeGuide } from "@/features/use-product/lib/toggle-more-info";
+import { productSpecific } from "@/entities/product-form/model/product-specific";
+import { formatterSizeGuide, unit } from "@/features/use-product/lib/formatter-size";
+import type { Product } from "@/shared";
 
 defineProps<{
   product: Product

@@ -1,13 +1,13 @@
-import { handler } from "@/shared/api/http.ts";
-import { product } from "@/features/use-product/api/get-product.ts";
-import { useBaseModals } from "@/shared/lib/use-notify.ts";
-import { clearCartForm } from "@/features/use-product/lib/clear-cart.ts";
-import { cartStore } from "@/features/use-cart/model/cart.store.ts";
-import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
-import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper.ts";
-import { addToCartForm, addToCartFormErrorMessages } from "@/features/use-product/model/add-to-cart-form.ts";
-import { addToCartSchema } from "@/features/use-product/model/add-to-cart-schemas.ts";
+import { handler } from "@/shared/api/http";
+import { product } from "@/features/use-product/api/get-product";
+import { useBaseModals } from "@/shared/lib/use-notify";
+import { clearCartForm } from "@/features/use-product/lib/clear-cart";
+import { cartStore } from "@/features/use-cart/model/cart.store";
+import { userStore } from "@/features/use-profile/model/user.store";
+import { useGetCart } from "@/features/use-cart/api/get-cart";
+import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper";
+import { addToCartForm, addToCartFormErrorMessages } from "@/features/use-product/model/add-to-cart-form";
+import { addToCartSchema } from "@/features/use-product/model/add-to-cart-schemas";
 
 const { userData } = userStore();
 const { unreadCount } = cartStore();

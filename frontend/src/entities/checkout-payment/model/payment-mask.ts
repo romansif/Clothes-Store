@@ -1,4 +1,4 @@
-import {IMask} from "vue-imask";
+import { IMask } from "vue-imask";
 
 export const cardNumberMask = {
     mask: '0000-0000-0000-0000',

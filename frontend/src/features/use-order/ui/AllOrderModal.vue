@@ -21,7 +21,7 @@
             </span>
           </div>
         </header>
-        <OrdersList/>
+        <OrderList />
         <Transition name="modal">
           <Clipboard v-if="clipboard" />
         </Transition>
@@ -38,18 +38,16 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useOrder } from "@/features/use-order/lib/use-order.ts";
-import { orderStore } from "@/features/use-order/model/order.store.ts";
-import { useGetOrder } from "@/features/use-order/api/get-order.ts";
-import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
-import { reviewFormModal } from "@/features/use-review-form/lib/review-form-modal.ts";
-import { choiceModal } from "@/features/use-order/lib/order-modal.ts";
-
-import OrdersList from "@/features/use-order/ui/OrderList.vue";
-import UiButton from "@/shared/ui/button/UiButton.vue";
-import Clipboard from "@/widgets/ui/clipboard/Clipboard.vue";
-import ReplacementModal from "@/features/use-order/ui/ReplacementModal.vue";
-import CreateReview from "@/features/use-review-form/ui/CreateReview.vue";
+import { useOrder } from "@/features/use-order/lib/use-order";
+import { orderStore } from "@/features/use-order/model/order.store";
+import { useGetOrder } from "@/features/use-order/api/get-order";
+import { useProfileModals } from "@/features/use-profile/lib/profile-modal";
+import { reviewFormModal } from "@/features/use-review-form/lib/review-form-modal";
+import { choiceModal } from "@/features/use-order/lib/order-modal";
+import { UiButton } from "@/shared/ui/button";
+import { Clipboard } from "@/widgets/ui/clipboard";
+import { OrderList, ReplacementModal } from "@/features/use-order";
+import { CreateReview } from "@/features/use-review-form";
 
 const { orders } = orderStore();
 const { clipboard } = useOrder();

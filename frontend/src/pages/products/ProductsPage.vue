@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import ProductList from "@/features/use-main-product/ui/ProductList.vue";
-import MainHeader from "@/features/use-main-product/ui/MainHeader.vue";
-import FilterProducts from "@/widgets/ui/product-sidebar/FilterProducts.vue";
+import { ProductList } from "@/features/use-main-product";
+import { MainHeader } from "@/features/use-main-product";
+import { FilterProducts } from "@/widgets/ui/product-sidebar";
 </script>

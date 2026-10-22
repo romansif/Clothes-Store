@@ -5,7 +5,7 @@
       <span class="text-red-500">*</span>
     </div>
     <div class="font-semibold flex flex-col gap-4">
-      <UiTextarea v-model="reviewForm.comment"
+      <UiProductTextarea v-model="reviewForm.comment"
                   :placeholder="'Tell us what you like or didnt like about this product'"
                   :error-message="reviewFormMessages.comment" />
     </div>
@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/review-form.ts";
+import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/review-form";
 
-import UiTextarea from "@/shared/ui/product-textarea/UiTextarea.vue";
+import { UiProductTextarea } from "@/shared/ui/product-textarea";
 </script>

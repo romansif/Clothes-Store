@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import type {CancelChoiceForm, CancelChoiceFormMessage} from "@/entities/order/model/order-form.types.ts";
+import type { CancelChoiceForm, CancelChoiceFormMessage } from "@/entities/order";
 
 export const cancelChoiceForm = ref<CancelChoiceForm>({
     cancelChoice: ''

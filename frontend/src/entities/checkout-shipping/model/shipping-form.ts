@@ -1,8 +1,8 @@
-import {ref} from "vue";
+import { ref } from "vue";
 import type {
     ShippingForm,
     ShippingFormErrorMessage
-} from "@/entities/checkout-shipping/model/shipping-form.types.ts";
+} from "@/entities/checkout-shipping";
 
 export const shippingForm = ref<ShippingForm>({
     delivery: '',

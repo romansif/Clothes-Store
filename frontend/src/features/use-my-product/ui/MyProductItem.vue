@@ -50,12 +50,18 @@
 </template>
 
 <script setup lang="ts">
-import { previewHelper } from "@/entities/product-card/lib/preview-helper.ts";
-import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
-import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal.ts";
-import {stackInfo, toggleStackInfo} from "@/features/use-my-product/lib/toggle-stack-info.ts";
-import type {Product} from "@/shared/model/product.types.ts";
-import type {User} from "@/entities/profile/model/user.types.ts";
+import { previewHelper } from "@/entities/product-card/lib/preview-helper";
+import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite";
+import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal";
+import { stackInfo, toggleStackInfo } from "@/features/use-my-product/lib/toggle-stack-info";
+import { UiButton } from "@/shared/ui/button";
+import { ProductPreview } from "@/entities/product-card";
+import { StackInfoModal } from "@/features/use-my-product";
+import type { Product } from "@/shared";
+import type { User } from "@/entities/profile";
+
+import pencil from "@/assets/icons/products/pencil.svg";
+import del from "@/assets/icons/delete-close/delete.svg";
 
 defineProps<{
   user: User | null
@@ -63,14 +69,7 @@ defineProps<{
   myProducts: Product[]
 }>();
 
-
 const { getProductId } = previewHelper();
 const { toggleToFavorite } = useToggleFavorite();
 const { toggleDeleteChoice } = baseDeleteModal();
-
-import UiButton from "@/shared/ui/button/UiButton.vue";
-import ProductPreview from "@/entities/product-card/ui/ProductPreview.vue";
-import pencil from "@/assets/icons/products/pencil.svg";
-import del from "@/assets/icons/delete-close/delete.svg";
-import StackInfoModal from "@/features/use-my-product/ui/StackInfoModal.vue";
 </script>

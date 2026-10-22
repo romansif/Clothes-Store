@@ -7,8 +7,8 @@
 </template>
 
 <script setup lang="ts">
-import { buttonVariantClasses } from "@/shared/ui/button/button.variants.ts";
-import type { ButtonProps } from "@/shared/ui/button/button.types.ts";
+import { buttonVariantClasses } from "@/shared/ui/button/button.variants";
+import type { ButtonProps } from "@/shared/ui/button";
 
 const props = withDefaults(defineProps<ButtonProps>(), {
   name: 'base',

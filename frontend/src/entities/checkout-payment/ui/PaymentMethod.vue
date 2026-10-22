@@ -19,8 +19,8 @@
 </template>
 
 <script setup lang="ts">
-import { usePaymentMethod } from "@/entities/checkout-payment/lib/use-payment-method.ts";
-import type { PaymentMethod } from "@/entities/checkout-payment/model/payment-method.types.ts";
+import { usePaymentMethod } from "@/entities/checkout-payment/lib/use-payment-method";
+import type { PaymentMethod } from "@/entities/checkout-payment/model/payment-method.types";
 
 const props = defineProps<{
   variant: PaymentMethod;

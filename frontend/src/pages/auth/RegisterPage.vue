@@ -18,13 +18,13 @@
 </template>
 
 <script setup lang="ts">
-import { useAuth } from "@/features/use-auth/api/use-auth.ts";
-import { toggleAuth } from "@/features/use-auth/lib/toggle-auth.ts";
-import { authStore } from "@/features/use-auth/model/auth.store.ts";
+import { useAuth } from "@/features/use-auth/api/use-auth";
+import { toggleAuth } from "@/features/use-auth/lib/toggle-auth";
+import { authStore } from "@/features/use-auth/model/auth.store";
+import { RegisterForm } from "@/features/use-auth";
+import { UiButton } from "@/shared/ui/button";
 
-import RegisterForm from "@/features/use-auth/ui/RegisterForm.vue";
 import maki_arrow from "@/assets/icons/arrows/right-short-arrow.svg";
-import UiButton from "@/shared/ui/button/UiButton.vue";
 
 const { signUp } = useAuth();
 const { toggleSignUp } = toggleAuth();

@@ -27,7 +27,9 @@
 </template>
 
 <script setup lang="ts">
-import type {UserContactInfo} from "@/entities/checkout-contact-info/model/information.types.ts";
+import type { UserContactInfo } from "@/entities/checkout-contact-info";
+
+import del from "@/assets/icons/delete-close/del_address_card.svg";
 
 defineProps<{
   address: UserContactInfo;
@@ -36,6 +38,4 @@ defineProps<{
 const emit = defineEmits<{
   deleteAddress: [title: string, type: string, id: string];
 }>();
-
-import del from "@/assets/icons/delete-close/del_address_card.svg";
 </script>

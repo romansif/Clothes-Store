@@ -56,13 +56,13 @@
 
 <script setup lang="ts">
 import { watch } from "vue";
-import { filterProduct } from "@/features/use-navigation/lib/filter-product.ts";
-import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
-import { categoryAndCollectionClass, selectedCategoryAndCollectionClass } from "@/widgets/model/filter-item.variants.ts";
-import { clearSearchProductForm } from "@/features/use-navigation/lib/clear-search.ts";
-import { useProductsModals } from "@/features/use-main-product/lib/product-modal.ts";
-import { searchProductForm } from "@/features/use-navigation/lib/search.form.ts";
-import { debouncedSearch, getSearchedProducts } from "@/features/use-navigation/api/search-product.ts";
+import { filterProduct } from "@/features/use-navigation/lib/filter-product";
+import { useGetProducts } from "@/features/use-main-product/api/get-product";
+import { categoryAndCollectionClass, selectedCategoryAndCollectionClass } from "@/widgets/model/filter-item.variants";
+import { clearSearchProductForm } from "@/features/use-navigation/lib/clear-search";
+import { useProductsModals } from "@/features/use-main-product/lib/product-modal";
+import { searchProductForm } from "@/features/use-navigation/lib/search.form";
+import { debouncedSearch, getSearchedProducts } from "@/features/use-navigation/api/search-product";
 
 import del from '@/assets/icons/delete-close/clean_search.svg';
 import search from "@/assets/icons/nav/search.png";

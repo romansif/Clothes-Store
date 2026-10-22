@@ -75,10 +75,10 @@
 </template>
 
 <script setup lang="ts">
-import { filterProduct } from "@/features/use-navigation/lib/filter-product.ts";
-import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
 import { sizes } from "@/shared/model/product-sizes.ts";
-import { filterSizeClass, filterClass, selectedFilterAndSizeClass } from "@/widgets/model/filter-item.variants.ts";
+import { filterProduct } from "@/features/use-navigation/lib/filter-product";
+import { useGetProducts } from "@/features/use-main-product/api/get-product";
+import { filterSizeClass, filterClass, selectedFilterAndSizeClass } from "@/widgets/model/filter-item.variants";
 
 import square from '@/assets/icons/squares/square.png'
 import checked from '@/assets/icons/squares/check-square.png'

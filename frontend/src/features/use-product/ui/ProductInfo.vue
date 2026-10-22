@@ -39,15 +39,16 @@
 </template>
 
 <script setup lang="ts">
-import { useCart } from "@/features/use-product/lib/use-cart.ts";
-import { previewHelper } from "@/entities/product-card/lib/preview-helper.ts";
-import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
-import { refClearErrorsOnChange } from "@/shared/lib/errors-helper.ts";
-import { productHelper } from "@/shared/lib/product-helper.ts";
-import { toggleReadMore, fullDescription } from "@/features/use-product/lib/toggle-more-info.ts";
-import type {Product} from "@/shared/model/product.types.ts";
-import type {User} from "@/entities/profile/model/user.types.ts";
-import { addToCartForm, addToCartFormErrorMessages } from "@/features/use-product/model/add-to-cart-form.ts";
+import { useCart } from "@/features/use-product/lib/use-cart";
+import { previewHelper } from "@/entities/product-card/lib/preview-helper";
+import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite";
+import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
+import { productHelper } from "@/shared/lib/product-helper";
+import { toggleReadMore, fullDescription } from "@/features/use-product/lib/toggle-more-info";
+import { ProductSpecific, ProductToCart, ProductPhotos} from "@/features/use-product";
+import { addToCartForm, addToCartFormErrorMessages } from "@/features/use-product/model/add-to-cart-form";
+import type { Product } from "@/shared";
+import type { User } from "@/entities/profile";
 
 defineProps<{
   user: User | null
@@ -56,9 +57,6 @@ defineProps<{
 
 import like from '@/assets/icons/nav/like.png';
 import liked from '@/assets/icons/nav/liked.png';
-import ProductSpecific from "@/features/use-product/ui/ProductSpecific.vue";
-import ProductToCart from "@/features/use-product/ui/ProductToCart.vue";
-import ProductPhotos from "@/features/use-product/ui/ProductPhotos.vue";
 
 const { isFavorite } = previewHelper();
 const { addColor, addSize } = useCart();

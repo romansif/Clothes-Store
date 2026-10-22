@@ -5,9 +5,5 @@
 </template>
 
 <script setup lang="ts">
-import MyProductsList from "@/features/use-my-product/ui/MyProductsList.vue";
+import { MyProductsList } from "@/features/use-my-product";
 </script>
-
-<style scoped>
-
-</style>

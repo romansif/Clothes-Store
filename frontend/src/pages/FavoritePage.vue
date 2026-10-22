@@ -9,10 +9,10 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
+import { useGetFavorite } from "@/features/use-favorite/api/get-favorite";
 
-import FavoriteCartHeader from "@/widgets/ui/navigation/FavoriteCartHeader.vue";
-import FavoriteList from "@/features/use-favorite/ui/FavoriteList.vue";
+import { FavoriteCartHeader } from "@/widgets/ui/navigation";
+import { FavoriteList } from "@/features/use-favorite";
 
 const { getFavoriteProducts } = useGetFavorite();
 
@@ -20,7 +20,3 @@ onMounted(async() => {
   await getFavoriteProducts();
 })
 </script>
-
-<style scoped>
-
-</style>

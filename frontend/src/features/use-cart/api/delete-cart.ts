@@ -1,5 +1,5 @@
-import { handler } from "@/shared/api/http.ts";
-import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
+import { handler } from "@/shared/api/http";
+import { useGetCart } from "@/features/use-cart/api/get-cart";
 
 const { getCartProducts } = useGetCart();
 

@@ -37,14 +37,14 @@
 </template>
 
 <script setup lang="ts">
-import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
-import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
-import type {User} from "@/entities/profile/model/user.types.ts";
+import { userStore } from "@/features/use-profile/model/user.store";
+import { useProfile } from "@/features/use-profile/lib/use-profile";
+import { useProfileModals } from "@/features/use-profile/lib/profile-modal";
+import { OpenProfileModals } from "@/widgets/ui/profile";
+import { ProfileModals } from "@/widgets/ui/profile";
+import type { User } from "@/entities/profile";
 
-import ProfileMenu from "@/features/use-profile/ui/ProfileMenu.vue";
-import OpenProfileModals from "@/widgets/ui/profile/OpenProfileModals.vue";
-import ProfileModals from "@/widgets/ui/profile/ProfileModals.vue";
+import { ProfileMenu } from "@/features/use-profile";
 
 defineProps<{
   user: User

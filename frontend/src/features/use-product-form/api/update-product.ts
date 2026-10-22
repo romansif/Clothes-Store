@@ -1,10 +1,10 @@
 import namer from "color-namer";
 import router from "@/app/router";
-import { handler } from "@/shared/api/http.ts";
-import { useBaseModals } from "@/shared/lib/use-notify.ts";
-import type { ColorItem, Product} from "@/shared/model/product.types.ts";
-import { currentFile } from "@/shared/lib/product-helper.ts";
-import { createProductForm } from "@/entities/product-form/model/product-forms.ts";
+import { handler } from "@/shared/api/http";
+import { useBaseModals } from "@/shared/lib/use-notify";
+import type { ColorItem, Product} from "@/shared/model/product.types";
+import { currentFile } from "@/shared/lib/product-helper";
+import { createProductForm } from "@/entities/product-form/model/product-forms";
 
 const { openNotify } = useBaseModals();
 

@@ -38,10 +38,10 @@
 
 <script setup lang="ts">
 import { IMaskComponent as IMask } from "vue-imask";
-import { cardNumberClass, expiryDateClass, cardCvvClass, paymentCardErrorClass } from "@/shared/model/payment-form.variants.ts";
-import { cardNumberMask, expiryDateMask, cardCvvMask } from "@/entities/checkout-payment/model/payment-mask.ts";
-import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment-form.ts";
-import type {UserPayment} from "@/entities/checkout-payment/model/payment.type.ts";
+import { cardNumberMask, expiryDateMask, cardCvvMask } from "@/entities/checkout-payment/model/payment-mask";
+import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment-form";
+import { cardNumberClass, expiryDateClass, cardCvvClass, paymentCardErrorClass } from "@/shared/model/payment-form.variants";
+import type { UserPayment } from "@/entities/checkout-payment";
 
 defineProps<{
   userPayment: UserPayment | null;

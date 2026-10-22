@@ -17,10 +17,10 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useGetPayment } from "@/features/use-user-payment/api/get-payment.ts";
-import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment.ts";
+import { useGetPayment } from "@/features/use-user-payment/api/get-payment";
+import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment";
 
-import SavedPaymentList from "@/features/use-chekout-payment-info/ui/SavedPaymentList.vue";
+import { SavedPaymentList } from "@/features/use-chekout-payment-info";
 
 const { getPayments } = useGetPayment();
 const { toggleShowPayment } = togglePaymentForm();

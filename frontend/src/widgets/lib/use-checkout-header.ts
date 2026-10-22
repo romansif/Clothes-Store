@@ -1,6 +1,6 @@
 import { computed } from "vue";
-import { useUpdateCart } from "@/features/use-cart/api/update-cart.ts";
-import type {RouteLocationNormalizedLoaded, Router} from "vue-router";
+import { useUpdateCart } from "@/features/use-cart/api/update-cart";
+import type { RouteLocationNormalizedLoaded, Router } from "vue-router";
 
 const { updateCartChecked } = useUpdateCart();
 

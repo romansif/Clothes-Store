@@ -1,4 +1,4 @@
-import type {Slide} from "@/shared/model/product.types.ts";
+import type { Slide } from "@/shared";
 
 import autumn_slide from "@/assets/photos/home-slides/autumn_slide.png";
 import classic_slide from "@/assets/photos/home-slides/classic_slide.png";

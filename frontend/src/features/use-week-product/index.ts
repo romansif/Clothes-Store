@@ -1,0 +1,1 @@
+export { default as WeekList } from './ui/WeekList.vue'

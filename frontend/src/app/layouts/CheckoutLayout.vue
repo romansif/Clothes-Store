@@ -14,12 +14,12 @@
 </template>
 
 <script setup lang="ts">
-import { useBaseModals } from "@/shared/lib/use-notify.ts";
-import { checkoutClass } from "@/shared/model/saved-checkout-info.variants.ts";
+import { useBaseModals } from "@/shared/lib/use-notify";
+import { checkoutClass } from "@/shared/model/saved-checkout-info.variants";
 
-import Notification from "@/shared/ui/Notification.vue";
-import OrderInfo from "@/features/use-checkout-order/ui/OrderInfo.vue";
-import CheckoutHeader from "@/widgets/ui/checkout-header/CheckoutHeader.vue";
+import { Notification } from "@/shared";
+import { OrderInfo } from "@/features/use-checkout-order";
+import { CheckoutHeader } from "@/widgets/ui/checkout-header";
 
 const { notify } = useBaseModals();
 </script>

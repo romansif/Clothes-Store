@@ -1,16 +1,16 @@
 import type { ZodError } from "zod";
-import { handler } from "@/shared/api/http.ts";
-import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { clearUsersForms } from "@/features/use-profile-form/lib/clear-user-update.ts";
-import { useBaseModals } from "@/shared/lib/use-notify.ts";
-import { useGetUsers } from "@/features/use-profile/api/get-users.ts";
-import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper.ts";
-import type { UserDataUpdate } from "@/entities/profile-form/model/user-update.types.ts";
-import { updateUserForm, updateUserFormErrorMessages } from "@/entities/profile-form/model/user-update-form.ts";
+import { handler } from "@/shared/api/http";
+import { userStore } from "@/features/use-profile/model/user.store";
+import { clearUsersForms } from "@/features/use-profile-form/lib/clear-user-update";
+import { useBaseModals } from "@/shared/lib/use-notify";
+import { useGetUsers } from "@/features/use-profile/api/get-users";
+import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper";
+import { updateUserForm, updateUserFormErrorMessages } from "@/entities/profile-form/model/user-update-form";
 import {
     updateUserNameSchema, updateUserSurNameSchema, updateUserPhoneSchema,
     updateUserEmailSchema, updateUserPasswordSchema
-} from "@/entities/profile-form/model/user-update-schemas.ts";
+} from "@/entities/profile-form/model/user-update-schemas";
+import type { UserDataUpdate } from "@/entities/profile-form";
 
 const { getUser } = useGetUsers();
 const { userData } = userStore();

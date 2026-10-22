@@ -1,5 +1,5 @@
-import { handler } from "@/shared/api/http.ts";
-import { useGetPayment } from "@/features/use-user-payment/api/get-payment.ts";
+import { handler } from "@/shared/api/http";
+import { useGetPayment } from "@/features/use-user-payment/api/get-payment";
 
 const { getPayments } = useGetPayment();
 

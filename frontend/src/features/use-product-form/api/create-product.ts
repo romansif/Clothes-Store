@@ -1,15 +1,15 @@
 import router from "@/app/router";
-import { handler } from "@/shared/api/http.ts";
-import { useBaseModals } from "@/shared/lib/use-notify.ts";
-import { clearProductForm } from "@/features/use-product-form/lib/clear-product-form.ts";
-import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper.ts";
-import { imageFiles } from "@/shared/lib/product-helper.ts";
+import { handler } from "@/shared/api/http";
+import { useBaseModals } from "@/shared/lib/use-notify";
+import { clearProductForm } from "@/features/use-product-form/lib/clear-product-form";
+import { userStore } from "@/features/use-profile/model/user.store";
+import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper";
+import { imageFiles } from "@/shared/lib/product-helper";
 import {
     createProductForm, moreCreateItemForm,
     createProductFormErrorMessages, moreCreateItemFormErrorMessages
-} from "@/entities/product-form/model/product-forms.ts";
-import { createProductSchema, moreCreateItemsSchema } from "@/entities/product-form/model/product-schemas.ts";
+} from "@/entities/product-form/model/product-forms";
+import { createProductSchema, moreCreateItemsSchema } from "@/entities/product-form/model/product-schemas";
 
 const { userData } = userStore();
 const { openNotify } = useBaseModals();

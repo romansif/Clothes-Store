@@ -1,13 +1,13 @@
-import { handler } from "@/shared/api/http.ts";
-import { orderStore } from "@/features/use-order/model/order.store.ts";
-import { cartStore } from "@/features/use-cart/model/cart.store.ts";
-import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
-import { useGetProducts } from "@/features/use-main-product/api/get-product.ts"
-import { useDeleteCart } from "@/features/use-cart/api/delete-cart.ts";
-import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { useBaseModals } from "@/shared/lib/use-notify.ts";
-import type {CartItem} from "@/entities/cart/model/cart.types.ts";
-import { isAgreeFormError } from "@/features/use-product/model/add-to-cart-form.ts";
+import { handler } from "@/shared/api/http";
+import { orderStore } from "@/features/use-order/model/order.store";
+import { cartStore } from "@/features/use-cart/model/cart.store";
+import { useGetCart } from "@/features/use-cart/api/get-cart";
+import { useGetProducts } from "@/features/use-main-product/api/get-product"
+import { useDeleteCart } from "@/features/use-cart/api/delete-cart";
+import { userStore } from "@/features/use-profile/model/user.store";
+import { useBaseModals } from "@/shared/lib/use-notify";
+import { isAgreeFormError } from "@/features/use-product/model/add-to-cart-form";
+import type { CartItem } from "@/entities/cart";
 
 const { cart } = cartStore();
 const { userData } = userStore();

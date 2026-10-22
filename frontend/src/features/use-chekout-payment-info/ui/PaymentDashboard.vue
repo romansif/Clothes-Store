@@ -41,16 +41,16 @@
 </template>
 
 <script setup lang="ts">
-import { useAddPayment } from "@/features/use-chekout-payment-info/api/add-payment.ts";
-import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment.ts";
-import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
-import { refClearErrorsOnChange } from "@/shared/lib/errors-helper.ts";
-import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment-form.ts";
+import { useAddPayment } from "@/features/use-chekout-payment-info/api/add-payment";
+import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment";
+import { paymentStore } from "@/features/use-user-payment/model/payment.store";
+import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
+import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment-form";
+import { UiButton } from "@/shared/ui/button";
+import { PaymentMethodsForm } from "@/entities/checkout-payment";
+import { SavedCheckoutPayment } from "@/features/use-chekout-payment-info";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
-import UiButton from "@/shared/ui/button/UiButton.vue";
-import PaymentMethodsForm from "@/entities/checkout-payment/ui/PaymentMethodsForm.vue";
-import SavedCheckoutPayment from "@/features/use-chekout-payment-info/ui/SavedCheckoutPayment.vue";
 
 const { userPayments, userPayment } = paymentStore();
 const { addPayment, useSavedPayment } = useAddPayment();

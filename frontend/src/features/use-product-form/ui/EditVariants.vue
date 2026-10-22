@@ -19,7 +19,7 @@
         </div>
       </div>
       <div v-if="countMode === 'SAME'" class="flex">
-        <BaseInput v-model="createProductForm.quantity"
+        <UiInput v-model="createProductForm.quantity"
                    @input="toggleAllVariants"
                    placeholder="product ptc."
                    class="w-75"
@@ -117,16 +117,16 @@
 </template>
 
 <script setup lang="ts">
-import { useUpdateProduct } from "@/features/use-product-form/api/update-product.ts";
-import { productHelper } from "@/shared/lib/product-helper.ts";
-import { productFormHelper } from "@/features/use-product-form/lib/product-form-helper.ts";
+import { productHelper } from "@/shared/lib/product-helper";
+import { useUpdateProduct } from "@/features/use-product-form/api/update-product";
+import { productFormHelper } from "@/features/use-product-form/lib/product-form-helper";
 import {
   createProductForm,
   createProductFormErrorMessages, moreCreateItemFormErrorMessages
-} from "@/entities/product-form/model/product-forms.ts";
-import type {Product} from "@/shared/model/product.types.ts";
+} from "@/entities/product-form/model/product-forms";
+import { UiInput } from "@/shared/ui/input";
+import type { Product } from "@/shared";
 
-import BaseInput from "@/shared/ui/input/BaseInput.vue";
 
 defineProps<{
   product: Product,

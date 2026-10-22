@@ -1,4 +1,4 @@
-import type { PaymentMethodProps } from "@/entities/checkout-payment/model/payment-method.types.ts";
+import type { PaymentMethodProps } from "@/entities/checkout-payment";
 
 import visa_pay from '@/assets/icons/checkout/payment/visa.png';
 import apple_pay from '@/assets/icons/checkout/payment/applepay.png';

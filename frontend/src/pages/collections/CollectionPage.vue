@@ -5,9 +5,5 @@
 </template>
 
 <script setup lang="ts">
-import HeaderCatalog from "@/widgets/ui/navigation/HeaderCatalog.vue";
+import { HeaderCatalog } from "@/widgets/ui/navigation";
 </script>
-
-<style scoped>
-
-</style>

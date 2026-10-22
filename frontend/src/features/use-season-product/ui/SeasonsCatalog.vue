@@ -24,7 +24,7 @@
 
 <script setup lang="ts">
 import router from "@/app/router";
-import { seasonsCatalog } from "@/entities/season-product/model/seasons-specific.ts";
+import { seasonsCatalog } from "@/entities/season-product/model/seasons-specific";
 
 import right_shop from "@/assets/icons/arrows/go-shop.svg";
 </script>

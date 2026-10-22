@@ -22,9 +22,9 @@
 
 <script setup lang="ts">
 import { useRoute } from "vue-router";
-import { useFavorite } from "@/features/use-favorite/lib/use-favorite.ts";
-import { useCartOrderInfo } from "@/features/use-cart/lib/cart-order-info.ts";
-import { useFavoriteCartHeader } from "@/widgets/lib/use-favorite-cart-header.ts";
+import { useFavorite } from "@/features/use-favorite/lib/use-favorite";
+import { useCartOrderInfo } from "@/features/use-cart/lib/cart-order-info";
+import { useFavoriteCartHeader } from "@/widgets/lib/use-favorite-cart-header";
 
 import liked from "@/assets/icons/nav/liked.png";
 

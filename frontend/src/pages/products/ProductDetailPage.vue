@@ -14,13 +14,12 @@
 import { useRoute } from "vue-router";
 import { computed, onMounted } from "vue";
 import { useQuery } from "@tanstack/vue-query";
-import { product } from "@/features/use-product/api/get-product.ts";
-import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
-import { getProduct } from "@/features/use-product/api/get-product.ts";
-import { userStore } from "@/features/use-profile/model/user.store.ts";
-
-import ProductInfo from "@/features/use-product/ui/ProductInfo.vue";
-import ProductReviews from "@/features/use-product-review/ui/ProductReviews.vue";
+import { product } from "@/features/use-product/api/get-product";
+import { useGetFavorite } from "@/features/use-favorite/api/get-favorite";
+import { getProduct } from "@/features/use-product/api/get-product";
+import { userStore } from "@/features/use-profile/model/user.store";
+import { ProductInfo } from "@/features/use-product";
+import { ProductReviews } from "@/features/use-product-review";
 
 const route = useRoute();
 

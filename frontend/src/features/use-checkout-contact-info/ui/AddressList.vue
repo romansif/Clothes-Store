@@ -5,9 +5,8 @@
 </template>
 
 <script setup lang="ts">
-import { informationContactStore } from "@/features/use-user-address/model/address.store.ts";
-
-import CheckoutAddressItem from "@/features/use-checkout-contact-info/ui/CheckoutAddressItem.vue";
+import { informationContactStore } from "@/features/use-user-address/model/address.store";
+import { CheckoutAddressItem } from "@/features/use-checkout-contact-info";
 
 const { userAddresses } = informationContactStore();
 </script>

@@ -45,7 +45,7 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { productHelper, activeProductImg } from "@/shared/lib/product-helper.ts";
-import type {Product} from "@/shared/model/product.types.ts";
+import type { Product } from "@/shared/model/product.types.ts";
 
 const props = defineProps<{
   product: Product,

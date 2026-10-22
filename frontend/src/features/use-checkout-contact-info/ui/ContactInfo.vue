@@ -38,17 +38,18 @@
 </template>
 
 <script setup lang="ts">
-import { useAddAddress } from "@/features/use-checkout-contact-info/api/add-address.ts";
-import { refClearErrorsOnChange } from "@/shared/lib/errors-helper.ts";
-import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle-contact-info.ts";;
-import { informationContactStore } from "@/features/use-user-address/model/address.store.ts";
-import { informationForm, informationFormErrorMessages } from "@/entities/checkout-contact-info/model/information-form.ts";
+import { useAddAddress } from "@/features/use-checkout-contact-info/api/add-address";
+import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
+import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle-contact-info";
+import { informationContactStore } from "@/features/use-user-address/model/address.store";
+import { informationForm, informationFormErrorMessages } from "@/entities/checkout-contact-info/model/information-form";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
-import UiButton from "@/shared/ui/button/UiButton.vue";
-import ContactForm from "@/entities/checkout-contact-info/ui/ContactForm.vue";
-import AddressForm from "@/entities/checkout-contact-info/ui/AddressForm.vue";
-import SavedCheckoutInfo from "@/features/use-checkout-contact-info/ui/SavedCheckoutInfo.vue";
+
+import { UiButton } from "@/shared/ui/button";
+import { ContactForm } from "@/entities/checkout-contact-info";
+import { AddressForm } from "@/entities/checkout-contact-info";
+import { SavedCheckoutInfo } from "@/features/use-checkout-contact-info";
 
 const { userAddresses } = informationContactStore();
 const { addInformation, useInformation } = useAddAddress();

@@ -1,0 +1,1 @@
+export const orderStatusClass = 'text-xs text-[#A3A3A3]'

@@ -36,11 +36,11 @@
 </template>
 
 <script setup lang="ts">
-import { useCartOrderInfo } from "@/features/use-cart/lib/cart-order-info.ts";
-import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal.ts";
+import { useCartOrderInfo } from "@/features/use-cart/lib/cart-order-info";
+import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal";
 
-import ContinueToOrder from "@/features/use-cart/ui/ContinueToOrder.vue";
-import DeleteModal from "@/features/use-general-delete/ui/DeleteModal.vue";
+import { ContinueToOrder } from "@/features/use-cart";
+import { DeleteModal } from "@/features/use-general-delete";
 
 const { deleteModal } = baseDeleteModal();
 const { price, commissionPrice, totalPrice } = useCartOrderInfo();

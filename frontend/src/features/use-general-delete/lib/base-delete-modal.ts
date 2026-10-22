@@ -1,12 +1,12 @@
 import { ref } from "vue";
-import { useAuth } from "@/features/use-auth/api/use-auth.ts";
-import { useDeletePayment } from "@/features/use-user-payment/api/delete-payment.ts";
-import { useDeleteProduct } from "@/features/use-my-product/api/delete-product.ts";
-import { useDeleteCart } from "@/features/use-cart/api/delete-cart.ts";
-import { useDeleteAddress } from "@/features/use-user-address/api/delete-address.ts";
-import { useDeleteOrder } from "@/features/use-order/api/delete-order.ts";
-import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
-import { useGetMyProduct } from "@/features/use-my-product/api/get-my-product.ts";
+import { useAuth } from "@/features/use-auth/api/use-auth";
+import { useDeletePayment } from "@/features/use-user-payment/api/delete-payment";
+import { useDeleteProduct } from "@/features/use-my-product/api/delete-product";
+import { useDeleteCart } from "@/features/use-cart/api/delete-cart";
+import { useDeleteAddress } from "@/features/use-user-address/api/delete-address";
+import { useDeleteOrder } from "@/features/use-order/api/delete-order";
+import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite";
+import { useGetMyProduct } from "@/features/use-my-product/api/get-my-product";
 
 const { getMyProducts } = useGetMyProduct()
 const { logout, deleteAccount } = useAuth();

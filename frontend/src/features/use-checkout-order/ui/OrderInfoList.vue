@@ -5,9 +5,9 @@
 </template>
 
 <script setup lang="ts">
-import { orderStore } from "@/features/use-order/model/order.store.ts";
+import { orderStore } from "@/features/use-order/model/order.store";
 
-import OrderInfoItem from "./OrderInfoItem.vue";
+import { OrderInfoItem } from "@/features/use-checkout-order";
 
 const { items } = orderStore();
 </script>

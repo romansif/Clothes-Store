@@ -26,8 +26,8 @@
 </template>
 
 <script setup lang="ts">
-import { toggleStackInfo } from "@/features/use-my-product/lib/toggle-stack-info.ts";
-import type { Product } from "@/shared/model/product.types.ts";
+import { toggleStackInfo } from "@/features/use-my-product/lib/toggle-stack-info";
+import type { Product } from "@/shared";
 
 import close from "@/assets/icons/delete-close/delete.svg";
 

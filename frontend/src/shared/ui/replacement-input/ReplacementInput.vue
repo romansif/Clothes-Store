@@ -10,9 +10,9 @@
 </template>
 
 <script setup lang="ts">
-import { replacementInputClasses } from "@/shared/ui/replacement-input/replacement-input.variants.ts";
-import type { ReplacementInputProps } from "@/shared/ui/replacement-input/replacement-input.types.ts";
-import { useReplacementInput } from "@/shared/ui/replacement-input/use-replacement-input.ts";
+import { useReplacementInput } from "@/shared/ui/replacement-input/use-replacement-input";
+import { replacementInputClasses } from "@/shared/ui/replacement-input/replacement-input.variants";
+import type { ReplacementInputProps } from "@/shared/ui/replacement-input";
 
 const props = defineProps<ReplacementInputProps>()
 

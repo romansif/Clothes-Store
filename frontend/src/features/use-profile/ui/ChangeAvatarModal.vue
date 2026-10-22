@@ -25,12 +25,12 @@
 </template>
 
 <script setup lang="ts">
-import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
-import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
-import { profileApi } from "@/features/use-profile-form/api/profile.api.ts";
+import { userStore } from "@/features/use-profile/model/user.store";
+import { useProfile } from "@/features/use-profile/lib/use-profile";
+import { useProfileModals } from "@/features/use-profile/lib/profile-modal";
+import { profileApi } from "@/features/use-profile-form/api/profile.api";
 
-import UiButton from "@/shared/ui/button/UiButton.vue";
+import { UiButton } from "@/shared/ui/button";
 
 const { userData } = userStore();
 const { userAvatar } = useProfile();

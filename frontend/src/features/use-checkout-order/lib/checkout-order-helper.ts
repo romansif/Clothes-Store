@@ -1,4 +1,4 @@
-import { orderStore } from "@/features/use-order/model/order.store.ts";
+import { orderStore } from "@/features/use-order/model/order.store";
 
 const { orders, items } = orderStore();
 

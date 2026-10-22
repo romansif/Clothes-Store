@@ -1,5 +1,5 @@
-import { authStore } from "@/features/use-auth/model/auth.store.ts";
-import { clearAuthForms } from "@/features/use-auth/lib/clear-auth.ts";
+import { authStore } from "@/features/use-auth/model/auth.store";
+import { clearAuthForms } from "@/features/use-auth/lib/clear-auth";
 
 const { showPassword, showSignSection, currentRole, isRole } = authStore();
 const { clearRegisterForm, clearLoginForm } = clearAuthForms();

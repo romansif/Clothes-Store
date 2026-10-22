@@ -15,9 +15,9 @@
 </template>
 
 <script setup lang="ts">
-import { useInput } from "@/shared/ui/input/use-input.ts";
-import { inputErrorClass, inputVariantClasses } from "@/shared/ui/input/input.variants.ts";
-import type { InputProps } from "@/shared/ui/input/input.types.ts";
+import { useInput } from "@/shared/ui/input/use-input";
+import { inputErrorClass, inputVariantClasses } from "@/shared/ui/input/input.variants";
+import type { InputProps } from "@/shared/ui/input";
 
 const props = withDefaults(defineProps<InputProps>(), {
   variant: 'auth',

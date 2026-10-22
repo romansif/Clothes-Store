@@ -31,9 +31,8 @@
 
 <script setup lang="ts">
 import { useRoute } from "vue-router";
-import { seasonsCatalog } from "@/entities/season-product/model/seasons-specific.ts";
-
-import MainSlideBar from "@/widgets/ui/product/MainSlideBar.vue";
+import { MainSlideBar } from "@/widgets/ui/navigation";
+import { seasonsCatalog } from "@/entities/season-product/model/seasons-specific";
 
 const route = useRoute();
 </script>

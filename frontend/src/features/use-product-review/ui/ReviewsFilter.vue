@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { filterReviews } from "@/features/use-product-review/lib/filter-reviews.ts";
+import { filterReviews } from "@/features/use-product-review/lib/filter-reviews";
 
 const { reviewsType, toggleFilter } = filterReviews()
 </script>

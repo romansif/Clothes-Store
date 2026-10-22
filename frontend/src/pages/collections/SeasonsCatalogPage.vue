@@ -8,10 +8,6 @@
 </template>
 
 <script setup lang="ts">
-import HeaderCatalog from "@/widgets/ui/navigation/HeaderCatalog.vue";
-import SeasonsCatalog from "@/features/use-season-product/ui/SeasonsCatalog.vue";
+import { HeaderCatalog } from "@/widgets/ui/navigation";
+import { SeasonsCatalog } from "@/features/use-season-product";
 </script>
-
-<style scoped>
-
-</style>

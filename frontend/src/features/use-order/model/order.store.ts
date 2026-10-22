@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import type { OrderItem, Order } from "@/entities/order/model/order.types.ts";
+import type { OrderItem, Order } from "@/entities/order";
 
 const orders = ref<Order[]>([]);
 const orderItems = ref<OrderItem[]>([]);

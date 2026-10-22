@@ -1,14 +1,14 @@
-import { handler } from "@/shared/api/http.ts";
+import { handler } from "@/shared/api/http";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
-import { useBaseModals } from "@/shared/lib/use-notify.ts";
-import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { reviewsStore } from "@/features/use-product-review/model/reviews.store.ts";
-import { clearReviewForm } from "@/features/use-review-form/lib/clear-review-form.ts";
-import { toggleReviewModal } from "@/features/use-review-form/lib/review-form-modal.ts";
-import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper.ts";
-import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/review-form.ts";
-import { reviewFormSchema } from "@/entities/review-form/model/review-schemas.ts";
-import { imageFiles } from "@/shared/lib/product-helper.ts";
+import { useBaseModals } from "@/shared/lib/use-notify";
+import { userStore } from "@/features/use-profile/model/user.store";
+import { reviewsStore } from "@/features/use-product-review/model/reviews.store";
+import { clearReviewForm } from "@/features/use-review-form/lib/clear-review-form";
+import { toggleReviewModal } from "@/features/use-review-form/lib/review-form-modal";
+import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
+import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/review-form";
+import { reviewFormSchema } from "@/entities/review-form/model/review-schemas";
+import { imageFiles } from "@/shared/lib/product-helper";
 
 const { userData } = userStore();
 const { productId } = reviewsStore();

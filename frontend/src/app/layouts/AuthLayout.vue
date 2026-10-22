@@ -24,11 +24,9 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useRoute } from "vue-router";
-import { useBaseModals } from "@/shared/lib/use-notify.ts";
-
-import Loading from "@/shared/ui/Loading.vue";
-import Notification from "@/shared/ui/Notification.vue";
-import AuthHeader from "@/widgets/ui/auth-header/AuthHeader.vue";
+import { useBaseModals } from "@/shared/lib/use-notify";
+import { Loading, Notification } from "@/shared";
+import { AuthHeader } from "@/widgets/ui/auth-header";
 
 const route = useRoute();
 

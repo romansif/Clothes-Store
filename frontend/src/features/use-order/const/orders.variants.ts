@@ -1,6 +1,6 @@
-import { type Order } from "@/entities/order/model/order.types.ts";
+import { type Order } from "@/entities/order";
 
-export const ordersClasses = () => {
+export const ordersVariants = () => {
     const orderStatus = (order: Order) => [
         'text-xs px-2.5 py-1 rounded-md',
 

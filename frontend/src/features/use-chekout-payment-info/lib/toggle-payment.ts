@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment-form.ts";
+import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment-form";
 
 const paymentId = ref<string>('');
 

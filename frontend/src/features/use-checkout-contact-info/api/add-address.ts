@@ -1,14 +1,14 @@
-import { handler } from "@/shared/api/http.ts";
-import { useBaseModals } from "@/shared/lib/use-notify.ts";
-import { clearInformationForm } from "@/features/use-checkout-contact-info/lib/clear-address.ts";
-import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { useGetAddress } from "@/features/use-user-address/api/get-address.ts";
-import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle-contact-info.ts";
-import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper.ts";
-import { type UserContactInfo } from "@/entities/checkout-contact-info/model/information.types.ts";
-import { informationForm, informationFormErrorMessages } from "@/entities/checkout-contact-info/model/information-form.ts";
-import { addContactInfoSchema } from "@/entities/checkout-contact-info/model/information-schemas.ts";
 import router from "@/app/router";
+import { handler } from "@/shared/api/http";
+import { useBaseModals } from "@/shared/lib/use-notify";
+import { clearInformationForm } from "@/features/use-checkout-contact-info/lib/clear-address";
+import { userStore } from "@/features/use-profile/model/user.store";
+import { useGetAddress } from "@/features/use-user-address/api/get-address";
+import { toggleInformation } from "@/features/use-checkout-contact-info/lib/toggle-contact-info";
+import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper";
+import { informationForm, informationFormErrorMessages } from "@/entities/checkout-contact-info/model/information-form";
+import { addContactInfoSchema } from "@/entities/checkout-contact-info/model/information-schemas";
+import type { UserContactInfo } from "@/entities/checkout-contact-info";
 
 const { userData } = userStore();
 const { openNotify } = useBaseModals();

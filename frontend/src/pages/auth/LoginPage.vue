@@ -16,18 +16,18 @@
     <span class="border border-[#A3A3A3] w-full"></span>
   </div>
   <div class="flex flex-col items-center gap-3 mt-3">
-    <GoogleSignIn class="duration-400 hover:scale-105 cursor-pointer"/>
+    <GoogleAuth class="duration-400 hover:scale-105 cursor-pointer"/>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useAuth } from "@/features/use-auth/api/use-auth.ts";
-import { authStore } from "@/features/use-auth/model/auth.store.ts";
+import { useAuth } from "@/features/use-auth/api/use-auth";
+import { authStore } from "@/features/use-auth/model/auth.store";
+import { UiButton } from "@/shared/ui/button";
+import { GoogleAuth } from "@/features/use-auth";
+import { LoginForm } from "@/features/use-auth";
 
-import LoginForm from "@/features/use-auth/ui/LoginForm.vue";
 import maki_arrow from "@/assets/icons/arrows/right-short-arrow.svg";
-import UiButton from "@/shared/ui/button/UiButton.vue";
-import GoogleSignIn from "@/features/use-auth/ui/GoogleSignIn.vue";
 
 const { signIn } = useAuth();
 const { showSignSection } = authStore();

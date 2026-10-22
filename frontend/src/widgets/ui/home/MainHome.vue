@@ -60,15 +60,15 @@
 </template>
 
 <script setup lang="ts">
-import { useBaseModals } from "@/shared/lib/use-notify.ts";
+import { useBaseModals } from "@/shared/lib/use-notify";
+import { Notification } from "@/shared";
+import { WeekList } from "@/features/use-week-product";
+import { YearList } from "@/features/use-year-product";
+import { FilterGender } from "@/widgets/ui/home";
 
 import photo_1 from '@/assets/photos/8.png'
 import photo_2 from '@/assets/photos/9.png'
 import photo_3 from '@/assets/photos/pants.png'
-import Notification from "@/shared/ui/Notification.vue";
-import WeekList from "@/features/use-week-product/ui/WeekList.vue";
-import YearList from "@/features/use-year-product/ui/YearList.vue";
-import FilterGender from "@/widgets/ui/home/FilterGender.vue";
 
 const { notify } = useBaseModals()
 </script>

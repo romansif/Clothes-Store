@@ -1,12 +1,12 @@
-import { handler } from "@/shared/api/http.ts";
-import { useBaseModals } from "@/shared/lib/use-notify.ts";
-import { useGetOrder } from "@/features/use-order/api/get-order.ts";
-import { applyZodErrors, applyErrors} from "@/shared/lib/errors-helper.ts";
-import { orderStore } from "@/features/use-order/model/order.store.ts";
-import { clearReplaceForm } from "@/features/use-order/lib/clear-order-form.ts";
-import { toggleReplaceChoice } from "@/features/use-order/lib/order-modal.ts";
-import { cancelChoiceForm, cancelChoiceMessage } from "@/entities/order/model/order-forms.ts";
-import { replaceOrderSchema } from "@/entities/order/model/replace-order-schemas.ts";
+import { handler } from "@/shared/api/http";
+import { useBaseModals } from "@/shared/lib/use-notify";
+import { useGetOrder } from "@/features/use-order/api/get-order";
+import { applyZodErrors, applyErrors} from "@/shared/lib/errors-helper";
+import { orderStore } from "@/features/use-order/model/order.store";
+import { clearReplaceForm } from "@/features/use-order/lib/clear-order-form";
+import { toggleReplaceChoice } from "@/features/use-order/lib/order-modal";
+import { cancelChoiceForm, cancelChoiceMessage } from "@/entities/order/model/order-forms";
+import { replaceOrderSchema } from "@/entities/order/model/replace-order-schemas";
 
 const { orderId } = orderStore();
 const { getOrders } = useGetOrder();
@@ -44,7 +44,7 @@ export const useDeleteOrder = () => {
 
             clearReplaceForm()
             await openNotify('You have successfully cancelled the order.',
-                'Thank you for providing us with this information, it helps us improve our service.', 'profile')
+                'Thank you for providing us with this information, it helps us improve our service.')
             toggleReplaceChoice('')
             await getOrders();
         }catch(err){

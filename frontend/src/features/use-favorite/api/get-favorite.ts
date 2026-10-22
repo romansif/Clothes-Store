@@ -1,7 +1,7 @@
-import { handler } from "@/shared/api/http.ts";
-import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { favoriteStore } from "@/entities/favorite/model/favorite-store.ts";
-import { useBaseModals } from "@/shared/lib/use-notify.ts";
+import { handler } from "@/shared/api/http";
+import { userStore } from "@/features/use-profile/model/user.store";
+import { favoriteStore } from "@/entities/favorite/model/favorite-store";
+import { useBaseModals } from "@/shared/lib/use-notify";
 
 const { userData } = userStore();
 const { loading } = useBaseModals();

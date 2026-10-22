@@ -23,16 +23,13 @@
 </template>
 
 <script setup lang="ts">
-import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal.ts";
-import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
-
-import SavedPaymentModal from "@/features/use-user-payment/ui/SavedPaymentModal.vue";
-import ChangeAvatarModal from "@/features/use-profile/ui/ChangeAvatarModal.vue";
-import CurrentOrderModal from "@/features/use-order/ui/CurrentOrderModal.vue";
-import AllOrderModal from "@/features/use-order/ui/AllOrderModal.vue";
-import SavedAddressModal from "@/features/use-user-address/ui/SavedAddressModal.vue";
-import UserDataModal from "@/features/use-profile/ui/UserDataModal.vue";
-import DeleteModal from "@/features/use-general-delete/ui/DeleteModal.vue";
+import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal";
+import { useProfileModals } from "@/features/use-profile/lib/profile-modal";
+import { SavedPaymentModal } from "@/features/use-user-payment";
+import { ChangeAvatarModal, UserDataModal } from "@/features/use-profile";
+import { CurrentOrderModal, AllOrderModal } from "@/features/use-order";
+import { SavedAddressModal } from "@/features/use-user-address";
+import { DeleteModal } from "@/features/use-general-delete";
 
 const { deleteModal } = baseDeleteModal();
 const {

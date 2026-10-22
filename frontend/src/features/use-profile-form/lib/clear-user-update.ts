@@ -1,4 +1,4 @@
-import { updateUserForm, updateUserFormErrorMessages }from "@/entities/profile-form/model/user-update-form.ts";
+import { updateUserForm, updateUserFormErrorMessages }from "@/entities/profile-form/model/user-update-form";
 
 export const clearUsersForms = () => {
     const clearUpdateUserFormName = () => {

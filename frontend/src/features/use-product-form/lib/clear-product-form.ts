@@ -1,8 +1,8 @@
 import {
     createProductForm, moreCreateItemForm,
     createProductFormErrorMessages, moreCreateItemFormErrorMessages
-} from "@/entities/product-form/model/product-forms.ts";
-import { imageFiles } from "@/shared/lib/product-helper.ts";
+} from "@/entities/product-form/model/product-forms";
+import { imageFiles } from "@/shared/lib/product-helper";
 
 export const clearProductForm = () => {
     createProductForm.value.title = '';

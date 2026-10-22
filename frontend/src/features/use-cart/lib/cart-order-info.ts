@@ -1,8 +1,8 @@
 import { computed } from "vue";
 import router from "@/app/router";
-import { cartStore } from "@/features/use-cart/model/cart.store.ts";
-import { orderStore } from "@/features/use-order/model/order.store.ts";
-import { isAgreeFormError, isAgreeFormErrorMessage } from "@/features/use-product/model/add-to-cart-form.ts";
+import { cartStore } from "@/features/use-cart/model/cart.store";
+import { orderStore } from "@/features/use-order/model/order.store";
+import { isAgreeFormError, isAgreeFormErrorMessage } from "@/features/use-product/model/add-to-cart-form";
 
 const { cart } = cartStore();
 const { orderItems } = orderStore();

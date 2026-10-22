@@ -1,4 +1,4 @@
-import {ref} from "vue";
+import { ref } from "vue";
 
 export const sizeGuideModel = ref<boolean>(false);
 export const fullDescription = ref<boolean>(false);

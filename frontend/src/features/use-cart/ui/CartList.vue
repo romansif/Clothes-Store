@@ -10,11 +10,11 @@
 </template>
 
 <script setup lang="ts">
-import { cartStore } from "@/features/use-cart/model/cart.store.ts";
-import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
+import { cartStore } from "@/features/use-cart/model/cart.store";
+import { userStore } from "@/features/use-profile/model/user.store";
+import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite";
 
-import CartItem from "./CartItem.vue";
+import { CartItem } from "@/features/use-cart";
 
 const { cart } = cartStore();
 const { userData } = userStore();

@@ -52,7 +52,7 @@
 
 <script setup lang="ts">
 import { useRoute } from "vue-router";
-import { useProductsModals } from "@/features/use-main-product/lib/product-modal.ts";
+import { useProductsModals } from "@/features/use-main-product/lib/product-modal";
 
 import cart from "@/assets/icons/nav/cart.png";
 import liked from "@/assets/icons/nav/favorite.jpeg";

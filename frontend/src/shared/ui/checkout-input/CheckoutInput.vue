@@ -5,8 +5,8 @@
 </template>
 
 <script setup lang="ts">
-import { checkoutInputClasses, checkoutInputErrorClass } from "@/shared/ui/checkout-input/checkout-input.variants.ts";
-import type { CheckoutInputProps } from "@/shared/ui/checkout-input/checkout-input.types.ts";
+import { checkoutInputClasses, checkoutInputErrorClass } from "@/shared/ui/checkout-input/checkout-input.variants";
+import type { CheckoutInputProps } from "@/shared/ui/checkout-input";
 
 const props = withDefaults(defineProps<CheckoutInputProps>(), {
   variant: 'contactInfo',

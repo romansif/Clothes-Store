@@ -10,11 +10,3 @@
     </div>
   </router-link>
 </template>
-
-<script setup lang="ts">
-
-</script>
-
-<style scoped>
-
-</style>

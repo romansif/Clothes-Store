@@ -1,14 +1,14 @@
 import router from '@/app/router';
-import { handler } from "@/shared/api/http.ts";
-import { useBaseModals } from "@/shared/lib/use-notify.ts";
-import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { clearAuthForms } from "@/features/use-auth/lib/clear-auth.ts";
-import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper.ts";
+import { handler } from "@/shared/api/http";
+import { useBaseModals } from "@/shared/lib/use-notify";
+import { userStore } from "@/features/use-profile/model/user.store";
+import { clearAuthForms } from "@/features/use-auth/lib/clear-auth";
+import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper";
 import {
     loginForm, registerForm,
     loginFormErrorMessages, registerFormErrorMessages
-} from "@/entities/auth/model/auth-form.ts";
-import { loginSchema, registerSchema } from "@/entities/auth/model/auth-schemas.ts";
+} from "@/entities/auth/model/auth-form";
+import { loginSchema, registerSchema } from "@/entities/auth/model/auth-schemas";
 
 const { users, userData } = userStore();
 const { loading, openNotify } = useBaseModals();

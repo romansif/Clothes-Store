@@ -1,5 +1,5 @@
-import { cartStore } from "@/features/use-cart/model/cart.store.ts";
-import type {Product} from "@/shared/model/product.types.ts";
+import { cartStore } from "@/features/use-cart/model/cart.store";
+import type { Product } from "@/shared";
 
 const { cart } = cartStore();
 

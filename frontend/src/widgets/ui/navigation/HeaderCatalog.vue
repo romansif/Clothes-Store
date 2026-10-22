@@ -34,7 +34,7 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router";
 
-import MainSlideBar from "@/widgets/ui/product-sidebar/MainSlideBar.vue";
+import MainSlideBar from "@/widgets/ui/navigation/MainSlideBar.vue";
 
 const route = useRoute();
 </script>

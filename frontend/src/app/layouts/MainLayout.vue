@@ -11,10 +11,9 @@
 </template>
 
 <script setup lang="ts">
-import { useBaseModals } from "@/shared/lib/use-notify.ts";
-
-import MainNavBar from "@/widgets/ui/navigation/MainNavBar.vue";
-import Notification from "@/shared/ui/Notification.vue";
+import { useBaseModals } from "@/shared/lib/use-notify";
+import { MainNavBar } from "@/widgets/ui/navigation";
+import { Notification } from "@/shared";
 
 const { notify } = useBaseModals();
 </script>

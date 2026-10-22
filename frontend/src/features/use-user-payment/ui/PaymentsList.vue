@@ -9,10 +9,10 @@
 </template>
 
 <script setup lang="ts">
-import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal.ts";
-import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
+import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal";
+import { paymentStore } from "@/features/use-user-payment/model/payment.store";
 
-import PaymentItem from "@/entities/user-payment/ui/PaymentItem.vue";
+import { PaymentItem } from "@/entities/user-payment";
 
 const { userPayments } = paymentStore();
 const { toggleDeleteChoice } = baseDeleteModal();

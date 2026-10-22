@@ -34,8 +34,8 @@
 
 <script setup lang="ts">
 import { onMounted, onUnmounted } from "vue";
-import { filterProduct } from "@/features/use-navigation/lib/filter-product.ts";
-import { homeSlides } from "@/widgets/model/slides.ts";
+import { filterProduct } from "@/features/use-navigation/lib/filter-product";
+import { homeSlides } from "@/widgets/model/slides";
 
 import right_shop from '@/assets/icons/arrows/go-shop.svg'
 

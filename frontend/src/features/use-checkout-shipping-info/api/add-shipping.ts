@@ -1,13 +1,13 @@
-import { v4 as uuidv4 } from 'uuid';
-import { handler } from "@/shared/api/http.ts";
-import { useBaseModals } from "@/shared/lib/use-notify.ts";
-import { clearShippingForm } from "@/features/use-checkout-shipping-info/lib/clear-shipping.ts";
-import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { useGetShipping } from "@/features/use-checkout-shipping-info/api/get-shipping.ts";
-import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper.ts";
-import { shippingForm, shippingFormErrorMessage } from "@/entities/checkout-shipping/model/shipping-form.ts";
-import { addShippingSchema } from "@/entities/checkout-shipping/model/shipping-schemas.ts";
 import router from "@/app/router";
+import { v4 as uuidv4 } from 'uuid';
+import { handler } from "@/shared/api/http";
+import { useBaseModals } from "@/shared/lib/use-notify";
+import { clearShippingForm } from "@/features/use-checkout-shipping-info/lib/clear-shipping";
+import { userStore } from "@/features/use-profile/model/user.store";
+import { useGetShipping } from "@/features/use-checkout-shipping-info/api/get-shipping";
+import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper";
+import { shippingForm, shippingFormErrorMessage } from "@/entities/checkout-shipping/model/shipping-form";
+import { addShippingSchema } from "@/entities/checkout-shipping/model/shipping-schemas";
 
 const { userData } = userStore();
 const { openNotify  } = useBaseModals();

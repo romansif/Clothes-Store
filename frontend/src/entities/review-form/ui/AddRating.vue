@@ -18,9 +18,9 @@
 </template>
 
 <script setup lang="ts">
-import { ratingSrc } from "@/entities/review-form/lib/show-rating.ts";
-import { ratingStar } from "@/entities/review-form/model/rating-star.variants.ts";
-import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/review-form.ts";
+import { ratingSrc } from "@/entities/review-form/lib/show-rating";
+import { ratingStar } from "@/entities/review-form/model/rating-star.variants";
+import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/review-form";
 
 defineProps<{
   ratings: number[];

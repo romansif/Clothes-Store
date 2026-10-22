@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { reviewsStore } from "@/features/use-product-review/model/reviews.store.ts";
+import { reviewsStore } from "@/features/use-product-review/model/reviews.store";
 
 const { reviewFilter } =reviewsStore();
 

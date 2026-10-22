@@ -14,12 +14,12 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { useGetMyProduct } from "@/features/use-my-product/api/get-my-product.ts";
-import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal.ts";
+import { userStore } from "@/features/use-profile/model/user.store";
+import { useGetMyProduct } from "@/features/use-my-product/api/get-my-product";
+import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal";
+import { MyProductItem } from "@/features/use-my-product";
+import { DeleteModal } from "@/features/use-general-delete";
 
-import MyProductItem from "@/features/use-my-product/ui/MyProductItem.vue";
-import DeleteModal from "@/features/use-general-delete/ui/DeleteModal.vue";
 
 const { userData } = userStore();
 const { deleteModal } = baseDeleteModal();

@@ -22,9 +22,10 @@
 </template>
 
 <script setup lang="ts">
-import type {Product} from "@/shared/model/product.types.ts";
-import type {User} from "@/entities/profile/model/user.types.ts";
-import type {ProductCardVariant} from "@/entities/product-card/model/product-card.types.ts";
+import type { Product } from "@/shared";
+import type { User } from "@/entities/profile";
+import type { ProductCardVariant } from "@/entities/product-card";
+import { ProductPreview } from "@/entities/product-card";
 
 const props = defineProps<{
   user: User | null;
@@ -37,5 +38,4 @@ const emit = defineEmits<{
   toggleToFavorite: [product: Product],
 }>()
 
-import ProductPreview from "@/entities/product-card/ui/ProductPreview.vue";
 </script>

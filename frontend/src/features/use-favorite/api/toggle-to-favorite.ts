@@ -1,10 +1,10 @@
-import { handler } from "@/shared/api/http.ts";
-import { useBaseModals } from "@/shared/lib/use-notify.ts";
-import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
-import { previewHelper } from "@/entities/product-card/lib/preview-helper.ts";
-import { favoriteStore } from "@/entities/favorite/model/favorite-store.ts";
-import type {Product} from "@/shared/model/product.types.ts";
+import { handler } from "@/shared/api/http";
+import { useBaseModals } from "@/shared/lib/use-notify";
+import { userStore } from "@/features/use-profile/model/user.store";
+import { useGetFavorite } from "@/features/use-favorite/api/get-favorite";
+import { previewHelper } from "@/entities/product-card/lib/preview-helper";
+import { favoriteStore } from "@/entities/favorite/model/favorite-store";
+import type { Product } from "@/shared";
 
 const { userData } = userStore();
 const { favorite } = favoriteStore();

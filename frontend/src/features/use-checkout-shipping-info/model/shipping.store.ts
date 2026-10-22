@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { type UserShipping } from "@/entities/checkout-shipping/model/shipping.types.ts";
+import type { UserShipping } from "@/entities/checkout-shipping";
 
 const userShipping = ref<UserShipping[]>([])
 

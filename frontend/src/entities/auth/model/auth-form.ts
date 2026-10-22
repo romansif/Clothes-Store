@@ -4,7 +4,7 @@ import type {
     RegisterForm,
     LoginFormErrorMessage,
     RegisterFormErrorMessage,
-} from "@/entities/auth/model/auth-form.types.ts";
+} from "@/entities/auth";
 
 export const registerForm = ref<RegisterForm>({
     name: '',

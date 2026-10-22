@@ -27,15 +27,12 @@
 
 <script setup lang="ts">
 import { useQuery } from "@tanstack/vue-query";
-import { useGetReviews } from "@/features/use-product-review/api/get-reviews.ts";
-import { changeReviewPhoto, toggleReviewPhotos } from "@/features/use-product-review/lib/review-photo-modal.ts";
-import { reviewModal } from "@/features/use-product-review/lib/review-photo-modal.ts";
-import { currentIndex, reviewImages } from "@/features/use-product-review/lib/review-photo-modal.ts";
-
-import ProductRating from "@/entities/product-review/ui/ProductRating.vue";
-import ReviewsFilter from "@/features/use-product-review/ui/ReviewsFilter.vue";
-import ReviewList from "@/features/use-product-review/ui/ReviewList.vue";
-import ReviewPhotos from "@/entities/product-review/ui/ReviewPhotos.vue";
+import { useGetReviews } from "@/features/use-product-review/api/get-reviews";
+import { changeReviewPhoto, toggleReviewPhotos } from "@/features/use-product-review/lib/review-photo-modal";
+import { reviewModal } from "@/features/use-product-review/lib/review-photo-modal";
+import { currentIndex, reviewImages } from "@/features/use-product-review/lib/review-photo-modal";
+import { ProductRating, ReviewPhotos } from "@/entities/product-review";
+import { ReviewList, ReviewsFilter } from "@/features/use-product-review";
 
 const { getReviews } = useGetReviews();
 

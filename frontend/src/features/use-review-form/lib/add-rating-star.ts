@@ -1,10 +1,11 @@
-import { userStore } from "@/features/use-profile/model/user.store.ts";
+import { useQuery } from "@tanstack/vue-query";
+import { userStore } from "@/features/use-profile/model/user.store";
+import { reviewForm } from "@/entities/review-form/model/review-form";
+import { reviewsStore } from "@/features/use-product-review/model/reviews.store";
 import { useGetReviews } from "@/features/use-product-review/api/get-reviews.ts";
-import { reviewForm } from "@/entities/review-form/model/review-form.ts";
-import { reviewsStore } from "@/features/use-product-review/model/reviews.store.ts";
 
 const { userData } = userStore();
-const { reviews } = useGetReviews();
+const { getReviews } = useGetReviews()
 const { ratingDirection } = reviewsStore();
 
 export const addRating = (rating: number) => {
@@ -37,8 +38,13 @@ export const addRating = (rating: number) => {
 
 export const isInReview = () => {
     const user = userData.value;
-
     if (!user) return false;
+
+    const { data: reviews } = useQuery({
+        queryKey: ["reviews"],
+        queryFn: () => getReviews(),
+        initialData: []
+    });
 
     return reviews.value.some(
         review => review.userId === user.id

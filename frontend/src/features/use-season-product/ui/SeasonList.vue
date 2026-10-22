@@ -14,12 +14,12 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
-import { productsHelper } from "@/features/use-main-product/lib/products-helper.ts";
-import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
-import { useGetSeasonProducts } from "@/features/use-season-product/api/get-season-product.ts";
-import type {Product} from "@/shared/model/product.types.ts";
+import { userStore } from "@/features/use-profile/model/user.store";
+import { useGetFavorite } from "@/features/use-favorite/api/get-favorite";
+import { productsHelper } from "@/features/use-main-product/lib/products-helper";
+import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite";
+import { useGetSeasonProducts } from "@/features/use-season-product/api/get-season-product";
+import type { Product } from "@/shared";
 
 const props = defineProps<{
   array: Product[];

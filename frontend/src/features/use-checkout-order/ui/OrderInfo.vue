@@ -49,11 +49,10 @@
 </template>
 
 <script setup lang="ts">
-import { orderStore } from "@/features/use-order/model/order.store.ts";
-import { shippingForm } from "@/entities/checkout-shipping/model/shipping-form.ts";
-import { orderPriceInfo } from "@/features/use-checkout-order/lib/order-price-info.ts";
-
-import OrderInfoList from "./OrderInfoList.vue";
+import { orderStore } from "@/features/use-order/model/order.store";
+import { shippingForm } from "@/entities/checkout-shipping/model/shipping-form";
+import { orderPriceInfo } from "@/features/use-checkout-order/lib/order-price-info";
+import { OrderInfoList } from "@/features/use-checkout-order";
 
 const { items } = orderStore();
 const { price, totalPrice, commissionPrice } = orderPriceInfo();

@@ -41,19 +41,20 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useGetCart } from "@/features/use-cart/api/get-cart.ts";
-import { cartHelper } from "@/features/use-product/lib/cart-helper.ts";
-import { useAddToCart } from "@/features/use-product/api/add-to-cart.ts";
-import { useUpdateCart } from "@/features/use-cart/api/update-cart.ts";
-import { productsHelper } from "@/features/use-main-product/lib/products-helper.ts";
-import { sizeGuideModel, toggleSizeGuide } from "@/features/use-product/lib/toggle-more-info.ts";
-import type { User } from "@/entities/profile/model/user.types.ts";
-import type { Product } from "@/shared/model/product.types.ts";
+import { useGetCart } from "@/features/use-cart/api/get-cart";
+import { cartHelper } from "@/features/use-product/lib/cart-helper";
+import { useAddToCart } from "@/features/use-product/api/add-to-cart";
+import { useUpdateCart } from "@/features/use-cart/api/update-cart";
+import { productsHelper } from "@/features/use-main-product/lib/products-helper";
+import { sizeGuideModel, toggleSizeGuide } from "@/features/use-product/lib/toggle-more-info";
+import { UiButton } from "@/shared/ui/button";
+import { SizeGuideModal } from "@/features/use-product";
+import type { User } from "@/entities/profile";
+import type { Product } from "@/shared";
 
 import plus from "@/assets/icons/products/plus.svg";
 import minus from "@/assets/icons/products/minus.svg";
-import UiButton from "@/shared/ui/button/UiButton.vue";
-import SizeGuideModal from "@/features/use-product/ui/SizeGuideModal.vue";
+
 
 defineProps<{
   user: User

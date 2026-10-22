@@ -101,15 +101,15 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
 import { onMounted } from "vue";
-import { filterProduct } from "@/features/use-navigation/lib/filter-product.ts";
+import { filterProduct } from "@/features/use-navigation/lib/filter-product";
+import { useGetProducts } from "@/features/use-main-product/api/get-product";
+import { useProductsModals } from "@/features/use-main-product/lib/product-modal";
 import {
   sidebarCategoryClass,
   selectedCategoryAndCollectionClass,
   filterSizeClass, selectedFilterAndSizeClass, filterClass
 } from "@/widgets/model/filter-item.variants.ts";
-import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
-import { useProductsModals } from "@/features/use-main-product/lib/product-modal.ts";
-import { sizes } from "@/shared/model/product-sizes.ts";
+import { sizes } from "@/shared/model/product-sizes";
 
 import square from "@/assets/icons/squares/square.png";
 import availability from "@/assets/icons/arrows/arrow-up.svg";

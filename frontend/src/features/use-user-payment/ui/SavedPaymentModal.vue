@@ -30,15 +30,15 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal.ts";
-import { useGetPayment } from "@/features/use-user-payment/api/get-payment.ts";
-import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
-import { paymentStore } from "@/features/use-user-payment/model/payment.store.ts";
+import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal";
+import { useGetPayment } from "@/features/use-user-payment/api/get-payment";
+import { useProfileModals } from "@/features/use-profile/lib/profile-modal";
+import { paymentStore } from "@/features/use-user-payment/model/payment.store";
 
-import UiButton from "@/shared/ui/button/UiButton.vue";
-import DeleteModal from "@/features/use-general-delete/ui/DeleteModal.vue";
-import PaymentCardEmpty from "@/entities/profile/ui/PaymentCardEmpty.vue";
-import PaymentsList from "@/features/use-user-payment/ui/PaymentsList.vue";
+import { UiButton } from "@/shared/ui/button";
+import { DeleteModal } from "@/features/use-general-delete";
+import { PaymentCardEmpty } from "@/entities/profile";
+import { PaymentsList } from "@/features/use-user-payment";
 
 const { getPayments } = useGetPayment();
 const { userPayments } = paymentStore();

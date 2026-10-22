@@ -1,4 +1,4 @@
-import type {ProductCardVariant} from "@/entities/product-card/model/product-card.types.ts";
+import type { ProductCardVariant } from "@/entities/product-card";
 
 export const productCardVariants = {
     "main&favorite&Cart": {

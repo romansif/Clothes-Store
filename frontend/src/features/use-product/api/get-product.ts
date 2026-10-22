@@ -1,6 +1,6 @@
 import { ref } from "vue";
-import { handler } from "@/shared/api/http.ts";
-import type {Product} from "@/shared/model/product.types.ts";
+import { handler } from "@/shared/api/http";
+import type { Product } from "@/shared";
 
 export const product = ref<Product | null>(null);
 

@@ -14,12 +14,12 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
-import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
-import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
+import { userStore } from "@/features/use-profile/model/user.store";
+import { useGetFavorite } from "@/features/use-favorite/api/get-favorite";
+import { useGetProducts } from "@/features/use-main-product/api/get-product";
+import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite";
 
-import ProductCard from "@/entities/product-card/ui/ProductCard.vue";
+import { ProductCard } from "@/entities/product-card";
 
 const { userData } = userStore();
 const { getFavoriteProducts } = useGetFavorite();

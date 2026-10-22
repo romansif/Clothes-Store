@@ -12,13 +12,12 @@
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { useQuery } from "@tanstack/vue-query";
-import { useProfile } from "@/features/use-profile/lib/use-profile.ts";
-import { reviewsStore } from "@/features/use-product-review/model/reviews.store.ts";
-import { useGetReviews } from "@/features/use-product-review/api/get-reviews.ts";
-import { reviewsHelper } from "@/features/use-product-review/lib/reviews-helper.ts";
-import { toggleReviewPhotos } from "@/features/use-product-review/lib/review-photo-modal.ts";
-
-import ReviewItem from "@/entities/product-review/ui/ReviewItem.vue"
+import { useProfile } from "@/features/use-profile/lib/use-profile";
+import { reviewsStore } from "@/features/use-product-review/model/reviews.store";
+import { useGetReviews } from "@/features/use-product-review/api/get-reviews";
+import { reviewsHelper } from "@/features/use-product-review/lib/reviews-helper";
+import { toggleReviewPhotos } from "@/features/use-product-review/lib/review-photo-modal";
+import { ReviewItem } from "@/entities/product-review";
 
 const route = useRoute();
 

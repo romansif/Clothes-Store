@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import type {ImageItem} from "@/entities/product-review/model/reviews.types.ts";
+import type { ImageItem } from "@/entities/product-review";
 
 export const reviewModal = ref<boolean>(false);
 export const reviewImages = ref<ImageItem[]>([]);

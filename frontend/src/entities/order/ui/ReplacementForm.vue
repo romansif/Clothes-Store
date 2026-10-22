@@ -14,11 +14,13 @@
   <ReplacementInput v-model="cancelChoiceForm.cancelChoice"
                     name="I found a better product"
                     :value="'I found a better product'"/>
-  <span v-if="cancelChoiceMessage.cancelChoice" class="text-red-600 text-xs px-4">{{ cancelChoiceMessage.cancelChoice }}</span>
+  <span v-if="cancelChoiceMessage.cancelChoice" class="text-red-600 text-xs px-4">
+    {{ cancelChoiceMessage.cancelChoice }}
+  </span>
 </template>
 
 <script setup lang="ts">
-import { cancelChoiceForm, cancelChoiceMessage } from "@/entities/order/model/order-forms.ts";
+import { cancelChoiceForm, cancelChoiceMessage } from "@/entities/order/model/order-forms";
 
 import ReplacementInput from "@/shared/ui/replacement-input/ReplacementInput.vue";
 </script>

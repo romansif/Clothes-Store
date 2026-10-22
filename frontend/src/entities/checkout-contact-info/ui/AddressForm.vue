@@ -35,9 +35,9 @@
 
 <script setup lang="ts">
 import { IMaskComponent as IMask } from "vue-imask";
-import { postalCode } from "@/entities/checkout-contact-info/model/information-mask.ts";
-import { postalCodeClass } from "@/entities/checkout-contact-info/model/information-form.variants.ts";
-import { informationForm, informationFormErrorMessages } from "@/entities/checkout-contact-info/model/information-form.ts";
+import { postalCode } from "@/entities/checkout-contact-info/model/information-mask";
+import { postalCodeClass } from "@/entities/checkout-contact-info/model/information-form.variants";
+import { informationForm, informationFormErrorMessages } from "@/entities/checkout-contact-info/model/information-form";
 
 import CheckoutInput from "@/shared/ui/checkout-input/CheckoutInput.vue";
 </script>

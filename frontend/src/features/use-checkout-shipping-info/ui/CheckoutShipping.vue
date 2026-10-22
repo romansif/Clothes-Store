@@ -28,15 +28,15 @@
 </template>
 
 <script setup lang="ts">
-import { refClearErrorsOnChange } from "@/shared/lib/errors-helper.ts";
-import { informationContactStore } from "@/features/use-user-address/model/address.store.ts";
-import { useAddShipping } from "@/features/use-checkout-shipping-info/api/add-shipping.ts";
-import { shippingForm, shippingFormErrorMessage } from "@/entities/checkout-shipping/model/shipping-form.ts";
+import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
+import { informationContactStore } from "@/features/use-user-address/model/address.store";
+import { useAddShipping } from "@/features/use-checkout-shipping-info/api/add-shipping";
+import { shippingForm, shippingFormErrorMessage } from "@/entities/checkout-shipping/model/shipping-form";
+import { UiButton } from "@/shared/ui/button";
+import { ShippingAddress } from "@/entities/checkout-shipping";
+import { ShippingMethod } from "@/shared/ui/shipping-method";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
-import UiButton from "@/shared/ui/button/UiButton.vue";
-import ShippingAddress from "../../../entities/checkout-shipping/ui/ShippingAddress.vue";
-import ShippingMethod from "@/shared/ui/shipping-method/ShippingMethod.vue";
 
 const { addShipping } = useAddShipping();
 const { userAddress } = informationContactStore();

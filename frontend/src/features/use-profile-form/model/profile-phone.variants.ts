@@ -1,4 +1,4 @@
-import type { ProfilePhoneVariant } from "@/features/use-profile-form/model/profile-phone.types.ts";
+import type { ProfilePhoneVariant } from "@/features/use-profile-form";
 
 export const profileFormPhoneInputClasses: Record<ProfilePhoneVariant, string> = {
     default: `w-full border border-gray-300 rounded-xl outline-none px-4 py-3 text-sm bg-[#D9D9D9]/40

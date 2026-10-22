@@ -1,4 +1,4 @@
-import type { Collection } from "@/shared/model/product.types.ts";
+import type { Collection } from "@/shared";
 
 export interface ProductForm {
     title: string,

@@ -28,13 +28,12 @@
 </template>
 
 <script setup lang="ts">
-import { toggleReplaceChoice } from "@/features/use-order/lib/order-modal.ts";
-import { useDeleteOrder } from "@/features/use-order/api/delete-order.ts";
-import { refClearErrorsOnChange } from "@/shared/lib/errors-helper.ts";
-import { cancelChoiceForm, cancelChoiceMessage } from "@/entities/order/model/order-forms.ts";
-
-import UiButton from "@/shared/ui/button/UiButton.vue";
-import ReplacementForm from "@/entities/order/ui/ReplacementForm.vue";
+import { toggleReplaceChoice } from "@/features/use-order/lib/order-modal";
+import { useDeleteOrder } from "@/features/use-order/api/delete-order";
+import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
+import { cancelChoiceForm, cancelChoiceMessage } from "@/entities/order/model/order-forms";
+import { UiButton } from "@/shared/ui/button";
+import { ReplacementForm } from "@/entities/order";
 
 const { replaceOrder } = useDeleteOrder();
 

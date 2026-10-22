@@ -13,11 +13,9 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useGetUsers } from "@/features/use-profile/api/get-users.ts";
-import { userStore } from "@/features/use-profile/model/user.store.ts";
-
-import ProfileSettings from "@/widgets/ui/profile/ProfileSettings.vue";
-import ProfileNotLoggedIn from "@/widgets/ui/profile/ProfileNotLoggedIn.vue";
+import { useGetUsers } from "@/features/use-profile/api/get-users";
+import { userStore } from "@/features/use-profile/model/user.store";
+import { ProfileSettings, ProfileNotLoggedIn } from "@/widgets/ui/profile";
 
 const { userData } = userStore();
 const { getUser } = useGetUsers();
@@ -26,7 +24,3 @@ onMounted(async () => {
   await getUser();
 })
 </script>
-
-<style scoped>
-
-</style>

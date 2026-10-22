@@ -39,11 +39,11 @@
 </template>
 
 <script setup lang="ts">
-import { productHelper } from "@/shared/lib/product-helper.ts";
-import { addToCartVariants } from "@/features/use-product/model/add-to-cart.variants.ts";
-import type {User} from "@/entities/profile/model/user.types.ts";
-import type {ColorItem, Product, Size} from "@/shared/model/product.types.ts";
-import { addToCartFormErrorMessages } from "@/features/use-product/model/add-to-cart-form.ts";
+import { productHelper } from "@/shared/lib/product-helper";
+import { addToCartVariants } from "@/features/use-product/model/add-to-cart.variants";
+import { addToCartFormErrorMessages } from "@/features/use-product/model/add-to-cart-form";
+import type { User } from "@/entities/profile";
+import type { ColorItem, Product, Size } from "@/shared";
 
 defineProps<{
   user: User

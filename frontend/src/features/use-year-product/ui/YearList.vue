@@ -14,13 +14,13 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { userStore } from "@/features/use-profile/model/user.store.ts";
-import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite.ts";
-import { useGetFavorite } from "@/features/use-favorite/api/get-favorite.ts";
-import { useGetYearProduct } from "@/features/use-year-product/api/get-year-product.ts";
-import { productsHelper } from "@/features/use-main-product/lib/products-helper.ts";
+import { userStore } from "@/features/use-profile/model/user.store";
+import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite";
+import { useGetFavorite } from "@/features/use-favorite/api/get-favorite";
+import { useGetYearProduct } from "@/features/use-year-product/api/get-year-product";
+import { productsHelper } from "@/features/use-main-product/lib/products-helper";
 
-import ProductCard from "@/entities/product-card/ui/ProductCard.vue";
+import { ProductCard } from "@/entities/product-card";
 
 const { userData } = userStore();
 const { vHorizontalScroll } = productsHelper();

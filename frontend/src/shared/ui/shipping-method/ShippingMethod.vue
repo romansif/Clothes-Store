@@ -29,9 +29,9 @@
 </template>
 
 <script setup lang="ts">
-import  { useShippingMethod } from "@/shared/ui/shipping-method/use-shipping-method.ts";
-import { shippingMethod } from "@/shared/ui/shipping-method/shipping-method.variants.ts";
-import type { ShippingInputProps } from "@/shared/ui/shipping-method/shipping-method.types.ts";
+import  { useShippingMethod } from "@/shared/ui/shipping-method/use-shipping-method";
+import { shippingMethod } from "@/shared/ui/shipping-method/shipping-method.variants";
+import type { ShippingInputProps } from "@/shared/ui/shipping-method";
 
 const props = defineProps<ShippingInputProps>()
 

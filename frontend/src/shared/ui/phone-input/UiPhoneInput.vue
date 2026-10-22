@@ -21,9 +21,9 @@
 
 <script setup lang="ts">
 import { IMaskComponent as IMask } from "vue-imask";
-import { usePhoneInput } from "@/shared/ui/phone-input/use-phone-input.ts";
-import { countries, selectedCountryCode } from "@/shared/ui/phone-input/phone-input.values.ts";
-import type { PhoneInputProps } from "@/shared/ui/phone-input/phone-input.types.ts";
+import { usePhoneInput } from "@/shared/ui/phone-input/use-phone-input";
+import { countries, selectedCountryCode } from "@/shared/ui/phone-input/phone-input.values";
+import type { PhoneInputProps } from "@/shared/ui/phone-input";
 
 const props = defineProps<PhoneInputProps>()
 

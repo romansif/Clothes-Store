@@ -13,6 +13,4 @@
 import loading from '@/assets/icons/auth/loading.svg'
 </script>
 
-<style scoped>
 
-</style>

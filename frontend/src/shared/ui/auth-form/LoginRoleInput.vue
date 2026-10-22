@@ -12,8 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import { signInRole } from "@/shared/ui/auth-form/auth-form.variants.ts";
-import type {AuthFormProps} from "@/shared/ui/auth-form/auth-form.types.ts";
+import { signInRole } from "@/shared/ui/auth-form/auth-form.variants";
+import type { AuthFormProps } from "@/shared/ui/auth-form";
 
 const props = defineProps<AuthFormProps>()
 

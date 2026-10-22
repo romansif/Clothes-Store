@@ -19,14 +19,14 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router";
 import { useQuery } from "@tanstack/vue-query";
-import { getProduct } from "@/features/use-product/api/get-product.ts";
-import { useUpdateProduct } from "@/features/use-product-form/api/update-product.ts";
-import { fileInput } from "@/shared/lib/product-helper.ts";
+import { getProduct } from "@/features/use-product/api/get-product";
+import { useUpdateProduct } from "@/features/use-product-form/api/update-product";
+import { fileInput } from "@/shared/lib/product-helper";
 
-import UiButton from "@/shared/ui/button/UiButton.vue";
-import EditImageUpload from "@/features/use-product-form/ui/EditImageUpload.vue";
-import ProductBaseInfo from "@/entities/product-form/ui/ProductBaseInfo.vue";
-import EditVariants from "@/features/use-product-form/ui/EditVariants.vue";
+import { UiButton } from "@/shared/ui/button";
+import { EditImageUpload } from "@/features/use-product-form";
+import { ProductBaseInfo } from "@/entities/product-form";
+import { EditVariants } from "@/features/use-product-form";
 
 const { updateProductImages, updateProductDesc } = useUpdateProduct();
 

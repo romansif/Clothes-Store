@@ -2,7 +2,7 @@ import { ref } from "vue";
 import type {
     InformationForm,
     InformationFormErrorMessage
-} from "@/entities/checkout-contact-info/model/information-form.types.ts";
+} from "@/entities/checkout-contact-info";
 
 export const informationForm = ref<InformationForm>({
     addressName: '',

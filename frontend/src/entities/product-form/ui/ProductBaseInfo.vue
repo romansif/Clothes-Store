@@ -11,12 +11,12 @@
         <label class="flex gap-1 font-semibold tracking-wider text-xs">
           TITLE · НАЗВАНИЕ
           <span v-if="isCreate" class="text-red-500">*</span>
-          <template v-else>
+          <template v-else-if="product">
             <span>/</span>
             <span class="text-black uppercase">{{ product.title }}</span>
           </template>
         </label>
-        <BaseInput v-model="createProductForm.title"
+        <UiInput v-model="createProductForm.title"
                    placeholder="title, name etc."
                    variant="createProduct"
                    :max-length="50"
@@ -28,7 +28,7 @@
         <label class="flex gap-1 font-semibold tracking-wider text-xs">
           COLLECTION · КОЛЛЕКЦИЯ
           <span v-if="isCreate" class="text-red-500">*</span>
-          <template v-else>
+          <template v-else-if="product">
             <span>/</span>
             <span class="text-black uppercase">{{ product.collection.name }}</span>
           </template>
@@ -62,7 +62,7 @@
         <label class="flex gap-1 font-semibold tracking-wider text-xs">
           CATEGORY · КАТЕГОРИЯ
           <span v-if="isCreate" class="text-red-500">*</span>
-          <template v-else>
+          <template v-else-if="product">
             <span>/</span>
             <span class="text-black uppercase">{{ product.category }}</span>
           </template>
@@ -86,7 +86,7 @@
         <label class="flex gap-1 font-semibold tracking-wider text-xs">
           MATERIAL · МАТЕРИАЛ
           <span v-if="isCreate" class="text-red-500">*</span>
-          <template v-else>
+          <template v-else-if="product">
             <span>/</span>
             <span class="text-black uppercase">{{ product.material }}</span>
           </template>
@@ -108,7 +108,7 @@
         <label class="flex gap-1 font-semibold tracking-wider text-xs">
           GENDER · ПОЛ
           <span v-if="isCreate" class="text-red-500">*</span>
-          <template v-else>
+          <template v-else-if="product">
             <span>/</span>
             <span class="text-black uppercase">{{ product.gender }}</span>
           </template>
@@ -133,7 +133,7 @@
         <label class="flex gap-1 font-semibold tracking-wider text-xs">
           SKU · АРТИКУЛ
           <span v-if="isCreate" class="text-red-500">*</span>
-          <template v-else>
+          <template v-else-if="product">
             <span>/</span>
             <span class="text-black uppercase">{{ product.sku }}</span>
           </template>
@@ -150,12 +150,12 @@
         <label class="flex gap-1 font-semibold tracking-wider text-xs">
           PRICE · ЦЕНА
           <span v-if="isCreate" class="text-red-500">*</span>
-          <template v-else>
+          <template v-else-if="product">
             <span>/</span>
             <span class="text-black uppercase">{{ product.price }}</span>
           </template>
         </label>
-        <BaseInput v-model="createProductForm.price"
+        <UiInput v-model="createProductForm.price"
                    type="number"
                    placeholder="$00.00"
                    variant="createProduct"
@@ -166,12 +166,12 @@
       <label class="flex gap-1 font-semibold tracking-wider text-xs">
         DESC. · ОПИСАНИЕ
         <span v-if="isCreate" class="text-red-500">*</span>
-        <template v-else>
+        <template v-else-if="product">
           <span>/</span>
           <span class="text-black uppercase">{{ product.description }}</span>
         </template>
       </label>
-      <UiTextarea v-model="createProductForm.description"
+      <UiProductTextarea v-model="createProductForm.description"
                   :placeholder="'short desc. of product'"
                   :error-message="createProductFormErrorMessages.description" />
     </div>
@@ -181,18 +181,18 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router";
 import { IMaskComponent as IMask } from "vue-imask";
-import { useProductForm } from "@/entities/product-form/lib/use-product-form.ts";
-import { productSpecific } from "@/entities/product-form/model/product-specific.ts";
-import { baseSelectClass, skuClass, productFormErrorClass } from "@/features/use-product-form/model/product-form.variants.ts";
-import { refClearErrorsOnChange } from "@/shared/lib/errors-helper.ts";
-import { createProductForm, createProductFormErrorMessages } from "@/entities/product-form/model/product-forms.ts";
-import type { Product } from "@/shared/model/product.types.ts";
+import { useProductForm } from "@/entities/product-form/lib/use-product-form";
+import { productSpecific } from "@/entities/product-form/model/product-specific";
+import { baseSelectClass, skuClass, productFormErrorClass } from "@/features/use-product-form/model/product-form.variants";
+import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
+import { createProductForm, createProductFormErrorMessages } from "@/entities/product-form/model/product-forms";
+import type { Product } from "@/shared";
 
-import BaseInput from "@/shared/ui/input/BaseInput.vue";
-import UiTextarea from "@/shared/ui/product-textarea/UiTextarea.vue";
+import { UiInput } from "@/shared/ui/input";
+import { UiProductTextarea } from "@/shared/ui/product-textarea";
 
 defineProps<{
-  product: Product
+  product?: Product
 }>()
 
 const route = useRoute()

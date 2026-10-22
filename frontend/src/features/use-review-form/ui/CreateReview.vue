@@ -34,18 +34,15 @@
 </template>
 
 <script setup lang="ts">
-import { addRating } from "@/features/use-review-form/lib/add-rating-star.ts";
-import { reviewsStore } from "@/features/use-product-review/model/reviews.store.ts";
-import { useCreateReview } from "@/features/use-review-form/api/add-review.ts";
-import { refClearErrorsOnChange } from "@/shared/lib/errors-helper.ts";
-import { toggleReviewModal } from "@/features/use-review-form/lib/review-form-modal.ts";
-import { fileInput, productHelper } from "@/shared/lib/product-helper.ts";
-import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/review-form.ts";
-
-import UiButton from "@/shared/ui/button/UiButton.vue";
-import AddRating from "@/entities/review-form/ui/AddRating.vue";
-import AddReview from "@/entities/review-form/ui/AddReview.vue";
-import AddPhotos from "@/entities/review-form/ui/AddPhotos.vue";
+import { addRating } from "@/features/use-review-form/lib/add-rating-star";
+import { reviewsStore } from "@/features/use-product-review/model/reviews.store";
+import { useCreateReview } from "@/features/use-review-form/api/add-review";
+import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
+import { toggleReviewModal } from "@/features/use-review-form/lib/review-form-modal";
+import { fileInput, productHelper } from "@/shared/lib/product-helper";
+import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/review-form";
+import { UiButton } from "@/shared/ui/button";
+import { AddRating, AddReview, AddPhotos } from "@/entities/review-form";
 
 const { ratings } = reviewsStore();
 const { createReview } = useCreateReview();

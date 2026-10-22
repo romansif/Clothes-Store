@@ -69,22 +69,22 @@
 </template>
 
 <script setup lang="ts">
-import { useOrder } from "@/features/use-order/lib/use-order.ts";
-import { orderPreview } from "@/features/use-checkout-order/lib/checkout-order-helper.ts";
-import { productHelper } from "@/shared/lib/product-helper.ts";
-import { ordersClasses } from "@/features/use-order/const/orders.classes.ts";
-import { previewHelper } from "@/entities/product-card/lib/preview-helper.ts";
-import type { Order } from "@/entities/order/model/order.types.ts";
+import { useOrder } from "@/features/use-order/lib/use-order";
+import { orderPreview } from "@/features/use-checkout-order/lib/checkout-order-helper";
+import { productHelper } from "@/shared/lib/product-helper";
+import { ordersVariants } from "@/features/use-order/const/orders.variants";
+import { previewHelper } from "@/entities/product-card/lib/preview-helper";
+import { OrderStatus } from "@/entities/order";
+import { UseOrder } from "@/features/use-order";
+import type { Order } from "@/entities/order";
 
 defineProps<{
   order: Order
 }>();
 
 import copy_btn from '@/assets/icons/squares/copy.svg';
-import OrderStatus from "@/entities/order/ui/OrderStatus.vue";
-import UseOrder from "@/features/use-order/ui/UseOrder.vue";
 
-const { orderStatus } = ordersClasses();
+const { orderStatus } = ordersVariants();
 const { getProductId } = previewHelper();
 const { pureColorsName } = productHelper();
 const { copyText, orderQuantity } = useOrder();

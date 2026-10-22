@@ -30,15 +30,15 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal.ts";
-import { useGetAddress } from "@/features/use-user-address/api/get-address.ts";
-import { useProfileModals } from "@/features/use-profile/lib/profile-modal.ts";
-import { informationContactStore } from "@/features/use-user-address/model/address.store.ts";
+import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal";
+import { useGetAddress } from "@/features/use-user-address/api/get-address";
+import { useProfileModals } from "@/features/use-profile/lib/profile-modal";
+import { informationContactStore } from "@/features/use-user-address/model/address.store";
 
-import UiButton from "@/shared/ui/button/UiButton.vue";
-import DeleteModal from "@/features/use-general-delete/ui/DeleteModal.vue";
-import AddressesEmpty from "@/entities/profile/ui/AddressesEmpty.vue";
-import AddressesList from "@/features/use-user-address/ui/AddressesList.vue";
+import { UiButton } from "@/shared/ui/button";
+import { DeleteModal } from "@/features/use-general-delete";
+import { AddressesEmpty } from "@/entities/profile";
+import { AddressesList } from "@/features/use-user-address";
 
 const { getAddresses } = useGetAddress();
 const { deleteModal } = baseDeleteModal();

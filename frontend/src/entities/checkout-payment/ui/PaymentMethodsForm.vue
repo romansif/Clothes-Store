@@ -34,12 +34,10 @@
 </template>
 
 <script setup lang="ts">
-import { paymentMethodClass } from "@/shared/model/payment-form.variants.ts";
-import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment-form.ts";
-import type { UserPayment } from "@/entities/checkout-payment/model/payment.type.ts";
-
-import PaymentCardForm from "./PaymentCardForm.vue";
-import PaymentMethod from "@/entities/checkout-payment/ui/PaymentMethod.vue";
+import { paymentMethodClass } from "@/shared/model/payment-form.variants";
+import { PaymentCardForm, PaymentMethod }  from "@/entities/checkout-payment";
+import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment-form";
+import type { UserPayment } from "@/entities/checkout-payment";
 
 defineProps<{
   userPayment: UserPayment | null;

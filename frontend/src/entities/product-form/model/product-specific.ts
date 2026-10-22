@@ -5,7 +5,7 @@ import type {
     Category,
     SizeGuide,
     SizesShoes,
-} from "@/shared/model/product.types.ts";
+} from "@/shared";
 
 const collections: Collection[] = [
     {season: 'Spring', condition: 'New', name: 'Essence'},

@@ -1,5 +1,5 @@
-import { handler } from "@/shared/api/http.ts";
-import { useGetProducts } from "@/features/use-main-product/api/get-product.ts";
+import { handler } from "@/shared/api/http";
+import { useGetProducts } from "@/features/use-main-product/api/get-product";
 
 const { getFilteredProducts } = useGetProducts();
 

@@ -28,9 +28,9 @@
 </template>
 
 <script setup lang="ts">
-import { ratingHelper } from "@/entities/product-review/lib/rating-helper.ts";
-import { reverseRatings } from "@/entities/product-review/model/review-rating.ts";
-import type {Review} from "@/entities/product-review/model/reviews.types.ts";
+import { ratingHelper } from "@/entities/product-review/lib/rating-helper";
+import { reverseRatings } from "@/entities/product-review/model/review-rating";
+import type { Review } from "@/entities/product-review";
 
 defineProps<{
   reviews: Review[];

@@ -8,9 +8,9 @@
 </template>
 
 <script setup lang="ts">
-import type { TabProps } from "@/shared/ui/profile-tab/profile-tab.types.ts";
-
-const props = defineProps<TabProps>()
+import type { TabProps } from "@/shared/ui/profile-tab";
 
 import arrow_down from "@/assets/icons/arrows/arrow-down.svg";
+
+const props = defineProps<TabProps>()
 </script>

@@ -12,10 +12,10 @@
 </template>
 
 <script setup lang="ts">
-import { isInReview } from "@/features/use-review-form/lib/add-rating-star.ts";
-import { toggleReviewModal } from "@/features/use-review-form/lib/review-form-modal.ts";
-import { toggleReplaceChoice } from "@/features/use-order/lib/order-modal.ts";
-import type {Order, OrderItem} from "@/entities/order/model/order.types.ts";
+import { isInReview } from "@/features/use-review-form/lib/add-rating-star";
+import { toggleReviewModal } from "@/features/use-review-form/lib/review-form-modal";
+import { toggleReplaceChoice } from "@/features/use-order/lib/order-modal";
+import type { Order, OrderItem } from "@/entities/order";
 
 defineProps<{
   order: Order

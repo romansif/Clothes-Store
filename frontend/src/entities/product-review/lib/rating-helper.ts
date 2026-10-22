@@ -1,7 +1,7 @@
+import type { ImageItem, Review } from "@/entities/product-review";
+
 import half_star from "@/assets/icons/products/half-star.png";
 import star from "@/assets/icons/products/full-star.png";
-import type {ImageItem, Review} from "@/entities/product-review/model/reviews.types.ts";
-
 
 export const ratingHelper = () => {
     const starCountSrc = (index: number, rating: number) => {

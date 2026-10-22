@@ -19,9 +19,9 @@
 </template>
 
 <script setup lang="ts">
-import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal.ts";
+import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal";
 
-import UiButton from "@/shared/ui/button/UiButton.vue";
+import { UiButton } from "@/shared/ui/button";
 
 const { toggleDeleteChoice, generalDelete, deleteMessage } = baseDeleteModal();
 </script>
