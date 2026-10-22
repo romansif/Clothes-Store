@@ -9,9 +9,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, watch } from "vue";
 import { useRoute } from "vue-router";
-import { useQuery } from "@tanstack/vue-query";
+import { keepPreviousData, useQuery} from "@tanstack/vue-query";
 import { useProfile } from "@/features/use-profile/lib/use-profile";
 import { reviewsStore } from "@/features/use-product-review/model/reviews.store";
 import { useGetReviews } from "@/features/use-product-review/api/get-reviews";
@@ -27,12 +27,16 @@ const { getFilteredReviews } = useGetReviews();
 const { visibleReviewsCount, reviewFilter} = reviewsStore();
 
 const { data: filteredReviews } = useQuery({
-  queryKey: ["filteredReviews", route.params.id, reviewFilter.value],
+  queryKey: ["filteredReviews", route.params.id, reviewFilter],
   queryFn: () => getFilteredReviews(route.params.id, reviewFilter.value),
-  initialData: []
+  placeholderData: keepPreviousData,
 });
 
-const visibleReviews = computed(() => {
-  return filteredReviews.value.slice(0, visibleReviewsCount.value);
+const visibleReviews = computed(() =>
+    (filteredReviews.value ?? []).slice(0, visibleReviewsCount.value)
+);
+
+watch(reviewFilter, () => {
+  visibleReviewsCount.value = 4;
 });
 </script>

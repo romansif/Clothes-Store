@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col mt-7.5 gap-4 font-medium w-100">
+  <div v-if="cart.length" class="flex flex-col gap-4 font-medium w-100">
     <div class="flex flex-col gap-2 sm:pb-3">
     <span class="text-lg xl:text-xl">
       ORDER SUMMARY
@@ -36,12 +36,13 @@
 </template>
 
 <script setup lang="ts">
+import { cartStore } from "@/features/use-cart/model/cart.store.ts";
 import { useCartOrderInfo } from "@/features/use-cart/lib/cart-order-info";
 import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal";
-
 import { ContinueToOrder } from "@/features/use-cart";
 import { DeleteModal } from "@/features/use-general-delete";
 
+const { cart } = cartStore();
 const { deleteModal } = baseDeleteModal();
 const { price, commissionPrice, totalPrice } = useCartOrderInfo();
 </script>

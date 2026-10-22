@@ -1,8 +1,11 @@
 <template>
   <div class="flex flex-col gap-2">
     <div class="flex flex-col gap-3 sm:flex-row">
-      <select v-model="selectedCountryCode" :class="props.selectClass">
-        <option v-for="country in countries" :key="country.code" :value="country.code">
+      <select v-model="selectedCountryCode"
+              :class="props.selectClass">
+        <option v-for="country in countries"
+                :key="country.code"
+                :value="country.code">
           {{ country.name }}
         </option>
       </select>
@@ -20,6 +23,7 @@
 </template>
 
 <script setup lang="ts">
+import { watch } from "vue";
 import { IMaskComponent as IMask } from "vue-imask";
 import { usePhoneInput } from "@/shared/ui/phone-input/use-phone-input";
 import { countries, selectedCountryCode } from "@/shared/ui/phone-input/phone-input.values";
@@ -30,4 +34,8 @@ const props = defineProps<PhoneInputProps>()
 const model = defineModel<string | number>();
 
 const { currentCountry, currentMask } = usePhoneInput();
+
+watch(selectedCountryCode, () => {
+  model.value = '';
+});
 </script>

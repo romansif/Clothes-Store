@@ -1,36 +1,35 @@
 <template>
-  <div class="flex items-center gap-3">
-    <input @click="emit('closeCardForm', methods.method)"
-           v-model="model"
-           type="radio"
-           :value="methods.method"
-           name="shipping-method"
-           class="accent-black w-4 h-4" />
-    <div class="flex flex-col">
-      <span class="font-semibold">
-        {{ methods.title }}
-      </span>
-      <span class="text-xs text-gray-500">
-        {{ methods.text }}
-      </span>
-    </div>
+  <div :class="paymentMethodClass(model, payment.method, error)">
+    <label class="flex items-center gap-3 cursor-pointer">
+      <input v-model="model"
+             type="radio"
+             :value="payment.method"
+             name="payment-method"
+             class="accent-black w-4 h-4"
+             @change="emit('select', payment.method)" />
+      <div class="flex flex-col">
+        <span class="font-semibold">{{ payment.title }}</span>
+        <span class="text-xs text-gray-500">{{ payment.text }}</span>
+      </div>
+    </label>
+    <img :src="payment.paymentImg" alt="" class="w-15">
   </div>
-  <img :src="methods.paymentImg" alt="" class="w-15">
 </template>
 
 <script setup lang="ts">
-import { usePaymentMethod } from "@/entities/checkout-payment/lib/use-payment-method";
-import type { PaymentMethod } from "@/entities/checkout-payment/model/payment-method.types";
+import { paymentMethodClass } from "@/shared/model/payment-form.variants";
+import type { PaymentMethodDescriptionProps, PaymentMethods } from "@/entities/checkout-payment";
 
-const props = defineProps<{
-  variant: PaymentMethod;
+defineProps<{
+  payment: PaymentMethodDescriptionProps;
+  error: string;
 }>();
 
 const emit = defineEmits<{
-  closeCardForm: [method: string];
+  select: [method: PaymentMethods];
 }>();
 
-const model = defineModel<string | number>();
-
-const { methods } = usePaymentMethod(props.variant);
+const model = defineModel<PaymentMethods | ''>({
+  required: true
+});
 </script>

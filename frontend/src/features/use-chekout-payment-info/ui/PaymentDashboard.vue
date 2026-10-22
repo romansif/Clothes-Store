@@ -2,12 +2,11 @@
   <div class="flex flex-col lg:w-100 xl:w-125">
     <SavedCheckoutPayment v-if="isSavedPayment"/>
     <div v-else class="flex flex-col mt-8 gap-5">
-      <div v-if="userPayments.length > 0"
-           class="flex justify-between">
+      <div class="flex justify-between">
         <label class="font-medium text-xs md:text-sm">
           PAYMENT METHODS
         </label>
-        <span @click="toggleShowPayment()"
+        <span v-if="havePayments(userPayments)" @click="toggleShowPayment()"
               class="text-xs text-indigo-600 cursor-pointer hover:text-violet-600">
           Show saved payment
         </span>
@@ -41,6 +40,7 @@
 </template>
 
 <script setup lang="ts">
+import { havePayments } from "@/shared/lib/use-payment-card";
 import { useAddPayment } from "@/features/use-chekout-payment-info/api/add-payment";
 import { togglePaymentForm } from "@/features/use-chekout-payment-info/lib/toggle-payment";
 import { paymentStore } from "@/features/use-user-payment/model/payment.store";
@@ -54,7 +54,7 @@ import arrow from "@/assets/icons/arrows/right-shop.svg";
 
 const { userPayments, userPayment } = paymentStore();
 const { addPayment, useSavedPayment } = useAddPayment();
-const { openCardForm, closeCardForm, toggleShowPayment, isSavedPayment, isDebitCard } = togglePaymentForm();
+const { openCardForm, closeCardForm, toggleShowPayment, isSavedPayment, isDebitCard} = togglePaymentForm();
 
 refClearErrorsOnChange(
   paymentForm,

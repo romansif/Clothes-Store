@@ -1,14 +1,13 @@
-export type PaymentMethod = 'card' | 'apple' | 'google' | 'paypal'
+export type PaymentMethods = 'card' | 'apple' | 'google' | 'paypal'
 
 export interface PaymentMethodDescriptionProps {
-    method: string
+    method: PaymentMethods
     title: string,
     text: string,
     paymentImg: string,
 }
 
 export interface PaymentMethodProps {
-    card: PaymentMethodDescriptionProps,
     apple: PaymentMethodDescriptionProps,
     google:  PaymentMethodDescriptionProps,
     paypal:  PaymentMethodDescriptionProps,

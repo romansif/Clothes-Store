@@ -1,5 +1,5 @@
 <template>
-  <main class="mt-10 xl:mt-30 xl:px-10">
+  <main class="flex flex-col gap-8 t-10 xl:mt-30 xl:px-10">
     <FavoriteCartHeader />
     <Transition name="view">
       <FavoriteList />

@@ -1,12 +1,10 @@
 <template>
-  <main class="mt-10 xl:mt-30 xl:px-10">
+  <main class="flex flex-col gap-8 mt-10 xl:mt-30 xl:px-10">
     <FavoriteCartHeader />
     <Transition name="view">
-      <div class="flex flex-col xl:flex-row xl:justify-between">
-        <div class="flex flex-col xl:flex-row xl:gap-35">
-          <CartList />
-          <CartInfo />
-        </div>
+      <div class="flex flex-col items-center xl:flex-row xl:gap-35">
+        <CartList />
+        <CartInfo />
       </div>
     </Transition>
   </main>

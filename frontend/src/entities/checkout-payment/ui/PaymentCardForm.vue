@@ -28,7 +28,7 @@
     <div class="flex flex-col gap-2">
       <label class="text-sm">CVV</label>
       <IMask v-model:value="paymentForm.cardCvv"
-             placeholder="•••"
+             placeholder="••••"
              :class="[cardCvvClass,
              paymentFormErrorMessage.cardCvv ? paymentCardErrorClass : '']"
              :mask="cardCvvMask.mask"/>

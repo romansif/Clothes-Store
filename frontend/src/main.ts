@@ -1,10 +1,6 @@
 import { createApp, type Directive } from 'vue'
 import App from '@/app/App.vue';
 
-import '@fontsource/montserrat';
-import '@fontsource/raleway';
-import '@fontsource/dm-sans';
-
 import '@/app/styles/index';
 
 import { IMaskDirective } from "vue-imask";

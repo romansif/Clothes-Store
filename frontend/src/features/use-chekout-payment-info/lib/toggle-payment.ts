@@ -1,5 +1,6 @@
 import { ref } from "vue";
 import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment/model/payment-form";
+import type { PaymentMethods } from "@/entities/checkout-payment";
 
 const paymentId = ref<string>('');
 
@@ -8,13 +9,13 @@ const isSavedPayment = ref<boolean>(false);
 const isChosenPayment = ref<boolean>(false);
 
 export const togglePaymentForm = () => {
-    const openCardForm = (method: string) => {
+    const openCardForm = (method: PaymentMethods) => {
         isDebitCard.value = true;
         paymentForm.value.paymentMethod = method;
         paymentFormErrorMessage.value.paymentMethod= ''
     };
 
-    const closeCardForm = (method: string) => {
+    const closeCardForm = (method: PaymentMethods) => {
         isDebitCard.value = false;
         paymentForm.value.paymentMethod = method
     };
