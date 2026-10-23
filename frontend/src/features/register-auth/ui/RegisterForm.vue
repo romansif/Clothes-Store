@@ -36,7 +36,7 @@
                      :type="showPassword.password ? 'text' : 'password'"
                      placeholder="••••••••"
                      :error-message="registerFormErrorMessages.password ? registerFormErrorMessages.password : ''" />
-          <img @click=togglePassword
+          <img @click="togglePassword()"
                :src="showPassword.password ? opened : closed" alt=""
                :class="[showPasswordClass.register, registerFormErrorMessages.password ? showPasswordErrorClass : '']">
         </div>

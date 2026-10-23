@@ -8,4 +8,4 @@ export const profileFormPhoneInputClasses: Record<ProfilePhoneVariant, string> =
 
 export const profileFormSelectPhoneCodeClass =
     `text-xs outline-none bg-[#D9D9D9]/40 transition duration-400 border border-gray-300
-    hover:bg-gray-50 rounded-md py-5 px-3 font-dm-sans`
+    hover:bg-gray-50 rounded-md py-5 px-3 font-dm-sans appearance-none`

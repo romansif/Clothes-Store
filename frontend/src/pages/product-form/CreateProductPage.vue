@@ -5,8 +5,8 @@
     <CreateVariants />
     <div class="w-full mt-4 mb-6">
       <UiButton type="submit"
-                  name="CREATE PRODUCT"
-                  variant="useProduct" />
+                name="CREATE PRODUCT"
+                variant="useProduct" />
     </div>
     <input type="file" @change="onFilesSelected"
            class="hidden"

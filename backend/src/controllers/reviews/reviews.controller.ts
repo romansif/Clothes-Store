@@ -68,13 +68,16 @@ export const reviewsController = {
         }
 
         const author = (db.users || []).find((u: Row) => sameId(u.id, user.id));
-        const displayName = cleanText(body.user, 100) || [author?.name, author?.surName].filter(Boolean).join(' ');
 
         const newReview = {
             id: uuidv4(),
             userId: user.id,
             productId: body.productId,
-            user: displayName,
+            user: {
+                name: author?.name ?? '',
+                surName: author?.surName ?? '',
+                avatar: author?.avatarUrl ?? '',
+            },
             rating,
             comment,
             images: files.map(file => `uploads/reviews/${file.filename}`),

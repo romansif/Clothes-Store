@@ -17,7 +17,7 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": "./",
     "paths": {
-      "#config/*": ["./src/config/*"]
+      "#config/*": ["./src/config/*"],
       "#controllers/*": ["./src/controllers/*"],
       "#lib/*": ["./src/lib/*"],
       "#middleware/*": ["./src/middleware/*"],

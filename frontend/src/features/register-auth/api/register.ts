@@ -7,7 +7,7 @@ import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
 import { clearRegisterForm, clearRegisterFormMessages } from "@/features/register-auth/lib/clear-register-form";
 import { registerForm, registerFormErrorMessages } from "@/entities/auth/model/auth-form";
 
-const { users } = userStore();
+const { userData } = userStore();
 const { loading, openNotify } = useBaseModals();
 
 export const signUp = async (role: string) => {
@@ -50,7 +50,7 @@ export const signUp = async (role: string) => {
             console.log('Access token is not found');
             return;
         }
-        users.value = authData;
+        userData.value = authData;
 
         await openNotify('You have successfully sign up',
             'You will now be taken to your profile page');

@@ -52,7 +52,7 @@
 
 <script setup lang="ts">
 import { useRoute } from "vue-router";
-import { useProductsModals } from "@/features/products/lib/product-modal";
+import { toggleFilterAside } from "@/features/products/lib/product-modal";
 
 import cart from "@/assets/icons/nav/cart.png";
 import liked from "@/assets/icons/nav/favorite.jpeg";
@@ -60,6 +60,4 @@ import profile from "@/assets/icons/nav/profile.png";
 import catalog from "@/assets/icons/nav/catalog.svg";
 
 const route = useRoute();
-
-const { toggleFilterAside } = useProductsModals();
 </script>

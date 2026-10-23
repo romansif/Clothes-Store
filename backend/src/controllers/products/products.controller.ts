@@ -14,7 +14,6 @@ const PRODUCT_FIELDS = [
     'description', 'sizes', 'colors', 'status',
 ] as const;
 
-
 type StatusFilter = (products: Row[], filter: string) => Row[];
 
 const variantsOf = (product: Row): Row[] => (Array.isArray(product.variants) ? product.variants : []);

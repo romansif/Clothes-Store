@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dbPath = path.join(__dirname, 'db.json');
 
-type Database = Record<string, []>;
+type Database = Record<string, any[]>;
 
 const createEmptyDB = (): Database => ({
     users: [],

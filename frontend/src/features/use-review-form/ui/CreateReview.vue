@@ -3,10 +3,11 @@
        flex items-center justify-center"
        @click="toggleReviewModal('')" >
     <form class="flex flex-col gap-2 bg-white w-150 h-fit rounded-xl p-5"
-          @click.stop="createReview">
+          @click.stop
+          @submit.prevent="createReview">
       <UiButton name="Exit"
-                  variant="exitClose"
-                  @click="toggleReviewModal" />
+                variant="exitClose"
+                @click="toggleReviewModal('')" />
       <div class="flex flex-col gap-2 border-b pb-4">
         <h1 class="font-bold text-2xl">
           WRITE A REVIEW
@@ -23,8 +24,8 @@
       </div>
       <div class="flex justify-end mt-4">
         <UiButton type="submit"
-                    name="Create Review"
-                    variant="replaceAndReview" />
+                  name="Create Review"
+                  variant="replaceAndReview" />
       </div>
       <input type="file" @change="onFilesSelected"
              class="hidden"

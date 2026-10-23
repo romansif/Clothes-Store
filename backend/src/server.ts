@@ -1,11 +1,9 @@
+import 'dotenv/config';
 import path from 'path';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import cookieParser from 'cookie-parser';
-import express, { type Request, type Response } from 'express';
-
-dotenv.config();
+import express, { type NextFunction, type Request, type Response } from 'express';
 
 import authRoutes from '#routes/auth/auth.routes.ts';
 
@@ -63,7 +61,7 @@ interface CustomError extends Error {
     status?: number;
 }
 
-app.use((err: CustomError, _req: Request, res: Response) => {
+app.use((err: CustomError, _req: Request, res: Response, _next: NextFunction) => {
     console.error('❌ Ошибка сервера:', err.stack || err.message);
     res.status(err.status || 500).json({
         error: err.message || 'Внутренняя ошибка сервера',

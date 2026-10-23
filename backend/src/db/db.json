@@ -1,48 +1,47 @@
 {
   "users": [
     {
-      "id": "57671fed-ac09-4ef1-9681-35b131dc7792",
-      "role": "Buyer",
-      "name": "Akmal",
-      "surName": "Movlonov",
-      "phone": "+998 (12) 345-67-89",
+      "id": "0638b5cc-27b3-46dd-8aae-a284c47b8ebe",
       "email": "akmalmavlonov25@gmail.com",
-      "password": "$2b$10$W2Q7OVUx1qv2mEQ7qhbQce3eoaA/ito9CEWmPJsjBBcZd3/FS8Pdm",
-      "avatarUrl": "uploads/avatars/default-avatar.png",
-      "created_at": "2026-10-21T10:39:37.185Z",
-      "googleId": "117192309001137738940"
+      "role": "Buyer",
+      "name": "Plagiat555",
+      "surName": "",
+      "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocJzHyeN95wO6MAZzH4E9FkqrC9pDZ_IsEztiiZDoWZD08A2Osv2=s96-c",
+      "privatePhone": "",
+      "googleId": "117192309001137738940",
+      "created_at": "2026-10-23T11:35:56.790Z",
+      "password": "",
+      "refreshTokens": [
+        "c123f9964c26d81893ffbbc8b6cc234920377ff6ce60c28c594f4f55799a559b"
+      ]
     },
     {
-      "id": "649d136f-950d-4390-add5-d533bd33e99b",
+      "id": "a8f18c9d-dc9b-4b2a-9e30-7b56be0de42f",
+      "email": "icecityland@gmail.com",
       "role": "Seller",
       "name": "Misterio",
-      "surName": "Plagiat555",
-      "phone": "+998 (12) 345-67-89",
-      "email": "icecityland@gmail.com",
-      "password": "$2b$10$9MBGPZn9ogDTTGU.M/uiG.QNmFa8J58Q.7RgiBVw/PxHPrCDDOHzG",
-      "avatarUrl": "uploads/avatars/default-avatar.png",
-      "created_at": "2026-10-21T10:40:21.214Z"
+      "surName": "",
+      "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocI_x7qgDLevnmrmvy2xxOJsLmz7BtasLX64CA8TSeR3nn4F8IY=s96-c",
+      "privatePhone": "",
+      "googleId": "100649871042356442319",
+      "created_at": "2026-10-23T11:36:11.982Z",
+      "password": "",
+      "refreshTokens": []
     }
   ],
   "products": [
     {
-      "id": "58dd42a5-0608-4ee7-8521-b1fd515bac35",
-      "userId": "649d136f-950d-4390-add5-d533bd33e99b",
-      "images": [
-        "uploads/products/product-1792583920706-228057031.png"
-      ],
-      "title": "12c32112c31231c321",
+      "title": "п",
       "collection": {
-        "season": "Summer",
-        "name": "Blueprint",
-        "condition": "New"
+        "season": "Autumn",
+        "name": "Silence",
+        "condition": "Old"
       },
-      "category": "Jeans",
-      "material": "Flax",
-      "gender": "Man",
-      "sku": "c32-2c-4c1",
-      "price": 10,
-      "description": "weweqceqew",
+      "category": "Shorts",
+      "material": "Synthetics",
+      "gender": "Woman",
+      "sku": "534-м5-345",
+      "description": "у",
       "sizes": [
         "XS",
         "S",
@@ -53,10 +52,6 @@
       ],
       "colors": [
         {
-          "hex": "#726565",
-          "colorName": "Scorpion"
-        },
-        {
           "hex": "#ffffff",
           "colorName": "White"
         },
@@ -65,99 +60,103 @@
           "colorName": "Black"
         }
       ],
+      "status": "Availability",
+      "id": "d6226d30-ed51-4f19-b6fc-2c86439f420e",
+      "userId": "a8f18c9d-dc9b-4b2a-9e30-7b56be0de42f",
+      "images": [
+        "uploads/products/product-1792755414936-f844fb2e8641b0db831dfb25aaa774b6.png"
+      ],
+      "price": 100,
       "variants": [
         {
-          "hex": "#726565",
-          "colorName": "Scorpion",
+          "hex": "#ffffff",
+          "colorName": "White",
           "size": "XS",
           "count": 10
         },
         {
-          "hex": "#726565",
-          "colorName": "Scorpion",
+          "hex": "#ffffff",
+          "colorName": "White",
           "size": "S",
-          "count": 9
+          "count": 10
         },
         {
-          "hex": "#726565",
-          "colorName": "Scorpion",
+          "hex": "#ffffff",
+          "colorName": "White",
           "size": "M",
-          "count": 9
+          "count": 10
         },
         {
-          "hex": "#726565",
-          "colorName": "Scorpion",
+          "hex": "#ffffff",
+          "colorName": "White",
           "size": "L",
-          "count": 9
+          "count": 10
         },
         {
-          "hex": "#726565",
-          "colorName": "Scorpion",
+          "hex": "#ffffff",
+          "colorName": "White",
           "size": "XL",
           "count": 10
         },
         {
-          "hex": "#726565",
-          "colorName": "Scorpion",
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "XXL",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "XS",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "S",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "M",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "L",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "XL",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
           "size": "XXL",
           "count": 10
         }
       ],
-      "status": "Availability",
-      "created_at": "2026-10-21T11:58:40.732Z"
+      "created_at": "2026-10-23T11:36:54.975Z"
     }
   ],
-  "cart": [
-    {
-      "id": "1f364b14-4e90-4449-aaea-2fdb4d47615e",
-      "userId": "57671fed-ac09-4ef1-9681-35b131dc7792",
-      "productId": "58dd42a5-0608-4ee7-8521-b1fd515bac35",
-      "images": [
-        "uploads/products/product-1792583920706-228057031.png"
-      ],
-      "title": "12c32112c31231c321",
-      "category": "Jeans",
-      "material": "Flax",
-      "price": 10,
-      "description": "weweqceqew",
-      "colors": [
-        {
-          "hex": "#726565",
-          "colorName": "Scorpion"
-        }
-      ],
-      "sizes": "XS",
-      "gender": "Man",
-      "variants": [
-        {
-          "hex": "#726565",
-          "colorName": "Scorpion",
-          "size": "XS",
-          "count": 1
-        }
-      ],
-      "checked": false,
-      "created_at": "2026-10-22T11:52:21.517Z"
-    }
-  ],
+  "cart": [],
   "favorites": [
     {
-      "id": "8140c387-d196-49f2-a55b-19b5ab1139ae",
-      "userId": "57671fed-ac09-4ef1-9681-35b131dc7792",
-      "productId": "58dd42a5-0608-4ee7-8521-b1fd515bac35",
+      "productId": "d6226d30-ed51-4f19-b6fc-2c86439f420e",
       "images": [
-        "uploads/products/product-1792583920706-228057031.png"
+        "uploads/products/product-1792755414936-f844fb2e8641b0db831dfb25aaa774b6.png"
       ],
-      "title": "12c32112c31231c321",
-      "category": "Jeans",
-      "material": "Flax",
-      "price": 10,
-      "description": "weweqceqew",
+      "title": "п",
+      "category": "Shorts",
+      "material": "Synthetics",
+      "price": 100,
+      "description": "у",
       "color": [
-        {
-          "hex": "#726565",
-          "colorName": "Scorpion"
-        },
         {
           "hex": "#ffffff",
           "colorName": "White"
@@ -175,147 +174,227 @@
         "XL",
         "XXL"
       ],
-      "gender": "Man",
+      "gender": "Woman",
       "variants": [
         {
-          "hex": "#726565",
-          "colorName": "Scorpion",
+          "hex": "#ffffff",
+          "colorName": "White",
           "size": "XS",
           "count": 10
         },
         {
-          "hex": "#726565",
-          "colorName": "Scorpion",
+          "hex": "#ffffff",
+          "colorName": "White",
           "size": "S",
-          "count": 9
+          "count": 10
         },
         {
-          "hex": "#726565",
-          "colorName": "Scorpion",
+          "hex": "#ffffff",
+          "colorName": "White",
           "size": "M",
-          "count": 9
+          "count": 10
         },
         {
-          "hex": "#726565",
-          "colorName": "Scorpion",
+          "hex": "#ffffff",
+          "colorName": "White",
           "size": "L",
-          "count": 9
+          "count": 10
         },
         {
-          "hex": "#726565",
-          "colorName": "Scorpion",
+          "hex": "#ffffff",
+          "colorName": "White",
           "size": "XL",
           "count": 10
         },
         {
-          "hex": "#726565",
-          "colorName": "Scorpion",
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "XXL",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "XS",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "S",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "M",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "L",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
+          "size": "XL",
+          "count": 10
+        },
+        {
+          "hex": "#000000",
+          "colorName": "Black",
           "size": "XXL",
           "count": 10
         }
       ],
-      "created_at": "2026-10-21T11:59:01.048Z"
+      "id": "b3d44d55-8c1a-453e-a7ee-de9a107e1b53",
+      "userId": "a8f18c9d-dc9b-4b2a-9e30-7b56be0de42f",
+      "created_at": "2026-10-23T11:37:03.400Z"
+    },
+    {
+      "productId": "d6226d30-ed51-4f19-b6fc-2c86439f420e",
+      "images": [
+        "uploads/products/product-1792755414936-f844fb2e8641b0db831dfb25aaa774b6.png"
+      ],
+      "title": "п",
+      "category": "Shorts",
+      "material": "Synthetics",
+      "price": 300,
+      "description": "у",
+      "color": [
+        {
+          "hex": "#ffffff",
+          "colorName": "White"
+        }
+      ],
+      "size": "XS",
+      "gender": "Woman",
+      "variants": [
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "XS",
+          "count": 3
+        }
+      ],
+      "id": "5eeea859-389b-4891-a08d-809508b1778e",
+      "userId": "0638b5cc-27b3-46dd-8aae-a284c47b8ebe",
+      "created_at": "2026-10-23T11:37:54.594Z"
     }
   ],
   "addresses": [
     {
-      "id": "d4d39223-c362-40fd-8f75-95cf02b7190b",
-      "userId": "57671fed-ac09-4ef1-9681-35b131dc7792",
-      "address": "Ташкент, Чиланзар_5, 26",
-      "postalCode": 100091,
       "addressName": "Ташкент, Чиланзар_5, 26",
       "email": "akmalmavlonov25@gmail.com",
       "phone": "+998 (12) 345-67-89",
       "firstName": "Akmal",
       "lastName": "Movlonov",
       "country": "Узбекистан",
-      "stateRegion": "Tashkent",
-      "city": "Ташкент"
+      "stateRegion": "Ефырлуте",
+      "city": "Ташкент",
+      "id": "eac632ad-758a-42f4-8acf-345b3e294910",
+      "userId": "0638b5cc-27b3-46dd-8aae-a284c47b8ebe",
+      "address": "Ташкент, Чиланзар_5, 26",
+      "postalCode": 10091
     }
   ],
   "shipping": [
     {
-      "id": "22d6aa44-4f56-41b6-b47d-28f158094cc4",
-      "userId": "57671fed-ac09-4ef1-9681-35b131dc7792",
-      "paymentId": "05f82ebd-0ee0-4c4a-b0d7-7daa5d62f658",
-      "delivery": "standard"
+      "paymentId": "f3270b2b-8013-401a-b6ce-872bd9dd8460",
+      "delivery": "express",
+      "id": "5f512857-2c07-4759-a1ff-ac2043a263ed",
+      "userId": "0638b5cc-27b3-46dd-8aae-a284c47b8ebe"
     }
   ],
   "payments": [
     {
-      "id": "885f84d1-17e6-4788-8449-e95e92619fad",
-      "userId": "57671fed-ac09-4ef1-9681-35b131dc7792",
-      "paymentId": "05f82ebd-0ee0-4c4a-b0d7-7daa5d62f658",
-      "paymentMethod": "card",
-      "cardName": "card",
-      "cardNumber": "1234-5678-9123-4567",
-      "expiryDate": "11/21",
-      "cardCvv": "1234"
+      "paymentId": "f3270b2b-8013-401a-b6ce-872bd9dd8460",
+      "paymentMethod": "apple",
+      "id": "547b90c7-2c8d-4347-8155-337a207b1254",
+      "userId": "0638b5cc-27b3-46dd-8aae-a284c47b8ebe"
     }
   ],
   "orders": [
     {
-      "id": "0906ec51-18d4-4b5f-9a83-4c4dd91c0f2e",
-      "userId": "57671fed-ac09-4ef1-9681-35b131dc7792",
       "orderItems": [
         {
-          "id": "c7ca514f-e147-4b83-93ac-fc8f215aa300",
-          "userId": "57671fed-ac09-4ef1-9681-35b131dc7792",
-          "productId": "58dd42a5-0608-4ee7-8521-b1fd515bac35",
+          "productId": "d6226d30-ed51-4f19-b6fc-2c86439f420e",
           "images": [
-            "uploads/products/product-1792583920706-228057031.png"
+            "uploads/products/product-1792755414936-f844fb2e8641b0db831dfb25aaa774b6.png"
           ],
-          "title": "12c32112c31231c321",
-          "category": "Jeans",
-          "material": "Flax",
-          "price": 10,
-          "description": "weweqceqew",
+          "title": "п",
+          "category": "Shorts",
+          "material": "Synthetics",
+          "price": 300,
+          "description": "у",
           "colors": [
             {
-              "hex": "#726565",
-              "colorName": "Scorpion"
+              "hex": "#ffffff",
+              "colorName": "White"
             }
           ],
-          "sizes": "M",
-          "gender": "Man",
+          "sizes": "XS",
+          "gender": "Woman",
           "variants": [
             {
-              "hex": "#726565",
-              "colorName": "Scorpion",
-              "size": "M",
-              "count": 1
+              "hex": "#ffffff",
+              "colorName": "White",
+              "size": "XS",
+              "count": 3
             }
           ],
           "checked": false,
-          "created_at": "2026-10-22T11:26:22.864Z"
+          "id": "483b4590-56e8-4097-bb57-d453830d0075",
+          "userId": "0638b5cc-27b3-46dd-8aae-a284c47b8ebe",
+          "created_at": "2026-10-23T11:37:47.490Z"
         }
       ],
-      "orderTotal": 11,
+      "orderTotal": 324,
       "delivery": "",
       "status": "Cancelled",
-      "created_at": "2026-10-22T11:44:36.892Z",
-      "date_created_at": "22.10.2026",
-      "time_created_at": "16:44",
-      "cause_replace": "I entered the wrong address",
-      "cancelled_at": "2026-10-22T11:44:58.487Z",
-      "date_cancelled_at": "22.10.2026",
-      "time_cancelled_at": "16:44"
+      "id": "2b81d7bd-00bd-418f-b103-b4d80edc2a3b",
+      "userId": "0638b5cc-27b3-46dd-8aae-a284c47b8ebe",
+      "created_at": "2026-10-23T11:38:36.866Z",
+      "date_created_at": "23.10.2026",
+      "time_created_at": "16:38",
+      "cause_replace": "Incorrect payment method",
+      "cancelled_at": "2026-10-23T11:38:46.476Z",
+      "date_cancelled_at": "23.10.2026",
+      "time_cancelled_at": "16:38"
     }
   ],
   "reviews": [
     {
-      "id": "2243f821-3384-4da5-846c-9245e116869b",
-      "userId": "57671fed-ac09-4ef1-9681-35b131dc7792",
-      "productId": "58dd42a5-0608-4ee7-8521-b1fd515bac35",
+      "id": "8c5abb1e-f599-441c-aeac-215825a2910a",
+      "userId": "0638b5cc-27b3-46dd-8aae-a284c47b8ebe",
+      "productId": "d6226d30-ed51-4f19-b6fc-2c86439f420e",
       "user": {
-        "name": "Akmal",
-        "surName": "Movlonov",
-        "avatar": "uploads/avatars/default-avatar.png"
+        "name": "Plagiat555",
+        "surName": "",
+        "avatar": "https://lh3.googleusercontent.com/a/ACg8ocJzHyeN95wO6MAZzH4E9FkqrC9pDZ_IsEztiiZDoWZD08A2Osv2=s96-c"
       },
-      "rating": 2.5,
-      "comment": "hunya tover",
+      "rating": 1.5,
+      "comment": "wewqeqweqwe",
+      "images": [
+        "uploads/reviews/review-1792756287483-a36e186b96f21a38d9ffbcf051b58ca4.png"
+      ],
+      "created_at": "Oct 23, 2026"
+    },
+    {
+      "id": "a8b25dac-96a3-4843-b915-adbe5e7658ac",
+      "userId": "0638b5cc-27b3-46dd-8aae-a284c47b8ebe",
+      "productId": "d6226d30-ed51-4f19-b6fc-2c86439f420e",
+      "user": {
+        "name": "Plagiat555",
+        "surName": "",
+        "avatar": "https://lh3.googleusercontent.com/a/ACg8ocJzHyeN95wO6MAZzH4E9FkqrC9pDZ_IsEztiiZDoWZD08A2Osv2=s96-c"
+      },
+      "rating": 1.5,
+      "comment": "132231c213213c123",
       "images": [],
-      "created_at": "Oct 22, 2026"
+      "created_at": "Oct 23, 2026"
     }
   ]
 }

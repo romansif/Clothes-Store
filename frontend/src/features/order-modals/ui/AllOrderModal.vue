@@ -46,8 +46,9 @@ import { reviewFormModal } from "@/entities/order-action/lib/review-form-modal";
 import { choiceModal } from "@/entities/order-action/lib/order-modal";
 import { UiButton } from "@/shared/ui/button";
 import { Clipboard } from "@/widgets/clipboard";
-import { OrderList, ReplacementModal } from "@/features/order-modals";
+import { ReplacementModal } from "@/features/order-modals";
 import { CreateReview } from "@/features/use-review-form";
+import { OrderList } from "@/widgets/order-list";
 
 const { orders } = orderStore();
 const { clipboard } = useOrder();

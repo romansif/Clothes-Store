@@ -32,7 +32,10 @@ export const useCreateReview = () => {
 
         onSuccess: async () => {
             await queryClient.invalidateQueries({
-                queryKey: ['reviews', productId.value],
+                queryKey: ['reviews']
+            });
+            await queryClient.invalidateQueries({
+                queryKey: ['filteredReviews']
             });
 
             clearReviewForm();

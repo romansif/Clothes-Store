@@ -1,4 +1,4 @@
-import bcrypt from 'bcryptjs';
+import bcrypt from 'bcrypt';
 import crypto from 'node:crypto';
 import { dbService } from '../../db/db.config.ts';
 import { clearCookieOptions } from '#config/auth.config';

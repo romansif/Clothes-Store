@@ -103,7 +103,7 @@ import { useRoute } from 'vue-router';
 import { onMounted } from "vue";
 import { filterProduct } from "@/shared/lib/filter-product";
 import { useGetProducts } from "@/features/products/api/get-product";
-import { useProductsModals } from "@/features/products/lib/product-modal";
+import { toggleFilterAside } from "@/features/products/lib/product-modal";
 import {
   sidebarCategoryClass,
   selectedCategoryAndCollectionClass,
@@ -118,7 +118,6 @@ import checked from '@/assets/icons/squares/check-square.png';
 
 const route = useRoute();
 
-const { toggleFilterAside } = useProductsModals();
 const { getAllProducts, allProducts } = useGetProducts();
 const { toggleFilter, toggleSize, stackProducts, genders, colors, category, categories } = filterProduct();
 

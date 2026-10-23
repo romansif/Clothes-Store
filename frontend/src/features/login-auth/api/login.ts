@@ -40,7 +40,7 @@ export const signIn = async () => {
         }else{
             localStorage.setItem("user", JSON.stringify(foundedUser));
         }
-        userData.value = foundedUser.user
+        userData.value = foundedUser;
 
         await openNotify('You have successfully sign in',
             'You will now be taken to your profile page');

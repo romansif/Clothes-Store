@@ -4,23 +4,21 @@
                 @click="toggleOrderHistory" />
     <ProfileTab name="ACTIVE ORDERS"
                 @click="toggleCurrentOrder" />
+    <ProfileTab name="SAVED CARDS"
+                @click="toggleSavedPaymentCard" />
+    <ProfileTab name="SAVED ADDRESSES"
+                @click="toggleSavedAddresses" />
   </template>
   <template v-else>
     <router-link :to="{ name: 'my/products' }">
       <ProfileTab name="ALL MY PRODUCTS"/>
     </router-link>
-    <ProfileTab name="CONFIDENTIAL DATA"
-                @click="toggleConfidentialityData" />
     <router-link :to="{ name: 'create/product' }" >
       <ProfileTab name="CREATE PRODUCT COVER"/>
     </router-link>
   </template>
-  <ProfileTab v-if="user.role === 'Buyer'"
-              name="SAVED CARDS"
-              @click="toggleSavedPaymentCard" />
-  <ProfileTab v-if="user.role === 'Buyer'"
-              name="SAVED ADDRESSES"
-              @click="toggleSavedAddresses" />
+  <ProfileTab name="CONFIDENTIAL DATA"
+              @click="toggleConfidentialityData" />
 </template>
 
 <script setup lang="ts">

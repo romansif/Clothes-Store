@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import { type Request, type Response, type NextFunction, type RequestHandler } from "express";
 import { type CustomJwtPayload, type AuthenticatedRequest } from "../interfaces.ts";
-import { ACCESS_SECRET } from "../config/auth.config.ts";
+import { ACCESS_SECRET } from "#config/auth.config";
 
 const extractToken = (req: Request): string | null => {
     const cookie = req.cookies?.accessToken;

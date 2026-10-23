@@ -7,7 +7,7 @@
     <div class="flex">
       <span v-if="props.errorMessage"
             class="text-red-600 text-xs">
-        {{ errorMessage }}
+        {{ props.errorMessage }}
       </span>
       <span class="ml-auto text-[#A3A3A3] text-xs font-medium">{{ model }} / 400</span>
     </div>
