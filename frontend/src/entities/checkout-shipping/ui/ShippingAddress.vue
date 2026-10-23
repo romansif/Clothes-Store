@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import type { UserContactInfo } from "@/entities/checkout-contact-info";
+import type { UserContactInfo } from "@/entities/user-address";
 
 defineProps<{
   userAddress: UserContactInfo | null;

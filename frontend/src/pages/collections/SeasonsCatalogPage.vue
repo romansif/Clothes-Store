@@ -8,6 +8,6 @@
 </template>
 
 <script setup lang="ts">
-import { HeaderCatalog } from "@/widgets/ui/navigation";
+import { HeaderCatalog } from "@/widgets/navigation";
 import { SeasonsCatalog } from "@/features/use-season-product";
 </script>

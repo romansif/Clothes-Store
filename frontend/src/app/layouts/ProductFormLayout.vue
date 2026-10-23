@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
 import { useBaseModals } from "@/shared/lib/use-notify.ts";
-import { clearProductForm } from "@/features/use-product-form/lib/clear-product-form.ts";
+import { clearProductForm } from "@/features/product-form/lib/clear-product-form.ts";
 import { Notification, Loading } from "@/shared";
 
 const { loading, notify } = useBaseModals();

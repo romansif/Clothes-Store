@@ -1,106 +1,93 @@
 import { v4 as uuidv4 } from 'uuid';
-import { type Request, type Response } from 'express';
-import { type AuthenticatedRequest } from '../../interfaces.ts';
 import { dbService } from '../../db/db.config.ts';
+import {
+    type Row, HttpError, handle, param, sameId, requireUser, requireSelf,
+    omitKeys, byNewest, SERVER_OWNED_FIELDS,
+} from '#lib/security';
+
+const FAVORITE_UPDATE_PROTECTED = [...SERVER_OWNED_FIELDS, 'productId'] as const;
+
+const matchesItem = (item: Row, id: string) => sameId(item.id, id) || sameId(item.productId, id);
 
 export const favoritesController = {
-    async getFavorites(req: Request, res: Response) {
-        try {
-            const { userId } = req.params;
+    getFavorites: handle('Failed to get the favorite list', async (req, res) => {
+        const user = requireSelf(req, param(req, 'userId'));
 
-            const db = dbService.readDB();
-            const favorites: any[] = db.favorites || [];
+        const favorites: Row[] = dbService.readDB().favorites || [];
 
-            const userFavorites = favorites.filter(f => String(f.userId) === String(userId));
-            userFavorites.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+        res.json(favorites.filter(f => sameId(f.userId, user.id)).sort(byNewest));
+    }),
 
-            res.json(userFavorites);
-        } catch (err) {
-            console.error(`Failed to get the favorite list for user ${req.params.userId}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
+    addToFavorite: handle('Failed to add the product to the favorite', async (req, res) => {
+        const user = requireUser(req);
+
+        const body = omitKeys(req.body, SERVER_OWNED_FIELDS);
+        if (body.productId === undefined || body.productId === null || body.productId === '') {
+            throw new HttpError(400, 'productId is required');
         }
-    },
 
-    async addToFavorite(req: AuthenticatedRequest, res: Response) {
-        try {
-            const db = dbService.readDB();
-            const favorites: any[] = db.favorites || [];
+        const db = dbService.readDB();
+        const products: Row[] = db.products || [];
 
-            const newFavoriteItem = {
-                id: uuidv4(),
-                userId: req.user?.id || req.user?.userId,
-                productId: req.body.productId,
-                ...req.body,
-                created_at: new Date().toISOString(),
-            };
-
-            favorites.push(newFavoriteItem);
-            db.favorites = favorites;
-            dbService.writeDB(db);
-
-            res.status(201).json({ message: 'Product added to favorite', data: newFavoriteItem });
-        } catch (err) {
-            console.error('Failed to add the product to the favorite:', err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
+        if (!products.some(p => sameId(p.id, body.productId))) {
+            throw new HttpError(400, 'Product not found');
         }
-    },
 
-    async updateFavoriteItems(req: Request, res: Response) {
-        try {
-            const { id } = req.params;
+        const favorites: Row[] = db.favorites || [];
 
-            const db = dbService.readDB();
-            const favorites: any[] = db.favorites || [];
+        const newFavoriteItem = {
+            ...body,
+            id: uuidv4(),
+            userId: user.id,
+            created_at: new Date().toISOString(),
+        };
 
-            const index = favorites.findIndex(f => String(f.id) === String(id) || String(f.productId) === String(id));
+        favorites.push(newFavoriteItem);
+        db.favorites = favorites;
+        dbService.writeDB(db);
 
-            if (index === -1) {
-                return res.status(404).json({ message: 'Favorite item not found' });
-            }
+        res.status(201).json({ message: 'Product added to favorite', data: newFavoriteItem });
+    }),
 
-            favorites[index] = {
-                ...favorites[index],
-                ...req.body
-            };
+    updateFavoriteItems: handle('Failed to update the favorite item', async (req, res) => {
+        const user = requireUser(req);
+        const id = param(req, 'id');
 
-            db.favorites = favorites;
-            dbService.writeDB(db);
+        const db = dbService.readDB();
+        const favorites: Row[] = db.favorites || [];
 
-            res.json(favorites[index]);
-        } catch (err) {
-            console.error(`Failed to update the favorite item ${req.params.id}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
-        }
-    },
+        const index = favorites.findIndex(f => sameId(f.userId, user.id) && matchesItem(f, id));
 
-    async deleteFavorite(req: Request, res: Response) {
-        try {
-            const { id } = req.params;
+        if (index === -1) throw new HttpError(404, 'Favorite item not found');
 
-            const db = dbService.readDB();
-            const favorites: any[] = db.favorites || [];
+        favorites[index] = {
+            ...favorites[index],
+            ...omitKeys(req.body, FAVORITE_UPDATE_PROTECTED),
+        };
 
-            const index = favorites.findIndex(f => String(f.id) === String(id) || String(f.productId) === String(id));
+        db.favorites = favorites;
+        dbService.writeDB(db);
 
-            if (index === -1) {
-                return res.status(404).json({ message: "Favorite Product not found" });
-            }
+        res.json(favorites[index]);
+    }),
 
-            const deletedProduct = favorites[index];
+    deleteFavorite: handle('Failed to delete the product from favorites', async (req, res) => {
+        const user = requireUser(req);
+        const id = param(req, 'id');
 
-            db.favorites = favorites.filter(f => String(f.id) !== String(id) && String(f.productId) !== String(id));
-            dbService.writeDB(db);
+        const db = dbService.readDB();
+        const favorites: Row[] = db.favorites || [];
 
-            res.json(deletedProduct);
-        } catch (err) {
-            console.error(`Failed to delete the product from favorites ${req.params.id}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
-        }
-    }
+        const isTarget = (f: Row) => sameId(f.userId, user.id) && matchesItem(f, id);
+        const deletedProduct = favorites.find(isTarget);
+
+        if (!deletedProduct) throw new HttpError(404, 'Favorite Product not found');
+
+        db.favorites = favorites.filter(f => !isTarget(f));
+        dbService.writeDB(db);
+
+        res.json(deletedProduct);
+    }),
 };
 
 export default favoritesController;

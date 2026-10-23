@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import type { UserPayment } from "@/entities/checkout-payment";
+import type { UserPayment } from "@/entities/checkout-payment-form";
 
 import del from "@/assets/icons/delete-close/del_address_card.svg";
 

@@ -1,5 +1,5 @@
 import { handler } from '@/shared/api/http'
-import { userStore } from "@/features/use-profile/model/user.store";
+import { userStore } from "@/shared/model/user.store";
 import { useBaseModals } from "@/shared/lib/use-notify";
 
 const { loading } = useBaseModals();

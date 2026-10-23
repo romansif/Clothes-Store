@@ -9,9 +9,9 @@
 </template>
 
 <script setup lang="ts">
-import { useGetSeasonProducts } from "@/features/use-season-product/api/get-season-product";
+import { useGetSeasonProducts } from "@/widgets/season-list/api/get-season-product";
 
-import { SeasonsHeader } from "@/widgets/ui/navigation";
+import { SeasonsHeader } from "@/widgets/navigation";
 import { SeasonList } from "@/features/use-season-product";
 
 const { springCatalog } = useGetSeasonProducts();

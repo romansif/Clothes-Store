@@ -1,0 +1,14 @@
+<template>
+  <ul :class="['flex flex-col overflow-y-auto gap-8 mt-10 no-scrollbar', items.length > 1 ? 'h-77.5' : 'h-37.5']">
+    <OrderInfoItem v-for="product in items" :product="product" :items="items" />
+  </ul>
+</template>
+
+<script setup lang="ts">
+import { orderStore } from "@/shared/model/order.store";
+
+import { OrderInfoItem } from "@/features/checkout-order-info";
+
+const { items } = orderStore();
+</script>
+

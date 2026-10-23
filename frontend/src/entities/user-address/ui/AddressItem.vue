@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import type { UserContactInfo } from "@/entities/checkout-contact-info";
+import type { UserContactInfo } from "@/entities/user-address";
 
 import del from "@/assets/icons/delete-close/del_address_card.svg";
 

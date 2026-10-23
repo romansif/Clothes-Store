@@ -20,7 +20,7 @@ const routes: RouteRecordRaw[] = [
     {
         path: '/',
         name: 'home',
-        component: () => import('@/pages/HomePage.vue')
+        component: () => import('@/pages/home/HomePage.vue')
     },
     {
         path: '/',
@@ -69,12 +69,12 @@ const routes: RouteRecordRaw[] = [
             {
                 path: 'shop/my-cart',
                 name: 'cart',
-                component: () => import('@/pages/CartPage.vue')
+                component: () => import('@/pages/cart/CartPage.vue')
             },
             {
                 path: 'shop/my-favorite',
                 name: 'favorite',
-                component: () => import('@/pages/FavoritePage.vue')
+                component: () => import('@/pages/favorite/FavoritePage.vue')
             },
         ]
     },
@@ -85,7 +85,7 @@ const routes: RouteRecordRaw[] = [
             {
                 path: 'profile',
                 name: 'profile',
-                component: () => import('@/pages/ProfilePage.vue')
+                component: () => import('@/pages/profile/ProfilePage.vue')
             },
             {
                 path: 'my-products',

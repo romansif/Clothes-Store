@@ -1,0 +1,1 @@
+export { default as DeleteMyProductButton } from './ui/DeleteMyProductButton.vue'

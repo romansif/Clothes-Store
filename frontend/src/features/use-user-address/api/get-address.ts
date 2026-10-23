@@ -1,7 +1,7 @@
 import { handler } from "@/shared/api/http";
-import { userStore } from "@/features/use-profile/model/user.store";
+import { userStore } from "@/shared/model/user.store";
 import { useBaseModals } from "@/shared/lib/use-notify";
-import { informationContactStore } from "@/features/use-user-address/model/address.store";
+import { informationContactStore } from "@/shared/model/address.store";
 
 const { userData } = userStore();
 const { loading } = useBaseModals();

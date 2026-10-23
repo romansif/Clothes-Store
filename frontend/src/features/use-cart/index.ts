@@ -1,5 +1,0 @@
-export { default as CartInfo } from './ui/CartInfo.vue'
-export { default as CartItem } from './ui/CartItem.vue'
-export { default as CartList } from './ui/CartList.vue'
-export { default as ContinueToOrder } from './ui/ContinueToOrder.vue'
-export { default as UseCart } from './ui/UseCart.vue'

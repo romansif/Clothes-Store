@@ -1,6 +1,6 @@
 import { handler } from "@/shared/api/http";
-import { paymentStore } from "@/features/use-user-payment/model/payment.store";
-import { userStore } from "@/features/use-profile/model/user.store";
+import { paymentStore } from "@/shared/model/payment.store";
+import { userStore } from "@/shared/model/user.store";
 import { useBaseModals } from "@/shared/lib/use-notify";
 
 const { userData } = userStore();

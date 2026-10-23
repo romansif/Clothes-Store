@@ -183,7 +183,7 @@ import { useRoute } from "vue-router";
 import { IMaskComponent as IMask } from "vue-imask";
 import { useProductForm } from "@/entities/product-form/lib/use-product-form";
 import { productSpecific } from "@/entities/product-form/model/product-specific";
-import { baseSelectClass, skuClass, productFormErrorClass } from "@/features/use-product-form/model/product-form.variants";
+import { baseSelectClass, skuClass, productFormErrorClass } from "@/features/product-form/model/product-form.variants";
 import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
 import { createProductForm, createProductFormErrorMessages } from "@/entities/product-form/model/product-forms";
 import type { Product } from "@/shared";

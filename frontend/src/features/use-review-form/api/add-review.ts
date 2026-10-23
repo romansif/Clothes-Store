@@ -1,10 +1,10 @@
 import { handler } from "@/shared/api/http";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 import { useBaseModals } from "@/shared/lib/use-notify";
-import { userStore } from "@/features/use-profile/model/user.store";
+import { userStore } from "@/shared/model/user.store";
 import { reviewsStore } from "@/features/use-product-review/model/reviews.store";
 import { clearReviewForm } from "@/features/use-review-form/lib/clear-review-form";
-import { toggleReviewModal } from "@/features/use-review-form/lib/review-form-modal";
+import { toggleReviewModal } from "@/entities/order-action/lib/review-form-modal";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
 import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/review-form";
 import { reviewFormSchema } from "@/entities/review-form/model/review-schemas";

@@ -1,108 +1,108 @@
 import { v4 as uuidv4 } from 'uuid';
-import { dbService } from "../../db/db.config.ts";
-import {type NextFunction, type Request, type Response} from 'express';
-import type {AuthenticatedRequest} from "../../interfaces.ts";
+import { type NextFunction, type Request, type Response } from 'express';
+import { dbService } from '../../db/db.config.ts';
+import {
+    type Row, HttpError, handle, param, sameId, requireUser, cleanText, parseJsonField,
+    getUploadedFiles, assertImages, removeUploadedFiles, byNewest,
+} from '#lib/security';
+
+const MAX_REVIEW_IMAGES = 10;
+const MAX_COMMENT_LENGTH = 2000;
 
 export const reviewsController = {
-    async getReviews(_req: Request, res: Response) {
-        try{
-            const db = dbService.readDB();
-            const reviews: any[] = db.reviews || [];
+    getReviews: handle('Failed to get the review list', async (_req, res) => {
+        const reviews: Row[] = dbService.readDB().reviews || [];
 
-            res.json(reviews);
-        }catch(err){
-            console.error('Failed to get the review list:', err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
-        }
-    },
+        res.json(reviews);
+    }),
 
-    async getFilteredReviews(req: Request, res: Response) {
-        try{
-            const { productId, filter } = req.params;
+    getFilteredReviews: handle('Failed to get the filtered review list', async (req, res) => {
+        const productId = param(req, 'productId');
+        const filter = param(req, 'filter');
 
-            const db = dbService.readDB();
-            let reviews: any[] = db.reviews || [];
+        const all: Row[] = dbService.readDB().reviews || [];
+        let reviews = all.filter(review => sameId(review.productId, productId));
 
-            reviews = reviews.filter(review => review.productId === productId)
-
-            if(filter && filter !== 'All reviews'){
-                if(filter === 'With photos'){
-                    reviews = reviews.filter(review => review.images.length > 0);
-                }else if(filter === 'Latest'){
-                    reviews = reviews.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
-                }else if(filter === 'Highest rated'){
-                    reviews.sort((a, b) => b.rating - a.rating);
-                }else if(filter === 'Lowest rated'){
-                    reviews.sort((a, b) => a.rating - b.rating);
-                }
+        if (filter && filter !== 'All reviews') {
+            if (filter === 'With photos') {
+                reviews = reviews.filter(review => Array.isArray(review.images) && review.images.length > 0);
+            } else if (filter === 'Latest') {
+                reviews.sort(byNewest);
+            } else if (filter === 'Highest rated') {
+                reviews.sort((a, b) => b.rating - a.rating);
+            } else if (filter === 'Lowest rated') {
+                reviews.sort((a, b) => a.rating - b.rating);
             }
-
-            res.json(reviews);
-        }catch(err){
-            console.error(`Failed to get the review list for user ${req.params.userId}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
         }
-    },
 
-    async createReview(req: AuthenticatedRequest, res: Response) {
-        try{
-            const db = dbService.readDB();
-            const reviews: any[] = db.reviews || [];
+        res.json(reviews);
+    }),
 
-            const files =
-                (req.files as Express.Multer.File[] | undefined) ?? [];
+    createReview: handle('Failed to add the review to the reviews', async (req, res) => {
+        const files = getUploadedFiles(req);
+        const user = requireUser(req);
 
-            const images = files.map(file =>
-                `uploads/reviews/${file.filename}`
-            );
-
-            const userId =
-                req.user?.id || req.user?.userId;
-
-            if (!userId) {
-                return res.status(401).json({
-                    message: 'Unauthorized',
-                });
-            }
-
-            const newReview = {
-                id: uuidv4(),
-                userId,
-                productId: req.body.productId,
-                user: req.body.user,
-                rating: Number(req.body.rating),
-                comment: req.body.comment,
-                images,
-                created_at: new Date().toLocaleDateString(
-                    'en-US',
-                    {
-                        month: 'short',
-                        day: 'numeric',
-                        year: 'numeric',
-                    }
-                ),
-            };
-
-            reviews.push(newReview);
-            db.reviews = reviews;
-            dbService.writeDB(db);
-
-            res.status(201).json({message: 'Review added', data: newReview});
-        }catch(err){
-            console.error('Failed to add the review to the reviews:', err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
+        if (files.length > MAX_REVIEW_IMAGES) {
+            throw new HttpError(400, `At most ${MAX_REVIEW_IMAGES} photos per review.`);
         }
-    },
+        assertImages(files);
 
-    async reviewParse(req: Request, _res: Response, next: NextFunction) {
-        try {
-            req.body = JSON.parse(req.body.review);
-            next();
-        } catch (error) {
-            next(error);
+        const body: Row = req.body ?? {};
+
+        const rating = Number(body.rating);
+        if (!Number.isFinite(rating) || rating < 1 || rating > 5) {
+            throw new HttpError(400, 'Rating must be between 1 and 5', { rating: 'Rating must be between 1 and 5' });
         }
+
+        const comment = body.comment === undefined || body.comment === null ? '' : cleanText(body.comment, MAX_COMMENT_LENGTH);
+        if (comment === null) {
+            throw new HttpError(400, 'Comment is too long', { comment: `Comment must be at most ${MAX_COMMENT_LENGTH} characters` });
+        }
+
+        const db = dbService.readDB();
+        const reviews: Row[] = db.reviews || [];
+        const products: Row[] = db.products || [];
+
+        if (!products.some(p => sameId(p.id, body.productId))) {
+            throw new HttpError(404, 'Product not found');
+        }
+
+        const author = (db.users || []).find((u: Row) => sameId(u.id, user.id));
+        const displayName = cleanText(body.user, 100) || [author?.name, author?.surName].filter(Boolean).join(' ');
+
+        const newReview = {
+            id: uuidv4(),
+            userId: user.id,
+            productId: body.productId,
+            user: displayName,
+            rating,
+            comment,
+            images: files.map(file => `uploads/reviews/${file.filename}`),
+            created_at: new Date().toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+            }),
+        };
+
+        reviews.push(newReview);
+        db.reviews = reviews;
+        dbService.writeDB(db);
+
+        res.status(201).json({ message: 'Review added', data: newReview });
+    }),
+
+    /** Multipart requests carry the review as a JSON string in the `review` field. */
+    reviewParse: (req: Request, res: Response, next: NextFunction) => {
+        const parsed = parseJsonField(req.body?.review);
+
+        if (!parsed) {
+            removeUploadedFiles(getUploadedFiles(req));
+            res.status(400).json({ message: 'Invalid review payload' });
+            return;
+        }
+
+        req.body = parsed;
+        next();
     },
-}
+};

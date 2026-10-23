@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import { sizes } from "@/shared/model/product-sizes.ts";
 import type { Product } from "@/shared/model/product.types.ts";
-import type { AddForm } from "@/features/use-product/model/add-to-cart-form.types.ts";
+import type { AddForm } from "@/entities/product-info/model/add-to-cart-form.types.ts";
 
 export const itemPreview = ref<string[]>([]);
 export const activeProductImg = ref<string>('');

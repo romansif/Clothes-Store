@@ -1,4 +1,4 @@
-export type AuthFormVariant = 'default' | 'error'
+export type AuthFormVariant = 'login' | 'register'
 
 export interface AuthFormProps {
     role: string

@@ -27,7 +27,7 @@
 
 <script setup lang="ts">
 import { useQuery } from "@tanstack/vue-query";
-import { useGetReviews } from "@/features/use-product-review/api/get-reviews";
+import { useGetReviews } from "@/shared/api/get-reviews";
 import { changeReviewPhoto, toggleReviewPhotos } from "@/features/use-product-review/lib/review-photo-modal";
 import { reviewModal } from "@/features/use-product-review/lib/review-photo-modal";
 import { currentIndex, reviewImages } from "@/features/use-product-review/lib/review-photo-modal";

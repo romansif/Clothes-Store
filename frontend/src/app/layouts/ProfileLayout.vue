@@ -14,7 +14,7 @@
 <script setup lang="ts">
 import { useBaseModals } from "@/shared/lib/use-notify.ts";
 import { Loading, Notification } from "@/shared";
-import { MainNavBar } from "@/widgets/ui/navigation";
+import { MainNavBar } from "@/widgets/navigation";
 
 const { notify, loading } = useBaseModals();
 </script>

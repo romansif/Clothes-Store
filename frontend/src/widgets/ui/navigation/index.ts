@@ -1,5 +1,0 @@
-export { default as FavoriteCartHeader } from './FavoriteCartHeader.vue'
-export { default as HeaderCatalog } from './HeaderCatalog.vue'
-export { default as MainNavBar } from './MainNavBar.vue'
-export { default as SeasonsHeader } from './SeasonsHeader.vue'
-export { default as MainSlideBar } from './MainSlideBar.vue'

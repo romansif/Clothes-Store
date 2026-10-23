@@ -25,15 +25,14 @@
 </template>
 
 <script setup lang="ts">
-import { userStore } from "@/features/use-profile/model/user.store";
-import { useProfile } from "@/features/use-profile/lib/use-profile";
+import { userStore } from "@/shared/model/user.store";
+import { userAvatar } from "@/features/use-profile/lib/use-profile";
 import { useProfileModals } from "@/features/use-profile/lib/profile-modal";
 import { profileApi } from "@/features/use-profile-form/api/profile.api";
 
 import { UiButton } from "@/shared/ui/button";
 
 const { userData } = userStore();
-const { userAvatar } = useProfile();
 const { updateAvatarAccount } = profileApi();
 const { toggleAvatar, openSelectAvatar, fileInput } = useProfileModals();
 </script>

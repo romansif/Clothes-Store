@@ -1,18 +1,17 @@
 import { handler } from "@/shared/api/http";
 import { product } from "@/features/use-product/api/get-product";
 import { useBaseModals } from "@/shared/lib/use-notify";
-import { clearCartForm } from "@/features/use-product/lib/clear-cart";
-import { cartStore } from "@/features/use-cart/model/cart.store";
-import { userStore } from "@/features/use-profile/model/user.store";
-import { useGetCart } from "@/features/use-cart/api/get-cart";
+import { clearCartForm } from "@/features/use-product/lib/clear-cart-form";
+import { cartStore } from "@/widgets/cart-list/model/cart.store";
+import { userStore } from "@/shared/model/user.store";
+import { getCartProducts } from "@/widgets/cart-list/api/get-cart";
 import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper";
-import { addToCartForm, addToCartFormErrorMessages } from "@/features/use-product/model/add-to-cart-form";
-import { addToCartSchema } from "@/features/use-product/model/add-to-cart-schemas";
+import { addToCartForm, addToCartFormErrorMessages } from "@/entities/product-info/model/add-to-cart-form";
+import { addToCartSchema } from "@/entities/product-info/model/add-to-cart-schemas";
 
 const { userData } = userStore();
 const { unreadCount } = cartStore();
 const { openNotify } = useBaseModals();
-const { getCartProducts } = useGetCart();
 
 export const useAddToCart = () => {
     const addToCart = async () => {

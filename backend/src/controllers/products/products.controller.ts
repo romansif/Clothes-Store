@@ -1,373 +1,324 @@
 import { v4 as uuidv4 } from 'uuid';
-import {type NextFunction, type Request, type Response} from 'express';
+import { type NextFunction, type Request, type Response } from 'express';
 import { dbService } from '../../db/db.config.ts';
+import {
+    type Row, HttpError, handle, param, sameId, requireUser, cleanText, parseJsonField,
+    pickKeys, getUploadedFiles, assertImages, removeUploadedFiles, byNewest,
+} from '#lib/security';
+
+const MAX_PRODUCT_IMAGES = 10;
+const MAX_SEARCH_LENGTH = 100;
+
+// The only fields a seller may write. id, userId, images and created_at are set by the server.
+const PRODUCT_FIELDS = [
+    'title', 'collection', 'category', 'material', 'gender', 'sku',
+    'description', 'sizes', 'colors', 'status',
+] as const;
+
+/* ------------------------------ filtering ------------------------------ */
+
+type StatusFilter = (products: Row[], filter: string) => Row[];
+
+const variantsOf = (product: Row): Row[] => (Array.isArray(product.variants) ? product.variants : []);
+
+const byStock: StatusFilter = (products, filter) => {
+    if (filter === 'Availability') return products.filter(p => variantsOf(p).some(v => v.count > 0));
+    if (filter === 'Exhausted') return products.filter(p => variantsOf(p).every(v => v.count === 0));
+    return products;
+};
+
+const byStatusField: StatusFilter = (products, filter) => products.filter(p => p.status === filter);
+
+const applyFilter = (products: Row[], type: string, filter: string, statusFilter: StatusFilter): Row[] => {
+    switch (type) {
+        case 'CATEGORY':
+            return products.filter(p => p.category === filter);
+        case 'SIZE':
+            return products.filter(p => Array.isArray(p.sizes) && p.sizes.includes(filter));
+        case 'COLOR':
+            return products.filter(p => Array.isArray(p.colors) && p.colors.some((c: Row) => c?.colorName === filter));
+        case 'STATUS':
+            return statusFilter(products, filter);
+        case 'GENDER':
+            return products.filter(p => p.gender === filter);
+        default:
+            return products;
+    }
+};
+
+const newerThan = (products: Row[], since: Date): Row[] =>
+    products.filter(p => new Date(p.created_at) >= since);
+
+const daysAgo = (days: number): Date => {
+    const date = new Date();
+    date.setDate(date.getDate() - days);
+    return date;
+};
+
+/* ----------------------------- normalization ---------------------------- */
+
+const toCount = (value: unknown): number => {
+    const n = Math.trunc(Number(value));
+    return Number.isFinite(n) && n > 0 ? n : 0;
+};
+
+const normalizeVariants = (raw: unknown): Row[] =>
+    (Array.isArray(raw) ? raw : [])
+        .filter((v: Row) => v?.hex && v?.size)
+        .map((v: Row) => ({
+            hex: v.hex,
+            colorName: v.colorName,
+            size: v.size,
+            count: toCount(v.count),
+        }));
+
+const toPrice = (value: unknown): number => {
+    const price = Number(value) || 0;
+    if (price < 0) {
+        throw new HttpError(400, 'Price cannot be negative', { price: 'Price cannot be negative' });
+    }
+    return price;
+};
+
+/** Only sellers may create products; the role is read from the database, not from the token. */
+const requireSeller = (req: Request) => {
+    const auth = requireUser(req);
+    const account = (dbService.readDB().users || []).find((u: Row) => sameId(u.id, auth.id));
+
+    if (!account || account.role !== 'Seller') {
+        throw new HttpError(403, 'Only sellers can manage products');
+    }
+    return account;
+};
+
+/** The product must exist and belong to the caller; anything else is a 404. */
+const findOwnProduct = (products: Row[], id: string, userId: string): number =>
+    products.findIndex(p => sameId(p.id, id) && sameId(p.userId, userId));
 
 export const productsController = {
-    async getAllProducts(_req: Request, res: Response) {
-        try {
-            const db = dbService.readDB();
-            const products: any[] = db.products || [];
+    getAllProducts: handle('Failed to get the product list', async (_req, res) => {
+        res.json(dbService.readDB().products || []);
+    }),
 
-            res.json(products);
-        } catch (err) {
-            console.error('Failed to get the product list:', err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
-        }
-    },
+    getFilteredProducts: handle('Failed to get the filtered product list', async (req, res) => {
+        const type = param(req, 'type');
+        const filter = param(req, 'filter');
 
-    async getFilteredProducts(req: Request, res: Response) {
-        try {
-            const { type, filter } = req.params;
-            const db = dbService.readDB();
-            let products: any[] = [...(db.products || [])];
+        const products: Row[] = [...(dbService.readDB().products || [])];
 
-            if (type && type !== "ALL") {
-                if (type === "CATEGORY") {
-                    products = products.filter(p => p.category === filter);
-                } else if (type === "SIZE") {
-                    products = products.filter(p => Array.isArray(p.sizes) && p.sizes.includes(filter));
-                } else if (type === "COLOR") {
-                    products = products.filter(p => Array.isArray(p.colors) && p.colors.some((c: any) => c.colorName === filter));
-                } else if (type === "STATUS") {
-                    if(filter === 'Availability'){
-                        products = products.filter(p => p.variants.some((variant: any) => variant.count > 0));
-                    }if(filter === 'Exhausted'){
-                        products = products.filter(p => p.variants.every((variant: any) => variant.count === 0));
-                    }
-                } else if (type === "GENDER") {
-                    products = products.filter(p => p.gender === filter);
-                }
-            }
+        res.json(applyFilter(products, type, filter, byStock).sort(byNewest));
+    }),
 
-            products.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+    getWeekProducts: handle('Failed to get the week product list', async (req, res) => {
+        const type = param(req, 'type');
+        const filter = param(req, 'filter');
 
-            res.json(products);
-        } catch (err) {
-            console.error('Failed to get the filterProduct product list:', err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
-        }
-    },
+        const products = newerThan(dbService.readDB().products || [], daysAgo(7));
 
-    async getWeekProducts (req: Request, res: Response) {
-        try {
-            const { type, filter } = req.params;
-            const db = dbService.readDB();
+        res.json(applyFilter(products, type, filter, byStatusField).sort(byNewest));
+    }),
 
-            const sevenDayAgo = new Date();
-            sevenDayAgo.setDate(sevenDayAgo.getDate() - 7);
+    getYearProducts: handle('Failed to get the year product list', async (req, res) => {
+        const type = param(req, 'type');
+        const filter = param(req, 'filter');
 
-            let products: any[] = (db.products || []).filter((p: any) => new Date(p.created_at) >= sevenDayAgo);
+        const products = newerThan(dbService.readDB().products || [], daysAgo(365));
 
-            if (type && type !== "ALL") {
-                if (type === "CATEGORY") {
-                    products = products.filter(p => p.category === filter);
-                } else if (type === "SIZE") {
-                    products = products.filter(p => Array.isArray(p.sizes) && p.sizes.includes(filter));
-                } else if (type === "COLOR") {
-                    products = products.filter(p => Array.isArray(p.colors) && p.colors.some((c: any) => c.colorName === filter));
-                } else if (type === "STATUS") {
-                    products = products.filter(p => p.status === filter);
-                } else if (type === "GENDER") {
-                    products = products.filter(p => p.gender === filter);
-                }
-            }
+        res.json(applyFilter(products, type, filter, byStatusField).sort(byNewest));
+    }),
 
-            products.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+    getCollections: handle('Failed to get the collection product list', async (req, res) => {
+        const collection = param(req, 'collection');
+        const products: Row[] = dbService.readDB().products || [];
 
-            res.json(products);
-        } catch (err) {
-            console.error('Failed to get the week product list:', err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
-        }
-    },
+        const sixMonthsAgo = new Date();
+        sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
 
-    async getYearProducts (req: Request, res: Response) {
-        try {
-            const { type, filter } = req.params;
-            const db = dbService.readDB();
+        const filtered = products.filter(product => {
+            const createdAt = new Date(product.created_at);
+            if (Number.isNaN(createdAt.getTime()) || createdAt < sixMonthsAgo) return false;
 
-            const last365Days = new Date();
-            last365Days.setDate(last365Days.getDate() - 365);
+            if (!collection || collection === 'ALL') return true;
 
-            let products: any[] = (db.products || []).filter((p: any) => new Date(p.created_at) >= last365Days);
+            return product.collection?.name === collection || product.collection?.season === collection;
+        });
 
-            if (type && type !== "ALL") {
-                if (type === "CATEGORY") {
-                    products = products.filter(p => p.category === filter);
-                } else if (type === "SIZE") {
-                    products = products.filter(p => Array.isArray(p.sizes) && p.sizes.includes(filter));
-                } else if (type === "COLOR") {
-                    products = products.filter(p => Array.isArray(p.colors) && p.colors.some((c: any) => c.colorName === filter));
-                } else if (type === "STATUS") {
-                    products = products.filter(p => p.status === filter);
-                } else if (type === "GENDER") {
-                    products = products.filter(p => p.gender === filter);
-                }
-            }
+        res.json(filtered.sort(byNewest));
+    }),
 
-            products.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+    getSearchedProducts: handle('Failed to get the searched product list', async (req, res) => {
+        const search = String(req.query.search || '').trim().toLowerCase().slice(0, MAX_SEARCH_LENGTH);
+        let products: Row[] = [...(dbService.readDB().products || [])];
 
-            res.json(products);
-        } catch (err) {
-            console.error('Failed to get the year product list:', err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
-        }
-    },
+        if (search) {
+            const matches = (value: unknown) => !!value && String(value).toLowerCase().includes(search);
 
-    async getCollections(req: Request, res: Response) {
-        try {
-            const { collection } = req.params;
-            const db = dbService.readDB();
-            let products: any[] = [...(db.products || [])];
-
-            const sixMonthsAgo = new Date();
-            sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
-
-            const filteredProducts = products.filter(product => {
-                const createdAt = new Date(product.created_at);
-                if (isNaN(createdAt.getTime()) || createdAt < sixMonthsAgo) {
-                    return false;
-                }
-
-                if (!collection || collection === 'ALL') {
-                    return true;
-                }
-
-                const collectionName = product.collection?.name;
-                const collectionSeason = product.collection?.season;
-
-                return collectionName === collection || collectionSeason === collection;
-            });
-
-            filteredProducts.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
-
-            res.json(filteredProducts);
-        } catch (err) {
-            console.error('Failed to get the searched product list:', err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
-        }
-    },
-
-    async getSearchedProducts(req: Request, res: Response) {
-        try {
-            const search = String(req.query.search || '').trim().toLowerCase();
-            const db = dbService.readDB();
-            let products: any[] = db.products || [];
-
-            if (search) {
-                products = products.filter(p => {
-                    return (
-                        (p.title && String(p.title).toLowerCase().includes(search)) ||
-                        (p.category && String(p.category).toLowerCase().includes(search)) ||
-                        (p.material && String(p.material).toLowerCase().includes(search)) ||
-                        (p.description && String(p.description).toLowerCase().includes(search)) ||
-                        (p.gender && String(p.gender).toLowerCase().includes(search)) ||
-                        (p.collection.name && String(p.collection.name).toLowerCase().includes(search))
-                    );
-                });
-            }
-
-            products.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
-
-            res.json(products);
-        } catch (err) {
-            console.error('Failed to get the searched product list:', err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
-        }
-    },
-
-    async getMyProducts(req: Request, res: Response) {
-        try {
-            const db = dbService.readDB();
-            const products: any[] = db.products || [];
-
-            const myProducts = products.filter(p => String(p.userId) === String(req.params.id));
-            myProducts.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
-
-            res.json(myProducts);
-        } catch (err) {
-            console.error(`Failed to get my stack products:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
-        }
-    },
-
-    async getProductsById(req: Request, res: Response) {
-        try {
-            const { id } = req.params;
-            const db = dbService.readDB();
-            const products: any[] = db.products || [];
-
-            const product = products.find(p => String(p.id) === String(id));
-
-            res.json(product || {});
-        } catch (err) {
-            console.error(`Failed to get the product by id ${req.params.id}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
-        }
-    },
-
-    async createdProduct(req: Request, res: Response) {
-        try {
-            if (!req.files || (req.files as Express.Multer.File[]).length === 0) {
-                return res.status(400).json({ message: 'Product photos are mandatory.' });
-            }
-            const files = req.files as Express.Multer.File[];
-            const images = files.map((file: any) => `uploads/products/${file.filename}`);
-
-            const db = dbService.readDB();
-            const products: any[] = db.products || [];
-
-            const variants = (req.body.variants ?? []).filter((v: any) => v?.hex && v?.size).map((v: any) => ({
-                hex: v.hex,
-                colorName: v.colorName,
-                size: v.size,
-                count: Number(v.count),
-            }))
-
-            const newProduct = {
-                id: uuidv4(),
-                userId: req.body.userId,
-                images,
-                title: req.body.title,
-                collection: req.body.collection,
-                category: req.body.category,
-                material: req.body.material,
-                gender: req.body.gender,
-                sku: req.body.sku,
-                price: Number(req.body.price) || 0,
-                description: req.body.description,
-                sizes: req.body.sizes,
-                colors: req.body.colors,
-                variants: variants,
-                status: req.body.status,
-                created_at: new Date(),
-            };
-
-            products.push(newProduct);
-            db.products = products;
-            dbService.writeDB(db);
-
-            res.status(201).json(newProduct);
-        } catch (err) {
-            console.error('Failed to create the product cover:', err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
-        }
-    },
-
-    async productParse(req: Request, _res: Response, next: NextFunction) {
-        try {
-            req.body = JSON.parse(req.body.product);
-            next();
-        } catch (error) {
-            next(error);
-        }
-    },
-
-    async updateProductImages(req: Request, res: Response) {
-        try {
-            const { id, index } = req.params;
-
-            if (!req.files || (req.files as Express.Multer.File[]).length === 0) {
-                return res.status(400).json({ message: 'Product photos are mandatory.' });
-            }
-            const files = req.files as Express.Multer.File[];
-            const images = files.map((file: any) => `uploads/products/${file.filename}`);
-
-            const targetIndex = index !== undefined && index !== null ? Number(index) : null;
-
-            const db = dbService.readDB();
-            const products: any[] = db.products || [];
-            const product = products.find(p => String(p.id) === String(id));
-
-            if (!product) {
-                return res.status(404).json({ message: 'Product not found.' });
-            }
-
-            let updatedImage = product.images ? [...product.images] : [];
-
-            if (targetIndex !== null && !isNaN(targetIndex)) {
-                const newUrl = images[0];
-                if (updatedImage[targetIndex] !== undefined) {
-                    updatedImage[targetIndex] = newUrl;
-                }
-            } else {
-                updatedImage = images;
-            }
-
-            product.images = updatedImage;
-            dbService.writeDB(db);
-
-            res.status(201).json(product);
-        } catch (err) {
-            console.error(`Failed to update the product images ${req.params.id}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
-        }
-    },
-
-    async updateProductItem(req: Request, res: Response) {
-        try {
-            const { id } = req.params;
-
-            const sanitizedBody = Object.fromEntries(
-                Object.entries(req.body).filter(([_, value]) =>
-                    value !== "" && value !== null && value !== undefined
-                )
+            products = products.filter(p =>
+                matches(p.title) || matches(p.category) || matches(p.material) ||
+                matches(p.description) || matches(p.gender) || matches(p.collection?.name)
             );
-
-            const db = dbService.readDB();
-            const products: any[] = db.products || [];
-            const index = products.findIndex(p => String(p.id) === String(id));
-
-            if (index === -1) return res.status(404).json({ message: 'Product not found' });
-
-            products[index] = {
-                ...products[index],
-                ...sanitizedBody
-            };
-
-            db.products = products;
-            dbService.writeDB(db);
-
-            return res.json(products[index]);
-        } catch (err) {
-            console.error(`Failed to update the product ${req.params.id}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
         }
+
+        res.json(products.sort(byNewest));
+    }),
+
+    getMyProducts: handle('Failed to get my stack products', async (req, res) => {
+        const id = param(req, 'id');
+        const products: Row[] = dbService.readDB().products || [];
+
+        res.json(products.filter(p => sameId(p.userId, id)).sort(byNewest));
+    }),
+
+    getProductsById: handle('Failed to get the product by id', async (req, res) => {
+        const id = param(req, 'id');
+        const products: Row[] = dbService.readDB().products || [];
+
+        res.json(products.find(p => sameId(p.id, id)) || {});
+    }),
+
+    createdProduct: handle('Failed to create the product cover', async (req, res) => {
+        const files = getUploadedFiles(req);
+        const seller = requireSeller(req);
+
+        if (files.length === 0) {
+            throw new HttpError(400, 'Product photos are mandatory.');
+        }
+        if (files.length > MAX_PRODUCT_IMAGES) {
+            throw new HttpError(400, `At most ${MAX_PRODUCT_IMAGES} photos per product.`);
+        }
+        assertImages(files);
+
+        const body: Row = req.body ?? {};
+
+        const title = cleanText(body.title, 200);
+        if (!title) {
+            throw new HttpError(400, 'Title is required', { title: 'Title is required' });
+        }
+
+        const db = dbService.readDB();
+        const products: Row[] = db.products || [];
+
+        const newProduct = {
+            ...pickKeys(body, PRODUCT_FIELDS),
+            id: uuidv4(),
+            userId: seller.id, // always the logged-in seller, never a value from the request
+            images: files.map(file => `uploads/products/${file.filename}`),
+            title,
+            price: toPrice(body.price),
+            variants: normalizeVariants(body.variants),
+            created_at: new Date(),
+        };
+
+        products.push(newProduct);
+        db.products = products;
+        dbService.writeDB(db);
+
+        res.status(201).json(newProduct);
+    }),
+
+    /** Multipart requests carry the product as a JSON string in the `product` field. */
+    productParse: async (req: Request, res: Response, next: NextFunction) => {
+        const parsed = parseJsonField(req.body?.product);
+
+        if (!parsed) {
+            removeUploadedFiles(getUploadedFiles(req));
+            res.status(400).json({ message: 'Invalid product payload' });
+            return;
+        }
+
+        req.body = parsed;
+        next();
     },
 
-    async deleteProduct(req: Request, res: Response) {
-        try {
-            const { id } = req.params;
+    updateProductImages: handle('Failed to update the product images', async (req, res) => {
+        const files = getUploadedFiles(req);
+        const user = requireUser(req);
+        const id = param(req, 'id');
+        const index = param(req, 'index');
 
-            const db = dbService.readDB();
-            const products: any[] = db.products || [];
-            const index = products.findIndex(p => String(p.id) === String(id));
-
-            if (index === -1) return res.status(404).json({ message: 'Product not found' });
-
-            const deletedProduct = products[index];
-
-            db.products = products.filter(p => String(p.id) !== String(id));
-            dbService.writeDB(db);
-
-            res.json(deletedProduct);
-        } catch (err) {
-            console.error(`Failed to delete the product ${req.params.id}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
+        if (files.length === 0) {
+            throw new HttpError(400, 'Product photos are mandatory.');
         }
-    }
+        if (files.length > MAX_PRODUCT_IMAGES) {
+            throw new HttpError(400, `At most ${MAX_PRODUCT_IMAGES} photos per product.`);
+        }
+        assertImages(files);
+
+        const db = dbService.readDB();
+        const products: Row[] = db.products || [];
+        const productIndex = findOwnProduct(products, id, user.id);
+
+        if (productIndex === -1) throw new HttpError(404, 'Product not found.');
+
+        const product = products[productIndex]!;
+        const images = files.map(file => `uploads/products/${file.filename}`);
+
+        let updatedImages: string[] = Array.isArray(product.images) ? [...product.images] : [];
+        const targetIndex = index === '' ? NaN : Number(index);
+
+        if (Number.isInteger(targetIndex)) {
+            if (updatedImages[targetIndex] !== undefined) {
+                updatedImages[targetIndex] = images[0]!;
+            }
+        } else {
+            updatedImages = images;
+        }
+
+        product.images = updatedImages;
+        dbService.writeDB(db);
+
+        res.status(201).json(product);
+    }),
+
+    updateProductItem: handle('Failed to update the product', async (req, res) => {
+        const user = requireUser(req);
+        const id = param(req, 'id');
+
+        const db = dbService.readDB();
+        const products: Row[] = db.products || [];
+        const index = findOwnProduct(products, id, user.id);
+
+        if (index === -1) throw new HttpError(404, 'Product not found');
+
+        // Only known product fields, and empty values are ignored (same as before).
+        const changes = Object.fromEntries(
+            Object.entries(pickKeys(req.body, [...PRODUCT_FIELDS, 'price', 'variants']))
+                .filter(([, value]) => value !== '' && value !== null && value !== undefined)
+        );
+
+        if ('price' in changes) changes.price = toPrice(changes.price);
+        if ('variants' in changes) changes.variants = normalizeVariants(changes.variants);
+        if ('title' in changes) {
+            const title = cleanText(changes.title, 200);
+            if (!title) throw new HttpError(400, 'Invalid title', { title: 'Invalid title' });
+            changes.title = title;
+        }
+
+        products[index] = { ...products[index], ...changes };
+
+        db.products = products;
+        dbService.writeDB(db);
+
+        res.json(products[index]);
+    }),
+
+    deleteProduct: handle('Failed to delete the product', async (req, res) => {
+        const user = requireUser(req);
+        const id = param(req, 'id');
+
+        const db = dbService.readDB();
+        const products: Row[] = db.products || [];
+        const index = findOwnProduct(products, id, user.id);
+
+        if (index === -1) throw new HttpError(404, 'Product not found');
+
+        const deletedProduct = products[index]!;
+
+        db.products = products.filter(p => p !== deletedProduct);
+        dbService.writeDB(db);
+
+        res.json(deletedProduct);
+    }),
 };
 
 export default productsController;

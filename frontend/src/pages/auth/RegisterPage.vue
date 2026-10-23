@@ -18,19 +18,11 @@
 </template>
 
 <script setup lang="ts">
-import { useAuth } from "@/features/use-auth/api/use-auth";
-import { toggleAuth } from "@/features/use-auth/lib/toggle-auth";
-import { authStore } from "@/features/use-auth/model/auth.store";
-import { RegisterForm } from "@/features/use-auth";
+import { signUp } from "@/features/register-auth/api/register";
+import { toggleSignUp } from "@/features/register-auth/lib/toggle-role";
+import { currentRole, isRole } from "@/features/register-auth/model/register-auth.refs";
+import { RegisterForm } from "@/features/register-auth";
 import { UiButton } from "@/shared/ui/button";
 
 import maki_arrow from "@/assets/icons/arrows/right-short-arrow.svg";
-
-const { signUp } = useAuth();
-const { toggleSignUp } = toggleAuth();
-const { currentRole, isRole } = authStore();
 </script>
-
-<style scoped>
-
-</style>

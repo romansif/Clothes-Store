@@ -7,7 +7,6 @@
     <router-link v-if="!user.id" :to="{name: 'signIn'}"
                  class="hidden bg-black text-white font-semibold text-sm py-4 w-full text-center
                  font-raleway lg:block">
-
         ADD TO CART
     </router-link>
     <UiButton v-if="user.role === 'Buyer' && isInStock(product) !== 0 && !isInCart(product)"
@@ -41,32 +40,27 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useGetCart } from "@/features/use-cart/api/get-cart";
-import { cartHelper } from "@/features/use-product/lib/cart-helper";
+import { getCartProducts } from "@/widgets/cart-list/api/get-cart";
+import { isInCart } from "@/features/use-product/lib/cart-form-helper";
 import { useAddToCart } from "@/features/use-product/api/add-to-cart";
-import { useUpdateCart } from "@/features/use-cart/api/update-cart";
-import { productsHelper } from "@/features/use-main-product/lib/products-helper";
-import { sizeGuideModel, toggleSizeGuide } from "@/features/use-product/lib/toggle-more-info";
+import { updateCartItem } from "@/features/cart-item-action/api/update-cart-item";
+import { productsHelper } from "@/features/products/lib/products-helper";
+import { sizeGuideModel, toggleSizeGuide} from "@/entities/size-guide/lib/toggle-size-guide";
+import { SizeGuideModal } from "@/entities/size-guide";
 import { UiButton } from "@/shared/ui/button";
-import { SizeGuideModal } from "@/features/use-product";
 import type { User } from "@/entities/profile";
 import type { Product } from "@/shared";
 
 import plus from "@/assets/icons/products/plus.svg";
 import minus from "@/assets/icons/products/minus.svg";
 
-
 defineProps<{
   user: User
   product: Product
 }>();
 
-
-const { isInCart } = cartHelper();
 const { addToCart } = useAddToCart();
 const { isInStock } = productsHelper();
-const { getCartProducts } = useGetCart();
-const { updateCartItem } = useUpdateCart();
 
 onMounted(async () => {
   await getCartProducts();

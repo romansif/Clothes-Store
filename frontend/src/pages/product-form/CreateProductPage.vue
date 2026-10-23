@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { useAddProduct } from "@/features/use-product-form/api/create-product";
+import { useAddProduct } from "@/features/create-product-form/api/create-product";
 import { fileInput, productHelper } from "@/shared/lib/product-helper";
 
 import { UiButton } from "@/shared/ui/button";

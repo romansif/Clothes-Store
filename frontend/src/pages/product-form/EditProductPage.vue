@@ -20,7 +20,7 @@
 import { useRoute } from "vue-router";
 import { useQuery } from "@tanstack/vue-query";
 import { getProduct } from "@/features/use-product/api/get-product";
-import { useUpdateProduct } from "@/features/use-product-form/api/update-product";
+import { useUpdateProduct } from "@/features/update-product-form/api/update-product";
 import { fileInput } from "@/shared/lib/product-helper";
 
 import { UiButton } from "@/shared/ui/button";

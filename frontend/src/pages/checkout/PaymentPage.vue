@@ -6,7 +6,7 @@
 import { onMounted } from "vue";
 import { useGetPayment } from "@/features/use-user-payment/api/get-payment";
 
-import { PaymentDashboard } from "@/features/use-chekout-payment-info";
+import { PaymentDashboard } from "@/features/checkout-payment-dashboard";
 
 const { getPayments } = useGetPayment();
 

@@ -1,0 +1,25 @@
+<template>
+  <div id="google-button"></div>
+</template>
+
+<script setup lang="ts">
+import { onMounted } from "vue";
+import { signGoogleAuth } from "@/features/login-by-google/api/use-google-auth";
+
+onMounted(() => {
+  window.google.accounts.id.initialize({
+    client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+    callback: signGoogleAuth,
+  });
+
+  window.google.accounts.id.renderButton(
+      document.getElementById("google-button")!,
+      {
+        type: "icon",
+        size: "large",
+        shape: "rectangular",
+        width: 385
+      }
+  );
+});
+</script>

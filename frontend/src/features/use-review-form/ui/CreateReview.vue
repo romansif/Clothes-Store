@@ -38,7 +38,7 @@ import { addRating } from "@/features/use-review-form/lib/add-rating-star";
 import { reviewsStore } from "@/features/use-product-review/model/reviews.store";
 import { useCreateReview } from "@/features/use-review-form/api/add-review";
 import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
-import { toggleReviewModal } from "@/features/use-review-form/lib/review-form-modal";
+import { toggleReviewModal } from "@/entities/order-action/lib/review-form-modal";
 import { fileInput, productHelper } from "@/shared/lib/product-helper";
 import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/review-form";
 import { UiButton } from "@/shared/ui/button";

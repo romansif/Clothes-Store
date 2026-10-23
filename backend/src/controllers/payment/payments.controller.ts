@@ -1,134 +1,139 @@
-import { v4 as uuidv4 } from 'uuid'
-import { type Request, type Response } from "express";
-import { type AuthenticatedRequest } from '../../interfaces.ts';
+import { v4 as uuidv4 } from 'uuid';
 import { dbService } from '../../db/db.config.ts';
+import {
+    type Row, HttpError, handle, param, sameId, requireUser, requireSelf,
+    omitKeys, isPlainObject, cardFingerprint, storedFingerprint, isValidCardNumber,
+    maskCard, toPublicPayment, PAYMENT_PROTECTED_FIELDS,
+} from '#lib/security';
+
+/**
+ * Card numbers are never stored in full and the CVV is never stored at all.
+ * What is kept: the masked number (last 4 digits) and a keyed fingerprint used to spot duplicates.
+ */
+const withProtectedCard = (data: Row): Row => {
+    if (!('cardNumber' in data)) return data;
+
+    // The front end may send back the masked value it received earlier: that means "unchanged".
+    if (typeof data.cardNumber === 'string' && data.cardNumber.includes('*')) {
+        const { cardNumber: _unchanged, ...rest } = data;
+        return rest;
+    }
+
+    if (!isValidCardNumber(data.cardNumber)) {
+        throw new HttpError(400, 'Invalid card number', { cardNumber: 'Invalid card number' });
+    }
+
+    return {
+        ...data,
+        cardFingerprint: cardFingerprint(data.cardNumber),
+        cardNumber: maskCard(data.cardNumber),
+    };
+};
 
 export const paymentsController = {
-    async getPayments(req: Request, res: Response) {
-        try {
-            const { userId } = req.params;
+    getPayments: handle('Failed to get user payments', async (req, res) => {
+        const user = requireSelf(req, param(req, 'userId'));
 
-            const db = dbService.readDB();
-            const payments: any[] = db.payments || [];
+        const payments: Row[] = dbService.readDB().payments || [];
 
-            const userPayments = payments.filter(p => String(p.userId) === String(userId));
+        res.json(payments.filter(p => sameId(p.userId, user.id)).map(toPublicPayment));
+    }),
 
-            res.json(userPayments);
-        } catch (err) {
-            console.error(`Failed to get user payments for user ${req.params.userId}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
+    getPayment: handle('Failed to get payment', async (req, res) => {
+        const user = requireUser(req);
+        const id = param(req, 'id');
+
+        const payments: Row[] = dbService.readDB().payments || [];
+        const payment = payments.find(p => sameId(p.id, id) && sameId(p.userId, user.id));
+
+        if (!payment) throw new HttpError(404, 'Payment not found');
+
+        res.json(toPublicPayment(payment));
+    }),
+
+    addPayment: handle('Failed to add payment', async (req, res) => {
+        const user = requireUser(req);
+
+        if (!isPlainObject(req.body)) {
+            throw new HttpError(400, 'Payment data is required');
         }
-    },
 
-    async getPayment(req: Request, res: Response) {
-        try {
-            const { id } = req.params;
+        const db = dbService.readDB();
+        const payments: Row[] = db.payments || [];
 
-            const db = dbService.readDB();
-            const payments: any[] = db.payments || [];
-            const payment = payments.find(p => String(p.id) === String(id));
+        const newPayment = {
+            ...withProtectedCard(omitKeys(req.body, PAYMENT_PROTECTED_FIELDS)),
+            id: uuidv4(),
+            userId: user.id,
+        };
 
-            if (!payment) return res.status(404).json({ message: "Payment not found" });
+        payments.push(newPayment);
+        db.payments = payments;
+        dbService.writeDB(db);
 
-            res.json(payment);
-        } catch (err) {
-            console.error(`Failed to get payment ${req.params.id}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
-        }
-    },
+        res.status(201).json(toPublicPayment(newPayment));
+    }),
 
-    async addPayment(req: AuthenticatedRequest, res: Response) {
-        try {
-            const db = dbService.readDB();
-            const payments: any[] = db.payments || [];
+    updatePayment: handle('Failed to update payment', async (req, res) => {
+        const user = requireUser(req);
+        const id = param(req, 'id');
 
-            const newPayment = {
-                id: uuidv4(),
-                userId: req.user?.id || req.user?.userId,
-                ...req.body
-            };
+        const db = dbService.readDB();
+        const payments: Row[] = db.payments || [];
+        const index = payments.findIndex(p => sameId(p.id, id) && sameId(p.userId, user.id));
 
-            payments.push(newPayment);
-            db.payments = payments;
-            dbService.writeDB(db);
+        if (index === -1) throw new HttpError(404, 'Payment record not found');
 
-            res.status(201).json(newPayment);
-        } catch (err) {
-            console.error('Failed to add payment:', err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
-        }
-    },
+        const currentPayment = payments[index]!;
+        const changes = withProtectedCard(omitKeys(req.body, PAYMENT_PROTECTED_FIELDS));
 
-    async updatePayment(req: Request, res: Response) {
-        try {
-            const { id } = req.params;
+        if (changes.cardFingerprint) {
+            const duplicateCard = payments.find(p =>
+                sameId(p.userId, user.id) &&
+                !sameId(p.id, id) &&
+                storedFingerprint(p) === changes.cardFingerprint
+            );
 
-            const db = dbService.readDB();
-            const payments: any[] = db.payments || [];
-            const index = payments.findIndex(p => String(p.id) === String(id));
-
-            if (index === -1) {
-                return res.status(404).json({ message: 'Payment record not found' });
+            if (duplicateCard) {
+                throw new HttpError(400, `This card number is already exist for this accounts.`, {
+                    email: `Limit reached. You can only have one of a kind account per card number.`,
+                });
             }
-
-            const currentPayment = payments[index];
-
-            if (req.body.cardNumber) {
-                const duplicateCard = payments.find(p =>
-                    String(p.userId) === String(currentPayment.userId) &&
-                    p.cardNumber === req.body.cardNumber &&
-                    String(p.id) !== String(id)
-                );
-
-                if (duplicateCard) {
-                    return res.status(400).json({
-                        message: `This card number is already exist for this accounts.`,
-                        errors: { email: `Limit reached. You can only have one of a kind account per card number.` }
-                    });
-                }
-            }
-
-            payments[index] = {
-                ...currentPayment,
-                ...req.body
-            };
-
-            db.payments = payments;
-            dbService.writeDB(db);
-
-            res.status(200).json(payments[index]);
-        } catch (err) {
-            console.error(`Failed to update payment ${req.params.id}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
         }
-    },
 
-    async deletePayment(req: Request, res: Response) {
-        try {
-            const { id } = req.params;
-
-            const db = dbService.readDB();
-            const payments: any[] = db.payments || [];
-            const index = payments.findIndex(p => String(p.id) === String(id));
-
-            if (index === -1) return res.status(404).json({ message: "Способ оплаты не найден" });
-
-            const deletedPayment = payments[index];
-
-            db.payments = payments.filter(p => String(p.id) !== String(id));
-            dbService.writeDB(db);
-
-            res.json(deletedPayment);
-        } catch (err) {
-            console.error(`Failed to delete payment ${req.params.id}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
+        const updated = { ...currentPayment, ...changes };
+        // Records saved before this change may still hold the full number or a CVV: remove them on touch.
+        delete updated.cvv;
+        delete updated.cvc;
+        delete updated.cvv2;
+        delete updated.securityCode;
+        if (!changes.cardFingerprint && currentPayment.cardNumber && !String(currentPayment.cardNumber).includes('*')) {
+            updated.cardFingerprint = cardFingerprint(currentPayment.cardNumber);
+            updated.cardNumber = maskCard(currentPayment.cardNumber);
         }
-    }
+
+        payments[index] = updated;
+        db.payments = payments;
+        dbService.writeDB(db);
+
+        res.status(200).json(toPublicPayment(updated));
+    }),
+
+    deletePayment: handle('Failed to delete payment', async (req, res) => {
+        const user = requireUser(req);
+        const id = param(req, 'id');
+
+        const db = dbService.readDB();
+        const payments: Row[] = db.payments || [];
+        const deletedPayment = payments.find(p => sameId(p.id, id) && sameId(p.userId, user.id));
+
+        if (!deletedPayment) throw new HttpError(404, 'Способ оплаты не найден');
+
+        db.payments = payments.filter(p => p !== deletedPayment);
+        dbService.writeDB(db);
+
+        res.json(toPublicPayment(deletedPayment));
+    }),
 };
 
 export default paymentsController;

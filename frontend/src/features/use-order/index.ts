@@ -1,6 +1,0 @@
-export { default as AllOrderModal } from './ui/AllOrderModal.vue'
-export { default as CurrentOrderModal } from './ui/CurrentOrderModal.vue'
-export { default as OrderItem } from './ui/OrderItem.vue'
-export { default as OrderList } from './ui/OrderList.vue'
-export { default as ReplacementModal } from './ui/ReplacementModal.vue'
-export { default as UseOrder } from './ui/UseOrder.vue'

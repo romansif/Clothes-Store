@@ -1,0 +1,1 @@
+export { default as SavedPaymentList } from './ui/SavedPaymentList.vue'

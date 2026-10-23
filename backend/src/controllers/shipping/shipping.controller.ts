@@ -1,48 +1,45 @@
 import { v4 as uuidv4 } from 'uuid';
-import { type Request, type Response } from "express";
-import { type AuthenticatedRequest } from '../../interfaces.ts';
 import { dbService } from '../../db/db.config.ts';
+import {
+    type Row, HttpError, handle, param, sameId, requireUser,
+    omitKeys, isPlainObject, SERVER_OWNED_FIELDS,
+} from '#lib/security';
 
 export const shippingController = {
-    async getShipping (req: Request, res: Response) {
-        try {
-            const { paymentId } = req.params;
+    getShipping: handle('Failed to get user shipping', async (req, res) => {
+        const user = requireUser(req);
+        const paymentId = param(req, 'paymentId');
 
-            const db = dbService.readDB();
-            const shippingList: any[] = db.shipping || [];
+        const shippingList: Row[] = dbService.readDB().shipping || [];
 
-            const filteredShipping = paymentId
-                ? shippingList.filter(s => String(s.paymentId) === String(paymentId))
-                : shippingList;
+        // Always limited to the caller's own entries; paymentId only narrows the result further.
+        const own = shippingList.filter(s => sameId(s.userId, user.id));
 
-            return res.json(filteredShipping);
-        } catch (err) {
-            console.error(`Failed to get user shipping for payment ${req.params.paymentId}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
+        res.json(paymentId ? own.filter(s => sameId(s.paymentId, paymentId)) : own);
+    }),
+
+    addShipping: handle('Failed to add shipping entry', async (req, res) => {
+        const user = requireUser(req);
+
+        if (!isPlainObject(req.body)) {
+            throw new HttpError(400, 'Shipping data is required');
         }
-    },
 
-    async addShipping(req: AuthenticatedRequest, res: Response) {
-        try {
-            const db = dbService.readDB();
-            const shippingList: any[] = db.shipping || [];
+        const db = dbService.readDB();
+        const shippingList: Row[] = db.shipping || [];
 
-            const newShipping = {
-                id: uuidv4(),
-                userId: req.user?.id || req.user?.userId,
-                ...req.body
-            };
+        const newShipping = {
+            ...omitKeys(req.body, SERVER_OWNED_FIELDS),
+            id: uuidv4(),
+            userId: user.id,
+        };
 
-            shippingList.push(newShipping);
-            db.shipping = shippingList;
-            dbService.writeDB(db);
+        shippingList.push(newShipping);
+        db.shipping = shippingList;
+        dbService.writeDB(db);
 
-            res.status(201).json(newShipping);
-        } catch (err) {
-            console.error('Failed to add shipping entry:', err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
-        }
-    }
+        res.status(201).json(newShipping);
+    }),
 };
+
+export default shippingController;

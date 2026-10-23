@@ -21,18 +21,11 @@
 </template>
 
 <script setup lang="ts">
-import { useAuth } from "@/features/use-auth/api/use-auth";
-import { authStore } from "@/features/use-auth/model/auth.store";
+import { signIn } from "@/features/login-auth/api/login";
+import { showSignSection } from "@/features/login-auth/model/login-auth.refs";
+import { GoogleAuth } from "@/features/login-by-google";
 import { UiButton } from "@/shared/ui/button";
-import { GoogleAuth } from "@/features/use-auth";
-import { LoginForm } from "@/features/use-auth";
+import { LoginForm } from "@/features/login-auth";
 
 import maki_arrow from "@/assets/icons/arrows/right-short-arrow.svg";
-
-const { signIn } = useAuth();
-const { showSignSection } = authStore();
 </script>
-
-<style scoped>
-
-</style>

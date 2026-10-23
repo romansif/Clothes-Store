@@ -1,6 +1,6 @@
 import type { ZodError } from "zod";
 import { handler } from "@/shared/api/http";
-import { userStore } from "@/features/use-profile/model/user.store";
+import { userStore } from "@/shared/model/user.store";
 import { clearUsersForms } from "@/features/use-profile-form/lib/clear-user-update";
 import { useBaseModals } from "@/shared/lib/use-notify";
 import { useGetUsers } from "@/features/use-profile/api/get-users";

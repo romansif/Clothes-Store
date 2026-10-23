@@ -39,14 +39,15 @@
 </template>
 
 <script setup lang="ts">
-import { useCart } from "@/features/use-product/lib/use-cart";
+import { addColor, addSize } from "@/features/use-product/lib/use-cart";
 import { previewHelper } from "@/entities/product-card/lib/preview-helper";
-import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite";
+import { useToggleFavorite } from "@/shared/api/toggle-to-favorite";
 import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
 import { productHelper } from "@/shared/lib/product-helper";
 import { toggleReadMore, fullDescription } from "@/features/use-product/lib/toggle-more-info";
-import { ProductSpecific, ProductToCart, ProductPhotos} from "@/features/use-product";
-import { addToCartForm, addToCartFormErrorMessages } from "@/features/use-product/model/add-to-cart-form";
+import { ProductPhotos, ProductSpecific } from "@/entities/product-info";
+import { ProductToCart } from "@/features/use-product";
+import { addToCartForm, addToCartFormErrorMessages } from "@/entities/product-info/model/add-to-cart-form";
 import type { Product } from "@/shared";
 import type { User } from "@/entities/profile";
 
@@ -59,7 +60,6 @@ import like from '@/assets/icons/nav/like.png';
 import liked from '@/assets/icons/nav/liked.png';
 
 const { isFavorite } = previewHelper();
-const { addColor, addSize } = useCart();
 const { variantsInfo } = productHelper();
 const { toggleToFavorite } = useToggleFavorite();
 

@@ -1,135 +1,98 @@
 import { v4 as uuidv4 } from 'uuid';
-import { type Request, type Response } from 'express';
-import { type AuthenticatedRequest } from '../../interfaces.ts';
 import { dbService } from '../../db/db.config.ts';
+import {
+    type Row, HttpError, handle, param, sameId, requireUser, requireSelf,
+    omitKeys, isPlainObject, byNewest, SERVER_OWNED_FIELDS,
+} from '#lib/security';
+
+const FINISHED_STATUSES = ['Delivered', 'Cancelled'];
 
 export const ordersController = {
-    async getOrders(req: Request, res: Response) {
-        try {
-            const { userId } = req.params;
+    getOrders: handle('Failed to get the current orders', async (req, res) => {
+        const user = requireSelf(req, param(req, 'userId'));
 
-            const db = dbService.readDB();
-            const orders: any[] = db.orders || [];
+        const orders: Row[] = dbService.readDB().orders || [];
 
-            const userOrders = orders.filter(o => String(o.userId) === String(userId));
-            userOrders.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+        res.json(orders.filter(o => sameId(o.userId, user.id)).sort(byNewest));
+    }),
 
-            res.json(userOrders);
-        } catch (err) {
-            console.error('Failed to get the current orders:', err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
+    getFilteredOrders: handle('Failed to get the filtered orders', async (req, res) => {
+        const user = requireSelf(req, param(req, 'userId'));
+
+        const orders: Row[] = dbService.readDB().orders || [];
+
+        res.json(
+            orders
+                .filter(o => sameId(o.userId, user.id) && !FINISHED_STATUSES.includes(o.status))
+                .sort(byNewest)
+        );
+    }),
+
+    addOrder: handle('Failed to create the order', async (req, res) => {
+        const user = requireUser(req);
+
+        if (!isPlainObject(req.body)) {
+            throw new HttpError(400, 'Order data is required');
         }
-    },
 
-    async getFilteredOrders(req: Request, res: Response) {
-        try {
-            const { userId } = req.params;
+        const date = new Date();
+        const time = date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
 
-            const db = dbService.readDB();
-            const orders: any[] = db.orders || [];
+        const db = dbService.readDB();
+        const orders: Row[] = db.orders || [];
 
-            const filteredOrders = orders.filter(o =>
-                String(o.userId) === String(userId) &&
-                o.status !== 'Delivered' &&
-                o.status !== 'Cancelled'
-            );
+        const newOrder = {
+            ...omitKeys(req.body, SERVER_OWNED_FIELDS),
+            id: uuidv4(),
+            userId: user.id,
+            created_at: date,
+            date_created_at: date.toLocaleDateString(),
+            time_created_at: time,
+        };
 
-            filteredOrders.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+        orders.push(newOrder);
+        db.orders = orders;
+        dbService.writeDB(db);
 
-            res.json(filteredOrders);
-        } catch (err) {
-            console.error('Failed to get the filterProduct orders:', err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
-        }
-    },
+        res.status(201).json({ message: 'Product added to orderItems', data: newOrder });
+    }),
 
-    async addOrder(req: AuthenticatedRequest, res: Response) {
-        try {
-            const date = new Date();
-            const dateCreated = date.toLocaleDateString();
-            const time = date.toLocaleTimeString("ru-RU", {
-                hour: "2-digit",
-                minute: "2-digit",
-            });
+    updateOrder: handle('Failed to update the order item', async (req, res) => {
+        const user = requireUser(req);
+        const id = param(req, 'id');
 
-            const db = dbService.readDB();
-            const orders: any[] = db.orders || [];
+        const db = dbService.readDB();
+        const orders: Row[] = db.orders || [];
+        const index = orders.findIndex(o => sameId(o.id, id) && sameId(o.userId, user.id));
 
-            const newOrder = {
-                id: uuidv4(),
-                userId: req.user?.id || req.user?.userId,
-                ...req.body,
-                created_at: date,
-                date_created_at: dateCreated,
-                time_created_at: time,
-            };
+        if (index === -1) throw new HttpError(404, 'Order not found');
 
-            orders.push(newOrder);
-            db.orders = orders;
-            dbService.writeDB(db);
+        orders[index] = {
+            ...orders[index],
+            ...omitKeys(req.body, SERVER_OWNED_FIELDS),
+        };
 
-            res.status(201).json({ message: 'Product added to orderItems', data: newOrder });
-        } catch (err) {
-            console.error('Failed to create the order:', err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
-        }
-    },
+        db.orders = orders;
+        dbService.writeDB(db);
 
-    async updateOrder(req: Request, res: Response) {
-        try {
-            const { id } = req.params;
+        res.json(orders[index]);
+    }),
 
-            const db = dbService.readDB();
-            const orders: any[] = db.orders || [];
-            const index = orders.findIndex(o => String(o.id) === String(id));
+    deleteOrderItems: handle('Failed to delete the order', async (req, res) => {
+        const user = requireUser(req);
+        const id = param(req, 'id');
 
-            if (index === -1) {
-                return res.status(404).json({ message: 'Order not found' });
-            }
+        const db = dbService.readDB();
+        const orders: Row[] = db.orders || [];
+        const deletedOrder = orders.find(o => sameId(o.id, id) && sameId(o.userId, user.id));
 
-            orders[index] = {
-                ...orders[index],
-                ...req.body
-            };
+        if (!deletedOrder) throw new HttpError(404, 'Order Product not found');
 
-            db.orders = orders;
-            dbService.writeDB(db);
+        db.orders = orders.filter(o => o !== deletedOrder);
+        dbService.writeDB(db);
 
-            res.json(orders[index]);
-        } catch (err) {
-            console.error(`Failed to update the order item ${req.params.id}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
-        }
-    },
-
-    async deleteOrderItems(req: Request, res: Response) {
-        try {
-            const { id } = req.params;
-
-            const db = dbService.readDB();
-            const orders: any[] = db.orders || [];
-            const index = orders.findIndex(o => String(o.id) === String(id));
-
-            if (index === -1) {
-                return res.status(404).json({ message: 'Order Product not found' });
-            }
-
-            const deletedOrder = orders[index];
-
-            db.orders = orders.filter(o => String(o.id) !== String(id));
-            dbService.writeDB(db);
-
-            res.json(deletedOrder);
-        } catch (err) {
-            console.error(`Failed to delete the order ${req.params.id}:`, err);
-            const message = err instanceof Error ? err.message : 'Unknown Error';
-            res.status(500).json({ error: message });
-        }
-    }
+        res.json(deletedOrder);
+    }),
 };
 
 export default ordersController;

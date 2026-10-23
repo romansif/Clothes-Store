@@ -2,6 +2,7 @@
   <ul v-if="filteredReviews" @scroll="loadFiveReviews"
       class="flex flex-col overflow-y-auto no-scrollbar scroll-smooth min-h-80 max-h-200">
     <ReviewItem v-for="review in visibleReviews"
+                :key="review.id"
                 :review="review"
                 :user-avatar="userAvatar"
                 @toggle-review="toggleReviewPhotos" />
@@ -12,16 +13,15 @@
 import { computed, watch } from "vue";
 import { useRoute } from "vue-router";
 import { keepPreviousData, useQuery} from "@tanstack/vue-query";
-import { useProfile } from "@/features/use-profile/lib/use-profile";
+import { userAvatar } from "@/features/use-profile/lib/use-profile";
 import { reviewsStore } from "@/features/use-product-review/model/reviews.store";
-import { useGetReviews } from "@/features/use-product-review/api/get-reviews";
+import { useGetReviews } from "@/shared/api/get-reviews";
 import { reviewsHelper } from "@/features/use-product-review/lib/reviews-helper";
 import { toggleReviewPhotos } from "@/features/use-product-review/lib/review-photo-modal";
 import { ReviewItem } from "@/entities/product-review";
 
 const route = useRoute();
 
-const { userAvatar } = useProfile();
 const { loadFiveReviews } = reviewsHelper();
 const { getFilteredReviews } = useGetReviews();
 const { visibleReviewsCount, reviewFilter} = reviewsStore();

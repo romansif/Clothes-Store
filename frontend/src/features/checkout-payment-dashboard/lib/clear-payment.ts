@@ -1,0 +1,14 @@
+import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment-form/model/payment-form";
+
+export const clearPaymentForm = () => {
+    paymentForm.value.cardName = '';
+    paymentForm.value.cardNumber = '';
+    paymentForm.value.expiryDate = '';
+    paymentForm.value.cardCvv = '';
+    paymentForm.value.paymentMethod = '';
+
+    paymentFormErrorMessage.value.cardNumber = '';
+    paymentFormErrorMessage.value.expiryDate = '';
+    paymentFormErrorMessage.value.cardCvv = '';
+    paymentFormErrorMessage.value.paymentMethod = '';
+};

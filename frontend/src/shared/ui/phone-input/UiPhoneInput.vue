@@ -12,7 +12,7 @@
       <IMask v-model:value="model"
              :mask="currentMask.mask"
              :key="selectedCountryCode"
-             :class="props.inputClass"
+             :class="[props.inputClass, props.errorMessage ? phoneInputErrorClass : '']"
              :placeholder="currentCountry?.placeholder"
              v-bind="$attrs" />
     </div>
@@ -26,6 +26,7 @@
 import { watch } from "vue";
 import { IMaskComponent as IMask } from "vue-imask";
 import { usePhoneInput } from "@/shared/ui/phone-input/use-phone-input";
+import { phoneInputErrorClass } from "@/shared/ui/phone-input/phone-input.variants";
 import { countries, selectedCountryCode } from "@/shared/ui/phone-input/phone-input.values";
 import type { PhoneInputProps } from "@/shared/ui/phone-input";
 

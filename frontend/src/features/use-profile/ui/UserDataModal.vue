@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 import { useProfileModals } from "@/features/use-profile/lib/profile-modal";
-import { userStore } from "@/features/use-profile/model/user.store";
+import { userStore } from "@/shared/model/user.store";
 import { UiButton } from "@/shared/ui/button";
 import { ConfidentialityData } from "@/entities/profile";
 import { UpdateProfileForm } from "@/features/use-profile-form";

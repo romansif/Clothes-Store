@@ -1,4 +1,4 @@
-import type { UserPayment } from "@/entities/checkout-payment";
+import type { UserPayment } from "@/entities/checkout-payment-form";
 
 export const havePayments = (payments: UserPayment[]) => {
     return payments.some(payment => payment.cardNumber !== undefined);

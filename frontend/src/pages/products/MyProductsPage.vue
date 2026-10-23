@@ -5,5 +5,5 @@
 </template>
 
 <script setup lang="ts">
-import { MyProductsList } from "@/features/use-my-product";
+import { MyProductsList } from "@/features/my-products";
 </script>

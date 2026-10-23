@@ -24,7 +24,7 @@ router.post('/products', authMiddleware, roleMiddleware('Seller'), productUpload
 
 router.patch('/products/:id/:index/images', authMiddleware, roleMiddleware('Seller'),
     productUpload.array('images', 5), productsController.updateProductImages);
-router.patch('/products/:id', authMiddleware, productsController.updateProductItem);
+router.patch('/products/:id', authMiddleware, roleMiddleware('Seller'), productsController.updateProductItem);
 
 router.delete('/products/:id', authMiddleware, roleMiddleware('Seller'),
     productsController.deleteProduct);

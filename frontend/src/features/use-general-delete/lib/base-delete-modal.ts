@@ -1,18 +1,15 @@
 import { ref } from "vue";
-import { useAuth } from "@/features/use-auth/api/use-auth";
-import { useDeletePayment } from "@/features/use-user-payment/api/delete-payment";
-import { useDeleteProduct } from "@/features/use-my-product/api/delete-product";
-import { useDeleteCart } from "@/features/use-cart/api/delete-cart";
-import { useDeleteAddress } from "@/features/use-user-address/api/delete-address";
-import { useDeleteOrder } from "@/features/use-order/api/delete-order";
-import { useToggleFavorite } from "@/features/use-favorite/api/toggle-to-favorite";
-import { useGetMyProduct } from "@/features/use-my-product/api/get-my-product";
 
-const { getMyProducts } = useGetMyProduct()
-const { logout, deleteAccount } = useAuth();
+import { useDeletePayment } from "@/features/use-user-payment/api/delete-payment";
+import { deleteProduct } from "@/features/my-products/api/delete-product";
+import { deleteProductCart } from "@/features/cart-item-action/api/delete-cart";
+import { useDeleteAddress } from "@/features/use-user-address/api/delete-address";
+import { useDeleteOrder } from "@/features/order-action/api/delete-order";
+import { useToggleFavorite } from "@/shared/api/toggle-to-favorite";
+import { getMyProducts } from "@/features/my-products/api/get-my-product";
+import { deleteAccount, logout } from "@/features/use-general-delete/api/delete-logout-user.ts";
+
 const { deletePayment } = useDeletePayment();
-const { deleteProduct } = useDeleteProduct();
-const { deleteProductCart } = useDeleteCart();
 const { deleteAddress } = useDeleteAddress();
 const { deleteOrderProducts } = useDeleteOrder();
 const { deleteFavoriteProduct } = useToggleFavorite();
