@@ -9,13 +9,11 @@ import {
 const MAX_PRODUCT_IMAGES = 10;
 const MAX_SEARCH_LENGTH = 100;
 
-// The only fields a seller may write. id, userId, images and created_at are set by the server.
 const PRODUCT_FIELDS = [
     'title', 'collection', 'category', 'material', 'gender', 'sku',
     'description', 'sizes', 'colors', 'status',
 ] as const;
 
-/* ------------------------------ filtering ------------------------------ */
 
 type StatusFilter = (products: Row[], filter: string) => Row[];
 
@@ -55,8 +53,6 @@ const daysAgo = (days: number): Date => {
     return date;
 };
 
-/* ----------------------------- normalization ---------------------------- */
-
 const toCount = (value: unknown): number => {
     const n = Math.trunc(Number(value));
     return Number.isFinite(n) && n > 0 ? n : 0;
@@ -80,7 +76,6 @@ const toPrice = (value: unknown): number => {
     return price;
 };
 
-/** Only sellers may create products; the role is read from the database, not from the token. */
 const requireSeller = (req: Request) => {
     const auth = requireUser(req);
     const account = (dbService.readDB().users || []).find((u: Row) => sameId(u.id, auth.id));
@@ -91,7 +86,6 @@ const requireSeller = (req: Request) => {
     return account;
 };
 
-/** The product must exist and belong to the caller; anything else is a 404. */
 const findOwnProduct = (products: Row[], id: string, userId: string): number =>
     products.findIndex(p => sameId(p.id, id) && sameId(p.userId, userId));
 
@@ -201,7 +195,7 @@ export const productsController = {
         const newProduct = {
             ...pickKeys(body, PRODUCT_FIELDS),
             id: uuidv4(),
-            userId: seller.id, // always the logged-in seller, never a value from the request
+            userId: seller.id,
             images: files.map(file => `uploads/products/${file.filename}`),
             title,
             price: toPrice(body.price),
@@ -216,7 +210,6 @@ export const productsController = {
         res.status(201).json(newProduct);
     }),
 
-    /** Multipart requests carry the product as a JSON string in the `product` field. */
     productParse: async (req: Request, res: Response, next: NextFunction) => {
         const parsed = parseJsonField(req.body?.product);
 
@@ -280,7 +273,6 @@ export const productsController = {
 
         if (index === -1) throw new HttpError(404, 'Product not found');
 
-        // Only known product fields, and empty values are ignored (same as before).
         const changes = Object.fromEntries(
             Object.entries(pickKeys(req.body, [...PRODUCT_FIELDS, 'price', 'variants']))
                 .filter(([, value]) => value !== '' && value !== null && value !== undefined)

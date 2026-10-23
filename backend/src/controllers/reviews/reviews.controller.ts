@@ -92,7 +92,6 @@ export const reviewsController = {
         res.status(201).json({ message: 'Review added', data: newReview });
     }),
 
-    /** Multipart requests carry the review as a JSON string in the `review` field. */
     reviewParse: (req: Request, res: Response, next: NextFunction) => {
         const parsed = parseJsonField(req.body?.review);
 

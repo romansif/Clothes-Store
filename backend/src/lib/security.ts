@@ -7,10 +7,6 @@ import { ACCESS_SECRET, CARD_FINGERPRINT_KEY } from '../config/auth.config.ts';
 
 export type Row = Record<string, any>;
 
-/* ------------------------------------------------------------------ */
-/* Errors                                                              */
-/* ------------------------------------------------------------------ */
-
 export class HttpError extends Error {
     status: number;
     errors?: Record<string, string>;
@@ -24,11 +20,6 @@ export class HttpError extends Error {
 
 type Handler = (req: Request, res: Response) => unknown | Promise<unknown>;
 
-/**
- * Wraps a controller method. Handlers throw HttpError for 4xx; anything else becomes
- * a generic 500 so internal error messages never reach the client.
- * Files multer already saved are removed when the request fails.
- */
 export const handle = (label: string, fn: Handler) =>
     async (req: Request, res: Response): Promise<void> => {
         try {
@@ -49,10 +40,6 @@ export const handle = (label: string, fn: Handler) =>
         }
     };
 
-/* ------------------------------------------------------------------ */
-/* Authentication                                                      */
-/* ------------------------------------------------------------------ */
-
 export interface AuthUser {
     id: string;
     role?: string;
@@ -68,11 +55,6 @@ const extractToken = (req: Request): string | null => {
     return typeof cookie === 'string' && cookie ? cookie : null;
 };
 
-/**
- * Returns the authenticated user or null. Uses req.user when an upstream middleware
- * already set it, otherwise verifies the access token itself, so controllers stay
- * safe even on routes that forgot the auth middleware.
- */
 export const getAuthUser = (req: Request): AuthUser | null => {
     const anyReq = req as Request & { user?: Row };
 
@@ -105,14 +87,12 @@ export const requireUser = (req: Request): AuthUser => {
 export const sameId = (a: unknown, b: unknown): boolean =>
     a !== undefined && a !== null && b !== undefined && b !== null && String(a) === String(b);
 
-/** The caller must be authenticated AND be the user the resource belongs to. */
 export const requireSelf = (req: Request, targetUserId: string): AuthUser => {
     const user = requireUser(req);
     if (!sameId(user.id, targetUserId)) throw new HttpError(403, 'Forbidden');
     return user;
 };
 
-/** Drop-in Express middleware for routes (and for replacing a hand-rolled auth middleware). */
 export const requireAuth = (req: Request, res: Response, next: NextFunction) => {
     if (!getAuthUser(req)) {
         res.status(401).json({ message: 'Unauthorized' });
@@ -120,10 +100,6 @@ export const requireAuth = (req: Request, res: Response, next: NextFunction) => 
     }
     next();
 };
-
-/* ------------------------------------------------------------------ */
-/* Rate limiting (in memory, per process)                              */
-/* ------------------------------------------------------------------ */
 
 const buckets = new Map<string, { count: number; resetAt: number }>();
 
@@ -164,22 +140,16 @@ export const clearHits = (key: string): void => {
     buckets.delete(key);
 };
 
-/** Counts every call. */
 export const rateLimit = (key: string, max: number, windowMs: number): void => {
     assertNotLimited(key, max);
     recordHit(key, windowMs);
 };
-
-/* ------------------------------------------------------------------ */
-/* Input handling                                                      */
-/* ------------------------------------------------------------------ */
 
 const FORBIDDEN_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
 
 export const isPlainObject = (value: unknown): value is Record<string, unknown> =>
     typeof value === 'object' && value !== null && !Array.isArray(value);
 
-/** Copies a body without server-owned keys and without prototype-pollution keys. */
 export const omitKeys = (body: unknown, denied: readonly string[]): Row => {
     if (!isPlainObject(body)) return {};
     const out: Row = {};
@@ -199,7 +169,6 @@ export const pickKeys = (source: unknown, allowed: readonly string[]): Row => {
     return out;
 };
 
-/** Fields a client must never set on a record: they are owned by the server. */
 export const SERVER_OWNED_FIELDS = [
     'id', 'userId', 'created_at', 'createdAt', 'date_created_at', 'time_created_at',
 ] as const;
@@ -214,7 +183,6 @@ export const param = (req: Request, name: string): string => {
     return typeof single === 'string' ? single : '';
 };
 
-/** Trimmed string, or null when the value is not a string or is longer than max. */
 export const cleanText = (value: unknown, max: number): string | null => {
     if (typeof value !== 'string') return null;
     const trimmed = value.trim();
@@ -249,23 +217,13 @@ const timeOf = (value: unknown): number => {
 
 export const byNewest = (a: Row, b: Row): number => timeOf(b.created_at) - timeOf(a.created_at);
 
-/* ------------------------------------------------------------------ */
-/* Users                                                               */
-/* ------------------------------------------------------------------ */
-
-/** Never send password hashes or session tokens to a client. */
 export const stripUserSecrets = (user: Row): Row => {
     const { password: _password, refreshTokens: _refreshTokens, ...safe } = user;
     return safe;
 };
 
-/** What anyone may see about another user. */
 export const toPublicProfile = (user: Row): Row =>
     pickKeys(user, ['id', 'role', 'name', 'surName', 'avatarUrl', 'created_at']);
-
-/* ------------------------------------------------------------------ */
-/* Payment cards                                                       */
-/* ------------------------------------------------------------------ */
 
 const SENSITIVE_CARD_FIELDS = ['cvv', 'cvc', 'cvv2', 'securityCode', 'cardFingerprint'] as const;
 export const PAYMENT_PROTECTED_FIELDS = [...SERVER_OWNED_FIELDS, ...SENSITIVE_CARD_FIELDS] as const;
@@ -290,19 +248,13 @@ export const cardFingerprint = (value: unknown): string | null => {
     return crypto.createHmac('sha256', CARD_FINGERPRINT_KEY).update(digits).digest('hex');
 };
 
-/** Fingerprint of a stored record, also for old records that still hold the full number. */
 export const storedFingerprint = (payment: Row): string | null =>
     payment.cardFingerprint ?? cardFingerprint(payment.cardNumber);
 
-/** Shape returned to clients: masked number, no CVV, no fingerprint. Safe for legacy rows too. */
 export const toPublicPayment = (payment: Row): Row => {
     const { cvv: _a, cvc: _b, cvv2: _c, securityCode: _d, cardFingerprint: _e, ...rest } = payment;
     return 'cardNumber' in rest ? { ...rest, cardNumber: maskCard(rest.cardNumber) } : rest;
 };
-
-/* ------------------------------------------------------------------ */
-/* File uploads                                                        */
-/* ------------------------------------------------------------------ */
 
 type UploadedFile = Express.Multer.File;
 
@@ -346,7 +298,6 @@ const readHead = (file: UploadedFile): Buffer | null => {
     }
 };
 
-/** Checks the real file signature; the client-declared mimetype and extension are not trusted. */
 export const isImageFile = (file: UploadedFile): boolean => {
     const head = readHead(file);
     return head !== null && IMAGE_SIGNATURES.some((matches) => matches(head));
@@ -358,7 +309,7 @@ export const removeUploadedFiles = (files: UploadedFile[]): void => {
         try {
             fs.unlinkSync(file.path);
         } catch {
-            /* already gone */
+
         }
     }
 };
@@ -371,7 +322,6 @@ export const assertImages = (files: UploadedFile[]): void => {
 
 const uploadsRoot = () => path.resolve(process.cwd(), 'uploads');
 
-/** Deletes a stored upload, but only if the path really sits inside ./uploads. */
 export const deleteUploadedFile = (relativePath: unknown): void => {
     if (typeof relativePath !== 'string' || !relativePath) return;
 
@@ -381,6 +331,6 @@ export const deleteUploadedFile = (relativePath: unknown): void => {
     try {
         fs.unlinkSync(absolute);
     } catch {
-        /* missing file is fine */
+
     }
 };

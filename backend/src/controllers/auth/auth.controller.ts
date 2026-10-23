@@ -23,15 +23,13 @@ const isRole = (value: unknown): value is Role =>
     typeof value === 'string' && (ROLES as readonly string[]).includes(value);
 
 const MIN_PASSWORD_LENGTH = 8;
-const MAX_PASSWORD_LENGTH = 72; // bcrypt ignores everything past 72 bytes
+const MAX_PASSWORD_LENGTH = 72;
 const MAX_SESSIONS_PER_USER = 5;
 const LOGIN_MAX_FAILURES = 10;
 const LOGIN_WINDOW_MS = 15 * 60 * 1000;
 
-// Both fields are flagged in every failure, so the response does not reveal which emails are registered.
 const INVALID_CREDENTIALS = { email: 'Invalid email or password', password: 'Invalid email or password' };
 
-// Compared against when the account does not exist, so response time does not reveal it.
 const DUMMY_HASH = bcrypt.hashSync('timing-equalizer', 10);
 
 const hashToken = (token: string) => crypto.createHash('sha256').update(token).digest('hex');
@@ -50,7 +48,6 @@ const signRefreshToken = (user: Row) =>
         { algorithm: 'HS256', expiresIn: Math.floor(REFRESH_TTL_MS / 1000) },
     );
 
-/** Creates a token pair and records only the hash of the refresh token on the user. */
 const rotateSession = (user: Row, replacedRefreshToken?: string) => {
     const accessToken = signAccessToken(user);
     const refreshToken = signRefreshToken(user);
@@ -171,7 +168,6 @@ const authController = {
         const users: Row[] = db.users || [];
         const user = users.find(u => sameEmail(u.email, email) && u.role === role);
 
-        // Same work and same answer whether the account exists, has no password, or the password is wrong.
         const hash = user && typeof user.password === 'string' && user.password ? user.password : DUMMY_HASH;
         const passwordMatches = await bcrypt.compare(password, hash);
 
@@ -279,7 +275,6 @@ const authController = {
     logout: handle('Failed to logout', async (req, res) => {
         const refreshToken = readRefreshCookie(req);
 
-        // Revoke the session server-side, not just in the browser.
         if (refreshToken) {
             try {
                 const decoded = jwt.verify(refreshToken, REFRESH_SECRET, { algorithms: ['HS256'] }) as JwtCustomPayload;
@@ -292,7 +287,7 @@ const authController = {
                     dbService.writeDB(db);
                 }
             } catch {
-                /* expired or invalid token: nothing to revoke */
+
             }
         }
 
@@ -322,8 +317,6 @@ const authController = {
         const known = !!user && Array.isArray(user.refreshTokens) && user.refreshTokens.includes(hash);
 
         if (!user || !known) {
-            // A correctly signed token that is not on record was already used or revoked:
-            // treat it as theft and end every session of that account.
             if (user) {
                 user.refreshTokens = [];
                 dbService.writeDB(db);

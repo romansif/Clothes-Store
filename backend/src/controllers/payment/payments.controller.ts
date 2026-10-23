@@ -6,14 +6,9 @@ import {
     maskCard, toPublicPayment, PAYMENT_PROTECTED_FIELDS,
 } from '#lib/security';
 
-/**
- * Card numbers are never stored in full and the CVV is never stored at all.
- * What is kept: the masked number (last 4 digits) and a keyed fingerprint used to spot duplicates.
- */
 const withProtectedCard = (data: Row): Row => {
     if (!('cardNumber' in data)) return data;
 
-    // The front end may send back the masked value it received earlier: that means "unchanged".
     if (typeof data.cardNumber === 'string' && data.cardNumber.includes('*')) {
         const { cardNumber: _unchanged, ...rest } = data;
         return rest;
@@ -102,7 +97,6 @@ export const paymentsController = {
         }
 
         const updated = { ...currentPayment, ...changes };
-        // Records saved before this change may still hold the full number or a CVV: remove them on touch.
         delete updated.cvv;
         delete updated.cvc;
         delete updated.cvv2;

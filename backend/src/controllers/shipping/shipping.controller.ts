@@ -12,7 +12,6 @@ export const shippingController = {
 
         const shippingList: Row[] = dbService.readDB().shipping || [];
 
-        // Always limited to the caller's own entries; paymentId only narrows the result further.
         const own = shippingList.filter(s => sameId(s.userId, user.id));
 
         res.json(paymentId ? own.filter(s => sameId(s.paymentId, paymentId)) : own);

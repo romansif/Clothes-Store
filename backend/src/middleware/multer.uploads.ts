@@ -1,25 +1,27 @@
-import path from 'path';
-import fs from 'fs';
-import { fileURLToPath } from 'url';
+import path from 'node:path';
+import fs from 'node:fs';
+import crypto from 'node:crypto';
 import multer, { type FileFilterCallback } from 'multer';
 import type { Request } from 'express';
+import { UPLOADS_ROOT } from '#middleware/upload.config';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+
+const EXTENSION_BY_MIME: Record<string, string> = {
+    'image/jpeg': '.jpg',
+    'image/png': '.png',
+    'image/gif': '.gif',
+    'image/webp': '.webp',
+};
+
+const ALLOWED_EXTENSIONS = /\.(jpeg|jpg|png|gif|webp)$/i;
 
 const fileFilter = (
     _req: Request,
     file: Express.Multer.File,
     cb: FileFilterCallback
 ) => {
-    const allowedExtensions = /\.(jpeg|jpg|png|gif|webp)$/i;
-    const allowedMimeTypes = /^image\/(jpeg|png|gif|webp)$/;
-
-    const isExtensionValid = allowedExtensions.test(
-        path.extname(file.originalname)
-    );
-
-    const isMimeValid = allowedMimeTypes.test(file.mimetype);
+    const isExtensionValid = ALLOWED_EXTENSIONS.test(path.extname(file.originalname));
+    const isMimeValid = Object.hasOwn(EXTENSION_BY_MIME, file.mimetype);
 
     if (!isExtensionValid || !isMimeValid) {
         return cb(new Error('Only images are allowed!'));
@@ -28,16 +30,8 @@ const fileFilter = (
     cb(null, true);
 };
 
-const createUpload = (
-    folder: string,
-    prefix: string
-) => {
-    const uploadDir = path.join(
-        __dirname,
-        `../uploads/${folder}`
-    );
-
-    // Если папки нет — создаст автоматически
+const createUpload = (folder: string, prefix: string) => {
+    const uploadDir = path.join(UPLOADS_ROOT, folder);
     fs.mkdirSync(uploadDir, { recursive: true });
 
     const storage = multer.diskStorage({
@@ -46,17 +40,10 @@ const createUpload = (
         },
 
         filename: (_req, file, cb) => {
-            const uniqueSuffix =
-                `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
+            const unique = crypto.randomBytes(16).toString('hex');
+            const extension = EXTENSION_BY_MIME[file.mimetype] ?? '';
 
-            const extension = path
-                .extname(file.originalname)
-                .toLowerCase();
-
-            cb(
-                null,
-                `${prefix}-${uniqueSuffix}${extension}`
-            );
+            cb(null, `${prefix}-${Date.now()}-${unique}${extension}`);
         },
     });
 
@@ -65,21 +52,16 @@ const createUpload = (
         fileFilter,
         limits: {
             fileSize: 5 * 1024 * 1024,
+            files: 5,
+            fields: 50,
+            fieldSize: 1024 * 1024,
+            parts: 60,
         },
     });
 };
 
-export const productUpload = createUpload(
-    'products',
-    'product'
-);
+export const productUpload = createUpload('products', 'product');
 
-export const reviewUpload = createUpload(
-    'reviews',
-    'review'
-);
+export const reviewUpload = createUpload('reviews', 'review');
 
-export const avatarUpload = createUpload(
-    'avatars',
-    'avatar'
-);
+export const avatarUpload = createUpload('avatars', 'avatar');

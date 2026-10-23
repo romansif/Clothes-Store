@@ -20,11 +20,9 @@ const TEXT_LIMITS: Record<string, number> = {
     privatePhone: 32,
 };
 
-/** Full record for the owner, public profile for everyone else. */
 const viewOf = (user: Row, viewerId: string | undefined): Row =>
     sameId(user.id, viewerId) ? stripUserSecrets(user) : toPublicProfile(user);
 
-/** Checks the short text fields that profile forms send. */
 const validateTextFields = (changes: Row): void => {
     for (const [field, max] of Object.entries(TEXT_LIMITS)) {
         if (!(field in changes)) continue;
@@ -81,7 +79,6 @@ export const usersController = {
 
         if (index === -1) throw new HttpError(404, 'User not found');
 
-        // role, password, tokens, id, googleId and avatar are not editable through this endpoint.
         const changes = omitKeys(req.body, USER_PROTECTED_FIELDS);
         validateTextFields(changes);
 
@@ -138,7 +135,6 @@ export const usersController = {
 
         user.password = await bcrypt.hash(newPassword, 10);
 
-        // End the account's other sessions, keep the one making this request.
         const currentRefresh = req.cookies?.refreshToken;
         const currentHash = typeof currentRefresh === 'string'
             ? crypto.createHash('sha256').update(currentRefresh).digest('hex')
@@ -170,7 +166,6 @@ export const usersController = {
 
         user.avatarUrl = newAvatar;
 
-        // Only plain profile text may ride along with the upload; nothing privileged.
         const extras = pickKeys(req.body, ['name', 'surName', 'phone', 'privatePhone']);
         validateTextFields(extras);
         Object.assign(user, extras);

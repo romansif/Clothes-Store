@@ -1,172 +1,244 @@
 import { type Request, type Response, type NextFunction } from 'express';
 import { body, validationResult } from 'express-validator';
 
+const MAX = {
+    name: 100,
+    email: 254,
+    phone: 32,
+    short: 100,
+    title: 200,
+    text: 5000,
+    password: 72,
+};
+
+const PHONE_CHARS = /^[+\d\s\-().]+$/;
+
+const STRONG_PASSWORD = /^(?=.*[A-Za-zА-Яа-я])(?=.*\d)(?=.*[^A-Za-zА-Яа-я\d\s]).{8,72}$/;
+
+const requiredText = (field: string, message: string, max: number = MAX.short) =>
+    body(field).isString().withMessage(message).bail()
+        .trim().notEmpty().withMessage(message).bail()
+        .isLength({ max }).withMessage(`${message.replace(/ is required.*/, '')} is too long`);
+
+const phoneRule = (field: string) =>
+    body(field).isString().withMessage('Phone is required').bail()
+        .trim().notEmpty().withMessage('Phone is required').bail()
+        .isLength({ max: MAX.phone }).withMessage('Phone is too long')
+        .matches(PHONE_CHARS).withMessage('Invalid phone number');
+
 export const validation = {
     registerValidation: [
-        body('name').trim().notEmpty().withMessage('Name is required'),
+        requiredText('name', 'Name is required', MAX.name),
 
-        body('surName').trim().notEmpty().withMessage('Last name is required'),
+        requiredText('surName', 'Last name is required', MAX.name),
 
-        body('phone').trim().notEmpty().withMessage('Phone is required'),
+        phoneRule('phone'),
 
-        body('email').trim().notEmpty().withMessage('Email is required').isEmail()
-            .withMessage('Invalid email'),
+        body('email').isString().withMessage('Email is required').bail()
+            .trim().notEmpty().withMessage('Email is required').bail()
+            .isLength({ max: MAX.email }).withMessage('Invalid email')
+            .isEmail().withMessage('Invalid email'),
 
-        body('password').trim().notEmpty().withMessage('Password is required'),
+        body('password').isString().withMessage('Password is required').bail()
+            .trim().notEmpty().withMessage('Password is required'),
 
         body('password')
-            .isLength({ min: 8, max: 12 }).withMessage('The password must be longer than 6 characters')
-            .matches(/^(?=.*[A-Za-zА-Яа-я])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-zА-Яа-я\d@$!%*#?&]{8,}$/)
+            .isLength({ min: 8, max: MAX.password }).withMessage('The password must be at least 8 characters long')
+            .matches(STRONG_PASSWORD)
             .withMessage('Include a letter, number, and special character ($!%*#?&)'),
     ],
 
     loginValidation: [
-        body('email').trim().notEmpty().withMessage('Invalid email').isEmail()
-            .withMessage('Email and Password is required'),
+        body('email').isString().withMessage('Email and Password is required').bail()
+            .trim().notEmpty().withMessage('Email and Password is required').bail()
+            .isLength({ max: MAX.email }).withMessage('Invalid email')
+            .isEmail().withMessage('Invalid email'),
 
-        body('password').trim().notEmpty().withMessage('Email and Password is required'),
+        body('password').isString().withMessage('Email and Password is required').bail()
+            .trim().notEmpty().withMessage('Email and Password is required').bail()
+            .isLength({ max: MAX.password }).withMessage('Email and Password is required'),
 
-        body('role').notEmpty().withMessage('You need to select a role to determine how you want to login')
+        body('role').isString().notEmpty().withMessage('You need to select a role to determine how you want to login').bail()
+            .isIn(['Buyer', 'Seller']).withMessage('You need to select a role to determine how you want to login'),
     ],
 
     loginSendSmsValidation: [
-        body('phone').trim().notEmpty().withMessage('Phone required to login'),
+        phoneRule('phone'),
     ],
 
     loginVerifySmsValidation: [
-        body('validCode').trim().notEmpty().withMessage('The code required to login'),
+        body('validCode').isString().withMessage('The code required to login').bail()
+            .trim().notEmpty().withMessage('The code required to login').bail()
+            .isLength({ max: 12 }).withMessage('The code required to login'),
     ],
 
     updateUserNameValidation: [
-        body('name').trim().notEmpty().withMessage('Name is required'),
+        requiredText('name', 'Name is required', MAX.name),
     ],
 
     updateUserSurNameValidation: [
-        body('surName').trim().notEmpty().withMessage('Last name is required'),
+        requiredText('surName', 'Last name is required', MAX.name),
     ],
 
     updateUserPhoneValidation: [
-        body('phone').trim().notEmpty().withMessage('Phone is required'),
+        body('phone').if(body('publicPhone').not().exists())
+            .isString().withMessage('Phone is required').bail()
+            .trim().notEmpty().withMessage('Phone is required').bail()
+            .isLength({ max: MAX.phone }).withMessage('Phone is too long')
+            .matches(PHONE_CHARS).withMessage('Invalid phone number'),
+
+        body('phone').optional()
+            .isString().withMessage('Invalid phone number').bail()
+            .trim().isLength({ max: MAX.phone }).withMessage('Phone is too long')
+            .matches(PHONE_CHARS).withMessage('Invalid phone number'),
+
+        body('publicPhone').optional()
+            .isString().withMessage('Invalid phone number').bail()
+            .trim().notEmpty().withMessage('Phone is required').bail()
+            .isLength({ max: MAX.phone }).withMessage('Phone is too long')
+            .matches(PHONE_CHARS).withMessage('Invalid phone number'),
     ],
 
     updateUserEmailValidation: [
-        body('email').trim().notEmpty().withMessage('Email is required').isEmail()
-            .withMessage('Invalid email'),
+        body('email').isString().withMessage('Email is required').bail()
+            .trim().notEmpty().withMessage('Email is required').bail()
+            .isLength({ max: MAX.email }).withMessage('Invalid email')
+            .isEmail().withMessage('Invalid email'),
     ],
 
     updateUserPasswordValidation: [
-        body('oldPassword').trim().notEmpty().withMessage('OldPassword required to update password'),
+        body('oldPassword').isString().withMessage('OldPassword required to update password').bail()
+            .trim().notEmpty().withMessage('OldPassword required to update password').bail()
+            .isLength({ max: MAX.password }).withMessage('OldPassword required to update password'),
 
-        body('newPassword')
-            .isLength({ min: 6, max: 12 }).withMessage('The password must be longer than 6 characters')
-            .matches(/^(?=.*[A-Za-zА-Яа-я])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-zА-Яа-я\d@$!%*#?&]{8,}$/)
+        // Trimmed like the registration and login passwords, otherwise a password saved
+        // with a leading/trailing space could never be typed in again at login.
+        body('newPassword').isString().withMessage('The password must be at least 8 characters long').bail()
+            .trim()
+            .isLength({ min: 8, max: MAX.password }).withMessage('The password must be at least 8 characters long')
+            .matches(STRONG_PASSWORD)
             .withMessage('Include a letter, number, and special character ($!%*#?&)'),
     ],
 
     createProductValidation: [
-        body('title').trim().notEmpty().withMessage('Title is required'),
+        requiredText('title', 'Title is required', MAX.title),
 
         body('collection').isObject().withMessage('Collection must be an object'),
 
-        body('collection.name').trim().notEmpty().withMessage('Collection name is required'),
+        requiredText('collection.name', 'Collection name is required'),
 
-        body('collection.season').trim().notEmpty().withMessage('Season is required'),
+        requiredText('collection.season', 'Season is required'),
 
-        body('collection.condition').trim().notEmpty().withMessage('Condition is required'),
+        requiredText('collection.condition', 'Condition is required'),
 
-        body('category').trim().notEmpty().withMessage('Category is required'),
+        requiredText('category', 'Category is required'),
 
-        body('material').trim().notEmpty().withMessage('Material is required'),
+        requiredText('material', 'Material is required'),
 
-        body('gender').trim().notEmpty().withMessage('Gender is required'),
+        requiredText('gender', 'Gender is required'),
 
-        body('sku').trim().notEmpty().withMessage('SKU is required'),
+        requiredText('sku', 'SKU is required'),
 
-        body('price').notEmpty().withMessage('Price is required').isNumeric()
-            .withMessage('Price must be a number'),
+        body('price').notEmpty().withMessage('Price is required').bail()
+            .isFloat({ min: 0 }).withMessage('Price must be a number'),
 
-        body('description').trim().notEmpty().withMessage('Description is required'),
+        requiredText('description', 'Description is required', MAX.text),
 
-        body('status').trim().notEmpty().withMessage('Status is required'),
+        requiredText('status', 'Status is required'),
 
-        body('colors').isArray({ min: 1 }).withMessage('Colors are required'),
+        body('colors').isArray({ min: 1, max: 50 }).withMessage('Colors are required'),
 
-        body('colors.*.hex').trim().notEmpty().withMessage('Color hex is required'),
+        requiredText('colors.*.hex', 'Color hex is required', 32),
 
-        body('colors.*.colorName').trim().notEmpty().withMessage('Color name is required'),
+        requiredText('colors.*.colorName', 'Color name is required'),
 
-        body('sizes').isArray({ min: 1 }).withMessage('Sizes are required'),
+        body('sizes').isArray({ min: 1, max: 50 }).withMessage('Sizes are required'),
 
-        body('sizes.*').trim().notEmpty().withMessage('Size is required'),
+        body('sizes.*').isString().withMessage('Size is required').bail()
+            .trim().notEmpty().withMessage('Size is required').bail()
+            .isLength({ max: 32 }).withMessage('Size is too long'),
 
-        body('variants').isArray({ min: 1 }).withMessage('Variants are required'),
+        body('variants').isArray({ min: 1, max: 500 }).withMessage('Variants are required'),
 
-        body('variants.*.hex').trim().notEmpty().withMessage('Variant hex is required'),
+        requiredText('variants.*.hex', 'Variant hex is required', 32),
 
-        body('variants.*.colorName').trim().notEmpty().withMessage('Variant color name is required'),
+        requiredText('variants.*.colorName', 'Variant color name is required'),
 
-        body('variants.*.size').trim().notEmpty().withMessage('Variant size is required'),
+        requiredText('variants.*.size', 'Variant size is required', 32),
 
-        body('variants.*.count').notEmpty().withMessage('Count is required').isNumeric()
-            .withMessage('Count must be a number'),
+        body('variants.*.count').notEmpty().withMessage('Count is required').bail()
+            .isInt({ min: 0, max: 1_000_000 }).withMessage('Count must be a number'),
     ],
 
     addProductToCartValidation: [
-        body('colors').isArray({ min: 1 }).notEmpty().withMessage('Color is required'),
+        body('colors').isArray({ min: 1, max: 50 }).withMessage('Color is required'),
 
-        body('colors.*.hex').trim().notEmpty().withMessage('Color is required'),
+        requiredText('colors.*.hex', 'Color is required', 32),
 
-        body('colors.*.colorName').trim().notEmpty().withMessage('Color is required'),
+        requiredText('colors.*.colorName', 'Color is required'),
 
-        body('sizes').trim().notEmpty().withMessage('Size is required to add product to cart'),
+        requiredText('sizes', 'Size is required to add product to cart', 32),
     ],
 
     addAddressValidation: [
-        body('email').trim().notEmpty().withMessage('Email is required'),
+        body('email').isString().withMessage('Email is required').bail()
+            .trim().notEmpty().withMessage('Email is required').bail()
+            .isLength({ max: MAX.email }).withMessage('Invalid email')
+            .isEmail().withMessage('Invalid email'),
 
-        body('phone').trim().notEmpty().withMessage('Phone is required'),
+        phoneRule('phone'),
 
-        body('firstName').trim().notEmpty().withMessage('First name is required'),
+        requiredText('firstName', 'First name is required', MAX.name),
 
-        body('lastName').trim().notEmpty().withMessage('Last name is required'),
+        requiredText('lastName', 'Last name is required', MAX.name),
 
-        body('country').trim().notEmpty().withMessage('Country is required'),
+        requiredText('country', 'Country is required'),
 
-        body('stateRegion').trim().notEmpty().withMessage('State or region is required'),
+        requiredText('stateRegion', 'State or region is required'),
 
-        body('address').trim().notEmpty().withMessage('Address is required'),
+        requiredText('address', 'Address is required', 300),
 
-        body('city').trim().notEmpty().withMessage('City is required'),
+        requiredText('city', 'City is required'),
 
-        body('postalCode').trim().notEmpty().withMessage('Postal code is required'),
+        requiredText('postalCode', 'Postal code is required', 20),
     ],
 
     shippingValidation: [
-        body('delivery').trim().notEmpty().withMessage('Shipping Method Code required to order'),
+        requiredText('delivery', 'Shipping Method Code required to order', 64),
     ],
 
     paymentValidation: [
-        body('paymentMethod').trim().notEmpty().withMessage('Select a payment method')
+        body('paymentMethod').isString().withMessage('Select a payment method').bail()
+            .trim().notEmpty().withMessage('Select a payment method')
             .isIn(['card', 'apple', 'google', 'paypal']).withMessage('Invalid payment method'),
 
-        body('cardNumber').if(body('paymentMethod').equals('card')).trim()
-            .notEmpty().withMessage('Enter the card number'),
+        body('cardNumber').if(body('paymentMethod').equals('card'))
+            .isString().withMessage('Enter the card number').bail()
+            .trim().notEmpty().withMessage('Enter the card number').bail()
+            .isLength({ max: 32 }).withMessage('Enter the card number'),
 
         body('expiryDate').if(body('paymentMethod').equals('card'))
-            .notEmpty().withMessage('Enter the card\'s expiration date'),
+            .isString().withMessage('Enter the card\'s expiration date').bail()
+            .notEmpty().withMessage('Enter the card\'s expiration date').bail()
+            .isLength({ max: 10 }).withMessage('Enter the card\'s expiration date'),
 
-        body('cardCvv').if(body('paymentMethod').equals('card')).trim()
-            .notEmpty().withMessage('Enter the card cvv')
+        body('cardCvv').if(body('paymentMethod').equals('card'))
+            .isString().withMessage('Enter the card cvv').bail()
+            .trim().notEmpty().withMessage('Enter the card cvv')
             .isLength({ min: 3, max: 4 }).withMessage('Enter the card cvv')
     ],
 
     replaceOrderValidation: [
-        body('cause_replace').trim().notEmpty().withMessage('Select a reason for cancellation'),
+        requiredText('cause_replace', 'Select a reason for cancellation', 500),
     ],
 
     createReviewValidation: [
-        body('rating').notEmpty().withMessage('Rating is required'),
-        body('comment').notEmpty().withMessage('Comment is required'),
+        body('rating').notEmpty().withMessage('Rating is required').bail()
+            .isFloat({ min: 1, max: 5 }).withMessage('Rating must be between 1 and 5'),
+
+        body('comment').isString().withMessage('Comment is required').bail()
+            .notEmpty().withMessage('Comment is required').bail()
+            .isLength({ max: 2000 }).withMessage('Comment is too long'),
     ],
 
     handleValidationErrors (req: Request, res: Response, next: NextFunction) {
@@ -176,12 +248,10 @@ export const validation = {
             const formattedErrors: Record<string, string> = {};
 
             errors.array().forEach(err => {
-                if('path' in err){
+                if ('path' in err) {
                     formattedErrors[err.path] = err.msg;
                 }
             });
-
-            console.log(errors);
 
             return res.status(400).json({
                 message: 'Ошибка валидации данных',

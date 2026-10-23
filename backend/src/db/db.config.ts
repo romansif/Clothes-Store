@@ -1,52 +1,45 @@
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dbPath = path.join(__dirname, 'db.json');
 
+type Database = Record<string, []>;
+
+const createEmptyDB = (): Database => ({
+    users: [],
+    products: [],
+    cart: [],
+    favorites: [],
+    addresses: [],
+    shipping: [],
+    payments: [],
+    orders: [],
+    reviews: [],
+});
+
 export const dbService = {
-    readDB () {
+    readDB(): Database {
         try {
             if (!fs.existsSync(dbPath)) {
-                const defaultDB = {
-                    users: [],
-                    products: [],
-                    cart: [],
-                    favorites: [],
-                    addresses: [],
-                    shipping: [],
-                    payments: [],
-                    orders: [],
-                    reviews: []
-                };
-                fs.writeFileSync(dbPath, JSON.stringify(defaultDB, null, 2));
-                return defaultDB;
+                const database = createEmptyDB();
+                fs.writeFileSync(dbPath, JSON.stringify(database, null, 2));
+                return database;
             }
-            const data = fs.readFileSync(dbPath, 'utf-8');
-            return JSON.parse(data);
+
+            return JSON.parse(fs.readFileSync(dbPath, 'utf-8')) as Database;
         } catch (error) {
-            console.error("Ошибка чтения db.json:", error);
-            return {
-                users: [],
-                products: [],
-                cart: [],
-                favorites: [],
-                addresses: [],
-                shipping: [],
-                payments: [],
-                orders: [],
-                reviews: []
-            };
+            console.error('Ошибка чтения db.json:', error);
+            return createEmptyDB();
         }
     },
-    writeDB (data: any) {
-        try {
-            fs.writeFileSync(dbPath, JSON.stringify(data, null, 2), 'utf-8');
-        } catch (error) {
-            console.error("Ошибка записи в db.json:", error);
-        }
-    }
 
-}
+    writeDB(database: Database): void {
+        try {
+            fs.writeFileSync(dbPath, JSON.stringify(database, null, 2), 'utf-8');
+        } catch (error) {
+            console.error('Ошибка записи в db.json:', error);
+        }
+    },
+};

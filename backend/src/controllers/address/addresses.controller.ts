@@ -27,7 +27,6 @@ export const addressesController = {
         const id = param(req, 'id');
 
         const addresses: Row[] = dbService.readDB().addresses || [];
-        // Someone else's address answers 404, so ids cannot be probed.
         const address = addresses.find(a => sameId(a.id, id) && sameId(a.userId, user.id));
 
         if (!address) throw new HttpError(404, 'Address not found');

@@ -17,12 +17,10 @@ const secretFromEnv = (name: string): string => {
     return crypto.randomBytes(48).toString('hex');
 };
 
-// Any code that verifies JWTs (including your auth middleware) must import these
-// instead of using its own string, otherwise tokens signed here will be rejected.
+
 export const ACCESS_SECRET = secretFromEnv('JWT_ACCESS_SECRET');
 export const REFRESH_SECRET = secretFromEnv('JWT_REFRESH_SECRET');
 
-// Used only to detect duplicate cards without storing the card number.
 export const CARD_FINGERPRINT_KEY = process.env.CARD_FINGERPRINT_KEY || (() => {
     if (isProduction) throw new Error('CARD_FINGERPRINT_KEY must be set in production');
     return 'dev-only-card-fingerprint-key';

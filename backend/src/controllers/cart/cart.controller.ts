@@ -5,10 +5,8 @@ import {
     omitKeys, byNewest, SERVER_OWNED_FIELDS,
 } from '#lib/security';
 
-// productId is fixed once an item is in the cart; the other fields (size, color, count...) stay editable.
 const CART_UPDATE_PROTECTED = [...SERVER_OWNED_FIELDS, 'productId'] as const;
 
-/** An item matches by its own id or by the product it holds (the front end uses both). */
 const matchesItem = (item: Row, id: string) => sameId(item.id, id) || sameId(item.productId, id);
 
 export const cartController = {
@@ -58,7 +56,6 @@ export const cartController = {
         const db = dbService.readDB();
         const cart: Row[] = db.cart || [];
 
-        // Look only inside the caller's own cart.
         const index = cart.findIndex(item => sameId(item.userId, user.id) && matchesItem(item, id));
 
         if (index === -1) throw new HttpError(404, 'Cart item not found');
@@ -86,7 +83,6 @@ export const cartController = {
 
         if (!deletedProduct) throw new HttpError(404, 'Cart Product not found');
 
-        // Only the caller's matching items go; other users' carts are never touched.
         db.cart = cart.filter(item => !isTarget(item));
         dbService.writeDB(db);
 
