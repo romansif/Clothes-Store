@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { ProductList } from "@/features/products";
+import { ProductList } from "@/widgets/product-list";
 import { MainHeader } from "@/features/products";
 import { FilterProducts } from "@/widgets/product-sidebar";
 </script>

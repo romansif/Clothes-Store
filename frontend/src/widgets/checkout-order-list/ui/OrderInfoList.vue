@@ -6,8 +6,7 @@
 
 <script setup lang="ts">
 import { orderStore } from "@/shared/model/order.store";
-
-import { OrderInfoItem } from "@/features/checkout-order-info";
+import { OrderInfoItem } from "@/entities/checkout-order-item";
 
 const { items } = orderStore();
 </script>

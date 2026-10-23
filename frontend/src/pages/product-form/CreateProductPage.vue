@@ -17,16 +17,10 @@
 <script setup lang="ts">
 import { useAddProduct } from "@/features/create-product-form/api/create-product";
 import { fileInput, productHelper } from "@/shared/lib/product-helper";
-
 import { UiButton } from "@/shared/ui/button";
-import { CreateImageUpload } from "@/features/use-product-form";
 import { ProductBaseInfo } from "@/entities/product-form";
-import { CreateVariants } from "@/features/use-product-form";
+import { CreateImageUpload, CreateVariants } from "@/features/create-product-form";
 
 const { createProduct } = useAddProduct();
 const { onFilesSelected } = productHelper();
 </script>
-
-<style scoped>
-
-</style>

@@ -10,13 +10,8 @@
 
 <script setup lang="ts">
 import { useGetSeasonProducts } from "@/widgets/season-list/api/get-season-product";
-
 import { SeasonsHeader } from "@/widgets/navigation";
-import { SeasonList } from "@/features/use-season-product";
+import { SeasonList } from "@/widgets/season-list";
 
 const { winterCatalog } = useGetSeasonProducts();
 </script>
-
-<style scoped>
-
-</style>

@@ -14,7 +14,3 @@ onMounted(async () => {
   await getPayments();
 })
 </script>
-
-<style scoped>
-
-</style>

@@ -1,9 +1,10 @@
 <template>
   <main class="flex mt-10">
-    <MyProductsList />
+    <MyProductList />
   </main>
 </template>
 
 <script setup lang="ts">
-import { MyProductsList } from "@/features/my-products";
+
+import { MyProductList } from "@/widgets/my-product-list";
 </script>

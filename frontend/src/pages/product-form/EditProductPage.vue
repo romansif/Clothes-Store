@@ -22,15 +22,13 @@ import { useQuery } from "@tanstack/vue-query";
 import { getProduct } from "@/features/use-product/api/get-product";
 import { useUpdateProduct } from "@/features/update-product-form/api/update-product";
 import { fileInput } from "@/shared/lib/product-helper";
-
 import { UiButton } from "@/shared/ui/button";
-import { EditImageUpload } from "@/features/use-product-form";
 import { ProductBaseInfo } from "@/entities/product-form";
-import { EditVariants } from "@/features/use-product-form";
-
-const { updateProductImages, updateProductDesc } = useUpdateProduct();
+import { EditImageUpload, EditVariants } from "@/features/update-product-form";
 
 const route = useRoute();
+
+const { updateProductImages, updateProductDesc } = useUpdateProduct();
 
 const { data: product } = useQuery({
   queryKey: ['product', route.params.id],

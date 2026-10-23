@@ -40,8 +40,8 @@
 import { userStore } from "@/shared/model/user.store";
 import { userAvatar } from "@/features/use-profile/lib/use-profile";
 import { useProfileModals } from "@/features/use-profile/lib/profile-modal";
-import { OpenProfileModals } from "@/widgets/profile/index";
-import { ProfileModals } from "@/widgets/profile/index";
+import { OpenProfileModals } from "@/widgets/profile";
+import { ProfileModals } from "@/widgets/profile";
 import { ProfileMenu } from "@/features/profile-menu";
 import type { User } from "@/entities/profile";
 

@@ -13,11 +13,9 @@
 </template>
 
 <script setup lang="ts">
-import { useProductsModals } from "@/features/products/lib/product-modal";
+import { filterAside } from "@/features/products/lib/product-modal";
 import { NavBar, HomeSlider, MainHome } from "@/widgets/home";
 import { Footer } from "@/widgets/footer";
 import { AsideFilter } from "@/widgets/product-sidebar";
-
-const { filterAside } = useProductsModals();
 </script>
 
