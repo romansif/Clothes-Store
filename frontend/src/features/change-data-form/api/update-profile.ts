@@ -1,6 +1,6 @@
 import type { ZodError } from "zod";
 import { handler } from "@/shared/api/http";
-import { userStore } from "@/shared/model/user.store";
+import { userData } from "@/shared/model/user.store";
 import { clearUsersForms } from "@/features/change-data-form/lib/clear-user-update";
 import { useBaseModals } from "@/shared/lib/use-notify";
 import { useGetUsers } from "@/widgets/profile/api/get-users";
@@ -13,7 +13,6 @@ import {
 import type { UserDataUpdate } from "@/entities/profile-form";
 
 const { getUser } = useGetUsers();
-const { userData } = userStore();
 const { openNotify } = useBaseModals();
 const {
     clearUpdateUserFormPhone, clearUpdateUserFormEmail, clearUpdateUserFormName,

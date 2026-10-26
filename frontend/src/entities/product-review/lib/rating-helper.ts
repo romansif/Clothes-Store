@@ -35,7 +35,7 @@ export const ratingHelper = () => {
         }
 
         if(images && images.length > 0){
-            return images.slice(0).map(img => `${import.meta.env.VITE_BASE_URL}/${img}`);
+            return images.slice(0).map(img => `${import.meta.env.VITE_SERVER_URL}/${img}`);
         }
         return [];
     };

@@ -1,14 +1,12 @@
 import { handler } from "@/shared/api/http";
-import { getCartProducts } from "@/widgets/cart-list/api/get-cart";
 import { deleteProductCart } from "@/features/cart-item-action/api/delete-cart";
 import { useGetProducts } from "@/features/products/api/get-product";
-import { cartStore } from "@/widgets/cart-list/model/cart.store";
+import { useCartData } from "@/widgets/cart-list/lib/use-cart-data";
 
-const { cart } = cartStore();
 const { getAllProducts, allProducts } = useGetProducts();
 
 export const updateCheckedQuantity = async () => {
-    await getCartProducts();
+    const { cart } = useCartData()
     await getAllProducts();
 
     const checkedItems = cart.value.filter(

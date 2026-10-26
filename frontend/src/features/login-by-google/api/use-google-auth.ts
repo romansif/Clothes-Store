@@ -1,10 +1,9 @@
 import router from "@/app/router";
 import { handler } from "@/shared/api/http";
-import { loginForm } from "@/entities/auth-password/model/auth-form";
-import { userStore } from "@/shared/model/user.store";
+import { userData } from "@/shared/model/user.store";
 import { useBaseModals } from "@/shared/lib/use-notify";
+import { loginForm } from "@/entities/login-form/model/login-from";
 
-const { userData } = userStore();
 const { loading, openNotify } = useBaseModals();
 
 export const signGoogleAuth = async (response: any) => {
@@ -25,7 +24,7 @@ export const signGoogleAuth = async (response: any) => {
             console.log('Email and password are required.')
             return
         }else{
-            localStorage.setItem("user", JSON.stringify(foundedUser));
+            localStorage.setItem("userId", foundedUser.id);
         }
         userData.value = foundedUser.user
 

@@ -26,14 +26,14 @@
 
 <script setup lang="ts">
 import { ProductPreview } from "@/entities/product-card";
-
+import type { CartItem } from "@/entities/cart-item";
 import type { Product } from "@/shared";
 import type { User } from "@/entities/profile";
 
 defineProps<{
   user: User | null
   product: Product;
-  cart: Product[]
+  cart: CartItem[]
 }>();
 
 const emit = defineEmits<{

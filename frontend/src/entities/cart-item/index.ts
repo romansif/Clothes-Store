@@ -1,3 +1,3 @@
-export { default as CartProduct } from '@/entities/cart-item/ui/CartProduct.vue'
+export { default as CartProduct } from './ui/CartProduct.vue'
 
 export type * from './model/cart.types'

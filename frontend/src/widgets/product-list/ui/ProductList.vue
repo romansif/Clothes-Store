@@ -14,12 +14,11 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { userStore } from "@/shared/model/user.store";
+import { userData } from "@/shared/model/user.store";
 import { useGetProducts } from "@/features/products/api/get-product";
 import { toggleToFavorite } from "@/shared/api/toggle-to-favorite";
 import { ProductCard } from "@/entities/product-card";
 
-const { userData } = userStore();
 const { getAllProducts, getFilteredProducts, products } = useGetProducts();
 
 onMounted(async() => {

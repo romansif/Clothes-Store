@@ -5,14 +5,13 @@ import { deleteProduct } from "@/features/my-products/api/delete-product";
 import { deleteProductCart } from "@/features/cart-item-action/api/delete-cart";
 import { useDeleteAddress } from "@/features/saved-user-address/api/delete-address";
 import { useDeleteOrder } from "@/features/order-action/api/delete-order";
-import { useToggleFavorite } from "@/shared/api/toggle-to-favorite";
-import { getMyProducts } from "@/features/my-products/api/get-my-product";
-import { deleteAccount, logout } from "@/features/general-delete/api/delete-logout-user.ts";
+import { getMyProducts } from "@/widgets/my-product-list/api/get-my-product";
+import { deleteAccount, logout } from "@/features/profile-menu/api/delete-logout-user.ts";
+import { deleteFavoriteProduct } from "@/features/general-delete/api/delete-favorite-item";
 
 const { deletePayment } = useDeletePayment();
 const { deleteAddress } = useDeleteAddress();
 const { deleteOrderProducts } = useDeleteOrder();
-const { deleteFavoriteProduct } = useToggleFavorite();
 
 const generalId = ref<string>('');
 const deleteType = ref<string>('');
@@ -29,6 +28,9 @@ export const baseDeleteModal = () => {
     }
 
     const generalDelete = async () => {
+        const userId = localStorage.getItem("userId");
+        if(!userId) return
+
         try{
             switch (deleteType.value) {
                 case "EXIT":
@@ -41,7 +43,7 @@ export const baseDeleteModal = () => {
 
                 case "DELETE_PROUCT_ITEM":
                     await deleteProduct(generalId.value)
-                    await getMyProducts()
+                    await getMyProducts(userId)
                     break
 
                 case "DELETE_CART_ITEM":

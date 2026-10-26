@@ -25,12 +25,10 @@
 </template>
 
 <script setup lang="ts">
-import { userStore } from "@/shared/model/user.store";
+import { userData } from "@/shared/model/user.store";
 import { userAvatar } from "@/widgets/profile/lib/profile-avatar";
 import { openSelectAvatar, toggleAvatar} from "@/features/profile-change-avatar/lib/use-profile-modal";
 import { updateAvatarAccount } from "@/features/profile-change-avatar/api/update-avatar";
 import { fileInput } from "@/shared/lib/product-helper";
 import { UiButton } from "@/shared/ui/button";
-
-const { userData } = userStore();
 </script>

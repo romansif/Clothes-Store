@@ -1,18 +1,16 @@
 import { handler } from "@/shared/api/http";
-import { cartStore } from "@/widgets/cart-list/model/cart.store";
+import { useCartData } from "@/widgets/cart-list/lib/use-cart-data";
 import { useBaseModals } from "@/shared/lib/use-notify";
-import { getCartProducts } from "@/widgets/cart-list/api/get-cart";
 import { deleteProductCart } from "@/features/cart-item-action/api/delete-cart";
 import { useGetProducts } from "@/features/products/api/get-product";
 import type { CartItem } from "@/entities/cart-item";
 import type { Variant } from "@/shared";
 
-const { cart } = cartStore();
 const { openNotify } = useBaseModals();
 const { getAllProducts, allProducts } = useGetProducts()
 
 export const updateCartItem = async (type: string, id: string) => {
-    await getCartProducts();
+    const { cart } = useCartData();
     await getAllProducts();
 
     if(!id) return;
@@ -92,7 +90,6 @@ export const updateCartItem = async (type: string, id: string) => {
                 });
             }
         }
-        await getCartProducts();
     }catch(err){
         console.error(`Failed to update the cart product variants:`, err);
     }

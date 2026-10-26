@@ -2,7 +2,7 @@ import router from "@/app/router";
 import { handler } from "@/shared/api/http";
 import { useBaseModals } from "@/shared/lib/use-notify";
 import { clearProductForm } from "@/features/product-form/lib/clear-product-form";
-import { userStore } from "@/shared/model/user.store";
+import { userData } from "@/shared/model/user.store";
 import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper";
 import { imageFiles } from "@/shared/lib/product-helper";
 import {
@@ -11,7 +11,6 @@ import {
 } from "@/entities/product-form/model/product-forms";
 import { createProductSchema, moreCreateItemsSchema } from "@/entities/product-form/model/product-schemas";
 
-const { userData } = userStore();
 const { openNotify } = useBaseModals();
 
 export const useAddProduct = () => {

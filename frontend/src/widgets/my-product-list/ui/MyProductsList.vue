@@ -16,18 +16,13 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
-import { userStore } from "@/shared/model/user.store";
-import { getMyProducts, myProducts } from "@/features/my-products/api/get-my-product";
+import { userData } from "@/shared/model/user.store";
+import { useMyProductsData } from "@/widgets/my-product-list/lib/use-my-products-data";
 import { baseDeleteModal } from "@/features/general-delete/lib/base-delete-modal";
 import { MyProductItem } from "@/entities/my-product-item";
 import { DeleteModal } from "@/features/general-delete";
 import { DeleteMyProductButton } from "@/features/my-products";
 
-const { userData } = userStore();
+const { myProducts } = useMyProductsData()
 const { deleteModal } = baseDeleteModal();
-
-onMounted(async () => {
-  await getMyProducts();
-})
 </script>

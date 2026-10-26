@@ -1,9 +1,8 @@
 import { handler } from "@/shared/api/http";
 import { orderStore } from "@/shared/model/order.store";
 import { getCartProducts } from "@/widgets/cart-list/api/get-cart";
-import { userStore } from "@/shared/model/user.store";
+import { userData } from "@/shared/model/user.store";
 
-const { userData } = userStore();
 const { orderItems } = orderStore();
 
 export const updateCartChecked = async () => {
@@ -23,7 +22,7 @@ export const updateCartChecked = async () => {
         }
         orderItems.value = [];
 
-        await getCartProducts();
+        await getCartProducts(userData.value.id);
     }catch(err){
         console.error(`Failed to remove the products to status false:`, err);
     }

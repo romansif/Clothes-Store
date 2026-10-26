@@ -1,7 +1,5 @@
 import { handler } from "@/shared/api/http";
-import { userStore } from "@/shared/model/user.store";
-
-const { userData } = userStore();
+import { userData } from "@/shared/model/user.store";
 
 export const updateAvatarAccount = async (event: Event) => {
     const target = event.target as HTMLInputElement;

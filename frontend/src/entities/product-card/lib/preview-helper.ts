@@ -9,7 +9,7 @@ export const previewHelper = () => {
         return product.productId ?? product.id ?? '';
     };
 
-    const productPreview = (id: string, array: Product[]) => {
+    const productPreview = (id: string, array: Product[] | undefined) => {
         if(!id){
             console.log('Id не найден')
             return
@@ -17,7 +17,7 @@ export const previewHelper = () => {
 
         const product = array?.find((p: Product) => p.id === id)
         if(product && product.images && product.images[0]){
-            return `${import.meta.env.VITE_BASE_URL}/${product.images[0]}`
+            return `${import.meta.env.VITE_SERVER_URL}/${product.images[0]}`
         }
 
         return undefined

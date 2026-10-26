@@ -1,19 +1,23 @@
 import { handler } from "@/shared/api/http";
-import { product } from "@/features/product-action/api/get-product";
 import { useBaseModals } from "@/shared/lib/use-notify";
-import { clearCartForm } from "@/features/product-action/lib/clear-cart-form";
+import { clearCartForm } from "@/features/product-info/lib/clear-cart-form";
 import { cartStore } from "@/widgets/cart-list/model/cart.store";
-import { userStore } from "@/shared/model/user.store";
+import { userData } from "@/shared/model/user.store";
+import { useProductData } from "@/features/product-info/lib/use-product-data";
 import { getCartProducts } from "@/widgets/cart-list/api/get-cart";
 import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper";
 import { addToCartForm, addToCartFormErrorMessages } from "@/entities/product-info/model/add-to-cart-form";
 import { addToCartSchema } from "@/entities/product-info/model/add-to-cart-schemas";
+import type { RouteLocationNormalizedLoaded } from "vue-router";
 
-const { userData } = userStore();
 const { unreadCount } = cartStore();
 const { openNotify } = useBaseModals();
 
-export const useAddToCart = () => {
+export const useAddToCart = (route: RouteLocationNormalizedLoaded) => {
+    const { product } = useProductData(route)
+
+    const userId = localStorage.getItem("userId")
+
     const addToCart = async () => {
         const result = addToCartSchema.safeParse(addToCartForm.value)
         if(!result.success){
@@ -61,9 +65,9 @@ export const useAddToCart = () => {
             });
             unreadCount.value += 1;
 
-            await getCartProducts();
-
             clearCartForm();
+
+            await getCartProducts(userId);
 
             await openNotify('You have successfully added the item to your cart',
                 'You will now be redirected to the "Cart" page');

@@ -14,14 +14,13 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { userStore } from "@/shared/model/user.store";
+import { userData } from "@/shared/model/user.store";
 import { toggleToFavorite } from "@/shared/api/toggle-to-favorite";
 import { productsHelper } from "@/features/products/lib/products-helper";
 import { useGetWeekProduct } from "@/widgets/week-list/api/get-week-product";
 
 import { ProductCard } from "@/entities/product-card";
 
-const { userData } = userStore();
 const { vHorizontalScroll } = productsHelper();
 const { getWeekProducts, productsWeek } = useGetWeekProduct();
 

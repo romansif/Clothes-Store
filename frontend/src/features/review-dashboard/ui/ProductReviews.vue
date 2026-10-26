@@ -26,8 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import { useQuery } from "@tanstack/vue-query";
-import { useGetReviews } from "@/shared/api/get-reviews";
+import { useReviewsData } from "@/features/review-dashboard/lib/use-rewiev-data";
 import { changeReviewPhoto, toggleReviewPhotos } from "@/features/review-dashboard/lib/review-photo-modal";
 import { reviewModal } from "@/features/review-dashboard/lib/review-photo-modal";
 import { currentIndex, reviewImages } from "@/features/review-dashboard/lib/review-photo-modal";
@@ -35,10 +34,5 @@ import { ProductRating, ReviewPhotos } from "@/entities/product-review";
 import { ReviewList } from "@/widgets/review-list";
 import { ReviewsFilter } from "@/features/product-review-filter";
 
-const { getReviews } = useGetReviews();
-
-const { data: reviews } = useQuery({
-  queryKey: ["reviews"],
-  queryFn: () => getReviews()
-})
+const { reviews } = useReviewsData()
 </script>

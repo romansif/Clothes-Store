@@ -1,10 +1,9 @@
 import { handler } from "@/shared/api/http";
 import { useBaseModals } from "@/shared/lib/use-notify";
 import { orderStore } from "@/shared/model/order.store";
-import { userStore } from "@/shared/model/user.store";
+import { userData } from "@/shared/model/user.store";
 
 const { orders } = orderStore();
-const { userData } = userStore();
 const { loading } = useBaseModals();
 
 export const useGetOrder = () => {

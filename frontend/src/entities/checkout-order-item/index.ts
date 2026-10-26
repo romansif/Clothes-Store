@@ -1,1 +1,1 @@
-export { default as OrderInfoItem } from './ui/OrderInfoItem.vue'
+export { default as CheckoutOrderItem } from './ui/CheckoutOrderItem.vue'

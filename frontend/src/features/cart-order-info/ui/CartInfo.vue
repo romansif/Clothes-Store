@@ -36,13 +36,13 @@
 </template>
 
 <script setup lang="ts">
-import { cartStore } from "@/widgets/cart-list/model/cart.store.ts";
+import { useCartData } from "@/widgets/cart-list/lib/use-cart-data";
 import { useCartOrderInfo } from "@/features/cart-item-action/model/cart-order-info";
 import { baseDeleteModal } from "@/features/general-delete/lib/base-delete-modal";
 import { ContinueToOrder } from "@/features/cart-order-info";
 import { DeleteModal } from "@/features/general-delete";
 
-const { cart } = cartStore();
+const { cart } = useCartData();
 const { deleteModal } = baseDeleteModal();
 const { price, commissionPrice, totalPrice } = useCartOrderInfo();
 </script>

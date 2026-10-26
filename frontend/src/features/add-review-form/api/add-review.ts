@@ -1,7 +1,7 @@
 import { handler } from "@/shared/api/http";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 import { useBaseModals } from "@/shared/lib/use-notify";
-import { userStore } from "@/shared/model/user.store";
+import { userData } from "@/shared/model/user.store";
 import { reviewsStore } from "@/features/review-dashboard/model/reviews.store";
 import { clearReviewForm } from "@/features/add-review-form/lib/clear-review-form";
 import { toggleReviewModal } from "@/entities/order-action/lib/review-form-modal";
@@ -10,94 +10,85 @@ import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/rev
 import { reviewFormSchema } from "@/entities/review-form/model/review-schemas";
 import { imageFiles } from "@/shared/lib/product-helper";
 
-const { userData } = userStore();
 const { productId } = reviewsStore();
 const { openNotify } = useBaseModals();
 
 export const useCreateReview = () => {
     const queryClient = useQueryClient();
 
-    const addReview = (formData: FormData) => {
-        return handler('/reviews', {
-            method: "POST",
-            body: formData,
-        });
-    };
+    const { mutateAsync: createReview, isPending } = useMutation({mutationKey: ['createReview'],
+        mutationFn: async () => {
+            if (!userData.value) {
+                throw new Error('You must be logged in to leave a review');
+            }
 
-    const {
-        mutateAsync: addReviewMutation,
-        isPending
-    } = useMutation({
-        mutationFn: addReview,
+            const result = reviewFormSchema.safeParse(reviewForm.value);
+
+            if (!result.success) {
+                applyZodErrors(
+                    result.error,
+                    reviewFormMessages,
+                );
+
+                throw new Error('Invalid review form');
+            }
+
+            const formData = new FormData();
+
+            formData.append(
+                'review',
+                JSON.stringify({
+                    productId: productId.value,
+                    user: {
+                        name: userData.value.name,
+                        surName: userData.value.surName,
+                        avatar: userData.value.avatarUrl,
+                    },
+                    rating: result.data.rating,
+                    comment: result.data.comment,
+                }),
+            );
+
+            imageFiles.value.forEach(file => {
+                if (file) {
+                    formData.append('images', file);
+                }
+            });
+
+            return handler('/reviews', {
+                method: 'POST',
+                body: formData,
+            });
+        },
 
         onSuccess: async () => {
-            await queryClient.invalidateQueries({
-                queryKey: ['reviews']
-            });
-            await queryClient.invalidateQueries({
-                queryKey: ['filteredReviews']
-            });
+            await Promise.all([
+                queryClient.invalidateQueries({
+                    queryKey: ['reviews'],
+                }),
+                queryClient.invalidateQueries({
+                    queryKey: ['filteredReviews'],
+                }),
+            ]);
 
             clearReviewForm();
 
             await openNotify(
-                'You have successfully add review for product',
-                'Thank you for providing your feedback helps other customers make the right choice'
+                'You have successfully added a review for this product',
+                'Thank you for your feedback. It helps other customers make the right choice.',
             );
 
             toggleReviewModal('');
         },
 
         onError: (err) => {
-            applyErrors(
-                err,
-                reviewFormMessages
-            );
+            if (err.message !== 'Invalid review form') {
+                applyErrors(err, reviewFormMessages);
+            }
 
             console.error('Failed to create review:', err);
-        }
+        },
     });
-
-    const createReview = async () => {
-        if (!userData.value) return;
-
-        const result = reviewFormSchema.safeParse(reviewForm.value);
-
-        if (!result.success) {
-            applyZodErrors(
-                result.error,
-                reviewFormMessages
-            );
-
-            return;
-        }
-
-        const formData = new FormData();
-
-        const reviewData = {
-            productId: productId.value,
-            user: {
-                name: userData.value.name,
-                surName: userData.value.surName,
-                avatar: userData.value.avatarUrl,
-            },
-            rating: result.data.rating,
-            comment: result.data.comment,
-        };
-
-        formData.append(
-            'review',
-            JSON.stringify(reviewData)
-        );
-
-        imageFiles.value.forEach(file => {
-            if (file) {
-                formData.append('images', file);
-            }
-        });
-
-        await addReviewMutation(formData);
-    };
 
     return {
         createReview,

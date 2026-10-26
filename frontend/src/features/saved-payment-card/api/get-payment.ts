@@ -1,9 +1,8 @@
 import { handler } from "@/shared/api/http";
 import { paymentStore } from "@/shared/model/payment.store";
-import { userStore } from "@/shared/model/user.store";
+import { userData } from "@/shared/model/user.store";
 import { useBaseModals } from "@/shared/lib/use-notify";
 
-const { userData } = userStore();
 const { loading } = useBaseModals();
 const { userPayments, userPayment } = paymentStore();
 

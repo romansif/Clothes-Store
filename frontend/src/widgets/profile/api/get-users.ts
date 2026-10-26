@@ -1,16 +1,15 @@
 import { handler } from '@/shared/api/http'
-import { userStore } from "@/shared/model/user.store";
+import { users, userData } from "@/shared/model/user.store";
 import { useBaseModals } from "@/shared/lib/use-notify";
 
 const { loading } = useBaseModals();
-const { users, userData } = userStore();
 
 export const useGetUsers = () => {
     const getUsers = async () => {
         loading.value = true;
 
         try{
-            users.value = await handler('/useProfile', {
+            users.value = await handler('/users', {
                 method: "GET",
             });
         }catch(err){
@@ -23,12 +22,16 @@ export const useGetUsers = () => {
     const getUser = async () => {
         loading.value = true;
 
-        try{
-            if(!userData.value) return
+        const userId = localStorage.getItem("userId");
 
-            userData.value = await handler(`/users/${userData.value.id}`, {
+        try{
+            if(!userId) return
+
+            userData.value = await handler(`/users/${userId}`, {
                 method: "GET",
             });
+
+            return userData.value;
         }catch(err){
             console.log(`Failed to get the user:`, err);
         }finally {

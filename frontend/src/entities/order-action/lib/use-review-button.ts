@@ -1,20 +1,12 @@
-import { useQuery } from "@tanstack/vue-query";
-import { userStore } from "@/shared/model/user.store";
-import { useGetReviews } from "@/shared/api/get-reviews";
+import { userData } from "@/shared/model/user.store";
+import { useReviewsData } from "@/features/review-dashboard/lib/use-rewiev-data";
 import type { Review } from "@/entities/product-review";
-
-const { userData } = userStore();
-const { getReviews } = useGetReviews()
 
 export const useReviewButton = () => {
     const user = userData.value;
     if (!user) return false;
 
-    const { data: reviews } = useQuery({
-        queryKey: ["reviews"],
-        queryFn: () => getReviews(),
-        initialData: []
-    });
+    const { reviews } = useReviewsData()
 
     return reviews.value.some((review: Review) => review.userId === user.id);
 };
