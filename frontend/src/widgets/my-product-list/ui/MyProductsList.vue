@@ -21,7 +21,7 @@ import { useMyProductsData } from "@/widgets/my-product-list/lib/use-my-products
 import { baseDeleteModal } from "@/features/general-delete/lib/base-delete-modal";
 import { MyProductItem } from "@/entities/my-product-item";
 import { DeleteModal } from "@/features/general-delete";
-import { DeleteMyProductButton } from "@/features/my-products";
+import { DeleteMyProductButton } from "@/features/delete-my-product";
 
 const { myProducts } = useMyProductsData()
 const { deleteModal } = baseDeleteModal();

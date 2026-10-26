@@ -1,7 +1,7 @@
 import { ref } from "vue";
 
 import { useDeletePayment } from "@/features/saved-payment-card/api/delete-payment";
-import { deleteProduct } from "@/features/my-products/api/delete-product";
+import { deleteProduct } from "@/features/delete-my-product/api/delete-product";
 import { deleteProductCart } from "@/features/cart-item-action/api/delete-cart";
 import { useDeleteAddress } from "@/features/saved-user-address/api/delete-address";
 import { useDeleteOrder } from "@/features/order-action/api/delete-order";
