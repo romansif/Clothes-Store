@@ -1,9 +1,8 @@
 import { handler } from "@/shared/api/http";
-import { userStore } from "@/shared/model/user.store";
+import { userData } from "@/shared/model/user.store";
 import { useBaseModals } from "@/shared/lib/use-notify";
 import { informationContactStore } from "@/shared/model/address.store";
 
-const { userData } = userStore();
 const { loading } = useBaseModals();
 const { userAddresses, userAddress } = informationContactStore();
 

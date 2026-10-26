@@ -18,6 +18,6 @@ export const checkoutOrderPreview = (id: string, type: string) => {
     const order = sourceList?.find(p => p.id === id);
 
     if(order && order.images && order.images[0]){
-        return `${import.meta.env.VITE_BASE_URL}/${order.images[0]}`;
+        return `${import.meta.env.VITE_SERVER_URL}/${order.images[0]}`;
     }
 };

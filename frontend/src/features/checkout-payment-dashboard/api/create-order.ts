@@ -1,12 +1,11 @@
 import { handler } from "@/shared/api/http";
 import { orderStore } from "@/shared/model/order.store";
-import { userStore } from "@/shared/model/user.store";
+import { userData } from "@/shared/model/user.store";
 import { useBaseModals } from "@/shared/lib/use-notify";
 import { orderPriceInfo } from "@/features/checkout-order-info/lib/order-price-info";
 import { shippingForm } from "@/entities/checkout-shipping/model/shipping-form";
 
 const { items } = orderStore();
-const { userData } = userStore();
 const { openNotify } = useBaseModals();
 const { totalPrice } = orderPriceInfo();
 

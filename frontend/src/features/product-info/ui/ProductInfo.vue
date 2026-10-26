@@ -33,23 +33,25 @@
                        @add-color="addColor"
                        @add-size="addSize"/>
       <ProductToCart :user="user"
-                     :product="product" />
+                     :product="product"
+                     :cart="cart" />
     </div>
   </template>
 </template>
 
 <script setup lang="ts">
-import { addColor, addSize } from "@/features/product-action/lib/use-cart";
+import { addColor, addSize } from "@/features/product-info/lib/add-cart-specific";
 import { previewHelper } from "@/entities/product-card/lib/preview-helper";
 import { toggleToFavorite } from "@/shared/api/toggle-to-favorite";
 import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
 import { productHelper } from "@/shared/lib/product-helper";
-import { toggleReadMore, fullDescription } from "@/features/product-action/lib/toggle-more-info";
+import { toggleReadMore, fullDescription } from "@/features/product-info/lib/toggle-more-info";
 import { ProductPhotos, ProductSpecific } from "@/entities/product-info";
-import { ProductToCart } from "@/features/product-action";
+import { ProductToCart } from "@/features/add-to-cart";
 import { addToCartForm, addToCartFormErrorMessages } from "@/entities/product-info/model/add-to-cart-form";
 import type { Product } from "@/shared";
 import type { User } from "@/entities/profile";
+import type { CartItem } from "@/entities/cart-item";
 
 import like from '@/assets/icons/nav/like.png';
 import liked from '@/assets/icons/nav/liked.png';
@@ -57,6 +59,7 @@ import liked from '@/assets/icons/nav/liked.png';
 defineProps<{
   user: User | null
   product: Product
+  cart: CartItem[]
 }>();
 
 const { isFavorite } = previewHelper();

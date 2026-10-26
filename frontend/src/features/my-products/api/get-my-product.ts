@@ -1,9 +1,7 @@
-import {ref} from "vue";
+import { ref } from "vue";
 import { handler } from "@/shared/api/http";
-import { userStore } from "@/shared/model/user.store";
+import { userData } from "@/shared/model/user.store";
 import type { Product } from "@/shared";
-
-const { userData } = userStore();
 
 export const myProducts = ref<Product[]>([]);
 

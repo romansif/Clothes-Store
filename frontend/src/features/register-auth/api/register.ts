@@ -1,12 +1,12 @@
 import router from "@/app/router";
 import { handler} from "@/shared/api/http";
 import { useBaseModals } from "@/shared/lib/use-notify";
-import { userStore } from "@/shared/model/user.store";
+import { userData } from "@/shared/model/user.store";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
 import { clearRegisterForm, clearRegisterFormMessages } from "@/features/register-auth/lib/clear-register-form";
 import { registerSchema } from "@/entities/register-form/model/register.schemas";
 import { registerForm, registerFormErrorMessages } from "@/entities/register-form/model/register-from";
-const { userData } = userStore();
+
 const { loading, openNotify } = useBaseModals();
 
 export const signUp = async (role: string) => {
@@ -43,7 +43,7 @@ export const signUp = async (role: string) => {
         });
 
         if(authData.accessToken){
-            localStorage.setItem("user", JSON.stringify(authData));
+            localStorage.setItem("userId", authData.id);
             console.log("auth data:", authData.accessToken);
         }else{
             console.log('Access token is not found');

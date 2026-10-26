@@ -1,16 +1,16 @@
 import { handler} from "@/shared/api/http";
 import { getCartProducts } from "@/widgets/cart-list/api/get-cart";
-import { cartStore } from "@/widgets/cart-list/model/cart.store";
 import { orderStore } from "@/shared/model/order.store";
 import { isAgreeFormError } from "@/entities/product-info/model/add-to-cart-form";
 import type { CartItem } from "@/entities/cart-item";
 
-const { cart } = cartStore();
 const { orderItems } = orderStore();
 
-export const checkCartItem = async (id: string, product: CartItem) => {
+export const checkCartItem = async (id: string, product: CartItem, cart: CartItem[]) => {
+    const userId = localStorage.getItem("userId");
+
     try{
-        const productCart = cart.value?.find((c: CartItem) => c.id === id);
+        const productCart = cart.find((c: CartItem) => c.id === id);
         if(productCart){
             if(!productCart?.checked){
                 await handler(`/cart/${id}`, {
@@ -30,7 +30,7 @@ export const checkCartItem = async (id: string, product: CartItem) => {
         }
         addToOrder(product);
 
-        await getCartProducts();
+        await getCartProducts(userId);
     }catch(err){
         console.error(`Failed to add the product to order:`, err);
     }

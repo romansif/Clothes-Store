@@ -1,14 +1,15 @@
 import { computed } from "vue";
 import router from "@/app/router";
-import { cartStore } from "@/widgets/cart-list/model/cart.store";
+import { useCartData } from "@/widgets/cart-list/lib/use-cart-data";
 import { orderStore } from "@/shared/model/order.store";
 import { isAgreeFormError, isAgreeFormErrorMessage } from "@/entities/product-info/model/add-to-cart-form";
 import type { CartItem } from "@/entities/cart-item";
 
-const { cart } = cartStore();
 const { orderItems } = orderStore();
 
 export const useCartOrderInfo = () => {
+    const { cart } = useCartData();
+
     const checkedItems = computed(() => {
         return cart.value.filter((item: CartItem) => item.checked);
     });

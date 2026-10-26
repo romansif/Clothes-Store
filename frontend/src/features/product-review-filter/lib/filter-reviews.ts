@@ -1,7 +1,5 @@
 import { ref } from "vue";
-import { reviewsStore } from "@/features/review-dashboard/model/reviews.store";
-
-const { reviewFilter } =reviewsStore();
+import { reviewFilter } from "@/features/product-review-filter/model/review-filter.store";
 
 export const filterReviews = () => {
     const reviewsType = ref<Record<string, boolean>>({

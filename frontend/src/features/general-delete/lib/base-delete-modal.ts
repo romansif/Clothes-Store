@@ -5,14 +5,13 @@ import { deleteProduct } from "@/features/my-products/api/delete-product";
 import { deleteProductCart } from "@/features/cart-item-action/api/delete-cart";
 import { useDeleteAddress } from "@/features/saved-user-address/api/delete-address";
 import { useDeleteOrder } from "@/features/order-action/api/delete-order";
-import { useToggleFavorite } from "@/shared/api/toggle-to-favorite";
 import { getMyProducts } from "@/features/my-products/api/get-my-product";
 import { deleteAccount, logout } from "@/features/general-delete/api/delete-logout-user.ts";
+import { deleteFavoriteProduct } from "@/features/general-delete/api/delete-favorite-item";
 
 const { deletePayment } = useDeletePayment();
 const { deleteAddress } = useDeleteAddress();
 const { deleteOrderProducts } = useDeleteOrder();
-const { deleteFavoriteProduct } = useToggleFavorite();
 
 const generalId = ref<string>('');
 const deleteType = ref<string>('');

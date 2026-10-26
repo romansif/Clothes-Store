@@ -11,7 +11,9 @@
       "googleId": "117192309001137738940",
       "created_at": "2026-10-23T11:35:56.790Z",
       "password": "",
-      "refreshTokens": []
+      "refreshTokens": [
+        "cf8ad1fbc2ed18406e36fba0fc596f6cf7b1b9b7c36442e1688bbf89f053f12e"
+      ]
     },
     {
       "id": "a8f18c9d-dc9b-4b2a-9e30-7b56be0de42f",
@@ -142,7 +144,39 @@
       "created_at": "2026-10-23T11:36:54.975Z"
     }
   ],
-  "cart": [],
+  "cart": [
+    {
+      "productId": "d6226d30-ed51-4f19-b6fc-2c86439f420e",
+      "images": [
+        "uploads/products/product-1792755414936-f844fb2e8641b0db831dfb25aaa774b6.png"
+      ],
+      "title": "п",
+      "category": "Shorts",
+      "material": "Synthetics",
+      "price": 100,
+      "description": "у",
+      "colors": [
+        {
+          "hex": "#ffffff",
+          "colorName": "White"
+        }
+      ],
+      "sizes": "XS",
+      "gender": "Woman",
+      "variants": [
+        {
+          "hex": "#ffffff",
+          "colorName": "White",
+          "size": "XS",
+          "count": 1
+        }
+      ],
+      "checked": true,
+      "id": "38416790-e417-493e-87d7-3897d7599c61",
+      "userId": "0638b5cc-27b3-46dd-8aae-a284c47b8ebe",
+      "created_at": "2026-10-26T11:31:20.514Z"
+    }
+  ],
   "favorites": [
     {
       "productId": "d6226d30-ed51-4f19-b6fc-2c86439f420e",
@@ -354,9 +388,9 @@
           "count": 10
         }
       ],
-      "id": "0c5742e9-f00f-46db-8119-3f065f6ada0b",
+      "id": "f1d4572a-a3f5-4bbc-a00a-d1cf7c88209c",
       "userId": "0638b5cc-27b3-46dd-8aae-a284c47b8ebe",
-      "created_at": "2026-10-26T05:25:03.262Z"
+      "created_at": "2026-10-26T10:38:31.391Z"
     }
   ],
   "addresses": [],

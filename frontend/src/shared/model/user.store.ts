@@ -1,17 +1,6 @@
 import { ref } from 'vue'
 import type { User } from "@/entities/profile";
 
-const users = ref<User[]>([])
+export const users = ref<User[]>([])
 
-const rawUser = localStorage.getItem("user")
-
-const userData = ref<User | null>(
-    rawUser ? JSON.parse(rawUser) : null
-)
-export const userStore = () => {
-    return {
-        users,
-
-        userData,
-    }
-}
+export const userData = ref<User | null>(null);

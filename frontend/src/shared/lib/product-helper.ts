@@ -43,7 +43,7 @@ export const productHelper = () => {
         product.images[0] = product.images[realIndex];
         product.images[realIndex] = mainPath;
 
-        activeProductImg.value = `${import.meta.env.VITE_BASE_URL}/${product.images[0]}`;
+        activeProductImg.value = `${import.meta.env.VITE_SERVER_URL}/${product.images[0]}`;
     };
 
     const productInfoPreview = (product: Product) => {
@@ -52,7 +52,7 @@ export const productHelper = () => {
             return;
         }
         if(product && product.images && product.images[0]){
-            return `${import.meta.env.VITE_BASE_URL}/${product.images[0]}`;
+            return `${import.meta.env.VITE_SERVER_URL}/${product.images[0]}`;
         }
     };
 
@@ -63,7 +63,7 @@ export const productHelper = () => {
         }
 
         if(product && product.images && product.images.length > 0){
-            return product.images.slice(1).map(img => `${import.meta.env.VITE_BASE_URL}/${img}`);
+            return product.images.slice(1).map(img => `${import.meta.env.VITE_SERVER_URL}/${img}`);
         }
         return [];
     };
@@ -75,7 +75,7 @@ export const productHelper = () => {
         }
 
         if(product && product.images && product.images.length > 0){
-            return product.images.slice(0).map(img => `${import.meta.env.VITE_BASE_URL}/${img}`);
+            return product.images.slice(0).map(img => `${import.meta.env.VITE_SERVER_URL}/${img}`);
         }
         return [];
     };

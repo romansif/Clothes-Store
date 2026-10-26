@@ -1,14 +1,12 @@
 import router from "@/app/router";
 import { handler } from "@/shared/api/http";
-import { userStore } from "@/shared/model/user.store";
+import { userData } from "@/shared/model/user.store";
 import { useBaseModals } from "@/shared/lib/use-notify";
 import { clearLoginForm, clearLoginFormMessages } from "@/features/login-auth/lib/clear-login-form";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
 import { loginSchema } from "@/entities/login-form/model/login.schemas";
 import { loginForm, loginFormErrorMessages } from "@/entities/login-form/model/login-from";
 
-
-const { userData } = userStore();
 const { loading, openNotify } = useBaseModals();
 
 export const signIn = async () => {
@@ -39,7 +37,7 @@ export const signIn = async () => {
             console.log('Email and password are required.')
             return
         }else{
-            localStorage.setItem("user", JSON.stringify(foundedUser));
+            localStorage.setItem("userId", foundedUser.id);
         }
         userData.value = foundedUser;
 

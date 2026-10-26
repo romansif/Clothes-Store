@@ -3,7 +3,7 @@ import { handler } from "@/shared/api/http";
 import { useBaseModals } from "@/shared/lib/use-notify";
 import { createOrder } from "@/features/checkout-payment-dashboard/api/create-order";
 import { clearPaymentForm } from "@/features/checkout-payment-dashboard/lib/clear-payment";
-import { userStore } from "@/shared/model/user.store";
+import { userData } from "@/shared/model/user.store";
 import { updateCheckedQuantity } from "@/features/checkout-payment-dashboard/api/update-order-item";
 import { togglePaymentForm } from "@/features/checkout-payment-dashboard/lib/toggle-payment";
 import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper";
@@ -12,7 +12,6 @@ import { isChosenPayment } from "@/entities/checkout-payment-item/model/payment.
 import { addPaymentSchema } from "@/entities/checkout-payment-form/model/payment-schemas";
 import type { UserPayment } from "@/entities/checkout-payment-item";
 
-const { userData } = userStore();
 const { openNotify } = useBaseModals();
 const { paymentId } = togglePaymentForm();
 

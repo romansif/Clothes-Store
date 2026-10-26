@@ -1,12 +1,11 @@
 import { handler } from "@/shared/api/http";
 import { useBaseModals } from "@/shared/lib/use-notify";
-import { userStore } from "@/shared/model/user.store";
+import { userData } from "@/shared/model/user.store";
 import { getFavoriteProducts } from "@/shared/api/get-favorite";
 import { previewHelper } from "@/entities/product-card/lib/preview-helper";
 import { favoriteStore } from "@/entities/favorite/model/favorite-store";
 import type { Product } from "@/shared";
 
-const { userData } = userStore();
 const { favorite } = favoriteStore();
 const { openNotify } = useBaseModals();
 const { isFavorite, getProductId } = previewHelper();
@@ -17,7 +16,6 @@ export const toggleToFavorite = async (product: Product) => {
 
     try{
         const productId = getProductId(product);
-
         if(!productId){
             console.warn('Product ID not found');
             return;
@@ -41,32 +39,22 @@ export const toggleToFavorite = async (product: Product) => {
                     variants: product.variants,
                 }),
             });
-
             await getFavoriteProducts();
 
             await openNotify('You have successfully added the item to your favorite',
                 'You will now be redirected to the "Favorite" page');
         }else{
-
             const favoriteItem = favorite.value.find(
                 item => item.productId === productId &&
                     item.userId === user.id
             );
-            await deleteFavoriteProduct(favoriteItem?.id);
+            await handler(`/favorites/${favoriteItem?.id}`, {
+                method: "DELETE",
+            });
         }
     }catch(err){
         console.error('Failed to toggle favorite:', err);
     }
 };
 
-export const deleteFavoriteProduct = async (id: string | undefined) => {
-    try{
-        await handler(`/favorites/${id}`, {
-            method: "DELETE",
-        });
-        await getFavoriteProducts();
-    }catch(err){
-        console.error(`Failed to delete the favorite product:`, err);
-    }
-};
 

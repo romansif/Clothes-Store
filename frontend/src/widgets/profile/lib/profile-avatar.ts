@@ -7,6 +7,6 @@ export const userAvatar = (avatar: string | undefined) => {
         return avatar;
     }
 
-    return `${import.meta.env.VITE_BASE_URL}/${avatar}`
+    return `${import.meta.env.ViTE_BASE_URL}/${avatar}`
 };
 

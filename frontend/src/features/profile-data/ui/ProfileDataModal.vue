@@ -28,11 +28,10 @@
 
 <script setup lang="ts">
 import { useProfileModals } from "@/shared/lib/profile-modal";
-import { userStore } from "@/shared/model/user.store";
+import { userData } from "@/shared/model/user.store";
 import { UiButton } from "@/shared/ui/button";
 import { ConfidentialityData } from "@/entities/profile";
 import { UpdateProfileForm } from "@/features/change-data-form";
 
-const { userData } = userStore();
 const { toggleConfidentialityData } = useProfileModals();
 </script>

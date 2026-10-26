@@ -12,10 +12,11 @@
 import { updateCartItem } from "@/features/cart-item-action/api/update-cart-item";
 import { productHelper } from "@/shared/lib/product-helper";
 import type { Product } from "@/shared";
+import type { CartItem } from "@/entities/cart-item";
 
 defineProps< {
   product: Product
-  cart: Product[]
+  cart: CartItem[]
 }>()
 
 const { pureQuantity } = productHelper();

@@ -2,7 +2,7 @@
   <div class="flex flex-col gap-15">
     <div class="flex flex-col gap-4">
       <DeleteCartItemButton :product="product" />
-      <AddToOrder :product="product" />
+      <AddToOrder :product="product" :cart="cart" />
     </div>
     <div class="flex flex-col gap-4">
       <img :src="sizeUrl(product.sizes)" :class="[sizeClass(product.sizes)]" alt="">
@@ -19,13 +19,14 @@ import { productHelper } from "@/shared/lib/product-helper";
 import { sizeClass, sizeUrl } from "@/entities/cart-item/lib/cart-specific";
 import { AddToOrder, DeleteCartItemButton, UpdateQuantityItem } from "@/features/cart-item-action";
 import type { Product } from "@/shared";
+import type { CartItem } from "@/entities/cart-item";
+
+import update from "@/assets/icons/products/refresh.svg";
 
 defineProps<{
   product: Product
-  cart: Product[]
+  cart: CartItem[]
 }>();
-
-import update from "@/assets/icons/products/refresh.svg";
 
 const { pureColors } = productHelper();
 </script>

@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { userStore } from "@/shared/model/user.store";
+import { userData } from "@/shared/model/user.store";
 import { productsHelper } from "@/features/products/lib/products-helper";
 import { toggleToFavorite } from "@/shared/api/toggle-to-favorite";
 import { useGetSeasonProducts } from "@/widgets/season-list/api/get-season-product";
@@ -27,7 +27,6 @@ const props = defineProps<{
   season: string;
 }>();
 
-const { userData } = userStore();
 const { vHorizontalScroll } = productsHelper();
 const { getSeasonal } = useGetSeasonProducts();
 

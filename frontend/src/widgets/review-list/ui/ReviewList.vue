@@ -12,25 +12,19 @@
 <script setup lang="ts">
 import { computed, watch } from "vue";
 import { useRoute } from "vue-router";
-import { keepPreviousData, useQuery} from "@tanstack/vue-query";
 import { userAvatar } from "@/widgets/profile/lib/profile-avatar";
 import { reviewsStore } from "@/features/review-dashboard/model/reviews.store";
-import { useGetReviews } from "@/shared/api/get-reviews";
 import { reviewsHelper } from "@/features/review-dashboard/lib/reviews-helper";
+import { reviewFilter } from "@/features/product-review-filter/model/review-filter.store";
 import { toggleReviewPhotos } from "@/features/review-dashboard/lib/review-photo-modal";
+import { useFilteredReviewsData } from "@/features/review-dashboard/lib/use-rewiev-data";
 import { ReviewItem } from "@/entities/product-review";
 
 const route = useRoute();
 
 const { loadFiveReviews } = reviewsHelper();
-const { getFilteredReviews } = useGetReviews();
-const { visibleReviewsCount, reviewFilter} = reviewsStore();
-
-const { data: filteredReviews } = useQuery({
-  queryKey: ["filteredReviews", route.params.id, reviewFilter],
-  queryFn: () => getFilteredReviews(route.params.id, reviewFilter.value),
-  placeholderData: keepPreviousData,
-});
+const { visibleReviewsCount } = reviewsStore();
+const { filteredReviews } = useFilteredReviewsData(route)
 
 const visibleReviews = computed(() =>
     (filteredReviews.value ?? []).slice(0, visibleReviewsCount.value)

@@ -12,18 +12,11 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
-import { getCartProducts } from "@/widgets/cart-list/api/get-cart";
-import { cartStore } from "@/widgets/cart-list/model/cart.store";
-import { userStore } from "@/shared/model/user.store";
+import { useCartData } from "@/widgets/cart-list/lib/use-cart-data";
+import { userData } from "@/shared/model/user.store";
 import { toggleToFavorite } from "@/shared/api/toggle-to-favorite";
 import { CartProduct } from "@/entities/cart-item";
 import { UseCartItemActions } from "@/features/cart-item-action";
 
-const { cart } = cartStore();
-const { userData } = userStore();
-
-onMounted(async () => {
-  await getCartProducts();
-})
+const { cart } = useCartData()
 </script>

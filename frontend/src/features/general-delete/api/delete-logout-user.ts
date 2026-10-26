@@ -1,9 +1,8 @@
 import router from "@/app/router";
 import { handler } from "@/shared/api/http.ts";
-import { userStore } from "@/shared/model/user.store.ts";
+import { users, userData } from "@/shared/model/user.store";
 import { useBaseModals } from "@/shared/lib/use-notify.ts";
 
-const { users, userData } = userStore();
 const { openNotify } = useBaseModals();
 
 export const deleteAccount = async () => {

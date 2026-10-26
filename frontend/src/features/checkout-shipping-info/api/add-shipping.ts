@@ -3,12 +3,11 @@ import { v4 as uuidv4 } from 'uuid';
 import { handler } from "@/shared/api/http";
 import { useBaseModals } from "@/shared/lib/use-notify";
 import { clearShippingForm } from "@/features/checkout-shipping-info/lib/clear-shipping";
-import { userStore } from "@/shared/model/user.store";
+import { userData } from "@/shared/model/user.store";
 import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper";
 import { shippingForm, shippingFormErrorMessage } from "@/entities/checkout-shipping/model/shipping-form";
 import { addShippingSchema } from "@/entities/checkout-shipping/model/shipping-schemas";
 
-const { userData } = userStore();
 const { openNotify  } = useBaseModals();
 
 export const addShipping = async () => {
