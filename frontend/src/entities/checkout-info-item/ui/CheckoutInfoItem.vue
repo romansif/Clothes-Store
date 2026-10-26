@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { getSavedClass, getSavedErrorClass } from "@/shared/model/saved-checkout-info.variants";
 import { isChosenContactInfo } from "@/entities/checkout-info-item/model/information.refs";
-import type { UserContactInfo } from "@/entities/checkout-info-form";
+import type { UserContactInfo } from "@/entities/user-address";
 
 defineProps<{
   address: UserContactInfo;

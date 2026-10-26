@@ -44,6 +44,6 @@
 import type { User } from "@/entities/profile";
 
 defineProps<{
-  user: User
+  user: User | null
 }>()
 </script>

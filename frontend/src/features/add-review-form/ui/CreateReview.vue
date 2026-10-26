@@ -4,7 +4,7 @@
        @click="toggleReviewModal('')" >
     <form class="flex flex-col gap-2 bg-white w-150 h-fit rounded-xl p-5"
           @click.stop
-          @submit.prevent="createReview">
+          @submit.prevent="createReview()">
       <UiButton name="Exit"
                 variant="exitClose"
                 @click="toggleReviewModal('')" />
