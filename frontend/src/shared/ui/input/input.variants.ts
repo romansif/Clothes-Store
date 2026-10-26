@@ -1,4 +1,4 @@
-import type {InputVariant} from "@/shared/ui/input/input.types.ts";
+import type { InputVariant } from "@/shared/ui/input";
 
 export const inputVariantClasses: Record<InputVariant, string> = {
     auth: `bg-[#D9D9D9]/40 w-full outline-none px-4 py-4 rounded-sm font-dm-sans

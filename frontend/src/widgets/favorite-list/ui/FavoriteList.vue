@@ -16,10 +16,9 @@
 <script setup lang="ts">
 import { userStore } from "@/shared/model/user.store";
 import { favoriteStore } from "@/entities/favorite/model/favorite-store";
-import { useToggleFavorite } from "@/shared/api/toggle-to-favorite";
+import { toggleToFavorite } from "@/shared/api/toggle-to-favorite";
 import { ProductCard } from "@/entities/product-card";
 
 const { userData } = userStore();
 const { favorite } = favoriteStore();
-const { toggleToFavorite } = useToggleFavorite();
 </script>

@@ -15,8 +15,7 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { userStore } from "@/shared/model/user.store";
-import { useToggleFavorite } from "@/shared/api/toggle-to-favorite";
-import { useGetFavorite } from "@/shared/api/get-favorite";
+import { toggleToFavorite } from "@/shared/api/toggle-to-favorite";
 import { useGetYearProduct } from "@/widgets/year-list/api/get-year-product";
 import { productsHelper } from "@/features/products/lib/products-helper";
 
@@ -24,12 +23,9 @@ import { ProductCard } from "@/entities/product-card";
 
 const { userData } = userStore();
 const { vHorizontalScroll } = productsHelper();
-const { toggleToFavorite } = useToggleFavorite();
-const { getFavoriteProducts } = useGetFavorite();
 const { getYearProducts, productsYear } = useGetYearProduct();
 
 onMounted(async() => {
-  await getFavoriteProducts();
   await getYearProducts('ALL', 'ALL')
 })
 </script>

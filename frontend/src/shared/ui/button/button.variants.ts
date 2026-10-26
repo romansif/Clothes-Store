@@ -1,4 +1,4 @@
-import type {ButtonVariant} from "@/shared/ui/button/button.types.ts";
+import type { ButtonVariant } from "@/shared/ui/button";
 
 export const buttonVariantClasses: Record<ButtonVariant, string> = {
     login: `bg-black text-white rounded px-6 py-3.5 mt-6 font-semibold w-full text-start transition`,

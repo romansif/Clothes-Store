@@ -15,7 +15,7 @@
     <SavedPaymentModal v-if="savedPaymentCard" />
   </Transition>
   <Transition name="modal">
-    <UserDataModal v-if="confidentialityData" />
+    <ProfileDataModal v-if="confidentialityData" />
   </Transition>
   <Transition name="modal">
     <DeleteModal v-if="deleteModal" />
@@ -27,7 +27,7 @@ import { baseDeleteModal } from "@/features/general-delete/lib/base-delete-modal
 import { useProfileModals } from "@/shared/lib/profile-modal";
 import { avatarModal } from "@/features/profile-change-avatar/model/profile-modal.store";
 import { SavedPaymentModal } from "@/features/saved-payment-card";
-import { UserDataModal } from "@/features/profile-data";
+import { ProfileDataModal } from "@/features/profile-data";
 import { CurrentOrderModal, AllOrderModal } from "@/features/order-modals";
 import { SavedAddressModal } from "@/features/saved-user-address";
 import { DeleteModal } from "@/features/general-delete";

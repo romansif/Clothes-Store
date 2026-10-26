@@ -27,7 +27,3 @@ import { Notification, Loading } from "@/shared";
 
 const { loading, notify } = useBaseModals();
 </script>
-
-<style scoped>
-
-</style>

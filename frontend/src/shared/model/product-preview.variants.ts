@@ -1,4 +1,4 @@
-import { type Product } from "@/shared/model/product.types.ts";
+import { type Product } from "@/shared";
 
 export const productPreviewClass = (sizeImg: string, product: Product) => [
     sizeImg,

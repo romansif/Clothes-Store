@@ -49,7 +49,7 @@
 
 <script setup lang="ts">
 import { previewHelper } from "@/entities/product-card/lib/preview-helper";
-import { useToggleFavorite } from "@/shared/api/toggle-to-favorite";
+import { toggleToFavorite } from "@/shared/api/toggle-to-favorite";
 import { stackInfo, toggleStackInfo } from "@/entities/my-product-item/lib/toggle-stack-info";
 import { UiButton } from "@/shared/ui/button";
 import { ProductPreview } from "@/entities/product-card";
@@ -66,5 +66,4 @@ defineProps<{
 }>();
 
 const { getProductId } = previewHelper();
-const { toggleToFavorite } = useToggleFavorite();
 </script>

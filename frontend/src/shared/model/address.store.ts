@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import type { UserContactInfo } from "@/entities/checkout-info-form";
+import type { UserContactInfo } from "@/entities/user-address";
 
 const userAddresses = ref<UserContactInfo[]>([])
 const userAddress = ref<UserContactInfo | null>(null)

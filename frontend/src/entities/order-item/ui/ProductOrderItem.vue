@@ -25,8 +25,8 @@
                       {{ pureColorsName(product) }}
                     </span>
               </div>
-              <div class="flex gap-5 ml-auto">
-                <span class="font-bold font-dm-sans">$ {{ product.price }}</span>
+              <div class="flex items-center gap-5 ml-auto font-dm-sans">
+                <span class="font-bold">$ {{ product.price }}</span>
                 <span class="text-[#A3A3A3]">{{ orderQuantity(product) }} pcs.</span>
               </div>
             </div>

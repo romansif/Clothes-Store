@@ -41,7 +41,7 @@
 <script setup lang="ts">
 import { addColor, addSize } from "@/features/product-action/lib/use-cart";
 import { previewHelper } from "@/entities/product-card/lib/preview-helper";
-import { useToggleFavorite } from "@/shared/api/toggle-to-favorite";
+import { toggleToFavorite } from "@/shared/api/toggle-to-favorite";
 import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
 import { productHelper } from "@/shared/lib/product-helper";
 import { toggleReadMore, fullDescription } from "@/features/product-action/lib/toggle-more-info";
@@ -51,17 +51,16 @@ import { addToCartForm, addToCartFormErrorMessages } from "@/entities/product-in
 import type { Product } from "@/shared";
 import type { User } from "@/entities/profile";
 
+import like from '@/assets/icons/nav/like.png';
+import liked from '@/assets/icons/nav/liked.png';
+
 defineProps<{
   user: User | null
   product: Product
 }>();
 
-import like from '@/assets/icons/nav/like.png';
-import liked from '@/assets/icons/nav/liked.png';
-
 const { isFavorite } = previewHelper();
 const { variantsInfo } = productHelper();
-const { toggleToFavorite } = useToggleFavorite();
 
 refClearErrorsOnChange(
   addToCartForm,

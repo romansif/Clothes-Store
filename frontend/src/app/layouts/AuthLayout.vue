@@ -34,7 +34,3 @@ const { loading, notify } = useBaseModals();
 
 const isLogin = computed(() => route.name === "signIn")
 </script>
-
-<style scoped>
-
-</style>

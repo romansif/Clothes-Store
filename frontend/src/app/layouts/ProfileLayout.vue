@@ -18,7 +18,3 @@ import { MainNavBar } from "@/widgets/navigation";
 
 const { notify, loading } = useBaseModals();
 </script>
-
-<style scoped>
-
-</style>

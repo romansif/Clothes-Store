@@ -15,20 +15,15 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { userStore } from "@/shared/model/user.store";
-import { useGetFavorite } from "@/shared/api/get-favorite";
 import { useGetProducts } from "@/features/products/api/get-product";
-import { useToggleFavorite } from "@/shared/api/toggle-to-favorite";
-
+import { toggleToFavorite } from "@/shared/api/toggle-to-favorite";
 import { ProductCard } from "@/entities/product-card";
 
 const { userData } = userStore();
-const { getFavoriteProducts } = useGetFavorite();
-const { toggleToFavorite } = useToggleFavorite();
 const { getAllProducts, getFilteredProducts, products } = useGetProducts();
 
 onMounted(async() => {
   await getAllProducts();
   await getFilteredProducts('ALL', 'ALL');
-  await getFavoriteProducts();
 })
 </script>

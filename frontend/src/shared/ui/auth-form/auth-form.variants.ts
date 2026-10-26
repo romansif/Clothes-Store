@@ -1,4 +1,4 @@
-import type { AuthFormVariant } from "@/shared/ui/auth-form/auth-form.types.ts";
+import type { AuthFormVariant } from "@/shared/ui/auth-form";
 
 export const showPasswordClass: Record<AuthFormVariant, string> = {
     login: 'absolute w-7.5 top-1/5 left-57 sm:left-82',

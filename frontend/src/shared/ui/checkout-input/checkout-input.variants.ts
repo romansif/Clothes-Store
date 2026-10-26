@@ -1,4 +1,4 @@
-import type { CheckoutInputVariant } from "@/shared/ui/checkout-input/checkout-input.types.ts";
+import type { CheckoutInputVariant } from "@/shared/ui/checkout-input";
 
 export const checkoutInputClasses: Record<CheckoutInputVariant, string> = {
     contactInfo: `bg-gray-50 border border-gray-400 transition duration-400 hover:bg-white focus:bg-white

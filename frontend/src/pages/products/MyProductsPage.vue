@@ -5,6 +5,5 @@
 </template>
 
 <script setup lang="ts">
-
 import { MyProductList } from "@/widgets/my-product-list";
 </script>

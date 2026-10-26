@@ -1,5 +1,5 @@
-import {ref} from "vue";
-import type {Size} from "@/shared/model/product.types.ts";
+import { ref } from "vue";
+import type { Size } from "@/shared";
 
 import xs from "@/assets/icons/size/xs.svg";
 import s from "@/assets/icons/size/s.svg";

@@ -23,7 +23,3 @@ import { CheckoutHeader } from "@/widgets/checkout-header";
 
 const { notify } = useBaseModals();
 </script>
-
-<style scoped>
-
-</style>
