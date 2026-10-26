@@ -41,11 +41,10 @@ import { IMaskComponent as IMask } from "vue-imask";
 import { cardNumberMask, expiryDateMask, cardCvvMask } from "@/entities/checkout-payment-form/model/payment-mask";
 import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment-form/model/payment-form";
 import { cardNumberClass, expiryDateClass, cardCvvClass, paymentCardErrorClass } from "@/shared/model/payment-form.variants";
-import type { UserPayment } from "@/entities/checkout-payment-form";
+import { CheckoutInput } from "@/shared/ui/checkout-input";
+import type { UserPayment } from "@/entities/checkout-payment-item";
 
 defineProps<{
   userPayment: UserPayment | null;
 }>();
-
-import CheckoutInput from "../../../shared/ui/checkout-input/CheckoutInput.vue";
 </script>

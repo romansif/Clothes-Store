@@ -1,1 +1,1 @@
-export { default as SavedPaymentList } from './ui/SavedPaymentList.vue'
+export { default as CheckoutPaymentList } from './ui/CheckoutPaymentList.vue'

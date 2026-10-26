@@ -4,7 +4,7 @@
       <CheckoutHeader />
       <main :class="checkoutClass">
         <router-view />
-        <OrderInfo />
+        <CheckoutOrder />
       </main>
     </div>
   </div>
@@ -18,7 +18,7 @@ import { useBaseModals } from "@/shared/lib/use-notify";
 import { checkoutClass } from "@/shared/model/saved-checkout-info.variants";
 
 import { Notification } from "@/shared";
-import { OrderInfo } from "@/features/checkout-order-info";
+import { CheckoutOrder } from "@/features/checkout-order-info";
 import { CheckoutHeader } from "@/widgets/checkout-header";
 
 const { notify } = useBaseModals();

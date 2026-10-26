@@ -1,16 +1,11 @@
+export type Role = 'Buyer' | 'Seller';
+
 export interface RegisterForm {
     name: string,
     surName: string,
     phone: string,
     email: string,
     password: string
-}
-
-export interface LoginForm {
-    email: string,
-    password: string,
-    phone: string,
-    role: string,
 }
 
 export interface RegisterFormErrorMessage {
@@ -20,14 +15,3 @@ export interface RegisterFormErrorMessage {
     email: string,
     password: string,
 }
-
-export interface LoginFormErrorMessage {
-    email: string,
-    password: string,
-    phone: string,
-    role: string
-}
-
-
-
-

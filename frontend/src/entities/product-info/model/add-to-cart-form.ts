@@ -1,9 +1,5 @@
 import { ref } from "vue";
-import type {
-    AddForm,
-    AddFormErrorMessage, IsAgreeFormError,
-    IsAgreeFormErrorMessage
-} from "@/features/product-action";
+import type { AddForm, AddFormErrorMessage, IsAgreeFormError, IsAgreeFormErrorMessage } from "@/entities/product-info";
 
 export const addToCartForm = ref<AddForm>({
     colors: {

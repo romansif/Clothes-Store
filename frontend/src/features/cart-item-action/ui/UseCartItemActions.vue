@@ -18,7 +18,6 @@
 import { productHelper } from "@/shared/lib/product-helper";
 import { sizeClass, sizeUrl } from "@/entities/cart-item/lib/cart-specific";
 import { AddToOrder, DeleteCartItemButton, UpdateQuantityItem } from "@/features/cart-item-action";
-
 import type { Product } from "@/shared";
 
 defineProps<{

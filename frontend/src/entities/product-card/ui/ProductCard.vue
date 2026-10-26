@@ -22,10 +22,10 @@
 </template>
 
 <script setup lang="ts">
+import { ProductPreview } from "@/entities/product-card";
 import type { Product } from "@/shared";
 import type { User } from "@/entities/profile";
 import type { ProductCardVariant } from "@/entities/product-card";
-import { ProductPreview } from "@/entities/product-card";
 
 const props = defineProps<{
   user: User | null;

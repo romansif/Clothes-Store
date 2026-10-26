@@ -1,4 +1,4 @@
-import type {InformationFormVariant} from "@/entities/checkout-info-form/model/information-form.types.ts";
+import type { InformationFormVariant } from "@/entities/checkout-info-form";
 
 export const postalCodeClass: Record<InformationFormVariant, string> = {
     default: `w-full bg-gray-50 border border-gray-400 transition duration-400 hover:bg-white

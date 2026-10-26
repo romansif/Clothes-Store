@@ -1,4 +1,4 @@
-import type {Catalog} from "@/shared/model/product.types.ts";
+import type { Catalog } from "@/shared";
 
 import spring_catalog from '@/assets/photos/main-catalogs/spring_catalog.png';
 import summer_catalog from '@/assets/photos/main-catalogs/summer_catalog.png';

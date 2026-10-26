@@ -1,12 +1,11 @@
 import router from "@/app/router";
 import { handler} from "@/shared/api/http";
-import { registerSchema } from "@/entities/auth/model/auth-schemas";
 import { useBaseModals } from "@/shared/lib/use-notify";
 import { userStore } from "@/shared/model/user.store";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
 import { clearRegisterForm, clearRegisterFormMessages } from "@/features/register-auth/lib/clear-register-form";
-import { registerForm, registerFormErrorMessages } from "@/entities/auth/model/auth-form";
-
+import { registerSchema } from "@/entities/register-form/model/register.schemas";
+import { registerForm, registerFormErrorMessages } from "@/entities/register-form/model/register-from";
 const { userData } = userStore();
 const { loading, openNotify } = useBaseModals();
 

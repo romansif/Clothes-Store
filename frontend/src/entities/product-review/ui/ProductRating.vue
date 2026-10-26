@@ -32,11 +32,11 @@ import { ratingHelper } from "@/entities/product-review/lib/rating-helper";
 import { reverseRatings } from "@/entities/product-review/model/review-rating";
 import type { Review } from "@/entities/product-review";
 
+import star from "@/assets/icons/products/full-star.png";
+
 defineProps<{
   reviews: Review[];
 }>();
-
-import star from "@/assets/icons/products/full-star.png";
 
 const { averageRating, percentage, ratingCount, starCountSrc } = ratingHelper();
 </script>

@@ -1,2 +1,2 @@
-export { default as AddressList } from "./ui/AddressList.vue"
-export { default as ContactList } from "./ui/ContactList.vue"
+export { default as CheckoutAddressList } from "./ui/CheckoutAddressList.vue"
+export { default as CheckoutContactList } from "./ui/CheckoutContactList.vue"

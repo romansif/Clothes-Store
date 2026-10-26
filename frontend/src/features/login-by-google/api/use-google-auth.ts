@@ -1,6 +1,6 @@
 import router from "@/app/router";
 import { handler } from "@/shared/api/http";
-import { loginForm } from "@/entities/auth/model/auth-form";
+import { loginForm } from "@/entities/auth-password/model/auth-form";
 import { userStore } from "@/shared/model/user.store";
 import { useBaseModals } from "@/shared/lib/use-notify";
 

@@ -1,4 +1,4 @@
-import type {Collection, ColorItem, ImageItem, Variant} from "@/shared/model/product.types.ts";
+import type { Collection, ColorItem, ImageItem, Variant } from "@/shared";
 
 export interface OrderItem {
     id: string,

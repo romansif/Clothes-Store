@@ -4,8 +4,9 @@ import { userStore } from "@/shared/model/user.store";
 import { useBaseModals } from "@/shared/lib/use-notify";
 import { clearLoginForm, clearLoginFormMessages } from "@/features/login-auth/lib/clear-login-form";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
-import { loginSchema } from "@/entities/auth/model/auth-schemas";
-import { loginForm, loginFormErrorMessages } from "@/entities/auth/model/auth-form";
+import { loginSchema } from "@/entities/login-form/model/login.schemas";
+import { loginForm, loginFormErrorMessages } from "@/entities/login-form/model/login-from";
+
 
 const { userData } = userStore();
 const { loading, openNotify } = useBaseModals();

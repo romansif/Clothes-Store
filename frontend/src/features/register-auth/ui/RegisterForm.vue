@@ -50,7 +50,7 @@ import { showPassword } from "@/features/toggle-password/model/auth.refs";
 import { showPasswordClass, showPasswordErrorClass } from "@/shared/ui/auth-form/auth-form.variants";
 import { togglePassword } from "@/features/toggle-password/lib/toggle-password.ts";
 import { refClearErrorsOnChange } from "@/shared/lib/errors-helper.ts";
-import { registerForm, registerFormErrorMessages } from "@/entities/auth/model/auth-form.ts";
+import { registerForm, registerFormErrorMessages } from "@/entities/register-form/model/register-from";
 import {
   registerPhoneInputVariants,
   registerSelectPhoneCode

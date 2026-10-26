@@ -28,7 +28,6 @@
 
 <script setup lang="ts">
 import { cancelChoiceForm, cancelChoiceMessage } from "@/entities/order/model/order-forms";
-
-import ReplacementInput from "@/shared/ui/replacement-input/ReplacementInput.vue";
-import {UiButton} from "@/shared/ui/button";
+import { UiButton } from "@/shared/ui/button";
+import { ReplacementInput } from "@/shared/ui/replacement-input";
 </script>

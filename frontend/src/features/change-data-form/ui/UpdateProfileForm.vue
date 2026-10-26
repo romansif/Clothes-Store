@@ -137,8 +137,3 @@ refClearErrorsOnChange(
   updateUserFormErrorMessages,
 )
 </script>
-
-
-<style scoped>
-
-</style>

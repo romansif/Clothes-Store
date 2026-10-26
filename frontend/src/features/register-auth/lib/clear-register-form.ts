@@ -1,4 +1,4 @@
-import { registerForm, registerFormErrorMessages } from "@/entities/auth/model/auth-form";
+import { registerForm, registerFormErrorMessages } from "@/entities/register-form/model/register-from";
 
 export const clearRegisterForm = () => {
     registerForm.value.name = '';

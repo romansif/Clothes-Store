@@ -38,6 +38,7 @@
 import { useOrder } from "@/entities/order-item/lib/use-order";
 import { ordersVariants } from "@/entities/order-item/model/orders.variants";
 import { OrderStatus } from "@/entities/order";
+import { ProductOrderItem } from "@/entities/order-item";
 import type { Order } from "@/entities/order";
 
 defineProps<{
@@ -45,7 +46,6 @@ defineProps<{
 }>();
 
 import copy_btn from '@/assets/icons/squares/copy.svg';
-import ProductOrderItem from "@/entities/order-item/ui/ProductOrderItem.vue";
 
 const { copyText } = useOrder();
 const { orderStatus } = ordersVariants();

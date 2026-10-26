@@ -10,7 +10,7 @@
           Hide saved payment
         </span>
       </div>
-      <SavedPaymentList />
+      <CheckoutPaymentList />
     </div>
   </div>
 </template>
@@ -19,7 +19,7 @@
 import { onMounted } from "vue";
 import { useGetPayment } from "@/features/saved-payment-card/api/get-payment";
 import { togglePaymentForm } from "@/features/checkout-payment-dashboard/lib/toggle-payment";
-import { SavedPaymentList } from "@/widgets/checkout-cards-list";
+import { CheckoutPaymentList } from "@/widgets/checkout-cards-list";
 
 const { getPayments } = useGetPayment();
 const { toggleShowPayment } = togglePaymentForm();

@@ -3,7 +3,7 @@ import router from "@/app/router";
 import { cartStore } from "@/widgets/cart-list/model/cart.store";
 import { orderStore } from "@/shared/model/order.store";
 import { isAgreeFormError, isAgreeFormErrorMessage } from "@/entities/product-info/model/add-to-cart-form";
-import type {CartItem} from "@/entities/cart-item";
+import type { CartItem } from "@/entities/cart-item";
 
 const { cart } = cartStore();
 const { orderItems } = orderStore();

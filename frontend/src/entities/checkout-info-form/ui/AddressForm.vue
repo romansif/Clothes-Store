@@ -38,7 +38,6 @@ import { IMaskComponent as IMask } from "vue-imask";
 import { postalCode } from "@/entities/checkout-info-form/model/information-mask";
 import { postalCodeClass } from "@/entities/checkout-info-form/model/information-form.variants";
 import { informationForm, informationFormErrorMessages } from "@/entities/checkout-info-form/model/information-form";
-
-import CheckoutInput from "../../../shared/ui/checkout-input/CheckoutInput.vue";
+import { CheckoutInput } from "@/shared/ui/checkout-input";
 </script>
 

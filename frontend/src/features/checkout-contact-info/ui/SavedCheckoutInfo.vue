@@ -8,11 +8,11 @@
         Hide saved contact
       </span>
       </div>
-      <ContactList />
+      <CheckoutContactList />
     </div>
     <div class="flex flex-col">
       <h1 class="text-sm font-medium">SHIPPING ADDRESS</h1>
-      <AddressList />
+      <CheckoutAddressList />
     </div>
   </div>
 </template>
@@ -21,7 +21,7 @@
 import { onMounted } from "vue";
 import { useGetAddress } from "@/features/saved-user-address/api/get-address";
 import { toggleInformation } from "@/features/checkout-contact-info/lib/toggle-contact-info";
-import { AddressList, ContactList } from "@/widgets/checkout-info-lists";
+import { CheckoutAddressList, CheckoutContactList } from "@/widgets/checkout-info-lists";
 
 const { getAddresses } = useGetAddress();
 const { toggleShowContact } = toggleInformation();

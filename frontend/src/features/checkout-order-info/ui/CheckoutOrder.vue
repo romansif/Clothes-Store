@@ -10,7 +10,7 @@
         )
       </span>
     </div>
-    <OrderInfoList />
+    <CheckoutOrderList />
     <div class="border-b border-gray-300 mt-5"></div>
     <div class="flex flex-col font-medium text-xs mt-3 gap-2">
       <div class="flex justify-between">
@@ -52,7 +52,7 @@
 import { orderStore } from "@/shared/model/order.store";
 import { shippingForm } from "@/entities/checkout-shipping/model/shipping-form";
 import { orderPriceInfo } from "@/features/checkout-order-info/lib/order-price-info";
-import { OrderInfoList } from "@/widgets/checkout-order-list";
+import { CheckoutOrderList } from "@/widgets/checkout-order-list";
 
 const { items } = orderStore();
 const { price, totalPrice, commissionPrice } = orderPriceInfo();

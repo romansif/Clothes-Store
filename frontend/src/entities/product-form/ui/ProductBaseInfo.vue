@@ -186,10 +186,9 @@ import { productSpecific } from "@/entities/product-form/model/product-specific"
 import { baseSelectClass, skuClass, productFormErrorClass } from "@/features/product-form/model/product-form.variants";
 import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
 import { createProductForm, createProductFormErrorMessages } from "@/entities/product-form/model/product-forms";
-import type { Product } from "@/shared";
-
 import { UiInput } from "@/shared/ui/input";
 import { UiProductTextarea } from "@/shared/ui/product-textarea";
+import type { Product } from "@/shared";
 
 defineProps<{
   product?: Product
