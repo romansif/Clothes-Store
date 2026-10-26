@@ -1,0 +1,33 @@
+import { reviewForm } from "@/entities/review-form/model/review-form";
+import { reviewsStore } from "@/features/review-dashboard/model/reviews.store";
+
+const { ratingDirection } = reviewsStore();
+
+export const addRating = (rating: number) => {
+    const half = rating - 0.5
+    const current = reviewForm.value.rating
+
+    if(current < half || current > rating) {
+        reviewForm.value.rating = half
+        ratingDirection.value = 'up';
+        return;
+    }
+
+    if(ratingDirection.value === 'up') {
+        if(current === half) {
+            reviewForm.value.rating = rating;
+            ratingDirection.value = 'down';
+        }else{
+            reviewForm.value.rating = half
+        }
+        return;
+    }
+
+    if(current === rating){
+        reviewForm.value.rating = half;
+    }else{
+        reviewForm.value.rating = rating - 1
+        ratingDirection.value = 'up';
+    }
+};
+

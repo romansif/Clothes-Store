@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useGetPayment } from "@/features/use-user-payment/api/get-payment";
+import { useGetPayment } from "@/features/saved-payment-card/api/get-payment";
 import { togglePaymentForm } from "@/features/checkout-payment-dashboard/lib/toggle-payment";
 import { SavedPaymentList } from "@/widgets/checkout-cards-list";
 

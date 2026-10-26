@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useGetAddress } from "@/features/use-user-address/api/get-address";
+import { useGetAddress } from "@/features/saved-user-address/api/get-address";
 import { toggleInformation } from "@/features/checkout-contact-info/lib/toggle-contact-info";
 import { AddressList, ContactList } from "@/widgets/checkout-info-lists";
 

@@ -41,7 +41,7 @@
 
 <script setup lang="ts">
 import { userStore } from "@/shared/model/user.store";
-import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal";
+import { baseDeleteModal } from "@/features/general-delete/lib/base-delete-modal";
 import { Menu, MenuItems, MenuItem, MenuButton} from "@headlessui/vue";
 import { UiButton } from "@/shared/ui/button";
 

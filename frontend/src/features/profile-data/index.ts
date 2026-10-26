@@ -1,0 +1,1 @@
+export { default as UserDataModal } from './ui/UserDataModal.vue'

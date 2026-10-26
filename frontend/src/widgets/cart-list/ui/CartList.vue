@@ -12,6 +12,8 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from "vue";
+import { getCartProducts } from "@/widgets/cart-list/api/get-cart";
 import { cartStore } from "@/widgets/cart-list/model/cart.store";
 import { userStore } from "@/shared/model/user.store";
 import { useToggleFavorite } from "@/shared/api/toggle-to-favorite";
@@ -22,4 +24,8 @@ import { UseCartItemActions } from "@/features/cart-item-action";
 const { cart } = cartStore();
 const { userData } = userStore();
 const { toggleToFavorite } = useToggleFavorite();
+
+onMounted(async () => {
+  await getCartProducts();
+})
 </script>

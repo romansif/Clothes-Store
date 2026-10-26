@@ -6,7 +6,7 @@
 
 
 <script setup lang="ts">
-import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal";
+import { baseDeleteModal } from "@/features/general-delete/lib/base-delete-modal";
 import type { Product } from "@/shared";
 
 import del from "@/assets/icons/delete-close/delete.svg";

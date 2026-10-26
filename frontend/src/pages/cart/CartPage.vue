@@ -11,14 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
-import { getCartProducts } from "@/widgets/cart-list/api/get-cart";
-
 import { FavoriteCartHeader } from "@/widgets/favorite-cart-header";
 import { CartList } from "@/widgets/cart-list";
 import { CartInfo } from "@/features/cart-order-info";
-
-onMounted(async () => {
-  await getCartProducts();
-})
 </script>

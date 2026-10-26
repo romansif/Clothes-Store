@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router";
 import { useQuery } from "@tanstack/vue-query";
-import { getProduct } from "@/features/use-product/api/get-product";
+import { getProduct } from "@/features/product-action/api/get-product";
 import { useUpdateProduct } from "@/features/update-product-form/api/update-product";
 import { fileInput } from "@/shared/lib/product-helper";
 import { UiButton } from "@/shared/ui/button";
@@ -35,7 +35,3 @@ const { data: product } = useQuery({
   queryFn: () => getProduct(route.params.id),
 })
 </script>
-
-<style scoped>
-
-</style>

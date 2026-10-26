@@ -8,15 +8,6 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
-import { useGetFavorite } from "@/shared/api/get-favorite";
-
 import { FavoriteCartHeader } from "@/widgets/favorite-cart-header";
 import { FavoriteList } from "@/widgets/favorite-list";
-
-const { getFavoriteProducts } = useGetFavorite();
-
-onMounted(async() => {
-  await getFavoriteProducts();
-})
 </script>

@@ -38,8 +38,8 @@
 
 <script setup lang="ts">
 import { userStore } from "@/shared/model/user.store";
-import { userAvatar } from "@/features/use-profile/lib/use-profile";
-import { useProfileModals } from "@/features/use-profile/lib/profile-modal";
+import { userAvatar } from "@/widgets/profile/lib/profile-avatar";
+import { useProfileModals } from "@/shared/lib/profile-modal";
 import { OpenProfileModals } from "@/widgets/profile";
 import { ProfileModals } from "@/widgets/profile";
 import { ProfileMenu } from "@/features/profile-menu";

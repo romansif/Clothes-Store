@@ -3,7 +3,7 @@ import type {
     AddForm,
     AddFormErrorMessage, IsAgreeFormError,
     IsAgreeFormErrorMessage
-} from "@/features/use-product";
+} from "@/features/product-action";
 
 export const addToCartForm = ref<AddForm>({
     colors: {

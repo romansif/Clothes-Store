@@ -12,15 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
-import { useGetUsers } from "@/features/use-profile/api/get-users";
 import { userStore } from "@/shared/model/user.store";
 import { ProfileSettings, ProfileNotLoggedIn } from "@/widgets/profile";
 
 const { userData } = userStore();
-const { getUser } = useGetUsers();
-
-onMounted(async () => {
-  await getUser();
-})
 </script>

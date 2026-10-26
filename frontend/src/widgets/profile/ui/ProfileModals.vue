@@ -23,18 +23,16 @@
 </template>
 
 <script setup lang="ts">
-import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal";
-import { useProfileModals } from "@/features/use-profile/lib/profile-modal";
-import { SavedPaymentModal } from "@/features/use-user-payment";
-import { ChangeAvatarModal, UserDataModal } from "@/features/use-profile";
+import { baseDeleteModal } from "@/features/general-delete/lib/base-delete-modal";
+import { useProfileModals } from "@/shared/lib/profile-modal";
+import { avatarModal } from "@/features/profile-change-avatar/model/profile-modal.store";
+import { SavedPaymentModal } from "@/features/saved-payment-card";
+import { UserDataModal } from "@/features/profile-data";
 import { CurrentOrderModal, AllOrderModal } from "@/features/order-modals";
-import { SavedAddressModal } from "@/features/use-user-address";
-import { DeleteModal } from "@/features/use-general-delete";
+import { SavedAddressModal } from "@/features/saved-user-address";
+import { DeleteModal } from "@/features/general-delete";
+import { ChangeAvatarModal } from "@/features/profile-change-avatar";
 
 const { deleteModal } = baseDeleteModal();
-const {
-  avatarModal, orderHistory,
-  currentOrder, savedAddresses, savedPaymentCard,
-  confidentialityData
-} = useProfileModals();
+const { orderHistory, currentOrder, savedAddresses, savedPaymentCard, confidentialityData } = useProfileModals();
 </script>

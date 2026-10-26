@@ -12,19 +12,17 @@
 
 <script setup lang="ts">
 import { useRoute } from "vue-router";
-import { computed, onMounted } from "vue";
+import { computed } from "vue";
 import { useQuery } from "@tanstack/vue-query";
-import { product } from "@/features/use-product/api/get-product";
-import { useGetFavorite } from "@/shared/api/get-favorite";
-import { getProduct } from "@/features/use-product/api/get-product";
+import { product } from "@/features/product-action/api/get-product";
+import { getProduct } from "@/features/product-action/api/get-product";
 import { userStore } from "@/shared/model/user.store";
-import { ProductInfo } from "@/features/use-product";
-import { ProductReviews } from "@/features/use-product-review";
+import { ProductInfo } from "@/features/product-action";
+import { ProductReviews } from "@/features/review-dashboard";
 
 const route = useRoute();
 
 const { userData } = userStore();
-const { getFavoriteProducts } = useGetFavorite();
 
 useQuery({
   queryKey: ['product', route.params.id],
@@ -33,9 +31,5 @@ useQuery({
 
 const isBuyer = computed(() => {
   return userData.value?.role === 'Buyer';
-});
-
-onMounted(async () => {
-  await getFavoriteProducts();
 });
 </script>

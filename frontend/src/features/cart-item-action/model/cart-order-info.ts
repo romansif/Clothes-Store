@@ -13,10 +13,6 @@ export const useCartOrderInfo = () => {
         return cart.value.filter((item: CartItem) => item.checked);
     });
 
-    const cartCount = computed(() => {
-        return cart.value.length;
-    });
-
     const price = computed(() => {
         return checkedItems.value.reduce(
             (sum: number, item: CartItem) => sum + item.price,
@@ -58,7 +54,6 @@ export const useCartOrderInfo = () => {
     };
 
     return {
-        cartCount,
         price,
         commissionPrice,
         totalPrice,

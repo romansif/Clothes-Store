@@ -32,7 +32,7 @@
 import { onMounted } from "vue";
 import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
 import { informationContactStore } from "@/shared/model/address.store";
-import { useGetAddress } from "@/features/use-user-address/api/get-address";
+import { useGetAddress } from "@/features/saved-user-address/api/get-address";
 import { addShipping } from "@/features/checkout-shipping-info/api/add-shipping";
 import { shippingForm, shippingFormErrorMessage } from "@/entities/checkout-shipping/model/shipping-form";
 import { UiButton } from "@/shared/ui/button";

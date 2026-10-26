@@ -22,13 +22,11 @@
 
 <script setup lang="ts">
 import { useRoute } from "vue-router";
-import { useCartOrderInfo } from "@/features/cart-item-action/model/cart-order-info";
 import { useFavoriteCartHeader } from "@/widgets/favorite-cart-header/lib/use-favorite-cart-header";
 
 import liked from "@/assets/icons/nav/liked.png";
 
 const route = useRoute();
 
-const { cartCount } = useCartOrderInfo();
-const { favoritesCount, isCart, isFavorite } = useFavoriteCartHeader(route);
+const { favoritesCount, cartCount, isCart, isFavorite } = useFavoriteCartHeader(route);
 </script>

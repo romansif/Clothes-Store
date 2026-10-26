@@ -9,5 +9,5 @@
 
 <script setup lang="ts">
 import { HeaderCatalog } from "@/widgets/navigation";
-import { SeasonsCatalog } from "@/features/use-season-product";
+import { SeasonsCatalog } from "@/features/season-catalog";
 </script>

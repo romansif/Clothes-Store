@@ -19,9 +19,9 @@
 import { onMounted } from "vue";
 import { userStore } from "@/shared/model/user.store";
 import { getMyProducts, myProducts } from "@/features/my-products/api/get-my-product";
-import { baseDeleteModal } from "@/features/use-general-delete/lib/base-delete-modal";
+import { baseDeleteModal } from "@/features/general-delete/lib/base-delete-modal";
 import { MyProductItem } from "@/entities/my-product-item";
-import { DeleteModal } from "@/features/use-general-delete";
+import { DeleteModal } from "@/features/general-delete";
 import { DeleteMyProductButton } from "@/features/my-products";
 
 const { userData } = userStore();

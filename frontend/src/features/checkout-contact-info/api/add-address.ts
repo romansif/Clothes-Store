@@ -3,7 +3,7 @@ import { handler } from "@/shared/api/http";
 import { useBaseModals } from "@/shared/lib/use-notify";
 import { clearInformationForm } from "@/features/checkout-contact-info/lib/clear-address";
 import { userStore } from "@/shared/model/user.store";
-import { useGetAddress } from "@/features/use-user-address/api/get-address";
+import { useGetAddress } from "@/features/saved-user-address/api/get-address";
 import { toggleInformation } from "@/features/checkout-contact-info/lib/toggle-contact-info";
 import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper";
 import { informationForm, informationFormErrorMessages } from "@/entities/checkout-info-form/model/information-form";
