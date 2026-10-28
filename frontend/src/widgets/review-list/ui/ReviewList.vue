@@ -17,7 +17,7 @@ import { reviewsStore } from "@/features/review-dashboard/model/reviews.store";
 import { reviewsHelper } from "@/features/review-dashboard/lib/reviews-helper";
 import { reviewFilter } from "@/features/product-review-filter/model/review-filter.store";
 import { toggleReviewPhotos } from "@/features/review-dashboard/lib/review-photo-modal";
-import { useFilteredReviewsData } from "@/features/review-dashboard/lib/use-rewiev-data";
+import { useFilteredReviewsData } from "@/widgets/review-list/lib/use-rewiev-data";
 import { ReviewItem } from "@/entities/product-review";
 
 const route = useRoute();

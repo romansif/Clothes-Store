@@ -1,15 +1,8 @@
 import { ref } from "vue";
 import { sizes } from "@/shared/model/product-sizes";
-import { useGetProducts } from "@/features/products/api/get-product";
-import { useGetWeekProduct } from "@/widgets/week-list/api/get-week-product";
-import { useGetYearProduct } from "@/widgets/year-list/api/get-year-product";
-import { useGetSeasonProducts } from "@/widgets/season-list/api/get-season-product";
-
-const { allProducts } = useGetProducts();
-const { getFilteredProducts } = useGetProducts();
-const { getWeekProducts } = useGetWeekProduct();
-const { getYearProducts } = useGetYearProduct();
-const { getSeasonal } = useGetSeasonProducts();
+import { activeFilter, yearFilter } from "@/features/filter-products/model/active-filter";
+import { clearSearchProductForm } from "@/features/search-product/lib/clear-search";
+import type { Product } from "@/shared";
 
 export const filterProduct = () => {
     const selectedGender = ref<string>('ALL');
@@ -28,7 +21,6 @@ export const filterProduct = () => {
         Blueprint: false,
         'Chapter |': false,
     });
-
 
     const stackProducts = ref<Record<string, boolean>>({
         Availability: false,
@@ -79,68 +71,49 @@ export const filterProduct = () => {
         setActiveKey(stackProducts.value, '');
     }
 
-    const toggleFilter = async (categoryGroup: string, value: string) => {
-        if(categoryGroup === "ALL") {
-            clearActiveKey();
-            setActiveKey(category.value, value);
-        }
-        if(categoryGroup === 'COLLECTION'){
-            clearActiveKey();
-            setActiveKey(collections.value, value);
-        }
-        if(categoryGroup === 'CATEGORY') {
-            clearActiveKey();
-            setActiveKey(categories.value, value);
-        }
-        if(categoryGroup === 'STATUS') {
-            clearActiveKey();
-            setActiveKey(stackProducts.value, value)
-        }else if(categoryGroup === 'GENDER') {
-            clearActiveKey()
-            setActiveKey(genders.value, value)
-        }else if(categoryGroup === 'COLOR') {
-            clearActiveKey();
-            setActiveKey(colors.value, value)
-        }
+    const toggleFilter = (categoryGroup: string, value: string) => {
+        const groups: Record<string, Record<string, boolean>> = {
+            ALL: category.value,
+            COLLECTION: collections.value,
+            CATEGORY: categories.value,
+            STATUS: stackProducts.value,
+            GENDER: genders.value,
+            COLOR: colors.value,
+        };
 
-        if(categoryGroup === 'COLLECTION') {
-            await getSeasonal(value)
-        }else{
-            await getFilteredProducts(categoryGroup, value);
-            await getWeekProducts(categoryGroup, value)
-            await getYearProducts(categoryGroup, value)
-        }
+        clearActiveKey();
+        if (groups[categoryGroup]) setActiveKey(groups[categoryGroup], value);
 
-        sizes.value.forEach(s => {
-            s.isActive = false
-        })
+        clearSearchProductForm();
+        activeFilter.value = { type: categoryGroup, value };
+        yearFilter.value = { type: categoryGroup, value };
+        sizes.value.forEach(s => { s.isActive = false });
     };
 
-    const getStackCount = (stackName: string) => {
+    const getStackCount = (products: Product[], stackName: string) => {
         if (stackName === 'Availability') {
-            return allProducts.value.filter(p =>
+            return products.filter(p =>
                 p.variants.some(v => v.count > 0)).length;
         }
 
         if (stackName === 'Exhausted') {
-            return allProducts.value.filter(p =>
+            return products.filter(p =>
                 p.variants.every(v => v.count === 0)).length;
         }
     };
 
-    const selectGender = async (type: string, filter: string) => {
+    const selectGender = (type: string, filter: string) => {
         selectedGender.value = filter;
         clearActiveKey();
-        await getYearProducts(type, filter);
-    }
+        yearFilter.value = { type, value: filter };
+    };
 
-    const toggleSize = async (categoryGroup: string, value: string) => {
-        sizes.value.forEach(s => {
-            s.isActive = s.name === value;
-        })
+    const toggleSize = (categoryGroup: string, value: string) => {
+        sizes.value.forEach(s => { s.isActive = s.name === value });
         clearActiveKey();
-        await getFilteredProducts(categoryGroup, value);
-    }
+        clearSearchProductForm();
+        activeFilter.value = { type: categoryGroup, value };
+    };
 
     return {
         selectedGender,

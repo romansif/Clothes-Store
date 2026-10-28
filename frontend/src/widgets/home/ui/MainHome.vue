@@ -12,7 +12,7 @@
               See All
           </router-link>
         </div>
-        <WeekList />
+        <WeekList :user="user" />
       </div>
     </div>
     <div class="flex flex-col lg:mt-25 mt-10">
@@ -23,7 +23,7 @@
       </div>
       <FilterGender />
       <div class="flex flex-col mt-10">
-        <YearList />
+        <YearList :user="user" />
       </div>
     </div>
     <div class="flex flex-col mt-25">
@@ -60,15 +60,17 @@
 </template>
 
 <script setup lang="ts">
+import { useUserData } from "@/widgets/profile/lib/use-user-data";
 import { useBaseModals } from "@/shared/lib/use-notify";
-import { Notification } from "@/shared";
 import { WeekList } from "@/widgets/week-list";
 import { YearList } from "@/widgets/year-list";
 import { FilterGender } from "@/widgets/home";
+import { Notification } from "@/widgets/state";
 
 import photo_1 from '@/assets/photos/8.png'
 import photo_2 from '@/assets/photos/9.png'
 import photo_3 from '@/assets/photos/pants.png'
 
+const { user } = useUserData()
 const { notify } = useBaseModals()
 </script>

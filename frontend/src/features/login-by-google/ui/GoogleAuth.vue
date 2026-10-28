@@ -6,10 +6,12 @@
 import { onMounted } from "vue";
 import { signGoogleAuth } from "@/features/login-by-google/api/use-google-auth";
 
+const { OAuth } = signGoogleAuth()
+
 onMounted(() => {
   window.google.accounts.id.initialize({
     client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
-    callback: signGoogleAuth,
+    callback: OAuth,
   });
 
   window.google.accounts.id.renderButton(

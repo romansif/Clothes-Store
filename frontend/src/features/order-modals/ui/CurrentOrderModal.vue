@@ -13,11 +13,11 @@
           <div class="flex">
             <span class="text-sm text-[#A3A3A3]">Purchase history and status tracking.</span>
             <span class="ml-auto h-fit px-3 py-1 bg-gray-100 text-gray-700 font-medium text-xs rounded-md">
-              Всего заказов: {{ orders?.length }}
+              Всего заказов: {{ activeOrders.length }}
             </span>
           </div>
         </header>
-        <OrderList />
+        <OrderList :orders="activeOrders" />
         <Transition name="modal">
           <Clipboard v-if="clipboard" />
         </Transition>
@@ -33,25 +33,18 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
 import { useOrder } from "@/entities/order-item/lib/use-order";
+import { useActiveOrderData } from "@/widgets/order-list/lib/use-order-data";
 import { useProfileModals } from "@/shared/lib/profile-modal";
-import { useGetOrder } from "@/features/order-modals/api/get-order";
-import { orderStore } from "@/shared/model/order.store";
 import { reviewFormModal } from "@/entities/order-action/lib/review-form-modal";
 import { choiceModal } from "@/entities/order-action/lib/order-modal";
 import { UiButton } from "@/shared/ui/button";
 import { Clipboard } from "@/widgets/clipboard";
 import { ReplacementModal } from "@/features/order-modals";
-import { CreateReview } from "@/features/add-review-form";
+import { CreateReview } from "@/features/add-review";
 import { OrderList } from "@/widgets/order-list";
 
-const { orders } = orderStore();
 const { clipboard } = useOrder();
-const { getFilteredOrders } = useGetOrder();
+const { activeOrders } = useActiveOrderData()
 const { toggleCurrentOrder } = useProfileModals();
-
-onMounted(async () => {
-  await getFilteredOrders();
-})
 </script>

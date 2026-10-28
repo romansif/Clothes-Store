@@ -29,7 +29,7 @@
               <span>{{ stackName }}</span>
               <span>
               (<span class="text-blue-700 font-medium font-dm-sans">
-                {{ allProducts.filter(p => p.variants.every(v => v.count !== 0)).length }}
+                {{ products.filter(p => p.variants.every(v => v.count !== 0)).length }}
               </span>)
             </span>
             </div>
@@ -51,7 +51,7 @@
               <span>{{ genderName }}</span>
               <span>
               (<span class="text-blue-700 font-medium font-dm-sans">
-                {{ allProducts.filter(p => p.gender === genderName).length }}
+                {{ products.filter(p => p.gender === genderName).length }}
               </span>)
             </span>
             </div>
@@ -100,9 +100,8 @@
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
-import { onMounted } from "vue";
 import { filterProduct } from "@/shared/lib/filter-product";
-import { useGetProducts } from "@/features/products/api/get-product";
+import { useProductsData } from "@/widgets/product-list/lib/use-product-data";
 import { toggleFilterAside } from "@/features/products/lib/product-modal";
 import {
   sidebarCategoryClass,
@@ -118,10 +117,6 @@ import checked from '@/assets/icons/squares/check-square.png';
 
 const route = useRoute();
 
-const { getAllProducts, allProducts } = useGetProducts();
+const { products } = useProductsData()
 const { toggleFilter, toggleSize, stackProducts, genders, colors, category, categories } = filterProduct();
-
-onMounted(async() => {
-  await getAllProducts();
-})
 </script>

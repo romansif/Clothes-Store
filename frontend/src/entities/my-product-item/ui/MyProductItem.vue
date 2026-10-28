@@ -4,8 +4,9 @@
       <ProductPreview :user="user"
                       :product="product"
                       :array="myProducts"
+                      :favorite="favorite"
                       :variant="'myProduct'"
-                      @toggle-to-favorite="toggleToFavorite" />
+                      @toggle-to-favorite="toggleFavorite({favorite, product})" />
       <div class="flex flex-col gap-35">
         <div class="flex flex-col gap-10">
           <div class="flex items-center ml-auto gap-10">
@@ -49,21 +50,24 @@
 
 <script setup lang="ts">
 import { previewHelper } from "@/entities/product-card/lib/preview-helper";
-import { toggleToFavorite } from "@/shared/api/toggle-to-favorite";
+import { useToggleFavorite } from "@/shared/api/toggle-to-favorite";
 import { stackInfo, toggleStackInfo } from "@/entities/my-product-item/lib/toggle-stack-info";
 import { UiButton } from "@/shared/ui/button";
 import { ProductPreview } from "@/entities/product-card";
 import { StackInfoModal } from "@/entities/my-product-item";
 import type { Product } from "@/shared";
 import type { User } from "@/entities/profile";
+import type { FavoriteItem } from "@/entities/favroite-item";
 
 import pencil from "@/assets/icons/products/pencil.svg";
 
 defineProps<{
-  user: User | null
+  user: User | undefined
   product: Product
   myProducts: Product[]
+  favorite: FavoriteItem[]
 }>();
 
 const { getProductId } = previewHelper();
+const { toggleFavorite } = useToggleFavorite()
 </script>

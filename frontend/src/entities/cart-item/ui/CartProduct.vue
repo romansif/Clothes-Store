@@ -5,8 +5,9 @@
         <ProductPreview :user="user"
                         :product="product"
                         :array="cart"
+                        :favorite="favorite"
                         :variant="'main&favorite&Cart'"
-                        @toggle-to-favorite="emit('toggleToFavorite', product)" />
+                        @toggle-to-favorite="emit('toggleToFavorite', favorite, product)" />
         <span class="whitespace-normal mt-2 text-[#A3A3A3] text-sm sm:text-lg">
           {{ product.material }} {{ product.category }}
         </span>
@@ -29,14 +30,16 @@ import { ProductPreview } from "@/entities/product-card";
 import type { CartItem } from "@/entities/cart-item";
 import type { Product } from "@/shared";
 import type { User } from "@/entities/profile";
+import type { FavoriteItem } from "@/entities/favroite-item";
 
 defineProps<{
-  user: User | null
+  user: User | undefined
   product: Product;
   cart: CartItem[]
+  favorite: FavoriteItem[]
 }>();
 
 const emit = defineEmits<{
-  toggleToFavorite: [product: Product],
+  toggleToFavorite: [favorite: FavoriteItem[], product: Product],
 }>()
 </script>

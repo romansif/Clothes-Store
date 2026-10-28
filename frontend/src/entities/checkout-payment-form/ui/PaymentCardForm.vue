@@ -45,6 +45,6 @@ import { CheckoutInput } from "@/shared/ui/checkout-input";
 import type { UserPayment } from "@/entities/checkout-payment-item";
 
 defineProps<{
-  userPayment: UserPayment | null;
+  userPayment: UserPayment | undefined;
 }>();
 </script>

@@ -1,8 +1,5 @@
-import { favoriteStore } from "@/entities/favorite/model/favorite-store";
 import type { Product } from "@/shared";
-import type { User } from "@/entities/profile";
-
-const { favorite } = favoriteStore();
+import type { FavoriteItem } from "@/entities/favroite-item";
 
 export const previewHelper = () => {
     const getProductId = (product: Product): string => {
@@ -27,15 +24,15 @@ export const previewHelper = () => {
         return product.variants.every(v => v.count === 0)
     };
 
-    const isFavorite = (product: Product, user: User | null) => {
-        if(!user) return;
-
+    const isFavorite = (favorite: FavoriteItem[], product: Product, userId: string) => {
         const productId = getProductId(product);
 
-        return favorite.value?.some(
+        if(!favorite) return
+
+        return favorite.some(
             item =>
                 item.productId === productId &&
-                item.userId === user.id
+                item.userId === userId
         ) ?? false;
     };
 

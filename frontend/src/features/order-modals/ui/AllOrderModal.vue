@@ -21,7 +21,7 @@
             </span>
           </div>
         </header>
-        <OrderList />
+        <OrderList :orders="orders" />
         <Transition name="modal">
           <Clipboard v-if="clipboard" />
         </Transition>
@@ -37,25 +37,18 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
 import { useOrder } from "@/entities/order-item/lib/use-order";
-import { orderStore } from "@/shared/model/order.store";
-import { useGetOrder } from "@/features/order-modals/api/get-order";
+import { useOrderData } from "@/widgets/order-list/lib/use-order-data";
 import { useProfileModals } from "@/shared/lib/profile-modal";
 import { reviewFormModal } from "@/entities/order-action/lib/review-form-modal";
 import { choiceModal } from "@/entities/order-action/lib/order-modal";
 import { UiButton } from "@/shared/ui/button";
 import { Clipboard } from "@/widgets/clipboard";
 import { ReplacementModal } from "@/features/order-modals";
-import { CreateReview } from "@/features/add-review-form";
+import { CreateReview } from "@/features/add-review";
 import { OrderList } from "@/widgets/order-list";
 
-const { orders } = orderStore();
 const { clipboard } = useOrder();
-const { getOrders } = useGetOrder();
+const { orders } = useOrderData()
 const { toggleOrderHistory } = useProfileModals();
-
-onMounted(async () => {
-  await getOrders();
-})
 </script>

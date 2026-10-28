@@ -1,28 +1,25 @@
 import { useQuery } from "@tanstack/vue-query";
 import { computed } from "vue";
-import { userData } from "@/shared/model/user.store";
 import { getMyProducts } from "@/widgets/my-product-list/api/get-my-product";
 
 export const useMyProductsData = () => {
+    const userId = localStorage.getItem("userId");
+
     const { data: myProducts } = useQuery({
-        queryKey: computed(() => ['myProducts', userData.value?.id]),
+        queryKey: computed(() => ['myProducts', userId]),
 
         queryFn: () => {
-            const userId = userData.value?.id;
-
             if (!userId) {
-                throw new Error('User is not authenticated');
+                throw new Error('Пользователь не зарегистрирован');
             }
 
             return getMyProducts(userId);
         },
 
-        enabled: computed(() => Boolean(userData.value?.id)),
+        enabled: computed(() => Boolean(userId)),
     });
 
-    const myProductItems = computed(() => myProducts.value ?? []);
-
     return {
-        myProducts: myProductItems,
+        myProducts: computed(() => myProducts.value ?? []),
     };
 };

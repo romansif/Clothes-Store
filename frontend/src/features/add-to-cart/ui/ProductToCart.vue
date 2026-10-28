@@ -12,17 +12,17 @@
     <UiButton v-if="user.role === 'Buyer' && isInStock(product) !== 0 && !isInCart(cart, product)"
                 name="ADD TO CART"
                 variant="addToCart"
-                @click="addToCart()" />
+                @click="addToCart(product)" />
     <UiButton v-if="isInStock(product) === 0 && user.id" name="OUT OF STACK" variant="outOfStack" />
     <div v-if="user.id && isInCart(cart, product)"
          class="flex items-center gap-18">
       <div class="flex gap-6 bg-zinc-800 py-3.5 px-3 text-lg transition duration-300 hover:scale-108">
         <img :src="plus"
-             @click="updateCartItem('add', product.id)" alt=""
+             @click="updateCartItemQuantity({type: 'add', cartItem: product})" alt=""
              class="bg-zinc-600 text-white py-1.5 px-2 w-8.75 rounded-md transition duration-300 hover:bg-zinc-400" />
         <span class="text-white font-dm-sans">{{ isInCart(cart, product)?.variants[0].count }}</span>
         <img :src="minus"
-             @click="updateCartItem('away', product.id)" alt=""
+             @click="updateCartItemQuantity({type: 'remove', cartItem: product})" alt=""
              class="bg-zinc-600 text-white py-1.5 px-2 w-8.75 rounded-md transition duration-300 hover:bg-zinc-400" />
       </div>
       <router-link :to="{ name: 'cart' }"
@@ -39,10 +39,9 @@
 </template>
 
 <script setup lang="ts">
-import { useRoute } from "vue-router";
 import { isInCart } from "@/features/product-info/lib/cart-form-helper";
 import { useAddToCart } from "@/features/add-to-cart/api/add-to-cart";
-import { updateCartItem } from "@/features/cart-item-action/api/update-cart-item";
+import { useUpdateCartItem } from "@/features/cart-item-action/api/update-cart-item";
 import { productsHelper } from "@/features/products/lib/products-helper";
 import { sizeGuideModel, toggleSizeGuide} from "@/entities/size-guide/lib/toggle-size-guide";
 import { SizeGuideModal } from "@/entities/size-guide";
@@ -60,8 +59,9 @@ defineProps<{
   cart: CartItem[]
 }>();
 
-const route = useRoute()
 
-const { addToCart } = useAddToCart(route);
 const { isInStock } = productsHelper();
+const { addToCart } = useAddToCart();
+
+const { updateCartItemQuantity } = useUpdateCartItem()
 </script>

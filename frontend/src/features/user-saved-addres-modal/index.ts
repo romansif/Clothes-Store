@@ -1,0 +1,1 @@
+export { default as SavedAddressModal } from './ui/SavedAddressModal.vue'

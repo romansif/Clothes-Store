@@ -1,5 +1,4 @@
 <template>
-  <Loading v-if="loading" />
   <div class="bg-white min-h-screen">
     <main class="font-raleway fixed inset-0 flex items-center justify-center">
       <div :class="['rounded-lg px-4 py-8', isLogin ? 'w-105' : 'w-87.5 sm:w-140']">
@@ -25,12 +24,12 @@
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { useBaseModals } from "@/shared/lib/use-notify";
-import { Loading, Notification } from "@/shared";
 import { AuthHeader } from "@/widgets/auth-header";
+import { Notification } from "@/widgets/state";
 
 const route = useRoute();
 
-const { loading, notify } = useBaseModals();
+const { notify } = useBaseModals();
 
 const isLogin = computed(() => route.name === "signIn")
 </script>

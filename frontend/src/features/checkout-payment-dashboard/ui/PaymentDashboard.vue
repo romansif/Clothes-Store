@@ -6,16 +6,16 @@
         <label class="font-medium text-xs md:text-sm">
           PAYMENT METHODS
         </label>
-        <span v-if="havePayments(userPayments)"
+        <span v-if="havePayments(userPaymentCards)"
               class="text-xs text-indigo-600 cursor-pointer hover:text-violet-600"
               @click="toggleShowPayment()">
           Show saved payment
         </span>
       </div>
       <div class="flex gap-3">
-        <form @submit.prevent="addPayment" action=""
+        <form @submit.prevent="createPayment({products, cart})" action=""
               class="flex flex-col gap-4 w-full font-dm-sans">
-          <PaymentMethodsForm :user-payment="userPayment"
+          <PaymentMethodsForm :user-payment="userPaymentCard"
                               :is-debit-card="isDebitCard"
                               @open-card-form="openCardForm"
                               @close-card-form="closeCardForm" />
@@ -35,7 +35,7 @@
       <UiButton v-if="isSavedPayment"
                 name="Pay"
                 variant="checkOut"
-                @click="useSavedPayment" />
+                @click="addPayment({products, cart})" />
       <img :src=arrow alt=""
            class="h-13 absolute left-75 top-1/2 -translate-y-1/2
            sm:left-60 md:left-75 lg:left-34 xl:left-46">
@@ -45,10 +45,12 @@
 
 <script setup lang="ts">
 import { havePayments } from "@/shared/lib/use-payment-card";
-import { useAddPayment } from "@/features/checkout-payment-dashboard/api/add-payment";
+import { useCartData } from "@/widgets/cart-list/lib/use-cart-data";
+import { useProductsData } from "@/widgets/product-list/lib/use-product-data";
+import { useAddPayment, useCreatePayment } from "@/features/checkout-payment-dashboard/api/add-payment";
 import { togglePaymentForm } from "@/features/checkout-payment-dashboard/lib/toggle-payment";
-import { paymentStore } from "@/shared/model/payment.store";
 import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
+import { useSavedPaymentsData, useSavedPaymentData} from "@/widgets/user-payment-card-list/lib/use-saved-payment-data";
 import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment-form/model/payment-form";
 import { isSavedPayment } from "@/entities/checkout-payment-item/model/payment.refs";
 import { UiButton } from "@/shared/ui/button";
@@ -57,8 +59,12 @@ import { SavedCheckoutPayment } from "@/features/checkout-payment-dashboard";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 
-const { userPayments, userPayment } = paymentStore();
-const { addPayment, useSavedPayment } = useAddPayment();
+const { cart } = useCartData()
+const { products } = useProductsData()
+const { addPayment } = useAddPayment()
+const { createPayment } = useCreatePayment()
+const { userPaymentCard } = useSavedPaymentData()
+const { userPaymentCards } = useSavedPaymentsData();
 const { openCardForm, closeCardForm, toggleShowPayment, isDebitCard } = togglePaymentForm();
 
 refClearErrorsOnChange(

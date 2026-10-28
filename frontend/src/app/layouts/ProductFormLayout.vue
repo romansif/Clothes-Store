@@ -1,5 +1,4 @@
 <template>
-  <Loading v-if="loading" />
   <div class="font-dm-sans fixed inset-0">
     <div class="py-2 px-4 bg-[#F0F0F0] shadow-md overflow-hidden h-full overflow-y-auto no-scrollbar">
       <div class="flex">
@@ -23,7 +22,7 @@
 <script setup lang="ts">
 import { useBaseModals } from "@/shared/lib/use-notify.ts";
 import { clearProductForm } from "@/features/product-form/lib/clear-product-form.ts";
-import { Notification, Loading } from "@/shared";
+import { Notification } from "@/widgets/state";
 
-const { loading, notify } = useBaseModals();
+const { notify } = useBaseModals();
 </script>

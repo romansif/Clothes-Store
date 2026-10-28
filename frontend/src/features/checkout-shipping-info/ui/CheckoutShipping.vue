@@ -6,7 +6,7 @@
         SHIPPING METHODS
       </label>
       <div class="flex gap-3">
-        <form @submit.prevent="addShipping"
+        <form @submit.prevent="addShipping()"
               class="flex flex-col gap-6 w-full">
           <ShippingMethod v-model="shippingForm.delivery"
                           :method="'standard'"
@@ -29,11 +29,9 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
 import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
-import { informationContactStore } from "@/shared/model/address.store";
-import { useGetAddress } from "@/features/saved-user-address/api/get-address";
-import { addShipping } from "@/features/checkout-shipping-info/api/add-shipping";
+import { useSavedAddressData } from "@/widgets/user-address-list/lib/use-saved-address-data";
+import { useAddShipping} from "@/features/checkout-shipping-info/api/add-shipping";
 import { shippingForm, shippingFormErrorMessage } from "@/entities/checkout-shipping/model/shipping-form";
 import { UiButton } from "@/shared/ui/button";
 import { ShippingAddress } from "@/entities/checkout-shipping";
@@ -41,15 +39,11 @@ import { ShippingMethod } from "@/shared/ui/shipping-method";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 
-const { getAddress } = useGetAddress();
-const { userAddress } = informationContactStore();
+const { addShipping } = useAddShipping()
+const { userAddress } = useSavedAddressData();
 
 refClearErrorsOnChange(
     shippingForm,
     shippingFormErrorMessage
 )
-
-onMounted(async () => {
-  await getAddress();
-})
 </script>

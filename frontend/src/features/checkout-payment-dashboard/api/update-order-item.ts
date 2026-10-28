@@ -1,68 +1,56 @@
 import { handler } from "@/shared/api/http";
-import { deleteProductCart } from "@/features/cart-item-action/api/delete-cart";
-import { useGetProducts } from "@/features/products/api/get-product";
-import { useCartData } from "@/widgets/cart-list/lib/use-cart-data";
+import { useMutation, useQueryClient } from "@tanstack/vue-query";
+import type { UpdateCartAndProductPayload } from "@/features/checkout-payment-dashboard";
 
-const { getAllProducts, allProducts } = useGetProducts();
+export const useUpdateCheckedQuantity = () => {
+    const queryClient = useQueryClient()
 
-export const updateCheckedQuantity = async () => {
-    const { cart } = useCartData()
-    await getAllProducts();
+    const { mutateAsync: updateCheckedQuantity, isPending } = useMutation({mutationKey: ['updateCheckedQuantity'],
+        mutationFn: async ({ cart, products }: UpdateCartAndProductPayload) => {
+            const checkedItems = cart.filter(item => item.checked)
+            if (!checkedItems.length) throw new Error('No checked items in the cart')
 
-    const checkedItems = cart.value.filter(
-        item => item.checked).map(item => ({ ...item }));
+            for (const item of checkedItems) {
+                const product = products.find(p => p.id === item.productId)
+                if (!product) throw new Error(`Product ${item.productId} not found`)
 
-    if (!checkedItems.length) {
-        console.log('Нет выбранных (checked) товаров в корзине!', checkedItems);
-        return;
-    }
+                const cartObj = item.variants.find(v => v.count !== undefined)
+                if (!cartObj) throw new Error(`Cart item ${item.id} has no variant`)
 
-    try {
-        for(const item of checkedItems){
-            await deleteProductCart(item.id);
+                const variants = product.variants.map(v =>
+                    v.hex === cartObj.hex && String(v.size) === String(cartObj.size)
+                        ? { ...v, count: Math.max(0, Number(v.count) - Number(cartObj.count)) }
+                        : v
+                )
 
-            const product = allProducts.value?.find(
-                p => p.id === item.productId);
-            if (!product) {
-                console.log(`Товар в корзине c id=${item.productId} или в каталоге не найден`);
-                continue;
+                await handler(`/products/${product.id}`, {
+                    method: "PATCH",
+                    body: JSON.stringify({
+                        variants
+                    }),
+                })
+
+                await handler(`/cart/${item.id}`, {
+                    method: "DELETE"
+                })
             }
+        },
 
-            const cartObj = item?.variants?.find(
-                p => p.count !== undefined);
-            if (!cartObj) {
-                console.log(`У товара ${item.productId} в корзине нет данных о варианте`, item);
-                continue;
-            }
+        onSuccess: async () => {
+            localStorage.removeItem("orderItems")
 
-            const cartQuantity = Number(cartObj.count);
+            await Promise.all([
+                queryClient.invalidateQueries({ queryKey: ['cart'] }),
+                queryClient.invalidateQueries({ queryKey: ['products'] }),
+            ])
+        },
 
-            const newQuantityArr = product.variants.map(
-                v => {
-                    const isSame = v.hex === cartObj.hex && String(v.size) === String(cartObj.size);
-                    if (!isSame) return { ...v };
+        onError: (err) => {
+            console.error('Ошибка при обновлении вариантов товара', err)
+        },
+    })
 
-                    return {...v, count: Math.max(0, Number(v.count) - cartQuantity)};
-                }
-            );
-
-            const updatedData = {
-                variants: newQuantityArr,
-            };
-
-            await handler(`/products/${product.id}`, {
-                method: "PATCH",
-                body: JSON.stringify(updatedData)
-            });
-
-            await handler(`/favorites/${product.id}`, {
-                method: "PATCH",
-                body: JSON.stringify(updatedData)
-            })
-        }
-
-        localStorage.removeItem("ordersItem");
-    } catch (err) {
-        console.error(`Failed to update the status or variants:`, err);
-    }
-};
+    return {
+        updateCheckedQuantity,
+        isPending }
+}

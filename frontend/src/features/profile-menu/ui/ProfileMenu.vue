@@ -1,5 +1,5 @@
 <template>
-  <Menu v-if="userData" as="div"
+  <Menu v-if="user" as="div"
         class="relative inline-block font-raleway">
     <MenuButton class="border border-gray-300 inline-flex w-full justify-center gap-x-1.5 rounded-xl
         px-3 py-2 text-sm font-semibold inset-ring-1 inset-ring-white/5 transition duration-400 hover:scale-108">
@@ -23,12 +23,12 @@
           </MenuItem>
         </div>
         <div class="py-1">
-          <MenuItem v-if="userData.role === 'Seller'">
+          <MenuItem v-if="user.role === 'Seller'">
             <router-link :to="{name: 'signUp'}">
               <UiButton variant="profileMenu" name="Become a buyer" />
             </router-link>
           </MenuItem>
-          <MenuItem v-if="userData.role === 'Buyer'">
+          <MenuItem v-if="user.role === 'Buyer'">
             <router-link :to="{name: 'signUp'}">
               <UiButton variant="profileMenu" name="Become a seller" />
             </router-link>
@@ -40,10 +40,15 @@
 </template>
 
 <script setup lang="ts">
-import { userData } from "@/shared/model/user.store";
 import { baseDeleteModal } from "@/features/general-delete/lib/base-delete-modal";
-import { Menu, MenuItems, MenuItem, MenuButton} from "@headlessui/vue";
 import { UiButton } from "@/shared/ui/button";
+import { Menu, MenuItems, MenuItem, MenuButton } from "@headlessui/vue";
+import type { User } from "@/entities/profile";
 
 const { toggleDeleteChoice } = baseDeleteModal();
+
+const props = defineProps<{
+  user: User
+}>()
+
 </script>

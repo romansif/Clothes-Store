@@ -9,9 +9,9 @@
           Out Of Stack
         </span>
       </router-link>
-      <img v-if="user" :src="isFavorite(product, user) ? liked : like" alt=""
+      <img v-if="user" :src="isFavorite(favorite, product, user.id) ? liked : like" alt=""
            :class="productCardVariants[props.variant].button"
-           @click="emit('toggleToFavorite', product)">
+           @click="emit('toggleToFavorite', favorite, product)">
     </div>
   </template>
 </template>
@@ -23,19 +23,21 @@ import { productCardVariants } from "@/entities/product-card/model/product-card.
 import type { Product } from "@/shared";
 import type { User } from "@/entities/profile";
 import type { ProductCardVariant } from "@/entities/product-card";
+import type { FavoriteItem } from "@/entities/favroite-item";
 
 import liked from "@/assets/icons/nav/liked.png";
 import like from "@/assets/icons/nav/like.png";
 
 const props = defineProps<{
-  user: User | null;
+  user: User | undefined;
   product: Product;
   array: Product[];
+  favorite: FavoriteItem[]
   variant: ProductCardVariant;
 }>();
 
 const emit = defineEmits<{
-  toggleToFavorite: [product: Product],
+  toggleToFavorite: [favorite: FavoriteItem[], product: Product],
 }>()
 
 const { getProductId, isOutOfStack, productPreview, isFavorite } = previewHelper();

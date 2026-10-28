@@ -24,7 +24,7 @@
             <span>{{ stackName }}</span>
             <span>
               (<span class="text-blue-700 font-medium font-dm-sans">
-                {{ getStackCount(stackName) }}
+                {{ getStackCount(products, stackName) }}
               </span>)
             </span>
           </div>
@@ -46,7 +46,7 @@
             <span>{{ genderName }}</span>
             <span>
               (<span class="text-blue-700 font-medium font-dm-sans">
-                {{ allProducts.filter(p => p.gender === genderName).length }}
+                {{ products.filter(p => p.gender === genderName).length }}
               </span>)
             </span>
           </div>
@@ -77,13 +77,13 @@
 <script setup lang="ts">
 import { sizes } from "@/shared/model/product-sizes.ts";
 import { filterProduct } from "@/shared/lib/filter-product";
-import { useGetProducts } from "@/features/products/api/get-product";
+import { useProductsData } from "@/widgets/product-list/lib/use-product-data";
 import { filterSizeClass, filterClass, selectedFilterAndSizeClass } from "@/widgets/product-sidebar/model/filter-item.variants";
 
 import square from '@/assets/icons/squares/square.png'
 import checked from '@/assets/icons/squares/check-square.png'
 import availability from '@/assets/icons/arrows/arrow-up.svg'
 
-const { allProducts } = useGetProducts();
-const { toggleFilter, getStackCount, toggleSize, stackProducts, genders, colors } = filterProduct();
+const { products } = useProductsData()
+const { toggleFilter, getStackCount, toggleSize, stackProducts, genders, colors } = filterProduct()
 </script>

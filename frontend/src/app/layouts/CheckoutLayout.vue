@@ -16,10 +16,9 @@
 <script setup lang="ts">
 import { useBaseModals } from "@/shared/lib/use-notify";
 import { checkoutClass } from "@/shared/model/saved-checkout-info.variants";
-
-import { Notification } from "@/shared";
 import { CheckoutOrder } from "@/features/checkout-order-info";
 import { CheckoutHeader } from "@/widgets/checkout-header";
+import { Notification } from "@/widgets/state";
 
 const { notify } = useBaseModals();
 </script>

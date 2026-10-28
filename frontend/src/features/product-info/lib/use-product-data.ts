@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/vue-query";
 import { computed } from "vue";
-import { userData } from "@/shared/model/user.store";
 import { getProduct } from "@/features/product-info/api/get-product";
 import type { RouteLocationNormalizedLoaded } from "vue-router";
 
@@ -18,7 +17,7 @@ export const useProductData = (route: RouteLocationNormalizedLoaded) => {
             return getProduct(productId);
         },
 
-        enabled: computed(() => Boolean(userData.value?.id)),
+        enabled: computed(() => Boolean(route.params.id)),
     });
 
     const productItem = computed(() => product.value ?? null);

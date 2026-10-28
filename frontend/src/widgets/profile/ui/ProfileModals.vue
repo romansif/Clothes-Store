@@ -26,10 +26,10 @@
 import { baseDeleteModal } from "@/features/general-delete/lib/base-delete-modal";
 import { useProfileModals } from "@/shared/lib/profile-modal";
 import { avatarModal } from "@/features/profile-change-avatar/model/profile-modal.store";
-import { SavedPaymentModal } from "@/features/saved-payment-card";
+import { SavedPaymentModal } from "@/features/user-saved-payment-cards-modal";
 import { ProfileDataModal } from "@/features/profile-data";
 import { CurrentOrderModal, AllOrderModal } from "@/features/order-modals";
-import { SavedAddressModal } from "@/features/saved-user-address";
+import { SavedAddressModal } from "@/features/user-saved-addres-modal";
 import { DeleteModal } from "@/features/general-delete";
 import { ChangeAvatarModal } from "@/features/profile-change-avatar";
 

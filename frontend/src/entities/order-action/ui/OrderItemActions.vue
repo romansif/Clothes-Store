@@ -22,4 +22,5 @@ defineProps<{
   order: Order
   item: OrderItem
 }>();
+
 </script>

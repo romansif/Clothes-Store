@@ -1,35 +1,58 @@
 import router from "@/app/router";
 import { handler } from "@/shared/api/http.ts";
-import { users, userData } from "@/shared/model/user.store";
+import { useMutation } from "@tanstack/vue-query";
 import { useBaseModals } from "@/shared/lib/use-notify.ts";
 
 const { openNotify } = useBaseModals();
 
-export const deleteAccount = async () => {
-    if(!userData.value) return
+export const useDeleteAccount = () => {
+    const userId = localStorage.getItem("userId");
 
-    try{
-        await handler(`/users/${userData.value.id}`, {
-            method: "DELETE",
-        });
+    const { mutateAsync: deleteAccount, isPending } = useMutation({mutationKey: ['deleteAccount'],
+        mutationFn: async () => {
+            return await handler(`/users/${userId}`, {
+                method: "DELETE",
+            });
+        },
 
-        await openNotify('You have successfully delete account',
-            'You will now be taken to sign in page');
-        await router.push({name: 'signIn'})
-    }catch(err){
-        console.error(`Failed to delete the user:`, err);
+        onSuccess: async () => {
+            await openNotify('You have successfully delete account',
+                'You will now be taken to sign in page');
+            await router.push({name: 'signIn'})
+        },
+
+        onError: (err) => {
+            console.error(`Ошибка при удалении аккаунта`, err);
+        }
+    })
+
+    return {
+        deleteAccount,
+        isPending
     }
 };
 
-export const logout = async () => {
-    try{
-        users.value = await handler('/auth/logout', {
-            method: "POST",
-        })
-    }catch(err){
-        console.log(`Failed to logout:`, err);
-    }finally {
-        localStorage.clear();
-        await router.push({name: 'signIn'})
+export const useLogout = () => {
+    const { mutateAsync: logout, isPending } = useMutation({mutationKey: ['logout'],
+        mutationFn: async () => {
+            return await handler('/auth/logout', {
+                method: "POST",
+            })
+        },
+
+        onSuccess: async () => {
+            localStorage.clear();
+
+            await router.push({name: 'signIn'})
+        },
+
+        onError: (err) => {
+            console.log(`Ошибка при выходе`, err);
+        }
+    })
+
+    return {
+        logout,
+        isPending
     }
 };

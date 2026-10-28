@@ -4,20 +4,26 @@
         md:w-full md:grid md:grid-cols-2 md:gap-x-30 md:gap-y-15 lg:h-142.5 lg:grid-cols-3 lg:gap-15
         xl:grid-cols-3 xl:gap-30 xl:w-full xl:h-117.5">
       <ProductCard v-for="product in favorite"
-                   :user="userData"
+                   :user="user"
                    :product="product"
                    :array="favorite"
+                   :favorite="favorite"
                    :variant="'main&favorite&Cart'"
-                   @toggle-to-favorite="toggleToFavorite" />
+                   @toggle-to-favorite="toggleFavorite({favorite, product})" />
     </ul>
   </div>
 </template>
 
 <script setup lang="ts">
-import { userData } from "@/shared/model/user.store";
-import { favoriteStore } from "@/entities/favorite/model/favorite-store";
-import { toggleToFavorite } from "@/shared/api/toggle-to-favorite";
+import { useFavoriteData } from "@/widgets/favorite-list/lib/use-favorite-data";
+import { useToggleFavorite } from "@/shared/api/toggle-to-favorite";
 import { ProductCard } from "@/entities/product-card";
+import type { User } from "@/entities/profile";
 
-const { favorite } = favoriteStore();
+const { favorite } = useFavoriteData()
+const { toggleFavorite } = useToggleFavorite()
+
+const props = defineProps<{
+  user: User | undefined
+}>()
 </script>

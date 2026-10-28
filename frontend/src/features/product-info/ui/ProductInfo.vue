@@ -11,9 +11,9 @@
             </h2>
           </div>
           <div class="flex flex-col gap-3 ml-auto font-medium">
-            <img :src="isFavorite(product, user) ? liked : like" alt=""
+            <img :src="isFavorite(favorite, product, user.id) ? liked : like" alt=""
                  class="w-8.75  cursor-pointer"
-                 @click="toggleToFavorite(product)">
+                 @click="toggleFavorite({favorite, product})">
           </div>
         </div>
         <div class="flex text-sm font-medium text-[#A3A3A3] mt-1 font-dm-sans">
@@ -42,7 +42,7 @@
 <script setup lang="ts">
 import { addColor, addSize } from "@/features/product-info/lib/add-cart-specific";
 import { previewHelper } from "@/entities/product-card/lib/preview-helper";
-import { toggleToFavorite } from "@/shared/api/toggle-to-favorite";
+import { useToggleFavorite } from "@/shared/api/toggle-to-favorite";
 import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
 import { productHelper } from "@/shared/lib/product-helper";
 import { toggleReadMore, fullDescription } from "@/features/product-info/lib/toggle-more-info";
@@ -52,18 +52,21 @@ import { addToCartForm, addToCartFormErrorMessages } from "@/entities/product-in
 import type { Product } from "@/shared";
 import type { User } from "@/entities/profile";
 import type { CartItem } from "@/entities/cart-item";
+import type { FavoriteItem } from "@/entities/favroite-item";
 
 import like from '@/assets/icons/nav/like.png';
 import liked from '@/assets/icons/nav/liked.png';
 
 defineProps<{
-  user: User | null
+  user: User | undefined
   product: Product
   cart: CartItem[]
+  favorite: FavoriteItem[]
 }>();
 
 const { isFavorite } = previewHelper();
 const { variantsInfo } = productHelper();
+const { toggleFavorite } = useToggleFavorite()
 
 refClearErrorsOnChange(
   addToCartForm,

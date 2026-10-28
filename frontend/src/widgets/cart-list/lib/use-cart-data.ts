@@ -1,29 +1,28 @@
 import { computed } from "vue";
 import { useQuery } from "@tanstack/vue-query";
-import { userData } from "@/shared/model/user.store";
 import { getCartProducts } from "@/widgets/cart-list/api/get-cart";
 
 export const useCartData = () => {
-    const { data: cart } = useQuery({
-        queryKey: computed(() => ['cart', userData.value?.id]),
+    const userId = localStorage.getItem("userId");
+
+    const { data: cart, isPending, isError } = useQuery({
+        queryKey: computed(() => ['cart', userId]),
 
         queryFn: () => {
-            const userId = userData.value?.id;
-
             if (!userId) {
-                throw new Error('User is not authenticated');
+                throw new Error('Пользователь не зарегистрирован');
             }
 
             return getCartProducts(userId);
         },
 
-        enabled: computed(() => Boolean(userData.value?.id)),
+        enabled: computed(() => Boolean(userId)),
     });
 
-    const cartItems = computed(() => cart.value ?? []);
-
     return {
-        cart: cartItems,
+        cart: computed(() => cart.value ?? []),
+        isPending,
+        isError
     };
 };
 

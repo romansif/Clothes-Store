@@ -21,7 +21,7 @@ import type { PaymentMethods } from "@/entities/checkout-payment-form";
 import type { UserPayment } from "@/entities/checkout-payment-item";
 
 const props = defineProps<{
-  userPayment: UserPayment | null;
+  userPayment: UserPayment | undefined;
   isDebitCard: boolean;
 }>();
 

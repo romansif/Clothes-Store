@@ -1,12 +1,23 @@
-import { userData } from "@/shared/model/user.store";
-import { useReviewsData } from "@/features/review-dashboard/lib/use-rewiev-data";
+import { computed } from "vue";
+import { useQuery } from "@tanstack/vue-query";
+import { useGetReviews } from "@/shared/api/get-reviews";
 import type { Review } from "@/entities/product-review";
 
-export const useReviewButton = () => {
-    const user = userData.value;
-    if (!user) return false;
+const { getReviews } = useGetReviews();
 
-    const { reviews } = useReviewsData()
+export const useReviewButton = async () => {
+    const { data: reviews } = useQuery({
+        queryKey: ['reviews'],
+        queryFn: () => getReviews(),
+    });
 
-    return reviews.value.some((review: Review) => review.userId === user.id);
+    const hasReviewed = computed(() =>
+        (reviews.value ?? []).some(
+            (review: Review) => review.userId === localStorage.getItem("userId")
+        )
+    );
+
+    return {
+        hasReviewed
+    };
 };

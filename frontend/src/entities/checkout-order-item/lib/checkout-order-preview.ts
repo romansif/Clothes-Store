@@ -1,8 +1,10 @@
 import { orderStore } from "@/shared/model/order.store";
+import { useOrderData } from "@/widgets/order-list/lib/use-order-data";
 
-const { orders, items } = orderStore();
+const { items } = orderStore();
 
 export const orderItems = () => {
+    const { orders } = useOrderData()
     if(!orders.value) return;
 
     return orders.value.flatMap(order => order.orderItems || []);

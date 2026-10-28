@@ -8,10 +8,9 @@
 </template>
 
 <script setup lang="ts">
-import { useAddAddress } from "@/features/checkout-contact-info/api/add-address";
-import { informationContactStore } from "@/shared/model/address.store";
+import { useSavedAddress } from "@/features/checkout-contact-info/lib/use-saved-contact-info";
+import { useSavedAddressesData } from "@/widgets/user-address-list/lib/use-saved-address-data";
 import { CheckoutAddressItem } from "@/entities/checkout-info-item";
 
-const { useSavedAddress } = useAddAddress();
-const { userAddresses } = informationContactStore();
+const { userAddresses } = useSavedAddressesData()
 </script>

@@ -1,12 +1,11 @@
 import { computed } from "vue";
 import { useCartData } from "@/widgets/cart-list/lib/use-cart-data";
-import { favoriteStore } from "@/entities/favorite/model/favorite-store";
+import { useFavoriteData } from "@/widgets/favorite-list/lib/use-favorite-data";
 import type { RouteLocationNormalizedLoaded } from "vue-router";
-
-const { favorite } = favoriteStore();
 
 export const useFavoriteCartHeader = (route: RouteLocationNormalizedLoaded) => {
     const { cart } = useCartData()
+    const { favorite } = useFavoriteData()
 
     const cartCount = computed(() => {
         return cart.value.length;

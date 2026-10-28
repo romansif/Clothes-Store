@@ -1,16 +1,33 @@
 import { handler } from "@/shared/api/http";
-import { useGetProducts } from "@/features/products/api/get-product";
+import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
-const { getFilteredProducts } = useGetProducts();
+export const useDeleteProduct = () => {
+    const queryClient = useQueryClient()
 
-export const deleteProduct = async (id: string) => {
-    try{
-        await handler(`/products/${id}`, {
-            method: "DELETE",
-        });
-        await getFilteredProducts('ALL', 'ALL');
-    }catch(err){
-        console.error(`Failed to delete the product:`, err);
+    const { mutateAsync: deleteProduct, isPending } = useMutation({mutationKey: ['deleteProduct'],
+        mutationFn: async (id: string) => {
+            return await handler(`/products/${id}`, {
+                method: "DELETE",
+            });
+        },
+
+        onSuccess: async () => {
+            await Promise.all([
+                queryClient.invalidateQueries({ queryKey: ['filteredProducts'] }),
+                queryClient.invalidateQueries({ queryKey: ['yearProducts'] }),
+                queryClient.invalidateQueries({ queryKey: ['weekProducts'] }),
+                queryClient.invalidateQueries({ queryKey: ['seasonCatalog'] }),
+            ])
+        },
+
+        onError: (err) => {
+            console.error(`Ошибка при удалении товара`, err);
+        }
+    })
+
+    return {
+        deleteProduct,
+        isPending
     }
 };
 

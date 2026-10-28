@@ -4,33 +4,31 @@
         class="flex gap-16.5 mt-5 overflow-x-auto whitespace-nowrap no-scrollbar pt-5">
       <ProductCard v-for="product in array"
                    :key="product.id"
-                   :user="userData"
+                   :user="user"
                    :product="product"
                    :array="array"
+                   :favorite="favorite"
                    :variant="'season'"
-                   @toggle-to-favorite="toggleToFavorite" />
+                   @toggle-to-favorite="toggleFavorite({favorite, product})" />
     </ul>
   </Transition>
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
-import { userData } from "@/shared/model/user.store";
 import { productsHelper } from "@/features/products/lib/products-helper";
-import { toggleToFavorite } from "@/shared/api/toggle-to-favorite";
-import { useGetSeasonProducts } from "@/widgets/season-list/api/get-season-product";
+import { useFavoriteData } from "@/widgets/favorite-list/lib/use-favorite-data";
+import { useToggleFavorite } from "@/shared/api/toggle-to-favorite";
 import { ProductCard } from "@/entities/product-card";
 import type { Product } from "@/shared";
+import type { User } from "@/entities/profile";
 
 const props = defineProps<{
+  user: User | undefined
   array: Product[];
   season: string;
 }>();
 
+const { favorite } = useFavoriteData()
+const { toggleFavorite } = useToggleFavorite()
 const { vHorizontalScroll } = productsHelper();
-const { getSeasonal } = useGetSeasonProducts();
-
-onMounted(async () => {
-  await getSeasonal(props.season);
-})
 </script>

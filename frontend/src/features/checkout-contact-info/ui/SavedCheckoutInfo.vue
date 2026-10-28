@@ -18,15 +18,8 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
-import { useGetAddress } from "@/features/saved-user-address/api/get-address";
 import { toggleInformation } from "@/features/checkout-contact-info/lib/toggle-contact-info";
 import { CheckoutAddressList, CheckoutContactList } from "@/widgets/checkout-info-lists";
 
-const { getAddresses } = useGetAddress();
 const { toggleShowContact } = toggleInformation();
-
-onMounted(async () => {
-  await getAddresses();
-})
 </script>

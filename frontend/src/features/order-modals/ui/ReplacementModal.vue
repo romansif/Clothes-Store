@@ -21,13 +21,13 @@
 
 <script setup lang="ts">
 import { toggleReplaceChoice } from "@/entities/order-action/lib/order-modal";
-import { useDeleteOrder } from "@/features/order-action/api/delete-order";
+import { useReplaceOrder } from "@/features/order-action/api/delete-order";
 import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
 import { cancelChoiceForm, cancelChoiceMessage } from "@/entities/order/model/order-forms";
 import { UiButton } from "@/shared/ui/button";
 import { ReplacementForm } from "@/entities/order";
 
-const { replaceOrder } = useDeleteOrder();
+const { replaceOrder } = useReplaceOrder();
 
 refClearErrorsOnChange(
     cancelChoiceForm,

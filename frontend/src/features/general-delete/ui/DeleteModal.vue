@@ -7,11 +7,11 @@
         <h1 class="text-center w-60 font-medium">{{ deleteMessage }}</h1>
         <div class="flex gap-10">
           <UiButton name="Cancel"
-                      variant="cancel"
-                      @click="toggleDeleteChoice" />
+                    variant="cancel"
+                    @click="toggleDeleteChoice" />
           <UiButton name="Confirm"
-                      variant="confirm"
-                      @click="generalDelete" />
+                    variant="confirm"
+                    @click="generalDelete" />
         </div>
       </div>
     </div>
@@ -20,7 +20,6 @@
 
 <script setup lang="ts">
 import { baseDeleteModal } from "@/features/general-delete/lib/base-delete-modal";
-
 import { UiButton } from "@/shared/ui/button";
 
 const { toggleDeleteChoice, generalDelete, deleteMessage } = baseDeleteModal();

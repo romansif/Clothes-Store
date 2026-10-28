@@ -1,34 +1,34 @@
 import router from "@/app/router";
 import { handler } from "@/shared/api/http";
+import { useMutation } from "@tanstack/vue-query";
 import { useBaseModals } from "@/shared/lib/use-notify";
-import { createOrder } from "@/features/checkout-payment-dashboard/api/create-order";
 import { clearPaymentForm } from "@/features/checkout-payment-dashboard/lib/clear-payment";
-import { userData } from "@/shared/model/user.store";
-import { updateCheckedQuantity } from "@/features/checkout-payment-dashboard/api/update-order-item";
 import { togglePaymentForm } from "@/features/checkout-payment-dashboard/lib/toggle-payment";
 import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper";
 import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment-form/model/payment-form";
-import { isChosenPayment } from "@/entities/checkout-payment-item/model/payment.refs";
 import { addPaymentSchema } from "@/entities/checkout-payment-form/model/payment-schemas";
-import type { UserPayment } from "@/entities/checkout-payment-item";
+import { useCreateOrder } from "@/features/checkout-payment-dashboard/api/create-order";
+import { useUpdateCheckedQuantity } from "@/features/checkout-payment-dashboard/api/update-order-item";
+import type { UpdateCartAndProductPayload } from "@/features/checkout-payment-dashboard";
 
-const { openNotify } = useBaseModals();
+const { openNotify } = useBaseModals()
 const { paymentId } = togglePaymentForm();
 
-export const useAddPayment = () => {
-    const useSavedCard = (card: UserPayment) => {
-        paymentId.value = card.id;
+const useFinalizeOrder = () => {
+    const { createOrder } = useCreateOrder()
+    const { updateCheckedQuantity } = useUpdateCheckedQuantity()
 
-        paymentForm.value.cardName = card.cardName;
-        paymentForm.value.cardNumber = card.cardNumber;
-        paymentForm.value.expiryDate = card.expiryDate;
-        paymentForm.value.cardCvv = String(card.cardCvv);
-
-        isChosenPayment.value = true;
+    return async ({ products, cart }: UpdateCartAndProductPayload) => {
+        await createOrder()
+        await updateCheckedQuantity({ products, cart })
     }
+}
 
-    const useSavedPayment = async () => {
-        try{
+export const useAddPayment = () => {
+    const finalizeOrder = useFinalizeOrder()
+
+    const { mutateAsync: addPayment, isPending } = useMutation({mutationKey: ['addPayment'],
+        mutationFn: async ({ products, cart }: UpdateCartAndProductPayload) => {
             await handler(`/payment/${paymentId.value}`, {
                 method: "PUT",
                 body: JSON.stringify({
@@ -39,45 +39,54 @@ export const useAddPayment = () => {
                     cardCvv: String(paymentForm.value.cardCvv),
                 })
             });
-            await updateCheckedQuantity();
-            await createOrder();
+
+            await finalizeOrder({ products, cart })
+        },
+
+        onSuccess: async () => {
+            clearPaymentForm()
 
             await openNotify('You have successfully paid and created order',
                 'You will now be redirected to the profile page')
-            await router.push({name: 'profile'})
+            await router.push({ name: 'profile' })
+        },
 
-            clearPaymentForm();
-        }catch(err){
+        onError: async (err) => {
             await openNotify('You must choose',
                 'Which card and payment method should we use for payment?')
-            console.error(`Failed to register new payment:`, err);
+
+            console.error(`Ошибка при оплате`, err);
         }
+    })
+
+    return {
+        addPayment,
+        isPending
     }
+}
 
-    const addPayment = async () => {
-        console.log('1 START');
+export const useCreatePayment = () => {
+    const finalizeOrder = useFinalizeOrder()
+    const userId = localStorage.getItem("userId");
 
-        const paymentId =  localStorage.getItem("paymentId");
+    const { mutateAsync: createPayment, isPending } = useMutation({mutationKey: ['createPayment'],
+        mutationFn: async ({ products, cart }: UpdateCartAndProductPayload) => {
+            const paymentId =  localStorage.getItem("paymentId");
 
-        const result = addPaymentSchema.safeParse(paymentForm.value)
-        if(!result.success){
-            applyZodErrors(
-                result.error,
-                paymentFormErrorMessage
-            );
-            return
-        }
-
-        try{
-            if(!userData.value) return
-
-            console.log('2 BEFORE PAYMENT');
+            const result = addPaymentSchema.safeParse(paymentForm.value)
+            if(!result.success){
+                applyZodErrors(
+                    result.error,
+                    paymentFormErrorMessage
+                );
+                return
+            }
 
             if(paymentForm.value.paymentMethod === 'card'){
                 await handler(`/payment`, {
                     method: "POST",
                     body: JSON.stringify({
-                        userId: userData.value.id,
+                        userId: userId,
                         paymentId: paymentId,
                         paymentMethod: 'card',
                         cardName: paymentForm.value.paymentMethod,
@@ -90,32 +99,25 @@ export const useAddPayment = () => {
                 await handler(`/payment`, {
                     method: "POST",
                     body: JSON.stringify({
-                        userId: userData.value.id,
+                        userId: userId,
                         paymentId: paymentId,
                         paymentMethod: paymentForm.value.paymentMethod
                     })
                 });
             }
-            await updateCheckedQuantity();
-            await createOrder();
 
-            await openNotify('You have successfully paid and created order',
-                'You will now be redirected to the profile page')
-            await router.push({name: 'profile'})
+            await finalizeOrder({ products, cart })
+        },
 
-            clearPaymentForm();
-        }catch(err){
-            applyErrors(
-                err,
-                paymentFormErrorMessage
-            );
-            console.error(`Failed to register new payment:`, err);
+        onError: async (err) => {
+           applyErrors(err, paymentFormErrorMessage);
+
+           console.error(`Ошибка при оплате`, err);
         }
-    };
+    })
 
     return {
-        useSavedCard,
-        useSavedPayment,
-        addPayment,
+        createPayment,
+        isPending
     }
 }

@@ -9,9 +9,10 @@
 </template>
 
 <script setup lang="ts">
-import { orderStore } from "@/shared/model/order.store";
-
 import { OrderItem } from "@/entities/order-item";
+import type { Order } from "@/entities/order";
 
-const { orders } = orderStore();
+const props = defineProps<{
+  orders: Order[]
+}>()
 </script>

@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": "0638b5cc-27b3-46dd-8aae-a284c47b8ebe",
+      "id": "4f6e5b44-48dd-445d-8231-26a71a541581",
       "email": "akmalmavlonov25@gmail.com",
       "role": "Buyer",
       "name": "Plagiat555",
@@ -9,14 +9,14 @@
       "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocJzHyeN95wO6MAZzH4E9FkqrC9pDZ_IsEztiiZDoWZD08A2Osv2=s96-c",
       "privatePhone": "",
       "googleId": "117192309001137738940",
-      "created_at": "2026-10-23T11:35:56.790Z",
+      "created_at": "2026-10-28T06:57:19.533Z",
       "password": "",
       "refreshTokens": [
-        "cf8ad1fbc2ed18406e36fba0fc596f6cf7b1b9b7c36442e1688bbf89f053f12e"
+        "ae93aae7010d2a3e27355b39f25899185b7f2550bd399c09e7b3914d7ea76505"
       ]
     },
     {
-      "id": "a8f18c9d-dc9b-4b2a-9e30-7b56be0de42f",
+      "id": "6e09b053-ffeb-4cca-9d6e-e7cb9b00deb1",
       "email": "icecityland@gmail.com",
       "role": "Seller",
       "name": "Misterio",
@@ -24,24 +24,24 @@
       "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocI_x7qgDLevnmrmvy2xxOJsLmz7BtasLX64CA8TSeR3nn4F8IY=s96-c",
       "privatePhone": "",
       "googleId": "100649871042356442319",
-      "created_at": "2026-10-23T11:36:11.982Z",
+      "created_at": "2026-10-28T06:58:01.954Z",
       "password": "",
       "refreshTokens": []
     }
   ],
   "products": [
     {
-      "title": "п",
+      "title": "sadadaddaddads",
       "collection": {
-        "season": "Autumn",
-        "name": "Silence",
-        "condition": "Old"
+        "season": "Spring",
+        "name": "Essence",
+        "condition": "New"
       },
-      "category": "Shorts",
+      "category": "Shoes",
       "material": "Synthetics",
-      "gender": "Woman",
-      "sku": "534-м5-345",
-      "description": "у",
+      "gender": "Man",
+      "sku": "nb5-25-v46",
+      "description": "asdadsadasdasdasd",
       "sizes": [
         "XS",
         "S",
@@ -56,15 +56,15 @@
           "colorName": "White"
         },
         {
-          "hex": "#000000",
+          "hex": "#050505",
           "colorName": "Black"
         }
       ],
       "status": "Availability",
-      "id": "d6226d30-ed51-4f19-b6fc-2c86439f420e",
-      "userId": "a8f18c9d-dc9b-4b2a-9e30-7b56be0de42f",
+      "id": "4c3b5509-f69a-4ff7-8c98-e471677ca3ce",
+      "userId": "a88db546-9a2e-438b-8cfd-cd48ad274d1f",
       "images": [
-        "uploads/products/product-1792755414936-f844fb2e8641b0db831dfb25aaa774b6.png"
+        "uploads/products/product-1793182122907-6c35047de3885f1d7551b2de63ea38f4.png"
       ],
       "price": 100,
       "variants": [
@@ -105,96 +105,64 @@
           "count": 10
         },
         {
-          "hex": "#000000",
+          "hex": "#050505",
           "colorName": "Black",
           "size": "XS",
           "count": 10
         },
         {
-          "hex": "#000000",
+          "hex": "#050505",
           "colorName": "Black",
           "size": "S",
           "count": 10
         },
         {
-          "hex": "#000000",
+          "hex": "#050505",
           "colorName": "Black",
           "size": "M",
           "count": 10
         },
         {
-          "hex": "#000000",
+          "hex": "#050505",
           "colorName": "Black",
           "size": "L",
           "count": 10
         },
         {
-          "hex": "#000000",
+          "hex": "#050505",
           "colorName": "Black",
           "size": "XL",
           "count": 10
         },
         {
-          "hex": "#000000",
+          "hex": "#050505",
           "colorName": "Black",
           "size": "XXL",
           "count": 10
         }
       ],
-      "created_at": "2026-10-23T11:36:54.975Z"
+      "created_at": "2026-10-28T10:08:42.949Z"
     }
   ],
-  "cart": [
-    {
-      "productId": "d6226d30-ed51-4f19-b6fc-2c86439f420e",
-      "images": [
-        "uploads/products/product-1792755414936-f844fb2e8641b0db831dfb25aaa774b6.png"
-      ],
-      "title": "п",
-      "category": "Shorts",
-      "material": "Synthetics",
-      "price": 100,
-      "description": "у",
-      "colors": [
-        {
-          "hex": "#ffffff",
-          "colorName": "White"
-        }
-      ],
-      "sizes": "XS",
-      "gender": "Woman",
-      "variants": [
-        {
-          "hex": "#ffffff",
-          "colorName": "White",
-          "size": "XS",
-          "count": 1
-        }
-      ],
-      "checked": true,
-      "id": "38416790-e417-493e-87d7-3897d7599c61",
-      "userId": "0638b5cc-27b3-46dd-8aae-a284c47b8ebe",
-      "created_at": "2026-10-26T11:31:20.514Z"
-    }
-  ],
+  "cart": [],
   "favorites": [
     {
-      "productId": "d6226d30-ed51-4f19-b6fc-2c86439f420e",
+      "productId": "4c3b5509-f69a-4ff7-8c98-e471677ca3ce",
       "images": [
-        "uploads/products/product-1792755414936-f844fb2e8641b0db831dfb25aaa774b6.png"
+        "uploads/products/product-1793182122907-6c35047de3885f1d7551b2de63ea38f4.png"
       ],
-      "title": "п",
-      "category": "Shorts",
+      "title": "sadadaddaddads",
+      "category": "Shoes",
       "material": "Synthetics",
       "price": 100,
-      "description": "у",
+      "description": "asdadsadasdasdasd",
       "color": [
         {
           "hex": "#ffffff",
           "colorName": "White"
         },
         {
-          "hex": "#000000",
+          "hex": "#050505",
           "colorName": "Black"
         }
       ],
@@ -206,7 +174,7 @@
         "XL",
         "XXL"
       ],
-      "gender": "Woman",
+      "gender": "Man",
       "variants": [
         {
           "hex": "#ffffff",
@@ -245,243 +213,50 @@
           "count": 10
         },
         {
-          "hex": "#000000",
+          "hex": "#050505",
           "colorName": "Black",
           "size": "XS",
           "count": 10
         },
         {
-          "hex": "#000000",
+          "hex": "#050505",
           "colorName": "Black",
           "size": "S",
           "count": 10
         },
         {
-          "hex": "#000000",
+          "hex": "#050505",
           "colorName": "Black",
           "size": "M",
           "count": 10
         },
         {
-          "hex": "#000000",
+          "hex": "#050505",
           "colorName": "Black",
           "size": "L",
           "count": 10
         },
         {
-          "hex": "#000000",
+          "hex": "#050505",
           "colorName": "Black",
           "size": "XL",
           "count": 10
         },
         {
-          "hex": "#000000",
+          "hex": "#050505",
           "colorName": "Black",
           "size": "XXL",
           "count": 10
         }
       ],
-      "id": "b3d44d55-8c1a-453e-a7ee-de9a107e1b53",
-      "userId": "a8f18c9d-dc9b-4b2a-9e30-7b56be0de42f",
-      "created_at": "2026-10-23T11:37:03.400Z"
-    },
-    {
-      "productId": "d6226d30-ed51-4f19-b6fc-2c86439f420e",
-      "images": [
-        "uploads/products/product-1792755414936-f844fb2e8641b0db831dfb25aaa774b6.png"
-      ],
-      "title": "п",
-      "category": "Shorts",
-      "material": "Synthetics",
-      "price": 100,
-      "description": "у",
-      "color": [
-        {
-          "hex": "#ffffff",
-          "colorName": "White"
-        },
-        {
-          "hex": "#000000",
-          "colorName": "Black"
-        }
-      ],
-      "size": [
-        "XS",
-        "S",
-        "M",
-        "L",
-        "XL",
-        "XXL"
-      ],
-      "gender": "Woman",
-      "variants": [
-        {
-          "hex": "#ffffff",
-          "colorName": "White",
-          "size": "XS",
-          "count": 10
-        },
-        {
-          "hex": "#ffffff",
-          "colorName": "White",
-          "size": "S",
-          "count": 10
-        },
-        {
-          "hex": "#ffffff",
-          "colorName": "White",
-          "size": "M",
-          "count": 10
-        },
-        {
-          "hex": "#ffffff",
-          "colorName": "White",
-          "size": "L",
-          "count": 10
-        },
-        {
-          "hex": "#ffffff",
-          "colorName": "White",
-          "size": "XL",
-          "count": 10
-        },
-        {
-          "hex": "#ffffff",
-          "colorName": "White",
-          "size": "XXL",
-          "count": 10
-        },
-        {
-          "hex": "#000000",
-          "colorName": "Black",
-          "size": "XS",
-          "count": 10
-        },
-        {
-          "hex": "#000000",
-          "colorName": "Black",
-          "size": "S",
-          "count": 10
-        },
-        {
-          "hex": "#000000",
-          "colorName": "Black",
-          "size": "M",
-          "count": 10
-        },
-        {
-          "hex": "#000000",
-          "colorName": "Black",
-          "size": "L",
-          "count": 10
-        },
-        {
-          "hex": "#000000",
-          "colorName": "Black",
-          "size": "XL",
-          "count": 10
-        },
-        {
-          "hex": "#000000",
-          "colorName": "Black",
-          "size": "XXL",
-          "count": 10
-        }
-      ],
-      "id": "f1d4572a-a3f5-4bbc-a00a-d1cf7c88209c",
-      "userId": "0638b5cc-27b3-46dd-8aae-a284c47b8ebe",
-      "created_at": "2026-10-26T10:38:31.391Z"
+      "id": "873c65fc-1cce-40e7-b4ce-50366bfd2c9d",
+      "userId": "4f6e5b44-48dd-445d-8231-26a71a541581",
+      "created_at": "2026-10-28T10:11:45.816Z"
     }
   ],
   "addresses": [],
-  "shipping": [
-    {
-      "paymentId": "f3270b2b-8013-401a-b6ce-872bd9dd8460",
-      "delivery": "express",
-      "id": "5f512857-2c07-4759-a1ff-ac2043a263ed",
-      "userId": "0638b5cc-27b3-46dd-8aae-a284c47b8ebe"
-    }
-  ],
+  "shipping": [],
   "payments": [],
-  "orders": [
-    {
-      "orderItems": [
-        {
-          "productId": "d6226d30-ed51-4f19-b6fc-2c86439f420e",
-          "images": [
-            "uploads/products/product-1792755414936-f844fb2e8641b0db831dfb25aaa774b6.png"
-          ],
-          "title": "п",
-          "category": "Shorts",
-          "material": "Synthetics",
-          "price": 300,
-          "description": "у",
-          "colors": [
-            {
-              "hex": "#ffffff",
-              "colorName": "White"
-            }
-          ],
-          "sizes": "XS",
-          "gender": "Woman",
-          "variants": [
-            {
-              "hex": "#ffffff",
-              "colorName": "White",
-              "size": "XS",
-              "count": 3
-            }
-          ],
-          "checked": false,
-          "id": "483b4590-56e8-4097-bb57-d453830d0075",
-          "userId": "0638b5cc-27b3-46dd-8aae-a284c47b8ebe",
-          "created_at": "2026-10-23T11:37:47.490Z"
-        }
-      ],
-      "orderTotal": 324,
-      "delivery": "",
-      "status": "Cancelled",
-      "id": "2b81d7bd-00bd-418f-b103-b4d80edc2a3b",
-      "userId": "0638b5cc-27b3-46dd-8aae-a284c47b8ebe",
-      "created_at": "2026-10-23T11:38:36.866Z",
-      "date_created_at": "23.10.2026",
-      "time_created_at": "16:38",
-      "cause_replace": "Incorrect payment method",
-      "cancelled_at": "2026-10-23T11:38:46.476Z",
-      "date_cancelled_at": "23.10.2026",
-      "time_cancelled_at": "16:38"
-    }
-  ],
-  "reviews": [
-    {
-      "id": "8c5abb1e-f599-441c-aeac-215825a2910a",
-      "userId": "0638b5cc-27b3-46dd-8aae-a284c47b8ebe",
-      "productId": "d6226d30-ed51-4f19-b6fc-2c86439f420e",
-      "user": {
-        "name": "Plagiat555",
-        "surName": "",
-        "avatar": "https://lh3.googleusercontent.com/a/ACg8ocJzHyeN95wO6MAZzH4E9FkqrC9pDZ_IsEztiiZDoWZD08A2Osv2=s96-c"
-      },
-      "rating": 1.5,
-      "comment": "wewqeqweqwe",
-      "images": [
-        "uploads/reviews/review-1792756287483-a36e186b96f21a38d9ffbcf051b58ca4.png"
-      ],
-      "created_at": "Oct 23, 2026"
-    },
-    {
-      "id": "a8b25dac-96a3-4843-b915-adbe5e7658ac",
-      "userId": "0638b5cc-27b3-46dd-8aae-a284c47b8ebe",
-      "productId": "d6226d30-ed51-4f19-b6fc-2c86439f420e",
-      "user": {
-        "name": "Plagiat555",
-        "surName": "",
-        "avatar": "https://lh3.googleusercontent.com/a/ACg8ocJzHyeN95wO6MAZzH4E9FkqrC9pDZ_IsEztiiZDoWZD08A2Osv2=s96-c"
-      },
-      "rating": 1.5,
-      "comment": "132231c213213c123",
-      "images": [],
-      "created_at": "Oct 23, 2026"
-    }
-  ]
+  "orders": [],
+  "reviews": []
 }

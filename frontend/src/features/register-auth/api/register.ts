@@ -1,68 +1,59 @@
 import router from "@/app/router";
 import { handler} from "@/shared/api/http";
+import { useMutation } from "@tanstack/vue-query";
 import { useBaseModals } from "@/shared/lib/use-notify";
-import { userData } from "@/shared/model/user.store";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
 import { clearRegisterForm, clearRegisterFormMessages } from "@/features/register-auth/lib/clear-register-form";
 import { registerSchema } from "@/entities/register-form/model/register.schemas";
 import { registerForm, registerFormErrorMessages } from "@/entities/register-form/model/register-from";
 
-const { loading, openNotify } = useBaseModals();
+const { openNotify } = useBaseModals();
 
-export const signUp = async (role: string) => {
-    clearRegisterFormMessages();
+export const signUp = () => {
+    const { mutateAsync: register, isPending } = useMutation({mutationKey: ['register'],
+        mutationFn: async (role: string) => {
+            clearRegisterFormMessages();
 
-    const result = registerSchema.safeParse(registerForm.value)
-    if(!result.success){
-        applyZodErrors(
-            result.error,
+            const result = registerSchema.safeParse(registerForm.value)
+            if(!result.success){
+                applyZodErrors(result.error, registerFormErrorMessages)
+                throw new Error('Ошибка валидации регистрации')
+            }
 
-            registerFormErrorMessages
-        )
-        return
-    }
+            const date = new Date();
 
-    loading.value = true;
+            return await handler('/auth/signUp', {
+                method: "POST",
+                body: JSON.stringify({
+                    role: role,
+                    name: registerForm.value.name,
+                    surName: registerForm.value.surName,
+                    phone: registerForm.value.phone,
+                    email: registerForm.value.email,
+                    password: registerForm.value.password,
+                    created_at: date,
+                }),
+            });
+        },
 
-    try{
-        const date = new Date();
+        onSuccess: async (data) => {
+            clearRegisterForm()
 
-        const requestBody = {
-            role,
-            name: registerForm.value.name,
-            surName: registerForm.value.surName,
-            phone: registerForm.value.phone,
-            email: registerForm.value.email,
-            password: registerForm.value.password,
-            created_at: date,
-        };
+            localStorage.setItem("userId", data.id);
 
-        const authData = await handler('/auth/signUp', {
-            method: "POST",
-            body: JSON.stringify(requestBody),
-        });
+            await openNotify('You have successfully sign up',
+                'You will now be taken to your profile page');
+            await router.push({name: 'profile'})
+        },
 
-        if(authData.accessToken){
-            localStorage.setItem("userId", authData.id);
-            console.log("auth data:", authData.accessToken);
-        }else{
-            console.log('Access token is not found');
-            return;
+        onError: (err) => {
+            applyErrors(err, registerFormErrorMessages)
+            console.log(`Ошибка при регистрации`, err);
         }
-        userData.value = authData;
+    })
 
-        await openNotify('You have successfully sign up',
-            'You will now be taken to your profile page');
-        await router.push({name: 'profile'})
-
-        clearRegisterForm()
-    }catch(err){
-        applyErrors(
-            err,
-            registerFormErrorMessages
-        )
-        console.log(`Failed to register new user:`, err);
-    }finally {
-        loading.value = false;
-    }
+   return {
+        register,
+        isPending
+   }
 };

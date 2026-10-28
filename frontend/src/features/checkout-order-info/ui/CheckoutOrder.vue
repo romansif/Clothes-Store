@@ -20,17 +20,11 @@
       <div class="flex items-center">
         <span>Shipping</span>
         <div class="flex ml-auto gap-2">
-          <span v-if="!shippingForm.delivery"
-                class="text-gray-400">
+          <span v-if="shipping" class="text-gray-400">
+            {{ shipping.delivery }}
+          </span>
+          <span v-else class="text-gray-400">
             Calculated at next step
-          </span>
-          <span v-if="shippingForm.delivery === 'express'"
-                class="text-gray-400">
-            {{ shippingForm.delivery }}
-          </span>
-          <span v-if="shippingForm.delivery === 'standard'"
-                class="text-gray-400">
-            {{ shippingForm.delivery }}
           </span>
         </div>
       </div>
@@ -50,10 +44,11 @@
 
 <script setup lang="ts">
 import { orderStore } from "@/shared/model/order.store";
-import { shippingForm } from "@/entities/checkout-shipping/model/shipping-form";
+import { useSavedShippingData } from "@/features/checkout-shipping-info/lib/use-saved-shipping-data";
 import { orderPriceInfo } from "@/features/checkout-order-info/lib/order-price-info";
 import { CheckoutOrderList } from "@/widgets/checkout-order-list";
 
 const { items } = orderStore();
+const { shipping } = useSavedShippingData()
 const { price, totalPrice, commissionPrice } = orderPriceInfo();
 </script>

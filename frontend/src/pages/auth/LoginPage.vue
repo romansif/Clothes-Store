@@ -1,12 +1,12 @@
 <template>
   <form action=""
         class="mt-10"
-        @submit.prevent="signIn">
+        @submit.prevent="login()">
     <LoginForm v-if="!showSignSection.signIn" />
     <div class="relative duration-400 hover:scale-105 cursor-pointer">
       <UiButton type="submit"
-                  variant="login"
-                  name="SIGN IN" />
+                variant="login"
+                name="SIGN IN" />
       <img :src=maki_arrow alt="" class="absolute w-6.25 top-9.5 left-58 sm:left-83">
     </div>
   </form>
@@ -18,6 +18,7 @@
   <div class="flex flex-col items-center gap-3 mt-3">
     <GoogleAuth class="duration-400 hover:scale-105 cursor-pointer"/>
   </div>
+  <Loading v-if="isPending" />
 </template>
 
 <script setup lang="ts">
@@ -26,6 +27,9 @@ import { showSignSection } from "@/features/login-auth/model/login-auth.refs";
 import { GoogleAuth } from "@/features/login-by-google";
 import { UiButton } from "@/shared/ui/button";
 import { LoginForm } from "@/features/login-auth";
+import { Loading } from "@/widgets/state";
 
 import maki_arrow from "@/assets/icons/arrows/right-short-arrow.svg";
+
+const { login, isPending } = signIn()
 </script>

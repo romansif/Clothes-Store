@@ -1,22 +1,36 @@
 import { handler } from "@/shared/api/http";
-import { userData } from "@/shared/model/user.store";
+import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
-export const updateAvatarAccount = async (event: Event) => {
-    const target = event.target as HTMLInputElement;
-    if(!target.files || target.files.length === 0) return;
-    const selectedFile = target.files[0];
+export const useChangeAvatar = () => {
+    const queryClient = useQueryClient()
+    const userId = localStorage.getItem("userId");
 
-    const formData = new FormData();
-    formData.append("avatar", selectedFile);
+    const { mutateAsync: changeAvatar, isPending } = useMutation({mutationKey: ['changeAvatar'],
+        mutationFn: async (event: Event) => {
+            const target = event.target as HTMLInputElement;
+            if(!target.files || target.files.length === 0) return;
+            const selectedFile = target.files[0];
 
-    try{
-        if(!userData.value) return
+            const formData = new FormData();
+            formData.append("avatar", selectedFile);
 
-        userData.value.avatarUrl = await handler(`/avatar/${userData.value.id}`, {
-            method: "PATCH",
-            body: formData,
-        });
-    }catch(err){
-        console.log('Failed to change the avatar', err);
+            return await handler(`/avatar/${userId}`, {
+                method: "PATCH",
+                body: formData,
+            });
+        },
+
+        onSuccess: async () => {
+            await queryClient.invalidateQueries({queryKey: ['user']})
+        },
+
+        onError: (err) => {
+            console.log('Ошибка при изменении аватара пользователя', err);
+        }
+    })
+
+    return {
+        changeAvatar,
+        isPending
     }
 };

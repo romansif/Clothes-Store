@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { clearUsersForms } from "@/features/change-data-form/lib/clear-user-update";
+import { clearUsersForms } from "@/features/change-user-data-from/lib/clear-user-update";
 
 const currentOrder= ref<boolean>(false);
 const orderHistory = ref<boolean>(false);

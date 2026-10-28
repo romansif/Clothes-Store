@@ -15,7 +15,7 @@
         </div>
         <div class="flex flex-col overflow-y-auto no-scrollbar h-150">
           <div class="flex gap-10 font-semibold text-lg font-dm-sans">
-            <ConfidentialityData :user="userData"/>
+            <ConfidentialityData :user="user"/>
           </div>
           <div class="flex font-medium flex-col gap-5 pt-5">
             <UpdateProfileForm />
@@ -27,11 +27,12 @@
 </template>
 
 <script setup lang="ts">
+import { useUserData } from "@/widgets/profile/lib/use-user-data";
 import { useProfileModals } from "@/shared/lib/profile-modal";
-import { userData } from "@/shared/model/user.store";
 import { UiButton } from "@/shared/ui/button";
 import { ConfidentialityData } from "@/entities/profile";
-import { UpdateProfileForm } from "@/features/change-data-form";
+import { UpdateProfileForm } from "@/features/change-user-data-from";
 
+const { user } = useUserData()
 const { toggleConfidentialityData } = useProfileModals();
 </script>

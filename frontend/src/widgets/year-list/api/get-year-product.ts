@@ -1,22 +1,9 @@
-import { ref } from "vue";
 import { handler } from "@/shared/api/http";
 import type { Product } from "@/shared";
 
-const productsYear = ref<Product[]>([]);
+export const getYearProducts = async (type: string, filter: string) => {
+    return await handler<Product[]>(`/products/year/${type}/${filter}`, {
+        method: 'GET',
+    });
+};
 
-export const useGetYearProduct = () => {
-    const getYearProducts = async (type: string, filter: string) => {
-        try{
-            productsYear.value = await handler(`/products/year/${type}/${filter}`, {
-                method: 'GET',
-            });
-        }catch(err){
-            console.error(`Failed to get the filtered products:`, err);
-        }
-    };
-
-    return {
-        getYearProducts,
-        productsYear,
-    }
-}

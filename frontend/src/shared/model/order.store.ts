@@ -1,7 +1,6 @@
 import { ref } from "vue";
-import type { OrderItem, Order } from "@/entities/order";
+import type { OrderItem } from "@/entities/order";
 
-const orders = ref<Order[]>([]);
 const orderItems = ref<OrderItem[]>([]);
 const items = ref<OrderItem[]>(JSON.parse(localStorage.getItem('orderItems') || '[]'));
 
@@ -9,7 +8,6 @@ const orderId = ref<string>('');
 
 export const orderStore = () => {
     return {
-        orders,
         orderItems,
         items,
         orderId,

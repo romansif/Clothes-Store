@@ -1,5 +1,5 @@
 <template>
-  <div v-if="reviews" class="font-raleway flex flex-col gap-20 mb-5">
+  <div v-if="reviews.length" class="font-raleway flex flex-col gap-20 mb-5">
     <div class="flex flex-col gap-15">
       <div class="flex flex-col gap-2">
         <h1 class="font-bold text-5xl">Reviews</h1>
@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import { useReviewsData } from "@/features/review-dashboard/lib/use-rewiev-data";
+import { useReviewsData } from "@/widgets/review-list/lib/use-rewiev-data";
 import { changeReviewPhoto, toggleReviewPhotos } from "@/features/review-dashboard/lib/review-photo-modal";
 import { reviewModal } from "@/features/review-dashboard/lib/review-photo-modal";
 import { currentIndex, reviewImages } from "@/features/review-dashboard/lib/review-photo-modal";

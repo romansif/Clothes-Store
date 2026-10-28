@@ -1,5 +1,5 @@
 <template>
-  <form action="" @submit.prevent="createProduct">
+  <form action="" @submit.prevent="createProduct()">
     <CreateImageUpload />
     <ProductBaseInfo />
     <CreateVariants />
@@ -15,12 +15,12 @@
 </template>
 
 <script setup lang="ts">
-import { useAddProduct } from "@/features/create-product-form/api/create-product";
+import { useCreateProduct } from "@/features/product-create-form/api/create-product";
 import { fileInput, productHelper } from "@/shared/lib/product-helper";
 import { UiButton } from "@/shared/ui/button";
 import { ProductBaseInfo } from "@/entities/product-form";
-import { CreateImageUpload, CreateVariants } from "@/features/create-product-form";
+import { CreateImageUpload, CreateVariants } from "@/features/product-create-form";
 
-const { createProduct } = useAddProduct();
+const { createProduct } = useCreateProduct();
 const { onFilesSelected } = productHelper();
 </script>

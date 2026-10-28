@@ -22,6 +22,6 @@
 import type { UserContactInfo } from "@/entities/user-address";
 
 defineProps<{
-  userAddress: UserContactInfo | null;
+  userAddress: UserContactInfo | undefined;
 }>();
 </script>

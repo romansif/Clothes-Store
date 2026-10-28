@@ -16,15 +16,8 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
-import { useGetPayment } from "@/features/saved-payment-card/api/get-payment";
 import { togglePaymentForm } from "@/features/checkout-payment-dashboard/lib/toggle-payment";
 import { CheckoutPaymentList } from "@/widgets/checkout-cards-list";
 
-const { getPayments } = useGetPayment();
 const { toggleShowPayment } = togglePaymentForm();
-
-onMounted(async () => {
-  await getPayments();
-})
 </script>
