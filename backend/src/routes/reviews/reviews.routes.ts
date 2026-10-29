@@ -1,6 +1,6 @@
 import express from "express";
 import { authMiddleware, roleMiddleware } from "#middleware/auth.middleware.ts";
-import { reviewsController } from "#controllers/reviews/reviews.controller.ts";
+import { reviewsController } from "#controllers/reviews.controller.ts";
 import { reviewUpload } from "#middleware/multer.uploads.ts";
 import { validation } from "#middleware/validation.ts";
 

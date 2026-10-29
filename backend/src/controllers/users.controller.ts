@@ -1,13 +1,14 @@
 import bcrypt from 'bcrypt';
 import crypto from 'node:crypto';
-import { dbService } from '../../db/db.config.ts';
+import { supabase } from '#db/supabase.ts';
+import { unwrap, unwrapOrConflict, isUuid } from '#db/query.ts';
 import { clearCookieOptions } from '#config/auth.config';
 import {
     type Row, HttpError, handle, param, sameId, requireUser, requireSelf, getAuthUser,
-    omitKeys, pickKeys, cleanText, normalizeEmail, sameEmail, rateLimit,
-    stripUserSecrets, toPublicProfile, toPublicPayment, USER_PROTECTED_FIELDS,
+    pickKeys, cleanText, normalizeEmail, rateLimit,
+    stripUserSecrets, toPublicProfile, toPublicPayment,
     getUploadedFiles, assertImages, deleteUploadedFile,
-} from '#lib/security';
+} from '../db/security';
 
 const DEFAULT_AVATAR = 'uploads/avatars/default-avatar.png';
 const MIN_PASSWORD_LENGTH = 8;
@@ -16,9 +17,16 @@ const MAX_PASSWORD_LENGTH = 72;
 const TEXT_LIMITS: Record<string, number> = {
     name: 100,
     surName: 100,
+    companyName: 100,
     phone: 32,
     privatePhone: 32,
+    publicPhone: 32,
 };
+
+// Поля, которые пользователь может менять сам (role, password, refreshTokens, googleId, avatarUrl — нельзя).
+const USER_UPDATABLE = [...Object.keys(TEXT_LIMITS), 'email'] as const;
+
+const emailTaken = () => new HttpError(400, 'This email is already in use.', { email: 'This email is already in use.' });
 
 const viewOf = (user: Row, viewerId: string | undefined): Row =>
     sameId(user.id, viewerId) ? stripUserSecrets(user) : toPublicProfile(user);
@@ -35,10 +43,13 @@ const validateTextFields = (changes: Row): void => {
     }
 };
 
+const findUser = async (id: string): Promise<Row | null> =>
+    isUuid(id) ? unwrap(await supabase.from('users').select('*').eq('id', id).maybeSingle()) : null;
+
 export const usersController = {
     getUsers: handle('Failed to get the users', async (req, res) => {
         const viewer = getAuthUser(req);
-        const users: Row[] = dbService.readDB().users || [];
+        const users: Row[] = unwrap(await supabase.from('users').select('*'));
 
         res.json(users.map(user => viewOf(user, viewer?.id)));
     }),
@@ -47,8 +58,7 @@ export const usersController = {
         const id = param(req, 'id');
         const viewer = getAuthUser(req);
 
-        const users: Row[] = dbService.readDB().users || [];
-        const user = users.find(u => sameId(u.id, id));
+        const user = await findUser(id);
 
         if (!user) throw new HttpError(404, 'User not found');
 
@@ -59,13 +69,14 @@ export const usersController = {
         const target = param(req, 'id') || param(req, 'userId');
         const user = target ? requireSelf(req, target) : requireUser(req);
 
-        const db = dbService.readDB();
+        const [addresses, payments] = await Promise.all([
+            supabase.from('addresses').select('*').eq('userId', user.id).order('created_at', { ascending: true }),
+            supabase.from('payments').select('*').eq('userId', user.id).order('created_at', { ascending: true }),
+        ]);
 
         res.json({
-            addresses: (db.addresses || []).filter((a: Row) => sameId(a.userId, user.id)),
-            payments: (db.payments || [])
-                .filter((p: Row) => sameId(p.userId, user.id))
-                .map(toPublicPayment),
+            addresses: unwrap(addresses),
+            payments: unwrap(payments).map(toPublicPayment),
         });
     }),
 
@@ -73,13 +84,11 @@ export const usersController = {
         const id = param(req, 'id');
         requireSelf(req, id);
 
-        const db = dbService.readDB();
-        const users: Row[] = db.users || [];
-        const index = users.findIndex(u => sameId(u.id, id));
+        const current = await findUser(id);
 
-        if (index === -1) throw new HttpError(404, 'User not found');
+        if (!current) throw new HttpError(404, 'User not found');
 
-        const changes = omitKeys(req.body, USER_PROTECTED_FIELDS);
+        const changes = pickKeys(req.body, USER_UPDATABLE);
         validateTextFields(changes);
 
         if ('email' in changes) {
@@ -88,21 +97,26 @@ export const usersController = {
                 throw new HttpError(400, 'Invalid email address.', { email: 'Enter a valid email address.' });
             }
 
-            const taken = users.some(u =>
-                !sameId(u.id, id) && u.role === users[index]!.role && sameEmail(u.email, email)
+            const taken = unwrap(
+                await supabase.from('users').select('id')
+                    .eq('role', current.role)
+                    .eq('email', email)
+                    .neq('id', id)
+                    .limit(1),
             );
-            if (taken) {
-                throw new HttpError(400, 'This email is already in use.', { email: 'This email is already in use.' });
-            }
+            if (taken.length) throw emailTaken();
+
             changes.email = email;
         }
 
-        users[index] = { ...users[index], ...changes };
+        const updated = Object.keys(changes).length
+            ? unwrapOrConflict(
+                await supabase.from('users').update(changes).eq('id', id).select().single(),
+                emailTaken(),
+            )
+            : current;
 
-        db.users = users;
-        dbService.writeDB(db);
-
-        res.json(stripUserSecrets(users[index]!));
+        res.json(stripUserSecrets(updated));
     }),
 
     updateUserPassword: handle('Failed to update password', async (req, res) => {
@@ -121,9 +135,7 @@ export const usersController = {
             throw new HttpError(400, `Пароль должен содержать от ${MIN_PASSWORD_LENGTH} до ${MAX_PASSWORD_LENGTH} символов`);
         }
 
-        const db = dbService.readDB();
-        const users: Row[] = db.users || [];
-        const user = users.find(u => sameId(u.id, id));
+        const user = await findUser(id);
 
         if (!user) throw new HttpError(404, 'Пользователь не найден');
 
@@ -133,17 +145,21 @@ export const usersController = {
 
         if (!isPasswordValid) throw new HttpError(400, 'Неверный текущий пароль');
 
-        user.password = await bcrypt.hash(newPassword, 10);
-
         const currentRefresh = req.cookies?.refreshToken;
         const currentHash = typeof currentRefresh === 'string'
             ? crypto.createHash('sha256').update(currentRefresh).digest('hex')
             : null;
-        user.refreshTokens = currentHash && Array.isArray(user.refreshTokens) && user.refreshTokens.includes(currentHash)
+
+        // все остальные сессии разлогиниваются, текущая остаётся
+        const refreshTokens = currentHash && Array.isArray(user.refreshTokens) && user.refreshTokens.includes(currentHash)
             ? [currentHash]
             : [];
 
-        dbService.writeDB(db);
+        unwrap(
+            await supabase.from('users')
+                .update({ password: await bcrypt.hash(newPassword, 10), refreshTokens })
+                .eq('id', id),
+        );
 
         res.status(200).json({ message: 'Пароль успешно изменен' });
     }),
@@ -155,22 +171,17 @@ export const usersController = {
         if (!req.file) throw new HttpError(400, 'Файл аватарки обязателен');
         assertImages(getUploadedFiles(req));
 
-        const db = dbService.readDB();
-        const users: Row[] = db.users || [];
-        const user = users.find(u => sameId(u.id, id));
+        const user = await findUser(id);
 
         if (!user) throw new HttpError(404, 'User not found');
 
         const oldAvatar = user.avatarUrl;
         const newAvatar = `uploads/avatars/${req.file.filename}`;
 
-        user.avatarUrl = newAvatar;
-
         const extras = pickKeys(req.body, ['name', 'surName', 'phone', 'privatePhone']);
         validateTextFields(extras);
-        Object.assign(user, extras);
 
-        dbService.writeDB(db);
+        unwrap(await supabase.from('users').update({ avatarUrl: newAvatar, ...extras }).eq('id', id));
 
         if (oldAvatar && oldAvatar !== DEFAULT_AVATAR && oldAvatar !== newAvatar) {
             deleteUploadedFile(oldAvatar);
@@ -190,21 +201,13 @@ export const usersController = {
             throw new HttpError(403, 'Нет прав на удаление чужого аккаунта');
         }
 
-        const db = dbService.readDB();
-        const users: Row[] = db.users || [];
-        const deletedUser = users.find(u => sameId(u.id, id));
+        // Все связанные строки (products, cart, favorites, addresses, shipping,
+        // payments, orders, reviews) удалит сама база через ON DELETE CASCADE.
+        const deletedUser = isUuid(id)
+            ? unwrap(await supabase.from('users').delete().eq('id', id).select()).at(0)
+            : null;
 
         if (!deletedUser) throw new HttpError(404, 'Пользователь не найден');
-
-        db.users = users.filter(u => !sameId(u.id, id));
-
-        for (const collection of ['products', 'cart', 'favorites', 'addresses', 'shipping', 'payments', 'orders', 'reviews']) {
-            if (Array.isArray(db[collection])) {
-                db[collection] = db[collection].filter((row: Row) => !sameId(row.userId, id));
-            }
-        }
-
-        dbService.writeDB(db);
 
         if (deletedUser.avatarUrl && deletedUser.avatarUrl !== DEFAULT_AVATAR) {
             deleteUploadedFile(deletedUser.avatarUrl);

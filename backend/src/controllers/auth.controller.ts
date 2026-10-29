@@ -4,16 +4,17 @@ import crypto from 'node:crypto';
 import { v4 as uuidv4 } from 'uuid';
 import { OAuth2Client } from 'google-auth-library';
 import { type Request, type Response } from 'express';
-import { dbService } from '../../db/db.config.ts';
-import { type JwtCustomPayload, type TokenPayload } from '../../interfaces.ts';
+import { supabase } from '#db/supabase.ts';
+import { unwrap, unwrapOrConflict, isUuid } from '#db/query.ts';
+import { type JwtCustomPayload, type TokenPayload } from '../interfaces.ts';
 import {
     ACCESS_SECRET, REFRESH_SECRET, ACCESS_TTL_MS, REFRESH_TTL_MS,
     accessCookieOptions, refreshCookieOptions, clearCookieOptions,
 } from '#config/auth.config';
 import {
     type Row, HttpError, handle, clientKey, rateLimit, assertNotLimited, recordHit, clearHits,
-    cleanText, isPlainObject, normalizeEmail, sameEmail, stripUserSecrets,
-} from '#lib/security';
+    cleanText, isPlainObject, normalizeEmail, stripUserSecrets,
+} from '#db/security';
 
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
@@ -48,6 +49,7 @@ const signRefreshToken = (user: Row) =>
         { algorithm: 'HS256', expiresIn: Math.floor(REFRESH_TTL_MS / 1000) },
     );
 
+// Меняет user.refreshTokens в памяти; в базу это нужно записать через saveSessions().
 const rotateSession = (user: Row, replacedRefreshToken?: string) => {
     const accessToken = signAccessToken(user);
     const refreshToken = signRefreshToken(user);
@@ -59,6 +61,13 @@ const rotateSession = (user: Row, replacedRefreshToken?: string) => {
     user.refreshTokens = [...kept, hashToken(refreshToken)].slice(-MAX_SESSIONS_PER_USER);
     return { accessToken, refreshToken };
 };
+
+const saveSessions = async (user: Row): Promise<void> => {
+    unwrap(await supabase.from('users').update({ refreshTokens: user.refreshTokens }).eq('id', user.id));
+};
+
+const findUserByEmailRole = async (email: string, role: Role): Promise<Row | null> =>
+    unwrap(await supabase.from('users').select('*').eq('email', email).eq('role', role).maybeSingle());
 
 const setSessionCookies = (res: Response, tokens: { accessToken: string; refreshToken: string }) => {
     res.cookie('accessToken', tokens.accessToken, accessCookieOptions);
@@ -112,10 +121,7 @@ const authController = {
             throw new HttpError(400, 'Invalid phone number.', { phone: 'Phone number is invalid.' });
         }
 
-        const db = dbService.readDB();
-        const users: Row[] = db.users || [];
-
-        const candidates = users.filter(u => sameEmail(u.email, email));
+        const candidates: Row[] = unwrap(await supabase.from('users').select('id, role').eq('email', email));
 
         if (candidates.length >= 2) {
             throw new HttpError(400, `This email is already registered for both Buyer and Seller accounts.`, {
@@ -123,10 +129,12 @@ const authController = {
             });
         }
 
+        const alreadyTaken = () => new HttpError(400, `An account with this email already exists as a ${role}.`, {
+            email: `This email is already taken by a ${role} account.`,
+        });
+
         if (candidates.some(u => u.role === role)) {
-            throw new HttpError(400, `An account with this email already exists as a ${role}.`, {
-                email: `This email is already taken by a ${role} account.`,
-            });
+            throw alreadyTaken();
         }
 
         const newUser: Row = {
@@ -144,9 +152,8 @@ const authController = {
 
         const tokens = rotateSession(newUser);
 
-        users.push(newUser);
-        db.users = users;
-        dbService.writeDB(db);
+        // unique (email, role) в базе ловит гонку двух одновременных регистраций
+        unwrapOrConflict(await supabase.from('users').insert(newUser), alreadyTaken());
 
         setSessionCookies(res, tokens);
         res.status(201).json({ ...stripUserSecrets(newUser), accessToken: tokens.accessToken });
@@ -164,9 +171,7 @@ const authController = {
         const limitKey = `login:${clientKey(req)}:${email}`;
         assertNotLimited(limitKey, LOGIN_MAX_FAILURES);
 
-        const db = dbService.readDB();
-        const users: Row[] = db.users || [];
-        const user = users.find(u => sameEmail(u.email, email) && u.role === role);
+        const user = await findUserByEmailRole(email, role);
 
         const hash = user && typeof user.password === 'string' && user.password ? user.password : DUMMY_HASH;
         const passwordMatches = await bcrypt.compare(password, hash);
@@ -184,7 +189,7 @@ const authController = {
         clearHits(limitKey);
 
         const tokens = rotateSession(user);
-        dbService.writeDB(db);
+        await saveSessions(user);
 
         setSessionCookies(res, tokens);
         res.json({ ...stripUserSecrets(user), accessToken: tokens.accessToken });
@@ -228,14 +233,13 @@ const authController = {
             throw new HttpError(401, 'Email is not verified');
         }
 
-        const db = dbService.readDB();
-        const users: Row[] = db.users || [];
-
-        let user = users.find(u => sameEmail(u.email, email) && u.role === role);
+        let user = await findUserByEmailRole(email, role);
 
         if (user && user.googleId && user.googleId !== sub) {
             throw new HttpError(401, 'This account is linked to a different Google profile');
         }
+
+        let tokens: { accessToken: string; refreshToken: string };
 
         if (!user) {
             user = {
@@ -251,14 +255,22 @@ const authController = {
                 password: '',
                 refreshTokens: [],
             };
-            users.push(user);
+            tokens = rotateSession(user);
+
+            unwrapOrConflict(
+                await supabase.from('users').insert(user),
+                new HttpError(409, 'Account is being created, please try again'),
+            );
+        } else {
+            user.googleId = user.googleId || sub;
+            tokens = rotateSession(user);
+
+            unwrap(
+                await supabase.from('users')
+                    .update({ googleId: user.googleId, refreshTokens: user.refreshTokens })
+                    .eq('id', user.id),
+            );
         }
-
-        user.googleId = user.googleId || sub;
-
-        const tokens = rotateSession(user);
-        db.users = users;
-        dbService.writeDB(db);
 
         setSessionCookies(res, tokens);
         res.json({ ...stripUserSecrets(user), accessToken: tokens.accessToken });
@@ -278,16 +290,20 @@ const authController = {
         if (refreshToken) {
             try {
                 const decoded = jwt.verify(refreshToken, REFRESH_SECRET, { algorithms: ['HS256'] }) as JwtCustomPayload;
-                const db = dbService.readDB();
-                const user = (db.users || []).find((u: Row) => String(u.id) === String(decoded.userId));
 
-                if (user && Array.isArray(user.refreshTokens)) {
-                    const hash = hashToken(refreshToken);
-                    user.refreshTokens = user.refreshTokens.filter((h: string) => h !== hash);
-                    dbService.writeDB(db);
+                if (isUuid(decoded.userId)) {
+                    const user = unwrap(
+                        await supabase.from('users').select('id, refreshTokens').eq('id', decoded.userId).maybeSingle(),
+                    );
+
+                    if (user && Array.isArray(user.refreshTokens)) {
+                        const hash = hashToken(refreshToken);
+                        user.refreshTokens = user.refreshTokens.filter((h: string) => h !== hash);
+                        await saveSessions(user);
+                    }
                 }
             } catch {
-
+                // просроченный или битый токен: куки всё равно очищаем ниже
             }
         }
 
@@ -309,24 +325,25 @@ const authController = {
             throw new HttpError(403, 'Refresh token expired');
         }
 
-        const db = dbService.readDB();
-        const users: Row[] = db.users || [];
-        const user = users.find(u => String(u.id) === String(decoded.userId));
+        const user = isUuid(decoded.userId)
+            ? unwrap(await supabase.from('users').select('*').eq('id', decoded.userId).maybeSingle())
+            : null;
 
         const hash = hashToken(refreshToken);
         const known = !!user && Array.isArray(user.refreshTokens) && user.refreshTokens.includes(hash);
 
         if (!user || !known) {
+            // токен не из списка выданных: возможна кража, отзываем все сессии пользователя
             if (user) {
                 user.refreshTokens = [];
-                dbService.writeDB(db);
+                await saveSessions(user);
             }
             clearSessionCookies(res);
             throw new HttpError(403, 'Токен недействителен или отозван');
         }
 
         const tokens = rotateSession(user, refreshToken);
-        dbService.writeDB(db);
+        await saveSessions(user);
 
         setSessionCookies(res, tokens);
         res.json({ success: true, accessToken: tokens.accessToken });

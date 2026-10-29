@@ -1,7 +1,7 @@
 import express from "express";
 import { validation } from "#middleware/validation.ts";
 import { authMiddleware } from "#middleware/auth.middleware.ts";
-import { usersController } from '#controllers/users/users.controller.ts'
+import { usersController } from '#controllers/users.controller.ts'
 import { avatarUpload } from "#middleware/multer.uploads.ts";
 
 const router = express.Router();

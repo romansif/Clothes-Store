@@ -3,7 +3,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import jwt from 'jsonwebtoken';
 import { type NextFunction, type Request, type Response } from 'express';
-import { ACCESS_SECRET, CARD_FINGERPRINT_KEY } from '../config/auth.config.ts';
+import { ACCESS_SECRET, CARD_FINGERPRINT_KEY } from '#config/auth.config.ts';
 
 export type Row = Record<string, any>;
 

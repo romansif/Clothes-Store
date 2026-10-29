@@ -226,7 +226,7 @@ export const stripUserSecrets = (user: Row): Row => {
 export const toPublicProfile = (user: Row): Row =>
     pickKeys(user, ['id', 'role', 'name', 'surName', 'avatarUrl', 'created_at']);
 
-const SENSITIVE_CARD_FIELDS = ['cvv', 'cvc', 'cvv2', 'securityCode', 'cardFingerprint'] as const;
+const SENSITIVE_CARD_FIELDS = ['cvv', 'cvc', 'cvv2', 'securityCode', 'cardCvv', 'cardFingerprint'] as const;
 export const PAYMENT_PROTECTED_FIELDS = [...SERVER_OWNED_FIELDS, ...SENSITIVE_CARD_FIELDS] as const;
 
 export const cardDigits = (value: unknown): string =>
@@ -253,7 +253,7 @@ export const storedFingerprint = (payment: Row): string | null =>
     payment.cardFingerprint ?? cardFingerprint(payment.cardNumber);
 
 export const toPublicPayment = (payment: Row): Row => {
-    const { cvv: _a, cvc: _b, cvv2: _c, securityCode: _d, cardFingerprint: _e, ...rest } = payment;
+    const { cvv: _a, cvc: _b, cvv2: _c, securityCode: _d, cardCvv: _f, cardFingerprint: _e, ...rest } = payment;
     return 'cardNumber' in rest ? { ...rest, cardNumber: maskCard(rest.cardNumber) } : rest;
 };
 

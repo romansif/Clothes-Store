@@ -1,10 +1,11 @@
 import { v4 as uuidv4 } from 'uuid';
 import { type NextFunction, type Request, type Response } from 'express';
-import { dbService } from '../../db/db.config.ts';
+import { supabase } from '#db/supabase.ts';
+import { unwrap, isUuid, deleteOwned } from '#db/query.ts';
 import {
-    type Row, HttpError, handle, param, sameId, requireUser, cleanText, parseJsonField,
-    pickKeys, getUploadedFiles, assertImages, removeUploadedFiles, byNewest,
-} from '#lib/security';
+    type Row, HttpError, handle, param, requireUser, cleanText, parseJsonField,
+    pickKeys, getUploadedFiles, assertImages, removeUploadedFiles,
+} from '#db/security';
 
 const MAX_PRODUCT_IMAGES = 10;
 const MAX_SEARCH_LENGTH = 100;
@@ -43,9 +44,6 @@ const applyFilter = (products: Row[], type: string, filter: string, statusFilter
     }
 };
 
-const newerThan = (products: Row[], since: Date): Row[] =>
-    products.filter(p => new Date(p.created_at) >= since);
-
 const daysAgo = (days: number): Date => {
     const date = new Date();
     date.setDate(date.getDate() - days);
@@ -75,9 +73,27 @@ const toPrice = (value: unknown): number => {
     return price;
 };
 
-const requireSeller = (req: Request) => {
+// ---- запросы -------------------------------------------------------------
+
+const newestProducts = async (): Promise<Row[]> =>
+    unwrap(await supabase.from('products').select('*').order('created_at', { ascending: false }));
+
+const productsSince = async (since: Date): Promise<Row[]> =>
+    unwrap(
+        await supabase.from('products').select('*')
+            .gte('created_at', since.toISOString())
+            .order('created_at', { ascending: false }),
+    );
+
+const ownProduct = async (id: string): Promise<Row | null> =>
+    isUuid(id) ? unwrap(await supabase.from('products').select('*').eq('id', id).maybeSingle()) : null;
+
+const requireSeller = async (req: Request) => {
     const auth = requireUser(req);
-    const account = (dbService.readDB().users || []).find((u: Row) => sameId(u.id, auth.id));
+
+    const account = isUuid(auth.id)
+        ? unwrap(await supabase.from('users').select('id, role').eq('id', auth.id).maybeSingle())
+        : null;
 
     if (!account || account.role !== 'Seller') {
         throw new HttpError(403, 'Only sellers can manage products');
@@ -85,63 +101,52 @@ const requireSeller = (req: Request) => {
     return account;
 };
 
-const findOwnProduct = (products: Row[], id: string, userId: string): number =>
-    products.findIndex(p => sameId(p.id, id) && sameId(p.userId, userId));
-
 export const productsController = {
     getAllProducts: handle('Failed to get the product list', async (_req, res) => {
-        res.json(dbService.readDB().products || []);
+        res.json(unwrap(await supabase.from('products').select('*').order('created_at', { ascending: true })));
     }),
 
     getFilteredProducts: handle('Failed to get the filtered product list', async (req, res) => {
         const type = param(req, 'type');
         const filter = param(req, 'filter');
 
-        const products: Row[] = [...(dbService.readDB().products || [])];
-
-        res.json(applyFilter(products, type, filter, byStock).sort(byNewest));
+        res.json(applyFilter(await newestProducts(), type, filter, byStock));
     }),
 
     getWeekProducts: handle('Failed to get the week product list', async (req, res) => {
         const type = param(req, 'type');
         const filter = param(req, 'filter');
 
-        const products = newerThan(dbService.readDB().products || [], daysAgo(7));
-
-        res.json(applyFilter(products, type, filter, byStatusField).sort(byNewest));
+        res.json(applyFilter(await productsSince(daysAgo(7)), type, filter, byStatusField));
     }),
 
     getYearProducts: handle('Failed to get the year product list', async (req, res) => {
         const type = param(req, 'type');
         const filter = param(req, 'filter');
 
-        const products = newerThan(dbService.readDB().products || [], daysAgo(365));
-
-        res.json(applyFilter(products, type, filter, byStatusField).sort(byNewest));
+        res.json(applyFilter(await productsSince(daysAgo(365)), type, filter, byStatusField));
     }),
 
     getCollections: handle('Failed to get the collection product list', async (req, res) => {
         const collection = param(req, 'collection');
-        const products: Row[] = dbService.readDB().products || [];
 
         const sixMonthsAgo = new Date();
         sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
 
-        const filtered = products.filter(product => {
-            const createdAt = new Date(product.created_at);
-            if (Number.isNaN(createdAt.getTime()) || createdAt < sixMonthsAgo) return false;
+        const products = await productsSince(sixMonthsAgo);
 
+        const filtered = products.filter(product => {
             if (!collection || collection === 'ALL') return true;
 
             return product.collection?.name === collection || product.collection?.season === collection;
         });
 
-        res.json(filtered.sort(byNewest));
+        res.json(filtered);
     }),
 
     getSearchedProducts: handle('Failed to get the searched product list', async (req, res) => {
         const search = String(req.query.search || '').trim().toLowerCase().slice(0, MAX_SEARCH_LENGTH);
-        let products: Row[] = [...(dbService.readDB().products || [])];
+        let products = await newestProducts();
 
         if (search) {
             const matches = (value: unknown) => !!value && String(value).toLowerCase().includes(search);
@@ -152,26 +157,39 @@ export const productsController = {
             );
         }
 
-        res.json(products.sort(byNewest));
+        res.json(products);
     }),
 
     getMyProducts: handle('Failed to get my stack products', async (req, res) => {
         const id = param(req, 'id');
-        const products: Row[] = dbService.readDB().products || [];
 
-        res.json(products.filter(p => sameId(p.userId, id)).sort(byNewest));
+        if (!isUuid(id)) {
+            res.json([]);
+            return;
+        }
+
+        res.json(
+            unwrap(
+                await supabase.from('products').select('*')
+                    .eq('userId', id)
+                    .order('created_at', { ascending: false }),
+            ),
+        );
     }),
 
     getProductsById: handle('Failed to get the product by id', async (req, res) => {
         const id = param(req, 'id');
-        const products: Row[] = dbService.readDB().products || [];
 
-        res.json(products.find(p => sameId(p.id, id)) || {});
+        const product = isUuid(id)
+            ? unwrap(await supabase.from('products').select('*').eq('id', id).maybeSingle())
+            : null;
+
+        res.json(product || {});
     }),
 
     createdProduct: handle('Failed to create the product cover', async (req, res) => {
         const files = getUploadedFiles(req);
-        const seller = requireSeller(req);
+        const seller = await requireSeller(req);
 
         if (files.length === 0) {
             throw new HttpError(400, 'Product photos are mandatory.');
@@ -188,23 +206,17 @@ export const productsController = {
             throw new HttpError(400, 'Title is required', { title: 'Title is required' });
         }
 
-        const db = dbService.readDB();
-        const products: Row[] = db.products || [];
-
-        const newProduct = {
-            ...pickKeys(body, PRODUCT_FIELDS),
-            id: uuidv4(),
-            userId: seller.id,
-            images: files.map(file => `uploads/products/${file.filename}`),
-            title,
-            price: toPrice(body.price),
-            variants: normalizeVariants(body.variants),
-            created_at: new Date(),
-        };
-
-        products.push(newProduct);
-        db.products = products;
-        dbService.writeDB(db);
+        const newProduct = unwrap(
+            await supabase.from('products').insert({
+                ...pickKeys(body, PRODUCT_FIELDS),
+                id: uuidv4(),
+                userId: seller.id,
+                images: files.map(file => `uploads/products/${file.filename}`),
+                title,
+                price: toPrice(body.price),
+                variants: normalizeVariants(body.variants),
+            }).select().single(),
+        );
 
         res.status(201).json(newProduct);
     }),
@@ -224,7 +236,6 @@ export const productsController = {
 
     updateProductImages: handle('Failed to update the product images', async (req, res) => {
         const files = getUploadedFiles(req);
-        const user = requireUser(req);
         const id = param(req, 'id');
         const index = param(req, 'index');
 
@@ -236,13 +247,10 @@ export const productsController = {
         }
         assertImages(files);
 
-        const db = dbService.readDB();
-        const products: Row[] = db.products || [];
-        const productIndex = findOwnProduct(products, id, user.id);
+        const product = await ownProduct(id);
 
-        if (productIndex === -1) throw new HttpError(404, 'Product not found.');
+        if (!product) throw new HttpError(404, 'Product not found.');
 
-        const product = products[productIndex]!;
         const images = files.map(file => `uploads/products/${file.filename}`);
 
         let updatedImages: string[] = Array.isArray(product.images) ? [...product.images] : [];
@@ -256,25 +264,29 @@ export const productsController = {
             updatedImages = images;
         }
 
-        product.images = updatedImages;
-        dbService.writeDB(db);
+        const updated = unwrap(
+            await supabase.from('products').update({ images: updatedImages }).eq('id', product.id).select().single(),
+        );
 
-        res.status(201).json(product);
+        res.status(201).json(updated);
     }),
 
     updateProductItem: handle('Failed to update the product', async (req, res) => {
-        const user = requireUser(req);
         const id = param(req, 'id');
 
-        const db = dbService.readDB();
-        const products: Row[] = db.products || [];
-        const index = findOwnProduct(products, id, user.id);
+        const product = await ownProduct(id);
 
-        if (index === -1) throw new HttpError(404, 'Product not found');
+        if (!product) throw new HttpError(404, 'Product not found');
+
+        // форма редактирования шлёт `collections`, а колонка называется `collection`
+        const picked = pickKeys(req.body, [...PRODUCT_FIELDS, 'collections', 'price', 'variants']);
+        if ('collections' in picked) {
+            picked.collection ??= picked.collections;
+            delete picked.collections;
+        }
 
         const changes = Object.fromEntries(
-            Object.entries(pickKeys(req.body, [...PRODUCT_FIELDS, 'price', 'variants']))
-                .filter(([, value]) => value !== '' && value !== null && value !== undefined)
+            Object.entries(picked).filter(([, value]) => value !== '' && value !== null && value !== undefined)
         );
 
         if ('price' in changes) changes.price = toPrice(changes.price);
@@ -285,30 +297,22 @@ export const productsController = {
             changes.title = title;
         }
 
-        products[index] = { ...products[index], ...changes };
+        const updated = Object.keys(changes).length
+            ? unwrap(await supabase.from('products').update(changes).eq('id', product.id).select().single())
+            : product;
 
-        db.products = products;
-        dbService.writeDB(db);
-
-        res.json(products[index]);
+        res.json(updated);
     }),
 
     deleteProduct: handle('Failed to delete the product', async (req, res) => {
         const user = requireUser(req);
         const id = param(req, 'id');
 
-        const db = dbService.readDB();
-        const products: Row[] = db.products || [];
-        const index = findOwnProduct(products, id, user.id);
+        const deleted = await deleteOwned('products', id, user.id);
 
-        if (index === -1) throw new HttpError(404, 'Product not found');
+        if (!deleted) throw new HttpError(404, 'Product not found');
 
-        const deletedProduct = products[index]!;
-
-        db.products = products.filter(p => p !== deletedProduct);
-        dbService.writeDB(db);
-
-        res.json(deletedProduct);
+        res.json(deleted);
     }),
 };
 

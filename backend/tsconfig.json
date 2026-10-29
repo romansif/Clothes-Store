@@ -17,6 +17,7 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": "./",
     "paths": {
+      "#db/*": ["./src/db/*"],
       "#config/*": ["./src/config/*"],
       "#controllers/*": ["./src/controllers/*"],
       "#lib/*": ["./src/lib/*"],

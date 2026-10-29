@@ -24,6 +24,20 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+process.on('uncaughtException', (err) => console.error('UNCAUGHT EXCEPTION:', err));
+process.on('unhandledRejection', (err) => console.error('UNHANDLED REJECTION:', err));
+
+app.use((req, res, next) => {
+    if (req.method === 'POST') {
+        console.log('→', req.method, req.originalUrl, req.headers['content-length'] ?? '?', 'bytes');
+        res.on('finish', () => console.log('←', res.statusCode, req.originalUrl));
+        res.on('close', () => {
+            if (!res.writableFinished) console.log('✕ connection closed before response', req.originalUrl);
+        });
+    }
+    next();
+});
+
 app.use(cors({
     origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],

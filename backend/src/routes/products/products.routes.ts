@@ -1,7 +1,7 @@
 import express from "express";
 import { productUpload } from "#middleware/multer.uploads.ts";
 import { authMiddleware, roleMiddleware } from "#middleware/auth.middleware.ts";
-import { productsController } from "#controllers/products/products.controller.ts";
+import { productsController } from "#controllers/products.controller.ts";
 import { validation } from "#middleware/validation.ts";
 
 const router = express.Router();
@@ -24,7 +24,7 @@ router.post('/products', authMiddleware, roleMiddleware('Seller'), productUpload
 
 router.patch('/products/:id/:index/images', authMiddleware, roleMiddleware('Seller'),
     productUpload.array('images', 5), productsController.updateProductImages);
-router.patch('/products/:id', authMiddleware, roleMiddleware('Seller'), productsController.updateProductItem);
+router.patch('/products/:id', authMiddleware, productsController.updateProductItem);
 
 router.delete('/products/:id', authMiddleware, roleMiddleware('Seller'),
     productsController.deleteProduct);
