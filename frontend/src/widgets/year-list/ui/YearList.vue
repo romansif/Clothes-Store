@@ -1,7 +1,7 @@
 <template>
   <Transition name="view" mode="out-in">
-    <Loading v-if="isPending" />
-    <ErrorState v-else-if="isError" :box="{ variant: 'year-list', state: 'error' }" />
+    <Loader v-if="isLoading" variant="year-list" />
+    <ErrorState v-else-if="isError" variant="year-list" />
     <ul v-else-if="yearProducts.length" v-horizontal-scroll
         class="flex gap-10 xl:gap-40 overflow-x-auto whitespace-nowrap no-scrollbar mt-10">
       <ProductCard v-for="product in yearProducts"
@@ -12,7 +12,7 @@
                    :variant="'year'"
                    @toggle-to-favorite="toggleFavorite({favorite, product})"/>
     </ul>
-    <EmptyState v-else :box="{ variant: 'year-list', state: 'empty' }" />
+    <EmptyState v-else variant="year-list" />
   </Transition>
 </template>
 
@@ -22,13 +22,13 @@ import { useYearProductData } from "@/widgets/year-list/lib/use-year-product-dat
 import { useFavoriteData } from "@/widgets/favorite-list/lib/use-favorite-data";
 import { productsHelper } from "@/features/products/lib/products-helper";
 import { ProductCard } from "@/entities/product-card";
-import { EmptyState, ErrorState, Loading } from "@/widgets/state";
+import { EmptyState, ErrorState, Loader } from "@/widgets/state";
 import type { User } from "@/entities/profile";
 
 const { favorite } = useFavoriteData()
 const { toggleFavorite } = useToggleFavorite()
 const { vHorizontalScroll } = productsHelper();
-const { yearProducts, isPending, isError } = useYearProductData('ALL', 'ALL');
+const { yearProducts, isLoading, isError } = useYearProductData('ALL', 'ALL');
 
 const props = defineProps<{
   user: User | undefined

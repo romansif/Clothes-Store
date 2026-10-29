@@ -7,7 +7,7 @@ const { getOrders, getActiveOrders } = useGetOrder()
 export const useOrderData = () => {
     const userId = localStorage.getItem("userId");
 
-    const { data: orders, isPending, isError } = useQuery({
+    const { data: orders, isLoading, isError } = useQuery({
         queryKey: computed(() => ['orders', userId]),
 
         queryFn: () => {
@@ -23,7 +23,7 @@ export const useOrderData = () => {
 
     return {
         orders: computed(() => orders.value ?? []),
-        isPending,
+        isLoading,
         isError
     }
 }
@@ -31,7 +31,7 @@ export const useOrderData = () => {
 export const useActiveOrderData = () => {
     const userId = localStorage.getItem("userId");
 
-    const { data: activeOrders, isPending, isError } = useQuery({
+    const { data: activeOrders, isLoading, isError } = useQuery({
         queryKey: computed(() => ['activeOrders', userId]),
 
         queryFn: () => {
@@ -47,7 +47,7 @@ export const useActiveOrderData = () => {
 
     return {
         activeOrders: computed(() => activeOrders.value ?? []),
-        isPending,
+        isLoading,
         isError
     }
 }

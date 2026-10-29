@@ -16,9 +16,9 @@ export const useUsersData = () => {
 }
 
 export const useUserData = () => {
-    const userId= localStorage.getItem("userId");
+    const userId = localStorage.getItem("userId");
 
-    const { data: user, isPending, isError } = useQuery({
+    const { data: user, isLoading, isError } = useQuery({
         queryKey: computed(() => ['user', userId]),
 
         queryFn: () => {
@@ -34,7 +34,7 @@ export const useUserData = () => {
 
     return {
         user,
-        isPending,
+        isLoading,
         isError
     }
 }

@@ -5,7 +5,7 @@ import { useBaseModals } from "@/shared/lib/use-notify";
 import { clearLoginForm, clearLoginFormMessages } from "@/features/login-auth/lib/clear-login-form";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
 import { loginSchema } from "@/entities/login-form/model/login.schemas";
-import { loginForm, loginFormErrorMessages } from "@/entities/login-form/model/login-from";
+import { loginForm, loginFormErrorMessages } from "@/entities/login-form/model/login-form";
 
 const { openNotify } = useBaseModals();
 

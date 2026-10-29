@@ -21,10 +21,14 @@
             </span>
           </div>
         </header>
-        <Loading v-if="isPending" />
-        <ErrorState v-else-if="isError" :box="{ variant: 'orders', state: 'error' }" />
-        <OrderList v-else-if="orders.length" :orders="orders" />
-        <EmptyState v-else :box="{ variant: 'orders', state: 'empty' }" />
+        <Transition name="view" mode="out-in">
+          <div>
+            <Loader v-if="isLoading" variant="orders" />
+            <ErrorState v-else-if="isError" variant="orders" />
+            <OrderList v-else-if="orders.length" :orders="orders" />
+            <EmptyState v-else variant="orders" />
+          </div>
+        </Transition>
         <Transition name="modal">
           <Clipboard v-if="clipboard" />
         </Transition>
@@ -50,9 +54,9 @@ import { Clipboard } from "@/widgets/clipboard";
 import { ReplacementModal } from "@/features/order-modals";
 import { CreateReview } from "@/features/add-review";
 import { OrderList } from "@/widgets/order-list";
-import { EmptyState, ErrorState, Loading } from "@/widgets/state";
+import { EmptyState, ErrorState, Loader } from "@/widgets/state";
 
 const { clipboard } = useOrder();
 const { toggleOrderHistory } = useProfileModals();
-const { orders, isPending, isError } = useOrderData();
+const { orders, isLoading, isError } = useOrderData();
 </script>

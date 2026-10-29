@@ -12,7 +12,17 @@ const app = createApp(App)
 app.directive('mask', IMaskDirective as Directive)
 
 app
-    .use(VueQueryPlugin)
+    .use(VueQueryPlugin, {
+        queryClientConfig: {
+            defaultOptions: {
+                queries:
+                    { retry: 1,
+                        staleTime: 30_000,
+                        refetchOnWindowFocus: false
+                    }
+            },
+        },
+    })
     .use(router)
     .mount('#app')
 

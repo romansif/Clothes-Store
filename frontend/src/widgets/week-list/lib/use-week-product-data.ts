@@ -6,14 +6,14 @@ export const useWeekProductData = (
     type: MaybeRefOrGetter<string>,
     filter: MaybeRefOrGetter<string>
 ) => {
-    const { data: weekProducts, isPending, isError } = useQuery({
+    const { data: weekProducts, isLoading, isError } = useQuery({
         queryKey: computed(() => ['weekProducts', type, filter]),
         queryFn: () => getWeekProducts(toValue(type), toValue(filter)),
     });
 
     return {
         weekProducts: computed(() => weekProducts.value ?? []),
-        isPending,
+        isLoading,
         isError
     };
 };

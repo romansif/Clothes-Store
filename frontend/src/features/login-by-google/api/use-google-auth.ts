@@ -2,7 +2,7 @@ import router from "@/app/router";
 import { handler } from "@/shared/api/http";
 import { useMutation } from "@tanstack/vue-query";
 import { useBaseModals } from "@/shared/lib/use-notify";
-import { loginForm } from "@/entities/login-form/model/login-from";
+import { loginForm } from "@/entities/login-form/model/login-form";
 
 const { openNotify } = useBaseModals();
 

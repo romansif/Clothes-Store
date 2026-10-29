@@ -39,7 +39,9 @@ export const useEditProductImages = () => {
         },
 
         onSuccess: async () => {
-            await queryClient.invalidateQueries({queryKey: ['product']})
+            await queryClient.invalidateQueries({queryKey: ['products']})
+            await queryClient.invalidateQueries({queryKey: ['myProducts']})
+            await queryClient.invalidateQueries({queryKey: ['filteredProducts']})
         },
 
         onError: async (err) => {

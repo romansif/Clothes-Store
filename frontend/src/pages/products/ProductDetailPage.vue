@@ -1,8 +1,10 @@
 <template>
   <div :class="['flex justify-center items-center', isBuyer ? 'mt-10' : 'mt-25']">
-    <main v-if="product" class="flex flex-col gap-35 lg:mt-0 lg:w-300">
+    <main class="flex flex-col gap-35 lg:mt-0 lg:w-300">
       <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-10">
-        <ProductInfo :user="user"
+        <Loader v-if="isLoading" variant="product" />
+        <ErrorState v-else-if="isError" variant="product" />
+        <ProductInfo v-else-if="product" :user="user"
                      :product="product"
                      :cart="cart"
                      :favorite="favorite" />
@@ -21,13 +23,14 @@ import { useFavoriteData } from "@/widgets/favorite-list/lib/use-favorite-data";
 import { ProductInfo } from "@/features/product-info";
 import { ProductReviews } from "@/features/review-dashboard";
 import { useUserData } from "@/widgets/profile/lib/use-user-data";
+import { ErrorState, Loader } from "@/widgets/state";
 
 const route = useRoute();
 
 const { cart } = useCartData()
 const { user } = useUserData()
 const { favorite } = useFavoriteData()
-const { product } = useProductData(route)
+const { product, isLoading, isError } = useProductData(route)
 
 const isBuyer = computed(() => {
   if(!user.value) return

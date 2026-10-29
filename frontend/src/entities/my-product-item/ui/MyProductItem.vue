@@ -57,7 +57,7 @@ import { ProductPreview } from "@/entities/product-card";
 import { StackInfoModal } from "@/entities/my-product-item";
 import type { Product } from "@/shared";
 import type { User } from "@/entities/profile";
-import type { FavoriteItem } from "@/entities/favroite-item";
+import type { FavoriteItem } from "@/entities/favorite-item";
 
 import pencil from "@/assets/icons/products/pencil.svg";
 

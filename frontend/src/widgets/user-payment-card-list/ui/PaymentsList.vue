@@ -1,12 +1,10 @@
 <template>
-  <Transition name="view" mode="out-in">
-    <ul class="grid grid-cols-2 overflow-y-auto no-scrollbar h-92.5 pb-4">
-      <PaymentItem v-for="payment in userPaymentCards"
-                   :key="payment.id"
-                   :payment="payment"
-                   @delete-payment="toggleDeleteChoice" />
-    </ul>
-  </Transition>
+  <ul class="grid grid-cols-2 overflow-y-auto no-scrollbar h-92.5 pb-4">
+    <PaymentItem v-for="payment in userPaymentCards"
+                 :key="payment.id"
+                 :payment="payment"
+                 @delete-payment="toggleDeleteChoice" />
+  </ul>
 </template>
 
 <script setup lang="ts">

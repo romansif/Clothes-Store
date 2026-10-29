@@ -1,7 +1,7 @@
 <template>
   <li class="flex flex-col gap-2 border-t border-[#D9D9D9] py-5">
     <div class="flex w-full gap-10 font-medium">
-      <img :src="userAvatar(review.user.avatar)" alt="" class="h-15.5 rounded-full bg-[#D9D9D9]">
+      <img :src="userAvatar()" alt="" class="h-15.5 rounded-full bg-[#D9D9D9]">
       <div class="flex flex-1 flex-col gap-2.5">
         <div class="flex gap-1">
           <span>{{ review.user.name }}</span>
@@ -34,7 +34,7 @@ import type { ImageItem, Review } from "@/entities/product-review";
 
 defineProps<{
   review: Review;
-  userAvatar: (avatar: string | undefined) => string;
+  userAvatar: () => string
 }>();
 
 const emit = defineEmits<{

@@ -68,6 +68,8 @@ export const useCreateProduct = () => {
 
         onSuccess: async () => {
             await queryClient.invalidateQueries({queryKey: ['products']})
+            await queryClient.invalidateQueries({queryKey: ['myProducts']})
+            await queryClient.invalidateQueries({queryKey: ['filteredProducts']})
 
             await openNotify('You have successfully created a new product card',
                 'Now, if you go to the products page, your product will be there, and on the useProfile page as well')

@@ -1,12 +1,14 @@
 <template>
+  <Loading v-if="isPending" />
   <div id="google-button"></div>
 </template>
 
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { signGoogleAuth } from "@/features/login-by-google/api/use-google-auth";
+import { Loading } from "@/widgets/state";
 
-const { OAuth } = signGoogleAuth()
+const { OAuth, isPending } = signGoogleAuth()
 
 onMounted(() => {
   window.google.accounts.id.initialize({

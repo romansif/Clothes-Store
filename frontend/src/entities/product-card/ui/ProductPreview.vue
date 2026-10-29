@@ -23,7 +23,7 @@ import { productCardVariants } from "@/entities/product-card/model/product-card.
 import type { Product } from "@/shared";
 import type { User } from "@/entities/profile";
 import type { ProductCardVariant } from "@/entities/product-card";
-import type { FavoriteItem } from "@/entities/favroite-item";
+import type { FavoriteItem } from "@/entities/favorite-item";
 
 import liked from "@/assets/icons/nav/liked.png";
 import like from "@/assets/icons/nav/like.png";

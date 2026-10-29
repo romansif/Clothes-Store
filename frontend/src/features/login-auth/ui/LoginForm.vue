@@ -41,7 +41,7 @@
 import { togglePassword } from "@/features/toggle-password/lib/toggle-password";
 import { showPassword } from "@/features/toggle-password/model/auth.refs";
 import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
-import { loginForm, loginFormErrorMessages } from "@/entities/login-form/model/login-from";
+import { loginForm, loginFormErrorMessages } from "@/entities/login-form/model/login-form";
 import { useLoginErrorMessage } from "@/features/login-auth/model/login-error-messages";
 import { UiInput } from "@/shared/ui/input";
 import { showPasswordClass, showPasswordErrorClass } from "@/shared/ui/auth-form/auth-form.variants";

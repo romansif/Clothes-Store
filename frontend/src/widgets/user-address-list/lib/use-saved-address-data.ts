@@ -7,7 +7,7 @@ const { getAddresses, getAddress } = useGetAddress()
 export const useSavedAddressesData = () => {
     const userId = localStorage.getItem("userId");
 
-    const { data: userAddresses, isPending, isError } = useQuery({
+    const { data: userAddresses, isLoading, isError } = useQuery({
         queryKey: computed(() => ['userAddresses', userId]),
 
         queryFn: () => {
@@ -23,7 +23,7 @@ export const useSavedAddressesData = () => {
 
     return {
         userAddresses: computed(() => userAddresses.value ?? []),
-        isPending,
+        isLoading,
         isError
     };
 }
@@ -31,7 +31,7 @@ export const useSavedAddressesData = () => {
 export const useSavedAddressData = () => {
     const addressId = localStorage.getItem("addressId");
 
-    const { data: userAddress, isPending, isError } = useQuery({
+    const { data: userAddress, isLoading, isError } = useQuery({
         queryKey: computed(() => ['userAddress', addressId]),
 
         queryFn: () => {
@@ -47,7 +47,7 @@ export const useSavedAddressData = () => {
 
     return {
         userAddress,
-        isPending,
+        isLoading,
         isError
     };
 }

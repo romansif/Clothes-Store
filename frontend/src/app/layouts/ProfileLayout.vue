@@ -2,8 +2,8 @@
   <div class="flex flex-col bg-[#F0F0F0] min-h-screen">
     <div class="xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
       <MainNavBar />
+      <router-view />
     </div>
-    <router-view />
   </div>
   <Transition name="modal">
     <Notification v-if="notify" />

@@ -2,7 +2,7 @@
   <div v-if="props.user" class="flex flex-col bg-white rounded-xl shadow-2xl">
     <div class="flex p-5">
       <div class="flex items-center gap-10">
-        <img :src="userAvatar(props.user)" alt=""
+        <img :src="avatar()" alt=""
              class="rounded-full w-25 transition duration-400 hover:scale-108"
              @click="toggleAvatar">
         <div class="flex flex-col gap-4 font-semibold text-xl">
@@ -47,4 +47,6 @@ import type { User } from "@/entities/profile";
 const props = defineProps<{
   user: User
 }>()
+
+const { avatar } = userAvatar()
 </script>

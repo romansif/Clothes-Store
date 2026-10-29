@@ -5,7 +5,7 @@ import { getCartProducts } from "@/widgets/cart-list/api/get-cart";
 export const useCartData = () => {
     const userId = localStorage.getItem("userId");
 
-    const { data: cart, isPending, isError } = useQuery({
+    const { data: cart, isLoading, isError } = useQuery({
         queryKey: computed(() => ['cart', userId]),
 
         queryFn: () => {
@@ -21,7 +21,7 @@ export const useCartData = () => {
 
     return {
         cart: computed(() => cart.value ?? []),
-        isPending,
+        isLoading,
         isError
     };
 };

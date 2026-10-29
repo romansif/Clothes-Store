@@ -4,7 +4,7 @@
     <ReviewItem v-for="review in visibleReviews"
                 :key="review.id"
                 :review="review"
-                :user-avatar="userAvatar"
+                :user-avatar="avatar"
                 @toggle-review="toggleReviewPhotos" />
   </ul>
 </template>
@@ -17,11 +17,12 @@ import { reviewsStore } from "@/features/review-dashboard/model/reviews.store";
 import { reviewsHelper } from "@/features/review-dashboard/lib/reviews-helper";
 import { reviewFilter } from "@/features/product-review-filter/model/review-filter.store";
 import { toggleReviewPhotos } from "@/features/review-dashboard/lib/review-photo-modal";
-import { useFilteredReviewsData } from "@/widgets/review-list/lib/use-rewiev-data";
+import { useFilteredReviewsData } from "@/widgets/review-list/lib/use-review-data";
 import { ReviewItem } from "@/entities/product-review";
 
 const route = useRoute();
 
+const { avatar } = userAvatar()
 const { loadFiveReviews } = reviewsHelper();
 const { visibleReviewsCount } = reviewsStore();
 const { filteredReviews } = useFilteredReviewsData(route)

@@ -1,7 +1,7 @@
 <template>
   <Transition name="view" mode="out-in">
-    <Loading v-if="isPending" />
-    <ErrorState v-else-if="isError" :box="{ variant: 'my-products', state: 'error' }" />
+    <Loader v-if="isLoading" variant="my-products" />
+    <ErrorState v-else-if="isError" variant="my-products" />
     <ul v-else-if="myProducts.length" class="font-raleway flex flex-col gap-20">
       <MyProductItem v-for="product in myProducts"
                      :key="product.id"
@@ -12,7 +12,7 @@
         <DeleteMyProductButton :product="product" />
       </MyProductItem>
     </ul>
-    <EmptyState v-else :box="{ variant: 'my-products', state: 'empty' }" />
+    <EmptyState v-else variant="my-products" />
   </Transition>
 </template>
 
@@ -21,11 +21,11 @@ import { useMyProductsData } from "@/widgets/my-product-list/lib/use-my-products
 import { useFavoriteData } from "@/widgets/favorite-list/lib/use-favorite-data";
 import { MyProductItem } from "@/entities/my-product-item";
 import { DeleteMyProductButton } from "@/features/delete-my-product";
-import {EmptyState, ErrorState, Loading} from "@/widgets/state";
+import { EmptyState, ErrorState, Loader } from "@/widgets/state";
 import type { User } from "@/entities/profile";
 
 const { favorite } = useFavoriteData()
-const { myProducts, isPending, isError } = useMyProductsData()
+const { myProducts, isLoading, isError } = useMyProductsData()
 
 const props = defineProps<{
   user: User | undefined

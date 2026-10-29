@@ -1,12 +1,12 @@
 <template>
   <main class="flex flex-col gap-8 mt-10 xl:mt-30">
     <FavoriteCartHeader />
-    <Transition name="view" mode="out-in">
       <div class="flex flex-col items-center xl:flex-row xl:gap-35">
-        <CartList :user="user" />
+        <Transition name="view" mode="out-in">
+          <CartList :user="user" />
+        </Transition>
         <CartInfo v-if="cart.length" :cart="cart" />
       </div>
-    </Transition>
   </main>
 </template>
 

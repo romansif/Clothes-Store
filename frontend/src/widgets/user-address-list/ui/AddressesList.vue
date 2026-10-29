@@ -1,12 +1,10 @@
 <template>
-  <Transition name="view" mode="out-in">
-    <ul class="grid grid-cols-2 overflow-y-auto no-scrollbar h-92.5 pb-4">
-      <AddressItem v-for="address in userAddresses"
-                   :key="address.id"
-                   :address="address"
-                   @delete-address="toggleDeleteChoice"  />
-    </ul>
-  </Transition>
+  <ul class="grid grid-cols-2 overflow-y-auto no-scrollbar h-92.5 pb-4">
+    <AddressItem v-for="address in userAddresses"
+                 :key="address.id"
+                 :address="address"
+                 @delete-address="toggleDeleteChoice"  />
+  </ul>
 </template>
 
 <script setup lang="ts">

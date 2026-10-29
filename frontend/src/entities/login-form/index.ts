@@ -1,1 +1,1 @@
-export type * from './model/login-from.types'
+export type * from './model/login-form.types'

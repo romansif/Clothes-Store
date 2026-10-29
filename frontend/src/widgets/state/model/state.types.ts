@@ -1,5 +1,5 @@
-export type StateVariant = 'empty' | 'error'
 export type PageVariant =
+    'product' |
     'user' |
     'season-list' |
     'week-list' |
@@ -12,11 +12,6 @@ export type PageVariant =
     'orders' |
     'addresses' |
     'payments'
-
-export interface StateVariantProps {
-    state: StateVariant
-    variant: PageVariant
-}
 
 export interface EmptyStateMessageProps {
     title: string;

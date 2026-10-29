@@ -6,6 +6,7 @@ export const errorImage = error_state
 export const emptyImage = empty_state
 
 export const stateRouteMessage: Record<PageVariant, string> = {
+    product: '',
     user: '',
     'my-products': 'create product',
     'season-list': 'go to shop',
@@ -21,6 +22,7 @@ export const stateRouteMessage: Record<PageVariant, string> = {
 }
 
 export const stateRoute: Record<PageVariant, string> = {
+    product: '',
     user: '',
     'my-products': 'create/product',
     'season-list': 'shop',
@@ -35,7 +37,66 @@ export const stateRoute: Record<PageVariant, string> = {
     payments: '',
 }
 
+export const errorStateMessage: Record<PageVariant, EmptyStateMessageProps> = {
+    product: {
+        title: '',
+        text: ''
+    },
+    user: {
+        title: "Couldn't load your profile",
+        text: 'Something went wrong while loading your details. Please try again',
+    },
+    'my-products': {
+        title: "Couldn't load your products",
+        text: 'Something went wrong while loading your products. Please try again',
+    },
+    'season-list': {
+        title: "Couldn't load the seasonal collection",
+        text: 'Something went wrong while loading this collection. Please try again',
+    },
+    'week-list': {
+        title: "Couldn't load the weekly collection",
+        text: 'Something went wrong while loading this collection. Please try again',
+    },
+    'year-list': {
+        title: "Couldn't load the yearly collection",
+        text: 'Something went wrong while loading this collection. Please try again',
+    },
+    products: {
+        title: "Couldn't load products",
+        text: 'Something went wrong while loading the catalog. Please try again',
+    },
+    cart: {
+        title: "Couldn't load your cart",
+        text: 'Something went wrong while loading your cart. Please try again',
+    },
+    favorite: {
+        title: "Couldn't load your favorites",
+        text: 'Something went wrong while loading your favorites. Please try again',
+    },
+    reviews: {
+        title: "Couldn't load reviews",
+        text: 'Something went wrong while loading reviews. Please try again',
+    },
+    orders: {
+        title: "Couldn't load your orders",
+        text: 'Something went wrong while loading your orders. Please try again',
+    },
+    addresses: {
+        title: "Couldn't load your addresses",
+        text: 'Something went wrong while loading your addresses. Please try again',
+    },
+    payments: {
+        title: "Couldn't load your payment methods",
+        text: 'Something went wrong while loading your payment methods. Please try again',
+    },
+};
+
 export const emptyStateMessage: Record<PageVariant, EmptyStateMessageProps> = {
+    product: {
+        title: '',
+        text: ''
+    },
     user: {
         title: 'No profile information yet',
         text: 'Your details will appear here once you add them',

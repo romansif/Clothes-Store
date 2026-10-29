@@ -5,7 +5,7 @@ import { getMyProducts } from "@/widgets/my-product-list/api/get-my-product";
 export const useMyProductsData = () => {
     const userId = localStorage.getItem("userId");
 
-    const { data: myProducts, isPending, isError } = useQuery({
+    const { data: myProducts, isLoading, isError } = useQuery({
         queryKey: computed(() => ['myProducts', userId]),
 
         queryFn: () => {
@@ -21,7 +21,7 @@ export const useMyProductsData = () => {
 
     return {
         myProducts: computed(() => myProducts.value ?? []),
-        isPending,
+        isLoading,
         isError
     };
 };

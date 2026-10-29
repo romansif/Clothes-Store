@@ -15,13 +15,17 @@
             </span>
           </div>
         </div>
-        <Loading v-if="isPending" />
-        <ErrorState v-else-if="isError" :box="{ variant: 'payments', state: 'error' }" />
-        <div v-if="userPaymentCards.length"
-             class="flex flex-col w-full">
-          <PaymentsList />
-        </div>
-        <EmptyState v-else :box="{ variant: 'payments', state: 'empty' }" />
+        <Transition name="view" mode="out-in">
+          <div>
+            <Loader v-if="isLoading" variant="payments" />
+            <ErrorState v-else-if="isError" variant="payments" />
+            <div v-else-if="userPaymentCards.length"
+                 class="flex flex-col w-full">
+              <PaymentsList />
+            </div>
+            <EmptyState v-else variant="payments" />
+          </div>
+        </Transition>
       </div>
     </div>
     <Transition name="modal">
@@ -37,9 +41,9 @@ import { useSavedPaymentsData } from "@/widgets/user-payment-card-list/lib/use-s
 import { UiButton } from "@/shared/ui/button";
 import { DeleteModal } from "@/features/general-delete";
 import { PaymentsList } from "@/widgets/user-payment-card-list";
-import { EmptyState, ErrorState, Loading } from "@/widgets/state";
+import { EmptyState, ErrorState, Loader } from "@/widgets/state";
 
 const { deleteModal } = baseDeleteModal();
 const { toggleSavedPaymentCard } = useProfileModals();
-const { userPaymentCards, isPending, isError } = useSavedPaymentsData();
+const { userPaymentCards, isLoading, isError } = useSavedPaymentsData();
 </script>

@@ -1,12 +1,14 @@
 <template>
-  <section :class="stateBoxVariantClass[props.box.variant]">
+  <section :class="stateBoxVariantClass[props.variant]">
     <img :src="emptyImage" alt="" >
     <div :class="stateBoxMessageClass">
-      <h1 :class="stateTitleClass">{{ emptyStateMessage[props.box.variant].title }}</h1>
-      <p :class="stateTextClass">{{ emptyStateMessage[props.box.variant].text }}</p>
+      <h1 :class="stateTitleClass">{{ emptyStateMessage[props.variant].title }}</h1>
+      <p :class="stateTextClass">{{ emptyStateMessage[props.variant].text }}</p>
     </div>
-    <router-link :to="{ name: stateRoute[props.box.variant] }" :class="stateRouteClass[props.box.variant]">
-      <UiButton :name="stateRouteMessage[props.box.variant]"
+    <router-link v-if="stateRoute[props.variant]"
+                 :to="{ name: stateRoute[props.variant] }"
+                 :class="stateRouteClass[props.variant]">
+      <UiButton :name="stateRouteMessage[props.variant]"
                 variant="catalog" />
     </router-link>
   </section>
@@ -20,10 +22,10 @@ import {
   stateTitleClass
 } from "@/widgets/state/model/state.variants";
 import { emptyStateMessage, emptyImage, stateRouteMessage, stateRoute } from "@/widgets/state/model/state.mock";
+import type { PageVariant } from "@/widgets/state";
 import { UiButton } from "@/shared/ui/button";
-import type { StateVariantProps } from "@/widgets/state";
 
 const props = defineProps<{
-  box: StateVariantProps
+  variant: PageVariant
 }>()
 </script>

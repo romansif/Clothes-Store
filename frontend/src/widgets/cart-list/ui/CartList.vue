@@ -1,6 +1,6 @@
 <template>
-  <Loading v-if="isPending" />
-  <ErrorState v-else-if="isError" :box="{ variant: 'cart', state: 'error' }" />
+  <Loader v-if="isLoading" variant="cart" />
+  <ErrorState v-else-if="isError" variant="cart" />
   <ul v-else-if="cart.length" class="flex flex-col overflow-y-auto gap-10 max-h-92.5 no-scrollbar w-81.25 sm:max-h-92.5
     md:w-full md:grid md:grid-cols-2 md:gap-30 lg:grid-cols-3 lg:gap-15 xl:grid-cols-2 xl:w-210 xl:max-h-117.5">
     <CartProduct v-for="product in cart"
@@ -13,7 +13,7 @@
       <UseCartItemActions :product="product" :cart="cart" />
     </CartProduct>
   </ul>
-  <EmptyState v-else :box="{ variant: 'cart', state: 'empty' }" />
+  <EmptyState v-else variant="cart" />
 </template>
 
 <script setup lang="ts">
@@ -22,12 +22,12 @@ import { useToggleFavorite } from "@/shared/api/toggle-to-favorite";
 import { useFavoriteData } from "@/widgets/favorite-list/lib/use-favorite-data";
 import { CartProduct } from "@/entities/cart-item";
 import { UseCartItemActions } from "@/features/cart-item-action";
-import { EmptyState, ErrorState, Loading } from "@/widgets/state";
+import { EmptyState, ErrorState, Loader } from "@/widgets/state";
 import type { User } from "@/entities/profile";
 
 const { favorite } = useFavoriteData()
 const { toggleFavorite } = useToggleFavorite()
-const { cart, isPending, isError } = useCartData()
+const { cart, isLoading, isError } = useCartData()
 
 const props = defineProps<{
   user: User | undefined

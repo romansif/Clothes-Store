@@ -30,7 +30,7 @@ import { ProductPreview } from "@/entities/product-card";
 import type { CartItem } from "@/entities/cart-item";
 import type { Product } from "@/shared";
 import type { User } from "@/entities/profile";
-import type { FavoriteItem } from "@/entities/favroite-item";
+import type { FavoriteItem } from "@/entities/favorite-item";
 
 defineProps<{
   user: User | undefined

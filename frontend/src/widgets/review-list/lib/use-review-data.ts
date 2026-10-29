@@ -7,21 +7,21 @@ import type { RouteLocationNormalizedLoaded } from "vue-router";
 const { getReviews, getFilteredReviews } = useGetReviews();
 
 export const useReviewsData = () => {
-    const { data: reviews, isPending, isError } = useQuery({
+    const { data: reviews, isLoading, isError } = useQuery({
         queryKey: ['reviews'],
         queryFn: () => getReviews()
     });
 
     return {
         reviews: computed(() => reviews.value ?? []),
-        isPending,
+        isLoading,
         isError
     };
 }
 
 export const useFilteredReviewsData = (route: RouteLocationNormalizedLoaded) => {
-    const { data: filteredReviews, isPending, isError } = useQuery({
-        queryKey: computed(() => ["filteredReviews", route.params.id, reviewFilter]),
+    const { data: filteredReviews, isLoading, isError } = useQuery({
+        queryKey: computed(() => ["filteredReviews", route.params.id, reviewFilter.value]),
         queryFn: () => getFilteredReviews(route.params.id, reviewFilter.value),
         enabled: computed(() => Boolean(route.params.id && reviewFilter.value)),
         placeholderData: keepPreviousData,
@@ -29,7 +29,7 @@ export const useFilteredReviewsData = (route: RouteLocationNormalizedLoaded) => 
 
     return {
         filteredReviews,
-        isPending,
+        isLoading,
         isError
     }
 }

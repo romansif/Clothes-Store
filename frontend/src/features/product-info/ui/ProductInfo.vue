@@ -52,7 +52,7 @@ import { addToCartForm, addToCartFormErrorMessages } from "@/entities/product-in
 import type { Product } from "@/shared";
 import type { User } from "@/entities/profile";
 import type { CartItem } from "@/entities/cart-item";
-import type { FavoriteItem } from "@/entities/favroite-item";
+import type { FavoriteItem } from "@/entities/favorite-item";
 
 import like from '@/assets/icons/nav/like.png';
 import liked from '@/assets/icons/nav/liked.png';

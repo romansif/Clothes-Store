@@ -1,11 +1,12 @@
 import router from "@/app/router";
 import { handler } from "@/shared/api/http.ts";
-import { useMutation } from "@tanstack/vue-query";
+import {useMutation, useQueryClient} from "@tanstack/vue-query";
 import { useBaseModals } from "@/shared/lib/use-notify.ts";
 
 const { openNotify } = useBaseModals();
 
 export const useDeleteAccount = () => {
+    const queryClient = useQueryClient()
     const userId = localStorage.getItem("userId");
 
     const { mutateAsync: deleteAccount, isPending, isError } = useMutation({mutationKey: ['deleteAccount'],
@@ -16,6 +17,8 @@ export const useDeleteAccount = () => {
         },
 
         onSuccess: async () => {
+            queryClient.clear()
+
             await openNotify('You have successfully delete account',
                 'You will now be taken to sign in page');
             await router.push({name: 'signIn'})
@@ -34,6 +37,8 @@ export const useDeleteAccount = () => {
 };
 
 export const useLogout = () => {
+    const queryClient = useQueryClient()
+
     const { mutateAsync: logout, isPending, isError } = useMutation({mutationKey: ['logout'],
         mutationFn: async () => {
             return await handler('/auth/logout', {
@@ -43,6 +48,8 @@ export const useLogout = () => {
 
         onSuccess: async () => {
             localStorage.clear();
+
+            queryClient.clear()
 
             await router.push({name: 'signIn'})
         },

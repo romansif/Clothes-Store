@@ -1,14 +1,23 @@
-import type { User } from "@/entities/profile";
+import { useUserData } from "@/widgets/profile/lib/use-user-data";
 
-export const userAvatar = (user: User | undefined) => {
-    if(!user){
-        return '@/app/assets/photos/default-avatar.png'
+export const userAvatar = () => {
+    const { user } = useUserData()
+
+    const avatar = () => {
+
+        if(!user.value){
+            return '@/app/assets/photos/default-avatar.png'
+        }
+
+        if(user.value.avatarUrl.startsWith('http://') || user.value.avatarUrl.startsWith('https://')){
+            return user.value.avatarUrl;
+        }
+
+        return `${import.meta.env.ViTE_BASE_URL}/${user.value.avatarUrl}`
     }
 
-    if(user.avatarUrl.startsWith('http://') || user.avatarUrl.startsWith('https://')){
-        return user.avatarUrl;
+    return {
+        avatar
     }
-
-    return `${import.meta.env.ViTE_BASE_URL}/${user.avatarUrl}`
 };
 

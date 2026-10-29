@@ -7,7 +7,7 @@ const { getPayments, getPayment } = useGetPayment()
 export const useSavedPaymentsData = () => {
     const userId = localStorage.getItem("userId");
 
-    const { data: userPaymentCards, isPending, isError } = useQuery({
+    const { data: userPaymentCards, isLoading, isError } = useQuery({
         queryKey: computed(() => ['userPaymentCards', userId]),
 
         queryFn: () => {
@@ -23,7 +23,7 @@ export const useSavedPaymentsData = () => {
 
     return {
         userPaymentCards: computed(() => userPaymentCards.value ?? []),
-        isPending,
+        isLoading,
         isError
     }
 }
@@ -31,7 +31,7 @@ export const useSavedPaymentsData = () => {
 export const useSavedPaymentData = () => {
     const paymentId = localStorage.getItem('paymentId')
 
-    const { data: userPaymentCard, isPending, isError } = useQuery({
+    const { data: userPaymentCard, isLoading, isError } = useQuery({
         queryKey: computed(() => ['userPaymentCard', paymentId]),
 
         queryFn: () => {
@@ -47,7 +47,7 @@ export const useSavedPaymentData = () => {
 
     return {
         userPaymentCard,
-        isPending,
+        isLoading,
         isError
     }
 }
