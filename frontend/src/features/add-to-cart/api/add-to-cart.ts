@@ -15,7 +15,7 @@ export const useAddToCart = () => {
     const queryClient = useQueryClient()
     const userId = localStorage.getItem("userId");
 
-    const { mutateAsync: addToCart, isPending } = useMutation({mutationKey: ['addToCart'],
+    const { mutateAsync: addToCart, isPending, isError } = useMutation({mutationKey: ['addToCart'],
         mutationFn: async (product: Product) => {
             const result = addToCartSchema.safeParse(addToCartForm.value)
 
@@ -83,6 +83,7 @@ export const useAddToCart = () => {
     return {
         addToCart,
         isPending,
+        isError
     };
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <header class="flex flex-col">
+  <header class="flex items-center gap-10">
     <div class="flex gap-14 items-center font-semibold text-sm">
       <router-link :to="{name: 'cart'}">
         <div class="flex items-center gap-2">

@@ -32,5 +32,10 @@ export const buttonVariantClasses: Record<ButtonVariant, string> = {
     stackInfo: `ml-auto text-start h-fit w-fit px-10 py-2 bg-[#3B3C36] text-white font-medium text-xs rounded-md cursor-pointer
           transition duration-400 transform hover:bg-[#1d1e1b]`,
     loadReviews: `font-semibold border border-[#D9D9D9] w-150 p-2.5 transition duration-400 hover:bg-white hover:scale-105`,
-    profileMenu: `text-[#A3A3A3] block px-4 py-2 text-sm transition duration-400 hover:text-black hover:outline-hidden hover:scale-115`
+    profileMenu: `text-[#A3A3A3] block px-4 py-2 text-sm transition duration-400 
+          hover:text-black hover:outline-hidden hover:scale-115`,
+    reload: `text-black px-8 py-2 text-xl rounded-full border border-black transition duration-400 
+           hover:outline-hidden hover:scale-110 hover:text-white hover:bg-black`,
+    catalog: `text-black px-4 py-2 text-xl rounded-full border border-black transition duration-400 
+           hover:outline-hidden hover:scale-110 hover:text-white hover:bg-black`
 }

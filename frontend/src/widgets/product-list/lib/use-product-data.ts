@@ -8,13 +8,15 @@ import { activeSearch } from "@/features/search-product/api/search-product";
 const { getAllProducts, getFilteredProducts } = useGetProducts()
 
 export const useProductsData = () => {
-    const { data: products } = useQuery({
+    const { data: products, isPending, isError } = useQuery({
         queryKey: ['products'],
         queryFn: () => getAllProducts()
     })
 
     return {
-        products: computed(() => products.value ?? [])
+        products: computed(() => products.value ?? []),
+        isPending,
+        isError
     }
 }
 
@@ -25,7 +27,7 @@ export const useFilteredProductData = (
 ) => {
     const term = computed(() => toValue(search).trim())
 
-    const { data } = useQuery({
+    const { data, isPending, isError } = useQuery({
         queryKey: computed(() => ['filteredProducts', toValue(type), toValue(filter), term.value]),
         queryFn: () => term.value
             ? getSearchedProducts(term.value)
@@ -38,7 +40,9 @@ export const useFilteredProductData = (
     })
 
     return {
-        filteredProducts: computed(() => data.value ?? [])
+        filteredProducts: computed(() => data.value ?? []),
+        isPending,
+        isError
     }
 }
 

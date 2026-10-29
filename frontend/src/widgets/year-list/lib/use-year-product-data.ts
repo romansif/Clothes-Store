@@ -6,12 +6,14 @@ export const useYearProductData = (
     type: MaybeRefOrGetter<string>,
     filter: MaybeRefOrGetter<string>
 ) => {
-    const { data: yearProducts } = useQuery({
+    const { data: yearProducts, isPending, isError } = useQuery({
         queryKey: computed(() => ['yearProducts', type, filter]),
         queryFn: () => getYearProducts(toValue(type), toValue(filter)),
     });
 
     return {
-        yearProducts: computed(() => yearProducts.value ?? [])
+        yearProducts: computed(() => yearProducts.value ?? []),
+        isPending,
+        isError
     };
 }

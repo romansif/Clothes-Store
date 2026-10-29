@@ -18,7 +18,7 @@ const {
 export const useEditUserName = () => {
     const { baseEditUser } = useBaseEditUser()
 
-    const { mutateAsync: editUserName, isPending } = useMutation({mutationKey: ['editUserName'],
+    const { mutateAsync: editUserName, isPending, isError } = useMutation({mutationKey: ['editUserName'],
         mutationFn: async () => {
             const result = updateUserNameSchema.safeParse(updateUserForm.value)
             if (!result.success) {
@@ -40,14 +40,15 @@ export const useEditUserName = () => {
 
     return {
         editUserName,
-        isPending
+        isPending,
+        isError
     }
 }
 
 export const useEditUserSurName = () => {
     const { baseEditUser } = useBaseEditUser()
 
-    const { mutateAsync: editUserSurName, isPending } = useMutation({mutationKey: ['editUserSurName'],
+    const { mutateAsync: editUserSurName, isPending, isError } = useMutation({mutationKey: ['editUserSurName'],
         mutationFn: async () => {
             const result = updateUserSurNameSchema.safeParse(updateUserForm.value)
             if (!result.success) {
@@ -69,14 +70,15 @@ export const useEditUserSurName = () => {
 
     return {
         editUserSurName,
-        isPending
+        isPending,
+        isError
     }
 }
 
 export const useEditUserPhone = () => {
     const { baseEditUser } = useBaseEditUser()
 
-    const { mutateAsync: editUserPhone, isPending } = useMutation({mutationKey: ['editUserPhone'],
+    const { mutateAsync: editUserPhone, isPending, isError } = useMutation({mutationKey: ['editUserPhone'],
         mutationFn: async () => {
             const result = updateUserPhoneSchema.safeParse(updateUserForm.value)
             if (!result.success) {
@@ -98,14 +100,15 @@ export const useEditUserPhone = () => {
 
     return {
         editUserPhone,
-        isPending
+        isPending,
+        isError
     }
 }
 
 export const useEditUserEmail = () => {
     const { baseEditUser } = useBaseEditUser()
 
-    const { mutateAsync: editUserEmail, isPending } = useMutation({mutationKey: ['editUserEmail'],
+    const { mutateAsync: editUserEmail, isPending, isError } = useMutation({mutationKey: ['editUserEmail'],
         mutationFn: async () => {
             const result = updateUserEmailSchema.safeParse(updateUserForm.value)
             if (!result.success) {
@@ -127,7 +130,8 @@ export const useEditUserEmail = () => {
 
     return {
         editUserEmail,
-        isPending
+        isPending,
+        isError
     }
 }
 
@@ -136,7 +140,7 @@ export const useEditUserPassword = () => {
     const { openNotify } = useBaseModals();
     const userId = localStorage.getItem("userId");
 
-    const { mutateAsync: editUserPassword, isPending } = useMutation({mutationKey: ['editUserPassword'],
+    const { mutateAsync: editUserPassword, isPending, isError } = useMutation({mutationKey: ['editUserPassword'],
         mutationFn: async () => {
             const result = updateUserPasswordSchema.safeParse(updateUserForm.value)
             if(!result.success){
@@ -170,6 +174,7 @@ export const useEditUserPassword = () => {
 
     return {
         editUserPassword,
-        isPending
+        isPending,
+        isError
     }
 }

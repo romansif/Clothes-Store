@@ -5,7 +5,7 @@ import { getShipping } from "@/features/checkout-shipping-info/api/get-shipping"
 export const useSavedShippingData = () => {
     const paymentId = localStorage.getItem("paymentId");
 
-    const { data: shipping } = useQuery({
+    const { data: shipping, isPending, isError } = useQuery({
         queryKey: computed(() => ['shipping', paymentId]),
 
         queryFn: () => {
@@ -20,6 +20,8 @@ export const useSavedShippingData = () => {
     });
 
     return {
-        shipping
+        shipping,
+        isPending,
+        isError
     };
 }

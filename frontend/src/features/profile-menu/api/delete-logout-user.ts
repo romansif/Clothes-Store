@@ -8,7 +8,7 @@ const { openNotify } = useBaseModals();
 export const useDeleteAccount = () => {
     const userId = localStorage.getItem("userId");
 
-    const { mutateAsync: deleteAccount, isPending } = useMutation({mutationKey: ['deleteAccount'],
+    const { mutateAsync: deleteAccount, isPending, isError } = useMutation({mutationKey: ['deleteAccount'],
         mutationFn: async () => {
             return await handler(`/users/${userId}`, {
                 method: "DELETE",
@@ -28,12 +28,13 @@ export const useDeleteAccount = () => {
 
     return {
         deleteAccount,
-        isPending
+        isPending,
+        isError
     }
 };
 
 export const useLogout = () => {
-    const { mutateAsync: logout, isPending } = useMutation({mutationKey: ['logout'],
+    const { mutateAsync: logout, isPending, isError } = useMutation({mutationKey: ['logout'],
         mutationFn: async () => {
             return await handler('/auth/logout', {
                 method: "POST",
@@ -53,6 +54,7 @@ export const useLogout = () => {
 
     return {
         logout,
-        isPending
+        isPending,
+        isError
     }
 };

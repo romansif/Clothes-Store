@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from "@tanstack/vue-query";
 export const useDeleteFavoriteProduct = () => {
     const queryClient = useQueryClient()
 
-    const { mutateAsync: deleteFavoriteItem, isPending } = useMutation({mutationKey: ['deleteFavoriteItem'],
+    const { mutateAsync: deleteFavoriteItem, isPending, isError } = useMutation({mutationKey: ['deleteFavoriteItem'],
         mutationFn: async (id: string | undefined) => {
             return await handler(`/favorites/${id}`, {
                 method: "DELETE",
@@ -22,6 +22,7 @@ export const useDeleteFavoriteProduct = () => {
 
     return {
         deleteFavoriteItem,
-        isPending
+        isPending,
+        isError
     }
 };

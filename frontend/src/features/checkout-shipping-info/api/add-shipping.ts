@@ -14,7 +14,7 @@ export const useAddShipping = () => {
     const queryClient = useQueryClient()
     const userId = localStorage.getItem("userId");
 
-    const { mutateAsync: addShipping, isPending } = useMutation({mutationKey: ['addShipping'],
+    const { mutateAsync: addShipping, isPending, isError } = useMutation({mutationKey: ['addShipping'],
         mutationFn: async () => {
             const result = addShippingSchema.safeParse(shippingForm.value)
 
@@ -57,6 +57,7 @@ export const useAddShipping = () => {
 
     return {
         addShipping,
-        isPending
+        isPending,
+        isError
     }
 }

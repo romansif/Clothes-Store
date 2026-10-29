@@ -17,7 +17,7 @@ export const useCreateProduct = () => {
     const queryClient = useQueryClient()
     const userId = localStorage.getItem("userId");
 
-    const { mutateAsync: createProduct, isPending } = useMutation({mutationKey: ['createProduct'],
+    const { mutateAsync: createProduct, isPending, isError } = useMutation({mutationKey: ['createProduct'],
         mutationFn: async () => {
             const result1 = createProductSchema.safeParse(createProductForm.value)
             const result2 = moreCreateItemsSchema.safeParse(moreCreateItemForm)
@@ -56,8 +56,7 @@ export const useCreateProduct = () => {
                 if(file){
                     formData.append('images', file)
                 }else{
-                    throw new Error('Фото товара не добавлено')
-
+                    console.log('Фото товара не добавлено')
                 }
             });
 
@@ -87,6 +86,7 @@ export const useCreateProduct = () => {
 
     return {
         createProduct,
-        isPending
+        isPending,
+        isError
     }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="cart.length" class="flex flex-col gap-4 font-medium w-100">
+  <div class="flex flex-col gap-4 font-medium w-100">
     <div class="flex flex-col gap-2 sm:pb-3">
     <span class="text-lg xl:text-xl">
       ORDER SUMMARY
@@ -36,13 +36,11 @@
 </template>
 
 <script setup lang="ts">
-import { useCartData } from "@/widgets/cart-list/lib/use-cart-data";
 import { useCartOrderInfo } from "@/features/cart-item-action/model/cart-order-info";
 import { baseDeleteModal } from "@/features/general-delete/lib/base-delete-modal";
 import { ContinueToOrder } from "@/features/cart-order-info";
 import { DeleteModal } from "@/features/general-delete";
 
-const { cart } = useCartData();
 const { deleteModal } = baseDeleteModal();
 const { price, commissionPrice, totalPrice } = useCartOrderInfo();
 </script>

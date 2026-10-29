@@ -15,7 +15,7 @@ export const useAddInformation = () => {
     const queryClient = useQueryClient()
     const userId = localStorage.getItem("userId")
 
-    const { mutateAsync: addInformation, isPending } = useMutation({mutationKey: ['addInformation'],
+    const { mutateAsync: addInformation, isPending, isError } = useMutation({mutationKey: ['addInformation'],
         mutationFn: async () => {
             if(!informationId.value){
                 throw new Error("ID чекаута не найден");
@@ -61,7 +61,8 @@ export const useAddInformation = () => {
 
     return {
         addInformation,
-        isPending
+        isPending,
+        isError
     }
 }
 

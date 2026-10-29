@@ -9,7 +9,7 @@
       </div>
       <span class="text-red-600 text-xs">{{ isAgreeFormErrorMessage.agree }}</span>
     </div>
-    <UiButton @click="continueToOrder()" name="CONTINUE" variant="addToOrder" />
+    <UiButton @click="continueToOrder" name="CONTINUE" variant="addToOrder" />
   </div>
 </template>
 

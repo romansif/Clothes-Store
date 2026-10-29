@@ -4,7 +4,7 @@ import { getProduct } from "@/features/product-info/api/get-product";
 import type { RouteLocationNormalizedLoaded } from "vue-router";
 
 export const useProductData = (route: RouteLocationNormalizedLoaded) => {
-    const { data: product } = useQuery({
+    const { data: product, isPending, isError } = useQuery({
         queryKey: computed(() => ['product', route.params.id]),
 
         queryFn: () => {
@@ -25,6 +25,7 @@ export const useProductData = (route: RouteLocationNormalizedLoaded) => {
 
     return {
         product: productItem,
-
+        isPending,
+        isError
     }
 }

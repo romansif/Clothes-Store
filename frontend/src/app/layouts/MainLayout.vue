@@ -13,7 +13,7 @@
 <script setup lang="ts">
 import { useBaseModals } from "@/shared/lib/use-notify";
 import { MainNavBar } from "@/widgets/navigation";
-import { Notification } from "@/widgets/state";
+import { Notification } from "@/shared";
 
 const { notify } = useBaseModals();
 </script>

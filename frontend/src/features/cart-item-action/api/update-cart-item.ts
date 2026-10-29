@@ -13,7 +13,7 @@ export const useUpdateCartItem = () => {
     const { deleteCartItem } = useDeleteCartItem()
     const { products } = useProductsData()
 
-    const { mutateAsync: updateCartItemQuantity, isPending } = useMutation({mutationKey: ['updateCartItemQuantity'],
+    const { mutateAsync: updateCartItemQuantity, isPending, isError } = useMutation({mutationKey: ['updateCartItemQuantity'],
         mutationFn: async ({ type, cartItem }: UpdateCartItemPayload) => {
             if(!cartItem.productId) {
                 throw new Error('ID товара для изменения количества в корзине не найден')
@@ -99,6 +99,7 @@ export const useUpdateCartItem = () => {
 
     return {
         updateCartItemQuantity,
-        isPending
+        isPending,
+        isError
     }
 }

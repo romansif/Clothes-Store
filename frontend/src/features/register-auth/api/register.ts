@@ -10,7 +10,7 @@ import { registerForm, registerFormErrorMessages } from "@/entities/register-for
 const { openNotify } = useBaseModals();
 
 export const signUp = () => {
-    const { mutateAsync: register, isPending } = useMutation({mutationKey: ['register'],
+    const { mutateAsync: register, isPending, isError } = useMutation({mutationKey: ['register'],
         mutationFn: async (role: string) => {
             clearRegisterFormMessages();
 
@@ -54,6 +54,7 @@ export const signUp = () => {
 
    return {
         register,
-        isPending
+        isPending,
+        isError
    }
 };

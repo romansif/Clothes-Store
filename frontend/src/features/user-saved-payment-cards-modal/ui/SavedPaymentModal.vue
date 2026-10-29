@@ -15,11 +15,13 @@
             </span>
           </div>
         </div>
-        <div v-if="userPaymentCard.length"
+        <Loading v-if="isPending" />
+        <ErrorState v-else-if="isError" :box="{ variant: 'payments', state: 'error' }" />
+        <div v-if="userPaymentCards.length"
              class="flex flex-col w-full">
           <PaymentsList />
         </div>
-        <PaymentCardEmpty v-else />
+        <EmptyState v-else :box="{ variant: 'payments', state: 'empty' }" />
       </div>
     </div>
     <Transition name="modal">
@@ -31,13 +33,13 @@
 <script setup lang="ts">
 import { baseDeleteModal } from "@/features/general-delete/lib/base-delete-modal";
 import { useProfileModals } from "@/shared/lib/profile-modal";
-import { useSavedPaymentData } from "@/widgets/user-payment-card-list/lib/use-saved-payment-data";
+import { useSavedPaymentsData } from "@/widgets/user-payment-card-list/lib/use-saved-payment-data";
 import { UiButton } from "@/shared/ui/button";
 import { DeleteModal } from "@/features/general-delete";
-import { PaymentCardEmpty } from "@/entities/profile";
 import { PaymentsList } from "@/widgets/user-payment-card-list";
+import { EmptyState, ErrorState, Loading } from "@/widgets/state";
 
 const { deleteModal } = baseDeleteModal();
-const { userPaymentCard } = useSavedPaymentData();
 const { toggleSavedPaymentCard } = useProfileModals();
+const { userPaymentCards, isPending, isError } = useSavedPaymentsData();
 </script>

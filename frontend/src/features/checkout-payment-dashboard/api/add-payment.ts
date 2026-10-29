@@ -27,7 +27,7 @@ const useFinalizeOrder = () => {
 export const useAddPayment = () => {
     const finalizeOrder = useFinalizeOrder()
 
-    const { mutateAsync: addPayment, isPending } = useMutation({mutationKey: ['addPayment'],
+    const { mutateAsync: addPayment, isPending, isError } = useMutation({mutationKey: ['addPayment'],
         mutationFn: async ({ products, cart }: UpdateCartAndProductPayload) => {
             await handler(`/payment/${paymentId.value}`, {
                 method: "PUT",
@@ -61,7 +61,8 @@ export const useAddPayment = () => {
 
     return {
         addPayment,
-        isPending
+        isPending,
+        isError
     }
 }
 
@@ -69,7 +70,7 @@ export const useCreatePayment = () => {
     const finalizeOrder = useFinalizeOrder()
     const userId = localStorage.getItem("userId");
 
-    const { mutateAsync: createPayment, isPending } = useMutation({mutationKey: ['createPayment'],
+    const { mutateAsync: createPayment, isPending, isError } = useMutation({mutationKey: ['createPayment'],
         mutationFn: async ({ products, cart }: UpdateCartAndProductPayload) => {
             const paymentId =  localStorage.getItem("paymentId");
 
@@ -118,6 +119,7 @@ export const useCreatePayment = () => {
 
     return {
         createPayment,
-        isPending
+        isPending,
+        isError
     }
 }

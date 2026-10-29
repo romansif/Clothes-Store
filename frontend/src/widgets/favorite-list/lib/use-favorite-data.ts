@@ -5,7 +5,7 @@ import { getFavoriteProducts } from "@/shared/api/get-favorite";
 export const useFavoriteData = () => {
     const userId = localStorage.getItem("userId");
 
-    const { data: favorite } = useQuery({
+    const { data: favorite, isPending, isError } = useQuery({
         queryKey: computed(() => ['favorite', userId]),
 
         queryFn: () => {
@@ -21,5 +21,7 @@ export const useFavoriteData = () => {
 
     return {
         favorite:  computed(() => favorite.value ?? []),
+        isPending,
+        isError
     };
 }

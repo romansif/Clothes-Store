@@ -10,7 +10,7 @@ import { loginForm, loginFormErrorMessages } from "@/entities/login-form/model/l
 const { openNotify } = useBaseModals();
 
 export const signIn = () => {
-    const { mutateAsync: login, isPending } = useMutation({mutationKey: ['login'],
+    const { mutateAsync: login, isPending, isError } = useMutation({mutationKey: ['login'],
         mutationFn: async () => {
             clearLoginFormMessages();
 
@@ -50,6 +50,7 @@ export const signIn = () => {
 
     return {
         login,
-        isPending
+        isPending,
+        isError
     }
 };

@@ -9,7 +9,7 @@
             lg:flex lg:gap-10
             md:flex md:gap-5
             sm:hidden hidden font-light">
-          <span :class="['text-[#696969] cursor-pointer transition duration-400 hover:text-black hover:scale-120',
+          <span :class="['text-[#A3A3A3] cursor-pointer transition duration-400 hover:text-black hover:scale-120',
                 route.name === 'home' ? 'text-black scale-120' : '']">
             Home
           </span>

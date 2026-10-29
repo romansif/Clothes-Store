@@ -17,7 +17,7 @@ const { openNotify } = useBaseModals();
 export const useEditProductImages = () => {
     const queryClient = useQueryClient()
 
-    const { mutateAsync: editProductImages, isPending } = useMutation({mutationKey: ['editProductImages'],
+    const { mutateAsync: editProductImages, isPending, isError } = useMutation({mutationKey: ['editProductImages'],
         mutationFn: async ({ product, event }: EditImagesPayload) => {
             if(!product){
                 throw new Error('Товар не найден');
@@ -51,12 +51,13 @@ export const useEditProductImages = () => {
 
     return {
         editProductImages,
-        isPending
+        isPending,
+        isError
     }
 }
 
 export const useEditProductInfo = () => {
-    const { mutateAsync: editProductInfo, isPending } = useMutation({mutationKey: ['editProductInfo'],
+    const { mutateAsync: editProductInfo, isPending, isError } = useMutation({mutationKey: ['editProductInfo'],
         mutationFn: async (product: Product | null) => {
             if(!product){
                 throw new Error('Товар не найден');
@@ -91,12 +92,13 @@ export const useEditProductInfo = () => {
 
     return {
         editProductInfo,
-        isPending
+        isPending,
+        isError
     }
 }
 
 export const useEditProductQuantity = () => {
-    const { mutateAsync: editProductQuantity, isPending } = useMutation({mutationKey: ['editProductQuantity'],
+    const { mutateAsync: editProductQuantity, isPending, isError } = useMutation({mutationKey: ['editProductQuantity'],
         mutationFn: async ({ product, color, size, count }: EditQuantityPayload) => {
             if(!product || !color || !size || !count){
                 console.log('Вы не добавили никаких значений дл изменения');
@@ -128,12 +130,13 @@ export const useEditProductQuantity = () => {
 
     return {
         editProductQuantity,
-        isPending
+        isPending,
+        isError
     }
 }
 
 export const useEditProductColors = () => {
-    const { mutateAsync: editProductColors, isPending} = useMutation({mutationKey: ['editProductColors'],
+    const { mutateAsync: editProductColors, isPending, isError } = useMutation({mutationKey: ['editProductColors'],
         mutationFn: async ({ product, index, eventOrColor }: EditColorsPayload) => {
             if(!product){
                 console.log('Такого продукта не существует');
@@ -173,6 +176,7 @@ export const useEditProductColors = () => {
 
     return {
         editProductColors,
-        isPending
+        isPending,
+        isError
     }
 }

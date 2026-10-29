@@ -11,9 +11,7 @@
       "googleId": "117192309001137738940",
       "created_at": "2026-10-28T06:57:19.533Z",
       "password": "",
-      "refreshTokens": [
-        "ae93aae7010d2a3e27355b39f25899185b7f2550bd399c09e7b3914d7ea76505"
-      ]
+      "refreshTokens": []
     },
     {
       "id": "6e09b053-ffeb-4cca-9d6e-e7cb9b00deb1",
@@ -26,232 +24,114 @@
       "googleId": "100649871042356442319",
       "created_at": "2026-10-28T06:58:01.954Z",
       "password": "",
-      "refreshTokens": []
+      "refreshTokens": [
+        "6561f0a02c10ccd85c0d5613b9c026122b9bc42678ee524cb9674b252431858b"
+      ]
     }
   ],
   "products": [
     {
-      "title": "sadadaddaddads",
+      "title": "qweqeqeqeqe",
       "collection": {
         "season": "Spring",
         "name": "Essence",
         "condition": "New"
       },
-      "category": "Shoes",
-      "material": "Synthetics",
+      "category": "Underpants",
+      "material": "Acrylic",
       "gender": "Man",
-      "sku": "nb5-25-v46",
-      "description": "asdadsadasdasdasd",
+      "sku": "b5b-62-5vc",
+      "description": "qwewqeqweqeqeqwe",
       "sizes": [
         "XS",
-        "S",
-        "M",
-        "L",
-        "XL",
-        "XXL"
+        "S"
       ],
       "colors": [
         {
-          "hex": "#ffffff",
-          "colorName": "White"
+          "hex": "#fcfcfc",
+          "colorName": "Alabaster"
         },
         {
-          "hex": "#050505",
+          "hex": "#000000",
           "colorName": "Black"
         }
       ],
       "status": "Availability",
-      "id": "4c3b5509-f69a-4ff7-8c98-e471677ca3ce",
-      "userId": "a88db546-9a2e-438b-8cfd-cd48ad274d1f",
+      "id": "b283e9c1-2521-4361-b9bb-6a527e3153f3",
+      "userId": "6e09b053-ffeb-4cca-9d6e-e7cb9b00deb1",
       "images": [
-        "uploads/products/product-1793182122907-6c35047de3885f1d7551b2de63ea38f4.png"
+        "uploads/products/product-1793258177870-773d01e45abfd1f76d54f4abae7525fa.png",
+        "uploads/products/product-1793258177873-646636c59481f50338407348ea432ed1.png",
+        "uploads/products/product-1793258177880-49024501d3c7edf4d3d3fc086d4ce607.png",
+        "uploads/products/product-1793258177884-cb86417335e93fc555f955b8f910c9bd.png",
+        "uploads/products/product-1793258177886-9784d3fcb01cad1bea8ada6208c8ff03.png"
       ],
       "price": 100,
       "variants": [
         {
-          "hex": "#ffffff",
-          "colorName": "White",
+          "hex": "#fcfcfc",
+          "colorName": "Alabaster",
           "size": "XS",
           "count": 10
         },
         {
-          "hex": "#ffffff",
-          "colorName": "White",
+          "hex": "#fcfcfc",
+          "colorName": "Alabaster",
           "size": "S",
-          "count": 10
-        },
-        {
-          "hex": "#ffffff",
-          "colorName": "White",
-          "size": "M",
-          "count": 10
-        },
-        {
-          "hex": "#ffffff",
-          "colorName": "White",
-          "size": "L",
-          "count": 10
-        },
-        {
-          "hex": "#ffffff",
-          "colorName": "White",
-          "size": "XL",
-          "count": 10
-        },
-        {
-          "hex": "#ffffff",
-          "colorName": "White",
-          "size": "XXL",
-          "count": 10
-        },
-        {
-          "hex": "#050505",
-          "colorName": "Black",
-          "size": "XS",
-          "count": 10
-        },
-        {
-          "hex": "#050505",
-          "colorName": "Black",
-          "size": "S",
-          "count": 10
-        },
-        {
-          "hex": "#050505",
-          "colorName": "Black",
-          "size": "M",
-          "count": 10
-        },
-        {
-          "hex": "#050505",
-          "colorName": "Black",
-          "size": "L",
-          "count": 10
-        },
-        {
-          "hex": "#050505",
-          "colorName": "Black",
-          "size": "XL",
-          "count": 10
-        },
-        {
-          "hex": "#050505",
-          "colorName": "Black",
-          "size": "XXL",
           "count": 10
         }
       ],
-      "created_at": "2026-10-28T10:08:42.949Z"
+      "created_at": "2026-10-29T07:16:17.922Z"
     }
   ],
   "cart": [],
   "favorites": [
     {
-      "productId": "4c3b5509-f69a-4ff7-8c98-e471677ca3ce",
+      "productId": "b283e9c1-2521-4361-b9bb-6a527e3153f3",
       "images": [
-        "uploads/products/product-1793182122907-6c35047de3885f1d7551b2de63ea38f4.png"
+        "uploads/products/product-1793258177870-773d01e45abfd1f76d54f4abae7525fa.png",
+        "uploads/products/product-1793258177873-646636c59481f50338407348ea432ed1.png",
+        "uploads/products/product-1793258177880-49024501d3c7edf4d3d3fc086d4ce607.png",
+        "uploads/products/product-1793258177884-cb86417335e93fc555f955b8f910c9bd.png",
+        "uploads/products/product-1793258177886-9784d3fcb01cad1bea8ada6208c8ff03.png"
       ],
-      "title": "sadadaddaddads",
-      "category": "Shoes",
-      "material": "Synthetics",
+      "title": "qweqeqeqeqe",
+      "category": "Underpants",
+      "material": "Acrylic",
       "price": 100,
-      "description": "asdadsadasdasdasd",
+      "description": "qwewqeqweqeqeqwe",
       "color": [
         {
-          "hex": "#ffffff",
-          "colorName": "White"
+          "hex": "#fcfcfc",
+          "colorName": "Alabaster"
         },
         {
-          "hex": "#050505",
+          "hex": "#000000",
           "colorName": "Black"
         }
       ],
       "size": [
         "XS",
-        "S",
-        "M",
-        "L",
-        "XL",
-        "XXL"
+        "S"
       ],
       "gender": "Man",
       "variants": [
         {
-          "hex": "#ffffff",
-          "colorName": "White",
+          "hex": "#fcfcfc",
+          "colorName": "Alabaster",
           "size": "XS",
           "count": 10
         },
         {
-          "hex": "#ffffff",
-          "colorName": "White",
+          "hex": "#fcfcfc",
+          "colorName": "Alabaster",
           "size": "S",
-          "count": 10
-        },
-        {
-          "hex": "#ffffff",
-          "colorName": "White",
-          "size": "M",
-          "count": 10
-        },
-        {
-          "hex": "#ffffff",
-          "colorName": "White",
-          "size": "L",
-          "count": 10
-        },
-        {
-          "hex": "#ffffff",
-          "colorName": "White",
-          "size": "XL",
-          "count": 10
-        },
-        {
-          "hex": "#ffffff",
-          "colorName": "White",
-          "size": "XXL",
-          "count": 10
-        },
-        {
-          "hex": "#050505",
-          "colorName": "Black",
-          "size": "XS",
-          "count": 10
-        },
-        {
-          "hex": "#050505",
-          "colorName": "Black",
-          "size": "S",
-          "count": 10
-        },
-        {
-          "hex": "#050505",
-          "colorName": "Black",
-          "size": "M",
-          "count": 10
-        },
-        {
-          "hex": "#050505",
-          "colorName": "Black",
-          "size": "L",
-          "count": 10
-        },
-        {
-          "hex": "#050505",
-          "colorName": "Black",
-          "size": "XL",
-          "count": 10
-        },
-        {
-          "hex": "#050505",
-          "colorName": "Black",
-          "size": "XXL",
           "count": 10
         }
       ],
-      "id": "873c65fc-1cce-40e7-b4ce-50366bfd2c9d",
-      "userId": "4f6e5b44-48dd-445d-8231-26a71a541581",
-      "created_at": "2026-10-28T10:11:45.816Z"
+      "id": "98bf8053-c5e1-4f80-be64-390e658618d6",
+      "userId": "6e09b053-ffeb-4cca-9d6e-e7cb9b00deb1",
+      "created_at": "2026-10-29T07:18:17.270Z"
     }
   ],
   "addresses": [],

@@ -3,7 +3,7 @@
     <FilterProducts />
     <div class="flex flex-col">
       <MainHeader />
-      <ProductList :user="user" />
+      <ProductList :user="user"/>
     </div>
   </main>
 </template>

@@ -1,4 +1,5 @@
 <template>
+  <Loading v-if="isPending" />
   <form action=""
         class="mt-10"
         @submit.prevent="login()">
@@ -18,7 +19,6 @@
   <div class="flex flex-col items-center gap-3 mt-3">
     <GoogleAuth class="duration-400 hover:scale-105 cursor-pointer"/>
   </div>
-  <Loading v-if="isPending" />
 </template>
 
 <script setup lang="ts">

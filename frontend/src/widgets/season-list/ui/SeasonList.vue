@@ -1,17 +1,15 @@
 <template>
-  <Transition name="view">
-    <ul v-horizontal-scroll
-        class="flex gap-16.5 mt-5 overflow-x-auto whitespace-nowrap no-scrollbar pt-5">
-      <ProductCard v-for="product in array"
-                   :key="product.id"
-                   :user="user"
-                   :product="product"
-                   :array="array"
-                   :favorite="favorite"
-                   :variant="'season'"
-                   @toggle-to-favorite="toggleFavorite({favorite, product})" />
-    </ul>
-  </Transition>
+  <ul v-horizontal-scroll
+      class="flex gap-16.5 mt-5 overflow-x-auto whitespace-nowrap no-scrollbar pt-5">
+    <ProductCard v-for="product in array"
+                 :key="product.id"
+                 :user="user"
+                 :product="product"
+                 :array="array"
+                 :favorite="favorite"
+                 :variant="'season'"
+                 @toggle-to-favorite="toggleFavorite({favorite, product})" />
+  </ul>
 </template>
 
 <script setup lang="ts">

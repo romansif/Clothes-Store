@@ -14,7 +14,7 @@ const { openNotify } = useBaseModals();
 export const useReplaceOrder = () => {
     const queryClient = useQueryClient()
 
-    const { mutateAsync: replaceOrder, isPending } = useMutation({mutationKey: ['replaceOrder'],
+    const { mutateAsync: replaceOrder, isPending, isError } = useMutation({mutationKey: ['replaceOrder'],
         mutationFn: async () => {
             const result = replaceOrderSchema.safeParse(cancelChoiceForm.value)
             if(!result.success){
@@ -63,7 +63,8 @@ export const useReplaceOrder = () => {
 
     return{
         replaceOrder,
-        isPending
+        isPending,
+        isError
     }
 }
 

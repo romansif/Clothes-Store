@@ -18,7 +18,7 @@ import { useBaseModals } from "@/shared/lib/use-notify";
 import { checkoutClass } from "@/shared/model/saved-checkout-info.variants";
 import { CheckoutOrder } from "@/features/checkout-order-info";
 import { CheckoutHeader } from "@/widgets/checkout-header";
-import { Notification } from "@/widgets/state";
+import { Notification } from "@/shared";
 
 const { notify } = useBaseModals();
 </script>

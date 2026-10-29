@@ -1,16 +1,13 @@
 <template>
-  <Loading v-if="isPending" />
-  <ErrorState v-else-if="isError" />
-  <main v-else-if="cart.length" class="flex flex-col gap-8 mt-10 xl:mt-30 xl:px-10">
+  <main class="flex flex-col gap-8 mt-10 xl:mt-30">
     <FavoriteCartHeader />
-    <Transition name="view">
+    <Transition name="view" mode="out-in">
       <div class="flex flex-col items-center xl:flex-row xl:gap-35">
         <CartList :user="user" />
-        <CartInfo />
+        <CartInfo v-if="cart.length" :cart="cart" />
       </div>
     </Transition>
   </main>
-  <EmptyState v-else />
 </template>
 
 <script setup lang="ts">
@@ -19,8 +16,7 @@ import { useUserData } from "@/widgets/profile/lib/use-user-data";
 import { FavoriteCartHeader } from "@/widgets/favorite-cart-header";
 import { CartList } from "@/widgets/cart-list";
 import { CartInfo } from "@/features/cart-order-info";
-import { Loading, EmptyState, ErrorState } from "@/widgets/state";
 
 const { user } = useUserData()
-const { cart, isPending, isError } = useCartData()
+const { cart } = useCartData()
 </script>

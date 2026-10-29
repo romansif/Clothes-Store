@@ -16,7 +16,7 @@ const { openNotify } = useBaseModals();
 export const useCreateReview = () => {
     const queryClient = useQueryClient();
 
-    const { mutateAsync: createReview, isPending } = useMutation({mutationKey: ['createReview'],
+    const { mutateAsync: createReview, isPending, isError } = useMutation({mutationKey: ['createReview'],
         mutationFn: async (user: User | undefined) => {
             if (!user) {
                 throw new Error('Вы должны быть зарегистрированы что бы написать отзыв');
@@ -84,5 +84,6 @@ export const useCreateReview = () => {
     return {
         createReview,
         isPending,
+        isError
     };
 };

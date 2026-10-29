@@ -2,7 +2,7 @@
   <div v-if="product" class="font-raleway fixed inset-0 z-50
      bg-[rgba(0,0,0,0.5)] flex items-center justify-center"
        @click="toggleStackInfo">
-    <div @click.stop class="flex flex-col gap-8 bg-white rounded-xl p-5 w-fit">
+    <div @click.stop class="flex flex-col gap-8 bg-white rounded-xl p-5">
       <div class="flex items-center ">
         <h1 class="text-2xl font-medium">Quantity of each item</h1>
         <img @click="toggleStackInfo" :src="close" alt=""

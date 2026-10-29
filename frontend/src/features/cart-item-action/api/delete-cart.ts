@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from "@tanstack/vue-query";
 export const useDeleteCartItem = () => {
     const queryClient = useQueryClient()
 
-    const { mutateAsync: deleteCartItem, isPending } = useMutation({mutationKey: ['deleteCartItem'],
+    const { mutateAsync: deleteCartItem, isPending, isError } = useMutation({mutationKey: ['deleteCartItem'],
         mutationFn: async (id: string) => {
             return await handler(`/cart/${id}`, {
                 method: "DELETE",
@@ -22,7 +22,8 @@ export const useDeleteCartItem = () => {
 
     return {
         deleteCartItem,
-        isPending
+        isPending,
+        isError
     }
 };
 

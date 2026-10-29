@@ -12,7 +12,7 @@ const { totalPrice } = orderPriceInfo();
 export const useCreateOrder = () => {
     const userId = localStorage.getItem("userId");
 
-    const { mutateAsync: createOrder, isPending } = useMutation({mutationKey: ['createOrder'],
+    const { mutateAsync: createOrder, isPending, isError } = useMutation({mutationKey: ['createOrder'],
         mutationFn: async () => {
             return await handler(`/orders`, {
                 method: "POST",
@@ -36,7 +36,8 @@ export const useCreateOrder = () => {
 
     return {
         createOrder,
-        isPending
+        isPending,
+        isError
     }
 };
 

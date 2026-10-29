@@ -5,7 +5,7 @@ import type { UpdateCartAndProductPayload } from "@/features/checkout-payment-da
 export const useUpdateCheckedQuantity = () => {
     const queryClient = useQueryClient()
 
-    const { mutateAsync: updateCheckedQuantity, isPending } = useMutation({mutationKey: ['updateCheckedQuantity'],
+    const { mutateAsync: updateCheckedQuantity, isPending, isError } = useMutation({mutationKey: ['updateCheckedQuantity'],
         mutationFn: async ({ cart, products }: UpdateCartAndProductPayload) => {
             const checkedItems = cart.filter(item => item.checked)
             if (!checkedItems.length) throw new Error('No checked items in the cart')
@@ -52,5 +52,7 @@ export const useUpdateCheckedQuantity = () => {
 
     return {
         updateCheckedQuantity,
-        isPending }
+        isPending,
+        isError
+    }
 }

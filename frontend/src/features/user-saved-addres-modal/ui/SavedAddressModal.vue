@@ -15,11 +15,13 @@
             </span>
           </div>
         </div>
+        <Loading v-if="isPending" />
+        <ErrorState v-else-if="isError" :box="{ variant: 'addresses', state: 'error' }" />
         <div v-if="userAddresses.length"
              class="flex flex-col w-full">
           <AddressesList />
         </div>
-        <AddressesEmpty v-else />
+        <EmptyState v-else :box="{ variant: 'addresses', state: 'empty' }" />
       </div>
     </div>
     <Transition name="modal">
@@ -32,13 +34,12 @@
 import { baseDeleteModal } from "@/features/general-delete/lib/base-delete-modal";
 import { useProfileModals } from "@/shared/lib/profile-modal";
 import { useSavedAddressesData } from "@/widgets/user-address-list/lib/use-saved-address-data";
-
 import { UiButton } from "@/shared/ui/button";
 import { DeleteModal } from "@/features/general-delete";
-import { AddressesEmpty } from "@/entities/profile";
 import { AddressesList } from "@/widgets/user-address-list";
+import {EmptyState, ErrorState, Loading} from "@/widgets/state";
 
 const { deleteModal } = baseDeleteModal();
-const { userAddresses } = useSavedAddressesData()
 const { toggleSavedAddresses } = useProfileModals();
+const { userAddresses, isPending, isError } = useSavedAddressesData()
 </script>

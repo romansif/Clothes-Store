@@ -1,4 +1,5 @@
 <template>
+  <Loading v-if="isPending" />
   <form action=""
         class="mt-10"
         @submit.prevent="register(currentRole)">
@@ -15,7 +16,6 @@
               :name="isRole ? 'Sign up as a buyer' : 'Sign up as a seller'"
               @click="toggleSignUp" />
   </div>
-  <Loading v-if="isPending" />
 </template>
 
 <script setup lang="ts">

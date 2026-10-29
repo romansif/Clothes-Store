@@ -6,7 +6,7 @@ import type { AddToOrderPayload } from "@/features/cart-item-action";
 export const useAddToOrder = () => {
     const queryClient = useQueryClient()
 
-    const { mutateAsync: addToOrder, isPending } = useMutation({mutationKey: ['addToOrder'],
+    const { mutateAsync: addToOrder, isPending, isError } = useMutation({mutationKey: ['addToOrder'],
         mutationFn: async ({ product }: AddToOrderPayload) => {
             return handler(`/cart/${product.id}`, {
                 method: "PATCH",
@@ -29,7 +29,8 @@ export const useAddToOrder = () => {
 
     return {
         addToOrder,
-        isPending
+        isPending,
+        isError
     }
 }
 

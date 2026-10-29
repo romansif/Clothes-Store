@@ -5,7 +5,7 @@ export const useChangeAvatar = () => {
     const queryClient = useQueryClient()
     const userId = localStorage.getItem("userId");
 
-    const { mutateAsync: changeAvatar, isPending } = useMutation({mutationKey: ['changeAvatar'],
+    const { mutateAsync: changeAvatar, isPending, isError } = useMutation({mutationKey: ['changeAvatar'],
         mutationFn: async (event: Event) => {
             const target = event.target as HTMLInputElement;
             if(!target.files || target.files.length === 0) return;
@@ -31,6 +31,7 @@ export const useChangeAvatar = () => {
 
     return {
         changeAvatar,
-        isPending
+        isPending,
+        isError
     }
 };

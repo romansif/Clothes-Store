@@ -17,7 +17,9 @@ export type ButtonVariant =
     'refresh' |
     'stackInfo' |
     'loadReviews' |
-    'profileMenu'
+    'profileMenu' |
+    'reload' |
+    'catalog'
 
 
 export interface ButtonProps {

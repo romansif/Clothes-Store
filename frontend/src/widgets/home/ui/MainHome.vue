@@ -22,7 +22,7 @@
         <span class="font-dm-sans">25-26</span>
       </div>
       <FilterGender />
-      <div class="flex flex-col mt-10">
+      <div class="flex flex-col">
         <YearList :user="user" />
       </div>
     </div>
@@ -65,7 +65,7 @@ import { useBaseModals } from "@/shared/lib/use-notify";
 import { WeekList } from "@/widgets/week-list";
 import { YearList } from "@/widgets/year-list";
 import { FilterGender } from "@/widgets/home";
-import { Notification } from "@/widgets/state";
+import { Notification } from "@/shared";
 
 import photo_1 from '@/assets/photos/8.png'
 import photo_2 from '@/assets/photos/9.png'

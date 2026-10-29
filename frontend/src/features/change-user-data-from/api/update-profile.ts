@@ -11,7 +11,7 @@ export const useBaseEditUser = () => {
     const queryClient = useQueryClient()
     const useId = localStorage.getItem("userId")
 
-    const { mutateAsync: baseEditUser, isPending } = useMutation({mutationKey: ['baseEditUser'],
+    const { mutateAsync: baseEditUser, isPending, isError } = useMutation({mutationKey: ['baseEditUser'],
         mutationFn: async ({ dataToUpdate, type }: EditUserPayload) => {
             return await handler(`/${type}/${useId}`, {
                 method: 'PATCH',
@@ -32,6 +32,7 @@ export const useBaseEditUser = () => {
 
     return {
         baseEditUser,
-        isPending
+        isPending,
+        isError
     }
 }

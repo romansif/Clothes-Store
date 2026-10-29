@@ -25,7 +25,7 @@ import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { useBaseModals } from "@/shared/lib/use-notify";
 import { AuthHeader } from "@/widgets/auth-header";
-import { Notification } from "@/widgets/state";
+import { Notification } from "@/shared";
 
 const route = useRoute();
 

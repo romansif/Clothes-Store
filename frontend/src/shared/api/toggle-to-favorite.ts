@@ -11,18 +11,16 @@ export const useToggleFavorite = () => {
     const { isFavorite, getProductId } = previewHelper();
     const userId = localStorage.getItem("userId");
 
-    const { mutateAsync: toggleFavorite, isPending } = useMutation({mutationKey: ['toggleFavorite'],
+    const { mutateAsync: toggleFavorite, isPending, isError } = useMutation({mutationKey: ['toggleFavorite'],
         mutationFn: async ({ favorite, product }: ToggleToFavoritePayload) => {
             const productId = getProductId(product);
 
             if(!productId){
-                console.warn('Product Id not found');
-                return;
+                throw new Error('ID товара не найден');
             }
 
             if(!userId) {
-                console.warn('User Id not found');
-                return;
+                throw new Error('Пользователь не зарегистрирован');
             }
 
             if(!isFavorite(favorite, product, userId)) {
@@ -63,13 +61,14 @@ export const useToggleFavorite = () => {
         },
 
         onError: (err) => {
-            console.error('Failed to toggle favorite:', err);
+            console.error('Ошибка при изменении состояния избранного', err);
         }
     })
 
     return {
         toggleFavorite,
-        isPending
+        isPending,
+        isError
     }
 };
 

@@ -1,9 +1,7 @@
 <template>
-  <main class="flex flex-col gap-8 t-10 xl:mt-30 xl:px-10">
+  <main class="flex flex-col gap-8 mt-10 xl:mt-30">
     <FavoriteCartHeader />
-    <Transition name="view">
-      <FavoriteList :user="user" />
-    </Transition>
+    <FavoriteList :user="user" />
   </main>
 </template>
 

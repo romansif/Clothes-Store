@@ -7,7 +7,7 @@ import { loginForm } from "@/entities/login-form/model/login-from";
 const { openNotify } = useBaseModals();
 
 export const signGoogleAuth = () => {
-    const { mutateAsync: OAuth, isPending } = useMutation({mutationKey: ['OAuth'],
+    const { mutateAsync: OAuth, isPending, isError } = useMutation({mutationKey: ['OAuth'],
         mutationFn: async (response: any) => {
             const date = new Date();
 
@@ -38,6 +38,7 @@ export const signGoogleAuth = () => {
 
     return {
         OAuth,
-        isPending
+        isPending,
+        isError
     }
 };
