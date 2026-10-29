@@ -1,24 +1,27 @@
-import { informationForm, informationFormErrorMessages } from "@/entities/checkout-info-form/model/information-form";
+import {
+    informationForm,
+    informationFormErrorMessages,
+} from "@/entities/checkout-info-form/model/information-form";
 
 export const clearInformationForm = () => {
-    informationForm.value.addressName = '';
-    informationForm.value.email = '';
-    informationForm.value.phone = '';
-    informationForm.value.firstName = '';
-    informationForm.value.lastName = '';
-    informationForm.value.country = '';
-    informationForm.value.stateRegion = '';
-    informationForm.value.address = '';
-    informationForm.value.city = '';
-    informationForm.value.postalCode = '';
+    informationForm.value.addressName = "";
+    informationForm.value.email = "";
+    informationForm.value.phone = "";
+    informationForm.value.firstName = "";
+    informationForm.value.lastName = "";
+    informationForm.value.country = "";
+    informationForm.value.stateRegion = "";
+    informationForm.value.address = "";
+    informationForm.value.city = "";
+    informationForm.value.postalCode = "";
 
-    informationFormErrorMessages.value.email = '';
-    informationFormErrorMessages.value.phone = '';
-    informationFormErrorMessages.value.firstName = '';
-    informationFormErrorMessages.value.lastName = '';
-    informationFormErrorMessages.value.country = '';
-    informationFormErrorMessages.value.stateRegion = '';
-    informationFormErrorMessages.value.address = '';
-    informationFormErrorMessages.value.city = '';
-    informationFormErrorMessages.value.postalCode = '';
+    informationFormErrorMessages.value.email = "";
+    informationFormErrorMessages.value.phone = "";
+    informationFormErrorMessages.value.firstName = "";
+    informationFormErrorMessages.value.lastName = "";
+    informationFormErrorMessages.value.country = "";
+    informationFormErrorMessages.value.stateRegion = "";
+    informationFormErrorMessages.value.address = "";
+    informationFormErrorMessages.value.city = "";
+    informationFormErrorMessages.value.postalCode = "";
 };

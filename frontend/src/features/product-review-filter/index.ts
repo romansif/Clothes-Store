@@ -1,1 +1,1 @@
-export { default as ReviewsFilter } from './ui/ReviewsFilter.vue'
+export { default as ReviewsFilter } from "./ui/ReviewsFilter.vue";

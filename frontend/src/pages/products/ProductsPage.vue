@@ -1,11 +1,11 @@
 <template>
-  <main class="flex justify-center mt-10 xl:justify-between">
-    <FilterProducts />
-    <div class="flex flex-col">
-      <MainHeader />
-      <ProductList :user="user"/>
-    </div>
-  </main>
+    <main class="mt-10 flex justify-center xl:justify-between">
+        <FilterProducts />
+        <div class="flex flex-col">
+            <MainHeader />
+            <ProductList :user="user" />
+        </div>
+    </main>
 </template>
 
 <script setup lang="ts">
@@ -14,5 +14,5 @@ import { ProductList } from "@/widgets/product-list";
 import { MainHeader } from "@/features/products";
 import { FilterProducts } from "@/widgets/product-sidebar";
 
-const { user } = useUserData()
+const { user } = useUserData();
 </script>

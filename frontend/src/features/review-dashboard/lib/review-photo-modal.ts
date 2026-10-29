@@ -8,9 +8,9 @@ export const currentIndex = ref<number>(0);
 export const toggleReviewPhotos = (images: ImageItem[] | undefined, index: number) => {
     reviewModal.value = !reviewModal.value;
 
-    if(!images) return;
+    if (!images) return;
     reviewImages.value = images;
-    currentIndex.value = index
+    currentIndex.value = index;
 };
 
 export const changeReviewPhoto = (type: string, images: ImageItem[] | undefined) => {
@@ -19,7 +19,7 @@ export const changeReviewPhoto = (type: string, images: ImageItem[] | undefined)
     if (type === "next") {
         currentIndex.value += 1;
 
-        if(currentIndex.value >= images.length) {
+        if (currentIndex.value >= images.length) {
             currentIndex.value = 0;
         }
     }

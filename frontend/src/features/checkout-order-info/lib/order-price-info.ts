@@ -1,5 +1,5 @@
 import { computed, ref } from "vue";
-import { orderStore} from "@/shared/model/order.store";
+import { orderStore } from "@/shared/model/order.store";
 import { shippingForm } from "@/entities/checkout-shipping/model/shipping-form";
 
 const { items } = orderStore();
@@ -8,28 +8,24 @@ const deliveryPrice = ref<number>(0);
 
 export const orderPriceInfo = () => {
     const price = computed(() => {
-        return items.value.reduce(
-            (sum, item) => sum + item.price, 0
-        );
+        return items.value.reduce((sum, item) => sum + item.price, 0);
     });
 
     const commissionPrice = computed(() => {
-        return Math.round(items.value.reduce(
-            (sum, item) => sum + item.price, 0) * 0.08
-        );
+        return Math.round(items.value.reduce((sum, item) => sum + item.price, 0) * 0.08);
     });
 
     const ship = computed(() => {
-        if(shippingForm.value.delivery === 'express'){
+        if (shippingForm.value.delivery === "express") {
             deliveryPrice.value = 15;
-        }else{
+        } else {
             deliveryPrice.value = 0;
         }
         return deliveryPrice.value || 0;
     });
 
     const totalPrice = computed(() => {
-        return price.value + commissionPrice.value + ship.value
+        return price.value + commissionPrice.value + ship.value;
     });
 
     return {
@@ -37,5 +33,5 @@ export const orderPriceInfo = () => {
         commissionPrice,
         ship,
         totalPrice,
-    }
-}
+    };
+};

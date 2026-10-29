@@ -1,3 +1,3 @@
-export { default as LoginRoleInput } from './LoginRoleInput.vue'
+export { default as LoginRoleInput } from "./LoginRoleInput.vue";
 
-export type * from './auth-form.types'
+export type * from "./auth-form.types";

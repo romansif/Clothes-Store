@@ -1,16 +1,16 @@
 <template>
-  <TransitionGroup name="list">
-    <li :class="[getSavedClass, isChosenContactInfo ? getSavedErrorClass : '']">
-      <div class="flex flex-col gap-5">
-          <span class="text-sm font-semibold">
-            Phone: <span class="font-normal">{{ address.phone }},</span>
-          </span>
-          <span class="text-sm font-semibold">
-            Email: <span class="font-normal">{{ address.email }}</span>
-          </span>
-      </div>
-    </li>
-  </TransitionGroup>
+    <TransitionGroup name="list">
+        <li :class="[getSavedClass, isChosenContactInfo ? getSavedErrorClass : '']">
+            <div class="flex flex-col gap-5">
+                <span class="text-sm font-semibold">
+                    Phone: <span class="font-normal">{{ address.phone }},</span>
+                </span>
+                <span class="text-sm font-semibold">
+                    Email: <span class="font-normal">{{ address.email }}</span>
+                </span>
+            </div>
+        </li>
+    </TransitionGroup>
 </template>
 
 <script setup lang="ts">
@@ -19,6 +19,6 @@ import { isChosenContactInfo } from "@/entities/checkout-info-item/model/informa
 import type { UserContactInfo } from "@/entities/user-address";
 
 defineProps<{
-  address: UserContactInfo;
+    address: UserContactInfo;
 }>();
 </script>

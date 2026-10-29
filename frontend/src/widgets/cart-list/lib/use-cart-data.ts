@@ -5,12 +5,16 @@ import { getCartProducts } from "@/widgets/cart-list/api/get-cart";
 export const useCartData = () => {
     const userId = localStorage.getItem("userId");
 
-    const { data: cart, isLoading, isError } = useQuery({
-        queryKey: computed(() => ['cart', userId]),
+    const {
+        data: cart,
+        isLoading,
+        isError,
+    } = useQuery({
+        queryKey: computed(() => ["cart", userId]),
 
         queryFn: () => {
             if (!userId) {
-                throw new Error('Пользователь не зарегистрирован');
+                throw new Error("Пользователь не зарегистрирован");
             }
 
             return getCartProducts(userId);
@@ -22,7 +26,6 @@ export const useCartData = () => {
     return {
         cart: computed(() => cart.value ?? []),
         isLoading,
-        isError
+        isError,
     };
 };
-

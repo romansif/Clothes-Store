@@ -2,9 +2,14 @@ import { handler } from "@/shared/api/http";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
 export const useDeleteCartItem = () => {
-    const queryClient = useQueryClient()
+    const queryClient = useQueryClient();
 
-    const { mutateAsync: deleteCartItem, isPending, isError } = useMutation({mutationKey: ['deleteCartItem'],
+    const {
+        mutateAsync: deleteCartItem,
+        isPending,
+        isError,
+    } = useMutation({
+        mutationKey: ["deleteCartItem"],
         mutationFn: async (id: string) => {
             return await handler(`/cart/${id}`, {
                 method: "DELETE",
@@ -12,19 +17,17 @@ export const useDeleteCartItem = () => {
         },
 
         onSuccess: async () => {
-            await queryClient.invalidateQueries({ queryKey: ['cart'] })
+            await queryClient.invalidateQueries({ queryKey: ["cart"] });
         },
 
         onError: (err) => {
-            console.error('Ошибка при удалении товара из корзины:', err);
+            throw new Error("Ошибка при удалении товара из корзины:", err);
         },
-    })
+    });
 
     return {
         deleteCartItem,
         isPending,
-        isError
-    }
+        isError,
+    };
 };
-
-

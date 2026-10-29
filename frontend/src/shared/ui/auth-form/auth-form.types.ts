@@ -1,7 +1,7 @@
-export type AuthFormVariant = 'login' | 'register'
+export type AuthFormVariant = "login" | "register";
 
 export interface AuthFormProps {
-    role: string
-    variant?: AuthFormVariant
-    errorMessage: string
+    role: string;
+    variant?: AuthFormVariant;
+    errorMessage: string;
 }

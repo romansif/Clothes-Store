@@ -9,10 +9,10 @@ import xl from "@/assets/icons/size/xl.svg";
 import xxl from "@/assets/icons/size/xxl.svg";
 
 export const sizes = ref<Size[]>([
-    {isActive: false, name: 'XS', url: xs, class: 'border-2 border-[#A3A3A3]'},
-    {isActive: false, name: 'S', url: s, class: 'border-2 border-[#A3A3A3]'},
-    {isActive: false, name: 'M', url: m, class: 'border-2 border-[#A3A3A3]'},
-    {isActive: false, name: 'L', url: l, class: 'border-2 border-[#A3A3A3]'} ,
-    {isActive: false, name: 'XL', url: xl, class: 'border-2 border-[#A3A3A3]'},
-    {isActive: false, name: 'XXL', url: xxl, class: 'border-2 border-[#A3A3A3]'},
+    { isActive: false, name: "XS", url: xs, class: "border-2 border-[#A3A3A3]" },
+    { isActive: false, name: "S", url: s, class: "border-2 border-[#A3A3A3]" },
+    { isActive: false, name: "M", url: m, class: "border-2 border-[#A3A3A3]" },
+    { isActive: false, name: "L", url: l, class: "border-2 border-[#A3A3A3]" },
+    { isActive: false, name: "XL", url: xl, class: "border-2 border-[#A3A3A3]" },
+    { isActive: false, name: "XXL", url: xxl, class: "border-2 border-[#A3A3A3]" },
 ]);

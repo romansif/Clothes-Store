@@ -1,45 +1,41 @@
 <template>
-  <div class="md:px-5 sm:px-4 px-4 lg:w-75 xl:w-100">
-    <div class="flex">
-      <h1 class="font-medium mt-2.5">YOUR ORDER</h1>
-      <span class="px-2 py-1 bg-white ml-auto">
-        (
-          <span class="text-blue-700 font-medium font-dm-sans">
-            {{ items?.length || 0 }}
-          </span>
-        )
-      </span>
-    </div>
-    <CheckoutOrderList />
-    <div class="border-b border-gray-300 mt-5"></div>
-    <div class="flex flex-col font-medium text-xs mt-3 gap-2">
-      <div class="flex justify-between">
-        <span>Subtotal</span>
-        <span class="font-dm-sans">$ {{ price }}</span>
-      </div>
-      <div class="flex items-center">
-        <span>Shipping</span>
-        <div class="flex ml-auto gap-2">
-          <span v-if="shipping" class="text-gray-400">
-            {{ shipping.delivery }}
-          </span>
-          <span v-else class="text-gray-400">
-            Calculated at next step
-          </span>
+    <div class="px-4 sm:px-4 md:px-5 lg:w-75 xl:w-100">
+        <div class="flex">
+            <h1 class="mt-2.5 font-medium">YOUR ORDER</h1>
+            <span class="ml-auto bg-white px-2 py-1">
+                (
+                <span class="font-dm-sans font-medium text-blue-700">
+                    {{ items?.length || 0 }}
+                </span>
+                )
+            </span>
         </div>
-      </div>
+        <CheckoutOrderList />
+        <div class="mt-5 border-b border-gray-300"></div>
+        <div class="mt-3 flex flex-col gap-2 text-xs font-medium">
+            <div class="flex justify-between">
+                <span>Subtotal</span>
+                <span class="font-dm-sans">$ {{ price }}</span>
+            </div>
+            <div class="flex items-center">
+                <span>Shipping</span>
+                <div class="ml-auto flex gap-2">
+                    <span v-if="shipping" class="text-gray-400">
+                        {{ shipping.delivery }}
+                    </span>
+                    <span v-else class="text-gray-400"> Calculated at next step </span>
+                </div>
+            </div>
+        </div>
+        <div class="mt-3 mb-1 border-b border-gray-300"></div>
+        <span class="font-dm-sans text-xs text-[#A3A3A3]">
+            $ {{ commissionPrice }} commission and service operation
+        </span>
+        <div class="mt-3 flex justify-between text-sm font-medium">
+            <span>Total</span>
+            <span class="font-dm-sans"> $ {{ totalPrice }} </span>
+        </div>
     </div>
-    <div class="border-b border-gray-300 mt-3 mb-1"></div>
-    <span class="text-xs text-[#A3A3A3] font-dm-sans">
-      $ {{ commissionPrice }} commission and service operation
-    </span>
-    <div class="flex justify-between font-medium mt-3 text-sm">
-      <span>Total</span>
-      <span class="font-dm-sans">
-        $ {{ totalPrice }}
-      </span>
-    </div>
-  </div>
 </template>
 
 <script setup lang="ts">
@@ -49,6 +45,6 @@ import { orderPriceInfo } from "@/features/checkout-order-info/lib/order-price-i
 import { CheckoutOrderList } from "@/widgets/checkout-order-list";
 
 const { items } = orderStore();
-const { shipping } = useSavedShippingData()
+const { shipping } = useSavedShippingData();
 const { price, totalPrice, commissionPrice } = orderPriceInfo();
 </script>

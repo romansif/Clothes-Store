@@ -4,9 +4,9 @@ import type { Product } from "@/shared";
 import type { AddForm } from "@/entities/product-info";
 
 export const itemPreview = ref<string[]>([]);
-export const activeProductImg = ref<string>('');
-export const currentFile = ref<(number | null)>(null);
-export const fileInput = ref<HTMLInputElement | null>(null)
+export const activeProductImg = ref<string>("");
+export const currentFile = ref<number | null>(null);
+export const fileInput = ref<HTMLInputElement | null>(null);
 export const imageFiles = ref<(File | null)[]>([null, null, null, null, null]);
 
 export const productHelper = () => {
@@ -24,18 +24,18 @@ export const productHelper = () => {
         const file = target.files[0];
         const index = currentFile.value;
 
-        if(imageFiles.value){
+        if (imageFiles.value) {
             imageFiles.value[index] = file;
         }
-        if(itemPreview.value){
+        if (itemPreview.value) {
             itemPreview.value[index] = URL.createObjectURL(file);
         }
 
-        target.value = '';
+        target.value = "";
     };
 
-    const changeImg =  (product: Product, index: number)=> {
-        if(!product) return;
+    const changeImg = (product: Product, index: number) => {
+        if (!product) return;
 
         const realIndex = index + 1;
         const mainPath = product.images[0];
@@ -47,121 +47,118 @@ export const productHelper = () => {
     };
 
     const productInfoPreview = (product: Product) => {
-        if(!product){
-            console.log('Product not found');
-            return;
+        if (!product) {
+            throw new Error("Product not found");
         }
-        if(product && product.images && product.images[0]){
+        if (product && product.images && product.images[0]) {
             return `${import.meta.env.VITE_SERVER_URL}/${product.images[0]}`;
         }
     };
 
     const angelCards = (product: Product): string[] => {
-        if(!product?.images?.length){
-            console.log('Product not found');
-            return [];
+        if (!product?.images?.length) {
+            throw new Error("Product not found");
         }
 
-        if(product && product.images && product.images.length > 0){
-            return product.images.slice(1).map(img => `${import.meta.env.VITE_SERVER_URL}/${img}`);
+        if (product && product.images && product.images.length > 0) {
+            return product.images
+                .slice(1)
+                .map((img) => `${import.meta.env.VITE_SERVER_URL}/${img}`);
         }
         return [];
     };
 
     const pureCards = (product: Product): string[] => {
-        if(!product?.images?.length){
-            console.log('Product not found');
-            return [];
+        if (!product?.images?.length) {
+            throw new Error("Product not found");
         }
 
-        if(product && product.images && product.images.length > 0){
-            return product.images.slice(0).map(img => `${import.meta.env.VITE_SERVER_URL}/${img}`);
+        if (product && product.images && product.images.length > 0) {
+            return product.images
+                .slice(0)
+                .map((img) => `${import.meta.env.VITE_SERVER_URL}/${img}`);
         }
         return [];
     };
 
     const pureQuantity = (id: string, array: Product[]) => {
-        if(!array){
-            console.log('Product not found');
-            return;
+        if (!array) {
+            throw new Error("Product not found");
         }
 
-        const product = array?.find(p => p.id === id)
-        if(product && product.variants && product.variants[0]){
-            return product.variants[0]
-        }
-        return;
-    };
-
-    const pureColors = (id: string, array: Product[])  => {
-        if(!array){
-            console.log('Product not found');
-            return;
-        }
-
-        const product = array?.find(p => p.id === id)
-        if(product && product.colors && product.colors[0]){
-            return product.colors[0]
+        const product = array?.find((p) => p.id === id);
+        if (product && product.variants && product.variants[0]) {
+            return product.variants[0];
         }
         return;
     };
 
-    const pureInfoColors = (product: Product)  => {
-        if(!product){
-            console.log('Product not found');
-            return [];
+    const pureColors = (id: string, array: Product[]) => {
+        if (!array) {
+            throw new Error("Product not found");
         }
 
-        if(product && product.colors && product.colors.length > 0){
-            return product.colors
+        const product = array?.find((p) => p.id === id);
+        if (product && product.colors && product.colors[0]) {
+            return product.colors[0];
+        }
+        return;
+    };
+
+    const pureInfoColors = (product: Product) => {
+        if (!product) {
+            throw new Error("Product not found");
+        }
+
+        if (product && product.colors && product.colors.length > 0) {
+            return product.colors;
         }
         return [];
     };
 
     const pureColorsName = (product: Product): string => {
-        if(!product){
-            console.log('Product not found');
-            return '';
+        if (!product) {
+            throw new Error("Product not found");
         }
 
-        if(product && product.colors && product.colors.length > 0){
-            return product.colors.map(color => color.colorName).join(', ')
+        if (product && product.colors && product.colors.length > 0) {
+            return product.colors.map((color) => color.colorName).join(", ");
         }
-        return '';
+        return "";
     };
 
     const pureSizesName = (product: Product): string => {
-        if(!product){
-            console.log('Product not found');
-            return '';
+        if (!product) {
+            throw new Error("Product not found");
         }
 
-        if(Array.isArray(product.sizes) && product.sizes.length > 0){
-            return product.sizes.map(size => size).join(', ')
+        if (Array.isArray(product.sizes) && product.sizes.length > 0) {
+            return product.sizes.map((size) => size).join(", ");
         }
-        return '';
+        return "";
     };
 
     const isAvailableSizes = (product: Product) => {
-        if(!product.sizes){
+        if (!product.sizes) {
             return [];
         }
-        return sizes.value.filter(size => product.sizes.includes(size.name));
+        return sizes.value.filter((size) => product.sizes.includes(size.name));
     };
 
     const variantsInfo = (form: AddForm, product: Product) => {
         const variantsList = product?.variants || [];
 
         const totalCount = variantsList.find(
-            v => v.hex === form.colors.hex && v.size === form.sizes);
+            (v) => v.hex === form.colors.hex && v.size === form.sizes,
+        );
 
         const count = totalCount?.count ?? 0;
 
-        if(count < 4 && count !== 0){
+        if (count < 4 && count !== 0) {
             return `🔥 Only ${count} left`;
-        }else if(form.colors.hex && form.sizes){
+        } else if (form.colors.hex && form.sizes) {
             return `In stock ${count} pcs.`;
-        }else if(count === 0){
+        } else if (count === 0) {
             return `Select specific.`;
         }
     };
@@ -174,15 +171,15 @@ export const productHelper = () => {
                     {
                         colorName: variant.colorName,
                         hex: variant.hex,
-                    }
-                ])
-            ).values()
-        ]
+                    },
+                ]),
+            ).values(),
+        ];
     };
 
     const uniqueSizes = (product: Product) => {
-        return [...new Set(product.variants.map(variant => variant.size))]
-    }
+        return [...new Set(product.variants.map((variant) => variant.size))];
+    };
 
     return {
         openSelectImage,
@@ -204,5 +201,5 @@ export const productHelper = () => {
 
         uniqueColors,
         uniqueSizes,
-    }
-}
+    };
+};

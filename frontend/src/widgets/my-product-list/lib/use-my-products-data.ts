@@ -5,12 +5,16 @@ import { getMyProducts } from "@/widgets/my-product-list/api/get-my-product";
 export const useMyProductsData = () => {
     const userId = localStorage.getItem("userId");
 
-    const { data: myProducts, isLoading, isError } = useQuery({
-        queryKey: computed(() => ['myProducts', userId]),
+    const {
+        data: myProducts,
+        isLoading,
+        isError,
+    } = useQuery({
+        queryKey: computed(() => ["myProducts", userId]),
 
         queryFn: () => {
             if (!userId) {
-                throw new Error('Пользователь не зарегистрирован');
+                throw new Error("Пользователь не зарегистрирован");
             }
 
             return getMyProducts(userId);
@@ -22,6 +26,6 @@ export const useMyProductsData = () => {
     return {
         myProducts: computed(() => myProducts.value ?? []),
         isLoading,
-        isError
+        isError,
     };
 };

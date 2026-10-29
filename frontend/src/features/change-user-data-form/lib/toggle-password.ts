@@ -1,16 +1,16 @@
 import { ref } from "vue";
 
-const showOldPassword = ref(false)
-const showNewPassword = ref(false)
+const showOldPassword = ref(false);
+const showNewPassword = ref(false);
 
 export const useTogglePassword = () => {
     const toggleOldPassword = () => {
-        showOldPassword.value = !showOldPassword.value
-    }
+        showOldPassword.value = !showOldPassword.value;
+    };
 
     const toggleNewPassword = () => {
-        showNewPassword.value = !showNewPassword.value
-    }
+        showNewPassword.value = !showNewPassword.value;
+    };
 
     return {
         showOldPassword,
@@ -18,5 +18,5 @@ export const useTogglePassword = () => {
 
         toggleOldPassword,
         toggleNewPassword,
-    }
-}
+    };
+};

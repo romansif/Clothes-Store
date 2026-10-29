@@ -16,24 +16,29 @@ const { openNotify } = useBaseModals();
 export const useCreateReview = () => {
     const queryClient = useQueryClient();
 
-    const { mutateAsync: createReview, isPending, isError } = useMutation({mutationKey: ['createReview'],
+    const {
+        mutateAsync: createReview,
+        isPending,
+        isError,
+    } = useMutation({
+        mutationKey: ["createReview"],
         mutationFn: async (user: User | undefined) => {
             if (!user) {
-                throw new Error('Вы должны быть зарегистрированы что бы написать отзыв');
+                throw new Error("Вы должны быть зарегистрированы что бы написать отзыв");
             }
 
             const result = reviewFormSchema.safeParse(reviewForm.value);
 
             if (!result.success) {
-                applyZodErrors(result.error, reviewFormMessages,);
+                applyZodErrors(result.error, reviewFormMessages);
 
-                throw new Error('Ошибка валидации отзыва')
+                throw new Error("Ошибка валидации отзыва");
             }
 
             const formData = new FormData();
 
             formData.append(
-                'review',
+                "review",
                 JSON.stringify({
                     productId: productId.value,
                     user: {
@@ -46,44 +51,44 @@ export const useCreateReview = () => {
                 }),
             );
 
-            imageFiles.value.forEach(file => {
+            imageFiles.value.forEach((file) => {
                 if (file) {
-                    formData.append('images', file);
+                    formData.append("images", file);
                 }
             });
 
-            return await handler('/reviews', {
-                method: 'POST',
+            return await handler("/reviews", {
+                method: "POST",
                 body: formData,
             });
         },
 
         onSuccess: async () => {
             await Promise.all([
-                queryClient.invalidateQueries({queryKey: ['reviews'],}),
-                queryClient.invalidateQueries({queryKey: ['filteredReviews'],}),
+                queryClient.invalidateQueries({ queryKey: ["reviews"] }),
+                queryClient.invalidateQueries({ queryKey: ["filteredReviews"] }),
             ]);
 
             clearReviewForm();
 
             await openNotify(
-                'You have successfully added a review for this product',
-                'Thank you for your feedback. It helps other customers make the right choice.',
+                "You have successfully added a review for this product",
+                "Thank you for your feedback. It helps other customers make the right choice.",
             );
 
-            toggleReviewModal('');
+            toggleReviewModal("");
         },
 
         onError: (err) => {
             applyErrors(err, reviewFormMessages);
 
-            console.error('Ошибка валидации отзыва', err);
+            throw new Error("Ошибка валидации отзыва", err);
         },
     });
 
     return {
         createReview,
         isPending,
-        isError
+        isError,
     };
 };

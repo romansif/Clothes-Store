@@ -1,1 +1,1 @@
-export { default as ProductToCart } from './ui/ProductToCart.vue'
+export { default as ProductToCart } from "./ui/ProductToCart.vue";

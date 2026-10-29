@@ -4,8 +4,8 @@ import { useFavoriteData } from "@/widgets/favorite-list/lib/use-favorite-data";
 import type { RouteLocationNormalizedLoaded } from "vue-router";
 
 export const useFavoriteCartHeader = (route: RouteLocationNormalizedLoaded) => {
-    const { cart } = useCartData()
-    const { favorite } = useFavoriteData()
+    const { cart } = useCartData();
+    const { favorite } = useFavoriteData();
 
     const cartCount = computed(() => {
         return cart.value.length;
@@ -22,6 +22,6 @@ export const useFavoriteCartHeader = (route: RouteLocationNormalizedLoaded) => {
         isCart,
         isFavorite,
         favoritesCount,
-        cartCount
-    }
-}
+        cartCount,
+    };
+};

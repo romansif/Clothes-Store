@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "format": "prettier --write \"src/**/*.{ts,vue,css,json}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,vue,css,json}\""
   },
   "dependencies": {
     "@fontsource/dm-sans": "^5.3.0",
@@ -29,6 +31,7 @@
     "@types/node": "^24.12.3",
     "@vitejs/plugin-vue": "^6.0.6",
     "@vue/tsconfig": "^0.9.1",
+    "prettier": "^3.9.10",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4.3.3",
     "typescript": "~6.0.2",

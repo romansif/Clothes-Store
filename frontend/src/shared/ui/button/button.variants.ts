@@ -2,7 +2,7 @@ import type { ButtonVariant } from "@/shared/ui/button";
 
 export const buttonVariantClasses: Record<ButtonVariant, string> = {
     login: `bg-black text-white rounded px-6 py-3.5 mt-6 font-semibold w-full text-start transition`,
-    register:  `bg-black text-white rounded px-6 py-3.5 mt-6 font-semibold w-full text-start transition`,
+    register: `bg-black text-white rounded px-6 py-3.5 mt-6 font-semibold w-full text-start transition`,
     changeRegister: `text-center text-sm text-[#A3A3A3] duration-400 cursor-pointer text-indigo-600
               hover:text-violet-600 hover:scale-108`,
     useProduct: `w-full transition duration-400 hover:scale-102 bg-black text-white rounded-sm py-5
@@ -37,5 +37,5 @@ export const buttonVariantClasses: Record<ButtonVariant, string> = {
     reload: `text-black px-8 py-2 text-xl rounded-full border border-black transition duration-400 
            hover:outline-hidden hover:scale-110 hover:text-white hover:bg-black`,
     catalog: `text-black px-4 py-2 text-xl rounded-full border border-black transition duration-400 
-           hover:outline-hidden hover:scale-110 hover:text-white hover:bg-black`
-}
+           hover:outline-hidden hover:scale-110 hover:text-white hover:bg-black`,
+};

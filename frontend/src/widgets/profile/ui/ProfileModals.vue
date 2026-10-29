@@ -1,25 +1,25 @@
 <template>
-  <Transition name="modal">
-    <ChangeAvatarModal v-if="avatarModal" />
-  </Transition>
-  <Transition name="modal">
-    <AllOrderModal v-if="orderHistory" />
-  </Transition>
-  <Transition name="modal">
-    <CurrentOrderModal v-if="currentOrder" />
-  </Transition>
-  <Transition name="modal">
-    <SavedAddressModal v-if="savedAddresses" />
-  </Transition>
-  <Transition name="modal">
-    <SavedPaymentModal v-if="savedPaymentCard" />
-  </Transition>
-  <Transition name="modal">
-    <ProfileDataModal v-if="confidentialityData" />
-  </Transition>
-  <Transition name="modal">
-    <DeleteModal v-if="deleteModal" />
-  </Transition>
+    <Transition name="modal">
+        <ChangeAvatarModal v-if="avatarModal" />
+    </Transition>
+    <Transition name="modal">
+        <AllOrderModal v-if="orderHistory" />
+    </Transition>
+    <Transition name="modal">
+        <CurrentOrderModal v-if="currentOrder" />
+    </Transition>
+    <Transition name="modal">
+        <SavedAddressModal v-if="savedAddresses" />
+    </Transition>
+    <Transition name="modal">
+        <SavedPaymentModal v-if="savedPaymentCard" />
+    </Transition>
+    <Transition name="modal">
+        <ProfileDataModal v-if="confidentialityData" />
+    </Transition>
+    <Transition name="modal">
+        <DeleteModal v-if="deleteModal" />
+    </Transition>
 </template>
 
 <script setup lang="ts">
@@ -34,5 +34,6 @@ import { DeleteModal } from "@/features/general-delete";
 import { ChangeAvatarModal } from "@/features/profile-change-avatar";
 
 const { deleteModal } = baseDeleteModal();
-const { orderHistory, currentOrder, savedAddresses, savedPaymentCard, confidentialityData } = useProfileModals();
+const { orderHistory, currentOrder, savedAddresses, savedPaymentCard, confidentialityData } =
+    useProfileModals();
 </script>

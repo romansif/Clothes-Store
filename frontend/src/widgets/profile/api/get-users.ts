@@ -1,12 +1,11 @@
-import { handler } from '@/shared/api/http'
+import { handler } from "@/shared/api/http";
 import type { User } from "@/entities/profile";
 
 export const useGetUser = () => {
     const getUsers = async () => {
-        return await handler<User[]>('/users', {
+        return await handler<User[]>("/users", {
             method: "GET",
         });
-
     };
 
     const getUser = async (userId: string) => {
@@ -15,8 +14,8 @@ export const useGetUser = () => {
         });
     };
 
-    return{
+    return {
         getUsers,
         getUser,
-    }
-}
+    };
+};

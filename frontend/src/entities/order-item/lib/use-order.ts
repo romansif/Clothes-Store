@@ -8,23 +8,23 @@ const clipboard = ref<boolean>(false);
 
 export const useOrder = () => {
     const copyText = async (text: string) => {
-        try{
+        try {
             clipboard.value = true;
 
             setTimeout(() => {
                 clipboard.value = false;
             }, 1500);
 
-            await navigator.clipboard.writeText(text)
-        }catch(err){
-            console.error('Error while copying: ', err)
+            await navigator.clipboard.writeText(text);
+        } catch (err) {
+            console.error("Error while copying: ", err);
         }
     };
 
     const orderQuantity = (product: Product) => {
         const quantityList = product.variants || [];
 
-        const totalCount = quantityList.find(p => p.size === product.sizes);
+        const totalCount = quantityList.find((p) => p.size === product.sizes);
 
         return totalCount?.count ?? 0;
     };
@@ -34,6 +34,6 @@ export const useOrder = () => {
         clipboard,
 
         copyText,
-        orderQuantity
-    }
-}
+        orderQuantity,
+    };
+};

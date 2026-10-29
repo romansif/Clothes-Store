@@ -1,19 +1,21 @@
 <template>
-  <Transition name="view" mode="out-in">
-    <Loader v-if="isLoading" variant="my-products" />
-    <ErrorState v-else-if="isError" variant="my-products" />
-    <ul v-else-if="myProducts.length" class="font-raleway flex flex-col gap-20">
-      <MyProductItem v-for="product in myProducts"
-                     :key="product.id"
-                     :user="user"
-                     :product="product"
-                     :myProducts="myProducts"
-                     :favorite="favorite">
-        <DeleteMyProductButton :product="product" />
-      </MyProductItem>
-    </ul>
-    <EmptyState v-else variant="my-products" />
-  </Transition>
+    <Transition name="view" mode="out-in">
+        <Loader v-if="isLoading" variant="my-products" />
+        <ErrorState v-else-if="isError" variant="my-products" />
+        <ul v-else-if="myProducts.length" class="font-raleway flex flex-col gap-20">
+            <MyProductItem
+                v-for="product in myProducts"
+                :key="product.id"
+                :user="user"
+                :product="product"
+                :myProducts="myProducts"
+                :favorite="favorite"
+            >
+                <DeleteMyProductButton :product="product" />
+            </MyProductItem>
+        </ul>
+        <EmptyState v-else variant="my-products" />
+    </Transition>
 </template>
 
 <script setup lang="ts">
@@ -24,10 +26,10 @@ import { DeleteMyProductButton } from "@/features/delete-my-product";
 import { EmptyState, ErrorState, Loader } from "@/widgets/state";
 import type { User } from "@/entities/profile";
 
-const { favorite } = useFavoriteData()
-const { myProducts, isLoading, isError } = useMyProductsData()
+const { favorite } = useFavoriteData();
+const { myProducts, isLoading, isError } = useMyProductsData();
 
 const props = defineProps<{
-  user: User | undefined
-}>()
+    user: User | undefined;
+}>();
 </script>

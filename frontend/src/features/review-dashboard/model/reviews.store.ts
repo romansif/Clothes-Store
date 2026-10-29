@@ -1,16 +1,10 @@
 import { ref } from "vue";
 
-const ratings = [
-    1,
-    2,
-    3,
-    4,
-    5,
-];
+const ratings = [1, 2, 3, 4, 5];
 
-const productId = ref<string>('');
+const productId = ref<string>("");
 
-const ratingDirection = ref<'up' | 'down'>('up');
+const ratingDirection = ref<"up" | "down">("up");
 
 const visibleReviewsCount = ref<number>(4);
 
@@ -20,5 +14,5 @@ export const reviewsStore = () => {
         ratingDirection,
         productId,
         visibleReviewsCount,
-    }
-}
+    };
+};

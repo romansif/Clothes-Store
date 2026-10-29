@@ -1,3 +1,3 @@
 export interface TabProps {
-    name?: string,
+    name?: string;
 }

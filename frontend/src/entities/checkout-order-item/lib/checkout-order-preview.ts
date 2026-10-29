@@ -4,22 +4,21 @@ import { useOrderData } from "@/widgets/order-list/lib/use-order-data";
 const { items } = orderStore();
 
 export const orderItems = () => {
-    const { orders } = useOrderData()
-    if(!orders.value) return;
+    const { orders } = useOrderData();
+    if (!orders.value) return;
 
-    return orders.value.flatMap(order => order.orderItems || []);
+    return orders.value.flatMap((order) => order.orderItems || []);
 };
 
 export const checkoutOrderPreview = (id: string, type: string) => {
-    if(!id || !type){
-        console.log('Id или тип не найден');
-        return;
+    if (!id || !type) {
+        throw new Error("Id или тип не найден");
     }
 
-    const sourceList = type === 'ADD' ? items.value : orderItems();
-    const order = sourceList?.find(p => p.id === id);
+    const sourceList = type === "ADD" ? items.value : orderItems();
+    const order = sourceList?.find((p) => p.id === id);
 
-    if(order && order.images && order.images[0]){
+    if (order && order.images && order.images[0]) {
         return `${import.meta.env.VITE_SERVER_URL}/${order.images[0]}`;
     }
 };

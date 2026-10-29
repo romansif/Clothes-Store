@@ -1,1 +1,1 @@
-export { default as CreateReview } from './ui/CreateReview.vue'
+export { default as CreateReview } from "./ui/CreateReview.vue";

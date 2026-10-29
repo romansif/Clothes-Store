@@ -1,41 +1,42 @@
 <template>
-  <section :class="stateBoxVariantClass[props.variant]">
-    <img :src="errorImage" alt="" >
-    <div :class="stateBoxMessageClass">
-      <h1 :class="stateTitleClass">{{ errorStateMessage[props.variant].title }}</h1>
-      <p :class="stateTextClass">{{ errorStateMessage[props.variant].text }}</p>
-    </div>
-    <div :class="buttonBoxClass">
-      <UiButton name="reload"
-                variant="reload" />
-      <router-link v-if="stateRoute[props.variant]"
-                   :to="{ name: stateRoute[props.variant] }"
-                   :class="stateRouteClass[props.variant]">
-        <UiButton :name="stateRouteMessage[props.variant]"
-                  variant="catalog" />
-      </router-link>
-    </div>
-  </section>
+    <section :class="stateBoxVariantClass[props.variant]">
+        <img :src="errorImage" alt="" />
+        <div :class="stateBoxMessageClass">
+            <h1 :class="stateTitleClass">{{ errorStateMessage[props.variant].title }}</h1>
+            <p :class="stateTextClass">{{ errorStateMessage[props.variant].text }}</p>
+        </div>
+        <div :class="buttonBoxClass">
+            <UiButton name="reload" variant="reload" />
+            <router-link
+                v-if="stateRoute[props.variant]"
+                :to="{ name: stateRoute[props.variant] }"
+                :class="stateRouteClass[props.variant]"
+            >
+                <UiButton :name="stateRouteMessage[props.variant]" variant="catalog" />
+            </router-link>
+        </div>
+    </section>
 </template>
 
 <script setup lang="ts">
 import {
-  buttonBoxClass,
-  stateBoxMessageClass,
-  stateBoxVariantClass, stateRouteClass,
-  stateTextClass,
-  stateTitleClass
+    buttonBoxClass,
+    stateBoxMessageClass,
+    stateBoxVariantClass,
+    stateRouteClass,
+    stateTextClass,
+    stateTitleClass,
 } from "@/widgets/state/model/state.variants";
 import {
-  errorImage,
-  errorStateMessage,
-  stateRoute,
-  stateRouteMessage
+    errorImage,
+    errorStateMessage,
+    stateRoute,
+    stateRouteMessage,
 } from "@/widgets/state/model/state.mock";
 import { UiButton } from "@/shared/ui/button";
 import type { PageVariant } from "@/widgets/state";
 
 const props = defineProps<{
-  variant: PageVariant
-}>()
+    variant: PageVariant;
+}>();
 </script>

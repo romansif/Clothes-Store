@@ -4,4 +4,4 @@ export const fullDescription = ref<boolean>(false);
 
 export const toggleReadMore = () => {
     fullDescription.value = !fullDescription.value;
-}
+};

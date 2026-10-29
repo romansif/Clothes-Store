@@ -1,4 +1,7 @@
-import type { ShippingMethod, ShippingMethodProps } from "@/shared/ui/shipping-method/shipping-method.types.ts";
+import type {
+    ShippingMethod,
+    ShippingMethodProps,
+} from "@/shared/ui/shipping-method/shipping-method.types.ts";
 
 export const shippingMethods: Record<ShippingMethod, ShippingMethodProps> = {
     standard: {
@@ -12,5 +15,5 @@ export const shippingMethods: Record<ShippingMethod, ShippingMethodProps> = {
         title: "EXPRESS COURIER",
         text: "Delivery tomorrow morning",
         price: "$15.00",
-    }
-}
+    },
+};

@@ -1,13 +1,15 @@
 <template>
-  <div class="bg-[#F0F0F0] min-h-screen">
-    <div class="font-raleway xl:px-6 xl:pt-6 lg:px-6 lg:pt-6 md:px-5 md:pt-5 sm:px-4 sm:pt-4 px-4 pt-4">
-      <MainNavBar />
-      <router-view />
+    <div class="min-h-screen bg-[#F0F0F0]">
+        <div
+            class="font-raleway px-4 pt-4 sm:px-4 sm:pt-4 md:px-5 md:pt-5 lg:px-6 lg:pt-6 xl:px-6 xl:pt-6"
+        >
+            <MainNavBar />
+            <router-view />
+        </div>
     </div>
-  </div>
-  <Transition name="modal">
-    <Notification v-if="notify" />
-  </Transition>
+    <Transition name="modal">
+        <Notification v-if="notify" />
+    </Transition>
 </template>
 
 <script setup lang="ts">

@@ -1,19 +1,24 @@
 <template>
-  <Transition name="view" mode="out-in">
-    <Loader v-if="isLoading" variant="year-list" />
-    <ErrorState v-else-if="isError" variant="year-list" />
-    <ul v-else-if="yearProducts.length" v-horizontal-scroll
-        class="flex gap-10 xl:gap-40 overflow-x-auto whitespace-nowrap no-scrollbar mt-10">
-      <ProductCard v-for="product in yearProducts"
-                   :user="user"
-                   :product="product"
-                   :array="yearProducts"
-                   :favorite="favorite"
-                   :variant="'year'"
-                   @toggle-to-favorite="toggleFavorite({favorite, product})"/>
-    </ul>
-    <EmptyState v-else variant="year-list" />
-  </Transition>
+    <Transition name="view" mode="out-in">
+        <Loader v-if="isLoading" variant="year-list" />
+        <ErrorState v-else-if="isError" variant="year-list" />
+        <ul
+            v-else-if="yearProducts.length"
+            v-horizontal-scroll
+            class="no-scrollbar mt-10 flex gap-10 overflow-x-auto whitespace-nowrap xl:gap-40"
+        >
+            <ProductCard
+                v-for="product in yearProducts"
+                :user="user"
+                :product="product"
+                :array="yearProducts"
+                :favorite="favorite"
+                :variant="'year'"
+                @toggle-to-favorite="toggleFavorite({ favorite, product })"
+            />
+        </ul>
+        <EmptyState v-else variant="year-list" />
+    </Transition>
 </template>
 
 <script setup lang="ts">
@@ -25,12 +30,12 @@ import { ProductCard } from "@/entities/product-card";
 import { EmptyState, ErrorState, Loader } from "@/widgets/state";
 import type { User } from "@/entities/profile";
 
-const { favorite } = useFavoriteData()
-const { toggleFavorite } = useToggleFavorite()
+const { favorite } = useFavoriteData();
+const { toggleFavorite } = useToggleFavorite();
 const { vHorizontalScroll } = productsHelper();
-const { yearProducts, isLoading, isError } = useYearProductData('ALL', 'ALL');
+const { yearProducts, isLoading, isError } = useYearProductData("ALL", "ALL");
 
 const props = defineProps<{
-  user: User | undefined
-}>()
+    user: User | undefined;
+}>();
 </script>

@@ -14,5 +14,4 @@ export const useSavedCard = (card: UserPayment) => {
     paymentForm.value.cardCvv = String(card.cardCvv);
 
     isChosenPayment.value = true;
-}
-
+};

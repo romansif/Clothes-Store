@@ -12,5 +12,5 @@ export const toggleReplaceChoice = (id: string) => {
 
     choiceModal.value = !choiceModal.value;
     orderId.value = id;
-    cancelChoiceForm.value.cancelChoice = '';
-}
+    cancelChoiceForm.value.cancelChoice = "";
+};

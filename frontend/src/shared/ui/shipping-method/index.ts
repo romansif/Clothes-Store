@@ -1,3 +1,3 @@
-export { default as ShippingMethod } from './ShippingMethod.vue'
+export { default as ShippingMethod } from "./ShippingMethod.vue";
 
-export type * from './shipping-method.types'
+export type * from "./shipping-method.types";

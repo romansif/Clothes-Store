@@ -1,1 +1,1 @@
-export { default as DeleteModal } from './ui/DeleteModal.vue'
+export { default as DeleteModal } from "./ui/DeleteModal.vue";

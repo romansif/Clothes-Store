@@ -5,4 +5,3 @@ export const getShipping = async (paymentId: string) => {
         method: "GET",
     });
 };
-

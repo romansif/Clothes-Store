@@ -1,5 +1,5 @@
 import { handler } from "@/shared/api/http";
-import type {UserPayment} from "@/entities/user-payment/model/payment.types";
+import type { UserPayment } from "@/entities/user-payment/model/payment.types";
 
 export const useGetPayment = () => {
     const getPayments = async (userId: string) => {
@@ -17,5 +17,5 @@ export const useGetPayment = () => {
     return {
         getPayment,
         getPayments,
-    }
-}
+    };
+};

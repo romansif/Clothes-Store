@@ -1,7 +1,7 @@
-export type ReplacementInputVariant = 'default' | 'checked'
+export type ReplacementInputVariant = "default" | "checked";
 
 export interface ReplacementInputProps {
-    name: string,
+    name: string;
     variant?: ReplacementInputVariant;
-    value: string
+    value: string;
 }

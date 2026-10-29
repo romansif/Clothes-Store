@@ -1,7 +1,7 @@
 export interface ShippingForm {
-    delivery: string,
+    delivery: string;
 }
 
 export interface ShippingFormErrorMessage {
-    delivery: string,
+    delivery: string;
 }

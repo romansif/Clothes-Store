@@ -2,9 +2,14 @@ import { handler } from "@/shared/api/http";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
 export const useDeleteFavoriteProduct = () => {
-    const queryClient = useQueryClient()
+    const queryClient = useQueryClient();
 
-    const { mutateAsync: deleteFavoriteItem, isPending, isError } = useMutation({mutationKey: ['deleteFavoriteItem'],
+    const {
+        mutateAsync: deleteFavoriteItem,
+        isPending,
+        isError,
+    } = useMutation({
+        mutationKey: ["deleteFavoriteItem"],
         mutationFn: async (id: string | undefined) => {
             return await handler(`/favorites/${id}`, {
                 method: "DELETE",
@@ -12,17 +17,17 @@ export const useDeleteFavoriteProduct = () => {
         },
 
         onSuccess: async () => {
-            await queryClient.invalidateQueries({queryKey: ['favorite']})
+            await queryClient.invalidateQueries({ queryKey: ["favorite"] });
         },
 
         onError: (err) => {
-            console.error(`Ошибка при удалении товара из избранного`, err);
-        }
-    })
+            throw new Error(`Ошибка при удалении товара из избранного`, err);
+        },
+    });
 
     return {
         deleteFavoriteItem,
         isPending,
-        isError
-    }
+        isError,
+    };
 };

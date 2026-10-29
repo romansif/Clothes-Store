@@ -1,19 +1,19 @@
-import type {ColorItem, Product} from "@/shared";
+import type { ColorItem, Product } from "@/shared";
 
 export type EditImagesPayload = {
-    product: Product | null,
-    event: Event
-}
+    product: Product | null;
+    event: Event;
+};
 
 export type EditQuantityPayload = {
-    product: Product | null,
-    color: ColorItem,
-    size: string,
-    count: string
-}
+    product: Product | null;
+    color: ColorItem;
+    size: string;
+    count: string;
+};
 
 export type EditColorsPayload = {
-    product: Product | null,
-    index: number,
-    eventOrColor: Event | string
-}
+    product: Product | null;
+    index: number;
+    eventOrColor: Event | string;
+};

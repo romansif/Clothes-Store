@@ -1,7 +1,7 @@
 export interface CancelChoiceForm {
-    cancelChoice: string
+    cancelChoice: string;
 }
 
 export interface CancelChoiceFormMessage {
-    cancelChoice: string
+    cancelChoice: string;
 }

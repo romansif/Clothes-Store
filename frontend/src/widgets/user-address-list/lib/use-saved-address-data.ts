@@ -2,52 +2,60 @@ import { computed } from "vue";
 import { useQuery } from "@tanstack/vue-query";
 import { useGetAddress } from "@/widgets/user-address-list/api/get-address";
 
-const { getAddresses, getAddress } = useGetAddress()
+const { getAddresses, getAddress } = useGetAddress();
 
 export const useSavedAddressesData = () => {
     const userId = localStorage.getItem("userId");
 
-    const { data: userAddresses, isLoading, isError } = useQuery({
-        queryKey: computed(() => ['userAddresses', userId]),
+    const {
+        data: userAddresses,
+        isLoading,
+        isError,
+    } = useQuery({
+        queryKey: computed(() => ["userAddresses", userId]),
 
         queryFn: () => {
             if (!userId) {
-                throw new Error('Пользователь не зарегистрирован');
+                throw new Error("Пользователь не зарегистрирован");
             }
 
-            return getAddresses(userId)
+            return getAddresses(userId);
         },
 
         enabled: computed(() => Boolean(userId)),
-    })
+    });
 
     return {
         userAddresses: computed(() => userAddresses.value ?? []),
         isLoading,
-        isError
+        isError,
     };
-}
+};
 
 export const useSavedAddressData = () => {
     const addressId = localStorage.getItem("addressId");
 
-    const { data: userAddress, isLoading, isError } = useQuery({
-        queryKey: computed(() => ['userAddress', addressId]),
+    const {
+        data: userAddress,
+        isLoading,
+        isError,
+    } = useQuery({
+        queryKey: computed(() => ["userAddress", addressId]),
 
         queryFn: () => {
             if (!addressId) {
-                throw new Error('User is not authenticated');
+                throw new Error("User is not authenticated");
             }
 
-            return getAddress(addressId)
+            return getAddress(addressId);
         },
 
         enabled: computed(() => Boolean(addressId)),
-    })
+    });
 
     return {
         userAddress,
         isLoading,
-        isError
+        isError,
     };
-}
+};

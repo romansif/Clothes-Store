@@ -11,5 +11,5 @@ export const toggleReviewModal = (id: string) => {
 
     reviewFormModal.value = !reviewFormModal.value;
 
-    productId.value = id
+    productId.value = id;
 };

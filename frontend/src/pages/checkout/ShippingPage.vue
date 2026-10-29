@@ -1,5 +1,5 @@
 <template>
-  <CheckoutShipping />
+    <CheckoutShipping />
 </template>
 
 <script setup lang="ts">

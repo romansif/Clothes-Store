@@ -1,7 +1,7 @@
-export type ProductTextareaVariant = 'default' | 'error'
+export type ProductTextareaVariant = "default" | "error";
 
 export interface ProductTextareaProps {
-    variant?: ProductTextareaVariant
+    variant?: ProductTextareaVariant;
     placeholder: string;
     errorMessage: string;
 }

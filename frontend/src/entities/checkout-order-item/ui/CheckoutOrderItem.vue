@@ -1,27 +1,35 @@
 <template>
-  <TransitionGroup name="list">
-    <li :key="product?.id" class="flex justify-between gap-3 w-full">
-      <div class="flex items-center gap-3 font-medium text-xs">
-        <router-link :to="{ name: 'product/info', params: { id: getProductId(product) } }">
-          <img :src="checkoutOrderPreview(product?.id, 'ADD')" alt=""
-               class="w-28.25 cursor-pointer">
-        </router-link>
-        <div class="flex flex-col gap-3 mt-3">
-          <div class="flex gap-25">
-            <div class="flex flex-col gap-1 w-22">
-              <span class="">{{ product?.title }}</span>
-              <span>{{ product?.category }}</span>
+    <TransitionGroup name="list">
+        <li :key="product?.id" class="flex w-full justify-between gap-3">
+            <div class="flex items-center gap-3 text-xs font-medium">
+                <router-link :to="{ name: 'product/info', params: { id: getProductId(product) } }">
+                    <img
+                        :src="checkoutOrderPreview(product?.id, 'ADD')"
+                        alt=""
+                        class="w-28.25 cursor-pointer"
+                    />
+                </router-link>
+                <div class="mt-3 flex flex-col gap-3">
+                    <div class="flex gap-25">
+                        <div class="flex w-22 flex-col gap-1">
+                            <span class="">{{ product?.title }}</span>
+                            <span>{{ product?.category }}</span>
+                        </div>
+                        <span class="font-dm-sans">$ {{ product?.price }}</span>
+                    </div>
+                    <span class="text-gray-400"
+                        >{{ pureColorsName(product) }} / {{ product?.sizes }}</span
+                    >
+                    <span class="mt-8">
+                        (<span class="font-dm-sans font-medium text-blue-700">{{
+                            pureQuantity(product.id, items)?.count
+                        }}</span
+                        >)
+                    </span>
+                </div>
             </div>
-            <span class="font-dm-sans">$ {{ product?.price }}</span>
-          </div>
-          <span class="text-gray-400">{{ pureColorsName(product) }} / {{ product?.sizes }}</span>
-          <span class="mt-8">
-            (<span class="text-blue-700 font-medium font-dm-sans">{{pureQuantity(product.id, items)?.count }}</span>)
-          </span>
-        </div>
-      </div>
-    </li>
-  </TransitionGroup>
+        </li>
+    </TransitionGroup>
 </template>
 
 <script setup lang="ts">
@@ -32,9 +40,9 @@ import type { Product } from "@/shared";
 import type { OrderItem } from "@/entities/order";
 
 defineProps<{
-  product: Product;
-  items: OrderItem[];
-}>()
+    product: Product;
+    items: OrderItem[];
+}>();
 
 const { getProductId } = previewHelper();
 const { pureQuantity, pureColorsName } = productHelper();

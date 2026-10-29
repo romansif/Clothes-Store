@@ -1,1 +1,1 @@
-export type * from './model/search-form.types'
+export type * from "./model/search-form.types";

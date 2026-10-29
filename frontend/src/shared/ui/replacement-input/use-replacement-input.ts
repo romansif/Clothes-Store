@@ -6,5 +6,5 @@ export const useReplacementInput = (model: string, props: ReplacementInputProps)
 
     return {
         isChecked,
-    }
-}
+    };
+};

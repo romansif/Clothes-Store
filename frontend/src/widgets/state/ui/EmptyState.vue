@@ -1,31 +1,38 @@
 <template>
-  <section :class="stateBoxVariantClass[props.variant]">
-    <img :src="emptyImage" alt="" >
-    <div :class="stateBoxMessageClass">
-      <h1 :class="stateTitleClass">{{ emptyStateMessage[props.variant].title }}</h1>
-      <p :class="stateTextClass">{{ emptyStateMessage[props.variant].text }}</p>
-    </div>
-    <router-link v-if="stateRoute[props.variant]"
-                 :to="{ name: stateRoute[props.variant] }"
-                 :class="stateRouteClass[props.variant]">
-      <UiButton :name="stateRouteMessage[props.variant]"
-                variant="catalog" />
-    </router-link>
-  </section>
+    <section :class="stateBoxVariantClass[props.variant]">
+        <img :src="emptyImage" alt="" />
+        <div :class="stateBoxMessageClass">
+            <h1 :class="stateTitleClass">{{ emptyStateMessage[props.variant].title }}</h1>
+            <p :class="stateTextClass">{{ emptyStateMessage[props.variant].text }}</p>
+        </div>
+        <router-link
+            v-if="stateRoute[props.variant]"
+            :to="{ name: stateRoute[props.variant] }"
+            :class="stateRouteClass[props.variant]"
+        >
+            <UiButton :name="stateRouteMessage[props.variant]" variant="catalog" />
+        </router-link>
+    </section>
 </template>
 
 <script setup lang="ts">
 import {
-  stateBoxMessageClass,
-  stateBoxVariantClass, stateRouteClass,
-  stateTextClass,
-  stateTitleClass
+    stateBoxMessageClass,
+    stateBoxVariantClass,
+    stateRouteClass,
+    stateTextClass,
+    stateTitleClass,
 } from "@/widgets/state/model/state.variants";
-import { emptyStateMessage, emptyImage, stateRouteMessage, stateRoute } from "@/widgets/state/model/state.mock";
+import {
+    emptyStateMessage,
+    emptyImage,
+    stateRouteMessage,
+    stateRoute,
+} from "@/widgets/state/model/state.mock";
 import type { PageVariant } from "@/widgets/state";
 import { UiButton } from "@/shared/ui/button";
 
 const props = defineProps<{
-  variant: PageVariant
-}>()
+    variant: PageVariant;
+}>();
 </script>

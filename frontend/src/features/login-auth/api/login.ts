@@ -10,47 +10,54 @@ import { loginForm, loginFormErrorMessages } from "@/entities/login-form/model/l
 const { openNotify } = useBaseModals();
 
 export const signIn = () => {
-    const { mutateAsync: login, isPending, isError } = useMutation({mutationKey: ['login'],
+    const {
+        mutateAsync: login,
+        isPending,
+        isError,
+    } = useMutation({
+        mutationKey: ["login"],
         mutationFn: async () => {
             clearLoginFormMessages();
 
-            const result = loginSchema.safeParse(loginForm.value)
-            if(!result.success){
-                applyZodErrors(result.error, loginFormErrorMessages)
+            const result = loginSchema.safeParse(loginForm.value);
+            if (!result.success) {
+                applyZodErrors(result.error, loginFormErrorMessages);
 
-                throw new Error('Ошибка валидации авторизации')
+                throw new Error("Ошибка валидации авторизации");
             }
 
-            return await handler('/auth/signIn', {
+            return await handler("/auth/signIn", {
                 method: "POST",
                 body: JSON.stringify({
                     email: loginForm.value.email,
                     password: loginForm.value.password,
                     role: loginForm.value.role,
-                })
-            })
+                }),
+            });
         },
 
         onSuccess: async (data) => {
-            clearLoginForm()
+            clearLoginForm();
 
             localStorage.setItem("userId", data.id);
 
-            await openNotify('You have successfully sign in',
-                'You will now be taken to your profile page');
-            await router.push({name: 'profile'})
+            await openNotify(
+                "You have successfully sign in",
+                "You will now be taken to your profile page",
+            );
+            await router.push({ name: "profile" });
         },
 
         onError: (err) => {
-            applyErrors(err, loginFormErrorMessages)
+            applyErrors(err, loginFormErrorMessages);
 
-            console.log(`Ошибка входа`, err);
-        }
-    })
+            throw new Error(`Ошибка входа`, err);
+        },
+    });
 
     return {
         login,
         isPending,
-        isError
-    }
+        isError,
+    };
 };

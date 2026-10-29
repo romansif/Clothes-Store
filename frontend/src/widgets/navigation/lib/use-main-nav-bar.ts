@@ -16,5 +16,5 @@ export const useMainNavBar = (route: RouteLocationNormalizedLoaded) => {
         isProfile,
         isNewCollections,
         isSeasonCollections,
-    }
-}
+    };
+};

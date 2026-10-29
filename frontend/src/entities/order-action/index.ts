@@ -1,1 +1,1 @@
-export { default as OrderItemActions } from './ui/OrderItemActions.vue'
+export { default as OrderItemActions } from "./ui/OrderItemActions.vue";

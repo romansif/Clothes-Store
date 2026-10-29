@@ -5,6 +5,6 @@ export const checkoutInputClasses: Record<CheckoutInputVariant, string> = {
                 rounded-xl outline-none px-4 py-3 text-xs w-full font-dm-sans`,
     payment: `border border-gray-300 rounded-xl outline-none px-4 py-4 text-xs transition duration-400
         bg-gray-50 hover:bg-white appearance-none font-dm-sans placeholder:text-gray-600`,
-}
+};
 
-export const checkoutInputErrorClass = `placeholder:text-red-500 border-red-500`
+export const checkoutInputErrorClass = `placeholder:text-red-500 border-red-500`;

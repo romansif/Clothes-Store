@@ -1,1 +1,1 @@
-export { default as ProfileMenu } from './ui/ProfileMenu.vue'
+export { default as ProfileMenu } from "./ui/ProfileMenu.vue";

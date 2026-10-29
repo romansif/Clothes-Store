@@ -8,19 +8,24 @@ import { createProductForm } from "@/entities/product-form/model/product-forms";
 import type {
     EditColorsPayload,
     EditImagesPayload,
-    EditQuantityPayload
+    EditQuantityPayload,
 } from "@/features/product-edit-form/model/edit-product.types";
 import type { Product } from "@/shared/model/product.types";
 
 const { openNotify } = useBaseModals();
 
 export const useEditProductImages = () => {
-    const queryClient = useQueryClient()
+    const queryClient = useQueryClient();
 
-    const { mutateAsync: editProductImages, isPending, isError } = useMutation({mutationKey: ['editProductImages'],
+    const {
+        mutateAsync: editProductImages,
+        isPending,
+        isError,
+    } = useMutation({
+        mutationKey: ["editProductImages"],
         mutationFn: async ({ product, event }: EditImagesPayload) => {
-            if(!product){
-                throw new Error('Товар не найден');
+            if (!product) {
+                throw new Error("Товар не найден");
             }
 
             const target = event.target as HTMLInputElement;
@@ -34,35 +39,40 @@ export const useEditProductImages = () => {
 
             return await handler(`/products/${product.id}/${currentFile.value}/images`, {
                 method: "PATCH",
-                body: formData
+                body: formData,
             });
         },
 
         onSuccess: async () => {
-            await queryClient.invalidateQueries({queryKey: ['products']})
-            await queryClient.invalidateQueries({queryKey: ['myProducts']})
-            await queryClient.invalidateQueries({queryKey: ['filteredProducts']})
+            await queryClient.invalidateQueries({ queryKey: ["products"] });
+            await queryClient.invalidateQueries({ queryKey: ["myProducts"] });
+            await queryClient.invalidateQueries({ queryKey: ["filteredProducts"] });
         },
 
         onError: async (err) => {
-            await openNotify(`You haven't entered anything to change.`, '');
+            await openNotify(`You haven't entered anything to change.`, "");
 
-            console.error(`Ошибка при изменении фото карточек товара`, err);
-        }
-    })
+            throw new Error(`Ошибка при изменении фото карточек товара`, err);
+        },
+    });
 
     return {
         editProductImages,
         isPending,
-        isError
-    }
-}
+        isError,
+    };
+};
 
 export const useEditProductInfo = () => {
-    const { mutateAsync: editProductInfo, isPending, isError } = useMutation({mutationKey: ['editProductInfo'],
+    const {
+        mutateAsync: editProductInfo,
+        isPending,
+        isError,
+    } = useMutation({
+        mutationKey: ["editProductInfo"],
         mutationFn: async (product: Product | null) => {
-            if(!product){
-                throw new Error('Товар не найден');
+            if (!product) {
+                throw new Error("Товар не найден");
             }
 
             return await handler(`/products/${product.id}`, {
@@ -75,41 +85,48 @@ export const useEditProductInfo = () => {
                     gender: createProductForm.value.gender,
                     price: createProductForm.value.price,
                     description: createProductForm.value.description,
-                })
+                }),
             });
         },
 
         onSuccess: async () => {
-            await openNotify('You have successfully changed the product card description',
-                'Now, if you go to the my products page, your product will be there, and on the useProfile page as well');
-            await router.push({ name: 'my/products'})
+            await openNotify(
+                "You have successfully changed the product card description",
+                "Now, if you go to the my products page, your product will be there, and on the useProfile page as well",
+            );
+            await router.push({ name: "my/products" });
         },
 
         onError: async (err) => {
-            await openNotify(`You haven't entered anything to change.`, '');
+            await openNotify(`You haven't entered anything to change.`, "");
 
-            console.error(`Ошибка при изменении информации о товаре`, err);
-        }
-    })
+            throw new Error(`Ошибка при изменении информации о товаре`, err);
+        },
+    });
 
     return {
         editProductInfo,
         isPending,
-        isError
-    }
-}
+        isError,
+    };
+};
 
 export const useEditProductQuantity = () => {
-    const { mutateAsync: editProductQuantity, isPending, isError } = useMutation({mutationKey: ['editProductQuantity'],
+    const {
+        mutateAsync: editProductQuantity,
+        isPending,
+        isError,
+    } = useMutation({
+        mutationKey: ["editProductQuantity"],
         mutationFn: async ({ product, color, size, count }: EditQuantityPayload) => {
-            if(!product || !color || !size || !count){
-                console.log('Вы не добавили никаких значений дл изменения');
-                return
+            if (!product || !color || !size || !count) {
+                console.log("Вы не добавили никаких значений дл изменения");
+                return;
             }
 
-            const variant = product?.variants.find(v => v.hex === color.hex && v.size === size);
-            if(!variant){
-                console.log('Variant not found');
+            const variant = product?.variants.find((v) => v.hex === color.hex && v.size === size);
+            if (!variant) {
+                console.log("Variant not found");
                 return;
             }
 
@@ -119,37 +136,46 @@ export const useEditProductQuantity = () => {
                 method: "PATCH",
                 body: JSON.stringify({
                     variants: product?.variants,
-                })
-            })
+                }),
+            });
         },
 
         onError: async (err) => {
-            await openNotify(`You haven't entered anything to change.`, '');
+            await openNotify(`You haven't entered anything to change.`, "");
 
-            console.error(`Failed to edit the variants product cover:`, err);
-        }
-    })
+            throw new Error(`Failed to edit the variants product cover:`, err);
+        },
+    });
 
     return {
         editProductQuantity,
         isPending,
-        isError
-    }
-}
+        isError,
+    };
+};
 
 export const useEditProductColors = () => {
-    const { mutateAsync: editProductColors, isPending, isError } = useMutation({mutationKey: ['editProductColors'],
+    const {
+        mutateAsync: editProductColors,
+        isPending,
+        isError,
+    } = useMutation({
+        mutationKey: ["editProductColors"],
         mutationFn: async ({ product, index, eventOrColor }: EditColorsPayload) => {
-            if(!product){
-                console.log('Такого продукта не существует');
-                return
+            if (!product) {
+                console.log("Такого продукта не существует");
+                return;
             }
 
-            if(typeof eventOrColor === "object" && eventOrColor !== null && 'target' in eventOrColor) {
-                let hexColor = '';
+            if (
+                typeof eventOrColor === "object" &&
+                eventOrColor !== null &&
+                "target" in eventOrColor
+            ) {
+                let hexColor = "";
 
                 const target = eventOrColor.target as HTMLInputElement;
-                hexColor = target?.value || '';
+                hexColor = target?.value || "";
 
                 const names = namer(hexColor);
                 const colorName = names.ntc[0].name;
@@ -157,7 +183,7 @@ export const useEditProductColors = () => {
                 product.colors[index] = {
                     ...product?.colors[index],
                     hex: hexColor,
-                    colorName: colorName
+                    colorName: colorName,
                 };
 
                 return await handler(`/products/${product?.id}`, {
@@ -170,15 +196,15 @@ export const useEditProductColors = () => {
         },
 
         onError: async (err) => {
-            await openNotify(`You haven't entered anything to change.`, '');
+            await openNotify(`You haven't entered anything to change.`, "");
 
-            console.error(`Failed to edit the colors product cover:`, err);
-        }
-    })
+            throw new Error(`Failed to edit the colors product cover:`, err);
+        },
+    });
 
     return {
         editProductColors,
         isPending,
-        isError
-    }
-}
+        isError,
+    };
+};

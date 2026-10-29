@@ -3,19 +3,19 @@ import type { Review } from "@/entities/product-review";
 
 export const useGetReviews = () => {
     const getReviews = () => {
-        return handler<Review[]>('/reviews', {
-            method: 'GET',
+        return handler<Review[]>("/reviews", {
+            method: "GET",
         });
     };
 
     const getFilteredReviews = (id: string | string[], filter: string) => {
         return handler<Review[]>(`/reviews/${id}/${filter}`, {
-            method: 'GET',
+            method: "GET",
         });
     };
 
     return {
         getReviews,
         getFilteredReviews,
-    }
-}
+    };
+};

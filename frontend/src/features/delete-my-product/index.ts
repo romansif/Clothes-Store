@@ -1,1 +1,1 @@
-export { default as DeleteMyProductButton } from './ui/DeleteMyProductButton.vue'
+export { default as DeleteMyProductButton } from "./ui/DeleteMyProductButton.vue";

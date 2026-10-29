@@ -6,5 +6,5 @@ export const toggleAvatar = () => {
 };
 
 export const openSelectAvatar = () => {
-    fileInput.value?.click()
+    fileInput.value?.click();
 };

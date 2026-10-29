@@ -1,25 +1,27 @@
 <template>
-  <div class="font-dm-sans flex gap-30">
-    <div v-for="(isActive, filter) in reviewsType"
-         :class="[reviewFilterBlock,
-         isActive ? 'font-semibold' : '']">
-      <span :class="[reviewFilterNameClass,
-            isActive ? selectedFilterNameClass : '']"
-            @click="toggleFilter(filter)">
-        {{ filter }}
-      </span>
-      <div v-if="isActive" class="border-t-2"></div>
+    <div class="font-dm-sans flex gap-30">
+        <div
+            v-for="(isActive, filter) in reviewsType"
+            :class="[reviewFilterBlock, isActive ? 'font-semibold' : '']"
+        >
+            <span
+                :class="[reviewFilterNameClass, isActive ? selectedFilterNameClass : '']"
+                @click="toggleFilter(filter)"
+            >
+                {{ filter }}
+            </span>
+            <div v-if="isActive" class="border-t-2"></div>
+        </div>
     </div>
-  </div>
 </template>
 
 <script setup lang="ts">
 import { filterReviews } from "@/features/product-review-filter/lib/filter-reviews";
 import {
-  reviewFilterBlock,
-  reviewFilterNameClass,
-  selectedFilterNameClass
+    reviewFilterBlock,
+    reviewFilterNameClass,
+    selectedFilterNameClass,
 } from "@/features/review-dashboard/model/review-filter.variants";
 
-const { reviewsType, toggleFilter } = filterReviews()
+const { reviewsType, toggleFilter } = filterReviews();
 </script>

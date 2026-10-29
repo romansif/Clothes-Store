@@ -1,1 +1,1 @@
-export type * from './model/favorite.types'
+export type * from "./model/favorite.types";

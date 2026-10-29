@@ -4,14 +4,18 @@ import { getProduct } from "@/features/product-info/api/get-product";
 import type { RouteLocationNormalizedLoaded } from "vue-router";
 
 export const useProductData = (route: RouteLocationNormalizedLoaded) => {
-    const { data: product, isLoading, isError } = useQuery({
-        queryKey: computed(() => ['product', route.params.id]),
+    const {
+        data: product,
+        isLoading,
+        isError,
+    } = useQuery({
+        queryKey: computed(() => ["product", route.params.id]),
 
         queryFn: () => {
-            const productId =  route.params.id;
+            const productId = route.params.id;
 
             if (!productId) {
-                throw new Error('User is not authenticated');
+                throw new Error("User is not authenticated");
             }
 
             return getProduct(productId);
@@ -22,10 +26,9 @@ export const useProductData = (route: RouteLocationNormalizedLoaded) => {
 
     const productItem = computed(() => product.value ?? null);
 
-
     return {
         product: productItem,
         isLoading,
-        isError
-    }
-}
+        isError,
+    };
+};

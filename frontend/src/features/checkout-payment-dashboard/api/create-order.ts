@@ -10,10 +10,15 @@ const { openNotify } = useBaseModals();
 const { totalPrice } = orderPriceInfo();
 
 export const useCreateOrder = () => {
-    const queryClient = useQueryClient()
+    const queryClient = useQueryClient();
     const userId = localStorage.getItem("userId");
 
-    const { mutateAsync: createOrder, isPending, isError } = useMutation({mutationKey: ['createOrder'],
+    const {
+        mutateAsync: createOrder,
+        isPending,
+        isError,
+    } = useMutation({
+        mutationKey: ["createOrder"],
         mutationFn: async () => {
             return await handler(`/orders`, {
                 method: "POST",
@@ -22,27 +27,27 @@ export const useCreateOrder = () => {
                     orderItems: items.value,
                     orderTotal: Number(totalPrice.value),
                     delivery: shippingForm.value.delivery,
-                    status: 'Convene'
-                })
-            })
+                    status: "Convene",
+                }),
+            });
         },
 
         onError: async (err) => {
-            await queryClient.invalidateQueries({queryKey: ['orders']})
-            await queryClient.invalidateQueries({queryKey: ['activeOrders']})
+            await queryClient.invalidateQueries({ queryKey: ["orders"] });
+            await queryClient.invalidateQueries({ queryKey: ["activeOrders"] });
 
-            await openNotify('An error occurred.',
-                'We are working on this issue please try again later.')
+            await openNotify(
+                "An error occurred.",
+                "We are working on this issue please try again later.",
+            );
 
-            console.error(`Ошибка при создании заказа`, err);
-        }
-    })
+            throw new Error(`Ошибка при создании заказа`, err);
+        },
+    });
 
     return {
         createOrder,
         isPending,
-        isError
-    }
+        isError,
+    };
 };
-
-

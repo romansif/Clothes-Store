@@ -1,1 +1,1 @@
-export { default as CheckoutHeader } from "./ui/CheckoutHeader.vue"
+export { default as CheckoutHeader } from "./ui/CheckoutHeader.vue";

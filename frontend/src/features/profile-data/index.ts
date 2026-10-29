@@ -1,1 +1,1 @@
-export { default as ProfileDataModal } from './ui/ProfileDataModal.vue'
+export { default as ProfileDataModal } from "./ui/ProfileDataModal.vue";

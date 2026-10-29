@@ -1,3 +1,3 @@
-export { default as AddressItem } from './ui/AddressItem.vue'
+export { default as AddressItem } from "./ui/AddressItem.vue";
 
-export type * from './model/information.types'
+export type * from "./model/information.types";

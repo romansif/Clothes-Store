@@ -2,43 +2,42 @@ import { ref } from "vue";
 import namer from "color-namer";
 import { createProductForm, moreCreateItemForm } from "@/entities/product-form/model/product-forms";
 
-const countMode = ref<string>('SAME')
+const countMode = ref<string>("SAME");
 
-export const productFormHelper  = () => {
+export const productFormHelper = () => {
     const toggleAllVariants = () => {
         const quantity = Number(createProductForm.value.quantity);
-        if(!quantity) {
+        if (!quantity) {
             return;
         }
 
-        moreCreateItemForm.variants = []
+        moreCreateItemForm.variants = [];
 
-        moreCreateItemForm.colors.forEach(color => {
-            moreCreateItemForm.sizes.forEach(size => {
+        moreCreateItemForm.colors.forEach((color) => {
+            moreCreateItemForm.sizes.forEach((size) => {
                 moreCreateItemForm.variants.push({
                     hex: color.hex,
                     colorName: color.colorName,
                     size: size,
-                    count: quantity
-                })
-            })
-        })
+                    count: quantity,
+                });
+            });
+        });
     };
 
     const toggleQuantity = (hex: string, colorName: string, size: string) => {
-        let item = moreCreateItemForm.variants.find(v => v.hex === hex && v.size === size);
+        let item = moreCreateItemForm.variants.find((v) => v.hex === hex && v.size === size);
 
-        if(!item) {
+        if (!item) {
             item = {
                 hex,
                 colorName,
                 size,
-                count: 0
-            }
+                count: 0,
+            };
             moreCreateItemForm.variants.push(item);
         }
         return item;
-
     };
 
     const toggleColor = (color: string, eventOrColor: Event | string) => {
@@ -46,12 +45,16 @@ export const productFormHelper  = () => {
             moreCreateItemForm.colors = [];
         }
 
-        if (eventOrColor instanceof Event && eventOrColor.target instanceof HTMLInputElement && eventOrColor.target.type === 'color') {
+        if (
+            eventOrColor instanceof Event &&
+            eventOrColor.target instanceof HTMLInputElement &&
+            eventOrColor.target.type === "color"
+        ) {
             const hexColor = eventOrColor.target.value;
             if (!hexColor) return;
 
-            const exists = moreCreateItemForm.colors.some(c =>
-                typeof c === 'string' ? c === hexColor : c.hex === hexColor
+            const exists = moreCreateItemForm.colors.some((c) =>
+                typeof c === "string" ? c === hexColor : c.hex === hexColor,
             );
 
             if (!exists) {
@@ -66,10 +69,10 @@ export const productFormHelper  = () => {
             return;
         }
 
-        const index = moreCreateItemForm.colors.findIndex(c =>
-            typeof c === 'string' ? c === color : c.hex === color
+        const index = moreCreateItemForm.colors.findIndex((c) =>
+            typeof c === "string" ? c === color : c.hex === color,
         );
-        if (typeof eventOrColor === 'string') {
+        if (typeof eventOrColor === "string") {
             return;
         }
         if (index !== -1) {
@@ -82,9 +85,9 @@ export const productFormHelper  = () => {
         if (!Array.isArray(moreCreateItemForm.sizes)) {
             moreCreateItemForm.sizes = [];
         }
-        if(index === -1){
+        if (index === -1) {
             moreCreateItemForm.sizes.push(sizeName);
-        }else{
+        } else {
             moreCreateItemForm.sizes.splice(index, 1);
         }
     };
@@ -94,6 +97,6 @@ export const productFormHelper  = () => {
         toggleAllVariants,
         toggleQuantity,
         toggleColor,
-        toggleSize
-    }
-}
+        toggleSize,
+    };
+};

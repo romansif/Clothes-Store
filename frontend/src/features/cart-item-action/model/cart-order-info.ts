@@ -2,7 +2,10 @@ import { computed } from "vue";
 import router from "@/app/router";
 import { useCartData } from "@/widgets/cart-list/lib/use-cart-data";
 import { orderStore } from "@/shared/model/order.store";
-import { isAgreeFormError, isAgreeFormErrorMessage } from "@/entities/product-info/model/add-to-cart-form";
+import {
+    isAgreeFormError,
+    isAgreeFormErrorMessage,
+} from "@/entities/product-info/model/add-to-cart-form";
 import type { CartItem } from "@/entities/cart-item";
 
 const { orderItems } = orderStore();
@@ -15,10 +18,7 @@ export const useCartOrderInfo = () => {
     });
 
     const price = computed(() => {
-        return checkedItems.value.reduce(
-            (sum: number, item: CartItem) => sum + item.price,
-            0
-        );
+        return checkedItems.value.reduce((sum: number, item: CartItem) => sum + item.price, 0);
     });
 
     const commissionPrice = computed(() => {
@@ -29,27 +29,28 @@ export const useCartOrderInfo = () => {
         return price.value + commissionPrice.value;
     });
 
-    const toggleAgree= () => {
+    const toggleAgree = () => {
         isAgreeFormError.value.agree = !isAgreeFormError.value.agree;
     };
 
-    const continueToOrder = async () =>  {
-        try{
-            if(!isAgreeFormError.value.agree && !orderItems.value?.length){
-                isAgreeFormErrorMessage.value.agree = 'You must select the items for your order, agree to the Terms and Conditions';
+    const continueToOrder = async () => {
+        try {
+            if (!isAgreeFormError.value.agree && !orderItems.value?.length) {
+                isAgreeFormErrorMessage.value.agree =
+                    "You must select the items for your order, agree to the Terms and Conditions";
                 return;
-            }else if(!isAgreeFormError.value.agree) {
-                isAgreeFormErrorMessage.value.agree = 'You must agree to the Terms and Conditions';
+            } else if (!isAgreeFormError.value.agree) {
+                isAgreeFormErrorMessage.value.agree = "You must agree to the Terms and Conditions";
                 return;
-            }else if(!orderItems.value?.length){
-                isAgreeFormErrorMessage.value.agree = 'You must select the items for your order';
-                return ;
-            }else{
-                isAgreeFormErrorMessage.value.agree = '';
-                isAgreeFormError.value.agreeMessage = false
-                await router.push({ name: 'information' });
+            } else if (!orderItems.value?.length) {
+                isAgreeFormErrorMessage.value.agree = "You must select the items for your order";
+                return;
+            } else {
+                isAgreeFormErrorMessage.value.agree = "";
+                isAgreeFormError.value.agreeMessage = false;
+                await router.push({ name: "information" });
             }
-        }catch(err){
+        } catch (err) {
             console.error(`Failed to go the create order:`, err);
         }
     };
@@ -60,5 +61,5 @@ export const useCartOrderInfo = () => {
         totalPrice,
         toggleAgree,
         continueToOrder,
-    }
-}
+    };
+};

@@ -1,3 +1,3 @@
-export { default as ProfileTab } from './ProfileTab.vue'
+export { default as ProfileTab } from "./ProfileTab.vue";
 
-export type * from './profile-tab.types'
+export type * from "./profile-tab.types";

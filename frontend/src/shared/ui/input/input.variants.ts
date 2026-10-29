@@ -7,6 +7,6 @@ export const inputVariantClasses: Record<InputVariant, string> = {
         text-sm bg-white transition duration-400 font-dm-sans`,
     confidentialityData: `w-full border border-gray-300 rounded-xl outline-none px-4 py-4 text-sm bg-[#D9D9D9]/40
         transition duration-400 hover:bg-gray-50 appearance-none font-dm-sans`,
-}
+};
 
-export const inputErrorClass = `border border-red-500`
+export const inputErrorClass = `border border-red-500`;

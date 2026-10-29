@@ -12,17 +12,19 @@ const { orderId } = orderStore();
 const { openNotify } = useBaseModals();
 
 export const useReplaceOrder = () => {
-    const queryClient = useQueryClient()
+    const queryClient = useQueryClient();
 
-    const { mutateAsync: replaceOrder, isPending, isError } = useMutation({mutationKey: ['replaceOrder'],
+    const {
+        mutateAsync: replaceOrder,
+        isPending,
+        isError,
+    } = useMutation({
+        mutationKey: ["replaceOrder"],
         mutationFn: async () => {
-            const result = replaceOrderSchema.safeParse(cancelChoiceForm.value)
-            if(!result.success){
-                applyZodErrors(
-                    result.error,
-                    cancelChoiceMessage
-                );
-                return
+            const result = replaceOrderSchema.safeParse(cancelChoiceForm.value);
+            if (!result.success) {
+                applyZodErrors(result.error, cancelChoiceMessage);
+                return;
             }
 
             const date = new Date();
@@ -35,44 +37,48 @@ export const useReplaceOrder = () => {
             return await handler(`/orders/${orderId.value}`, {
                 method: "PATCH",
                 body: JSON.stringify({
-                    status: 'Cancelled',
+                    status: "Cancelled",
                     cause_replace: cancelChoiceForm.value.cancelChoice,
                     cancelled_at: date,
                     date_cancelled_at: dateCreated,
                     time_cancelled_at: time,
-                })
+                }),
             });
         },
 
         onSuccess: async () => {
-            clearReplaceForm()
+            clearReplaceForm();
 
-            await queryClient.invalidateQueries({queryKey: ['orders']})
-            await queryClient.invalidateQueries({queryKey: ['activeOrders']})
+            await queryClient.invalidateQueries({ queryKey: ["orders"] });
+            await queryClient.invalidateQueries({ queryKey: ["activeOrders"] });
 
-            await openNotify('You have successfully cancelled the order.',
-                'Thank you for providing us with this information, it helps us improve our service.')
+            await openNotify(
+                "You have successfully cancelled the order.",
+                "Thank you for providing us with this information, it helps us improve our service.",
+            );
 
-            toggleReplaceChoice('')
+            toggleReplaceChoice("");
         },
 
         onError: (err) => {
             applyErrors(err, cancelChoiceMessage);
-            console.error(`Ошибка при отмене заказа`, err);
-        }
-    })
 
-    return{
+            throw new Error(`Ошибка при отмене заказа`, err);
+        },
+    });
+
+    return {
         replaceOrder,
         isPending,
-        isError
-    }
-}
+        isError,
+    };
+};
 
 export const useDeleteOrder = () => {
-    const queryClient = useQueryClient()
+    const queryClient = useQueryClient();
 
-    const { mutateAsync: deleteOrder, isPending } = useMutation({mutationKey: ['deleteOrder'],
+    const { mutateAsync: deleteOrder, isPending } = useMutation({
+        mutationKey: ["deleteOrder"],
         mutationFn: async (id: string) => {
             return await handler(`/orders/${id}`, {
                 method: "DELETE",
@@ -80,16 +86,16 @@ export const useDeleteOrder = () => {
         },
 
         onSuccess: async () => {
-            await queryClient.invalidateQueries({queryKey: ['orders']})
+            await queryClient.invalidateQueries({ queryKey: ["orders"] });
         },
 
         onError: (err) => {
             console.error(`Failed to delete the order:`, err);
-        }
-    })
+        },
+    });
 
     return {
         deleteOrder,
-        isPending
-    }
-}
+        isPending,
+    };
+};

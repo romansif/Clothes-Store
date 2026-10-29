@@ -7,17 +7,17 @@ const { getReviews } = useGetReviews();
 
 export const useReviewButton = async () => {
     const { data: reviews } = useQuery({
-        queryKey: ['reviews'],
+        queryKey: ["reviews"],
         queryFn: () => getReviews(),
     });
 
     const hasReviewed = computed(() =>
         (reviews.value ?? []).some(
-            (review: Review) => review.userId === localStorage.getItem("userId")
-        )
+            (review: Review) => review.userId === localStorage.getItem("userId"),
+        ),
     );
 
     return {
-        hasReviewed
+        hasReviewed,
     };
 };

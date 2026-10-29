@@ -9,5 +9,5 @@ export const useShippingMethod = (props: ShippingInputProps) => {
 
     return {
         methods,
-    }
-}
+    };
+};

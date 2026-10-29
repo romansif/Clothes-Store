@@ -1,10 +1,12 @@
 <template>
-  <ul class="flex flex-col overflow-y-auto no-scrollbar h-92.5 pb-4">
-    <PaymentItem v-for="payment in paymentCards(userPaymentCards)"
-                 :key="payment.id"
-                 :payment="payment"
-                 @click="useSavedCard(payment)" />
-  </ul>
+    <ul class="no-scrollbar flex h-92.5 flex-col overflow-y-auto pb-4">
+        <PaymentItem
+            v-for="payment in paymentCards(userPaymentCards)"
+            :key="payment.id"
+            :payment="payment"
+            @click="useSavedCard(payment)"
+        />
+    </ul>
 </template>
 
 <script setup lang="ts">

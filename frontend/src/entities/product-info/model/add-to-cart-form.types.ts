@@ -1,20 +1,20 @@
 import type { ProductColor } from "@/entities/product-form";
 
 export interface AddForm {
-    colors: ProductColor,
-    sizes: string,
+    colors: ProductColor;
+    sizes: string;
 }
 
 export interface AddFormErrorMessage {
-    colors: string,
-    sizes: string,
+    colors: string;
+    sizes: string;
 }
 
 export interface IsAgreeFormErrorMessage {
-    agree: string,
+    agree: string;
 }
 
 export interface IsAgreeFormError {
-    agree: boolean,
-    agreeMessage: boolean,
+    agree: boolean;
+    agreeMessage: boolean;
 }

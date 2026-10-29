@@ -1,1 +1,1 @@
-export { default as GoogleAuth } from './ui/GoogleAuth.vue'
+export { default as GoogleAuth } from "./ui/GoogleAuth.vue";

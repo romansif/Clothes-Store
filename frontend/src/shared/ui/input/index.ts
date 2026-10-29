@@ -1,3 +1,3 @@
-export { default as UiInput } from './UiInput.vue'
+export { default as UiInput } from "./UiInput.vue";
 
-export type * from './input.types'
+export type * from "./input.types";

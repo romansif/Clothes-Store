@@ -1,53 +1,75 @@
 <template>
-  <nav class="font-raleway">
-    <div class="flex justify-between items-center md:justify-between">
-      <div class="flex items-center gap-5 lg:gap-10">
-        <img :src=catalog alt=""
-             class="w-7.5 cursor-pointer"
-             @click="toggleFilterAside">
-        <div class="xl:flex xl:gap-10
-            lg:flex lg:gap-10
-            md:flex md:gap-5
-            sm:hidden hidden font-light">
-          <span :class="['text-[#A3A3A3] cursor-pointer transition duration-400 hover:text-black hover:scale-120',
-                route.name === 'home' ? 'text-black scale-120' : '']">
-            Home
-          </span>
-          <router-link :to="{name: 'shop/seasons-catalog'}"
-                       class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120">
-            Seasonal
-          </router-link>
-          <router-link :to="{name: 'shop'}"
-                       class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120">
-            Shop
-          </router-link>
-          <router-link :to="{name: 'shop/new-collections'}"
-                       class="text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-120">
-            New
-          </router-link>
+    <nav class="font-raleway">
+        <div class="flex items-center justify-between md:justify-between">
+            <div class="flex items-center gap-5 lg:gap-10">
+                <img
+                    :src="catalog"
+                    alt=""
+                    class="w-7.5 cursor-pointer"
+                    @click="toggleFilterAside"
+                />
+                <div
+                    class="hidden font-light sm:hidden md:flex md:gap-5 lg:flex lg:gap-10 xl:flex xl:gap-10"
+                >
+                    <span
+                        :class="[
+                            'cursor-pointer text-[#A3A3A3] transition duration-400 hover:scale-120 hover:text-black',
+                            route.name === 'home' ? 'scale-120 text-black' : '',
+                        ]"
+                    >
+                        Home
+                    </span>
+                    <router-link
+                        :to="{ name: 'shop/seasons-catalog' }"
+                        class="text-[#A3A3A3] transition duration-400 hover:scale-120 hover:text-black"
+                    >
+                        Seasonal
+                    </router-link>
+                    <router-link
+                        :to="{ name: 'shop' }"
+                        class="text-[#A3A3A3] transition duration-400 hover:scale-120 hover:text-black"
+                    >
+                        Shop
+                    </router-link>
+                    <router-link
+                        :to="{ name: 'shop/new-collections' }"
+                        class="text-[#A3A3A3] transition duration-400 hover:scale-120 hover:text-black"
+                    >
+                        New
+                    </router-link>
+                </div>
+            </div>
+            <div
+                class="flex gap-3 sm:flex sm:gap-3 md:flex md:gap-5 lg:flex lg:gap-10 xl:flex xl:gap-10"
+            >
+                <router-link
+                    :to="{ name: 'favorite' }"
+                    class="transition duration-400 hover:scale-110"
+                >
+                    <div class="hidden sm:hidden md:flex lg:flex xl:flex">
+                        <img :src="liked" alt="" class="w-12.5 rounded-full" />
+                    </div>
+                </router-link>
+                <router-link :to="{ name: 'cart' }" class="transition duration-400 hover:scale-110">
+                    <div class="gap-1 md:flex lg:flex xl:flex xl:items-center">
+                        <span
+                            class="hidden items-center rounded-4xl bg-black px-7 py-3.5 text-white md:flex"
+                        >
+                            Cart
+                        </span>
+                        <img :src="cart" alt="" class="w-12.5 rounded-full" />
+                    </div>
+                </router-link>
+                <router-link :to="{ name: 'profile' }">
+                    <img
+                        :src="profile"
+                        alt=""
+                        class="w-12.5 rounded-full bg-white transition duration-400 hover:scale-110"
+                    />
+                </router-link>
+            </div>
         </div>
-      </div>
-      <div class="xl:flex xl:gap-10 lg:flex lg:gap-10 md:flex md:gap-5
-          sm:flex sm:gap-3 flex gap-3">
-        <router-link :to="{name: 'favorite'}" class="transition duration-400 hover:scale-110">
-          <div class="xl:flex lg:flex md:flex sm:hidden hidden">
-            <img :src=liked alt="" class="w-12.5 rounded-full">
-          </div>
-        </router-link>
-        <router-link :to="{name: 'cart'}" class="transition duration-400 hover:scale-110">
-          <div class="xl:flex xl:items-center lg:flex md:flex gap-1">
-            <span class="px-7 py-3.5 bg-black rounded-4xl text-white items-center md:flex hidden">
-              Cart
-            </span>
-            <img :src=cart alt="" class="w-12.5 rounded-full">
-          </div>
-        </router-link>
-        <router-link :to="{name: 'profile'}">
-          <img :src=profile alt="" class="bg-white transition duration-400 hover:scale-110 w-12.5 rounded-full">
-        </router-link>
-      </div>
-    </div>
-  </nav>
+    </nav>
 </template>
 
 <script setup lang="ts">

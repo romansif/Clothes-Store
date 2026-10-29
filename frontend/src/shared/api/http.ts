@@ -1,28 +1,27 @@
-import router from '@/app/router/index'
+import router from "@/app/router/index";
 import type { ApiErrorResponse } from "@/shared";
 
 export class ApiError extends Error {
-    response?: ApiErrorResponse
+    response?: ApiErrorResponse;
 
     constructor(error: any, message: string) {
-        super(message)
+        super(message);
 
-        this.name = 'ApiError'
-        this.response = error?.response?.data ?? error
+        this.name = "ApiError";
+        this.response = error?.response?.data ?? error;
     }
 }
 
 export const handler = async <T = any>(
     endpoints: string,
     options: RequestInit = {},
-    retry = false
+    retry = false,
 ): Promise<T> => {
-    options.credentials = 'include'
+    options.credentials = "include";
 
     const headers: Record<string, string> = {
-        "Authorization": `Bearer ${localStorage.getItem('accessToken')}`,
-        ...(options.headers as Record<string, string>)
-    }
+        ...(options.headers as Record<string, string>),
+    };
 
     if (!(options.body instanceof FormData)) {
         headers["Content-Type"] = "application/json";
@@ -31,40 +30,37 @@ export const handler = async <T = any>(
     const fetchOptions: RequestInit = {
         ...options,
         headers,
-        credentials: 'include',
-    }
+        credentials: "include",
+    };
 
-    const res = await fetch(`${import.meta.env.VITE_BASE_API}${endpoints}`, fetchOptions)
-    if(res.status === 401 && !retry){
-        try{
+    const res = await fetch(`${import.meta.env.VITE_BASE_API}${endpoints}`, fetchOptions);
+    if (res.status === 401 && !retry) {
+        try {
             const refreshRes = await fetch(`${import.meta.env.VITE_BASE_API}/refresh`, {
-                method: 'POST',
-                credentials: 'include'
-            })
+                method: "POST",
+                credentials: "include",
+            });
             if (!refreshRes.ok) {
                 localStorage.clear();
 
-                await router.replace({ name: 'signIn' });
+                await router.replace({ name: "signIn" });
 
-                throw new Error(
-                    'Session expired, please log in again.'
-                );
+                throw new Error("Session expired, please log in again.");
             }
             return handler(endpoints, options, true);
-
-        }catch(err){
+        } catch (err) {
             console.log(`Failed to restore the session:`, err);
             localStorage.clear();
 
-            await router.replace({ name: 'signIn' })
+            await router.replace({ name: "signIn" });
             throw err;
         }
     }
-    if(!res.ok){
+    if (!res.ok) {
         const errorData = await res.json().catch(() => ({}));
-        const errorMessage = errorData.message || `Ошибка: ${res.status}`
+        const errorMessage = errorData.message || `Ошибка: ${res.status}`;
 
         throw new ApiError(errorData, errorMessage);
     }
     return res.json();
-}
+};

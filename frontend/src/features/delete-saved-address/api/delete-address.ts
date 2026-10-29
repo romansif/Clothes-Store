@@ -2,9 +2,14 @@ import { handler } from "@/shared/api/http";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
 export const useDeleteAddress = () => {
-    const queryClient = useQueryClient()
+    const queryClient = useQueryClient();
 
-    const { mutateAsync: deleteAddressItem, isPending, isError } = useMutation({mutationKey: ['deleteAddressItem'],
+    const {
+        mutateAsync: deleteAddressItem,
+        isPending,
+        isError,
+    } = useMutation({
+        mutationKey: ["deleteAddressItem"],
         mutationFn: async (id: string) => {
             await handler(`/address/${id}`, {
                 method: "DELETE",
@@ -12,17 +17,17 @@ export const useDeleteAddress = () => {
         },
 
         onSuccess: async () => {
-            await queryClient.invalidateQueries({queryKey: ['userAddresses']})
+            await queryClient.invalidateQueries({ queryKey: ["userAddresses"] });
         },
 
         onError: (err) => {
-            console.error(`Ошибка при удалении адреса доставки`, err);
-        }
-    })
+            throw new Error(`Ошибка при удалении адреса доставки`, err);
+        },
+    });
 
     return {
         deleteAddressItem,
         isPending,
-        isError
-    }
-}
+        isError,
+    };
+};

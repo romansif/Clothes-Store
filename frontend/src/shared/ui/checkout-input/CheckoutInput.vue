@@ -1,20 +1,26 @@
 <template>
-  <input v-model="model"
-         :class="[checkoutInputClasses[props.variant], props.errorMessage ? checkoutInputErrorClass : '']"
-         v-bind="$attrs" />
+    <input
+        v-model="model"
+        :class="[
+            checkoutInputClasses[props.variant],
+            props.errorMessage ? checkoutInputErrorClass : '',
+        ]"
+        v-bind="$attrs"
+    />
 </template>
 
 <script setup lang="ts">
-import { checkoutInputClasses, checkoutInputErrorClass } from "@/shared/ui/checkout-input/checkout-input.variants";
+import {
+    checkoutInputClasses,
+    checkoutInputErrorClass,
+} from "@/shared/ui/checkout-input/checkout-input.variants";
 import type { CheckoutInputProps } from "@/shared/ui/checkout-input";
 
 const props = withDefaults(defineProps<CheckoutInputProps>(), {
-  variant: 'contactInfo',
+    variant: "contactInfo",
 });
 
 const model = defineModel<string | number>();
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

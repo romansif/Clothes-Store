@@ -1,1 +1,1 @@
-export const phoneInputErrorClass = 'border border-red-500'
+export const phoneInputErrorClass = "border border-red-500";

@@ -1,1 +1,1 @@
-export { default as FavoriteCartHeader } from './ui/FavoriteCartHeader.vue'
+export { default as FavoriteCartHeader } from "./ui/FavoriteCartHeader.vue";

@@ -8,5 +8,5 @@ export const useAuthHeader = (route: RouteLocationNormalizedLoaded) => {
     return {
         isLogin,
         isRegister,
-    }
-}
+    };
+};

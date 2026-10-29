@@ -1,7 +1,7 @@
 import { ref } from "vue";
-import { clearUsersForms } from "@/features/change-user-data-from/lib/clear-user-update";
+import { clearUsersForms } from "@/features/change-user-data-form/lib/clear-user-update";
 
-const currentOrder= ref<boolean>(false);
+const currentOrder = ref<boolean>(false);
 const orderHistory = ref<boolean>(false);
 const savedAddresses = ref<boolean>(false);
 const savedPaymentCard = ref<boolean>(false);
@@ -43,5 +43,5 @@ export const useProfileModals = () => {
         confidentialityData,
         savedAddresses,
         savedPaymentCard,
-    }
-}
+    };
+};

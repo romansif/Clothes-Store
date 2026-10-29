@@ -1,1 +1,1 @@
-export { default as AddressesList } from './ui/AddressesList.vue'
+export { default as AddressesList } from "./ui/AddressesList.vue";

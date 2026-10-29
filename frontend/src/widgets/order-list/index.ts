@@ -1,1 +1,1 @@
-export { default as OrderList } from './ui/OrderList.vue'
+export { default as OrderList } from "./ui/OrderList.vue";

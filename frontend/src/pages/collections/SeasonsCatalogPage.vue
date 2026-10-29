@@ -1,10 +1,10 @@
 <template>
-  <main class="flex flex-col gap-6 mt-10">
-    <HeaderCatalog />
-    <div class="flex gap-10">
-      <SeasonsCatalog />
-    </div>
-  </main>
+    <main class="mt-10 flex flex-col gap-6">
+        <HeaderCatalog />
+        <div class="flex gap-10">
+            <SeasonsCatalog />
+        </div>
+    </main>
 </template>
 
 <script setup lang="ts">

@@ -1,21 +1,23 @@
 <template>
-  <Loading v-if="isPending" />
-  <form action=""
-        class="mt-10"
-        @submit.prevent="register(currentRole)">
-    <RegisterForm />
-    <div class="relative duration-400 hover:scale-105 cursor-pointer">
-      <UiButton type="submit"
+    <Loading v-if="isPending" />
+    <form action="" class="mt-10" @submit.prevent="register(currentRole)">
+        <RegisterForm />
+        <div class="relative cursor-pointer duration-400 hover:scale-105">
+            <UiButton
+                type="submit"
                 variant="register"
-                :name="isRole ? 'SIGN UP BY SELLER' : 'SIGN UP BY BUYER'" />
-      <img :src=maki_arrow alt="" class="absolute w-6.25 top-9.5 left-58 sm:left-118">
+                :name="isRole ? 'SIGN UP BY SELLER' : 'SIGN UP BY BUYER'"
+            />
+            <img :src="maki_arrow" alt="" class="absolute top-9.5 left-58 w-6.25 sm:left-118" />
+        </div>
+    </form>
+    <div class="mt-3 flex justify-center">
+        <UiButton
+            variant="changeRegister"
+            :name="isRole ? 'Sign up as a buyer' : 'Sign up as a seller'"
+            @click="toggleSignUp"
+        />
     </div>
-  </form>
-  <div class="flex justify-center mt-3">
-    <UiButton variant="changeRegister"
-              :name="isRole ? 'Sign up as a buyer' : 'Sign up as a seller'"
-              @click="toggleSignUp" />
-  </div>
 </template>
 
 <script setup lang="ts">
@@ -28,5 +30,5 @@ import { Loading } from "@/widgets/state";
 
 import maki_arrow from "@/assets/icons/arrows/right-short-arrow.svg";
 
-const { register, isPending } = signUp()
+const { register, isPending } = signUp();
 </script>

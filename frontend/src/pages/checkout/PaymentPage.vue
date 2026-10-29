@@ -1,5 +1,5 @@
 <template>
-  <PaymentDashboard />
+    <PaymentDashboard />
 </template>
 
 <script setup lang="ts">

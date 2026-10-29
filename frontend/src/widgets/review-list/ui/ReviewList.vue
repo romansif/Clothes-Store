@@ -1,12 +1,17 @@
 <template>
-  <ul v-if="filteredReviews" @scroll="loadFiveReviews"
-      class="flex flex-col overflow-y-auto no-scrollbar scroll-smooth min-h-80 max-h-200">
-    <ReviewItem v-for="review in visibleReviews"
-                :key="review.id"
-                :review="review"
-                :user-avatar="avatar"
-                @toggle-review="toggleReviewPhotos" />
-  </ul>
+    <ul
+        v-if="filteredReviews"
+        @scroll="loadFiveReviews"
+        class="no-scrollbar flex max-h-200 min-h-80 flex-col overflow-y-auto scroll-smooth"
+    >
+        <ReviewItem
+            v-for="review in visibleReviews"
+            :key="review.id"
+            :review="review"
+            :user-avatar="avatar"
+            @toggle-review="toggleReviewPhotos"
+        />
+    </ul>
 </template>
 
 <script setup lang="ts">
@@ -22,16 +27,16 @@ import { ReviewItem } from "@/entities/product-review";
 
 const route = useRoute();
 
-const { avatar } = userAvatar()
+const { avatar } = userAvatar();
 const { loadFiveReviews } = reviewsHelper();
 const { visibleReviewsCount } = reviewsStore();
-const { filteredReviews } = useFilteredReviewsData(route)
+const { filteredReviews } = useFilteredReviewsData(route);
 
 const visibleReviews = computed(() =>
-    (filteredReviews.value ?? []).slice(0, visibleReviewsCount.value)
+    (filteredReviews.value ?? []).slice(0, visibleReviewsCount.value),
 );
 
 watch(reviewFilter, () => {
-  visibleReviewsCount.value = 4;
+    visibleReviewsCount.value = 4;
 });
 </script>

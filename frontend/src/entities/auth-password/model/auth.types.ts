@@ -1,7 +1,3 @@
 export interface AuthPassword {
-    password: boolean
+    password: boolean;
 }
-
-
-
-

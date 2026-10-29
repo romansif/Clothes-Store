@@ -1,13 +1,13 @@
 .view-enter-active {
     transition:
-            opacity 500ms ease 100ms,
-            transform 500ms ease 100ms;
+        opacity 500ms ease 100ms,
+        transform 500ms ease 100ms;
 }
 
 .view-leave-active {
     transition:
-            opacity 100ms ease,
-            transform 100ms ease;
+        opacity 100ms ease,
+        transform 100ms ease;
 }
 
 .view-enter-from {

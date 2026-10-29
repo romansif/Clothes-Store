@@ -1,1 +1,1 @@
-export { default as ChangeAvatarModal } from './ui/ChangeAvatarModal.vue'
+export { default as ChangeAvatarModal } from "./ui/ChangeAvatarModal.vue";

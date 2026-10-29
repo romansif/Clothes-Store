@@ -5,12 +5,16 @@ import { getFavoriteProducts } from "@/shared/api/get-favorite";
 export const useFavoriteData = () => {
     const userId = localStorage.getItem("userId");
 
-    const { data: favorite, isLoading, isError } = useQuery({
-        queryKey: computed(() => ['favorite', userId]),
+    const {
+        data: favorite,
+        isLoading,
+        isError,
+    } = useQuery({
+        queryKey: computed(() => ["favorite", userId]),
 
         queryFn: () => {
             if (!userId) {
-                throw new Error('Пользователь не зарегистрирован');
+                throw new Error("Пользователь не зарегистрирован");
             }
 
             return getFavoriteProducts(userId);
@@ -20,8 +24,8 @@ export const useFavoriteData = () => {
     });
 
     return {
-        favorite:  computed(() => favorite.value ?? []),
+        favorite: computed(() => favorite.value ?? []),
         isLoading,
-        isError
+        isError,
     };
-}
+};

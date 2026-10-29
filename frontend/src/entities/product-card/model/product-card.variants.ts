@@ -16,23 +16,25 @@ export const productCardVariants = {
     season: {
         size: "w-83.75 h-45 sm:h-78.5 xl:h-95",
         stack: "absolute top-35 -left-6 text-6xl font-semibold -rotate-50 w-110",
-        button: "absolute top-0.5 left-75.5 w-8 cursor-pointer"
+        button: "absolute top-0.5 left-75.5 w-8 cursor-pointer",
     },
 
     week: {
         size: "w-full h-50 md:h-60 lg:h-85",
         stack: "absolute top-28 -left-13 text-6xl font-semibold -rotate-52 w-110",
-        button: "absolute top-0.5 left-63 w-8 cursor-pointer"
+        button: "absolute top-0.5 left-63 w-8 cursor-pointer",
     },
 
     year: {
         size: "w-full h-50 md:h-70 lg:h-105",
         stack: "absolute top-45 -left-10 text-7xl font-semibold -rotate-50 w-110",
-        button: "absolute top-0.5 left-79.5 w-8 cursor-pointer"
+        button: "absolute top-0.5 left-79.5 w-8 cursor-pointer",
+    },
+} satisfies Record<
+    ProductCardVariant,
+    {
+        size: string;
+        stack: string;
+        button: string;
     }
-
-} satisfies Record<ProductCardVariant, {
-    size: string,
-    stack: string
-    button: string
-}>
+>;

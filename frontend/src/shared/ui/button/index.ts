@@ -1,3 +1,3 @@
-export { default as UiButton } from './UiButton.vue'
+export { default as UiButton } from "./UiButton.vue";
 
-export type * from './button.types'
+export type * from "./button.types";

@@ -1,6 +1,6 @@
-export type CheckoutInputVariant = 'contactInfo' | 'payment'
+export type CheckoutInputVariant = "contactInfo" | "payment";
 
 export interface CheckoutInputProps {
-    variant?: CheckoutInputVariant
+    variant?: CheckoutInputVariant;
     errorMessage?: string;
 }
