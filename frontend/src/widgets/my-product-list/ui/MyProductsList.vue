@@ -14,7 +14,7 @@
                 <DeleteMyProductButton :product="product" />
             </MyProductItem>
         </ul>
-        <EmptyState v-else variant="my-products" />
+        <EmptyState v-else variant="my-products" :loading="isFetching" @reload="refetch()" />
     </Transition>
 </template>
 
@@ -27,7 +27,7 @@ import { EmptyState, ErrorState, Loader } from "@/widgets/state";
 import type { User } from "@/entities/profile";
 
 const { favorite } = useFavoriteData();
-const { myProducts, isLoading, isError } = useMyProductsData();
+const { myProducts, isLoading, isFetching, isError, refetch } = useMyProductsData();
 
 const props = defineProps<{
     user: User | undefined;

@@ -17,7 +17,7 @@
                 @toggle-to-favorite="toggleFavorite({ favorite, product })"
             />
         </ul>
-        <EmptyState v-else variant="favorite" />
+        <EmptyState v-else variant="favorite" :loading="isFetching" @reload="refetch()" />
     </Transition>
 </template>
 
@@ -28,8 +28,8 @@ import { ProductCard } from "@/entities/product-card";
 import { EmptyState, ErrorState, Loader } from "@/widgets/state";
 import type { User } from "@/entities/profile";
 
-const { favorite, isLoading, isError } = useFavoriteData();
 const { toggleFavorite } = useToggleFavorite();
+const { favorite, isLoading, isFetching, isError, refetch } = useFavoriteData();
 
 const props = defineProps<{
     user: User | undefined;

@@ -8,7 +8,9 @@ export const useFavoriteData = () => {
     const {
         data: favorite,
         isLoading,
+        isFetching,
         isError,
+        refetch
     } = useQuery({
         queryKey: computed(() => ["favorite", userId]),
 
@@ -26,6 +28,8 @@ export const useFavoriteData = () => {
     return {
         favorite: computed(() => favorite.value ?? []),
         isLoading,
+        isFetching,
         isError,
+        refetch
     };
 };

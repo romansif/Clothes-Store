@@ -10,7 +10,9 @@ export const useSavedAddressesData = () => {
     const {
         data: userAddresses,
         isLoading,
+        isFetching,
         isError,
+        refetch
     } = useQuery({
         queryKey: computed(() => ["userAddresses", userId]),
 
@@ -28,7 +30,9 @@ export const useSavedAddressesData = () => {
     return {
         userAddresses: computed(() => userAddresses.value ?? []),
         isLoading,
+        isFetching,
         isError,
+        refetch
     };
 };
 
@@ -38,7 +42,9 @@ export const useSavedAddressData = () => {
     const {
         data: userAddress,
         isLoading,
+        isFetching,
         isError,
+        refetch
     } = useQuery({
         queryKey: computed(() => ["userAddress", addressId]),
 
@@ -56,6 +62,8 @@ export const useSavedAddressData = () => {
     return {
         userAddress,
         isLoading,
+        isFetching,
         isError,
+        refetch
     };
 };

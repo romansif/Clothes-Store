@@ -6,7 +6,10 @@
             <p :class="stateTextClass">{{ errorStateMessage[props.variant].text }}</p>
         </div>
         <div :class="buttonBoxClass">
-            <UiButton name="reload" variant="reload" />
+            <UiButton name="reload" variant="reload" @click="emit('reload')">
+              <span :class="{ 'animate-[spin_0.5s_linear_infinite]': props.loading }">↻</span>
+              <span>reload</span>
+            </UiButton>
             <router-link
                 v-if="stateRoute[props.variant]"
                 :to="{ name: stateRoute[props.variant] }"
@@ -38,5 +41,10 @@ import type { PageVariant } from "@/widgets/state";
 
 const props = defineProps<{
     variant: PageVariant;
+    loading: boolean
+}>();
+
+const emit = defineEmits<{
+  reload: [];
 }>();
 </script>

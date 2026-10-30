@@ -9,7 +9,9 @@ export const useWeekProductData = (
     const {
         data: weekProducts,
         isLoading,
+        isFetching,
         isError,
+        refetch
     } = useQuery({
         queryKey: computed(() => ["weekProducts", type, filter]),
         queryFn: () => getWeekProducts(toValue(type), toValue(filter)),
@@ -18,6 +20,8 @@ export const useWeekProductData = (
     return {
         weekProducts: computed(() => weekProducts.value ?? []),
         isLoading,
+        isFetching,
         isError,
+        refetch
     };
 };

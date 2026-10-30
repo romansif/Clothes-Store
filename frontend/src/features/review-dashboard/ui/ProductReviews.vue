@@ -20,7 +20,7 @@
                     <ReviewList />
                 </div>
             </div>
-            <EmptyState v-else variant="reviews" />
+            <EmptyState v-else variant="reviews" :loading="isFetching" @reload="refetch()" />
             <Transition name="modal">
                 <ReviewPhotos
                     v-if="reviewModal"
@@ -47,5 +47,5 @@ import { ReviewList } from "@/widgets/review-list";
 import { ReviewsFilter } from "@/features/product-review-filter";
 import { EmptyState, ErrorState, Loader } from "@/widgets/state";
 
-const { reviews, isLoading, isError } = useReviewsData();
+const { reviews, isLoading, isFetching, isError, refetch } = useReviewsData();
 </script>

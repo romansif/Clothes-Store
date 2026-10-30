@@ -31,7 +31,7 @@ export const useFilteredProductData = (
 ) => {
     const term = computed(() => toValue(search).trim());
 
-    const { data, isLoading, isError } = useQuery({
+    const { data, isLoading, isFetching, isError, refetch } = useQuery({
         queryKey: computed(() => ["filteredProducts", toValue(type), toValue(filter), term.value]),
         queryFn: () =>
             term.value
@@ -46,7 +46,9 @@ export const useFilteredProductData = (
     return {
         filteredProducts: computed(() => data.value ?? []),
         isLoading,
+        isFetching,
         isError,
+        refetch
     };
 };
 

@@ -10,7 +10,9 @@ export const useSavedPaymentsData = () => {
     const {
         data: userPaymentCards,
         isLoading,
+        isFetching,
         isError,
+        refetch
     } = useQuery({
         queryKey: computed(() => ["userPaymentCards", userId]),
 
@@ -28,7 +30,9 @@ export const useSavedPaymentsData = () => {
     return {
         userPaymentCards: computed(() => userPaymentCards.value ?? []),
         isLoading,
+        isFetching,
         isError,
+        refetch
     };
 };
 
@@ -38,7 +42,9 @@ export const useSavedPaymentData = () => {
     const {
         data: userPaymentCard,
         isLoading,
+        isFetching,
         isError,
+        refetch
     } = useQuery({
         queryKey: computed(() => ["userPaymentCard", paymentId]),
 
@@ -56,6 +62,8 @@ export const useSavedPaymentData = () => {
     return {
         userPaymentCard,
         isLoading,
+        isFetching,
         isError,
+        refetch
     };
 };

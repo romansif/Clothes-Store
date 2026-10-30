@@ -10,7 +10,9 @@ export const useReviewsData = () => {
     const {
         data: reviews,
         isLoading,
+        isFetching,
         isError,
+        refetch
     } = useQuery({
         queryKey: ["reviews"],
         queryFn: () => getReviews(),
@@ -19,7 +21,9 @@ export const useReviewsData = () => {
     return {
         reviews: computed(() => reviews.value ?? []),
         isLoading,
+        isFetching,
         isError,
+        refetch
     };
 };
 
@@ -27,7 +31,9 @@ export const useFilteredReviewsData = (route: RouteLocationNormalizedLoaded) => 
     const {
         data: filteredReviews,
         isLoading,
+        isFetching,
         isError,
+        refetch
     } = useQuery({
         queryKey: computed(() => ["filteredReviews", route.params.id, reviewFilter.value]),
         queryFn: () => getFilteredReviews(route.params.id, reviewFilter.value),
@@ -38,6 +44,8 @@ export const useFilteredReviewsData = (route: RouteLocationNormalizedLoaded) => 
     return {
         filteredReviews,
         isLoading,
+        isFetching,
         isError,
+        refetch
     };
 };

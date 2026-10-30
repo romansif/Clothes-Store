@@ -34,8 +34,8 @@ export const buttonVariantClasses: Record<ButtonVariant, string> = {
     loadReviews: `font-semibold border border-[#D9D9D9] w-150 p-2.5 transition duration-400 hover:bg-white hover:scale-105`,
     profileMenu: `text-[#A3A3A3] block px-4 py-2 text-sm transition duration-400 
           hover:text-black hover:outline-hidden hover:scale-115`,
-    reload: `text-black px-8 py-2 text-xl rounded-full border border-black transition duration-400 
+    reload: `flex gap-2 items-center text-black w-38 px-8 py-2 text-xl rounded-full border border-black transition duration-400 
            hover:outline-hidden hover:scale-110 hover:text-white hover:bg-black`,
-    catalog: `text-black px-4 py-2 text-xl rounded-full border border-black transition duration-400 
+    catalog: `text-black w-38 py-2 text-xl rounded-full border border-black transition duration-400 
            hover:outline-hidden hover:scale-110 hover:text-white hover:bg-black`,
 };

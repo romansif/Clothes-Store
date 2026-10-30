@@ -17,7 +17,7 @@
             <UseCartItemActions :product="product" :cart="cart" />
         </CartProduct>
     </ul>
-    <EmptyState v-else variant="cart" />
+    <EmptyState v-else variant="cart" :loading="isFetching" @reload="refetch()" />
 </template>
 
 <script setup lang="ts">
@@ -31,7 +31,7 @@ import type { User } from "@/entities/profile";
 
 const { favorite } = useFavoriteData();
 const { toggleFavorite } = useToggleFavorite();
-const { cart, isLoading, isError } = useCartData();
+const { cart, isLoading, isFetching, refetch, isError } = useCartData();
 
 const props = defineProps<{
     user: User | undefined;
