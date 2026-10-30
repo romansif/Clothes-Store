@@ -5,29 +5,33 @@
             <h1 :class="stateTitleClass">{{ emptyStateMessage[props.variant].title }}</h1>
             <p :class="stateTextClass">{{ emptyStateMessage[props.variant].text }}</p>
         </div>
-        <router-link
-            v-if="stateRoute[props.variant]"
-            :to="{ name: stateRoute[props.variant] }"
-            :class="stateRouteClass[props.variant]"
-        >
-            <UiButton :name="stateRouteMessage[props.variant]" variant="catalog" />
-        </router-link>
+        <div :class="buttonBoxClass">
+          <UiButton name="reload" variant="reload" />
+          <router-link
+              v-if="stateRoute[props.variant]"
+              :to="{ name: stateRoute[props.variant] }"
+              :class="stateRouteClass[props.variant]"
+          >
+              <UiButton :name="stateRouteMessage[props.variant]" variant="catalog" />
+          </router-link>
+        </div>
     </section>
 </template>
 
 <script setup lang="ts">
 import {
-    stateBoxMessageClass,
-    stateBoxVariantClass,
-    stateRouteClass,
-    stateTextClass,
-    stateTitleClass,
+  buttonBoxClass,
+  stateBoxMessageClass,
+  stateBoxVariantClass,
+  stateRouteClass,
+  stateTextClass,
+  stateTitleClass,
 } from "@/widgets/state/model/state.variants";
 import {
+    stateRoute,
     emptyStateMessage,
     emptyImage,
     stateRouteMessage,
-    stateRoute,
 } from "@/widgets/state/model/state.mock";
 import type { PageVariant } from "@/widgets/state";
 import { UiButton } from "@/shared/ui/button";

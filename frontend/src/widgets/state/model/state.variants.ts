@@ -1,22 +1,22 @@
 import type { PageVariant } from "@/widgets/state";
 
 export const stateBoxClass = `w-full flex flex-col justify-center items-center z-50 gap-8 py-12 
-    font-raleway bg-white border border-[#e5e5e5]`;
+    font-raleway bg-white border`;
 
 export const stateBoxVariantClass: Record<PageVariant, string> = {
     product: "",
-    user: `${stateBoxClass} mt-45`,
+    user: `${stateBoxClass} mt-35`,
     "season-list": `${stateBoxClass} mt-10`,
-    "week-list": `${stateBoxClass} mt-10`,
-    "year-list": `${stateBoxClass} mt-10`,
-    products: `${stateBoxClass} mt-20`,
-    "my-products": `${stateBoxClass} mt-30`,
-    cart: `${stateBoxClass} mt-10`,
-    favorite: `${stateBoxClass} mt-10`,
+    "week-list": `${stateBoxClass} mt-15`,
+    "year-list": `${stateBoxClass} mt-20`,
+    products: `${stateBoxClass} mt-10`,
+    "my-products": `${stateBoxClass} mt-35`,
+    cart: `${stateBoxClass} mt-15`,
+    favorite: `${stateBoxClass} mt-15`,
     reviews: `${stateBoxClass} my-10`,
-    orders: `${stateBoxClass} mt-14`,
-    addresses: `${stateBoxClass} mt-18`,
-    payments: `${stateBoxClass} mt-18`,
+    orders: `${stateBoxClass} mt-15`,
+    addresses: `${stateBoxClass} mt-10`,
+    payments: `${stateBoxClass} mt-10`,
 };
 
 export const stateBoxMessageClass = "flex flex-col items-center gap-6";
