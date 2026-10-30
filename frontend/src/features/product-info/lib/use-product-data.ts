@@ -1,20 +1,15 @@
-import {useQuery, useQueryClient} from "@tanstack/vue-query";
 import { computed } from "vue";
-import { getProduct } from "@/features/product-info/api/get-product";
 import type { RouteLocationNormalizedLoaded } from "vue-router";
+import { useQuery, useQueryClient } from "@tanstack/vue-query";
 import type { Product } from "@/shared";
 
+import { getProduct } from "@/features/product-info/api/get-product";
+
 export const useProductData = (route: RouteLocationNormalizedLoaded) => {
-    const queryClient = useQueryClient()
+    const queryClient = useQueryClient();
     const queryKey = computed(() => ["product", route.params.id]);
 
-    const {
-        data,
-        isLoading,
-        isFetching,
-        isError,
-        refetch
-    } = useQuery({
+    const { data, isLoading, isFetching, isError, refetch } = useQuery({
         queryKey,
 
         queryFn: () => {
@@ -37,12 +32,11 @@ export const useProductData = (route: RouteLocationNormalizedLoaded) => {
         },
     });
 
-
     return {
         product,
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     };
 };

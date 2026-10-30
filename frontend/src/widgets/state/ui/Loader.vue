@@ -11,7 +11,7 @@
 import { loaderBoxVariantClass } from "@/widgets/state/model/state.variants";
 import type { PageVariant } from "@/widgets/state";
 
-import spinner from "@/assets/icons/products/spinner.svg";
+import spinner from "@/assets/icons/app/spinner.svg";
 
 const props = defineProps<{
     variant: PageVariant;

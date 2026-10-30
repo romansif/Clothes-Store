@@ -1,4 +1,5 @@
 import { ref } from "vue";
+
 import { isSavedAddress } from "@/entities/checkout-info-item/model/information.refs";
 
 const informationId = ref<string>("");

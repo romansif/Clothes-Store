@@ -1,5 +1,5 @@
-import { handler } from "@/shared/api/http";
 import type { Review } from "@/entities/product-review";
+import { handler } from "@/shared/api/http";
 
 export const useGetReviews = () => {
     const getReviews = () => {

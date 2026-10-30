@@ -1,9 +1,8 @@
+import autumn_catalog from "@/assets/photos/season-catalogs/autumn_catalog.png";
+import spring_catalog from "@/assets/photos/season-catalogs/spring_catalog.png";
+import summer_catalog from "@/assets/photos/season-catalogs/summer_catalog.png";
+import winter_catalog from "@/assets/photos/season-catalogs/winter_catalog.png";
 import type { Catalog } from "@/shared";
-
-import spring_catalog from "@/assets/photos/main-catalogs/spring_catalog.png";
-import summer_catalog from "@/assets/photos/main-catalogs/summer_catalog.png";
-import autumn_catalog from "@/assets/photos/main-catalogs/autumn_catalog.png";
-import winter_catalog from "@/assets/photos/main-catalogs/winter_catalog.png";
 
 export const seasonsCatalog: Catalog[] = [
     {

@@ -1,4 +1,5 @@
 <template>
+    <Loading v-if="isPending" />
     <form action="" @submit.prevent="createProduct()">
         <CreateImageUpload />
         <ProductBaseInfo />
@@ -27,7 +28,8 @@ import { fileInput, productHelper } from "@/shared/lib/product-helper";
 import { UiButton } from "@/shared/ui/button";
 import { ProductBaseInfo } from "@/entities/product-form";
 import { CreateImageUpload, CreateVariants } from "@/features/product-create-form";
+import { Loading } from "@/widgets/state";
 
-const { createProduct } = useCreateProduct();
 const { onFilesSelected } = productHelper();
+const { createProduct, isPending } = useCreateProduct();
 </script>

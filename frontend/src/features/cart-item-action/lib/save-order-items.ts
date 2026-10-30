@@ -1,6 +1,6 @@
-import { isAgreeFormError } from "@/entities/product-info/model/add-to-cart-form";
 import type { CartItem } from "@/entities/cart-item";
 import type { OrderItem } from "@/entities/order";
+import { isAgreeFormError } from "@/entities/product-info/model/add-to-cart-form";
 
 export const saveOrderItems = (orderItems: OrderItem[], product: CartItem) => {
     const index = orderItems.findIndex((item) => item.id === product.id);

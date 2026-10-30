@@ -42,7 +42,7 @@ import { ratingHelper } from "@/entities/product-review/lib/rating-helper";
 import { reverseRatings } from "@/entities/product-review/model/review-rating";
 import type { Review } from "@/entities/product-review";
 
-import star from "@/assets/icons/products/full-star.png";
+import star from "@/assets/icons/review/full-star.png";
 
 defineProps<{
     reviews: Review[];

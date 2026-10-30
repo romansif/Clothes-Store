@@ -1,17 +1,18 @@
-import router from "@/app/router";
-import { handler } from "@/shared/api/http";
 import { useMutation } from "@tanstack/vue-query";
-import { useBaseModals } from "@/shared/lib/use-notify";
-import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
+
+import router from "@/app/router";
 import {
     clearRegisterForm,
     clearRegisterFormMessages,
 } from "@/features/register-auth/lib/clear-register-form";
-import { registerSchema } from "@/entities/register-form/model/register.schemas";
 import {
     registerForm,
     registerFormErrorMessages,
 } from "@/entities/register-form/model/register-from";
+import { registerSchema } from "@/entities/register-form/model/register.schemas";
+import { handler } from "@/shared/api/http";
+import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
+import { useBaseModals } from "@/shared/lib/use-notify";
 
 const { openNotify } = useBaseModals();
 

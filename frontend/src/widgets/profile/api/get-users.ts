@@ -1,5 +1,5 @@
-import { handler } from "@/shared/api/http";
 import type { User } from "@/entities/profile";
+import { handler } from "@/shared/api/http";
 
 export const useGetUser = () => {
     const getUsers = async () => {

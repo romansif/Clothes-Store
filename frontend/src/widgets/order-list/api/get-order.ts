@@ -1,5 +1,5 @@
-import { handler } from "@/shared/api/http";
 import type { Order } from "@/entities/order";
+import { handler } from "@/shared/api/http";
 
 export const useGetOrder = () => {
     const getOrders = async (userId: string) => {

@@ -1,4 +1,5 @@
 import { ref } from "vue";
+
 import type { LoginForm, LoginFormErrorMessage } from "@/entities/login-form";
 
 export const loginForm = ref<LoginForm>({

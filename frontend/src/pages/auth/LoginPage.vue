@@ -13,7 +13,7 @@
         <span class="w-full border border-[#A3A3A3]"></span>
     </div>
     <div class="mt-3 flex flex-col items-center gap-3">
-        <GoogleAuth class="cursor-pointer duration-400 hover:scale-105" />
+      <GoogleAuth />
     </div>
 </template>
 

@@ -7,10 +7,12 @@
             <div class="flex flex-col justify-center gap-6 py-8">
                 <h2 class="text-center text-2xl font-bold">Click on the avatar to change</h2>
                 <div class="flex flex-col items-center gap-6">
-                  <img :src="avatar()" alt=""
-                       class="w-25 h-25 rounded-full object-cover bg-white
-                       transition duration-300 group-hover:scale-110"
-                       @click="openSelectAvatar" />
+                    <img
+                        :src="avatar()"
+                        alt=""
+                        class="h-25 w-25 rounded-full bg-white object-cover transition duration-300 group-hover:scale-110"
+                        @click="openSelectAvatar"
+                    />
                     <div class="flex gap-12">
                         <UiButton name="Confirm" variant="toggleAvatar" @click="toggleAvatar" />
                     </div>

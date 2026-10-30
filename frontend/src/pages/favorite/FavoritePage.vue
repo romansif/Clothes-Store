@@ -1,5 +1,5 @@
 <template>
-    <main class="mt-10 flex flex-col gap-8 xl:mt-30">
+    <main class="mt-10 flex flex-col gap-8 px-12 xl:mt-30">
         <FavoriteCartHeader />
         <FavoriteList :user="user" />
     </main>

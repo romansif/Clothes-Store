@@ -1,8 +1,10 @@
-import router from "@/app/router";
-import { handler } from "@/shared/api/http";
 import { useMutation } from "@tanstack/vue-query";
-import { useBaseModals } from "@/shared/lib/use-notify";
+
+import router from "@/app/router";
+import { clearLoginForm, clearLoginFormMessages } from "@/features/login-auth/lib/clear-login-form";
 import { loginForm } from "@/entities/login-form/model/login-form";
+import { handler } from "@/shared/api/http";
+import { useBaseModals } from "@/shared/lib/use-notify";
 
 const { openNotify } = useBaseModals();
 
@@ -14,6 +16,8 @@ export const signGoogleAuth = () => {
     } = useMutation({
         mutationKey: ["OAuth"],
         mutationFn: async (response: any) => {
+            clearLoginFormMessages();
+
             const date = new Date();
 
             return await handler("/auth/google", {
@@ -27,6 +31,8 @@ export const signGoogleAuth = () => {
         },
 
         onSuccess: async (data) => {
+            clearLoginForm();
+
             localStorage.setItem("userId", data.id);
 
             await openNotify(

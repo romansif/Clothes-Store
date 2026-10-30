@@ -1,15 +1,16 @@
-import namer from "color-namer";
-import router from "@/app/router";
-import { handler } from "@/shared/api/http";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
-import { useBaseModals } from "@/shared/lib/use-notify";
-import { currentFile } from "@/shared/lib/product-helper";
-import { createProductForm } from "@/entities/product-form/model/product-forms";
+import namer from "color-namer";
+
+import router from "@/app/router";
 import type {
     EditColorsPayload,
     EditImagesPayload,
     EditQuantityPayload,
 } from "@/features/product-edit-form/model/edit-product.types";
+import { createProductForm } from "@/entities/product-form/model/product-forms";
+import { handler } from "@/shared/api/http";
+import { currentFile } from "@/shared/lib/product-helper";
+import { useBaseModals } from "@/shared/lib/use-notify";
 import type { Product } from "@/shared/model/product.types";
 
 const { openNotify } = useBaseModals();
@@ -48,7 +49,7 @@ export const useEditProductImages = () => {
                 await queryClient.invalidateQueries({ queryKey: ["products"] }),
                 await queryClient.invalidateQueries({ queryKey: ["myProducts"] }),
                 await queryClient.invalidateQueries({ queryKey: ["filteredProducts"] }),
-            ])
+            ]);
         },
 
         onError: async (err) => {

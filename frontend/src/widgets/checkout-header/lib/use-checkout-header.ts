@@ -1,6 +1,7 @@
 import { computed } from "vue";
-import { useUnCheckCartItem } from "@/widgets/favorite-cart-header/api/update-cart";
 import type { RouteLocationNormalizedLoaded, Router } from "vue-router";
+
+import { useUnCheckCartItem } from "@/widgets/favorite-cart-header/api/update-cart";
 
 export const useCheckoutHeader = (route: RouteLocationNormalizedLoaded, router: Router) => {
     const { unCheckCartItem } = useUnCheckCartItem();

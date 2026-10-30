@@ -1,15 +1,16 @@
-import { handler } from "@/shared/api/http";
-import { useBaseModals } from "@/shared/lib/use-notify";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
-import { clearCartForm } from "@/features/product-info/lib/clear-cart-form";
+import type { Product } from "@/shared";
+
 import { cartStore } from "@/widgets/cart-list/model/cart.store";
-import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper";
+import { clearCartForm } from "@/features/product-info/lib/clear-cart-form";
 import {
     addToCartForm,
     addToCartFormErrorMessages,
 } from "@/entities/product-info/model/add-to-cart-form";
 import { addToCartSchema } from "@/entities/product-info/model/add-to-cart-schemas";
-import type { Product } from "@/shared";
+import { handler } from "@/shared/api/http";
+import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
+import { useBaseModals } from "@/shared/lib/use-notify";
 
 const { unreadCount } = cartStore();
 const { openNotify } = useBaseModals();

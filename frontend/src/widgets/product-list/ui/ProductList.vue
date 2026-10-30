@@ -1,7 +1,12 @@
 <template>
     <Transition name="view" mode="out-in">
         <Loader v-if="isLoading" variant="products" />
-        <ErrorState v-else-if="isError" variant="products" :loading="isFetching" @reload="refetch()" />
+        <ErrorState
+            v-else-if="isError"
+            variant="products"
+            :loading="isFetching"
+            @reload="refetch()"
+        />
         <ul
             v-else-if="filteredProducts.length"
             class="font-raleway no-scrollbar mt-5 grid max-h-132.5 grid-cols-2 gap-5 overflow-y-auto sm:max-h-197.5 sm:grid-cols-2 sm:gap-8 md:max-h-200 md:gap-10 lg:grid-cols-3 xl:mt-0 xl:max-h-116"

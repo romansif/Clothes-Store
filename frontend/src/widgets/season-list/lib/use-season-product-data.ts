@@ -1,5 +1,6 @@
 import { computed, toValue, type MaybeRefOrGetter } from "vue";
 import { useQuery } from "@tanstack/vue-query";
+
 import { getSeasonal } from "@/widgets/season-list/api/get-season-product";
 
 export const useSeasonProductData = (season: MaybeRefOrGetter<string>) => {
@@ -8,7 +9,7 @@ export const useSeasonProductData = (season: MaybeRefOrGetter<string>) => {
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     } = useQuery({
         queryKey: computed(() => ["seasonCatalog", season]),
         queryFn: () => getSeasonal(toValue(season)),
@@ -20,6 +21,6 @@ export const useSeasonProductData = (season: MaybeRefOrGetter<string>) => {
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     };
 };

@@ -9,7 +9,8 @@
                         <h2>{{ product.collection?.name }} / {{ product.category }}</h2>
                     </div>
                     <div class="ml-auto flex flex-col gap-3 font-medium">
-                        <img v-if="user.role === 'Buyer'"
+                        <img
+                            v-if="user.role === 'Buyer'"
                             :src="isFavorite(favorite, product, user.id) ? liked : like"
                             alt=""
                             class="w-8.75 cursor-pointer"
@@ -74,5 +75,8 @@ const { isFavorite } = previewHelper();
 const { variantsInfo } = productHelper();
 const { toggleFavorite } = useToggleFavorite();
 
-refClearErrorsOnChange(addToCartForm, addToCartFormErrorMessages);
+refClearErrorsOnChange(
+    addToCartForm,
+    addToCartFormErrorMessages
+);
 </script>

@@ -23,9 +23,19 @@
                 <Transition name="view" mode="out-in">
                     <div>
                         <Loader v-if="isLoading" variant="orders" />
-                        <ErrorState v-else-if="isError" variant="orders" :loading="isFetching" @reload="refetch()" />
+                        <ErrorState
+                            v-else-if="isError"
+                            variant="orders"
+                            :loading="isFetching"
+                            @reload="refetch()"
+                        />
                         <OrderList v-else-if="orders.length" :orders="orders" />
-                        <EmptyState v-else variant="orders" :loading="isFetching" @reload="refetch()" />
+                        <EmptyState
+                            v-else
+                            variant="orders"
+                            :loading="isFetching"
+                            @reload="refetch()"
+                        />
                     </div>
                 </Transition>
                 <Transition name="modal">

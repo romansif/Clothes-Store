@@ -2,7 +2,12 @@
     <Transition name="view" mode="out-in">
         <div>
             <Loader v-if="isLoading" variant="reviews" />
-            <ErrorState v-else-if="isError" variant="reviews" :loading="isFetching" @reload="refetch()" />
+            <ErrorState
+                v-else-if="isError"
+                variant="reviews"
+                :loading="isFetching"
+                @reload="refetch()"
+            />
             <div v-else-if="reviews.length" class="font-raleway mb-5 flex flex-col gap-20">
                 <div class="flex flex-col gap-15">
                     <div class="flex flex-col gap-2">

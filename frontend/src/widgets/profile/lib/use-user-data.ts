@@ -1,5 +1,6 @@
 import { computed } from "vue";
 import { useQuery } from "@tanstack/vue-query";
+
 import { useGetUser } from "@/widgets/profile/api/get-users";
 
 const { getUsers, getUser } = useGetUser();
@@ -23,7 +24,7 @@ export const useUserData = () => {
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     } = useQuery({
         queryKey: computed(() => ["user", userId]),
 
@@ -43,6 +44,6 @@ export const useUserData = () => {
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     };
 };

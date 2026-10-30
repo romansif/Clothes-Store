@@ -1,5 +1,6 @@
-import { addToCartForm } from "@/entities/product-info/model/add-to-cart-form";
 import type { ColorItem, Product, Size } from "@/shared";
+
+import { addToCartForm } from "@/entities/product-info/model/add-to-cart-form";
 
 export const addToCartVariants = () => {
     const isColorAvailable = (color: ColorItem, product: Product) =>

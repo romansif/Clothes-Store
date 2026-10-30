@@ -1,4 +1,5 @@
 import { ref } from "vue";
+
 import type { ImageItem } from "@/entities/product-review";
 
 export const reviewModal = ref<boolean>(false);

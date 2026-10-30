@@ -1,5 +1,6 @@
 import { computed } from "vue";
 import { useQuery } from "@tanstack/vue-query";
+
 import { getCartProducts } from "@/widgets/cart-list/api/get-cart";
 
 export const useCartData = () => {
@@ -10,7 +11,7 @@ export const useCartData = () => {
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     } = useQuery({
         queryKey: computed(() => ["cart", userId]),
 
@@ -30,6 +31,6 @@ export const useCartData = () => {
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     };
 };

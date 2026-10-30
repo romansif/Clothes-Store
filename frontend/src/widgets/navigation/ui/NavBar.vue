@@ -45,22 +45,25 @@
                 <router-link
                     v-if="user?.role === 'Buyer'"
                     :to="{ name: 'favorite' }"
-                    class="w-10 h-10 transition duration-400 hover:scale-110"
+                    class="h-10 w-10 transition duration-400 hover:scale-110"
                 >
                     <div class="hidden sm:hidden md:flex lg:flex xl:flex">
-                        <img :src="liked" alt="" class="w-10 h-10 rounded-full" />
+                        <img :src="liked" alt="" class="h-10 w-10 rounded-full" />
                     </div>
                 </router-link>
-                <router-link :to="{ name: 'profile' }"
-                             class="flex items-center gap-2.5 group">
-                  <img :src="user ? avatar() : profile" alt=""
-                       class="w-10 h-10 rounded-full object-cover bg-white
-                        transition duration-300 group-hover:scale-110"/>
-                  <span v-if="user" class="font-medium">{{ user.name }}</span>
+                <router-link :to="{ name: 'profile' }" class="group flex items-center gap-2.5">
+                    <img
+                        :src="user ? avatar() : profile"
+                        alt=""
+                        class="h-10 w-10 rounded-full bg-white object-cover transition duration-300 group-hover:scale-110"
+                    />
+                    <span v-if="user" class="font-medium">{{ user.name }}</span>
                 </router-link>
-                <router-link v-if="user?.role === 'Buyer'"
-                             :to="{ name: 'cart' }"
-                             class="transition duration-400 hover:scale-110">
+                <router-link
+                    v-if="user?.role === 'Buyer'"
+                    :to="{ name: 'cart' }"
+                    class="transition duration-400 hover:scale-110"
+                >
                     <div class="gap-1 md:flex lg:flex xl:flex xl:items-center">
                         <span
                             class="hidden items-center rounded-4xl bg-black px-7 py-3.5 text-white md:flex"
@@ -87,9 +90,9 @@ import profile from "@/assets/icons/nav/default-avatar.png";
 import catalog from "@/assets/icons/nav/catalog.svg";
 
 const route = useRoute();
-const { avatar } = userAvatar()
+const { avatar } = userAvatar();
 
 const props = defineProps<{
-  user: User | undefined
-}>()
+    user: User | undefined;
+}>();
 </script>

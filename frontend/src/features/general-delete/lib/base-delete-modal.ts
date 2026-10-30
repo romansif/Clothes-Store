@@ -1,12 +1,12 @@
 import { ref } from "vue";
 
-import { useDeletePayment } from "@/features/delete-saved-payment-card/api/delete-payment";
 import { useDeleteCartItem } from "@/features/cart-item-action/api/delete-cart";
-import { useDeleteAddress } from "@/features/delete-saved-address/api/delete-address";
-import { useDeleteOrder } from "@/features/order-action/api/delete-order";
-import { useLogout, useDeleteAccount } from "@/features/profile-menu/api/delete-logout-user.ts";
-import { useDeleteFavoriteProduct } from "@/features/general-delete/api/delete-favorite-item";
 import { useDeleteProduct } from "@/features/delete-my-product/api/delete-product";
+import { useDeleteAddress } from "@/features/delete-saved-address/api/delete-address";
+import { useDeletePayment } from "@/features/delete-saved-payment-card/api/delete-payment";
+import { useDeleteFavoriteProduct } from "@/features/general-delete/api/delete-favorite-item";
+import { useDeleteOrder } from "@/features/order-action/api/delete-order";
+import { useDeleteAccount, useLogout } from "@/features/profile-menu/api/delete-logout-user.ts";
 
 const generalId = ref<string>("");
 const deleteType = ref<string>("");

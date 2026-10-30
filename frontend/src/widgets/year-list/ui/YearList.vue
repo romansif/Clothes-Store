@@ -1,7 +1,12 @@
 <template>
     <Transition name="view" mode="out-in">
         <Loader v-if="isLoading" variant="year-list" />
-        <ErrorState v-else-if="isError" variant="year-list" :loading="isFetching" @reload="refetch()" />
+        <ErrorState
+            v-else-if="isError"
+            variant="year-list"
+            :loading="isFetching"
+            @reload="refetch()"
+        />
         <ul
             v-else-if="yearProducts.length"
             v-horizontal-scroll

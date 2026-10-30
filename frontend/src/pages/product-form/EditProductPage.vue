@@ -1,4 +1,5 @@
 <template>
+    <Loading v-if="isPending" />
     <form action="" @submit.prevent="editProductInfo(product)">
         <template v-if="product?.id">
             <EditImageUpload :product="product" />
@@ -34,11 +35,12 @@ import { fileInput } from "@/shared/lib/product-helper";
 import { UiButton } from "@/shared/ui/button";
 import { ProductBaseInfo } from "@/entities/product-form";
 import { EditImageUpload, EditVariants } from "@/features/product-edit-form";
+import { Loading } from "@/widgets/state";
 
 const route = useRoute();
 
 const { editProductImages } = useEditProductImages();
-const { editProductInfo } = useEditProductInfo();
+const { editProductInfo, isPending } = useEditProductInfo();
 
 const { product } = useProductData(route);
 </script>

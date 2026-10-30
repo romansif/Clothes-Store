@@ -1,7 +1,7 @@
 <template>
-    <main class="mt-10 flex flex-col gap-8 xl:mt-30">
+    <main class="mt-10 flex flex-col gap-8 px-12 xl:mt-30">
         <FavoriteCartHeader />
-        <div class="flex flex-col items-center xl:flex-row xl:gap-35">
+        <div class="flex flex-col justify-between items-center xl:flex-row">
             <Transition name="view" mode="out-in">
                 <CartList :user="user" />
             </Transition>

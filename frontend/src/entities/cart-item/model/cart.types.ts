@@ -1,4 +1,4 @@
-import type { ImageItem, ColorItem, Variant, Collection } from "@/shared";
+import type { Collection, ColorItem, ImageItem, Variant } from "@/shared";
 
 export interface CartItem {
     id: string;

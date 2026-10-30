@@ -1,5 +1,6 @@
-import { handler } from "@/shared/api/http";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
+
+import { handler } from "@/shared/api/http";
 import { orderStore } from "@/shared/model/order.store";
 
 const { orderItems } = orderStore();

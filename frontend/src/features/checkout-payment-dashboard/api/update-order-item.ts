@@ -1,6 +1,7 @@
-import { handler } from "@/shared/api/http";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
+
 import type { UpdateCartAndProductPayload } from "@/features/checkout-payment-dashboard";
+import { handler } from "@/shared/api/http";
 
 export const useUpdateCheckedQuantity = () => {
     const queryClient = useQueryClient();

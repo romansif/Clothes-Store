@@ -1,4 +1,4 @@
-import type { Collection, Gender, Material, Category, SizeGuide, SizesShoes } from "@/shared";
+import type { Category, Collection, Gender, Material, SizeGuide, SizesShoes } from "@/shared";
 
 const collections: Collection[] = [
     { season: "Spring", condition: "New", name: "Essence" },

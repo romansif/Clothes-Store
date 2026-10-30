@@ -1,7 +1,8 @@
 import { ref } from "vue";
-import { sizes } from "@/shared/model/product-sizes";
 import type { Product } from "@/shared";
+
 import type { AddForm } from "@/entities/product-info";
+import { sizes } from "@/shared/model/product-sizes";
 
 export const itemPreview = ref<string[]>([]);
 export const activeProductImg = ref<string>("");
@@ -38,7 +39,7 @@ export const productHelper = () => {
 
     const changeImg = (product: Product, index: number) => {
         const galleryProduct = ref<Product>(copyProduct(product));
-        const images = galleryProduct.value.images
+        const images = galleryProduct.value.images;
 
         const realIndex = index + 1;
 

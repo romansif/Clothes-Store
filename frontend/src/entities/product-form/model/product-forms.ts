@@ -1,11 +1,12 @@
 import { reactive, ref } from "vue";
-import type {
-    ProductForm,
-    ProductColor,
-    ProductFormErrorMessage,
-    MoreCreateItemFormErrorMessage,
-} from "@/entities/product-form";
 import type { Variant } from "@/shared";
+
+import type {
+    MoreCreateItemFormErrorMessage,
+    ProductColor,
+    ProductForm,
+    ProductFormErrorMessage,
+} from "@/entities/product-form";
 
 export const createProductForm = ref<ProductForm>({
     title: "",

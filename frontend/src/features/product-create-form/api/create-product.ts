@@ -1,20 +1,21 @@
-import router from "@/app/router";
-import { handler } from "@/shared/api/http";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
-import { useBaseModals } from "@/shared/lib/use-notify";
+
+import router from "@/app/router";
 import { clearProductForm } from "@/features/product-form/lib/clear-product-form";
-import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper";
-import { imageFiles } from "@/shared/lib/product-helper";
 import {
     createProductForm,
-    moreCreateItemForm,
     createProductFormErrorMessages,
+    moreCreateItemForm,
     moreCreateItemFormErrorMessages,
 } from "@/entities/product-form/model/product-forms";
 import {
     createProductSchema,
     moreCreateItemsSchema,
 } from "@/entities/product-form/model/product-schemas";
+import { handler } from "@/shared/api/http";
+import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
+import { imageFiles } from "@/shared/lib/product-helper";
+import { useBaseModals } from "@/shared/lib/use-notify";
 
 const { openNotify } = useBaseModals();
 
@@ -81,7 +82,7 @@ export const useCreateProduct = () => {
                 await queryClient.invalidateQueries({ queryKey: ["products"] }),
                 await queryClient.invalidateQueries({ queryKey: ["myProducts"] }),
                 await queryClient.invalidateQueries({ queryKey: ["filteredProducts"] }),
-            ])
+            ]);
 
             await openNotify(
                 "You have successfully created a new product card",

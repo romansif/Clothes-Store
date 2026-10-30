@@ -1,4 +1,5 @@
 <template>
+    <Loading v-if="isPending" />
     <div class="flex flex-col lg:w-100 xl:w-125">
         <SavedCheckoutPayment v-if="isSavedPayment" />
         <div v-else class="mt-8 flex flex-col gap-5">
@@ -78,16 +79,20 @@ import { isSavedPayment } from "@/entities/checkout-payment-item/model/payment.r
 import { UiButton } from "@/shared/ui/button";
 import { PaymentMethodsForm } from "@/entities/checkout-payment-form";
 import { SavedCheckoutPayment } from "@/features/checkout-payment-dashboard";
+import { Loading } from "@/widgets/state";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 
 const { cart } = useCartData();
 const { products } = useProductsData();
 const { addPayment } = useAddPayment();
-const { createPayment } = useCreatePayment();
 const { userPaymentCard } = useSavedPaymentData();
 const { userPaymentCards } = useSavedPaymentsData();
+const { createPayment, isPending } = useCreatePayment();
 const { openCardForm, closeCardForm, toggleShowPayment, isDebitCard } = togglePaymentForm();
 
-refClearErrorsOnChange(paymentForm, paymentFormErrorMessage);
+refClearErrorsOnChange(
+    paymentForm,
+    paymentFormErrorMessage
+);
 </script>

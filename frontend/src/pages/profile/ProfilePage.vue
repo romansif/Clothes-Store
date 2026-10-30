@@ -1,7 +1,7 @@
 <template>
     <Transition name="view" mode="out-in">
         <Loader v-if="isLoading" variant="user" />
-        <ErrorState v-else-if="isError" variant="user" :loading="isFetching" @reload="refetch()"/>
+        <ErrorState v-else-if="isError" variant="user" :loading="isFetching" @reload="refetch()" />
         <main
             v-else-if="user"
             :class="['font-raleway flex justify-center', user.role === 'Buyer' ? 'py-28' : 'py-46']"

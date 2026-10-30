@@ -1,5 +1,6 @@
 import { computed } from "vue";
 import { useQuery } from "@tanstack/vue-query";
+
 import { getFavoriteProducts } from "@/shared/api/get-favorite";
 
 export const useFavoriteData = () => {
@@ -10,7 +11,7 @@ export const useFavoriteData = () => {
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     } = useQuery({
         queryKey: computed(() => ["favorite", userId]),
 
@@ -30,6 +31,6 @@ export const useFavoriteData = () => {
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     };
 };

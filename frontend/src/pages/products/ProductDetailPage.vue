@@ -3,7 +3,12 @@
         <main class="flex flex-col gap-35 lg:mt-0 lg:w-300">
             <div class="flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
                 <Loader v-if="isLoading" variant="product" />
-                <ErrorState v-else-if="isError" variant="product" :loading="isFetching" @reload="refetch()" />
+                <ErrorState
+                    v-else-if="isError"
+                    variant="product"
+                    :loading="isFetching"
+                    @reload="refetch()"
+                />
                 <ProductInfo
                     v-else-if="product"
                     :user="user"

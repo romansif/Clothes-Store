@@ -1,13 +1,13 @@
 import { handler } from "@/shared/api/http";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
-import { useBaseModals } from "@/shared/lib/use-notify";
-import { reviewsStore } from "@/features/review-dashboard/model/reviews.store";
 import { clearReviewForm } from "@/features/add-review/lib/clear-review-form";
+import { reviewsStore } from "@/features/review-dashboard/model/reviews.store";
 import { toggleReviewModal } from "@/entities/order-action/lib/review-form-modal";
+import { useBaseModals } from "@/shared/lib/use-notify";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
+import { imageFiles } from "@/shared/lib/product-helper";
 import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/review-form";
 import { reviewFormSchema } from "@/entities/review-form/model/review-schemas";
-import { imageFiles } from "@/shared/lib/product-helper";
 import type { User } from "@/entities/profile";
 
 const { productId } = reviewsStore();

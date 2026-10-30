@@ -1,7 +1,8 @@
 import { computed } from "vue";
 import { useQuery } from "@tanstack/vue-query";
-import { useGetReviews } from "@/shared/api/get-reviews";
+
 import type { Review } from "@/entities/product-review";
+import { useGetReviews } from "@/shared/api/get-reviews";
 
 const { getReviews } = useGetReviews();
 

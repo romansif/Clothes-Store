@@ -1,4 +1,5 @@
 import type { Product } from "@/shared";
+
 import type { CartItem } from "@/entities/cart-item";
 
 export const isInCart = (cart: CartItem[], product: Product) => {

@@ -1,6 +1,7 @@
 import { ref } from "vue";
-import { orderStore } from "@/shared/model/order.store";
 import type { Product } from "@/shared";
+
+import { orderStore } from "@/shared/model/order.store";
 
 const { items } = orderStore();
 

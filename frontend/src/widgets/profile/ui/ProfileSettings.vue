@@ -2,10 +2,12 @@
     <div v-if="props.user" class="flex flex-col rounded-xl bg-white shadow-2xl">
         <div class="flex p-5">
             <div class="flex items-center gap-10">
-              <img :src="user ? avatar() : profile" alt=""
-                   class="w-25 h-25 rounded-full object-cover bg-white
-                   transition duration-300 group-hover:scale-110"
-                   @click="toggleAvatar" />
+                <img
+                    :src="user ? avatar() : profile"
+                    alt=""
+                    class="h-25 w-25 rounded-full bg-white object-cover transition duration-300 group-hover:scale-110"
+                    @click="toggleAvatar"
+                />
                 <div class="flex flex-col gap-4 text-xl font-semibold">
                     <div class="font-dm-sans flex gap-2">
                         <span>Name:</span>

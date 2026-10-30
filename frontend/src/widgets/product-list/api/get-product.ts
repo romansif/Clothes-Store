@@ -1,5 +1,6 @@
-import { handler } from "@/shared/api/http";
 import type { Product } from "@/shared";
+
+import { handler } from "@/shared/api/http";
 
 export const useGetProducts = () => {
     const getAllProducts = async () => {

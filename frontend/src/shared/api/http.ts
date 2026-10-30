@@ -1,5 +1,6 @@
-import router from "@/app/router/index";
 import type { ApiErrorResponse } from "@/shared";
+
+import router from "@/app/router/index";
 
 export class ApiError extends Error {
     response?: ApiErrorResponse;

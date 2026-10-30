@@ -11,5 +11,5 @@
 </template>
 
 <script setup lang="ts">
-import spinner from "@/assets/icons/products/spinner.svg";
+import spinner from "@/assets/icons/app/spinner.svg";
 </script>

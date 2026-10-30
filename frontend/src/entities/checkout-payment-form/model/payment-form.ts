@@ -1,4 +1,5 @@
 import { ref } from "vue";
+
 import type { PaymentForm, PaymentFormErrorMessage } from "@/entities/checkout-payment-form";
 
 export const paymentForm = ref<PaymentForm>({

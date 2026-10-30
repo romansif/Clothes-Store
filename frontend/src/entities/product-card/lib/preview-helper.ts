@@ -1,4 +1,5 @@
 import type { Product } from "@/shared";
+
 import type { FavoriteItem } from "@/entities/favorite-item";
 
 export const previewHelper = () => {

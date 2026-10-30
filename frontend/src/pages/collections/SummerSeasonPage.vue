@@ -3,14 +3,19 @@
         <SeasonsHeader />
         <Transition name="view" mode="out-in">
             <Loader v-if="isLoading" variant="season-list" />
-            <ErrorState v-else-if="isError" variant="season-list" :loading="isFetching" @reload="refetch()" />
+            <ErrorState
+                v-else-if="isError"
+                variant="season-list"
+                :loading="isFetching"
+                @reload="refetch()"
+            />
             <div
                 v-else-if="seasonCatalog.length"
                 :class="['flex gap-10', seasonCatalog.length ? '' : 'justify-center']"
             >
                 <SeasonList :user="user" :array="seasonCatalog" season="Summer" />
             </div>
-            <EmptyState v-else variant="season-list" :loading="isFetching" @reload="refetch()"/>
+            <EmptyState v-else variant="season-list" :loading="isFetching" @reload="refetch()" />
         </Transition>
     </main>
 </template>

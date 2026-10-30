@@ -1,4 +1,5 @@
 <template>
+    <Loading v-if="isPending" />
     <div
         class="font-montserrat fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)]"
         @click="toggleReviewModal('')"
@@ -50,11 +51,12 @@ import { fileInput, productHelper } from "@/shared/lib/product-helper";
 import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/review-form";
 import { UiButton } from "@/shared/ui/button";
 import { AddRating, AddReview, AddPhotos } from "@/entities/review-form";
+import { Loading } from "@/widgets/state";
 
 const { user } = useUserData();
 const { ratings } = reviewsStore();
-const { createReview } = useCreateReview();
 const { onFilesSelected } = productHelper();
+const { createReview, isPending } = useCreateReview();
 
 refClearErrorsOnChange(reviewForm, reviewFormMessages);
 </script>

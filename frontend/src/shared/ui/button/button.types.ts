@@ -19,7 +19,9 @@ export type ButtonVariant =
     | "loadReviews"
     | "profileMenu"
     | "reload"
-    | "catalog";
+    | "catalog"
+    | "paymentSuccess"
+    | "viewMyOrders"
 
 export interface ButtonProps {
     name: string;

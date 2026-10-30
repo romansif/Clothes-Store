@@ -1,12 +1,11 @@
 import { ref } from "vue";
-import type { Size } from "@/shared";
-
-import xs from "@/assets/icons/size/xs.svg";
-import s from "@/assets/icons/size/s.svg";
-import m from "@/assets/icons/size/m.svg";
 import l from "@/assets/icons/size/l.svg";
+import m from "@/assets/icons/size/m.svg";
+import s from "@/assets/icons/size/s.svg";
 import xl from "@/assets/icons/size/xl.svg";
+import xs from "@/assets/icons/size/xs.svg";
 import xxl from "@/assets/icons/size/xxl.svg";
+import type { Size } from "@/shared";
 
 export const sizes = ref<Size[]>([
     { isActive: false, name: "XS", url: xs, class: "border-2 border-[#A3A3A3]" },

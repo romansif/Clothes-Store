@@ -1,18 +1,19 @@
-import router from "@/app/router";
-import { handler } from "@/shared/api/http";
 import { useMutation } from "@tanstack/vue-query";
-import { useBaseModals } from "@/shared/lib/use-notify";
+
+import type { UpdateCartAndProductPayload } from "@/features/checkout-payment-dashboard";
+import { useCreateOrder } from "@/features/checkout-payment-dashboard/api/create-order";
+import { useUpdateCheckedQuantity } from "@/features/checkout-payment-dashboard/api/update-order-item";
 import { clearPaymentForm } from "@/features/checkout-payment-dashboard/lib/clear-payment";
 import { togglePaymentForm } from "@/features/checkout-payment-dashboard/lib/toggle-payment";
-import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper";
 import {
     paymentForm,
     paymentFormErrorMessage,
 } from "@/entities/checkout-payment-form/model/payment-form";
 import { addPaymentSchema } from "@/entities/checkout-payment-form/model/payment-schemas";
-import { useCreateOrder } from "@/features/checkout-payment-dashboard/api/create-order";
-import { useUpdateCheckedQuantity } from "@/features/checkout-payment-dashboard/api/update-order-item";
-import type { UpdateCartAndProductPayload } from "@/features/checkout-payment-dashboard";
+import { handler } from "@/shared/api/http";
+import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
+import { useBaseModals } from "@/shared/lib/use-notify";
+import {showSuccessFullPayment} from "@/features/payment-success/model/success-payment.refs";
 
 const { openNotify } = useBaseModals();
 const { paymentId } = togglePaymentForm();
@@ -58,7 +59,8 @@ export const useAddPayment = () => {
                 "You have successfully paid and created order",
                 "You will now be redirected to the profile page",
             );
-            await router.push({ name: "profile" });
+
+            showSuccessFullPayment.value = true
         },
 
         onError: async (err) => {
@@ -122,6 +124,13 @@ export const useCreatePayment = () => {
             }
 
             await finalizeOrder({ products, cart });
+        },
+
+        onSuccess: () => {
+            localStorage.removeItem("addressId");
+            localStorage.removeItem("paymentId");
+
+            showSuccessFullPayment.value = true
         },
 
         onError: async (err) => {

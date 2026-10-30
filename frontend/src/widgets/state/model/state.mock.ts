@@ -1,6 +1,7 @@
+import empty_state from "@/assets/icons/list-state/empty-state.svg";
+import error_state from "@/assets/icons/list-state/error-state.svg";
+
 import type { EmptyStateMessageProps, PageVariant } from "@/widgets/state";
-import error_state from "@/assets/icons/products/error-state.svg";
-import empty_state from "@/assets/icons/products/empty-state.svg";
 
 export const errorImage = error_state;
 export const emptyImage = empty_state;

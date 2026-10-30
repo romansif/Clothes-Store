@@ -33,7 +33,7 @@
                 <router-link v-if="!isProfile" :to="{ name: 'shop' }">
                     <div class="flex md:hidden">
                         <img
-                            :src="back"
+                            :src="right_long_arrow"
                             alt=""
                             class="w-18 rotate-180 transition duration-400 hover:scale-110"
                         />
@@ -43,8 +43,7 @@
             <div
                 class="flex items-center gap-3 sm:flex sm:gap-3 md:flex md:gap-5 lg:flex lg:gap-10 xl:flex xl:gap-10"
             >
-                <router-link v-if="user?.role === 'Buyer'"
-                             :to="{ name: 'favorite' }">
+                <router-link v-if="user?.role === 'Buyer'" :to="{ name: 'favorite' }">
                     <div class="hidden sm:hidden md:flex lg:flex xl:flex">
                         <img
                             :src="liked"
@@ -53,15 +52,20 @@
                         />
                     </div>
                 </router-link>
-                <router-link v-if="isProfile" :to="{ name: 'profile' }"
-                             class="flex items-center gap-2.5 group transition duration-400 hover:scale-110">
-                  <img :src="user ? avatar() : profile" alt=""
-                       class="w-11 h-11 rounded-full object-cover bg-white"/>
+                <router-link
+                    v-if="isProfile"
+                    :to="{ name: 'profile' }"
+                    class="group flex items-center gap-2.5 transition duration-400 hover:scale-110"
+                >
+                    <img
+                        :src="user ? avatar() : profile"
+                        alt=""
+                        class="h-11 w-11 rounded-full bg-white object-cover"
+                    />
 
-                  <span v-if="user" class="font-medium">{{ user.name }}</span>
+                    <span v-if="user" class="font-medium">{{ user.name }}</span>
                 </router-link>
-                <router-link v-if="user?.role === 'Buyer'"
-                             :to="{ name: 'cart' }">
+                <router-link v-if="user?.role === 'Buyer'" :to="{ name: 'cart' }">
                     <div
                         class="gap-1 transition duration-400 hover:scale-110 md:flex lg:flex xl:flex xl:items-center"
                     >
@@ -71,14 +75,12 @@
                             Cart
                         </span>
                         <div class="relative">
-                            <img :src="cart" alt="" class="w-11 h-11 rounded-full" />
+                            <img :src="cart" alt="" class="h-11 w-11 rounded-full" />
                             <div
                                 v-if="unreadCount > 0 && isCart"
                                 class="absolute bottom-7 left-7 rounded-full bg-black px-3 py-0.5"
                             >
-                                <span class="font-dm-sans text-white">{{
-                                    unreadCount
-                                }}</span>
+                                <span class="font-dm-sans text-white">{{ unreadCount }}</span>
                             </div>
                         </div>
                     </div>
@@ -99,12 +101,13 @@ import { routeClass, selectRouteClass } from "@/widgets/navigation/model/route.v
 import cart from "@/assets/icons/nav/cart.png";
 import liked from "@/assets/icons/nav/favorite.jpeg";
 import profile from "@/assets/icons/nav/default-avatar.png";
-import back from "@/assets/icons/arrows/right-long-arrow.png";
+import right_long_arrow from "@/assets/icons/arrows/right-long-arrow.png";
 
 const route = useRoute();
 
 const { user } = useUserData();
 const { avatar } = userAvatar();
 const { unreadCount } = cartStore();
-const { isHome, isCart, isProducts, isNewCollections, isSeasonCollections, isProfile } = useMainNavBar(route);
+const { isHome, isCart, isProducts, isNewCollections, isSeasonCollections, isProfile } =
+    useMainNavBar(route);
 </script>

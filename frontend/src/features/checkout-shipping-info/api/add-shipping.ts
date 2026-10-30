@@ -1,15 +1,16 @@
-import router from "@/app/router";
-import { v4 as uuidv4 } from "uuid";
-import { handler } from "@/shared/api/http";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
-import { useBaseModals } from "@/shared/lib/use-notify";
+import { v4 as uuidv4 } from "uuid";
+
+import router from "@/app/router";
 import { clearShippingForm } from "@/features/checkout-shipping-info/lib/clear-shipping";
-import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper";
 import {
     shippingForm,
     shippingFormErrorMessage,
 } from "@/entities/checkout-shipping/model/shipping-form";
 import { addShippingSchema } from "@/entities/checkout-shipping/model/shipping-schemas";
+import { handler } from "@/shared/api/http";
+import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
+import { useBaseModals } from "@/shared/lib/use-notify";
 
 const { openNotify } = useBaseModals();
 

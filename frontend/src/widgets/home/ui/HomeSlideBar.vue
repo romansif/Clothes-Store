@@ -36,7 +36,7 @@
                             :to="{ name: `${homeSlides[activeSlide].routeName}` }"
                             class="transition duration-500 hover:scale-108"
                         >
-                            <img :src="right_shop" alt="" class="w-18 cursor-pointer" />
+                            <img :src="go_shop" alt="" class="w-18 cursor-pointer" />
                         </router-link>
                     </div>
                 </div>
@@ -51,7 +51,7 @@ import { onMounted, onUnmounted } from "vue";
 import { filterProduct } from "@/shared/lib/filter-product";
 import { homeSlides } from "@/widgets/home/model/slides";
 
-import right_shop from "@/assets/icons/arrows/go-shop.svg";
+import go_shop from "@/assets/icons/arrows/go-shop.svg";
 
 const { activeSlide } = filterProduct();
 

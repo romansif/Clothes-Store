@@ -71,7 +71,7 @@ import type { Product } from "@/shared";
 import type { User } from "@/entities/profile";
 import type { FavoriteItem } from "@/entities/favorite-item";
 
-import pencil from "@/assets/icons/products/pencil.svg";
+import pencil from "@/assets/icons/my-products/pencil.svg";
 
 defineProps<{
     user: User | undefined;

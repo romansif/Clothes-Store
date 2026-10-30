@@ -1,5 +1,6 @@
 import { computed } from "vue";
-import { selectedCountryCode, countries } from "@/shared/ui/phone-input/phone-input.values";
+
+import { countries, selectedCountryCode } from "@/shared/ui/phone-input/phone-input.values";
 
 export const usePhoneInput = () => {
     const currentCountry = computed(() => {

@@ -1,5 +1,6 @@
 import { computed } from "vue";
 import { useQuery } from "@tanstack/vue-query";
+
 import { useGetAddress } from "@/widgets/user-address-list/api/get-address";
 
 const { getAddresses, getAddress } = useGetAddress();
@@ -12,7 +13,7 @@ export const useSavedAddressesData = () => {
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     } = useQuery({
         queryKey: computed(() => ["userAddresses", userId]),
 
@@ -32,7 +33,7 @@ export const useSavedAddressesData = () => {
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     };
 };
 
@@ -44,7 +45,7 @@ export const useSavedAddressData = () => {
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     } = useQuery({
         queryKey: computed(() => ["userAddress", addressId]),
 
@@ -64,6 +65,6 @@ export const useSavedAddressData = () => {
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     };
 };

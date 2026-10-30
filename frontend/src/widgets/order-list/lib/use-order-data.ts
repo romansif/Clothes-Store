@@ -1,5 +1,6 @@
-import { useQuery } from "@tanstack/vue-query";
 import { computed } from "vue";
+import { useQuery } from "@tanstack/vue-query";
+
 import { useGetOrder } from "@/widgets/order-list/api/get-order";
 
 const { getOrders, getActiveOrders } = useGetOrder();
@@ -12,7 +13,7 @@ export const useOrderData = () => {
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     } = useQuery({
         queryKey: computed(() => ["orders", userId]),
 
@@ -32,7 +33,7 @@ export const useOrderData = () => {
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     };
 };
 
@@ -44,7 +45,7 @@ export const useActiveOrderData = () => {
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     } = useQuery({
         queryKey: computed(() => ["activeOrders", userId]),
 
@@ -64,6 +65,6 @@ export const useActiveOrderData = () => {
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     };
 };

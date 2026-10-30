@@ -7,7 +7,7 @@
         </div>
         <Footer />
         <Transition name="sidebar">
-          <AsideFilter v-if="filterAside" />
+            <AsideFilter v-if="filterAside" />
         </Transition>
     </div>
 </template>
@@ -20,5 +20,5 @@ import { Footer } from "@/widgets/footer";
 import { AsideFilter } from "@/widgets/filter-products";
 import { NavBar } from "@/widgets/navigation";
 
-const { user } = useUserData()
+const { user } = useUserData();
 </script>

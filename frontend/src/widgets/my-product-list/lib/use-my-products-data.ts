@@ -1,5 +1,6 @@
-import { useQuery } from "@tanstack/vue-query";
 import { computed } from "vue";
+import { useQuery } from "@tanstack/vue-query";
+
 import { getMyProducts } from "@/widgets/my-product-list/api/get-my-product";
 
 export const useMyProductsData = () => {
@@ -10,7 +11,7 @@ export const useMyProductsData = () => {
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     } = useQuery({
         queryKey: computed(() => ["myProducts", userId]),
 
@@ -30,6 +31,6 @@ export const useMyProductsData = () => {
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     };
 };

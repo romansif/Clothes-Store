@@ -38,4 +38,6 @@ export const buttonVariantClasses: Record<ButtonVariant, string> = {
            hover:outline-hidden hover:scale-110 hover:text-white hover:bg-black`,
     catalog: `text-black w-38 py-2 text-xl rounded-full border border-black transition duration-400 
            hover:outline-hidden hover:scale-110 hover:text-white hover:bg-black`,
+    viewMyOrders: `text-white border-black bg-black border-2 w-87 py-3 font-medium transition duration-400 hover:scale-105 hover:bg-white hover:text-black`,
+    paymentSuccess: `bg-white border-2 border-black w-87 py-3 font-medium transition duration-400 hover:scale-105 hover:bg-black hover:text-white`
 };

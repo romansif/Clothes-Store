@@ -19,7 +19,7 @@
                 <p class="text-md w-55 font-medium">{{ season.text }}</p>
                 <div class="flex items-center gap-15">
                     <span class="cursor-pointer font-medium"> View Collection </span>
-                    <img :src="right_shop" alt="" class="w-16" />
+                    <img :src="go_shop" alt="" class="w-16" />
                 </div>
             </div>
         </div>
@@ -30,5 +30,5 @@
 import router from "@/app/router";
 import { seasonsCatalog } from "@/entities/season-product/model/seasons-specific";
 
-import right_shop from "@/assets/icons/arrows/go-shop.svg";
+import go_shop from "@/assets/icons/arrows/go-shop.svg";
 </script>

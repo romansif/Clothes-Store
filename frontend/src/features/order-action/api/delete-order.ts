@@ -1,12 +1,13 @@
-import { handler } from "@/shared/api/http";
-import { useBaseModals } from "@/shared/lib/use-notify";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
-import { orderStore } from "@/shared/model/order.store";
-import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper";
+
 import { clearReplaceForm } from "@/features/order-modals/lib/clear-order-form";
 import { toggleReplaceChoice } from "@/entities/order-action/lib/order-modal";
 import { cancelChoiceForm, cancelChoiceMessage } from "@/entities/order/model/order-forms";
 import { replaceOrderSchema } from "@/entities/order/model/replace-order-schemas";
+import { handler } from "@/shared/api/http";
+import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
+import { useBaseModals } from "@/shared/lib/use-notify";
+import { orderStore } from "@/shared/model/order.store";
 
 const { orderId } = orderStore();
 const { openNotify } = useBaseModals();
@@ -52,7 +53,7 @@ export const useReplaceOrder = () => {
             await Promise.all([
                 await queryClient.invalidateQueries({ queryKey: ["orders"] }),
                 await queryClient.invalidateQueries({ queryKey: ["activeOrders"] }),
-            ])
+            ]);
 
             await openNotify(
                 "You have successfully cancelled the order.",

@@ -1,5 +1,6 @@
 import { computed, toValue, type MaybeRefOrGetter } from "vue";
 import { useQuery } from "@tanstack/vue-query";
+
 import { getWeekProducts } from "@/widgets/week-list/api/get-week-product";
 
 export const useWeekProductData = (
@@ -11,7 +12,7 @@ export const useWeekProductData = (
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     } = useQuery({
         queryKey: computed(() => ["weekProducts", type, filter]),
         queryFn: () => getWeekProducts(toValue(type), toValue(filter)),
@@ -22,6 +23,6 @@ export const useWeekProductData = (
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     };
 };

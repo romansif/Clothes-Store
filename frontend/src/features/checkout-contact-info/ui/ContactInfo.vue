@@ -1,4 +1,5 @@
 <template>
+    <Loading v-if="isPending" />
     <div class="flex flex-col lg:w-100 xl:w-125">
         <SavedCheckoutInfo v-if="isSavedAddress" />
         <form v-else class="mt-5 flex flex-col gap-5" @submit.prevent="createInformation()">
@@ -56,13 +57,14 @@ import { UiButton } from "@/shared/ui/button";
 import { ContactForm } from "@/entities/checkout-info-form";
 import { AddressForm } from "@/entities/checkout-info-form";
 import { SavedCheckoutInfo } from "@/features/checkout-contact-info";
+import { Loading } from "@/widgets/state";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 
 const { userAddresses } = useSavedAddressesData();
 const { toggleShowContact } = toggleInformation();
-const { createInformation } = useCreateInformation();
 const { addInformation } = useAddInformation();
+const { createInformation, isPending } = useCreateInformation();
 
 refClearErrorsOnChange(informationForm, informationFormErrorMessages);
 </script>

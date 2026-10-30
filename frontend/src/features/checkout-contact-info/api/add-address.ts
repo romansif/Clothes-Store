@@ -1,15 +1,16 @@
-import router from "@/app/router";
-import { handler } from "@/shared/api/http";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
-import { useBaseModals } from "@/shared/lib/use-notify";
+
+import router from "@/app/router";
 import { clearInformationForm } from "@/features/checkout-contact-info/lib/clear-address";
 import { toggleInformation } from "@/features/checkout-contact-info/lib/toggle-contact-info";
-import { applyZodErrors, applyErrors } from "@/shared/lib/errors-helper";
 import {
     informationForm,
     informationFormErrorMessages,
 } from "@/entities/checkout-info-form/model/information-form";
 import { addContactInfoSchema } from "@/entities/checkout-info-form/model/information-schemas";
+import { handler } from "@/shared/api/http";
+import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
+import { useBaseModals } from "@/shared/lib/use-notify";
 
 const { openNotify } = useBaseModals();
 const { informationId } = toggleInformation();

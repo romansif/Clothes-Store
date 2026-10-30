@@ -1,20 +1,21 @@
-import { handler } from "@/shared/api/http";
-import { useBaseModals } from "@/shared/lib/use-notify";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
+
+import { useBaseEditUser } from "@/features/change-user-data-form/api/update-profile";
 import { clearUsersForms } from "@/features/change-user-data-form/lib/clear-user-update";
-import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
-import {
-    updateUserNameSchema,
-    updateUserSurNameSchema,
-    updateUserPhoneSchema,
-    updateUserEmailSchema,
-    updateUserPasswordSchema,
-} from "@/entities/profile-form/model/user-update-schemas";
 import {
     updateUserForm,
     updateUserFormErrorMessages,
 } from "@/entities/profile-form/model/user-update-form";
-import { useBaseEditUser } from "@/features/change-user-data-form/api/update-profile";
+import {
+    updateUserEmailSchema,
+    updateUserNameSchema,
+    updateUserPasswordSchema,
+    updateUserPhoneSchema,
+    updateUserSurNameSchema,
+} from "@/entities/profile-form/model/user-update-schemas";
+import { handler } from "@/shared/api/http";
+import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
+import { useBaseModals } from "@/shared/lib/use-notify";
 
 const {
     clearUpdateUserFormPhone,

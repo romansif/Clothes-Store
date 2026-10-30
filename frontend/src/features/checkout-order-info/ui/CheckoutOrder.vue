@@ -20,10 +20,10 @@
             <div class="flex items-center">
                 <span>Shipping</span>
                 <div class="ml-auto flex gap-2">
-                    <span v-if="shipping" class="text-gray-400">
-                        {{ shipping.delivery }}
-                    </span>
-                    <span v-else class="text-gray-400"> Calculated at next step </span>
+                  <span v-if="shipping !== undefined" class="text-gray-400">
+                    {{ shipping.delivery }}
+                  </span>
+                  <span v-else class="text-gray-400">Calculated at next step</span>
                 </div>
             </div>
         </div>

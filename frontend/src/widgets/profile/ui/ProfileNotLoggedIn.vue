@@ -15,5 +15,5 @@
 </template>
 
 <script setup lang="ts">
-import not_avatar from "@/assets/icons/users/default-avatar.png";
+import not_avatar from "@/assets/icons/nav/default-avatar.png";
 </script>

@@ -13,7 +13,7 @@
             ></div>
             <UpdateQuantityItem :product="product" :cart="cart" />
             <img
-                :src="update"
+                :src="reload"
                 alt=""
                 class="cursor-pointer transition duration-400 hover:scale-120"
             />
@@ -28,7 +28,7 @@ import { AddToOrder, DeleteCartItemButton, UpdateQuantityItem } from "@/features
 import type { Product } from "@/shared";
 import type { CartItem } from "@/entities/cart-item";
 
-import update from "@/assets/icons/products/refresh.svg";
+import reload from "@/assets/icons/app/reload.svg";
 
 defineProps<{
     product: Product;

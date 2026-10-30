@@ -1,4 +1,5 @@
 <template>
+    <Loading v-if="isPending" />
     <div class="flex flex-col lg:w-100 xl:w-125">
         <ShippingAddress :user-address="userAddress" />
         <div class="mt-8 flex flex-col gap-5">
@@ -40,11 +41,12 @@ import {
 import { UiButton } from "@/shared/ui/button";
 import { ShippingAddress } from "@/entities/checkout-shipping";
 import { ShippingMethod } from "@/shared/ui/shipping-method";
+import { Loading } from "@/widgets/state";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 
-const { addShipping } = useAddShipping();
 const { userAddress } = useSavedAddressData();
+const { addShipping, isPending } = useAddShipping();
 
 refClearErrorsOnChange(shippingForm, shippingFormErrorMessage);
 </script>

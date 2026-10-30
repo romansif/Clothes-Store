@@ -1,5 +1,6 @@
 import { computed } from "vue";
 import { useQuery } from "@tanstack/vue-query";
+
 import { useGetPayment } from "@/widgets/user-payment-card-list/api/get-payment";
 
 const { getPayments, getPayment } = useGetPayment();
@@ -12,7 +13,7 @@ export const useSavedPaymentsData = () => {
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     } = useQuery({
         queryKey: computed(() => ["userPaymentCards", userId]),
 
@@ -32,7 +33,7 @@ export const useSavedPaymentsData = () => {
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     };
 };
 
@@ -44,7 +45,7 @@ export const useSavedPaymentData = () => {
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     } = useQuery({
         queryKey: computed(() => ["userPaymentCard", paymentId]),
 
@@ -64,6 +65,6 @@ export const useSavedPaymentData = () => {
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     };
 };

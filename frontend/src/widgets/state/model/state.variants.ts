@@ -5,7 +5,7 @@ export const stateBoxClass = `w-full flex flex-col justify-center items-center z
 
 export const stateBoxVariantClass: Record<PageVariant, string> = {
     product: "",
-    user: `${stateBoxClass} mt-35`,
+    user: `${stateBoxClass} mt-50`,
     "season-list": `${stateBoxClass} mt-10`,
     "week-list": `${stateBoxClass} mt-15`,
     "year-list": `${stateBoxClass} mt-20`,
@@ -13,7 +13,7 @@ export const stateBoxVariantClass: Record<PageVariant, string> = {
     "my-products": `${stateBoxClass} mt-35`,
     cart: `${stateBoxClass} mt-15`,
     favorite: `${stateBoxClass} mt-15`,
-    reviews: `${stateBoxClass} my-10`,
+    reviews: `${stateBoxClass} mb-10`,
     orders: `${stateBoxClass} mt-15`,
     addresses: `${stateBoxClass} mt-10`,
     payments: `${stateBoxClass} mt-10`,

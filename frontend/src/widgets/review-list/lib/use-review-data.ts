@@ -1,8 +1,9 @@
 import { computed } from "vue";
-import { keepPreviousData, useQuery } from "@tanstack/vue-query";
-import { useGetReviews } from "@/shared/api/get-reviews";
-import { reviewFilter } from "@/features/product-review-filter/model/review-filter.store";
 import type { RouteLocationNormalizedLoaded } from "vue-router";
+import { keepPreviousData, useQuery } from "@tanstack/vue-query";
+
+import { reviewFilter } from "@/features/product-review-filter/model/review-filter.store";
+import { useGetReviews } from "@/shared/api/get-reviews";
 
 const { getReviews, getFilteredReviews } = useGetReviews();
 
@@ -12,7 +13,7 @@ export const useReviewsData = () => {
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     } = useQuery({
         queryKey: ["reviews"],
         queryFn: () => getReviews(),
@@ -23,7 +24,7 @@ export const useReviewsData = () => {
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     };
 };
 
@@ -33,7 +34,7 @@ export const useFilteredReviewsData = (route: RouteLocationNormalizedLoaded) => 
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     } = useQuery({
         queryKey: computed(() => ["filteredReviews", route.params.id, reviewFilter.value]),
         queryFn: () => getFilteredReviews(route.params.id, reviewFilter.value),
@@ -46,6 +47,6 @@ export const useFilteredReviewsData = (route: RouteLocationNormalizedLoaded) => 
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     };
 };

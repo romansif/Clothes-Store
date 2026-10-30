@@ -1,4 +1,5 @@
 <template>
+    <Loading v-if="isPending" />
     <div
         class="font-montserrat fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)]"
         @click="toggleReplaceChoice('')"
@@ -23,8 +24,9 @@ import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
 import { cancelChoiceForm, cancelChoiceMessage } from "@/entities/order/model/order-forms";
 import { UiButton } from "@/shared/ui/button";
 import { ReplacementForm } from "@/entities/order";
+import { Loading } from "@/widgets/state";
 
-const { replaceOrder } = useReplaceOrder();
+const { replaceOrder, isPending } = useReplaceOrder();
 
 refClearErrorsOnChange(cancelChoiceForm, cancelChoiceMessage);
 </script>

@@ -1,12 +1,13 @@
 import { computed } from "vue";
+
 import router from "@/app/router";
 import { useCartData } from "@/widgets/cart-list/lib/use-cart-data";
-import { orderStore } from "@/shared/model/order.store";
+import type { CartItem } from "@/entities/cart-item";
 import {
     isAgreeFormError,
     isAgreeFormErrorMessage,
 } from "@/entities/product-info/model/add-to-cart-form";
-import type { CartItem } from "@/entities/cart-item";
+import { orderStore } from "@/shared/model/order.store";
 
 const { orderItems } = orderStore();
 

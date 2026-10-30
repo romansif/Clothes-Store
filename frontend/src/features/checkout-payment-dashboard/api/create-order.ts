@@ -1,9 +1,10 @@
-import { handler } from "@/shared/api/http";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
-import { orderStore } from "@/shared/model/order.store";
-import { useBaseModals } from "@/shared/lib/use-notify";
+
 import { orderPriceInfo } from "@/features/checkout-order-info/lib/order-price-info";
 import { shippingForm } from "@/entities/checkout-shipping/model/shipping-form";
+import { handler } from "@/shared/api/http";
+import { useBaseModals } from "@/shared/lib/use-notify";
+import { orderStore } from "@/shared/model/order.store";
 
 const { items } = orderStore();
 const { openNotify } = useBaseModals();
@@ -34,9 +35,9 @@ export const useCreateOrder = () => {
 
         onError: async (err) => {
             await Promise.all([
-                 queryClient.invalidateQueries({ queryKey: ["orders"] }),
-                 queryClient.invalidateQueries({ queryKey: ["activeOrders"] }),
-            ])
+                queryClient.invalidateQueries({ queryKey: ["orders"] }),
+                queryClient.invalidateQueries({ queryKey: ["activeOrders"] }),
+            ]);
 
             await openNotify(
                 "An error occurred.",

@@ -1,5 +1,5 @@
 <template>
-    <img :src="go_to_shop" alt="" class="rotate-180" @click="goBack" />
+    <img :src="right_long_arrow" alt="" class="rotate-180" @click="goBack" />
     <header class="mt-16 flex flex-col">
         <h1 class="text-xl font-extrabold md:text-2xl xl:text-4xl">CHECKOUT</h1>
         <div class="mt-8 flex gap-14 text-xs font-medium md:text-sm xl:text-lg">
@@ -20,7 +20,7 @@
 import { useRoute, useRouter } from "vue-router";
 import { useCheckoutHeader } from "@/widgets/checkout-header/lib/use-checkout-header";
 
-import go_to_shop from "@/assets/icons/arrows/right-long-arrow.png";
+import right_long_arrow from "@/assets/icons/arrows/right-long-arrow.png";
 
 const route = useRoute();
 const router = useRouter();

@@ -17,11 +17,21 @@
                 <Transition name="view" mode="out-in">
                     <div>
                         <Loader v-if="isLoading" variant="payments" />
-                        <ErrorState v-else-if="isError" variant="payments" :loading="isFetching" @reload="refetch()" />
+                        <ErrorState
+                            v-else-if="isError"
+                            variant="payments"
+                            :loading="isFetching"
+                            @reload="refetch()"
+                        />
                         <div v-else-if="userPaymentCards.length" class="flex w-full flex-col">
                             <PaymentsList />
                         </div>
-                        <EmptyState v-else variant="payments" :loading="isFetching" @reload="refetch()" />
+                        <EmptyState
+                            v-else
+                            variant="payments"
+                            :loading="isFetching"
+                            @reload="refetch()"
+                        />
                     </div>
                 </Transition>
             </div>

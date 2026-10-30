@@ -1,6 +1,7 @@
 import { computed, ref } from "vue";
-import { orderStore } from "@/shared/model/order.store";
+
 import { shippingForm } from "@/entities/checkout-shipping/model/shipping-form";
+import { orderStore } from "@/shared/model/order.store";
 
 const { items } = orderStore();
 

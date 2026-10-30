@@ -1,12 +1,12 @@
-import type {
-    PaymentMethodProps,
-    PaymentMethodDescriptionProps,
-} from "@/entities/checkout-payment-form";
+import apple_pay from "@/assets/icons/checkout/payment/method/applepay.png";
+import google_pay from "@/assets/icons/checkout/payment/method/googlepay.png";
+import pay_pal from "@/assets/icons/checkout/payment/method/paypal.png";
+import visa_pay from "@/assets/icons/checkout/payment/method/visa.png";
 
-import visa_pay from "@/assets/icons/checkout/payment/visa.png";
-import apple_pay from "@/assets/icons/checkout/payment/applepay.png";
-import google_pay from "@/assets/icons/checkout/payment/googlepay.png";
-import pay_pal from "@/assets/icons/checkout/payment/paypal.png";
+import type {
+    PaymentMethodDescriptionProps,
+    PaymentMethodProps,
+} from "@/entities/checkout-payment-form";
 
 export const paymentCardMethod: PaymentMethodDescriptionProps = {
     method: "card",

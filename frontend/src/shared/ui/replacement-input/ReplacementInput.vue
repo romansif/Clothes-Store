@@ -1,5 +1,10 @@
 <template>
-    <div :class="[baseReplacementInputClass, isChecked ? replacementInputClasses.checked : replacementInputClasses.default]">
+    <div
+        :class="[
+            baseReplacementInputClass,
+            isChecked ? replacementInputClasses.checked : replacementInputClasses.default,
+        ]"
+    >
         <input
             v-model="model"
             type="radio"
@@ -14,8 +19,8 @@
 <script setup lang="ts">
 import { useReplacementInput } from "@/shared/ui/replacement-input/use-replacement-input";
 import {
-  baseReplacementInputClass,
-  replacementInputClasses
+    baseReplacementInputClass,
+    replacementInputClasses,
 } from "@/shared/ui/replacement-input/replacement-input.variants";
 import type { ReplacementInputProps } from "@/shared/ui/replacement-input";
 

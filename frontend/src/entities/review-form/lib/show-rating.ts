@@ -1,8 +1,8 @@
-import { reviewForm } from "@/entities/review-form/model/review-form";
+import empty_star from "@/assets/icons/review/empty-star.png";
+import star from "@/assets/icons/review/full-star.png";
+import half_star from "@/assets/icons/review/half-star.png";
 
-import star from "@/assets/icons/products/full-star.png";
-import half_star from "@/assets/icons/products/half-star.png";
-import empty_star from "@/assets/icons/products/empty-star.png";
+import { reviewForm } from "@/entities/review-form/model/review-form";
 
 export const ratingSrc = (rating: number) => {
     return rating <= reviewForm.value.rating

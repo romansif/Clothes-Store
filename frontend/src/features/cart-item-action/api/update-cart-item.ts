@@ -1,10 +1,11 @@
-import { handler } from "@/shared/api/http";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
-import { useBaseModals } from "@/shared/lib/use-notify";
-import { useProductsData } from "@/widgets/product-list/lib/use-product-data";
-import { useDeleteCartItem } from "@/features/cart-item-action/api/delete-cart";
 import type { Variant } from "@/shared";
+
+import { useProductsData } from "@/widgets/product-list/lib/use-product-data";
 import type { UpdateCartItemPayload } from "@/features/cart-item-action";
+import { useDeleteCartItem } from "@/features/cart-item-action/api/delete-cart";
+import { handler } from "@/shared/api/http";
+import { useBaseModals } from "@/shared/lib/use-notify";
 
 const { openNotify } = useBaseModals();
 

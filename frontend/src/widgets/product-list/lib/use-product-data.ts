@@ -1,9 +1,9 @@
-import { keepPreviousData, useQuery } from "@tanstack/vue-query";
 import { computed, toValue, type MaybeRefOrGetter } from "vue";
-import { useGetProducts } from "@/widgets/product-list/api/get-product";
-import { getSearchedProducts } from "@/features/search-product/api/search-product";
+import { keepPreviousData, useQuery } from "@tanstack/vue-query";
+
 import { activeFilter } from "@/widgets/filter-products/model/active-filter";
-import { activeSearch } from "@/features/search-product/api/search-product";
+import { useGetProducts } from "@/widgets/product-list/api/get-product";
+import { activeSearch, getSearchedProducts } from "@/features/search-product/api/search-product";
 
 const { getAllProducts, getFilteredProducts } = useGetProducts();
 
@@ -48,7 +48,7 @@ export const useFilteredProductData = (
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     };
 };
 

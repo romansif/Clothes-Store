@@ -1,5 +1,5 @@
-import { handler } from "@/shared/api/http";
 import type { UserContactInfo } from "@/entities/user-address";
+import { handler } from "@/shared/api/http";
 
 export const useGetAddress = () => {
     const getAddresses = async (userId: string) => {

@@ -1,9 +1,10 @@
-import { handler } from "@/shared/api/http";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
-import { useBaseModals } from "@/shared/lib/use-notify";
-import { applyErrors } from "@/shared/lib/errors-helper";
-import { updateUserFormErrorMessages } from "@/entities/profile-form/model/user-update-form";
+
 import type { EditUserPayload } from "@/features/change-user-data-form/model/edit-user.types";
+import { updateUserFormErrorMessages } from "@/entities/profile-form/model/user-update-form";
+import { handler } from "@/shared/api/http";
+import { applyErrors } from "@/shared/lib/errors-helper";
+import { useBaseModals } from "@/shared/lib/use-notify";
 
 const { openNotify } = useBaseModals();
 

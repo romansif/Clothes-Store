@@ -20,7 +20,7 @@
                         "
                         :src="del"
                         alt=""
-                        class="ml-auto w-5 transition duration-400 hover:scale-120"
+                        class="cursor-pointer ml-auto w-5 transition duration-400 hover:scale-120"
                     />
                 </div>
                 <div class="flex gap-5">
@@ -42,7 +42,7 @@
 <script setup lang="ts">
 import type { UserContactInfo } from "@/entities/user-address";
 
-import del from "@/assets/icons/delete-close/del_address_card.svg";
+import del from "@/assets/icons/delete-close/delete.svg";
 
 defineProps<{
     address: UserContactInfo;

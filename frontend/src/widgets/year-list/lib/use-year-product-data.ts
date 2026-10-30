@@ -1,5 +1,6 @@
-import { useQuery } from "@tanstack/vue-query";
 import { computed, toValue, type MaybeRefOrGetter } from "vue";
+import { useQuery } from "@tanstack/vue-query";
+
 import { getYearProducts } from "@/widgets/year-list/api/get-year-product";
 
 export const useYearProductData = (
@@ -11,7 +12,7 @@ export const useYearProductData = (
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     } = useQuery({
         queryKey: computed(() => ["yearProducts", type, filter]),
         queryFn: () => getYearProducts(toValue(type), toValue(filter)),
@@ -22,6 +23,6 @@ export const useYearProductData = (
         isLoading,
         isFetching,
         isError,
-        refetch
+        refetch,
     };
 };

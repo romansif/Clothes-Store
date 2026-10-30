@@ -1,4 +1,5 @@
 import { ref } from "vue";
+
 import type { InformationForm, InformationFormErrorMessage } from "@/entities/checkout-info-form";
 
 export const informationForm = ref<InformationForm>({

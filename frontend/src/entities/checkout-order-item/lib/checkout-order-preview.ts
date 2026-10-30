@@ -1,5 +1,5 @@
-import { orderStore } from "@/shared/model/order.store";
 import { useOrderData } from "@/widgets/order-list/lib/use-order-data";
+import { orderStore } from "@/shared/model/order.store";
 
 const { items } = orderStore();
 
