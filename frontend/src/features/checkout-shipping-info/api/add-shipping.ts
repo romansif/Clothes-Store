@@ -42,9 +42,9 @@ export const useAddShipping = () => {
         },
 
         onSuccess: async (data) => {
-            await queryClient.invalidateQueries({ queryKey: ["shipping"] });
-
             localStorage.setItem("paymentId", data.paymentId);
+
+            await queryClient.invalidateQueries({ queryKey: ["shipping"] });
 
             await openNotify(
                 "You have successfully added the shipping method",

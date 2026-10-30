@@ -17,10 +17,10 @@
 </template>
 
 <script setup lang="ts">
-import { productHelper } from "@/shared/lib/product-helper";
+import { productHelper} from "@/shared/lib/product-helper";
 import type { Product } from "@/shared";
 
-defineProps<{
+const props = defineProps<{
     product: Product;
 }>();
 

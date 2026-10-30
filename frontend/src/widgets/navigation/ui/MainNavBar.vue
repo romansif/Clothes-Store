@@ -43,7 +43,8 @@
             <div
                 class="flex gap-3 sm:flex sm:gap-3 md:flex md:gap-5 lg:flex lg:gap-10 xl:flex xl:gap-10"
             >
-                <router-link :to="{ name: 'favorite' }">
+                <router-link v-if="user?.role === 'Buyer'"
+                             :to="{ name: 'favorite' }">
                     <div class="hidden sm:hidden md:flex lg:flex xl:flex">
                         <img
                             :src="liked"
@@ -52,7 +53,8 @@
                         />
                     </div>
                 </router-link>
-                <router-link :to="{ name: 'cart' }">
+                <router-link v-if="user?.role === 'Buyer'"
+                             :to="{ name: 'cart' }">
                     <div
                         class="gap-1 transition duration-400 hover:scale-110 md:flex lg:flex xl:flex xl:items-center"
                     >
@@ -74,13 +76,13 @@
                         </div>
                     </div>
                 </router-link>
-                <router-link v-if="isProfile" :to="{ name: 'profile' }">
-                    <img
-                        :src="profile"
-                        alt=""
-                        class="w-13.5 rounded-full bg-white transition duration-400 hover:scale-110"
-                    />
-                </router-link>
+              <router-link v-if="isProfile" :to="{ name: 'profile' }"
+                           class="flex items-center gap-2.5 group">
+                <img :src="user ? avatar() : profile" alt=""
+                     class="w-10 h-10 rounded-full object-cover bg-white
+                      transition duration-300 group-hover:scale-110"/>
+                <span v-if="user" class="font-medium">{{ user.name }}</span>
+              </router-link>
             </div>
         </div>
     </nav>
@@ -88,18 +90,21 @@
 
 <script setup lang="ts">
 import { useRoute } from "vue-router";
+import { userAvatar } from "@/widgets/profile/lib/profile-avatar";
+import { useUserData } from "@/widgets/profile/lib/use-user-data";
 import { useMainNavBar } from "@/widgets/navigation/lib/use-main-nav-bar";
 import { cartStore } from "@/widgets/cart-list/model/cart.store";
 import { routeClass, selectRouteClass } from "@/widgets/navigation/model/route.variants";
 
 import cart from "@/assets/icons/nav/cart.png";
 import liked from "@/assets/icons/nav/favorite.jpeg";
-import profile from "@/assets/icons/nav/profile.png";
+import profile from "@/assets/icons/nav/default-avatar.png";
 import back from "@/assets/icons/arrows/right-long-arrow.png";
 
 const route = useRoute();
 
+const { user } = useUserData();
+const { avatar } = userAvatar();
 const { unreadCount } = cartStore();
-const { isHome, isCart, isProducts, isNewCollections, isSeasonCollections, isProfile } =
-    useMainNavBar(route);
+const { isHome, isCart, isProducts, isNewCollections, isSeasonCollections, isProfile } = useMainNavBar(route);
 </script>

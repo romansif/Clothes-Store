@@ -1,0 +1,29 @@
+.filter-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition:
+            grid-template-rows 0.4s ease-out,
+            opacity 0.4s ease-out;
+}
+
+.filter-body.open {
+    grid-template-rows: 1fr;
+    opacity: 1;
+}
+
+.filter-inner {
+    overflow: hidden;
+    min-height: 0;
+    padding: 4px;
+    margin: -4px;
+}
+
+.arrow {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.arrow.rotated {
+    cursor: pointer;
+    transform: rotate(180deg);
+}

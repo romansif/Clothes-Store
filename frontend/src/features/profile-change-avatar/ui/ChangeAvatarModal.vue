@@ -7,13 +7,10 @@
             <div class="flex flex-col justify-center gap-6 py-8">
                 <h2 class="text-center text-2xl font-bold">Click on the avatar to change</h2>
                 <div class="flex flex-col items-center gap-6">
-                    <img
-                        v-if="user"
-                        :src="avatar()"
-                        alt=""
-                        class="w-35 rounded-full transition duration-400 hover:scale-110"
-                        @click="openSelectAvatar"
-                    />
+                  <img :src="avatar()" alt=""
+                       class="w-25 h-25 rounded-full object-cover bg-white
+                       transition duration-300 group-hover:scale-110"
+                       @click="openSelectAvatar" />
                     <div class="flex gap-12">
                         <UiButton name="Confirm" variant="toggleAvatar" @click="toggleAvatar" />
                     </div>
@@ -35,7 +32,6 @@
 </template>
 
 <script setup lang="ts">
-import { useUserData } from "@/widgets/profile/lib/use-user-data";
 import { userAvatar } from "@/widgets/profile/lib/profile-avatar";
 import {
     openSelectAvatar,
@@ -45,7 +41,6 @@ import { useChangeAvatar } from "@/features/profile-change-avatar/api/update-ava
 import { fileInput } from "@/shared/lib/product-helper";
 import { UiButton } from "@/shared/ui/button";
 
-const { user } = useUserData();
 const { avatar } = userAvatar();
 const { changeAvatar } = useChangeAvatar();
 </script>

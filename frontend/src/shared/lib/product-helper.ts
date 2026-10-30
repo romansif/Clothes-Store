@@ -34,16 +34,20 @@ export const productHelper = () => {
         target.value = "";
     };
 
+    const copyProduct = (p: Product): Product => ({ ...p, images: [...p.images] });
+
     const changeImg = (product: Product, index: number) => {
-        if (!product) return;
+        const galleryProduct = ref<Product>(copyProduct(product));
+        const images = galleryProduct.value.images
 
         const realIndex = index + 1;
-        const mainPath = product.images[0];
 
-        product.images[0] = product.images[realIndex];
-        product.images[realIndex] = mainPath;
+        const mainPath = images[0];
 
-        activeProductImg.value = `${import.meta.env.VITE_SERVER_URL}/${product.images[0]}`;
+        images[0] = images[realIndex];
+        images[realIndex] = mainPath;
+
+        activeProductImg.value = `${import.meta.env.VITE_SERVER_URL}/${images[0]}`;
     };
 
     const productInfoPreview = (product: Product) => {
@@ -185,9 +189,10 @@ export const productHelper = () => {
         openSelectImage,
         onFilesSelected,
 
-        changeImg,
         productInfoPreview,
         angelCards,
+
+        changeImg,
 
         pureCards,
         pureQuantity,

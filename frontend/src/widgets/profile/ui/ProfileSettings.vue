@@ -2,12 +2,10 @@
     <div v-if="props.user" class="flex flex-col rounded-xl bg-white shadow-2xl">
         <div class="flex p-5">
             <div class="flex items-center gap-10">
-                <img
-                    :src="avatar()"
-                    alt=""
-                    class="w-25 rounded-full transition duration-400 hover:scale-108"
-                    @click="toggleAvatar"
-                />
+              <img :src="user ? avatar() : profile" alt=""
+                   class="w-25 h-25 rounded-full object-cover bg-white
+                   transition duration-300 group-hover:scale-110"
+                   @click="toggleAvatar" />
                 <div class="flex flex-col gap-4 text-xl font-semibold">
                     <div class="font-dm-sans flex gap-2">
                         <span>Name:</span>
@@ -44,6 +42,7 @@ import { OpenProfileModals } from "@/widgets/profile";
 import { ProfileModals } from "@/widgets/profile";
 import { ProfileMenu } from "@/features/profile-menu";
 import type { User } from "@/entities/profile";
+import profile from "@/assets/icons/nav/default-avatar.png";
 
 const props = defineProps<{
     user: User;

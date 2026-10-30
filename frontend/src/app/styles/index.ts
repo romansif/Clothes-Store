@@ -5,3 +5,4 @@ import "./modal.css";
 import "./slide.css";
 import "./sidebar.css";
 import "./list-moution.css";
+import "./filter.css";

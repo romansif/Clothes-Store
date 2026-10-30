@@ -49,8 +49,10 @@ export const useReplaceOrder = () => {
         onSuccess: async () => {
             clearReplaceForm();
 
-            await queryClient.invalidateQueries({ queryKey: ["orders"] });
-            await queryClient.invalidateQueries({ queryKey: ["activeOrders"] });
+            await Promise.all([
+                await queryClient.invalidateQueries({ queryKey: ["orders"] }),
+                await queryClient.invalidateQueries({ queryKey: ["activeOrders"] }),
+            ])
 
             await openNotify(
                 "You have successfully cancelled the order.",

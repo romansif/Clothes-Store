@@ -12,7 +12,7 @@
 import { useUserData } from "@/widgets/profile/lib/use-user-data";
 import { ProductList } from "@/widgets/product-list";
 import { MainHeader } from "@/features/products";
-import { FilterProducts } from "@/widgets/product-sidebar";
+import { FilterProducts } from "@/widgets/filter-products";
 
 const { user } = useUserData();
 </script>

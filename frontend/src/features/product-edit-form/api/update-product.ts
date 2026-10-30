@@ -44,9 +44,11 @@ export const useEditProductImages = () => {
         },
 
         onSuccess: async () => {
-            await queryClient.invalidateQueries({ queryKey: ["products"] });
-            await queryClient.invalidateQueries({ queryKey: ["myProducts"] });
-            await queryClient.invalidateQueries({ queryKey: ["filteredProducts"] });
+            await Promise.all([
+                await queryClient.invalidateQueries({ queryKey: ["products"] }),
+                await queryClient.invalidateQueries({ queryKey: ["myProducts"] }),
+                await queryClient.invalidateQueries({ queryKey: ["filteredProducts"] }),
+            ])
         },
 
         onError: async (err) => {

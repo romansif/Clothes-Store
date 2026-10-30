@@ -15,7 +15,7 @@
                 </span>
             </router-link>
             <img
-                v-if="user"
+                v-if="user?.role === 'Buyer'"
                 :src="isFavorite(favorite, product, user.id) ? liked : like"
                 alt=""
                 :class="productCardVariants[props.variant].button"

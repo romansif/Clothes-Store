@@ -77,9 +77,11 @@ export const useCreateProduct = () => {
         },
 
         onSuccess: async () => {
-            await queryClient.invalidateQueries({ queryKey: ["products"] });
-            await queryClient.invalidateQueries({ queryKey: ["myProducts"] });
-            await queryClient.invalidateQueries({ queryKey: ["filteredProducts"] });
+            await Promise.all([
+                await queryClient.invalidateQueries({ queryKey: ["products"] }),
+                await queryClient.invalidateQueries({ queryKey: ["myProducts"] }),
+                await queryClient.invalidateQueries({ queryKey: ["filteredProducts"] }),
+            ])
 
             await openNotify(
                 "You have successfully created a new product card",

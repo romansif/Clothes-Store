@@ -33,8 +33,10 @@ export const useCreateOrder = () => {
         },
 
         onError: async (err) => {
-            await queryClient.invalidateQueries({ queryKey: ["orders"] });
-            await queryClient.invalidateQueries({ queryKey: ["activeOrders"] });
+            await Promise.all([
+                 queryClient.invalidateQueries({ queryKey: ["orders"] }),
+                 queryClient.invalidateQueries({ queryKey: ["activeOrders"] }),
+            ])
 
             await openNotify(
                 "An error occurred.",

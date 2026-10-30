@@ -1,12 +1,12 @@
 <template>
     <div class="flex min-h-screen flex-col bg-[#F0F0F0]">
-        <div class="px-4 pt-4 sm:px-4 sm:pt-4 md:px-5 md:pt-5 lg:px-6 lg:pt-6 xl:px-6 xl:pt-6">
-            <MainNavBar />
-            <router-view />
+        <div class="px-4 pt-7.5 sm:px-4 sm:pt-7.5 md:px-5 md:pt-8.5 lg:px-6 lg:pt-9.5 xl:px-6 xl:pt-9.5">
+          <MainNavBar />
+          <router-view />
         </div>
     </div>
     <Transition name="modal">
-        <Notification v-if="notify" />
+      <Notification v-if="notify" />
     </Transition>
 </template>
 

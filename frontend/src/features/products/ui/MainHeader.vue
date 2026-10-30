@@ -68,7 +68,7 @@ import { useGetProducts } from "@/widgets/product-list/api/get-product";
 import {
     categoryAndCollectionClass,
     selectedCategoryAndCollectionClass,
-} from "@/widgets/product-sidebar/model/filter-item.variants";
+} from "@/widgets/filter-products/model/filter-item.variants";
 import { clearSearchProductForm } from "@/features/search-product/lib/clear-search";
 import { toggleFilterAside } from "@/features/products/lib/product-modal";
 import { searchProductForm } from "@/features/search-product/model/search-form";

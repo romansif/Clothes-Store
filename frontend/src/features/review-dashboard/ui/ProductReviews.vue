@@ -3,7 +3,7 @@
         <div>
             <Loader v-if="isLoading" variant="reviews" />
             <ErrorState v-else-if="isError" variant="reviews" />
-            <div v-if="reviews.length" class="font-raleway mb-5 flex flex-col gap-20">
+            <div v-else-if="reviews.length" class="font-raleway mb-5 flex flex-col gap-20">
                 <div class="flex flex-col gap-15">
                     <div class="flex flex-col gap-2">
                         <h1 class="text-5xl font-bold">Reviews</h1>

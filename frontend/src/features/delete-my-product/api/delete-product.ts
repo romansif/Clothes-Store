@@ -19,6 +19,7 @@ export const useDeleteProduct = () => {
         onSuccess: async () => {
             await Promise.all([
                 queryClient.invalidateQueries({ queryKey: ["filteredProducts"] }),
+                queryClient.invalidateQueries({ queryKey: ["myProducts"] }),
                 queryClient.invalidateQueries({ queryKey: ["yearProducts"] }),
                 queryClient.invalidateQueries({ queryKey: ["weekProducts"] }),
                 queryClient.invalidateQueries({ queryKey: ["seasonCatalog"] }),
