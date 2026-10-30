@@ -10,7 +10,9 @@ export const useOrderData = () => {
     const {
         data: orders,
         isLoading,
+        isFetching,
         isError,
+        refetch
     } = useQuery({
         queryKey: computed(() => ["orders", userId]),
 
@@ -28,7 +30,9 @@ export const useOrderData = () => {
     return {
         orders: computed(() => orders.value ?? []),
         isLoading,
+        isFetching,
         isError,
+        refetch
     };
 };
 
@@ -38,7 +42,9 @@ export const useActiveOrderData = () => {
     const {
         data: activeOrders,
         isLoading,
+        isFetching,
         isError,
+        refetch
     } = useQuery({
         queryKey: computed(() => ["activeOrders", userId]),
 
@@ -56,6 +62,8 @@ export const useActiveOrderData = () => {
     return {
         activeOrders: computed(() => activeOrders.value ?? []),
         isLoading,
+        isFetching,
         isError,
+        refetch
     };
 };

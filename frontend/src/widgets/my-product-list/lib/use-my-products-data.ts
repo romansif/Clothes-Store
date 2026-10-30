@@ -8,7 +8,9 @@ export const useMyProductsData = () => {
     const {
         data: myProducts,
         isLoading,
+        isFetching,
         isError,
+        refetch
     } = useQuery({
         queryKey: computed(() => ["myProducts", userId]),
 
@@ -26,6 +28,8 @@ export const useMyProductsData = () => {
     return {
         myProducts: computed(() => myProducts.value ?? []),
         isLoading,
+        isFetching,
         isError,
+        refetch
     };
 };

@@ -1,7 +1,7 @@
 <template>
     <Transition name="view" mode="out-in">
         <Loader v-if="isLoading" variant="week-list" />
-        <ErrorState v-else-if="isError" variant="week-list" />
+        <ErrorState v-else-if="isError" variant="week-list" :loading="isFetching" @reload="refetch()" />
         <ul
             v-else-if="weekProducts.length"
             v-horizontal-scroll
@@ -17,7 +17,7 @@
                 @toggle-to-favorite="toggleFavorite({ favorite, product })"
             />
         </ul>
-        <EmptyState v-else variant="week-list" />
+        <EmptyState v-else variant="week-list" :loading="isFetching" @reload="refetch()" />
     </Transition>
 </template>
 
@@ -33,7 +33,7 @@ import type { User } from "@/entities/profile";
 const { favorite } = useFavoriteData();
 const { toggleFavorite } = useToggleFavorite();
 const { vHorizontalScroll } = productsHelper();
-const { weekProducts, isLoading, isError } = useWeekProductData("ALL", "ALL");
+const { weekProducts, isLoading, isFetching, isError, refetch } = useWeekProductData("ALL", "ALL");
 
 const props = defineProps<{
     user: User | undefined;

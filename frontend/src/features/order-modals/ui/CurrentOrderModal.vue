@@ -23,9 +23,9 @@
                 <Transition name="view" mode="out-in">
                     <div>
                         <Loader v-if="isLoading" variant="orders" />
-                        <ErrorState v-else-if="isError" variant="orders" />
+                        <ErrorState v-else-if="isError" variant="orders" :loading="isFetching" @reload="refetch()" />
                         <OrderList v-else-if="activeOrders.length" :orders="activeOrders" />
-                        <EmptyState v-else variant="orders" />
+                        <EmptyState v-else variant="orders" :loading="isFetching" @reload="refetch()" />
                     </div>
                 </Transition>
                 <Transition name="modal">
@@ -57,5 +57,5 @@ import { EmptyState, ErrorState, Loader } from "@/widgets/state";
 
 const { clipboard } = useOrder();
 const { toggleCurrentOrder } = useProfileModals();
-const { activeOrders, isLoading, isError } = useActiveOrderData();
+const { activeOrders, isLoading, isFetching, isError, refetch } = useActiveOrderData();
 </script>

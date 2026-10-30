@@ -3,7 +3,7 @@
         <main class="flex flex-col gap-35 lg:mt-0 lg:w-300">
             <div class="flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
                 <Loader v-if="isLoading" variant="product" />
-                <ErrorState v-else-if="isError" variant="product" />
+                <ErrorState v-else-if="isError" variant="product" :loading="isFetching" @reload="refetch()" />
                 <ProductInfo
                     v-else-if="product"
                     :user="user"
@@ -33,7 +33,7 @@ const route = useRoute();
 const { cart } = useCartData();
 const { user } = useUserData();
 const { favorite } = useFavoriteData();
-const { product, isLoading, isError } = useProductData(route);
+const { product, isLoading, isFetching, isError, refetch } = useProductData(route);
 
 const isBuyer = computed(() => {
     if (!user.value) return;

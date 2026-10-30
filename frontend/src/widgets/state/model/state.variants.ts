@@ -47,7 +47,7 @@ export const loaderBoxClass = `font-montserrat inset-0 z-50 flex items-center ju
 
 export const loaderBoxVariantClass: Record<PageVariant, string> = {
     product: `${loaderBoxClass} my-50 px-127`,
-    user: `${loaderBoxClass} my-80`,
+    user: `${loaderBoxClass} my-85`,
     "season-list": `${loaderBoxClass} mt-45`,
     "week-list": `${loaderBoxClass} my-40`,
     "year-list": `${loaderBoxClass} my-40`,

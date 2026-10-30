@@ -21,7 +21,9 @@ export const useUserData = () => {
     const {
         data: user,
         isLoading,
+        isFetching,
         isError,
+        refetch
     } = useQuery({
         queryKey: computed(() => ["user", userId]),
 
@@ -39,6 +41,8 @@ export const useUserData = () => {
     return {
         user,
         isLoading,
+        isFetching,
         isError,
+        refetch
     };
 };

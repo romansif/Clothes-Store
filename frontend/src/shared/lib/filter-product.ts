@@ -1,6 +1,6 @@
 import { ref } from "vue";
 import { sizes } from "@/shared/model/product-sizes";
-import { activeFilter, yearFilter } from "@/features/filter-products/model/active-filter";
+import { activeFilter, yearFilter } from "@/widgets/filter-products/model/active-filter";
 import { clearSearchProductForm } from "@/features/search-product/lib/clear-search";
 import type { Product } from "@/shared";
 
@@ -87,6 +87,7 @@ export const filterProduct = () => {
         clearSearchProductForm();
         activeFilter.value = { type: categoryGroup, value };
         yearFilter.value = { type: categoryGroup, value };
+        selectedGender.value = value
         sizes.value.forEach((s) => {
             s.isActive = false;
         });

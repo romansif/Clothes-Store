@@ -8,7 +8,9 @@ export const useCartData = () => {
     const {
         data: cart,
         isLoading,
+        isFetching,
         isError,
+        refetch
     } = useQuery({
         queryKey: computed(() => ["cart", userId]),
 
@@ -26,6 +28,8 @@ export const useCartData = () => {
     return {
         cart: computed(() => cart.value ?? []),
         isLoading,
+        isFetching,
         isError,
+        refetch
     };
 };

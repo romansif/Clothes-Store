@@ -2,7 +2,7 @@ import { keepPreviousData, useQuery } from "@tanstack/vue-query";
 import { computed, toValue, type MaybeRefOrGetter } from "vue";
 import { useGetProducts } from "@/widgets/product-list/api/get-product";
 import { getSearchedProducts } from "@/features/search-product/api/search-product";
-import { activeFilter } from "@/features/filter-products/model/active-filter";
+import { activeFilter } from "@/widgets/filter-products/model/active-filter";
 import { activeSearch } from "@/features/search-product/api/search-product";
 
 const { getAllProducts, getFilteredProducts } = useGetProducts();
@@ -31,7 +31,7 @@ export const useFilteredProductData = (
 ) => {
     const term = computed(() => toValue(search).trim());
 
-    const { data, isLoading, isError } = useQuery({
+    const { data, isLoading, isFetching, isError, refetch } = useQuery({
         queryKey: computed(() => ["filteredProducts", toValue(type), toValue(filter), term.value]),
         queryFn: () =>
             term.value
@@ -46,7 +46,9 @@ export const useFilteredProductData = (
     return {
         filteredProducts: computed(() => data.value ?? []),
         isLoading,
+        isFetching,
         isError,
+        refetch
     };
 };
 

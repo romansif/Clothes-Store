@@ -6,7 +6,9 @@ export const useSeasonProductData = (season: MaybeRefOrGetter<string>) => {
     const {
         data: seasonCatalog,
         isLoading,
+        isFetching,
         isError,
+        refetch
     } = useQuery({
         queryKey: computed(() => ["seasonCatalog", season]),
         queryFn: () => getSeasonal(toValue(season)),
@@ -16,6 +18,8 @@ export const useSeasonProductData = (season: MaybeRefOrGetter<string>) => {
     return {
         seasonCatalog: computed(() => seasonCatalog.value ?? []),
         isLoading,
+        isFetching,
         isError,
+        refetch
     };
 };

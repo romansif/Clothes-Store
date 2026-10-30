@@ -9,7 +9,9 @@ export const useYearProductData = (
     const {
         data: yearProducts,
         isLoading,
+        isFetching,
         isError,
+        refetch
     } = useQuery({
         queryKey: computed(() => ["yearProducts", type, filter]),
         queryFn: () => getYearProducts(toValue(type), toValue(filter)),
@@ -18,6 +20,8 @@ export const useYearProductData = (
     return {
         yearProducts: computed(() => yearProducts.value ?? []),
         isLoading,
+        isFetching,
         isError,
+        refetch
     };
 };

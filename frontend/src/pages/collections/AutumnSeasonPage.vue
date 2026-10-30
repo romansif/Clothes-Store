@@ -3,14 +3,14 @@
         <SeasonsHeader />
         <Transition name="view" mode="out-in">
             <Loader v-if="isLoading" variant="season-list" />
-            <ErrorState v-else-if="isError" variant="season-list" />
+            <ErrorState v-else-if="isError" variant="season-list" :loading="isFetching" @reload="refetch()" />
             <div
                 v-else-if="seasonCatalog.length"
                 :class="['flex gap-10', seasonCatalog.length ? '' : 'justify-center']"
             >
                 <SeasonList :user="user" :array="seasonCatalog" season="Autumn" />
             </div>
-            <EmptyState v-else variant="season-list" />
+            <EmptyState v-else variant="season-list" :loading="isFetching" @reload="refetch()" />
         </Transition>
     </main>
 </template>
@@ -23,5 +23,5 @@ import { SeasonList } from "@/widgets/season-list";
 import { EmptyState, ErrorState, Loader } from "@/widgets/state";
 
 const { user } = useUserData();
-const { seasonCatalog, isLoading, isError } = useSeasonProductData("Autumn");
+const { seasonCatalog, isLoading, isFetching, isError, refetch } = useSeasonProductData("Autumn");
 </script>

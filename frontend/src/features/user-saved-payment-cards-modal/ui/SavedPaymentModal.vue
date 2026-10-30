@@ -17,11 +17,11 @@
                 <Transition name="view" mode="out-in">
                     <div>
                         <Loader v-if="isLoading" variant="payments" />
-                        <ErrorState v-else-if="isError" variant="payments" />
+                        <ErrorState v-else-if="isError" variant="payments" :loading="isFetching" @reload="refetch()" />
                         <div v-else-if="userPaymentCards.length" class="flex w-full flex-col">
                             <PaymentsList />
                         </div>
-                        <EmptyState v-else variant="payments" />
+                        <EmptyState v-else variant="payments" :loading="isFetching" @reload="refetch()" />
                     </div>
                 </Transition>
             </div>
@@ -43,5 +43,5 @@ import { EmptyState, ErrorState, Loader } from "@/widgets/state";
 
 const { deleteModal } = baseDeleteModal();
 const { toggleSavedPaymentCard } = useProfileModals();
-const { userPaymentCards, isLoading, isError } = useSavedPaymentsData();
+const { userPaymentCards, isLoading, isFetching, isError, refetch } = useSavedPaymentsData();
 </script>

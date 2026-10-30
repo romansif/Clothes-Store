@@ -11,7 +11,9 @@ export const useProductData = (route: RouteLocationNormalizedLoaded) => {
     const {
         data,
         isLoading,
+        isFetching,
         isError,
+        refetch
     } = useQuery({
         queryKey,
 
@@ -39,6 +41,8 @@ export const useProductData = (route: RouteLocationNormalizedLoaded) => {
     return {
         product,
         isLoading,
+        isFetching,
         isError,
+        refetch
     };
 };
