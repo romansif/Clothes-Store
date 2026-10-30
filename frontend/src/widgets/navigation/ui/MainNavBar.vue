@@ -41,7 +41,7 @@
                 </router-link>
             </div>
             <div
-                class="flex gap-3 sm:flex sm:gap-3 md:flex md:gap-5 lg:flex lg:gap-10 xl:flex xl:gap-10"
+                class="flex items-center gap-3 sm:flex sm:gap-3 md:flex md:gap-5 lg:flex lg:gap-10 xl:flex xl:gap-10"
             >
                 <router-link v-if="user?.role === 'Buyer'"
                              :to="{ name: 'favorite' }">
@@ -49,9 +49,16 @@
                         <img
                             :src="liked"
                             alt=""
-                            class="w-12.5 rounded-full transition duration-400 hover:scale-110"
+                            class="w-11 rounded-full transition duration-400 hover:scale-110"
                         />
                     </div>
+                </router-link>
+                <router-link v-if="isProfile" :to="{ name: 'profile' }"
+                             class="flex items-center gap-2.5 group">
+                  <img :src="user ? avatar() : profile" alt=""
+                       class="w-10 h-10 rounded-full object-cover bg-white
+                        transition duration-300 group-hover:scale-110"/>
+                  <span v-if="user" class="font-medium">{{ user.name }}</span>
                 </router-link>
                 <router-link v-if="user?.role === 'Buyer'"
                              :to="{ name: 'cart' }">
@@ -59,12 +66,12 @@
                         class="gap-1 transition duration-400 hover:scale-110 md:flex lg:flex xl:flex xl:items-center"
                     >
                         <span
-                            class="hidden items-center rounded-3xl bg-black px-7 py-3.5 text-white md:flex"
+                            class="hidden items-center rounded-3xl bg-black px-7 py-2 text-white md:flex"
                         >
                             Cart
                         </span>
                         <div class="relative">
-                            <img :src="cart" alt="" class="w-12.5 rounded-full" />
+                            <img :src="cart" alt="" class="w-10 h-10 rounded-full" />
                             <div
                                 v-if="unreadCount > 0 && isCart"
                                 class="absolute bottom-7 left-8 rounded-full bg-black px-3 py-0.5"
@@ -76,13 +83,6 @@
                         </div>
                     </div>
                 </router-link>
-              <router-link v-if="isProfile" :to="{ name: 'profile' }"
-                           class="flex items-center gap-2.5 group">
-                <img :src="user ? avatar() : profile" alt=""
-                     class="w-10 h-10 rounded-full object-cover bg-white
-                      transition duration-300 group-hover:scale-110"/>
-                <span v-if="user" class="font-medium">{{ user.name }}</span>
-              </router-link>
             </div>
         </div>
     </nav>
