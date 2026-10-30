@@ -62,9 +62,7 @@
 </template>
 
 <script setup lang="ts">
-import { watch } from "vue";
 import { filterProduct } from "@/shared/lib/filter-product";
-import { useGetProducts } from "@/widgets/product-list/api/get-product";
 import {
     categoryAndCollectionClass,
     selectedCategoryAndCollectionClass,
@@ -72,20 +70,10 @@ import {
 import { clearSearchProductForm } from "@/features/search-product/lib/clear-search";
 import { toggleFilterAside } from "@/features/products/lib/product-modal";
 import { searchProductForm } from "@/features/search-product/model/search-form";
-import { debouncedSearch, getSearchedProducts } from "@/features/search-product/api/search-product";
 
 import del from "@/assets/icons/delete-close/clean_search.svg";
 import search from "@/assets/icons/nav/search.png";
 import right_arrow from "@/assets/icons/arrows/arrow-right.svg";
 
-const { getFilteredProducts, products } = useGetProducts();
 const { toggleFilter, categories, category } = filterProduct();
-
-watch(debouncedSearch, async (value) => {
-    if (!value) {
-        await getFilteredProducts("ALL", "ALL");
-    } else {
-        await getSearchedProducts(products);
-    }
-});
 </script>

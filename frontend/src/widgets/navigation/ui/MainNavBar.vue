@@ -74,9 +74,9 @@
                             <img :src="cart" alt="" class="w-10 h-10 rounded-full" />
                             <div
                                 v-if="unreadCount > 0 && isCart"
-                                class="absolute bottom-7 left-8 rounded-full bg-black px-3 py-0.5"
+                                class="absolute bottom-7 left-7 rounded-full bg-black px-3 py-0.5"
                             >
-                                <span class="font-dm-sans text-lg text-white">{{
+                                <span class="font-dm-sans text-white">{{
                                     unreadCount
                                 }}</span>
                             </div>
