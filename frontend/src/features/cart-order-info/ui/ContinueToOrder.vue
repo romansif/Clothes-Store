@@ -12,13 +12,12 @@
             </div>
             <span class="text-xs text-red-600">{{ isAgreeFormErrorMessage.agree }}</span>
         </div>
-        <UiButton @click="continueToOrder(cart)" name="CONTINUE" variant="addToOrder" />
+        <UiButton @click="continueToOrder()" name="CONTINUE" variant="addToOrder" />
     </div>
 </template>
 
 <script setup lang="ts">
 import { watch } from "vue";
-import { useCartData } from "@/widgets/cart-list/lib/use-cart-data";
 import { useCartOrderInfo } from "@/features/cart-order-info/lib/cart-order-info";
 import {
     isAgreeFormError,
@@ -29,7 +28,6 @@ import { UiButton } from "@/shared/ui/button";
 import check_square from "@/assets/icons/squares/check-square.png";
 import square from "@/assets/icons/squares/square.png";
 
-const { cart } = useCartData()
 const { toggleAgree, continueToOrder } = useCartOrderInfo();
 
 watch(

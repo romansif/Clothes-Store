@@ -20,6 +20,10 @@ export const useConfirmInformation = () => {
             return;
         }
         clearInformationForm()
+        await openNotify(
+            "You have successfully added the shipping address",
+            "You will now be redirected to the shipping method selection page",
+        );
         await router.push({ name: "shipping" })
     }
 
@@ -31,7 +35,7 @@ export const useConfirmInformation = () => {
 export const useCreateInformation = () => {
     const queryClient = useQueryClient();
 
-    const { mutate: createInformation, isPending } = useMutation({
+    const { mutate: createInformation } = useMutation({
         mutationKey: ["createInformation"],
         mutationFn: async () => {
             const result = addContactInfoSchema.safeParse(informationForm.value);
@@ -65,6 +69,5 @@ export const useCreateInformation = () => {
 
     return {
         createInformation,
-        isPending,
     };
 };

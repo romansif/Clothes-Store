@@ -11,9 +11,8 @@
 </template>
 
 <script setup lang="ts">
-import router from "@/app/router";
 import { onMounted } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useCartData } from "@/widgets/cart-list/lib/use-cart-data";
 import { useUserData } from "@/widgets/profile/lib/use-user-data";
 import { useResetCartSelection } from "@/features/cart-item-action/api/reset-cart-selection";
@@ -22,6 +21,7 @@ import { CartList } from "@/widgets/cart-list";
 import { CartInfo } from "@/features/cart-order-info";
 
 const route = useRoute();
+const router = useRouter();
 
 const { user } = useUserData();
 const { cart } = useCartData();

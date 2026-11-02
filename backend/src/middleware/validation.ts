@@ -171,13 +171,13 @@ export const validation = {
     ],
 
     addProductToCartValidation: [
-        body('colors').isArray({ min: 1, max: 50 }).withMessage('Color is required'),
+        body('color').isObject().withMessage('Color is required'),
 
-        requiredText('colors.*.hex', 'Color is required', 32),
+        requiredText('color.hex', 'Color is required', 32),
 
-        requiredText('colors.*.colorName', 'Color is required'),
+        requiredText('color.colorName', 'Color is required'),
 
-        requiredText('sizes', 'Size is required to add product to cart', 32),
+        requiredText('size', 'Size is required to add product to cart', 32),
     ],
 
     addAddressValidation: [

@@ -30,7 +30,7 @@
                         New
                     </router-link>
                 </div>
-                <router-link v-if="!isProfile" :to="{ name: 'shop' }">
+                <router-link :to="{ name: 'shop' }">
                     <div class="flex md:hidden">
                         <img
                             :src="right_long_arrow"
@@ -65,7 +65,7 @@
 
                     <span v-if="user" class="font-medium">{{ user.name }}</span>
                 </router-link>
-                <router-link v-if="user?.role === 'Buyer'" :to="{ name: 'cart' }">
+                <router-link v-if="user?.role === 'Buyer' && isCart" :to="{ name: 'cart' }">
                     <div
                         class="gap-1 transition duration-400 hover:scale-110 md:flex lg:flex xl:flex xl:items-center"
                     >

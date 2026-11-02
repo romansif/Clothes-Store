@@ -135,7 +135,7 @@ const routes: RouteRecordRaw[] = [
                 path: "payment",
                 name: "payment",
                 component: () => import("@/pages/checkout/PaymentPage.vue"),
-            },
+            }
         ],
     },
     {
@@ -143,6 +143,11 @@ const routes: RouteRecordRaw[] = [
         name: "NotFound",
         component: () => import("@/pages/NotFound.vue"),
     },
+    {
+        path: "/payment-success",
+        name: "payment-success",
+        component: () => import("@/pages/checkout/PaymentSuccess.vue")
+    }
 ];
 
 export default routes;

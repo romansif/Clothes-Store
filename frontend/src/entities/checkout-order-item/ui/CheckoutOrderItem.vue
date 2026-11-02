@@ -33,10 +33,10 @@
 </template>
 
 <script setup lang="ts">
+import { useCheckoutOrder } from "@/entities/checkout-order-item/lib/checkout-order-preview";
 import { previewHelper } from "@/entities/product-card/lib/preview-helper";
 import type { Product } from "@/shared";
 import type { OrderItem } from "@/entities/order";
-import {useCheckoutOrder} from "@/entities/checkout-order-item/lib/checkout-order-preview";
 
 const props = defineProps<{
     product: Product;
@@ -44,5 +44,5 @@ const props = defineProps<{
 }>();
 
 const { getProductId } = previewHelper();
-const { item, preview, linePrice } = useCheckoutOrder(props)
+const { item, preview, linePrice } = useCheckoutOrder(props.product)
 </script>

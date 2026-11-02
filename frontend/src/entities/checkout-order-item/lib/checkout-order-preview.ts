@@ -2,16 +2,14 @@ import { computed } from "vue";
 import { useCheckoutItems } from "@/features/checkout-order-info/lib/use-checkout-items";
 import type { CartItem } from "@/entities/cart-item";
 import type { Product } from "@/shared";
-import type { OrderItem } from "@/entities/order";
 
-const { checkoutItems } = useCheckoutItems()
 
-export const useCheckoutOrder = (
-    props:{ product: Product; items: OrderItem[] }
-) => {
+export const useCheckoutOrder = (product: Product) => {
+    const { checkoutItems } = useCheckoutItems()
+
     const item = computed(() =>
-        checkoutItems.value.find((row) => row.id === props.product?.id) ??
-        (props.product as CartItem),
+        checkoutItems.value.find((row) => row.id === product?.id) ??
+        (product as CartItem),
     );
 
     const preview = computed(() => {

@@ -7,7 +7,7 @@
             +
         </button>
         <span class="font-dm-sans border-b text-center text-sm">
-            {{ pureQuantity(product.id, cart)?.count }}
+            {{ product.quantity }}
         </span>
         <button
             @click="updateCartItemQuantity({ type: 'remove', cartItem: product })"
@@ -20,7 +20,6 @@
 
 <script setup lang="ts">
 import { useUpdateCartItem } from "@/features/cart-item-action/api/update-cart-item";
-import { productHelper } from "@/shared/lib/product-helper";
 import type { CartItem } from "@/entities/cart-item";
 
 const props = defineProps<{
@@ -28,6 +27,5 @@ const props = defineProps<{
     cart: CartItem[];
 }>();
 
-const { pureQuantity } = productHelper();
 const { updateCartItemQuantity } = useUpdateCartItem();
 </script>

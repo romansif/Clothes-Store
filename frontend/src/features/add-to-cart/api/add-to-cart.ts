@@ -1,6 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 import { cartStore } from "@/widgets/cart-list/model/cart.store";
-import { clearCartForm } from "@/features/product-info/lib/clear-cart-form";
 import {
     addToCartForm,
     addToCartFormErrorMessages,
@@ -55,8 +54,6 @@ export const useAddToCart = () => {
             await queryClient.invalidateQueries({ queryKey: ["cart"] });
 
             unreadCount.value += 1;
-
-            clearCartForm();
 
             await openNotify(
                 "You have successfully added the item to your cart",

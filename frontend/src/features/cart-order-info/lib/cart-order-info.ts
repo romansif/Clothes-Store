@@ -1,15 +1,14 @@
 import { computed } from "vue";
-
-import router from "@/app/router";
 import { useCartData } from "@/widgets/cart-list/lib/use-cart-data";
-import type { CartItem } from "@/entities/cart-item";
+import router from "@/app/router";
 import {
     isAgreeFormError,
     isAgreeFormErrorMessage,
 } from "@/entities/product-info/model/add-to-cart-form";
+import type { CartItem } from "@/entities/cart-item";
 
 export const useCartOrderInfo = () => {
-    const { cart } = useCartData();
+    const { cart } = useCartData()
 
     const checkedItems = computed(() => {
         return cart.value.filter((item: CartItem) => item.checked);
@@ -34,8 +33,8 @@ export const useCartOrderInfo = () => {
         isAgreeFormError.value.agree = !isAgreeFormError.value.agree;
     };
 
-    const continueToOrder = async (cart: CartItem[]) => {
-        const isChecked = cart.some((item) => item.checked);
+    const continueToOrder = async () => {
+        const isChecked = cart.value.some((item) => item.checked);
 
         try {
             if (!isAgreeFormError.value.agree && !isChecked) {

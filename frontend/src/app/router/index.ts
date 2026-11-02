@@ -1,7 +1,7 @@
 import routes from "@/shared/routes/routes";
 import { createRouter, createWebHistory } from "vue-router";
 import { checkoutSession } from "@/entities/checkout-session";
-import { orderStore } from "@/shared/model/order.store";
+import { getCheckoutItems } from "@/features/checkout-order-info/lib/use-checkout-items";
 
 declare module "vue-router" {
     interface RouteMeta {
@@ -34,15 +34,15 @@ router.beforeEach((to, from) => {
     const isCheckoutStep = ["information", "shipping", "payment"].includes(String(to.name));
 
     if (isCheckoutStep) {
-        const { orderItems } = orderStore();
-        if (!orderItems.value.length) return {
+        const items = getCheckoutItems();
+        if (!items.length) return {
             name: "cart",
-            query: { reset: "1" }
+            query: { reset: '1' }
         };
     }
 
     if (to.name === "cart" && from.path.startsWith("/checkout") && !to.query.reset) {
-        return { ...to, query: { ...to.query, reset: "1" } };
+        return { ...to, query: { ...to.query, reset: '1' } };
     }
 
 

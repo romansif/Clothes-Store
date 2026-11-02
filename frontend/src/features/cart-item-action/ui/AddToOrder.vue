@@ -10,14 +10,13 @@
 <script setup lang="ts">
 import { useAddToOrder } from "@/features/cart-item-action/api/add-to-order";
 import { orderStore } from "@/shared/model/order.store";
-import type { Product } from "@/shared";
 import type { CartItem } from "@/entities/cart-item";
 
 import check_square from "@/assets/icons/squares/check-square.png";
 import square from "@/assets/icons/squares/square.png";
 
 const props = defineProps<{
-    product: Product;
+    product: CartItem;
     cart: CartItem[];
 }>();
 

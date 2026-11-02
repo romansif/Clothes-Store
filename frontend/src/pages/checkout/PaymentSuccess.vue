@@ -1,5 +1,5 @@
 <template>
-    <div v-if="showSuccessFullPayment" class="flex justify-center items-center min-h-screen bg-[#F0F0F0] font-raleway w-full">
+    <div class="flex justify-center items-center min-h-screen bg-[#F0F0F0] font-raleway w-full">
       <div class="flex flex-col items-center gap-7">
         <img :src="success" alt="">
         <h1 class="text-5xl font-semibold">
@@ -17,7 +17,7 @@
             <div v-if="userPaymentCard" class="flex items-center text-[#555]">
               <span>Date</span>
               <span class="ml-auto font-dm-sans">
-                $ {{ userPaymentCard.created_at }}
+                {{ userPaymentCard.created_at }}
               </span>
             </div>
             <div v-if="userPaymentCard" class="flex items-center text-[#555]">
@@ -55,12 +55,12 @@
           <router-link :to="{ name: 'profile' }">
             <UiButton name="View my orders"
                       variant="viewMyOrders"
-                      @click="closeSuccessFull" />
+                      @click="closeSuccessFull()" />
           </router-link>
           <router-link :to="{ name: 'shop' }">
             <UiButton name="Continue shopping"
                       variant="paymentSuccess"
-                      @click="closeSuccessFull" />
+                      @click="closeSuccessFull()" />
           </router-link>
         </div>
       </div>
@@ -72,7 +72,6 @@ import { closeSuccessFull } from "@/features/payment-success/lib/toggle-success-
 import { orderPriceInfo } from "@/features/checkout-order-info/lib/order-price-info";
 import { useSavedAddressData } from "@/widgets/user-address-list/lib/use-saved-address-data";
 import { useSavedPaymentData } from "@/widgets/user-payment-card-list/lib/use-saved-payment-data";
-import { showSuccessFullPayment } from "@/features/payment-success/model/success-payment.refs";
 import { UiButton } from "@/shared/ui/button";
 
 import success from "@/assets/icons/checkout/payment/success.svg"

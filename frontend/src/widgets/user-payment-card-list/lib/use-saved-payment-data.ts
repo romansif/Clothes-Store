@@ -50,14 +50,14 @@ export const useSavedPaymentData = () => {
         queryKey: computed(() => ["userPaymentCard", checkoutSession.paymentId]),
 
         queryFn: () => {
-            if (!checkoutSession.addressId) {
+            if (!checkoutSession.paymentId) {
                 throw new Error("User is not authenticated");
             }
 
-            return getPayment(checkoutSession.addressId);
+            return getPayment(checkoutSession.paymentId);
         },
 
-        enabled: computed(() => Boolean(checkoutSession.addressId)),
+        enabled: computed(() => Boolean(checkoutSession.paymentId)),
     });
 
     return {
