@@ -20,6 +20,9 @@
                 ]"
                 :mask="cardNumberMask.mask"
             />
+            <span v-if="paymentFormErrorMessage.cardNumber" class="text-xs text-red-600">
+              {{ paymentFormErrorMessage.cardNumber }}
+            </span>
         </div>
     </div>
     <div class="flex gap-2">
@@ -34,6 +37,9 @@
                 ]"
                 :mask="expiryDateMask.mask"
             />
+            <span v-if="paymentFormErrorMessage.expiryDate" class="text-xs text-red-600">
+              {{ paymentFormErrorMessage.expiryDate }}
+            </span>
         </div>
         <div class="flex flex-col gap-2">
             <label class="text-sm">CVV</label>
@@ -46,6 +52,9 @@
                 ]"
                 :mask="cardCvvMask.mask"
             />
+            <span v-if="paymentFormErrorMessage.cardCvv" class="text-xs text-red-600">
+              {{ paymentFormErrorMessage.cardCvv }}
+            </span>
         </div>
     </div>
 </template>

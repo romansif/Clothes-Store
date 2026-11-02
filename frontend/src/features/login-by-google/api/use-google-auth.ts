@@ -5,10 +5,13 @@ import { clearLoginForm, clearLoginFormMessages } from "@/features/login-auth/li
 import { loginForm } from "@/entities/login-form/model/login-form";
 import { handler } from "@/shared/api/http";
 import { useBaseModals } from "@/shared/lib/use-notify";
+import {useRoute} from "vue-router";
 
 const { openNotify } = useBaseModals();
 
 export const signGoogleAuth = () => {
+    const route = useRoute()
+
     const {
         mutateAsync: OAuth,
         isPending,
@@ -39,7 +42,7 @@ export const signGoogleAuth = () => {
                 "You have successfully sign in",
                 "You will now be taken to your profile page",
             );
-            await router.push({ name: "profile" });
+            await router.push((route.query.redirect as string) || "/")
         },
 
         onError: async (err) => {

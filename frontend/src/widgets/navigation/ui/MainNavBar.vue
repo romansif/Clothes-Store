@@ -48,7 +48,7 @@
                         <img
                             :src="liked"
                             alt=""
-                            class="w-11 rounded-full transition duration-400 hover:scale-110"
+                            class="w-12 h-12 rounded-full transition duration-400 hover:scale-110"
                         />
                     </div>
                 </router-link>

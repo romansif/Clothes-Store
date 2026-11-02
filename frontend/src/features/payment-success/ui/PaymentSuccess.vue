@@ -55,12 +55,12 @@
           <router-link :to="{ name: 'profile' }">
             <UiButton name="View my orders"
                       variant="viewMyOrders"
-                      @click="showSuccessFullPayment = false" />
+                      @click="closeSuccessFull" />
           </router-link>
           <router-link :to="{ name: 'shop' }">
             <UiButton name="Continue shopping"
                       variant="paymentSuccess"
-                      @click="showSuccessFullPayment = false" />
+                      @click="closeSuccessFull" />
           </router-link>
         </div>
       </div>
@@ -68,6 +68,7 @@
 </template>
 
 <script setup lang="ts">
+import { closeSuccessFull } from "@/features/payment-success/lib/toggle-success-payment";
 import { orderPriceInfo } from "@/features/checkout-order-info/lib/order-price-info";
 import { useSavedAddressData } from "@/widgets/user-address-list/lib/use-saved-address-data";
 import { useSavedPaymentData } from "@/widgets/user-payment-card-list/lib/use-saved-payment-data";

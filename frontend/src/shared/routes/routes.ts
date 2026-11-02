@@ -3,6 +3,7 @@ import type { RouteRecordRaw } from "vue-router";
 const routes: RouteRecordRaw[] = [
     {
         path: "/auth",
+        meta: { guestOnly: true },
         component: () => import("@/app/layouts/AuthLayout.vue"),
         children: [
             {
@@ -67,12 +68,15 @@ const routes: RouteRecordRaw[] = [
                 component: () => import("@/pages/products/ProductDetailPage.vue"),
             },
             {
+
                 path: "shop/my-cart",
+                meta: { requiresAuth: true },
                 name: "cart",
                 component: () => import("@/pages/cart/CartPage.vue"),
             },
             {
                 path: "shop/my-favorite",
+                meta: { requiresAuth: true },
                 name: "favorite",
                 component: () => import("@/pages/favorite/FavoritePage.vue"),
             },
@@ -80,6 +84,7 @@ const routes: RouteRecordRaw[] = [
     },
     {
         path: "/",
+        meta: { requiresAuth: true },
         component: () => import("@/app/layouts/ProfileLayout.vue"),
         children: [
             {
@@ -96,6 +101,7 @@ const routes: RouteRecordRaw[] = [
     },
     {
         path: "/",
+        meta: { requiresAuth: true },
         component: () => import("@/app/layouts/ProductFormLayout.vue"),
         children: [
             {
@@ -112,6 +118,7 @@ const routes: RouteRecordRaw[] = [
     },
     {
         path: "/checkout",
+        meta: { requiresAuth: true },
         component: () => import("@/app/layouts/CheckoutLayout.vue"),
         children: [
             {

@@ -7,10 +7,13 @@ import { loginSchema } from "@/entities/login-form/model/login.schemas";
 import { handler } from "@/shared/api/http";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
 import { useBaseModals } from "@/shared/lib/use-notify";
+import {useRoute} from "vue-router";
 
 const { openNotify } = useBaseModals();
 
 export const signIn = () => {
+    const route = useRoute()
+
     const {
         mutateAsync: login,
         isPending,
@@ -46,7 +49,7 @@ export const signIn = () => {
                 "You have successfully sign in",
                 "You will now be taken to your profile page",
             );
-            await router.push({ name: "profile" });
+            await router.push((route.query.redirect as string) || "/")
         },
 
         onError: (err) => {

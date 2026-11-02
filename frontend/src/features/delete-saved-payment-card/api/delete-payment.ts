@@ -6,7 +6,7 @@ export const useDeletePayment = () => {
     const queryClient = useQueryClient();
 
     const {
-        mutateAsync: deletePaymentCard,
+        mutate: deletePaymentCard,
         isPending,
         isError,
     } = useMutation({

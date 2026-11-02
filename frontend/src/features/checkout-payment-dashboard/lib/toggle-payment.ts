@@ -7,7 +7,6 @@ import {
 } from "@/entities/checkout-payment-form/model/payment-form";
 import { isSavedPayment } from "@/entities/checkout-payment-item/model/payment.refs";
 
-const paymentId = ref<string>("");
 const isDebitCard = ref<boolean>(false);
 
 export const togglePaymentForm = () => {
@@ -27,7 +26,6 @@ export const togglePaymentForm = () => {
     };
 
     return {
-        paymentId,
         isDebitCard,
         openCardForm,
         closeCardForm,

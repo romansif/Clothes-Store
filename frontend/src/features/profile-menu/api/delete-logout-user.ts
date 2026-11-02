@@ -11,7 +11,7 @@ export const useDeleteAccount = () => {
     const userId = localStorage.getItem("userId");
 
     const {
-        mutateAsync: deleteAccount,
+        mutate: deleteAccount,
         isPending,
         isError,
     } = useMutation({
@@ -48,7 +48,7 @@ export const useLogout = () => {
     const queryClient = useQueryClient();
 
     const {
-        mutateAsync: logout,
+        mutate: logout,
         isPending,
         isError,
     } = useMutation({

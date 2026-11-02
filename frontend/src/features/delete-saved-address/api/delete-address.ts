@@ -6,7 +6,7 @@ export const useDeleteAddress = () => {
     const queryClient = useQueryClient();
 
     const {
-        mutateAsync: deleteAddressItem,
+        mutate: deleteAddressItem,
         isPending,
         isError,
     } = useMutation({

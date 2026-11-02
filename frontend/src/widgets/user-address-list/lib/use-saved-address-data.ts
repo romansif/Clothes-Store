@@ -1,7 +1,7 @@
 import { computed } from "vue";
 import { useQuery } from "@tanstack/vue-query";
-
 import { useGetAddress } from "@/widgets/user-address-list/api/get-address";
+import { checkoutSession } from "@/entities/checkout-session";
 
 const { getAddresses, getAddress } = useGetAddress();
 
@@ -38,8 +38,6 @@ export const useSavedAddressesData = () => {
 };
 
 export const useSavedAddressData = () => {
-    const addressId = localStorage.getItem("addressId");
-
     const {
         data: userAddress,
         isLoading,
@@ -47,17 +45,17 @@ export const useSavedAddressData = () => {
         isError,
         refetch,
     } = useQuery({
-        queryKey: computed(() => ["userAddress", addressId]),
+        queryKey: computed(() => ["userAddress", checkoutSession.addressId]),
 
         queryFn: () => {
-            if (!addressId) {
+            if (!checkoutSession.addressId) {
                 throw new Error("User is not authenticated");
             }
 
-            return getAddress(addressId);
+            return getAddress(checkoutSession.addressId);
         },
 
-        enabled: computed(() => Boolean(addressId)),
+        enabled: computed(() => Boolean(checkoutSession.addressId)),
     });
 
     return {

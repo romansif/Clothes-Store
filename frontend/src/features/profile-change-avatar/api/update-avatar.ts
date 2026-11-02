@@ -7,7 +7,7 @@ export const useChangeAvatar = () => {
     const userId = localStorage.getItem("userId");
 
     const {
-        mutateAsync: changeAvatar,
+        mutate: changeAvatar,
         isPending,
         isError,
     } = useMutation({

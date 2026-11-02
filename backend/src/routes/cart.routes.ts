@@ -10,6 +10,8 @@ router.get('/cart/:userId', authMiddleware, cartController.getCart);
 router.post('/cart', authMiddleware, validation.addProductToCartValidation, validation.handleValidationErrors,
     cartController.addToCart);
 
+router.post('/reset-selection', cartController.resetSelection);
+
 router.patch('/cart/:id', authMiddleware, cartController.updateCartItem);
 
 router.delete('/cart/:id', authMiddleware, cartController.deleteCartItem);

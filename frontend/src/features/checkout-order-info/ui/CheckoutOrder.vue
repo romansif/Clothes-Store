@@ -20,8 +20,8 @@
             <div class="flex items-center">
                 <span>Shipping</span>
                 <div class="ml-auto flex gap-2">
-                  <span v-if="shipping !== undefined" class="text-gray-400">
-                    {{ shipping.delivery }}
+                  <span v-if="checkoutSession.delivery" class="text-gray-400 font-dm-sans">
+                    {{ checkoutSession.delivery }} · $ {{ ship }}
                   </span>
                   <span v-else class="text-gray-400">Calculated at next step</span>
                 </div>
@@ -40,11 +40,10 @@
 
 <script setup lang="ts">
 import { orderStore } from "@/shared/model/order.store";
-import { useSavedShippingData } from "@/features/checkout-shipping-info/lib/use-saved-shipping-data";
 import { orderPriceInfo } from "@/features/checkout-order-info/lib/order-price-info";
 import { CheckoutOrderList } from "@/widgets/checkout-order-list";
+import { checkoutSession } from "@/entities/checkout-session/model/checkout-session";
 
 const { items } = orderStore();
-const { shipping } = useSavedShippingData();
-const { price, totalPrice, commissionPrice } = orderPriceInfo();
+const { price, totalPrice, commissionPrice, ship } = orderPriceInfo();
 </script>

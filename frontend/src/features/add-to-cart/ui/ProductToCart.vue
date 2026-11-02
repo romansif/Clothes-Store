@@ -1,5 +1,4 @@
 <template>
-  <Loading v-if="isPending" />
     <div class="mt-4 flex flex-col gap-6">
         <button
             @click="toggleSizeGuide"
@@ -66,7 +65,6 @@ import { productsHelper } from "@/features/products/lib/products-helper";
 import { sizeGuideModel, toggleSizeGuide } from "@/entities/size-guide/lib/toggle-size-guide";
 import { SizeGuideModal } from "@/entities/size-guide";
 import { UiButton } from "@/shared/ui/button";
-import { Loading } from "@/widgets/state";
 import type { User } from "@/entities/profile";
 import type { Product } from "@/shared";
 import type { CartItem } from "@/entities/cart-item";
@@ -80,8 +78,8 @@ defineProps<{
     cart: CartItem[];
 }>();
 
+const { addToCart } = useAddToCart();
 const { isInStock } = productsHelper();
-const { addToCart, isPending } = useAddToCart();
 
 const { updateCartItemQuantity } = useUpdateCartItem();
 </script>

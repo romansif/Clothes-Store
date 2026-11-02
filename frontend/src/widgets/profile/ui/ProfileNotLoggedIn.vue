@@ -1,5 +1,6 @@
 <template>
-    <div class="flex items-center justify-between rounded-xl bg-white px-12 py-8">
+  <div class="font-raleway flex justify-center py-46">
+    <div class="flex items-center justify-between rounded-xl bg-white px-12 py-8 w-87.5 sm:w-150 md:w-175 lg:w-237.5 xl:w-175">
         <div class="flex flex-col items-center gap-4">
             <img :src="not_avatar" alt="" class="w-20 rounded-full" />
         </div>
@@ -12,6 +13,7 @@
             </router-link>
         </div>
     </div>
+  </div>
 </template>
 
 <script setup lang="ts">

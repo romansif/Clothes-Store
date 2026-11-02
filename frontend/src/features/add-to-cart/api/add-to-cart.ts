@@ -20,7 +20,7 @@ export const useAddToCart = () => {
     const userId = localStorage.getItem("userId");
 
     const {
-        mutateAsync: addToCart,
+        mutate: addToCart,
         isPending,
         isError,
     } = useMutation({

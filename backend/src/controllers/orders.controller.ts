@@ -1,15 +1,15 @@
 import { supabase } from '#db/supabase.ts';
-import { unwrap, updateOwned, deleteOwned } from '#db/query.ts';
+import { unwrap, deleteOwned, isUuid, updateOwned } from '#db/query.ts';
 import {
     HttpError, handle, param, requireUser, requireSelf, pickKeys, isPlainObject,
 } from '#db/security';
 
 const FINISHED_STATUSES = ['Delivered', 'Cancelled'];
 
-const CREATE_FIELDS = ['orderItems', 'orderTotal', 'delivery', 'status'] as const;
+const ORDER_INPUT = ['contactId', 'addressId', 'paymentId', 'delivery', 'idempotencyKey'] as const;
+const CHECKOUT_ERRORS: Record<string, number> = { CK001: 400, CK002: 409, CK003: 409 };
 
 const UPDATE_FIELDS = [
-    ...CREATE_FIELDS,
     'cause_replace', 'cancelled_at', 'date_cancelled_at', 'time_cancelled_at',
 ] as const;
 
@@ -46,28 +46,47 @@ export const ordersController = {
             throw new HttpError(400, 'Order data is required');
         }
 
+        const { contactId, addressId, paymentId, delivery, idempotencyKey } =
+            pickKeys(req.body, ORDER_INPUT);
+
+        if (
+            ![contactId, addressId, paymentId].every((v) => isUuid(v)) ||
+            typeof delivery !== 'string' ||
+            typeof idempotencyKey !== 'string' || idempotencyKey.length > 100
+        ) {
+            throw new HttpError(400, 'Invalid checkout data');
+        }
+
         const date = new Date();
-        const time = date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+        const { data, error } = await supabase.rpc('create_order', {
+            p_user_id: user.id,
+            p_contact_id: contactId,
+            p_address_id: addressId,
+            p_payment_id: paymentId,
+            p_delivery: delivery,
+            p_key: idempotencyKey,
+            p_date: date.toLocaleDateString(),
+            p_time: date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }),
+        });
 
-        const newOrder = unwrap(
-            await supabase.from('orders').insert({
-                ...pickKeys(req.body, CREATE_FIELDS),
-                userId: user.id,
-                created_at: date.toISOString(),
-                date_created_at: date.toLocaleDateString(),
-                time_created_at: time,
-            }).select().single(),
-        );
+        if (error) {
+            const status = CHECKOUT_ERRORS[error.code];
+            if (status) throw new HttpError(status, error.message);
+            throw error;
+        }
 
-        res.status(201).json({ message: 'Product added to orderItems', data: newOrder });
+        res.status(201).json({ message: 'Order created', data });
     }),
 
-    updateOrder: handle('Failed to update the order item', async (req, res) => {
+    updateOrder: handle('Failed to update the order', async (req, res) => {
         const user = requireUser(req);
         const id = param(req, 'id');
+        const body = isPlainObject(req.body) ? req.body : {};
 
-        const updated = await updateOwned('orders', id, user.id, pickKeys(req.body, UPDATE_FIELDS));
+        const changes: Record<string, unknown> = pickKeys(body, UPDATE_FIELDS);
+        if (body.status === 'Cancelled') changes.status = 'Cancelled'; // единственный статус от клиента
 
+        const updated = await updateOwned('orders', id, user.id, changes);
         if (!updated) throw new HttpError(404, 'Order not found');
 
         res.json(updated);

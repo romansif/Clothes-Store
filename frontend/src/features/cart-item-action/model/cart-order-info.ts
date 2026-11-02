@@ -7,9 +7,6 @@ import {
     isAgreeFormError,
     isAgreeFormErrorMessage,
 } from "@/entities/product-info/model/add-to-cart-form";
-import { orderStore } from "@/shared/model/order.store";
-
-const { orderItems } = orderStore();
 
 export const useCartOrderInfo = () => {
     const { cart } = useCartData();
@@ -34,16 +31,18 @@ export const useCartOrderInfo = () => {
         isAgreeFormError.value.agree = !isAgreeFormError.value.agree;
     };
 
-    const continueToOrder = async () => {
+    const continueToOrder = async (cart: CartItem[]) => {
+        const isChecked = cart.filter(item => item.checked)
+
         try {
-            if (!isAgreeFormError.value.agree && !orderItems.value?.length) {
+            if (!isAgreeFormError.value.agree && !isChecked) {
                 isAgreeFormErrorMessage.value.agree =
                     "You must select the items for your order, agree to the Terms and Conditions";
                 return;
             } else if (!isAgreeFormError.value.agree) {
                 isAgreeFormErrorMessage.value.agree = "You must agree to the Terms and Conditions";
                 return;
-            } else if (!orderItems.value?.length) {
+            } else if (!isChecked) {
                 isAgreeFormErrorMessage.value.agree = "You must select the items for your order";
                 return;
             } else {

@@ -15,7 +15,7 @@
             </div>
             <div class="flex gap-3">
                 <form
-                    @submit.prevent="createPayment({ products, cart })"
+                    @submit.prevent="placeOrder({ useSaved: false })"
                     action=""
                     class="font-dm-sans flex w-full flex-col gap-4"
                 >
@@ -46,7 +46,7 @@
                 v-if="isSavedPayment"
                 name="Pay"
                 variant="checkOut"
-                @click="addPayment({ products, cart })"
+                @click="placeOrder({ useSaved: false })"
             />
             <img
                 :src="arrow"
@@ -58,13 +58,8 @@
 </template>
 
 <script setup lang="ts">
-import { havePayments } from "@/shared/lib/use-payment-card";
-import { useCartData } from "@/widgets/cart-list/lib/use-cart-data";
-import { useProductsData } from "@/widgets/product-list/lib/use-product-data";
-import {
-    useAddPayment,
-    useCreatePayment,
-} from "@/features/checkout-payment-dashboard/api/add-payment";
+import { havePayments } from "@/shared/lib/use-payment-card";;
+import { usePlaceOrder } from "@/features/checkout-payment-dashboard/api/place-order";
 import { togglePaymentForm } from "@/features/checkout-payment-dashboard/lib/toggle-payment";
 import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
 import {
@@ -83,12 +78,9 @@ import { Loading } from "@/widgets/state";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 
-const { cart } = useCartData();
-const { products } = useProductsData();
-const { addPayment } = useAddPayment();
+const { placeOrder, isPending } = usePlaceOrder();
 const { userPaymentCard } = useSavedPaymentData();
 const { userPaymentCards } = useSavedPaymentsData();
-const { createPayment, isPending } = useCreatePayment();
 const { openCardForm, closeCardForm, toggleShowPayment, isDebitCard } = togglePaymentForm();
 
 refClearErrorsOnChange(

@@ -1,11 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
-import type { Variant } from "@/shared";
-
 import { useProductsData } from "@/widgets/product-list/lib/use-product-data";
-import type { UpdateCartItemPayload } from "@/features/cart-item-action";
 import { useDeleteCartItem } from "@/features/cart-item-action/api/delete-cart";
 import { handler } from "@/shared/api/http";
 import { useBaseModals } from "@/shared/lib/use-notify";
+import type { UpdateCartItemPayload } from "@/features/cart-item-action";
+import type { Variant } from "@/shared";
 
 const { openNotify } = useBaseModals();
 
@@ -15,84 +14,53 @@ export const useUpdateCartItem = () => {
     const { products } = useProductsData();
 
     const {
-        mutateAsync: updateCartItemQuantity,
+        mutate: updateCartItemQuantity,
         isPending,
         isError,
     } = useMutation({
         mutationKey: ["updateCartItemQuantity"],
         mutationFn: async ({ type, cartItem }: UpdateCartItemPayload) => {
-            if (!cartItem.productId) {
-                throw new Error("ID товара для изменения количества в корзине не найден");
+            if (!cartItem?.id || !cartItem.productId) {
+                throw new Error(`В корзине нет id или productId: ${JSON.stringify(cartItem)}`);
             }
 
             const product = products.value.find((p) => p.id === cartItem.productId);
-            if (!product) {
-                throw new Error("Товар не найден");
-            }
-
-            if (!cartItem) {
-                throw new Error("Товар в корзине не найден");
-            }
-
-            const basePrice = Number(product.price);
-            const currentPrice = Number(cartItem.price);
+            if (!product) throw new Error("Товар не найден");
 
             const currentItem = cartItem.variants[0];
-            if (!currentItem) {
-                throw new Error("Варианты товара в корзине не найден");
-            }
-
-            const currentQuantity = Number(currentItem.count);
+            if (!currentItem) throw new Error("Вариант товара в корзине не найден");
 
             const stockItem = product.variants.find(
-                (v) => v.hex === currentItem.hex && v.size === currentItem.size,
+                (v) => v.hex === currentItem.hex && String(v.size) === String(currentItem.size),
             );
-            if (!stockItem) {
-                throw new Error("Варианты товара не найден");
-            }
+            if (!stockItem) throw new Error("Вариант товара не найден");
 
+            const currentQuantity = Number(currentItem.count);
             const stock = Number(stockItem.count);
 
-            if (type === "add") {
-                if (currentQuantity < stock) {
-                    const newPrice = currentPrice + basePrice;
-                    const newQuantity = currentQuantity + 1;
-
-                    return await handler(`/cart/${product.id}`, {
-                        method: "PATCH",
-                        body: JSON.stringify({
-                            price: newPrice,
-                            variants: cartItem.variants.map((item: Variant) => ({
-                                ...item,
-                                count: newQuantity,
-                            })),
-                        }),
-                    });
-                } else {
-                    return await openNotify(
-                        "The item is no longer in stock",
-                        "The maximum stock level for the item has been reached",
-                    );
-                }
-            } else if (type === "remove") {
-                if (currentQuantity <= 1) {
-                    return await deleteCartItem(cartItem.id);
-                } else {
-                    const newPrice = currentPrice - basePrice;
-                    const newQuantity = currentQuantity - 1;
-
-                    return await handler(`/cart/${cartItem.id}`, {
-                        method: "PATCH",
-                        body: JSON.stringify({
-                            price: newPrice,
-                            variants: cartItem.variants.map((item: Variant) => ({
-                                ...item,
-                                count: newQuantity,
-                            })),
-                        }),
-                    });
-                }
+            if (type === "remove" && currentQuantity <= 1) {
+                return await deleteCartItem(cartItem.id);
             }
+
+            if (type === "add" && currentQuantity >= stock) {
+                await openNotify(
+                    "The item is no longer in stock",
+                    "The maximum stock level for the item has been reached",
+                );
+                return;
+            }
+
+            const newQuantity = type === "add" ? currentQuantity + 1 : currentQuantity - 1;
+
+            return await handler(`/cart/${cartItem.id}`, {
+                method: "PATCH",
+                body: JSON.stringify({
+                    price: Number(product.price) * newQuantity,
+                    variants: cartItem.variants.map((item: Variant, i: number) =>
+                        i === 0 ? { ...item, count: newQuantity } : item,
+                    ),
+                }),
+            });
         },
 
         onSuccess: async () => {
@@ -100,13 +68,9 @@ export const useUpdateCartItem = () => {
         },
 
         onError: (err) => {
-            throw new Error(`Ошибка при изменении количества товара в корщзине`, err);
+            console.error("Ошибка при изменении количества товара в корзине:", err);
         },
     });
 
-    return {
-        updateCartItemQuantity,
-        isPending,
-        isError,
-    };
+    return { updateCartItemQuantity, isPending, isError };
 };

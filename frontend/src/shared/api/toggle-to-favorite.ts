@@ -12,7 +12,7 @@ export const useToggleFavorite = () => {
     const userId = localStorage.getItem("userId");
 
     const {
-        mutateAsync: toggleFavorite,
+        mutate: toggleFavorite,
         isPending,
         isError,
     } = useMutation({

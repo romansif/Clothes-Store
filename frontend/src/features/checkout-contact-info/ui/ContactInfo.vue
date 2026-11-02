@@ -29,7 +29,7 @@
                 type="submit"
                 name="Shipping"
                 variant="checkOut"
-                @click="addInformation()"
+                @click="confirmInformation()"
             />
             <img
                 :src="arrow"
@@ -43,7 +43,7 @@
 <script setup lang="ts">
 import {
     useCreateInformation,
-    useAddInformation,
+    useConfirmInformation,
 } from "@/features/checkout-contact-info/api/add-address";
 import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
 import { toggleInformation } from "@/features/checkout-contact-info/lib/toggle-contact-info";
@@ -63,7 +63,7 @@ import arrow from "@/assets/icons/arrows/right-shop.svg";
 
 const { userAddresses } = useSavedAddressesData();
 const { toggleShowContact } = toggleInformation();
-const { addInformation } = useAddInformation();
+const { confirmInformation } = useConfirmInformation();
 const { createInformation, isPending } = useCreateInformation();
 
 refClearErrorsOnChange(informationForm, informationFormErrorMessages);

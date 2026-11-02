@@ -1,4 +1,5 @@
 <template>
+  <TransitionGroup name="list">
     <ul class="no-scrollbar flex h-50 flex-col overflow-y-auto pb-4">
         <CheckoutInfoItem
             v-for="address in userAddresses"
@@ -7,6 +8,7 @@
             @click="useSavedContactInfo(address)"
         />
     </ul>
+  </TransitionGroup>
 </template>
 
 <script setup lang="ts">

@@ -5,18 +5,32 @@
             <Transition name="view" mode="out-in">
                 <CartList :user="user" />
             </Transition>
-            <CartInfo v-if="cart.length" :cart="cart" />
+            <CartInfo v-if="cart.length" />
         </div>
     </main>
 </template>
 
 <script setup lang="ts">
+import router from "@/app/router";
+import { onMounted } from "vue";
+import { useRoute } from "vue-router";
 import { useCartData } from "@/widgets/cart-list/lib/use-cart-data";
 import { useUserData } from "@/widgets/profile/lib/use-user-data";
+import { useResetCartSelection } from "@/features/cart-item-action/api/reset-cart-selection";
 import { FavoriteCartHeader } from "@/widgets/favorite-cart-header";
 import { CartList } from "@/widgets/cart-list";
 import { CartInfo } from "@/features/cart-order-info";
 
+const route = useRoute();
+
 const { user } = useUserData();
 const { cart } = useCartData();
+const { resetSelection } = useResetCartSelection();
+
+onMounted(() => {
+  if (route.query.reset) {
+    resetSelection();
+    router.replace({ query: {} });
+  }
+});
 </script>

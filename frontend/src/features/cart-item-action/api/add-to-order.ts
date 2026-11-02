@@ -8,7 +8,7 @@ export const useAddToOrder = () => {
     const queryClient = useQueryClient();
 
     const {
-        mutateAsync: addToOrder,
+        mutate: addToOrder,
         isPending,
         isError,
     } = useMutation({

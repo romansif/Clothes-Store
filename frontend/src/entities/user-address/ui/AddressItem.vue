@@ -1,16 +1,14 @@
 <template>
-    <TransitionGroup name="list">
-        <li
-            :key="address.id"
-            class="mt-5 flex h-fit flex-col rounded-xl border border-gray-200 p-2 shadow-lg"
-        >
-            <div class="flex flex-col gap-5">
-                <div class="flex">
+  <li
+      class="mt-5 flex h-fit flex-col rounded-xl border border-gray-200 p-2 shadow-lg"
+  >
+    <div class="flex flex-col gap-5">
+      <div class="flex">
                     <span class="text-sm font-semibold">
                         Address: <span class="font-normal">{{ address.address }}</span>
                     </span>
-                    <img
-                        @click="
+        <img
+            @click="
                             emit(
                                 'deleteAddress',
                                 'Are you sure you want to delete this saved address?',
@@ -18,25 +16,24 @@
                                 address.id,
                             )
                         "
-                        :src="del"
-                        alt=""
-                        class="cursor-pointer ml-auto w-5 transition duration-400 hover:scale-120"
-                    />
-                </div>
-                <div class="flex gap-5">
+            :src="del"
+            alt=""
+            class="cursor-pointer ml-auto w-5 transition duration-400 hover:scale-120"
+        />
+      </div>
+      <div class="flex gap-5">
                     <span class="text-sm font-semibold">
                         Country: <span class="font-normal">{{ address.country }},</span>
                     </span>
-                    <span class="text-sm font-semibold">
+        <span class="text-sm font-semibold">
                         City: <span class="font-normal">{{ address.city }}</span>
                     </span>
-                </div>
-                <span v-if="address.addressName" class="text-sm font-semibold">
+      </div>
+      <span v-if="address.addressName" class="text-sm font-semibold">
                     Address Name: <span class="font-normal">{{ address.addressName }},</span>
                 </span>
-            </div>
-        </li>
-    </TransitionGroup>
+    </div>
+  </li>
 </template>
 
 <script setup lang="ts">

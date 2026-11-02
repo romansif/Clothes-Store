@@ -103,6 +103,19 @@ export const paymentsController = {
             throw new HttpError(400, 'Select a payment method', { paymentMethod: 'Select a payment method' });
         }
 
+        if (fields.cardFingerprint) {
+            const existing = unwrap(
+                await supabase.from('payments').select('*')
+                    .eq('userId', user.id)
+                    .eq('cardFingerprint', fields.cardFingerprint)
+                    .limit(1),
+            );
+            if (existing.length) {
+                res.status(200).json(toApiPayment(existing[0]));
+                return;
+            }
+        }
+
         const newPayment = unwrap(
             await supabase.from('payments').insert({ ...fields, userId: user.id }).select().single(),
         );

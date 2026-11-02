@@ -59,6 +59,15 @@ export const cartController = {
         res.json(updated);
     }),
 
+    resetSelection: handle('Failed to reset the cart selection', async (req, res) => {
+        const user = requireUser(req);
+
+        const { error } = await supabase.from('cart').update({ checked: false }).eq('userId', user.id).eq('checked', true);
+        if (error) throw error;
+
+        res.json({ ok: true });
+    }),
+
     deleteCartItem: handle('Failed to delete the product from cart', async (req, res) => {
         const user = requireUser(req);
         const id = param(req, 'id');

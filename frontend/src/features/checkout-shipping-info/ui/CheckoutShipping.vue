@@ -1,11 +1,10 @@
 <template>
-    <Loading v-if="isPending" />
     <div class="flex flex-col lg:w-100 xl:w-125">
         <ShippingAddress :user-address="userAddress" />
         <div class="mt-8 flex flex-col gap-5">
             <label class="text-xs font-medium md:text-sm"> SHIPPING METHODS </label>
             <div class="flex gap-3">
-                <form @submit.prevent="addShipping()" class="flex w-full flex-col gap-6">
+                <form @submit.prevent="selectShipping()" class="flex w-full flex-col gap-6">
                     <ShippingMethod
                         v-model="shippingForm.delivery"
                         :method="'standard'"
@@ -31,9 +30,11 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from "vue";
 import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
 import { useSavedAddressData } from "@/widgets/user-address-list/lib/use-saved-address-data";
-import { useAddShipping } from "@/features/checkout-shipping-info/api/add-shipping";
+import { useSelectShipping } from "@/features/checkout-shipping-info/api/add-shipping";
+import { checkoutSession } from "@/entities/checkout-session/model/checkout-session";
 import {
     shippingForm,
     shippingFormErrorMessage,
@@ -41,12 +42,15 @@ import {
 import { UiButton } from "@/shared/ui/button";
 import { ShippingAddress } from "@/entities/checkout-shipping";
 import { ShippingMethod } from "@/shared/ui/shipping-method";
-import { Loading } from "@/widgets/state";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 
 const { userAddress } = useSavedAddressData();
-const { addShipping, isPending } = useAddShipping();
+const { selectShipping } = useSelectShipping();
 
 refClearErrorsOnChange(shippingForm, shippingFormErrorMessage);
+
+onMounted(() => {
+  shippingForm.value.delivery = checkoutSession.delivery;
+});
 </script>

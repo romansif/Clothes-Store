@@ -39,41 +39,43 @@
                     </router-link>
                 </div>
             </div>
-            <div
-                class="flex gap-3 sm:flex sm:gap-3 md:flex md:gap-5 lg:flex lg:gap-10 xl:flex xl:gap-10"
+          <div
+              class="flex items-center gap-3 sm:flex sm:gap-3 md:flex md:gap-5 lg:flex lg:gap-10 xl:flex xl:gap-10"
+          >
+            <router-link v-if="user?.role === 'Buyer'" :to="{ name: 'favorite' }">
+              <div class="hidden sm:hidden md:flex lg:flex xl:flex">
+                <img
+                    :src="liked"
+                    alt=""
+                    class="w-12 h-12 rounded-full transition duration-400 hover:scale-110"
+                />
+              </div>
+            </router-link>
+            <router-link
+                :to="{ name: 'profile' }"
+                class="group flex items-center gap-2.5 transition duration-400 hover:scale-110"
             >
-                <router-link
-                    v-if="user?.role === 'Buyer'"
-                    :to="{ name: 'favorite' }"
-                    class="h-10 w-10 transition duration-400 hover:scale-110"
-                >
-                    <div class="hidden sm:hidden md:flex lg:flex xl:flex">
-                        <img :src="liked" alt="" class="h-10 w-10 rounded-full" />
-                    </div>
-                </router-link>
-                <router-link :to="{ name: 'profile' }" class="group flex items-center gap-2.5">
-                    <img
-                        :src="user ? avatar() : profile"
-                        alt=""
-                        class="h-10 w-10 rounded-full bg-white object-cover transition duration-300 group-hover:scale-110"
-                    />
-                    <span v-if="user" class="font-medium">{{ user.name }}</span>
-                </router-link>
-                <router-link
-                    v-if="user?.role === 'Buyer'"
-                    :to="{ name: 'cart' }"
-                    class="transition duration-400 hover:scale-110"
-                >
-                    <div class="gap-1 md:flex lg:flex xl:flex xl:items-center">
+              <img
+                  :src="user ? avatar() : profile"
+                  alt=""
+                  class="h-11 w-11 rounded-full bg-white object-cover"
+              />
+
+              <span v-if="user" class="font-medium">{{ user.name }}</span>
+            </router-link>
+            <router-link v-if="user?.role === 'Buyer'" :to="{ name: 'cart' }">
+              <div
+                  class="gap-1 transition duration-400 hover:scale-110 md:flex lg:flex xl:flex xl:items-center"
+              >
                         <span
-                            class="hidden items-center rounded-4xl bg-black px-7 py-3.5 text-white md:flex"
+                            class="hidden items-center rounded-3xl bg-black px-7 py-2.5 text-white md:flex"
                         >
                             Cart
                         </span>
-                        <img :src="cart" alt="" class="w-12.5 rounded-full" />
-                    </div>
-                </router-link>
-            </div>
+                      <img :src="cart" alt="" class="h-11 w-11 rounded-full" />
+              </div>
+            </router-link>
+          </div>
         </div>
     </nav>
 </template>

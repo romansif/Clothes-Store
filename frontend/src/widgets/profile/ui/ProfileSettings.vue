@@ -1,5 +1,5 @@
 <template>
-    <div v-if="props.user" class="flex flex-col rounded-xl bg-white shadow-2xl">
+    <div v-if="props.user" class="flex flex-col rounded-xl bg-white shadow-2xl w-87.5 sm:w-150 md:w-175 lg:w-237.5 xl:w-175">
         <div class="flex p-5">
             <div class="flex items-center gap-10">
                 <img

@@ -1,8 +1,4 @@
-import { ref } from "vue";
-
 import { isSavedAddress } from "@/entities/checkout-info-item/model/information.refs";
-
-const informationId = ref<string>("");
 
 export const toggleInformation = () => {
     const toggleShowContact = () => {
@@ -10,7 +6,6 @@ export const toggleInformation = () => {
     };
 
     return {
-        informationId,
         toggleShowContact,
     };
 };

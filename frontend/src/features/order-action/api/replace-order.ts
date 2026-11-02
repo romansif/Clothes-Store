@@ -16,7 +16,7 @@ export const useReplaceOrder = () => {
     const queryClient = useQueryClient();
 
     const {
-        mutateAsync: replaceOrder,
+        mutate: replaceOrder,
         isPending,
         isError,
     } = useMutation({

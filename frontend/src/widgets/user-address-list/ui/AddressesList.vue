@@ -1,4 +1,5 @@
 <template>
+  <TransitionGroup name="list">
     <ul class="no-scrollbar grid h-92.5 grid-cols-2 overflow-y-auto pb-4">
         <AddressItem
             v-for="address in userAddresses"
@@ -7,6 +8,7 @@
             @delete-address="toggleDeleteChoice"
         />
     </ul>
+  </TransitionGroup>
 </template>
 
 <script setup lang="ts">
