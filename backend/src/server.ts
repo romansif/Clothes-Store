@@ -9,7 +9,6 @@ import authRoutes from '#routes/auth.routes.ts';
 
 import usersRoutes from "#routes/users.routes.ts";
 import addressesRoutes from "#routes/addresses.routes.ts";
-import shippingRoutes from "#routes/shipping.routes.ts";
 import paymentsRoutes from "#routes/payments.routes.ts";
 
 import productsRoutes from "#routes/products.routes.ts";
@@ -55,7 +54,6 @@ const apiRoutes = [
 
     usersRoutes,
     addressesRoutes,
-    shippingRoutes,
     paymentsRoutes,
 
     productsRoutes,
