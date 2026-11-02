@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import { watch } from "vue";
 import { useCartData } from "@/widgets/cart-list/lib/use-cart-data";
-import { useCartOrderInfo } from "@/features/cart-item-action/model/cart-order-info";
+import { useCartOrderInfo } from "@/features/cart-order-info/lib/cart-order-info";
 import {
     isAgreeFormError,
     isAgreeFormErrorMessage,

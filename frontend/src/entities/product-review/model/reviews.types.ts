@@ -13,8 +13,8 @@ export interface Review {
     userId: string;
     productId: string;
     user: ReviewUser;
-    images?: ImageItem[];
     rating: number;
     comment: string;
+    images?: ImageItem[];
     created_at: string;
 }

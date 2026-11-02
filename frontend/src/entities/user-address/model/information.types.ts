@@ -1,9 +1,9 @@
 export interface UserContactInfo {
     id: string;
     userId: string;
+    addressName: string;
     email: string;
     phone: string;
-    addressName: string;
     firstName: string;
     lastName: string;
     country: string;
@@ -11,4 +11,5 @@ export interface UserContactInfo {
     address: string;
     city: string;
     postalCode: number;
+    created_at: string;
 }

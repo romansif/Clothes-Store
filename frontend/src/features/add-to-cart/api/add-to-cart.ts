@@ -1,6 +1,4 @@
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
-import type { Product } from "@/shared";
-
 import { cartStore } from "@/widgets/cart-list/model/cart.store";
 import { clearCartForm } from "@/features/product-info/lib/clear-cart-form";
 import {
@@ -11,13 +9,13 @@ import { addToCartSchema } from "@/entities/product-info/model/add-to-cart-schem
 import { handler } from "@/shared/api/http";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
 import { useBaseModals } from "@/shared/lib/use-notify";
+import type { Product } from "@/shared";
 
 const { unreadCount } = cartStore();
 const { openNotify } = useBaseModals();
 
 export const useAddToCart = () => {
     const queryClient = useQueryClient();
-    const userId = localStorage.getItem("userId");
 
     const {
         mutate: addToCart,
@@ -39,37 +37,15 @@ export const useAddToCart = () => {
                 throw new Error("Товар который вы хотите добавить в корзину не найден");
             }
 
-            const currentQuantity = currentProduct.variants.find(
-                (q) => q.hex === addToCartForm.value.colors.hex,
-            );
-
             return await handler(`/cart`, {
                 method: "POST",
                 body: JSON.stringify({
-                    userId: userId,
                     productId: currentProduct.id,
-                    images: currentProduct.images,
-                    title: currentProduct.title,
-                    category: currentProduct.category,
-                    material: currentProduct.material,
-                    price: currentProduct.price,
-                    description: currentProduct.description,
-                    colors: [
-                        {
-                            hex: addToCartForm.value.colors.hex,
-                            colorName: addToCartForm.value.colors.colorName,
-                        },
-                    ],
-                    sizes: addToCartForm.value.sizes,
-                    gender: currentProduct.gender,
-                    variants: [
-                        {
-                            hex: currentQuantity?.hex,
-                            colorName: currentQuantity?.colorName,
-                            size: addToCartForm.value.sizes,
-                            count: 1,
-                        },
-                    ],
+                    color: {
+                        hex: addToCartForm.value.colors.hex,
+                        colorName: addToCartForm.value.colors.colorName,
+                    },
+                    size: addToCartForm.value.sizes,
                     checked: false,
                 }),
             });

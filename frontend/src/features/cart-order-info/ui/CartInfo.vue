@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-import { useCartOrderInfo } from "@/features/cart-item-action/model/cart-order-info";
+import { useCartOrderInfo } from "@/features/cart-order-info/lib/cart-order-info";
 import { baseDeleteModal } from "@/features/general-delete/lib/base-delete-modal";
 import { ContinueToOrder } from "@/features/cart-order-info";
 import { DeleteModal } from "@/features/general-delete";

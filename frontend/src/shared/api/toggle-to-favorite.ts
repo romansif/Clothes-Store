@@ -34,16 +34,6 @@ export const useToggleFavorite = () => {
                     body: JSON.stringify({
                         userId: userId,
                         productId,
-                        images: product.images,
-                        title: product.title,
-                        category: product.category,
-                        material: product.material,
-                        price: product.price,
-                        description: product.description,
-                        color: product.colors,
-                        size: product.sizes,
-                        gender: product.gender,
-                        variants: product.variants,
                     }),
                 });
 

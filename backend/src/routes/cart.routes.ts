@@ -5,12 +5,12 @@ import { cartController } from "#controllers/cart.controller.ts";
 
 const router = express.Router();
 
+router.post('/reset-selection', authMiddleware, cartController.resetSelection);
+
 router.get('/cart/:userId', authMiddleware, cartController.getCart);
 
 router.post('/cart', authMiddleware, validation.addProductToCartValidation, validation.handleValidationErrors,
     cartController.addToCart);
-
-router.post('/reset-selection', cartController.resetSelection);
 
 router.patch('/cart/:id', authMiddleware, cartController.updateCartItem);
 
