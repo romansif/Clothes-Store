@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from './uuid';
+import { v4 as uuidv4 } from 'uuid';
 import { type NextFunction, type Request, type Response } from 'express';
 import { supabase } from '#db/supabase.ts';
 import { unwrap, isUuid, updateOwned, deleteOwned } from '#db/query.ts';

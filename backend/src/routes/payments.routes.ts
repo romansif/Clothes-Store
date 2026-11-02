@@ -6,6 +6,7 @@ import { paymentsController } from "#controllers/payments.controller.ts";
 const router = express.Router();
 
 router.get('/payment/:userId', authMiddleware, paymentsController.getPayments);
+
 router.get('/payment/item/:id', authMiddleware, paymentsController.getPayment);
 
 router.post('/payment', authMiddleware, validation.paymentValidation,
