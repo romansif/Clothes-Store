@@ -1,10 +1,6 @@
 import { ref } from "vue";
 import type { Product } from "@/shared";
 
-import { orderStore } from "@/shared/model/order.store";
-
-const { items } = orderStore();
-
 const clipboard = ref<boolean>(false);
 
 export const useOrder = () => {
@@ -31,7 +27,6 @@ export const useOrder = () => {
     };
 
     return {
-        items,
         clipboard,
 
         copyText,

@@ -21,11 +21,10 @@
 <script setup lang="ts">
 import { useUpdateCartItem } from "@/features/cart-item-action/api/update-cart-item";
 import { productHelper } from "@/shared/lib/product-helper";
-import type { Product } from "@/shared";
 import type { CartItem } from "@/entities/cart-item";
 
-defineProps<{
-    product: Product;
+const props = defineProps<{
+    product: CartItem;
     cart: CartItem[];
 }>();
 

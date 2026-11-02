@@ -27,11 +27,17 @@ export interface Order {
     orderItems: OrderItem[];
     orderTotal: number;
     delivery: string;
-    created_at: string;
+    status: string;
     date_created_at: string;
     time_created_at: string;
+    cause_replace: string;
     cancelled_at: string;
     date_cancelled_at: string;
     time_cancelled_at: string;
-    status: string;
+    created_at: string;
+    addressId: string;
+    contactId: string;
+    paymentId: string;
+    idempotencyKey: string;
+    deliveryInfo: string;
 }

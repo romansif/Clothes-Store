@@ -1,21 +1,12 @@
-import type { Collection, ColorItem, ImageItem, Variant } from "@/shared";
+import type { Product } from "@/shared";
 
-export interface FavoriteItem {
+interface FavoriteRow {
     id: string;
     userId: string;
     productId: string;
-    title: string;
-    category: string;
-    material: string;
-    description: string;
-    images: ImageItem[];
-    price: number;
-    colors: ColorItem[];
-    sizes: string;
-    gender: string;
-    variants: Variant[];
-    sku: string;
-    checked: boolean;
-    collection: Collection;
     created_at: string;
+}
+
+export interface FavoriteItem extends Omit<Product, keyof FavoriteRow>, FavoriteRow {
+    sellerId: string;
 }

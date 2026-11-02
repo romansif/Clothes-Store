@@ -16,7 +16,10 @@ export const useCartOrderInfo = () => {
     });
 
     const price = computed(() => {
-        return checkedItems.value.reduce((sum: number, item: CartItem) => sum + item.price, 0);
+        return checkedItems.value.reduce(
+            (sum: number, item: CartItem) => sum + Number(item.price) * Number(item.quantity),
+            0,
+        );
     });
 
     const commissionPrice = computed(() => {
@@ -32,7 +35,7 @@ export const useCartOrderInfo = () => {
     };
 
     const continueToOrder = async (cart: CartItem[]) => {
-        const isChecked = cart.filter(item => item.checked)
+        const isChecked = cart.some((item) => item.checked);
 
         try {
             if (!isAgreeFormError.value.agree && !isChecked) {

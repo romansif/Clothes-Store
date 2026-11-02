@@ -1,13 +1,24 @@
 import { supabase } from '#db/supabase.ts';
 import { unwrap, unwrapOrConflict, isUuid, updateOwned, deleteOwned } from '#db/query.ts';
 import {
-    HttpError, handle, param, requireUser, requireSelf, pickKeys, cleanText,
+    type Row, HttpError, handle, param, requireUser, requireSelf, pickKeys, cleanText, normalizeEmail,
 } from '#db/security';
 
 const ADDRESS_FIELDS = [
     'addressName', 'email', 'phone', 'firstName', 'lastName',
     'country', 'stateRegion', 'address', 'city', 'postalCode',
 ] as const;
+
+const TEXT_LIMITS: Record<string, number> = {
+    addressName: 100,
+    phone: 32,
+    firstName: 100,
+    lastName: 100,
+    country: 100,
+    stateRegion: 100,
+    address: 300,
+    city: 100,
+};
 
 const toPostalCode = (value: unknown): number => {
     const code = Number(value);
@@ -17,9 +28,29 @@ const toPostalCode = (value: unknown): number => {
     return code;
 };
 
+// Чистит и обрезает пробелы у всех текстовых полей и записывает очищенное значение обратно.
+// Раньше адрес только проверялся, а в базу уходила исходная строка, и «Main St » не считался дублем «Main St».
+const sanitize = (data: Row): void => {
+    for (const [field, max] of Object.entries(TEXT_LIMITS)) {
+        if (data[field] === undefined || data[field] === null) continue;
+
+        const text = cleanText(data[field], max);
+        if (text === null) throw new HttpError(400, `Invalid ${field}`, { [field]: `Invalid ${field}` });
+        data[field] = text;
+    }
+
+    if (data.email !== undefined && data.email !== null && data.email !== '') {
+        const email = normalizeEmail(data.email);
+        if (!email) throw new HttpError(400, 'Invalid email address.', { email: 'Enter a valid email address.' });
+        data.email = email;
+    }
+
+    if (data.postalCode !== undefined) data.postalCode = toPostalCode(data.postalCode);
+};
+
 const duplicateAddress = () =>
-    new HttpError(400, `This address is already exist for this accounts.`, {
-        email: `Limit reached. You can only have one of a kind account per address.`,
+    new HttpError(400, 'This address already exists on your account.', {
+        address: 'You already have this address saved.',
     });
 
 export const addressesController = {
@@ -51,11 +82,12 @@ export const addressesController = {
     addAddress: handle('Failed to create the user address', async (req, res) => {
         const user = requireUser(req);
 
-        const { postalCode, ...fields } = pickKeys(req.body, ADDRESS_FIELDS);
+        const fields = pickKeys(req.body, ADDRESS_FIELDS);
 
-        if (cleanText(fields.address, 300) === null) {
+        if (typeof fields.address !== 'string' || !cleanText(fields.address, 300)) {
             throw new HttpError(400, 'Invalid address', { address: 'Invalid address' });
         }
+        sanitize(fields);
 
         const existing = unwrap(
             await supabase.from('addresses').select('id')
@@ -66,11 +98,7 @@ export const addressesController = {
         if (existing.length) throw duplicateAddress();
 
         const created = unwrapOrConflict(
-            await supabase.from('addresses').insert({
-                ...fields,
-                userId: user.id,
-                ...(postalCode !== undefined && { postalCode: toPostalCode(postalCode) }),
-            }).select().single(),
+            await supabase.from('addresses').insert({ ...fields, userId: user.id }).select().single(),
             duplicateAddress(),
         );
 
@@ -83,16 +111,25 @@ export const addressesController = {
 
         const changes = pickKeys(req.body, ADDRESS_FIELDS);
 
-        if (changes.address !== undefined && cleanText(changes.address, 300) === null) {
+        if (changes.address !== undefined && (typeof changes.address !== 'string' || !cleanText(changes.address, 300))) {
             throw new HttpError(400, 'Invalid address', { address: 'Invalid address' });
         }
-        if (changes.postalCode !== undefined) {
-            changes.postalCode = toPostalCode(changes.postalCode);
+        sanitize(changes);
+
+        if (changes.address !== undefined && isUuid(id)) {
+            const duplicates = unwrap(
+                await supabase.from('addresses').select('id')
+                    .eq('userId', user.id)
+                    .eq('address', changes.address)
+                    .neq('id', id)
+                    .limit(1),
+            );
+            if (duplicates.length) throw duplicateAddress();
         }
 
         const updated = await updateOwned('addresses', id, user.id, changes, duplicateAddress());
 
-        if (!updated) throw new HttpError(404, 'Address record not found');
+        if (!updated) throw new HttpError(404, 'Address not found');
 
         res.status(200).json(updated);
     }),
@@ -103,7 +140,7 @@ export const addressesController = {
 
         const deleted = await deleteOwned('addresses', id, user.id);
 
-        if (!deleted) throw new HttpError(404, 'Адрес не найден');
+        if (!deleted) throw new HttpError(404, 'Address not found');
 
         res.json(deleted);
     }),

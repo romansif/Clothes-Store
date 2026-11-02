@@ -1,21 +1,16 @@
-import type { Collection, ColorItem, ImageItem, Variant } from "@/shared";
+import type { ColorItem, Product } from "@/shared";
 
-export interface CartItem {
+interface CartRow {
     id: string;
     userId: string;
     productId: string;
-    title: string;
-    category: string;
-    material: string;
-    description: string;
-    images: ImageItem[];
-    price: number;
-    colors: ColorItem[];
-    sizes: string;
-    gender: string;
-    variants: Variant[];
-    sku: string;
+    quantity: number;
     checked: boolean;
-    collection: Collection;
     created_at: string;
+    color: ColorItem;
+    size: string;
+}
+
+export interface CartItem extends Omit<Product, keyof CartRow>, CartRow {
+    sellerId: string;
 }

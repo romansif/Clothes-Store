@@ -7,5 +7,5 @@ export interface UserPayment {
     expiryDate: string;
     cardCvv: number;
     paymentMethod: string;
-    created_at: string
+    created_at: string;
 }

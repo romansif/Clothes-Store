@@ -1,12 +1,14 @@
 import { type NextFunction, type Request, type Response } from 'express';
 import { supabase } from '#db/supabase.ts';
 import { unwrap, isUuid } from '#db/query.ts';
+import { withAuthors } from '#db/relations.ts';
 import {
     type Row, HttpError, handle, param, requireUser, cleanText, parseJsonField,
     getUploadedFiles, assertImages, removeUploadedFiles,
 } from '#db/security';
 
-const MAX_REVIEW_IMAGES = 10;
+// Должен совпадать с лимитом в multer на роуте (reviewUpload.array('images', 4)).
+const MAX_REVIEW_IMAGES = 4;
 const MAX_COMMENT_LENGTH = 2000;
 
 // В базе created_at — timestamptz, а фронт ждёт «Oct 29, 2026», как раньше.
@@ -14,10 +16,13 @@ const formatDate = (value: unknown): string => {
     const date = new Date(value as string);
     return Number.isNaN(date.getTime())
         ? String(value ?? '')
-        : date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        : date.toLocaleDateString('en-US', {
+            month: 'short', day: 'numeric', year: 'numeric', timeZone: 'Asia/Tashkent',
+        });
 };
 
-const toApiReview = (review: Row): Row => ({ ...review, created_at: formatDate(review.created_at) });
+const toApiReviews = async (reviews: Row[]): Promise<Row[]> =>
+    (await withAuthors(reviews)).map(review => ({ ...review, created_at: formatDate(review.created_at) }));
 
 const SORTS: Record<string, { column: string; ascending: boolean }> = {
     'Latest': { column: 'created_at', ascending: false },
@@ -27,11 +32,11 @@ const SORTS: Record<string, { column: string; ascending: boolean }> = {
 
 export const reviewsController = {
     getReviews: handle('Failed to get the review list', async (_req, res) => {
-        const reviews = unwrap(
+        const reviews: Row[] = unwrap(
             await supabase.from('reviews').select('*').order('created_at', { ascending: true }),
         );
 
-        res.json(reviews.map(toApiReview));
+        res.json(await toApiReviews(reviews));
     }),
 
     getFilteredReviews: handle('Failed to get the filtered review list', async (req, res) => {
@@ -48,63 +53,65 @@ export const reviewsController = {
         let reviews: Row[] = unwrap(
             await supabase.from('reviews').select('*')
                 .eq('productId', productId)
-                .order(sort.column, { ascending: sort.ascending }),
+                .order(sort.column, { ascending: sort.ascending })
+                .order('id', { ascending: true }),
         );
 
         if (filter === 'With photos') {
             reviews = reviews.filter(review => Array.isArray(review.images) && review.images.length > 0);
         }
 
-        res.json(reviews.map(toApiReview));
+        res.json(await toApiReviews(reviews));
     }),
 
     createReview: handle('Failed to add the review to the reviews', async (req, res) => {
         const files = getUploadedFiles(req);
-        const user = requireUser(req);
 
-        if (files.length > MAX_REVIEW_IMAGES) {
-            throw new HttpError(400, `At most ${MAX_REVIEW_IMAGES} photos per review.`);
+        try {
+            const user = requireUser(req);
+
+            if (files.length > MAX_REVIEW_IMAGES) {
+                throw new HttpError(400, `At most ${MAX_REVIEW_IMAGES} photos per review.`);
+            }
+            assertImages(files);
+
+            const body: Row = req.body ?? {};
+
+            const rating = Number(body.rating);
+            if (!Number.isFinite(rating) || rating < 1 || rating > 5) {
+                throw new HttpError(400, 'Rating must be between 1 and 5', { rating: 'Rating must be between 1 and 5' });
+            }
+
+            const comment = body.comment === undefined || body.comment === null ? '' : cleanText(body.comment, MAX_COMMENT_LENGTH);
+            if (comment === null) {
+                throw new HttpError(400, 'Comment is too long', { comment: `Comment must be at most ${MAX_COMMENT_LENGTH} characters` });
+            }
+
+            const product = isUuid(body.productId)
+                ? unwrap(await supabase.from('products').select('id').eq('id', body.productId).maybeSingle())
+                : null;
+
+            if (!product) throw new HttpError(404, 'Product not found');
+
+            // Имя и аватар автора НЕ копируются в отзыв: они подтягиваются из users при чтении.
+            const newReview = unwrap(
+                await supabase.from('reviews').insert({
+                    userId: user.id,
+                    productId: body.productId,
+                    rating,
+                    comment,
+                    images: files.map(file => `uploads/reviews/${file.filename}`),
+                }).select().single(),
+            );
+
+            const [data] = await toApiReviews([newReview]);
+
+            res.status(201).json({ message: 'Review added', data });
+        } catch (error) {
+            // отзыв не создан — загруженные фото не должны остаться мусором на диске
+            removeUploadedFiles(files);
+            throw error;
         }
-        assertImages(files);
-
-        const body: Row = req.body ?? {};
-
-        const rating = Number(body.rating);
-        if (!Number.isFinite(rating) || rating < 1 || rating > 5) {
-            throw new HttpError(400, 'Rating must be between 1 and 5', { rating: 'Rating must be between 1 and 5' });
-        }
-
-        const comment = body.comment === undefined || body.comment === null ? '' : cleanText(body.comment, MAX_COMMENT_LENGTH);
-        if (comment === null) {
-            throw new HttpError(400, 'Comment is too long', { comment: `Comment must be at most ${MAX_COMMENT_LENGTH} characters` });
-        }
-
-        const product = isUuid(body.productId)
-            ? unwrap(await supabase.from('products').select('id').eq('id', body.productId).maybeSingle())
-            : null;
-
-        if (!product) throw new HttpError(404, 'Product not found');
-
-        const author = unwrap(
-            await supabase.from('users').select('name, surName, avatarUrl').eq('id', user.id).maybeSingle(),
-        );
-
-        const newReview = unwrap(
-            await supabase.from('reviews').insert({
-                userId: user.id,
-                productId: body.productId,
-                user: {
-                    name: author?.name ?? '',
-                    surName: author?.surName ?? '',
-                    avatar: author?.avatarUrl ?? '',
-                },
-                rating,
-                comment,
-                images: files.map(file => `uploads/reviews/${file.filename}`),
-            }).select().single(),
-        );
-
-        res.status(201).json({ message: 'Review added', data: toApiReview(newReview) });
     }),
 
     reviewParse: (req: Request, res: Response, next: NextFunction) => {

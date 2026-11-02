@@ -1,17 +1,24 @@
 import { supabase } from '#db/supabase.ts';
-import { unwrap, deleteOwned, isUuid, updateOwned } from '#db/query.ts';
+import { unwrap, isUuid } from '#db/query.ts';
 import {
-    HttpError, handle, param, requireUser, requireSelf, pickKeys, isPlainObject,
+    HttpError, handle, param, requireUser, requireSelf, pickKeys, isPlainObject, cleanText,
 } from '#db/security';
 
 const FINISHED_STATUSES = ['Delivered', 'Cancelled'];
+const FINISHED_FILTER = `(${FINISHED_STATUSES.join(',')})`;
 
 const ORDER_INPUT = ['contactId', 'addressId', 'paymentId', 'delivery', 'idempotencyKey'] as const;
 const CHECKOUT_ERRORS: Record<string, number> = { CK001: 400, CK002: 409, CK003: 409 };
 
-const UPDATE_FIELDS = [
-    'cause_replace', 'cancelled_at', 'date_cancelled_at', 'time_cancelled_at',
-] as const;
+const MAX_CAUSE_LENGTH = 500;
+const TIME_ZONE = 'Asia/Tashkent';
+
+// Дата и время заказа считаются на сервере в одном часовом поясе и не зависят от локали машины.
+// Формат тот же, что был: «11/2/2026» и «14:28».
+const formatOrderDate = (date: Date): string => date.toLocaleDateString('en-US', { timeZone: TIME_ZONE });
+
+const formatOrderTime = (date: Date): string =>
+    date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit', hourCycle: 'h23', timeZone: TIME_ZONE });
 
 export const ordersController = {
     getOrders: handle('Failed to get the current orders', async (req, res) => {
@@ -32,7 +39,7 @@ export const ordersController = {
         const orders = unwrap(
             await supabase.from('orders').select('*')
                 .eq('userId', user.id)
-                .not('status', 'in', `(${FINISHED_STATUSES.join(',')})`)
+                .not('status', 'in', FINISHED_FILTER)
                 .order('created_at', { ascending: false }),
         );
 
@@ -57,7 +64,9 @@ export const ordersController = {
             throw new HttpError(400, 'Invalid checkout data');
         }
 
-        const date = new Date();
+        // Состав и цены заказа собирает сама база (create_order) из актуальных products и cart.
+        // С клиента принимаются только id адреса, контакта и оплаты, способ доставки и ключ идемпотентности.
+        const now = new Date();
         const { data, error } = await supabase.rpc('create_order', {
             p_user_id: user.id,
             p_contact_id: contactId,
@@ -65,8 +74,8 @@ export const ordersController = {
             p_payment_id: paymentId,
             p_delivery: delivery,
             p_key: idempotencyKey,
-            p_date: date.toLocaleDateString(),
-            p_time: date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }),
+            p_date: formatOrderDate(now),
+            p_time: formatOrderTime(now),
         });
 
         if (error) {
@@ -78,27 +87,74 @@ export const ordersController = {
         res.status(201).json({ message: 'Order created', data });
     }),
 
+    // Единственное, что клиент может сделать с заказом, — отменить его.
+    // Время отмены ставит сервер, а не клиент.
     updateOrder: handle('Failed to update the order', async (req, res) => {
         const user = requireUser(req);
         const id = param(req, 'id');
         const body = isPlainObject(req.body) ? req.body : {};
 
-        const changes: Record<string, unknown> = pickKeys(body, UPDATE_FIELDS);
-        if (body.status === 'Cancelled') changes.status = 'Cancelled'; // единственный статус от клиента
+        if (body.status !== 'Cancelled') {
+            throw new HttpError(400, 'Only cancelling an order is supported');
+        }
+        if (!isUuid(id)) throw new HttpError(404, 'Order not found');
 
-        const updated = await updateOwned('orders', id, user.id, changes);
-        if (!updated) throw new HttpError(404, 'Order not found');
+        const changes: Record<string, unknown> = { status: 'Cancelled' };
+
+        if (body.cause_replace !== undefined && body.cause_replace !== null) {
+            const cause = cleanText(body.cause_replace, MAX_CAUSE_LENGTH);
+            if (cause === null) {
+                throw new HttpError(400, 'Invalid cancellation reason', { cause_replace: 'Invalid cancellation reason' });
+            }
+            changes.cause_replace = cause;
+        }
+
+        const now = new Date();
+        changes.cancelled_at = now.toISOString();
+        changes.date_cancelled_at = formatOrderDate(now);
+        changes.time_cancelled_at = formatOrderTime(now);
+
+        // условие «ещё не завершён» стоит в самом update, поэтому двойная отмена или отмена
+        // доставленного заказа невозможны даже при одновременных запросах
+        const updated = unwrap(
+            await supabase.from('orders').update(changes)
+                .eq('id', id).eq('userId', user.id)
+                .not('status', 'in', FINISHED_FILTER)
+                .select().maybeSingle(),
+        );
+
+        if (!updated) {
+            const exists = unwrap(
+                await supabase.from('orders').select('id').eq('id', id).eq('userId', user.id).maybeSingle(),
+            );
+            if (!exists) throw new HttpError(404, 'Order not found');
+            throw new HttpError(409, 'This order is already finished and cannot be cancelled');
+        }
 
         res.json(updated);
     }),
 
+    // Удалять из истории можно только завершённые заказы.
     deleteOrderItems: handle('Failed to delete the order', async (req, res) => {
         const user = requireUser(req);
         const id = param(req, 'id');
 
-        const deleted = await deleteOwned('orders', id, user.id);
+        if (!isUuid(id)) throw new HttpError(404, 'Order not found');
 
-        if (!deleted) throw new HttpError(404, 'Order Product not found');
+        const deleted = unwrap(
+            await supabase.from('orders').delete()
+                .eq('id', id).eq('userId', user.id)
+                .in('status', FINISHED_STATUSES)
+                .select().maybeSingle(),
+        );
+
+        if (!deleted) {
+            const exists = unwrap(
+                await supabase.from('orders').select('id').eq('id', id).eq('userId', user.id).maybeSingle(),
+            );
+            if (!exists) throw new HttpError(404, 'Order not found');
+            throw new HttpError(409, 'Only delivered or cancelled orders can be deleted');
+        }
 
         res.json(deleted);
     }),

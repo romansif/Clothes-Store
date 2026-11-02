@@ -8,9 +8,6 @@ router.get('/favorites/:userId', authMiddleware, favoritesController.getFavorite
 
 router.post('/favorites', authMiddleware, favoritesController.addToFavorite);
 
-router.patch('/favorites/:id', authMiddleware, favoritesController.updateFavoriteItems);
-
 router.delete('/favorites/:id', authMiddleware, favoritesController.deleteFavorite);
-
 
 export default router;

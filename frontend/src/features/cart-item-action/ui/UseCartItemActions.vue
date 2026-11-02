@@ -9,7 +9,7 @@
             <div
                 class="h-7.5 w-7.5"
                 :title="pureColors(product.id, cart)?.hex"
-                :style="{ background: pureColors(product.id, cart)?.hex || 'transparent' }"
+                :style="{ background: product.color.hex || 'transparent' }"
             ></div>
             <UpdateQuantityItem :product="product" :cart="cart" />
             <img
@@ -25,13 +25,12 @@
 import { productHelper } from "@/shared/lib/product-helper";
 import { sizeClass, sizeUrl } from "@/entities/cart-item/lib/cart-specific";
 import { AddToOrder, DeleteCartItemButton, UpdateQuantityItem } from "@/features/cart-item-action";
-import type { Product } from "@/shared";
 import type { CartItem } from "@/entities/cart-item";
 
 import reload from "@/assets/icons/app/reload.svg";
 
 defineProps<{
-    product: Product;
+    product: CartItem;
     cart: CartItem[];
 }>();
 

@@ -8,7 +8,7 @@ import {
     pickKeys, cleanText, normalizeEmail, rateLimit,
     stripUserSecrets, toPublicProfile, toPublicPayment,
     getUploadedFiles, assertImages, deleteUploadedFile,
-} from '../db/security';
+} from '#db/security';
 
 const DEFAULT_AVATAR = 'uploads/avatars/default-avatar.png';
 const MIN_PASSWORD_LENGTH = 8;
@@ -128,22 +128,22 @@ export const usersController = {
         const { oldPassword, newPassword } = body;
 
         if (typeof oldPassword !== 'string' || typeof newPassword !== 'string' || !oldPassword || !newPassword) {
-            throw new HttpError(400, 'Заполните все поля');
+            throw new HttpError(400, 'Please fill in all fields');
         }
 
         if (newPassword.length < MIN_PASSWORD_LENGTH || newPassword.length > MAX_PASSWORD_LENGTH) {
-            throw new HttpError(400, `Пароль должен содержать от ${MIN_PASSWORD_LENGTH} до ${MAX_PASSWORD_LENGTH} символов`);
+            throw new HttpError(400, `Password must be ${MIN_PASSWORD_LENGTH}-${MAX_PASSWORD_LENGTH} characters long`);
         }
 
         const user = await findUser(id);
 
-        if (!user) throw new HttpError(404, 'Пользователь не найден');
+        if (!user) throw new HttpError(404, 'User not found');
 
         const isPasswordValid = typeof user.password === 'string' && user.password
             ? await bcrypt.compare(oldPassword, user.password)
             : false;
 
-        if (!isPasswordValid) throw new HttpError(400, 'Неверный текущий пароль');
+        if (!isPasswordValid) throw new HttpError(400, 'Current password is incorrect');
 
         const currentRefresh = req.cookies?.refreshToken;
         const currentHash = typeof currentRefresh === 'string'
@@ -161,14 +161,14 @@ export const usersController = {
                 .eq('id', id),
         );
 
-        res.status(200).json({ message: 'Пароль успешно изменен' });
+        res.status(200).json({ message: 'Password updated successfully' });
     }),
 
     updateUserAvatar: handle('Failed to update avatar', async (req, res) => {
         const id = param(req, 'id');
         requireSelf(req, id);
 
-        if (!req.file) throw new HttpError(400, 'Файл аватарки обязателен');
+        if (!req.file) throw new HttpError(400, 'Avatar file is required');
         assertImages(getUploadedFiles(req));
 
         const user = await findUser(id);
@@ -198,7 +198,7 @@ export const usersController = {
 
         const current = requireUser(req);
         if (!sameId(current.id, id)) {
-            throw new HttpError(403, 'Нет прав на удаление чужого аккаунта');
+            throw new HttpError(403, 'You can only delete your own account');
         }
 
         // Все связанные строки (products, cart, favorites, addresses, shipping,
@@ -207,7 +207,7 @@ export const usersController = {
             ? unwrap(await supabase.from('users').delete().eq('id', id).select()).at(0)
             : null;
 
-        if (!deletedUser) throw new HttpError(404, 'Пользователь не найден');
+        if (!deletedUser) throw new HttpError(404, 'User not found');
 
         if (deletedUser.avatarUrl && deletedUser.avatarUrl !== DEFAULT_AVATAR) {
             deleteUploadedFile(deletedUser.avatarUrl);
@@ -216,7 +216,7 @@ export const usersController = {
         res.clearCookie('accessToken', clearCookieOptions);
         res.clearCookie('refreshToken', clearCookieOptions);
 
-        res.json({ message: 'Пользователь и его данные удалены', user: stripUserSecrets(deletedUser) });
+        res.json({ message: 'User and all related data have been deleted', user: stripUserSecrets(deletedUser) });
     }),
 };
 

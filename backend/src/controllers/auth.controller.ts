@@ -339,7 +339,7 @@ const authController = {
                 await saveSessions(user);
             }
             clearSessionCookies(res);
-            throw new HttpError(403, 'Токен недействителен или отозван');
+            throw new HttpError(403, 'Refresh token is invalid or revoked');
         }
 
         const tokens = rotateSession(user, refreshToken);

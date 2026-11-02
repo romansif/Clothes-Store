@@ -158,7 +158,7 @@ export const paymentsController = {
         }
 
         const updated = Object.keys(changes).length
-            ? unwrap(await supabase.from('payments').update(changes).eq('id', id).select().single())
+            ? unwrap(await supabase.from('payments').update(changes).eq('id', id).eq('userId', user.id).select().single())
             : current;
 
         res.status(200).json(toApiPayment(updated));
@@ -170,7 +170,7 @@ export const paymentsController = {
 
         const deleted = await deleteOwned('payments', id, user.id);
 
-        if (!deleted) throw new HttpError(404, 'Способ оплаты не найден');
+        if (!deleted) throw new HttpError(404, 'Payment not found');
 
         res.json(toApiPayment(deleted));
     }),

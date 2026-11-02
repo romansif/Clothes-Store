@@ -1,17 +1,17 @@
 <template>
-    <ul
-        :class="[
+    <ul :class="[
             'no-scrollbar mt-10 flex flex-col gap-8 overflow-y-auto',
-            items.length > 1 ? 'h-77.5' : 'h-37.5',
-        ]"
-    >
-        <CheckoutOrderItem v-for="product in items" :product="product" :items="items" />
+            orderItems.length > 1 ? 'h-77.5' : 'h-37.5',
+        ]">
+        <CheckoutOrderItem v-for="product in orderItems" :product="product" :items="orderItems" />
     </ul>
 </template>
 
 <script setup lang="ts">
-import { orderStore } from "@/shared/model/order.store";
 import { CheckoutOrderItem } from "@/entities/checkout-order-item";
+import type { CartItem } from "@/entities/cart-item";
 
-const { items } = orderStore();
+defineProps<{
+  orderItems: CartItem[]
+}>()
 </script>

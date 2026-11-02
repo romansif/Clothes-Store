@@ -1,71 +1,69 @@
 import { supabase } from '#db/supabase.ts';
-import { unwrap, isUuid, findOwnedItem } from '#db/query.ts';
-import { HttpError, handle, param, requireUser, requireSelf, pickKeys } from '#db/security';
+import { unwrap, unwrapOrConflict, isUuid, findOwnedItem } from '#db/query.ts';
+import { withProducts } from '#db/relations.ts';
+import { type Row, HttpError, handle, param, requireUser, requireSelf, pickKeys } from '#db/security';
 
-// color / size — в единственном числе: именно так их шлёт фронт (toggle-to-favorite.ts)
-const FAVORITE_FIELDS = [
-    'productId', 'images', 'title', 'category', 'material', 'price', 'description',
-    'color', 'size', 'gender', 'variants', 'quantity', 'status', 'favorite', 'checked',
-] as const;
+// В таблице favorites лежит только пара userId + productId.
+// Все данные товара берутся из products при каждом запросе.
+const FAVORITE_FIELDS = ['productId'] as const;
 
-const FAVORITE_UPDATABLE = FAVORITE_FIELDS.filter(field => field !== 'productId');
+const findFavorite = async (userId: string, productId: string): Promise<Row | null> => {
+    const rows: Row[] = unwrap(
+        await supabase.from('favorites').select('*').eq('userId', userId).eq('productId', productId).limit(1),
+    );
+    return rows[0] ?? null;
+};
+
+const presentOne = async (item: Row): Promise<Row> => (await withProducts([item]))[0] ?? item;
 
 export const favoritesController = {
     getFavorites: handle('Failed to get the favorite list', async (req, res) => {
         const user = requireSelf(req, param(req, 'userId'));
 
-        const favorites = unwrap(
+        const favorites: Row[] = unwrap(
             await supabase.from('favorites').select('*')
                 .eq('userId', user.id)
                 .order('created_at', { ascending: false }),
         );
 
-        res.json(favorites);
+        res.json(await withProducts(favorites));
     }),
 
     addToFavorite: handle('Failed to add the product to the favorite', async (req, res) => {
         const user = requireUser(req);
 
-        const body = pickKeys(req.body, FAVORITE_FIELDS);
-        if (body.productId === undefined || body.productId === null || body.productId === '') {
+        const { productId } = pickKeys(req.body, FAVORITE_FIELDS);
+        if (!isUuid(productId)) {
             throw new HttpError(400, 'productId is required');
         }
 
-        const product = isUuid(body.productId)
-            ? unwrap(await supabase.from('products').select('id').eq('id', body.productId).maybeSingle())
-            : null;
+        const product = unwrap(await supabase.from('products').select('id').eq('id', productId).maybeSingle());
+        if (!product) throw new HttpError(404, 'Product not found');
 
-        if (!product) throw new HttpError(400, 'Product not found');
+        // повторное добавление не создаёт копию, а возвращает уже существующую запись
+        const existing = await findFavorite(user.id, productId);
+        if (existing) {
+            res.status(200).json({ message: 'Product is already in favorites', data: await presentOne(existing) });
+            return;
+        }
 
-        const newFavoriteItem = unwrap(
-            await supabase.from('favorites').insert({ ...body, userId: user.id }).select().single(),
+        const created = unwrapOrConflict(
+            await supabase.from('favorites').insert({ productId, userId: user.id }).select().single(),
+            new HttpError(409, 'Product is already in favorites'),
         );
 
-        res.status(201).json({ message: 'Product added to favorite', data: newFavoriteItem });
-    }),
-
-    updateFavoriteItems: handle('Failed to update the favorite item', async (req, res) => {
-        const user = requireUser(req);
-        const id = param(req, 'id');
-
-        const item = await findOwnedItem('favorites', user.id, id);
-        if (!item) throw new HttpError(404, 'Favorite item not found');
-
-        const changes = pickKeys(req.body, FAVORITE_UPDATABLE);
-
-        const updated = Object.keys(changes).length
-            ? unwrap(await supabase.from('favorites').update(changes).eq('id', item.id).select().single())
-            : item;
-
-        res.json(updated);
+        res.status(201).json({ message: 'Product added to favorite', data: await presentOne(created) });
     }),
 
     deleteFavorite: handle('Failed to delete the product from favorites', async (req, res) => {
         const user = requireUser(req);
         const id = param(req, 'id');
 
+        // id уходит в фильтр PostgREST, поэтому строго uuid
+        if (!isUuid(id)) throw new HttpError(404, 'Favorite product not found');
+
         const item = await findOwnedItem('favorites', user.id, id);
-        if (!item) throw new HttpError(404, 'Favorite Product not found');
+        if (!item) throw new HttpError(404, 'Favorite product not found');
 
         unwrap(
             await supabase.from('favorites').delete()
@@ -73,7 +71,7 @@ export const favoritesController = {
                 .or(`id.eq.${id},productId.eq.${id}`),
         );
 
-        res.json(item);
+        res.json(await presentOne(item));
     }),
 };
 
