@@ -7,15 +7,8 @@
             <router-view />
         </div>
     </div>
-    <Transition name="modal">
-        <Notification v-if="notify" />
-    </Transition>
 </template>
 
 <script setup lang="ts">
-import { useBaseModals } from "@/shared/lib/use-notify";
 import { MainNavBar } from "@/widgets/navigation";
-import { Notification } from "@/shared";
-
-const { notify } = useBaseModals();
 </script>

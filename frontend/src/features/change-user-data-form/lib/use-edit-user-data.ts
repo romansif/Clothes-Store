@@ -15,7 +15,7 @@ import {
 } from "@/entities/profile-form/model/user-update-schemas";
 import { handler } from "@/shared/api/http";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
-import { useBaseModals } from "@/shared/lib/use-notify";
+import { useBaseModals } from "@/widgets/notification/lib/use-notify";
 
 const {
     clearUpdateUserFormPhone,
@@ -44,7 +44,6 @@ export const useEditUserName = () => {
             return await baseEditUser({
                 dataToUpdate: { name: updateUserForm.value.name },
                 type: "name",
-                title: "You have successfully changed your name.",
             });
         },
 
@@ -79,7 +78,6 @@ export const useEditUserSurName = () => {
             return await baseEditUser({
                 dataToUpdate: { name: updateUserForm.value.surName },
                 type: "surname",
-                title: "You have successfully changed your surname.",
             });
         },
 
@@ -114,7 +112,6 @@ export const useEditUserPhone = () => {
             return await baseEditUser({
                 dataToUpdate: { name: updateUserForm.value.surName },
                 type: "phone",
-                title: "You have successfully changed your phone.",
             });
         },
 
@@ -149,7 +146,6 @@ export const useEditUserEmail = () => {
             return await baseEditUser({
                 dataToUpdate: { name: updateUserForm.value.surName },
                 type: "email",
-                title: "You have successfully changed your email.",
             });
         },
 
@@ -197,7 +193,7 @@ export const useEditUserPassword = () => {
 
             await queryClient.invalidateQueries({ queryKey: ["user"] });
 
-            await openNotify("You have successfully changed your password.", "");
+            await openNotify({variant: "password", state: "success"});
         },
 
         onError: (err) => {

@@ -10,7 +10,7 @@ import type {
 import { createProductForm } from "@/entities/product-form/model/product-forms";
 import { handler } from "@/shared/api/http";
 import { currentFile } from "@/shared/lib/product-helper";
-import { useBaseModals } from "@/shared/lib/use-notify";
+import { useBaseModals } from "@/widgets/notification/lib/use-notify";
 import type { Product } from "@/shared/model/product.types";
 
 const { openNotify } = useBaseModals();
@@ -53,7 +53,7 @@ export const useEditProductImages = () => {
         },
 
         onError: async (err) => {
-            await openNotify(`You haven't entered anything to change.`, "");
+            await openNotify({variant: "edit-product", state: "error"});
 
             throw new Error(`Ошибка при изменении фото карточек товара`, err);
         },
@@ -93,15 +93,13 @@ export const useEditProductInfo = () => {
         },
 
         onSuccess: async () => {
-            await openNotify(
-                "You have successfully changed the product card description",
-                "Now, if you go to the my products page, your product will be there, and on the useProfile page as well",
-            );
+            await openNotify({variant: "edit-product", state: "success"});
+
             await router.push({ name: "my/products" });
         },
 
         onError: async (err) => {
-            await openNotify(`You haven't entered anything to change.`, "");
+            await openNotify({variant: "edit-product", state: "error"});
 
             throw new Error(`Ошибка при изменении информации о товаре`, err);
         },
@@ -144,7 +142,7 @@ export const useEditProductQuantity = () => {
         },
 
         onError: async (err) => {
-            await openNotify(`You haven't entered anything to change.`, "");
+            await openNotify({variant: "edit-product", state: "error"});
 
             throw new Error(`Failed to edit the variants product cover:`, err);
         },
@@ -199,7 +197,7 @@ export const useEditProductColors = () => {
         },
 
         onError: async (err) => {
-            await openNotify(`You haven't entered anything to change.`, "");
+            await openNotify({variant: "edit-product", state: "error"});
 
             throw new Error(`Failed to edit the colors product cover:`, err);
         },

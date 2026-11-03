@@ -8,7 +8,7 @@ import {
 import { addContactInfoSchema } from "@/entities/checkout-info-form/model/information-schemas";
 import { handler } from "@/shared/api/http";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
-import { useBaseModals } from "@/shared/lib/use-notify";
+import { useBaseModals } from "@/widgets/notification/lib/use-notify";
 import { checkoutSession } from "@/entities/checkout-session/model/checkout-session";
 
 const { openNotify } = useBaseModals();
@@ -16,14 +16,12 @@ const { openNotify } = useBaseModals();
 export const useConfirmInformation = () => {
     const confirmInformation = async () => {
         if(!checkoutSession.contactId || !checkoutSession.addressId){
-            await openNotify("You must choose", "Choose a saved contact and a shipping address.");
+            await openNotify({variant: "information", state: "error"});
             return;
         }
         clearInformationForm()
-        await openNotify(
-            "You have successfully added the shipping address",
-            "You will now be redirected to the shipping method selection page",
-        );
+
+        await openNotify({variant: "information", state: "success"});
         await router.push({ name: "shipping" })
     }
 
@@ -53,13 +51,13 @@ export const useCreateInformation = () => {
         onSuccess: async (address) => {
             checkoutSession.contactId = address.id;
             checkoutSession.addressId = address.id;
+
             clearInformationForm();
-            await queryClient.invalidateQueries({ queryKey: ["userAddresses"] });
-            await openNotify(
-                "You have successfully added the shipping address",
-                "You will now be redirected to the shipping method selection page",
-            );
+
+            await openNotify({variant: "information", state: "success"});
             await router.push({ name: "shipping" });
+
+            await queryClient.invalidateQueries({ queryKey: ["userAddresses"] });
         },
 
         onError: (err) => {

@@ -15,7 +15,7 @@ import {
 import { handler } from "@/shared/api/http";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
 import { imageFiles } from "@/shared/lib/product-helper";
-import { useBaseModals } from "@/shared/lib/use-notify";
+import { useBaseModals } from "@/widgets/notification/lib/use-notify";
 
 const { openNotify } = useBaseModals();
 
@@ -84,10 +84,7 @@ export const useCreateProduct = () => {
                 await queryClient.invalidateQueries({ queryKey: ["filteredProducts"] }),
             ]);
 
-            await openNotify(
-                "You have successfully created a new product card",
-                "Now, if you go to the products page, your product will be there, and on the useProfile page as well",
-            );
+            await openNotify({variant: "create-product", state: "success"});
             await router.push({ name: "my/products" });
 
             clearProductForm();

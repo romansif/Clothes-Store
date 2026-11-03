@@ -35,7 +35,7 @@ import {
     errorStateMessage,
     stateRoute,
     stateRouteMessage,
-} from "@/widgets/state/model/state.mock";
+} from "@/widgets/state/model/state-messages";
 import { UiButton } from "@/shared/ui/button";
 import type { PageVariant } from "@/widgets/state";
 

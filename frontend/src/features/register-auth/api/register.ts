@@ -12,7 +12,7 @@ import {
 import { registerSchema } from "@/entities/register-form/model/register.schemas";
 import { handler } from "@/shared/api/http";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
-import { useBaseModals } from "@/shared/lib/use-notify";
+import { useBaseModals } from "@/widgets/notification/lib/use-notify";
 
 const { openNotify } = useBaseModals();
 
@@ -53,10 +53,7 @@ export const signUp = () => {
 
             localStorage.setItem("userId", data.id);
 
-            await openNotify(
-                "You have successfully sign up",
-                "You will now be taken to your profile page",
-            );
+            await openNotify();
             await router.push({ name: "profile" });
         },
 

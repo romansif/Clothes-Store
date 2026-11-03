@@ -7,7 +7,7 @@ import {
 import { addToCartSchema } from "@/entities/product-info/model/add-to-cart-schemas";
 import { handler } from "@/shared/api/http";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
-import { useBaseModals } from "@/shared/lib/use-notify";
+import { useBaseModals } from "@/widgets/notification/lib/use-notify";
 import type { Product } from "@/shared";
 
 const { unreadCount } = cartStore();
@@ -51,17 +51,14 @@ export const useAddToCart = () => {
         },
 
         onSuccess: async () => {
-            await queryClient.invalidateQueries({ queryKey: ["cart"] });
-
             unreadCount.value += 1;
 
-            await openNotify(
-                "You have successfully added the item to your cart",
-                'You will now be redirected to the "Cart" page',
-            );
+            await openNotify({variant: "add-to-cart", state: "success"});
+
+            await queryClient.invalidateQueries({ queryKey: ["cart"] });
         },
 
-        onError: (err) => {
+        onError: async (err) => {
             applyErrors(err, addToCartFormErrorMessages);
 
             throw new Error(`Ошибка валидации добавления товара в корзину`, err);

@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/vue-query";
 import { useProductsData } from "@/widgets/product-list/lib/use-product-data";
 import { useDeleteCartItem } from "@/features/cart-item-action/api/delete-cart";
 import { handler } from "@/shared/api/http";
-import { useBaseModals } from "@/shared/lib/use-notify";
+import { useBaseModals } from "@/widgets/notification/lib/use-notify";
 import type { UpdateCartItemPayload } from "@/features/cart-item-action";
 
 const { openNotify } = useBaseModals();
@@ -41,10 +41,7 @@ export const useUpdateCartItem = () => {
             }
 
             if (type === "add" && currentQuantity >= stock) {
-                await openNotify(
-                    "The item is no longer in stock",
-                    "The maximum stock level for the item has been reached",
-                );
+                await openNotify({variant: "add-to-cart", state: "error"});
                 return;
             }
 

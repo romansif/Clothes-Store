@@ -6,7 +6,7 @@ import { cancelChoiceForm, cancelChoiceMessage } from "@/entities/order/model/or
 import { replaceOrderSchema } from "@/entities/order/model/replace-order-schemas";
 import { handler } from "@/shared/api/http";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
-import { useBaseModals } from "@/shared/lib/use-notify";
+import { useBaseModals } from "@/widgets/notification/lib/use-notify";
 import { orderStore } from "@/shared/model/order.store";
 
 const { orderId } = orderStore();
@@ -55,10 +55,7 @@ export const useReplaceOrder = () => {
                 await queryClient.invalidateQueries({ queryKey: ["activeOrders"] }),
             ]);
 
-            await openNotify(
-                "You have successfully cancelled the order.",
-                "Thank you for providing us with this information, it helps us improve our service.",
-            );
+            await openNotify({variant: "replace-order", state: "success"});
 
             toggleReplaceChoice("");
         },

@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
 import { previewHelper } from "@/entities/product-card/lib/preview-helper";
 import { handler } from "@/shared/api/http";
-import { useBaseModals } from "@/shared/lib/use-notify";
+import { useBaseModals } from "@/widgets/notification/lib/use-notify";
 import type { ToggleToFavoritePayload } from "@/shared/model/favorite-payload.types";
 
 export const useToggleFavorite = () => {
@@ -39,10 +39,7 @@ export const useToggleFavorite = () => {
 
                 await queryClient.invalidateQueries({ queryKey: ["favorite"] });
 
-                await openNotify(
-                    "You have successfully added the item to your favorite",
-                    'You will now be redirected to the "Favorite" page',
-                );
+                await openNotify({variant: 'add-to-favorite', state: 'success'});
             } else {
                 const favoriteItem = favorite.find(
                     (item) => item.productId === productId && item.userId === userId,

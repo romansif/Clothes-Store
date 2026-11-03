@@ -1,6 +1,6 @@
 import { ref } from "vue";
 import { handler } from "@/shared/api/http";
-import { useBaseModals } from "@/shared/lib/use-notify";
+import { useBaseModals } from "@/widgets/notification/lib/use-notify";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
 import { clearPaymentForm } from "@/features/checkout-payment-dashboard/lib/clear-payment";
@@ -68,19 +68,16 @@ export const usePlaceOrder = () => {
             idempotencyKey.value = crypto.randomUUID();
             clearPaymentForm();
 
-            await Promise.all([
-                queryClient.invalidateQueries({ queryKey: ["products"] }),
-                queryClient.invalidateQueries({ queryKey: ["orders"] }),
-                queryClient.invalidateQueries({ queryKey: ["activeOrders"] }),
-            ]);
-
+            await openNotify({variant: "payment", state: "success"});
             await router.push({ name: "payment-success" })
+
+            await queryClient.invalidateQueries({ queryKey: ["payments"] })
         },
 
         onError: async (err) => {
             applyErrors(err, paymentFormErrorMessage);
 
-            await openNotify("Could not place the order", err.message);
+            await openNotify({variant: "payment", state: "error"});
         }
     });
 

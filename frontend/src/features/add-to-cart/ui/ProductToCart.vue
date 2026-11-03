@@ -1,4 +1,4 @@
-<template>
+<template xmlns="http://www.w3.org/1999/html">
   <div class="mt-4 flex flex-col gap-6">
     <button
         @click="toggleSizeGuide"
@@ -24,27 +24,33 @@
         name="OUT OF STACK"
         variant="outOfStack"
     />
-    <div v-if="user.id && isInCart(cart, product)" class="flex items-center gap-18">
+    <div v-if="user.id && isInCart(cart, product)" class="flex items-center gap-18 h-fit">
       <div
-          class="flex gap-6 bg-zinc-800 px-3 py-3.5 text-lg transition duration-300 hover:scale-108"
+          class="flex gap-6 items-center bg-zinc-800 px-4 py-3.5 text-lg transition duration-300 hover:scale-108 rounded-full"
       >
-        <img
-            :src="plus"
-            @click="cartItem && updateCartItemQuantity({ type: 'add', cartItem })"
-            alt=""
-            class="w-8.75 rounded-md bg-zinc-600 px-2 py-1.5 text-white transition duration-300 hover:bg-zinc-400"
-        />
+        <button class="rounded-full bg-zinc-600 px-2 py-1.5 text-white transition duration-300 hover:bg-zinc-400"
+                @click="cartItem && updateCartItemQuantity({ type: 'add', cartItem })">
+          <img
+              :src="plus"
+              alt=""
+              class="w-20"
+          />
+        </button>
         <span class="font-dm-sans text-white">{{ cartItem?.quantity }}</span>
-        <img
-            :src="minus"
-            @click="cartItem && updateCartItemQuantity({ type: 'remove', cartItem })"
-            alt=""
-            class="w-8.75 rounded-md bg-zinc-600 px-2 py-1.5 text-white transition duration-300 hover:bg-zinc-400"
-        />
+        <button class="rounded-full bg-zinc-600 px-2 py-1.5 text-white transition duration-300 hover:bg-zinc-400"
+                @click="cartItem && updateCartItemQuantity({ type: 'remove', cartItem })"
+                >
+          <img
+              :src="minus"
+              alt=""
+              class="w-20"
+          />
+        </button>
       </div>
       <router-link
           :to="{ name: 'cart' }"
-          class="transform cursor-pointer bg-black px-19 py-4.5 text-start font-[Montserrat] font-semibold text-white transition duration-400 hover:scale-108 lg:block"
+          class="rounded-full transition duration-400 transform cursor-pointer text-center w-full bg-[#722f37]
+          text-white font-semibold text-sm py-5 font-[Montserrat] lg:block hover:scale-108 hover:bg-[#5a252c]"
       >
         Go to Cart
       </router-link>

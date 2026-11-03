@@ -4,7 +4,7 @@ import type { EditUserPayload } from "@/features/change-user-data-form/model/edi
 import { updateUserFormErrorMessages } from "@/entities/profile-form/model/user-update-form";
 import { handler } from "@/shared/api/http";
 import { applyErrors } from "@/shared/lib/errors-helper";
-import { useBaseModals } from "@/shared/lib/use-notify";
+import { useBaseModals } from "@/widgets/notification/lib/use-notify";
 
 const { openNotify } = useBaseModals();
 
@@ -25,10 +25,10 @@ export const useBaseEditUser = () => {
             });
         },
 
-        onSuccess: async (variables) => {
+        onSuccess: async () => {
             await queryClient.invalidateQueries({ queryKey: ["user"] });
 
-            await openNotify(variables.title, "");
+            await openNotify({variant: "profile", state: "success"});
         },
 
         onError: (err) => {

@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/vue-query";
 import { clearReviewForm } from "@/features/add-review/lib/clear-review-form";
 import { reviewsStore } from "@/features/review-dashboard/model/reviews.store";
 import { toggleReviewModal } from "@/entities/order-action/lib/review-form-modal";
-import { useBaseModals } from "@/shared/lib/use-notify";
+import { useBaseModals } from "@/widgets/notification/lib/use-notify";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
 import { imageFiles } from "@/shared/lib/product-helper";
 import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/review-form";
@@ -64,22 +64,19 @@ export const useCreateReview = () => {
         },
 
         onSuccess: async () => {
+            clearReviewForm();
+
+            await openNotify({variant: "add-review", state: "success"});
+
+            toggleReviewModal("");
+
             await Promise.all([
                 queryClient.invalidateQueries({ queryKey: ["reviews"] }),
                 queryClient.invalidateQueries({ queryKey: ["filteredReviews"] }),
             ]);
-
-            clearReviewForm();
-
-            await openNotify(
-                "You have successfully added a review for this product",
-                "Thank you for your feedback. It helps other customers make the right choice.",
-            );
-
-            toggleReviewModal("");
         },
 
-        onError: (err) => {
+        onError: async (err) => {
             applyErrors(err, reviewFormMessages);
 
             throw new Error("Ошибка валидации отзыва", err);

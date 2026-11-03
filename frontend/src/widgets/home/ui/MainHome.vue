@@ -57,24 +57,18 @@
                 </ul>
             </div>
         </div>
-        <Transition name="modal">
-            <Notification v-if="notify" />
-        </Transition>
     </main>
 </template>
 
 <script setup lang="ts">
 import { useUserData } from "@/widgets/profile/lib/use-user-data";
-import { useBaseModals } from "@/shared/lib/use-notify";
 import { WeekList } from "@/widgets/week-list";
 import { YearList } from "@/widgets/year-list";
 import { FilterGender } from "@/widgets/home";
-import { Notification } from "@/shared";
 
 import photo_1 from "@/assets/photos/8.png";
 import photo_2 from "@/assets/photos/9.png";
 import photo_3 from "@/assets/photos/pants.png";
 
 const { user } = useUserData();
-const { notify } = useBaseModals();
 </script>

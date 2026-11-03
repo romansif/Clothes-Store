@@ -4,7 +4,7 @@ import router from "@/app/router";
 import { clearLoginForm, clearLoginFormMessages } from "@/features/login-auth/lib/clear-login-form";
 import { loginForm } from "@/entities/login-form/model/login-form";
 import { handler } from "@/shared/api/http";
-import { useBaseModals } from "@/shared/lib/use-notify";
+import { useBaseModals } from "@/widgets/notification/lib/use-notify";
 import {useRoute} from "vue-router";
 
 const { openNotify } = useBaseModals();
@@ -38,15 +38,12 @@ export const signGoogleAuth = () => {
 
             localStorage.setItem("userId", data.id);
 
-            await openNotify(
-                "You have successfully sign in",
-                "You will now be taken to your profile page",
-            );
+            await openNotify({variant: "OAuth", state: "success"});
             await router.push((route.query.redirect as string) || "/")
         },
 
         onError: async (err) => {
-            await openNotify("You were unable to login with google", "");
+            await openNotify({variant: "OAuth", state: "error"});
 
             throw new Error(`Ошибка входа google`, err);
         },

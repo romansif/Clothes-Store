@@ -6,7 +6,7 @@ import { loginForm, loginFormErrorMessages } from "@/entities/login-form/model/l
 import { loginSchema } from "@/entities/login-form/model/login.schemas";
 import { handler } from "@/shared/api/http";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
-import { useBaseModals } from "@/shared/lib/use-notify";
+import { useBaseModals } from "@/widgets/notification/lib/use-notify";
 import {useRoute} from "vue-router";
 
 const { openNotify } = useBaseModals();
@@ -45,15 +45,13 @@ export const signIn = () => {
 
             localStorage.setItem("userId", data.id);
 
-            await openNotify(
-                "You have successfully sign in",
-                "You will now be taken to your profile page",
-            );
+            await openNotify({variant: "login", state: "success"});
             await router.push((route.query.redirect as string) || "/")
         },
 
-        onError: (err) => {
+        onError: async (err) => {
             applyErrors(err, loginFormErrorMessages);
+            await openNotify({variant: "login", state: "error"});
 
             throw new Error(`Ошибка входа`, err);
         },

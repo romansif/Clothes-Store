@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
 import router from "@/app/router";
 import { handler } from "@/shared/api/http.ts";
-import { useBaseModals } from "@/shared/lib/use-notify.ts";
+import { useBaseModals } from "@/widgets/notification/lib/use-notify.ts";
 
 const { openNotify } = useBaseModals();
 
@@ -25,10 +25,7 @@ export const useDeleteAccount = () => {
         onSuccess: async () => {
             queryClient.clear();
 
-            await openNotify(
-                "You have successfully delete account",
-                "You will now be taken to sign in page",
-            );
+            await openNotify({variant: "delete-user", state: "success"});
             await router.push({ name: "signIn" });
         },
 
@@ -64,6 +61,7 @@ export const useLogout = () => {
 
             queryClient.clear();
 
+            await openNotify({variant: "logout", state: "success"});
             await router.push({ name: "signIn" });
         },
 

@@ -3,7 +3,6 @@ import { resetCheckoutSession } from "@/entities/checkout-session";
 import { useResetCartSelection } from "@/features/cart-item-action/api/reset-cart-selection";
 
 export const closeSuccessFull = async () => {
-    await queryClient.invalidateQueries({ queryKey: ["cart"] })
     const { resetSelection } = useResetCartSelection();
 
     resetCheckoutSession();
@@ -12,4 +11,11 @@ export const closeSuccessFull = async () => {
     localStorage.removeItem("orderItems");
 
     await resetSelection()
+
+    await Promise.all([
+        queryClient.invalidateQueries({ queryKey: ["cart"] }),
+        queryClient.invalidateQueries({ queryKey: ["products"] }),
+        queryClient.invalidateQueries({ queryKey: ["orders"] }),
+        queryClient.invalidateQueries({ queryKey: ["activeOrders"] }),
+    ]);
 }

@@ -51,9 +51,6 @@
                 ]"
                 :error-message="updateUserFormErrorMessages.phone"
             />
-            <span v-if="updateUserFormErrorMessages.phone" class="text-xs text-red-600">
-                {{ updateUserFormErrorMessages.phone }}
-            </span>
             <div class="flex">
                 <UiButton type="submit" name="Save Phone" variant="profileForm" />
             </div>

@@ -14,22 +14,18 @@ export const toggleReviewPhotos = (images: ImageItem[] | undefined, index: numbe
     currentIndex.value = index;
 };
 
-export const changeReviewPhoto = (type: string, images: ImageItem[] | undefined) => {
+export const changeReviewPhoto = (
+    type: "next" | "prev" | "select",
+    images: ImageItem[] | undefined,
+    index: number,
+) => {
     if (!images?.length) return;
 
-    if (type === "next") {
-        currentIndex.value += 1;
-
-        if (currentIndex.value >= images.length) {
-            currentIndex.value = 0;
-        }
+    if (type === "select") {
+        currentIndex.value = index;
+        return;
     }
 
-    if (type === "prev") {
-        currentIndex.value -= 1;
-
-        if (currentIndex.value < 0) {
-            currentIndex.value = images.length - 1;
-        }
-    }
+    if (type === "next") currentIndex.value = (index + 1) % images.length;
+    if (type === "prev") currentIndex.value = (index - 1 + images.length) % images.length;
 };

@@ -16,22 +16,15 @@
                 <router-view />
             </div>
         </main>
-        <Transition name="modal">
-            <Notification v-if="notify" />
-        </Transition>
     </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from "vue";
 import { useRoute } from "vue-router";
-import { useBaseModals } from "@/shared/lib/use-notify";
 import { AuthHeader } from "@/widgets/auth-header";
-import { Notification } from "@/shared";
 
 const route = useRoute();
-
-const { notify } = useBaseModals();
 
 const isLogin = computed(() => route.name === "signIn");
 </script>
