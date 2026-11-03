@@ -37,7 +37,7 @@
 
 <script setup>
 import { useI18n } from "vue-i18n";
-import { setLocale } from "@/app/i18n/index.ts";
+import { setLocale } from "@/shared/i18n/index.ts";
 
 const { t } = useI18n();
 </script>
