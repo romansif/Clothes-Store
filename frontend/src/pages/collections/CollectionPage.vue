@@ -1,7 +1,7 @@
 <template>
-    <main class="mt-10 flex flex-col">
-        <HeaderCatalog />
-    </main>
+  <main class="mt-10 flex flex-col">
+    <HeaderCatalog />
+  </main>
 </template>
 
 <script setup lang="ts">

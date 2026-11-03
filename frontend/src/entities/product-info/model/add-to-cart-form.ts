@@ -1,30 +1,25 @@
 import { ref } from "vue";
 
-import type {
-    AddForm,
-    AddFormErrorMessage,
-    IsAgreeFormError,
-    IsAgreeFormErrorMessage,
-} from "@/entities/product-info";
+import type { AddForm, AddFormErrorMessage, IsAgreeFormError, IsAgreeFormErrorMessage } from "@/entities/product-info";
 
 export const addToCartForm = ref<AddForm>({
-    colors: {
-        hex: "",
-        colorName: "",
-    },
-    sizes: "",
+  colors: {
+    hex: "",
+    colorName: "",
+  },
+  sizes: "",
 });
 
 export const addToCartFormErrorMessages = ref<AddFormErrorMessage>({
-    colors: "",
-    sizes: "",
+  colors: "",
+  sizes: "",
 });
 
 export const isAgreeFormErrorMessage = ref<IsAgreeFormErrorMessage>({
-    agree: "",
+  agree: "",
 });
 
 export const isAgreeFormError = ref<IsAgreeFormError>({
-    agree: false,
-    agreeMessage: false,
+  agree: false,
+  agreeMessage: false,
 });

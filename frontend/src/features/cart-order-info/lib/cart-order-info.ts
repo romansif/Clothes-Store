@@ -1,67 +1,61 @@
 import { computed } from "vue";
-import { useCartData } from "@/widgets/cart-list/lib/use-cart-data";
+
 import router from "@/app/router";
-import {
-    isAgreeFormError,
-    isAgreeFormErrorMessage,
-} from "@/entities/product-info/model/add-to-cart-form";
+import { useCartData } from "@/widgets/cart-list/lib/use-cart-data";
 import type { CartItem } from "@/entities/cart-item";
+import { isAgreeFormError, isAgreeFormErrorMessage } from "@/entities/product-info/model/add-to-cart-form";
 
 export const useCartOrderInfo = () => {
-    const { cart } = useCartData()
+  const { cart } = useCartData();
 
-    const checkedItems = computed(() => {
-        return cart.value.filter((item: CartItem) => item.checked);
-    });
+  const checkedItems = computed(() => {
+    return cart.value.filter((item: CartItem) => item.checked);
+  });
 
-    const price = computed(() => {
-        return checkedItems.value.reduce(
-            (sum: number, item: CartItem) => sum + Number(item.price) * Number(item.quantity),
-            0,
-        );
-    });
+  const price = computed(() => {
+    return checkedItems.value.reduce((sum: number, item: CartItem) => sum + Number(item.price) * Number(item.quantity), 0);
+  });
 
-    const commissionPrice = computed(() => {
-        return Math.round(price.value * 0.08);
-    });
+  const commissionPrice = computed(() => {
+    return Math.round(price.value * 0.08);
+  });
 
-    const totalPrice = computed(() => {
-        return price.value + commissionPrice.value;
-    });
+  const totalPrice = computed(() => {
+    return price.value + commissionPrice.value;
+  });
 
-    const toggleAgree = () => {
-        isAgreeFormError.value.agree = !isAgreeFormError.value.agree;
-    };
+  const toggleAgree = () => {
+    isAgreeFormError.value.agree = !isAgreeFormError.value.agree;
+  };
 
-    const continueToOrder = async () => {
-        const isChecked = cart.value.some((item) => item.checked);
+  const continueToOrder = async () => {
+    const isChecked = cart.value.some((item) => item.checked);
 
-        try {
-            if (!isAgreeFormError.value.agree && !isChecked) {
-                isAgreeFormErrorMessage.value.agree =
-                    "You must select the items for your order, agree to the Terms and Conditions";
-                return;
-            } else if (!isAgreeFormError.value.agree) {
-                isAgreeFormErrorMessage.value.agree = "You must agree to the Terms and Conditions";
-                return;
-            } else if (!isChecked) {
-                isAgreeFormErrorMessage.value.agree = "You must select the items for your order";
-                return;
-            } else {
-                isAgreeFormErrorMessage.value.agree = "";
-                isAgreeFormError.value.agreeMessage = false;
-                await router.push({ name: "information" });
-            }
-        } catch (err) {
-            console.error(`Failed to go the create order:`, err);
-        }
-    };
+    try {
+      if (!isAgreeFormError.value.agree && !isChecked) {
+        isAgreeFormErrorMessage.value.agree = "You must select the items for your order, agree to the Terms and Conditions";
+        return;
+      } else if (!isAgreeFormError.value.agree) {
+        isAgreeFormErrorMessage.value.agree = "You must agree to the Terms and Conditions";
+        return;
+      } else if (!isChecked) {
+        isAgreeFormErrorMessage.value.agree = "You must select the items for your order";
+        return;
+      } else {
+        isAgreeFormErrorMessage.value.agree = "";
+        isAgreeFormError.value.agreeMessage = false;
+        await router.push({ name: "information" });
+      }
+    } catch (err) {
+      console.error(`Failed to go the create order:`, err);
+    }
+  };
 
-    return {
-        price,
-        commissionPrice,
-        totalPrice,
-        toggleAgree,
-        continueToOrder,
-    };
+  return {
+    price,
+    commissionPrice,
+    totalPrice,
+    toggleAgree,
+    continueToOrder,
+  };
 };

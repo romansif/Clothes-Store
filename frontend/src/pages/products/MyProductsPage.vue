@@ -1,10 +1,10 @@
 <template>
-    <main class="mt-10 flex">
-        <MyProductList :user="user" />
-    </main>
-    <Transition name="modal">
-        <DeleteModal v-if="deleteModal" />
-    </Transition>
+  <main class="mt-10 flex">
+    <MyProductList :user="user" />
+  </main>
+  <Transition name="modal">
+    <DeleteModal v-if="deleteModal" />
+  </Transition>
 </template>
 
 <script setup lang="ts">

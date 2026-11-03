@@ -1,12 +1,7 @@
 <template>
   <TransitionGroup name="list">
     <ul class="no-scrollbar flex h-92.5 flex-col overflow-y-auto pb-4">
-        <PaymentItem
-            v-for="payment in paymentCards(userPaymentCards)"
-            :key="payment.id"
-            :payment="payment"
-            @click="useSavedCard(payment)"
-        />
+      <PaymentItem v-for="payment in paymentCards(userPaymentCards)" :key="payment.id" :payment="payment" @click="useSavedCard(payment)" />
     </ul>
   </TransitionGroup>
 </template>

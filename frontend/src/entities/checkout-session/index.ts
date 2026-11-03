@@ -1,1 +1,1 @@
-export * from './model/checkout-session'
+export * from "./model/checkout-session";

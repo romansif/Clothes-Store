@@ -1,32 +1,32 @@
 .notify-enter-active {
-    transition:
-            transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-            opacity 0.25s ease;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.25s ease;
 }
 
 .notify-leave-active {
-    transition:
-            transform 0.25s ease-in,
-            opacity 0.2s ease-in;
+  transition:
+    transform 0.25s ease-in,
+    opacity 0.2s ease-in;
 }
 
 .notify-enter-from {
-    opacity: 0;
-    transform: translateY(calc(100% + 1rem));
+  opacity: 0;
+  transform: translateY(calc(100% + 1rem));
 }
 
 .notify-leave-to {
-    opacity: 0;
-    transform: translateY(1rem);
+  opacity: 0;
+  transform: translateY(1rem);
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .notify-enter-active,
-    .notify-leave-active {
-        transition: opacity 0.15s linear;
-    }
-    .notify-enter-from,
-    .notify-leave-to {
-        transform: none;
-    }
+  .notify-enter-active,
+  .notify-leave-active {
+    transition: opacity 0.15s linear;
+  }
+  .notify-enter-from,
+  .notify-leave-to {
+    transform: none;
+  }
 }

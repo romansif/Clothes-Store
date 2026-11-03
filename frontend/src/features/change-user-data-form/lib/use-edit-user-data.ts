@@ -1,211 +1,196 @@
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
+import { useBaseModals } from "@/widgets/notification/lib/use-notify";
 import { useBaseEditUser } from "@/features/change-user-data-form/api/update-profile";
 import { clearUsersForms } from "@/features/change-user-data-form/lib/clear-user-update";
-import {
-    updateUserForm,
-    updateUserFormErrorMessages,
-} from "@/entities/profile-form/model/user-update-form";
-import {
-    updateUserEmailSchema,
-    updateUserNameSchema,
-    updateUserPasswordSchema,
-    updateUserPhoneSchema,
-    updateUserSurNameSchema,
-} from "@/entities/profile-form/model/user-update-schemas";
+import { updateUserForm, updateUserFormErrorMessages } from "@/entities/profile-form/model/user-update-form";
+import { updateUserEmailSchema, updateUserNameSchema, updateUserPasswordSchema, updateUserPhoneSchema, updateUserSurNameSchema } from "@/entities/profile-form/model/user-update-schemas";
 import { handler } from "@/shared/api/http";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
-import { useBaseModals } from "@/widgets/notification/lib/use-notify";
 
-const {
-    clearUpdateUserFormPhone,
-    clearUpdateUserFormEmail,
-    clearUpdateUserFormName,
-    clearUpdateUserFormSurName,
-    clearUpdateUserFormPassword,
-} = clearUsersForms();
+const { clearUpdateUserFormPhone, clearUpdateUserFormEmail, clearUpdateUserFormName, clearUpdateUserFormSurName, clearUpdateUserFormPassword } = clearUsersForms();
 
 export const useEditUserName = () => {
-    const { baseEditUser } = useBaseEditUser();
+  const { baseEditUser } = useBaseEditUser();
 
-    const {
-        mutateAsync: editUserName,
-        isPending,
-        isError,
-    } = useMutation({
-        mutationKey: ["editUserName"],
-        mutationFn: async () => {
-            const result = updateUserNameSchema.safeParse(updateUserForm.value);
-            if (!result.success) {
-                applyZodErrors(result.error, updateUserFormErrorMessages);
-                throw result.error;
-            }
+  const {
+    mutateAsync: editUserName,
+    isPending,
+    isError,
+  } = useMutation({
+    mutationKey: ["editUserName"],
+    mutationFn: async () => {
+      const result = updateUserNameSchema.safeParse(updateUserForm.value);
+      if (!result.success) {
+        applyZodErrors(result.error, updateUserFormErrorMessages);
+        throw result.error;
+      }
 
-            return await baseEditUser({
-                dataToUpdate: { name: updateUserForm.value.name },
-                type: "name",
-            });
-        },
+      return await baseEditUser({
+        dataToUpdate: { name: updateUserForm.value.name },
+        type: "name",
+      });
+    },
 
-        onSuccess: () => {
-            clearUpdateUserFormName();
-        },
-    });
+    onSuccess: () => {
+      clearUpdateUserFormName();
+    },
+  });
 
-    return {
-        editUserName,
-        isPending,
-        isError,
-    };
+  return {
+    editUserName,
+    isPending,
+    isError,
+  };
 };
 
 export const useEditUserSurName = () => {
-    const { baseEditUser } = useBaseEditUser();
+  const { baseEditUser } = useBaseEditUser();
 
-    const {
-        mutateAsync: editUserSurName,
-        isPending,
-        isError,
-    } = useMutation({
-        mutationKey: ["editUserSurName"],
-        mutationFn: async () => {
-            const result = updateUserSurNameSchema.safeParse(updateUserForm.value);
-            if (!result.success) {
-                applyZodErrors(result.error, updateUserFormErrorMessages);
-                throw result.error;
-            }
+  const {
+    mutateAsync: editUserSurName,
+    isPending,
+    isError,
+  } = useMutation({
+    mutationKey: ["editUserSurName"],
+    mutationFn: async () => {
+      const result = updateUserSurNameSchema.safeParse(updateUserForm.value);
+      if (!result.success) {
+        applyZodErrors(result.error, updateUserFormErrorMessages);
+        throw result.error;
+      }
 
-            return await baseEditUser({
-                dataToUpdate: { name: updateUserForm.value.surName },
-                type: "surname",
-            });
-        },
+      return await baseEditUser({
+        dataToUpdate: { name: updateUserForm.value.surName },
+        type: "surname",
+      });
+    },
 
-        onSuccess: () => {
-            clearUpdateUserFormSurName();
-        },
-    });
+    onSuccess: () => {
+      clearUpdateUserFormSurName();
+    },
+  });
 
-    return {
-        editUserSurName,
-        isPending,
-        isError,
-    };
+  return {
+    editUserSurName,
+    isPending,
+    isError,
+  };
 };
 
 export const useEditUserPhone = () => {
-    const { baseEditUser } = useBaseEditUser();
+  const { baseEditUser } = useBaseEditUser();
 
-    const {
-        mutateAsync: editUserPhone,
-        isPending,
-        isError,
-    } = useMutation({
-        mutationKey: ["editUserPhone"],
-        mutationFn: async () => {
-            const result = updateUserPhoneSchema.safeParse(updateUserForm.value);
-            if (!result.success) {
-                applyZodErrors(result.error, updateUserFormErrorMessages);
-                throw result.error;
-            }
+  const {
+    mutateAsync: editUserPhone,
+    isPending,
+    isError,
+  } = useMutation({
+    mutationKey: ["editUserPhone"],
+    mutationFn: async () => {
+      const result = updateUserPhoneSchema.safeParse(updateUserForm.value);
+      if (!result.success) {
+        applyZodErrors(result.error, updateUserFormErrorMessages);
+        throw result.error;
+      }
 
-            return await baseEditUser({
-                dataToUpdate: { name: updateUserForm.value.surName },
-                type: "phone",
-            });
-        },
+      return await baseEditUser({
+        dataToUpdate: { name: updateUserForm.value.surName },
+        type: "phone",
+      });
+    },
 
-        onSuccess: () => {
-            clearUpdateUserFormPhone();
-        },
-    });
+    onSuccess: () => {
+      clearUpdateUserFormPhone();
+    },
+  });
 
-    return {
-        editUserPhone,
-        isPending,
-        isError,
-    };
+  return {
+    editUserPhone,
+    isPending,
+    isError,
+  };
 };
 
 export const useEditUserEmail = () => {
-    const { baseEditUser } = useBaseEditUser();
+  const { baseEditUser } = useBaseEditUser();
 
-    const {
-        mutateAsync: editUserEmail,
-        isPending,
-        isError,
-    } = useMutation({
-        mutationKey: ["editUserEmail"],
-        mutationFn: async () => {
-            const result = updateUserEmailSchema.safeParse(updateUserForm.value);
-            if (!result.success) {
-                applyZodErrors(result.error, updateUserFormErrorMessages);
-                throw result.error;
-            }
+  const {
+    mutateAsync: editUserEmail,
+    isPending,
+    isError,
+  } = useMutation({
+    mutationKey: ["editUserEmail"],
+    mutationFn: async () => {
+      const result = updateUserEmailSchema.safeParse(updateUserForm.value);
+      if (!result.success) {
+        applyZodErrors(result.error, updateUserFormErrorMessages);
+        throw result.error;
+      }
 
-            return await baseEditUser({
-                dataToUpdate: { name: updateUserForm.value.surName },
-                type: "email",
-            });
-        },
+      return await baseEditUser({
+        dataToUpdate: { name: updateUserForm.value.surName },
+        type: "email",
+      });
+    },
 
-        onSuccess: () => {
-            clearUpdateUserFormEmail();
-        },
-    });
+    onSuccess: () => {
+      clearUpdateUserFormEmail();
+    },
+  });
 
-    return {
-        editUserEmail,
-        isPending,
-        isError,
-    };
+  return {
+    editUserEmail,
+    isPending,
+    isError,
+  };
 };
 
 export const useEditUserPassword = () => {
-    const queryClient = useQueryClient();
-    const { openNotify } = useBaseModals();
-    const userId = localStorage.getItem("userId");
+  const queryClient = useQueryClient();
+  const { openNotify } = useBaseModals();
+  const userId = localStorage.getItem("userId");
 
-    const {
-        mutateAsync: editUserPassword,
-        isPending,
-        isError,
-    } = useMutation({
-        mutationKey: ["editUserPassword"],
-        mutationFn: async () => {
-            const result = updateUserPasswordSchema.safeParse(updateUserForm.value);
-            if (!result.success) {
-                applyZodErrors(result.error, updateUserFormErrorMessages);
-                return;
-            }
+  const {
+    mutateAsync: editUserPassword,
+    isPending,
+    isError,
+  } = useMutation({
+    mutationKey: ["editUserPassword"],
+    mutationFn: async () => {
+      const result = updateUserPasswordSchema.safeParse(updateUserForm.value);
+      if (!result.success) {
+        applyZodErrors(result.error, updateUserFormErrorMessages);
+        return;
+      }
 
-            return await handler(`/password/${userId}`, {
-                method: "POST",
-                body: JSON.stringify({
-                    oldPassword: updateUserForm.value.oldPassword,
-                    newPassword: updateUserForm.value.newPassword,
-                }),
-            });
-        },
+      return await handler(`/password/${userId}`, {
+        method: "POST",
+        body: JSON.stringify({
+          oldPassword: updateUserForm.value.oldPassword,
+          newPassword: updateUserForm.value.newPassword,
+        }),
+      });
+    },
 
-        onSuccess: async () => {
-            clearUpdateUserFormPassword();
+    onSuccess: async () => {
+      clearUpdateUserFormPassword();
 
-            await queryClient.invalidateQueries({ queryKey: ["user"] });
+      await queryClient.invalidateQueries({ queryKey: ["user"] });
 
-            await openNotify({variant: "password", state: "success"});
-        },
+      await openNotify({ variant: "password", state: "success" });
+    },
 
-        onError: (err) => {
-            applyErrors(err, updateUserFormErrorMessages);
+    onError: (err) => {
+      applyErrors(err, updateUserFormErrorMessages);
 
-            console.error(`Failed to the change password:`, err);
-        },
-    });
+      console.error(`Failed to the change password:`, err);
+    },
+  });
 
-    return {
-        editUserPassword,
-        isPending,
-        isError,
-    };
+  return {
+    editUserPassword,
+    isPending,
+    isError,
+  };
 };

@@ -9,9 +9,9 @@ const { orderId } = orderStore();
 export const choiceModal = ref<boolean>(false);
 
 export const toggleReplaceChoice = (id: string) => {
-    clearReplaceForm();
+  clearReplaceForm();
 
-    choiceModal.value = !choiceModal.value;
-    orderId.value = id;
-    cancelChoiceForm.value.cancelChoice = "";
+  choiceModal.value = !choiceModal.value;
+  orderId.value = id;
+  cancelChoiceForm.value.cancelChoice = "";
 };

@@ -1,15 +1,15 @@
 <template>
-    <div class="bg-[#F0F0F0]">
-        <div class="px-4 pt-4 sm:px-4 sm:pt-4 md:px-5 md:pt-5 lg:px-6 lg:pt-6 xl:px-6 xl:pt-6">
-            <NavBar :user="user" />
-            <HomeSlider />
-            <MainHome />
-        </div>
-        <Footer />
-        <Transition name="sidebar">
-            <AsideFilter v-if="filterAside" />
-        </Transition>
+  <div class="bg-[#F0F0F0]">
+    <div class="px-4 pt-4 sm:px-4 sm:pt-4 md:px-5 md:pt-5 lg:px-6 lg:pt-6 xl:px-6 xl:pt-6">
+      <NavBar :user="user" />
+      <HomeSlider />
+      <MainHome />
     </div>
+    <Footer />
+    <Transition name="sidebar">
+      <AsideFilter v-if="filterAside" />
+    </Transition>
+  </div>
 </template>
 
 <script setup lang="ts">

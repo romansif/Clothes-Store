@@ -1,71 +1,69 @@
-import router from "@/app/router";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
-import { clearInformationForm } from "@/features/checkout-contact-info/lib/clear-address"
-import {
-    informationForm,
-    informationFormErrorMessages,
-} from "@/entities/checkout-info-form/model/information-form";
+
+import router from "@/app/router";
+import { useBaseModals } from "@/widgets/notification/lib/use-notify";
+import { clearInformationForm } from "@/features/checkout-contact-info/lib/clear-address";
+import { informationForm, informationFormErrorMessages } from "@/entities/checkout-info-form/model/information-form";
 import { addContactInfoSchema } from "@/entities/checkout-info-form/model/information-schemas";
+import { checkoutSession } from "@/entities/checkout-session/model/checkout-session";
 import { handler } from "@/shared/api/http";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
-import { useBaseModals } from "@/widgets/notification/lib/use-notify";
-import { checkoutSession } from "@/entities/checkout-session/model/checkout-session";
 
 const { openNotify } = useBaseModals();
 
 export const useConfirmInformation = () => {
-    const confirmInformation = async () => {
-        if(!checkoutSession.contactId || !checkoutSession.addressId){
-            await openNotify({variant: "information", state: "error"});
-            return;
-        }
-        clearInformationForm()
-
-        await openNotify({variant: "information", state: "success"});
-        await router.push({ name: "shipping" })
+  const confirmInformation = async () => {
+    if (!checkoutSession.contactId || !checkoutSession.addressId) {
+      await openNotify({ variant: "information", state: "error" });
+      return;
     }
+    clearInformationForm();
 
-    return {
-        confirmInformation
-    }
+    await openNotify({ variant: "information", state: "success" });
+    await router.push({ name: "shipping" });
+  };
+
+  return {
+    confirmInformation,
+  };
 };
 
 export const useCreateInformation = () => {
-    const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
-    const { mutate: createInformation } = useMutation({
-        mutationKey: ["createInformation"],
-        mutationFn: async () => {
-            const result = addContactInfoSchema.safeParse(informationForm.value);
-            if (!result.success) {
-                applyZodErrors(result.error, informationFormErrorMessages);
-                return;
-            }
+  const { mutate: createInformation } = useMutation({
+    mutationKey: ["createInformation"],
+    mutationFn: async () => {
+      const result = addContactInfoSchema.safeParse(informationForm.value);
+      if (!result.success) {
+        applyZodErrors(result.error, informationFormErrorMessages);
+        return;
+      }
 
-            return await handler(`/address`, {
-                method: "POST",
-                body: JSON.stringify(informationForm.value),
-            });
-        },
+      return await handler(`/address`, {
+        method: "POST",
+        body: JSON.stringify(informationForm.value),
+      });
+    },
 
-        onSuccess: async (address) => {
-            checkoutSession.contactId = address.id;
-            checkoutSession.addressId = address.id;
+    onSuccess: async (address) => {
+      checkoutSession.contactId = address.id;
+      checkoutSession.addressId = address.id;
 
-            clearInformationForm();
+      clearInformationForm();
 
-            await openNotify({variant: "information", state: "success"});
-            await router.push({ name: "shipping" });
+      await openNotify({ variant: "information", state: "success" });
+      await router.push({ name: "shipping" });
 
-            await queryClient.invalidateQueries({ queryKey: ["userAddresses"] });
-        },
+      await queryClient.invalidateQueries({ queryKey: ["userAddresses"] });
+    },
 
-        onError: (err) => {
-            applyErrors(err, informationFormErrorMessages);
-        },
-    });
+    onError: (err) => {
+      applyErrors(err, informationFormErrorMessages);
+    },
+  });
 
-    return {
-        createInformation,
-    };
+  return {
+    createInformation,
+  };
 };

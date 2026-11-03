@@ -1,101 +1,98 @@
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
+import { useBaseModals } from "@/widgets/notification/lib/use-notify";
 import { clearReplaceForm } from "@/features/order-modals/lib/clear-order-form";
 import { toggleReplaceChoice } from "@/entities/order-action/lib/order-modal";
 import { cancelChoiceForm, cancelChoiceMessage } from "@/entities/order/model/order-forms";
 import { replaceOrderSchema } from "@/entities/order/model/replace-order-schemas";
 import { handler } from "@/shared/api/http";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
-import { useBaseModals } from "@/widgets/notification/lib/use-notify";
 import { orderStore } from "@/shared/model/order.store";
 
 const { orderId } = orderStore();
 const { openNotify } = useBaseModals();
 
 export const useReplaceOrder = () => {
-    const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
-    const {
-        mutate: replaceOrder,
-        isPending,
-        isError,
-    } = useMutation({
-        mutationKey: ["replaceOrder"],
-        mutationFn: async () => {
-            const result = replaceOrderSchema.safeParse(cancelChoiceForm.value);
-            if (!result.success) {
-                applyZodErrors(result.error, cancelChoiceMessage);
-                return;
-            }
+  const {
+    mutate: replaceOrder,
+    isPending,
+    isError,
+  } = useMutation({
+    mutationKey: ["replaceOrder"],
+    mutationFn: async () => {
+      const result = replaceOrderSchema.safeParse(cancelChoiceForm.value);
+      if (!result.success) {
+        applyZodErrors(result.error, cancelChoiceMessage);
+        return;
+      }
 
-            const date = new Date();
-            const dateCreated = date.toLocaleDateString();
-            const time = date.toLocaleTimeString("ru-RU", {
-                hour: "2-digit",
-                minute: "2-digit",
-            });
+      const date = new Date();
+      const dateCreated = date.toLocaleDateString();
+      const time = date.toLocaleTimeString("ru-RU", {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
 
-            return await handler(`/orders/${orderId.value}`, {
-                method: "PATCH",
-                body: JSON.stringify({
-                    status: "Cancelled",
-                    cause_replace: cancelChoiceForm.value.cancelChoice,
-                    cancelled_at: date,
-                    date_cancelled_at: dateCreated,
-                    time_cancelled_at: time,
-                }),
-            });
-        },
+      return await handler(`/orders/${orderId.value}`, {
+        method: "PATCH",
+        body: JSON.stringify({
+          status: "Cancelled",
+          cause_replace: cancelChoiceForm.value.cancelChoice,
+          cancelled_at: date,
+          date_cancelled_at: dateCreated,
+          time_cancelled_at: time,
+        }),
+      });
+    },
 
-        onSuccess: async () => {
-            clearReplaceForm();
+    onSuccess: async () => {
+      clearReplaceForm();
 
-            await Promise.all([
-                await queryClient.invalidateQueries({ queryKey: ["orders"] }),
-                await queryClient.invalidateQueries({ queryKey: ["activeOrders"] }),
-            ]);
+      await Promise.all([await queryClient.invalidateQueries({ queryKey: ["orders"] }), await queryClient.invalidateQueries({ queryKey: ["activeOrders"] })]);
 
-            await openNotify({variant: "replace-order", state: "success"});
+      await openNotify({ variant: "replace-order", state: "success" });
 
-            toggleReplaceChoice("");
-        },
+      toggleReplaceChoice("");
+    },
 
-        onError: (err) => {
-            applyErrors(err, cancelChoiceMessage);
+    onError: (err) => {
+      applyErrors(err, cancelChoiceMessage);
 
-            throw new Error(`Ошибка при отмене заказа`, err);
-        },
-    });
+      throw new Error(`Ошибка при отмене заказа`, err);
+    },
+  });
 
-    return {
-        replaceOrder,
-        isPending,
-        isError,
-    };
+  return {
+    replaceOrder,
+    isPending,
+    isError,
+  };
 };
 
 export const useDeleteOrder = () => {
-    const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
-    const { mutateAsync: deleteOrder, isPending } = useMutation({
-        mutationKey: ["deleteOrder"],
-        mutationFn: async (id: string) => {
-            return await handler(`/orders/${id}`, {
-                method: "DELETE",
-            });
-        },
+  const { mutateAsync: deleteOrder, isPending } = useMutation({
+    mutationKey: ["deleteOrder"],
+    mutationFn: async (id: string) => {
+      return await handler(`/orders/${id}`, {
+        method: "DELETE",
+      });
+    },
 
-        onSuccess: async () => {
-            await queryClient.invalidateQueries({ queryKey: ["orders"] });
-        },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["orders"] });
+    },
 
-        onError: (err) => {
-            console.error(`Failed to delete the order:`, err);
-        },
-    });
+    onError: (err) => {
+      console.error(`Failed to delete the order:`, err);
+    },
+  });
 
-    return {
-        deleteOrder,
-        isPending,
-    };
+  return {
+    deleteOrder,
+    isPending,
+  };
 };

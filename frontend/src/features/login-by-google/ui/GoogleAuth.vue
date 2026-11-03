@@ -1,6 +1,6 @@
 <template>
-    <Loading v-if="isPending" />
-    <div id="google-button"></div>
+  <Loading v-if="isPending" />
+  <div id="google-button"></div>
 </template>
 
 <script setup lang="ts">
@@ -11,16 +11,16 @@ import { Loading } from "@/widgets/state";
 const { OAuth, isPending } = signGoogleAuth();
 
 onMounted(() => {
-    window.google.accounts.id.initialize({
-        client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
-        callback: OAuth,
-    });
+  window.google.accounts.id.initialize({
+    client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+    callback: OAuth,
+  });
 
-    window.google.accounts.id.renderButton(document.getElementById("google-button")!, {
-        type: "icon",
-        size: "large",
-        shape: "rectangular",
-        width: 385,
-    });
+  window.google.accounts.id.renderButton(document.getElementById("google-button")!, {
+    type: "icon",
+    size: "large",
+    shape: "rectangular",
+    width: 385,
+  });
 });
 </script>

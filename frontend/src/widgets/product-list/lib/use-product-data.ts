@@ -8,54 +8,45 @@ import { activeSearch, getSearchedProducts } from "@/features/search-product/api
 const { getAllProducts, getFilteredProducts } = useGetProducts();
 
 export const useProductsData = () => {
-    const {
-        data: products,
-        isLoading,
-        isError,
-    } = useQuery({
-        queryKey: ["products"],
-        queryFn: () => getAllProducts(),
-    });
+  const {
+    data: products,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["products"],
+    queryFn: () => getAllProducts(),
+  });
 
-    return {
-        products: computed(() => products.value ?? []),
-        isLoading,
-        isError,
-    };
+  return {
+    products: computed(() => products.value ?? []),
+    isLoading,
+    isError,
+  };
 };
 
-export const useFilteredProductData = (
-    type: MaybeRefOrGetter<string>,
-    filter: MaybeRefOrGetter<string>,
-    search: MaybeRefOrGetter<string> = "",
-) => {
-    const term = computed(() => toValue(search).trim());
+export const useFilteredProductData = (type: MaybeRefOrGetter<string>, filter: MaybeRefOrGetter<string>, search: MaybeRefOrGetter<string> = "") => {
+  const term = computed(() => toValue(search).trim());
 
-    const { data, isLoading, isFetching, isError, refetch } = useQuery({
-        queryKey: computed(() => ["filteredProducts", toValue(type), toValue(filter), term.value]),
-        queryFn: () =>
-            term.value
-                ? getSearchedProducts(term.value)
-                : getFilteredProducts(toValue(type), toValue(filter)),
-        enabled: computed(
-            () => Boolean(term.value) || (Boolean(toValue(type)) && toValue(type) !== "COLLECTION"),
-        ),
-        placeholderData: keepPreviousData,
-    });
+  const { data, isLoading, isFetching, isError, refetch } = useQuery({
+    queryKey: computed(() => ["filteredProducts", toValue(type), toValue(filter), term.value]),
+    queryFn: () => (term.value ? getSearchedProducts(term.value) : getFilteredProducts(toValue(type), toValue(filter))),
+    enabled: computed(() => Boolean(term.value) || (Boolean(toValue(type)) && toValue(type) !== "COLLECTION")),
+    placeholderData: keepPreviousData,
+  });
 
-    return {
-        filteredProducts: computed(() => data.value ?? []),
-        isLoading,
-        isFetching,
-        isError,
-        refetch,
-    };
+  return {
+    filteredProducts: computed(() => data.value ?? []),
+    isLoading,
+    isFetching,
+    isError,
+    refetch,
+  };
 };
 
 export const useProductListData = () => {
-    return useFilteredProductData(
-        () => activeFilter.value.type,
-        () => activeFilter.value.value,
-        activeSearch,
-    );
+  return useFilteredProductData(
+    () => activeFilter.value.type,
+    () => activeFilter.value.value,
+    activeSearch,
+  );
 };

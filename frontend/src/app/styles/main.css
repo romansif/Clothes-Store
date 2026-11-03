@@ -2,31 +2,31 @@
 @tailwind utilities;
 
 @theme {
-    --font-montserrat: "Montserrat", sans-serif;
-    --font-raleway: "Raleway", monospace;
-    --font-dm-sans: "DM Sans", sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-raleway: "Raleway", monospace;
+  --font-dm-sans: "DM Sans", sans-serif;
 }
 
 ::-webkit-scrollbar {
-    width: 6px;
-    scroll-behavior: smooth;
+  width: 6px;
+  scroll-behavior: smooth;
 }
 ::-webkit-scrollbar-track {
-    background: transparent;
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.15);
-    border-radius: 20px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.35);
 }
 
 .no-scrollbar::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

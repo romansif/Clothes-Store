@@ -3,41 +3,41 @@ import { useMutation, useQueryClient } from "@tanstack/vue-query";
 import { handler } from "@/shared/api/http";
 
 export const useChangeAvatar = () => {
-    const queryClient = useQueryClient();
-    const userId = localStorage.getItem("userId");
+  const queryClient = useQueryClient();
+  const userId = localStorage.getItem("userId");
 
-    const {
-        mutate: changeAvatar,
-        isPending,
-        isError,
-    } = useMutation({
-        mutationKey: ["changeAvatar"],
-        mutationFn: async (event: Event) => {
-            const target = event.target as HTMLInputElement;
-            if (!target.files || target.files.length === 0) return;
-            const selectedFile = target.files[0];
+  const {
+    mutate: changeAvatar,
+    isPending,
+    isError,
+  } = useMutation({
+    mutationKey: ["changeAvatar"],
+    mutationFn: async (event: Event) => {
+      const target = event.target as HTMLInputElement;
+      if (!target.files || target.files.length === 0) return;
+      const selectedFile = target.files[0];
 
-            const formData = new FormData();
-            formData.append("avatar", selectedFile);
+      const formData = new FormData();
+      formData.append("avatar", selectedFile);
 
-            return await handler(`/avatar/${userId}`, {
-                method: "PATCH",
-                body: formData,
-            });
-        },
+      return await handler(`/avatar/${userId}`, {
+        method: "PATCH",
+        body: formData,
+      });
+    },
 
-        onSuccess: async () => {
-            await queryClient.invalidateQueries({ queryKey: ["user"] });
-        },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["user"] });
+    },
 
-        onError: (err) => {
-            throw new Error("Ошибка при изменении аватара пользователя", err);
-        },
-    });
+    onError: (err) => {
+      throw new Error("Ошибка при изменении аватара пользователя", err);
+    },
+  });
 
-    return {
-        changeAvatar,
-        isPending,
-        isError,
-    };
+  return {
+    changeAvatar,
+    isPending,
+    isError,
+  };
 };

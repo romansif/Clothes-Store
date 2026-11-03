@@ -1,10 +1,5 @@
 <template>
-    <img
-        :src="product.checked ? check_square : square"
-        alt=""
-        @click="addToOrder({ product: props.product, orderItems })"
-        class="w-7.5 cursor-pointer transition duration-400 hover:scale-120"
-    />
+  <img :src="product.checked ? check_square : square" alt="" @click="addToOrder({ product: props.product, orderItems })" class="w-7.5 cursor-pointer transition duration-400 hover:scale-120" />
 </template>
 
 <script setup lang="ts">
@@ -16,8 +11,8 @@ import check_square from "@/assets/icons/squares/check-square.png";
 import square from "@/assets/icons/squares/square.png";
 
 const props = defineProps<{
-    product: CartItem;
-    cart: CartItem[];
+  product: CartItem;
+  cart: CartItem[];
 }>();
 
 const { orderItems } = orderStore();

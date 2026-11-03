@@ -4,29 +4,29 @@ import { reviewForm } from "@/entities/review-form/model/review-form";
 const { ratingDirection } = reviewsStore();
 
 export const addRating = (rating: number) => {
-    const half = rating - 0.5;
-    const current = reviewForm.value.rating;
+  const half = rating - 0.5;
+  const current = reviewForm.value.rating;
 
-    if (current < half || current > rating) {
-        reviewForm.value.rating = half;
-        ratingDirection.value = "up";
-        return;
-    }
+  if (current < half || current > rating) {
+    reviewForm.value.rating = half;
+    ratingDirection.value = "up";
+    return;
+  }
 
-    if (ratingDirection.value === "up") {
-        if (current === half) {
-            reviewForm.value.rating = rating;
-            ratingDirection.value = "down";
-        } else {
-            reviewForm.value.rating = half;
-        }
-        return;
-    }
-
-    if (current === rating) {
-        reviewForm.value.rating = half;
+  if (ratingDirection.value === "up") {
+    if (current === half) {
+      reviewForm.value.rating = rating;
+      ratingDirection.value = "down";
     } else {
-        reviewForm.value.rating = rating - 1;
-        ratingDirection.value = "up";
+      reviewForm.value.rating = half;
     }
+    return;
+  }
+
+  if (current === rating) {
+    reviewForm.value.rating = half;
+  } else {
+    reviewForm.value.rating = rating - 1;
+    ratingDirection.value = "up";
+  }
 };

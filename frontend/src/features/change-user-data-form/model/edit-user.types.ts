@@ -1,6 +1,6 @@
 import type { UserDataUpdate } from "@/entities/profile-form";
 
 export type EditUserPayload = {
-    dataToUpdate: UserDataUpdate;
-    type: string;
+  dataToUpdate: UserDataUpdate;
+  type: string;
 };

@@ -1,23 +1,15 @@
 <template>
-    <main class="mt-10 flex flex-col">
-        <SeasonsHeader />
-        <Transition name="view" mode="out-in">
-            <Loader v-if="isLoading" variant="season-list" />
-            <ErrorState
-                v-else-if="isError"
-                variant="season-list"
-                :loading="isFetching"
-                @reload="refetch()"
-            />
-            <div
-                v-else-if="seasonCatalog.length"
-                :class="['flex gap-10', seasonCatalog.length ? '' : 'justify-center']"
-            >
-                <SeasonList :user="user" :array="seasonCatalog" season="Winter" />
-            </div>
-            <EmptyState v-else variant="season-list" :loading="isFetching" @reload="refetch()" />
-        </Transition>
-    </main>
+  <main class="mt-10 flex flex-col">
+    <SeasonsHeader />
+    <Transition name="view" mode="out-in">
+      <Loader v-if="isLoading" variant="season-list" />
+      <ErrorState v-else-if="isError" variant="season-list" :loading="isFetching" @reload="refetch()" />
+      <div v-else-if="seasonCatalog.length" :class="['flex gap-10', seasonCatalog.length ? '' : 'justify-center']">
+        <SeasonList :user="user" :array="seasonCatalog" season="Winter" />
+      </div>
+      <EmptyState v-else variant="season-list" :loading="isFetching" @reload="refetch()" />
+    </Transition>
+  </main>
 </template>
 
 <script setup lang="ts">

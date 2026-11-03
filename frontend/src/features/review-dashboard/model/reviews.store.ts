@@ -9,10 +9,10 @@ const ratingDirection = ref<"up" | "down">("up");
 const visibleReviewsCount = ref<number>(4);
 
 export const reviewsStore = () => {
-    return {
-        ratings,
-        ratingDirection,
-        productId,
-        visibleReviewsCount,
-    };
+  return {
+    ratings,
+    ratingDirection,
+    productId,
+    visibleReviewsCount,
+  };
 };

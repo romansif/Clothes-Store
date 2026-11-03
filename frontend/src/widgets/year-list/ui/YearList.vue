@@ -1,29 +1,20 @@
 <template>
-    <Transition name="view" mode="out-in">
-        <Loader v-if="isLoading" variant="year-list" />
-        <ErrorState
-            v-else-if="isError"
-            variant="year-list"
-            :loading="isFetching"
-            @reload="refetch()"
-        />
-        <ul
-            v-else-if="yearProducts.length"
-            v-horizontal-scroll
-            class="no-scrollbar mt-10 flex gap-10 overflow-x-auto whitespace-nowrap xl:gap-40"
-        >
-            <ProductCard
-                v-for="product in yearProducts"
-                :user="user"
-                :product="product"
-                :array="yearProducts"
-                :favorite="favorite"
-                :variant="'year'"
-                @toggle-to-favorite="toggleFavorite({ favorite, product })"
-            />
-        </ul>
-        <EmptyState v-else variant="year-list" :loading="isFetching" @reload="refetch()" />
-    </Transition>
+  <Transition name="view" mode="out-in">
+    <Loader v-if="isLoading" variant="year-list" />
+    <ErrorState v-else-if="isError" variant="year-list" :loading="isFetching" @reload="refetch()" />
+    <ul v-else-if="yearProducts.length" v-horizontal-scroll class="no-scrollbar mt-10 flex gap-10 overflow-x-auto whitespace-nowrap xl:gap-40">
+      <ProductCard
+        v-for="product in yearProducts"
+        :user="user"
+        :product="product"
+        :array="yearProducts"
+        :favorite="favorite"
+        :variant="'year'"
+        @toggle-to-favorite="toggleFavorite({ favorite, product })"
+      />
+    </ul>
+    <EmptyState v-else variant="year-list" :loading="isFetching" @reload="refetch()" />
+  </Transition>
 </template>
 
 <script setup lang="ts">
@@ -41,6 +32,6 @@ const { vHorizontalScroll } = productsHelper();
 const { yearProducts, isLoading, isFetching, isError, refetch } = useYearProductData("ALL", "ALL");
 
 const props = defineProps<{
-    user: User | undefined;
+  user: User | undefined;
 }>();
 </script>

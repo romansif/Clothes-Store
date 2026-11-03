@@ -1,13 +1,13 @@
 <template>
-    <main class="mt-10 flex flex-col gap-8 px-12 xl:mt-30">
-        <FavoriteCartHeader />
-        <div class="flex flex-col justify-between items-center xl:flex-row">
-            <Transition name="view" mode="out-in">
-                <CartList :user="user" />
-            </Transition>
-            <CartInfo v-if="cart.length" />
-        </div>
-    </main>
+  <main class="mt-10 flex flex-col gap-8 px-12 xl:mt-30">
+    <FavoriteCartHeader />
+    <div class="flex flex-col items-center justify-between xl:flex-row">
+      <Transition name="view" mode="out-in">
+        <CartList :user="user" />
+      </Transition>
+      <CartInfo v-if="cart.length" />
+    </div>
+  </main>
 </template>
 
 <script setup lang="ts">

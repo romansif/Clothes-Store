@@ -1,29 +1,20 @@
 <template>
-    <Transition name="view" mode="out-in">
-        <Loader v-if="isLoading" variant="week-list" />
-        <ErrorState
-            v-else-if="isError"
-            variant="week-list"
-            :loading="isFetching"
-            @reload="refetch()"
-        />
-        <ul
-            v-else-if="weekProducts.length"
-            v-horizontal-scroll
-            class="no-scrollbar flex gap-10 overflow-x-auto pt-6 whitespace-nowrap xl:gap-22.5"
-        >
-            <ProductCard
-                v-for="product in weekProducts"
-                :user="user"
-                :product="product"
-                :array="weekProducts"
-                :favorite="favorite"
-                :variant="'week'"
-                @toggle-to-favorite="toggleFavorite({ favorite, product })"
-            />
-        </ul>
-        <EmptyState v-else variant="week-list" :loading="isFetching" @reload="refetch()" />
-    </Transition>
+  <Transition name="view" mode="out-in">
+    <Loader v-if="isLoading" variant="week-list" />
+    <ErrorState v-else-if="isError" variant="week-list" :loading="isFetching" @reload="refetch()" />
+    <ul v-else-if="weekProducts.length" v-horizontal-scroll class="no-scrollbar flex gap-10 overflow-x-auto pt-6 whitespace-nowrap xl:gap-22.5">
+      <ProductCard
+        v-for="product in weekProducts"
+        :user="user"
+        :product="product"
+        :array="weekProducts"
+        :favorite="favorite"
+        :variant="'week'"
+        @toggle-to-favorite="toggleFavorite({ favorite, product })"
+      />
+    </ul>
+    <EmptyState v-else variant="week-list" :loading="isFetching" @reload="refetch()" />
+  </Transition>
 </template>
 
 <script setup lang="ts">
@@ -41,6 +32,6 @@ const { vHorizontalScroll } = productsHelper();
 const { weekProducts, isLoading, isFetching, isError, refetch } = useWeekProductData("ALL", "ALL");
 
 const props = defineProps<{
-    user: User | undefined;
+  user: User | undefined;
 }>();
 </script>

@@ -1,11 +1,11 @@
 <template>
-    <main class="mt-10 flex justify-center xl:justify-between">
-        <FilterProducts />
-        <div class="flex flex-col">
-            <MainHeader />
-            <ProductList :user="user" />
-        </div>
-    </main>
+  <main class="mt-10 flex justify-center xl:justify-between">
+    <FilterProducts />
+    <div class="flex flex-col">
+      <MainHeader />
+      <ProductList :user="user" />
+    </div>
+  </main>
 </template>
 
 <script setup lang="ts">

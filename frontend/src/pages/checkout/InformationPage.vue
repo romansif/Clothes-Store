@@ -1,5 +1,5 @@
 <template>
-    <ContactInfo />
+  <ContactInfo />
 </template>
 
 <script setup lang="ts">

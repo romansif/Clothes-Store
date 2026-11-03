@@ -1,24 +1,24 @@
 <template>
-    <div class="flex flex-col gap-2">
-        <div class="flex flex-col gap-3 sm:flex-row">
-            <select v-model="selectedCountryCode" :class="props.selectClass">
-                <option v-for="country in countries" :key="country.code" :value="country.code">
-                    {{ country.name }}
-                </option>
-            </select>
-            <IMask
-                v-model:value="model"
-                :mask="currentMask.mask"
-                :key="selectedCountryCode"
-                :class="[props.inputClass, props.errorMessage ? phoneInputErrorClass : '']"
-                :placeholder="currentCountry?.placeholder"
-                v-bind="$attrs"
-            />
-        </div>
-        <span v-if="props.errorMessage" class="text-xs text-red-600">
-            {{ props.errorMessage }}
-        </span>
+  <div class="flex flex-col gap-2">
+    <div class="flex flex-col gap-3 sm:flex-row">
+      <select v-model="selectedCountryCode" :class="props.selectClass">
+        <option v-for="country in countries" :key="country.code" :value="country.code">
+          {{ country.name }}
+        </option>
+      </select>
+      <IMask
+        v-model:value="model"
+        :mask="currentMask.mask"
+        :key="selectedCountryCode"
+        :class="[props.inputClass, props.errorMessage ? phoneInputErrorClass : '']"
+        :placeholder="currentCountry?.placeholder"
+        v-bind="$attrs"
+      />
     </div>
+    <span v-if="props.errorMessage" class="text-xs text-red-600">
+      {{ props.errorMessage }}
+    </span>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -36,6 +36,6 @@ const model = defineModel<string | number>();
 const { currentCountry, currentMask } = usePhoneInput();
 
 watch(selectedCountryCode, () => {
-    model.value = "";
+  model.value = "";
 });
 </script>

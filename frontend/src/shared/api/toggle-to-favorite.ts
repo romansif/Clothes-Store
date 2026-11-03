@@ -1,65 +1,63 @@
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
+import { useBaseModals } from "@/widgets/notification/lib/use-notify";
 import { previewHelper } from "@/entities/product-card/lib/preview-helper";
 import { handler } from "@/shared/api/http";
-import { useBaseModals } from "@/widgets/notification/lib/use-notify";
 import type { ToggleToFavoritePayload } from "@/shared/model/favorite-payload.types";
 
 export const useToggleFavorite = () => {
-    const queryClient = useQueryClient();
-    const { openNotify } = useBaseModals();
-    const { isFavorite, getProductId } = previewHelper();
-    const userId = localStorage.getItem("userId");
+  const queryClient = useQueryClient();
+  const { openNotify } = useBaseModals();
+  const { isFavorite, getProductId } = previewHelper();
+  const userId = localStorage.getItem("userId");
 
-    const {
-        mutate: toggleFavorite,
-        isPending,
-        isError,
-    } = useMutation({
-        mutationKey: ["toggleFavorite"],
-        mutationFn: async ({ favorite, product }: ToggleToFavoritePayload) => {
-            const productId = getProductId(product);
+  const {
+    mutate: toggleFavorite,
+    isPending,
+    isError,
+  } = useMutation({
+    mutationKey: ["toggleFavorite"],
+    mutationFn: async ({ favorite, product }: ToggleToFavoritePayload) => {
+      const productId = getProductId(product);
 
-            if (!productId) {
-                throw new Error("ID товара не найден");
-            }
+      if (!productId) {
+        throw new Error("ID товара не найден");
+      }
 
-            if (!userId) {
-                throw new Error("Пользователь не зарегистрирован");
-            }
+      if (!userId) {
+        throw new Error("Пользователь не зарегистрирован");
+      }
 
-            if (!isFavorite(favorite, product, userId)) {
-                await handler("/favorites", {
-                    method: "POST",
-                    body: JSON.stringify({
-                        userId: userId,
-                        productId,
-                    }),
-                });
+      if (!isFavorite(favorite, product, userId)) {
+        await handler("/favorites", {
+          method: "POST",
+          body: JSON.stringify({
+            userId: userId,
+            productId,
+          }),
+        });
 
-                await queryClient.invalidateQueries({ queryKey: ["favorite"] });
+        await queryClient.invalidateQueries({ queryKey: ["favorite"] });
 
-                await openNotify({variant: 'add-to-favorite', state: 'success'});
-            } else {
-                const favoriteItem = favorite.find(
-                    (item) => item.productId === productId && item.userId === userId,
-                );
-                await handler(`/favorites/${favoriteItem?.id}`, {
-                    method: "DELETE",
-                });
+        await openNotify({ variant: "add-to-favorite", state: "success" });
+      } else {
+        const favoriteItem = favorite.find((item) => item.productId === productId && item.userId === userId);
+        await handler(`/favorites/${favoriteItem?.id}`, {
+          method: "DELETE",
+        });
 
-                await queryClient.invalidateQueries({ queryKey: ["favorite"] });
-            }
-        },
+        await queryClient.invalidateQueries({ queryKey: ["favorite"] });
+      }
+    },
 
-        onError: (err) => {
-            throw new Error("Ошибка при изменении состояния избранного", err);
-        },
-    });
+    onError: (err) => {
+      throw new Error("Ошибка при изменении состояния избранного", err);
+    },
+  });
 
-    return {
-        toggleFavorite,
-        isPending,
-        isError,
-    };
+  return {
+    toggleFavorite,
+    isPending,
+    isError,
+  };
 };

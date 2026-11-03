@@ -3,32 +3,32 @@ import { useMutation, useQueryClient } from "@tanstack/vue-query";
 import { handler } from "@/shared/api/http";
 
 export const useDeletePayment = () => {
-    const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
-    const {
-        mutate: deletePaymentCard,
-        isPending,
-        isError,
-    } = useMutation({
-        mutationKey: ["deletePaymentCard"],
-        mutationFn: async (id: string) => {
-            return await handler(`/payment/${id}`, {
-                method: "DELETE",
-            });
-        },
+  const {
+    mutate: deletePaymentCard,
+    isPending,
+    isError,
+  } = useMutation({
+    mutationKey: ["deletePaymentCard"],
+    mutationFn: async (id: string) => {
+      return await handler(`/payment/${id}`, {
+        method: "DELETE",
+      });
+    },
 
-        onSuccess: async () => {
-            await queryClient.invalidateQueries({ queryKey: ["userPaymentCards"] });
-        },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["userPaymentCards"] });
+    },
 
-        onError: (err) => {
-            throw new Error(`Ошибка при удалении способа оплаты`, err);
-        },
-    });
+    onError: (err) => {
+      throw new Error(`Ошибка при удалении способа оплаты`, err);
+    },
+  });
 
-    return {
-        deletePaymentCard,
-        isPending,
-        isError,
-    };
+  return {
+    deletePaymentCard,
+    isPending,
+    isError,
+  };
 };

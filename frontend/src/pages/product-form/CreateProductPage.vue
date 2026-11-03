@@ -1,25 +1,25 @@
 <template>
-    <Loading v-if="isPending" />
-    <form action="" @submit.prevent="createProduct()">
-        <CreateImageUpload />
-        <ProductBaseInfo />
-        <CreateVariants />
-        <div class="mt-4 mb-6 w-full">
-            <UiButton type="submit" name="CREATE PRODUCT" variant="useProduct" />
-        </div>
-        <input
-            type="file"
-            @change="onFilesSelected"
-            class="hidden"
-            :ref="
-                (el) => {
-                    fileInput = el as HTMLInputElement;
-                }
-            "
-            multiple
-            accept="image/*"
-        />
-    </form>
+  <Loading v-if="isPending" />
+  <form action="" @submit.prevent="createProduct()">
+    <CreateImageUpload />
+    <ProductBaseInfo />
+    <CreateVariants />
+    <div class="mt-4 mb-6 w-full">
+      <UiButton type="submit" name="CREATE PRODUCT" variant="useProduct" />
+    </div>
+    <input
+      type="file"
+      @change="onFilesSelected"
+      class="hidden"
+      :ref="
+        (el) => {
+          fileInput = el as HTMLInputElement;
+        }
+      "
+      multiple
+      accept="image/*"
+    />
+  </form>
 </template>
 
 <script setup lang="ts">

@@ -1,16 +1,10 @@
 <template>
-    <div :class="[signInRoleClass, props.errorMessage ? signInRoleErrorClass : '']">
-        <input
-            v-model="model"
-            :value="props.role"
-            type="radio"
-            name="role"
-            class="h-4 w-4 cursor-pointer accent-black"
-        />
-        <span class="font-semibold">
-            {{ role }}
-        </span>
-    </div>
+  <div :class="[signInRoleClass, props.errorMessage ? signInRoleErrorClass : '']">
+    <input v-model="model" :value="props.role" type="radio" name="role" class="h-4 w-4 cursor-pointer accent-black" />
+    <span class="font-semibold">
+      {{ role }}
+    </span>
+  </div>
 </template>
 
 <script setup lang="ts">

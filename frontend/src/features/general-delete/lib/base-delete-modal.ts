@@ -14,72 +14,72 @@ const deleteMessage = ref<string>("");
 const deleteModal = ref<boolean>(false);
 
 export const baseDeleteModal = () => {
-    const { logout } = useLogout();
-    const { deleteOrder } = useDeleteOrder();
-    const { deleteAccount } = useDeleteAccount();
-    const { deleteProduct } = useDeleteProduct();
-    const { deleteCartItem } = useDeleteCartItem();
-    const { deletePaymentCard } = useDeletePayment();
-    const { deleteAddressItem } = useDeleteAddress();
-    const { deleteFavoriteItem } = useDeleteFavoriteProduct();
+  const { logout } = useLogout();
+  const { deleteOrder } = useDeleteOrder();
+  const { deleteAccount } = useDeleteAccount();
+  const { deleteProduct } = useDeleteProduct();
+  const { deleteCartItem } = useDeleteCartItem();
+  const { deletePaymentCard } = useDeletePayment();
+  const { deleteAddressItem } = useDeleteAddress();
+  const { deleteFavoriteItem } = useDeleteFavoriteProduct();
 
-    const toggleDeleteChoice = (message: string, type: string, id: string) => {
-        generalId.value = id;
-        deleteType.value = type;
-        deleteMessage.value = message;
-        deleteModal.value = !deleteModal.value;
-    };
+  const toggleDeleteChoice = (message: string, type: string, id: string) => {
+    generalId.value = id;
+    deleteType.value = type;
+    deleteMessage.value = message;
+    deleteModal.value = !deleteModal.value;
+  };
 
-    const generalDelete = async () => {
-        const userId = localStorage.getItem("userId");
-        if (!userId) return;
+  const generalDelete = async () => {
+    const userId = localStorage.getItem("userId");
+    if (!userId) return;
 
-        try {
-            switch (deleteType.value) {
-                case "EXIT":
-                    await logout();
-                    break;
+    try {
+      switch (deleteType.value) {
+        case "EXIT":
+          await logout();
+          break;
 
-                case "DELETE_ACCOUNT":
-                    await deleteAccount();
-                    break;
+        case "DELETE_ACCOUNT":
+          await deleteAccount();
+          break;
 
-                case "DELETE_PROUCT_ITEM":
-                    await deleteProduct(generalId.value);
-                    break;
+        case "DELETE_PROUCT_ITEM":
+          await deleteProduct(generalId.value);
+          break;
 
-                case "DELETE_CART_ITEM":
-                    await deleteCartItem(generalId.value);
-                    break;
+        case "DELETE_CART_ITEM":
+          await deleteCartItem(generalId.value);
+          break;
 
-                case "DELETE_FAVORITE_ITEM":
-                    await deleteFavoriteItem(generalId.value);
-                    break;
+        case "DELETE_FAVORITE_ITEM":
+          await deleteFavoriteItem(generalId.value);
+          break;
 
-                case "DELETE_ORDERS":
-                    await deleteOrder(generalId.value);
-                    break;
+        case "DELETE_ORDERS":
+          await deleteOrder(generalId.value);
+          break;
 
-                case "DELETE_SAVED_ADDRESS":
-                    await deleteAddressItem(generalId.value);
-                    break;
+        case "DELETE_SAVED_ADDRESS":
+          await deleteAddressItem(generalId.value);
+          break;
 
-                case "DELETE_SAVED_CARD":
-                    await deletePaymentCard(generalId.value);
-                    break;
-            }
-            deleteModal.value = false;
-        } catch (err) {
-            console.log(`Не удалось провести ${deleteType.value}`, err);
-        }
-    };
+        case "DELETE_SAVED_CARD":
+          await deletePaymentCard(generalId.value);
+          break;
+      }
+      deleteModal.value = false;
+    } catch (err) {
+      console.log(`Не удалось провести ${deleteType.value}`, err);
+    }
+  };
 
-    return {
-        generalId,
-        deleteMessage,
-        deleteModal,
+  return {
+    generalId,
+    deleteMessage,
+    deleteModal,
 
-        toggleDeleteChoice,
-        generalDelete,
-    };
+    toggleDeleteChoice,
+    generalDelete,
+  };
 };

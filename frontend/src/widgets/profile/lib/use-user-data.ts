@@ -6,44 +6,44 @@ import { useGetUser } from "@/widgets/profile/api/get-users";
 const { getUsers, getUser } = useGetUser();
 
 export const useUsersData = () => {
-    const { data: users } = useQuery({
-        queryKey: ["users"],
-        queryFn: () => getUsers(),
-    });
+  const { data: users } = useQuery({
+    queryKey: ["users"],
+    queryFn: () => getUsers(),
+  });
 
-    return {
-        users: computed(() => users.value ?? []),
-    };
+  return {
+    users: computed(() => users.value ?? []),
+  };
 };
 
 export const useUserData = () => {
-    const userId = localStorage.getItem("userId");
+  const userId = localStorage.getItem("userId");
 
-    const {
-        data: user,
-        isLoading,
-        isFetching,
-        isError,
-        refetch,
-    } = useQuery({
-        queryKey: computed(() => ["user", userId]),
+  const {
+    data: user,
+    isLoading,
+    isFetching,
+    isError,
+    refetch,
+  } = useQuery({
+    queryKey: computed(() => ["user", userId]),
 
-        queryFn: () => {
-            if (!userId) {
-                throw new Error("Пользователь не зарегистрирован");
-            }
+    queryFn: () => {
+      if (!userId) {
+        throw new Error("Пользователь не зарегистрирован");
+      }
 
-            return getUser(userId);
-        },
+      return getUser(userId);
+    },
 
-        enabled: computed(() => Boolean(userId)),
-    });
+    enabled: computed(() => Boolean(userId)),
+  });
 
-    return {
-        user,
-        isLoading,
-        isFetching,
-        isError,
-        refetch,
-    };
+  return {
+    user,
+    isLoading,
+    isFetching,
+    isError,
+    refetch,
+  };
 };

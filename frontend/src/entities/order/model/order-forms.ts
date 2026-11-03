@@ -3,9 +3,9 @@ import { ref } from "vue";
 import type { CancelChoiceForm, CancelChoiceFormMessage } from "@/entities/order";
 
 export const cancelChoiceForm = ref<CancelChoiceForm>({
-    cancelChoice: "",
+  cancelChoice: "",
 });
 
 export const cancelChoiceMessage = ref<CancelChoiceFormMessage>({
-    cancelChoice: "",
+  cancelChoice: "",
 });

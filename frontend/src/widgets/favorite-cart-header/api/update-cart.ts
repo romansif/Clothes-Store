@@ -6,38 +6,38 @@ import { orderStore } from "@/shared/model/order.store";
 const { orderItems } = orderStore();
 
 export const useUnCheckCartItem = () => {
-    const queryClient = useQueryClient();
-    const userId = localStorage.getItem("userId");
+  const queryClient = useQueryClient();
+  const userId = localStorage.getItem("userId");
 
-    const { mutateAsync: unCheckCartItem, isPending } = useMutation({
-        mutationKey: ["unCheckCartItem"],
-        mutationFn: async () => {
-            const allCartItems = await handler(`/cart/${userId}`, {
-                method: "GET",
-            });
-            for (const item of allCartItems) {
-                await handler(`/cart/${item.id}`, {
-                    method: "PATCH",
-                    body: JSON.stringify({
-                        checked: false,
-                    }),
-                });
-            }
-        },
+  const { mutateAsync: unCheckCartItem, isPending } = useMutation({
+    mutationKey: ["unCheckCartItem"],
+    mutationFn: async () => {
+      const allCartItems = await handler(`/cart/${userId}`, {
+        method: "GET",
+      });
+      for (const item of allCartItems) {
+        await handler(`/cart/${item.id}`, {
+          method: "PATCH",
+          body: JSON.stringify({
+            checked: false,
+          }),
+        });
+      }
+    },
 
-        onSuccess: async () => {
-            orderItems.value = [];
+    onSuccess: async () => {
+      orderItems.value = [];
 
-            await queryClient.invalidateQueries({ queryKey: ["cart"] });
-        },
+      await queryClient.invalidateQueries({ queryKey: ["cart"] });
+    },
 
-        onError: (err) => {
-            throw new Error(`Ошибка при изменения статуса товаров корзины`, err);
-        },
-    });
+    onError: (err) => {
+      throw new Error(`Ошибка при изменения статуса товаров корзины`, err);
+    },
+  });
 
-    return {
-        unCheckCartItem,
-        isPending,
-    };
+  return {
+    unCheckCartItem,
+    isPending,
+  };
 };

@@ -1,8 +1,8 @@
 import type { AuthFormVariant } from "@/shared/ui/auth-form";
 
 export const showPasswordClass: Record<AuthFormVariant, string> = {
-    login: "absolute w-7.5 top-1/5 left-57 sm:left-82",
-    register: "absolute w-7.5 top-1/5 left-57 sm:left-50",
+  login: "absolute w-7.5 top-1/5 left-57 sm:left-82",
+  register: "absolute w-7.5 top-1/5 left-57 sm:left-50",
 };
 
 export const showPasswordErrorClass = `top-1/6`;
