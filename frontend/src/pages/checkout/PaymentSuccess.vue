@@ -25,7 +25,7 @@
             <span v-if="userPaymentCard.paymentMethod === 'card'" class="font-dm-sans ml-auto">
               {{ userPaymentCard.paymentMethod }}
             </span>
-            <span v-else class="font-dm-sans ml-auto"> {{ userPaymentCard.paymentMethod }} {{ t("paymentSuccess.pay") }} </span>
+            <span v-else class="font-dm-sans ml-auto">{{ t("paymentSuccess.pay") }} {{ userPaymentCard.paymentMethod }}</span>
           </div>
           <div v-if="userAddress" class="flex items-center text-[#555]">
             <span> {{ t("paymentSuccess.deliveryAddress") }}</span>

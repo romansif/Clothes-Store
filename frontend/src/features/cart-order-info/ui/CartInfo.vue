@@ -16,7 +16,7 @@
     <div class="border-b"></div>
     <div class="flex items-center justify-between text-lg lg:gap-12 xl:text-xl">
       <div class="flex flex-col">
-        <span class="font-dm-sans text-xs text-[#A3A3A3]"> $ {{ commissionPrice }} {{ t("cart.commission") }} </span>
+        <span class="font-dm-sans text-xs text-[#A3A3A3]">{{ t("cart.commission", { price: commissionPrice }) }}</span>
         <div class="mt-3 flex items-center gap-2">
           <h1 class="font-medium">{{ t("cart.total") }}</h1>
           <span class="text-sm text-[#A3A3A3] xl:text-lg">{{ t("cart.taxIncl") }}</span>

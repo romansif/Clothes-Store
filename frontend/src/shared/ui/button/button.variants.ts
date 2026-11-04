@@ -26,4 +26,5 @@ export const buttonVariantClasses: Record<ButtonVariant, string> = {
   catalog: `${baseButton} w-38 py-2 text-xl text-[#26334d] border border-[#26334d] hover:outline-hidden hover:scale-110 hover:text-white hover:bg-[#26334d]`,
   viewMyOrders: `${baseButton} w-87 py-3 font-medium text-white bg-[#722f37] border-2 border-[#722f37] hover:scale-105 hover:bg-white hover:text-[#722f37]`,
   paymentSuccess: `${baseButton} w-87 py-3 font-medium text-[#722f37] bg-white border-2 border-[#722f37] hover:scale-105 hover:bg-[#722f37] hover:text-white`,
+  closeNotify: `absolute top-3 right-3 flex h-7 w-7 cursor-pointer items-center justify-center text-white/60 transition-colors hover:text-white`
 };
