@@ -7,17 +7,12 @@
         <p :class="stateTextClass">{{ t(emptyStateMessage[props.variant].text) }}</p>
       </div>
       <div :class="buttonBoxClass">
-        <UiButton :name="t('common.reload')"
-                  variant="reload"
-                  @click="emit('reload')">
+        <UiButton :name="t('common.reload')" variant="reload" @click="emit('reload')">
           <span :class="{ 'animate-[spin_0.5s_linear_infinite]': props.loading }">↻</span>
-          <span>{{ t('common.reload') }}</span>
+          <span>{{ t("common.reload") }}</span>
         </UiButton>
-        <router-link v-if="stateRoute[props.variant]"
-                     :to="{ name: stateRoute[props.variant] }"
-                     :class="stateRouteClass[props.variant]">
-          <UiButton :name="t(stateRouteMessage[props.variant])"
-                    variant="catalog" />
+        <router-link v-if="stateRoute[props.variant]" :to="{ name: stateRoute[props.variant] }" :class="stateRouteClass[props.variant]">
+          <UiButton :name="t(stateRouteMessage[props.variant])" variant="catalog" />
         </router-link>
       </div>
     </div>
@@ -30,7 +25,8 @@ import {
   buttonBoxClass,
   stateBoxMessageClass,
   stateBoxVariantClass,
-  stateRouteClass, stateSectionClass,
+  stateRouteClass,
+  stateSectionClass,
   stateTextClass,
   stateTitleClass,
 } from "@/widgets/state/model/state.variants";
@@ -47,5 +43,5 @@ const emit = defineEmits<{
   reload: [];
 }>();
 
-const { t } = useI18n()
+const { t } = useI18n();
 </script>

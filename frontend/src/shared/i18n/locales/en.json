@@ -160,8 +160,7 @@
     },
     "contact": {
       "firstName": "FirstName",
-      "lastName": "LastName",
-      "email": "example{'@'}gmail.com"
+      "lastName": "LastName"
     },
     "item": {
       "address": "Address:",
@@ -238,11 +237,17 @@
     "confirmCancel": "Replacement",
     "totalCount": "Total orders: {count}",
     "number": "No. {id}",
-    "status": {
+    "timeline": {
+      "created": "Created: {date}, {time}",
+      "processed": "Processed: {date}, {time}",
       "delivered": "Delivered: {date}, {time}",
-      "enRoute": "En route: {date}, {time}",
-      "convene": "Convene: {date}, {time}",
       "cancelled": "Cancelled: {date}, {time}"
+    },
+    "status": {
+      "delivered": "Delivered",
+      "enRoute": "En route",
+      "convene": "Convene",
+      "cancelled": "Cancelled"
     },
     "reason": {
       "paymentMethod": "Incorrect payment method",
@@ -323,7 +328,7 @@
     "description": "DESC.",
     "titlePh": "title, name etc.",
     "descriptionPh": "short desc. of product",
-    "collectionOption": "Name: {name}",
+    "collectionOption": "Name: {name}, Season: {season}, Condition: {condition}",
     "collectionEmpty": "Void",
     "categoryPh": "Shirt",
     "materialPh": "Cotton",
@@ -348,9 +353,15 @@
     "availability": "Availability",
     "gender": "Gender",
     "color": "Color",
-    "category": "Category"
+    "category": "Category",
+    "price": "Price"
+  },
+  "stock": {
+    "availability": "Availability",
+    "exhausted": "Exhausted"
   },
   "genders": {
+    "unisex": "Unisex",
     "man": "Man",
     "woman": "Woman",
     "kids": "Kids"
@@ -370,11 +381,33 @@
     "jackets": "Jackets",
     "tShirts": "T-shirts",
     "poloShirts": "Polo shirts",
-    "bestSellers": "Best sellers"
+    "bestSellers": "Best sellers",
+    "underpants": "Underpants",
+    "shorts": "Shorts",
+    "pants": "Pants",
+    "tankTop": "Tank top",
+    "sweaters": "Sweaters"
   },
-  "stock": {
-    "availability": "Availability",
-    "exhausted": "Exhausted"
+  "materials": {
+    "cotton": "Cotton",
+    "synthetics": "Synthetics",
+    "wool": "Wool",
+    "flax": "Flax",
+    "polyester": "Polyester",
+    "nylon": "Nylon",
+    "acrylic": "Acrylic",
+    "viscose": "Viscose"
+  },
+  "conditions": {
+    "new": "New",
+    "old": "Old"
+  },
+  "prices": {
+    "from": "from",
+    "to": "to",
+    "over": "Over {price}",
+    "sum": "USD",
+    "toPrice": "To {price}"
   },
   "seasons": {
     "spring": {

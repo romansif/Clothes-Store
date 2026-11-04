@@ -6,13 +6,11 @@ type DbResult<T> = { data: T | null; error: PostgrestError | null };
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
-/** Проверка до запроса: Postgres падает с 500, если в uuid-колонку попала не-uuid строка. */
 export const isUuid = (value: unknown): value is string =>
     typeof value === 'string' && UUID_RE.test(value);
 
 export const isUniqueViolation = (error: PostgrestError | null): boolean => error?.code === '23505';
 
-/** Достаёт data или бросает 500 (детали ошибки уходят только в лог). */
 export const unwrap = <T>({ data, error }: DbResult<T>): T => {
     if (error) {
         console.error('[db]', error.code, error.message);
@@ -21,13 +19,11 @@ export const unwrap = <T>({ data, error }: DbResult<T>): T => {
     return data as T;
 };
 
-/** Как unwrap, но нарушение unique-ограничения превращает в понятную 4xx-ошибку. */
 export const unwrapOrConflict = <T>(result: DbResult<T>, conflict: HttpError): T => {
     if (isUniqueViolation(result.error)) throw conflict;
     return unwrap(result);
 };
 
-/** Строка корзины/избранного по id записи ИЛИ по productId (так работает фронт). */
 export const findOwnedItem = async (
     table: 'cart' | 'favorites',
     userId: string,
@@ -47,7 +43,6 @@ export const findOwnedItem = async (
     return rows.find((row: Row) => sameId(row.id, id)) ?? rows[0] ?? null;
 };
 
-/** UPDATE своей записи. Пустой набор изменений просто возвращает запись. */
 export const updateOwned = async (
     table: string,
     id: string,
@@ -66,7 +61,6 @@ export const updateOwned = async (
     return unwrap(result);
 };
 
-/** DELETE своей записи, возвращает удалённую строку (или null). */
 export const deleteOwned = async (table: string, id: string, userId: string): Promise<Row | null> => {
     if (!isUuid(id)) return null;
 

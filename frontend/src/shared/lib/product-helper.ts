@@ -1,8 +1,9 @@
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
-import { sizes } from "@/shared/model/product-sizes";
 import type { Product } from "@/shared";
+
 import type { AddForm } from "@/entities/product-info";
+import { sizes } from "@/shared/model/product-sizes";
 
 export const itemPreview = ref<string[]>([]);
 export const activeProductImg = ref<string>("");
@@ -156,11 +157,11 @@ export const productHelper = () => {
     const count = totalCount?.count ?? 0;
 
     if (count < 4 && count !== 0) {
-      return t('product.onlyLeft', count);
+      return t("product.onlyLeft", count);
     } else if (form.colors.hex && form.sizes) {
-      return t('product.inStock', count);
+      return t("product.inStock", count);
     } else if (count === 0) {
-      return t('product.selectSpecific');
+      return t("product.selectSpecific");
     }
   };
 

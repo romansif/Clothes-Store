@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col">
     <div class="flex gap-1">
-      <h2 class="text-lg">{{ t('reviews.yourRating') }}</h2>
+      <h2 class="text-lg">{{ t("reviews.yourRating") }}</h2>
       <span class="text-red-500">*</span>
     </div>
     <div class="mt-5 flex items-center gap-10">
@@ -15,7 +15,7 @@
           @click="emit('addRating', rating)"
         />
       </div>
-      <span class="text-sm text-[#A3A3A3]">{{ t('review.tapToRate') }}</span>
+      <span class="text-sm text-[#A3A3A3]">{{ t("review.tapToRate") }}</span>
     </div>
     <span v-if="reviewFormMessages.rating" class="mt-4 text-xs font-semibold text-red-600">{{ reviewFormMessages.rating }}</span>
   </div>
@@ -35,5 +35,5 @@ const emit = defineEmits<{
   addRating: [rating: number];
 }>();
 
-const { t } = useI18n()
+const { t } = useI18n();
 </script>

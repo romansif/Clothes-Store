@@ -7,9 +7,7 @@
       <EditVariants :product="product" />
     </template>
     <div class="mt-4 mb-6 w-full">
-      <UiButton type="submit"
-                :name="t('product.editTitle')"
-                variant="useProduct" />
+      <UiButton type="submit" :name="t('product.editTitle')" variant="useProduct" />
     </div>
     <input
       type="file"
@@ -39,7 +37,7 @@ import { Loading } from "@/widgets/state";
 
 const route = useRoute();
 
-const { t } = useI18n()
+const { t } = useI18n();
 const { product } = useProductData(route);
 const { editProductImages } = useEditProductImages();
 const { editProductInfo, isPending } = useEditProductInfo();

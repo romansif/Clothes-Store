@@ -38,24 +38,23 @@ export interface Collection {
   season: string;
   condition: string;
   name: string;
-  seasonLabel?: string;
-  conditionLabel?: string;
-  nameLabel?: string;
+  seasonLabel: string;
+  conditionLabel: string;
 }
 
 export interface Category {
   category: string;
-  categoryLabel?: string;
+  categoryLabel: string;
 }
 
 export interface Material {
   material: string;
-  materialLabel?: string;
+  materialLabel: string;
 }
 
 export interface Gender {
   gender: string;
-  genderLabel?: string;
+  genderLabel: string;
 }
 
 export interface Size {

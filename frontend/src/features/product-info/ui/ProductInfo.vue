@@ -23,9 +23,7 @@
           <span class="font-dm-sans ml-auto text-black"> $ {{ product.price }} </span>
         </div>
       </div>
-      <p @click="toggleReadMore"
-         :class="['mt-3 cursor-pointer break-after-all font-medium',
-         fullDescription ? 'line-clamp-0' : 'line-clamp-2']">
+      <p @click="toggleReadMore" :class="['mt-3 cursor-pointer break-after-all font-medium', fullDescription ? 'line-clamp-0' : 'line-clamp-2']">
         {{ product.description }}
       </p>
       <ProductSpecific :user="user" :product="product" @add-color="addColor" @add-size="addSize" />

@@ -23,7 +23,6 @@ const TEXT_LIMITS: Record<string, number> = {
     publicPhone: 32,
 };
 
-// Поля, которые пользователь может менять сам (role, password, refreshTokens, googleId, avatarUrl — нельзя).
 const USER_UPDATABLE = [...Object.keys(TEXT_LIMITS), 'email'] as const;
 
 const emailTaken = () => new HttpError(400, 'This email is already in use.', { email: 'This email is already in use.' });
@@ -150,7 +149,6 @@ export const usersController = {
             ? crypto.createHash('sha256').update(currentRefresh).digest('hex')
             : null;
 
-        // все остальные сессии разлогиниваются, текущая остаётся
         const refreshTokens = currentHash && Array.isArray(user.refreshTokens) && user.refreshTokens.includes(currentHash)
             ? [currentHash]
             : [];
@@ -201,8 +199,6 @@ export const usersController = {
             throw new HttpError(403, 'You can only delete your own account');
         }
 
-        // Все связанные строки (products, cart, favorites, addresses, shipping,
-        // payments, orders, reviews) удалит сама база через ON DELETE CASCADE.
         const deletedUser = isUuid(id)
             ? unwrap(await supabase.from('users').delete().eq('id', id).select()).at(0)
             : null;

@@ -7,11 +7,9 @@ import {
     getUploadedFiles, assertImages, removeUploadedFiles,
 } from '#db/security';
 
-// Должен совпадать с лимитом в multer на роуте (reviewUpload.array('images', 4)).
 const MAX_REVIEW_IMAGES = 4;
 const MAX_COMMENT_LENGTH = 2000;
 
-// В базе created_at — timestamptz, а фронт ждёт «Oct 29, 2026», как раньше.
 const formatDate = (value: unknown): string => {
     const date = new Date(value as string);
     return Number.isNaN(date.getTime())
@@ -93,7 +91,6 @@ export const reviewsController = {
 
             if (!product) throw new HttpError(404, 'Product not found');
 
-            // Имя и аватар автора НЕ копируются в отзыв: они подтягиваются из users при чтении.
             const newReview = unwrap(
                 await supabase.from('reviews').insert({
                     userId: user.id,
@@ -108,7 +105,6 @@ export const reviewsController = {
 
             res.status(201).json({ message: 'Review added', data });
         } catch (error) {
-            // отзыв не создан — загруженные фото не должны остаться мусором на диске
             removeUploadedFiles(files);
             throw error;
         }

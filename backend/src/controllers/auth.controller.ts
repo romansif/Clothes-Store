@@ -49,7 +49,6 @@ const signRefreshToken = (user: Row) =>
         { algorithm: 'HS256', expiresIn: Math.floor(REFRESH_TTL_MS / 1000) },
     );
 
-// Меняет user.refreshTokens в памяти; в базу это нужно записать через saveSessions().
 const rotateSession = (user: Row, replacedRefreshToken?: string) => {
     const accessToken = signAccessToken(user);
     const refreshToken = signRefreshToken(user);
@@ -152,7 +151,6 @@ const authController = {
 
         const tokens = rotateSession(newUser);
 
-        // unique (email, role) в базе ловит гонку двух одновременных регистраций
         unwrapOrConflict(await supabase.from('users').insert(newUser), alreadyTaken());
 
         setSessionCookies(res, tokens);
@@ -303,7 +301,7 @@ const authController = {
                     }
                 }
             } catch {
-                // просроченный или битый токен: куки всё равно очищаем ниже
+
             }
         }
 
@@ -333,7 +331,6 @@ const authController = {
         const known = !!user && Array.isArray(user.refreshTokens) && user.refreshTokens.includes(hash);
 
         if (!user || !known) {
-            // токен не из списка выданных: возможна кража, отзываем все сессии пользователя
             if (user) {
                 user.refreshTokens = [];
                 await saveSessions(user);

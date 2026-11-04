@@ -1,11 +1,11 @@
 import { ref } from "vue";
-import type { Product } from "@/shared";
-
+import { useI18n } from "vue-i18n";
 import { activeFilter, yearFilter } from "@/widgets/filter-products/model/active-filter";
 import { clearSearchProductForm } from "@/features/search-product/lib/clear-search";
 import { sizes } from "@/shared/model/product-sizes";
+import type { Product } from "@/shared";
 
-const filterLabelKeys: Record<string, string> = {
+const FILTER_LABEL_KEYS: Record<string, string> = {
   Man: "genders.man",
   Woman: "genders.woman",
   Kids: "genders.kids",
@@ -26,9 +26,27 @@ const filterLabelKeys: Record<string, string> = {
   Exhausted: "stock.exhausted",
 };
 
-export const filterLabelKey = (name: string) => filterLabelKeys[name] ?? name;
+const PRICE_RANGES: Record<string, { min?: number; max?: number }> = {
+  "$ 200": { max: 200 },
+  "$ 200 - 500": { min: 200, max: 500 },
+  "$ 500 - 1000": { min: 500, max: 1000 },
+  "$ 1000": { min: 1000 },
+};
+
+export const filterLabelKey = (name: string) => FILTER_LABEL_KEYS[name] ?? name;
 
 export const filterProduct = () => {
+  const { t } = useI18n()
+
+  const priceLabels: Record<string, () => string> = {
+    "$ 200": () => t("prices.toPrice", { price: `200 ${t("prices.sum")}` }),
+    "$ 200 - 500": () => `${t("prices.from")} 200 ${t("prices.to")} 500 ${t("prices.sum")}`,
+    "$ 500 - 1000": () => `${t("prices.from")} 500 ${t("prices.to")} 1000 ${t("prices.sum")}`,
+    "$ 1000": () => t("prices.over", { price: `1000 ${t("prices.sum")}` }),
+  };
+
+  const priceLabel = (name: string) => priceLabels[name]?.() ?? name;
+
   const selectedGender = ref<string>("ALL");
 
   const activeSlide = ref<number>(0);
@@ -64,6 +82,13 @@ export const filterProduct = () => {
     Mazarine: false,
     Beige: false,
     Burgundy: false,
+  });
+
+  const prices = ref<Record<string, boolean>>({
+    '$ 200': false,
+    '$ 200 - 500': false,
+    '$ 500 - 1000': false,
+    '$ 1000': false
   });
 
   const category = ref<Record<string, boolean>>({
@@ -103,6 +128,7 @@ export const filterProduct = () => {
       STATUS: stackProducts.value,
       GENDER: genders.value,
       COLOR: colors.value,
+      PRICE: prices.value
     };
 
     clearActiveKey();
@@ -125,6 +151,15 @@ export const filterProduct = () => {
     if (stackName === "Exhausted") {
       return products.filter((p) => p.variants.every((v) => v.count === 0)).length;
     }
+
+    const range = PRICE_RANGES[stackName];
+    if (range) {
+      return products.filter(
+          (p) =>
+              (range.min === undefined || p.price >= range.min) &&
+              (range.max === undefined || p.price <= range.max),
+      ).length;
+    }
   };
 
   const selectGender = (type: string, filter: string) => {
@@ -143,6 +178,8 @@ export const filterProduct = () => {
   };
 
   return {
+    priceLabel,
+
     selectedGender,
     activeSlide,
 
@@ -157,5 +194,6 @@ export const filterProduct = () => {
     stackProducts,
     genders,
     colors,
+    prices
   };
 };

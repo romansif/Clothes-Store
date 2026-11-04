@@ -22,7 +22,7 @@ import { computed, onMounted, onUnmounted } from "vue";
 import { filterProduct } from "@/widgets/filter-products/lib/filter-product.ts";
 import { homeSlides, mainSlides } from "@/widgets/home/model/slides.ts";
 
-const { t } = useI18n()
+const { t } = useI18n();
 const { activeSlide } = filterProduct();
 
 const current = computed(() => homeSlides[activeSlide.value]);

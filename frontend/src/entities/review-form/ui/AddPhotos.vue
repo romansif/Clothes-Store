@@ -1,12 +1,12 @@
 <template>
   <div class="flex flex-col gap-5">
     <h2 class="text-lg">
-      {{ t('reviews.addPhotos') }}
-      <span class="text-[#A3A3A3]">{{ t('common.optional') }}</span>
+      {{ t("reviews.addPhotos") }}
+      <span class="text-[#A3A3A3]">{{ t("common.optional") }}</span>
     </h2>
     <div class="flex gap-2.5">
       <div class="mt-auto flex flex-col gap-2.5">
-        <span class="w-75 text-xs text-[#A3A3A3]">{{ t('reviews.addPhotosHint') }}</span>
+        <span class="w-75 text-xs text-[#A3A3A3]">{{ t("reviews.addPhotosHint") }}</span>
         <div class="flex gap-2.5">
           <div
             v-for="index in [1, 2, 3, 4]"
@@ -29,6 +29,6 @@
 import { useI18n } from "vue-i18n";
 import { itemPreview, productHelper } from "@/shared/lib/product-helper";
 
-const { t } = useI18n()
+const { t } = useI18n();
 const { openSelectImage } = productHelper();
 </script>

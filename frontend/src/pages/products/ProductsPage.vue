@@ -1,5 +1,5 @@
 <template>
-  <main class="mt-10 flex justify-center xl:justify-between">
+  <main class="mt-10 flex justify-center xl:gap-21.5  ">
     <FilterProducts />
     <div class="flex flex-col">
       <MainHeader />

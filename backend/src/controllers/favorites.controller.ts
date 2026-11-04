@@ -3,8 +3,6 @@ import { unwrap, unwrapOrConflict, isUuid, findOwnedItem } from '#db/query.ts';
 import { withProducts } from '#db/relations.ts';
 import { type Row, HttpError, handle, param, requireUser, requireSelf, pickKeys } from '#db/security';
 
-// В таблице favorites лежит только пара userId + productId.
-// Все данные товара берутся из products при каждом запросе.
 const FAVORITE_FIELDS = ['productId'] as const;
 
 const findFavorite = async (userId: string, productId: string): Promise<Row | null> => {
@@ -40,7 +38,6 @@ export const favoritesController = {
         const product = unwrap(await supabase.from('products').select('id').eq('id', productId).maybeSingle());
         if (!product) throw new HttpError(404, 'Product not found');
 
-        // повторное добавление не создаёт копию, а возвращает уже существующую запись
         const existing = await findFavorite(user.id, productId);
         if (existing) {
             res.status(200).json({ message: 'Product is already in favorites', data: await presentOne(existing) });
@@ -59,7 +56,6 @@ export const favoritesController = {
         const user = requireUser(req);
         const id = param(req, 'id');
 
-        // id уходит в фильтр PostgREST, поэтому строго uuid
         if (!isUuid(id)) throw new HttpError(404, 'Favorite product not found');
 
         const item = await findOwnedItem('favorites', user.id, id);

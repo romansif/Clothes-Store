@@ -7,7 +7,6 @@ import {
     pickKeys, getUploadedFiles, assertImages, removeUploadedFiles, deleteUploadedFile,
 } from '#db/security';
 
-// Должен совпадать с лимитом в multer на роуте (productUpload.array('images', 5)).
 const MAX_PRODUCT_IMAGES = 5;
 const MAX_SEARCH_LENGTH = 100;
 const PAGE_MAX = 500;
@@ -18,6 +17,13 @@ const PRODUCT_FIELDS = [
     'description', 'sizes', 'colors', 'status',
 ] as const;
 
+const PRICE_RANGES: Record<string, { min?: number; max?: number }> = {
+    '$ 200': { min: 200, max: 200 },
+    '$ 200 - 500': { min: 200, max: 500 },
+    '$ 500 - 1000': { min: 500, max: 1000 },
+    '$ 1000': { min: 1000 },
+};
+
 const TEXT_LIMITS: Record<string, number> = {
     category: 100,
     material: 100,
@@ -27,21 +33,20 @@ const TEXT_LIMITS: Record<string, number> = {
     status: 50,
 };
 
-// ---- фильтрация в базе ---------------------------------------------------
-// Фильтры, поиск и сортировка выполняет Postgres. Таблица целиком в память не выгружается,
-// а наличие считается по актуальным variants в момент запроса.
-
 const productsQuery = () => supabase.from('products').select('*');
 type ProductsQuery = ReturnType<typeof productsQuery>;
 
-// stock = true: STATUS — это наличие (Availability / Exhausted), иначе — поле status.
-// Для Availability / Exhausted нужна SQL-функция in_stock() из migration.sql.
 const applyFilter = (query: ProductsQuery, type: string, filter: string, stock: boolean): ProductsQuery => {
     switch (type) {
+        case 'PRICE':
+            const range = PRICE_RANGES[filter];
+            if (!range) return query;
+            if (range.min !== undefined) query = query.gte('price', range.min);
+            if (range.max !== undefined) query = query.lte('price', range.max);
+            return query;
         case 'CATEGORY':
             return query.eq('category', filter);
         case 'SIZE':
-            // для jsonb массив нужно передавать JSON-строкой
             return query.contains('sizes', JSON.stringify([filter]));
         case 'COLOR':
             return query.contains('colors', JSON.stringify([{ colorName: filter }]));
@@ -69,7 +74,7 @@ const listProducts = async (query: ProductsQuery, req: Request, ascending = fals
     return unwrap(
         await query
             .order('created_at', { ascending })
-            .order('id', { ascending: true }) // стабильный порядок для пагинации
+            .order('id', { ascending: true })
             .range(from, to),
     );
 };
@@ -80,10 +85,8 @@ const daysAgo = (days: number): Date => {
     return date;
 };
 
-// значение в двойных кавычках для фильтров PostgREST (запятые, скобки и т.д. внутри значения безопасны)
 const quote = (value: string): string => `"${value.replace(/\\/g, '\\\\').replace(/"/g, '\\"')}"`;
 
-// ---- валидация -----------------------------------------------------------
 
 const toCount = (value: unknown): number => {
     const n = Math.trunc(Number(value));
@@ -127,14 +130,11 @@ const cleanTextFields = (data: Row): void => {
     }
 };
 
-// ---- вспомогательное -----------------------------------------------------
-
 const ownProduct = async (id: string, userId: string): Promise<Row | null> =>
     isUuid(id)
         ? unwrap(await supabase.from('products').select('*').eq('id', id).eq('userId', userId).maybeSingle())
         : null;
 
-// удаляем с диска только файлы из папки товаров
 const removeProductImages = (images: unknown): void => {
     if (!Array.isArray(images)) return;
 
@@ -205,8 +205,6 @@ export const productsController = {
     }),
 
     getSearchedProducts: handle('Failed to get the searched product list', async (req, res) => {
-        // оставляем буквы, цифры, пробелы, точку и дефис: так в строку фильтра не попадут
-        // служебные символы PostgREST и подстановочные знаки LIKE
         const search = String(req.query.search || '')
             .slice(0, MAX_SEARCH_LENGTH)
             .replace(/[^\p{L}\p{N}\s.-]/gu, '')
@@ -289,7 +287,6 @@ export const productsController = {
 
             res.status(201).json(newProduct);
         } catch (error) {
-            // товар не создан — загруженные фото не должны остаться мусором на диске
             removeUploadedFiles(files);
             throw error;
         }
@@ -324,7 +321,6 @@ export const productsController = {
             }
             assertImages(files);
 
-            // чужой товар для продавца выглядит как несуществующий
             const product = await ownProduct(id, user.id);
             if (!product) throw new HttpError(404, 'Product not found.');
 
@@ -343,7 +339,7 @@ export const productsController = {
                 nextImages = [...current];
                 nextImages[targetIndex] = uploaded[0]!;
                 replaced = [current[targetIndex]!];
-                unused = files.slice(1); // заменяется одна картинка, остальные загруженные не нужны
+                unused = files.slice(1);
             } else {
                 nextImages = uploaded;
                 replaced = current;
@@ -356,7 +352,6 @@ export const productsController = {
                     .select().single(),
             );
 
-            // база обновлена: убираем с диска заменённые и неиспользованные файлы
             removeProductImages(replaced);
             if (unused.length) removeUploadedFiles(unused);
 
@@ -371,7 +366,6 @@ export const productsController = {
         const user = requireUser(req);
         const id = param(req, 'id');
 
-        // форма редактирования шлёт `collections`, а колонка называется `collection`
         const picked = pickKeys(req.body, [...PRODUCT_FIELDS, 'collections', 'price', 'variants']);
         if ('collections' in picked) {
             picked.collection ??= picked.collections;
@@ -393,7 +387,6 @@ export const productsController = {
         }
         cleanTextFields(changes);
 
-        // update идёт сразу с условием userId: править можно только свой товар
         const updated = Object.keys(changes).length
             ? await updateOwned('products', id, user.id, changes)
             : await ownProduct(id, user.id);
@@ -411,8 +404,6 @@ export const productsController = {
 
         if (!deleted) throw new HttpError(404, 'Product not found');
 
-        // фото удалённого товара больше не нужны. Корзины и избранное чистит ON DELETE CASCADE,
-        // а в старых заказах остаётся снимок позиции (orderItems).
         removeProductImages(deleted.images);
 
         res.json(deleted);

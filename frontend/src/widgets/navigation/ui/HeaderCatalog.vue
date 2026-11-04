@@ -17,7 +17,7 @@
           <h1 v-else class="text-4xl font-extrabold">{{ t("nav.newArrivals") }}</h1>
         </div>
       </div>
-      <span class="mt-15 text-xl text-[#A3A3A3] w-90">{{ t("nav.discoverSeasons") }}</span>
+      <span class="mt-15 w-90 text-xl text-[#A3A3A3]">{{ t("nav.discoverSeasons") }}</span>
     </div>
     <div class="mt-12 flex h-10 flex-col gap-5 sm:h-35 xl:mt-0 xl:h-53.75">
       <MainSlideBar />

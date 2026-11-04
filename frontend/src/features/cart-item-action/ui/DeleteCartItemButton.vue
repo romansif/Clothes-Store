@@ -18,6 +18,6 @@ const props = defineProps<{
   product: Product;
 }>();
 
-const { t } = useI18n()
+const { t } = useI18n();
 const { toggleDeleteChoice } = baseDeleteModal();
 </script>

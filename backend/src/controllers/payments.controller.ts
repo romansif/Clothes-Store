@@ -6,11 +6,8 @@ import {
     maskCard, toPublicPayment,
 } from '#db/security';
 
-// Белый список колонок. cardCvv сюда НЕ входит — CVV не сохраняется никогда.
 const PAYMENT_FIELDS = ['paymentId', 'paymentMethod', 'cardName', 'cardNumber', 'expiryDate'] as const;
 
-// created_at в базе — timestamptz, а фронт ждёт «10.09.2026/16:30».
-// Часовой пояс задан явно: на сервере обычно стоит UTC.
 const formatPaymentDate = (value: unknown): string => {
     const date = new Date(value as string);
     if (Number.isNaN(date.getTime())) return String(value ?? '');
@@ -23,7 +20,7 @@ const formatPaymentDate = (value: unknown): string => {
             year: 'numeric',
             hour: '2-digit',
             minute: '2-digit',
-            hourCycle: 'h23', // без этого полночь может прийти как "24:00"
+            hourCycle: 'h23',
         })
             .formatToParts(date)
             .map(part => [part.type, part.value]),
@@ -73,7 +70,6 @@ export const paymentsController = {
         const user = requireUser(req);
         const id = param(req, 'id');
 
-        // фронт передаёт сюда paymentId (uuid, связывающий доставку и оплату), поэтому ищем и по нему
         const rows: Row[] = isUuid(id)
             ? unwrap(
                 await supabase.from('payments').select('*')
@@ -151,7 +147,6 @@ export const paymentsController = {
             }
         }
 
-        // запись, импортированная со старым незамаскированным номером, дозамаскируется здесь
         if (!changes.cardFingerprint && current.cardNumber && !String(current.cardNumber).includes('*')) {
             changes.cardFingerprint = cardFingerprint(current.cardNumber);
             changes.cardNumber = maskCard(current.cardNumber);

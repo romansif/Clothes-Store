@@ -17,7 +17,7 @@
               {{ t(season.slogan) }}
             </h1>
           </div>
-          <span class="mt-15 text-xl text-[#A3A3A3] w-108">
+          <span class="mt-15 w-108 text-xl text-[#A3A3A3]">
             {{ t(season.text) }}
           </span>
         </div>
