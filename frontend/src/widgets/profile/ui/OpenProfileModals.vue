@@ -3,7 +3,7 @@
     <ProfileTab :name="t('profile.menu.allOrders')" @click="toggleOrderHistory" />
     <ProfileTab :name="t('profile.menu.activeOrders')" @click="toggleCurrentOrder" />
     <ProfileTab :name="t('profile.menu.savedCards')" @click="toggleSavedPaymentCard" />
-    <ProfileTab :name="t('profile.menu.savedCards')" @click="toggleSavedAddresses" />
+    <ProfileTab :name="t('profile.menu.savedAddresses')" @click="toggleSavedAddresses" />
   </template>
   <template v-else>
     <router-link :to="{ name: 'my/products' }">

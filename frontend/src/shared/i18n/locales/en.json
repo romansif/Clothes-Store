@@ -565,24 +565,24 @@
   "notify": {
     "success": {
       "login": {
-        "title": "You have successfully sign in",
-        "text": "You will now be taken to your profile page"
+        "title": "You have successfully signed in",
+        "text": "Welcome back to The Noir"
       },
       "OAuth": {
-        "title": "You have successfully sign in",
-        "text": "You will now be taken to your profile page"
+        "title": "You have successfully signed in",
+        "text": "You are signed in with your Google account"
       },
       "register": {
-        "title": "You have successfully sign up",
-        "text": "You will now be taken to your profile page"
+        "title": "You have successfully signed up",
+        "text": "Your account has been created. Welcome to The Noir"
       },
       "logout": {
         "title": "You have successfully logged out",
-        "text": "You will now be taken to sign in page"
+        "text": "See you again soon"
       },
       "deleteUser": {
-        "title": "You have successfully delete account",
-        "text": "You will now be taken to sign in page"
+        "title": "You have successfully deleted your account",
+        "text": "Your account has been removed"
       },
       "createProduct": {
         "title": "You have successfully created a new product card",
@@ -606,23 +606,23 @@
       },
       "addToCart": {
         "title": "You have successfully added the item to your cart",
-        "text": "You will now be redirected to the \"Cart\" page"
+        "text": "You can find it in your cart"
       },
       "addToFavorite": {
-        "title": "You have successfully added the item to your favorite",
-        "text": "You will now be redirected to the \"Favorite\" page"
+        "title": "You have successfully added the item to your favorites",
+        "text": "You can find it in your favorites"
       },
       "information": {
         "title": "You have successfully added the shipping address",
-        "text": "You will now be redirected to the shipping method selection page"
+        "text": "Next, choose a shipping method"
       },
       "shipping": {
         "title": "You have successfully added the shipping method",
-        "text": "You will now be redirected to the payment method selection page"
+        "text": "Next, choose a payment method"
       },
       "payment": {
         "title": "Your order has been placed",
-        "text": "You will now be redirected to the receipt page"
+        "text": "We sent a confirmation to your email"
       },
       "addReview": {
         "title": "You have successfully added a review for this product",

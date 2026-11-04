@@ -47,22 +47,20 @@ export const stateRouteClass: Record<PageVariant, string> = {
 
 export const loaderSectionClass = 'flex justify-center item-center w-full'
 
-export const loaderBoxClass = `font-montserrat flex items-center justify-center`;
-
 export const loaderItemsClass = 'flex flex-col items-center gap-8'
 
 export const loaderBoxVariantClass: Record<PageVariant, string> = {
-  product: `${loaderBoxClass}`,
-  user: `${loaderBoxClass} my-85`,
-  "season-list": `${loaderBoxClass} mt-45`,
-  "week-list": `${loaderBoxClass} my-40`,
-  "year-list": `${loaderBoxClass} my-40`,
-  products: `${loaderBoxClass} mt-45`,
-  "my-products": `${loaderBoxClass} my-65`,
-  cart: `${loaderBoxClass} my-50`,
-  favorite: `${loaderBoxClass} my-50`,
-  reviews: `${loaderBoxClass} my-45`,
-  orders: `${loaderBoxClass} mt-50`,
-  addresses: `${loaderBoxClass} mt-45`,
-  payments: `${loaderBoxClass} mt-45`,
+  product: `my-45`,
+  user: `my-85`,
+  "season-list": `mt-45`,
+  "week-list": `my-40`,
+  "year-list": `my-40`,
+  products: `my-45`,
+  "my-products": `my-65`,
+  cart: `my-50`,
+  favorite: `my-50`,
+  reviews: `my-45`,
+  orders: `mt-50`,
+  addresses: `mt-45`,
+  payments: `mt-45`,
 };

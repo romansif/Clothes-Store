@@ -11,13 +11,10 @@
         <span>{{ t(season.id) }}</span>
         <div class="w-15 border-2 border-b"></div>
       </div>
-      <div class="flex flex-col gap-5">
+      <div class="flex flex-col gap-10">
         <h1 class="text-3xl font-semibold">{{ t(season.title) }}</h1>
         <p class="text-md font-medium">{{ t(season.text) }}</p>
-        <div class="flex items-center gap-15">
-          <span class="cursor-pointer font-medium">{{ t("nav.viewCollection") }}</span>
-          <img :src="go_shop" alt="" class="w-16" />
-        </div>
+        <span class="cursor-pointer font-medium">{{ t("nav.viewCollection") }}</span>
       </div>
     </div>
   </div>
@@ -27,8 +24,6 @@
 import { useI18n } from "vue-i18n";
 import router from "@/app/router";
 import { seasonsCatalog } from "@/widgets/navigation/model/seasons-specific";
-
-import go_shop from "@/assets/icons/arrows/go-shop.svg";
 
 const { t } = useI18n();
 </script>
