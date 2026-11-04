@@ -160,8 +160,7 @@
     },
     "contact": {
       "firstName": "Имя",
-      "lastName": "Фамилия",
-      "email": "example{'@'}gmail.com"
+      "lastName": "Фамилия"
     },
     "item": {
       "address": "Адрес:",
@@ -238,11 +237,17 @@
     "confirmCancel": "Подтвердить отмену",
     "totalCount": "Всего заказов: {count}",
     "number": "№ {id}",
-    "status": {
+    "timeline": {
+      "created": "Создан: {date}, {time}",
+      "processed": "Обработан: {date}, {time}",
       "delivered": "Доставлен: {date}, {time}",
-      "enRoute": "В пути: {date}, {time}",
-      "convene": "Оформлен: {date}, {time}",
       "cancelled": "Отменён: {date}, {time}"
+    },
+    "status": {
+      "delivered": "Доставлен",
+      "enRoute": "В пути",
+      "convene": "Оформлен",
+      "cancelled": "Отменён"
     },
     "reason": {
       "paymentMethod": "Неверный способ оплаты",
@@ -323,7 +328,7 @@
     "description": "ОПИСАНИЕ",
     "titlePh": "название и т. д.",
     "descriptionPh": "краткое описание товара",
-    "collectionOption": "Название: {name}",
+    "collectionOption": "Название: {name}, Сезон: {season}, Состояние: {condition}",
     "collectionEmpty": "Не выбрано",
     "categoryPh": "Рубашка",
     "materialPh": "Хлопок",
@@ -348,9 +353,15 @@
     "availability": "Наличие",
     "gender": "Пол",
     "color": "Цвет",
-    "category": "Категория"
+    "category": "Категория",
+    "price": "Цена"
+  },
+  "stock": {
+    "availability": "В наличии",
+    "exhausted": "Распродано"
   },
   "genders": {
+    "unisex": "Унисекс",
     "man": "Мужское",
     "woman": "Женское",
     "kids": "Детское"
@@ -370,11 +381,33 @@
     "jackets": "Куртки",
     "tShirts": "Футболки",
     "poloShirts": "Поло",
-    "bestSellers": "Бестселлеры"
+    "bestSellers": "Бестселлер",
+    "underpants": "Нижнее бельё",
+    "shorts": "Шорты",
+    "pants": "Брюки",
+    "tankTop": "Майки",
+    "sweaters": "Свитеры"
   },
-  "stock": {
-    "availability": "В наличии",
-    "exhausted": "Распродано"
+  "materials": {
+    "cotton": "Хлопок",
+    "synthetics": "Синтетика",
+    "wool": "Шерсть",
+    "flax": "Лён",
+    "polyester": "Полиэстер",
+    "nylon": "Нейлон",
+    "acrylic": "Акрил",
+    "viscose": "Вискоза"
+  },
+  "conditions": {
+    "new": "Новая",
+    "old": "Старая"
+  },
+  "prices": {
+    "from": "от",
+    "to": "до",
+    "over": "Свыше {price}",
+    "sum": "USD",
+    "toPrice": "До {price}"
   },
   "seasons": {
     "spring": {

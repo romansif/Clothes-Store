@@ -28,8 +28,6 @@ const toPostalCode = (value: unknown): number => {
     return code;
 };
 
-// Чистит и обрезает пробелы у всех текстовых полей и записывает очищенное значение обратно.
-// Раньше адрес только проверялся, а в базу уходила исходная строка, и «Main St » не считался дублем «Main St».
 const sanitize = (data: Row): void => {
     for (const [field, max] of Object.entries(TEXT_LIMITS)) {
         if (data[field] === undefined || data[field] === null) continue;

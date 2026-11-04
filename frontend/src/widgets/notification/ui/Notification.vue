@@ -27,6 +27,6 @@ import { useBaseModals } from "@/widgets/notification/lib/use-notify";
 import { notifyClass, notifyBoxClass, notifyItemsClass } from "@/widgets/notification/model/notification.variants";
 import { UiButton } from "@/shared/ui/button";
 
-const { t } = useI18n()
+const { t } = useI18n();
 const { message, image, closeNotify } = useBaseModals();
 </script>

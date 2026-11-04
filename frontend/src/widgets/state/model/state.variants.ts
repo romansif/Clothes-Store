@@ -1,6 +1,6 @@
 import type { PageVariant } from "@/widgets/state";
 
-export const stateSectionClass = 'flex justify-center item-center w-full'
+export const stateSectionClass = "flex justify-center item-center w-full";
 
 export const stateBoxClass = `flex flex-col justify-center items-center gap-8 py-12 
     font-raleway bg-white border w-full`;
@@ -45,9 +45,9 @@ export const stateRouteClass: Record<PageVariant, string> = {
   payments: "hidden",
 };
 
-export const loaderSectionClass = 'flex justify-center item-center w-full'
+export const loaderSectionClass = "flex justify-center item-center w-full";
 
-export const loaderItemsClass = 'flex flex-col items-center gap-8'
+export const loaderItemsClass = "flex flex-col items-center gap-8";
 
 export const loaderBoxVariantClass: Record<PageVariant, string> = {
   product: `my-45`,

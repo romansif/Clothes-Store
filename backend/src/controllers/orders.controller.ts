@@ -13,8 +13,6 @@ const CHECKOUT_ERRORS: Record<string, number> = { CK001: 400, CK002: 409, CK003:
 const MAX_CAUSE_LENGTH = 500;
 const TIME_ZONE = 'Asia/Tashkent';
 
-// Дата и время заказа считаются на сервере в одном часовом поясе и не зависят от локали машины.
-// Формат тот же, что был: «11/2/2026» и «14:28».
 const formatOrderDate = (date: Date): string => date.toLocaleDateString('en-US', { timeZone: TIME_ZONE });
 
 const formatOrderTime = (date: Date): string =>
@@ -64,8 +62,6 @@ export const ordersController = {
             throw new HttpError(400, 'Invalid checkout data');
         }
 
-        // Состав и цены заказа собирает сама база (create_order) из актуальных products и cart.
-        // С клиента принимаются только id адреса, контакта и оплаты, способ доставки и ключ идемпотентности.
         const now = new Date();
         const { data, error } = await supabase.rpc('create_order', {
             p_user_id: user.id,
@@ -87,8 +83,7 @@ export const ordersController = {
         res.status(201).json({ message: 'Order created', data });
     }),
 
-    // Единственное, что клиент может сделать с заказом, — отменить его.
-    // Время отмены ставит сервер, а не клиент.
+
     updateOrder: handle('Failed to update the order', async (req, res) => {
         const user = requireUser(req);
         const id = param(req, 'id');
@@ -114,8 +109,6 @@ export const ordersController = {
         changes.date_cancelled_at = formatOrderDate(now);
         changes.time_cancelled_at = formatOrderTime(now);
 
-        // условие «ещё не завершён» стоит в самом update, поэтому двойная отмена или отмена
-        // доставленного заказа невозможны даже при одновременных запросах
         const updated = unwrap(
             await supabase.from('orders').update(changes)
                 .eq('id', id).eq('userId', user.id)
@@ -134,7 +127,6 @@ export const ordersController = {
         res.json(updated);
     }),
 
-    // Удалять из истории можно только завершённые заказы.
     deleteOrderItems: handle('Failed to delete the order', async (req, res) => {
         const user = requireUser(req);
         const id = param(req, 'id');

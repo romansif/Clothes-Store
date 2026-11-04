@@ -32,6 +32,6 @@ const props = defineProps<ShippingInputProps>();
 
 const model = defineModel<string | number>();
 
-const { t } = useI18n()
+const { t } = useI18n();
 const { methods } = useShippingMethod(props);
 </script>

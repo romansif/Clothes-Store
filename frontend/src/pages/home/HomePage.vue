@@ -5,7 +5,6 @@
       <HomeSlider />
       <MainHome />
     </div>
-    <Footer />
     <Transition name="sidebar">
       <AsideFilter v-if="filterAside" />
     </Transition>
@@ -16,7 +15,6 @@
 import { useUserData } from "@/widgets/profile/lib/use-user-data";
 import { filterAside } from "@/features/products/lib/product-modal";
 import { HomeSlider, MainHome } from "@/widgets/home";
-import { Footer } from "@/widgets/footer";
 import { AsideFilter } from "@/widgets/filter-products";
 import { NavBar } from "@/widgets/navigation";
 

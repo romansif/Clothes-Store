@@ -36,5 +36,5 @@ const model = defineModel<PaymentMethods | "">({
   required: true,
 });
 
-const { t } = useI18n()
+const { t } = useI18n();
 </script>

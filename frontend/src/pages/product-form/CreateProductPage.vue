@@ -5,9 +5,7 @@
     <ProductBaseInfo />
     <CreateVariants />
     <div class="mt-4 mb-6 w-full">
-      <UiButton type="submit"
-                :name="t('product.createTitle')"
-                variant="useProduct" />
+      <UiButton type="submit" :name="t('product.createTitle')" variant="useProduct" />
     </div>
     <input
       type="file"
@@ -33,7 +31,7 @@ import { ProductBaseInfo } from "@/entities/product-form";
 import { CreateImageUpload, CreateVariants } from "@/features/product-create-form";
 import { Loading } from "@/widgets/state";
 
-const { t } = useI18n()
+const { t } = useI18n();
 const { onFilesSelected } = productHelper();
 const { createProduct, isPending } = useCreateProduct();
 </script>

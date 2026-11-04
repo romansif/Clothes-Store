@@ -1,5 +1,5 @@
 <template>
-  <main class="font-raleway mt-45 md:mt-65 lg:mt-95 xl:mt-25">
+  <main class="font-raleway mt-45 pb-45 md:mt-65 lg:mt-95 xl:mt-25">
     <div class="flex flex-col">
       <div class="flex flex-col text-5xl font-extrabold">
         <span>{{ t("home.new") }}</span>

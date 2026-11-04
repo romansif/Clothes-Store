@@ -2,13 +2,7 @@ import { supabase } from '#db/supabase.ts';
 import { unwrap } from '#db/query.ts';
 import { type Row } from '#db/security';
 
-// Положить рядом с query.ts и security.ts (папка #db).
-//
-// Правило: в cart / favorites / reviews хранятся только ссылки (productId, userId).
-// Всё остальное (цена, фото, название, имя и аватар автора) читается из products / users
-// в момент запроса, поэтому устареть оно не может.
-
-const CHUNK_SIZE = 100; // ограничение длины URL у PostgREST при in (...)
+const CHUNK_SIZE = 100;
 
 const uniqueIds = (values: unknown[]): string[] => [
     ...new Set(values.filter((value): value is string => typeof value === 'string' && value !== '')),
@@ -32,9 +26,6 @@ export const fetchById = async (table: string, ids: unknown[], columns = '*'): P
     return result;
 };
 
-// Плоская запись «строка корзины/избранного + актуальные поля товара».
-// id, userId, created_at берутся из самой строки; id продавца отдаётся как sellerId.
-// Строки с удалённым товаром пропускаются.
 export const withProducts = async (items: Row[]): Promise<Row[]> => {
     const products = await fetchById('products', items.map(item => item.productId));
 
@@ -44,7 +35,6 @@ export const withProducts = async (items: Row[]): Promise<Row[]> => {
     });
 };
 
-// Подставляет в отзывы актуальные имя, фамилию и аватар автора из users.
 export const withAuthors = async (reviews: Row[]): Promise<Row[]> => {
     const authors = await fetchById('users', reviews.map(review => review.userId), 'id, name, surName, avatarUrl');
 

@@ -30,7 +30,7 @@
           <span v-if="isCreate" class="text-red-500">*</span>
           <template v-else-if="product">
             <span>/</span>
-            <span class="text-black uppercase">{{ t("productForm.collectionOption", product.collection.name) }}</span>
+            <span class="text-black uppercase">{{ product.collection.name }}</span>
           </template>
         </label>
         <div class="relative">
@@ -47,8 +47,13 @@
                 condition: collection.condition,
               }"
             >
-              Name: {{ collection.name }}, Season: {{ collection.season }}, Condition:
-              {{ collection.condition }}
+              {{
+                t("productForm.collectionOption", {
+                  name: collection.name,
+                  season: t(collection.seasonLabel),
+                  condition: t(collection.conditionLabel),
+                })
+              }}
             </option>
           </select>
           <span v-if="createProductForm.collections.name.length === 0" class="absolute top-1/3 left-5 text-sm text-gray-400">
@@ -73,8 +78,8 @@
           :class="[baseSelectClass(createProductForm.category), createProductFormErrorMessages.category ? productFormErrorClass : '']"
         >
           <option disabled hidden value="">{{ t("productForm.categoryPh") }}</option>
-          <option v-for="category in categories" class="text-black">
-            {{ category.category }}
+          <option v-for="category in categories" :value="category.category" class="text-black">
+            {{ t(category.categoryLabel) }}
           </option>
         </select>
         <span v-if="createProductFormErrorMessages.category" class="text-xs text-red-600">
@@ -97,8 +102,8 @@
           :class="[baseSelectClass(createProductForm.material), createProductFormErrorMessages.material ? productFormErrorClass : '']"
         >
           <option disabled hidden value="">{{ t("productForm.materialPh") }}</option>
-          <option v-for="material in materials" class="text-black">
-            {{ material.material }}
+          <option v-for="material in materials" :value="material.material" class="text-black">
+            {{ t(material.materialLabel) }}
           </option>
         </select>
         <span v-if="createProductFormErrorMessages.material" class="text-xs text-red-600">
@@ -120,8 +125,8 @@
             :class="[baseSelectClass(createProductForm.gender), createProductFormErrorMessages.gender ? productFormErrorClass : '']"
           >
             <option disabled hidden value="">{{ t("productForm.genderPh") }}</option>
-            <option v-for="gender in genders" class="text-black">
-              {{ gender.gender }}
+            <option v-for="gender in genders" :value="gender.gender" class="text-black">
+              {{ t(gender.genderLabel) }}
             </option>
           </select>
           <span v-if="createProductFormErrorMessages.gender" class="text-xs text-red-600">

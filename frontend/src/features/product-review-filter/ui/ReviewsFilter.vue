@@ -1,12 +1,10 @@
 <template>
   <div class="font-dm-sans flex gap-30">
-    <div v-for="(isActive, filter) in reviewsType"
-         :class="[reviewFilterBlock, isActive ? 'font-semibold' : '']">
-      <span :class="[reviewFilterNameClass, isActive ? selectedFilterNameClass : '']"
-            @click="toggleFilter(filter)">
+    <div v-for="(isActive, filter) in reviewsType" :class="[reviewFilterBlock, isActive ? 'font-semibold' : '']">
+      <span :class="[reviewFilterNameClass, isActive ? selectedFilterNameClass : '']" @click="toggleFilter(filter)">
         {{ t(reviewLabelKey(filter)) }}
       </span>
-      <div v-if="isActive" class="border-t-2 transition duration-400 scale-x-100"></div>
+      <div v-if="isActive" class="scale-x-100 border-t-2 transition duration-400"></div>
     </div>
   </div>
 </template>

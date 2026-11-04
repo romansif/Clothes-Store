@@ -5,8 +5,7 @@ import {
     type Row, HttpError, handle, param, requireUser, requireSelf, pickKeys, cleanText, isPlainObject,
 } from '#db/security';
 
-// В таблице cart лежат только ссылка на товар и выбор покупателя.
-// Название, цена, фото и остальное берутся из products при каждом запросе.
+
 const CART_FIELDS = ['productId', 'quantity', 'color', 'size', 'checked'] as const;
 const CART_UPDATABLE = ['quantity', 'color', 'size', 'checked'] as const;
 
@@ -31,8 +30,6 @@ const toOption = (value: unknown, field: 'color' | 'size'): string | null => {
     return text;
 };
 
-// Фронт шлёт цвет объектом { hex, colorName }, в базе хранится только hex.
-// Название цвета читается из товара при ответе, поэтому переименование цвета видно сразу.
 const toColor = (value: unknown): string | null =>
     toOption(isPlainObject(value) ? (value as Row).hex : value, 'color');
 
@@ -43,7 +40,6 @@ const toChecked = (value: unknown): boolean => {
 
 const alreadyInCart = () => new HttpError(409, 'This product with the same options is already in your cart');
 
-// Остаток проверяется по актуальным variants товара в момент запроса, а не по данным, которые видит клиент.
 const assertInStock = (product: Row, color: string | null, size: string | null, quantity: number): void => {
     if (!color || !size || !Array.isArray(product.variants)) return;
 
@@ -105,7 +101,6 @@ export const cartController = {
             throw new HttpError(400, 'Size is not available for this product', { size: 'Size is not available' });
         }
 
-        // тот же товар с теми же цветом и размером не дублируется, а увеличивает количество
         const sameProduct: Row[] = unwrap(
             await supabase.from('cart').select('*').eq('userId', user.id).eq('productId', body.productId),
         );
@@ -154,8 +149,6 @@ export const cartController = {
         if (picked.size !== undefined) changes.size = toOption(picked.size, 'size');
         if (picked.checked !== undefined) changes.checked = toChecked(picked.checked);
 
-        // остаток проверяем, только если количество растёт или меняется цвет/размер:
-        // уменьшить или снять галочку можно всегда, даже если склад уже опустел
         const grows = changes.quantity !== undefined && changes.quantity > item.quantity;
         if (grows || 'color' in changes || 'size' in changes) {
             const product = unwrap(
@@ -194,13 +187,11 @@ export const cartController = {
         const user = requireUser(req);
         const id = param(req, 'id');
 
-        // id уходит в фильтр PostgREST, поэтому строго uuid
         if (!isUuid(id)) throw new HttpError(404, 'Cart product not found');
 
         const item = await findOwnedItem('cart', user.id, id);
         if (!item) throw new HttpError(404, 'Cart product not found');
 
-        // как и раньше: удаляются все записи, подходящие по id записи или по productId
         unwrap(
             await supabase.from('cart').delete()
                 .eq('userId', user.id)

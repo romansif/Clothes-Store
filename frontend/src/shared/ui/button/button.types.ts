@@ -22,7 +22,7 @@ export type ButtonVariant =
   | "catalog"
   | "paymentSuccess"
   | "viewMyOrders"
-  | "closeNotify"
+  | "closeNotify";
 
 export interface ButtonProps {
   name: string;

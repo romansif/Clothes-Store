@@ -18,13 +18,13 @@
       </div>
       <div class="hidden justify-self-center font-light md:flex md:gap-5 lg:gap-10">
         <span
-            :class="[
-              'cursor-pointer text-[#A3A3A3] transition duration-400 hover:scale-120 hover:text-black',
-              route.name === 'home' ? 'scale-120 text-black' : '',
-            ]"
+          :class="[
+            'cursor-pointer text-[#A3A3A3] transition duration-400 hover:scale-120 hover:text-black',
+            route.name === 'home' ? 'scale-120 text-black' : '',
+          ]"
         >
-            {{ t("nav.home") }}
-          </span>
+          {{ t("nav.home") }}
+        </span>
         <router-link :to="{ name: 'shop/seasons-catalog' }" class="text-[#A3A3A3] transition duration-400 hover:scale-120 hover:text-black">
           {{ t("nav.seasonal") }}
         </router-link>

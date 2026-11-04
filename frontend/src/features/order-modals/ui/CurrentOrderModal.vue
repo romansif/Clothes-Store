@@ -6,9 +6,7 @@
       @click="toggleCurrentOrder"
     >
       <main @click.stop class="flex h-162.5 w-222.5 flex-col rounded-xl bg-white p-5">
-        <UiButton :name="t('common.exit')"
-                  variant="exitClose"
-                  @click="toggleCurrentOrder" />
+        <UiButton :name="t('common.exit')" variant="exitClose" @click="toggleCurrentOrder" />
         <header class="flex flex-col gap-2 border-b py-4">
           <h1 class="text-2xl font-bold">{{ t("profile.modal.activeOrders") }}</h1>
           <div class="flex">

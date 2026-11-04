@@ -16,9 +16,7 @@
       variant="addToCart"
       @click="addToCart(product)"
     />
-    <UiButton v-if="isInStock(product) === 0 && user.id"
-              :name="t('product.outOfStock')"
-              variant="outOfStack" />
+    <UiButton v-if="isInStock(product) === 0 && user.id" :name="t('product.outOfStock')" variant="outOfStack" />
     <div v-if="user.id && isInCart(cart, product)" class="flex h-fit items-center gap-18">
       <div class="flex items-center gap-6 rounded-full bg-zinc-900 px-4 py-3.5 text-lg transition duration-300 hover:scale-108">
         <button
