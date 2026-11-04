@@ -5,7 +5,15 @@
     v-else-if="cart.length"
     class="no-scrollbar flex max-h-92.5 w-81.25 flex-col gap-10 overflow-y-auto sm:max-h-92.5 md:grid md:w-full md:grid-cols-2 md:gap-30 lg:grid-cols-3 lg:gap-15 xl:max-h-117.5 xl:w-210 xl:grid-cols-2"
   >
-    <CartProduct v-for="product in cart" :key="product.id" :user="props.user" :product="product" :cart="cart" :favorite="favorite" @toggle-to-favorite="toggleFavorite({ favorite, product })">
+    <CartProduct
+      v-for="product in cart"
+      :key="product.id"
+      :user="props.user"
+      :product="product"
+      :cart="cart"
+      :favorite="favorite"
+      @toggle-to-favorite="toggleFavorite({ favorite, product })"
+    >
       <UseCartItemActions :product="product" :cart="cart" />
     </CartProduct>
   </ul>

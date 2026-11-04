@@ -1,7 +1,9 @@
 import type { PageVariant } from "@/widgets/state";
 
-export const stateBoxClass = `w-full flex flex-col justify-center items-center z-50 gap-8 py-12 
-    font-raleway bg-white border`;
+export const stateSectionClass = 'flex justify-center item-center w-full'
+
+export const stateBoxClass = `flex flex-col justify-center items-center gap-8 py-12 
+    font-raleway bg-white border w-full`;
 
 export const stateBoxVariantClass: Record<PageVariant, string> = {
   product: "",
@@ -43,17 +45,21 @@ export const stateRouteClass: Record<PageVariant, string> = {
   payments: "hidden",
 };
 
-export const loaderBoxClass = `font-montserrat inset-0 z-50 flex items-center justify-center`;
+export const loaderSectionClass = 'flex justify-center item-center w-full'
+
+export const loaderBoxClass = `font-montserrat flex items-center justify-center`;
+
+export const loaderItemsClass = 'flex flex-col items-center gap-8'
 
 export const loaderBoxVariantClass: Record<PageVariant, string> = {
-  product: `${loaderBoxClass} my-50 px-127`,
+  product: `${loaderBoxClass}`,
   user: `${loaderBoxClass} my-85`,
   "season-list": `${loaderBoxClass} mt-45`,
   "week-list": `${loaderBoxClass} my-40`,
   "year-list": `${loaderBoxClass} my-40`,
   products: `${loaderBoxClass} mt-45`,
-  "my-products": `${loaderBoxClass} my-65 px-163`,
-  cart: `${loaderBoxClass} my-50 px-163`,
+  "my-products": `${loaderBoxClass} my-65`,
+  cart: `${loaderBoxClass} my-50`,
   favorite: `${loaderBoxClass} my-50`,
   reviews: `${loaderBoxClass} my-45`,
   orders: `${loaderBoxClass} mt-50`,

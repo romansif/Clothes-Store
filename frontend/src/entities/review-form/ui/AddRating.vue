@@ -6,7 +6,14 @@
     </div>
     <div class="mt-5 flex items-center gap-10">
       <div class="flex items-center gap-5">
-        <img v-for="rating in ratings" :key="rating" :src="ratingSrc(rating)" alt="" :class="ratingStar(reviewForm.rating, rating)" @click="emit('addRating', rating)" />
+        <img
+          v-for="rating in ratings"
+          :key="rating"
+          :src="ratingSrc(rating)"
+          alt=""
+          :class="ratingStar(reviewForm.rating, rating)"
+          @click="emit('addRating', rating)"
+        />
       </div>
       <span class="text-sm text-[#A3A3A3]">Tap to rate (1-5 star)</span>
     </div>

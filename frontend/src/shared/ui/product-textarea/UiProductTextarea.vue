@@ -1,6 +1,12 @@
 <template>
   <div class="flex flex-col gap-3">
-    <textarea v-model="model" :placeholder="props.placeholder" :class="[textareaClass.default, props.errorMessage ? textareaClass.error : '']" v-bind="$attrs" :maxlength="400" />
+    <textarea
+      v-model="model"
+      :placeholder="props.placeholder"
+      :class="[textareaClass.default, props.errorMessage ? textareaClass.error : '']"
+      v-bind="$attrs"
+      :maxlength="400"
+    />
     <div class="flex">
       <span v-if="props.errorMessage" class="text-xs text-red-600">
         {{ props.errorMessage }}

@@ -28,11 +28,18 @@
           <div class="filter-inner">
             <div class="flex flex-col gap-2">
               <div v-for="(isActive, stackName) in stackProducts" class="flex gap-3">
-                <img alt="" :src="isActive ? checked : square" :class="[filterClass, isActive ? selectedFilterAndSizeClass : '']" @click="toggleFilter('STATUS', stackName)" />
+                <img
+                  alt=""
+                  :src="isActive ? checked : square"
+                  :class="[filterClass, isActive ? selectedFilterAndSizeClass : '']"
+                  @click="toggleFilter('STATUS', stackName)"
+                />
                 <div class="flex gap-1">
                   <span>{{ stackName }}</span>
                   <span>
-                    (<span class="font-dm-sans font-medium text-blue-700"> {{ products.filter((p) => p.variants.every((v) => v.count !== 0)).length }} </span>)
+                    (<span class="font-dm-sans font-medium text-blue-700">
+                      {{ products.filter((p) => p.variants.every((v) => v.count !== 0)).length }} </span
+                    >)
                   </span>
                 </div>
               </div>
@@ -50,7 +57,12 @@
           <div class="filter-inner">
             <div class="flex flex-col gap-2">
               <div v-for="(isActive, genderName) in genders" class="flex gap-3">
-                <img alt="" :src="isActive ? checked : square" :class="[filterClass, isActive ? selectedFilterAndSizeClass : '']" @click="toggleFilter('GENDER', genderName)" />
+                <img
+                  alt=""
+                  :src="isActive ? checked : square"
+                  :class="[filterClass, isActive ? selectedFilterAndSizeClass : '']"
+                  @click="toggleFilter('GENDER', genderName)"
+                />
                 <div class="flex gap-1">
                   <span>{{ genderName }}</span>
                   <span>
@@ -72,7 +84,12 @@
           <div class="filter-inner">
             <div class="grid grid-cols-2 gap-x-6 gap-y-2">
               <div v-for="(isActive, colorName) in colors" :key="colorName" class="flex gap-3">
-                <img alt="" :src="isActive ? checked : square" :class="[filterClass, isActive ? selectedFilterAndSizeClass : '']" @click="toggleFilter('COLOR', colorName)" />
+                <img
+                  alt=""
+                  :src="isActive ? checked : square"
+                  :class="[filterClass, isActive ? selectedFilterAndSizeClass : '']"
+                  @click="toggleFilter('COLOR', colorName)"
+                />
                 <div class="flex gap-1">
                   <span>{{ colorName }}</span>
                 </div>
@@ -90,7 +107,11 @@
         <div class="filter-body" :class="{ open: showCategory }">
           <div class="filter-inner">
             <div v-if="route.name === 'home'" class="grid grid-cols-2 gap-x-6 gap-y-2 font-medium">
-              <button v-for="(isActive, categoryName) in category" :class="[sidebarCategoryClass, isActive ? selectedCategoryAndCollectionClass : '']" @click="toggleFilter('ALL', categoryName)">
+              <button
+                v-for="(isActive, categoryName) in category"
+                :class="[sidebarCategoryClass, isActive ? selectedCategoryAndCollectionClass : '']"
+                @click="toggleFilter('ALL', categoryName)"
+              >
                 All
               </button>
               <button
@@ -115,7 +136,13 @@ import { filterProduct } from "@/shared/lib/filter-product";
 import { useProductsData } from "@/widgets/product-list/lib/use-product-data";
 import { filterAside, toggleFilterAside } from "@/features/products/lib/product-modal";
 import { toggleAvailabilityFilter, toggleCategoryFilter, toggleColorFilter, toggleGenderFilter } from "@/widgets/filter-products/lib/show-filter";
-import { sidebarCategoryClass, selectedCategoryAndCollectionClass, filterSizeClass, selectedFilterAndSizeClass, filterClass } from "@/widgets/filter-products/model/filter-item.variants.ts";
+import {
+  sidebarCategoryClass,
+  selectedCategoryAndCollectionClass,
+  filterSizeClass,
+  selectedFilterAndSizeClass,
+  filterClass,
+} from "@/widgets/filter-products/model/filter-item.variants.ts";
 import { sizes } from "@/shared/model/product-sizes";
 import { showAvailability, showCategory, showColor, showGender } from "@/widgets/filter-products/model/filter.refs";
 

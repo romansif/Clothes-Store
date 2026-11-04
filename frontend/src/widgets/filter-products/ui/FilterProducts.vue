@@ -24,7 +24,12 @@
         <div class="filter-inner">
           <div class="flex flex-col gap-2">
             <div v-for="(isActive, stackName) in stackProducts" :key="stackName" class="flex gap-3">
-              <img :src="isActive ? checked : square" alt="" :class="[filterClass, isActive ? selectedFilterAndSizeClass : '']" @click="toggleFilter('STATUS', stackName)" />
+              <img
+                :src="isActive ? checked : square"
+                alt=""
+                :class="[filterClass, isActive ? selectedFilterAndSizeClass : '']"
+                @click="toggleFilter('STATUS', stackName)"
+              />
               <div class="flex gap-1">
                 <span>{{ stackName }}</span>
                 <span>
@@ -46,7 +51,12 @@
         <div class="filter-inner">
           <div class="flex flex-col gap-2">
             <div v-for="(isActive, genderName) in genders" class="flex gap-3">
-              <img :src="isActive ? checked : square" alt="" :class="[filterClass, isActive ? selectedFilterAndSizeClass : '']" @click="toggleFilter('GENDER', genderName)" />
+              <img
+                :src="isActive ? checked : square"
+                alt=""
+                :class="[filterClass, isActive ? selectedFilterAndSizeClass : '']"
+                @click="toggleFilter('GENDER', genderName)"
+              />
               <div class="flex gap-1">
                 <span>{{ genderName }}</span>
                 <span>
@@ -68,7 +78,12 @@
         <div class="filter-inner">
           <div class="grid grid-cols-2 gap-x-6 gap-y-2">
             <div v-for="(isActive, colorName) in colors" :key="colorName" class="flex gap-3">
-              <img :src="isActive ? checked : square" alt="" :class="[filterClass, isActive ? selectedFilterAndSizeClass : '']" @click="toggleFilter('COLOR', colorName)" />
+              <img
+                :src="isActive ? checked : square"
+                alt=""
+                :class="[filterClass, isActive ? selectedFilterAndSizeClass : '']"
+                @click="toggleFilter('COLOR', colorName)"
+              />
               <div class="flex gap-1">
                 <span>{{ colorName }}</span>
               </div>

@@ -47,14 +47,10 @@
       </div>
       <div class="mt-7 flex items-center gap-6">
         <router-link :to="{ name: 'profile' }">
-          <UiButton :name="t('paymentSuccess.viewOrders')"
-                    variant="viewMyOrders"
-                    @click="closeSuccessFull" />
+          <UiButton :name="t('paymentSuccess.viewOrders')" variant="viewMyOrders" @click="closeSuccessFull" />
         </router-link>
         <router-link :to="{ name: 'shop' }">
-          <UiButton :name="t('paymentSuccess.continueShopping')"
-                    variant="paymentSuccess"
-                    @click="closeSuccessFull" />
+          <UiButton :name="t('paymentSuccess.continueShopping')" variant="paymentSuccess" @click="closeSuccessFull" />
         </router-link>
       </div>
     </div>

@@ -1,8 +1,8 @@
 import { ref } from "vue";
-import type { Product } from "@/shared";
-
-import type { AddForm } from "@/entities/product-info";
+import { useI18n } from "vue-i18n";
 import { sizes } from "@/shared/model/product-sizes";
+import type { Product } from "@/shared";
+import type { AddForm } from "@/entities/product-info";
 
 export const itemPreview = ref<string[]>([]);
 export const activeProductImg = ref<string>("");
@@ -11,6 +11,8 @@ export const fileInput = ref<HTMLInputElement | null>(null);
 export const imageFiles = ref<(File | null)[]>([null, null, null, null, null]);
 
 export const productHelper = () => {
+  const { t } = useI18n();
+
   const openSelectImage = (index: number) => {
     currentFile.value = index;
     fileInput.value?.click();
@@ -154,11 +156,11 @@ export const productHelper = () => {
     const count = totalCount?.count ?? 0;
 
     if (count < 4 && count !== 0) {
-      return `🔥 Only ${count} left`;
+      return t('product.onlyLeft', count);
     } else if (form.colors.hex && form.sizes) {
-      return `In stock ${count} pcs.`;
+      return t('product.inStock', count);
     } else if (count === 0) {
-      return `Select specific.`;
+      return t('product.selectSpecific');
     }
   };
 

@@ -9,14 +9,20 @@
           <button
             type="button"
             @click="countMode = 'SAME'"
-            :class="['rounded-full px-3 py-2 text-sm tracking-widest transition duration-700', countMode === 'SAME' ? 'bg-black text-white' : 'text-neutral-500 hover:text-black']"
+            :class="[
+              'rounded-full px-3 py-2 text-sm tracking-widest transition duration-700',
+              countMode === 'SAME' ? 'bg-black text-white' : 'text-neutral-500 hover:text-black',
+            ]"
           >
             {{ t("productForm.same") }}
           </button>
           <button
             type="button"
             @click="countMode = 'DIFFER'"
-            :class="['rounded-full px-3 py-2 text-sm tracking-widest transition duration-700', countMode === 'DIFFER' ? 'bg-black text-white' : 'text-neutral-500 hover:text-black']"
+            :class="[
+              'rounded-full px-3 py-2 text-sm tracking-widest transition duration-700',
+              countMode === 'DIFFER' ? 'bg-black text-white' : 'text-neutral-500 hover:text-black',
+            ]"
           >
             {{ t("productForm.different") }}
           </button>
@@ -89,7 +95,13 @@
         </span>
       </div>
       <div class="flex gap-6">
-        <img v-for="size in isAvailableSizes(product)" :key="size?.name" :src="size.url" alt="" :class="[size.class, 'w-15 scale-110 rounded-full transition duration-400']" />
+        <img
+          v-for="size in isAvailableSizes(product)"
+          :key="size?.name"
+          :src="size.url"
+          alt=""
+          :class="[size.class, 'w-15 scale-110 rounded-full transition duration-400']"
+        />
       </div>
       <span v-if="moreCreateItemFormErrorMessages.sizes" class="text-xs text-red-600">
         {{ moreCreateItemFormErrorMessages.sizes }}
@@ -114,7 +126,11 @@
           :style="{ background: color.hex }"
           class="h-15 w-15 scale-110 rounded-full border-2 border-[#A3A3A3] transition-all duration-300"
         >
-          <input @change="(e) => editProductColors({ product, index, eventOrColor: e })" type="color" class="absolute inset-0 h-full cursor-pointer opacity-0" />
+          <input
+            @change="(e) => editProductColors({ product, index, eventOrColor: e })"
+            type="color"
+            class="absolute inset-0 h-full cursor-pointer opacity-0"
+          />
         </label>
       </div>
       <span v-if="moreCreateItemFormErrorMessages.colors" class="text-xs text-red-600">

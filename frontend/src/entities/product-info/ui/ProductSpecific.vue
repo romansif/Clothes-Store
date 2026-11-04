@@ -16,7 +16,14 @@
     <div class="flex flex-col gap-3">
       <span class="font-medium text-[#A3A3A3]">{{ t("product.sizes") }}</span>
       <div class="flex items-center justify-start lg:gap-5">
-        <img v-for="size in isAvailableSizes(product)" :key="size.name" :src="size.url" alt="" :class="selectedSizesClass(size, product, user.role)" @click="emit('addSize', size, user, product)" />
+        <img
+          v-for="size in isAvailableSizes(product)"
+          :key="size.name"
+          :src="size.url"
+          alt=""
+          :class="selectedSizesClass(size, product, user.role)"
+          @click="emit('addSize', size, user, product)"
+        />
       </div>
       <div class="flex items-center gap-1">
         <span v-if="addToCartFormErrorMessages.colors" class="text-xs text-red-600">

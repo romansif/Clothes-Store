@@ -12,12 +12,22 @@
     </div>
     <div class="flex flex-col gap-3">
       <label class="text-xs font-semibold tracking-wider text-gray-700 uppercase">{{ t("auth.privatePhone") }}</label>
-      <UiPhoneInput v-model="registerForm.phone" :select-class="registerSelectPhoneCode" :input-class="registerPhoneInputVariants" :error-message="registerFormErrorMessages.phone" />
+      <UiPhoneInput
+        v-model="registerForm.phone"
+        :select-class="registerSelectPhoneCode"
+        :input-class="registerPhoneInputVariants"
+        :error-message="registerFormErrorMessages.phone"
+      />
     </div>
     <div class="flex flex-col gap-3 sm:flex-row">
       <div class="flex w-full flex-col gap-3">
         <label class="text-xs font-semibold tracking-wider text-gray-700 uppercase">{{ t("auth.email") }}</label>
-        <UiInput v-model="registerForm.email" type="email" :placeholder="t('auth.placeholder.email')" :error-message="registerFormErrorMessages.email ? registerFormErrorMessages.email : ''" />
+        <UiInput
+          v-model="registerForm.email"
+          type="email"
+          :placeholder="t('auth.placeholder.email')"
+          :error-message="registerFormErrorMessages.email ? registerFormErrorMessages.email : ''"
+        />
       </div>
       <div class="flex w-full flex-col gap-3">
         <label class="text-xs font-semibold tracking-wider text-gray-700 uppercase">{{ t("auth.password") }}</label>
@@ -29,7 +39,7 @@
             :error-message="registerFormErrorMessages.password ? registerFormErrorMessages.password : ''"
           />
           <img
-            @click="togglePassword()"
+            @click="togglePassword"
             :src="showPassword.password ? opened : closed"
             alt=""
             :class="[showPasswordClass.register, registerFormErrorMessages.password ? showPasswordErrorClass : '']"

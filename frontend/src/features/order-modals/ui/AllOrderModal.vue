@@ -1,8 +1,14 @@
 <template>
   <div>
-    <div v-if="!choiceModal" class="font-raleway fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)]" @click="toggleOrderHistory">
+    <div
+      v-if="!choiceModal"
+      class="font-raleway fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)]"
+      @click="toggleOrderHistory"
+    >
       <main @click.stop class="flex h-162.5 w-222.5 flex-col rounded-xl bg-white p-5">
-        <UiButton name="Exit" variant="exitClose" @click="toggleOrderHistory" />
+        <UiButton :name="t('common.exit')"
+                  variant="exitClose"
+                  @click="toggleOrderHistory" />
         <header class="flex flex-col gap-2 border-b py-4">
           <h1 class="text-2xl font-bold">{{ t("profile.modal.allOrders") }}</h1>
           <div class="flex">

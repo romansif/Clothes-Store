@@ -1,6 +1,6 @@
 <template>
   <img
-    @click="toggleDeleteChoice('Are you sure you want to delete this product?', 'DELETE_PROUCT_ITEM', product.id)"
+    @click="toggleDeleteChoice(t('confirm.deleteProduct'), 'DELETE_PROUCT_ITEM', product.id)"
     :src="del"
     alt=""
     class="w-7.5 cursor-pointer transition duration-400 hover:scale-120"
@@ -8,6 +8,7 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from "vue-i18n";
 import { baseDeleteModal } from "@/features/general-delete/lib/base-delete-modal";
 import type { Product } from "@/shared";
 
@@ -17,5 +18,6 @@ defineProps<{
   product: Product;
 }>();
 
+const { t } = useI18n();
 const { toggleDeleteChoice } = baseDeleteModal();
 </script>

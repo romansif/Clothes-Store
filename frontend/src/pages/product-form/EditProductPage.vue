@@ -7,7 +7,9 @@
       <EditVariants :product="product" />
     </template>
     <div class="mt-4 mb-6 w-full">
-      <UiButton type="submit" name="EDIT PRODUCT" variant="useProduct" />
+      <UiButton type="submit"
+                :name="t('product.createTitle')"
+                variant="useProduct" />
     </div>
     <input
       type="file"
@@ -25,6 +27,7 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
 import { useProductData } from "@/features/product-info/lib/use-product-data";
 import { useEditProductImages, useEditProductInfo } from "@/features/product-edit-form/api/update-product";
@@ -36,8 +39,8 @@ import { Loading } from "@/widgets/state";
 
 const route = useRoute();
 
+const { t } = useI18n()
+const { product } = useProductData(route);
 const { editProductImages } = useEditProductImages();
 const { editProductInfo, isPending } = useEditProductInfo();
-
-const { product } = useProductData(route);
 </script>

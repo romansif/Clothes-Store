@@ -7,7 +7,9 @@ export const addToCartVariants = () => {
     product.variants.some((v) => v.hex === color.hex && (!addToCartForm.value.sizes || v.size === addToCartForm.value.sizes) && Number(v.count) > 0);
 
   const isSizeAvailable = (size: Size, product: Product) =>
-    product.variants.some((p) => p.size === size.name && (!addToCartForm.value.colors?.hex || p.hex === addToCartForm.value.colors.hex) && Number(p.count) > 0);
+    product.variants.some(
+      (p) => p.size === size.name && (!addToCartForm.value.colors?.hex || p.hex === addToCartForm.value.colors.hex) && Number(p.count) > 0,
+    );
 
   const selectedColorClass = (color: ColorItem, product: Product, role: string) => {
     const available = role !== "Seller" && isColorAvailable(color, product);
@@ -17,7 +19,8 @@ export const addToCartVariants = () => {
       {
         "scale-110": addToCartForm.value.colors?.hex === color.hex,
         "hover:scale-110 cursor-pointer": available,
-        "opacity-70 grayscale-[0.8] cursor-not-allowed pointer-events-none scale-95 border-dashed border-gray-300 bg-gray-50 text-gray-400": !available,
+        "opacity-70 grayscale-[0.8] cursor-not-allowed pointer-events-none scale-95 border-dashed border-gray-300 bg-gray-50 text-gray-400":
+          !available,
       },
     ];
   };
@@ -31,7 +34,8 @@ export const addToCartVariants = () => {
       {
         "scale-110": addToCartForm.value.sizes === size.name,
         "hover:scale-110 cursor-pointer": available,
-        "opacity-70 grayscale-[0.8] cursor-not-allowed pointer-events-none scale-95 border-dashed border-gray-300 bg-gray-50 text-gray-400": !available,
+        "opacity-70 grayscale-[0.8] cursor-not-allowed pointer-events-none scale-95 border-dashed border-gray-300 bg-gray-50 text-gray-400":
+          !available,
       },
     ];
   };

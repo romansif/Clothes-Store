@@ -10,14 +10,20 @@
           <button
             type="button"
             @click="countMode = 'SAME'"
-            :class="['rounded-full px-3 py-2 text-sm tracking-widest transition duration-700', countMode === 'SAME' ? 'bg-black text-white' : 'text-neutral-500 hover:text-black']"
+            :class="[
+              'rounded-full px-3 py-2 text-sm tracking-widest transition duration-700',
+              countMode === 'SAME' ? 'bg-black text-white' : 'text-neutral-500 hover:text-black',
+            ]"
           >
             {{ t("productForm.same") }}
           </button>
           <button
             type="button"
             @click="countMode = 'DIFFER'"
-            :class="['rounded-full px-3 py-2 text-sm tracking-widest transition duration-700', countMode === 'DIFFER' ? 'bg-black text-white' : 'text-neutral-500 hover:text-black']"
+            :class="[
+              'rounded-full px-3 py-2 text-sm tracking-widest transition duration-700',
+              countMode === 'DIFFER' ? 'bg-black text-white' : 'text-neutral-500 hover:text-black',
+            ]"
           >
             {{ t("productForm.different") }}
           </button>
@@ -102,7 +108,12 @@
           :key="size.name"
           :src="size.url"
           alt=""
-          :class="[size.class, moreCreateItemForm.sizes.includes(size.name) ? 'w-15 scale-110 rounded-full transition duration-400' : 'w-15 rounded-full transition duration-400 hover:scale-110']"
+          :class="[
+            size.class,
+            moreCreateItemForm.sizes.includes(size.name)
+              ? 'w-15 scale-110 rounded-full transition duration-400'
+              : 'w-15 rounded-full transition duration-400 hover:scale-110',
+          ]"
           @click="toggleSize(size.name)"
         />
       </div>
@@ -134,7 +145,11 @@
           title="Выбрать любой цвет"
           class="relative flex h-16 w-16 cursor-pointer items-center justify-center overflow-hidden rounded-full border-2 border-dashed border-gray-300 bg-white text-2xl font-light text-gray-400 transition-all duration-400 hover:scale-108 hover:border-black hover:text-black"
           >+
-          <input @change="toggleColor(($event.target as HTMLInputElement).value, $event)" type="color" class="absolute inset-0 h-full cursor-pointer opacity-0" />
+          <input
+            @change="toggleColor(($event.target as HTMLInputElement).value, $event)"
+            type="color"
+            class="absolute inset-0 h-full cursor-pointer opacity-0"
+          />
         </label>
       </div>
       <span v-if="moreCreateItemFormErrorMessages.colors" class="text-xs text-red-600">
@@ -150,7 +165,12 @@ import { sizes } from "@/shared/model/product-sizes";
 import { productFormHelper } from "@/features/product-form/lib/product-form-helper";
 import { reactiveClearErrorsOnChange } from "@/shared/lib/errors-helper";
 import { UiInput } from "@/shared/ui/input";
-import { createProductForm, moreCreateItemForm, createProductFormErrorMessages, moreCreateItemFormErrorMessages } from "@/entities/product-form/model/product-forms";
+import {
+  createProductForm,
+  moreCreateItemForm,
+  createProductFormErrorMessages,
+  moreCreateItemFormErrorMessages,
+} from "@/entities/product-form/model/product-forms";
 
 const { t } = useI18n();
 const { toggleAllVariants, toggleQuantity, toggleSize, toggleColor, countMode } = productFormHelper();

@@ -2,7 +2,12 @@
   <li>
     <div class="flex px-3 py-5">
       <div class="flex gap-5">
-        <img v-if="product.images" :src="product.images[0]" alt="" class="h-39 w-30 rounded-2xl border border-gray-400 transition duration-400 hover:scale-110" />
+        <img
+          v-if="product.images"
+          :src="product.images[0]"
+          alt=""
+          class="h-39 w-30 rounded-2xl border border-gray-400 transition duration-400 hover:scale-110"
+        />
         <div class="flex flex-col gap-5">
           <div class="flex flex-col gap-1">
             <span class="font-medium">{{ product.title }}</span>

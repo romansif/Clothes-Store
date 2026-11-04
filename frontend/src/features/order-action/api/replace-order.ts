@@ -50,7 +50,10 @@ export const useReplaceOrder = () => {
     onSuccess: async () => {
       clearReplaceForm();
 
-      await Promise.all([await queryClient.invalidateQueries({ queryKey: ["orders"] }), await queryClient.invalidateQueries({ queryKey: ["activeOrders"] })]);
+      await Promise.all([
+        await queryClient.invalidateQueries({ queryKey: ["orders"] }),
+        await queryClient.invalidateQueries({ queryKey: ["activeOrders"] }),
+      ]);
 
       await openNotify({ variant: "replace-order", state: "success" });
 

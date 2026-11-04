@@ -10,7 +10,7 @@
           {{ t("checkout.card.itemCvv") }} <span class="font-dm-sans font-normal">{{ payment.cardCvv }}</span>
         </span>
         <img
-          @click="emit('deletePayment', 'Are you sure you want to delete this saved card?', 'DELETE_SAVED_CARD', payment.id)"
+          @click="emit('deletePayment', t('confirm.deleteCard'), 'DELETE_SAVED_CARD', payment.id)"
           :src="del"
           alt=""
           class="ml-auto w-5 cursor-pointer transition duration-400 hover:scale-120"

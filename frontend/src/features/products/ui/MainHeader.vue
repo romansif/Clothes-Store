@@ -21,7 +21,13 @@
           placeholder="Search"
           class="font-dm-sans h-12.5 border-b-2 border-[#D9D9D9] px-13 transition duration-400 outline-none sm:placeholder:px-114 md:placeholder:px-134 lg:placeholder:px-195 xl:w-92.5 xl:placeholder:px-62"
         />
-        <img v-if="searchProductForm.search" :src="del" alt="" class="absolute top-1/4 left-85 w-6.25 cursor-pointer" @click="clearSearchProductForm" />
+        <img
+          v-if="searchProductForm.search"
+          :src="del"
+          alt=""
+          class="absolute top-1/4 left-85 w-6.25 cursor-pointer"
+          @click="clearSearchProductForm"
+        />
       </div>
     </div>
     <div class="mt-12 flex h-10 flex-col gap-5 sm:h-35 xl:mt-5 xl:h-53.75">
@@ -30,7 +36,11 @@
         <img :src="right_arrow" alt="" />
       </div>
       <div class="hidden gap-x-5 gap-y-2 font-medium sm:grid sm:grid-cols-4 xl:mt-19">
-        <button v-for="(isActive, categoryName) in category" :class="[categoryAndCollectionClass, isActive ? selectedCategoryAndCollectionClass : '']" @click="toggleFilter('ALL', categoryName)">
+        <button
+          v-for="(isActive, categoryName) in category"
+          :class="[categoryAndCollectionClass, isActive ? selectedCategoryAndCollectionClass : '']"
+          @click="toggleFilter('ALL', categoryName)"
+        >
           All
         </button>
         <button

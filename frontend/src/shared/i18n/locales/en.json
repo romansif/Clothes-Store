@@ -9,7 +9,7 @@
     "pcs": "{count} pcs.",
     "free": "Free",
     "optional": "(optional)",
-    "reload": "Reload",
+    "reload": "reloading",
     "loading": "Loading, please wait…",
     "pageNotFound": "Page not found"
   },
@@ -195,7 +195,8 @@
       "title": "EXPRESS COURIER",
       "description": "Delivery tomorrow morning"
     },
-    "free": "Free"
+    "free": "Free",
+    "price": "$ 15.00"
   },
   "paymentMethod": {
     "card": {
@@ -408,24 +409,28 @@
   },
   "seasons": {
     "spring": {
+      "id": "01",
       "name": "Spring",
       "title": "SPRING",
       "text": "Light layers, fresh colors and new energy.",
       "slogan": "LIGHT LAYERS"
     },
     "summer": {
+      "id": "02",
       "name": "Summer",
       "title": "SUMMER",
       "text": "Breathable fabrics and minimal designs.",
       "slogan": "BREATHABLE"
     },
     "autumn": {
+      "id": "03",
       "name": "Autumn",
       "title": "AUTUMN",
       "text": "Warm tones, rich textures and effortless style.",
       "slogan": "WARM TONES"
     },
     "winter": {
+      "id": "04",
       "name": "Winter",
       "title": "WINTER",
       "text": "Maximum warmth. Minimal effort.",
@@ -477,7 +482,7 @@
     "info": "INFO",
     "pricing": "Pricing /",
     "about": "ABOUT /",
-    "contacts": "CONTACTS",
+    "contacts": "CONTACTS /",
     "languages": "LANGUAGES",
     "technologies": "TECHNOLOGIES",
     "nfc": "Near-field communication /",

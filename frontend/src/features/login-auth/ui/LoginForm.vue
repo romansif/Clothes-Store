@@ -10,8 +10,18 @@
         <label class="ml-auto text-xs text-gray-400">{{ t("auth.forgotPassword") }}</label>
       </div>
       <div class="relative">
-        <UiInput v-model="loginForm.password" :type="showPassword.password ? 'text' : 'password'" placeholder="••••••••" :error-message="useLoginErrorMessage" />
-        <img @click="togglePassword()" :src="showPassword.password ? opened : closed" alt="" :class="[showPasswordClass.login, loginFormErrorMessages.password ? showPasswordErrorClass : '']" />
+        <UiInput
+          v-model="loginForm.password"
+          :type="showPassword.password ? 'text' : 'password'"
+          placeholder="••••••••"
+          :error-message="useLoginErrorMessage"
+        />
+        <img
+          @click="togglePassword"
+          :src="showPassword.password ? opened : closed"
+          alt=""
+          :class="[showPasswordClass.login, loginFormErrorMessages.password ? showPasswordErrorClass : '']"
+        />
       </div>
     </div>
     <div class="flex flex-col gap-3">

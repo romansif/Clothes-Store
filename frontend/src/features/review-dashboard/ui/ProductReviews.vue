@@ -22,7 +22,13 @@
       </div>
       <EmptyState v-else variant="reviews" :loading="isFetching" @reload="refetch()" />
       <Transition name="modal">
-        <ReviewPhotos v-if="reviewModal" :current-index="currentIndex" :review-images="reviewImages" @toggle-review="toggleReviewPhotos" @change-photo="changeReviewPhoto" />
+        <ReviewPhotos
+          v-if="reviewModal"
+          :current-index="currentIndex"
+          :review-images="reviewImages"
+          @toggle-review="toggleReviewPhotos"
+          @change-photo="changeReviewPhoto"
+        />
       </Transition>
     </div>
   </Transition>

@@ -9,15 +9,15 @@ export const emptyImage = empty_state;
 export const stateRouteMessage: Record<PageVariant, string> = {
   product: "",
   user: "",
-  "my-products": "create product",
-  "season-list": "go to shop",
-  "week-list": "go to shop",
-  "year-list": "go to shop",
+  "my-products": "state.route.myProducts",
+  "season-list": "state.route.seasonList",
+  "week-list": "state.route.weekList",
+  "year-list": "state.route.yearList",
   products: "",
-  cart: "go to shop",
-  favorite: "go to shop",
+  cart: "state.route.cart",
+  favorite: "state.route.favorite",
   reviews: "",
-  orders: "go to shop",
+  orders: "state.route.orders",
   addresses: "",
   payments: "",
 };
@@ -39,111 +39,33 @@ export const stateRoute: Record<PageVariant, string> = {
 };
 
 export const errorStateMessage: Record<PageVariant, EmptyStateMessageProps> = {
-  product: {
-    title: "",
-    text: "",
-  },
-  user: {
-    title: "Couldn't load your profile",
-    text: "Something went wrong while loading your details. Please try again",
-  },
-  "my-products": {
-    title: "Couldn't load your products",
-    text: "Something went wrong while loading your products. Please try again",
-  },
-  "season-list": {
-    title: "Couldn't load the seasonal collection",
-    text: "Something went wrong while loading this collection. Please try again",
-  },
-  "week-list": {
-    title: "Couldn't load the weekly collection",
-    text: "Something went wrong while loading this collection. Please try again",
-  },
-  "year-list": {
-    title: "Couldn't load the yearly collection",
-    text: "Something went wrong while loading this collection. Please try again",
-  },
-  products: {
-    title: "Couldn't load products",
-    text: "Something went wrong while loading the catalog. Please try again",
-  },
-  cart: {
-    title: "Couldn't load your cart",
-    text: "Something went wrong while loading your cart. Please try again",
-  },
-  favorite: {
-    title: "Couldn't load your favorites",
-    text: "Something went wrong while loading your favorites. Please try again",
-  },
-  reviews: {
-    title: "Couldn't load reviews",
-    text: "Something went wrong while loading reviews. Please try again",
-  },
-  orders: {
-    title: "Couldn't load your orders",
-    text: "Something went wrong while loading your orders. Please try again",
-  },
-  addresses: {
-    title: "Couldn't load your addresses",
-    text: "Something went wrong while loading your addresses. Please try again",
-  },
-  payments: {
-    title: "Couldn't load your payment methods",
-    text: "Something went wrong while loading your payment methods. Please try again",
-  },
+  product: { title: "", text: "" },
+  user: { title: "state.error.user.title", text: "state.error.user.text" },
+  "my-products": { title: "state.error.myProducts.title", text: "state.error.myProducts.text" },
+  "season-list": { title: "state.error.seasonList.title", text: "state.error.seasonList.text" },
+  "week-list": { title: "state.error.weekList.title", text: "state.error.weekList.text" },
+  "year-list": { title: "state.error.yearList.title", text: "state.error.yearList.text" },
+  products: { title: "state.error.products.title", text: "state.error.products.text" },
+  cart: { title: "state.error.cart.title", text: "state.error.cart.text" },
+  favorite: { title: "state.error.favorite.title", text: "state.error.favorite.text" },
+  reviews: { title: "state.error.reviews.title", text: "state.error.reviews.text" },
+  orders: { title: "state.error.orders.title", text: "state.error.orders.text" },
+  addresses: { title: "state.error.addresses.title", text: "state.error.addresses.text" },
+  payments: { title: "state.error.payments.title", text: "state.error.payments.text" },
 };
 
 export const emptyStateMessage: Record<PageVariant, EmptyStateMessageProps> = {
-  product: {
-    title: "",
-    text: "",
-  },
-  user: {
-    title: "No profile information yet",
-    text: "Your details will appear here once you add them",
-  },
-  "my-products": {
-    title: "You haven't added any products yet",
-    text: "Create your first product and it will appear here",
-  },
-  "season-list": {
-    title: "No seasonal collection yet",
-    text: "We're still putting together this season's picks. Check back soon",
-  },
-  "week-list": {
-    title: "No weekly collection yet",
-    text: "This week's picks haven't been added yet. Check back soon",
-  },
-  "year-list": {
-    title: "No yearly collection yet",
-    text: "This year's collection is empty for now. Check back later",
-  },
-  products: {
-    title: "No products found",
-    text: "Try adjusting your filters or searching for something else",
-  },
-  cart: {
-    title: "Your cart is empty",
-    text: "Add items you like and they'll show up here",
-  },
-  favorite: {
-    title: "No favorites yet",
-    text: "Tap the heart on any product to save it for later",
-  },
-  reviews: {
-    title: "No reviews yet",
-    text: "Be the first to share your thoughts on this product",
-  },
-  orders: {
-    title: "No orders yet",
-    text: "Once you place your first order, it'll appear here",
-  },
-  addresses: {
-    title: "No addresses yet",
-    text: "Add a delivery address to check out faster",
-  },
-  payments: {
-    title: "No saved payment methods",
-    text: "Add a card to pay for your purchases in one click",
-  },
+  product: { title: "", text: "" },
+  user: { title: "state.empty.user.title", text: "state.empty.user.text" },
+  "my-products": { title: "state.empty.myProducts.title", text: "state.empty.myProducts.text" },
+  "season-list": { title: "state.empty.seasonList.title", text: "state.empty.seasonList.text" },
+  "week-list": { title: "state.empty.weekList.title", text: "state.empty.weekList.text" },
+  "year-list": { title: "state.empty.yearList.title", text: "state.empty.yearList.text" },
+  products: { title: "state.empty.products.title", text: "state.empty.products.text" },
+  cart: { title: "state.empty.cart.title", text: "state.empty.cart.text" },
+  favorite: { title: "state.empty.favorite.title", text: "state.empty.favorite.text" },
+  reviews: { title: "state.empty.reviews.title", text: "state.empty.reviews.text" },
+  orders: { title: "state.empty.orders.title", text: "state.empty.orders.text" },
+  addresses: { title: "state.empty.addresses.title", text: "state.empty.addresses.text" },
+  payments: { title: "state.empty.payments.title", text: "state.empty.payments.text" },
 };

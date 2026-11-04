@@ -1,5 +1,10 @@
 <template>
-  <img :src="product.checked ? check_square : square" alt="" @click="addToOrder({ product: props.product, orderItems })" class="w-7.5 cursor-pointer transition duration-400 hover:scale-120" />
+  <img
+    :src="product.checked ? check_square : square"
+    alt=""
+    @click="addToOrder({ product: props.product, orderItems })"
+    class="w-7.5 cursor-pointer transition duration-400 hover:scale-120"
+  />
 </template>
 
 <script setup lang="ts">

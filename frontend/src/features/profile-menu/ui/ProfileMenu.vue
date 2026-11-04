@@ -16,12 +16,20 @@
       <MenuItems class="absolute right-0 z-10 mt-2 w-46 origin-top-right divide-y rounded-xl border border-gray-300 bg-white">
         <div class="py-1">
           <MenuItem>
-            <UiButton variant="profileMenu" :name="t('profile.exitAccount')" @click="toggleDeleteChoice('Are you sure you want to log out of this account?', 'EXIT', '')" />
+            <UiButton
+              variant="profileMenu"
+              :name="t('profile.exitAccount')"
+              @click="toggleDeleteChoice(t('confirm.logout'), 'EXIT', '')"
+            />
           </MenuItem>
         </div>
         <div class="py-1">
           <MenuItem>
-            <UiButton variant="profileMenu" :name="t('profile.deleteAccount')" @click="toggleDeleteChoice('Are you sure you want to delete this account?', 'DELETE_ACCOUNT', '')" />
+            <UiButton
+              variant="profileMenu"
+              :name="t('profile.deleteAccount')"
+              @click="toggleDeleteChoice(t('confirm.deleteAccount'), 'DELETE_ACCOUNT', '')"
+            />
           </MenuItem>
         </div>
         <div class="py-1">

@@ -20,14 +20,24 @@
   <div class="flex gap-2">
     <div class="flex flex-col gap-2">
       <label class="text-sm">{{ t("checkout.card.expiry") }}</label>
-      <IMask v-model:value="paymentForm.expiryDate" placeholder="MM / YY" :class="[expiryDateClass, paymentFormErrorMessage.expiryDate ? paymentCardErrorClass : '']" :mask="expiryDateMask.mask" />
+      <IMask
+        v-model:value="paymentForm.expiryDate"
+        placeholder="MM / YY"
+        :class="[expiryDateClass, paymentFormErrorMessage.expiryDate ? paymentCardErrorClass : '']"
+        :mask="expiryDateMask.mask"
+      />
       <span v-if="paymentFormErrorMessage.expiryDate" class="text-xs text-red-600">
         {{ paymentFormErrorMessage.expiryDate }}
       </span>
     </div>
     <div class="flex flex-col gap-2">
       <label class="text-sm">{{ t("checkout.card.cvv") }}</label>
-      <IMask v-model:value="paymentForm.cardCvv" placeholder="••••" :class="[cardCvvClass, paymentFormErrorMessage.cardCvv ? paymentCardErrorClass : '']" :mask="cardCvvMask.mask" />
+      <IMask
+        v-model:value="paymentForm.cardCvv"
+        placeholder="••••"
+        :class="[cardCvvClass, paymentFormErrorMessage.cardCvv ? paymentCardErrorClass : '']"
+        :mask="cardCvvMask.mask"
+      />
       <span v-if="paymentFormErrorMessage.cardCvv" class="text-xs text-red-600">
         {{ paymentFormErrorMessage.cardCvv }}
       </span>

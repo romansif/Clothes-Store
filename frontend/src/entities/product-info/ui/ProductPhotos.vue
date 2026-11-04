@@ -5,7 +5,12 @@
     </div>
     <div class="flex flex-col justify-between">
       <div v-for="(img, index) in angelCards(product)" :key="index" class="h-22 w-18">
-        <img :src="img" alt="" class="h-22 w-18 cursor-pointer opacity-70 transition duration-400 hover:scale-110" @click="changeImg(product, index)" />
+        <img
+          :src="img"
+          alt=""
+          class="h-22 w-18 cursor-pointer opacity-70 transition duration-400 hover:scale-110"
+          @click="changeImg(product, index)"
+        />
       </div>
     </div>
   </div>

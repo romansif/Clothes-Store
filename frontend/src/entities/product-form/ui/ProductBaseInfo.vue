@@ -14,7 +14,13 @@
             <span class="text-black uppercase">{{ product.title }}</span>
           </template>
         </label>
-        <UiInput v-model="createProductForm.title" :placeholder="t('productForm.titlePh')" variant="createProduct" :max-length="50" :error-message="createProductFormErrorMessages.title" />
+        <UiInput
+          v-model="createProductForm.title"
+          :placeholder="t('productForm.titlePh')"
+          variant="createProduct"
+          :max-length="50"
+          :error-message="createProductFormErrorMessages.title"
+        />
       </div>
     </div>
     <div class="flex gap-6">
@@ -28,7 +34,10 @@
           </template>
         </label>
         <div class="relative">
-          <select v-model="createProductForm.collections" :class="[baseSelectClass(createProductForm.collections), createProductFormErrorMessages.collections ? productFormErrorClass : '']">
+          <select
+            v-model="createProductForm.collections"
+            :class="[baseSelectClass(createProductForm.collections), createProductFormErrorMessages.collections ? productFormErrorClass : '']"
+          >
             <option
               v-for="collection in collections"
               :key="collection.name"
@@ -59,7 +68,10 @@
             <span class="text-black uppercase">{{ product.category }}</span>
           </template>
         </label>
-        <select v-model="createProductForm.category" :class="[baseSelectClass(createProductForm.category), createProductFormErrorMessages.category ? productFormErrorClass : '']">
+        <select
+          v-model="createProductForm.category"
+          :class="[baseSelectClass(createProductForm.category), createProductFormErrorMessages.category ? productFormErrorClass : '']"
+        >
           <option disabled hidden value="">{{ t("productForm.categoryPh") }}</option>
           <option v-for="category in categories" class="text-black">
             {{ category.category }}
@@ -80,7 +92,10 @@
             <span class="text-black uppercase">{{ product.material }}</span>
           </template>
         </label>
-        <select v-model="createProductForm.material" :class="[baseSelectClass(createProductForm.material), createProductFormErrorMessages.material ? productFormErrorClass : '']">
+        <select
+          v-model="createProductForm.material"
+          :class="[baseSelectClass(createProductForm.material), createProductFormErrorMessages.material ? productFormErrorClass : '']"
+        >
           <option disabled hidden value="">{{ t("productForm.materialPh") }}</option>
           <option v-for="material in materials" class="text-black">
             {{ material.material }}
@@ -100,7 +115,10 @@
           </template>
         </label>
         <div class="flex flex-col gap-3">
-          <select v-model="createProductForm.gender" :class="[baseSelectClass(createProductForm.gender), createProductFormErrorMessages.gender ? productFormErrorClass : '']">
+          <select
+            v-model="createProductForm.gender"
+            :class="[baseSelectClass(createProductForm.gender), createProductFormErrorMessages.gender ? productFormErrorClass : '']"
+          >
             <option disabled hidden value="">{{ t("productForm.genderPh") }}</option>
             <option v-for="gender in genders" class="text-black">
               {{ gender.gender }}
@@ -122,7 +140,12 @@
             <span class="text-black uppercase">{{ product.sku }}</span>
           </template>
         </label>
-        <IMask v-model:value="createProductForm.sku" placeholder="BLC-XS-001" :mask="skuMask.mask" :class="[skuClass, createProductFormErrorMessages.sku ? productFormErrorClass : '']" />
+        <IMask
+          v-model:value="createProductForm.sku"
+          placeholder="BLC-XS-001"
+          :mask="skuMask.mask"
+          :class="[skuClass, createProductFormErrorMessages.sku ? productFormErrorClass : '']"
+        />
         <span v-if="createProductFormErrorMessages.sku" class="text-xs text-red-600">
           {{ createProductFormErrorMessages.sku }}
         </span>
@@ -136,7 +159,13 @@
             <span class="text-black uppercase">{{ product.price }}</span>
           </template>
         </label>
-        <UiInput v-model="createProductForm.price" type="number" placeholder="$00.00" variant="createProduct" :error-message="createProductFormErrorMessages.price" />
+        <UiInput
+          v-model="createProductForm.price"
+          type="number"
+          placeholder="$00.00"
+          variant="createProduct"
+          :error-message="createProductFormErrorMessages.price"
+        />
       </div>
     </div>
     <div class="flex flex-col gap-3">
@@ -148,7 +177,11 @@
           <span class="text-black uppercase">{{ product.description }}</span>
         </template>
       </label>
-      <UiProductTextarea v-model="createProductForm.description" :placeholder="t('productForm.descriptionPh')" :error-message="createProductFormErrorMessages.description" />
+      <UiProductTextarea
+        v-model="createProductForm.description"
+        :placeholder="t('productForm.descriptionPh')"
+        :error-message="createProductFormErrorMessages.description"
+      />
     </div>
   </div>
 </template>

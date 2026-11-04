@@ -5,7 +5,9 @@
     <ProductBaseInfo />
     <CreateVariants />
     <div class="mt-4 mb-6 w-full">
-      <UiButton type="submit" name="CREATE PRODUCT" variant="useProduct" />
+      <UiButton type="submit"
+                :name="t('product.createTitle')"
+                variant="useProduct" />
     </div>
     <input
       type="file"
@@ -23,6 +25,7 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from "vue-i18n";
 import { useCreateProduct } from "@/features/product-create-form/api/create-product";
 import { fileInput, productHelper } from "@/shared/lib/product-helper";
 import { UiButton } from "@/shared/ui/button";
@@ -30,6 +33,7 @@ import { ProductBaseInfo } from "@/entities/product-form";
 import { CreateImageUpload, CreateVariants } from "@/features/product-create-form";
 import { Loading } from "@/widgets/state";
 
+const { t } = useI18n()
 const { onFilesSelected } = productHelper();
 const { createProduct, isPending } = useCreateProduct();
 </script>

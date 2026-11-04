@@ -1,6 +1,13 @@
 <template>
   <PaymentCardForm v-if="isDebitCard" :user-payment="userPayment" />
-  <PaymentMethod v-for="payment in visibleMethods" :key="payment.method" v-model="paymentForm.paymentMethod" :payment="payment" :error="paymentFormErrorMessage.paymentMethod" @select="onSelect" />
+  <PaymentMethod
+    v-for="payment in visibleMethods"
+    :key="payment.method"
+    v-model="paymentForm.paymentMethod"
+    :payment="payment"
+    :error="paymentFormErrorMessage.paymentMethod"
+    @select="onSelect"
+  />
   <span v-if="paymentFormErrorMessage.paymentMethod" class="text-xs text-red-600">
     {{ paymentFormErrorMessage.paymentMethod }}
   </span>

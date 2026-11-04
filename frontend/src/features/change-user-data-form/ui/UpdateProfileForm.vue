@@ -3,14 +3,24 @@
     <div class="flex gap-10">
       <form class="flex w-full flex-col gap-3" @submit.prevent="editUserName()">
         <label>{{ t("profile.form.name") }}</label>
-        <UiInput v-model="updateUserForm.name" :placeholder="t('profile.form.newNamePh')" variant="confidentialityData" :error-message="updateUserFormErrorMessages.name" />
+        <UiInput
+          v-model="updateUserForm.name"
+          :placeholder="t('profile.form.newNamePh')"
+          variant="confidentialityData"
+          :error-message="updateUserFormErrorMessages.name"
+        />
         <div class="flex">
           <UiButton type="submit" :name="t('profile.form.saveName')" variant="profileForm" />
         </div>
       </form>
       <form class="flex w-full flex-col gap-3" @submit.prevent="editUserSurName()">
         <label>{{ t("profile.form.surname") }}</label>
-        <UiInput v-model="updateUserForm.surName" :placeholder="t('profile.form.newSurnamePh')" variant="confidentialityData" :error-message="updateUserFormErrorMessages.surName" />
+        <UiInput
+          v-model="updateUserForm.surName"
+          :placeholder="t('profile.form.newSurnamePh')"
+          variant="confidentialityData"
+          :error-message="updateUserFormErrorMessages.surName"
+        />
         <div class="flex">
           <UiButton type="submit" :name="t('profile.form.saveSurname')" variant="profileForm" />
         </div>
@@ -20,7 +30,12 @@
   <div class="flex flex-col gap-10 sm:flex-row">
     <form class="flex w-full flex-col gap-3" @submit.prevent="editUserEmail()">
       <label>{{ t("profile.form.email") }}</label>
-      <UiInput v-model="updateUserForm.email" :placeholder="t('profile.form.newEmailPh')" variant="confidentialityData" :error-message="updateUserFormErrorMessages.email" />
+      <UiInput
+        v-model="updateUserForm.email"
+        :placeholder="t('profile.form.newEmailPh')"
+        variant="confidentialityData"
+        :error-message="updateUserFormErrorMessages.email"
+      />
       <div class="flex">
         <UiButton type="submit" :name="t('profile.form.saveEmail')" variant="profileForm" />
       </div>
@@ -93,7 +108,13 @@
 import { useI18n } from "vue-i18n";
 import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
 import { useTogglePassword } from "@/features/change-user-data-form/lib/toggle-password";
-import { useEditUserName, useEditUserSurName, useEditUserEmail, useEditUserPhone, useEditUserPassword } from "@/features/change-user-data-form/lib/use-edit-user-data";
+import {
+  useEditUserName,
+  useEditUserSurName,
+  useEditUserEmail,
+  useEditUserPhone,
+  useEditUserPassword,
+} from "@/features/change-user-data-form/lib/use-edit-user-data";
 import { updateUserForm, updateUserFormErrorMessages } from "@/entities/profile-form/model/user-update-form";
 import { profileFormPhoneInputClasses, profileFormSelectPhoneCodeClass } from "@/features/change-user-data-form/model/profile-phone.variants";
 import { UiButton } from "@/shared/ui/button";

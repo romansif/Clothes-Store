@@ -22,7 +22,7 @@ export const buttonVariantClasses: Record<ButtonVariant, string> = {
   stackInfo: `${baseButton} w-fit h-fit ml-auto bg-[#8c6a3f] text-white px-10 py-2 font-medium text-xs text-start hover:bg-[#735432]`,
   loadReviews: `${baseButton} w-150 border border-[#D9D9D9] p-2.5 font-semibold hover:bg-white hover:scale-105 hover:border-[#722f37] hover:text-[#722f37]`,
   profileMenu: `${baseButton} block px-4 py-2 text-sm text-[#A3A3A3] hover:text-[#722f37] hover:outline-hidden hover:scale-115`,
-  reload: `${baseButton} flex gap-2 items-center w-38 px-8 py-2 text-xl text-[#26334d] border border-[#26334d] hover:outline-hidden hover:scale-110 hover:text-white hover:bg-[#26334d]`,
+  reload: `${baseButton} flex gap-2 items-center w-38 px-5 py-2 text-xl bg-[#26334d] text-white border border-[#26334d] hover:outline-hidden hover:scale-110 hover:text-[#26334d] hover:bg-white`,
   catalog: `${baseButton} w-38 py-2 text-xl text-[#26334d] border border-[#26334d] hover:outline-hidden hover:scale-110 hover:text-white hover:bg-[#26334d]`,
   viewMyOrders: `${baseButton} w-87 py-3 font-medium text-white bg-[#722f37] border-2 border-[#722f37] hover:scale-105 hover:bg-white hover:text-[#722f37]`,
   paymentSuccess: `${baseButton} w-87 py-3 font-medium text-[#722f37] bg-white border-2 border-[#722f37] hover:scale-105 hover:bg-[#722f37] hover:text-white`,

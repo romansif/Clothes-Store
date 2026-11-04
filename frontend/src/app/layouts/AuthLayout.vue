@@ -1,5 +1,8 @@
 <template>
   <div class="min-h-screen bg-white">
+    <div class="fixed top-0 right-0 z-40 p-3">
+      <LanguageSwitcher />
+    </div>
     <main class="font-raleway fixed inset-0 flex items-center justify-center">
       <div :class="['rounded-lg px-4 py-8', isLogin ? 'w-105' : 'w-87.5 sm:w-140']">
         <div class="flex items-center justify-center">
@@ -22,6 +25,7 @@ import { useI18n } from "vue-i18n";
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { AuthHeader } from "@/widgets/auth-header";
+import { LanguageSwitcher } from "@/widgets/navigation";
 
 const route = useRoute();
 

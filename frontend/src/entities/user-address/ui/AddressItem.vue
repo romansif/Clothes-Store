@@ -6,7 +6,7 @@
           {{ t("checkout.item.address") }} <span class="font-normal">{{ address.address }}</span>
         </span>
         <img
-          @click="emit('deleteAddress', 'Are you sure you want to delete this saved address?', 'DELETE_SAVED_ADDRESS', address.id)"
+          @click="emit('deleteAddress', t('confirm.deleteAddress'), 'DELETE_SAVED_ADDRESS', address.id)"
           :src="del"
           alt=""
           class="ml-auto w-5 cursor-pointer transition duration-400 hover:scale-120"

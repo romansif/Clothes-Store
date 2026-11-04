@@ -4,11 +4,18 @@ import { useBaseModals } from "@/widgets/notification/lib/use-notify";
 import { useBaseEditUser } from "@/features/change-user-data-form/api/update-profile";
 import { clearUsersForms } from "@/features/change-user-data-form/lib/clear-user-update";
 import { updateUserForm, updateUserFormErrorMessages } from "@/entities/profile-form/model/user-update-form";
-import { updateUserEmailSchema, updateUserNameSchema, updateUserPasswordSchema, updateUserPhoneSchema, updateUserSurNameSchema } from "@/entities/profile-form/model/user-update-schemas";
+import {
+  updateUserEmailSchema,
+  updateUserNameSchema,
+  updateUserPasswordSchema,
+  updateUserPhoneSchema,
+  updateUserSurNameSchema,
+} from "@/entities/profile-form/model/user-update-schemas";
 import { handler } from "@/shared/api/http";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
 
-const { clearUpdateUserFormPhone, clearUpdateUserFormEmail, clearUpdateUserFormName, clearUpdateUserFormSurName, clearUpdateUserFormPassword } = clearUsersForms();
+const { clearUpdateUserFormPhone, clearUpdateUserFormEmail, clearUpdateUserFormName, clearUpdateUserFormSurName, clearUpdateUserFormPassword } =
+  clearUsersForms();
 
 export const useEditUserName = () => {
   const { baseEditUser } = useBaseEditUser();

@@ -3,14 +3,14 @@ import type { ShippingMethod, ShippingMethodProps } from "@/shared/ui/shipping-m
 export const shippingMethods: Record<ShippingMethod, ShippingMethodProps> = {
   standard: {
     method: "standard",
-    title: "STANDARD SHIPPING",
-    text: "Delivery in 3-5 business days",
-    price: "Free",
+    title: "shippingMethods.standard.title",
+    text: "shippingMethods.standard.description",
+    price: "shippingMethods.free",
   },
   express: {
     method: "express",
-    title: "EXPRESS COURIER",
-    text: "Delivery tomorrow morning",
-    price: "$15.00",
+    title: "shippingMethods.express.title",
+    text: "shippingMethods.express.description",
+    price: "shippingMethods.free",
   },
 };

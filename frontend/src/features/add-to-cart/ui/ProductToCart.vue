@@ -3,18 +3,35 @@
     <button @click="toggleSizeGuide" class="w-43 cursor-pointer text-left text-[#A3A3A3] transition duration-400 hover:scale-110">
       {{ t("product.whatsMySize") }}
     </button>
-    <router-link v-if="!user.id" :to="{ name: 'signIn' }" class="font-raleway hidden w-full bg-black py-4 text-center text-sm font-semibold text-white lg:block">
+    <router-link
+      v-if="!user.id"
+      :to="{ name: 'signIn' }"
+      class="font-raleway hidden w-full bg-black py-4 text-center text-sm font-semibold text-white lg:block"
+    >
       {{ t("product.addToCart") }}
     </router-link>
-    <UiButton v-if="user.role === 'Buyer' && isInStock(product) !== 0 && !isInCart(cart, product)" :name="t('product.addToCart')" variant="addToCart" @click="addToCart(product)" />
-    <UiButton v-if="isInStock(product) === 0 && user.id" :name="t('product.outOfStock')" variant="outOfStack" />
+    <UiButton
+      v-if="user.role === 'Buyer' && isInStock(product) !== 0 && !isInCart(cart, product)"
+      :name="t('product.addToCart')"
+      variant="addToCart"
+      @click="addToCart(product)"
+    />
+    <UiButton v-if="isInStock(product) === 0 && user.id"
+              :name="t('product.outOfStock')"
+              variant="outOfStack" />
     <div v-if="user.id && isInCart(cart, product)" class="flex h-fit items-center gap-18">
       <div class="flex items-center gap-6 rounded-full bg-zinc-900 px-4 py-3.5 text-lg transition duration-300 hover:scale-108">
-        <button class="rounded-full bg-zinc-600 px-2 py-1.5 text-white transition duration-300 hover:bg-zinc-700" @click="cartItem && updateCartItemQuantity({ type: 'add', cartItem })">
+        <button
+          class="rounded-full bg-zinc-600 px-2 py-1.5 text-white transition duration-300 hover:bg-zinc-700"
+          @click="cartItem && updateCartItemQuantity({ type: 'add', cartItem })"
+        >
           <img :src="plus" alt="" class="w-20" />
         </button>
         <span class="font-dm-sans text-white">{{ cartItem?.quantity }}</span>
-        <button class="rounded-full bg-zinc-600 px-2 py-1.5 text-white transition duration-300 hover:bg-zinc-700" @click="cartItem && updateCartItemQuantity({ type: 'remove', cartItem })">
+        <button
+          class="rounded-full bg-zinc-600 px-2 py-1.5 text-white transition duration-300 hover:bg-zinc-700"
+          @click="cartItem && updateCartItemQuantity({ type: 'remove', cartItem })"
+        >
           <img :src="minus" alt="" class="w-20" />
         </button>
       </div>

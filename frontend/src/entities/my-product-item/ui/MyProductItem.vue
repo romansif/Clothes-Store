@@ -1,7 +1,14 @@
 <template>
   <TransitionGroup name="list">
     <li :key="product.id" class="flex gap-8 pl-10">
-      <ProductPreview :user="user" :product="product" :array="myProducts" :favorite="favorite" :variant="'myProduct'" @toggle-to-favorite="toggleFavorite({ favorite, product })" />
+      <ProductPreview
+        :user="user"
+        :product="product"
+        :array="myProducts"
+        :favorite="favorite"
+        :variant="'myProduct'"
+        @toggle-to-favorite="toggleFavorite({ favorite, product })"
+      />
       <div class="flex flex-col gap-35">
         <div class="flex flex-col gap-10">
           <div class="ml-auto flex items-center gap-10">

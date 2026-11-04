@@ -13,14 +13,20 @@
           <button
             type="button"
             @click="unit = 'IN'"
-            :class="['rounded-full px-5 py-2 text-sm tracking-widest transition duration-700', unit === 'IN' ? 'bg-black text-white' : 'text-neutral-500 hover:text-black']"
+            :class="[
+              'rounded-full px-5 py-2 text-sm tracking-widest transition duration-700',
+              unit === 'IN' ? 'bg-black text-white' : 'text-neutral-500 hover:text-black',
+            ]"
           >
             {{ t("sizeGuide.inches") }}
           </button>
           <button
             type="button"
             @click="unit = 'CM'"
-            :class="['rounded-full px-4 py-2 text-sm tracking-widest transition duration-700', unit === 'CM' ? 'bg-black text-white' : 'text-neutral-500 hover:text-black']"
+            :class="[
+              'rounded-full px-4 py-2 text-sm tracking-widest transition duration-700',
+              unit === 'CM' ? 'bg-black text-white' : 'text-neutral-500 hover:text-black',
+            ]"
           >
             {{ t("sizeGuide.cm") }}
           </button>

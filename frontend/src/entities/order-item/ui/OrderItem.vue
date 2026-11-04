@@ -10,7 +10,9 @@
             <div class="flex items-center gap-2">
               <div class="group relative">
                 <img @click="copyText(order.id.slice(0, 8))" :src="copy_btn" alt="" class="w-5" />
-                <span class="absolute w-38 rounded-xl bg-[rgba(0,0,0,0.8)] px-2 py-1 text-xs text-white opacity-0 transition duration-600 group-hover:opacity-100">
+                <span
+                  class="absolute w-38 rounded-xl bg-[rgba(0,0,0,0.8)] px-2 py-1 text-xs text-white opacity-0 transition duration-600 group-hover:opacity-100"
+                >
                   {{ t("orders.copyTracking") }}
                 </span>
               </div>

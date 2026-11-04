@@ -7,28 +7,28 @@ import type { PaymentMethodDescriptionProps, PaymentMethodProps } from "@/entiti
 
 export const paymentCardMethod: PaymentMethodDescriptionProps = {
   method: "card",
-  title: "DEBIT OR CREDIT CARD",
-  text: "Visa, Mastercard",
+  title: "paymentMethod.card.title",
+  text: "paymentMethod.card.description",
   paymentImg: visa_pay,
 };
 
 export const paymentMethods: PaymentMethodProps = {
   apple: {
     method: "apple",
-    title: "APPLE PAY",
-    text: "Fast payment with Apple",
+    title: "paymentMethod.apple.title",
+    text: "paymentMethod.apple.description",
     paymentImg: apple_pay,
   },
   google: {
     method: "google",
-    title: "GOOGLE PAY",
-    text: "Payment via Google account",
+    title: "paymentMethod.google.title",
+    text: "paymentMethod.google.description",
     paymentImg: google_pay,
   },
   paypal: {
     method: "paypal",
-    title: "PAYPAL",
-    text: "International wallet",
+    title: "paymentMethod.paypal.title",
+    text: "paymentMethod.paypal.description",
     paymentImg: pay_pal,
   },
 };

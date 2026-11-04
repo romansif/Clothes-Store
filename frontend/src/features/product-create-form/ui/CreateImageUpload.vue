@@ -7,7 +7,10 @@
       </h2>
     </div>
     <div class="flex gap-6">
-      <div class="h-90 w-90 cursor-pointer overflow-hidden rounded-lg border border-gray-300 bg-gray-50 transition duration-400 hover:scale-105 hover:bg-gray-100" @click="openSelectImage(1)">
+      <div
+        class="h-90 w-90 cursor-pointer overflow-hidden rounded-lg border border-gray-300 bg-gray-50 transition duration-400 hover:scale-105 hover:bg-gray-100"
+        @click="openSelectImage(1)"
+      >
         <img v-if="itemPreview[1]" :src="itemPreview[1]" alt="" class="h-90 w-90 transition duration-400" />
         <div v-else class="p-4 text-mauve-100">
           <span class="rounded-full bg-black px-2 py-1.5 font-bold">{{ t("productForm.mainPhoto") }}</span>
