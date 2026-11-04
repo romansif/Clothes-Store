@@ -30,7 +30,7 @@
           <span v-if="isCreate" class="text-red-500">*</span>
           <template v-else-if="product">
             <span>/</span>
-            <span class="text-black uppercase">{{ product.collection.name }}</span>
+            <span class="text-black uppercase">{{ t("productForm.collectionOption", product.collection.name) }}</span>
           </template>
         </label>
         <div class="relative">

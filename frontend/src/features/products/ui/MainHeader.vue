@@ -18,7 +18,7 @@
         <input
           v-model="searchProductForm.search"
           type="text"
-          placeholder="Search"
+          :placeholder="t('nav.searchPlaceholder')"
           class="font-dm-sans h-12.5 border-b-2 border-[#D9D9D9] px-13 transition duration-400 outline-none sm:placeholder:px-114 md:placeholder:px-134 lg:placeholder:px-195 xl:w-92.5 xl:placeholder:px-62"
         />
         <img
@@ -41,7 +41,7 @@
           :class="[categoryAndCollectionClass, isActive ? selectedCategoryAndCollectionClass : '']"
           @click="toggleFilter('ALL', categoryName)"
         >
-          All
+          {{ t('common.all') }}
         </button>
         <button
           v-for="(isActive, categoryName) in categories"
@@ -57,7 +57,7 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { filterProduct } from "@/shared/lib/filter-product";
+import { filterProduct } from "@/widgets/filter-products/lib/filter-product";
 import { categoryAndCollectionClass, selectedCategoryAndCollectionClass } from "@/widgets/filter-products/model/filter-item.variants";
 import { clearSearchProductForm } from "@/features/search-product/lib/clear-search";
 import { toggleFilterAside } from "@/features/products/lib/product-modal";

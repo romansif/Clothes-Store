@@ -4,7 +4,6 @@
       <div class="flex rounded-xl bg-white">
         <img :src="images[currentIndex]" alt="" class="h-190 w-160" />
       </div>
-
       <div class="flex flex-col gap-9">
         <img
           v-for="thumb in thumbnails"

@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { computed, onMounted, onUnmounted } from "vue";
-import { filterProduct } from "@/shared/lib/filter-product.ts";
+import { filterProduct } from "@/widgets/filter-products/lib/filter-product.ts";
 import { homeSlides, mainSlides } from "@/widgets/home/model/slides.ts";
 
 const { t } = useI18n()

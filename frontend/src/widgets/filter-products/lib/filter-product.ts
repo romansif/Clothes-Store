@@ -5,6 +5,29 @@ import { activeFilter, yearFilter } from "@/widgets/filter-products/model/active
 import { clearSearchProductForm } from "@/features/search-product/lib/clear-search";
 import { sizes } from "@/shared/model/product-sizes";
 
+const filterLabelKeys: Record<string, string> = {
+  Man: "genders.man",
+  Woman: "genders.woman",
+  Kids: "genders.kids",
+  White: "colors.white",
+  Khaki: "colors.khaki",
+  Black: "colors.black",
+  Mazarine: "colors.mazarine",
+  Beige: "colors.beige",
+  Burgundy: "colors.burgundy",
+  Shirts: "categories.shirts",
+  Shoes: "categories.shoes",
+  Jeans: "categories.jeans",
+  Jackets: "categories.jackets",
+  "T-shirts": "categories.tShirts",
+  "Polo shirts": "categories.poloShirts",
+  "Best sellers": "categories.bestSellers",
+  Availability: "stock.availability",
+  Exhausted: "stock.exhausted",
+};
+
+export const filterLabelKey = (name: string) => filterLabelKeys[name] ?? name;
+
 export const filterProduct = () => {
   const selectedGender = ref<string>("ALL");
 

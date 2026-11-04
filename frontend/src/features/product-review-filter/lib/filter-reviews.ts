@@ -2,6 +2,16 @@ import { ref } from "vue";
 
 import { reviewFilter } from "@/features/product-review-filter/model/review-filter.store";
 
+const reviewLabelKeys: Record<string, string> = {
+  "All reviews": "reviews.filter.all",
+  "With photos": "reviews.filter.withPhotos",
+  Latest: "reviews.filter.latest",
+  "Highest rated": "reviews.filter.highest",
+  "Lowest rated": "reviews.filter.lowest",
+};
+
+export const reviewLabelKey = (name: string) => reviewLabelKeys[name] ?? name;
+
 export const filterReviews = () => {
   const reviewsType = ref<Record<string, boolean>>({
     "All reviews": true,

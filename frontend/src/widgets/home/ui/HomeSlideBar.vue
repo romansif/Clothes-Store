@@ -32,7 +32,7 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { computed, onMounted, onUnmounted } from "vue";
-import { filterProduct } from "@/shared/lib/filter-product";
+import { filterProduct } from "@/widgets/filter-products/lib/filter-product";
 import { homeSlides } from "@/widgets/home/model/slides";
 
 const { t } = useI18n()

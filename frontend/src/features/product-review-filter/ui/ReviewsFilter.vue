@@ -1,17 +1,21 @@
 <template>
   <div class="font-dm-sans flex gap-30">
-    <div v-for="(isActive, filter) in reviewsType" :class="[reviewFilterBlock, isActive ? 'font-semibold' : '']">
-      <span :class="[reviewFilterNameClass, isActive ? selectedFilterNameClass : '']" @click="toggleFilter(filter)">
-        {{ filter }}
+    <div v-for="(isActive, filter) in reviewsType"
+         :class="[reviewFilterBlock, isActive ? 'font-semibold' : '']">
+      <span :class="[reviewFilterNameClass, isActive ? selectedFilterNameClass : '']"
+            @click="toggleFilter(filter)">
+        {{ t(reviewLabelKey(filter)) }}
       </span>
-      <div v-if="isActive" class="border-t-2"></div>
+      <div v-if="isActive" class="border-t-2 transition duration-400 scale-x-100"></div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { filterReviews } from "@/features/product-review-filter/lib/filter-reviews";
+import { useI18n } from "vue-i18n";
+import { filterReviews, reviewLabelKey } from "@/features/product-review-filter/lib/filter-reviews";
 import { reviewFilterBlock, reviewFilterNameClass, selectedFilterNameClass } from "@/features/review-dashboard/model/review-filter.variants";
 
+const { t } = useI18n();
 const { reviewsType, toggleFilter } = filterReviews();
 </script>

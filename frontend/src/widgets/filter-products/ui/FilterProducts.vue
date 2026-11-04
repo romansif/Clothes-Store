@@ -31,7 +31,7 @@
                 @click="toggleFilter('STATUS', stackName)"
               />
               <div class="flex gap-1">
-                <span>{{ stackName }}</span>
+                <span>{{ t(filterLabelKey(stackName)) }}</span>
                 <span>
                   (<span class="font-dm-sans font-medium text-blue-700"> {{ getStackCount(products, stackName) }} </span>)
                 </span>
@@ -58,7 +58,7 @@
                 @click="toggleFilter('GENDER', genderName)"
               />
               <div class="flex gap-1">
-                <span>{{ genderName }}</span>
+                <span>{{ t(filterLabelKey(genderName)) }}</span>
                 <span>
                   (<span class="font-dm-sans font-medium text-blue-700"> {{ products.filter((p) => p.gender === genderName).length }} </span>)
                 </span>
@@ -85,7 +85,7 @@
                 @click="toggleFilter('COLOR', colorName)"
               />
               <div class="flex gap-1">
-                <span>{{ colorName }}</span>
+                <span>{{ t(filterLabelKey(colorName)) }}</span>
               </div>
             </div>
           </div>
@@ -99,7 +99,7 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { sizes } from "@/shared/model/product-sizes.ts";
-import { filterProduct } from "@/shared/lib/filter-product";
+import { filterLabelKey, filterProduct } from "@/widgets/filter-products/lib/filter-product";
 import { useProductsData } from "@/widgets/product-list/lib/use-product-data";
 import { toggleAvailabilityFilter, toggleColorFilter, toggleGenderFilter } from "@/widgets/filter-products/lib/show-filter";
 import { filterSizeClass, filterClass, selectedFilterAndSizeClass } from "@/widgets/filter-products/model/filter-item.variants";

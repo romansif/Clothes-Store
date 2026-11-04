@@ -49,7 +49,7 @@
           <tbody>
             <tr v-for="row in formatterSizeGuide(product)" :key="row.name" class="border-b border-neutral-200 text-sm">
               <th class="px-4 py-4 text-left font-normal">
-                {{ row.name }}
+                {{ t(row.name) }}
               </th>
               <td v-for="value in row.values" :key="value" class="font-dm-sans px-4 py-4 text-center text-neutral-600">
                 {{ value }}

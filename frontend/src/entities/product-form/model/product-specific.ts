@@ -36,25 +36,41 @@ const materials: Material[] = [
   { material: "Viscose" },
 ];
 
-const genders: Gender[] = [{ gender: "Unisex" }, { gender: "Man" }, { gender: "Woman" }, { gender: "Kids" }];
+const genders: Gender[] = [
+  { gender: "Unisex" },
+  { gender: "Man" },
+  { gender: "Woman" },
+  { gender: "Kids" }
+];
 
-const sizesShoes: SizesShoes[] = [{ name: "39" }, { name: "40" }, { name: "41" }, { name: "42" }, { name: "43" }, { name: "44" }, { name: "45" }, { name: "46" }];
+const sizesShoes: SizesShoes[] = [
+  { name: "39" },
+  { name: "40" },
+  { name: "41" },
+  { name: "42" },
+  { name: "43" },
+  { name: "44" },
+  { name: "45" },
+  { name: "46" }
+];
 
 const outerwearSizeGuide: SizeGuide[] = [
-  { name: "Heigh", values: ["163", "168", "173", "178", "183", "188"] },
-  { name: "Chest", values: ["86", "92", "98", "104", "110", "116"] },
-  { name: "Waist", values: ["68", "72", "78", "84", "90", "96"] },
-  { name: "Length", values: ["64", "66", "68", "70", "72", "74"] },
+  { name: "measurements.height", values: ["163", "168", "173", "178", "183", "188"] },
+  { name: "measurements.chest", values: ["86", "92", "98", "104", "110", "116"] },
+  { name: "measurements.waist", values: ["68", "72", "78", "84", "90", "96"] },
+  { name: "measurements.length", values: ["64", "66", "68", "70", "72", "74"] },
 ];
 
 const underWearSizeGuide: SizeGuide[] = [
-  { name: "Heigh", values: ["163", "168", "173", "178", "183", "188"] },
-  { name: "Waist", values: ["66", "70", "76", "81", "87", "94"] },
-  { name: "Hips", values: ["90", "94", "99", "105", "111", "119"] },
-  { name: "Waist", values: ["77", "80", "82", "84", "86", "88"] },
+  { name: "measurements.height", values: ["163", "168", "173", "178", "183", "188"] },
+  { name: "measurements.length", values: ["66", "70", "76", "81", "87", "94"] },
+  { name: "measurements.hips", values: ["90", "94", "99", "105", "111", "119"] },
+  { name: "measurements.waist", values: ["77", "80", "82", "84", "86", "88"] },
 ];
 
-const shoesSizeGuide: SizeGuide[] = [{ name: "Length", values: ["25", "25.7", "26.3", "27", "27.7", "28.3", "29", "29.7"] }];
+const shoesSizeGuide: SizeGuide[] = [
+    { name: "measurements.length", values: ["25", "25.7", "26.3", "27", "27.7", "28.3", "29", "29.7"] }
+];
 
 const outerWear = ["Shirts", "T-shirts", "Tank top", "Sweaters"];
 

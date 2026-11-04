@@ -35,7 +35,7 @@
                   @click="toggleFilter('STATUS', stackName)"
                 />
                 <div class="flex gap-1">
-                  <span>{{ stackName }}</span>
+                  <span>{{ t(filterLabelKey(stackName)) }}</span>
                   <span>
                     (<span class="font-dm-sans font-medium text-blue-700">
                       {{ products.filter((p) => p.variants.every((v) => v.count !== 0)).length }} </span
@@ -64,7 +64,7 @@
                   @click="toggleFilter('GENDER', genderName)"
                 />
                 <div class="flex gap-1">
-                  <span>{{ genderName }}</span>
+                  <span>{{ t(filterLabelKey(genderName)) }}</span>
                   <span>
                     (<span class="font-dm-sans font-medium text-blue-700"> {{ products.filter((p) => p.gender === genderName).length }} </span>)
                   </span>
@@ -91,7 +91,7 @@
                   @click="toggleFilter('COLOR', colorName)"
                 />
                 <div class="flex gap-1">
-                  <span>{{ colorName }}</span>
+                  <span>{{ t(filterLabelKey(colorName)) }}</span>
                 </div>
               </div>
             </div>
@@ -112,14 +112,14 @@
                 :class="[sidebarCategoryClass, isActive ? selectedCategoryAndCollectionClass : '']"
                 @click="toggleFilter('ALL', categoryName)"
               >
-                All
+                {{ t('common.all') }}
               </button>
               <button
                 v-for="(isActive, categoryName) in categories"
                 :class="[sidebarCategoryClass, isActive ? selectedCategoryAndCollectionClass : '']"
                 @click="toggleFilter('CATEGORY', categoryName)"
               >
-                {{ categoryName }}
+                {{ t(filterLabelKey(categoryName)) }}
               </button>
             </div>
           </div>
@@ -132,7 +132,7 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
-import { filterProduct } from "@/shared/lib/filter-product";
+import { filterLabelKey, filterProduct } from "@/widgets/filter-products/lib/filter-product";
 import { useProductsData } from "@/widgets/product-list/lib/use-product-data";
 import { filterAside, toggleFilterAside } from "@/features/products/lib/product-modal";
 import { toggleAvailabilityFilter, toggleCategoryFilter, toggleColorFilter, toggleGenderFilter } from "@/widgets/filter-products/lib/show-filter";

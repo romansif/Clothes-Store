@@ -5,9 +5,7 @@
     "confirm": "Подтвердить",
     "change": "Изменить",
     "all": "Все",
-    "allParen": "( Все )",
     "pcs": "{count} шт.",
-    "free": "Бесплатно",
     "optional": "(необязательно)",
     "reload": "обновить",
     "loading": "Загрузка, пожалуйста, подождите…",
@@ -145,7 +143,6 @@
     "hideSavedContact": "Скрыть сохранённый контакт",
     "shippingAddress": "АДРЕС ДОСТАВКИ",
     "shipTo": "ДОСТАВИТЬ ПО АДРЕСУ",
-    "toShipping": "Доставка",
     "toPayment": "Оплата",
     "pay": "Оплатить",
     "shippingMethods": "СПОСОБЫ ДОСТАВКИ",
@@ -163,7 +160,8 @@
     },
     "contact": {
       "firstName": "Имя",
-      "lastName": "Фамилия"
+      "lastName": "Фамилия",
+      "email": "example{'@'}gmail.com"
     },
     "item": {
       "address": "Адрес:",
@@ -240,17 +238,11 @@
     "confirmCancel": "Подтвердить отмену",
     "totalCount": "Всего заказов: {count}",
     "number": "№ {id}",
-    "timeline": {
-      "created": "Создан: {date}, {time}",
-      "processed": "Обработан: {date}, {time}",
-      "delivered": "Доставлен: {date}, {time}",
-      "cancelled": "Отменён: {date}, {time}"
-    },
     "status": {
-      "delivered": "Доставлен",
-      "enRoute": "В пути",
-      "convene": "Оформлен",
-      "cancelled": "Отменён"
+      "delivered": "Доставлен: {date}, {time}",
+      "enRoute": "В пути: {date}, {time}",
+      "convene": "Оформлен: {date}, {time}",
+      "cancelled": "Отменён: {date}, {time}"
     },
     "reason": {
       "paymentMethod": "Неверный способ оплаты",
@@ -264,7 +256,6 @@
     "title": "Отзывы",
     "count": "нет отзывов | {count} отзыв | {count} отзыва | {count} отзывов",
     "basedOn": "Пока нет отзывов | На основе {count} отзыва | На основе {count} отзывов | На основе {count} отзывов",
-    "writeTitle": "НАПИСАТЬ ОТЗЫВ",
     "writeHint": "Ваш отзыв помогает другим покупателям сделать правильный выбор",
     "create": "Отправить отзыв",
     "addPhotos": "Добавить фото",
@@ -332,7 +323,7 @@
     "description": "ОПИСАНИЕ",
     "titlePh": "название и т. д.",
     "descriptionPh": "краткое описание товара",
-    "collectionOption": "Название: {name}, Сезон: {season}, Состояние: {condition}",
+    "collectionOption": "Название: {name}",
     "collectionEmpty": "Не выбрано",
     "categoryPh": "Рубашка",
     "materialPh": "Хлопок",
@@ -349,9 +340,7 @@
     "colors": "Цвета",
     "selectBoth": "Выберите размеры и цвета, чтобы заполнить остатки.",
     "selectColors": "Выберите цвета, чтобы заполнить остатки.",
-    "selectSizes": "Выберите размеры, чтобы заполнить остатки.",
-    "colorSize": "{color}, размер {size}",
-    "anyColor": "Выбрать любой цвет"
+    "selectSizes": "Выберите размеры, чтобы заполнить остатки."
   },
   "filters": {
     "title": "Фильтры",
@@ -361,12 +350,7 @@
     "color": "Цвет",
     "category": "Категория"
   },
-  "stock": {
-    "availability": "В наличии",
-    "exhausted": "Распродано"
-  },
   "genders": {
-    "unisex": "Унисекс",
     "man": "Мужское",
     "woman": "Женское",
     "kids": "Детское"
@@ -375,7 +359,7 @@
     "white": "Белый",
     "khaki": "Хаки",
     "black": "Чёрный",
-    "mazarine": "Тёмно-синий",
+    "mazarine": "Cиний",
     "beige": "Бежевый",
     "burgundy": "Бордовый"
   },
@@ -386,26 +370,11 @@
     "jackets": "Куртки",
     "tShirts": "Футболки",
     "poloShirts": "Поло",
-    "bestSellers": "Бестселлеры",
-    "underpants": "Нижнее бельё",
-    "shorts": "Шорты",
-    "pants": "Брюки",
-    "tankTop": "Майки",
-    "sweaters": "Свитеры"
+    "bestSellers": "Бестселлеры"
   },
-  "materials": {
-    "cotton": "Хлопок",
-    "synthetics": "Синтетика",
-    "wool": "Шерсть",
-    "flax": "Лён",
-    "polyester": "Полиэстер",
-    "nylon": "Нейлон",
-    "acrylic": "Акрил",
-    "viscose": "Вискоза"
-  },
-  "conditions": {
-    "new": "Новая",
-    "old": "Старая"
+  "stock": {
+    "availability": "В наличии",
+    "exhausted": "Распродано"
   },
   "seasons": {
     "spring": {
@@ -498,20 +467,9 @@
     "deleteCard": "Вы уверены, что хотите удалить эту сохранённую карту?"
   },
   "errors": {
-    "http": "Ошибка: {status}",
-    "sessionExpired": "Сессия истекла, войдите снова.",
-    "notAuthenticated": "Пользователь не авторизован",
-    "productNotFound": "Товар не найден",
-    "variantNotFound": "Вариант не найден",
-    "completeSteps": "Сначала заполните контактные данные и способ доставки",
-    "chooseSavedPayment": "Выберите сохранённый способ оплаты.",
     "selectItemsAndAgree": "Выберите товары для заказа и согласитесь с Условиями использования",
     "agreeTerms": "Необходимо согласиться с Условиями использования",
-    "selectItems": "Выберите товары для заказа",
-    "copyFailed": "Ошибка при копировании: {error}",
-    "actionFailed": "Не удалось выполнить: {action}",
-    "cartItemIdMissing": "В корзине нет id или productId {id}",
-    "googleLogin": "Ошибка входа через Google"
+    "selectItems": "Выберите товары для заказа"
   },
   "validation": {
     "emailRequired": "Укажите эл. почту",
@@ -593,16 +551,13 @@
         "text": "Теперь ваш товар отображается на странице «Мои товары», а также на странице профиля"
       },
       "profile": {
-        "title": "Профиль успешно обновлён",
-        "text": ""
+        "title": "Профиль успешно обновлён"
       },
       "password": {
-        "title": "Пароль успешно изменён.",
-        "text": ""
+        "title": "Пароль успешно изменён."
       },
       "deleteProduct": {
-        "title": "Товар успешно удалён",
-        "text": ""
+        "title": "Товар успешно удалён"
       },
       "addToCart": {
         "title": "Товар успешно добавлен в корзину",

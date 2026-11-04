@@ -5,9 +5,7 @@
     "confirm": "Confirm",
     "change": "Change",
     "all": "All",
-    "allParen": "( All )",
     "pcs": "{count} pcs.",
-    "free": "Free",
     "optional": "(optional)",
     "reload": "reloading",
     "loading": "Loading, please wait…",
@@ -145,7 +143,6 @@
     "hideSavedContact": "Hide saved contact",
     "shippingAddress": "SHIPPING ADDRESS",
     "shipTo": "SHIP TO",
-    "toShipping": "Shipping",
     "toPayment": "Payment",
     "pay": "Pay",
     "shippingMethods": "SHIPPING METHODS",
@@ -163,7 +160,8 @@
     },
     "contact": {
       "firstName": "FirstName",
-      "lastName": "LastName"
+      "lastName": "LastName",
+      "email": "example{'@'}gmail.com"
     },
     "item": {
       "address": "Address:",
@@ -240,17 +238,11 @@
     "confirmCancel": "Replacement",
     "totalCount": "Total orders: {count}",
     "number": "No. {id}",
-    "timeline": {
-      "created": "Created: {date}, {time}",
-      "processed": "Processed: {date}, {time}",
-      "delivered": "Delivered: {date}, {time}",
-      "cancelled": "Cancelled: {date}, {time}"
-    },
     "status": {
-      "delivered": "Delivered",
-      "enRoute": "En route",
-      "convene": "Convene",
-      "cancelled": "Cancelled"
+      "delivered": "Delivered: {date}, {time}",
+      "enRoute": "En route: {date}, {time}",
+      "convene": "Convene: {date}, {time}",
+      "cancelled": "Cancelled: {date}, {time}"
     },
     "reason": {
       "paymentMethod": "Incorrect payment method",
@@ -264,7 +256,6 @@
     "title": "Reviews",
     "count": "{count} review | {count} reviews",
     "basedOn": "Based on {count} review | Based on {count} reviews",
-    "writeTitle": "WRITE A REVIEW",
     "writeHint": "Your feedback helps other customers make the right choice",
     "create": "Create Review",
     "addPhotos": "Add Photos",
@@ -332,7 +323,7 @@
     "description": "DESC.",
     "titlePh": "title, name etc.",
     "descriptionPh": "short desc. of product",
-    "collectionOption": "Name: {name}, Season: {season}, Condition: {condition}",
+    "collectionOption": "Name: {name}",
     "collectionEmpty": "Void",
     "categoryPh": "Shirt",
     "materialPh": "Cotton",
@@ -349,9 +340,7 @@
     "colors": "Colors",
     "selectBoth": "Select sizes and colors to populate the stock levels.",
     "selectColors": "Select colors to populate the stock levels.",
-    "selectSizes": "Select sizes to populate the stock levels.",
-    "colorSize": "{color}, size {size}",
-    "anyColor": "Pick any color"
+    "selectSizes": "Select sizes to populate the stock levels."
   },
   "filters": {
     "title": "Filters",
@@ -361,12 +350,7 @@
     "color": "Color",
     "category": "Category"
   },
-  "stock": {
-    "availability": "Availability",
-    "exhausted": "Exhausted"
-  },
   "genders": {
-    "unisex": "Unisex",
     "man": "Man",
     "woman": "Woman",
     "kids": "Kids"
@@ -386,26 +370,11 @@
     "jackets": "Jackets",
     "tShirts": "T-shirts",
     "poloShirts": "Polo shirts",
-    "bestSellers": "Best sellers",
-    "underpants": "Underpants",
-    "shorts": "Shorts",
-    "pants": "Pants",
-    "tankTop": "Tank top",
-    "sweaters": "Sweaters"
+    "bestSellers": "Best sellers"
   },
-  "materials": {
-    "cotton": "Cotton",
-    "synthetics": "Synthetics",
-    "wool": "Wool",
-    "flax": "Flax",
-    "polyester": "Polyester",
-    "nylon": "Nylon",
-    "acrylic": "Acrylic",
-    "viscose": "Viscose"
-  },
-  "conditions": {
-    "new": "New",
-    "old": "Old"
+  "stock": {
+    "availability": "Availability",
+    "exhausted": "Exhausted"
   },
   "seasons": {
     "spring": {
@@ -498,20 +467,9 @@
     "deleteCard": "Are you sure you want to delete this saved card?"
   },
   "errors": {
-    "http": "Error: {status}",
-    "sessionExpired": "Session expired, please log in again.",
-    "notAuthenticated": "User is not authenticated",
-    "productNotFound": "Product not found",
-    "variantNotFound": "Variant not found",
-    "completeSteps": "Please complete the contact and shipping steps first",
-    "chooseSavedPayment": "Please choose a saved payment method.",
     "selectItemsAndAgree": "You must select the items for your order, agree to the Terms and Conditions",
     "agreeTerms": "You must agree to the Terms and Conditions",
-    "selectItems": "You must select the items for your order",
-    "copyFailed": "Error while copying: {error}",
-    "actionFailed": "Failed to perform: {action}",
-    "cartItemIdMissing": "Cart item has no id or productId {id}",
-    "googleLogin": "Google sign-in error"
+    "selectItems": "You must select the items for your order"
   },
   "validation": {
     "emailRequired": "Email is required",
@@ -593,16 +551,13 @@
         "text": "Now, if you go to the my products page, your product will be there, and on the profile page as well"
       },
       "profile": {
-        "title": "You have successfully updated your profile",
-        "text": ""
+        "title": "You have successfully updated your profile"
       },
       "password": {
-        "title": "You have successfully changed your password.",
-        "text": ""
+        "title": "You have successfully changed your password."
       },
       "deleteProduct": {
-        "title": "You have successfully deleted the product",
-        "text": ""
+        "title": "You have successfully deleted the product"
       },
       "addToCart": {
         "title": "You have successfully added the item to your cart",

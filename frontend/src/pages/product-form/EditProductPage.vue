@@ -8,7 +8,7 @@
     </template>
     <div class="mt-4 mb-6 w-full">
       <UiButton type="submit"
-                :name="t('product.createTitle')"
+                :name="t('product.editTitle')"
                 variant="useProduct" />
     </div>
     <input
