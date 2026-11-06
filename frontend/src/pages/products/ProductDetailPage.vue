@@ -16,7 +16,7 @@ import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { useProductData } from "@/features/product-info/lib/use-product-data";
 import { useCartData } from "@/widgets/cart-list/lib/use-cart-data";
-import { useFavoriteData } from "@/widgets/favorite-list/lib/use-favorite-data";
+import { useFavoriteData } from "@/shared/lib/use-favorite-data";
 import { ProductInfo } from "@/features/product-info";
 import { ProductReviews } from "@/features/review-dashboard";
 import { useUserData } from "@/widgets/profile/lib/use-user-data";

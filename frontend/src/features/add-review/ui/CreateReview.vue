@@ -1,8 +1,15 @@
 <template>
   <Loading v-if="isPending" />
-  <div class="font-montserrat fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)]" @click="toggleReviewModal('')">
-    <form class="flex h-fit w-150 flex-col gap-2 rounded-xl bg-white p-5" @click.stop @submit.prevent="createReview(user)">
-      <UiButton :name="t('common.exit')" variant="exitClose" @click="toggleReviewModal('')" />
+  <div
+    class="font-montserrat fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)]"
+    @click="closeReviewModal()"
+  >
+    <form
+      class="flex h-fit w-180 flex-col gap-2 rounded-xl bg-white p-5"
+      @click.stop
+      @submit.prevent="createReview(user)"
+    >
+      <UiButton :name="t('common.exit')" variant="exitClose" @click="closeReviewModal()" />
       <div class="flex flex-col gap-2 border-b pb-4">
         <h1 class="text-2xl font-bold">{{ t("reviews.create") }}</h1>
         <span class="text-sm text-[#A3A3A3]">
@@ -40,7 +47,7 @@ import { addRating } from "@/features/add-review/lib/add-rating-star";
 import { reviewsStore } from "@/features/review-dashboard/model/reviews.store";
 import { useCreateReview } from "@/features/add-review/api/add-review";
 import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
-import { toggleReviewModal } from "@/entities/order-action/lib/review-form-modal";
+import { closeReviewModal } from "@/entities/order-action/lib/review-form-modal";
 import { fileInput, productHelper } from "@/shared/lib/product-helper";
 import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/review-form";
 import { UiButton } from "@/shared/ui/button";

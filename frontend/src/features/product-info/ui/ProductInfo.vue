@@ -1,17 +1,17 @@
 <template>
-  <template v-if="user && product">
-    <ProductPhotos :product="product" />
+  <template v-if="props.user && props.product">
+    <ProductPhotos :product="props.product" />
     <div class="mt-20 flex w-125 flex-col px-4">
       <div class="flex flex-col gap-2">
         <div class="flex">
           <div class="mt-1 flex flex-col gap-1 font-medium">
-            <h1>{{ product.title }}</h1>
-            <h2>{{ product.collection?.name }} / {{ product.category }}</h2>
+            <h1>{{ props.product.title }}</h1>
+            <h2>{{ props.product.collection?.name }} / {{ props.product.category }}</h2>
           </div>
           <div class="ml-auto flex flex-col gap-3 font-medium">
             <img
-              v-if="user.role === 'Buyer'"
-              :src="isFavorite(favorite, product, user.id) ? liked : like"
+              v-if="props.user.role === 'Buyer'"
+              :src="isFavorite(props.favorite, props.product, props.user.id) ? liked : like"
               alt=""
               class="w-8.75 cursor-pointer"
               @click="toggleFavorite({ favorite, product })"
@@ -19,15 +19,18 @@
           </div>
         </div>
         <div class="font-dm-sans mt-1 flex text-sm font-medium text-[#A3A3A3]">
-          <span>{{ variantsInfo(addToCartForm, product) }}</span>
-          <span class="font-dm-sans ml-auto text-black"> $ {{ product.price }} </span>
+          <span>{{ variantsInfo(addToCartForm, props.product) }}</span>
+          <span class="font-dm-sans ml-auto text-black"> $ {{ props.product.price }} </span>
         </div>
       </div>
-      <p @click="toggleReadMore" :class="['mt-3 cursor-pointer break-after-all font-medium', fullDescription ? 'line-clamp-0' : 'line-clamp-2']">
+      <p
+        @click="toggleReadMore"
+        :class="['mt-3 cursor-pointer break-after-all font-medium', fullDescription ? 'line-clamp-0' : 'line-clamp-2']"
+      >
         {{ product.description }}
       </p>
-      <ProductSpecific :user="user" :product="product" @add-color="addColor" @add-size="addSize" />
-      <ProductToCart :user="user" :product="product" :cart="cart" />
+      <ProductSpecific :user="props.user" :product="props.product" @add-color="addColor" @add-size="addSize" />
+      <ProductToCart :user="props.user" :product="props.product" :cart="props.cart" />
     </div>
   </template>
 </template>
@@ -50,7 +53,7 @@ import type { FavoriteItem } from "@/entities/favorite-item";
 import like from "@/assets/icons/nav/like.png";
 import liked from "@/assets/icons/nav/liked.png";
 
-defineProps<{
+const props = defineProps<{
   user: User | undefined;
   product: Product;
   cart: CartItem[];

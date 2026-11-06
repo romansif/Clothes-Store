@@ -5,11 +5,23 @@
       <label class="text-xs font-medium md:text-sm">{{ t("checkout.shippingMethods") }}</label>
       <div class="flex gap-3">
         <form @submit.prevent="selectShipping()" class="flex w-full flex-col gap-6">
-          <ShippingMethod v-model="shippingForm.delivery" :method="'standard'" :error-message="shippingFormErrorMessage.delivery" />
-          <ShippingMethod v-model="shippingForm.delivery" :method="'express'" :error-message="shippingFormErrorMessage.delivery" />
+          <ShippingMethod
+            v-model="shippingForm.delivery"
+            :method="'standard'"
+            :error-message="shippingFormErrorMessage.delivery"
+          />
+          <ShippingMethod
+            v-model="shippingForm.delivery"
+            :method="'express'"
+            :error-message="shippingFormErrorMessage.delivery"
+          />
           <div class="relative mt-5 ml-auto transition duration-400 hover:scale-110">
             <UiButton type="submit" :name="t('checkout.toPayment')" variant="checkOut" />
-            <img :src="arrow" alt="" class="absolute top-1/2 left-75 h-13 -translate-y-1/2 sm:left-60 md:left-77 lg:left-34 xl:left-46" />
+            <img
+              :src="arrow"
+              alt=""
+              class="absolute top-1/2 left-75 h-13 -translate-y-1/2 sm:left-60 md:left-77 lg:left-34 xl:left-46"
+            />
           </div>
         </form>
       </div>

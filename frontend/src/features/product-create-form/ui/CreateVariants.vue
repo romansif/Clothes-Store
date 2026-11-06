@@ -6,26 +6,24 @@
           {{ t("productForm.quantity") }}
           <span class="text-red-500">*</span>
         </label>
-        <div class="flex items-center justify-end gap-2 font-semibold">
+        <div
+          class="font-raleway relative inline-grid auto-cols-fr grid-flow-col items-center gap-2 rounded-full border border-white bg-white p-1 text-sm font-semibold"
+        >
+          <span
+            class="pointer-events-none absolute top-1 bottom-1 left-1 rounded-full bg-black transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+            :style="indicatorStyle"
+          />
           <button
+            v-for="mode in modes"
+            :key="mode.code"
             type="button"
-            @click="countMode = 'SAME'"
             :class="[
-              'rounded-full px-3 py-2 text-sm tracking-widest transition duration-700',
-              countMode === 'SAME' ? 'bg-black text-white' : 'text-neutral-500 hover:text-black',
+              'relative z-10 cursor-pointer rounded-full px-4 py-2 tracking-widest transition-colors duration-300',
+              countMode === mode.code ? 'text-white' : 'text-black',
             ]"
+            @click="countMode = mode.code"
           >
-            {{ t("productForm.same") }}
-          </button>
-          <button
-            type="button"
-            @click="countMode = 'DIFFER'"
-            :class="[
-              'rounded-full px-3 py-2 text-sm tracking-widest transition duration-700',
-              countMode === 'DIFFER' ? 'bg-black text-white' : 'text-neutral-500 hover:text-black',
-            ]"
-          >
-            {{ t("productForm.different") }}
+            {{ t(`countMode.${mode.code}`) }}
           </button>
         </div>
       </div>
@@ -38,7 +36,7 @@
           variant="createProduct"
           :error-message="createProductFormErrorMessages.quantity ? createProductFormErrorMessages.quantity : ''"
         />
-        <span class="mt-auto ml-auto text-sm font-medium text-[#A3A3A3]">
+        <span class="ml-auto w-85 text-sm font-medium text-[#A3A3A3]">
           {{ t("productForm.sameHint") }}
         </span>
       </div>
@@ -56,7 +54,10 @@
             <tr v-for="color in moreCreateItemForm.colors" :key="color.hex">
               <td :title="color.hex">
                 <div class="flex items-center gap-2">
-                  <span :style="{ background: color.hex }" class="h-10 w-10 shrink-0 rounded-full border-2 border-gray-300 shadow-sm"></span>
+                  <span
+                    :style="{ background: color.hex }"
+                    class="h-10 w-10 shrink-0 rounded-full border-2 border-gray-300 shadow-sm"
+                  ></span>
                   <span class="text-xs font-bold whitespace-nowrap text-black uppercase">
                     {{ color.colorName }}
                   </span>
@@ -77,7 +78,10 @@
           </tbody>
         </table>
         <div class="flex justify-center">
-          <span v-if="!moreCreateItemForm.colors?.length && !moreCreateItemForm.sizes?.length" class="py-8 text-center text-[#A3A3A3]">
+          <span
+            v-if="!moreCreateItemForm.colors?.length && !moreCreateItemForm.sizes?.length"
+            class="py-8 text-center text-[#A3A3A3]"
+          >
             {{ t("productForm.selectBoth") }}
           </span>
           <span v-else-if="!moreCreateItemForm.colors?.length" class="py-8 text-center text-[#A3A3A3]">
@@ -161,6 +165,7 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
+import { modes, useProductForm } from "@/features/product-form/lib/use-product-form";
 import { sizes } from "@/shared/model/product-sizes";
 import { productFormHelper } from "@/features/product-form/lib/product-form-helper";
 import { reactiveClearErrorsOnChange } from "@/shared/lib/errors-helper";
@@ -174,6 +179,7 @@ import {
 
 const { t } = useI18n();
 const { toggleAllVariants, toggleQuantity, toggleSize, toggleColor, countMode } = productFormHelper();
+const { indicatorStyle } = useProductForm(countMode);
 
 reactiveClearErrorsOnChange(moreCreateItemForm, moreCreateItemFormErrorMessages);
 </script>

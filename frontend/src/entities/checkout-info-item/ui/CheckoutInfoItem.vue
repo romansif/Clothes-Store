@@ -2,10 +2,10 @@
   <li :class="[getSavedClass, isChosenContactInfo ? checkClass : '']">
     <div class="flex flex-col gap-5">
       <span class="text-sm font-semibold">
-        {{ t("checkout.item.phone") }} <span class="font-normal">{{ address.phone }},</span>
+        {{ t("checkout.item.phone") }} <span class="font-normal">{{ props.address.phone }},</span>
       </span>
       <span class="text-sm font-semibold">
-        {{ t("checkout.item.email") }} <span class="font-normal">{{ address.email }}</span>
+        {{ t("checkout.item.email") }} <span class="font-normal">{{ props.address.email }}</span>
       </span>
     </div>
   </li>
@@ -17,7 +17,7 @@ import { isChosenContactInfo } from "@/entities/checkout-info-item/model/informa
 import type { UserContactInfo } from "@/entities/user-address";
 import { useI18n } from "vue-i18n";
 
-defineProps<{
+const props = defineProps<{
   address: UserContactInfo;
 }>();
 

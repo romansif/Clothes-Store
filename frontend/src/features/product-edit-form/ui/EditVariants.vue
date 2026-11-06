@@ -5,30 +5,28 @@
         <label class="flex gap-1 text-xs font-semibold tracking-wider">
           {{ t("productForm.quantity") }}
         </label>
-        <div class="flex items-center justify-end gap-2 font-semibold">
+        <div
+          class="font-raleway relative inline-grid auto-cols-fr grid-flow-col items-center gap-2 rounded-full border border-white bg-white p-1 text-sm font-semibold"
+        >
+          <span
+            class="pointer-events-none absolute top-1 bottom-1 left-1 rounded-full bg-black transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+            :style="indicatorStyle"
+          />
           <button
+            v-for="mode in modes"
+            :key="mode.code"
             type="button"
-            @click="countMode = 'SAME'"
             :class="[
-              'rounded-full px-3 py-2 text-sm tracking-widest transition duration-700',
-              countMode === 'SAME' ? 'bg-black text-white' : 'text-neutral-500 hover:text-black',
+              'relative z-10 cursor-pointer rounded-full px-4 py-2 tracking-widest transition-colors duration-300',
+              countMode === mode.code ? 'text-white' : 'text-black',
             ]"
+            @click="countMode = mode.code"
           >
-            {{ t("productForm.same") }}
-          </button>
-          <button
-            type="button"
-            @click="countMode = 'DIFFER'"
-            :class="[
-              'rounded-full px-3 py-2 text-sm tracking-widest transition duration-700',
-              countMode === 'DIFFER' ? 'bg-black text-white' : 'text-neutral-500 hover:text-black',
-            ]"
-          >
-            {{ t("productForm.different") }}
+            {{ mode.code }}
           </button>
         </div>
       </div>
-      <div v-if="countMode === 'SAME'" class="flex">
+      <div v-if="countMode === 'SAME'" class="flex items-center">
         <UiInput
           v-model="createProductForm.quantity"
           @input="toggleAllVariants"
@@ -37,7 +35,7 @@
           variant="createProduct"
           :error-message="createProductFormErrorMessages.quantity ? createProductFormErrorMessages.quantity : ''"
         />
-        <span class="mt-auto ml-auto text-sm font-medium text-[#A3A3A3]">
+        <span class="ml-auto w-85 text-sm font-medium text-[#A3A3A3]">
           {{ t("productForm.sameHint") }}
         </span>
       </div>
@@ -52,21 +50,27 @@
             </tr>
           </thead>
           <tbody class="divide-y divide-neutral-200">
-            <tr v-for="color in uniqueColors(product)" :key="color.colorName">
+            <tr v-for="color in uniqueColors(props.product)" :key="color.colorName">
               <td :title="color.hex">
                 <div class="flex items-center gap-2">
-                  <span :style="{ background: color.hex }" class="h-10 w-10 shrink-0 rounded-full border-2 border-gray-300 shadow-sm" />
+                  <span
+                    :style="{ background: color.hex }"
+                    class="h-10 w-10 shrink-0 rounded-full border-2 border-gray-300 shadow-sm"
+                  />
                   <span class="text-xs font-bold whitespace-nowrap text-black uppercase">
                     {{ color.colorName }}
                   </span>
                 </div>
               </td>
-              <td v-for="size in uniqueSizes(product)" :key="`${color.colorName}-${size}`" class="py-6 text-center">
+              <td v-for="size in uniqueSizes(props.product)" :key="`${color.colorName}-${size}`" class="py-6 text-center">
                 <input
                   type="number"
                   min="0"
                   step="1"
-                  :value="product.variants.find((variant) => variant.colorName === color.colorName && variant.size === size)?.count ?? 0"
+                  :value="
+                    product.variants.find((variant) => variant.colorName === color.colorName && variant.size === size)
+                      ?.count ?? 0
+                  "
                   @input="
                     editProductQuantity({
                       product,
@@ -88,15 +92,15 @@
         <span class="flex gap-1 text-xs font-semibold tracking-wider">
           {{ t("productForm.sizesLabel") }}
           <span>/</span>
-          <span class="text-black uppercase">{{ pureSizesName(product) }}</span>
+          <span class="text-black uppercase">{{ pureSizesName(props.product) }}</span>
         </span>
         <span class="ml-auto text-xs font-medium text-[#A3A3A3]">
-          {{ t("productForm.sizesCount", uniqueSizes(product).length) }}
+          {{ t("productForm.sizesCount", uniqueSizes(props.product).length) }}
         </span>
       </div>
       <div class="flex gap-6">
         <img
-          v-for="size in isAvailableSizes(product)"
+          v-for="size in isAvailableSizes(props.product)"
           :key="size?.name"
           :src="size.url"
           alt=""
@@ -112,15 +116,15 @@
         <label class="flex gap-1 text-xs font-semibold tracking-wider">
           {{ t("productForm.colorsLabel") }}
           <span> / </span>
-          <span class="text-black uppercase">{{ pureColorsName(product) }}</span>
+          <span class="text-black uppercase">{{ pureColorsName(props.product) }}</span>
         </label>
         <span class="ml-auto text-xs font-medium text-[#A3A3A3]">
-          {{ t("productForm.colorsCount", uniqueColors(product).length) }}
+          {{ t("productForm.colorsCount", uniqueColors(props.product).length) }}
         </span>
       </div>
       <div class="flex gap-6">
         <label
-          v-for="(color, index) in pureInfoColors(product)"
+          v-for="(color, index) in pureInfoColors(props.product)"
           :key="color.hex"
           :title="color.hex"
           :style="{ background: color.hex }"
@@ -143,13 +147,18 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { productHelper } from "@/shared/lib/product-helper";
+import { modes, useProductForm } from "@/features/product-form/lib/use-product-form";
 import { useEditProductColors, useEditProductQuantity } from "@/features/product-edit-form/api/update-product";
 import { productFormHelper } from "@/features/product-form/lib/product-form-helper";
-import { createProductForm, createProductFormErrorMessages, moreCreateItemFormErrorMessages } from "@/entities/product-form/model/product-forms";
+import {
+  createProductForm,
+  createProductFormErrorMessages,
+  moreCreateItemFormErrorMessages,
+} from "@/entities/product-form/model/product-forms";
 import { UiInput } from "@/shared/ui/input";
 import type { Product } from "@/shared";
 
-defineProps<{
+const props = defineProps<{
   product: Product;
 }>();
 
@@ -157,5 +166,6 @@ const { t } = useI18n();
 const { editProductColors } = useEditProductColors();
 const { editProductQuantity } = useEditProductQuantity();
 const { toggleAllVariants, countMode } = productFormHelper();
+const { indicatorStyle } = useProductForm(countMode);
 const { pureInfoColors, pureColorsName, pureSizesName, isAvailableSizes, uniqueSizes, uniqueColors } = productHelper();
 </script>

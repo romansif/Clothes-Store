@@ -2,7 +2,12 @@
   <div class="flex gap-2">
     <div class="flex w-full flex-col gap-2">
       <label class="text-sm">{{ t("checkout.card.cardName") }}</label>
-      <CheckoutInput v-model="paymentForm.cardName" :placeholder="'Card Name is optional'" variant="payment" :error-message="''" />
+      <CheckoutInput
+        v-model="paymentForm.cardName"
+        :placeholder="'Card Name is optional'"
+        variant="payment"
+        :error-message="''"
+      />
     </div>
     <div class="flex w-full flex-col gap-2">
       <label class="text-sm">{{ t("checkout.card.cardNumber") }}</label>
@@ -50,13 +55,13 @@ import { useI18n } from "vue-i18n";
 import { IMaskComponent as IMask } from "vue-imask";
 import { cardNumberMask, expiryDateMask, cardCvvMask } from "@/entities/checkout-payment-form/model/payment-mask";
 import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment-form/model/payment-form";
-import { cardNumberClass, expiryDateClass, cardCvvClass, paymentCardErrorClass } from "@/shared/model/payment-form.variants";
+import {
+  cardNumberClass,
+  expiryDateClass,
+  cardCvvClass,
+  paymentCardErrorClass,
+} from "@/shared/model/payment-form.variants";
 import { CheckoutInput } from "@/shared/ui/checkout-input";
-import type { UserPayment } from "@/entities/checkout-payment-item";
-
-defineProps<{
-  userPayment: UserPayment | undefined;
-}>();
 
 const { t } = useI18n();
 </script>

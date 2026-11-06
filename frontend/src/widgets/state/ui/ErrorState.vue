@@ -11,7 +11,11 @@
           <span :class="{ 'animate-[spin_0.5s_linear_infinite]': props.loading }">↻</span>
           <span>{{ t("common.reload") }}</span>
         </UiButton>
-        <router-link v-if="stateRoute[props.variant]" :to="{ name: stateRoute[props.variant] }" :class="stateRouteClass[props.variant]">
+        <router-link
+          v-if="stateRoute[props.variant]"
+          :to="{ name: stateRoute[props.variant] }"
+          :class="stateRouteClass[props.variant]"
+        >
           <UiButton :name="t(stateRouteMessage[props.variant])" variant="catalog" />
         </router-link>
       </div>

@@ -6,7 +6,10 @@ import type { User } from "@/entities/profile";
 export const addColor = (color: ColorItem, user: User, product: Product) => {
   const isNotBuyer = user.role !== "Buyer";
   const hasStock = product.variants.some(
-    (v) => v.hex === color.hex && (!addToCartForm.value.sizes || v.size === addToCartForm.value.sizes) && Number(v.count) < 0,
+    (v) =>
+      v.hex === color.hex &&
+      (!addToCartForm.value.sizes || v.size === addToCartForm.value.sizes) &&
+      Number(v.count) < 0,
   );
 
   if (isNotBuyer || hasStock) {
@@ -18,7 +21,10 @@ export const addColor = (color: ColorItem, user: User, product: Product) => {
 export const addSize = (size: Size, user: User, product: Product) => {
   const isNotBuyer = user.role !== "Buyer";
   const hasStock = product.variants.some(
-    (p) => p.size === size.name && (!addToCartForm.value.colors?.hex || p.hex === addToCartForm.value.colors.hex) && Number(p.count) < 0,
+    (p) =>
+      p.size === size.name &&
+      (!addToCartForm.value.colors?.hex || p.hex === addToCartForm.value.colors.hex) &&
+      Number(p.count) < 0,
   );
 
   if (isNotBuyer || hasStock) {

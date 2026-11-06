@@ -68,13 +68,13 @@ const routes: RouteRecordRaw[] = [
         component: () => import("@/pages/products/ProductDetailPage.vue"),
       },
       {
-        path: "shop/my-cart",
+        path: "shop/my-cart/:id",
         meta: { requiresAuth: true },
         name: "cart",
         component: () => import("@/pages/cart/CartPage.vue"),
       },
       {
-        path: "shop/my-favorite",
+        path: "shop/my-favorite/:id",
         meta: { requiresAuth: true },
         name: "favorite",
         component: () => import("@/pages/favorite/FavoritePage.vue"),
@@ -87,14 +87,24 @@ const routes: RouteRecordRaw[] = [
     component: () => import("@/app/layouts/ProfileLayout.vue"),
     children: [
       {
-        path: "profile",
+        path: "profile/:id",
         name: "profile",
         component: () => import("@/pages/profile/ProfilePage.vue"),
       },
       {
-        path: "my-products",
+        path: "my/products/:id",
         name: "my/products",
         component: () => import("@/pages/products/MyProductsPage.vue"),
+      },
+      {
+        path: "orders/:id",
+        name: "orders",
+        component: () => import("@/pages/orders/AllOrdersPage.vue"),
+      },
+      {
+        path: "active/orders/:id",
+        name: "active/orders",
+        component: () => import("@/pages/orders/ActiveOrdersPage.vue"),
       },
     ],
   },
@@ -104,12 +114,12 @@ const routes: RouteRecordRaw[] = [
     component: () => import("@/app/layouts/ProductFormLayout.vue"),
     children: [
       {
-        path: "create-product",
+        path: "create/product",
         name: "create/product",
         component: () => import("@/pages/product-form/CreateProductPage.vue"),
       },
       {
-        path: "edit-product/:id",
+        path: "edit/product/:id",
         name: "edit/product",
         component: () => import("@/pages/product-form/EditProductPage.vue"),
       },

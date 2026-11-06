@@ -5,7 +5,11 @@
       <span class="text-red-500">*</span>
     </div>
     <div class="flex flex-col gap-4 font-semibold">
-      <UiProductTextarea v-model="reviewForm.comment" :placeholder="t('reviews.reviewPh')" :error-message="reviewFormMessages.comment" />
+      <UiProductTextarea
+        v-model="reviewForm.comment"
+        :placeholder="t('reviews.reviewPh')"
+        :error-message="reviewFormMessages.comment"
+      />
     </div>
   </label>
 </template>

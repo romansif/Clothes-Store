@@ -1,14 +1,14 @@
 <template>
-  <ul class="no-scrollbar mt-6 flex h-112 flex-col gap-8 overflow-y-auto">
-    <OrderItem v-for="order in orders" :key="order.id" :order="order" />
-  </ul>
+  <TransitionGroup name="list" tag="ul" class="flex flex-col gap-6 pb-4">
+    <Order v-for="order in orders" :key="order.id" :order="order" :orders="props.orders" />
+  </TransitionGroup>
 </template>
 
 <script setup lang="ts">
-import { OrderItem } from "@/entities/order-item";
-import type { Order } from "@/entities/order";
+import { Order } from "@/entities/order-item";
+import type { OrderProps } from "@/entities/order";
 
 const props = defineProps<{
-  orders: Order[];
+  orders: OrderProps[];
 }>();
 </script>

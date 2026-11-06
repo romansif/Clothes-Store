@@ -8,7 +8,11 @@
     </div>
   </form>
   <div class="mt-3 flex justify-center">
-    <UiButton variant="changeRegister" :name="isRole ? t('auth.signUpAsBuyer') : t('auth.signUpAsSeller')" @click="toggleSignUp" />
+    <UiButton
+      variant="changeRegister"
+      :name="isRole ? t('auth.signUpAsBuyer') : t('auth.signUpAsSeller')"
+      @click="toggleSignUp"
+    />
   </div>
 </template>
 

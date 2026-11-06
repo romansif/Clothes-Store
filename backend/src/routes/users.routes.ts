@@ -7,18 +7,25 @@ import { avatarUpload } from "#middleware/multer.uploads.ts";
 const router = express.Router();
 
 router.get('/users', usersController.getUsers);
+
 router.get('/users/:id', usersController.getUserById);
+
 router.get('/checkout', authMiddleware, usersController.getAllCheckout);
 
 router.patch('/avatar/:id', authMiddleware, avatarUpload.single('avatar'), usersController.updateUserAvatar);
+
 router.patch('/name/:id', authMiddleware, validation.updateUserNameValidation, validation.handleValidationErrors,
     usersController.updateUser);
+
 router.patch('/surname/:id', authMiddleware, validation.updateUserSurNameValidation, validation.handleValidationErrors,
     usersController.updateUser);
+
 router.patch('/phone/:id', authMiddleware, validation.updateUserPhoneValidation, validation.handleValidationErrors,
     usersController.updateUser);
+
 router.patch('/publicPhone/:id', authMiddleware, validation.updateUserPhoneValidation, validation.handleValidationErrors,
     usersController.updateUser);
+
 router.patch('/email/:id', authMiddleware, validation.updateUserEmailValidation, validation.handleValidationErrors,
     usersController.updateUser);
 
@@ -26,6 +33,5 @@ router.post('/password/:id', authMiddleware, validation.updateUserPasswordValida
     usersController.updateUserPassword);
 
 router.delete('/users/:id', authMiddleware, usersController.deleteUser);
-
 
 export default router;

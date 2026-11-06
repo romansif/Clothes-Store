@@ -1,5 +1,5 @@
 <template>
-  <PaymentCardForm v-if="isDebitCard" :user-payment="userPayment" />
+  <PaymentCardForm v-if="props.isDebitCard" />
   <PaymentMethod
     v-for="payment in visibleMethods"
     :key="payment.method"
@@ -19,10 +19,8 @@ import { PaymentCardForm, PaymentMethod } from "@/entities/checkout-payment-form
 import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment-form/model/payment-form";
 import { allPaymentMethods } from "@/entities/checkout-payment-form/model/payment-methods";
 import type { PaymentMethods } from "@/entities/checkout-payment-form";
-import type { UserPayment } from "@/entities/checkout-payment-item";
 
 const props = defineProps<{
-  userPayment: UserPayment | undefined;
   isDebitCard: boolean;
 }>();
 

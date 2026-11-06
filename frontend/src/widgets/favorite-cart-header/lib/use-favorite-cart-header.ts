@@ -2,7 +2,7 @@ import { computed } from "vue";
 import type { RouteLocationNormalizedLoaded } from "vue-router";
 
 import { useCartData } from "@/widgets/cart-list/lib/use-cart-data";
-import { useFavoriteData } from "@/widgets/favorite-list/lib/use-favorite-data";
+import { useFavoriteData } from "@/shared/lib/use-favorite-data";
 
 export const useFavoriteCartHeader = (route: RouteLocationNormalizedLoaded) => {
   const { cart } = useCartData();

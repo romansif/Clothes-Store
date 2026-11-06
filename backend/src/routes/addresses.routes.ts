@@ -6,6 +6,7 @@ import { addressesController } from "#controllers/addresses.controller.ts";
 const router = express.Router();
 
 router.get('/address/:userId', authMiddleware, addressesController.getAddresses);
+
 router.get('/address/item/:id', authMiddleware, addressesController.getAddress);
 
 router.post('/address', authMiddleware, validation.addAddressValidation,

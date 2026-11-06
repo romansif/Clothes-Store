@@ -1,6 +1,6 @@
 <template>
   <img
-    @click="toggleDeleteChoice(t('confirm.deleteCartItem'), 'DELETE_CART_ITEM', product.id)"
+    @click="toggleDeleteChoice(t('confirm.deleteCartItem'), 'DELETE_CART_ITEM', props.product.id)"
     :src="del"
     alt=""
     class="cursor-pointer transition duration-400 hover:scale-120"

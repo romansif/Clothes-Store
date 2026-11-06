@@ -1,9 +1,10 @@
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
+import type { Product } from "@/shared";
+
 import { activeFilter, yearFilter } from "@/widgets/filter-products/model/active-filter";
 import { clearSearchProductForm } from "@/features/search-product/lib/clear-search";
 import { sizes } from "@/shared/model/product-sizes";
-import type { Product } from "@/shared";
 
 const FILTER_LABEL_KEYS: Record<string, string> = {
   Man: "genders.man",
@@ -36,7 +37,7 @@ const PRICE_RANGES: Record<string, { min?: number; max?: number }> = {
 export const filterLabelKey = (name: string) => FILTER_LABEL_KEYS[name] ?? name;
 
 export const filterProduct = () => {
-  const { t } = useI18n()
+  const { t } = useI18n();
 
   const priceLabels: Record<string, () => string> = {
     "$ 200": () => t("prices.toPrice", { price: `200 ${t("prices.sum")}` }),
@@ -85,10 +86,10 @@ export const filterProduct = () => {
   });
 
   const prices = ref<Record<string, boolean>>({
-    '$ 200': false,
-    '$ 200 - 500': false,
-    '$ 500 - 1000': false,
-    '$ 1000': false
+    "$ 200": false,
+    "$ 200 - 500": false,
+    "$ 500 - 1000": false,
+    "$ 1000": false,
   });
 
   const category = ref<Record<string, boolean>>({
@@ -128,7 +129,7 @@ export const filterProduct = () => {
       STATUS: stackProducts.value,
       GENDER: genders.value,
       COLOR: colors.value,
-      PRICE: prices.value
+      PRICE: prices.value,
     };
 
     clearActiveKey();
@@ -155,9 +156,7 @@ export const filterProduct = () => {
     const range = PRICE_RANGES[stackName];
     if (range) {
       return products.filter(
-          (p) =>
-              (range.min === undefined || p.price >= range.min) &&
-              (range.max === undefined || p.price <= range.max),
+        (p) => (range.min === undefined || p.price >= range.min) && (range.max === undefined || p.price <= range.max),
       ).length;
     }
   };
@@ -194,6 +193,6 @@ export const filterProduct = () => {
     stackProducts,
     genders,
     colors,
-    prices
+    prices,
   };
 };

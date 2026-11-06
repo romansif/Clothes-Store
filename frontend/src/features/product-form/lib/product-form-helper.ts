@@ -46,11 +46,17 @@ export const productFormHelper = () => {
       moreCreateItemForm.colors = [];
     }
 
-    if (eventOrColor instanceof Event && eventOrColor.target instanceof HTMLInputElement && eventOrColor.target.type === "color") {
+    if (
+      eventOrColor instanceof Event &&
+      eventOrColor.target instanceof HTMLInputElement &&
+      eventOrColor.target.type === "color"
+    ) {
       const hexColor = eventOrColor.target.value;
       if (!hexColor) return;
 
-      const exists = moreCreateItemForm.colors.some((c) => (typeof c === "string" ? c === hexColor : c.hex === hexColor));
+      const exists = moreCreateItemForm.colors.some((c) =>
+        typeof c === "string" ? c === hexColor : c.hex === hexColor,
+      );
 
       if (!exists) {
         const names = namer(hexColor);

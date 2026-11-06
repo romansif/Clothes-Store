@@ -2,7 +2,12 @@
   <div class="flex flex-col gap-4">
     <div class="flex flex-col gap-3">
       <label class="text-xs font-semibold tracking-wider text-gray-700 uppercase">{{ t("auth.emailOrPhone") }}</label>
-      <UiInput v-model="loginForm.email" type="email" :placeholder="t('auth.placeholder.name')" :error-message="useLoginErrorMessage" />
+      <UiInput
+        v-model="loginForm.email"
+        type="email"
+        :placeholder="t('auth.placeholder.name')"
+        :error-message="useLoginErrorMessage"
+      />
     </div>
     <div class="flex flex-col gap-3">
       <div class="flex">
@@ -27,8 +32,18 @@
     <div class="flex flex-col gap-3">
       <label class="text-xs font-semibold tracking-wider text-gray-700 uppercase">{{ t("auth.role") }}</label>
       <div class="flex gap-3">
-        <LoginRoleInput v-model="loginForm.role" :role="'Buyer'" :error-message="loginFormErrorMessages.role" />
-        <LoginRoleInput v-model="loginForm.role" :role="'Seller'" :error-message="loginFormErrorMessages.role" />
+        <LoginRoleInput
+          v-model="loginForm.role"
+          :value="'Buyer'"
+          :role="t('roles.buyer')"
+          :error-message="loginFormErrorMessages.role"
+        />
+        <LoginRoleInput
+          v-model="loginForm.role"
+          :value="'Seller'"
+          :role="t('roles.seller')"
+          :error-message="loginFormErrorMessages.role"
+        />
       </div>
       <span v-if="loginFormErrorMessages.role" class="text-xs text-red-600">{{ loginFormErrorMessages.role }}</span>
     </div>

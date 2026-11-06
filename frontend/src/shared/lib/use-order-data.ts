@@ -1,9 +1,20 @@
 import { computed } from "vue";
 import { useQuery } from "@tanstack/vue-query";
 
-import { useGetOrder } from "@/widgets/order-list/api/get-order";
+import { useGetOrder } from "@/shared/api/get-order";
 
-const { getOrders, getActiveOrders } = useGetOrder();
+const { getAllOrder, getOrders, getActiveOrders, getOrderItems } = useGetOrder();
+
+export const useAllOrdersData = () => {
+  const { data: allOrders } = useQuery({
+    queryKey: ["allOrders"],
+    queryFn: () => getAllOrder(),
+  });
+
+  return {
+    allOrders: computed(() => allOrders.value ?? []),
+  };
+};
 
 export const useOrderData = () => {
   const userId = localStorage.getItem("userId");
@@ -62,6 +73,36 @@ export const useActiveOrderData = () => {
 
   return {
     activeOrders: computed(() => activeOrders.value ?? []),
+    isLoading,
+    isFetching,
+    isError,
+    refetch,
+  };
+};
+
+export const useOrderItemsData = (orderId: string) => {
+  const {
+    data: orderItems,
+    isLoading,
+    isFetching,
+    isError,
+    refetch,
+  } = useQuery({
+    queryKey: computed(() => ["orderItems", orderId]),
+
+    queryFn: () => {
+      if (!orderId) {
+        throw new Error("Пользователь не зарегистрирован");
+      }
+
+      return getOrderItems(orderId);
+    },
+
+    enabled: computed(() => Boolean(orderId)),
+  });
+
+  return {
+    orderItems: computed(() => orderItems.value ?? []),
     isLoading,
     isFetching,
     isError,

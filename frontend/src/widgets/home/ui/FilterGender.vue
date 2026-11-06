@@ -1,23 +1,26 @@
 <template>
   <div class="flex gap-5 border-b border-gray-300 py-3 text-lg">
-    <button @click="selectGender('ALL', 'ALL')" :class="[filterGenderClass, selectedGender === 'ALL' ? selectedFilterGenderClass : 'text-[#A3A3A3]']">
+    <button
+      :class="[filterGenderClass, selectedGender === 'ALL' ? selectedFilterGenderClass : 'text-[#A3A3A3]']"
+      @click="selectGender('ALL', 'ALL')"
+    >
       {{ t("home.gender.all") }}
     </button>
     <button
-      @click="selectGender('GENDER', 'Man')"
       :class="[filterGenderClass, selectedGender === 'Man' ? selectedFilterGenderClass : 'text-[#A3A3A3]']"
+      @click="selectGender('GENDER', 'Man')"
     >
       {{ t("home.gender.man") }}
     </button>
     <button
-      @click="selectGender('GENDER', 'Woman')"
       :class="[filterGenderClass, selectedGender === 'Woman' ? selectedFilterGenderClass : 'text-[#A3A3A3]']"
+      @click="selectGender('GENDER', 'Woman')"
     >
       {{ t("home.gender.woman") }}
     </button>
     <button
-      @click="selectGender('GENDER', 'Kids')"
       :class="[filterGenderClass, selectedGender === 'Kids' ? selectedFilterGenderClass : 'text-[#A3A3A3]']"
+      @click="selectGender('GENDER', 'Kids')"
     >
       {{ t("home.gender.kids") }}
     </button>

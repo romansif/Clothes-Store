@@ -3,7 +3,7 @@ import {
   showCategory,
   showColor,
   showGender,
-  showPrice
+  showPrice,
 } from "@/widgets/filter-products/model/filter.refs";
 
 export const toggleAvailabilityFilter = () => {
@@ -24,4 +24,4 @@ export const toggleCategoryFilter = () => {
 
 export const togglePriceFilter = () => {
   showPrice.value = !showPrice.value;
-}
+};

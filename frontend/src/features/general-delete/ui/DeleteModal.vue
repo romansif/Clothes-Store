@@ -1,5 +1,8 @@
 <template>
-  <div @click="toggleDeleteChoice('', '', '')" class="font-montserrat fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)]">
+  <div
+    @click="toggleDeleteChoice('', '', '')"
+    class="font-montserrat fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)]"
+  >
     <div @click.stop class="flex h-50 w-100 items-center justify-center rounded-md bg-white py-2 text-lg">
       <div class="flex flex-col items-center gap-8">
         <h1 class="w-60 text-center font-medium">{{ deleteMessage }}</h1>

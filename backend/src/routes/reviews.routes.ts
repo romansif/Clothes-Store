@@ -7,9 +7,11 @@ import { validation } from "#middleware/validation.ts";
 const router = express.Router();
 
 router.get('/reviews', authMiddleware, reviewsController.getReviews);
+
 router.get('/reviews/:productId/:filter', authMiddleware, reviewsController.getFilteredReviews);
+
 router.post('/reviews', authMiddleware, roleMiddleware('Buyer'), reviewUpload.array('images', 4),
     reviewsController.reviewParse, validation.createReviewValidation, validation.handleValidationErrors,
     reviewsController.createReview);
 
-export default router;
+export default router;88888

@@ -8,7 +8,7 @@ export const productCardVariants = {
   },
 
   myProduct: {
-    size: "w-83.75 h-78.5 md:h-[314px] xl:h-100",
+    size: "w-90 h-78.5 md:h-[314px] xl:h-110",
     stack: "absolute top-41 -left-12 text-7xl font-semibold -rotate-50 w-110",
     button: "absolute top-0.5 left-75.5 w-8 cursor-pointer",
   },

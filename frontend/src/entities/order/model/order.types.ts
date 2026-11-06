@@ -1,27 +1,41 @@
 import type { ColorItem } from "@/shared";
 
-export interface OrderItem {
+export interface OrderPosition {
   id: string;
+  orderId: string;
   productId: string;
   title: string;
-  category: string;
-  description: string;
+  images?: string[];
   sku: string;
   price: number;
   quantity: number;
+  total_price: number;
+  status: string;
+  processed_at: string;
+  date_created_at: string;
+  time_created_at: string;
+  created_at: string;
+  date_processed_at: string;
+  time_processed_at: string;
+  cancelled_at: string;
+  date_cancelled_at: string;
+  time_cancelled_at: string;
+  cause_replace: string;
   size: string;
   color: ColorItem;
-  images?: string[];
+  category: string;
+  material: string;
+  gender: string;
+  description: string;
 }
 
-export interface Order {
+export interface OrderProps {
   id: string;
   userId: string;
-  productId: string;
-  orderItems: OrderItem[];
   orderTotal: number;
   delivery: string;
   status: string;
+  processed_at: string;
   date_created_at: string;
   time_created_at: string;
   cause_replace: string;
@@ -29,6 +43,8 @@ export interface Order {
   date_cancelled_at: string;
   time_cancelled_at: string;
   created_at: string;
+  date_processed_at: string;
+  time_processed_at: string;
   addressId: string;
   contactId: string;
   paymentId: string;

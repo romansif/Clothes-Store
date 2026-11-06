@@ -1,7 +1,12 @@
 <template>
   <TransitionGroup name="list">
     <ul class="no-scrollbar flex h-35 flex-col overflow-y-auto pb-4">
-      <CheckoutAddressItem v-for="address in userAddresses" :key="address.id" :address="address" @click="useSavedAddress(address)" />
+      <CheckoutAddressItem
+        v-for="address in userAddresses"
+        :key="address.id"
+        :address="address"
+        @click="useSavedAddress(address)"
+      />
     </ul>
   </TransitionGroup>
 </template>

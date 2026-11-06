@@ -3,7 +3,7 @@
     <div>
       <Loader v-if="isLoading" variant="user" />
       <ErrorState v-else-if="isError" variant="user" :loading="isFetching" @reload="refetch()" />
-      <main v-else-if="user" :class="['font-raleway flex justify-center', user.role === 'Buyer' ? 'py-28' : 'py-46']">
+      <main v-else-if="user" :class="['font-raleway flex justify-center', user.role === 'Buyer' ? 'py-22' : 'py-40']">
         <ProfileSettings :user="user" />
       </main>
       <ProfileNotLoggedIn v-if="!user" />

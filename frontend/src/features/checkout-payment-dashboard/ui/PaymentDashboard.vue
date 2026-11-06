@@ -5,12 +5,20 @@
     <div v-else class="mt-8 flex flex-col gap-5">
       <div class="flex justify-between">
         <label class="text-xs font-medium md:text-sm">{{ t("checkout.paymentMethods") }}</label>
-        <span v-if="havePayments(userPaymentCards)" class="cursor-pointer text-xs text-indigo-600 hover:text-violet-600" @click="toggleShowPayment()">
+        <span
+          v-if="havePayments(userPaymentCards)"
+          class="cursor-pointer text-xs text-indigo-600 hover:text-violet-600"
+          @click="toggleShowPayment()"
+        >
           {{ t("checkout.showSavedPayment") }}
         </span>
       </div>
       <div class="flex gap-3">
-        <form @submit.prevent="placeOrder({ useSaved: false })" action="" class="font-dm-sans flex w-full flex-col gap-4">
+        <form
+          @submit.prevent="placeOrder({ useSaved: false })"
+          action=""
+          class="font-dm-sans flex w-full flex-col gap-4"
+        >
           <PaymentMethodsForm
             :user-payment="userPaymentCard"
             :is-debit-card="isDebitCard"
@@ -19,14 +27,27 @@
           />
           <div class="relative mt-5 transition duration-400 hover:scale-110 sm:ml-auto">
             <UiButton v-if="!isSavedPayment" type="submit" :name="t('checkout.pay')" variant="checkOut" />
-            <img :src="arrow" alt="" class="absolute top-1/2 left-75 h-13 -translate-y-1/2 sm:left-60 md:left-75 lg:left-34 xl:left-46" />
+            <img
+              :src="arrow"
+              alt=""
+              class="absolute top-1/2 left-75 h-13 -translate-y-1/2 sm:left-60 md:left-75 lg:left-34 xl:left-46"
+            />
           </div>
         </form>
       </div>
     </div>
     <div class="relative mt-5 transition duration-400 hover:scale-110 sm:ml-auto">
-      <UiButton v-if="isSavedPayment" :name="t('checkout.pay')" variant="checkOut" @click="placeOrder({ useSaved: false })" />
-      <img :src="arrow" alt="" class="absolute top-1/2 left-75 h-13 -translate-y-1/2 sm:left-60 md:left-75 lg:left-34 xl:left-46" />
+      <UiButton
+        v-if="isSavedPayment"
+        :name="t('checkout.pay')"
+        variant="checkOut"
+        @click="placeOrder({ useSaved: false })"
+      />
+      <img
+        :src="arrow"
+        alt=""
+        class="absolute top-1/2 left-75 h-13 -translate-y-1/2 sm:left-60 md:left-75 lg:left-34 xl:left-46"
+      />
     </div>
   </div>
 </template>

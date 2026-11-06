@@ -2,7 +2,10 @@
   <div class="font-montserrat relative mt-12 w-full overflow-hidden rounded-2xl">
     <Transition name="slide" mode="out-in">
       <div :key="current.id" class="flex h-96 justify-between bg-black">
-        <div style="filter: drop-shadow(0 0 8px rgba(255, 255, 255, 1))" class="flex flex-col justify-center gap-2 px-20">
+        <div
+          style="filter: drop-shadow(0 0 8px rgba(255, 255, 255, 1))"
+          class="flex flex-col justify-center gap-2 px-20"
+        >
           <div class="flex w-100 flex-col gap-1 text-gray-50">
             <div class="w-40 border-t-4 pb-6"></div>
             <h2 class="break-after-all text-5xl font-semibold">
@@ -16,7 +19,11 @@
             {{ t(current.text) }}
           </p>
           <div class="mt-8 flex w-110 items-center justify-between">
-            <router-link v-if="current.routeText" :to="{ name: current.routeName }" class="transition duration-500 hover:scale-108">
+            <router-link
+              v-if="current.routeText"
+              :to="{ name: current.routeName }"
+              class="transition duration-500 hover:scale-108"
+            >
               <span class="w-fit cursor-pointer break-after-all border-b-2 pb-1.5 text-2xl font-medium text-gray-200">
                 {{ t(current.routeText) }}
               </span>

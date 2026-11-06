@@ -2,7 +2,12 @@
   <div class="mt-2 flex flex-col xl:block">
     <div class="flex flex-col gap-4">
       <div class="flex items-center gap-4">
-        <img @click="toggleAgree" :src="isAgreeFormError.agree ? check_square : square" alt="" class="w-6.25 cursor-pointer" />
+        <img
+          @click="toggleAgree"
+          :src="isAgreeFormError.agree ? check_square : square"
+          alt=""
+          class="w-6.25 cursor-pointer"
+        />
         <span class="text-xs text-[#A3A3A3]">{{ t("cart.agreeTerms") }}</span>
       </div>
       <span class="text-xs text-red-600">{{ isAgreeFormErrorMessage.agree }}</span>

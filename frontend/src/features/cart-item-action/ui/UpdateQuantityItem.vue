@@ -1,16 +1,16 @@
 <template>
   <div class="flex flex-col border transition duration-400 hover:scale-120">
     <button
-      @click="updateCartItemQuantity({ type: 'add', cartItem: product })"
+      @click="updateCartItemQuantity({ type: 'add', cartItem: props.product })"
       class="cursor-pointer border-b transition duration-400 hover:bg-zinc-300"
     >
       +
     </button>
     <span class="font-dm-sans border-b text-center text-sm">
-      {{ product.quantity }}
+      {{ props.product.quantity }}
     </span>
     <button
-      @click="updateCartItemQuantity({ type: 'remove', cartItem: product })"
+      @click="updateCartItemQuantity({ type: 'remove', cartItem: props.product })"
       class="cursor-pointer border-b transition duration-400 hover:bg-zinc-300"
     >
       -

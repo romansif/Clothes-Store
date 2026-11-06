@@ -1,6 +1,6 @@
 <template>
   <img
-    @click="toggleDeleteChoice(t('confirm.deleteProduct'), 'DELETE_PROUCT_ITEM', product.id)"
+    @click="toggleDeleteChoice(t('confirm.deleteProduct'), 'DELETE_PROUCT_ITEM', props.product.id)"
     :src="del"
     alt=""
     class="w-7.5 cursor-pointer transition duration-400 hover:scale-120"
@@ -14,7 +14,7 @@ import type { Product } from "@/shared";
 
 import del from "@/assets/icons/delete-close/delete.svg";
 
-defineProps<{
+const props = defineProps<{
   product: Product;
 }>();
 

@@ -1,12 +1,14 @@
 <template>
-  <div v-if="props.user" class="flex w-87.5 flex-col rounded-xl bg-white shadow-2xl sm:w-150 md:w-175 lg:w-237.5 xl:w-175">
+  <div
+    v-if="props.user"
+    class="flex w-87.5 flex-col rounded-xl bg-white shadow-2xl sm:w-150 md:w-175 lg:w-237.5 xl:w-175"
+  >
     <div class="flex p-5">
       <div class="flex items-center gap-10">
         <img
-          :src="user ? avatar() : profile"
+          :src="props.user ? avatar() : profile"
           alt=""
           class="h-25 w-25 rounded-full bg-white object-cover transition duration-300 group-hover:scale-110"
-          @click="toggleAvatar"
         />
         <div class="flex flex-col gap-4 text-xl font-semibold">
           <div class="font-dm-sans flex gap-2">
@@ -27,7 +29,7 @@
         </div>
       </div>
       <div class="ml-auto flex gap-2">
-        <ProfileMenu :user="user" />
+        <ProfileMenu :user="props.user" />
       </div>
     </div>
     <div class="flex flex-col border-t border-gray-300 font-medium">
@@ -40,7 +42,6 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { userAvatar } from "@/widgets/profile/lib/profile-avatar";
-import { toggleAvatar } from "@/features/profile-change-avatar/lib/use-profile-modal";
 import { OpenProfileModals } from "@/widgets/profile";
 import { ProfileModals } from "@/widgets/profile";
 import { ProfileMenu } from "@/features/profile-menu";

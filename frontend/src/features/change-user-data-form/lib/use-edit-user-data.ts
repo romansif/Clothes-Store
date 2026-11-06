@@ -14,8 +14,13 @@ import {
 import { handler } from "@/shared/api/http";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
 
-const { clearUpdateUserFormPhone, clearUpdateUserFormEmail, clearUpdateUserFormName, clearUpdateUserFormSurName, clearUpdateUserFormPassword } =
-  clearUsersForms();
+const {
+  clearUpdateUserFormPhone,
+  clearUpdateUserFormEmail,
+  clearUpdateUserFormName,
+  clearUpdateUserFormSurName,
+  clearUpdateUserFormPassword,
+} = clearUsersForms();
 
 export const useEditUserName = () => {
   const { baseEditUser } = useBaseEditUser();

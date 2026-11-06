@@ -9,7 +9,7 @@
         <div class="mb-3 flex w-full border-b border-gray-300 pb-3">
           <router-link
             :to="{ name: 'shop/new-collections' }"
-            class="ml-auto cursor-pointer text-[#A3A3A3] transition duration-400 hover:scale-120 hover:text-black"
+            class="ml-auto cursor-pointer text-[#722f37] transition duration-400 hover:scale-120 hover:text-[#5a252c]"
           >
             {{ t("home.seeAll") }}
           </router-link>

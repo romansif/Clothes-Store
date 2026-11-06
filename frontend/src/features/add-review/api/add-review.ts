@@ -1,9 +1,8 @@
-import { useMutation, useQueryClient } from "@tanstack/vue-query";
+import { useMutation } from "@tanstack/vue-query";
 
 import { useBaseModals } from "@/widgets/notification/lib/use-notify";
-import { clearReviewForm } from "@/features/add-review/lib/clear-review-form";
 import { reviewsStore } from "@/features/review-dashboard/model/reviews.store";
-import { toggleReviewModal } from "@/entities/order-action/lib/review-form-modal";
+import { closeReviewModal } from "@/entities/order-action/lib/review-form-modal";
 import type { User } from "@/entities/profile";
 import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/review-form";
 import { reviewFormSchema } from "@/entities/review-form/model/review-schemas";
@@ -15,8 +14,6 @@ const { productId } = reviewsStore();
 const { openNotify } = useBaseModals();
 
 export const useCreateReview = () => {
-  const queryClient = useQueryClient();
-
   const {
     mutateAsync: createReview,
     isPending,
@@ -65,13 +62,9 @@ export const useCreateReview = () => {
     },
 
     onSuccess: async () => {
-      clearReviewForm();
-
       await openNotify({ variant: "add-review", state: "success" });
 
-      toggleReviewModal("");
-
-      await Promise.all([queryClient.invalidateQueries({ queryKey: ["reviews"] }), queryClient.invalidateQueries({ queryKey: ["filteredReviews"] })]);
+      await closeReviewModal();
     },
 
     onError: async (err) => {

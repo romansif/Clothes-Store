@@ -1,5 +1,5 @@
 <template>
-  <Menu v-if="user" as="div" class="font-raleway relative inline-block">
+  <Menu v-if="props.user" as="div" class="font-raleway relative inline-block">
     <MenuButton
       class="inline-flex w-full justify-center gap-x-1.5 rounded-xl border border-gray-300 px-3 py-2 text-sm font-semibold inset-ring-1 inset-ring-white/5 transition duration-400 hover:scale-108"
     >
@@ -13,10 +13,16 @@
       leave-from-class="transform scale-100"
       leave-to-class="transform opacity-0 scale-95"
     >
-      <MenuItems class="absolute right-0 z-10 mt-2 w-46 origin-top-right divide-y rounded-xl border border-gray-300 bg-white">
+      <MenuItems
+        class="absolute right-0 z-10 mt-2 w-46 origin-top-right divide-y rounded-xl border border-gray-300 bg-white"
+      >
         <div class="py-1">
           <MenuItem>
-            <UiButton variant="profileMenu" :name="t('profile.exitAccount')" @click="toggleDeleteChoice(t('confirm.logout'), 'EXIT', '')" />
+            <UiButton
+              variant="profileMenu"
+              :name="t('profile.exitAccount')"
+              @click="toggleDeleteChoice(t('confirm.logout'), 'EXIT', '')"
+            />
           </MenuItem>
         </div>
         <div class="py-1">
@@ -29,12 +35,12 @@
           </MenuItem>
         </div>
         <div class="py-1">
-          <MenuItem v-if="user.role === 'Seller'">
+          <MenuItem v-if="props.user.role === 'Seller'">
             <router-link :to="{ name: 'signUp' }">
               <UiButton variant="profileMenu" :name="t('profile.becomeBuyer')" />
             </router-link>
           </MenuItem>
-          <MenuItem v-if="user.role === 'Buyer'">
+          <MenuItem v-if="props.user.role === 'Buyer'">
             <router-link :to="{ name: 'signUp' }">
               <UiButton variant="profileMenu" :name="t('profile.becomeSeller')" />
             </router-link>

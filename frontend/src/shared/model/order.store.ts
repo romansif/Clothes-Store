@@ -1,14 +1,16 @@
 import { ref } from "vue";
 
-import type { OrderItem } from "@/entities/order";
+import type { OrderPosition } from "@/entities/order";
 
-const orderItems = ref<OrderItem[]>([]);
+const orderItems = ref<OrderPosition[]>([]);
 
 const orderId = ref<string>("");
+const itemId = ref<string>("");
 
 export const orderStore = () => {
   return {
     orderItems,
     orderId,
+    itemId,
   };
 };

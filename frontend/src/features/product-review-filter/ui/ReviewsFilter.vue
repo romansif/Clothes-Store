@@ -12,7 +12,11 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { filterReviews, reviewLabelKey } from "@/features/product-review-filter/lib/filter-reviews";
-import { reviewFilterBlock, reviewFilterNameClass, selectedFilterNameClass } from "@/features/review-dashboard/model/review-filter.variants";
+import {
+  reviewFilterBlock,
+  reviewFilterNameClass,
+  selectedFilterNameClass,
+} from "@/features/review-dashboard/model/review-filter.variants";
 
 const { t } = useI18n();
 const { reviewsType, toggleFilter } = filterReviews();

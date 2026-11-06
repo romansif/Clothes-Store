@@ -22,7 +22,8 @@ export type ButtonVariant =
   | "catalog"
   | "paymentSuccess"
   | "viewMyOrders"
-  | "closeNotify";
+  | "closeNotify"
+  | "useItemOrder";
 
 export interface ButtonProps {
   name: string;

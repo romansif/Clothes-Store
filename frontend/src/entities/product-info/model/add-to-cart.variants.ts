@@ -4,11 +4,19 @@ import { addToCartForm } from "@/entities/product-info/model/add-to-cart-form";
 
 export const addToCartVariants = () => {
   const isColorAvailable = (color: ColorItem, product: Product) =>
-    product.variants.some((v) => v.hex === color.hex && (!addToCartForm.value.sizes || v.size === addToCartForm.value.sizes) && Number(v.count) > 0);
+    product.variants.some(
+      (v) =>
+        v.hex === color.hex &&
+        (!addToCartForm.value.sizes || v.size === addToCartForm.value.sizes) &&
+        Number(v.count) > 0,
+    );
 
   const isSizeAvailable = (size: Size, product: Product) =>
     product.variants.some(
-      (p) => p.size === size.name && (!addToCartForm.value.colors?.hex || p.hex === addToCartForm.value.colors.hex) && Number(p.count) > 0,
+      (p) =>
+        p.size === size.name &&
+        (!addToCartForm.value.colors?.hex || p.hex === addToCartForm.value.colors.hex) &&
+        Number(p.count) > 0,
     );
 
   const selectedColorClass = (color: ColorItem, product: Product, role: string) => {

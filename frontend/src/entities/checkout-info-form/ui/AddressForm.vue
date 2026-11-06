@@ -21,7 +21,11 @@
     </div>
     <div class="flex gap-2">
       <div class="flex w-full flex-col">
-        <CheckoutInput v-model="informationForm.city" :placeholder="t('checkout.address.city')" :error-message="informationFormErrorMessages.city" />
+        <CheckoutInput
+          v-model="informationForm.city"
+          :placeholder="t('checkout.address.city')"
+          :error-message="informationFormErrorMessages.city"
+        />
       </div>
       <div class="flex w-full flex-col">
         <IMask

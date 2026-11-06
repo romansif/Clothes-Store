@@ -3,11 +3,19 @@
     <div class="flex gap-3">
       <div class="flex w-full flex-col gap-3">
         <label class="text-xs font-semibold tracking-wider text-gray-700 uppercase">{{ t("auth.name") }}</label>
-        <UiInput v-model="registerForm.name" :placeholder="t('auth.placeholder.name')" :error-message="registerFormErrorMessages.name" />
+        <UiInput
+          v-model="registerForm.name"
+          :placeholder="t('auth.placeholder.name')"
+          :error-message="registerFormErrorMessages.name"
+        />
       </div>
       <div class="flex w-full flex-col gap-3">
         <label class="text-xs font-semibold tracking-wider text-gray-700 uppercase">{{ t("auth.surname") }}</label>
-        <UiInput v-model="registerForm.surName" :placeholder="t('auth.placeholder.surname')" :error-message="registerFormErrorMessages.surName" />
+        <UiInput
+          v-model="registerForm.surName"
+          :placeholder="t('auth.placeholder.surname')"
+          :error-message="registerFormErrorMessages.surName"
+        />
       </div>
     </div>
     <div class="flex flex-col gap-3">
@@ -57,7 +65,10 @@ import { showPasswordClass, showPasswordErrorClass } from "@/shared/ui/auth-form
 import { togglePassword } from "@/features/toggle-password/lib/toggle-password.ts";
 import { refClearErrorsOnChange } from "@/shared/lib/errors-helper.ts";
 import { registerForm, registerFormErrorMessages } from "@/entities/register-form/model/register-from";
-import { registerPhoneInputVariants, registerSelectPhoneCode } from "@/features/register-auth/model/register-phone-input.variants.ts";
+import {
+  registerPhoneInputVariants,
+  registerSelectPhoneCode,
+} from "@/features/register-auth/model/register-phone-input.variants.ts";
 import { UiInput } from "@/shared/ui/input";
 import { UiPhoneInput } from "@/shared/ui/phone-input";
 

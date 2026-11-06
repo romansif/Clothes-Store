@@ -11,7 +11,9 @@ export const applyErrors = (err: unknown, formErrorMessages: Ref<Record<string, 
   if (!errors) return;
 
   Object.keys(formErrorMessages.value).forEach((field) => {
-    const errorEntry = Object.entries(errors).find(([key]) => key === field || key.startsWith(`${field}[`) || key.startsWith(`${field}.`));
+    const errorEntry = Object.entries(errors).find(
+      ([key]) => key === field || key.startsWith(`${field}[`) || key.startsWith(`${field}.`),
+    );
 
     formErrorMessages.value[field] = errorEntry?.[1] || "";
   });
@@ -29,7 +31,10 @@ export const applyZodErrors = (errors: ZodError, formErrorMessages: Ref<Record<s
   });
 };
 
-export const refClearErrorsOnChange = <T extends Record<string, unknown>>(form: Ref<T>, formErrorMessages: Ref<Partial<Record<keyof T, string>>>) => {
+export const refClearErrorsOnChange = <T extends Record<string, unknown>>(
+  form: Ref<T>,
+  formErrorMessages: Ref<Partial<Record<keyof T, string>>>,
+) => {
   (Object.keys(form.value) as Array<keyof T>).forEach((field) => {
     watch(
       () => form.value[field],
@@ -40,7 +45,10 @@ export const refClearErrorsOnChange = <T extends Record<string, unknown>>(form: 
   });
 };
 
-export const reactiveClearErrorsOnChange = (form: Record<string, unknown>, formErrorMessages: Ref<Partial<Record<string, string | undefined>>>) => {
+export const reactiveClearErrorsOnChange = (
+  form: Record<string, unknown>,
+  formErrorMessages: Ref<Partial<Record<string, string | undefined>>>,
+) => {
   Object.keys(form).forEach((field) => {
     if (!(field in formErrorMessages.value)) return;
 

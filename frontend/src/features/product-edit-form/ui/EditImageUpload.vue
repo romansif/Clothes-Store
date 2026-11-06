@@ -11,7 +11,12 @@
         class="h-90 w-90 cursor-pointer overflow-hidden rounded-lg border border-gray-300 bg-gray-50 transition duration-400 hover:scale-105 hover:bg-gray-100"
         @click="openSelectImage(0)"
       >
-        <img v-if="pureCards(product)[0]" :src="pureCards(product)[0]" alt="" class="h-90 w-90 transition duration-400" />
+        <img
+          v-if="pureCards(props.product)[0]"
+          :src="pureCards(props.product)[0]"
+          alt=""
+          class="h-90 w-90 transition duration-400"
+        />
         <div v-else class="p-4 text-mauve-100">
           <span class="rounded-full bg-black px-2 py-1.5 font-bold">{{ t("productForm.mainPhoto") }}</span>
         </div>
@@ -23,7 +28,12 @@
           class="h-43.5 w-43.5 cursor-pointer overflow-hidden rounded-lg border border-gray-300 bg-gray-50 transition duration-400 hover:scale-105 hover:bg-gray-100"
           @click="openSelectImage(index)"
         >
-          <img v-if="pureCards(product)[index]" :src="pureCards(product)[index]" alt="" class="h-43.5 w-43.5 transition duration-400" />
+          <img
+            v-if="pureCards(props.product)[index]"
+            :src="pureCards(props.product)[index]"
+            alt=""
+            class="h-43.5 w-43.5 transition duration-400"
+          />
           <div v-else class="p-4 text-mauve-500">
             <span class="rounded-full border border-gray-400 bg-gray-100 px-2 py-1.5 font-bold">
               {{ t("productForm.photo", index) }}

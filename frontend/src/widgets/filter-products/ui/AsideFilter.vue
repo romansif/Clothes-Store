@@ -66,7 +66,9 @@
                 <div class="flex gap-1">
                   <span>{{ t(filterLabelKey(genderName)) }}</span>
                   <span>
-                    (<span class="font-dm-sans font-medium text-blue-700"> {{ products.filter((p) => p.gender === genderName).length }} </span>)
+                    (<span class="font-dm-sans font-medium text-blue-700">
+                      {{ products.filter((p) => p.gender === genderName).length }} </span
+                    >)
                   </span>
                 </div>
               </div>
@@ -136,16 +138,18 @@
             <div class="flex flex-col gap-2">
               <div v-for="(isActive, priceName) in prices" :key="priceName" class="flex gap-3">
                 <img
-                    :src="isActive ? checked : square"
-                    alt=""
-                    :class="[filterClass, isActive ? selectedFilterAndSizeClass : '']"
-                    @click="toggleFilter('PRICE', priceName)"
+                  :src="isActive ? checked : square"
+                  alt=""
+                  :class="[filterClass, isActive ? selectedFilterAndSizeClass : '']"
+                  @click="toggleFilter('PRICE', priceName)"
                 />
                 <div class="flex gap-1">
                   <span>{{ priceLabel(priceName) }}</span>
                   <span>
-                  (<span class="font-dm-sans font-medium text-blue-700"> {{ getStackCount(products, priceName) }} </span>)
-                </span>
+                    (<span class="font-dm-sans font-medium text-blue-700">
+                      {{ getStackCount(products, priceName) }} </span
+                    >)
+                  </span>
                 </div>
               </div>
             </div>
@@ -161,14 +165,14 @@
 import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
 import { filterLabelKey, filterProduct } from "@/widgets/filter-products/lib/filter-product";
-import { useProductsData } from "@/widgets/product-list/lib/use-product-data";
-import { filterAside, toggleFilterAside } from "@/features/products/lib/product-modal";
+import { useProductsData } from "@/shared/lib/use-product-data";
+import { filterAside, toggleFilterAside } from "@/widgets/filter-products/lib/product-modal";
 import {
   toggleAvailabilityFilter,
   toggleCategoryFilter,
   toggleColorFilter,
   toggleGenderFilter,
-  togglePriceFilter
+  togglePriceFilter,
 } from "@/widgets/filter-products/lib/show-filter";
 import {
   sidebarCategoryClass,
@@ -183,7 +187,7 @@ import {
   showCategory,
   showColor,
   showGender,
-  showPrice
+  showPrice,
 } from "@/widgets/filter-products/model/filter.refs";
 
 import square from "@/assets/icons/squares/square.png";
@@ -195,5 +199,16 @@ const route = useRoute();
 
 const { t } = useI18n();
 const { products } = useProductsData();
-const { priceLabel, toggleFilter, getStackCount, toggleSize, categories, category, stackProducts, genders, colors, prices } = filterProduct();
+const {
+  priceLabel,
+  toggleFilter,
+  getStackCount,
+  toggleSize,
+  categories,
+  category,
+  stackProducts,
+  genders,
+  colors,
+  prices,
+} = filterProduct();
 </script>

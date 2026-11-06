@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-5">
+  <div class="flex flex-col">
     <div class="flex gap-10">
       <form class="flex w-full flex-col gap-3" @submit.prevent="editUserName()">
         <label>{{ t("profile.form.name") }}</label>
@@ -27,7 +27,7 @@
       </form>
     </div>
   </div>
-  <div class="flex flex-col gap-10 sm:flex-row">
+  <div class="flex gap-10">
     <form class="flex w-full flex-col gap-3" @submit.prevent="editUserEmail()">
       <label>{{ t("profile.form.email") }}</label>
       <UiInput
@@ -45,10 +45,13 @@
       <UiPhoneInput
         v-model="updateUserForm.phone"
         :select-class="profileFormSelectPhoneCodeClass"
-        :input-class="[profileFormPhoneInputClasses.default, updateUserFormErrorMessages.phone ? profileFormPhoneInputClasses.error : '']"
+        :input-class="[
+          profileFormPhoneInputClasses.default,
+          updateUserFormErrorMessages.phone ? profileFormPhoneInputClasses.error : '',
+        ]"
         :error-message="updateUserFormErrorMessages.phone"
       />
-      <div class="flex">
+      <div class="flex mt-3">
         <UiButton type="submit" :name="t('profile.form.savePhone')" variant="profileForm" />
       </div>
     </form>
@@ -72,7 +75,7 @@
               @click.prevent="toggleOldPassword"
               :src="showOldPassword ? opened : closed"
               alt=""
-              :class="['absolute top-1/4 left-115 w-7.5', updateUserFormErrorMessages.oldPassword ? 'top-1/6' : '']"
+              :class="['absolute top-1/4 left-108 w-7.5', updateUserFormErrorMessages.oldPassword ? 'top-1/6' : '']"
             />
           </div>
         </div>
@@ -92,7 +95,7 @@
               @click.prevent="toggleNewPassword"
               :src="showNewPassword ? opened : closed"
               alt=""
-              :class="['absolute top-1/4 left-115 w-7.5', updateUserFormErrorMessages.newPassword ? 'top-1/6' : '']"
+              :class="['absolute top-1/4 left-108 w-7.5', updateUserFormErrorMessages.newPassword ? 'top-1/6' : '']"
             />
           </div>
         </div>
@@ -116,7 +119,10 @@ import {
   useEditUserPassword,
 } from "@/features/change-user-data-form/lib/use-edit-user-data";
 import { updateUserForm, updateUserFormErrorMessages } from "@/entities/profile-form/model/user-update-form";
-import { profileFormPhoneInputClasses, profileFormSelectPhoneCodeClass } from "@/features/change-user-data-form/model/profile-phone.variants";
+import {
+  profileFormPhoneInputClasses,
+  profileFormSelectPhoneCodeClass,
+} from "@/features/change-user-data-form/model/profile-phone.variants";
 import { UiButton } from "@/shared/ui/button";
 import { UiInput } from "@/shared/ui/input";
 import { UiPhoneInput } from "@/shared/ui/phone-input";

@@ -23,7 +23,12 @@
           class="h-43.5 w-43.5 cursor-pointer overflow-hidden rounded-lg border border-gray-300 bg-gray-50 transition duration-400 hover:scale-105 hover:bg-gray-100"
           @click="openSelectImage(index)"
         >
-          <img v-if="itemPreview[index]" :src="itemPreview[index]" alt="" class="h-43.5 w-43.5 transition duration-400" />
+          <img
+            v-if="itemPreview[index]"
+            :src="itemPreview[index]"
+            alt=""
+            class="h-43.5 w-43.5 transition duration-400"
+          />
           <div v-else class="p-4 text-mauve-500">
             <span class="rounded-full border border-gray-400 bg-gray-100 px-2 py-1.5 font-bold">
               {{ t("productForm.photo", index) }}

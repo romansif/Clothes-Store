@@ -17,7 +17,6 @@ import square from "@/assets/icons/squares/square.png";
 
 const props = defineProps<{
   product: CartItem;
-  cart: CartItem[];
 }>();
 
 const { orderItems } = orderStore();

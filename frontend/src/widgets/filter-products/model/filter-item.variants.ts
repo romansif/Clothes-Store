@@ -1,4 +1,7 @@
-export const filterSizeClass = (style: string) => [style, "w-10 transition duration-400 hover:scale-120 cursor-pointer"];
+export const filterSizeClass = (style: string) => [
+  style,
+  "w-10 transition duration-400 hover:scale-120 cursor-pointer",
+];
 
 export const filterClass = "w-5.75 h-h-5.75 transition duration-400 hover:scale-120 cursor-pointer";
 

@@ -9,9 +9,9 @@
         <label class="flex gap-1 text-xs font-semibold tracking-wider">
           {{ t("productForm.title") }}
           <span v-if="isCreate" class="text-red-500">*</span>
-          <template v-else-if="product">
+          <template v-else-if="props.product">
             <span>/</span>
-            <span class="text-black uppercase">{{ product.title }}</span>
+            <span class="text-black uppercase">{{ props.product.title }}</span>
           </template>
         </label>
         <UiInput
@@ -28,15 +28,18 @@
         <label class="flex gap-1 text-xs font-semibold tracking-wider">
           {{ t("productForm.collection") }}
           <span v-if="isCreate" class="text-red-500">*</span>
-          <template v-else-if="product">
+          <template v-else-if="props.product">
             <span>/</span>
-            <span class="text-black uppercase">{{ product.collection.name }}</span>
+            <span class="text-black uppercase">{{ props.product.collection.name }}</span>
           </template>
         </label>
         <div class="relative">
           <select
             v-model="createProductForm.collections"
-            :class="[baseSelectClass(createProductForm.collections), createProductFormErrorMessages.collections ? productFormErrorClass : '']"
+            :class="[
+              baseSelectClass(createProductForm.collections),
+              createProductFormErrorMessages.collections ? productFormErrorClass : '',
+            ]"
           >
             <option
               v-for="collection in collections"
@@ -56,7 +59,10 @@
               }}
             </option>
           </select>
-          <span v-if="createProductForm.collections.name.length === 0" class="absolute top-1/3 left-5 text-sm text-gray-400">
+          <span
+            v-if="createProductForm.collections.name.length === 0"
+            class="absolute top-1/3 left-5 text-sm text-gray-400"
+          >
             {{ t("productForm.collectionEmpty") }}
           </span>
         </div>
@@ -68,14 +74,17 @@
         <label class="flex gap-1 text-xs font-semibold tracking-wider">
           {{ t("productForm.category") }}
           <span v-if="isCreate" class="text-red-500">*</span>
-          <template v-else-if="product">
+          <template v-else-if="props.product">
             <span>/</span>
-            <span class="text-black uppercase">{{ product.category }}</span>
+            <span class="text-black uppercase">{{ props.product.category }}</span>
           </template>
         </label>
         <select
           v-model="createProductForm.category"
-          :class="[baseSelectClass(createProductForm.category), createProductFormErrorMessages.category ? productFormErrorClass : '']"
+          :class="[
+            baseSelectClass(createProductForm.category),
+            createProductFormErrorMessages.category ? productFormErrorClass : '',
+          ]"
         >
           <option disabled hidden value="">{{ t("productForm.categoryPh") }}</option>
           <option v-for="category in categories" :value="category.category" class="text-black">
@@ -92,14 +101,17 @@
         <label class="flex gap-1 text-xs font-semibold tracking-wider">
           {{ t("productForm.material") }}
           <span v-if="isCreate" class="text-red-500">*</span>
-          <template v-else-if="product">
+          <template v-else-if="props.product">
             <span>/</span>
-            <span class="text-black uppercase">{{ product.material }}</span>
+            <span class="text-black uppercase">{{ props.product.material }}</span>
           </template>
         </label>
         <select
           v-model="createProductForm.material"
-          :class="[baseSelectClass(createProductForm.material), createProductFormErrorMessages.material ? productFormErrorClass : '']"
+          :class="[
+            baseSelectClass(createProductForm.material),
+            createProductFormErrorMessages.material ? productFormErrorClass : '',
+          ]"
         >
           <option disabled hidden value="">{{ t("productForm.materialPh") }}</option>
           <option v-for="material in materials" :value="material.material" class="text-black">
@@ -114,15 +126,18 @@
         <label class="flex gap-1 text-xs font-semibold tracking-wider">
           {{ t("productForm.gender") }}
           <span v-if="isCreate" class="text-red-500">*</span>
-          <template v-else-if="product">
+          <template v-else-if="props.product">
             <span>/</span>
-            <span class="text-black uppercase">{{ product.gender }}</span>
+            <span class="text-black uppercase">{{ props.product.gender }}</span>
           </template>
         </label>
         <div class="flex flex-col gap-3">
           <select
             v-model="createProductForm.gender"
-            :class="[baseSelectClass(createProductForm.gender), createProductFormErrorMessages.gender ? productFormErrorClass : '']"
+            :class="[
+              baseSelectClass(createProductForm.gender),
+              createProductFormErrorMessages.gender ? productFormErrorClass : '',
+            ]"
           >
             <option disabled hidden value="">{{ t("productForm.genderPh") }}</option>
             <option v-for="gender in genders" :value="gender.gender" class="text-black">
@@ -140,9 +155,9 @@
         <label class="flex gap-1 text-xs font-semibold tracking-wider">
           {{ t("productForm.sku") }}
           <span v-if="isCreate" class="text-red-500">*</span>
-          <template v-else-if="product">
+          <template v-else-if="props.product">
             <span>/</span>
-            <span class="text-black uppercase">{{ product.sku }}</span>
+            <span class="text-black uppercase">{{ props.product.sku }}</span>
           </template>
         </label>
         <IMask
@@ -159,9 +174,9 @@
         <label class="flex gap-1 text-xs font-semibold tracking-wider">
           {{ t("productForm.price") }}
           <span v-if="isCreate" class="text-red-500">*</span>
-          <template v-else-if="product">
+          <template v-else-if="props.product">
             <span>/</span>
-            <span class="text-black uppercase">{{ product.price }}</span>
+            <span class="text-black uppercase">{{ props.product.price }}</span>
           </template>
         </label>
         <UiInput
@@ -177,9 +192,9 @@
       <label class="flex gap-1 text-xs font-semibold tracking-wider">
         {{ t("productForm.description") }}
         <span v-if="isCreate" class="text-red-500">*</span>
-        <template v-else-if="product">
+        <template v-else-if="props.product">
           <span>/</span>
-          <span class="text-black uppercase">{{ product.description }}</span>
+          <span class="text-black uppercase">{{ props.product.description }}</span>
         </template>
       </label>
       <UiProductTextarea
@@ -204,7 +219,7 @@ import { UiInput } from "@/shared/ui/input";
 import { UiProductTextarea } from "@/shared/ui/product-textarea";
 import type { Product } from "@/shared";
 
-defineProps<{
+const props = defineProps<{
   product?: Product;
 }>();
 

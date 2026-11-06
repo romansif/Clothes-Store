@@ -92,3 +92,10 @@ export interface Catalog {
   route: string;
   url: string;
 }
+
+export interface SoldStats {
+  inOrders: number;
+  productId: string;
+  revenue: number;
+  sold: number;
+}

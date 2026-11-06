@@ -1,15 +1,15 @@
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
 import { useBaseModals } from "@/widgets/notification/lib/use-notify";
-import { clearReplaceForm } from "@/features/order-modals/lib/clear-order-form";
-import { toggleReplaceChoice } from "@/entities/order-action/lib/order-modal";
+import { clearReplaceForm } from "@/features/replace-order-modal/lib/clear-order-form";
+import { closeReplaceItem, closeReplaceOrder } from "@/entities/order-action/lib/order-modal";
 import { cancelChoiceForm, cancelChoiceMessage } from "@/entities/order/model/order-forms";
 import { replaceOrderSchema } from "@/entities/order/model/replace-order-schemas";
 import { handler } from "@/shared/api/http";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
 import { orderStore } from "@/shared/model/order.store";
 
-const { orderId } = orderStore();
+const { orderId, itemId } = orderStore();
 const { openNotify } = useBaseModals();
 
 export const useReplaceOrder = () => {
@@ -57,7 +57,7 @@ export const useReplaceOrder = () => {
 
       await openNotify({ variant: "replace-order", state: "success" });
 
-      toggleReplaceChoice("");
+      closeReplaceOrder();
     },
 
     onError: (err) => {
@@ -97,5 +97,67 @@ export const useDeleteOrder = () => {
   return {
     deleteOrder,
     isPending,
+  };
+};
+
+export const useReplaceOrderItem = () => {
+  const queryClient = useQueryClient();
+
+  const {
+    mutate: replaceItem,
+    isPending,
+    isError,
+  } = useMutation({
+    mutationKey: ["replaceItem"],
+    mutationFn: async () => {
+      const result = replaceOrderSchema.safeParse(cancelChoiceForm.value);
+      if (!result.success) {
+        applyZodErrors(result.error, cancelChoiceMessage);
+        return;
+      }
+
+      const date = new Date();
+      const dateCreated = date.toLocaleDateString();
+      const time = date.toLocaleTimeString("ru-RU", {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+
+      return await handler(`/orders/${orderId.value}/items/${itemId.value}`, {
+        method: "PATCH",
+        body: JSON.stringify({
+          status: "Cancelled",
+          cause_replace: cancelChoiceForm.value.cancelChoice,
+          cancelled_at: date,
+          date_cancelled_at: dateCreated,
+          time_cancelled_at: time,
+        }),
+      });
+    },
+
+    onSuccess: async () => {
+      clearReplaceForm();
+
+      await Promise.all([
+        await queryClient.invalidateQueries({ queryKey: ["orders"] }),
+        await queryClient.invalidateQueries({ queryKey: ["activeOrders"] }),
+      ]);
+
+      await openNotify({ variant: "replace-order", state: "success" });
+
+      closeReplaceItem();
+    },
+
+    onError: (err) => {
+      applyErrors(err, cancelChoiceMessage);
+
+      throw new Error(`Ошибка при отмене заказа`, err);
+    },
+  });
+
+  return {
+    replaceItem,
+    isPending,
+    isError,
   };
 };

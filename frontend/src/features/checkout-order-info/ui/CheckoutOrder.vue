@@ -20,13 +20,17 @@
       <div class="flex items-center">
         <span>{{ t("checkout.shipping") }}</span>
         <div class="ml-auto flex gap-2">
-          <span v-if="checkoutSession.delivery" class="font-dm-sans text-gray-400"> {{ checkoutSession.delivery }} · $ {{ ship }} </span>
+          <span v-if="checkoutSession.delivery" class="font-dm-sans text-gray-400">
+            {{ checkoutSession.delivery }} · $ {{ ship }}
+          </span>
           <span v-else class="text-gray-400">{{ t("checkout.calculatedNext") }}</span>
         </div>
       </div>
     </div>
     <div class="mt-3 mb-1 border-b border-gray-300"></div>
-    <span class="font-dm-sans text-xs text-[#A3A3A3]"> $ {{ commissionPrice }} {{ t("checkout.commission") }} </span>
+    <span class="font-dm-sans text-xs text-[#A3A3A3]">
+      {{ t("checkout.commission", { price: commissionPrice }) }}
+    </span>
     <div class="mt-3 flex justify-between text-sm font-medium">
       <span>{{ t("checkout.total") }}</span>
       <span class="font-dm-sans"> $ {{ totalPrice }} </span>

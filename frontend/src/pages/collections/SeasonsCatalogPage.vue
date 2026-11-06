@@ -1,5 +1,5 @@
 <template>
-  <main class="mt-10 flex flex-col gap-6">
+  <main class="flex flex-col gap-6">
     <HeaderCatalog />
     <div class="flex gap-10">
       <SeasonsCatalog />

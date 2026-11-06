@@ -1,5 +1,5 @@
 <template>
-  <main class="mt-10 flex flex-col">
+  <main class="flex flex-col">
     <HeaderCatalog />
   </main>
 </template>

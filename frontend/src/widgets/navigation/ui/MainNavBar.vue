@@ -1,13 +1,13 @@
 <template>
-  <nav class="font-raleway">
+  <nav class="font-raleway bg-white p-4 md:p-5 lg:p-6">
     <div class="flex items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr]">
       <div class="flex items-center gap-5 justify-self-start lg:gap-10">
-        <router-link v-if="user?.role === 'Buyer' && isFavorite" :to="{ name: 'favorite' }">
+        <router-link v-if="user?.role === 'Buyer' && isFavorite" :to="{ path: `/shop/my-favorite/${user.id}` }">
           <div class="hidden sm:hidden md:flex lg:flex xl:flex">
             <img :src="liked" alt="" class="h-12 w-12 rounded-full transition duration-400 hover:scale-110" />
           </div>
         </router-link>
-        <router-link v-if="user?.role === 'Buyer' && isCart" :to="{ name: 'cart' }">
+        <router-link v-if="user?.role === 'Buyer' && isCart" :to="{ path: `/shop/my-cart/${user.id}` }">
           <div class="gap-1 transition duration-400 hover:scale-110 md:flex lg:flex xl:flex xl:items-center">
             <span class="hidden items-center rounded-3xl bg-black px-7 py-3 text-white md:flex">
               {{ t("nav.cart") }}
@@ -27,25 +27,32 @@
         </router-link>
       </div>
       <div class="hidden justify-self-center font-light md:flex md:gap-5 lg:gap-10">
-        <router-link :to="{ name: 'home' }" :class="[routeClass, isHome ? selectRouteClass : '']">
+        <router-link :to="{ name: 'home' }" :class="isHome ? selectRouteClass : routeClass">
           {{ t("nav.home") }}
         </router-link>
-        <router-link :to="{ name: 'shop/seasons-catalog' }" :class="[routeClass, isSeasonCollections ? selectRouteClass : '']">
+        <router-link
+          :to="{ name: 'shop/seasons-catalog' }"
+          :class="isSeasonCollections ? selectRouteClass : routeClass"
+        >
           {{ t("nav.seasonal") }}
         </router-link>
-        <router-link :to="{ name: 'shop' }" :class="[routeClass, isProducts ? selectRouteClass : '']">
+        <router-link :to="{ name: 'shop' }" :class="isProducts ? selectRouteClass : routeClass">
           {{ t("nav.shop") }}
         </router-link>
-        <router-link :to="{ name: 'shop/new-collections' }" :class="[routeClass, isNewCollections ? selectRouteClass : '']">
+        <router-link :to="{ name: 'shop/new-collections' }" :class="isNewCollections ? selectRouteClass : routeClass">
           {{ t("nav.new") }}
         </router-link>
       </div>
       <div class="flex items-center gap-3 justify-self-end md:gap-5 lg:gap-10">
-        <router-link v-if="isProfile" :to="{ name: 'profile' }" class="group flex items-center gap-2.5 transition duration-400 hover:scale-110">
+        <router-link
+          v-if="isProfile && user"
+          :to="{ path: `/profile/${user.id}` }"
+          class="group flex items-center gap-2.5 transition duration-400 hover:scale-110"
+        >
           <img :src="user ? avatar() : profile" alt="" class="h-11 w-11 rounded-full bg-white object-cover" />
-          <span v-if="user" class="font-medium">{{ user.name }}</span>
+          <span v-if="user" class="font-medium text-[#722f37]">{{ user.name }}</span>
         </router-link>
-        <LanguageSwitcher />
+        <LanguageSwitcher class="w-40" />
       </div>
     </div>
   </nav>
@@ -72,5 +79,6 @@ const { t } = useI18n();
 const { user } = useUserData();
 const { avatar } = userAvatar();
 const { unreadCount } = cartStore();
-const { isHome, isCart, isFavorite, isProducts, isNewCollections, isSeasonCollections, isProfile } = useMainNavBar(route);
+const { isHome, isCart, isFavorite, isProducts, isNewCollections, isSeasonCollections, isProfile } =
+  useMainNavBar(route);
 </script>

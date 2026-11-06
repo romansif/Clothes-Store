@@ -1,8 +1,8 @@
 <template>
   <div :class="[signInRoleClass, props.errorMessage ? signInRoleErrorClass : '']">
-    <input v-model="model" :value="props.role" type="radio" name="role" class="h-4 w-4 cursor-pointer accent-black" />
+    <input v-model="model" type="radio" name="role" class="h-4 w-4 cursor-pointer accent-black" v-bind="$attrs" />
     <span class="font-semibold">
-      {{ role }}
+      {{ props.role }}
     </span>
   </div>
 </template>
@@ -15,5 +15,3 @@ const props = defineProps<AuthFormProps>();
 
 const model = defineModel<string | number>();
 </script>
-
-<style scoped></style>

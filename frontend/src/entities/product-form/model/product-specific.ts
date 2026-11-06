@@ -128,7 +128,9 @@ const underWearSizeGuide: SizeGuide[] = [
   { name: "measurements.waist", values: ["77", "80", "82", "84", "86", "88"] },
 ];
 
-const shoesSizeGuide: SizeGuide[] = [{ name: "measurements.length", values: ["25", "25.7", "26.3", "27", "27.7", "28.3", "29", "29.7"] }];
+const shoesSizeGuide: SizeGuide[] = [
+  { name: "measurements.length", values: ["25", "25.7", "26.3", "27", "27.7", "28.3", "29", "29.7"] },
+];
 
 const outerWear = ["Shirts", "T-shirts", "Tank top", "Sweaters"];
 

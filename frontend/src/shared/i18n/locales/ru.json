@@ -50,7 +50,7 @@
     "new": "Новинки",
     "cart": "Корзина",
     "inSeasons": "ПО СЕЗОНАМ",
-    "newArrivals": "НОВЫЕ ПОСТУПЛЕНИЯ",
+    "newArrivals": "НОВИНКИ",
     "discoverSeasons": "Откройте коллекции на любой сезон",
     "filter": "Фильтр",
     "searchPlaceholder": "Поиск",
@@ -229,17 +229,26 @@
   "orders": {
     "copyTracking": "Скопировать номер отслеживания",
     "trackingCopied": "Номер отслеживания скопирован",
-    "total": "Сумма заказа",
+    "total": "Итог:",
     "size": "Размер:",
     "color": "Цвет:",
+    "category": "Категория:",
+    "material": "Материал:",
+    "gender": "Пол:",
     "writeReview": "Написать отзыв",
     "cancelOrder": "Отменить заказ",
+    "cancelItem": "Отменить товар",
     "confirmCancel": "Подтвердить отмену",
     "totalCount": "Всего заказов: {count}",
+    "totalItems": "Всего товаров: {count}",
     "number": "№ {id}",
+    "delivery": "Доставка",
+    "orderItems": "Товары",
+    "commission": "Комиссия",
+    "causeReplace": "Причина отмены:",
     "timeline": {
-      "created": "Создан: {date}, {time}",
-      "processed": "Обработан: {date}, {time}",
+      "created": "Оформлен: {date}, {time}",
+      "processed": "В пути: {date}, {time}",
       "delivered": "Доставлен: {date}, {time}",
       "cancelled": "Отменён: {date}, {time}"
     },
@@ -277,6 +286,17 @@
       "lowest": "С низкой оценкой"
     }
   },
+  "myProduct": {
+    "sku": "SKU: {sku}",
+    "collection": "Коллекция: {name}",
+    "description": "ОПИСАНИЕ:",
+    "sold": "Продано",
+    "revenue": "Выручка",
+    "inOrders": "В заказах",
+    "perItem": "за 1 шт.",
+    "colors": "Цвета:",
+    "sizes": "Размеры:"
+  },
   "product": {
     "whatsMySize": "Какой у меня размер?",
     "addToCart": "В КОРЗИНУ",
@@ -290,6 +310,7 @@
     "sizes": "Размеры",
     "stockInfo": "Остатки",
     "stockQuantity": "Количество каждого товара",
+    "totalStockQuantity": "Общее количество товара",
     "createTitle": "СОЗДАТЬ ТОВАР",
     "editTitle": "РЕДАКТИРОВАТЬ ТОВАР"
   },
@@ -346,6 +367,10 @@
     "selectBoth": "Выберите размеры и цвета, чтобы заполнить остатки.",
     "selectColors": "Выберите цвета, чтобы заполнить остатки.",
     "selectSizes": "Выберите размеры, чтобы заполнить остатки."
+  },
+  "countMode": {
+    "SAME": "ОДИНАКОВЫЕ",
+    "DIFFERENT": "РАЗНЫЕ"
   },
   "filters": {
     "title": "Фильтры",

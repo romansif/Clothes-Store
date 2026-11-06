@@ -2,7 +2,10 @@
   <div class="font-montserrat relative w-230 overflow-hidden rounded-2xl">
     <Transition name="slide" mode="out-in">
       <div :key="current.id" class="flex h-45 justify-between bg-black">
-        <div style="filter: drop-shadow(0 0 8px rgba(255, 255, 255, 1))" class="flex w-70 flex-col justify-center gap-3 px-15">
+        <div
+          style="filter: drop-shadow(0 0 8px rgba(255, 255, 255, 1))"
+          class="flex w-70 flex-col justify-center gap-3 px-15"
+        >
           <h2 class="break-after-all text-2xl font-semibold text-gray-50">
             {{ t(current.title) }}
           </h2>

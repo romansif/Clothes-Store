@@ -1,3 +1,3 @@
-export const filterGenderClass = `text-[#A3A3A3] transition duration-400 hover:text-black hover:scale-115 cursor-pointer`;
+export const filterGenderClass = `text-[#722f37] transition duration-400 hover:text-[#5a252c] hover:scale-115 cursor-pointer`;
 
-export const selectedFilterGenderClass = `text-black scale-115`;
+export const selectedFilterGenderClass = `text-[#5a252c] scale-115`;

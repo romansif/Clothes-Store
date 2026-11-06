@@ -1,15 +1,15 @@
-import { type Order } from "@/entities/order";
+import type { OrderPosition, OrderProps } from "@/entities/order";
 
-const baseOrderStatus = "text-xs px-2.5 py-1 rounded-md";
+const baseOrderStatus = "font-medium text-sm px-4 py-0.5 rounded-xl";
 
 export const ordersVariants = () => {
-  const orderStatus = (order: Order) => [
+  const orderStatus = (order: OrderProps | OrderPosition) => [
     baseOrderStatus,
     {
-      "bg-teal-50 text-teal-700 border border-teal-200 w-19.5": order.status === "Delivered",
-      "bg-sky-50 text-sky-700 border border-sky-200 w-18.5": order.status === "En route",
-      "bg-indigo-50 text-indigo-700 border border-indigo-200 w-18": order.status === "Convene",
-      "bg-rose-50 text-rose-700 border border-rose-200 w-19.5": order.status === "Cancelled",
+      "bg-teal-100 text-teal-900 w-26": order.status === "Delivered",
+      "bg-sky-100 text-sky-900 w-26": order.status === "En route",
+      "bg-indigo-100 text-indigo-900 w-22": order.status === "Convene",
+      "bg-rose-100 text-rose-900 w-26": order.status === "Cancelled",
     },
   ];
 

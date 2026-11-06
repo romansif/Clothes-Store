@@ -7,13 +7,17 @@ import { validation } from "#middleware/validation.ts";
 const router = express.Router();
 
 router.get('/products', productsController.getAllProducts);
+
 router.get('/searched', productsController.getSearchedProducts);
+
 router.get('/filtered/:type/:filter', productsController.getFilteredProducts);
 
 router.get('/my/products/:id', productsController.getMyProducts);
 
 router.get('/products/week/:type/:filter', productsController.getWeekProducts);
+
 router.get('/products/year/:type/:filter', productsController.getYearProducts);
+
 router.get('/products/collections/:collection', productsController.getCollections);
 
 router.get('/product/:id', productsController.getProductsById);
@@ -24,6 +28,7 @@ router.post('/products', authMiddleware, roleMiddleware('Seller'), productUpload
 
 router.patch('/products/:id/:index/images', authMiddleware, roleMiddleware('Seller'),
     productUpload.array('images', 5), productsController.updateProductImages);
+
 router.patch('/products/:id', authMiddleware, roleMiddleware('Seller'), productsController.updateProductItem);
 
 router.delete('/products/:id', authMiddleware, roleMiddleware('Seller'),

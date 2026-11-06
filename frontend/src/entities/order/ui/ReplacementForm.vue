@@ -1,10 +1,30 @@
 <template>
   <form class="flex flex-col items-start gap-3.5">
-    <ReplacementInput v-model="cancelChoiceForm.cancelChoice" :name="t('orders.reason.paymentMethod')" :value="'Incorrect payment method'" />
-    <ReplacementInput v-model="cancelChoiceForm.cancelChoice" :name="t('orders.reason.wrongAddress')" :value="'I entered the wrong address'" />
-    <ReplacementInput v-model="cancelChoiceForm.cancelChoice" :name="t('orders.reason.noLongerNeed')" :value="'I no longer need this item'" />
-    <ReplacementInput v-model="cancelChoiceForm.cancelChoice" :name="t('orders.reason.byMistake')" :value="'Ordered it by mistake'" />
-    <ReplacementInput v-model="cancelChoiceForm.cancelChoice" :name="t('orders.reason.betterProduct')" :value="'I found a better product'" />
+    <ReplacementInput
+      v-model="cancelChoiceForm.cancelChoice"
+      :name="t('orders.reason.paymentMethod')"
+      :value="'Incorrect payment method'"
+    />
+    <ReplacementInput
+      v-model="cancelChoiceForm.cancelChoice"
+      :name="t('orders.reason.wrongAddress')"
+      :value="'I entered the wrong address'"
+    />
+    <ReplacementInput
+      v-model="cancelChoiceForm.cancelChoice"
+      :name="t('orders.reason.noLongerNeed')"
+      :value="'I no longer need this item'"
+    />
+    <ReplacementInput
+      v-model="cancelChoiceForm.cancelChoice"
+      :name="t('orders.reason.byMistake')"
+      :value="'Ordered it by mistake'"
+    />
+    <ReplacementInput
+      v-model="cancelChoiceForm.cancelChoice"
+      :name="t('orders.reason.betterProduct')"
+      :value="'I found a better product'"
+    />
     <span v-if="cancelChoiceMessage.cancelChoice" class="px-4 text-xs text-red-600">
       {{ cancelChoiceMessage.cancelChoice }}
     </span>

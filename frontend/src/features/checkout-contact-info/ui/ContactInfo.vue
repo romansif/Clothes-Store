@@ -12,12 +12,26 @@
       <AddressForm />
       <div class="relative mt-5 ml-auto transition duration-400 hover:scale-110">
         <UiButton v-if="!isSavedAddress" type="submit" :name="t('checkout.shipping')" variant="checkOut" />
-        <img :src="arrow" alt="" class="absolute top-1/2 left-70 h-13 -translate-y-1/2 sm:left-60 md:left-75 lg:left-34 xl:left-46" />
+        <img
+          :src="arrow"
+          alt=""
+          class="absolute top-1/2 left-70 h-13 -translate-y-1/2 sm:left-60 md:left-75 lg:left-34 xl:left-46"
+        />
       </div>
     </form>
     <div class="relative mt-5 ml-auto transition duration-400 hover:scale-110">
-      <UiButton v-if="isSavedAddress" type="submit" :name="t('checkout.shipping')" variant="checkOut" @click="confirmInformation()" />
-      <img :src="arrow" alt="" class="absolute top-1/2 left-70 h-13 -translate-y-1/2 sm:left-60 md:left-75 lg:left-34 xl:left-46" />
+      <UiButton
+        v-if="isSavedAddress"
+        type="submit"
+        :name="t('checkout.shipping')"
+        variant="checkOut"
+        @click="confirmInformation()"
+      />
+      <img
+        :src="arrow"
+        alt=""
+        class="absolute top-1/2 left-70 h-13 -translate-y-1/2 sm:left-60 md:left-75 lg:left-34 xl:left-46"
+      />
     </div>
   </div>
 </template>

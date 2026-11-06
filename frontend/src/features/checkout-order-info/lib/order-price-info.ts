@@ -12,7 +12,9 @@ export const orderPriceInfo = () => {
   const { checkoutItems } = useCheckoutItems();
 
   const price = computed(() =>
-    round2(checkoutItems.value.reduce((sum: number, item: CartItem) => sum + Number(item.price) * Number(item.quantity), 0)),
+    round2(
+      checkoutItems.value.reduce((sum: number, item: CartItem) => sum + Number(item.price) * Number(item.quantity), 0),
+    ),
   );
 
   const commissionPrice = computed(() => round2(price.value * COMMISSION_RATE));

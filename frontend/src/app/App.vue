@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useBaseModals } from "@/widgets/notification/lib/use-notify";
 import { Notification } from "@/widgets/notification";
-import { Footer } from "@/widgets/footer";
 
 const { notify } = useBaseModals();
 </script>
@@ -11,7 +10,6 @@ const { notify } = useBaseModals();
   <Transition name="notify">
     <Notification v-if="notify" />
   </Transition>
-  <Footer />
 </template>
 
 <style>

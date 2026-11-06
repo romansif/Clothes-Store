@@ -24,7 +24,7 @@ export const previewHelper = () => {
     return product.variants.every((v) => v.count === 0);
   };
 
-  const isFavorite = (favorite: FavoriteItem[], product: Product, userId: string) => {
+  const isFavorite = (favorite: FavoriteItem[], product: Product, userId: string | undefined) => {
     const productId = getProductId(product);
 
     if (!favorite) return;

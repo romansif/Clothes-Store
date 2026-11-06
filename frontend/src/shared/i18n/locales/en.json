@@ -229,14 +229,23 @@
   "orders": {
     "copyTracking": "Copy tracking number",
     "trackingCopied": "Tracking number copied",
-    "total": "Order total",
+    "total": "Total:",
     "size": "Size:",
     "color": "Color:",
+    "category": "Category:",
+    "material": "Material:",
+    "gender": "Gender:",
     "writeReview": "Write a review",
-    "cancelOrder": "Cancel Order",
+    "cancelOrder": "Replace order",
+    "cancelItem": "Replace item",
     "confirmCancel": "Replacement",
     "totalCount": "Total orders: {count}",
+    "totalItems": "Total items: {count}",
     "number": "No. {id}",
+    "delivery": "Delivery",
+    "orderItems": "Items",
+    "commission": "Commission",
+    "causeReplace": "Cause replace:",
     "timeline": {
       "created": "Created: {date}, {time}",
       "processed": "Processed: {date}, {time}",
@@ -277,6 +286,17 @@
       "lowest": "Lowest rated"
     }
   },
+  "myProduct": {
+    "sku": "SKU: {sku}",
+    "collection": "Collection: {name}",
+    "description": "DESCRIPTION:",
+    "sold": "Sold",
+    "revenue": "Revenue",
+    "inOrders": "In orders",
+    "perItem": "per item",
+    "colors": "Colors:",
+    "sizes": "Sizes:"
+  },
   "product": {
     "whatsMySize": "What's my size?",
     "addToCart": "ADD TO CART",
@@ -290,6 +310,7 @@
     "sizes": "Sizes",
     "stockInfo": "Stock Info",
     "stockQuantity": "Quantity of each item",
+    "totalStockQuantity": "Total quantity item",
     "createTitle": "CREATE PRODUCT",
     "editTitle": "EDIT PRODUCT"
   },
@@ -346,6 +367,10 @@
     "selectBoth": "Select sizes and colors to populate the stock levels.",
     "selectColors": "Select colors to populate the stock levels.",
     "selectSizes": "Select sizes to populate the stock levels."
+  },
+  "countMode": {
+    "SAME": "SAME",
+    "DIFFERENT": "DIFFERENT"
   },
   "filters": {
     "title": "Filters",

@@ -3,7 +3,11 @@ import namer from "color-namer";
 
 import router from "@/app/router";
 import { useBaseModals } from "@/widgets/notification/lib/use-notify";
-import type { EditColorsPayload, EditImagesPayload, EditQuantityPayload } from "@/features/product-edit-form/model/edit-product.types";
+import type {
+  EditColorsPayload,
+  EditImagesPayload,
+  EditQuantityPayload,
+} from "@/features/product-edit-form/model/edit-product.types";
 import { createProductForm } from "@/entities/product-form/model/product-forms";
 import { handler } from "@/shared/api/http";
 import { currentFile } from "@/shared/lib/product-helper";

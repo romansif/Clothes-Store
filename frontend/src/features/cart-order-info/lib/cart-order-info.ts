@@ -5,6 +5,9 @@ import { useCartData } from "@/widgets/cart-list/lib/use-cart-data";
 import type { CartItem } from "@/entities/cart-item";
 import { isAgreeFormError, isAgreeFormErrorMessage } from "@/entities/product-info/model/add-to-cart-form";
 
+const COMMISSION_RATE = 0.08;
+const round2 = (n: number) => Math.round(n * 100) / 100;
+
 export const useCartOrderInfo = () => {
   const { cart } = useCartData();
 
@@ -13,11 +16,14 @@ export const useCartOrderInfo = () => {
   });
 
   const price = computed(() => {
-    return checkedItems.value.reduce((sum: number, item: CartItem) => sum + Number(item.price) * Number(item.quantity), 0);
+    return checkedItems.value.reduce(
+      (sum: number, item: CartItem) => sum + Number(item.price) * Number(item.quantity),
+      0,
+    );
   });
 
   const commissionPrice = computed(() => {
-    return Math.round(price.value * 0.08);
+    return round2(price.value * COMMISSION_RATE);
   });
 
   const totalPrice = computed(() => {
@@ -33,7 +39,8 @@ export const useCartOrderInfo = () => {
 
     try {
       if (!isAgreeFormError.value.agree && !isChecked) {
-        isAgreeFormErrorMessage.value.agree = "You must select the items for your order, agree to the Terms and Conditions";
+        isAgreeFormErrorMessage.value.agree =
+          "You must select the items for your order, agree to the Terms and Conditions";
         return;
       } else if (!isAgreeFormError.value.agree) {
         isAgreeFormErrorMessage.value.agree = "You must agree to the Terms and Conditions";

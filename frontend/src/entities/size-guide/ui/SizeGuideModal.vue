@@ -1,5 +1,8 @@
 <template>
-  <div class="font-raleway fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)]" @click="toggleSizeGuide">
+  <div
+    class="font-raleway fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)]"
+    @click="toggleSizeGuide"
+  >
     <div @click.stop class="flex w-175 flex-col gap-2 rounded-xl bg-white p-5">
       <div class="flex items-center">
         <h1 class="text-2xl font-medium">{{ t("sizeGuide.title") }}</h1>
@@ -31,17 +34,25 @@
             {{ t("sizeGuide.cm") }}
           </button>
         </div>
-        <table v-if="product" class="w-full border-collapse items-center">
+        <table v-if="props.product" class="w-full border-collapse items-center">
           <thead>
-            <tr v-if="product.category !== 'Shoes'" class="border-b border-neutral-400">
+            <tr v-if="props.product.category !== 'Shoes'" class="border-b border-neutral-400">
               <th class="px-4 py-4 text-left tracking-wider uppercase">{{ t("sizeGuide.size") }}</th>
-              <th v-for="size in sizes" :key="size.name" class="font-dm-sans px-4 py-4 text-center tracking-wider uppercase">
+              <th
+                v-for="size in sizes"
+                :key="size.name"
+                class="font-dm-sans px-4 py-4 text-center tracking-wider uppercase"
+              >
                 {{ size.name }}
               </th>
             </tr>
             <tr v-else class="border-b border-neutral-400">
               <th class="px-4 py-4 text-left tracking-wider uppercase">{{ t("sizeGuide.size") }}</th>
-              <th v-for="size in sizesShoes" :key="size.name" class="font-dm-sans px-4 py-4 text-center tracking-wider uppercase">
+              <th
+                v-for="size in sizesShoes"
+                :key="size.name"
+                class="font-dm-sans px-4 py-4 text-center tracking-wider uppercase"
+              >
                 {{ size.name }}
               </th>
             </tr>
@@ -78,7 +89,7 @@ import type { Product } from "@/shared";
 
 import close from "@/assets/icons/delete-close/delete.svg";
 
-defineProps<{
+const props = defineProps<{
   product: Product;
 }>();
 

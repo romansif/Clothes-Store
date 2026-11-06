@@ -16,7 +16,15 @@ export class ApiError extends Error {
 
 const API = import.meta.env.VITE_BASE_API;
 
-const AUTH_ENDPOINTS = ["/auth/signUp", "/auth/signIn", "/auth/google", "/auth/send/code", "/auth/verify/code", "/auth/logout", "/refresh"];
+const AUTH_ENDPOINTS = [
+  "/auth/signUp",
+  "/auth/signIn",
+  "/auth/google",
+  "/auth/send/code",
+  "/auth/verify/code",
+  "/auth/logout",
+  "/refresh",
+];
 const isAuthEndpoint = (endpoint: string) => AUTH_ENDPOINTS.some((p) => endpoint.startsWith(p));
 
 let refreshing: Promise<boolean> | null = null;

@@ -1,13 +1,17 @@
 <template>
   <div class="flex flex-col gap-15">
     <div class="flex flex-col gap-4">
-      <DeleteCartItemButton :product="product" />
-      <AddToOrder :product="product" :cart="cart" />
+      <DeleteCartItemButton :product="props.product" />
+      <AddToOrder :product="props.product" :cart="props.cart" />
     </div>
     <div class="flex flex-col gap-4">
-      <img :src="sizeUrl(product.sizes)" :class="[sizeClass(product.sizes)]" alt="" />
-      <div class="h-7.5 w-7.5" :title="pureColors(product.id, cart)?.hex" :style="{ background: product.color.hex || 'transparent' }"></div>
-      <UpdateQuantityItem :product="product" :cart="cart" />
+      <img :src="sizeUrl(props.product.sizes)" :class="[sizeClass(props.product.sizes)]" alt="" />
+      <div
+        class="h-7.5 w-7.5"
+        :title="pureColors(props.product.id, props.cart)?.hex"
+        :style="{ background: props.product.color.hex || 'transparent' }"
+      ></div>
+      <UpdateQuantityItem :product="props.product" :cart="props.cart" />
       <img :src="reload" alt="" class="cursor-pointer transition duration-400 hover:scale-120" />
     </div>
   </div>
@@ -21,7 +25,7 @@ import type { CartItem } from "@/entities/cart-item";
 
 import reload from "@/assets/icons/app/reload.svg";
 
-defineProps<{
+const props = defineProps<{
   product: CartItem;
   cart: CartItem[];
 }>();

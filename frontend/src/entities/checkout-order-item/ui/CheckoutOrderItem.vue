@@ -1,15 +1,14 @@
 <template>
-  <TransitionGroup name="list">
-    <li :key="product?.id" class="flex w-full justify-between gap-3">
+    <li class="flex w-full justify-between gap-3">
       <div class="flex items-center gap-3 text-xs font-medium">
-        <router-link :to="{ name: 'product/info', params: { id: getProductId(product) } }">
+        <router-link :to="{ name: 'product/info', params: { id: getProductId(props.product) } }">
           <img :src="preview" alt="" class="w-28.25 cursor-pointer" />
         </router-link>
         <div class="mt-3 flex flex-col gap-3">
           <div class="flex gap-25">
             <div class="flex w-22 flex-col gap-1">
-              <span class="">{{ product?.title }}</span>
-              <span>{{ product?.category }}</span>
+              <span class="">{{ props.product?.title }}</span>
+              <span>{{ props.product?.category }}</span>
             </div>
             <span class="font-dm-sans">$ {{ linePrice }}</span>
           </div>
@@ -21,7 +20,6 @@
         </div>
       </div>
     </li>
-  </TransitionGroup>
 </template>
 
 <script setup lang="ts">
@@ -31,7 +29,6 @@ import type { CartItem } from "@/entities/cart-item";
 
 const props = defineProps<{
   product: CartItem;
-  items: CartItem[];
 }>();
 
 const { getProductId } = previewHelper();

@@ -1,5 +1,8 @@
 <template>
-  <div class="font-raleway fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)]" @click="toggleAvatar">
+  <div
+    class="font-raleway fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)]"
+    @click="toggleAvatar"
+  >
     <div @click.stop class="w-112.5 rounded-2xl bg-white shadow-xl">
       <div class="flex flex-col justify-center gap-6 py-8">
         <h2 class="text-center text-2xl font-bold">{{ t("profile.clickAvatar") }}</h2>

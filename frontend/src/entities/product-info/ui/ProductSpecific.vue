@@ -4,12 +4,12 @@
       <span class="font-medium text-[#A3A3A3]">{{ t("product.colors") }} </span>
       <div class="flex items-center justify-start lg:gap-5">
         <div
-          v-for="color in pureInfoColors(product)"
+          v-for="color in pureInfoColors(props.product)"
           :key="color.hex"
           :style="{ background: color.hex }"
           :title="color.hex"
-          :class="selectedColorClass(color, product, user.role)"
-          @click="emit('addColor', color, user, product)"
+          :class="selectedColorClass(color, props.product, props.user.role)"
+          @click="emit('addColor', color, props.user, props.product)"
         ></div>
       </div>
     </div>
@@ -17,19 +17,21 @@
       <span class="font-medium text-[#A3A3A3]">{{ t("product.sizes") }}</span>
       <div class="flex items-center justify-start lg:gap-5">
         <img
-          v-for="size in isAvailableSizes(product)"
+          v-for="size in isAvailableSizes(props.product)"
           :key="size.name"
           :src="size.url"
           alt=""
-          :class="selectedSizesClass(size, product, user.role)"
-          @click="emit('addSize', size, user, product)"
+          :class="selectedSizesClass(size, props.product, props.user.role)"
+          @click="emit('addSize', size, props.user, props.product)"
         />
       </div>
       <div class="flex items-center gap-1">
         <span v-if="addToCartFormErrorMessages.colors" class="text-xs text-red-600">
           {{ addToCartFormErrorMessages.colors }}
         </span>
-        <span v-if="addToCartFormErrorMessages.colors && addToCartFormErrorMessages.sizes" class="text-xs text-red-600">/</span>
+        <span v-if="addToCartFormErrorMessages.colors && addToCartFormErrorMessages.sizes" class="text-xs text-red-600"
+          >/</span
+        >
         <span v-if="addToCartFormErrorMessages.sizes" class="text-xs text-red-600">
           {{ addToCartFormErrorMessages.sizes }}
         </span>
@@ -46,7 +48,7 @@ import { addToCartFormErrorMessages } from "@/entities/product-info/model/add-to
 import type { User } from "@/entities/profile";
 import type { ColorItem, Product, Size } from "@/shared";
 
-defineProps<{
+const props = defineProps<{
   user: User;
   product: Product;
 }>();

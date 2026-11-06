@@ -1,8 +1,11 @@
 <template>
-  <TransitionGroup name="list">
-    <ul class="no-scrollbar grid h-92.5 grid-cols-2 overflow-y-auto pb-4">
-      <PaymentItem v-for="payment in userPaymentCards" :key="payment.id" :payment="payment" @delete-payment="toggleDeleteChoice" />
-    </ul>
+  <TransitionGroup name="list" tag="ul" class="no-scrollbar grid h-92.5 grid-cols-2 overflow-y-auto pb-4">
+    <PaymentItem
+      v-for="payment in userPaymentCards"
+      :key="payment.id"
+      :payment="payment"
+      @delete-payment="toggleDeleteChoice"
+    />
   </TransitionGroup>
 </template>
 

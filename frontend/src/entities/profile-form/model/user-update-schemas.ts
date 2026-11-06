@@ -23,5 +23,8 @@ export const updateUserPasswordSchema = z.object({
     .string()
     .min(8, "Password must be at least 8 characters")
     .max(12, "Password must be at most 12 characters")
-    .regex(/^(?=.*[A-Za-zА-Яа-я])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-zА-Яа-я\d@$!%*#?&]+$/, "Include a letter, number, and special character"),
+    .regex(
+      /^(?=.*[A-Za-zА-Яа-я])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-zА-Яа-я\d@$!%*#?&]+$/,
+      "Include a letter, number, and special character",
+    ),
 });

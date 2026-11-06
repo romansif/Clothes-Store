@@ -1,6 +1,8 @@
 <template>
   <div class="font-raleway flex justify-center py-46">
-    <div class="flex w-87.5 items-center justify-between rounded-xl bg-white px-12 py-8 sm:w-150 md:w-175 lg:w-237.5 xl:w-175">
+    <div
+      class="flex w-87.5 items-center justify-between rounded-xl bg-white px-12 py-8 sm:w-150 md:w-175 lg:w-237.5 xl:w-175"
+    >
       <div class="flex flex-col items-center gap-4">
         <img :src="not_avatar" alt="" class="w-20 rounded-full" />
       </div>

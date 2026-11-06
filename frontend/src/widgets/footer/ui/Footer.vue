@@ -39,7 +39,9 @@
             VR
           </span>
           <div class="flex items-center gap-6">
-            <span class="cursor-default text-[88px] font-black text-white transition-all duration-500 hover:translate-x-4 lg:text-[110px]">
+            <span
+              class="cursor-default text-[88px] font-black text-white transition-all duration-500 hover:translate-x-4 lg:text-[110px]"
+            >
               XIV
             </span>
             <span
@@ -59,7 +61,7 @@
         <span class="text-xs font-semibold tracking-[0.25em] text-white/40 uppercase">
           {{ clean(t("footer.languages")) }}
         </span>
-        <LanguageSwitcher class="w-50"/>
+        <LanguageSwitcher class="w-50" />
       </div>
     </div>
   </footer>

@@ -1,12 +1,16 @@
 <template>
-  <template v-if="user.role === 'Buyer'">
-    <ProfileTab :name="t('profile.menu.allOrders')" @click="toggleOrderHistory" />
-    <ProfileTab :name="t('profile.menu.activeOrders')" @click="toggleCurrentOrder" />
+  <template v-if="props.user.role === 'Buyer'">
+    <router-link :to="{ path: `/orders/${props.user.id}` }">
+      <ProfileTab :name="t('profile.menu.allOrders')" />
+    </router-link>
+    <router-link :to="{ path: `/active/orders/${props.user.id}` }">
+      <ProfileTab :name="t('profile.menu.activeOrders')" />
+    </router-link>
     <ProfileTab :name="t('profile.menu.savedCards')" @click="toggleSavedPaymentCard" />
     <ProfileTab :name="t('profile.menu.savedAddresses')" @click="toggleSavedAddresses" />
   </template>
   <template v-else>
-    <router-link :to="{ name: 'my/products' }">
+    <router-link :to="{ path: `/my/products/${props.user.id}` }">
       <ProfileTab :name="t('profile.menu.allMyProducts')" />
     </router-link>
     <router-link :to="{ name: 'create/product' }">
@@ -22,10 +26,14 @@ import { useProfileModals } from "@/shared/lib/profile-modal";
 import { ProfileTab } from "@/shared/ui/profile-tab";
 import type { User } from "@/entities/profile";
 
-defineProps<{
+const props = defineProps<{
   user: User;
 }>();
 
 const { t } = useI18n();
-const { toggleOrderHistory, toggleCurrentOrder, toggleConfidentialityData, toggleSavedAddresses, toggleSavedPaymentCard } = useProfileModals();
+const {
+  toggleConfidentialityData,
+  toggleSavedAddresses,
+  toggleSavedPaymentCard,
+} = useProfileModals();
 </script>

@@ -1,13 +1,15 @@
 <template>
   <div class="mt-8 flex flex-col">
-    <div class="font-dm-sans flex flex-col gap-1 rounded-xl border border-gray-400 bg-gray-50 px-3 py-6 transition duration-400 hover:bg-white">
+    <div
+      class="font-dm-sans flex flex-col gap-1 rounded-xl border border-gray-400 bg-gray-50 px-3 py-6 transition duration-400 hover:bg-white"
+    >
       <div class="flex justify-between">
         <span class="font-semibold">{{ t("checkout.shipTo") }}</span>
         <router-link :to="{ name: 'information' }" class="text-xs text-gray-500">
           {{ t("common.change") }}
         </router-link>
       </div>
-      <span class="text-xs text-gray-500"> {{ userAddress?.country }}, {{ userAddress?.address }} </span>
+      <span class="text-xs text-gray-500">{{ props.userAddress?.country }}, {{ props.userAddress?.address }}</span>
     </div>
   </div>
 </template>
@@ -16,7 +18,7 @@
 import { useI18n } from "vue-i18n";
 import type { UserContactInfo } from "@/entities/user-address";
 
-defineProps<{
+const props = defineProps<{
   userAddress: UserContactInfo | undefined;
 }>();
 

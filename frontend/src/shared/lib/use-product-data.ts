@@ -2,8 +2,8 @@ import { computed, toValue, type MaybeRefOrGetter } from "vue";
 import { keepPreviousData, useQuery } from "@tanstack/vue-query";
 
 import { activeFilter } from "@/widgets/filter-products/model/active-filter";
-import { useGetProducts } from "@/widgets/product-list/api/get-product";
 import { activeSearch, getSearchedProducts } from "@/features/search-product/api/search-product";
+import { useGetProducts } from "@/shared/api/get-product";
 
 const { getAllProducts, getFilteredProducts } = useGetProducts();
 
@@ -24,7 +24,11 @@ export const useProductsData = () => {
   };
 };
 
-export const useFilteredProductData = (type: MaybeRefOrGetter<string>, filter: MaybeRefOrGetter<string>, search: MaybeRefOrGetter<string> = "") => {
+export const useFilteredProductData = (
+  type: MaybeRefOrGetter<string>,
+  filter: MaybeRefOrGetter<string>,
+  search: MaybeRefOrGetter<string> = "",
+) => {
   const term = computed(() => toValue(search).trim());
 
   const { data, isLoading, isFetching, isError, refetch } = useQuery({

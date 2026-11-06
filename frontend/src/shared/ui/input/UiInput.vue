@@ -8,7 +8,9 @@
     />
     <div class="flex">
       <span v-if="props.errorMessage" class="text-xs text-red-600">{{ props.errorMessage }}</span>
-      <span v-if="props.maxLength" class="ml-auto shrink-0 text-xs font-medium text-[#A3A3A3]"> {{ currentLength }} / {{ maxLength }} </span>
+      <span v-if="props.maxLength" class="ml-auto shrink-0 text-xs font-medium text-[#A3A3A3]">
+        {{ currentLength }} / {{ maxLength }}
+      </span>
     </div>
   </div>
 </template>

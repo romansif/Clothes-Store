@@ -33,7 +33,8 @@
               <div class="flex gap-1">
                 <span>{{ t(filterLabelKey(stackName)) }}</span>
                 <span>
-                  (<span class="font-dm-sans font-medium text-blue-700"> {{ getStackCount(products, stackName) }} </span>)
+                  (<span class="font-dm-sans font-medium text-blue-700"> {{ getStackCount(products, stackName) }} </span
+                  >)
                 </span>
               </div>
             </div>
@@ -60,7 +61,9 @@
               <div class="flex gap-1">
                 <span>{{ t(filterLabelKey(genderName)) }}</span>
                 <span>
-                  (<span class="font-dm-sans font-medium text-blue-700"> {{ products.filter((p) => p.gender === genderName).length }} </span>)
+                  (<span class="font-dm-sans font-medium text-blue-700">
+                    {{ products.filter((p) => p.gender === genderName).length }} </span
+                  >)
                 </span>
               </div>
             </div>
@@ -103,15 +106,16 @@
           <div class="flex flex-col gap-2">
             <div v-for="(isActive, priceName) in prices" :key="priceName" class="flex gap-3">
               <img
-                  :src="isActive ? checked : square"
-                  alt=""
-                  :class="[filterClass, isActive ? selectedFilterAndSizeClass : '']"
-                  @click="toggleFilter('PRICE', priceName)"
+                :src="isActive ? checked : square"
+                alt=""
+                :class="[filterClass, isActive ? selectedFilterAndSizeClass : '']"
+                @click="toggleFilter('PRICE', priceName)"
               />
               <div class="flex gap-1">
                 <span>{{ priceLabel(priceName) }}</span>
                 <span>
-                  (<span class="font-dm-sans font-medium text-blue-700"> {{ getStackCount(products, priceName) }} </span>)
+                  (<span class="font-dm-sans font-medium text-blue-700"> {{ getStackCount(products, priceName) }} </span
+                  >)
                 </span>
               </div>
             </div>
@@ -127,24 +131,19 @@
 import { useI18n } from "vue-i18n";
 import { sizes } from "@/shared/model/product-sizes.ts";
 import { filterLabelKey, filterProduct } from "@/widgets/filter-products/lib/filter-product";
-import { useProductsData } from "@/widgets/product-list/lib/use-product-data";
+import { useProductsData } from "@/shared/lib/use-product-data";
 import {
   toggleAvailabilityFilter,
   toggleColorFilter,
   toggleGenderFilter,
-  togglePriceFilter
+  togglePriceFilter,
 } from "@/widgets/filter-products/lib/show-filter";
 import {
   filterSizeClass,
   filterClass,
-  selectedFilterAndSizeClass
+  selectedFilterAndSizeClass,
 } from "@/widgets/filter-products/model/filter-item.variants";
-import {
-  showAvailability,
-  showColor,
-  showGender,
-  showPrice
-} from "@/widgets/filter-products/model/filter.refs";
+import { showAvailability, showColor, showGender, showPrice } from "@/widgets/filter-products/model/filter.refs";
 
 import square from "@/assets/icons/squares/square.png";
 import checked from "@/assets/icons/squares/check-square.png";

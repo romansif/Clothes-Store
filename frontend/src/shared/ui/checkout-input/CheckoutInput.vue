@@ -1,5 +1,9 @@
 <template>
-  <input v-model="model" :class="[checkoutInputClasses[props.variant], props.errorMessage ? checkoutInputErrorClass : '']" v-bind="$attrs" />
+  <input
+    v-model="model"
+    :class="[checkoutInputClasses[props.variant], props.errorMessage ? checkoutInputErrorClass : '']"
+    v-bind="$attrs"
+  />
 </template>
 
 <script setup lang="ts">
@@ -13,4 +17,3 @@ const props = withDefaults(defineProps<CheckoutInputProps>(), {
 const model = defineModel<string | number>();
 </script>
 
-<style scoped></style>
