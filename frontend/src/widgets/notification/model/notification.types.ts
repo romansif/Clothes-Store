@@ -17,7 +17,8 @@ export type NotificationVariants =
   | "shipping"
   | "payment"
   | "add-review"
-  | "replace-order";
+  | "replace-order"
+  | "update-order-status";
 
 export interface NotificationMessage {
   title: string;

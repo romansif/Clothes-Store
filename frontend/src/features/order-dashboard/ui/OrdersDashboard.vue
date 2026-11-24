@@ -29,6 +29,12 @@
       <Transition name="modal">
         <Clipboard v-if="clipboard" />
       </Transition>
+      <Transition name="modal">
+        <ReplacementOrder v-if="replaceOrder" />
+      </Transition>
+      <Transition name="modal">
+        <ReplacementOrderItem v-if="replaceItem" />
+      </Transition>
     </main>
   </div>
 </template>
@@ -41,6 +47,8 @@ import { Clipboard } from "@/widgets/clipboard";
 import { OrderList } from "@/widgets/order-list";
 import { EmptyState, ErrorState, Loader } from "@/widgets/state";
 import type { OrderProps } from "@/entities/order";
+import {ReplacementOrder, ReplacementOrderItem} from "@/features/replace-order-modal";
+import {replaceItem, replaceOrder} from "@/entities/order-action/lib/order-modal";
 
 const props = defineProps<{
   orders: OrderProps[],

@@ -11,7 +11,8 @@ export type PageVariant =
   | "reviews"
   | "orders"
   | "addresses"
-  | "payments";
+  | "payments"
+  | "seller-orders";
 
 export interface EmptyStateMessageProps {
   title: string;

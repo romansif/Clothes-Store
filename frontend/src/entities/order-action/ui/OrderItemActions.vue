@@ -7,7 +7,7 @@
       @click="openReviewModal(props.item.productId)"
     />
     <UiButton
-      v-if="props.item.status !== 'Cancelled'"
+      v-if="hasReplace(props.item.status).value"
       :name="t('orders.cancelItem')"
       variant="useItemOrder"
       @click="openReplaceItem(props.item.orderId, props.item.id)"
@@ -17,11 +17,12 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
+import { useOrder } from "@/entities/order-item/lib/use-order";
 import { useReviewButton } from "@/entities/order-action/lib/use-review-button";
 import { openReviewModal } from "@/entities/order-action/lib/review-form-modal";
 import { openReplaceItem } from "@/entities/order-action/lib/order-modal";
 import { UiButton } from "@/shared/ui/button";
-import type { OrderProps, OrderPosition } from "@/entities/order";
+import type { OrderPosition, OrderProps } from "@/entities/order/model/order.types";
 
 const props = defineProps<{
   order: OrderProps;
@@ -29,5 +30,6 @@ const props = defineProps<{
 }>();
 
 const { t } = useI18n();
+const { hasReplace } = useOrder();
 const { hasReviewed } = useReviewButton(() => props.item.productId);
 </script>

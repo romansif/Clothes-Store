@@ -17,7 +17,7 @@
                   props.item.status === 'Cancelled' ? 'font-semibold text-[#A3A3A3] line-through' : 'text-black',
                 ]"
                 >{{ props.item.title }}</span>
-              <span :class="orderStatus(props.item)">{{ t(`orders.status.${props.order.status}`) }}</span>
+              <span :class="orderStatusVariants(props.item.status)">{{ t(`orders.status.${props.order.status}`) }}</span>
             </div>
             <span
               v-if="props.item.status !== 'Cancelled'"
@@ -117,12 +117,12 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { useOrder } from "@/entities/order-item/lib/use-order";
-import { orderStatus } from "@/entities/order-item/model/orders.variants";
+import { orderStatusVariants } from "@/entities/order-item/model/orders.variants";
 import { reviewFormModal } from "@/entities/order-action/lib/review-form-modal";
 import { CreateReview } from "@/features/add-review";
 import { OrderItemActions } from "@/entities/order-action";
 import { OrderStatus } from "@/entities/order";
-import type { OrderProps, OrderPosition } from "@/entities/order";
+import type { OrderProps, OrderPosition } from "@/entities/order/model/order.types";
 
 const props = defineProps<{
   order: OrderProps;

@@ -9,7 +9,7 @@ const FINISHED_FILTER = `(${FINISHED_STATUSES.join(',')})`;
 
 const CANCELLED = 'Cancelled';
 // Порядок должен совпадать с order_status_rank в SQL
-const STATUS_FLOW = ['Convene', 'Processing', 'Shipped', 'Delivered'];
+const STATUS_FLOW = ['Convene', 'En Route', 'Delivered'];
 const ALL_STATUSES: string[] = [...STATUS_FLOW, CANCELLED];
 
 const ORDER_INPUT = ['contactId', 'addressId', 'paymentId', 'delivery', 'idempotencyKey'] as const;

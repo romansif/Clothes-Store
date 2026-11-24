@@ -1,8 +1,7 @@
+import { useI18n } from "vue-i18n";
 import { computed, ref } from "vue";
 import type { Product } from "@/shared";
-
-import type {OrderPosition, SellerOrderItem} from "@/entities/order";
-import {useI18n} from "vue-i18n";
+import type { OrderPosition, SellerOrderProps } from "@/entities/order/model/order.types";
 
 const clipboard = ref<boolean>(false);
 
@@ -34,13 +33,13 @@ export const useOrder = () => {
     return totalCount?.count ?? 0;
   };
 
-  const orderPreview = (item: OrderPosition | SellerOrderItem) => {
+  const orderPreview = (item: OrderPosition | SellerOrderProps) => {
     const image = item?.images?.[0];
 
     return computed(() => (image ? `${import.meta.env.VITE_SERVER_URL}/${image}` : undefined));
   };
 
-  const orderSetStatus = (item: SellerOrderItem) => {
+  const orderSetStatus = (item: SellerOrderProps) => {
     let message = ''
 
     if(item.status === 'Convene'){
@@ -62,6 +61,10 @@ export const useOrder = () => {
     return computed(() => orderItems.reduce((sum, item) => sum + round2(item.total_price * COMMISSION_RATE), 0));
   };
 
+  const hasReplace = (status: string) => {
+    return computed(() => status !== 'Cancelled' && status !== 'Delivered')
+  }
+
   return {
     clipboard,
 
@@ -71,5 +74,6 @@ export const useOrder = () => {
     orderSetStatus,
     orderItemsPrice,
     orderCommission,
+    hasReplace,
   };
 };

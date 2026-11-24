@@ -19,6 +19,7 @@ export const stateBoxVariantClass: Record<PageVariant, string> = {
   orders: `${stateBoxClass} mt-15`,
   addresses: `${stateBoxClass} mt-10`,
   payments: `${stateBoxClass} mt-10`,
+  "seller-orders": `${stateBoxClass} my-35`
 };
 
 export const stateBoxMessageClass = "flex flex-col items-center gap-6";
@@ -43,6 +44,7 @@ export const stateRouteClass: Record<PageVariant, string> = {
   orders: `${buttonBoxClass}`,
   addresses: "hidden",
   payments: "hidden",
+  "seller-orders": "hidden"
 };
 
 export const loaderSectionClass = "flex justify-center item-center w-full";
@@ -63,4 +65,5 @@ export const loaderBoxVariantClass: Record<PageVariant, string> = {
   orders: `mt-50`,
   addresses: `mt-45`,
   payments: `mt-45`,
+  "seller-orders": `my-70`
 };

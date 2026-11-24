@@ -5,7 +5,7 @@ export interface OrderPosition {
   orderId: string;
   productId: string;
   title: string;
-  images?: string[];
+  images?: string;
   sku: string;
   price: number;
   quantity: number;
@@ -52,7 +52,7 @@ export interface OrderProps {
   deliveryInfo: string;
 }
 
-export interface SellerOrderItem {
+export interface SellerOrderProps {
   id: string;
   orderId: string;
   productId: string;

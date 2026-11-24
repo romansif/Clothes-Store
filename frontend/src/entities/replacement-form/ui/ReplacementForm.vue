@@ -36,9 +36,9 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { cancelChoiceForm, cancelChoiceMessage } from "@/entities/order/model/order-forms";
-import { UiButton } from "@/shared/ui/button";
+import { cancelChoiceForm, cancelChoiceMessage } from "@/entities/replacement-form/model/order-forms";
 import { ReplacementInput } from "@/shared/ui/replacement-input";
+import { UiButton } from "@/shared/ui/button";
 
 const { t } = useI18n();
 </script>

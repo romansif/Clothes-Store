@@ -3,11 +3,11 @@
     <div class="flex border-b border-gray-300 bg-gray-100 p-4">
       <div class="flex flex-col gap-2">
         <div class="flex items-center gap-2">
-          <span :class="orderStatus(order)">
+          <span :class="orderStatusVariants(order.status)">
             {{ t(`orders.status.${props.order.status}`) }}
           </span>
           <div class="flex items-center gap-2">
-            <span class="font-dm-sans text-lg font-semibold">{{ t("orders.number", props.order.id.slice(0, 8)) }}</span>
+            <span class="font-dm-sans text-lg font-semibold">№ {{ props.order.id.slice(0, 8) }}</span>
             <div class="group relative">
               <img @click="copyText(props.order.id.slice(0, 8))" :src="copy_btn" alt="" class="w-5" />
               <span
@@ -57,7 +57,7 @@
           <span class="font-dm-sans text-xl font-bold text-black">$ {{ props.order.orderTotal }}</span>
         </div>
         <UiButton
-          v-if="props.order.status !== 'Cancelled'"
+          v-if="hasReplace(props.order.status).value"
           :name="t('orders.cancelOrder')"
           variant="useOrder"
           @click="openReplaceOrder(props.order.id)"
@@ -71,12 +71,12 @@
 import { useI18n } from "vue-i18n";
 import { useOrder } from "@/entities/order-item/lib/use-order";
 import { useOrderItemsData } from "@/shared/lib/use-order-data";
-import { orderStatus } from "@/entities/order-item/model/orders.variants";
+import { orderStatusVariants } from "@/entities/order-item/model/orders.variants";
 import { openReplaceOrder } from "@/entities/order-action/lib/order-modal";
 import { OrderStatus } from "@/entities/order";
 import { OrderItemList } from "@/widgets/order-item-list";
 import { UiButton } from "@/shared/ui/button";
-import type { OrderProps } from "@/entities/order";
+import type { OrderProps } from "@/entities/order/model/order.types";
 
 import copy_btn from "@/assets/icons/squares/copy.svg";
 
@@ -87,5 +87,5 @@ const props = defineProps<{
 
 const { t } = useI18n();
 const { orderItems } = useOrderItemsData(props.order.id);
-const { copyText, orderItemsPrice, orderCommission } = useOrder();
+const { copyText, orderItemsPrice, orderCommission, hasReplace } = useOrder();
 </script>

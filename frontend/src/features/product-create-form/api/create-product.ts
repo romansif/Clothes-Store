@@ -1,6 +1,4 @@
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
-
-import router from "@/app/router";
 import { useBaseModals } from "@/widgets/notification/lib/use-notify";
 import { clearProductForm } from "@/features/product-form/lib/clear-product-form";
 import {
@@ -13,6 +11,7 @@ import { createProductSchema, moreCreateItemsSchema } from "@/entities/product-f
 import { handler } from "@/shared/api/http";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
 import { imageFiles } from "@/shared/lib/product-helper";
+import router from "@/app/router";
 
 const { openNotify } = useBaseModals();
 
@@ -37,7 +36,7 @@ export const useCreateProduct = () => {
         applyZodErrors(result2.error, moreCreateItemFormErrorMessages);
       }
       if (!result1.success || !result2.success) {
-        throw new Error("Ошибка валидации создания товара");
+        throw new Error("Ошибка валидации создания товара", result1.error);
       }
 
       const formData = new FormData();
@@ -76,13 +75,13 @@ export const useCreateProduct = () => {
 
     onSuccess: async () => {
       await Promise.all([
-        await queryClient.invalidateQueries({ queryKey: ["products"] }),
-        await queryClient.invalidateQueries({ queryKey: ["myProducts"] }),
-        await queryClient.invalidateQueries({ queryKey: ["filteredProducts"] }),
+        queryClient.invalidateQueries({ queryKey: ["products"] }),
+        queryClient.invalidateQueries({ queryKey: ["myProducts"] }),
+        queryClient.invalidateQueries({ queryKey: ["filteredProducts"] }),
       ]);
 
       await openNotify({ variant: "create-product", state: "success" });
-      await router.push({ name: "my/products" });
+      await router.push({ name: 'my/products' })
 
       clearProductForm();
     },
@@ -90,8 +89,6 @@ export const useCreateProduct = () => {
     onError: (err) => {
       applyErrors(err, createProductFormErrorMessages);
       applyErrors(err, moreCreateItemFormErrorMessages);
-
-      throw new Error(`Ошибка при создании товара`, err);
     },
   });
 

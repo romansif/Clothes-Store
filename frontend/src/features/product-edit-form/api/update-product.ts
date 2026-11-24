@@ -46,16 +46,14 @@ export const useEditProductImages = () => {
 
     onSuccess: async () => {
       await Promise.all([
-        await queryClient.invalidateQueries({ queryKey: ["products"] }),
-        await queryClient.invalidateQueries({ queryKey: ["myProducts"] }),
-        await queryClient.invalidateQueries({ queryKey: ["filteredProducts"] }),
+        queryClient.invalidateQueries({ queryKey: ["products"] }),
+        queryClient.invalidateQueries({ queryKey: ["myProducts"] }),
+        queryClient.invalidateQueries({ queryKey: ["filteredProducts"] }),
       ]);
     },
 
-    onError: async (err) => {
+    onError: async () => {
       await openNotify({ variant: "edit-product", state: "error" });
-
-      throw new Error(`Ошибка при изменении фото карточек товара`, err);
     },
   });
 
