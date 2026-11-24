@@ -48,7 +48,7 @@
         </div>
       </div>
       <div class="mt-7 flex items-center gap-6">
-        <router-link :to="{ name: 'profile' }">
+        <router-link :to="{ path: `/profile/${user?.id}` }">
           <UiButton :name="t('paymentSuccess.viewOrders')" variant="viewMyOrders" @click="closeSuccessFull" />
         </router-link>
         <router-link :to="{ name: 'shop' }">
@@ -61,6 +61,7 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
+import { useUserData } from "@/widgets/profile/lib/use-user-data";
 import { closeSuccessFull } from "@/features/payment-success/lib/toggle-success-payment";
 import { orderPriceInfo } from "@/features/checkout-order-info/lib/order-price-info";
 import { useSavedAddressData } from "@/widgets/user-address-list/lib/use-saved-address-data";
@@ -70,6 +71,7 @@ import { UiButton } from "@/shared/ui/button";
 import success from "@/assets/icons/checkout/payment/success.svg";
 
 const { t } = useI18n();
+const { user } = useUserData()
 const { userAddress } = useSavedAddressData();
 const { userPaymentCard } = useSavedPaymentData();
 const { price, commissionPrice, totalPrice } = orderPriceInfo();

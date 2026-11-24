@@ -1,5 +1,5 @@
 <template>
-  <OrderDashboard :orders="orders"
+  <OrdersDashboard :orders="orders"
                   :is-loading="isLoading"
                   :is-fetching="isFetching"
                   :is-error="isError"
@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 import { useOrderData } from "@/shared/lib/use-order-data";
-import { OrderDashboard } from "@/features/order-dashboard";
+import { OrdersDashboard } from "@/features/order-dashboard";
 
 const { orders, isLoading, isFetching, isError, refetch } = useOrderData();
 </script>

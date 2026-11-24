@@ -13,6 +13,9 @@
     <router-link :to="{ path: `/my/products/${props.user.id}` }">
       <ProfileTab :name="t('profile.menu.allMyProducts')" />
     </router-link>
+    <router-link :to="{ path: `/seller/orders/${props.user.id}` }">
+      <ProfileTab :name="t('profile.menu.sellerOrders')" />
+    </router-link>
     <router-link :to="{ name: 'create/product' }">
       <ProfileTab :name="t('profile.menu.createProductCover')" />
     </router-link>

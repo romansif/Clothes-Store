@@ -4,10 +4,10 @@
       <div class="flex flex-col gap-2">
         <div class="flex items-center gap-2">
           <span :class="orderStatus(order)">
-            {{ props.order.status }}
+            {{ t(`orders.status.${props.order.status}`) }}
           </span>
           <div class="flex items-center gap-2">
-            <span class="font-dm-sans text-lg font-semibold">№ {{ props.order.id.slice(0, 8) }}</span>
+            <span class="font-dm-sans text-lg font-semibold">{{ t("orders.number", props.order.id.slice(0, 8)) }}</span>
             <div class="group relative">
               <img @click="copyText(props.order.id.slice(0, 8))" :src="copy_btn" alt="" class="w-5" />
               <span
@@ -71,7 +71,7 @@
 import { useI18n } from "vue-i18n";
 import { useOrder } from "@/entities/order-item/lib/use-order";
 import { useOrderItemsData } from "@/shared/lib/use-order-data";
-import { ordersVariants } from "@/entities/order-item/model/orders.variants";
+import { orderStatus } from "@/entities/order-item/model/orders.variants";
 import { openReplaceOrder } from "@/entities/order-action/lib/order-modal";
 import { OrderStatus } from "@/entities/order";
 import { OrderItemList } from "@/widgets/order-item-list";
@@ -86,7 +86,6 @@ const props = defineProps<{
 }>();
 
 const { t } = useI18n();
-const { orderStatus } = ordersVariants();
 const { orderItems } = useOrderItemsData(props.order.id);
 const { copyText, orderItemsPrice, orderCommission } = useOrder();
 </script>

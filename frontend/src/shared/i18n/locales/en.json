@@ -76,12 +76,13 @@
     "emailNotProvided": "Email not provided",
     "menu": {
       "allOrders": "ALL ORDERS",
-      "activeOrders": "ACTIVE ORDERS",
       "savedCards": "SAVED CARDS",
-      "savedAddresses": "SAVED ADDRESSES",
+      "activeOrders": "ACTIVE ORDERS",
+      "sellerOrders": "CUSTOMER ORDERS",
       "allMyProducts": "ALL MY PRODUCTS",
-      "createProductCover": "CREATE PRODUCT COVER",
-      "confidentialData": "CONFIDENTIAL DATA"
+      "savedAddresses": "SAVED ADDRESSES",
+      "confidentialData": "CONFIDENTIALITY DATA",
+      "createProductCover": "CREATE PRODUCT COVER"
     },
     "modal": {
       "cards": "CARDS",
@@ -230,6 +231,7 @@
     "copyTracking": "Copy tracking number",
     "trackingCopied": "Tracking number copied",
     "total": "Total:",
+    "price": "Price:",
     "size": "Size:",
     "color": "Color:",
     "category": "Category:",
@@ -244,6 +246,8 @@
     "number": "No. {id}",
     "delivery": "Delivery",
     "orderItems": "Items",
+    "ordersItem": "Orders",
+    "order": "Order",
     "commission": "Commission",
     "causeReplace": "Cause replace:",
     "timeline": {
@@ -253,10 +257,10 @@
       "cancelled": "Cancelled: {date}, {time}"
     },
     "status": {
-      "delivered": "Delivered",
-      "enRoute": "En route",
-      "convene": "Convene",
-      "cancelled": "Cancelled"
+      "Delivered": "Delivered",
+      "EnRoute": "En route",
+      "Convene": "Convene",
+      "Cancelled": "Cancelled"
     },
     "reason": {
       "paymentMethod": "Incorrect payment method",
@@ -264,6 +268,13 @@
       "noLongerNeed": "I no longer need this item",
       "byMistake": "Ordered it by mistake",
       "betterProduct": "I found a better product"
+    },
+    "details": "Details",
+    "qty": "Qty:",
+    "setStatus": {
+      "acceptToEnRoute": "Mark as sent",
+      "acceptToDelivered": "Mark as delivered",
+      "delivered": "Delivered"
     }
   },
   "reviews": {
@@ -507,7 +518,7 @@
   },
   "footer": {
     "info": "INFO",
-    "pricing": "Pricing /",
+    "pricing": "PRICING /",
     "about": "ABOUT /",
     "contacts": "CONTACTS /",
     "languages": "LANGUAGES",

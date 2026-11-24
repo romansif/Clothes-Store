@@ -1,7 +1,8 @@
 import { computed, ref } from "vue";
 import type { Product } from "@/shared";
 
-import type { OrderPosition } from "@/entities/order";
+import type {OrderPosition, SellerOrderItem} from "@/entities/order";
+import {useI18n} from "vue-i18n";
 
 const clipboard = ref<boolean>(false);
 
@@ -9,6 +10,8 @@ const COMMISSION_RATE = 0.08;
 const round2 = (n: number) => Math.round(n * 100) / 100;
 
 export const useOrder = () => {
+  const { t } = useI18n()
+
   const copyText = async (text: string) => {
     try {
       clipboard.value = true;
@@ -31,11 +34,25 @@ export const useOrder = () => {
     return totalCount?.count ?? 0;
   };
 
-  const orderPreview = (item: OrderPosition) => {
+  const orderPreview = (item: OrderPosition | SellerOrderItem) => {
     const image = item?.images?.[0];
 
     return computed(() => (image ? `${import.meta.env.VITE_SERVER_URL}/${image}` : undefined));
   };
+
+  const orderSetStatus = (item: SellerOrderItem) => {
+    let message = ''
+
+    if(item.status === 'Convene'){
+      message = t("orders.setStatus.acceptToEnRoute")
+    }else if(item.status === 'En Route'){
+      message = t("orders.setStatus.acceptToDelivered")
+    }else{
+      message = t("orders.setStatus.delivered")
+    }
+
+    return message
+  }
 
   const orderItemsPrice = (orderItems: OrderPosition[]) => {
     return computed(() => orderItems.reduce((sum, item) => sum + item.total_price, 0));
@@ -51,6 +68,7 @@ export const useOrder = () => {
     copyText,
     orderQuantity,
     orderPreview,
+    orderSetStatus,
     orderItemsPrice,
     orderCommission,
   };

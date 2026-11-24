@@ -51,3 +51,42 @@ export interface OrderProps {
   idempotencyKey: string;
   deliveryInfo: string;
 }
+
+export interface SellerOrderItem {
+  id: string;
+  orderId: string;
+  productId: string;
+  status: string;
+  quantity: number;
+  price: number;
+  total_price: number;
+  title: string;
+  description: string;
+  category: string;
+  gender: string;
+  material: string;
+  sku: string;
+  size: string;
+  color: ColorItem;
+  images: string[];
+  created_at: string;
+  date_created_at: string;
+  time_created_at: string;
+  processed_at: string | null;
+  date_processed_at: string | null;
+  time_processed_at: string | null;
+  cancelled_at: string | null;
+  date_cancelled_at: string | null;
+  time_cancelled_at: string | null;
+  cause_replace: string | null;
+  order: SellerOrderInfo;
+}
+
+export interface SellerOrderInfo {
+  id: string;
+  status: string;
+  delivery: string;
+  created_at: string;
+  date_created_at: string;
+  time_created_at: string;
+}

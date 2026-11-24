@@ -18,10 +18,10 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { orderStatusClass } from "@/entities/order/model/order-status.variants";
-import type { OrderProps, OrderPosition } from "@/entities/order";
+import type { OrderProps, OrderPosition, SellerOrderItem } from "@/entities/order";
 
 const props = defineProps<{
-  item: OrderProps | OrderPosition;
+  item: OrderProps | OrderPosition | SellerOrderItem;
 }>();
 
 const { t } = useI18n();

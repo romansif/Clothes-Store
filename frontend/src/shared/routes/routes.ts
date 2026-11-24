@@ -106,6 +106,11 @@ const routes: RouteRecordRaw[] = [
         name: "active/orders",
         component: () => import("@/pages/orders/ActiveOrdersPage.vue"),
       },
+      {
+        path: "seller/orders/:id",
+        name: "seller/orders",
+        component: () => import("@/pages/orders/SellerOrders.vue"),
+      }
     ],
   },
   {

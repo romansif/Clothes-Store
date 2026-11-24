@@ -12,7 +12,7 @@
           </span>
           <div class="ml-auto flex items-center gap-2 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm">
             <span class="text-[#A3A3A3]">
-              {{ t("orders.orderItems") }}
+              {{ t("orders.ordersItem") }}
             </span>
             <span class="font-dm-sans font-bold text-black">{{ props.orders.length }}</span>
           </div>

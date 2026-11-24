@@ -1,7 +1,7 @@
 <template>
-  <aside class="font-raleway mt-32.5 hidden xl:flex xl:flex-col">
+  <aside class="font-raleway hidden xl:flex xl:flex-col">
     <span class="text-xl font-bold">{{ t("filters.title") }}</span>
-    <div class="mt-7 flex flex-col">
+    <div class="mt-6 flex flex-col">
       <span class="font-medium">{{ t("filters.size") }}</span>
       <div class="mt-2 flex items-center gap-2">
         <img
@@ -14,7 +14,7 @@
         />
       </div>
     </div>
-    <div class="my-3.5 border-b border-gray-400"></div>
+    <div class="my-3 border-b border-gray-400"></div>
     <div class="flex flex-col gap-2 filter">
       <div class="flex cursor-pointer items-center font-medium" @click="toggleAvailabilityFilter()">
         <span class="font-bold">{{ t("filters.availability") }}</span>
@@ -42,7 +42,7 @@
         </div>
       </div>
     </div>
-    <div class="my-3.5 border-b border-gray-400"></div>
+    <div class="my-3 border-b border-gray-400"></div>
     <div class="flex flex-col gap-2 filter">
       <div class="flex items-center font-medium" @click="toggleGenderFilter()">
         <span class="font-bold">{{ t("filters.gender") }}</span>
@@ -50,7 +50,7 @@
       </div>
       <div class="filter-body" :class="{ open: showGender }">
         <div class="filter-inner">
-          <div class="flex flex-col gap-2">
+          <div class="grid grid-cols-2 gap-x-6 gap-y-2">
             <div v-for="(isActive, genderName) in genders" class="flex gap-3">
               <img
                 :src="isActive ? checked : square"
@@ -71,7 +71,7 @@
         </div>
       </div>
     </div>
-    <div class="my-3.5 border-b border-gray-400"></div>
+    <div class="my-3 border-b border-gray-400"></div>
     <div class="flex flex-col gap-2 filter">
       <div class="flex items-center font-medium" @click="toggleColorFilter()">
         <span class="font-bold">{{ t("filters.color") }}</span>
@@ -95,7 +95,7 @@
         </div>
       </div>
     </div>
-    <div class="my-3.5 border-b border-gray-400"></div>
+    <div class="my-3 border-b border-gray-400"></div>
     <div class="flex flex-col gap-2 filter">
       <div class="flex items-center font-medium" @click="togglePriceFilter()">
         <span class="font-bold">{{ t("filters.price") }}</span>
@@ -114,8 +114,9 @@
               <div class="flex gap-1">
                 <span>{{ priceLabel(priceName) }}</span>
                 <span>
-                  (<span class="font-dm-sans font-medium text-blue-700"> {{ getStackCount(products, priceName) }} </span
-                  >)
+                  (<span class="font-dm-sans font-medium text-blue-700">
+                    {{ getStackCount(products, priceName) }}
+                  </span>)
                 </span>
               </div>
             </div>
@@ -123,7 +124,7 @@
         </div>
       </div>
     </div>
-    <div class="my-3.5 border-b border-gray-400"></div>
+    <div class="my-3 border-b border-gray-400"></div>
   </aside>
 </template>
 

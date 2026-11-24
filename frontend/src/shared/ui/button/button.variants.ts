@@ -17,8 +17,8 @@ export const buttonVariantClasses: Record<ButtonVariant, string> = {
   replaceAndReview: `${baseButton} bg-[#722f37] text-white text-center py-4 px-6 font-semibold hover:scale-105 hover:bg-[#5a252c]`,
   outOfStack: `${baseButton} w-full bg-[#A3A3A3] text-white py-4 font-semibold disabled:cursor-not-allowed`,
   exitClose: `${baseButton} w-fit h-fit ml-auto bg-[#8c6a3f] text-white px-10 py-2 font-medium text-xs text-start hover:scale-108 hover:bg-[#735432]`,
-  cancel: `${baseButton} bg-[#a8433b] text-white px-8 py-3.5 font-medium text-xs hover:scale-108 hover:bg-[#8c342e]`,
-  confirm: `${baseButton} bg-[#3e6b55] text-white px-4 py-3.5 font-medium text-xs hover:scale-108 hover:bg-[#315544]`,
+  cancel: `${baseButton} bg-[#a8433b] text-white px-10 py-3.5 font-medium text-xs hover:scale-108 hover:bg-[#8c342e]`,
+  confirm: `${baseButton} bg-[#3e6b55] text-white px-9 py-3.5 font-medium text-xs hover:scale-108 hover:bg-[#315544]`,
   refresh: `${baseButton} bg-[#26334d] text-white px-4 py-2 mt-5 hover:bg-[#1b2438]`,
   stackInfo: `${baseButton} w-fit h-fit ml-auto bg-[#8c6a3f] text-white px-20 py-4 font-medium  text-start hover:bg-[#735432]`,
   loadReviews: `${baseButton} w-150 border border-[#D9D9D9] p-2.5 font-semibold hover:bg-white hover:scale-105 hover:border-[#722f37] hover:text-[#722f37]`,
@@ -28,4 +28,6 @@ export const buttonVariantClasses: Record<ButtonVariant, string> = {
   viewMyOrders: `${baseButton} w-87 py-3 font-medium text-white bg-[#722f37] border-2 border-[#722f37] hover:scale-105 hover:bg-white hover:text-[#722f37]`,
   paymentSuccess: `${baseButton} w-87 py-3 font-medium text-[#722f37] bg-white border-2 border-[#722f37] hover:scale-105 hover:bg-[#722f37] hover:text-white`,
   closeNotify: `absolute top-3 right-3 flex h-7 w-7 cursor-pointer items-center justify-center text-white/60 transition-colors hover:text-white`,
+  acceptStatus: `transition duration-400 transform cursor-pointer rounded-xl w-full py-2 bg-black text-white border text-lg hover:scale-105 hover:bg-white hover:text-black`,
+  sellerItemDetails: `transition duration-400 transform cursor-pointer rounded-xl w-38 py-2 text-lg text-black border border-[#A3A3A3] hover:scale-105 hover:bg-black hover:text-white`
 };

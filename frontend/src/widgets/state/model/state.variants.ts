@@ -51,7 +51,7 @@ export const loaderItemsClass = "flex flex-col items-center gap-8";
 
 export const loaderBoxVariantClass: Record<PageVariant, string> = {
   product: `my-45`,
-  user: `my-85`,
+  user: `my-70`,
   "season-list": `mt-45`,
   "week-list": `my-40`,
   "year-list": `my-40`,

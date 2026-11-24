@@ -1,5 +1,5 @@
 <template>
-  <TransitionGroup name="list" tag="ul" class="no-scrollbar flex h-76 flex-col overflow-y-auto">
+  <TransitionGroup name="list" tag="ul" class="flex h-76 flex-col overflow-y-auto">
     <OrderItem v-for="item in orderItems" :key="item.id" :order="props.order" :item="item" />
   </TransitionGroup>
 </template>

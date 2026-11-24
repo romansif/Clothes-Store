@@ -22,7 +22,7 @@
             ]"
             @click="countMode = mode.code"
           >
-            {{ mode.code }}
+            {{ t(`countMode.${mode.code}`) }}
           </button>
         </div>
       </div>
