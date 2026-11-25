@@ -1,5 +1,5 @@
 <template>
-  <main class="flex justify-center items-center">
+  <main class="flex items-center justify-center">
     <Loader v-if="isLoading" variant="seller-orders" />
     <ErrorState v-else-if="isError" variant="seller-orders" :loading="isFetching" @reload="refetch" />
     <SellerOrderList v-else-if="sellerItems.length" :seller-items="sellerItems" />
@@ -12,6 +12,5 @@ import { useSellerOrderData } from "@/features/order-dashboard/lib/use-seller-or
 import { SellerOrderList } from "@/widgets/order-list";
 import { EmptyState, ErrorState, Loader } from "@/widgets/state";
 
-const { sellerItems, isLoading, isError, isFetching, refetch } = useSellerOrderData()
+const { sellerItems, isLoading, isError, isFetching, refetch } = useSellerOrderData();
 </script>
-

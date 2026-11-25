@@ -1,6 +1,7 @@
-import { useI18n } from "vue-i18n";
 import { computed, ref } from "vue";
+import { useI18n } from "vue-i18n";
 import type { Product } from "@/shared";
+
 import type { OrderPosition, SellerOrderProps } from "@/entities/order/model/order.types";
 
 const clipboard = ref<boolean>(false);
@@ -9,9 +10,9 @@ const COMMISSION_RATE = 0.08;
 const round2 = (n: number) => Math.round(n * 100) / 100;
 
 export const useOrder = () => {
-  const { t } = useI18n()
+  const { t } = useI18n();
 
-  const copyText = async (text: string) => {
+  const copyText = async (id: string) => {
     try {
       clipboard.value = true;
 
@@ -19,7 +20,7 @@ export const useOrder = () => {
         clipboard.value = false;
       }, 1500);
 
-      await navigator.clipboard.writeText(text);
+      await navigator.clipboard.writeText(id);
     } catch (err) {
       throw new Error("Error while copying");
     }
@@ -40,18 +41,18 @@ export const useOrder = () => {
   };
 
   const orderSetStatus = (item: SellerOrderProps) => {
-    let message = ''
+    let message = "";
 
-    if(item.status === 'Convene'){
-      message = t("orders.setStatus.acceptToEnRoute")
-    }else if(item.status === 'En Route'){
-      message = t("orders.setStatus.acceptToDelivered")
-    }else{
-      message = t("orders.setStatus.delivered")
+    if (item.status === "Convene") {
+      message = t("orders.setStatus.acceptToEnRoute");
+    } else if (item.status === "En Route") {
+      message = t("orders.setStatus.acceptToDelivered");
+    } else {
+      message = t("orders.setStatus.delivered");
     }
 
-    return message
-  }
+    return message;
+  };
 
   const orderItemsPrice = (orderItems: OrderPosition[]) => {
     return computed(() => orderItems.reduce((sum, item) => sum + item.total_price, 0));
@@ -62,8 +63,8 @@ export const useOrder = () => {
   };
 
   const hasReplace = (status: string) => {
-    return computed(() => status !== 'Cancelled' && status !== 'Delivered')
-  }
+    return computed(() => status !== "Cancelled" && status !== "Delivered");
+  };
 
   return {
     clipboard,

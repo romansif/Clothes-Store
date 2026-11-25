@@ -1,9 +1,20 @@
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import type { Product, SizeGuide } from "@/shared";
 
 import { productSpecific } from "@/entities/product-form/model/product-specific";
 
-const { outerWear, underWear, outerwearSizeGuide, underWearSizeGuide, shoesSizeGuide } = productSpecific();
+const {
+  outerWear,
+  underWear,
+  outerwearSizeGuide,
+  womenOuterwearSizeGuide,
+  underWearSizeGuide,
+  womenUnderWearSizeGuide,
+  sizesShoes,
+  shoesSizeGuide,
+  womenSizesShoes,
+  womenShoesSizeGuide,
+} = productSpecific();
 
 export const unit = ref<string>("CM");
 
@@ -16,14 +27,24 @@ const convertSizeToInches = (sizes: SizeGuide[]) => {
 
 export const formatterSizeGuide = (product: Product) => {
   const category = product.category;
+  const isWomen = product.gender === "women";
 
   const isOuterWear = outerWear.includes(category);
   const isUnderWear = underWear.includes(category);
 
+  let guide: SizeGuide[];
+
   if (isOuterWear) {
-    return unit.value === "IN" ? convertSizeToInches(outerwearSizeGuide) : outerwearSizeGuide;
+    guide = isWomen ? womenOuterwearSizeGuide : outerwearSizeGuide;
   } else if (isUnderWear) {
-    return unit.value === "IN" ? convertSizeToInches(underWearSizeGuide) : underWearSizeGuide;
+    guide = isWomen ? womenUnderWearSizeGuide : underWearSizeGuide;
+  } else {
+    guide = isWomen ? womenShoesSizeGuide : shoesSizeGuide;
   }
-  return unit.value === "IN" ? convertSizeToInches(shoesSizeGuide) : shoesSizeGuide;
+
+  return unit.value === "IN" ? convertSizeToInches(guide) : guide;
+};
+
+export const shoesSizes = (product: Product) => {
+  return computed(() => (product.gender === "women" ? womenSizesShoes : sizesShoes));
 };

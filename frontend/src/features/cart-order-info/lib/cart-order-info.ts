@@ -1,4 +1,5 @@
 import { computed } from "vue";
+import { useI18n } from "vue-i18n";
 
 import router from "@/app/router";
 import { useCartData } from "@/widgets/cart-list/lib/use-cart-data";
@@ -9,6 +10,7 @@ const COMMISSION_RATE = 0.08;
 const round2 = (n: number) => Math.round(n * 100) / 100;
 
 export const useCartOrderInfo = () => {
+  const { t } = useI18n();
   const { cart } = useCartData();
 
   const checkedItems = computed(() => {
@@ -39,18 +41,18 @@ export const useCartOrderInfo = () => {
 
     try {
       if (!isAgreeFormError.value.agree && !isChecked) {
-        isAgreeFormErrorMessage.value.agree =
-          "You must select the items for your order, agree to the Terms and Conditions";
+        isAgreeFormErrorMessage.value.agree = t("errors.selectItemsAndAgree");
         return;
       } else if (!isAgreeFormError.value.agree) {
-        isAgreeFormErrorMessage.value.agree = "You must agree to the Terms and Conditions";
+        isAgreeFormErrorMessage.value.agree = t("errors.agreeTerms");
         return;
       } else if (!isChecked) {
-        isAgreeFormErrorMessage.value.agree = "You must select the items for your order";
+        isAgreeFormErrorMessage.value.agree = t("errors.selectItems");
         return;
       } else {
         isAgreeFormErrorMessage.value.agree = "";
-        isAgreeFormError.value.agreeMessage = false;
+        isAgreeFormError.value.agree = false;
+
         await router.push({ name: "information" });
       }
     } catch (err) {

@@ -19,8 +19,10 @@ import { PaymentCardForm, PaymentMethod } from "@/entities/checkout-payment-form
 import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment-form/model/payment-form";
 import { allPaymentMethods } from "@/entities/checkout-payment-form/model/payment-methods";
 import type { PaymentMethods } from "@/entities/checkout-payment-form";
+import type { UserPayment } from "@/entities/user-payment/model/payment.types";
 
 const props = defineProps<{
+  userPayment: UserPayment;
   isDebitCard: boolean;
 }>();
 

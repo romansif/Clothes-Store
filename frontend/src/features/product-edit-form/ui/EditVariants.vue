@@ -62,7 +62,11 @@
                   </span>
                 </div>
               </td>
-              <td v-for="size in uniqueSizes(props.product)" :key="`${color.colorName}-${size}`" class="py-6 text-center">
+              <td
+                v-for="size in uniqueSizes(props.product)"
+                :key="`${color.colorName}-${size}`"
+                class="py-6 text-center"
+              >
                 <input
                   type="number"
                   min="0"

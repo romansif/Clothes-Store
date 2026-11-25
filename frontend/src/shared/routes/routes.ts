@@ -110,7 +110,7 @@ const routes: RouteRecordRaw[] = [
         path: "seller/orders/:id",
         name: "seller/orders",
         component: () => import("@/pages/orders/SellerOrders.vue"),
-      }
+      },
     ],
   },
   {

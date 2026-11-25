@@ -7,7 +7,9 @@
           alt=""
           :class="productPreviewClass(productCardVariants[props.variant].size, props.product)"
         />
-        <span v-if="isOutOfStack(props.product)" :class="productCardVariants[props.variant].stack">{{ t('product.outOfStock') }}</span>
+        <span v-if="isOutOfStack(props.product)" :class="productCardVariants[props.variant].stack">{{
+          t("product.outOfStock")
+        }}</span>
       </router-link>
       <img
         v-if="user?.role === 'Buyer'"
@@ -45,6 +47,6 @@ const emit = defineEmits<{
   toggleToFavorite: [favorite: FavoriteItem[], product: Product];
 }>();
 
-const { t } = useI18n()
+const { t } = useI18n();
 const { getProductId, isOutOfStack, productPreview, isFavorite } = previewHelper();
 </script>

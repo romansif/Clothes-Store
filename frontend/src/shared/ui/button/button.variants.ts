@@ -29,5 +29,5 @@ export const buttonVariantClasses: Record<ButtonVariant, string> = {
   paymentSuccess: `${baseButton} w-87 py-3 font-medium text-[#722f37] bg-white border-2 border-[#722f37] hover:scale-105 hover:bg-[#722f37] hover:text-white`,
   closeNotify: `absolute top-3 right-3 flex h-7 w-7 cursor-pointer items-center justify-center text-white/60 transition-colors hover:text-white`,
   acceptStatus: `transition duration-400 transform cursor-pointer rounded-xl w-full py-2.5 bg-black text-white border text-lg hover:bg-white hover:text-black`,
-  sellerItemDetails: `transition duration-400 transform cursor-pointer rounded-xl w-38 py-2.5 text-lg text-black border border-[#A3A3A3] hover:bg-black hover:text-white`
+  sellerItemDetails: `transition duration-400 transform cursor-pointer rounded-xl w-38 py-2.5 text-lg text-black border border-[#A3A3A3] hover:bg-black hover:text-white`,
 };

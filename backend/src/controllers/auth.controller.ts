@@ -68,6 +68,10 @@ const saveSessions = async (user: Row): Promise<void> => {
 const findUserByEmailRole = async (email: string, role: Role): Promise<Row | null> =>
     unwrap(await supabase.from('users').select('*').eq('email', email).eq('role', role).maybeSingle());
 
+// Все аккаунты с этим email (максимум по одному на роль)
+const findUsersByEmail = async (email: string): Promise<Row[]> =>
+    unwrap(await supabase.from('users').select('*').eq('email', email)) ?? [];
+
 const setSessionCookies = (res: Response, tokens: { accessToken: string; refreshToken: string }) => {
     res.cookie('accessToken', tokens.accessToken, accessCookieOptions);
     res.cookie('refreshToken', tokens.refreshToken, refreshCookieOptions);
@@ -203,7 +207,9 @@ const authController = {
             throw new HttpError(400, 'Google credential is required');
         }
 
-        const role: Role = isRole(body.role) ? body.role : 'Buyer';
+        // Роль необязательна: нужна только чтобы создать новый аккаунт
+        // или выбрать один из двух (Buyer/Seller) с одним email.
+        const requestedRole: Role | null = isRole(body.role) ? body.role : null;
 
         let payload: TokenPayload | undefined;
         try {
@@ -231,10 +237,29 @@ const authController = {
             throw new HttpError(401, 'Email is not verified');
         }
 
-        let user = await findUserByEmailRole(email, role);
+        const accounts = await findUsersByEmail(email);
 
-        if (user && user.googleId && user.googleId !== sub) {
+        if (accounts.some(a => a.googleId && a.googleId !== sub)) {
             throw new HttpError(401, 'This account is linked to a different Google profile');
+        }
+
+        let user: Row | null = null;
+
+        if (requestedRole) {
+            // Роль указана явно: входим в этот аккаунт или создаём его
+            user = accounts.find(a => a.role === requestedRole) ?? null;
+        } else if (accounts.length === 1) {
+            // Роль не указана, аккаунт один: входим в него, роль берём из БД
+            user = accounts[0];
+        } else {
+            // Аккаунтов нет (нужна роль для регистрации) или их два (нужно выбрать)
+            throw new HttpError(
+                400,
+                accounts.length === 0
+                    ? 'Role is required for first sign-in'
+                    : 'Choose which account to sign in to',
+                { role: 'ROLE_REQUIRED' },
+            );
         }
 
         let tokens: { accessToken: string; refreshToken: string };
@@ -243,7 +268,7 @@ const authController = {
             user = {
                 id: uuidv4(),
                 email,
-                role,
+                role: requestedRole,
                 name: given_name || name || email.split('@')[0],
                 surName: family_name || '',
                 avatarUrl: picture || '',

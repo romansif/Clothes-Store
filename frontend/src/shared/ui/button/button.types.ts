@@ -1,5 +1,5 @@
 export type ButtonVariant =
-    "login"
+  | "login"
   | "register"
   | "changeRegister"
   | "useProduct"

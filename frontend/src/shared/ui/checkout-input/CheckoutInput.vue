@@ -16,4 +16,3 @@ const props = withDefaults(defineProps<CheckoutInputProps>(), {
 
 const model = defineModel<string | number>();
 </script>
-

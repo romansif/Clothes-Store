@@ -34,9 +34,5 @@ const props = defineProps<{
 }>();
 
 const { t } = useI18n();
-const {
-  toggleConfidentialityData,
-  toggleSavedAddresses,
-  toggleSavedPaymentCard,
-} = useProfileModals();
+const { toggleConfidentialityData, toggleSavedAddresses, toggleSavedPaymentCard } = useProfileModals();
 </script>

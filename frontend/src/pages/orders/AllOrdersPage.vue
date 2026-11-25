@@ -1,9 +1,11 @@
 <template>
-  <OrdersDashboard :orders="orders"
-                  :is-loading="isLoading"
-                  :is-fetching="isFetching"
-                  :is-error="isError"
-                  @refetch="refetch" />
+  <OrdersDashboard
+    :orders="orders"
+    :is-loading="isLoading"
+    :is-fetching="isFetching"
+    :is-error="isError"
+    @refetch="refetch"
+  />
 </template>
 
 <script setup lang="ts">

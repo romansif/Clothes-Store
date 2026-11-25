@@ -51,7 +51,7 @@
         ]"
         :error-message="updateUserFormErrorMessages.phone"
       />
-      <div class="flex mt-3">
+      <div class="mt-3 flex">
         <UiButton type="submit" :name="t('profile.form.savePhone')" variant="profileForm" />
       </div>
     </form>

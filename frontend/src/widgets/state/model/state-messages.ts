@@ -20,7 +20,7 @@ export const stateRouteMessage: Record<PageVariant, string> = {
   orders: "state.route.orders",
   addresses: "",
   payments: "",
-  "seller-orders": ""
+  "seller-orders": "",
 };
 
 export const stateRoute: Record<PageVariant, string> = {
@@ -37,7 +37,7 @@ export const stateRoute: Record<PageVariant, string> = {
   orders: "shop",
   addresses: "",
   payments: "",
-  "seller-orders": ""
+  "seller-orders": "",
 };
 
 export const errorStateMessage: Record<PageVariant, EmptyStateMessageProps> = {
@@ -54,7 +54,7 @@ export const errorStateMessage: Record<PageVariant, EmptyStateMessageProps> = {
   orders: { title: "state.error.orders.title", text: "state.error.orders.text" },
   addresses: { title: "state.error.addresses.title", text: "state.error.addresses.text" },
   payments: { title: "state.error.payments.title", text: "state.error.payments.text" },
-  "seller-orders": { title: "state.error.sellerOrders.title", text: "state.error.sellerOrders.title" }
+  "seller-orders": { title: "state.error.sellerOrders.title", text: "state.error.sellerOrders.title" },
 };
 
 export const emptyStateMessage: Record<PageVariant, EmptyStateMessageProps> = {
@@ -71,5 +71,5 @@ export const emptyStateMessage: Record<PageVariant, EmptyStateMessageProps> = {
   orders: { title: "state.empty.orders.title", text: "state.empty.orders.text" },
   addresses: { title: "state.empty.addresses.title", text: "state.empty.addresses.text" },
   payments: { title: "state.empty.payments.title", text: "state.empty.payments.text" },
-  "seller-orders": { title: "state.empty.sellerOrders.title", text: "state.empty.sellerOrders.text" }
+  "seller-orders": { title: "state.empty.sellerOrders.title", text: "state.empty.sellerOrders.text" },
 };

@@ -1,7 +1,8 @@
 import { ref } from "vue";
-import { orderStore } from "@/shared/model/order.store";
+
 import { clearReplaceForm } from "@/features/replace-order-modal/lib/clear-order-form";
 import { cancelChoiceForm } from "@/entities/replacement-form/model/order-forms";
+import { orderStore } from "@/shared/model/order.store";
 
 const { orderId, itemId } = orderStore();
 

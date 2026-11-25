@@ -25,5 +25,5 @@ import { useUserData } from "@/widgets/profile/lib/use-user-data";
 import { clearProductForm } from "@/features/product-form/lib/clear-product-form.ts";
 
 const { t } = useI18n();
-const { user } = useUserData()
+const { user } = useUserData();
 </script>

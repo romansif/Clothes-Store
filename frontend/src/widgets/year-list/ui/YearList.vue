@@ -27,7 +27,7 @@
 import { useToggleFavorite } from "@/shared/api/toggle-to-favorite";
 import { useYearProductData } from "@/widgets/year-list/lib/use-year-product-data";
 import { useFavoriteData } from "@/shared/lib/use-favorite-data";
-import { vHorizontalScroll} from "@/shared/lib/horizontal-scroll";
+import { vHorizontalScroll } from "@/shared/lib/horizontal-scroll";
 import { ProductCard } from "@/entities/product-card";
 import { EmptyState, ErrorState, Loader } from "@/widgets/state";
 import type { User } from "@/entities/profile";

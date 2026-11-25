@@ -49,7 +49,7 @@
             <tr v-else class="border-b border-neutral-400">
               <th class="px-4 py-4 text-left tracking-wider uppercase">{{ t("sizeGuide.size") }}</th>
               <th
-                v-for="size in sizesShoes"
+                v-for="size in shoesSizes(product).value"
                 :key="size.name"
                 class="font-dm-sans px-4 py-4 text-center tracking-wider uppercase"
               >
@@ -62,7 +62,7 @@
               <th class="px-4 py-4 text-left font-normal">
                 {{ t(row.name) }}
               </th>
-              <td v-for="value in row.values" :key="value" class="font-dm-sans px-4 py-4 text-center text-neutral-600">
+              <td v-for="(value, i) in row.values" :key="i" class="font-dm-sans px-4 py-4 text-center text-neutral-600">
                 {{ value }}
               </td>
             </tr>
@@ -83,8 +83,7 @@
 import { useI18n } from "vue-i18n";
 import { sizes } from "@/shared/model/product-sizes";
 import { toggleSizeGuide } from "@/entities/size-guide/lib/toggle-size-guide";
-import { productSpecific } from "@/entities/product-form/model/product-specific";
-import { formatterSizeGuide, unit } from "@/entities/size-guide/lib/formatter-size";
+import { formatterSizeGuide, shoesSizes, unit } from "@/entities/size-guide/lib/formatter-size";
 import type { Product } from "@/shared";
 
 import close from "@/assets/icons/delete-close/delete.svg";
@@ -94,5 +93,4 @@ const props = defineProps<{
 }>();
 
 const { t } = useI18n();
-const { sizesShoes } = productSpecific();
 </script>

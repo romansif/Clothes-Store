@@ -34,8 +34,9 @@
         </router-link>
       </div>
       <div class="flex items-center gap-3 justify-self-end md:gap-5 lg:gap-10">
-        <router-link v-if="props.user"
-                     :to="{ path: `/profile/${props.user.id}` }"
+        <router-link
+          v-if="props.user"
+          :to="{ path: `/profile/${props.user.id}` }"
           class="group flex items-center gap-2.5 transition duration-400 hover:scale-110"
         >
           <img :src="props.user ? avatar() : profile" alt="" class="h-11 w-11 rounded-full bg-white object-cover" />

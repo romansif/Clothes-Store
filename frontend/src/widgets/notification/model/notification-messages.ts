@@ -18,7 +18,10 @@ export const notifyMessages: Record<NotificationVariants, NotificationMessage> =
   payment: { title: "notify.success.payment.title", text: "notify.success.payment.text" },
   "add-review": { title: "notify.success.addReview.title", text: "notify.success.addReview.text" },
   "replace-order": { title: "notify.success.replaceOrder.title", text: "notify.success.replaceOrder.text" },
-  "update-order-status": { title: "notify.success.updateOrderStatus.title", text: "notify.success.updateOrderStatus.text" }
+  "update-order-status": {
+    title: "notify.success.updateOrderStatus.title",
+    text: "notify.success.updateOrderStatus.text",
+  },
 };
 
 export const notifyErrorMessages: Record<NotificationVariants, NotificationMessage> = {
@@ -39,5 +42,5 @@ export const notifyErrorMessages: Record<NotificationVariants, NotificationMessa
   payment: { title: "notify.error.payment.title", text: "notify.error.payment.text" },
   "add-review": { title: "notify.error.addReview.title", text: "notify.error.addReview.text" },
   "replace-order": { title: "notify.error.replaceOrder.title", text: "notify.error.replaceOrder.text" },
-  "update-order-status": { title: "notify.error.updateOrderStatus.title", text: "notify.error.updateOrderStatus.text" }
+  "update-order-status": { title: "notify.error.updateOrderStatus.title", text: "notify.error.updateOrderStatus.text" },
 };

@@ -5,4 +5,3 @@ export const isInStock = (product: Product) => {
 
   return product.variants.reduce((sum, variant) => sum + (variant.count ?? 0), 0);
 };
-

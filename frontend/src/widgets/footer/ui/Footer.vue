@@ -13,7 +13,11 @@
               class="group inline-flex cursor-pointer items-center gap-3 text-3xl font-semibold text-white/80 transition-all duration-300 hover:translate-x-2 hover:text-white"
             >
               {{ clean(t(item)) }}
-              <img :src="arrow_link" alt="" class="h-6 w-6 -translate-x-2 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+              <img
+                :src="arrow_link"
+                alt=""
+                class="h-6 w-6 -translate-x-2 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
+              />
             </span>
           </li>
         </ul>
@@ -61,7 +65,7 @@
 import { useI18n } from "vue-i18n";
 import { LanguageSwitcher } from "@/widgets/navigation/index.ts";
 
-import arrow_link from "@/assets/icons/footer/arrow-up-right.svg"
+import arrow_link from "@/assets/icons/footer/arrow-up-right.svg";
 
 const { t } = useI18n();
 

@@ -1,54 +1,57 @@
-import { queryClient } from "@/shared/api/query-client";
-import { handler } from "@/shared/api/http";
-import { useMutation } from "@tanstack/vue-query";
+import { useMutation, useQueryClient } from "@tanstack/vue-query";
+
 import { useBaseModals } from "@/widgets/notification/lib/use-notify";
 import type { SellerOrderProps } from "@/entities/order";
+import { handler } from "@/shared/api/http";
 
 const { openNotify } = useBaseModals();
 
 const NEXT_STATUS: Record<string, string> = {
-    "Convene": "En Route",
-    "En Route": "Delivered",
-}
+  Convene: "En Route",
+  "En Route": "Delivered",
+};
 
 export const useUpdateOrderStatus = () => {
-    const {
-        mutate: updateOrderStatus,
-        isPending,
-        isError
-    } = useMutation({
-        mutationKey: ["updateOrderStatus"],
-        mutationFn: async (item: SellerOrderProps) => {
-            const next = NEXT_STATUS[item.status]
-            if(!item.orderId || !item.id || !next){
-                throw new Error("Нельзя обновить статус позиции");
-            }
+  const queryClient = useQueryClient();
 
-            await handler(`/orders/${item.orderId}/items/${item.id}`, {
-                method: 'PATCH',
-                body: JSON.stringify({
-                    status: next
-                })
-            })
-        },
+  const {
+    mutate: updateOrderStatus,
+    isPending,
+    isError,
+  } = useMutation({
+    mutationKey: ["updateOrderStatus"],
+    mutationFn: async (item: SellerOrderProps) => {
+      const next = NEXT_STATUS[item.status];
+      if (!item.orderId || !item.id || !next) {
+        throw new Error("Нельзя обновить статус позиции");
+      }
 
-        onSuccess: async () => {
-            await openNotify({ variant: "update-order-status", state: "success" })
+      await handler(`/orders/${item.orderId}/items/${item.id}`, {
+        method: "PATCH",
+        body: JSON.stringify({
+          status: next,
+        }),
+      });
+    },
 
-            await Promise.all([
-                queryClient.invalidateQueries({ queryKey: ["orders"] }),
-                queryClient.invalidateQueries({ queryKey: ["sellerOrders"] }),
-            ])
-        },
+    onSuccess: async () => {
+      await openNotify({ variant: "update-order-status", state: "success" });
 
-        onError: async () => {
-            await openNotify({ variant: "update-order-status", state: "error" })
-        }
-    });
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: ["orders"] }),
+        queryClient.invalidateQueries({ queryKey: ["orderItems"] }),
+        queryClient.invalidateQueries({ queryKey: ["sellerItems"] }),
+      ]);
+    },
 
-    return {
-        updateOrderStatus,
-        isPending,
-        isError
-    }
-}
+    onError: async () => {
+      await openNotify({ variant: "update-order-status", state: "error" });
+    },
+  });
+
+  return {
+    updateOrderStatus,
+    isPending,
+    isError,
+  };
+};

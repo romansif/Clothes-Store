@@ -23,7 +23,7 @@
 
 <script setup lang="ts">
 import type { ImageItem } from "@/entities/product-review";
-import {useReviewPhotos} from "@/entities/product-review/lib/review-photo";
+import { useReviewPhotos } from "@/entities/product-review/lib/review-photo";
 
 const props = defineProps<{
   currentIndex: number;
@@ -35,5 +35,5 @@ const emit = defineEmits<{
   changePhoto: [type: "next" | "prev" | "select", images: ImageItem[], index: number];
 }>();
 
-const { images, thumbnails } = useReviewPhotos(props)
+const { images, thumbnails } = useReviewPhotos(props);
 </script>

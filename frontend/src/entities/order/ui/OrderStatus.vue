@@ -20,7 +20,6 @@ import { useI18n } from "vue-i18n";
 import { orderStatusClass } from "@/entities/order/model/order-status.variants";
 import type { OrderPosition, OrderProps, SellerOrderProps } from "@/entities/order/model/order.types";
 
-
 const props = defineProps<{
   item: OrderProps | OrderPosition | SellerOrderProps;
 }>();

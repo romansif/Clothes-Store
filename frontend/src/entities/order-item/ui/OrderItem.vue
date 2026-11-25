@@ -10,14 +10,30 @@
       <div class="flex min-w-0 flex-1 flex-col gap-5">
         <div class="flex flex-1 justify-between gap-10">
           <div class="flex min-w-0 flex-col gap-2.5">
-            <div class="flex items-center gap-2.5">
-              <span
-                :class="[
-                  'text-lg font-medium',
-                  props.item.status === 'Cancelled' ? 'font-semibold text-[#A3A3A3] line-through' : 'text-black',
-                ]"
-                >{{ props.item.title }}</span>
-              <span :class="orderStatusVariants(props.item.status)">{{ t(`orders.status.${props.order.status}`) }}</span>
+            <div class="flex flex-col gap-2.5">
+              <div class="flex items-center gap-2">
+                <span class="font-dm-sans text-lg font-semibold">{{ props.item.id.slice(0, 8) }}</span>
+                <div class="group relative">
+                  <img @click="copyText(props.order.id)" :src="copy_btn" alt="" class="w-5 cursor-pointer" />
+                  <span
+                    class="absolute max-w-200 min-w-38 rounded-xl bg-[rgba(0,0,0,0.8)] px-2 py-1 text-xs text-white opacity-0 transition duration-600 group-hover:opacity-100"
+                  >
+                    {{ t("orders.copyTracking") }}
+                  </span>
+                </div>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <span
+                  :class="[
+                    'text-lg font-medium',
+                    props.item.status === 'Cancelled' ? 'font-semibold text-[#A3A3A3] line-through' : 'text-black',
+                  ]"
+                  >{{ props.item.title }}</span
+                >
+                <span :class="orderStatusVariants(props.item.status)">{{
+                  t(`orders.status.${props.order.status}`)
+                }}</span>
+              </div>
             </div>
             <span
               v-if="props.item.status !== 'Cancelled'"
@@ -27,7 +43,9 @@
             </span>
             <div v-else class="flex flex-col gap-2.5 text-sm font-normal text-[#A3A3A3]">
               <OrderStatus :item="props.item" />
-              <span class="text-sm text-[#A3A3A3]"> {{ t("orders.causeReplace") }} [ {{ props.item.cause_replace }} ] </span>
+              <span class="text-sm text-[#A3A3A3]">
+                {{ t("orders.causeReplace") }} [ {{ props.item.cause_replace }} ]
+              </span>
             </div>
           </div>
           <div class="flex flex-col gap-2.5">
@@ -123,6 +141,7 @@ import { CreateReview } from "@/features/add-review";
 import { OrderItemActions } from "@/entities/order-action";
 import { OrderStatus } from "@/entities/order";
 import type { OrderProps, OrderPosition } from "@/entities/order/model/order.types";
+import copy_btn from "@/assets/icons/squares/copy.svg";
 
 const props = defineProps<{
   order: OrderProps;
@@ -130,5 +149,5 @@ const props = defineProps<{
 }>();
 
 const { t } = useI18n();
-const { orderPreview } = useOrder();
+const { orderPreview, copyText } = useOrder();
 </script>

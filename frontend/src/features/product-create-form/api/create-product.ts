@@ -1,4 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
+
+import router from "@/app/router";
 import { useBaseModals } from "@/widgets/notification/lib/use-notify";
 import { clearProductForm } from "@/features/product-form/lib/clear-product-form";
 import {
@@ -11,7 +13,6 @@ import { createProductSchema, moreCreateItemsSchema } from "@/entities/product-f
 import { handler } from "@/shared/api/http";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
 import { imageFiles } from "@/shared/lib/product-helper";
-import router from "@/app/router";
 
 const { openNotify } = useBaseModals();
 
@@ -81,7 +82,7 @@ export const useCreateProduct = () => {
       ]);
 
       await openNotify({ variant: "create-product", state: "success" });
-      await router.push({ name: 'my/products' })
+      await router.push({ name: "my/products" });
 
       clearProductForm();
     },

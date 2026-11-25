@@ -21,7 +21,12 @@
       <Transition name="view" mode="out-in">
         <div class="no-scrollbar min-h-0 flex-1 overflow-y-auto">
           <Loader v-if="props.isLoading" variant="orders" />
-          <ErrorState v-else-if="props.isError" variant="orders" :loading="props.isFetching" @reload="emit('refetch')" />
+          <ErrorState
+            v-else-if="props.isError"
+            variant="orders"
+            :loading="props.isFetching"
+            @reload="emit('refetch')"
+          />
           <OrderList v-else-if="props.orders.length" :orders="props.orders" />
           <EmptyState v-else variant="orders" :loading="props.isFetching" @reload="emit('refetch')" />
         </div>
@@ -47,19 +52,19 @@ import { Clipboard } from "@/widgets/clipboard";
 import { OrderList } from "@/widgets/order-list";
 import { EmptyState, ErrorState, Loader } from "@/widgets/state";
 import type { OrderProps } from "@/entities/order";
-import {ReplacementOrder, ReplacementOrderItem} from "@/features/replace-order-modal";
-import {replaceItem, replaceOrder} from "@/entities/order-action/lib/order-modal";
+import { ReplacementOrder, ReplacementOrderItem } from "@/features/replace-order-modal";
+import { replaceItem, replaceOrder } from "@/entities/order-action/lib/order-modal";
 
 const props = defineProps<{
-  orders: OrderProps[],
-  isLoading: boolean,
-  isFetching: boolean,
-  isError: boolean
-}>()
+  orders: OrderProps[];
+  isLoading: boolean;
+  isFetching: boolean;
+  isError: boolean;
+}>();
 
 const emit = defineEmits<{
-  refetch: []
-}>()
+  refetch: [];
+}>();
 
 const { t } = useI18n();
 const { clipboard } = useOrder();

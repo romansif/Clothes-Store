@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { vHorizontalScroll} from "@/shared/lib/horizontal-scroll";
+import { vHorizontalScroll } from "@/shared/lib/horizontal-scroll";
 import { useFavoriteData } from "@/shared/lib/use-favorite-data";
 import { useToggleFavorite } from "@/shared/api/toggle-to-favorite";
 import { ProductCard } from "@/entities/product-card";

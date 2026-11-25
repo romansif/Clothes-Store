@@ -2,8 +2,8 @@ import type { CartItem } from "@/entities/cart-item";
 import type { OrderPosition } from "@/entities/order/model/order.types";
 
 export type NewOrderPosition = Pick<
-    OrderPosition,
-    'id' | 'productId' | 'title' | 'category' | 'description' | 'sku' | 'price' | 'quantity' | 'size' | 'color' | 'images'
+  OrderPosition,
+  "id" | "productId" | "title" | "category" | "description" | "sku" | "price" | "quantity" | "size" | "color" | "images"
 >;
 
 export const toOrderItem = (c: CartItem): NewOrderPosition => ({

@@ -161,7 +161,8 @@
     },
     "contact": {
       "firstName": "Имя",
-      "lastName": "Фамилия"
+      "lastName": "Фамилия",
+      "email": "example{'@'}gmail.com"
     },
     "item": {
       "address": "Адрес:",

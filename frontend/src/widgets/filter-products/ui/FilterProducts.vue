@@ -115,8 +115,8 @@
                 <span>{{ priceLabel(priceName) }}</span>
                 <span>
                   (<span class="font-dm-sans font-medium text-blue-700">
-                    {{ getStackCount(products, priceName) }}
-                  </span>)
+                    {{ getStackCount(products, priceName) }} </span
+                  >)
                 </span>
               </div>
             </div>

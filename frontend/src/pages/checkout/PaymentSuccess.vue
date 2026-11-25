@@ -71,7 +71,7 @@ import { UiButton } from "@/shared/ui/button";
 import success from "@/assets/icons/checkout/payment/success.svg";
 
 const { t } = useI18n();
-const { user } = useUserData()
+const { user } = useUserData();
 const { userAddress } = useSavedAddressData();
 const { userPaymentCard } = useSavedPaymentData();
 const { price, commissionPrice, totalPrice } = orderPriceInfo();

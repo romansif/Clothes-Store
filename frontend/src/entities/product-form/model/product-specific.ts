@@ -114,11 +114,28 @@ const sizesShoes: SizesShoes[] = [
   { name: "46" },
 ];
 
+const womenSizesShoes: SizesShoes[] = [
+  { name: "35" },
+  { name: "36" },
+  { name: "37" },
+  { name: "38" },
+  { name: "39" },
+  { name: "40" },
+  { name: "41" },
+];
+
 const outerwearSizeGuide: SizeGuide[] = [
   { name: "measurements.height", values: ["163", "168", "173", "178", "183", "188"] },
   { name: "measurements.chest", values: ["86", "92", "98", "104", "110", "116"] },
   { name: "measurements.waist", values: ["68", "72", "78", "84", "90", "96"] },
   { name: "measurements.length", values: ["64", "66", "68", "70", "72", "74"] },
+];
+
+const womenOuterwearSizeGuide: SizeGuide[] = [
+  { name: "measurements.height", values: ["158", "164", "168", "170", "172", "176"] },
+  { name: "measurements.chest", values: ["80", "84", "88", "94", "100", "106"] },
+  { name: "measurements.waist", values: ["62", "66", "70", "76", "82", "88"] },
+  { name: "measurements.length", values: ["58", "60", "62", "64", "66", "68"] },
 ];
 
 const underWearSizeGuide: SizeGuide[] = [
@@ -128,8 +145,19 @@ const underWearSizeGuide: SizeGuide[] = [
   { name: "measurements.waist", values: ["77", "80", "82", "84", "86", "88"] },
 ];
 
+const womenUnderWearSizeGuide: SizeGuide[] = [
+  { name: "measurements.height", values: ["158", "164", "168", "170", "172", "176"] },
+  { name: "measurements.length", values: ["94", "96", "98", "100", "102", "104"] },
+  { name: "measurements.hips", values: ["88", "92", "96", "102", "108", "114"] },
+  { name: "measurements.waist", values: ["62", "66", "70", "76", "82", "88"] },
+];
+
 const shoesSizeGuide: SizeGuide[] = [
   { name: "measurements.length", values: ["25", "25.7", "26.3", "27", "27.7", "28.3", "29", "29.7"] },
+];
+
+const womenShoesSizeGuide: SizeGuide[] = [
+  { name: "measurements.length", values: ["22.3", "23", "23.7", "24.3", "25", "25.7", "26.3"] },
 ];
 
 const outerWear = ["Shirts", "T-shirts", "Tank top", "Sweaters"];
@@ -149,10 +177,18 @@ export const productSpecific = () => {
     categories,
     materials,
     genders,
+
     sizesShoes,
+    womenSizesShoes,
+
     outerwearSizeGuide,
+    womenOuterwearSizeGuide,
+
     underWearSizeGuide,
+    womenUnderWearSizeGuide,
+
     shoesSizeGuide,
+    womenShoesSizeGuide,
 
     outerWear,
     underWear,

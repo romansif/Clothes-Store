@@ -8,7 +8,9 @@
       :variant="props.variant"
       @toggle-to-favorite="emit('toggleToFavorite', props.favorite, props.product)"
     />
-    <span class="mt-2 text-lg whitespace-normal text-[#A3A3A3]"> {{ props.product.material }} {{ props.product.category }} </span>
+    <span class="mt-2 text-lg whitespace-normal text-[#A3A3A3]">
+      {{ props.product.material }} {{ props.product.category }}
+    </span>
     <div class="flex items-center justify-between text-lg font-medium">
       <span class="whitespace-normal">
         {{ props.product.title }}
