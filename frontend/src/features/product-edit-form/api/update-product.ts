@@ -19,7 +19,7 @@ export const useEditProductImages = () => {
   const queryClient = useQueryClient();
 
   const {
-    mutateAsync: editProductImages,
+    mutate: editProductImages,
     isPending,
     isError,
   } = useMutation({
@@ -66,7 +66,7 @@ export const useEditProductImages = () => {
 
 export const useEditProductInfo = () => {
   const {
-    mutateAsync: editProductInfo,
+    mutate: editProductInfo,
     isPending,
     isError,
   } = useMutation({
@@ -112,7 +112,7 @@ export const useEditProductInfo = () => {
 
 export const useEditProductQuantity = () => {
   const {
-    mutateAsync: editProductQuantity,
+    mutate: editProductQuantity,
     isPending,
     isError,
   } = useMutation({
@@ -155,7 +155,7 @@ export const useEditProductQuantity = () => {
 
 export const useEditProductColors = () => {
   const {
-    mutateAsync: editProductColors,
+    mutate: editProductColors,
     isPending,
     isError,
   } = useMutation({

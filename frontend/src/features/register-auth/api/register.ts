@@ -12,7 +12,7 @@ const { openNotify } = useBaseModals();
 
 export const signUp = () => {
   const {
-    mutateAsync: register,
+    mutate: register,
     isPending,
     isError,
   } = useMutation({

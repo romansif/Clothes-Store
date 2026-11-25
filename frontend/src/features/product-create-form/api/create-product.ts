@@ -21,7 +21,7 @@ export const useCreateProduct = () => {
   const userId = localStorage.getItem("userId");
 
   const {
-    mutateAsync: createProduct,
+    mutate: createProduct,
     isPending,
     isError,
   } = useMutation({

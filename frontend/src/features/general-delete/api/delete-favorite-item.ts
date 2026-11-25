@@ -5,7 +5,7 @@ export const useDeleteFavoriteProduct = () => {
   const queryClient = useQueryClient();
 
   const {
-    mutateAsync: deleteFavoriteItem,
+    mutate: deleteFavoriteItem,
     isPending,
     isError,
   } = useMutation({

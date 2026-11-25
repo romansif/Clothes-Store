@@ -6,7 +6,7 @@ import { orderStore } from "@/shared/model/order.store";
 const { orderItems } = orderStore();
 
 export const useResetCartSelection = () => {
-  const { mutateAsync: resetSelection, isPending } = useMutation({
+  const { mutate: resetSelection, isPending } = useMutation({
     mutationKey: ["resetSelection"],
     mutationFn: async () => {
       return await handler("/reset-selection", {

@@ -26,7 +26,7 @@ export const useEditUserName = () => {
   const { baseEditUser } = useBaseEditUser();
 
   const {
-    mutateAsync: editUserName,
+    mutate: editUserName,
     isPending,
     isError,
   } = useMutation({
@@ -60,7 +60,7 @@ export const useEditUserSurName = () => {
   const { baseEditUser } = useBaseEditUser();
 
   const {
-    mutateAsync: editUserSurName,
+    mutate: editUserSurName,
     isPending,
     isError,
   } = useMutation({
@@ -94,7 +94,7 @@ export const useEditUserPhone = () => {
   const { baseEditUser } = useBaseEditUser();
 
   const {
-    mutateAsync: editUserPhone,
+    mutate: editUserPhone,
     isPending,
     isError,
   } = useMutation({
@@ -128,7 +128,7 @@ export const useEditUserEmail = () => {
   const { baseEditUser } = useBaseEditUser();
 
   const {
-    mutateAsync: editUserEmail,
+    mutate: editUserEmail,
     isPending,
     isError,
   } = useMutation({
@@ -164,7 +164,7 @@ export const useEditUserPassword = () => {
   const userId = localStorage.getItem("userId");
 
   const {
-    mutateAsync: editUserPassword,
+    mutate: editUserPassword,
     isPending,
     isError,
   } = useMutation({

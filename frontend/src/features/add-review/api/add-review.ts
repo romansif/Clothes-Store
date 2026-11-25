@@ -15,7 +15,7 @@ const { openNotify } = useBaseModals();
 
 export const useCreateReview = () => {
   const {
-    mutateAsync: createReview,
+    mutate: createReview,
     isPending,
     isError,
   } = useMutation({
@@ -70,7 +70,7 @@ export const useCreateReview = () => {
     onError: async (err) => {
       applyErrors(err, reviewFormMessages);
 
-      throw new Error("Ошибка валидации отзыва", err);
+      await openNotify({ variant: "add-review", state: "error" });
     },
   });
 

@@ -9,7 +9,7 @@ export const useUnCheckCartItem = () => {
   const queryClient = useQueryClient();
   const userId = localStorage.getItem("userId");
 
-  const { mutateAsync: unCheckCartItem, isPending } = useMutation({
+  const { mutate: unCheckCartItem, isPending } = useMutation({
     mutationKey: ["unCheckCartItem"],
     mutationFn: async () => {
       const allCartItems = await handler(`/cart/${userId}`, {

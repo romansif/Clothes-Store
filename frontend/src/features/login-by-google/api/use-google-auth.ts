@@ -13,7 +13,7 @@ export const signGoogleAuth = () => {
   const route = useRoute();
 
   const {
-    mutateAsync: OAuth,
+    mutate: OAuth,
     isPending,
     isError,
   } = useMutation({
@@ -42,10 +42,8 @@ export const signGoogleAuth = () => {
       await router.push((route.query.redirect as string) || "/");
     },
 
-    onError: async (err) => {
+    onError: async () => {
       await openNotify({ variant: "OAuth", state: "error" });
-
-      throw new Error(`Ошибка входа google`, err);
     },
   });
 

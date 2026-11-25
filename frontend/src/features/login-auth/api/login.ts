@@ -15,7 +15,7 @@ export const signIn = () => {
   const route = useRoute();
 
   const {
-    mutateAsync: login,
+    mutate: login,
     isPending,
     isError,
   } = useMutation({
@@ -51,9 +51,8 @@ export const signIn = () => {
 
     onError: async (err) => {
       applyErrors(err, loginFormErrorMessages);
-      await openNotify({ variant: "login", state: "error" });
 
-      throw new Error(`Ошибка входа`, err);
+      await openNotify({ variant: "login", state: "error" });
     },
   });
 

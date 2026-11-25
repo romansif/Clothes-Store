@@ -59,7 +59,7 @@ export const useAddToCart = () => {
     onError: async (err) => {
       applyErrors(err, addToCartFormErrorMessages);
 
-      throw new Error(`Ошибка валидации добавления товара в корзину`, err);
+      await openNotify({ variant: "add-to-cart", state: "error" });
     },
   });
 

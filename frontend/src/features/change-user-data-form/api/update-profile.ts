@@ -13,7 +13,7 @@ export const useBaseEditUser = () => {
   const useId = localStorage.getItem("userId");
 
   const {
-    mutateAsync: baseEditUser,
+    mutate: baseEditUser,
     isPending,
     isError,
   } = useMutation({

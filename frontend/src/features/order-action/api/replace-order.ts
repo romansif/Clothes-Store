@@ -77,7 +77,7 @@ export const useReplaceOrder = () => {
 export const useDeleteOrder = () => {
   const queryClient = useQueryClient();
 
-  const { mutateAsync: deleteOrder, isPending } = useMutation({
+  const { mutate: deleteOrder, isPending } = useMutation({
     mutationKey: ["deleteOrder"],
     mutationFn: async (id: string) => {
       return await handler(`/orders/${id}`, {

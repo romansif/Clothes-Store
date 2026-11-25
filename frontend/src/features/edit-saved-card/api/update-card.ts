@@ -21,7 +21,7 @@ export const useUpdateCard = () => {
     const queryClient = useQueryClient()
 
     const {
-        mutateAsync: updateCard,
+        mutate: updateCard,
         isPending,
         isError
     } = useMutation(({

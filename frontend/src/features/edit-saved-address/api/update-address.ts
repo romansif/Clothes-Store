@@ -21,7 +21,7 @@ export const useUpdateAddress = () => {
     const queryClient = useQueryClient()
 
     const {
-        mutateAsync: updateAddress,
+        mutate: updateAddress,
         isPending,
         isError
     } = useMutation({
