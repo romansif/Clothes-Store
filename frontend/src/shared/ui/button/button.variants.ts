@@ -33,7 +33,7 @@ const status = {
   success: "bg-[#3e6b55] text-white hover:bg-[#315544]",
 };
 
-export const buttonVariantClasses: Record<ButtonVariant, string> = {
+export const BUTTON_VARIANT_CLASSES: Record<ButtonVariant, string> = {
   // navy
   login: `${base} ${navy.solid} w-full px-6 py-3.5 mt-6 font-semibold text-start`,
   register: `${base} ${navy.solid} w-full px-6 py-3.5 mt-6 font-semibold text-start`,

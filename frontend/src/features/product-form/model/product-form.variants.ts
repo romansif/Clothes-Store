@@ -3,7 +3,7 @@ export const baseSelectClass = (text: string | object) => [
   text ? "text-black" : "",
 ];
 
-export const skuClass = `uppercase border border-gray-300 rounded-sm outline-none px-6 py-5 
+export const SKU_CLASS = `uppercase border border-gray-300 rounded-sm outline-none px-6 py-5 
     text-sm bg-white transition duration-400 font-dm-sans`;
 
-export const productFormErrorClass = "border-red-500";
+export const PRODUCT_FORM_ERROR_CLASS = "border-red-500";

@@ -47,14 +47,14 @@ export const signUp = () => {
 
       localStorage.setItem("userId", data.id);
 
-      await openNotify();
+      await openNotify({ variant: 'register', state: 'success' });
       await router.push({ name: "profile" });
     },
 
-    onError: (err) => {
+    onError: async (err) => {
       applyErrors(err, registerFormErrorMessages);
 
-      throw new Error(`Ошибка при регистрации`, err);
+      await openNotify({ variant: 'register', state: 'error' });
     },
   });
 

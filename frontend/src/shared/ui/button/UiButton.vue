@@ -1,11 +1,11 @@
 <template>
-  <button :class="buttonVariantClasses[props.variant]" v-bind="$attrs" :type="props.type">
+  <button :class="BUTTON_VARIANT_CLASSES[props.variant]" v-bind="$attrs" :type="props.type">
     <slot>{{ props.name }}</slot>
   </button>
 </template>
 
 <script setup lang="ts">
-import { buttonVariantClasses } from "@/shared/ui/button/button.variants";
+import { BUTTON_VARIANT_CLASSES } from "@/shared/ui/button/button.variants";
 import type { ButtonProps } from "@/shared/ui/button";
 
 const props = withDefaults(defineProps<ButtonProps>(), {

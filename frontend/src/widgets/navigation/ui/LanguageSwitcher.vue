@@ -8,7 +8,7 @@
     />
 
     <button
-      v-for="lang in languages"
+      v-for="lang in LANGUAGES"
       :key="lang.code"
       type="button"
       :class="[
@@ -25,7 +25,7 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { setLocale } from "@/shared/i18n";
-import { useSwitcher, languages } from "@/widgets/navigation/lib/use-switcher";
+import { useSwitcher, LANGUAGES } from "@/widgets/navigation/lib/use-switcher";
 
 const { locale } = useI18n();
 const { indicatorStyle } = useSwitcher();

@@ -1,6 +1,6 @@
 import type { InputVariant } from "@/shared/ui/input";
 
-export const inputVariantClasses: Record<InputVariant, string> = {
+export const INPUT_VARIANT_CLASSES: Record<InputVariant, string> = {
   auth: `bg-[#D9D9D9]/40 w-full outline-none px-4 py-5 rounded-sm font-dm-sans
         transition duration-400 hover:bg-gray-50 focus:bg-gray-50`,
   createProduct: `border border-gray-300 rounded-sm outline-none px-6 py-5 
@@ -13,4 +13,4 @@ export const inputVariantClasses: Record<InputVariant, string> = {
         bg-gray-50 hover:bg-white appearance-none font-dm-sans placeholder:text-sm`
 };
 
-export const inputErrorClass = `border border-red-500`;
+export const INPUT_ERROR_CLASS = `border border-red-500`;

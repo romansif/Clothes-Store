@@ -12,7 +12,7 @@
       :product="product"
       :array="array"
       :favorite="favorite"
-      :variant="props.season"
+      :variant="props.variant"
       @toggle-to-favorite="toggleFavorite({ favorite, product })"
     />
   </TransitionGroup>
@@ -30,7 +30,7 @@ import type { User } from "@/entities/profile";
 const props = defineProps<{
   user: User | undefined;
   array: Product[];
-  season: ProductCardVariant;
+  variant: ProductCardVariant;
 }>();
 
 const { favorite } = useFavoriteData();

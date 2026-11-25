@@ -1,6 +1,8 @@
-import { useMutation, useQueryClient } from "@tanstack/vue-query";
-
 import { handler } from "@/shared/api/http";
+import { useMutation, useQueryClient } from "@tanstack/vue-query";
+import { useBaseModals } from "@/widgets/notification/lib/use-notify";
+
+const { openNotify } = useBaseModals()
 
 export const useDeletePayment = () => {
   const queryClient = useQueryClient();
@@ -12,17 +14,20 @@ export const useDeletePayment = () => {
   } = useMutation({
     mutationKey: ["deletePaymentCard"],
     mutationFn: async (id: string) => {
+
       return await handler(`/payment/${id}`, {
         method: "DELETE",
       });
     },
 
     onSuccess: async () => {
+      await openNotify({ variant: 'delete-payment', state: 'success' });
+
       await queryClient.invalidateQueries({ queryKey: ["userPaymentCards"] });
     },
 
-    onError: (err) => {
-      throw new Error(`Ошибка при удалении способа оплаты`, err);
+    onError: async () => {
+      await openNotify({ variant: 'delete-payment', state: 'error' });
     },
   });
 

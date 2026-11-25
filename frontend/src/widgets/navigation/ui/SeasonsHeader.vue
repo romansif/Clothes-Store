@@ -1,6 +1,6 @@
 <template>
   <header class="font-raleway flex justify-between">
-    <template v-for="season in seasonsCatalog" :key="t(season.id)">
+    <template v-for="season in SEASONS_CATALOG" :key="t(season.id)">
       <div v-if="route.name === season.route" class="flex flex-col">
         <div class="flex flex-col">
           <div class="flex flex-col items-center gap-2 xl:items-start">
@@ -33,7 +33,7 @@
 import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
 import { MainSlideBar } from "@/widgets/navigation";
-import { seasonsCatalog } from "@/widgets/navigation/model/seasons-specific";
+import { SEASONS_CATALOG } from "@/widgets/navigation/model/seasons-specific";
 
 const route = useRoute();
 

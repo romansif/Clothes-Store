@@ -5,9 +5,9 @@
         <img
           :src="productPreview(props.product.id, array)"
           alt=""
-          :class="productPreviewClass(productCardVariants[props.variant].size, props.product)"
+          :class="productPreviewClass(PRODUCT_CARD_VARIANTS[props.variant].size, props.product)"
         />
-        <span v-if="isOutOfStack(props.product)" :class="productCardVariants[props.variant].stack">{{
+        <span v-if="isOutOfStack(props.product)" :class="PRODUCT_CARD_VARIANTS[props.variant].stack">{{
           t("product.outOfStock")
         }}</span>
       </router-link>
@@ -15,7 +15,7 @@
         v-if="user?.role === 'Buyer'"
         :src="isFavorite(props.favorite, props.product, props.user?.id) ? liked : like"
         alt=""
-        :class="productCardVariants[props.variant].button"
+        :class="PRODUCT_CARD_VARIANTS[props.variant].button"
         @click="emit('toggleToFavorite', props.favorite, props.product)"
       />
     </div>
@@ -26,7 +26,7 @@
 import { useI18n } from "vue-i18n";
 import { previewHelper } from "@/entities/product-card/lib/preview-helper";
 import { productPreviewClass } from "@/shared/model/product-preview.variants";
-import { productCardVariants } from "@/entities/product-card/model/product-card.variants";
+import { PRODUCT_CARD_VARIANTS } from "@/entities/product-card/model/product-card.variants";
 import type { Product } from "@/shared";
 import type { User } from "@/entities/profile";
 import type { ProductCardVariant } from "@/entities/product-card";

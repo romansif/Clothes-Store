@@ -31,7 +31,7 @@
         <IMask
           v-model:value="informationForm.postalCode"
           :placeholder="t('checkout.address.postalCode')"
-          :class="[postalCodeClass.default, informationFormErrorMessages.postalCode ? postalCodeClass.default : '']"
+          :class="[POSTAL_CODE_CLASS.default, informationFormErrorMessages.postalCode ? POSTAL_CODE_CLASS.default : '']"
           :mask="postalCode.mask"
         />
       </div>
@@ -42,7 +42,7 @@
 <script setup lang="ts">
 import { IMaskComponent as IMask } from "vue-imask";
 import { postalCode } from "@/entities/checkout-info-form/model/information-mask";
-import { postalCodeClass } from "@/entities/checkout-info-form/model/information-form.variants";
+import { POSTAL_CODE_CLASS } from "@/entities/checkout-info-form/model/information-form.variants";
 import { informationForm, informationFormErrorMessages } from "@/entities/checkout-info-form/model/information-form";
 import { CheckoutInput } from "@/shared/ui/checkout-input";
 import { useI18n } from "vue-i18n";

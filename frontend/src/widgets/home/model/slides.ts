@@ -5,7 +5,7 @@ import month_slide from "@/assets/photos/main-slides/month-slide.png";
 import winter_slide from "@/assets/photos/main-slides/winter_slide.png";
 import type { Slide } from "@/shared";
 
-export const homeSlides: Slide[] = [
+export const HOME_SLIDES: Slide[] = [
   {
     id: 1,
     title: "home.slides.autumn.title",
@@ -35,7 +35,7 @@ export const homeSlides: Slide[] = [
   },
 ];
 
-export const mainSlides: Slide[] = [
+export const MAIN_SLIDES: Slide[] = [
   {
     id: 1,
     title: "home.slides.month.title",

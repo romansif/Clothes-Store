@@ -50,7 +50,7 @@
             @click="togglePassword"
             :src="showPassword.password ? opened : closed"
             alt=""
-            :class="[showPasswordClass.register, registerFormErrorMessages.password ? showPasswordErrorClass : '']"
+            :class="[SHOW_PASSWORD_CLASS.register, registerFormErrorMessages.password ? SHOW_PASSWORD_ERROR_CLASS : '']"
           />
         </div>
       </div>
@@ -61,7 +61,7 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { showPassword } from "@/features/toggle-password/model/auth.refs";
-import { showPasswordClass, showPasswordErrorClass } from "@/shared/ui/auth-form/auth-form.variants";
+import { SHOW_PASSWORD_CLASS, SHOW_PASSWORD_ERROR_CLASS } from "@/shared/ui/auth-form/auth-form.variants";
 import { togglePassword } from "@/features/toggle-password/lib/toggle-password.ts";
 import { refClearErrorsOnChange } from "@/shared/lib/errors-helper.ts";
 import { registerForm, registerFormErrorMessages } from "@/entities/register-form/model/register-from";

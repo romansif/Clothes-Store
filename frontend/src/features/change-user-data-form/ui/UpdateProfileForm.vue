@@ -44,10 +44,10 @@
       <label>{{ t("profile.form.privatePhone") }}</label>
       <UiPhoneInput
         v-model="updateUserForm.phone"
-        :select-class="profileFormSelectPhoneCodeClass"
+        :select-class="PROFILE_FORM_SELECT_PHONE_CODE_CLASS"
         :input-class="[
-          profileFormPhoneInputClasses.default,
-          updateUserFormErrorMessages.phone ? profileFormPhoneInputClasses.error : '',
+          PROFILE_FORM_PHONE_INPUT_CLASS.default,
+          updateUserFormErrorMessages.phone ? PROFILE_FORM_PHONE_INPUT_CLASS.error : '',
         ]"
         :error-message="updateUserFormErrorMessages.phone"
       />
@@ -120,8 +120,8 @@ import {
 } from "@/features/change-user-data-form/lib/use-edit-user-data";
 import { updateUserForm, updateUserFormErrorMessages } from "@/entities/profile-form/model/user-update-form";
 import {
-  profileFormPhoneInputClasses,
-  profileFormSelectPhoneCodeClass,
+  PROFILE_FORM_PHONE_INPUT_CLASS,
+  PROFILE_FORM_SELECT_PHONE_CODE_CLASS,
 } from "@/features/change-user-data-form/model/profile-phone.variants";
 import { UiButton } from "@/shared/ui/button";
 import { UiInput } from "@/shared/ui/input";

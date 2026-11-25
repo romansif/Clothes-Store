@@ -29,8 +29,8 @@ export const useDeleteAccount = () => {
       await router.push({ name: "signIn" });
     },
 
-    onError: (err) => {
-      throw new Error(`Ошибка при удалении аккаунта`, err);
+    onError: async () => {
+      await openNotify({ variant: "delete-user", state: "error" });
     },
   });
 
@@ -65,8 +65,8 @@ export const useLogout = () => {
       await router.push({ name: "signIn" });
     },
 
-    onError: (err) => {
-      throw new Error(`Ошибка при выходе`, err);
+    onError: async () => {
+      await openNotify({ variant: "logout", state: "error" });
     },
   });
 

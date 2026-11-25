@@ -4,7 +4,7 @@ import summer_catalog from "@/assets/photos/season-catalogs/summer_catalog.png";
 import winter_catalog from "@/assets/photos/season-catalogs/winter_catalog.png";
 import type { Catalog } from "@/shared";
 
-export const seasonsCatalog: Catalog[] = [
+export const SEASONS_CATALOG: Catalog[] = [
   {
     id: "seasons.spring.id",
     name: "seasons.spring.name",

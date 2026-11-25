@@ -18,7 +18,7 @@
       <span class="mt-5 text-xl text-[#A3A3A3]">{{ t("reviews.count", props.reviews.length) }}</span>
     </div>
     <div class="flex flex-col gap-4 font-semibold">
-      <div v-for="rating in reverseRatings" class="flex gap-9 text-left">
+      <div v-for="rating in REVERSE_RATINGS" class="flex gap-9 text-left">
         <div class="flex gap-1.5 text-left">
           <span class="text-lg">{{ rating }}</span>
           <img :src="star" alt="" class="w-6" />
@@ -35,7 +35,7 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { ratingHelper } from "@/entities/product-review/lib/rating-helper";
-import { reverseRatings } from "@/entities/product-review/model/review-rating";
+import { REVERSE_RATINGS } from "@/entities/product-review/model/review-rating";
 import type { Review } from "@/entities/product-review";
 
 import star from "@/assets/icons/review/full-star.png";

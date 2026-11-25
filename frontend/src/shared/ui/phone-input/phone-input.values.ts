@@ -1,6 +1,6 @@
 import { ref } from "vue";
 
-export const countries = [
+export const COUNTRIES = [
   {
     code: "UZ",
     name: "UZ (+998)",

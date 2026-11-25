@@ -2,7 +2,7 @@
   <div class="flex flex-col gap-3">
     <input
       v-model="model"
-      :class="[inputVariantClasses[props.variant], props.errorMessage ? inputErrorClass : '']"
+      :class="[INPUT_VARIANT_CLASSES[props.variant], props.errorMessage ? INPUT_ERROR_CLASS : '']"
       v-bind="$attrs"
       :maxlength="props.maxLength"
     />
@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { useInput } from "@/shared/ui/input/use-input";
-import { inputErrorClass, inputVariantClasses } from "@/shared/ui/input/input.variants";
+import { INPUT_VARIANT_CLASSES, INPUT_ERROR_CLASS } from "@/shared/ui/input/input.variants";
 import type { InputProps } from "@/shared/ui/input";
 
 const props = withDefaults(defineProps<InputProps>(), {

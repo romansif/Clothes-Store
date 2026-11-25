@@ -25,7 +25,7 @@
           @click="togglePassword"
           :src="showPassword.password ? opened : closed"
           alt=""
-          :class="[showPasswordClass.login, loginFormErrorMessages.password ? showPasswordErrorClass : '']"
+          :class="[SHOW_PASSWORD_CLASS.login, loginFormErrorMessages.password ? SHOW_PASSWORD_ERROR_CLASS : '']"
         />
       </div>
     </div>
@@ -58,7 +58,7 @@ import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
 import { loginForm, loginFormErrorMessages } from "@/entities/login-form/model/login-form";
 import { useLoginErrorMessage } from "@/features/login-auth/model/login-error-messages";
 import { UiInput } from "@/shared/ui/input";
-import { showPasswordClass, showPasswordErrorClass } from "@/shared/ui/auth-form/auth-form.variants";
+import { SHOW_PASSWORD_CLASS, SHOW_PASSWORD_ERROR_CLASS } from "@/shared/ui/auth-form/auth-form.variants";
 import { LoginRoleInput } from "@/shared/ui/auth-form";
 
 import closed from "@/assets/icons/auth/closed.png";

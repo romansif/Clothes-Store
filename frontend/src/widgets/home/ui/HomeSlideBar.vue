@@ -30,7 +30,7 @@
             </router-link>
           </div>
         </div>
-        <img :src="homeSlides[activeSlide].url" alt="" class="rounded-r-2xl opacity-75" />
+        <img :src="HOME_SLIDES[activeSlide].url" alt="" class="rounded-r-2xl opacity-75" />
       </div>
     </Transition>
   </div>
@@ -40,18 +40,18 @@
 import { useI18n } from "vue-i18n";
 import { computed, onMounted, onUnmounted } from "vue";
 import { filterProduct } from "@/widgets/filter-products/lib/filter-product";
-import { homeSlides } from "@/widgets/home/model/slides";
+import { HOME_SLIDES } from "@/widgets/home/model/slides";
 
 const { t } = useI18n();
 const { activeSlide } = filterProduct();
 
-const current = computed(() => homeSlides[activeSlide.value]);
+const current = computed(() => HOME_SLIDES[activeSlide.value]);
 
 let interval: ReturnType<typeof setInterval>;
 
 onMounted(() => {
   interval = setInterval(() => {
-    activeSlide.value = (activeSlide.value + 1) % homeSlides.length;
+    activeSlide.value = (activeSlide.value + 1) % HOME_SLIDES.length;
   }, 8000);
 });
 

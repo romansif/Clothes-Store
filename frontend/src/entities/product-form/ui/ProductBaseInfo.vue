@@ -38,11 +38,11 @@
             v-model="createProductForm.collections"
             :class="[
               baseSelectClass(createProductForm.collections),
-              createProductFormErrorMessages.collections ? productFormErrorClass : '',
+              createProductFormErrorMessages.collections ? PRODUCT_FORM_ERROR_CLASS : '',
             ]"
           >
             <option
-              v-for="collection in collections"
+              v-for="collection in COLLECTIONS"
               :key="collection.name"
               :value="{
                 season: collection.season,
@@ -83,11 +83,11 @@
           v-model="createProductForm.category"
           :class="[
             baseSelectClass(createProductForm.category),
-            createProductFormErrorMessages.category ? productFormErrorClass : '',
+            createProductFormErrorMessages.category ? PRODUCT_FORM_ERROR_CLASS : '',
           ]"
         >
           <option disabled hidden value="">{{ t("productForm.categoryPh") }}</option>
-          <option v-for="category in categories" :value="category.category" class="text-black">
+          <option v-for="category in CATEGORIES" :value="category.category" class="text-black">
             {{ t(category.categoryLabel) }}
           </option>
         </select>
@@ -110,11 +110,11 @@
           v-model="createProductForm.material"
           :class="[
             baseSelectClass(createProductForm.material),
-            createProductFormErrorMessages.material ? productFormErrorClass : '',
+            createProductFormErrorMessages.material ? PRODUCT_FORM_ERROR_CLASS : '',
           ]"
         >
           <option disabled hidden value="">{{ t("productForm.materialPh") }}</option>
-          <option v-for="material in materials" :value="material.material" class="text-black">
+          <option v-for="material in MATERIALS" :value="material.material" class="text-black">
             {{ t(material.materialLabel) }}
           </option>
         </select>
@@ -136,11 +136,11 @@
             v-model="createProductForm.gender"
             :class="[
               baseSelectClass(createProductForm.gender),
-              createProductFormErrorMessages.gender ? productFormErrorClass : '',
+              createProductFormErrorMessages.gender ? PRODUCT_FORM_ERROR_CLASS : '',
             ]"
           >
             <option disabled hidden value="">{{ t("productForm.genderPh") }}</option>
-            <option v-for="gender in genders" :value="gender.gender" class="text-black">
+            <option v-for="gender in GENDERS" :value="gender.gender" class="text-black">
               {{ t(gender.genderLabel) }}
             </option>
           </select>
@@ -163,8 +163,8 @@
         <IMask
           v-model:value="createProductForm.sku"
           placeholder="BLC-XS-001"
-          :mask="skuMask.mask"
-          :class="[skuClass, createProductFormErrorMessages.sku ? productFormErrorClass : '']"
+          :mask="SKU_MASK.mask"
+          :class="[SKU_CLASS, createProductFormErrorMessages.sku ? PRODUCT_FORM_ERROR_CLASS : '']"
         />
         <span v-if="createProductFormErrorMessages.sku" class="text-xs text-red-600">
           {{ createProductFormErrorMessages.sku }}
@@ -212,7 +212,7 @@ import { useRoute } from "vue-router";
 import { IMaskComponent as IMask } from "vue-imask";
 import { useProductForm } from "@/entities/product-form/lib/use-product-form";
 import { productSpecific } from "@/entities/product-form/model/product-specific";
-import { baseSelectClass, skuClass, productFormErrorClass } from "@/features/product-form/model/product-form.variants";
+import { baseSelectClass, SKU_CLASS, PRODUCT_FORM_ERROR_CLASS } from "@/features/product-form/model/product-form.variants";
 import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
 import { createProductForm, createProductFormErrorMessages } from "@/entities/product-form/model/product-forms";
 import { UiInput } from "@/shared/ui/input";
@@ -227,7 +227,7 @@ const route = useRoute();
 
 const { t } = useI18n();
 const { isCreate } = useProductForm(route);
-const { collections, categories, materials, genders, skuMask } = productSpecific();
+const { COLLECTIONS, CATEGORIES, MATERIALS, GENDERS, SKU_MASK } = productSpecific();
 
 refClearErrorsOnChange(createProductForm, createProductFormErrorMessages);
 </script>

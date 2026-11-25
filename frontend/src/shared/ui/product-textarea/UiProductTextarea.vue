@@ -3,7 +3,7 @@
     <textarea
       v-model="model"
       :placeholder="props.placeholder"
-      :class="[textareaClass.default, props.errorMessage ? textareaClass.error : '']"
+      :class="[TEXTAREA_CLASS.default, props.errorMessage ? TEXTAREA_CLASS.error : '']"
       v-bind="$attrs"
       :maxlength="400"
     />
@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { textareaClass } from "@/shared/ui/product-textarea/product-textarea.variants";
+import { TEXTAREA_CLASS } from "@/shared/ui/product-textarea/product-textarea.variants";
 import type { ProductTextareaProps } from "@/shared/ui/product-textarea";
 
 const props = defineProps<ProductTextareaProps>();

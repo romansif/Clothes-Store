@@ -19,10 +19,10 @@
     />
     <UiPhoneInput
       v-model="informationForm.phone"
-      :select-class="informationSelectPhoneCodeClass"
+      :select-class="INFORMATION_SELECT_PHONE_CLASS"
       :input-class="[
-        informationPhoneClass.default,
-        informationFormErrorMessages.phone ? informationPhoneClass.error : '',
+        INFORMATION_PHONE_CLASS.default,
+        informationFormErrorMessages.phone ? INFORMATION_PHONE_CLASS.error : '',
       ]"
       :error-message="informationFormErrorMessages.phone"
     />
@@ -33,8 +33,8 @@
 import { useI18n } from "vue-i18n";
 import { informationForm, informationFormErrorMessages } from "@/entities/checkout-info-form/model/information-form";
 import {
-  informationPhoneClass,
-  informationSelectPhoneCodeClass,
+  INFORMATION_PHONE_CLASS,
+  INFORMATION_SELECT_PHONE_CLASS,
 } from "@/entities/checkout-info-form/model/information-form.variants";
 import { CheckoutInput } from "@/shared/ui/checkout-input";
 import { UiPhoneInput } from "@/shared/ui/phone-input";

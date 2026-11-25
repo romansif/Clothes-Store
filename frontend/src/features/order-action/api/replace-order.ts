@@ -60,10 +60,10 @@ export const useReplaceOrder = () => {
       closeReplaceOrder();
     },
 
-    onError: (err) => {
+    onError: async (err) => {
       applyErrors(err, cancelChoiceMessage);
 
-      throw new Error(`Ошибка при отмене заказа`, err);
+      await openNotify({ variant: "replace-order", state: "error" });
     },
   });
 
@@ -86,11 +86,13 @@ export const useDeleteOrder = () => {
     },
 
     onSuccess: async () => {
+      await openNotify({ variant: "replace-order", state: "success" });
+
       await queryClient.invalidateQueries({ queryKey: ["orders"] });
     },
 
-    onError: (err) => {
-      console.error(`Failed to delete the order:`, err);
+    onError: async () => {
+      await openNotify({ variant: "replace-order", state: "error" });
     },
   });
 
@@ -148,10 +150,10 @@ export const useReplaceOrderItem = () => {
       closeReplaceItem();
     },
 
-    onError: (err) => {
+    onError: async (err) => {
       applyErrors(err, cancelChoiceMessage);
 
-      throw new Error(`Ошибка при отмене заказа`, err);
+      await openNotify({ variant: "replace-order", state: "error" });
     },
   });
 

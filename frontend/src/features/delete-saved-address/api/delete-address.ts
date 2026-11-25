@@ -1,6 +1,8 @@
-import { useMutation, useQueryClient } from "@tanstack/vue-query";
-
 import { handler } from "@/shared/api/http";
+import { useMutation, useQueryClient } from "@tanstack/vue-query";
+import { useBaseModals } from "@/widgets/notification/lib/use-notify";
+
+const { openNotify } = useBaseModals()
 
 export const useDeleteAddress = () => {
   const queryClient = useQueryClient();
@@ -18,11 +20,13 @@ export const useDeleteAddress = () => {
     },
 
     onSuccess: async () => {
+      await openNotify({ variant: 'delete-address', state: 'success' });
+
       await queryClient.invalidateQueries({ queryKey: ["userAddresses"] });
     },
 
-    onError: (err) => {
-      throw new Error(`Ошибка при удалении адреса доставки`, err);
+    onError: async () => {
+      await openNotify({ variant: 'delete-address', state: 'error' });
     },
   });
 

@@ -1,6 +1,5 @@
-import { useMutation, useQueryClient } from "@tanstack/vue-query";
-
 import { handler } from "@/shared/api/http";
+import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
 export const useDeleteFavoriteProduct = () => {
   const queryClient = useQueryClient();

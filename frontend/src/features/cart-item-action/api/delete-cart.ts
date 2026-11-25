@@ -1,6 +1,5 @@
-import { useMutation, useQueryClient } from "@tanstack/vue-query";
-
 import { handler } from "@/shared/api/http";
+import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
 export const useDeleteCartItem = () => {
   const queryClient = useQueryClient();
@@ -19,10 +18,6 @@ export const useDeleteCartItem = () => {
 
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["cart"] });
-    },
-
-    onError: (err) => {
-      throw new Error("Ошибка при удалении товара из корзины:", err);
     },
   });
 

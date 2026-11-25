@@ -1,15 +1,15 @@
 <template>
   <div class="font-dm-sans flex items-center">
-    <span v-if="props.item.status === 'Convene'" :class="orderStatusClass">
+    <span v-if="props.item.status === 'Convene'" :class="ORDER_STATUS_CLASS">
       {{ t("orders.timeline.created", { date: props.item.date_created_at, time: props.item.time_created_at }) }}
     </span>
-    <span v-if="props.item.status === 'En route'" :class="orderStatusClass">
+    <span v-if="props.item.status === 'En route'" :class="ORDER_STATUS_CLASS">
       {{ t("orders.timeline.processed", { date: props.item.date_processed_at, time: props.item.time_processed_at }) }}
     </span>
-    <span v-if="props.item.status === 'Delivered'" :class="orderStatusClass">
+    <span v-if="props.item.status === 'Delivered'" :class="ORDER_STATUS_CLASS">
       {{ t("orders.timeline.delivered", { date: props.item.date_created_at, time: props.item.time_created_at }) }}
     </span>
-    <span v-if="props.item.status === 'Cancelled'" :class="orderStatusClass">
+    <span v-if="props.item.status === 'Cancelled'" :class="ORDER_STATUS_CLASS">
       {{ t("orders.timeline.cancelled", { date: props.item.date_cancelled_at, time: props.item.time_cancelled_at }) }}
     </span>
   </div>
@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { orderStatusClass } from "@/entities/order/model/order-status.variants";
+import { ORDER_STATUS_CLASS } from "@/entities/order/model/order-status.variants";
 import type { OrderPosition, OrderProps, SellerOrderProps } from "@/entities/order/model/order.types";
 
 const props = defineProps<{

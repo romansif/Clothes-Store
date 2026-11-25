@@ -2,9 +2,9 @@
   <div class="flex flex-col gap-3">
     <div
       :class="[
-        shippingMethod.default,
-        model === methods.method ? shippingMethod.checked : '',
-        errorMessage ? shippingMethod.error : '',
+        SHIPPING_METHOD_VARIANTS.default,
+        model === methods.method ? SHIPPING_METHOD_VARIANTS.checked : '',
+        errorMessage ? SHIPPING_METHOD_VARIANTS.error : '',
       ]"
     >
       <div class="flex items-center gap-3">
@@ -37,7 +37,7 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { useShippingMethod } from "@/shared/ui/shipping-method/use-shipping-method";
-import { shippingMethod } from "@/shared/ui/shipping-method/shipping-method.variants";
+import { SHIPPING_METHOD_VARIANTS } from "@/shared/ui/shipping-method/shipping-method.variants";
 import type { ShippingInputProps } from "@/shared/ui/shipping-method";
 
 const props = defineProps<ShippingInputProps>();

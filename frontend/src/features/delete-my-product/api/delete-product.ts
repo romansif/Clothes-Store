@@ -1,6 +1,8 @@
-import { useMutation, useQueryClient } from "@tanstack/vue-query";
-
 import { handler } from "@/shared/api/http";
+import { useMutation, useQueryClient } from "@tanstack/vue-query";
+import { useBaseModals } from "@/widgets/notification/lib/use-notify";
+
+const { openNotify } = useBaseModals()
 
 export const useDeleteProduct = () => {
   const queryClient = useQueryClient();
@@ -18,6 +20,8 @@ export const useDeleteProduct = () => {
     },
 
     onSuccess: async () => {
+      await openNotify({ variant: "delete-product", state: "success" });
+
       await Promise.all([
         queryClient.invalidateQueries({ queryKey: ["filteredProducts"] }),
         queryClient.invalidateQueries({ queryKey: ["myProducts"] }),
@@ -27,8 +31,8 @@ export const useDeleteProduct = () => {
       ]);
     },
 
-    onError: (err) => {
-      throw new Error(`Ошибка при удалении товара`, err);
+    onError: async () => {
+      await openNotify({ variant: "delete-product", state: "error" });
     },
   });
 

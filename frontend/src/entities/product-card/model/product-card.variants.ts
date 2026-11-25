@@ -1,6 +1,6 @@
 import type { ProductCardVariant } from "@/entities/product-card";
 
-export const productCardVariants = {
+export const PRODUCT_CARD_VARIANTS = {
   "main&favorite&Cart": {
     size: "w-83.75 h-45 sm:h-78.5 xl:h-100",
     stack: "absolute top-41 -left-12 text-7xl font-semibold -rotate-50 w-110",

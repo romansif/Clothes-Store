@@ -17,7 +17,7 @@
         </span>
       </div>
       <div class="mt-4 flex flex-col gap-4 font-medium">
-        <AddRating :ratings="ratings" @add-rating="addRating" />
+        <AddRating :ratings="RATINGS" @add-rating="addRating" />
         <AddReview />
         <AddPhotos />
       </div>
@@ -56,7 +56,7 @@ import { Loading } from "@/widgets/state";
 
 const { t } = useI18n();
 const { user } = useUserData();
-const { ratings } = reviewsStore();
+const { RATINGS } = reviewsStore();
 const { onFilesSelected } = productHelper();
 const { createReview, isPending } = useCreateReview();
 

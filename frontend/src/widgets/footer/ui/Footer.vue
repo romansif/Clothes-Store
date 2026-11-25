@@ -8,7 +8,7 @@
           {{ clean(t("footer.info")) }}
         </span>
         <ul class="flex flex-col gap-5">
-          <li v-for="item in links" :key="item">
+          <li v-for="item in LINKS" :key="item">
             <span
               class="group inline-flex cursor-pointer items-center gap-3 text-3xl font-semibold text-white/80 transition-all duration-300 hover:translate-x-2 hover:text-white"
             >
@@ -69,7 +69,7 @@ import arrow_link from "@/assets/icons/footer/arrow-up-right.svg";
 
 const { t } = useI18n();
 
-const links = ["footer.pricing", "footer.about", "footer.contacts"];
+const LINKS = ["footer.pricing", "footer.about", "footer.contacts"];
 
 const clean = (text) => text.replace(/\s*\/\s*$/, "");
 </script>

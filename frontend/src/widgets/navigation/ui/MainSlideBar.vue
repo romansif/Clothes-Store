@@ -23,18 +23,18 @@
 import { useI18n } from "vue-i18n";
 import { computed, onMounted, onUnmounted } from "vue";
 import { filterProduct } from "@/widgets/filter-products/lib/filter-product.ts";
-import { homeSlides, mainSlides } from "@/widgets/home/model/slides.ts";
+import { HOME_SLIDES, MAIN_SLIDES } from "@/widgets/home/model/slides.ts";
 
 const { t } = useI18n();
 const { activeSlide } = filterProduct();
 
-const current = computed(() => homeSlides[activeSlide.value]);
+const current = computed(() => HOME_SLIDES[activeSlide.value]);
 
 let interval: ReturnType<typeof setInterval>;
 
 onMounted(() => {
   interval = setInterval(() => {
-    activeSlide.value = (activeSlide.value + 1) % mainSlides.length;
+    activeSlide.value = (activeSlide.value + 1) % MAIN_SLIDES.length;
   }, 4000);
 });
 
