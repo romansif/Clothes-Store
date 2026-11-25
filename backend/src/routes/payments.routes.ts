@@ -15,6 +15,8 @@ router.post('/payment', authMiddleware, validation.paymentValidation,
 router.put('/payment/:id', authMiddleware, validation.paymentValidation,
     validation.handleValidationErrors, paymentsController.updatePayment);
 
+router.patch('/payment/:id', authMiddleware, paymentsController.updatePayment);
+
 router.delete('/payment/:id', authMiddleware, paymentsController.deletePayment);
 
 

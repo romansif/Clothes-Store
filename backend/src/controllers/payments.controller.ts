@@ -3,8 +3,11 @@ import { unwrap, isUuid, deleteOwned } from '#db/query.ts';
 import {
     type Row, HttpError, handle, param, sameId, requireUser, requireSelf,
     pickKeys, isPlainObject, cardFingerprint, isValidCardNumber,
-    maskCard, toPublicPayment,
+    maskCard, toPublicPayment, cleanText,
 } from '#db/security';
+import type { Request } from "express";
+
+const PAYMENT_TABLE = 'payments';
 
 const PAYMENT_FIELDS = ['paymentId', 'paymentMethod', 'cardName', 'cardNumber', 'expiryDate'] as const;
 
@@ -51,6 +54,12 @@ const withProtectedCard = (data: Row): Row => {
         cardFingerprint: cardFingerprint(data.cardNumber),
         cardNumber: maskCard(data.cardNumber),
     };
+};
+
+const requireUserId = (req: Request): string => {
+    const userId = (req as Request & { user?: { userId?: string } }).user?.userId;
+    if (!isUuid(userId)) throw new HttpError(401, 'Unauthorized');
+    return userId;
 };
 
 export const paymentsController = {
@@ -119,44 +128,57 @@ export const paymentsController = {
         res.status(201).json(toApiPayment(newPayment));
     }),
 
-    updatePayment: handle('Failed to update payment', async (req, res) => {
-        const user = requireUser(req);
-        const id = param(req, 'id');
+    updatePayment: handle('Failed to update the payment method', async (req, res) => {
+        const userId = requireUserId(req);
+        const { id } = req.params;
+        if (!isUuid(id)) throw new HttpError(400, 'Invalid payment id.');
 
-        const current = isUuid(id)
-            ? unwrap(await supabase.from('payments').select('*').eq('id', id).eq('userId', user.id).maybeSingle())
-            : null;
+        const existing = unwrap(
+            await supabase.from(PAYMENT_TABLE).select('id, paymentMethod').eq('id', id).eq('userId', userId).maybeSingle(),
+        );
+        if (!existing) throw new HttpError(404, 'Payment method not found.');
+        if (existing.paymentMethod !== 'card') {
+            throw new HttpError(400, 'Only card payment methods can be edited.');
+        }
 
-        if (!current) throw new HttpError(404, 'Payment record not found');
+        const body = isPlainObject(req.body) ? req.body : {};
+        const patch: Row = {};
 
-        const changes = withProtectedCard(pickKeys(req.body, PAYMENT_FIELDS));
+        if (body.cardName !== undefined) {
+            const cardName = cleanText(body.cardName, 100);
+            if (!cardName) throw new HttpError(400, 'Invalid card name.', { cardName: 'Enter the cardholder name.' });
+            patch.cardName = cardName;
+        }
 
-        if (changes.cardFingerprint) {
-            const duplicates = unwrap(
-                await supabase.from('payments').select('id')
-                    .eq('userId', user.id)
-                    .eq('cardFingerprint', changes.cardFingerprint)
-                    .neq('id', id)
-                    .limit(1),
-            );
-
-            if (duplicates.length) {
-                throw new HttpError(400, 'This card is already saved to your account.', {
-                    cardNumber: 'This card is already saved to your account',
-                });
+        if (body.cardNumber !== undefined) {
+            const digits = String(body.cardNumber).replace(/[\s-]/g, '');
+            if (!/^\d{16}$/.test(digits)) {
+                throw new HttpError(400, 'Invalid card number.', { cardNumber: 'Card number must have 16 digits.' });
             }
+            patch.cardNumber = digits.replace(/(\d{4})(?=\d)/g, '$1-'); // тот же формат, что у фронта
         }
 
-        if (!changes.cardFingerprint && current.cardNumber && !String(current.cardNumber).includes('*')) {
-            changes.cardFingerprint = cardFingerprint(current.cardNumber);
-            changes.cardNumber = maskCard(current.cardNumber);
+        if (body.expiryDate !== undefined) {
+            const match = /^(0[1-9]|1[0-2])\/(\d{2})$/.exec(String(body.expiryDate));
+            const expired = match
+                ? new Date(2000 + Number(match[2]), Number(match[1]), 1) <= new Date() // конец месяца
+                : true;
+            if (!match || expired) {
+                throw new HttpError(400, 'Invalid expiry date.', { expiryDate: 'Card is expired or the date is invalid.' });
+            }
+            patch.expiryDate = body.expiryDate;
         }
 
-        const updated = Object.keys(changes).length
-            ? unwrap(await supabase.from('payments').update(changes).eq('id', id).eq('userId', user.id).select().single())
-            : current;
+        // cardCvv намеренно не принимается и не обновляется (см. ниже)
 
-        res.status(200).json(toApiPayment(updated));
+        if (!Object.keys(patch).length) throw new HttpError(400, 'Nothing to update.');
+
+        const updated = unwrap(
+            await supabase.from(PAYMENT_TABLE).update(patch).eq('id', id).eq('userId', userId).select('*').maybeSingle(),
+        );
+        if (!updated) throw new HttpError(404, 'Payment method not found.');
+
+        res.json(updated);
     }),
 
     deletePayment: handle('Failed to delete payment', async (req, res) => {

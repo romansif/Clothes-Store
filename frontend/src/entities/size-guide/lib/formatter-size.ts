@@ -27,7 +27,7 @@ const convertSizeToInches = (sizes: SizeGuide[]) => {
 
 export const formatterSizeGuide = (product: Product) => {
   const category = product.category;
-  const isWomen = product.gender === "women";
+  const isWomen = product.gender === "Woman";
 
   const isOuterWear = outerWear.includes(category);
   const isUnderWear = underWear.includes(category);
@@ -46,5 +46,5 @@ export const formatterSizeGuide = (product: Product) => {
 };
 
 export const shoesSizes = (product: Product) => {
-  return computed(() => (product.gender === "women" ? womenSizesShoes : sizesShoes));
+  return computed(() => (product.gender === "Woman" ? womenSizesShoes : sizesShoes));
 };

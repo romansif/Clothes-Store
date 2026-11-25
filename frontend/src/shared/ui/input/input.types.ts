@@ -1,7 +1,7 @@
-export type InputVariant = "auth" | "createProduct" | "confidentialityData";
+export type InputVariant = "auth" | "createProduct" | "confidentialityData" | "editAddress" | "editCard";
 
 export interface InputProps {
   variant?: InputVariant;
   maxLength?: number;
-  errorMessage: string;
+  errorMessage?: string;
 }

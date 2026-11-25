@@ -5,7 +5,7 @@
       @click="toggleSavedAddresses"
     >
       <div @click.stop class="flex h-150 w-222.5 flex-col rounded-xl bg-white p-5">
-        <UiButton name="Exit" variant="exitClose" @click="toggleSavedAddresses" />
+        <UiButton :name="t('common.exit')" variant="exitClose" @click="toggleSavedAddresses" />
         <div class="flex flex-col gap-2 border-b py-4">
           <h1 class="text-2xl font-bold">{{ t("profile.modal.addresses") }}</h1>
           <div class="flex">

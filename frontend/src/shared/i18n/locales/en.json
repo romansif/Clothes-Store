@@ -86,16 +86,20 @@
     },
     "modal": {
       "cards": "CARDS",
-      "cardsHint": "May I see your saved cards you used for payment.",
+      "cardsHint": "May I see your saved cards you used for payment",
+      "editCard": "EDIT CARD",
+      "editCardHint": "Update your saved card details",
       "addresses": "ADDRESSES",
-      "addressesHint": "May I see your saved delivery address.",
+      "addressesHint": "May I see your saved delivery address",
+      "editAddress": "EDIT ADDRESS",
+      "editAddressHint": "Update your saved shipping address details",
       "allOrders": "ALL ORDERS",
       "activeOrders": "ACTIVE ORDERS",
-      "ordersHint": "Purchase history and status tracking.",
+      "ordersHint": "Purchase history and status tracking",
       "replacement": "REPLACEMENT OF ORDER",
       "replacementHint": "Select the reason why you want to cancel the order",
       "confidentiality": "CONFIDENTIALITY DATA",
-      "confidentialityHint": "You can view or change your confidential data."
+      "confidentialityHint": "You can view or change your confidential data"
     },
     "form": {
       "name": "Name",
@@ -159,6 +163,16 @@
       "city": "City",
       "postalCode": "Postal Code"
     },
+    "editAddress": {
+      "addressName": "Address name",
+      "addressNamePh": "Enter the address name",
+      "countryPh": "Enter the country",
+      "statePh": "Enter the state or region",
+      "addressPh": "Enter the address",
+      "cityPh": "Enter the city",
+      "postalCodePh": "Enter the postal code",
+      "edit": "Edit address"
+    },
     "contact": {
       "firstName": "FirstName",
       "lastName": "LastName",
@@ -183,6 +197,12 @@
       "itemCvv": "CVV:",
       "itemCardName": "Card Name:",
       "itemCardNumber": "Card Number:"
+    },
+    "editCard": {
+      "cardName": "Name on card",
+      "cardNamePh": "Enter the name on the card",
+      "cardNumberPh": "Enter the card number",
+      "expiryPh": "Enter the expiry date"
     }
   },
   "shippingMethod": {
@@ -299,6 +319,7 @@
     }
   },
   "myProduct": {
+    "totalTitle": "All items",
     "sku": "SKU: {sku}",
     "collection": "Collection: {name}",
     "description": "DESCRIPTION:",
@@ -660,6 +681,22 @@
       "update-order-status": {
         "title": "Status updated",
         "text": "The order moved to the next stage"
+      },
+      "editAddress": {
+        "title": "You have successfully updated the address",
+        "text": "The changes have been saved"
+      },
+      "deleteAddress": {
+        "title": "You have successfully deleted the address",
+        "text": "It has been removed from your saved addresses"
+      },
+      "editPayment": {
+        "title": "You have successfully updated the card",
+        "text": "The changes have been saved"
+      },
+      "deletePayment": {
+        "title": "You have successfully deleted the card",
+        "text": "It has been removed from your saved cards"
       }
     },
     "error": {
@@ -734,6 +771,22 @@
       "update-order-status": {
         "title": "Error",
         "text": "Couldn't update the status. Please try again"
+      },
+      "editAddress": {
+        "title": "Failed to update the address",
+        "text": "Check the fields and try again"
+      },
+      "deleteAddress": {
+        "title": "Failed to delete the address",
+        "text": "Try again later"
+      },
+      "editPayment": {
+        "title": "Failed to update the card",
+        "text": "Check the card details and try again"
+      },
+      "deletePayment": {
+        "title": "Failed to delete the card",
+        "text": "Try again later"
       }
     }
   },

@@ -43,17 +43,17 @@
         <div class="flex flex-col gap-2.5 border-r-2 border-gray-300 px-5">
           <h4 class="text-[#A3A3A3]">{{ t("myProduct.sold") }}</h4>
           <div class="flex items-end gap-1">
-            <span class="font-dm-sans text-3xl font-bold">{{ soldQuantity }}</span>
+            <span class="font-dm-sans text-3xl font-bold">{{ soldItemQuantity }}</span>
             <span class="text-sm text-[#A3A3A3]">{{ t("common.pcs") }}</span>
           </div>
         </div>
         <div class="flex flex-col gap-2.5 border-r-2 border-gray-300 px-5">
           <h4 class="text-[#A3A3A3]">{{ t("myProduct.revenue") }}</h4>
-          <span class="font-dm-sans text-3xl font-bold text-[#8C6A3F]">$ {{ soldTotalPrice }}</span>
+          <span class="font-dm-sans text-3xl font-bold text-[#8C6A3F]">$ {{ soldItemTotalPrice }}</span>
         </div>
         <div class="flex flex-col gap-2.5 px-5">
           <h4 class="text-[#A3A3A3]">{{ t("myProduct.inOrders") }}</h4>
-          <span class="font-dm-sans text-3xl font-bold">{{ inOrdersQuantity }}</span>
+          <span class="font-dm-sans text-3xl font-bold">{{ inOrdersItemQuantity }}</span>
         </div>
       </div>
       <div class="flex items-center gap-10 font-medium">
@@ -118,5 +118,5 @@ const props = defineProps<{
 const { t } = useI18n();
 const { getProductId } = previewHelper();
 const { toggleFavorite } = useToggleFavorite();
-const { soldQuantity, soldTotalPrice, inOrdersQuantity } = useSoldItem();
+const { soldItemQuantity, soldItemTotalPrice, inOrdersItemQuantity } = useSoldItem(props.product.id);
 </script>

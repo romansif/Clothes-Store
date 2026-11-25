@@ -18,10 +18,11 @@ export const notifyMessages: Record<NotificationVariants, NotificationMessage> =
   payment: { title: "notify.success.payment.title", text: "notify.success.payment.text" },
   "add-review": { title: "notify.success.addReview.title", text: "notify.success.addReview.text" },
   "replace-order": { title: "notify.success.replaceOrder.title", text: "notify.success.replaceOrder.text" },
-  "update-order-status": {
-    title: "notify.success.updateOrderStatus.title",
-    text: "notify.success.updateOrderStatus.text",
-  },
+  "update-order-status": { title: "notify.success.updateOrderStatus.title", text: "notify.success.updateOrderStatus.text" },
+  "edit-address": { title: "notify.success.editAddress.title", text: "notify.success.editAddress.text" },
+  "delete-address": { title: "notify.success.deleteAddress.title", text: "notify.success.deleteAddress.text" },
+  "edit-payment": { title: "notify.success.editPayment.title", text: "notify.success.editPayment.text" },
+  "delete-payment": { title: "notify.success.deletePayment.title", text: "notify.success.deletePayment.text" },
 };
 
 export const notifyErrorMessages: Record<NotificationVariants, NotificationMessage> = {
@@ -43,4 +44,8 @@ export const notifyErrorMessages: Record<NotificationVariants, NotificationMessa
   "add-review": { title: "notify.error.addReview.title", text: "notify.error.addReview.text" },
   "replace-order": { title: "notify.error.replaceOrder.title", text: "notify.error.replaceOrder.text" },
   "update-order-status": { title: "notify.error.updateOrderStatus.title", text: "notify.error.updateOrderStatus.text" },
+  "edit-address": { title: "notify.error.editAddress.title", text: "notify.error.editAddress.text" },
+  "delete-address": { title: "notify.error.deleteAddress.title", text: "notify.error.deleteAddress.text" },
+  "edit-payment": { title: "notify.error.editPayment.title", text: "notify.error.editPayment.text" },
+  "delete-payment": { title: "notify.error.deletePayment.title", text: "notify.error.deletePayment.text" },
 };

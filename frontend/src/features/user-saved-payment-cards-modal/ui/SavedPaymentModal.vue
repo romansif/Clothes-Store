@@ -1,11 +1,10 @@
 <template>
   <div>
-    <div
-      class="font-raleway fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)]"
-      @click="toggleSavedPaymentCard"
+    <div class="font-raleway fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)]"
+         @click="toggleSavedPaymentCard"
     >
       <div @click.stop class="flex h-150 w-222.5 flex-col rounded-xl bg-white p-5">
-        <UiButton name="Exit" variant="exitClose" @click="toggleSavedPaymentCard" />
+        <UiButton :name="t('common.exit')" variant="exitClose" @click="toggleSavedPaymentCard" />
         <div class="flex flex-col gap-2 border-b py-4">
           <h1 class="text-2xl font-bold">{{ t("profile.modal.cards") }}</h1>
           <div class="flex">

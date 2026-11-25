@@ -15,6 +15,8 @@ router.post('/address', authMiddleware, validation.addAddressValidation,
 router.put('/address/:id', authMiddleware, validation.addAddressValidation,
     validation.handleValidationErrors, addressesController.updateAddress);
 
+router.patch('/address/:id', authMiddleware, addressesController.updateAddress);
+
 router.delete('/address/:id', authMiddleware, addressesController.deleteAddress);
 
 export default router;

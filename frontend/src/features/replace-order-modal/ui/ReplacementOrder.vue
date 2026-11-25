@@ -4,7 +4,7 @@
     @click="closeReplaceOrder"
   >
     <div @click.stop class="flex h-fit w-175 flex-col gap-2 rounded-xl bg-white p-5">
-      <UiButton name="Exit" variant="exitClose" @click="closeReplaceOrder" />
+      <UiButton :name="t('common.exit')" variant="exitClose" @click="closeReplaceOrder" />
       <div class="flex flex-col gap-4 border-b pb-4">
         <h1 class="text-2xl font-bold">{{ t("profile.modal.replacement") }}</h1>
         <span class="text-sm text-[#A3A3A3]">

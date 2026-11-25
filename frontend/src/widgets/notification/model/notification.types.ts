@@ -18,7 +18,11 @@ export type NotificationVariants =
   | "payment"
   | "add-review"
   | "replace-order"
-  | "update-order-status";
+  | "update-order-status"
+  | "edit-address"
+  | "delete-address"
+  | "edit-payment"
+  | "delete-payment";
 
 export interface NotificationMessage {
   title: string;

@@ -25,7 +25,8 @@ export type ButtonVariant =
   | "closeNotify"
   | "useItemOrder"
   | "acceptStatus"
-  | "sellerItemDetails";
+  | "sellerItemDetails"
+  | "editAddress&Card";
 
 export interface ButtonProps {
   name: string;

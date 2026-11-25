@@ -1,8 +1,8 @@
-import { computed } from "vue";
+import { computed, toValue } from "vue";
 import { useQuery } from "@tanstack/vue-query";
-
 import { useGetPayment } from "@/widgets/user-payment-card-list/api/get-payment";
 import { checkoutSession } from "@/entities/checkout-session";
+import { card_id } from "@/features/edit-saved-card/lib/toggle-edit-card";
 
 const { getPayments, getPayment } = useGetPayment();
 
@@ -39,6 +39,8 @@ export const useSavedPaymentsData = () => {
 };
 
 export const useSavedPaymentData = () => {
+  const id = computed(() => toValue(card_id) || checkoutSession.addressId || null);
+
   const {
     data: userPaymentCard,
     isLoading,
@@ -46,17 +48,17 @@ export const useSavedPaymentData = () => {
     isError,
     refetch,
   } = useQuery({
-    queryKey: computed(() => ["userPaymentCard", checkoutSession.paymentId]),
+    queryKey: computed(() => ["userPaymentCard", id.value]),
 
     queryFn: () => {
-      if (!checkoutSession.paymentId) {
+      if (!id.value) {
         throw new Error("User is not authenticated");
       }
 
-      return getPayment(checkoutSession.paymentId);
+      return getPayment(id.value);
     },
 
-    enabled: computed(() => Boolean(checkoutSession.paymentId)),
+    enabled: computed(() => Boolean(id.value)),
   });
 
   return {

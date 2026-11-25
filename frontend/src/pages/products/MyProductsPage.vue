@@ -1,5 +1,5 @@
 <template>
-  <main class="mt-10 flex">
+  <main class="flex flex-col">
     <MyProductList :user="user" />
   </main>
   <Transition name="modal">

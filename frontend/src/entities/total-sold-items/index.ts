@@ -1,0 +1,1 @@
+export { default as TotalSoldItems } from "./ui/TotalSoldItems.vue"

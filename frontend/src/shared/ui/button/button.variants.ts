@@ -1,33 +1,76 @@
 import type { ButtonVariant } from "@/shared/ui/button";
 
-const baseButton = "rounded-full transition duration-400 transform cursor-pointer";
+const base = "rounded-full transition duration-400 transform cursor-pointer";
+const baseSquare = "rounded-xl transition duration-400 transform cursor-pointer";
+const grow = "hover:scale-105";
+
+const navy = {
+  solid: "bg-[#26334d] text-white hover:bg-[#1b2438]",
+  outline: "border border-[#26334d] text-[#26334d] hover:bg-[#26334d] hover:text-white",
+  link: "text-[#26334d] hover:text-[#722f37]",
+};
+
+const wine = {
+  solid: "bg-[#722f37] text-white hover:bg-[#5a252c]",
+  outline: "border border-[#722f37] text-[#722f37] hover:bg-[#722f37] hover:text-white",
+};
+
+const gold = {
+  solid: "bg-[#8c6a3f] text-white hover:bg-[#735432]",
+  soft: "bg-[#f7f1e8] text-[#8c6a3f] hover:bg-[#efe3d0]",
+};
+
+const ink = {
+  solid: "bg-black text-white border border-black hover:bg-white hover:text-black",
+  outline: "border border-[#A3A3A3] text-black hover:bg-black hover:text-white",
+  soft: "border border-[#D9D9D9] hover:bg-white hover:border-[#722f37] hover:text-[#722f37]",
+  link: "text-[#A3A3A3] hover:text-[#722f37]",
+  disabled: "bg-[#A3A3A3] text-white disabled:cursor-not-allowed",
+};
+
+const status = {
+  danger: "bg-[#a8433b] text-white hover:bg-[#8c342e]",
+  success: "bg-[#3e6b55] text-white hover:bg-[#315544]",
+};
 
 export const buttonVariantClasses: Record<ButtonVariant, string> = {
-  login: `${baseButton} w-full bg-[#26334d] text-white px-6 py-3.5 mt-6 font-semibold text-start hover:bg-[#1b2438]`,
-  register: `${baseButton} w-full bg-[#26334d] text-white px-6 py-3.5 mt-6 font-semibold text-start hover:bg-[#1b2438]`,
-  changeRegister: `${baseButton} text-center text-sm text-[#26334d] hover:text-[#722f37] hover:scale-108`,
-  useProduct: `${baseButton} w-full bg-[#722f37] text-white py-5 font-semibold text-center uppercase tracking-wider text-sm shadow-md hover:scale-102 hover:bg-[#5a252c]`,
-  addToCart: `${baseButton} w-full bg-[#722f37] text-white font-semibold text-sm py-5 font-[Montserrat] lg:block hover:scale-108 hover:bg-[#5a252c]`,
-  addToOrder: `${baseButton} w-full bg-[#722f37] text-white font-semibold py-4 mt-8 hover:scale-108 hover:bg-[#5a252c]`,
-  checkOut: `${baseButton} w-full bg-[#722f37] text-white font-semibold text-start px-3 py-2 text-sm hover:bg-[#5a252c] sm:w-[300px] sm:ml-auto md:w-[365px] lg:w-[195px] xl:w-[246px]`,
-  profileForm: `${baseButton} w-[230px] bg-[#26334d] text-white px-6 py-3.5 font-semibold text-start hover:scale-105 hover:bg-[#1b2438]`,
-  toggleAvatar: `${baseButton} bg-[#26334d] text-white px-8 py-3.5 font-semibold text-start hover:scale-120 hover:bg-[#1b2438]`,
-  useItemOrder: `${baseButton} h-fit border border-[#722f37] text-[#722f37] w-35 py-3 font-medium text-sm text-center hover:scale-108 hover:bg-[#722f37] hover:text-white`,
-  useOrder: `${baseButton} w-fit h-fit bg-[#722f37] text-white px-15 py-5 font-medium text-sm text-start hover:scale-108 hover:bg-[#5a252c]`,
-  replaceAndReview: `${baseButton} bg-[#722f37] text-white text-center py-4 px-6 font-semibold hover:scale-105 hover:bg-[#5a252c]`,
-  outOfStack: `${baseButton} w-full bg-[#A3A3A3] text-white py-4 font-semibold disabled:cursor-not-allowed`,
-  exitClose: `${baseButton} w-fit h-fit ml-auto bg-[#8c6a3f] text-white px-10 py-2 font-medium text-xs text-start hover:scale-108 hover:bg-[#735432]`,
-  cancel: `${baseButton} bg-[#a8433b] text-white text-center w-28 py-3.5 font-medium text-xs hover:scale-108 hover:bg-[#8c342e]`,
-  confirm: `${baseButton} bg-[#3e6b55] text-white text-center w-28 py-3.5 font-medium text-xs hover:scale-108 hover:bg-[#315544]`,
-  refresh: `${baseButton} bg-[#26334d] text-white px-4 py-2 mt-5 hover:bg-[#1b2438]`,
-  stackInfo: `${baseButton} w-fit h-fit ml-auto bg-[#8c6a3f] text-white px-20 py-4 font-medium  text-start hover:bg-[#735432]`,
-  loadReviews: `${baseButton} w-150 border border-[#D9D9D9] p-2.5 font-semibold hover:bg-white hover:scale-105 hover:border-[#722f37] hover:text-[#722f37]`,
-  profileMenu: `${baseButton} block px-4 py-2 text-sm text-[#A3A3A3] hover:text-[#722f37] hover:outline-hidden hover:scale-115`,
-  reload: `${baseButton} flex gap-2 items-center w-38 px-5 py-2 text-xl bg-[#26334d] text-white border border-[#26334d] hover:outline-hidden hover:scale-110 hover:text-[#26334d] hover:bg-white`,
-  catalog: `${baseButton} w-38 py-2 text-xl text-[#26334d] border border-[#26334d] hover:outline-hidden hover:scale-110 hover:text-white hover:bg-[#26334d]`,
-  viewMyOrders: `${baseButton} w-87 py-3 font-medium text-white bg-[#722f37] border-2 border-[#722f37] hover:scale-105 hover:bg-white hover:text-[#722f37]`,
-  paymentSuccess: `${baseButton} w-87 py-3 font-medium text-[#722f37] bg-white border-2 border-[#722f37] hover:scale-105 hover:bg-[#722f37] hover:text-white`,
+  // navy
+  login: `${base} ${navy.solid} w-full px-6 py-3.5 mt-6 font-semibold text-start`,
+  register: `${base} ${navy.solid} w-full px-6 py-3.5 mt-6 font-semibold text-start`,
+  changeRegister: `${base} ${navy.link} ${grow} text-center text-sm`,
+  profileForm: `${base} ${navy.solid} ${grow} w-[230px] px-6 py-3.5 font-semibold text-start`,
+  toggleAvatar: `${base} ${navy.solid} ${grow} px-8 py-3.5 font-semibold text-start`,
+  refresh: `${base} ${navy.solid} px-4 py-2 mt-5`,
+  reload: `${base} ${navy.solid} ${grow} flex gap-2 items-center w-38 px-5 py-2 text-xl`,
+  catalog: `${base} ${navy.outline} ${grow} w-38 py-2 text-xl`,
+
+  // wine
+  useProduct: `${base} ${wine.solid} ${grow} w-full py-5 font-semibold text-center uppercase tracking-wider text-sm shadow-md`,
+  addToCart: `${base} ${wine.solid} ${grow} w-full font-semibold text-sm py-5 font-[Montserrat] lg:block`,
+  addToOrder: `${base} ${wine.solid} ${grow} w-full font-semibold py-4 mt-8`,
+  checkOut: `${base} ${wine.solid} w-full font-semibold text-start px-3 py-2 text-sm sm:w-[300px] sm:ml-auto md:w-[365px] lg:w-[195px] xl:w-[246px]`,
+  useOrder: `${base} ${wine.solid} ${grow} w-fit h-fit px-15 py-5 font-medium text-sm text-start`,
+  replaceAndReview: `${base} ${wine.solid} ${grow} text-center py-4 px-6 font-semibold`,
+  viewMyOrders: `${base} ${wine.solid} ${grow} w-87 py-3 font-medium`,
+  useItemOrder: `${base} ${wine.outline} ${grow} h-fit w-35 py-3 font-medium text-sm text-center`,
+  paymentSuccess: `${base} ${wine.outline} ${grow} w-87 py-3 font-medium`,
+  'editAddress&Card': `${base} ${wine.solid} ${grow} w-56 py-4 ml-auto`,
+
+  // gold
+  exitClose: `${base} ${gold.solid} ${grow} w-fit h-fit ml-auto px-10 py-2 font-medium text-xs text-start`,
+  stackInfo: `${base} ${gold.solid} w-fit h-fit ml-auto px-20 py-4 font-medium text-start`,
+
+  // ink
+  acceptStatus: `${baseSquare} ${ink.solid} w-full py-2.5 text-lg`,
+  sellerItemDetails: `${baseSquare} ${ink.outline} w-38 py-2.5 text-lg`,
+  loadReviews: `${base} ${ink.soft} ${grow} w-150 p-2.5 font-semibold`,
+  profileMenu: `${base} ${ink.link} ${grow} block px-4 py-2 text-sm`,
+  outOfStack: `${base} ${ink.disabled} w-full py-4 font-semibold`,
+
+  // status
+  cancel: `${base} ${status.danger} ${grow} text-center w-28 py-3.5 font-medium text-xs`,
+  confirm: `${base} ${status.success} ${grow} text-center w-28 py-3.5 font-medium text-xs`,
+
+  // особая:
   closeNotify: `absolute top-3 right-3 flex h-7 w-7 cursor-pointer items-center justify-center text-white/60 transition-colors hover:text-white`,
-  acceptStatus: `transition duration-400 transform cursor-pointer rounded-xl w-full py-2.5 bg-black text-white border text-lg hover:bg-white hover:text-black`,
-  sellerItemDetails: `transition duration-400 transform cursor-pointer rounded-xl w-38 py-2.5 text-lg text-black border border-[#A3A3A3] hover:bg-black hover:text-white`,
 };

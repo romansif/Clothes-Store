@@ -5,12 +5,12 @@ export const paymentMethodClass = (form: string, method: string, error: string) 
   error ? "border-red-500" : "",
 ];
 
-export const baseCardInputClass = `border border-gray-300 rounded-xl w-full sm:w-75 md:w-91.25 lg:w-48.75 xl:w-61.25
+export const baseCardInputClass = `border border-gray-300 rounded-xl w-full sm:min-w-75 md:min-w-91.25 lg:min-w-48.75 xl:min-w-61.25
     font-dm-sans outline-none px-4 py-4 text-xs transition duration-400 bg-gray-50 hover:bg-white`;
 
 export const cardNumberClass = `${baseCardInputClass} placeholder:text-sm`;
 
-export const expiryDateClass = baseCardInputClass;
+export const expiryDateClass = `${baseCardInputClass} placeholder:text-sm`;
 
 export const cardCvvClass = `${baseCardInputClass} placeholder:text-lg`;
 
