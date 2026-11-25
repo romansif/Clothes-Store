@@ -504,7 +504,12 @@
     "collections": "COLLECTIONS",
     "approachTitle": "Our Approach to fashion design",
     "approachText": "At elegant vogue , we blend creativity with craftsmanship to create fashion that transcends trends and stands the test of time each design is meticulously crafted, ensuring the highest quality exquisite finish",
-    "gender": { "all": "( All )", "man": "Man", "woman": "Woman", "kids": "Kids" },
+    "gender": {
+      "all": "( All )",
+      "man": "Man",
+      "woman": "Woman",
+      "kids": "Kids"
+    },
     "slides": {
       "autumn": {
         "title": "AUTUMN",
@@ -678,10 +683,6 @@
         "title": "You have successfully cancelled the order.",
         "text": "Thank you for providing us with this information, it helps us improve our service."
       },
-      "update-order-status": {
-        "title": "Status updated",
-        "text": "The order moved to the next stage"
-      },
       "editAddress": {
         "title": "You have successfully updated the address",
         "text": "The changes have been saved"
@@ -697,6 +698,10 @@
       "deletePayment": {
         "title": "You have successfully deleted the card",
         "text": "It has been removed from your saved cards"
+      },
+      "updateOrderStatus": {
+        "title": "Status updated",
+        "text": "The order moved to the next stage"
       }
     },
     "error": {
@@ -768,10 +773,6 @@
         "title": "You were unable to cancel the order",
         "text": "Please try again later"
       },
-      "update-order-status": {
-        "title": "Error",
-        "text": "Couldn't update the status. Please try again"
-      },
       "editAddress": {
         "title": "Failed to update the address",
         "text": "Check the fields and try again"
@@ -787,6 +788,10 @@
       "deletePayment": {
         "title": "Failed to delete the card",
         "text": "Try again later"
+      },
+      "updateOrderStatus": {
+        "title": "Error",
+        "text": "Couldn't update the status. Please try again"
       }
     }
   },
