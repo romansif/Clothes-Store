@@ -30,13 +30,8 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-<<<<<<<< HEAD:frontend/src/shared/ui/notification/Notification.vue
 import { useBaseModals } from "@/shared/ui/notification/use-notify";
 import { notifyClass, notifyBoxClass, notifyItemsClass } from "@/shared/ui/notification/notification.variants";
-========
-import { useBaseModals } from "@/shared/ui/notification/lib/use-notify";
-import { notifyClass, notifyBoxClass, notifyItemsClass } from "@/shared/ui/notification/model/notification.variants";
->>>>>>>> origin/master:frontend/src/shared/ui/notification/ui/Notification.vue
 import { UiButton } from "@/shared/ui/button";
 
 const { t } = useI18n();
