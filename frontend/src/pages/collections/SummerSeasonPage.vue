@@ -17,7 +17,7 @@ import { useUserData } from "@/widgets/profile/lib/use-user-data";
 import { useSeasonProductData } from "@/widgets/season-list/lib/use-season-product-data";
 import { SeasonsHeader } from "@/widgets/navigation";
 import { SeasonList } from "@/widgets/season-list";
-import { EmptyState, ErrorState, Loader } from "@/widgets/state";
+import { EmptyState, ErrorState, Loader } from "@/shared/ui/state";
 
 const { user } = useUserData();
 const { seasonCatalog, isLoading, isFetching, isError, refetch } = useSeasonProductData("Summer");

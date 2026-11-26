@@ -1,4 +1,4 @@
-import type { ColorItem, Product } from "@/shared";
+import type { ColorItem, Product } from "@/shared/model";
 
 interface CartRow {
   id: string;

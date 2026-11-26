@@ -13,7 +13,7 @@
             :style="indicatorStyle"
           />
           <button
-            v-for="mode in modes"
+            v-for="mode in MODES"
             :key="mode.code"
             type="button"
             :class="[
@@ -151,16 +151,16 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { productHelper } from "@/shared/lib/product-helper";
-import { modes, useProductForm } from "@/features/product-form/lib/use-product-form";
+import { MODES, useProductForm } from "@/features/product-form/lib/use-product-form";
 import { useEditProductColors, useEditProductQuantity } from "@/features/product-edit-form/api/update-product";
 import { productFormHelper } from "@/features/product-form/lib/product-form-helper";
 import {
   createProductForm,
   createProductFormErrorMessages,
   moreCreateItemFormErrorMessages,
-} from "@/entities/product-form/model/product-forms";
+} from "@/features/product-form/model/product-forms";
 import { UiInput } from "@/shared/ui/input";
-import type { Product } from "@/shared";
+import type { Product } from "@/shared/model";
 
 const props = defineProps<{
   product: Product;

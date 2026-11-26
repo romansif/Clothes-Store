@@ -1,5 +1,5 @@
 import { computed } from "vue";
-import type { Product } from "@/shared";
+import type { Product } from "@/shared/model";
 
 import { useCheckoutItems } from "@/features/checkout-order-info/lib/use-checkout-items";
 import type { CartItem } from "@/entities/cart-item";

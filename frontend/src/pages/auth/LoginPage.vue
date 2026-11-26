@@ -24,7 +24,7 @@ import { showSignSection } from "@/features/login-auth/model/login-auth.refs";
 import { GoogleAuth } from "@/features/login-by-google";
 import { UiButton } from "@/shared/ui/button";
 import { LoginForm } from "@/features/login-auth";
-import { Loading } from "@/widgets/state";
+import { Loading } from "@/shared/ui/state";
 
 import maki_arrow from "@/assets/icons/arrows/right-short-arrow.svg";
 

@@ -1,6 +1,6 @@
-import type { Product } from "@/shared";
+import type { Product } from "@/shared/model";
 
-import { handler } from "@/shared/api/http";
+import { handler } from "@/shared/api";
 
 export const getProduct = async (id: string | string[]) => {
   return await handler<Product>(`/product/${id}`, {

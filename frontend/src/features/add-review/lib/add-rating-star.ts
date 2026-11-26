@@ -1,5 +1,5 @@
 import { reviewsStore } from "@/features/review-dashboard/model/reviews.store";
-import { reviewForm } from "@/entities/review-form/model/review-form";
+import { reviewForm } from "@/features/add-review/model/review-form";
 
 const { ratingDirection } = reviewsStore();
 

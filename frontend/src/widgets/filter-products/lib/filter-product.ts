@@ -1,6 +1,6 @@
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
-import type { Product } from "@/shared";
+import type { Product } from "@/shared/model";
 
 import { activeFilter, yearFilter } from "@/widgets/filter-products/model/active-filter";
 import { clearSearchProductForm } from "@/features/search-product/lib/clear-search";

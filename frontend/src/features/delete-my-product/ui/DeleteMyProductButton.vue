@@ -10,7 +10,7 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { baseDeleteModal } from "@/features/general-delete/lib/base-delete-modal";
-import type { Product } from "@/shared";
+import type { Product } from "@/shared/model";
 
 import del from "@/assets/icons/delete-close/delete.svg";
 

@@ -1,7 +1,7 @@
 import { computed } from "vue";
 import type { RouteLocationNormalizedLoaded } from "vue-router";
 import { useQuery, useQueryClient } from "@tanstack/vue-query";
-import type { Product } from "@/shared";
+import type { Product } from "@/shared/model";
 
 import { getProduct } from "@/features/product-info/api/get-product";
 

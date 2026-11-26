@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useBaseModals } from "@/widgets/notification/lib/use-notify";
-import { Notification } from "@/widgets/notification";
+import { useBaseModals } from "@/shared/ui/notification/use-notify";
+import { Notification } from "@/shared/ui/notification";
 
 const { notify } = useBaseModals();
 </script>

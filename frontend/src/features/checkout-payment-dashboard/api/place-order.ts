@@ -2,12 +2,12 @@ import { ref } from "vue";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
 import router from "@/app/router";
-import { useBaseModals } from "@/widgets/notification/lib/use-notify";
+import { useBaseModals } from "@/shared/ui/notification/use-notify";
 import { clearPaymentForm } from "@/features/checkout-payment-dashboard/lib/clear-payment";
 import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment-form/model/payment-form";
 import { addPaymentSchema } from "@/entities/checkout-payment-form/model/payment-schemas";
 import { checkoutSession } from "@/entities/checkout-session/model/checkout-session";
-import { handler } from "@/shared/api/http";
+import { handler } from "@/shared/api";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
 
 const { openNotify } = useBaseModals();

@@ -39,7 +39,7 @@
 import { useI18n } from "vue-i18n";
 import { useStackInfo } from "@/entities/my-product-item/lib/use-stack-info";
 import { toggleStackInfo } from "@/entities/my-product-item/lib/toggle-stack-info";
-import type { Product } from "@/shared";
+import type { Product } from "@/shared/model";
 
 import close from "@/assets/icons/delete-close/delete.svg";
 

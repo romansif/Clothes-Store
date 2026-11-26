@@ -118,7 +118,7 @@ import {
   useEditUserPhone,
   useEditUserPassword,
 } from "@/features/change-user-data-form/lib/use-edit-user-data";
-import { updateUserForm, updateUserFormErrorMessages } from "@/entities/profile-form/model/user-update-form";
+import { updateUserForm, updateUserFormErrorMessages } from "@/features/change-user-data-form/model/user-update-form";
 import {
   PROFILE_FORM_PHONE_INPUT_CLASS,
   PROFILE_FORM_SELECT_PHONE_CODE_CLASS,

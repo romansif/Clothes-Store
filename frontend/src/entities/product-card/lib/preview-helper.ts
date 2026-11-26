@@ -1,4 +1,4 @@
-import type { Product } from "@/shared";
+import type { Product } from "@/shared/model";
 
 import type { FavoriteItem } from "@/entities/favorite-item";
 

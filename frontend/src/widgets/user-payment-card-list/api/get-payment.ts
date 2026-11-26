@@ -1,5 +1,5 @@
-import type { UserPayment } from "@/entities/user-payment/model/payment.types";
-import { handler } from "@/shared/api/http";
+import type { UserPayment } from "@/entities/user-payment";
+import { handler } from "@/shared/api";
 
 export const useGetPayment = () => {
   const getPayments = async (userId: string) => {

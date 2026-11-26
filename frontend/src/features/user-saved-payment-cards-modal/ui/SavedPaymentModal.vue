@@ -39,7 +39,7 @@ import { useSavedPaymentsData } from "@/widgets/user-payment-card-list/lib/use-s
 import { UiButton } from "@/shared/ui/button";
 import { DeleteModal } from "@/features/general-delete";
 import { PaymentsList } from "@/widgets/user-payment-card-list";
-import { EmptyState, ErrorState, Loader } from "@/widgets/state";
+import { EmptyState, ErrorState, Loader } from "@/shared/ui/state";
 
 const { t } = useI18n();
 const { deleteModal } = baseDeleteModal();

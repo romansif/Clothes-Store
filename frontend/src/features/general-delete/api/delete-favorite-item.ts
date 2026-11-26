@@ -1,4 +1,4 @@
-import { handler } from "@/shared/api/http";
+import { handler } from "@/shared/api";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
 export const useDeleteFavoriteProduct = () => {

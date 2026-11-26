@@ -49,10 +49,10 @@ import { useCreateReview } from "@/features/add-review/api/add-review";
 import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
 import { closeReviewModal } from "@/entities/order-action/lib/review-form-modal";
 import { fileInput, productHelper } from "@/shared/lib/product-helper";
-import { reviewForm, reviewFormMessages } from "@/entities/review-form/model/review-form";
+import { reviewForm, reviewFormMessages } from "@/features/add-review/model/review-form";
 import { UiButton } from "@/shared/ui/button";
-import { AddRating, AddReview, AddPhotos } from "@/entities/review-form";
-import { Loading } from "@/widgets/state";
+import { AddRating, AddReview, AddPhotos } from "@/features/add-review";
+import { Loading } from "@/shared/ui/state";
 
 const { t } = useI18n();
 const { user } = useUserData();

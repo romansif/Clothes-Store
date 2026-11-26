@@ -1,6 +1,6 @@
-import { handler } from "@/shared/api/http";
+import { handler } from "@/shared/api";
 import {useMutation, useQueryClient} from "@tanstack/vue-query";
-import { useBaseModals } from "@/widgets/notification/lib/use-notify";
+import { useBaseModals } from "@/shared/ui/notification/use-notify";
 import { clearInformationForm } from "@/features/checkout-contact-info/lib/clear-address";
 import { address_id, closeEditAddress } from "@/features/edit-saved-address/lib/toggle-edit-address";
 import { informationForm } from "@/entities/checkout-info-form/model/information-form";

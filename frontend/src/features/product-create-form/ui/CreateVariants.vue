@@ -14,7 +14,7 @@
             :style="indicatorStyle"
           />
           <button
-            v-for="mode in modes"
+            v-for="mode in MODES"
             :key="mode.code"
             type="button"
             :class="[
@@ -165,7 +165,7 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { modes, useProductForm } from "@/features/product-form/lib/use-product-form";
+import { MODES, useProductForm } from "@/features/product-form/lib/use-product-form";
 import { sizes } from "@/shared/model/product-sizes";
 import { productFormHelper } from "@/features/product-form/lib/product-form-helper";
 import { reactiveClearErrorsOnChange } from "@/shared/lib/errors-helper";
@@ -175,7 +175,7 @@ import {
   moreCreateItemForm,
   createProductFormErrorMessages,
   moreCreateItemFormErrorMessages,
-} from "@/entities/product-form/model/product-forms";
+} from "@/features/product-form/model/product-forms";
 
 const { t } = useI18n();
 const { toggleAllVariants, toggleQuantity, toggleSize, toggleColor, countMode } = productFormHelper();

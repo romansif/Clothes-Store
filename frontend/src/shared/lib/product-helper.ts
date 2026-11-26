@@ -1,6 +1,6 @@
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
-import type { Product } from "@/shared";
+import type { Product } from "@/shared/model";
 
 import type { AddForm } from "@/entities/product-info";
 import { sizes } from "@/shared/model/product-sizes";

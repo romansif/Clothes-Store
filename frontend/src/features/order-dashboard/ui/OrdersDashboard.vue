@@ -48,9 +48,9 @@
 import { useI18n } from "vue-i18n";
 import { useOrder } from "@/entities/order-item/lib/use-order";
 import { UiButton } from "@/shared/ui/button";
-import { Clipboard } from "@/widgets/clipboard";
+import { Clipboard } from "@/shared/ui/clipboard";
 import { OrderList } from "@/widgets/order-list";
-import { EmptyState, ErrorState, Loader } from "@/widgets/state";
+import { EmptyState, ErrorState, Loader } from "@/shared/ui/state";
 import type { OrderProps } from "@/entities/order";
 import { ReplacementOrder, ReplacementOrderItem } from "@/features/replace-order-modal";
 import { replaceItem, replaceOrder } from "@/entities/order-action/lib/order-modal";

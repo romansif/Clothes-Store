@@ -6,7 +6,7 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { signGoogleAuth } from "@/features/login-by-google/api/use-google-auth";
-import { Loading } from "@/widgets/state";
+import { Loading } from "@/shared/ui/state";
 
 const { OAuth, isPending } = signGoogleAuth();
 

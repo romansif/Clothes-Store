@@ -62,11 +62,11 @@ import { isInCart } from "@/features/product-info/lib/cart-form-helper";
 import { useAddToCart } from "@/features/add-to-cart/api/add-to-cart";
 import { useUpdateCartItem } from "@/features/cart-item-action/api/update-cart-item";
 import { isInStock } from "@/features/add-to-cart/lib/products-helper";
-import { sizeGuideModel, toggleSizeGuide } from "@/entities/size-guide/lib/toggle-size-guide";
-import { SizeGuideModal } from "@/entities/size-guide";
+import { sizeGuideModel, toggleSizeGuide } from "@/features/add-to-cart/lib/toggle-size-guide";
+import { SizeGuideModal } from "@/features/add-to-cart";
 import { UiButton } from "@/shared/ui/button";
 import type { User } from "@/entities/profile";
-import type { Product } from "@/shared";
+import type { Product } from "@/shared/model";
 import type { CartItem } from "@/entities/cart-item";
 
 import plus from "@/assets/icons/cart/plus.svg";

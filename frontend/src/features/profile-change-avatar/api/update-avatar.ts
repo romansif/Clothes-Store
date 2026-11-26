@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
-import { handler } from "@/shared/api/http";
+import { handler } from "@/shared/api";
 
 export const useChangeAvatar = () => {
   const queryClient = useQueryClient();

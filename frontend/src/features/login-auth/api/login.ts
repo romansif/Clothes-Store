@@ -2,11 +2,11 @@ import { useRoute } from "vue-router";
 import { useMutation } from "@tanstack/vue-query";
 
 import router from "@/app/router";
-import { useBaseModals } from "@/widgets/notification/lib/use-notify";
+import { useBaseModals } from "@/shared/ui/notification/use-notify";
 import { clearLoginForm, clearLoginFormMessages } from "@/features/login-auth/lib/clear-login-form";
 import { loginForm, loginFormErrorMessages } from "@/entities/login-form/model/login-form";
 import { loginSchema } from "@/entities/login-form/model/login.schemas";
-import { handler } from "@/shared/api/http";
+import { handler } from "@/shared/api";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
 
 const { openNotify } = useBaseModals();

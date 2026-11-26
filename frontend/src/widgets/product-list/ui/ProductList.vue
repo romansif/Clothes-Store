@@ -25,9 +25,9 @@
 <script setup lang="ts">
 import { useProductListData } from "@/shared/lib/use-product-data";
 import { useFavoriteData } from "@/shared/lib/use-favorite-data";
-import { useToggleFavorite } from "@/shared/api/toggle-to-favorite";
+import { useToggleFavorite } from "@/shared/api";
 import { ProductCard } from "@/entities/product-card";
-import { EmptyState, ErrorState, Loader } from "@/widgets/state";
+import { EmptyState, ErrorState, Loader } from "@/shared/ui/state";
 import type { User } from "@/entities/profile";
 
 const { favorite } = useFavoriteData();

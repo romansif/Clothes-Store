@@ -1,5 +1,5 @@
 import type { OrderPosition, OrderProps } from "@/entities/order";
-import { handler } from "@/shared/api/http";
+import { handler } from "@/shared/api";
 
 export const useGetOrder = () => {
   const getAllOrder = () => {

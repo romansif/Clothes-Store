@@ -1,4 +1,4 @@
-import type { ProductColor } from "@/entities/product-form";
+import type { ProductColor } from "@/features/product-form";
 
 export interface AddForm {
   colors: ProductColor;

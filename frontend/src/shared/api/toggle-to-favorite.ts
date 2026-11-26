@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
-import { useBaseModals } from "@/widgets/notification/lib/use-notify";
+import { useBaseModals } from "@/shared/ui/notification/use-notify";
 import { previewHelper } from "@/entities/product-card/lib/preview-helper";
-import { handler } from "@/shared/api/http";
+import { handler } from "@/shared/api";
 import type { ToggleToFavoritePayload } from "@/shared/model/favorite-payload.types";
 
 export const useToggleFavorite = () => {

@@ -1,11 +1,11 @@
 import { useMutation } from "@tanstack/vue-query";
 
 import router from "@/app/router";
-import { useBaseModals } from "@/widgets/notification/lib/use-notify";
+import { useBaseModals } from "@/shared/ui/notification/use-notify";
 import { clearRegisterForm, clearRegisterFormMessages } from "@/features/register-auth/lib/clear-register-form";
-import { registerForm, registerFormErrorMessages } from "@/entities/register-form/model/register-from";
-import { registerSchema } from "@/entities/register-form/model/register.schemas";
-import { handler } from "@/shared/api/http";
+import { registerForm, registerFormErrorMessages } from "@/features/register-auth/model/register-from";
+import { registerSchema } from "@/features/register-auth/model/register.schemas";
+import { handler } from "@/shared/api";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
 
 const { openNotify } = useBaseModals();

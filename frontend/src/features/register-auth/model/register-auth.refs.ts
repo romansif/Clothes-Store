@@ -1,6 +1,6 @@
 import { ref } from "vue";
 
-import type { Role } from "@/entities/register-form";
+import type { Role } from "@/features/register-auth";
 
 export const isRole = ref<boolean>(false);
 

@@ -20,7 +20,7 @@ import { useFavoriteData } from "@/shared/lib/use-favorite-data";
 import { ProductInfo } from "@/features/product-info";
 import { ProductReviews } from "@/features/review-dashboard";
 import { useUserData } from "@/widgets/profile/lib/use-user-data";
-import { ErrorState, Loader } from "@/widgets/state";
+import { ErrorState, Loader } from "@/shared/ui/state";
 
 const route = useRoute();
 

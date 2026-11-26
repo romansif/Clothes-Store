@@ -38,14 +38,14 @@
 <script setup lang="ts">
 import { addColor, addSize } from "@/features/product-info/lib/add-cart-specific";
 import { previewHelper } from "@/entities/product-card/lib/preview-helper";
-import { useToggleFavorite } from "@/shared/api/toggle-to-favorite";
+import { useToggleFavorite } from "@/shared/api";
 import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
 import { productHelper } from "@/shared/lib/product-helper";
 import { toggleReadMore, fullDescription } from "@/features/product-info/lib/toggle-more-info";
 import { ProductPhotos, ProductSpecific } from "@/entities/product-info";
 import { ProductToCart } from "@/features/add-to-cart";
 import { addToCartForm, addToCartFormErrorMessages } from "@/entities/product-info/model/add-to-cart-form";
-import type { Product } from "@/shared";
+import type { Product } from "@/shared/model";
 import type { User } from "@/entities/profile";
 import type { CartItem } from "@/entities/cart-item";
 import type { FavoriteItem } from "@/entities/favorite-item";

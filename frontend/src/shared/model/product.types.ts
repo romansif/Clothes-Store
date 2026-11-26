@@ -38,8 +38,8 @@ export interface Collection {
   season: string;
   condition: string;
   name: string;
-  seasonLabel: string;
-  conditionLabel: string;
+  seasonLabel?: string;
+  conditionLabel?: string;
 }
 
 export interface Category {
