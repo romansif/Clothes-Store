@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:frontend/src/shared/ui/state/state.variants.ts
 import type { PageVariant } from "@/shared/ui/state/index";
+========
+import type { PageVariant } from "@/shared/ui/state";
+>>>>>>>> origin/master:frontend/src/shared/ui/state/model/state.variants.ts
 
 export const stateSectionClass = "flex justify-center item-center w-full";
 

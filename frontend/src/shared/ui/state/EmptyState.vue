@@ -33,9 +33,15 @@ import {
   stateSectionClass,
   stateTextClass,
   stateTitleClass,
+<<<<<<<< HEAD:frontend/src/shared/ui/state/EmptyState.vue
 } from "@/shared/ui/state/state.variants";
 import { stateRoute, emptyStateMessage, emptyImage, stateRouteMessage } from "@/shared/ui/state/state-messages";
 import type { PageVariant } from "@/shared/ui/state/index";
+========
+} from "@/shared/ui/state/model/state.variants";
+import { stateRoute, emptyStateMessage, emptyImage, stateRouteMessage } from "@/shared/ui/state/model/state-messages";
+import type { PageVariant } from "@/shared/ui/state";
+>>>>>>>> origin/master:frontend/src/shared/ui/state/ui/EmptyState.vue
 import { UiButton } from "@/shared/ui/button";
 
 const props = defineProps<{

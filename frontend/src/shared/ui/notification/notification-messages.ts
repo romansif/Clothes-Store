@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:frontend/src/shared/ui/notification/notification-messages.ts
 import type { NotificationMessage, NotificationVariants } from "@/shared/ui/notification/index";
+========
+import type { NotificationMessage, NotificationVariants } from "@/shared/ui/notification";
+>>>>>>>> origin/master:frontend/src/shared/ui/notification/model/notification-messages.ts
 
 export const notifyMessages: Record<NotificationVariants, NotificationMessage> = {
   login: { title: "notify.success.login.title", text: "notify.success.login.text" },

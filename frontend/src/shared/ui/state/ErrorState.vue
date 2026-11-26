@@ -33,10 +33,17 @@ import {
   stateSectionClass,
   stateTextClass,
   stateTitleClass,
+<<<<<<<< HEAD:frontend/src/shared/ui/state/ErrorState.vue
 } from "@/shared/ui/state/state.variants";
 import { errorImage, errorStateMessage, stateRoute, stateRouteMessage } from "@/shared/ui/state/state-messages";
 import { UiButton } from "@/shared/ui/button";
 import type { PageVariant } from "@/shared/ui/state/index";
+========
+} from "@/shared/ui/state/model/state.variants";
+import { errorImage, errorStateMessage, stateRoute, stateRouteMessage } from "@/shared/ui/state/model/state-messages";
+import { UiButton } from "@/shared/ui/button";
+import type { PageVariant } from "@/shared/ui/state";
+>>>>>>>> origin/master:frontend/src/shared/ui/state/ui/ErrorState.vue
 
 const props = defineProps<{
   variant: PageVariant;
