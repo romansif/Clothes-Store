@@ -56,7 +56,7 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { onMounted } from "vue";
-import { productHelper, activeProductImg } from "@/shared/lib/product-helper.ts";
+import { productHelper, activeProductImg } from "@/shared/lib.ts";
 import type { Product } from "@/shared/model";
 
 const props = defineProps<{

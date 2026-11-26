@@ -1,7 +1,7 @@
 import { computed } from "vue";
 import type { Product } from "@/shared/model";
 
-import { useCheckoutItems } from "@/features/checkout-order-info/lib/use-checkout-items";
+import { useCheckoutItems } from "@/features/checkout-order-info";
 import type { CartItem } from "@/entities/cart-item";
 
 export const useCheckoutOrder = (product: Product) => {

@@ -32,11 +32,11 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { useI18n } from "vue-i18n";
-import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
-import { useSavedAddressData } from "@/widgets/user-address-list/lib/use-saved-address-data";
-import { useSelectShipping } from "@/features/checkout-shipping-info/api/add-shipping";
-import { checkoutSession } from "@/entities/checkout-session/model/checkout-session";
-import { shippingForm, shippingFormErrorMessage } from "@/entities/checkout-shipping/model/shipping-form";
+import { refClearErrorsOnChange } from "@/shared/lib";
+import { useSavedAddressData } from "@/widgets/user-address-list";
+import { useSelectShipping } from "@/features/checkout-shipping-info";
+import { checkoutSession } from "@/entities/checkout-session";
+import { shippingForm, shippingFormErrorMessage } from "@/entities/checkout-shipping";
 import { UiButton } from "@/shared/ui/button";
 import { ShippingAddress } from "@/entities/checkout-shipping";
 import { ShippingMethod } from "@/shared/ui/shipping-method";

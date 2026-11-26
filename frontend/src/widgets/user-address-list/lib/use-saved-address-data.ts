@@ -1,9 +1,9 @@
-import {computed, toValue} from "vue";
+import { computed, toValue } from "vue";
 import { useQuery } from "@tanstack/vue-query";
 
 import { useGetAddress } from "@/widgets/user-address-list/api/get-address";
 import { checkoutSession } from "@/entities/checkout-session";
-import {address_id} from "@/features/edit-saved-address/lib/toggle-edit-address";
+import { address_id } from "@/features/edit-saved-address"
 
 const { getAddresses, getAddress } = useGetAddress();
 

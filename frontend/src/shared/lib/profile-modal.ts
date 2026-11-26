@@ -1,6 +1,6 @@
 import { ref } from "vue";
 
-import { clearUsersForms } from "@/features/change-user-data-form/lib/clear-user-update";
+import { clearUsersForms } from "@/features/change-user-data-form";
 
 const savedAddresses = ref<boolean>(false);
 const savedPaymentCard = ref<boolean>(false);

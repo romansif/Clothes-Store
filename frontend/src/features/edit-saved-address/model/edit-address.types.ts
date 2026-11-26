@@ -1,4 +1,4 @@
-import { informationForm } from "@/entities/checkout-info-form/model/information-form";
+import { informationForm } from "@/entities/checkout-info-form";
 
 type InformationForm = typeof informationForm.value;
 

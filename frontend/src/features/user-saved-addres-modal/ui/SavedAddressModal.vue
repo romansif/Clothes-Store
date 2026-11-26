@@ -34,9 +34,9 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { baseDeleteModal } from "@/features/general-delete/lib/base-delete-modal";
-import { useProfileModals } from "@/shared/lib/profile-modal";
-import { useSavedAddressesData } from "@/widgets/user-address-list/lib/use-saved-address-data";
+import { baseDeleteModal } from "@/features/general-delete";
+import { useProfileModals } from "@/shared/lib";
+import { useSavedAddressesData } from "@/widgets/user-address-list";
 import { UiButton } from "@/shared/ui/button";
 import { DeleteModal } from "@/features/general-delete";
 import { AddressesList } from "@/widgets/user-address-list";

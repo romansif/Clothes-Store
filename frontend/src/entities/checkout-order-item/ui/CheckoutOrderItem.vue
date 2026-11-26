@@ -23,8 +23,8 @@
 </template>
 
 <script setup lang="ts">
-import { useCheckoutOrder } from "@/entities/checkout-order-item/lib/checkout-order-preview";
-import { previewHelper } from "@/entities/product-card/lib/preview-helper";
+import { useCheckoutOrder } from "@/entities/checkout-order-item";
+import { previewHelper } from "@/entities/product-card";
 import type { CartItem } from "@/entities/cart-item";
 
 const props = defineProps<{

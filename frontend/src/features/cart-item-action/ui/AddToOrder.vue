@@ -8,8 +8,8 @@
 </template>
 
 <script setup lang="ts">
-import { useAddToOrder } from "@/features/cart-item-action/api/add-to-order";
-import { orderStore } from "@/shared/model/order.store";
+import { useAddToOrder } from "@/features/cart-item-action";
+import { orderStore } from "@/shared/model";
 import type { CartItem } from "@/entities/cart-item";
 
 import check_square from "@/assets/icons/squares/check-square.png";

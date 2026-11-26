@@ -1,5 +1,5 @@
 import { computed, toValue } from "vue";
-import { useSoldStatsData } from "@/shared/lib/use-sold-stats-data";
+import { useSoldStatsData } from "@/shared/lib";
 
 export const useSoldItem = (product_id: string) => {
   const { productSold } = useSoldStatsData();

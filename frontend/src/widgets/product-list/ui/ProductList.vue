@@ -23,8 +23,8 @@
 </template>
 
 <script setup lang="ts">
-import { useProductListData } from "@/shared/lib/use-product-data";
-import { useFavoriteData } from "@/shared/lib/use-favorite-data";
+import { useProductListData } from "@/shared/lib";
+import { useFavoriteData } from "@/shared/lib";
 import { useToggleFavorite } from "@/shared/api";
 import { ProductCard } from "@/entities/product-card";
 import { EmptyState, ErrorState, Loader } from "@/shared/ui/state";

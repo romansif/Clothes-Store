@@ -57,14 +57,14 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { filterLabelKey, filterProduct } from "@/widgets/filter-products/lib/filter-product";
+import { filterLabelKey, filterProduct } from "@/widgets/filter-products";
 import {
   categoryAndCollectionClass,
   selectedCategoryAndCollectionClass,
-} from "@/widgets/filter-products/model/filter-item.variants";
-import { clearSearchProductForm } from "@/features/search-product/lib/clear-search";
-import { toggleFilterAside } from "@/widgets/filter-products/lib/product-modal";
-import { searchProductForm } from "@/features/search-product/model/search-form";
+} from "@/widgets/filter-products";
+import { clearSearchProductForm } from "@/features/search-product";
+import { toggleFilterAside } from "@/widgets/filter-products";
+import { searchProductForm } from "@/features/search-product";
 
 import del from "@/assets/icons/delete-close/clean_search.svg";
 import search from "@/assets/icons/nav/search.png";

@@ -1,6 +1,6 @@
 import { computed } from "vue";
 
-import { useCartData } from "@/widgets/cart-list/lib/use-cart-data";
+import { useCartData } from "@/widgets/cart-list";
 import type { CartItem } from "@/entities/cart-item";
 import { queryClient } from "@/shared/api/query-client";
 

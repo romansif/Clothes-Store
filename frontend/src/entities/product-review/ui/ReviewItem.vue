@@ -38,7 +38,7 @@
 </template>
 
 <script setup lang="ts">
-import { ratingHelper } from "@/entities/product-review/lib/rating-helper";
+import { ratingHelper } from "@/entities/product-review";
 import type { ImageItem, Review } from "@/entities/product-review";
 
 const props = defineProps<{

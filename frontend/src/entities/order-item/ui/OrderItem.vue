@@ -134,9 +134,9 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { useOrder } from "@/entities/order-item/lib/use-order";
-import { orderStatusVariants } from "@/entities/order-item/model/orders.variants";
-import { reviewFormModal } from "@/entities/order-action/lib/review-form-modal";
+import { useOrder } from "@/entities/order-item";
+import { orderStatusVariants } from "@/entities/order-item";
+import { reviewFormModal } from "@/entities/order-action";
 import { CreateReview } from "@/features/add-review";
 import { OrderItemActions } from "@/entities/order-action";
 import { OrderStatus } from "@/entities/order";

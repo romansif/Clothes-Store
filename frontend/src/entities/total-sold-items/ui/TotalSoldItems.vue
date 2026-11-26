@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { useSoldItems } from "@/shared/lib/use-sold-item";
+import { useSoldItems } from "@/shared/lib";
 
 const { t } = useI18n()
 const { totalSoldQuantity, totalSoldTotalPrice } = useSoldItems()

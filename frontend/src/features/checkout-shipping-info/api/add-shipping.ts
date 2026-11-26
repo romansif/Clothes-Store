@@ -1,9 +1,9 @@
 import router from "@/app/router";
-import { useBaseModals } from "@/shared/ui/notification/use-notify";
-import { checkoutSession, type DeliveryMethod } from "@/entities/checkout-session/model/checkout-session";
-import { shippingForm, shippingFormErrorMessage } from "@/entities/checkout-shipping/model/shipping-form";
+import { useBaseModals } from "@/shared/ui/notification";
+import { checkoutSession, type DeliveryMethod } from "@/entities/checkout-session";
+import { shippingForm, shippingFormErrorMessage } from "@/entities/checkout-shipping";
 import { addShippingSchema } from "@/entities/checkout-shipping/model/shipping-schemas";
-import { applyZodErrors } from "@/shared/lib/errors-helper";
+import { applyZodErrors } from "@/shared/lib";
 
 const { openNotify } = useBaseModals();
 

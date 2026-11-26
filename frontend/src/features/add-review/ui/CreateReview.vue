@@ -42,14 +42,14 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { useUserData } from "@/widgets/profile/lib/use-user-data";
-import { addRating } from "@/features/add-review/lib/add-rating-star";
-import { reviewsStore } from "@/features/review-dashboard/model/reviews.store";
+import { useUserData } from "@/widgets/profile";
+import { addRating } from "@/features/add-review";
+import { reviewsStore } from "@/features/review-dashboard";
 import { useCreateReview } from "@/features/add-review/api/add-review";
-import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
-import { closeReviewModal } from "@/entities/order-action/lib/review-form-modal";
-import { fileInput, productHelper } from "@/shared/lib/product-helper";
-import { reviewForm, reviewFormMessages } from "@/features/add-review/model/review-form";
+import { refClearErrorsOnChange } from "@/shared/lib";
+import { closeReviewModal } from "@/entities/order-action";
+import { fileInput, productHelper } from "@/shared/lib";
+import { reviewForm, reviewFormMessages } from "@/features/add-review";
 import { UiButton } from "@/shared/ui/button";
 import { AddRating, AddReview, AddPhotos } from "@/features/add-review";
 import { Loading } from "@/shared/ui/state";

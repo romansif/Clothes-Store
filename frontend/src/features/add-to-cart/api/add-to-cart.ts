@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 import type { Product } from "@/shared/model";
 
-import { cartStore } from "@/widgets/cart-list/model/cart.store";
-import { useBaseModals } from "@/shared/ui/notification/use-notify";
-import { addToCartForm, addToCartFormErrorMessages } from "@/entities/product-info/model/add-to-cart-form";
-import { addToCartSchema } from "@/entities/product-info/model/add-to-cart-schemas";
+import { cartStore } from "@/widgets/cart-list";
+import { useBaseModals } from "@/shared/ui/notification";
+import { addToCartForm, addToCartFormErrorMessages } from "@/entities/product-info";
+import { addToCartSchema } from "@/entities/product-info";
 import { handler } from "@/shared/api";
-import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
+import { applyErrors, applyZodErrors } from "@/shared/lib";
 
 const { unreadCount } = cartStore();
 const { openNotify } = useBaseModals();

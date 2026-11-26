@@ -1,4 +1,4 @@
-import { addToCartForm, addToCartFormErrorMessages } from "@/entities/product-info/model/add-to-cart-form";
+import { addToCartForm, addToCartFormErrorMessages } from "@/entities/product-info";
 
 export const clearCartForm = () => {
   addToCartForm.value.colors = {

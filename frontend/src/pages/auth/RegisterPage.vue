@@ -19,8 +19,8 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { signUp } from "@/features/register-auth/api/register";
-import { toggleSignUp } from "@/features/register-auth/lib/toggle-role";
-import { currentRole, isRole } from "@/features/register-auth/model/register-auth.refs";
+import { toggleSignUp } from "@/features/register-auth";
+import { currentRole, isRole } from "@/features/register-auth";
 import { RegisterForm } from "@/features/register-auth";
 import { UiButton } from "@/shared/ui/button";
 import { Loading } from "@/shared/ui/state";

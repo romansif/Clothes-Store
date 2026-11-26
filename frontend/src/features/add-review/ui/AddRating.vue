@@ -25,9 +25,9 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { ratingSrc } from "@/features/add-review/lib/show-rating";
-import { ratingStar } from "@/features/add-review/model/rating-star.variants";
-import { reviewForm, reviewFormMessages } from "@/features/add-review/model/review-form";
+import { ratingSrc } from "@/features/add-review";
+import { ratingStar } from "@/features/add-review";
+import { reviewForm, reviewFormMessages } from "@/features/add-review";
 
 const props = defineProps<{
   ratings: number[];

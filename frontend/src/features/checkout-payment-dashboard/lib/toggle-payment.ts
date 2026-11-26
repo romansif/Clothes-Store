@@ -1,8 +1,8 @@
 import { ref } from "vue";
 
 import type { PaymentMethods } from "@/entities/checkout-payment-form";
-import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment-form/model/payment-form";
-import { isSavedPayment } from "@/entities/checkout-payment-item/model/payment.refs";
+import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment-form";
+import { isSavedPayment } from "@/entities/checkout-payment-item";
 
 const isDebitCard = ref<boolean>(false);
 

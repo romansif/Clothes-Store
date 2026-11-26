@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { togglePaymentForm } from "@/features/checkout-payment-dashboard/lib/toggle-payment";
+import { togglePaymentForm } from "@/features/checkout-payment-dashboard";
 import { CheckoutPaymentList } from "@/widgets/checkout-cards-list";
 
 const { t } = useI18n();

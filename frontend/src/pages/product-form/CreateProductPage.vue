@@ -24,8 +24,8 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { useCreateProduct } from "@/features/product-create-form/api/create-product";
-import { fileInput, productHelper } from "@/shared/lib/product-helper";
+import { useCreateProduct } from "@/features/product-create-form";
+import { fileInput, productHelper } from "@/shared/lib";
 import { UiButton } from "@/shared/ui/button";
 import { ProductBaseInfo } from "@/features/product-form";
 import { CreateImageUpload, CreateVariants } from "@/features/product-create-form";

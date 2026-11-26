@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { useUpdateOrderStatus } from "@/features/order-dashboard/api/update-order-status";
+import { useUpdateOrderStatus } from "@/features/order-dashboard";
 import { SellerOrderItem } from "@/entities/order-item";
 import type { SellerOrderProps } from "@/entities/order";
 

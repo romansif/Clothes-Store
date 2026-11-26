@@ -12,9 +12,9 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
-import { useAuthHeader } from "@/widgets/auth-header/lib/use-auth-header";
-import { clearLoginForm } from "@/features/login-auth/lib/clear-login-form";
-import { clearRegisterForm } from "@/features/register-auth/lib/clear-register-form";
+import { useAuthHeader } from "@/widgets/auth-header";
+import { clearLoginForm } from "@/features/login-auth";
+import { clearRegisterForm } from "@/features/register-auth";
 
 const route = useRoute();
 

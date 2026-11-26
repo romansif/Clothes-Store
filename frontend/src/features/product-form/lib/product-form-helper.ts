@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import namer from "color-namer";
 
-import { createProductForm, moreCreateItemForm } from "@/features/product-form/model/product-forms";
+import { createProductForm, moreCreateItemForm } from "@/features/product-form";
 
 const countMode = ref<string>("SAME");
 

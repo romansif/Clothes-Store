@@ -77,9 +77,9 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { useUpdateAddress } from "@/features/edit-saved-address/api/update-address";
-import { useSavedAddressData } from "@/widgets/user-address-list/lib/use-saved-address-data";
-import { informationForm, informationFormErrorMessages } from "@/entities/checkout-info-form/model/information-form";
+import { useUpdateAddress } from "@/features/edit-saved-address";
+import { useSavedAddressData } from "@/widgets/user-address-list";
+import { informationForm, informationFormErrorMessages } from "@/entities/checkout-info-form";
 import { UiButton } from "@/shared/ui/button";
 import { UiInput } from "@/shared/ui/input";
 

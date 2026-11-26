@@ -1,7 +1,7 @@
 import { computed } from "vue";
 import { useQuery } from "@tanstack/vue-query";
 
-import { getFavoriteProducts } from "@/shared/api/get-favorite";
+import { getFavoriteProducts } from "@/shared/api";
 
 export const useFavoriteData = () => {
   const userId = localStorage.getItem("userId");

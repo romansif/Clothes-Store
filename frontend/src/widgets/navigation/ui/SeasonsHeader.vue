@@ -33,7 +33,7 @@
 import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
 import { MainSlideBar } from "@/widgets/navigation";
-import { SEASONS_CATALOG } from "@/widgets/navigation/model/seasons-specific";
+import { SEASONS_CATALOG } from "@/widgets/navigation";
 
 const route = useRoute();
 

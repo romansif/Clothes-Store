@@ -11,9 +11,9 @@
 </template>
 
 <script setup lang="ts">
-import { baseDeleteModal } from "@/features/general-delete/lib/base-delete-modal";
-import { openEditAddress } from "@/features/edit-saved-address/lib/toggle-edit-address";
-import { useSavedAddressesData } from "@/widgets/user-address-list/lib/use-saved-address-data";
+import { baseDeleteModal } from "@/features/general-delete";
+import { openEditAddress } from "@/features/edit-saved-address"
+import { useSavedAddressesData } from "@/widgets/user-address-list";
 import { AddressItem } from "@/entities/user-address";
 
 const { userAddresses } = useSavedAddressesData();

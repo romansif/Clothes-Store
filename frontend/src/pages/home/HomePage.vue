@@ -13,8 +13,8 @@
 </template>
 
 <script setup lang="ts">
-import { useUserData } from "@/widgets/profile/lib/use-user-data";
-import { filterAside } from "@/widgets/filter-products/lib/product-modal";
+import { useUserData } from "@/widgets/profile";
+import { filterAside } from "@/widgets/filter-products";
 import { HomeSlider, MainHome } from "@/widgets/home";
 import { AsideFilter } from "@/widgets/filter-products";
 import { NavBar } from "@/widgets/navigation";

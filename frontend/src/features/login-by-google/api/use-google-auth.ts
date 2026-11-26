@@ -2,9 +2,9 @@ import { useRoute } from "vue-router";
 import { useMutation } from "@tanstack/vue-query";
 
 import router from "@/app/router";
-import { useBaseModals } from "@/shared/ui/notification/use-notify";
-import { clearLoginForm, clearLoginFormMessages } from "@/features/login-auth/lib/clear-login-form";
-import { loginForm } from "@/entities/login-form/model/login-form";
+import { useBaseModals } from "@/shared/ui/notification";
+import { clearLoginForm, clearLoginFormMessages } from "@/features/login-auth";
+import { loginForm } from "@/entities/login-form";
 import { handler } from "@/shared/api";
 
 const { openNotify } = useBaseModals();

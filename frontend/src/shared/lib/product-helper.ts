@@ -3,7 +3,7 @@ import { useI18n } from "vue-i18n";
 import type { Product } from "@/shared/model";
 
 import type { AddForm } from "@/entities/product-info";
-import { sizes } from "@/shared/model/product-sizes";
+import { SIZES } from "@/shared/model";
 
 export const itemPreview = ref<string[]>([]);
 export const activeProductImg = ref<string>("");
@@ -146,7 +146,7 @@ export const productHelper = () => {
     if (!product.sizes) {
       return [];
     }
-    return sizes.value.filter((size) => product.sizes.includes(size.name));
+    return SIZES.value.filter((size) => product.sizes.includes(size.name));
   };
 
   const variantsInfo = (form: AddForm, product: Product) => {

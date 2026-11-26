@@ -1,4 +1,4 @@
-import { registerForm, registerFormErrorMessages } from "@/features/register-auth/model/register-from";
+import { registerForm, registerFormErrorMessages } from "@/features/register-auth";
 
 export const clearRegisterForm = () => {
   registerForm.value.name = "";

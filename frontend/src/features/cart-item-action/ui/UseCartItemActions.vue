@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { productHelper } from "@/shared/lib/product-helper";
+import { productHelper } from "@/shared/lib";
 import { sizeClass, sizeUrl } from "@/entities/cart-item/lib/cart-specific";
 import { AddToOrder, DeleteCartItemButton, UpdateQuantityItem } from "@/features/cart-item-action";
 import type { CartItem } from "@/entities/cart-item";

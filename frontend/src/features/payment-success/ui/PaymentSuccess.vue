@@ -57,11 +57,11 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { useUserData } from "@/widgets/profile/lib/use-user-data";
-import { orderPriceInfo } from "@/features/checkout-order-info/lib/order-price-info";
-import { useSavedAddressData } from "@/widgets/user-address-list/lib/use-saved-address-data";
-import { useSavedPaymentData } from "@/widgets/user-payment-card-list/lib/use-saved-payment-data";
-import { closeSuccessFull } from "@/features/payment-success/lib/toggle-success-payment";
+import { useUserData } from "@/widgets/profile";
+import { orderPriceInfo } from "@/features/checkout-order-info";
+import { useSavedAddressData } from "@/widgets/user-address-list";
+import { useSavedPaymentData } from "@/widgets/user-payment-card-list";
+import { closeSuccessFull } from "@/features/payment-success";
 import { UiButton } from "@/shared/ui/button";
 
 import success from "@/assets/icons/checkout/payment/success.svg";

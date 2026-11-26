@@ -27,9 +27,9 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
-import { useProductData } from "@/features/product-info/lib/use-product-data";
-import { useEditProductImages, useEditProductInfo } from "@/features/product-edit-form/api/update-product";
-import { fileInput } from "@/shared/lib/product-helper";
+import { useProductData } from "@/features/product-info";
+import { useEditProductImages, useEditProductInfo } from "@/features/product-edit-form";
+import { fileInput } from "@/shared/lib";
 import { UiButton } from "@/shared/ui/button";
 import { ProductBaseInfo } from "@/features/product-form";
 import { EditImageUpload, EditVariants } from "@/features/product-edit-form";

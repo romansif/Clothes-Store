@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
 import router from "@/app/router";
-import { useBaseModals } from "@/shared/ui/notification/use-notify";
-import { clearInformationForm } from "@/features/checkout-contact-info/lib/clear-address";
-import { informationForm, informationFormErrorMessages } from "@/entities/checkout-info-form/model/information-form";
-import { addContactInfoSchema } from "@/entities/checkout-info-form/model/information-schemas";
-import { checkoutSession } from "@/entities/checkout-session/model/checkout-session";
+import { useBaseModals } from "@/shared/ui/notification";
+import { clearInformationForm } from "@/features/checkout-contact-info";
+import { informationForm, informationFormErrorMessages } from "@/entities/checkout-info-form";
+import { addContactInfoSchema } from "@/entities/checkout-info-form";
+import { checkoutSession } from "@/entities/checkout-session";
 import { handler } from "@/shared/api";
-import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
+import { applyErrors, applyZodErrors } from "@/shared/lib";
 
 const { openNotify } = useBaseModals();
 

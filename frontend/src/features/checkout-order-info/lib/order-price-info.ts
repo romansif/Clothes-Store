@@ -1,8 +1,8 @@
 import { computed } from "vue";
 
-import { useCheckoutItems } from "@/features/checkout-order-info/lib/use-checkout-items";
+import { useCheckoutItems } from "@/features/checkout-order-info";
 import type { CartItem } from "@/entities/cart-item";
-import { checkoutSession } from "@/entities/checkout-session/model/checkout-session";
+import { checkoutSession } from "@/entities/checkout-session";
 
 const COMMISSION_RATE = 0.08;
 const EXPRESS_PRICE = 15;

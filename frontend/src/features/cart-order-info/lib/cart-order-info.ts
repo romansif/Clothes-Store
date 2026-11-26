@@ -2,9 +2,9 @@ import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 
 import router from "@/app/router";
-import { useCartData } from "@/widgets/cart-list/lib/use-cart-data";
+import { useCartData } from "@/widgets/cart-list";
 import type { CartItem } from "@/entities/cart-item";
-import { isAgreeFormError, isAgreeFormErrorMessage } from "@/entities/product-info/model/add-to-cart-form";
+import { isAgreeFormError, isAgreeFormErrorMessage } from "@/entities/product-info";
 
 const COMMISSION_RATE = 0.08;
 const round2 = (n: number) => Math.round(n * 100) / 100;

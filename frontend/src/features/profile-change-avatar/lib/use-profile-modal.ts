@@ -1,5 +1,5 @@
 import { avatarModal } from "@/features/profile-change-avatar/model/profile-modal.store";
-import { fileInput } from "@/shared/lib/product-helper";
+import { fileInput } from "@/shared/lib";
 
 export const toggleAvatar = () => {
   avatarModal.value = !avatarModal.value;

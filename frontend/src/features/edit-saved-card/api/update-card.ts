@@ -1,10 +1,10 @@
 import { handler } from "@/shared/api";
-import {useMutation, useQueryClient} from "@tanstack/vue-query";
-import { useBaseModals } from "@/shared/ui/notification/use-notify";
-import {card_id, closeEditCard} from "@/features/edit-saved-card/lib/toggle-edit-card";
-import { paymentForm } from "@/entities/checkout-payment-form/model/payment-form";
+import { useMutation, useQueryClient } from "@tanstack/vue-query";
+import { useBaseModals } from "@/shared/ui/notification";
+import { card_id, closeEditCard } from "@/features/edit-saved-card";
+import { paymentForm } from "@/entities/checkout-payment-form";
 import { EDITABLE_CARD } from "@/features/edit-saved-card/model/edit-card.types";
-import {clearPaymentForm} from "@/features/checkout-payment-dashboard/lib/clear-payment";
+import { clearPaymentForm } from "@/features/checkout-payment-dashboard";
 
 const { openNotify } = useBaseModals();
 

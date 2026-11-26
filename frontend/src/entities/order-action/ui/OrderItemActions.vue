@@ -17,12 +17,12 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { useOrder } from "@/entities/order-item/lib/use-order";
-import { useReviewButton } from "@/entities/order-action/lib/use-review-button";
-import { openReviewModal } from "@/entities/order-action/lib/review-form-modal";
-import { openReplaceItem } from "@/entities/order-action/lib/order-modal";
+import { useOrder } from "@/entities/order-item";
+import { useReviewButton } from "@/entities/order-action";
+import { openReviewModal } from "@/entities/order-action";
+import { openReplaceItem } from "@/entities/order-action";
 import { UiButton } from "@/shared/ui/button";
-import type { OrderPosition, OrderProps } from "@/entities/order/model/order.types";
+import type { OrderPosition, OrderProps } from "@/entities/order";
 
 const props = defineProps<{
   order: OrderProps;

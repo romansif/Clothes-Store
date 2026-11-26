@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { useUserData } from "@/widgets/profile/lib/use-user-data";
+import { useUserData } from "@/widgets/profile";
 import { ProfileSettings, ProfileNotLoggedIn } from "@/widgets/profile";
 import { ErrorState, Loader } from "@/shared/ui/state";
 

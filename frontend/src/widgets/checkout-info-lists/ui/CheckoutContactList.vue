@@ -10,8 +10,8 @@
 </template>
 
 <script setup lang="ts">
-import { useSavedContactInfo } from "@/features/checkout-contact-info/lib/use-saved-contact-info";
-import { useSavedAddressesData } from "@/widgets/user-address-list/lib/use-saved-address-data";
+import { useSavedContactInfo } from "@/features/checkout-contact-info";
+import { useSavedAddressesData } from "@/widgets/user-address-list";
 import { CheckoutInfoItem } from "@/entities/checkout-info-item";
 
 const { userAddresses } = useSavedAddressesData();

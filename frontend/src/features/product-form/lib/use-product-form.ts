@@ -1,6 +1,6 @@
 import { computed, toValue, type MaybeRefOrGetter } from "vue";
 
-import type { ProductVariants } from "@/shared/model/variants-mode";
+import type { ProductVariants } from "@/shared/model";
 import type {RouteLocationNormalizedLoaded} from "vue-router";
 
 export const MODES: { code: ProductVariants }[] = [{ code: "SAME" }, { code: "DIFFERENT" }];

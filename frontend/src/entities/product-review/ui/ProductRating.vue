@@ -34,8 +34,8 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { ratingHelper } from "@/entities/product-review/lib/rating-helper";
-import { REVERSE_RATINGS } from "@/entities/product-review/model/review-rating";
+import { ratingHelper } from "@/entities/product-review";
+import { REVERSE_RATINGS } from "@/entities/product-review";
 import type { Review } from "@/entities/product-review";
 
 import star from "@/assets/icons/review/full-star.png";

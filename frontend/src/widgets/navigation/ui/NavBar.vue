@@ -51,9 +51,9 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
-import { userAvatar } from "@/widgets/profile/lib/profile-avatar";
-import { routeClass, selectRouteClass } from "../model/route.variants";
-import { useMainNavBar } from "@/widgets/navigation/lib/use-main-nav-bar";
+import { userAvatar } from "@/widgets/profile";
+import { routeClass, selectRouteClass } from "@/widgets/navigation";
+import { useMainNavBar } from "@/widgets/navigation";
 import { LanguageSwitcher } from "@/widgets/navigation";
 import type { User } from "@/entities/profile";
 

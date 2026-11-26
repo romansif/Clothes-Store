@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
-import { useBaseModals } from "@/shared/ui/notification/use-notify";
+import { useBaseModals } from "@/shared/ui/notification";
 import type { UpdateCartItemPayload } from "@/features/cart-item-action";
-import { useDeleteCartItem } from "@/features/cart-item-action/api/delete-cart";
+import { useDeleteCartItem } from "@/features/cart-item-action";
 import { handler } from "@/shared/api";
-import { useProductsData } from "@/shared/lib/use-product-data";
+import { useProductsData } from "@/shared/lib";
 
 const { openNotify } = useBaseModals();
 

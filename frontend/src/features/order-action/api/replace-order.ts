@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
-import { useBaseModals } from "@/shared/ui/notification/use-notify";
-import { clearReplaceForm } from "@/features/replace-order-modal/lib/clear-order-form";
-import { closeReplaceItem, closeReplaceOrder } from "@/entities/order-action/lib/order-modal";
-import { cancelChoiceForm, cancelChoiceMessage } from "@/features/order-action/model/order-forms";
-import { replaceOrderSchema } from "@/features/order-action/model/replace-order-schemas";
+import { useBaseModals } from "@/shared/ui/notification";
+import { clearReplaceForm } from "@/features/replace-order-modal";
+import { closeReplaceItem, closeReplaceOrder } from "@/entities/order-action";
+import { cancelChoiceForm, cancelChoiceMessage } from "@/features/order-action";
+import { replaceOrderSchema } from "@/features/order-action";
 import { handler } from "@/shared/api";
-import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
-import { orderStore } from "@/shared/model/order.store";
+import { applyErrors, applyZodErrors } from "@/shared/lib";
+import { orderStore } from "@/shared/model";
 
 const { orderId, itemId } = orderStore();
 const { openNotify } = useBaseModals();

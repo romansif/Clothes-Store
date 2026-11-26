@@ -37,10 +37,10 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
-import { useFilteredReviewsData } from "@/widgets/review-list/lib/use-review-data";
-import { changeReviewPhoto, toggleReviewPhotos } from "@/features/review-dashboard/lib/review-photo-modal";
-import { reviewModal } from "@/features/review-dashboard/lib/review-photo-modal";
-import { currentIndex, reviewImages } from "@/features/review-dashboard/lib/review-photo-modal";
+import { useFilteredReviewsData } from "@/widgets/review-list";
+import { changeReviewPhoto, toggleReviewPhotos } from "@/features/review-dashboard";
+import { reviewModal } from "@/features/review-dashboard";
+import { currentIndex, reviewImages } from "@/features/review-dashboard";
 import { ProductRating, ReviewPhotos } from "@/entities/product-review";
 import { ReviewList } from "@/widgets/review-list";
 import { ReviewsFilter } from "@/features/product-review-filter";

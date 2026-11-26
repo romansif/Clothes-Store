@@ -1,7 +1,7 @@
 import type { CartItem } from "@/entities/cart-item";
-import { toOrderItem } from "@/entities/order/lib/to-order-items";
-import type { NewOrderPosition } from "@/entities/order/lib/to-order-items";
-import { isAgreeFormError } from "@/entities/product-info/model/add-to-cart-form";
+import { toOrderItem } from "@/entities/order";
+import type { NewOrderPosition } from "@/entities/order";
+import { isAgreeFormError } from "@/entities/product-info";
 
 export const saveOrderItems = (orderItems: NewOrderPosition[], product: CartItem) => {
   const index = orderItems.findIndex((item) => item.id === product.id);

@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { useProfileModals } from "@/shared/lib/profile-modal";
+import { useProfileModals } from "@/shared/lib";
 
 export const editAddressModal = ref<boolean>(false)
 export const address_id = ref<string>('')

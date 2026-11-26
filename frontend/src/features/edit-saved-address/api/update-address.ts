@@ -1,9 +1,9 @@
 import { handler } from "@/shared/api";
 import {useMutation, useQueryClient} from "@tanstack/vue-query";
-import { useBaseModals } from "@/shared/ui/notification/use-notify";
-import { clearInformationForm } from "@/features/checkout-contact-info/lib/clear-address";
-import { address_id, closeEditAddress } from "@/features/edit-saved-address/lib/toggle-edit-address";
-import { informationForm } from "@/entities/checkout-info-form/model/information-form";
+import { useBaseModals } from "@/shared/ui/notification";
+import { clearInformationForm } from "@/features/checkout-contact-info";
+import { address_id, closeEditAddress } from "@/features/edit-saved-address"
+import { informationForm } from "@/entities/checkout-info-form";
 import { EDITABLE_ADDRESS } from "@/features/edit-saved-address/model/edit-address.types";
 
 const { openNotify } = useBaseModals();

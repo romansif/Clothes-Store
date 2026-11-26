@@ -35,10 +35,10 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { userAvatar } from "@/widgets/profile/lib/profile-avatar";
-import { openSelectAvatar, toggleAvatar } from "@/features/profile-change-avatar/lib/use-profile-modal";
-import { useChangeAvatar } from "@/features/profile-change-avatar/api/update-avatar";
-import { fileInput } from "@/shared/lib/product-helper";
+import { userAvatar } from "@/widgets/profile";
+import { openSelectAvatar, toggleAvatar } from "@/features/profile-change-avatar";
+import { useChangeAvatar } from "@/features/profile-change-avatar";
+import { fileInput } from "@/shared/lib";
 import { UiButton } from "@/shared/ui/button";
 
 const { t } = useI18n();

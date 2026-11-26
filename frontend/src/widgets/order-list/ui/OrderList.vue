@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import { Order } from "@/entities/order-item";
-import type { OrderProps } from "@/entities/order/model/order.types";
+import type { OrderProps } from "@/entities/order";
 
 const props = defineProps<{
   orders: OrderProps[];

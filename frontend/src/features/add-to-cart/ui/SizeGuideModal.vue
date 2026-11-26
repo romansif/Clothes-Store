@@ -39,7 +39,7 @@
             <tr v-if="props.product.category !== 'Shoes'" class="border-b border-neutral-400">
               <th class="px-4 py-4 text-left tracking-wider uppercase">{{ t("sizeGuide.size") }}</th>
               <th
-                v-for="size in sizes"
+                v-for="size in SIZES"
                 :key="size.name"
                 class="font-dm-sans px-4 py-4 text-center tracking-wider uppercase"
               >
@@ -81,9 +81,9 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { sizes } from "@/shared/model/product-sizes";
-import { toggleSizeGuide } from "@/features/add-to-cart/lib/toggle-size-guide";
-import { formatterSizeGuide, shoesSizes, unit } from "@/features/add-to-cart/lib/formatter-size";
+import { SIZES } from "@/shared/model";
+import { toggleSizeGuide } from "@/features/add-to-cart";
+import { formatterSizeGuide, shoesSizes, unit } from "@/features/add-to-cart";
 import type { Product } from "@/shared/model";
 
 import close from "@/assets/icons/delete-close/delete.svg";

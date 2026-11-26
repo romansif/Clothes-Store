@@ -2,9 +2,9 @@ import { ref } from "vue";
 import { useI18n } from "vue-i18n";
 import type { Product } from "@/shared/model";
 
-import { activeFilter, yearFilter } from "@/widgets/filter-products/model/active-filter";
-import { clearSearchProductForm } from "@/features/search-product/lib/clear-search";
-import { sizes } from "@/shared/model/product-sizes";
+import { activeFilter, yearFilter } from "@/widgets/filter-products";
+import { clearSearchProductForm } from "@/features/search-product";
+import { SIZES } from "@/shared/model";
 
 const FILTER_LABEL_KEYS: Record<string, string> = {
   Man: "genders.man",
@@ -139,7 +139,7 @@ export const filterProduct = () => {
     activeFilter.value = { type: categoryGroup, value };
     yearFilter.value = { type: categoryGroup, value };
     selectedGender.value = value;
-    sizes.value.forEach((s) => {
+    SIZES.value.forEach((s) => {
       s.isActive = false;
     });
   };
@@ -168,7 +168,7 @@ export const filterProduct = () => {
   };
 
   const toggleSize = (categoryGroup: string, value: string) => {
-    sizes.value.forEach((s) => {
+    SIZES.value.forEach((s) => {
       s.isActive = s.name === value;
     });
     clearActiveKey();

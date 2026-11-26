@@ -27,7 +27,7 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { itemPreview, productHelper } from "@/shared/lib/product-helper";
+import { itemPreview, productHelper } from "@/shared/lib";
 
 const { t } = useI18n();
 const { openSelectImage } = productHelper();

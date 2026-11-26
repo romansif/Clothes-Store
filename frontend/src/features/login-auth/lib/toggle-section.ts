@@ -1,4 +1,4 @@
-import { clearLoginForm } from "@/features/login-auth/lib/clear-login-form";
+import { clearLoginForm } from "@/features/login-auth";
 import { showSignSection } from "@/features/login-auth/model/login-auth.refs";
 
 export const toggleSignIn = () => {

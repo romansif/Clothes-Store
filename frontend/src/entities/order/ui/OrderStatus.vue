@@ -17,8 +17,8 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { ORDER_STATUS_CLASS } from "@/entities/order/model/order-status.variants";
-import type { OrderPosition, OrderProps, SellerOrderProps } from "@/entities/order/model/order.types";
+import { ORDER_STATUS_CLASS } from "@/entities/order";
+import type { OrderPosition, OrderProps, SellerOrderProps } from "@/entities/order";
 
 const props = defineProps<{
   item: OrderProps | OrderPosition | SellerOrderProps;

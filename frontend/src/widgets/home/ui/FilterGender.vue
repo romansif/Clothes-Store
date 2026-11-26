@@ -29,8 +29,8 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { filterProduct } from "@/widgets/filter-products/lib/filter-product";
-import { filterGenderClass, selectedFilterGenderClass } from "@/widgets/home/model/filter-gender.variants";
+import { filterProduct } from "@/widgets/filter-products";
+import { filterGenderClass, selectedFilterGenderClass } from "@/widgets/home";
 
 const { t } = useI18n();
 const { selectGender, selectedGender } = filterProduct();

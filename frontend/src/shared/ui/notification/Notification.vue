@@ -30,7 +30,7 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { useBaseModals } from "@/shared/ui/notification/use-notify";
+import { useBaseModals } from "@/shared/ui/notification";
 import { notifyClass, notifyBoxClass, notifyItemsClass } from "@/shared/ui/notification/notification.variants";
 import { UiButton } from "@/shared/ui/button";
 

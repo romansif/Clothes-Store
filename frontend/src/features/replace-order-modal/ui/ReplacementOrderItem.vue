@@ -18,10 +18,10 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
+import { refClearErrorsOnChange } from "@/shared/lib";
 import { useReplaceOrderItem } from "@/features/order-action/api/replace-order";
-import { closeReplaceItem } from "@/entities/order-action/lib/order-modal";
-import { cancelChoiceForm, cancelChoiceMessage } from "@/features/order-action/model/order-forms";
+import { closeReplaceItem } from "@/entities/order-action";
+import { cancelChoiceForm, cancelChoiceMessage } from "@/features/order-action";
 import { ReplacementForm } from "@/features/order-action";
 import { UiButton } from "@/shared/ui/button";
 

@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from "vue-router";
 
-const routes: RouteRecordRaw[] = [
+export const routes: RouteRecordRaw[] = [
   {
     path: "/auth",
     meta: { guestOnly: true },
@@ -164,4 +164,4 @@ const routes: RouteRecordRaw[] = [
   },
 ];
 
-export default routes;
+

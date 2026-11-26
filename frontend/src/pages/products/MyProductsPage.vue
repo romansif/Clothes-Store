@@ -8,8 +8,8 @@
 </template>
 
 <script setup lang="ts">
-import { useUserData } from "@/widgets/profile/lib/use-user-data";
-import { baseDeleteModal } from "@/features/general-delete/lib/base-delete-modal";
+import { useUserData } from "@/widgets/profile";
+import { baseDeleteModal } from "@/features/general-delete";
 import { MyProductList } from "@/widgets/my-product-list";
 import { DeleteModal } from "@/features/general-delete";
 

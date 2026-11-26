@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { reviewForm, reviewFormMessages } from "@/features/add-review/model/review-form";
+import { reviewForm, reviewFormMessages } from "@/features/add-review";
 import { UiProductTextarea } from "@/shared/ui/product-textarea";
 
 const { t } = useI18n();

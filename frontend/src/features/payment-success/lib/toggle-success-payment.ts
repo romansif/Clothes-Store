@@ -1,4 +1,4 @@
-import { useResetCartSelection } from "@/features/cart-item-action/api/reset-cart-selection";
+import { useResetCartSelection } from "@/features/cart-item-action";
 import { resetCheckoutSession } from "@/entities/checkout-session";
 import { queryClient } from "@/shared/api/query-client";
 

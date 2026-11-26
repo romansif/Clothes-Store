@@ -58,7 +58,7 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { useUserData } from "@/widgets/profile/lib/use-user-data";
+import { useUserData } from "@/widgets/profile";
 import { WeekList } from "@/widgets/week-list";
 import { YearList } from "@/widgets/year-list";
 import { FilterGender } from "@/widgets/home";

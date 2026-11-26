@@ -1,4 +1,4 @@
-import { reviewsStore } from "@/features/review-dashboard/model/reviews.store";
+import { reviewsStore } from "@/features/review-dashboard";
 
 const { visibleReviewsCount } = reviewsStore();
 

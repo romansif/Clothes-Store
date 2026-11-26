@@ -23,7 +23,7 @@
 
 <script setup lang="ts">
 import type { ImageItem } from "@/entities/product-review";
-import { useReviewPhotos } from "@/entities/product-review/lib/review-photo";
+import { useReviewPhotos } from "@/entities/product-review";
 
 const props = defineProps<{
   currentIndex: number;

@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { useUserData } from "@/widgets/profile/lib/use-user-data";
+import { useUserData } from "@/widgets/profile";
 import { FavoriteCartHeader } from "@/widgets/favorite-cart-header";
 import { FavoriteList } from "@/widgets/favorite-list";
 

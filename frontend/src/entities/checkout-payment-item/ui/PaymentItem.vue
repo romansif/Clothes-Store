@@ -27,8 +27,8 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { getSavedClass, checkClass } from "@/shared/model/saved-checkout-info.variants";
-import { isChosenPayment } from "@/entities/checkout-payment-item/model/payment.refs";
+import { getSavedClass, checkClass } from "@/shared/model";
+import { isChosenPayment } from "@/entities/checkout-payment-item";
 import type { UserPayment } from "@/entities/checkout-payment-item";
 
 const props = defineProps<{

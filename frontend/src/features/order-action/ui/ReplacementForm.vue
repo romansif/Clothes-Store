@@ -36,7 +36,7 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { cancelChoiceForm, cancelChoiceMessage } from "@/features/order-action/model/order-forms";
+import { cancelChoiceForm, cancelChoiceMessage } from "@/features/order-action";
 import { ReplacementInput } from "@/shared/ui/replacement-input";
 import { UiButton } from "@/shared/ui/button";
 

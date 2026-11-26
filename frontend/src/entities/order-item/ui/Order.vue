@@ -62,10 +62,10 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { useOrder } from "@/entities/order-item/lib/use-order";
-import { useOrderItemsData } from "@/shared/lib/use-order-data";
-import { orderStatusVariants } from "@/entities/order-item/model/orders.variants";
-import { openReplaceOrder } from "@/entities/order-action/lib/order-modal";
+import { useOrder } from "@/entities/order-item";
+import { useOrderItemsData } from "@/shared/lib";
+import { orderStatusVariants } from "@/entities/order-item";
+import { openReplaceOrder } from "@/entities/order-action";
 import { OrderStatus } from "@/entities/order";
 import { OrderItemList } from "@/widgets/order-item-list";
 import { UiButton } from "@/shared/ui/button";

@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { useUpdateCartItem } from "@/features/cart-item-action/api/update-cart-item";
+import { useUpdateCartItem } from "@/features/cart-item-action";
 import type { CartItem } from "@/entities/cart-item";
 
 const props = defineProps<{

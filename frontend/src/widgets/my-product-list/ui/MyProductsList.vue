@@ -24,8 +24,8 @@
 </template>
 
 <script setup lang="ts">
-import { useMyProductsData } from "@/widgets/my-product-list/lib/use-my-products-data";
-import { useFavoriteData } from "@/shared/lib/use-favorite-data";
+import { useMyProductsData } from "@/widgets/my-product-list";
+import { useFavoriteData } from "@/shared/lib";
 import { MyProductItem } from "@/entities/my-product-item";
 import { DeleteMyProductButton } from "@/features/delete-my-product";
 import { EmptyState, ErrorState, Loader } from "@/shared/ui/state";

@@ -1,4 +1,4 @@
-import { useUserData } from "@/widgets/profile/lib/use-user-data";
+import { useUserData } from "@/widgets/profile";
 
 export const userAvatar = () => {
   const { user } = useUserData();

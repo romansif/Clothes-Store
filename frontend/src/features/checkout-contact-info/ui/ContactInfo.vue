@@ -38,12 +38,12 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { useCreateInformation, useConfirmInformation } from "@/features/checkout-contact-info/api/add-address";
-import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
-import { toggleInformation } from "@/features/checkout-contact-info/lib/toggle-contact-info";
-import { useSavedAddressesData } from "@/widgets/user-address-list/lib/use-saved-address-data";
-import { informationForm, informationFormErrorMessages } from "@/entities/checkout-info-form/model/information-form";
-import { isSavedAddress } from "@/entities/checkout-info-item/model/information.refs";
+import { useCreateInformation, useConfirmInformation } from "@/features/checkout-contact-info";
+import { refClearErrorsOnChange } from "@/shared/lib";
+import { toggleInformation } from "@/features/checkout-contact-info";
+import { useSavedAddressesData } from "@/widgets/user-address-list";
+import { informationForm, informationFormErrorMessages } from "@/entities/checkout-info-form";
+import { isSavedAddress } from "@/entities/checkout-info-item";
 import { UiButton } from "@/shared/ui/button";
 import { ContactForm } from "@/entities/checkout-info-form";
 import { AddressForm } from "@/entities/checkout-info-form";

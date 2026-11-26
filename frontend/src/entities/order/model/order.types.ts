@@ -1,5 +1,10 @@
 import type { ColorItem } from "@/shared/model";
 
+export type NewOrderPosition = Pick<
+    OrderPosition,
+    "id" | "productId" | "title" | "category" | "description" | "sku" | "price" | "quantity" | "size" | "color" | "images"
+>;
+
 export interface OrderPosition {
   id: string;
   orderId: string;

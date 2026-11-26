@@ -2,8 +2,8 @@ import { computed } from "vue";
 import type { RouteLocationNormalizedLoaded } from "vue-router";
 import { keepPreviousData, useQuery } from "@tanstack/vue-query";
 
-import { reviewFilter } from "@/features/product-review-filter/model/review-filter.store";
-import { useGetReviews } from "@/shared/api/get-reviews";
+import { reviewFilter } from "@/features/product-review-filter";
+import { useGetReviews } from "@/shared/api";
 
 const { getReviews, getFilteredReviews } = useGetReviews();
 

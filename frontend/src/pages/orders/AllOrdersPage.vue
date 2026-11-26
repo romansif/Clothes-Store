@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { useOrderData } from "@/shared/lib/use-order-data";
+import { useOrderData } from "@/shared/lib";
 import { OrdersDashboard } from "@/features/order-dashboard";
 
 const { orders, isLoading, isFetching, isError, refetch } = useOrderData();

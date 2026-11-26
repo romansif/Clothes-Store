@@ -58,11 +58,11 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { computed } from "vue";
-import { isInCart } from "@/features/product-info/lib/cart-form-helper";
+import { isInCart } from "@/features/product-info";
 import { useAddToCart } from "@/features/add-to-cart/api/add-to-cart";
-import { useUpdateCartItem } from "@/features/cart-item-action/api/update-cart-item";
-import { isInStock } from "@/features/add-to-cart/lib/products-helper";
-import { sizeGuideModel, toggleSizeGuide } from "@/features/add-to-cart/lib/toggle-size-guide";
+import { useUpdateCartItem } from "@/features/cart-item-action";
+import { isInStock } from "@/features/add-to-cart";
+import { sizeGuideModel, toggleSizeGuide } from "@/features/add-to-cart";
 import { SizeGuideModal } from "@/features/add-to-cart";
 import { UiButton } from "@/shared/ui/button";
 import type { User } from "@/entities/profile";

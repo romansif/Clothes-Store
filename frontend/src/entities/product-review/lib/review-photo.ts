@@ -1,7 +1,7 @@
 import { computed } from "vue";
 
 import type { ImageItem } from "@/entities/product-review";
-import { ratingHelper } from "@/entities/product-review/lib/rating-helper";
+import { ratingHelper } from "@/entities/product-review";
 
 const { reviewAngel } = ratingHelper();
 

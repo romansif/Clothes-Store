@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 import { vHorizontalScroll } from "@/shared/lib/horizontal-scroll";
-import { useFavoriteData } from "@/shared/lib/use-favorite-data";
+import { useFavoriteData } from "@/shared/lib";
 import { useToggleFavorite } from "@/shared/api";
 import { ProductCard } from "@/entities/product-card";
 import type { ProductCardVariant } from "@/entities/product-card";

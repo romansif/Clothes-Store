@@ -95,10 +95,10 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { previewHelper } from "@/entities/product-card/lib/preview-helper";
+import { previewHelper } from "@/entities/product-card";
 import { useToggleFavorite } from "@/shared/api";
-import { useSoldItem } from "@/shared/lib/use-sold-item";
-import { stackInfo, toggleStackInfo } from "@/entities/my-product-item/lib/toggle-stack-info";
+import { useSoldItem } from "@/shared/lib";
+import { stackInfo, toggleStackInfo } from "@/entities/my-product-item";
 import { UiButton } from "@/shared/ui/button";
 import { ProductPreview } from "@/entities/product-card";
 import { StackInfoModal } from "@/entities/my-product-item";

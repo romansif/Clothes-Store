@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { useFavoriteData } from "@/shared/lib/use-favorite-data";
+import { useFavoriteData } from "@/shared/lib";
 import { useToggleFavorite } from "@/shared/api";
 import { ProductCard } from "@/entities/product-card";
 import { EmptyState, ErrorState, Loader } from "@/shared/ui/state";

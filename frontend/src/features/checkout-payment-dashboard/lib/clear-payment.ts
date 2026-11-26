@@ -1,4 +1,4 @@
-import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment-form/model/payment-form";
+import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment-form";
 
 export const clearPaymentForm = () => {
   paymentForm.value.cardName = "";

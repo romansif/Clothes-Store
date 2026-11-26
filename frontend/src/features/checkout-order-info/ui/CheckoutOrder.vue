@@ -40,9 +40,9 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { useCheckoutItems } from "@/features/checkout-order-info/lib/use-checkout-items";
-import { orderPriceInfo } from "@/features/checkout-order-info/lib/order-price-info";
-import { checkoutSession } from "@/entities/checkout-session/model/checkout-session";
+import { useCheckoutItems } from "@/features/checkout-order-info";
+import { orderPriceInfo } from "@/features/checkout-order-info";
+import { checkoutSession } from "@/entities/checkout-session";
 import { CheckoutOrderList } from "@/widgets/checkout-order-list";
 
 const { t } = useI18n();

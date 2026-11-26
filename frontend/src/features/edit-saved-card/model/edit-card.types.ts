@@ -1,5 +1,5 @@
 
-import { paymentForm } from "@/entities/checkout-payment-form/model/payment-form";
+import { paymentForm } from "@/entities/checkout-payment-form";
 
 type PaymentForm = typeof paymentForm.value;
 

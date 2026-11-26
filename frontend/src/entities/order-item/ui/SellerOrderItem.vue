@@ -95,8 +95,8 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { useOrder } from "@/entities/order-item/lib/use-order";
-import { orderStatusVariants } from "@/entities/order-item/model/orders.variants";
+import { useOrder } from "@/entities/order-item";
+import { orderStatusVariants } from "@/entities/order-item";
 import { UiButton } from "@/shared/ui/button";
 import { OrderStatus } from "@/entities/order";
 import type { SellerOrderProps } from "@/entities/order/model/order.types";

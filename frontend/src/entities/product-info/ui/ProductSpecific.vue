@@ -42,9 +42,9 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { productHelper } from "@/shared/lib/product-helper";
-import { addToCartVariants } from "@/entities/product-info/model/add-to-cart.variants";
-import { addToCartFormErrorMessages } from "@/entities/product-info/model/add-to-cart-form";
+import { productHelper } from "@/shared/lib";
+import { addToCartVariants } from "@/entities/product-info";
+import { addToCartFormErrorMessages } from "@/entities/product-info";
 import type { User } from "@/entities/profile";
 import type { ColorItem, Product, Size } from "@/shared/model";
 

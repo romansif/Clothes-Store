@@ -24,7 +24,7 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { closeEditAddress } from "@/features/edit-saved-address/lib/toggle-edit-address";
+import { closeEditAddress } from "@/features/edit-saved-address"
 import { UiButton } from "@/shared/ui/button";
 import { EditAddressForm } from "@/features/edit-saved-address";
 

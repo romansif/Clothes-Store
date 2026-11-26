@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { toggleInformation } from "@/features/checkout-contact-info/lib/toggle-contact-info";
+import { toggleInformation } from "@/features/checkout-contact-info";
 import { CheckoutAddressList, CheckoutContactList } from "@/widgets/checkout-info-lists";
 
 const { t } = useI18n();

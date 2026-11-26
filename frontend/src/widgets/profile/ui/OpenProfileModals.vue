@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { useProfileModals } from "@/shared/lib/profile-modal";
+import { useProfileModals } from "@/shared/lib";
 import { ProfileTab } from "@/shared/ui/profile-tab";
 import type { User } from "@/entities/profile";
 

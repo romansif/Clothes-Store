@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { checkoutClass } from "@/shared/model/saved-checkout-info.variants";
+import { checkoutClass } from "@/shared/model";
 import { CheckoutOrder } from "@/features/checkout-order-info";
 import { CheckoutHeader } from "@/widgets/checkout-header";
 </script>

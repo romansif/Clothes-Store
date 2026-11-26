@@ -23,8 +23,8 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { getSavedClass, checkClass } from "@/shared/model/saved-checkout-info.variants";
-import { isChosenAddress } from "@/entities/checkout-info-item/model/information.refs";
+import { getSavedClass, checkClass } from "@/shared/model";
+import { isChosenAddress } from "@/entities/checkout-info-item";
 import type { UserContactInfo } from "@/entities/user-address";
 
 const props = defineProps<{

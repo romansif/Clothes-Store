@@ -5,7 +5,7 @@
       <span class="font-medium">{{ t("filters.size") }}</span>
       <div class="mt-2 flex items-center gap-2">
         <img
-          v-for="size in sizes"
+          v-for="size in SIZES"
           :key="size.name"
           :src="size.url"
           alt=""
@@ -130,9 +130,9 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { sizes } from "@/shared/model/product-sizes.ts";
-import { filterLabelKey, filterProduct } from "@/widgets/filter-products/lib/filter-product";
-import { useProductsData } from "@/shared/lib/use-product-data";
+import { SIZES } from "@/shared/model";
+import { filterLabelKey, filterProduct } from "@/widgets/filter-products";
+import { useProductsData } from "@/shared/lib";
 import {
   toggleAvailabilityFilter,
   toggleColorFilter,
@@ -143,8 +143,8 @@ import {
   filterSizeClass,
   filterClass,
   selectedFilterAndSizeClass,
-} from "@/widgets/filter-products/model/filter-item.variants";
-import { showAvailability, showColor, showGender, showPrice } from "@/widgets/filter-products/model/filter.refs";
+} from "@/widgets/filter-products";
+import { showAvailability, showColor, showGender, showPrice } from "@/widgets/filter-products/filter.refs";
 
 import square from "@/assets/icons/squares/square.png";
 import checked from "@/assets/icons/squares/check-square.png";

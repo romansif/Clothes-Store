@@ -1,9 +1,9 @@
 import { computed, toValue, type MaybeRefOrGetter } from "vue";
 import { keepPreviousData, useQuery } from "@tanstack/vue-query";
 
-import { activeFilter } from "@/widgets/filter-products/model/active-filter";
-import { activeSearch, getSearchedProducts } from "@/features/search-product/api/search-product";
-import { useGetProducts } from "@/shared/api/get-product";
+import { activeFilter } from "@/widgets/filter-products";
+import { activeSearch, getSearchedProducts } from "@/features/search-product";
+import { useGetProducts } from "@/shared/api";
 
 const { getAllProducts, getFilteredProducts } = useGetProducts();
 

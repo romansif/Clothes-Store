@@ -1,5 +1,5 @@
-import { clearRegisterForm } from "@/features/register-auth/lib/clear-register-form";
-import { currentRole, isRole } from "@/features/register-auth/model/register-auth.refs";
+import { clearRegisterForm } from "@/features/register-auth";
+import { currentRole, isRole } from "@/features/register-auth";
 
 export const toggleSignUp = () => {
   currentRole.value = currentRole.value === "Buyer" ? "Seller" : "Buyer";

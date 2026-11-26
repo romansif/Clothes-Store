@@ -109,20 +109,20 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
-import { useTogglePassword } from "@/features/change-user-data-form/lib/toggle-password";
+import { refClearErrorsOnChange } from "@/shared/lib";
+import { useTogglePassword } from "@/features/change-user-data-form";
 import {
   useEditUserName,
   useEditUserSurName,
   useEditUserEmail,
   useEditUserPhone,
   useEditUserPassword,
-} from "@/features/change-user-data-form/lib/use-edit-user-data";
-import { updateUserForm, updateUserFormErrorMessages } from "@/features/change-user-data-form/model/user-update-form";
+} from "@/features/change-user-data-form";
+import { updateUserForm, updateUserFormErrorMessages } from "@/features/change-user-data-form";
 import {
   PROFILE_FORM_PHONE_INPUT_CLASS,
   PROFILE_FORM_SELECT_PHONE_CODE_CLASS,
-} from "@/features/change-user-data-form/model/profile-phone.variants";
+} from "@/features/change-user-data-form";
 import { UiButton } from "@/shared/ui/button";
 import { UiInput } from "@/shared/ui/input";
 import { UiPhoneInput } from "@/shared/ui/phone-input";

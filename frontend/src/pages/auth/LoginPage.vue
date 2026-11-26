@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { signIn } from "@/features/login-auth/api/login";
+import { signIn } from "@/features/login-auth";
 import { showSignSection } from "@/features/login-auth/model/login-auth.refs";
 import { GoogleAuth } from "@/features/login-by-google";
 import { UiButton } from "@/shared/ui/button";

@@ -1,0 +1,1 @@
+export { useDeletePayment } from "./api/delete-payment"

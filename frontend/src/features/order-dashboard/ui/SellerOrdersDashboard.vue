@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { useSellerOrderData } from "@/features/order-dashboard/lib/use-seller-order-data";
+import { useSellerOrderData } from "@/features/order-dashboard";
 import { SellerOrderList } from "@/widgets/order-list";
 import { EmptyState, ErrorState, Loader } from "@/shared/ui/state";
 

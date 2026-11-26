@@ -5,7 +5,7 @@
       <Loader v-if="isLoading" variant="season-list" />
       <ErrorState v-else-if="isError" variant="season-list" :loading="isFetching" @reload="refetch()" />
       <div v-else-if="seasonCatalog.length" :class="['flex gap-10', seasonCatalog.length ? '' : 'justify-center']">
-        <SeasonList :user="user" :array="seasonCatalog" season="Autumn" />
+        <SeasonList :user="user" :array="seasonCatalog" variant="season" />
       </div>
       <EmptyState v-else variant="season-list" :loading="isFetching" @reload="refetch()" />
     </Transition>
@@ -13,8 +13,8 @@
 </template>
 
 <script setup lang="ts">
-import { useUserData } from "@/widgets/profile/lib/use-user-data";
-import { useSeasonProductData } from "@/widgets/season-list/lib/use-season-product-data";
+import { useUserData } from "@/widgets/profile";
+import { useSeasonProductData } from "@/widgets/season-list";
 import { SeasonsHeader } from "@/widgets/navigation";
 import { SeasonList } from "@/widgets/season-list";
 import { EmptyState, ErrorState, Loader } from "@/shared/ui/state";

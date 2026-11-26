@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { useRoute, useRouter } from "vue-router";
-import { useCheckoutHeader } from "@/widgets/checkout-header/lib/use-checkout-header";
+import { useCheckoutHeader } from "@/widgets/checkout-header";
 
 import right_long_arrow from "@/assets/icons/arrows/right-long-arrow.png";
 

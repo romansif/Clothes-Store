@@ -108,7 +108,7 @@
       </div>
       <div class="flex gap-6">
         <img
-          v-for="size in sizes"
+          v-for="size in SIZES"
           :key="size.name"
           :src="size.url"
           alt=""
@@ -165,17 +165,17 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { MODES, useProductForm } from "@/features/product-form/lib/use-product-form";
-import { sizes } from "@/shared/model/product-sizes";
-import { productFormHelper } from "@/features/product-form/lib/product-form-helper";
-import { reactiveClearErrorsOnChange } from "@/shared/lib/errors-helper";
+import { MODES, useProductForm } from "@/features/product-form";
+import { SIZES } from "@/shared/model";
+import { productFormHelper } from "@/features/product-form";
+import { reactiveClearErrorsOnChange } from "@/shared/lib";
 import { UiInput } from "@/shared/ui/input";
 import {
   createProductForm,
   moreCreateItemForm,
   createProductFormErrorMessages,
   moreCreateItemFormErrorMessages,
-} from "@/features/product-form/model/product-forms";
+} from "@/features/product-form";
 
 const { t } = useI18n();
 const { toggleAllVariants, toggleQuantity, toggleSize, toggleColor, countMode } = productFormHelper();

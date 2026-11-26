@@ -1,6 +1,6 @@
 import { ref } from "vue";
 
-import { reviewFilter } from "@/features/product-review-filter/model/review-filter.store";
+import { reviewFilter } from "@/features/product-review-filter";
 
 const reviewLabelKeys: Record<string, string> = {
   "All reviews": "reviews.filter.all",

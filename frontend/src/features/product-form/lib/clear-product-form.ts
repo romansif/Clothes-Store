@@ -3,8 +3,8 @@ import {
   createProductFormErrorMessages,
   moreCreateItemForm,
   moreCreateItemFormErrorMessages,
-} from "@/features/product-form/model/product-forms";
-import { imageFiles } from "@/shared/lib/product-helper";
+} from "@/features/product-form";
+import { imageFiles } from "@/shared/lib";
 
 export const clearProductForm = () => {
   createProductForm.value.title = "";

@@ -8,7 +8,7 @@ import App from "@/app/App.vue";
 import { queryClient } from "@/shared/api/query-client";
 import { i18n } from "@/shared/i18n";
 
-import router from "./app/router/index";
+import router from "@/app/router";
 
 const app = createApp(App);
 

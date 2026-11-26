@@ -62,13 +62,13 @@
 import { useI18n } from "vue-i18n";
 import { showPassword } from "@/features/toggle-password/model/auth.refs";
 import { SHOW_PASSWORD_CLASS, SHOW_PASSWORD_ERROR_CLASS } from "@/shared/ui/auth-form/auth-form.variants";
-import { togglePassword } from "@/features/toggle-password/lib/toggle-password.ts";
-import { refClearErrorsOnChange } from "@/shared/lib/errors-helper.ts";
-import { registerForm, registerFormErrorMessages } from "@/features/register-auth/model/register-from";
+import { togglePassword } from "@/features/toggle-password";
+import { refClearErrorsOnChange } from "@/shared.ts";
+import { registerForm, registerFormErrorMessages } from "@/features/register-auth";
 import {
   registerPhoneInputVariants,
   registerSelectPhoneCode,
-} from "@/features/register-auth/model/register-phone-input.variants.ts";
+} from "@/features/register-auth";
 import { UiInput } from "@/shared/ui/input";
 import { UiPhoneInput } from "@/shared/ui/phone-input";
 

@@ -1,4 +1,4 @@
-import { isSavedAddress } from "@/entities/checkout-info-item/model/information.refs";
+import { isSavedAddress } from "@/entities/checkout-info-item";
 
 export const toggleInformation = () => {
   const toggleShowContact = () => {

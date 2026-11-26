@@ -10,9 +10,9 @@
 </template>
 
 <script setup lang="ts">
-import { paymentCards } from "@/shared/lib/use-payment-card";
-import { useSavedPaymentsData } from "@/widgets/user-payment-card-list/lib/use-saved-payment-data";
-import { useSavedCard } from "@/features/checkout-payment-dashboard/lib/use-saved-payment-card";
+import { paymentCards } from "@/shared/lib";
+import { useSavedPaymentsData } from "@/widgets/user-payment-card-list";
+import { useSavedCard } from "@/features/checkout-payment-dashboard";
 import { PaymentItem } from "@/entities/checkout-payment-item";
 
 const { userPaymentCards } = useSavedPaymentsData();

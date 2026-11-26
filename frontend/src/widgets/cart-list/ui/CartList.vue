@@ -23,9 +23,9 @@
 </template>
 
 <script setup lang="ts">
-import { useCartData } from "@/widgets/cart-list/lib/use-cart-data";
+import { useCartData } from "@/widgets/cart-list";
 import { useToggleFavorite } from "@/shared/api";
-import { useFavoriteData } from "@/shared/lib/use-favorite-data";
+import { useFavoriteData } from "@/shared/lib";
 import { CartProduct } from "@/entities/cart-item";
 import { UseCartItemActions } from "@/features/cart-item-action";
 import { EmptyState, ErrorState, Loader } from "@/shared/ui/state";

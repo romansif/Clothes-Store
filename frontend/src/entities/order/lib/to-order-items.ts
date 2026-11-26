@@ -1,10 +1,5 @@
 import type { CartItem } from "@/entities/cart-item";
-import type { OrderPosition } from "@/entities/order/model/order.types";
-
-export type NewOrderPosition = Pick<
-  OrderPosition,
-  "id" | "productId" | "title" | "category" | "description" | "sku" | "price" | "quantity" | "size" | "color" | "images"
->;
+import type { NewOrderPosition } from "@/entities/order";
 
 export const toOrderItem = (c: CartItem): NewOrderPosition => ({
   id: c.id,

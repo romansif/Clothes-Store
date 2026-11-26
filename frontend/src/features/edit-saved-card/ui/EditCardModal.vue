@@ -24,7 +24,7 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { closeEditCard } from "@/features/edit-saved-card/lib/toggle-edit-card";
+import { closeEditCard } from "@/features/edit-saved-card";
 import { UiButton } from "@/shared/ui/button";
 import { EditCardForm } from "@/features/edit-saved-card";
 

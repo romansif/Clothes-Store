@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useBaseModals } from "@/shared/ui/notification/use-notify";
+import { useBaseModals } from "@/shared/ui/notification";
 import { Notification } from "@/shared/ui/notification";
 
 const { notify } = useBaseModals();

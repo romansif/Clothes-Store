@@ -18,11 +18,11 @@
 
 <script setup lang="ts">
 import { computed, watch } from "vue";
-import { userAvatar } from "@/widgets/profile/lib/profile-avatar";
-import { reviewsStore } from "@/features/review-dashboard/model/reviews.store";
-import { reviewsHelper } from "@/features/review-dashboard/lib/reviews-helper";
-import { reviewFilter } from "@/features/product-review-filter/model/review-filter.store";
-import { toggleReviewPhotos } from "@/features/review-dashboard/lib/review-photo-modal";
+import { userAvatar } from "@/widgets/profile";
+import { reviewsStore } from "@/features/review-dashboard";
+import { reviewsHelper } from "@/features/review-dashboard";
+import { reviewFilter } from "@/features/product-review-filter";
+import { toggleReviewPhotos } from "@/features/review-dashboard";
 import { ReviewItem } from "@/entities/product-review";
 import type { Review } from "@/entities/product-review";
 

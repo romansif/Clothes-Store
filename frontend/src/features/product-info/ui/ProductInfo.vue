@@ -36,15 +36,15 @@
 </template>
 
 <script setup lang="ts">
-import { addColor, addSize } from "@/features/product-info/lib/add-cart-specific";
-import { previewHelper } from "@/entities/product-card/lib/preview-helper";
+import { addColor, addSize } from "@/features/product-info";
+import { previewHelper } from "@/entities/product-card";
 import { useToggleFavorite } from "@/shared/api";
-import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
-import { productHelper } from "@/shared/lib/product-helper";
-import { toggleReadMore, fullDescription } from "@/features/product-info/lib/toggle-more-info";
+import { refClearErrorsOnChange } from "@/shared/lib";
+import { productHelper } from "@/shared/lib";
+import { toggleReadMore, fullDescription } from "@/features/product-info";
 import { ProductPhotos, ProductSpecific } from "@/entities/product-info";
 import { ProductToCart } from "@/features/add-to-cart";
-import { addToCartForm, addToCartFormErrorMessages } from "@/entities/product-info/model/add-to-cart-form";
+import { addToCartForm, addToCartFormErrorMessages } from "@/entities/product-info";
 import type { Product } from "@/shared/model";
 import type { User } from "@/entities/profile";
 import type { CartItem } from "@/entities/cart-item";

@@ -61,11 +61,11 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
-import { userAvatar } from "@/widgets/profile/lib/profile-avatar";
-import { useUserData } from "@/widgets/profile/lib/use-user-data";
-import { useMainNavBar } from "@/widgets/navigation/lib/use-main-nav-bar";
-import { cartStore } from "@/widgets/cart-list/model/cart.store";
-import { routeClass, selectRouteClass } from "@/widgets/navigation/model/route.variants";
+import { userAvatar } from "@/widgets/profile";
+import { useUserData } from "@/widgets/profile";
+import { useMainNavBar } from "@/widgets/navigation";
+import { cartStore } from "@/widgets/cart-list";
+import { routeClass, selectRouteClass } from "@/widgets/navigation";
 import { LanguageSwitcher } from "@/widgets/navigation";
 
 import cart from "@/assets/icons/nav/cart.png";

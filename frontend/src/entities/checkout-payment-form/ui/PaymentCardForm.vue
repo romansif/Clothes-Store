@@ -53,8 +53,8 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { IMaskComponent as IMask } from "vue-imask";
-import { cardNumberMask, expiryDateMask, cardCvvMask } from "@/entities/checkout-payment-form/model/payment-mask";
-import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment-form/model/payment-form";
+import { cardNumberMask, expiryDateMask, cardCvvMask } from "@/entities/checkout-payment-form";
+import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment-form";
 import {
   cardNumberClass,
   expiryDateClass,

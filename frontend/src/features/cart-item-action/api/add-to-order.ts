@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
 import type { AddToOrderPayload } from "@/features/cart-item-action";
-import { saveOrderItems } from "@/features/cart-item-action/lib/save-order-items";
+import { saveOrderItems } from "@/features/cart-item-action";
 import { handler } from "@/shared/api";
 
 export const useAddToOrder = () => {

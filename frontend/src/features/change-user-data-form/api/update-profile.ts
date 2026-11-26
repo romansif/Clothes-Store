@@ -1,9 +1,9 @@
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
-import { useBaseModals } from "@/shared/ui/notification/use-notify";
+import { useBaseModals } from "@/shared/ui/notification";
 import { updateUserFormErrorMessages } from "@/features/change-user-data-form/model/user-update-form";
 import { handler } from "@/shared/api";
-import { applyErrors } from "@/shared/lib/errors-helper";
+import { applyErrors } from "@/shared/lib";
 import type { EditUserPayload } from "@/features/change-user-data-form/model/edit-user.types";
 
 const { openNotify } = useBaseModals();

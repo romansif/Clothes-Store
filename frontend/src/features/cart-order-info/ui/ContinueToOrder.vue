@@ -19,8 +19,8 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { watch } from "vue";
-import { useCartOrderInfo } from "@/features/cart-order-info/lib/cart-order-info";
-import { isAgreeFormError, isAgreeFormErrorMessage } from "@/entities/product-info/model/add-to-cart-form";
+import { useCartOrderInfo } from "@/features/cart-order-info";
+import { isAgreeFormError, isAgreeFormErrorMessage } from "@/entities/product-info";
 import { UiButton } from "@/shared/ui/button";
 
 import check_square from "@/assets/icons/squares/check-square.png";

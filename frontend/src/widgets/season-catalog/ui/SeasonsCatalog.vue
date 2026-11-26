@@ -1,6 +1,6 @@
 <template>
   <div
-    v-for="season in seasonsCatalog"
+    v-for="season in SEASONS_CATALOG"
     :key="season.id"
     @click="router.push({ name: `${season.route}` })"
     class="font-montserrat h-100 w-92 cursor-pointer rounded-2xl text-white transition duration-500 hover:scale-108"
@@ -21,9 +21,9 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from "vue-i18n";
 import router from "@/app/router";
-import { seasonsCatalog } from "@/widgets/navigation/model/seasons-specific";
+import { useI18n } from "vue-i18n";
+import { SEASONS_CATALOG } from "@/widgets/navigation";
 
 const { t } = useI18n();
 </script>

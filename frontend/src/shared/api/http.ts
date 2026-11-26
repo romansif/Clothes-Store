@@ -1,6 +1,6 @@
 import type { ApiErrorResponse } from "@/shared/model";
 
-import router from "@/app/router/index";
+import router from "@/app/router";
 import { resetCheckoutSession } from "@/entities/checkout-session";
 
 export class ApiError extends Error {

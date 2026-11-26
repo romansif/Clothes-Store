@@ -24,9 +24,9 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { previewHelper } from "@/entities/product-card/lib/preview-helper";
-import { productPreviewClass } from "@/shared/model/product-preview.variants";
-import { PRODUCT_CARD_VARIANTS } from "@/entities/product-card/model/product-card.variants";
+import { previewHelper } from "@/entities/product-card";
+import { productPreviewClass } from "@/shared/model";
+import { PRODUCT_CARD_VARIANTS } from "@/entities/product-card";
 import type { Product } from "@/shared/model";
 import type { User } from "@/entities/profile";
 import type { ProductCardVariant } from "@/entities/product-card";

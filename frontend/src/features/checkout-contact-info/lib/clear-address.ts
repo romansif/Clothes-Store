@@ -1,4 +1,4 @@
-import { informationForm, informationFormErrorMessages } from "@/entities/checkout-info-form/model/information-form";
+import { informationForm, informationFormErrorMessages } from "@/entities/checkout-info-form";
 
 export const clearInformationForm = () => {
   informationForm.value.addressName = "";

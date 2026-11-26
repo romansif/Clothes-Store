@@ -53,7 +53,7 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { baseDeleteModal } from "@/features/general-delete/lib/base-delete-modal";
+import { baseDeleteModal } from "@/features/general-delete";
 import { UiButton } from "@/shared/ui/button";
 import { Menu, MenuItems, MenuItem, MenuButton } from "@headlessui/vue";
 import type { User } from "@/entities/profile";

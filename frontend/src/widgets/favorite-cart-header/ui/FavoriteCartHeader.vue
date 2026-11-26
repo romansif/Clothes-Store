@@ -23,7 +23,7 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
-import { useFavoriteCartHeader } from "@/widgets/favorite-cart-header/lib/use-favorite-cart-header";
+import { useFavoriteCartHeader } from "@/widgets/favorite-cart-header";
 
 import liked from "@/assets/icons/nav/liked.png";
 

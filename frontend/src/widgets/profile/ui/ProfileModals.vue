@@ -23,11 +23,11 @@
 </template>
 
 <script setup lang="ts">
-import { baseDeleteModal } from "@/features/general-delete/lib/base-delete-modal";
-import { useProfileModals } from "@/shared/lib/profile-modal";
-import { avatarModal } from "@/features/profile-change-avatar/model/profile-modal.store";
-import { editAddressModal } from "@/features/edit-saved-address/lib/toggle-edit-address";
-import { editCardModal } from "@/features/edit-saved-card/lib/toggle-edit-card";
+import { baseDeleteModal } from "@/features/general-delete";
+import { useProfileModals } from "@/shared/lib";
+import { avatarModal } from "@/features/profile-change-avatar";
+import { editAddressModal } from "@/features/edit-saved-address"
+import { editCardModal } from "@/features/edit-saved-card";
 import { SavedPaymentModal } from "@/features/user-saved-payment-cards-modal";
 import { ProfileDataModal } from "@/features/profile-data";
 import { SavedAddressModal } from "@/features/user-saved-addres-modal";

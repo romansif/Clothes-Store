@@ -9,7 +9,7 @@
         <span class="font-medium">{{ t("filters.size") }}</span>
         <div class="mt-3.5 flex gap-4 sm:gap-1 md:gap-2">
           <img
-            v-for="size in sizes"
+            v-for="size in SIZES"
             :key="size.name"
             :src="size.url"
             alt=""
@@ -164,31 +164,31 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
-import { filterLabelKey, filterProduct } from "@/widgets/filter-products/lib/filter-product";
-import { useProductsData } from "@/shared/lib/use-product-data";
-import { filterAside, toggleFilterAside } from "@/widgets/filter-products/lib/product-modal";
+import { filterLabelKey, filterProduct } from "@/widgets/filter-products";
+import { useProductsData } from "@/shared/lib";
+import { filterAside, toggleFilterAside } from "@/widgets/filter-products";
 import {
   toggleAvailabilityFilter,
   toggleCategoryFilter,
   toggleColorFilter,
   toggleGenderFilter,
   togglePriceFilter,
-} from "@/widgets/filter-products/lib/show-filter";
+} from "@/widgets/filter-products";
 import {
   sidebarCategoryClass,
   selectedCategoryAndCollectionClass,
   filterSizeClass,
   selectedFilterAndSizeClass,
   filterClass,
-} from "@/widgets/filter-products/model/filter-item.variants.ts";
-import { sizes } from "@/shared/model/product-sizes";
+} from "@/widgets/filter-products";
+import { SIZES } from "@/shared/model";
 import {
   showAvailability,
   showCategory,
   showColor,
   showGender,
   showPrice,
-} from "@/widgets/filter-products/model/filter.refs";
+} from "@/widgets/filter-products";
 
 import square from "@/assets/icons/squares/square.png";
 import left_arrow from "@/assets/icons/arrows/arrow-left.svg";

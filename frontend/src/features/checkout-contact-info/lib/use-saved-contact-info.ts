@@ -1,5 +1,5 @@
-import { isChosenAddress, isChosenContactInfo } from "@/entities/checkout-info-item/model/information.refs";
-import { checkoutSession } from "@/entities/checkout-session/model/checkout-session";
+import { isChosenAddress, isChosenContactInfo } from "@/entities/checkout-info-item";
+import { checkoutSession } from "@/entities/checkout-session";
 import type { UserContactInfo } from "@/entities/user-address";
 
 export const useSavedContactInfo = (info: UserContactInfo) => {

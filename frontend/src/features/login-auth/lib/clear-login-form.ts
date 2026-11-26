@@ -1,4 +1,4 @@
-import { loginForm, loginFormErrorMessages } from "@/entities/login-form/model/login-form";
+import { loginForm, loginFormErrorMessages } from "@/entities/login-form";
 
 export const clearLoginForm = () => {
   loginForm.value.email = "";

@@ -1,7 +1,7 @@
 import { computed } from "vue";
 import { useQuery } from "@tanstack/vue-query";
 
-import { getSoldStats } from "@/shared/api/get-sold-stats";
+import { getSoldStats } from "@/shared/api";
 
 export const useSoldStatsData = () => {
   const { data: productSold } = useQuery({

@@ -41,9 +41,9 @@
 
 <script setup lang="ts">
 import { IMaskComponent as IMask } from "vue-imask";
-import { postalCode } from "@/entities/checkout-info-form/model/information-mask";
-import { POSTAL_CODE_CLASS } from "@/entities/checkout-info-form/model/information-form.variants";
-import { informationForm, informationFormErrorMessages } from "@/entities/checkout-info-form/model/information-form";
+import { postalCode } from "@/entities/checkout-info-form";
+import { POSTAL_CODE_CLASS } from "@/entities/checkout-info-form";
+import { informationForm, informationFormErrorMessages } from "@/entities/checkout-info-form";
 import { CheckoutInput } from "@/shared/ui/checkout-input";
 import { useI18n } from "vue-i18n";
 

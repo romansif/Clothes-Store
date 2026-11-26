@@ -54,13 +54,13 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { havePayments } from "@/shared/lib/use-payment-card";
-import { usePlaceOrder } from "@/features/checkout-payment-dashboard/api/place-order";
-import { togglePaymentForm } from "@/features/checkout-payment-dashboard/lib/toggle-payment";
-import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
+import { havePayments } from "@/shared/lib";
+import { usePlaceOrder } from "@/features/checkout-payment-dashboard";
+import { togglePaymentForm } from "@/features/checkout-payment-dashboard";
+import { refClearErrorsOnChange } from "@/shared/lib";
 import { useSavedPaymentsData, useSavedPaymentData } from "@/widgets/user-payment-card-list/lib/use-saved-payment-data";
-import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment-form/model/payment-form";
-import { isSavedPayment } from "@/entities/checkout-payment-item/model/payment.refs";
+import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment-form";
+import { isSavedPayment } from "@/entities/checkout-payment-item";
 import { UiButton } from "@/shared/ui/button";
 import { PaymentMethodsForm } from "@/entities/checkout-payment-form";
 import { SavedCheckoutPayment } from "@/features/checkout-payment-dashboard";

@@ -150,15 +150,15 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { productHelper } from "@/shared/lib/product-helper";
-import { MODES, useProductForm } from "@/features/product-form/lib/use-product-form";
-import { useEditProductColors, useEditProductQuantity } from "@/features/product-edit-form/api/update-product";
-import { productFormHelper } from "@/features/product-form/lib/product-form-helper";
+import { productHelper } from "@/shared/lib";
+import { MODES, useProductForm } from "@/features/product-form";
+import { useEditProductColors, useEditProductQuantity } from "@/features/product-edit-form";
+import { productFormHelper } from "@/features/product-form";
 import {
   createProductForm,
   createProductFormErrorMessages,
   moreCreateItemFormErrorMessages,
-} from "@/features/product-form/model/product-forms";
+} from "@/features/product-form";
 import { UiInput } from "@/shared/ui/input";
 import type { Product } from "@/shared/model";
 

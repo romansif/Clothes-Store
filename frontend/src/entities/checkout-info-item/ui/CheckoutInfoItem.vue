@@ -12,8 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import { getSavedClass, checkClass } from "@/shared/model/saved-checkout-info.variants";
-import { isChosenContactInfo } from "@/entities/checkout-info-item/model/information.refs";
+import { getSavedClass, checkClass } from "@/shared/model";
+import { isChosenContactInfo } from "@/entities/checkout-info-item";
 import type { UserContactInfo } from "@/entities/user-address";
 import { useI18n } from "vue-i18n";
 

@@ -24,8 +24,8 @@
 </template>
 
 <script setup lang="ts">
-import { useWeekProductData } from "@/widgets/week-list/lib/use-week-product-data";
-import { useFavoriteData } from "@/shared/lib/use-favorite-data";
+import { useWeekProductData } from "@/widgets/week-list";
+import { useFavoriteData } from "@/shared/lib";
 import { useToggleFavorite } from "@/shared/api";
 import { vHorizontalScroll } from "@/shared/lib/horizontal-scroll";
 import { ProductCard } from "@/entities/product-card";

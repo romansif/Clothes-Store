@@ -1,7 +1,7 @@
 import { computed } from "vue";
 import { useQuery } from "@tanstack/vue-query";
 
-import { useGetOrder } from "@/shared/api/get-order";
+import { useGetOrder } from "@/shared/api";
 
 const { getAllOrder, getOrders, getActiveOrders, getOrderItems } = useGetOrder();
 

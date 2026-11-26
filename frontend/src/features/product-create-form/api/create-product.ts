@@ -1,18 +1,18 @@
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
 import router from "@/app/router";
-import { useBaseModals } from "@/shared/ui/notification/use-notify";
-import { clearProductForm } from "@/features/product-form/lib/clear-product-form";
+import { useBaseModals } from "@/shared/ui/notification";
+import { clearProductForm } from "@/features/product-form";
 import {
   createProductForm,
   createProductFormErrorMessages,
   moreCreateItemForm,
   moreCreateItemFormErrorMessages,
-} from "@/features/product-form/model/product-forms";
-import { createProductSchema, moreCreateItemsSchema } from "@/features/product-form/model/product-schemas";
+} from "@/features/product-form";
+import { createProductSchema, moreCreateItemsSchema } from "@/features/product-form";
 import { handler } from "@/shared/api";
-import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
-import { imageFiles } from "@/shared/lib/product-helper";
+import { applyErrors, applyZodErrors } from "@/shared/lib";
+import { imageFiles } from "@/shared/lib";
 
 const { openNotify } = useBaseModals();
 

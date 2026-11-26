@@ -46,13 +46,13 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { IMaskComponent as IMask } from "vue-imask";
-import { useSavedPaymentData } from "@/widgets/user-payment-card-list/lib/use-saved-payment-data";
-import { useUpdateCard } from "@/features/edit-saved-card/api/update-card";
-import { paymentForm, paymentFormErrorMessage} from "@/entities/checkout-payment-form/model/payment-form";
+import { useSavedPaymentData } from "@/widgets/user-payment-card-list";
+import { useUpdateCard } from "@/features/edit-saved-card";
+import { paymentForm, paymentFormErrorMessage} from "@/entities/checkout-payment-form";
 import { UiButton } from "@/shared/ui/button";
 import { UiInput } from "@/shared/ui/input";
 import { cardNumberClass, expiryDateClass, paymentCardErrorClass } from "@/shared/model/payment-form.variants";
-import { cardNumberMask, expiryDateMask } from "@/entities/checkout-payment-form/model/payment-mask";
+import { cardNumberMask, expiryDateMask } from "@/entities/checkout-payment-form";
 
 const { t } = useI18n()
 const { updateCard } = useUpdateCard()

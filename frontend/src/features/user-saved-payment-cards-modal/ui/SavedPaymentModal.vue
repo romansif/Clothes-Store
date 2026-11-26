@@ -33,9 +33,9 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { baseDeleteModal } from "@/features/general-delete/lib/base-delete-modal";
-import { useProfileModals } from "@/shared/lib/profile-modal";
-import { useSavedPaymentsData } from "@/widgets/user-payment-card-list/lib/use-saved-payment-data";
+import { baseDeleteModal } from "@/features/general-delete";
+import { useProfileModals } from "@/shared/lib";
+import { useSavedPaymentsData } from "@/widgets/user-payment-card-list";
 import { UiButton } from "@/shared/ui/button";
 import { DeleteModal } from "@/features/general-delete";
 import { PaymentsList } from "@/widgets/user-payment-card-list";

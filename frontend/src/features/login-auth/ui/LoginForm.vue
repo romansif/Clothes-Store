@@ -52,10 +52,10 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { togglePassword } from "@/features/toggle-password/lib/toggle-password";
-import { showPassword } from "@/features/toggle-password/model/auth.refs";
-import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
-import { loginForm, loginFormErrorMessages } from "@/entities/login-form/model/login-form";
+import { togglePassword } from "@/features/toggle-password";
+import { showPassword } from "@/features/toggle-password";
+import { refClearErrorsOnChange } from "@/shared/lib";
+import { loginForm, loginFormErrorMessages } from "@/entities/login-form";
 import { useLoginErrorMessage } from "@/features/login-auth/model/login-error-messages";
 import { UiInput } from "@/shared/ui/input";
 import { SHOW_PASSWORD_CLASS, SHOW_PASSWORD_ERROR_CLASS } from "@/shared/ui/auth-form/auth-form.variants";

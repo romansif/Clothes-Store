@@ -25,7 +25,7 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { setLocale } from "@/shared/i18n";
-import { useSwitcher, LANGUAGES } from "@/widgets/navigation/lib/use-switcher";
+import { useSwitcher, LANGUAGES } from "@/widgets/navigation";
 
 const { locale } = useI18n();
 const { indicatorStyle } = useSwitcher();
