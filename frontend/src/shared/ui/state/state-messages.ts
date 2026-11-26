@@ -1,11 +1,7 @@
 import empty_state from "@/assets/icons/list-state/empty-state.svg";
 import error_state from "@/assets/icons/list-state/error-state.svg";
 
-<<<<<<<< HEAD:frontend/src/shared/ui/state/state-messages.ts
-import type { EmptyStateMessageProps, PageVariant } from "@/shared/ui/state/index";
-========
 import type { EmptyStateMessageProps, PageVariant } from "@/shared/ui/state";
->>>>>>>> origin/master:frontend/src/shared/ui/state/model/state-messages.ts
 
 export const errorImage = error_state;
 export const emptyImage = empty_state;

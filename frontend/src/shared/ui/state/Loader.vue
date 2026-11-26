@@ -11,13 +11,8 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-<<<<<<<< HEAD:frontend/src/shared/ui/state/Loader.vue
 import { loaderBoxVariantClass, loaderItemsClass, loaderSectionClass } from "@/shared/ui/state/state.variants";
-import type { PageVariant } from "@/shared/ui/state/index";
-========
-import { loaderBoxVariantClass, loaderItemsClass, loaderSectionClass } from "@/shared/ui/state/model/state.variants";
 import type { PageVariant } from "@/shared/ui/state";
->>>>>>>> origin/master:frontend/src/shared/ui/state/ui/Loader.vue
 
 import spinner from "@/assets/icons/app/spinner.svg";
 
