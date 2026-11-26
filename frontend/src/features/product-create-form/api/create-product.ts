@@ -75,14 +75,14 @@ export const useCreateProduct = () => {
     },
 
     onSuccess: async () => {
+      await openNotify({ variant: "create-product", state: "success" });
+      await router.push({ name: "my/products" });
+
       await Promise.all([
         queryClient.invalidateQueries({ queryKey: ["products"] }),
         queryClient.invalidateQueries({ queryKey: ["myProducts"] }),
         queryClient.invalidateQueries({ queryKey: ["filteredProducts"] }),
       ]);
-
-      await openNotify({ variant: "create-product", state: "success" });
-      await router.push({ name: "my/products" });
 
       clearProductForm();
     },

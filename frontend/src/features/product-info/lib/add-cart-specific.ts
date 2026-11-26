@@ -1,6 +1,6 @@
 import type { ColorItem, Product, Size } from "@/shared/model";
 
-import { addToCartForm } from "@/entities/product-info.ts";
+import { addToCartForm } from "@/entities/product-info";
 import type { User } from "@/entities/profile";
 
 export const addColor = (color: ColorItem, user: User, product: Product) => {

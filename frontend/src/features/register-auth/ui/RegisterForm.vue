@@ -60,10 +60,10 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { showPassword } from "@/features/toggle-password/model/auth.refs";
-import { SHOW_PASSWORD_CLASS, SHOW_PASSWORD_ERROR_CLASS } from "@/shared/ui/auth-form/auth-form.variants";
+import { showPassword } from "@/features/toggle-password";
+import { SHOW_PASSWORD_CLASS, SHOW_PASSWORD_ERROR_CLASS } from "@/shared/ui/auth-form";
 import { togglePassword } from "@/features/toggle-password";
-import { refClearErrorsOnChange } from "@/shared.ts";
+import { refClearErrorsOnChange } from "@/shared/lib";
 import { registerForm, registerFormErrorMessages } from "@/features/register-auth";
 import {
   registerPhoneInputVariants,

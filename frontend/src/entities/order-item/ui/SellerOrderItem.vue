@@ -15,9 +15,7 @@
         <h1 class="text-2xl">{{ sellerItem.title }}</h1>
         <span class="text-sm text-[#A3A3A3] uppercase">{{ sellerItem.sku }}</span>
         <div class="flex items-center gap-2.5">
-          <span class="rounded-2xl border border-[#A3A3A3] px-2.5 py-1.5"
-            >{{ t("orders.size") }} {{ sellerItem.size }}</span
-          >
+          <span class="rounded-2xl border border-[#A3A3A3] px-2.5 py-1.5">{{ sellerItem.size }}</span>
           <div class="flex items-center gap-1.5 rounded-2xl border border-[#A3A3A3] px-2.5 py-1.5">
             <span>{{ sellerItem.color.colorName }}</span>
             <span
@@ -99,7 +97,7 @@ import { useOrder } from "@/entities/order-item";
 import { orderStatusVariants } from "@/entities/order-item";
 import { UiButton } from "@/shared/ui/button";
 import { OrderStatus } from "@/entities/order";
-import type { SellerOrderProps } from "@/entities/order/model/order.types";
+import type { SellerOrderProps } from "@/entities/order";
 
 import success from "@/assets/icons/checkout/payment/success.svg";
 

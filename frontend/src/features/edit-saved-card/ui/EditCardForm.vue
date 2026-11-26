@@ -51,7 +51,7 @@ import { useUpdateCard } from "@/features/edit-saved-card";
 import { paymentForm, paymentFormErrorMessage} from "@/entities/checkout-payment-form";
 import { UiButton } from "@/shared/ui/button";
 import { UiInput } from "@/shared/ui/input";
-import { cardNumberClass, expiryDateClass, paymentCardErrorClass } from "@/shared/model/payment-form.variants";
+import { cardNumberClass, expiryDateClass, paymentCardErrorClass } from "@/shared/model";
 import { cardNumberMask, expiryDateMask } from "@/entities/checkout-payment-form";
 
 const { t } = useI18n()

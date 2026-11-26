@@ -2,7 +2,7 @@ import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import type { Product } from "@/shared/model";
 
-import type { OrderPosition, SellerOrderProps } from "@/entities/order/model/order.types";
+import type { OrderPosition, SellerOrderProps } from "@/entities/order";
 
 const clipboard = ref<boolean>(false);
 

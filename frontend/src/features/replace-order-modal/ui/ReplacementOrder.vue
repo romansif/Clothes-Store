@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { closeReplaceOrder } from "@/entities/order-action";
-import { useReplaceOrder } from "@/features/order-action/api/replace-order";
+import { useReplaceOrder } from "@/features/order-action";
 import { refClearErrorsOnChange } from "@/shared/lib";
 import { cancelChoiceForm, cancelChoiceMessage } from "@/features/order-action";
 import { ReplacementForm } from "@/features/order-action";

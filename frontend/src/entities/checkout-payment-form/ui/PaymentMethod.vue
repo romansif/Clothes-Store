@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { paymentMethodClass } from "@/shared/model/payment-form.variants";
+import { paymentMethodClass } from "@/shared/model";
 import type { PaymentMethodDescriptionProps, PaymentMethods } from "@/entities/checkout-payment-form";
 
 const props = defineProps<{

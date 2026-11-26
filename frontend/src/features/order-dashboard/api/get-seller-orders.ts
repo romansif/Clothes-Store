@@ -1,4 +1,4 @@
-import type { SellerOrderProps } from "@/entities/order/model/order.types";
+import type { SellerOrderProps } from "@/entities/order";
 import { handler } from "@/shared/api";
 
 export const getSellerOrders = async () => {

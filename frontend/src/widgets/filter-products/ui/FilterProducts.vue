@@ -144,7 +144,7 @@ import {
   filterClass,
   selectedFilterAndSizeClass,
 } from "@/widgets/filter-products";
-import { showAvailability, showColor, showGender, showPrice } from "@/widgets/filter-products/filter.refs";
+import { showAvailability, showColor, showGender, showPrice } from "@/widgets/filter-products";
 
 import square from "@/assets/icons/squares/square.png";
 import checked from "@/assets/icons/squares/check-square.png";

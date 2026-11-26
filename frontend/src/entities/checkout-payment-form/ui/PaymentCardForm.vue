@@ -60,7 +60,7 @@ import {
   expiryDateClass,
   cardCvvClass,
   paymentCardErrorClass,
-} from "@/shared/model/payment-form.variants";
+} from "@/shared/model";
 import { CheckoutInput } from "@/shared/ui/checkout-input";
 
 const { t } = useI18n();

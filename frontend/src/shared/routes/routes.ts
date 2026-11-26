@@ -160,7 +160,7 @@ export const routes: RouteRecordRaw[] = [
   {
     path: "/payment-success",
     name: "payment-success",
-    component: () => import("@/pages/checkout/PaymentSuccess.vue"),
+    component: () => import("@/pages/checkout/PaymentSuccessPage.vue"),
   },
 ];
 

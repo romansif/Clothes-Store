@@ -19,7 +19,7 @@ import { PaymentCardForm, PaymentMethod } from "@/entities/checkout-payment-form
 import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment-form";
 import { allPaymentMethods } from "@/entities/checkout-payment-form";
 import type { PaymentMethods } from "@/entities/checkout-payment-form";
-import type { UserPayment } from "@/entities/user-payment/model/payment.types";
+import type { UserPayment } from "@/entities/user-payment";
 
 const props = defineProps<{
   userPayment: UserPayment | undefined;

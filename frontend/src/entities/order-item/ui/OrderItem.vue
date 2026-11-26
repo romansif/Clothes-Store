@@ -140,7 +140,7 @@ import { reviewFormModal } from "@/entities/order-action";
 import { CreateReview } from "@/features/add-review";
 import { OrderItemActions } from "@/entities/order-action";
 import { OrderStatus } from "@/entities/order";
-import type { OrderProps, OrderPosition } from "@/entities/order/model/order.types";
+import type { OrderProps, OrderPosition } from "@/entities/order";
 import copy_btn from "@/assets/icons/squares/copy.svg";
 
 const props = defineProps<{

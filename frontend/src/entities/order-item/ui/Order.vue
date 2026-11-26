@@ -69,7 +69,7 @@ import { openReplaceOrder } from "@/entities/order-action";
 import { OrderStatus } from "@/entities/order";
 import { OrderItemList } from "@/widgets/order-item-list";
 import { UiButton } from "@/shared/ui/button";
-import type { OrderProps } from "@/entities/order/model/order.types";
+import type { OrderProps } from "@/entities/order";
 
 const props = defineProps<{
   order: OrderProps;
