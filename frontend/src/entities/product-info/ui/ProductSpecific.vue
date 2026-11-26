@@ -46,7 +46,7 @@ import { productHelper } from "@/shared/lib/product-helper";
 import { addToCartVariants } from "@/entities/product-info/model/add-to-cart.variants";
 import { addToCartFormErrorMessages } from "@/entities/product-info/model/add-to-cart-form";
 import type { User } from "@/entities/profile";
-import type { ColorItem, Product, Size } from "@/shared";
+import type { ColorItem, Product, Size } from "@/shared/model";
 
 const props = defineProps<{
   user: User;

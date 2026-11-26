@@ -1,15 +1,15 @@
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
 import router from "@/app/router";
-import { useBaseModals } from "@/widgets/notification/lib/use-notify";
+import { useBaseModals } from "@/shared/ui/notification/lib/use-notify";
 import { clearProductForm } from "@/features/product-form/lib/clear-product-form";
 import {
   createProductForm,
   createProductFormErrorMessages,
   moreCreateItemForm,
   moreCreateItemFormErrorMessages,
-} from "@/entities/product-form/model/product-forms";
-import { createProductSchema, moreCreateItemsSchema } from "@/entities/product-form/model/product-schemas";
+} from "@/features/product-form/model/product-forms";
+import { createProductSchema, moreCreateItemsSchema } from "@/features/product-form/model/product-schemas";
 import { handler } from "@/shared/api/http";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
 import { imageFiles } from "@/shared/lib/product-helper";

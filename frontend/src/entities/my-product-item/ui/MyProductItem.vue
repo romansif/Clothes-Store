@@ -102,7 +102,7 @@ import { stackInfo, toggleStackInfo } from "@/entities/my-product-item/lib/toggl
 import { UiButton } from "@/shared/ui/button";
 import { ProductPreview } from "@/entities/product-card";
 import { StackInfoModal } from "@/entities/my-product-item";
-import type { Product } from "@/shared";
+import type { Product } from "@/shared/model";
 import type { User } from "@/entities/profile";
 import type { FavoriteItem } from "@/entities/favorite-item";
 

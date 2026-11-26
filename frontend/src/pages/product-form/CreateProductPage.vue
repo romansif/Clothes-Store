@@ -27,9 +27,9 @@ import { useI18n } from "vue-i18n";
 import { useCreateProduct } from "@/features/product-create-form/api/create-product";
 import { fileInput, productHelper } from "@/shared/lib/product-helper";
 import { UiButton } from "@/shared/ui/button";
-import { ProductBaseInfo } from "@/entities/product-form";
+import { ProductBaseInfo } from "@/features/product-form";
 import { CreateImageUpload, CreateVariants } from "@/features/product-create-form";
-import { Loading } from "@/widgets/state";
+import { Loading } from "@/shared/ui/state";
 
 const { t } = useI18n();
 const { onFilesSelected } = productHelper();

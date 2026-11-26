@@ -44,7 +44,7 @@ import { currentIndex, reviewImages } from "@/features/review-dashboard/lib/revi
 import { ProductRating, ReviewPhotos } from "@/entities/product-review";
 import { ReviewList } from "@/widgets/review-list";
 import { ReviewsFilter } from "@/features/product-review-filter";
-import { EmptyState, ErrorState, Loader } from "@/widgets/state";
+import { EmptyState, ErrorState, Loader } from "@/shared/ui/state";
 
 const route = useRoute();
 

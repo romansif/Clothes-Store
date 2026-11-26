@@ -24,7 +24,7 @@ import { useFavoriteData } from "@/shared/lib/use-favorite-data";
 import { useToggleFavorite } from "@/shared/api/toggle-to-favorite";
 import { ProductCard } from "@/entities/product-card";
 import type { ProductCardVariant } from "@/entities/product-card";
-import type { Product } from "@/shared";
+import type { Product } from "@/shared/model";
 import type { User } from "@/entities/profile";
 
 const props = defineProps<{

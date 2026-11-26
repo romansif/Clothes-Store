@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
 import router from "@/app/router";
-import { useBaseModals } from "@/widgets/notification/lib/use-notify.ts";
+import { useBaseModals } from "@/shared/ui/notification/lib/use-notify.ts";
 import { handler } from "@/shared/api/http.ts";
 
 const { openNotify } = useBaseModals();

@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { productHelper } from "@/shared/lib/product-helper";
-import type { Product } from "@/shared";
+import type { Product } from "@/shared/model";
 
 const props = defineProps<{
   product: Product;

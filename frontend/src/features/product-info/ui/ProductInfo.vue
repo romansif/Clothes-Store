@@ -45,7 +45,7 @@ import { toggleReadMore, fullDescription } from "@/features/product-info/lib/tog
 import { ProductPhotos, ProductSpecific } from "@/entities/product-info";
 import { ProductToCart } from "@/features/add-to-cart";
 import { addToCartForm, addToCartFormErrorMessages } from "@/entities/product-info/model/add-to-cart-form";
-import type { Product } from "@/shared";
+import type { Product } from "@/shared/model";
 import type { User } from "@/entities/profile";
 import type { CartItem } from "@/entities/cart-item";
 import type { FavoriteItem } from "@/entities/favorite-item";

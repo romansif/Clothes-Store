@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
-import { useBaseModals } from "@/widgets/notification/lib/use-notify";
+import { useBaseModals } from "@/shared/ui/notification/lib/use-notify";
 import { clearReplaceForm } from "@/features/replace-order-modal/lib/clear-order-form";
 import { closeReplaceItem, closeReplaceOrder } from "@/entities/order-action/lib/order-modal";
-import { cancelChoiceForm, cancelChoiceMessage } from "@/entities/replacement-form/model/order-forms";
-import { replaceOrderSchema } from "@/entities/replacement-form/model/replace-order-schemas";
+import { cancelChoiceForm, cancelChoiceMessage } from "@/features/order-action/model/order-forms";
+import { replaceOrderSchema } from "@/features/order-action/model/replace-order-schemas";
 import { handler } from "@/shared/api/http";
 import { applyErrors, applyZodErrors } from "@/shared/lib/errors-helper";
 import { orderStore } from "@/shared/model/order.store";

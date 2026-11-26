@@ -1,4 +1,4 @@
-import { cancelChoiceForm, cancelChoiceMessage } from "@/entities/replacement-form/model/order-forms.ts";
+import { cancelChoiceForm, cancelChoiceMessage } from "@/features/order-action/model/order-forms.ts";
 
 export const clearReplaceForm = () => {
   cancelChoiceForm.value.cancelChoice = "";

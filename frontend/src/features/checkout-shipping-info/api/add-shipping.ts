@@ -1,5 +1,5 @@
 import router from "@/app/router";
-import { useBaseModals } from "@/widgets/notification/lib/use-notify";
+import { useBaseModals } from "@/shared/ui/notification/lib/use-notify";
 import { checkoutSession, type DeliveryMethod } from "@/entities/checkout-session/model/checkout-session";
 import { shippingForm, shippingFormErrorMessage } from "@/entities/checkout-shipping/model/shipping-form";
 import { addShippingSchema } from "@/entities/checkout-shipping/model/shipping-schemas";

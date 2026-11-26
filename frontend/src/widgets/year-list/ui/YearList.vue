@@ -29,7 +29,7 @@ import { useYearProductData } from "@/widgets/year-list/lib/use-year-product-dat
 import { useFavoriteData } from "@/shared/lib/use-favorite-data";
 import { vHorizontalScroll } from "@/shared/lib/horizontal-scroll";
 import { ProductCard } from "@/entities/product-card";
-import { EmptyState, ErrorState, Loader } from "@/widgets/state";
+import { EmptyState, ErrorState, Loader } from "@/shared/ui/state";
 import type { User } from "@/entities/profile";
 
 const { favorite } = useFavoriteData();

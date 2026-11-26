@@ -1,5 +1,5 @@
 import { computed } from "vue";
-import type { Product } from "@/shared";
+import type { Product } from "@/shared/model";
 import { refDebounced } from "@vueuse/core";
 
 import { searchProductForm } from "@/features/search-product/model/search-form";

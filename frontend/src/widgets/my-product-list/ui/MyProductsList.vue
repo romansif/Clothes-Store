@@ -28,7 +28,7 @@ import { useMyProductsData } from "@/widgets/my-product-list/lib/use-my-products
 import { useFavoriteData } from "@/shared/lib/use-favorite-data";
 import { MyProductItem } from "@/entities/my-product-item";
 import { DeleteMyProductButton } from "@/features/delete-my-product";
-import { EmptyState, ErrorState, Loader } from "@/widgets/state";
+import { EmptyState, ErrorState, Loader } from "@/shared/ui/state";
 import type { User } from "@/entities/profile";
 
 const { favorite } = useFavoriteData();

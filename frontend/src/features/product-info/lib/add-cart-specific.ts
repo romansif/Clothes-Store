@@ -1,4 +1,4 @@
-import type { ColorItem, Product, Size } from "@/shared";
+import type { ColorItem, Product, Size } from "@/shared/model";
 
 import { addToCartForm } from "@/entities/product-info/model/add-to-cart-form.ts";
 import type { User } from "@/entities/profile";

@@ -31,9 +31,9 @@ import { useProductData } from "@/features/product-info/lib/use-product-data";
 import { useEditProductImages, useEditProductInfo } from "@/features/product-edit-form/api/update-product";
 import { fileInput } from "@/shared/lib/product-helper";
 import { UiButton } from "@/shared/ui/button";
-import { ProductBaseInfo } from "@/entities/product-form";
+import { ProductBaseInfo } from "@/features/product-form";
 import { EditImageUpload, EditVariants } from "@/features/product-edit-form";
-import { Loading } from "@/widgets/state";
+import { Loading } from "@/shared/ui/state";
 
 const route = useRoute();
 

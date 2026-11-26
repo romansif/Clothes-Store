@@ -26,7 +26,7 @@
 <script setup lang="ts">
 import { ProductPreview } from "@/entities/product-card";
 import type { CartItem } from "@/entities/cart-item";
-import type { Product } from "@/shared";
+import type { Product } from "@/shared/model";
 import type { User } from "@/entities/profile";
 import type { FavoriteItem } from "@/entities/favorite-item";
 

@@ -64,7 +64,7 @@ import { isSavedPayment } from "@/entities/checkout-payment-item/model/payment.r
 import { UiButton } from "@/shared/ui/button";
 import { PaymentMethodsForm } from "@/entities/checkout-payment-form";
 import { SavedCheckoutPayment } from "@/features/checkout-payment-dashboard";
-import { Loading } from "@/widgets/state";
+import { Loading } from "@/shared/ui/state";
 
 import arrow from "@/assets/icons/arrows/right-shop.svg";
 

@@ -40,7 +40,7 @@ import { useSavedAddressesData } from "@/widgets/user-address-list/lib/use-saved
 import { UiButton } from "@/shared/ui/button";
 import { DeleteModal } from "@/features/general-delete";
 import { AddressesList } from "@/widgets/user-address-list";
-import { EmptyState, ErrorState, Loader } from "@/widgets/state";
+import { EmptyState, ErrorState, Loader } from "@/shared/ui/state";
 
 const { t } = useI18n();
 const { deleteModal } = baseDeleteModal();

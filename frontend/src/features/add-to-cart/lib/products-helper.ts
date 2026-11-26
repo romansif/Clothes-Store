@@ -1,4 +1,4 @@
-import type { Product } from "@/shared";
+import type { Product } from "@/shared/model";
 
 export const isInStock = (product: Product) => {
   if (!product?.id || !product.variants) return;

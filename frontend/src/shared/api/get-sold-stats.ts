@@ -1,4 +1,4 @@
-import type { SoldStats } from "@/shared";
+import type { SoldStats } from "@/shared/model";
 
 import { handler } from "@/shared/api/http";
 

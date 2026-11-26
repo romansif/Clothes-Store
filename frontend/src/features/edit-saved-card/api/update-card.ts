@@ -1,6 +1,6 @@
 import { handler } from "@/shared/api/http";
 import {useMutation, useQueryClient} from "@tanstack/vue-query";
-import { useBaseModals } from "@/widgets/notification/lib/use-notify";
+import { useBaseModals } from "@/shared/ui/notification/lib/use-notify";
 import {card_id, closeEditCard} from "@/features/edit-saved-card/lib/toggle-edit-card";
 import { paymentForm } from "@/entities/checkout-payment-form/model/payment-form";
 import { EDITABLE_CARD } from "@/features/edit-saved-card/model/edit-card.types";

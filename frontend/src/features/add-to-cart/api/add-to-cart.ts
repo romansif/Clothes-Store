@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
-import type { Product } from "@/shared";
+import type { Product } from "@/shared/model";
 
 import { cartStore } from "@/widgets/cart-list/model/cart.store";
-import { useBaseModals } from "@/widgets/notification/lib/use-notify";
+import { useBaseModals } from "@/shared/ui/notification/lib/use-notify";
 import { addToCartForm, addToCartFormErrorMessages } from "@/entities/product-info/model/add-to-cart-form";
 import { addToCartSchema } from "@/entities/product-info/model/add-to-cart-schemas";
 import { handler } from "@/shared/api/http";

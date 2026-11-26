@@ -3,7 +3,7 @@ import {
   createProductFormErrorMessages,
   moreCreateItemForm,
   moreCreateItemFormErrorMessages,
-} from "@/entities/product-form/model/product-forms";
+} from "@/features/product-form/model/product-forms";
 import { imageFiles } from "@/shared/lib/product-helper";
 
 export const clearProductForm = () => {

@@ -28,7 +28,7 @@ import { useToggleFavorite } from "@/shared/api/toggle-to-favorite";
 import { useFavoriteData } from "@/shared/lib/use-favorite-data";
 import { CartProduct } from "@/entities/cart-item";
 import { UseCartItemActions } from "@/features/cart-item-action";
-import { EmptyState, ErrorState, Loader } from "@/widgets/state";
+import { EmptyState, ErrorState, Loader } from "@/shared/ui/state";
 import type { User } from "@/entities/profile";
 
 const { favorite } = useFavoriteData();

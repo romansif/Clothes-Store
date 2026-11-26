@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
 import router from "@/app/router";
-import { useBaseModals } from "@/widgets/notification/lib/use-notify";
+import { useBaseModals } from "@/shared/ui/notification/lib/use-notify";
 import { clearInformationForm } from "@/features/checkout-contact-info/lib/clear-address";
 import { informationForm, informationFormErrorMessages } from "@/entities/checkout-info-form/model/information-form";
 import { addContactInfoSchema } from "@/entities/checkout-info-form/model/information-schemas";

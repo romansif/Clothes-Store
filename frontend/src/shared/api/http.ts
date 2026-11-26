@@ -1,4 +1,4 @@
-import type { ApiErrorResponse } from "@/shared";
+import type { ApiErrorResponse } from "@/shared/model";
 
 import router from "@/app/router/index";
 import { resetCheckoutSession } from "@/entities/checkout-session";

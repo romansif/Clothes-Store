@@ -2,16 +2,16 @@ import { useMutation, useQueryClient } from "@tanstack/vue-query";
 import namer from "color-namer";
 
 import router from "@/app/router";
-import { useBaseModals } from "@/widgets/notification/lib/use-notify";
+import { useBaseModals } from "@/shared/ui/notification/lib/use-notify";
 import type {
   EditColorsPayload,
   EditImagesPayload,
   EditQuantityPayload,
 } from "@/features/product-edit-form/model/edit-product.types";
-import { createProductForm } from "@/entities/product-form/model/product-forms";
+import { createProductForm } from "@/features/product-form/model/product-forms";
 import { handler } from "@/shared/api/http";
 import { currentFile } from "@/shared/lib/product-helper";
-import type { Product } from "@/shared/model/product.types";
+import type { Product } from "@/shared/model";
 
 const { openNotify } = useBaseModals();
 

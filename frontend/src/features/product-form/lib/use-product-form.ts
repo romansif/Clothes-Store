@@ -1,6 +1,7 @@
 import { computed, toValue, type MaybeRefOrGetter } from "vue";
 
 import type { ProductVariants } from "@/shared/model/variants-mode";
+import type {RouteLocationNormalizedLoaded} from "vue-router";
 
 export const MODES: { code: ProductVariants }[] = [{ code: "SAME" }, { code: "DIFFERENT" }];
 
@@ -21,5 +22,10 @@ export const useProductForm = (countMode: MaybeRefOrGetter<string>) => {
 
   return {
     indicatorStyle,
+    isCreate
   };
 };
+
+export const isCreate = (route: RouteLocationNormalizedLoaded) => {
+  return computed(() => route.name === "create/product");
+}

@@ -1,1 +1,0 @@
-export { default as SizeGuideModal } from "./ui/SizeGuideModal.vue";

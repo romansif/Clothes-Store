@@ -1,4 +1,4 @@
-import type { ColorItem } from "@/shared";
+import type { ColorItem } from "@/shared/model";
 
 export interface OrderPosition {
   id: string;

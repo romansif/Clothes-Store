@@ -21,8 +21,8 @@ import { useI18n } from "vue-i18n";
 import { closeReplaceOrder } from "@/entities/order-action/lib/order-modal";
 import { useReplaceOrder } from "@/features/order-action/api/replace-order";
 import { refClearErrorsOnChange } from "@/shared/lib/errors-helper";
-import { cancelChoiceForm, cancelChoiceMessage } from "@/entities/replacement-form/model/order-forms";
-import { ReplacementForm } from "@/entities/replacement-form";
+import { cancelChoiceForm, cancelChoiceMessage } from "@/features/order-action/model/order-forms";
+import { ReplacementForm } from "@/features/order-action";
 import { UiButton } from "@/shared/ui/button";
 
 const { t } = useI18n();

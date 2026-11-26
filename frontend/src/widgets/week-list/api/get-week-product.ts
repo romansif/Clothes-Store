@@ -1,4 +1,4 @@
-import type { Product } from "@/shared";
+import type { Product } from "@/shared/model";
 
 import { handler } from "@/shared/api/http";
 
