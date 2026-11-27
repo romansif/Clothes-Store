@@ -1,4 +1,56 @@
 {
+  "info": {
+    "privacyPolicy": "Privacy Policy",
+    "contacts": {
+      "contactsHint": "Questions about your order, size or delivery? Write or call us, we reply during business hours",
+      "address": "ADDRESS",
+      "companyAddress": "12 Example St., Tashkent, 100000",
+      "phone": "PHONE",
+      "companyPhone": "+998 71 000-00-00",
+      "email": "EMAIL",
+      "companyEmail": "hello{'@'}thenoir.example",
+      "hoursWors": "BUSINESS HOURS",
+      "mn-fr&st-sn": "MON-FRI 08:00-22:00 SUT-SUN 10:00-20:00",
+      "socialMedia": "Prefer no phone calls? Submit a request via “Contactless Contact”, and we’ll message you on your messenger or by email",
+      "telegram": "Telegram",
+      "whatsApp": "WhatsApp",
+      "instagram": "Instagram"
+    },
+    "about": {
+      "aboutHint": "THE NOIR: a clothing store in black and white. We curate pieces that are easy to mix and match and last longer than one season",
+      "ourHistory": "OUR STORY",
+      "history": "THE NOIR opened in 2024 with a simple idea: a good wardrobe shouldn't be complicated. We started with a few black and white basics, and today we put together complete everyday outfits",
+      "historyDifference": "We work with dense natural fabrics and small tailoring workshops, and we fit every piece on different body types so the cut never lets you down",
+      "cherish": "WHAT WE VALUE",
+      "quality": "QUALITY",
+      "qualityText": "Dense natural fabrics and careful tailoring: pieces keep their shape and color after dozens of washes.",
+      "minimalistic": "MINIMALISM",
+      "minimalisticText": "Clean lines and a calm palette: every piece pairs with the rest without any effort.",
+      "service": "SERVICE",
+      "serviceText": "We pack your order with care, deliver it fast and accept returns with no awkward questions.",
+      "remainQuestion": "STILL HAVE QUESTIONS?"
+    },
+    "aboutPrices": {
+      "pricesHint": "Approximate prices by category and delivery costs. The exact price is shown on the product page",
+      "catalog": "CATALOG",
+      "outerWear": "Outerwear",
+      "outerWearPrice": "from $ 100",
+      "underWear": "Underwear",
+      "underWearPrice": "from $ 150",
+      "trousers&jeans": "Trousers & Jeans",
+      "trousers&jeansPrice": "from $ 200",
+      "shoes": "Shoes",
+      "shoesPrice": "from $ 150",
+      "delivery": "DELIVERY",
+      "standard": "STANDARD",
+      "standardPrice": "FREE",
+      "standardTerm": "DELIVERY TIME: FROM 1 TO 2 WEEKS",
+      "express": "EXPRESS",
+      "expressPrice": "$ 15",
+      "expressTerm": "DELIVERY TIME: DELIVER TOMORROW",
+      "exactPrice": "NEED THE EXACT PRICE?"
+    }
+  },
   "common": {
     "exit": "Exit",
     "cancel": "Cancel",
@@ -545,12 +597,12 @@
   },
   "footer": {
     "info": "INFO",
-    "pricing": "PRICING /",
-    "about": "ABOUT /",
-    "contacts": "CONTACTS /",
+    "pricing": "PRICING",
+    "about": "ABOUT",
+    "contacts": "CONTACTS",
     "languages": "LANGUAGES",
     "technologies": "TECHNOLOGIES",
-    "nfc": "Near-field communication /",
+    "nfc": "Near-field communication",
     "ru": "RU",
     "en": "EN"
   },

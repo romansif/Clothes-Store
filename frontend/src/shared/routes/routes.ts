@@ -153,6 +153,27 @@ export const routes: RouteRecordRaw[] = [
     ],
   },
   {
+    path: '/info',
+    component: () => import("@/app/layouts/InfoLayout.vue"),
+    children: [
+      {
+        path: "about",
+        name: "about",
+        component: () => import("@/pages/info/AboutPage.vue"),
+      },
+      {
+        path: "prices",
+        name: "prices",
+        component: () => import("@/pages/info/PricesPage.vue"),
+      },
+      {
+        path: "contacts",
+        name: "contacts",
+        component: () => import("@/pages/info/ContactsPage.vue"),
+      }
+    ]
+  },
+  {
     path: "/:pathMatch(.*)*",
     name: "NotFound",
     component: () => import("@/pages/NotFound.vue"),
