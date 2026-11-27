@@ -55,7 +55,7 @@ import { userAvatar } from "@/widgets/profile";
 import { routeClass, selectRouteClass } from "@/widgets/navigation";
 import { useMainNavBar } from "@/widgets/navigation";
 import { LanguageSwitcher } from "@/widgets/navigation";
-import type { User } from "@/entities/profile";
+import type { User } from "@/shared/model";
 
 import cart from "@/assets/icons/nav/cart.png";
 import liked from "@/assets/icons/nav/favorite.jpeg";

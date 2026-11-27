@@ -1,7 +1,5 @@
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useMutation } from "@tanstack/vue-query";
-
-import router from "@/app/router";
 import { useBaseModals } from "@/shared/ui/notification";
 import { clearLoginForm, clearLoginFormMessages } from "@/features/login-auth";
 import { loginForm, loginFormErrorMessages } from "@/entities/login-form";
@@ -13,6 +11,7 @@ const { openNotify } = useBaseModals();
 
 export const signIn = () => {
   const route = useRoute();
+  const router = useRouter()
 
   const {
     mutate: login,
@@ -46,7 +45,7 @@ export const signIn = () => {
       localStorage.setItem("userId", data.id);
 
       await openNotify({ variant: "login", state: "success" });
-      await router.push((route.query.redirect as string) || "/");
+      await router.push(String(route.query.redirect) || "/");
     },
 
     onError: async (err) => {

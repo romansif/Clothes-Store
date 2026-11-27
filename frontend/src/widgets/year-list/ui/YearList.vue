@@ -28,9 +28,9 @@ import { useToggleFavorite } from "@/shared/api";
 import { useYearProductData } from "@/widgets/year-list";
 import { useFavoriteData } from "@/shared/lib";
 import { vHorizontalScroll } from "@/shared/lib/horizontal-scroll";
-import { ProductCard } from "@/entities/product-card";
+import { ProductCard } from "@/shared/ui/product-card";
 import { EmptyState, ErrorState, Loader } from "@/shared/ui/state";
-import type { User } from "@/entities/profile";
+import type { User } from "@/shared/model";
 
 const { favorite } = useFavoriteData();
 const { toggleFavorite } = useToggleFavorite();

@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 import { useUpdateCartItem } from "@/features/cart-item-action";
-import type { CartItem } from "@/entities/cart-item";
+import type { CartItem } from "@/shared/model";
 
 const props = defineProps<{
   product: CartItem;

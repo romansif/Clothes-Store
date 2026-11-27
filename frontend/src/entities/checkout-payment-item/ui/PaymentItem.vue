@@ -29,7 +29,7 @@
 import { useI18n } from "vue-i18n";
 import { getSavedClass, checkClass } from "@/shared/model";
 import { isChosenPayment } from "@/entities/checkout-payment-item";
-import type { UserPayment } from "@/entities/checkout-payment-item";
+import type { UserPayment } from "@/shared/model";
 
 const props = defineProps<{
   payment: UserPayment;

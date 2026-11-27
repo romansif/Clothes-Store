@@ -1,11 +1,9 @@
+import type { ImageItem } from "@/shared/model";
+
 export interface ReviewUser {
   name: string;
   surName: string;
   avatar?: string;
-}
-
-export interface ImageItem {
-  url: string;
 }
 
 export interface Review {

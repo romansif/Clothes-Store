@@ -1,4 +1,4 @@
-import type { Product } from "@/shared/model";
+import type { Product } from "@/shared/model/index";
 
 interface FavoriteRow {
   id: string;

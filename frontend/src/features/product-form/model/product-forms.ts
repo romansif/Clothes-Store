@@ -1,9 +1,7 @@
 import { reactive, ref } from "vue";
-import type { Variant } from "@/shared/model";
 
 import type {
   MoreCreateItemFormErrorMessage,
-  ProductColor,
   ProductForm,
   ProductFormErrorMessage,
 } from "@/features/product-form";
@@ -25,9 +23,9 @@ export const createProductForm = ref<ProductForm>({
 });
 
 export const moreCreateItemForm = reactive({
-  colors: [] as ProductColor[],
-  sizes: [] as string[],
-  variants: [] as Variant[],
+  colors: [],
+  sizes: [],
+  variants: [],
 });
 
 export const createProductFormErrorMessages = ref<ProductFormErrorMessage>({

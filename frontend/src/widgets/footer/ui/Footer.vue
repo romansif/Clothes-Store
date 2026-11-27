@@ -38,11 +38,7 @@
             >
               XIV
             </span>
-            <button
-              class="rounded-full border border-white/30 px-4 py-1.5 text-sm font-semibold text-white/70 transition-all duration-300 hover:border-white hover:bg-white hover:text-black"
-            >
-              {{ t("footer.nfc") }}
-            </button>
+            <UiButton :name="t('footer.nfc')" variant="nearField" />
           </div>
           <span
             class="cursor-default text-[88px] font-black text-transparent transition-all duration-500 [-webkit-text-stroke:2px_rgba(255,255,255,0.3)] hover:translate-x-4 hover:text-white lg:text-[110px]"
@@ -66,12 +62,13 @@ import { useI18n } from "vue-i18n";
 import { LanguageSwitcher } from "@/widgets/navigation/index.ts";
 
 import arrow_link from "@/assets/icons/footer/arrow-up-right.svg";
+import {UiButton} from "@/shared/ui/button/index.ts";
 
 const { t } = useI18n();
 
 const LINKS = [
-  { link: 'about', name: "footer.pricing" },
   { link: 'prices', name: "footer.about"},
+  { link: 'about', name: "footer.pricing" },
   { link: 'contacts', name: "footer.contacts"}
 ];
 </script>

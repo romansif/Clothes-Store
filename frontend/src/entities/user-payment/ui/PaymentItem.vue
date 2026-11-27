@@ -37,7 +37,7 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import type { UserPayment } from "@/entities/checkout-payment-item";
+import type { UserPayment } from "@/shared/model";
 
 import del from "@/assets/icons/delete-close/delete.svg";
 import edit from "@/assets/icons/my-products/pencil.svg";

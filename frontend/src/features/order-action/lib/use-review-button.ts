@@ -1,7 +1,6 @@
 import { computed, toValue, type MaybeRefOrGetter } from "vue";
 import { useQuery } from "@tanstack/vue-query";
-
-import type { Review } from "@/entities/product-review";
+import type { Review } from "@/shared/model";
 import { useGetReviews } from "@/shared/api";
 
 const { getReviews } = useGetReviews();

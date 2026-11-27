@@ -1,8 +1,8 @@
 import { computed } from "vue";
 
 import { useCartData } from "@/widgets/cart-list";
-import type { CartItem } from "@/entities/cart-item";
-import { queryClient } from "@/shared/api/query-client";
+import type { CartItem } from "@/shared/model";
+import { queryClient } from "@/shared/api";
 
 export const useCheckoutItems = () => {
   const { cart } = useCartData();

@@ -45,7 +45,7 @@ import { userAvatar } from "@/widgets/profile";
 import { OpenProfileModals } from "@/widgets/profile";
 import { ProfileModals } from "@/widgets/profile";
 import { ProfileMenu } from "@/features/profile-menu";
-import type { User } from "@/entities/profile";
+import type { User } from "@/shared/model";
 
 import profile from "@/assets/icons/nav/default-avatar.png";
 

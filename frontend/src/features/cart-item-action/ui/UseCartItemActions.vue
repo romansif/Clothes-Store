@@ -19,9 +19,9 @@
 
 <script setup lang="ts">
 import { productHelper } from "@/shared/lib";
-import { sizeClass, sizeUrl } from "@/entities/cart-item";
+import { sizeClass, sizeUrl } from "@/shared/model";
 import { AddToOrder, DeleteCartItemButton, UpdateQuantityItem } from "@/features/cart-item-action";
-import type { CartItem } from "@/entities/cart-item";
+import type { CartItem } from "@/shared/model";
 
 import reload from "@/assets/icons/app/reload.svg";
 

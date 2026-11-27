@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 
 import { useBaseModals } from "@/shared/ui/notification";
-import type { SellerOrderProps } from "@/entities/order";
+import type { SellerOrderProps } from "@/shared/model";
 import { handler } from "@/shared/api";
 
 const { openNotify } = useBaseModals();

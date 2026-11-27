@@ -1,6 +1,6 @@
 import { useResetCartSelection } from "@/features/cart-item-action";
 import { resetCheckoutSession } from "@/entities/checkout-session";
-import { queryClient } from "@/shared/api/query-client";
+import { queryClient } from "@/shared/api";
 
 export const closeSuccessFull = async () => {
   const { resetSelection } = useResetCartSelection();

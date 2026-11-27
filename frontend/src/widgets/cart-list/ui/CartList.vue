@@ -26,10 +26,10 @@
 import { useCartData } from "@/widgets/cart-list";
 import { useToggleFavorite } from "@/shared/api";
 import { useFavoriteData } from "@/shared/lib";
-import { CartProduct } from "@/entities/cart-item";
+import { CartProduct } from "@/shared/model";
 import { UseCartItemActions } from "@/features/cart-item-action";
 import { EmptyState, ErrorState, Loader } from "@/shared/ui/state";
-import type { User } from "@/entities/profile";
+import type { User } from "@/shared/model";
 
 const { favorite } = useFavoriteData();
 const { toggleFavorite } = useToggleFavorite();

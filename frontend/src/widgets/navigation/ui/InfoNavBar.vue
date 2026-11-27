@@ -12,7 +12,7 @@
           </router-link>
         </li>
       </ul>
-      <LanguageSwitcher />
+      <LanguageSwitcher class="w-40"/>
     </div>
   </nav>
 </template>

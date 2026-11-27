@@ -1,6 +1,6 @@
 import { isChosenAddress, isChosenContactInfo } from "@/entities/checkout-info-item";
 import { checkoutSession } from "@/entities/checkout-session";
-import type { UserContactInfo } from "@/entities/user-address";
+import type { UserContactInfo } from "@/shared/model";
 
 export const useSavedContactInfo = (info: UserContactInfo) => {
   checkoutSession.contactId = info.id;

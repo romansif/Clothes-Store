@@ -1,4 +1,4 @@
-import type { CartItem } from "@/entities/cart-item";
+import type { CartItem } from "@/shared/model";
 import { handler } from "@/shared/api";
 
 export const getCartProducts = async (userId: string | null) => {

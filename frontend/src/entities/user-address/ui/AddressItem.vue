@@ -37,7 +37,7 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import type { UserContactInfo } from "@/entities/user-address";
+import type { UserContactInfo } from "@/shared/model";
 
 import del from "@/assets/icons/delete-close/delete.svg";
 import edit from "@/assets/icons/my-products/pencil.svg";

@@ -11,8 +11,8 @@
 
 <script setup lang="ts">
 import { useUpdateOrderStatus } from "@/features/order-dashboard";
-import { SellerOrderItem } from "@/entities/order-item";
-import type { SellerOrderProps } from "@/entities/order";
+import { SellerOrderItem } from "@/features/order-item";
+import type { SellerOrderProps } from "@/shared/model";
 
 const props = defineProps<{
   sellerItems: SellerOrderProps[];

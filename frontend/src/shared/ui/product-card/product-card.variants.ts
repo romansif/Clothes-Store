@@ -1,4 +1,4 @@
-import type { ProductCardVariant } from "@/entities/product-card";
+import type { ProductCardVariant } from "@/shared/ui/product-card/index";
 
 export const PRODUCT_CARD_VARIANTS = {
   "main&favorite&Cart": {

@@ -1,4 +1,4 @@
-import type { UserContactInfo } from "@/entities/user-address";
+import type { UserContactInfo } from "@/shared/model";
 import { handler } from "@/shared/api";
 
 export const useGetAddress = () => {

@@ -95,16 +95,16 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { previewHelper } from "@/entities/product-card";
+import { previewHelper } from "@/shared/ui/product-card";
 import { useToggleFavorite } from "@/shared/api";
 import { useSoldItem } from "@/shared/lib";
 import { stackInfo, toggleStackInfo } from "@/entities/my-product-item";
 import { UiButton } from "@/shared/ui/button";
-import { ProductPreview } from "@/entities/product-card";
+import { ProductPreview } from "@/shared/ui/product-card";
 import { StackInfoModal } from "@/entities/my-product-item";
 import type { Product } from "@/shared/model";
-import type { User } from "@/entities/profile";
-import type { FavoriteItem } from "@/entities/favorite-item";
+import type { User } from "@/shared/model";
+import type { FavoriteItem } from "@/shared/model";
 
 import pencil from "@/assets/icons/my-products/pencil.svg";
 

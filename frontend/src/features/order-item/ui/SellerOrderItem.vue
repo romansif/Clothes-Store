@@ -93,11 +93,11 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { useOrder } from "@/entities/order-item";
-import { orderStatusVariants } from "@/entities/order-item";
+import { useOrder } from "@/features/order-item";
+import { orderStatusVariants } from "@/features/order-item";
 import { UiButton } from "@/shared/ui/button";
 import { OrderStatus } from "@/entities/order";
-import type { SellerOrderProps } from "@/entities/order";
+import type { SellerOrderProps } from "@/shared/model";
 
 import success from "@/assets/icons/checkout/payment/success.svg";
 

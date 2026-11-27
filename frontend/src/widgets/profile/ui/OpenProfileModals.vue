@@ -27,7 +27,7 @@
 import { useI18n } from "vue-i18n";
 import { useProfileModals } from "@/shared/lib";
 import { ProfileTab } from "@/shared/ui/profile-tab";
-import type { User } from "@/entities/profile";
+import type { User } from "@/shared/model";
 
 const props = defineProps<{
   user: User;

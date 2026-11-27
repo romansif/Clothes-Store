@@ -24,11 +24,11 @@
 </template>
 
 <script setup lang="ts">
-import { ProductPreview } from "@/entities/product-card";
-import type { CartItem } from "@/entities/cart-item";
+import { ProductPreview } from "@/shared/ui/product-card";
+import type { CartItem } from "@/shared/model";
 import type { Product } from "@/shared/model";
-import type { User } from "@/entities/profile";
-import type { FavoriteItem } from "@/entities/favorite-item";
+import type { User } from "@/shared/model";
+import type { FavoriteItem } from "@/shared/model";
 
 const props = defineProps<{
   user: User | undefined;

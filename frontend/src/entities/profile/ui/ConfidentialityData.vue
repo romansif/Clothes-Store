@@ -93,7 +93,7 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import type { User } from "@/entities/profile";
+import type { User } from "@/shared/model";
 
 const props = defineProps<{
   user: User | undefined;

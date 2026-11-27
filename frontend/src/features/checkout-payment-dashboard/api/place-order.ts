@@ -1,7 +1,5 @@
 import { ref } from "vue";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
-
-import router from "@/app/router";
 import { useBaseModals } from "@/shared/ui/notification";
 import { clearPaymentForm } from "@/features/checkout-payment-dashboard";
 import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment-form";
@@ -9,10 +7,13 @@ import { addPaymentSchema } from "@/entities/checkout-payment-form";
 import { checkoutSession } from "@/entities/checkout-session";
 import { handler } from "@/shared/api";
 import { applyErrors, applyZodErrors } from "@/shared/lib";
+import { useRouter } from "vue-router";
 
 const { openNotify } = useBaseModals();
 
 export const usePlaceOrder = () => {
+  const router = useRouter()
+
   const queryClient = useQueryClient();
   const idempotencyKey = ref(crypto.randomUUID());
 

@@ -1,4 +1,7 @@
-import type { ProductColor } from "@/features/product-form";
+export interface ProductColor {
+  hex: string;
+  colorName: string;
+}
 
 export interface AddForm {
   colors: ProductColor;

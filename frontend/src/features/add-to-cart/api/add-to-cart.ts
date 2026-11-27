@@ -8,7 +8,7 @@ import { addToCartSchema } from "@/entities/product-info";
 import { handler } from "@/shared/api";
 import { applyErrors, applyZodErrors } from "@/shared/lib";
 
-const { unreadCount } = cartStore();
+const { increment } = cartStore();
 const { openNotify } = useBaseModals();
 
 export const useAddToCart = () => {
@@ -49,7 +49,7 @@ export const useAddToCart = () => {
     },
 
     onSuccess: async () => {
-      unreadCount.value += 1;
+      increment()
 
       await openNotify({ variant: "add-to-cart", state: "success" });
 

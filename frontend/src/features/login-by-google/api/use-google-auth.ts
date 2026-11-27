@@ -1,7 +1,6 @@
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useMutation } from "@tanstack/vue-query";
 
-import router from "@/app/router";
 import { useBaseModals } from "@/shared/ui/notification";
 import { clearLoginForm, clearLoginFormMessages } from "@/features/login-auth";
 import { loginForm } from "@/entities/login-form";
@@ -11,6 +10,7 @@ const { openNotify } = useBaseModals();
 
 export const signGoogleAuth = () => {
   const route = useRoute();
+  const router = useRouter()
 
   const {
     mutate: OAuth,
@@ -39,7 +39,7 @@ export const signGoogleAuth = () => {
       localStorage.setItem("userId", data.id);
 
       await openNotify({ variant: "OAuth", state: "success" });
-      await router.push((route.query.redirect as string) || "/");
+      await router.push(String(route.query.redirect) || "/");
     },
 
     onError: async () => {

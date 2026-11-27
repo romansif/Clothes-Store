@@ -1,6 +1,6 @@
-import type { CartItem } from "@/entities/cart-item";
+import type { CartItem } from "@/shared/model";
 import { toOrderItem } from "@/entities/order";
-import type { NewOrderPosition } from "@/entities/order";
+import type { NewOrderPosition } from "@/shared/model";
 import { isAgreeFormError } from "@/entities/product-info";
 
 export const saveOrderItems = (orderItems: NewOrderPosition[], product: CartItem) => {

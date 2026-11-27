@@ -39,7 +39,7 @@
 
 <script setup lang="ts">
 import { ratingHelper } from "@/entities/product-review";
-import type { ImageItem, Review } from "@/entities/product-review";
+import type { ImageItem, Review } from "@/shared/model";
 
 const props = defineProps<{
   review: Review;

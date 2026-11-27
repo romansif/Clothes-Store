@@ -56,7 +56,7 @@ import { useI18n } from "vue-i18n";
 import { baseDeleteModal } from "@/features/general-delete";
 import { UiButton } from "@/shared/ui/button";
 import { Menu, MenuItems, MenuItem, MenuButton } from "@headlessui/vue";
-import type { User } from "@/entities/profile";
+import type { User } from "@/shared/model";
 
 const props = defineProps<{
   user: User;

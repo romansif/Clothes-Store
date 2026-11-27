@@ -1,7 +1,7 @@
 import star from "@/assets/icons/review/full-star.png";
 import half_star from "@/assets/icons/review/half-star.png";
 
-import type { ImageItem, Review } from "@/entities/product-review";
+import type { ImageItem, Review } from "@/shared/model";
 
 export const ratingHelper = () => {
   const starCountSrc = (index: number, rating: number) => {

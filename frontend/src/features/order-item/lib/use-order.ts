@@ -2,7 +2,7 @@ import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import type { Product } from "@/shared/model";
 
-import type { OrderPosition, SellerOrderProps } from "@/entities/order";
+import type { OrderPosition, SellerOrderProps } from "@/shared/model";
 
 const clipboard = ref<boolean>(false);
 
@@ -35,7 +35,7 @@ export const useOrder = () => {
   };
 
   const orderPreview = (item: OrderPosition | SellerOrderProps) => {
-    const image = item?.images?.[0];
+    const image = item?.images;
 
     return computed(() => (image ? `${import.meta.env.VITE_SERVER_URL}/${image}` : undefined));
   };

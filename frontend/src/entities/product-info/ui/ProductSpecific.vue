@@ -45,7 +45,7 @@ import { useI18n } from "vue-i18n";
 import { productHelper } from "@/shared/lib";
 import { addToCartVariants } from "@/entities/product-info";
 import { addToCartFormErrorMessages } from "@/entities/product-info";
-import type { User } from "@/entities/profile";
+import type { User } from "@/shared/model";
 import type { ColorItem, Product, Size } from "@/shared/model";
 
 const props = defineProps<{

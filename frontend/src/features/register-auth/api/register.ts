@@ -1,6 +1,5 @@
+import { useRouter } from "vue-router";
 import { useMutation } from "@tanstack/vue-query";
-
-import router from "@/app/router";
 import { useBaseModals } from "@/shared/ui/notification";
 import { clearRegisterForm, clearRegisterFormMessages } from "@/features/register-auth";
 import { registerForm, registerFormErrorMessages } from "@/features/register-auth";
@@ -11,6 +10,8 @@ import { applyErrors, applyZodErrors } from "@/shared/lib";
 const { openNotify } = useBaseModals();
 
 export const signUp = () => {
+  const router = useRouter()
+
   const {
     mutate: register,
     isPending,

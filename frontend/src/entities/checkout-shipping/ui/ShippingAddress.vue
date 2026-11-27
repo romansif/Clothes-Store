@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import type { UserContactInfo } from "@/entities/user-address";
+import type { UserContactInfo } from "@/shared/model";
 
 const props = defineProps<{
   userAddress: UserContactInfo | undefined;

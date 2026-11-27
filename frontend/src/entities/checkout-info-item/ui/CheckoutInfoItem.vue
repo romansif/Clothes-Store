@@ -14,7 +14,7 @@
 <script setup lang="ts">
 import { getSavedClass, checkClass } from "@/shared/model";
 import { isChosenContactInfo } from "@/entities/checkout-info-item";
-import type { UserContactInfo } from "@/entities/user-address";
+import type { UserContactInfo } from "@/shared/model";
 import { useI18n } from "vue-i18n";
 
 const props = defineProps<{

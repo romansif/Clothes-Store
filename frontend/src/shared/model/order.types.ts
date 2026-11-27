@@ -1,4 +1,4 @@
-import type { ColorItem } from "@/shared/model";
+import type { ColorItem, ImageItem } from "@/shared/model/index";
 
 export type NewOrderPosition = Pick<
     OrderPosition,
@@ -10,7 +10,7 @@ export interface OrderPosition {
   orderId: string;
   productId: string;
   title: string;
-  images?: string;
+  images?: ImageItem;
   sku: string;
   price: number;
   quantity: number;
@@ -73,7 +73,7 @@ export interface SellerOrderProps {
   sku: string;
   size: string;
   color: ColorItem;
-  images: string[];
+  images?: ImageItem;
   created_at: string;
   date_created_at: string;
   time_created_at: string;

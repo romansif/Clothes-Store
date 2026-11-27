@@ -1,4 +1,4 @@
-import type { CartItem } from "@/entities/cart-item";
+import type { CartItem } from "@/shared/model";
 import type { OrderItem } from "@/entities/order";
 
 export type AddToOrderPayload = {

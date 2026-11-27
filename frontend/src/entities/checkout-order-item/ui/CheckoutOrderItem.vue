@@ -24,13 +24,14 @@
 
 <script setup lang="ts">
 import { useCheckoutOrder } from "@/entities/checkout-order-item";
-import { previewHelper } from "@/entities/product-card";
-import type { CartItem } from "@/entities/cart-item";
+import { previewHelper } from "@/shared/ui/product-card";
+import type { CartItem } from "@/shared/model";
 
 const props = defineProps<{
   product: CartItem;
+  checkoutItems: CartItem[]
 }>();
 
 const { getProductId } = previewHelper();
-const { item, preview, linePrice } = useCheckoutOrder(props.product);
+const { item, preview, linePrice } = useCheckoutOrder(props.product, props.checkoutItems);
 </script>

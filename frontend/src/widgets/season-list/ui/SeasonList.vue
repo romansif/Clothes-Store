@@ -22,10 +22,10 @@
 import { vHorizontalScroll } from "@/shared/lib/horizontal-scroll";
 import { useFavoriteData } from "@/shared/lib";
 import { useToggleFavorite } from "@/shared/api";
-import { ProductCard } from "@/entities/product-card";
-import type { ProductCardVariant } from "@/entities/product-card";
+import { ProductCard } from "@/shared/ui/product-card";
+import type { ProductCardVariant } from "@/shared/ui/product-card";
 import type { Product } from "@/shared/model";
-import type { User } from "@/entities/profile";
+import type { User } from "@/shared/model";
 
 const props = defineProps<{
   user: User | undefined;

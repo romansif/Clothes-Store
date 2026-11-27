@@ -1,4 +1,4 @@
-import type { User } from "@/entities/profile";
+import type { User } from "@/shared/model";
 import { handler } from "@/shared/api";
 
 export const useGetUser = () => {

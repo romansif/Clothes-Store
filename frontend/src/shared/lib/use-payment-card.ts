@@ -1,4 +1,4 @@
-import type { UserPayment } from "@/entities/checkout-payment-item";
+import type { UserPayment } from "@/shared/model";
 
 export const havePayments = (payments: UserPayment[]) => {
   return payments.some((payment) => payment.cardNumber !== undefined);

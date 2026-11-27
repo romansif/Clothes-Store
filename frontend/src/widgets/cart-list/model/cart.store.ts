@@ -1,19 +1,9 @@
-import { ref, watch } from "vue";
-
-import router from "@/app/router";
+import { ref } from "vue";
 
 const unreadCount = ref<number>(0);
 
-export const cartStore = () => {
-  watch(
-    () => router.currentRoute.value.name,
-    (name) => {
-      if (name === "cart") unreadCount.value = 0;
-    },
-    { immediate: true },
-  );
-
-  return {
-    unreadCount,
-  };
-};
+export const cartStore = () => ({
+  unreadCount,
+  increment: () => { unreadCount.value++ },
+  reset: () => { unreadCount.value = 0 },
+});

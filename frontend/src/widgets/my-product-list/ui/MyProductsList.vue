@@ -29,7 +29,7 @@ import { useFavoriteData } from "@/shared/lib";
 import { MyProductItem } from "@/entities/my-product-item";
 import { DeleteMyProductButton } from "@/features/delete-my-product";
 import { EmptyState, ErrorState, Loader } from "@/shared/ui/state";
-import type { User } from "@/entities/profile";
+import type { User } from "@/shared/model";
 
 const { favorite } = useFavoriteData();
 const { myProducts, isLoading, isFetching, isError, refetch } = useMyProductsData();

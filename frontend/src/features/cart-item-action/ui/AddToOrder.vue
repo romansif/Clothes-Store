@@ -10,7 +10,7 @@
 <script setup lang="ts">
 import { useAddToOrder } from "@/features/cart-item-action";
 import { orderStore } from "@/shared/model";
-import type { CartItem } from "@/entities/cart-item";
+import type { CartItem } from "@/shared/model";
 
 import check_square from "@/assets/icons/squares/check-square.png";
 import square from "@/assets/icons/squares/square.png";

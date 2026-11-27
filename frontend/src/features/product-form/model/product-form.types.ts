@@ -12,11 +12,6 @@ export interface ProductForm {
   collections: Collection;
 }
 
-export interface ProductColor {
-  hex: string;
-  colorName: string;
-}
-
 export interface ProductFormErrorMessage {
   title: string;
   category: string;

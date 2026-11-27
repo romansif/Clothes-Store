@@ -7,15 +7,21 @@
       props.orderItems.length > 1 ? 'h-77.5' : 'h-37.5',
     ]"
   >
-    <CheckoutOrderItem v-for="product in props.orderItems" :key="product.id" :product="product" />
+    <CheckoutOrderItem v-for="product in props.orderItems"
+                       :key="product.id"
+                       :product="product"
+                       :checkout-items="checkoutItems" />
   </TransitionGroup>
 </template>
 
 <script setup lang="ts">
 import { CheckoutOrderItem } from "@/entities/checkout-order-item";
-import type { CartItem } from "@/entities/cart-item";
+import { useCheckoutItems } from "@/features/checkout-order-info";
+import type { CartItem } from "@/shared/model";
 
 const props = defineProps<{
   orderItems: CartItem[];
 }>();
+
+const { checkoutItems } = useCheckoutItems();
 </script>

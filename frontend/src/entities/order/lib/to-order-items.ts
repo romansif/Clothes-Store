@@ -1,5 +1,5 @@
-import type { CartItem } from "@/entities/cart-item";
-import type { NewOrderPosition } from "@/entities/order";
+import type { CartItem } from "@/shared/model";
+import type { NewOrderPosition } from "@/shared/model";
 
 export const toOrderItem = (c: CartItem): NewOrderPosition => ({
   id: c.id,
@@ -12,5 +12,5 @@ export const toOrderItem = (c: CartItem): NewOrderPosition => ({
   quantity: Number(c.quantity),
   size: c.size,
   color: c.color,
-  images: (c.images?.[0] as unknown as string) ?? undefined,
+  images: (c.images?.[0]) ?? undefined,
 });

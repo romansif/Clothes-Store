@@ -1,7 +1,10 @@
 import type { ApiErrorResponse } from "@/shared/model";
 
-import router from "@/app/router";
-import { resetCheckoutSession } from "@/entities/checkout-session";
+let onUnauthorized: (() => void | Promise<void>) | null = null;
+
+export const setUnauthorizedHandler = (fn: () => void | Promise<void>) => {
+  onUnauthorized = fn;
+};
 
 export class ApiError extends Error {
   response?: ApiErrorResponse;
@@ -44,12 +47,7 @@ const refreshSession = () => {
 
 const logout = async () => {
   localStorage.clear();
-  resetCheckoutSession();
-
-  const current = router.currentRoute.value;
-  if (current.name !== "signIn") {
-    await router.replace({ name: "signIn", query: { redirect: current.fullPath } });
-  }
+  await onUnauthorized?.();
 };
 
 export const handler = async <T = any>(endpoints: string, options: RequestInit = {}, retry = false): Promise<T> => {

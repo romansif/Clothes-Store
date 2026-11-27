@@ -5,8 +5,8 @@
 </template>
 
 <script setup lang="ts">
-import { Order } from "@/entities/order-item";
-import type { OrderProps } from "@/entities/order";
+import { Order } from "@/features/order-item";
+import type { OrderProps } from "@/shared/model";
 
 const props = defineProps<{
   orders: OrderProps[];

@@ -24,13 +24,13 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { previewHelper } from "@/entities/product-card";
+import { previewHelper } from "@/shared/ui/product-card/index";
 import { productPreviewClass } from "@/shared/model";
-import { PRODUCT_CARD_VARIANTS } from "@/entities/product-card";
+import { PRODUCT_CARD_VARIANTS } from "@/shared/ui/product-card/index";
 import type { Product } from "@/shared/model";
-import type { User } from "@/entities/profile";
-import type { ProductCardVariant } from "@/entities/product-card";
-import type { FavoriteItem } from "@/entities/favorite-item";
+import type { User } from "@/shared/model";
+import type { ProductCardVariant } from "@/shared/ui/product-card/index";
+import type { FavoriteItem } from "@/shared/model";
 
 import liked from "@/assets/icons/nav/liked.png";
 import like from "@/assets/icons/nav/like.png";

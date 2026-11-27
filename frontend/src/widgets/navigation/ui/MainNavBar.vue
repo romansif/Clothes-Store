@@ -59,6 +59,7 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
 import { userAvatar } from "@/widgets/profile";
@@ -78,7 +79,9 @@ const route = useRoute();
 const { t } = useI18n();
 const { user } = useUserData();
 const { avatar } = userAvatar();
-const { unreadCount } = cartStore();
+const { unreadCount, reset } = cartStore();
 const { isHome, isCart, isFavorite, isProducts, isNewCollections, isSeasonCollections, isProfile } =
   useMainNavBar(route);
+
+onMounted(reset)
 </script>

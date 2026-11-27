@@ -65,9 +65,9 @@ import { isInStock } from "@/features/add-to-cart";
 import { sizeGuideModel, toggleSizeGuide } from "@/features/add-to-cart";
 import { SizeGuideModal } from "@/features/add-to-cart";
 import { UiButton } from "@/shared/ui/button";
-import type { User } from "@/entities/profile";
+import type { User } from "@/shared/model";
 import type { Product } from "@/shared/model";
-import type { CartItem } from "@/entities/cart-item";
+import type { CartItem } from "@/shared/model";
 
 import plus from "@/assets/icons/cart/plus.svg";
 import minus from "@/assets/icons/cart/minus.svg";

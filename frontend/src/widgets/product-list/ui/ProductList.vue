@@ -26,9 +26,9 @@
 import { useProductListData } from "@/shared/lib";
 import { useFavoriteData } from "@/shared/lib";
 import { useToggleFavorite } from "@/shared/api";
-import { ProductCard } from "@/entities/product-card";
+import { ProductCard } from "@/shared/ui/product-card";
 import { EmptyState, ErrorState, Loader } from "@/shared/ui/state";
-import type { User } from "@/entities/profile";
+import type { User } from "@/shared/model";
 
 const { favorite } = useFavoriteData();
 const { toggleFavorite } = useToggleFavorite();

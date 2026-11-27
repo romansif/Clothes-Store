@@ -134,13 +134,13 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { useOrder } from "@/entities/order-item";
-import { orderStatusVariants } from "@/entities/order-item";
-import { reviewFormModal } from "@/entities/order-action";
+import { useOrder } from "@/features/order-item";
+import { orderStatusVariants } from "@/features/order-item";
+import { reviewFormModal } from "@/features/order-action";
 import { CreateReview } from "@/features/add-review";
-import { OrderItemActions } from "@/entities/order-action";
+import { OrderItemActions } from "@/features/order-action";
 import { OrderStatus } from "@/entities/order";
-import type { OrderProps, OrderPosition } from "@/entities/order";
+import type { OrderProps, OrderPosition } from "@/shared/model";
 import copy_btn from "@/assets/icons/squares/copy.svg";
 
 const props = defineProps<{

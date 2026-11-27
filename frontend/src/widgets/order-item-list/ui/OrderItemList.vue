@@ -6,8 +6,8 @@
 
 <script setup lang="ts">
 import { useOrderItemsData } from "@/shared/lib";
-import { OrderItem } from "@/entities/order-item";
-import type { OrderProps } from "@/entities/order";
+import { OrderItem } from "@/features/order-item";
+import type { OrderProps } from "@/shared/model";
 
 const props = defineProps<{
   order: OrderProps;

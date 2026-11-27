@@ -37,7 +37,7 @@
 
 <script setup lang="ts">
 import { addColor, addSize } from "@/features/product-info";
-import { previewHelper } from "@/entities/product-card";
+import { previewHelper } from "@/shared/ui/product-card";
 import { useToggleFavorite } from "@/shared/api";
 import { refClearErrorsOnChange } from "@/shared/lib";
 import { productHelper } from "@/shared/lib";
@@ -46,9 +46,9 @@ import { ProductPhotos, ProductSpecific } from "@/entities/product-info";
 import { ProductToCart } from "@/features/add-to-cart";
 import { addToCartForm, addToCartFormErrorMessages } from "@/entities/product-info";
 import type { Product } from "@/shared/model";
-import type { User } from "@/entities/profile";
-import type { CartItem } from "@/entities/cart-item";
-import type { FavoriteItem } from "@/entities/favorite-item";
+import type { User } from "@/shared/model";
+import type { CartItem } from "@/shared/model";
+import type { FavoriteItem } from "@/shared/model";
 
 import like from "@/assets/icons/nav/like.png";
 import liked from "@/assets/icons/nav/liked.png";

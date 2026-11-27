@@ -1,6 +1,5 @@
 import type { Product } from "@/shared/model";
-
-import type { FavoriteItem } from "@/entities/favorite-item";
+import type { FavoriteItem } from "@/shared/model";
 
 export const previewHelper = () => {
   const getProductId = (product: Product): string => {

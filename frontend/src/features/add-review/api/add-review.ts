@@ -1,8 +1,8 @@
 import { useMutation } from "@tanstack/vue-query";
 import { useBaseModals } from "@/shared/ui/notification";
 import { reviewsStore } from "@/features/review-dashboard";
-import { closeReviewModal } from "@/entities/order-action";
-import type { User } from "@/entities/profile";
+import { closeReviewModal } from "@/features/order-action";
+import type { User } from "@/shared/model";
 import { reviewForm, reviewFormMessages } from "@/features/add-review";
 import { reviewFormSchema } from "@/features/add-review";
 import { handler } from "@/shared/api";

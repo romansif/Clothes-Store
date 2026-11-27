@@ -1,7 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 import namer from "color-namer";
-
-import router from "@/app/router";
 import { useBaseModals } from "@/shared/ui/notification";
 import type {
   EditColorsPayload,
@@ -9,6 +7,7 @@ import type {
   EditQuantityPayload,
 } from "@/features/product-edit-form/model/edit-product.types";
 import { createProductForm } from "@/features/product-form";
+import { useRouter } from "vue-router";
 import { handler } from "@/shared/api";
 import { currentFile } from "@/shared/lib";
 import type { Product } from "@/shared/model";
@@ -65,6 +64,8 @@ export const useEditProductImages = () => {
 };
 
 export const useEditProductInfo = () => {
+  const router = useRouter()
+
   const {
     mutate: editProductInfo,
     isPending,
