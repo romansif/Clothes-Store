@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { useUserData } from "@/widgets/profile";
+import { useUserData } from "@/shared/lib";
 import { filterAside } from "@/widgets/filter-products";
 import { HomeSlider, MainHome } from "@/widgets/home";
 import { AsideFilter } from "@/widgets/filter-products";

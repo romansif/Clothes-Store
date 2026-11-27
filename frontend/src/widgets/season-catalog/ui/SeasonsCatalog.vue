@@ -26,5 +26,5 @@ import { useRouter } from "vue-router";
 import { SEASONS_CATALOG } from "@/widgets/navigation";
 
 const { t } = useI18n();
-const router = useRouter()
+const router = useRouter();
 </script>

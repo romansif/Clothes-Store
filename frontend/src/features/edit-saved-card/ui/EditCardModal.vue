@@ -1,13 +1,11 @@
 <template>
   <div>
     <div
-        class="font-raleway fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)]"
-        @click="closeEditCard"
+      class="font-raleway fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)]"
+      @click="closeEditCard"
     >
       <div @click.stop class="flex h-fit w-100 flex-col rounded-xl bg-white p-5">
-        <UiButton :name="t('common.exit')"
-                  variant="exitClose"
-                  @click="closeEditCard" />
+        <UiButton :name="t('common.exit')" variant="exitClose" @click="closeEditCard" />
         <div class="flex flex-col gap-2 border-b py-4">
           <h1 class="text-2xl font-bold">{{ t("profile.modal.editCard") }}</h1>
           <div class="flex">
@@ -28,6 +26,5 @@ import { closeEditCard } from "@/features/edit-saved-card";
 import { UiButton } from "@/shared/ui/button";
 import { EditCardForm } from "@/features/edit-saved-card";
 
-const { t } = useI18n()
+const { t } = useI18n();
 </script>
-

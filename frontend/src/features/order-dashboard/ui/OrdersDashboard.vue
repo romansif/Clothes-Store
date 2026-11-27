@@ -53,7 +53,7 @@ import { OrderList } from "@/widgets/order-list";
 import { EmptyState, ErrorState, Loader } from "@/shared/ui/state";
 import type { OrderProps } from "@/shared/model";
 import { ReplacementOrder, ReplacementOrderItem } from "@/features/replace-order-modal";
-import { replaceItem, replaceOrder } from "@/entities/order-action";
+import { replaceItem, replaceOrder } from "@/features/order-action";
 
 const props = defineProps<{
   orders: OrderProps[];

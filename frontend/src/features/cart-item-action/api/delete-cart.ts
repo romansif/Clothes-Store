@@ -1,5 +1,6 @@
-import { handler } from "@/shared/api";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
+
+import { handler } from "@/shared/api";
 
 export const useDeleteCartItem = () => {
   const queryClient = useQueryClient();

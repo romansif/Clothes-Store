@@ -29,7 +29,7 @@ import type { CartItem } from "@/shared/model";
 
 const props = defineProps<{
   product: CartItem;
-  checkoutItems: CartItem[]
+  checkoutItems: CartItem[];
 }>();
 
 const { getProductId } = previewHelper();

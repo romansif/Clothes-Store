@@ -1,10 +1,4 @@
-import {
-  showAvailability,
-  showCategory,
-  showColor,
-  showGender,
-  showPrice,
-} from "@/widgets/filter-products";
+import { showAvailability, showCategory, showColor, showGender, showPrice } from "@/widgets/filter-products";
 
 export const toggleAvailabilityFilter = () => {
   showAvailability.value = !showAvailability.value;

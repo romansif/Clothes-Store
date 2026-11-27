@@ -6,13 +6,13 @@
     <SavedAddressModal v-if="savedAddresses" />
   </Transition>
   <Transition name="modal">
-    <EditAddressModal v-if="editAddressModal"/>
+    <EditAddressModal v-if="editAddressModal" />
   </Transition>
   <Transition name="modal">
     <SavedPaymentModal v-if="savedPaymentCard" />
   </Transition>
   <Transition name="modal">
-    <EditCardModal v-if="editCardModal"/>
+    <EditCardModal v-if="editCardModal" />
   </Transition>
   <Transition name="modal">
     <ProfileDataModal v-if="confidentialityData" />
@@ -26,7 +26,7 @@
 import { baseDeleteModal } from "@/features/general-delete";
 import { useProfileModals } from "@/shared/lib";
 import { avatarModal } from "@/features/profile-change-avatar";
-import { editAddressModal } from "@/features/edit-saved-address"
+import { editAddressModal } from "@/features/edit-saved-address";
 import { editCardModal } from "@/features/edit-saved-card";
 import { SavedPaymentModal } from "@/features/user-saved-payment-cards-modal";
 import { ProfileDataModal } from "@/features/profile-data";

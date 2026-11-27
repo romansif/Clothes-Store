@@ -34,10 +34,10 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { useUserData } from "@/widgets/profile";
+import { useUserData } from "@/shared/lib";
 import { useProfileModals } from "@/shared/lib";
 import { toggleAvatar } from "@/features/profile-change-avatar";
-import { userAvatar } from "@/widgets/profile";
+import { userAvatar } from "@/shared/lib";
 import { UiButton } from "@/shared/ui/button";
 import { ConfidentialityData } from "@/entities/profile";
 import { UpdateProfileForm } from "@/features/change-user-data-form";

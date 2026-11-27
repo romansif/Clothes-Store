@@ -5,8 +5,8 @@ export { default as UseCartItemActions } from "./ui/UseCartItemActions.vue";
 
 export type * from "./model/add-to-order.types";
 
-export { saveOrderItems } from "./lib/save-order-items"
-export { useDeleteCartItem } from "./api/delete-cart"
-export { useAddToOrder } from "./api/add-to-order"
-export { useResetCartSelection } from "./api/reset-cart-selection"
-export { useUpdateCartItem } from "./api/update-cart-item"
+export { saveOrderItems } from "./lib/save-order-items";
+export { useDeleteCartItem } from "./api/delete-cart";
+export { useAddToOrder } from "./api/add-to-order";
+export { useResetCartSelection } from "./api/reset-cart-selection";
+export { useUpdateCartItem } from "./api/update-cart-item";

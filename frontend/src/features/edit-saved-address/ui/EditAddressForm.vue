@@ -1,77 +1,86 @@
 <template>
-  <form action="" class="flex flex-col gap-5"
-        @submit.prevent="updateAddress()">
-    <div class="grid grid-cols-2 gap-x-10 gap-y-2.5 mt-5 font-medium w-full">
+  <form action="" class="flex flex-col gap-5" @submit.prevent="updateAddress()">
+    <div class="mt-5 grid w-full grid-cols-2 gap-x-10 gap-y-2.5 font-medium">
       <div class="flex flex-col gap-2.5">
-        <div class="flex gap-1.5 font-dm-sans">
-          <h2>{{ t('checkout.editAddress.addressName') }}</h2>
+        <div class="font-dm-sans flex gap-1.5">
+          <h2>{{ t("checkout.editAddress.addressName") }}</h2>
           <span>-</span>
           <h3>{{ userAddress?.addressName }}</h3>
         </div>
-        <UiInput variant="editAddress"
-                 v-model="informationForm.addressName"
-                 :placeholder="t('checkout.editAddress.addressNamePh')"
-                 :error-message="informationFormErrorMessages.address" />
+        <UiInput
+          variant="editAddress"
+          v-model="informationForm.addressName"
+          :placeholder="t('checkout.editAddress.addressNamePh')"
+          :error-message="informationFormErrorMessages.address"
+        />
       </div>
       <div class="flex flex-col gap-2.5">
-        <div class="flex gap-1.5 font-dm-sans">
-          <h2>{{ t('checkout.address.country') }}</h2>
+        <div class="font-dm-sans flex gap-1.5">
+          <h2>{{ t("checkout.address.country") }}</h2>
           <span>-</span>
           <h3>{{ userAddress?.country }}</h3>
         </div>
-        <UiInput variant="editAddress"
-                 v-model="informationForm.country"
-                 :placeholder="t('checkout.editAddress.countryPh')"
-                 :error-message="informationFormErrorMessages.country" />
+        <UiInput
+          variant="editAddress"
+          v-model="informationForm.country"
+          :placeholder="t('checkout.editAddress.countryPh')"
+          :error-message="informationFormErrorMessages.country"
+        />
       </div>
       <div class="flex flex-col gap-2.5">
-        <div class="flex gap-1.5 font-dm-sans">
-          <h2>{{ t('checkout.address.state') }}</h2>
+        <div class="font-dm-sans flex gap-1.5">
+          <h2>{{ t("checkout.address.state") }}</h2>
           <span>-</span>
           <h3>{{ userAddress?.stateRegion }}</h3>
         </div>
-        <UiInput variant="editAddress"
-                 v-model="informationForm.stateRegion"
-                 :placeholder="t('checkout.editAddress.statePh')"
-                 :error-message="informationFormErrorMessages.stateRegion" />
+        <UiInput
+          variant="editAddress"
+          v-model="informationForm.stateRegion"
+          :placeholder="t('checkout.editAddress.statePh')"
+          :error-message="informationFormErrorMessages.stateRegion"
+        />
       </div>
       <div class="flex flex-col gap-2.5">
-        <div class="flex gap-1.5 font-dm-sans">
-         <h2>{{ t('checkout.address.address') }}</h2>
+        <div class="font-dm-sans flex gap-1.5">
+          <h2>{{ t("checkout.address.address") }}</h2>
           <span>-</span>
           <h3>{{ userAddress?.address }}</h3>
         </div>
-        <UiInput variant="editAddress"
-                 v-model="informationForm.address"
-                 :placeholder="t('checkout.editAddress.addressPh')"
-                 :error-message="informationFormErrorMessages.address" />
+        <UiInput
+          variant="editAddress"
+          v-model="informationForm.address"
+          :placeholder="t('checkout.editAddress.addressPh')"
+          :error-message="informationFormErrorMessages.address"
+        />
       </div>
       <div class="flex flex-col gap-2.5">
-        <div class="flex gap-1.5 font-dm-sans">
-          <h2>{{ t('checkout.address.city') }}</h2>
+        <div class="font-dm-sans flex gap-1.5">
+          <h2>{{ t("checkout.address.city") }}</h2>
           <span>-</span>
           <h3>{{ userAddress?.city }}</h3>
         </div>
-        <UiInput variant="editAddress"
-                 v-model="informationForm.city"
-                 :placeholder="t('checkout.editAddress.cityPh')"
-                 :error-message="informationFormErrorMessages.city" />
+        <UiInput
+          variant="editAddress"
+          v-model="informationForm.city"
+          :placeholder="t('checkout.editAddress.cityPh')"
+          :error-message="informationFormErrorMessages.city"
+        />
       </div>
       <div class="flex flex-col gap-2.5">
-        <div class="flex gap-1.5 font-dm-sans">
-          <h2>{{ t('checkout.address.postalCode') }}</h2>
+        <div class="font-dm-sans flex gap-1.5">
+          <h2>{{ t("checkout.address.postalCode") }}</h2>
           <span>-</span>
           <h3>{{ userAddress?.postalCode }}</h3>
         </div>
-        <UiInput variant="editAddress"
-                 v-model="informationForm.postalCode"
-                 :placeholder="t('checkout.editAddress.postalCodePh')"
-                 :error-message="informationFormErrorMessages.postalCode" />
+        <UiInput
+          variant="editAddress"
+          v-model="informationForm.postalCode"
+          :placeholder="t('checkout.editAddress.postalCodePh')"
+          :error-message="informationFormErrorMessages.postalCode"
+        />
       </div>
     </div>
-    <UiButton type="submit"
-              :name="t('checkout.editAddress.edit')"
-              variant="editAddress&Card" />
+    <UiButton type="submit" :name="t('checkout.editAddress.edit')" variant="editAddress&Card" />
   </form>
 </template>
 
@@ -83,8 +92,7 @@ import { informationForm, informationFormErrorMessages } from "@/entities/checko
 import { UiButton } from "@/shared/ui/button";
 import { UiInput } from "@/shared/ui/input";
 
-const { t } = useI18n()
-const { updateAddress } = useUpdateAddress()
-const { userAddress } = useSavedAddressData()
+const { t } = useI18n();
+const { updateAddress } = useUpdateAddress();
+const { userAddress } = useSavedAddressData();
 </script>
-

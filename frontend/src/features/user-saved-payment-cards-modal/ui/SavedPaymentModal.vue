@@ -1,7 +1,8 @@
 <template>
   <div>
-    <div class="font-raleway fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)]"
-         @click="toggleSavedPaymentCard"
+    <div
+      class="font-raleway fixed inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.5)]"
+      @click="toggleSavedPaymentCard"
     >
       <div @click.stop class="flex h-150 w-222.5 flex-col rounded-xl bg-white p-5">
         <UiButton :name="t('common.exit')" variant="exitClose" @click="toggleSavedPaymentCard" />

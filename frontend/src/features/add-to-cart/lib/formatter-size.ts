@@ -1,7 +1,7 @@
 import { computed, ref } from "vue";
-import type { Product, SizeGuide } from "@/shared/model";
 
 import { productSpecific } from "@/features/product-form";
+import type { Product, SizeGuide } from "@/shared/model";
 
 const {
   OUTER_WEAR,

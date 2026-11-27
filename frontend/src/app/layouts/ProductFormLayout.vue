@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { useUserData } from "@/widgets/profile";
+import { useUserData } from "@/shared/lib";
 import { clearProductForm } from "@/features/product-form";
 
 const { t } = useI18n();

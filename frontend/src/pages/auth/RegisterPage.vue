@@ -7,13 +7,13 @@
       <img :src="maki_arrow" alt="" class="absolute top-9.5 left-58 w-6.25 sm:left-118" />
     </div>
   </form>
-<!--  <div class="mt-3 flex justify-center">-->
-<!--    <UiButton-->
-<!--      variant="changeRegister"-->
-<!--      :name="isRole ? t('auth.signUpAsBuyer') : t('auth.signUpAsSeller')"-->
-<!--      @click="toggleSignUp"-->
-<!--    />-->
-<!--  </div>-->
+  <!--  <div class="mt-3 flex justify-center">-->
+  <!--    <UiButton-->
+  <!--      variant="changeRegister"-->
+  <!--      :name="isRole ? t('auth.signUpAsBuyer') : t('auth.signUpAsSeller')"-->
+  <!--      @click="toggleSignUp"-->
+  <!--    />-->
+  <!--  </div>-->
 </template>
 
 <script setup lang="ts">

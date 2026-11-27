@@ -1,11 +1,11 @@
 <template>
-  <div class="flex flex-col gap-15 py-10 px-10 md:px-11 lg:px-12">
+  <div class="flex flex-col gap-15 px-10 py-10 md:px-11 lg:px-12">
     <div class="flex flex-col gap-5">
       <h1 class="text-6xl font-extrabold">{{ t("footer.pricing") }}</h1>
-      <p class="text-xl text-[#A3A3A3] w-180 font-medium">{{ t("info.aboutPrices.pricesHint")}}</p>
+      <p class="w-180 text-xl font-medium text-[#A3A3A3]">{{ t("info.aboutPrices.pricesHint") }}</p>
     </div>
     <div class="flex flex-col gap-10 pb-10">
-      <h2 class="text-4xl font-extrabold border-b border-white/30 pb-10">{{ t("info.aboutPrices.catalog") }}</h2>
+      <h2 class="border-b border-white/30 pb-10 text-4xl font-extrabold">{{ t("info.aboutPrices.catalog") }}</h2>
       <ul class="flex flex-col gap-15">
         <li v-for="item in CATALOG" class="flex items-center justify-between border-b border-white/30 pb-10">
           <h3 class="text-2xl font-bold">
@@ -18,17 +18,19 @@
       </ul>
     </div>
     <div class="flex flex-col gap-10">
-      <h2 class="text-4xl font-extrabold ">{{ t("info.aboutPrices.delivery") }}</h2>
-      <ul class="flex items-center gap-15 pb-15 border-b border-white/30">
-        <li v-for="item in DELIVERY"
-            class="flex flex-col gap-5 px-10 py-5 h-45 w-full border border-white/30 rounded-xl">
+      <h2 class="text-4xl font-extrabold">{{ t("info.aboutPrices.delivery") }}</h2>
+      <ul class="flex items-center gap-15 border-b border-white/30 pb-15">
+        <li
+          v-for="item in DELIVERY"
+          class="flex h-45 w-full flex-col gap-5 rounded-xl border border-white/30 px-10 py-5"
+        >
           <span class="text-xl font-semibold text-[#A3A3A3]">
             {{ t(item.name) }}
           </span>
           <h2 class="font-dm-sans text-4xl">
             {{ t(item.price) }}
           </h2>
-          <span class="text-xl text-[#A3A3A3] font-medium">
+          <span class="text-xl font-medium text-[#A3A3A3]">
             {{ t(item.text) }}
           </span>
         </li>
@@ -43,20 +45,19 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import {UiButton} from "@/shared/ui/button";
+import { UiButton } from "@/shared/ui/button";
 
-const { t } = useI18n()
+const { t } = useI18n();
 
 const CATALOG = [
   { name: "info.aboutPrices.outerWear", price: "info.aboutPrices.outerWearPrice" },
   { name: "info.aboutPrices.underWear", price: "info.aboutPrices.underWearPrice" },
   { name: "info.aboutPrices.trousers&jeans", price: "info.aboutPrices.trousers&jeansPrice" },
-  { name: "info.aboutPrices.shoes", price: "info.aboutPrices.shoesPrice" }
-]
+  { name: "info.aboutPrices.shoes", price: "info.aboutPrices.shoesPrice" },
+];
 
 const DELIVERY = [
   { name: "info.aboutPrices.standard", price: "info.aboutPrices.standardPrice", text: "info.aboutPrices.standardTerm" },
   { name: "info.aboutPrices.express", price: "info.aboutPrices.expressPrice", text: "info.aboutPrices.expressTerm" },
-]
+];
 </script>
-

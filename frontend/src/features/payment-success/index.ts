@@ -1,3 +1,3 @@
-export { default as PaymentSuccess } from "./ui/PaymentSuccess.vue"
+export { default as PaymentSuccess } from "./ui/PaymentSuccess.vue";
 
-export { closeSuccessFull } from "./lib/toggle-success-payment"
+export { closeSuccessFull } from "./lib/toggle-success-payment";

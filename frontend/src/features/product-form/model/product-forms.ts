@@ -1,10 +1,6 @@
 import { reactive, ref } from "vue";
 
-import type {
-  MoreCreateItemFormErrorMessage,
-  ProductForm,
-  ProductFormErrorMessage,
-} from "@/features/product-form";
+import type { MoreCreateItemFormErrorMessage, ProductForm, ProductFormErrorMessage } from "@/features/product-form";
 
 export const createProductForm = ref<ProductForm>({
   title: "",

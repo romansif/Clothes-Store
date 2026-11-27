@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import { baseDeleteModal } from "@/features/general-delete";
-import { openEditAddress } from "@/features/edit-saved-address"
+import { openEditAddress } from "@/features/edit-saved-address";
 import { useSavedAddressesData } from "@/widgets/user-address-list";
 import { AddressItem } from "@/entities/user-address";
 

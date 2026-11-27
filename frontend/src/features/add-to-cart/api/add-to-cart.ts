@@ -1,12 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
-import type { Product } from "@/shared/model";
 
-import { cartStore } from "@/widgets/cart-list";
-import { useBaseModals } from "@/shared/ui/notification";
-import { addToCartForm, addToCartFormErrorMessages } from "@/entities/product-info";
-import { addToCartSchema } from "@/entities/product-info";
+import { addToCartForm, addToCartFormErrorMessages, addToCartSchema } from "@/entities/product-info";
 import { handler } from "@/shared/api";
 import { applyErrors, applyZodErrors } from "@/shared/lib";
+import type { Product } from "@/shared/model";
+import { cartStore } from "@/shared/model";
+import { useBaseModals } from "@/shared/ui/notification";
 
 const { increment } = cartStore();
 const { openNotify } = useBaseModals();
@@ -49,7 +48,7 @@ export const useAddToCart = () => {
     },
 
     onSuccess: async () => {
-      increment()
+      increment();
 
       await openNotify({ variant: "add-to-cart", state: "success" });
 

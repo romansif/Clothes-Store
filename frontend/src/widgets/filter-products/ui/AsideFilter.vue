@@ -182,13 +182,7 @@ import {
   filterClass,
 } from "@/widgets/filter-products";
 import { SIZES } from "@/shared/model";
-import {
-  showAvailability,
-  showCategory,
-  showColor,
-  showGender,
-  showPrice,
-} from "@/widgets/filter-products";
+import { showAvailability, showCategory, showColor, showGender, showPrice } from "@/widgets/filter-products";
 
 import square from "@/assets/icons/squares/square.png";
 import left_arrow from "@/assets/icons/arrows/arrow-left.svg";

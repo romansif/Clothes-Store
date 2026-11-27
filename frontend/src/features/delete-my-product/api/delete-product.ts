@@ -1,8 +1,9 @@
-import { handler } from "@/shared/api";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
+
+import { handler } from "@/shared/api";
 import { useBaseModals } from "@/shared/ui/notification";
 
-const { openNotify } = useBaseModals()
+const { openNotify } = useBaseModals();
 
 export const useDeleteProduct = () => {
   const queryClient = useQueryClient();

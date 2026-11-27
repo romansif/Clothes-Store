@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { useUserData } from "@/widgets/profile";
+import { useUserData } from "@/shared/lib";
 import { baseDeleteModal } from "@/features/general-delete";
 import { MyProductList } from "@/widgets/my-product-list";
 import { DeleteModal } from "@/features/general-delete";

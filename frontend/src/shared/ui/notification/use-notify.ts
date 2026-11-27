@@ -1,10 +1,10 @@
 import { computed, ref } from "vue";
-import { notifyErrorMessages, notifyMessages } from "@/shared/ui/notification/notification-messages";
-import type { NotificationProps } from "@/shared/ui/notification";
-
 import error from "@/assets/icons/notification/error.svg";
 import payment_success from "@/assets/icons/notification/payment-success.svg";
 import success from "@/assets/icons/notification/success.svg";
+
+import type { NotificationProps } from "@/shared/ui/notification";
+import { notifyErrorMessages, notifyMessages } from "@/shared/ui/notification/notification-messages";
 
 const notify = ref<boolean>(false);
 const notifyProps = ref<NotificationProps | null>({

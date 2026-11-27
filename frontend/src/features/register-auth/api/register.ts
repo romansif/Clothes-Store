@@ -1,16 +1,21 @@
 import { useRouter } from "vue-router";
 import { useMutation } from "@tanstack/vue-query";
-import { useBaseModals } from "@/shared/ui/notification";
-import { clearRegisterForm, clearRegisterFormMessages } from "@/features/register-auth";
-import { registerForm, registerFormErrorMessages } from "@/features/register-auth";
-import { registerSchema } from "@/features/register-auth";
+
+import {
+  clearRegisterForm,
+  clearRegisterFormMessages,
+  registerForm,
+  registerFormErrorMessages,
+  registerSchema,
+} from "@/features/register-auth";
 import { handler } from "@/shared/api";
 import { applyErrors, applyZodErrors } from "@/shared/lib";
+import { useBaseModals } from "@/shared/ui/notification";
 
 const { openNotify } = useBaseModals();
 
 export const signUp = () => {
-  const router = useRouter()
+  const router = useRouter();
 
   const {
     mutate: register,
@@ -48,14 +53,14 @@ export const signUp = () => {
 
       localStorage.setItem("userId", data.id);
 
-      await openNotify({ variant: 'register', state: 'success' });
+      await openNotify({ variant: "register", state: "success" });
       await router.push({ name: "profile" });
     },
 
     onError: async (err) => {
       applyErrors(err, registerFormErrorMessages);
 
-      await openNotify({ variant: 'register', state: 'error' });
+      await openNotify({ variant: "register", state: "error" });
     },
   });
 

@@ -7,9 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import {
-  CHECKOUT_INPUT_CLASS, CHECKOUT_INPUT_ERROR_CLASS,
-} from "@/shared/ui/checkout-input/checkout-input.variants";
+import { CHECKOUT_INPUT_CLASS, CHECKOUT_INPUT_ERROR_CLASS } from "@/shared/ui/checkout-input/checkout-input.variants";
 import type { CheckoutInputProps } from "@/shared/ui/checkout-input";
 
 const props = withDefaults(defineProps<CheckoutInputProps>(), {

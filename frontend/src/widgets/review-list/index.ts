@@ -1,3 +1,3 @@
 export { default as ReviewList } from "./ui/ReviewList.vue";
 
-export { useFilteredReviewsData, useReviewsData } from "./lib/use-review-data"
+export { useFilteredReviewsData, useReviewsData } from "./lib/use-review-data";

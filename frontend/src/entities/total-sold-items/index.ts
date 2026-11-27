@@ -1,1 +1,1 @@
-export { default as TotalSoldItems } from "./ui/TotalSoldItems.vue"
+export { default as TotalSoldItems } from "./ui/TotalSoldItems.vue";

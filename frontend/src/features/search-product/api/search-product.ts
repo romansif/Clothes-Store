@@ -1,9 +1,9 @@
 import { computed } from "vue";
-import type { Product } from "@/shared/model";
 import { refDebounced } from "@vueuse/core";
 
 import { searchProductForm } from "@/features/search-product";
 import { handler } from "@/shared/api";
+import type { Product } from "@/shared/model";
 
 export const search = computed(() => searchProductForm.value.search);
 export const debouncedSearch = refDebounced(search, 700);

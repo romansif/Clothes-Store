@@ -1,5 +1,5 @@
-import type { CartItem } from "@/shared/model";
 import type { OrderItem } from "@/entities/order";
+import type { CartItem } from "@/shared/model";
 
 export type AddToOrderPayload = {
   product: CartItem;

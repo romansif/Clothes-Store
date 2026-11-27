@@ -1,7 +1,6 @@
-import type { CartItem } from "@/shared/model";
 import { toOrderItem } from "@/entities/order";
-import type { NewOrderPosition } from "@/shared/model";
 import { isAgreeFormError } from "@/entities/product-info";
+import type { CartItem, NewOrderPosition } from "@/shared/model";
 
 export const saveOrderItems = (orderItems: NewOrderPosition[], product: CartItem) => {
   const index = orderItems.findIndex((item) => item.id === product.id);

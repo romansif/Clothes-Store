@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { useUserData } from "@/widgets/profile";
+import { useUserData } from "@/shared/lib";
 import { useSeasonProductData } from "@/widgets/season-list";
 import { SeasonsHeader } from "@/widgets/navigation";
 import { SeasonList } from "@/widgets/season-list";

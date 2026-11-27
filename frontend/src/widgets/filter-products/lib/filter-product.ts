@@ -1,9 +1,9 @@
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
-import type { Product } from "@/shared/model";
 
 import { activeFilter, yearFilter } from "@/widgets/filter-products";
 import { clearSearchProductForm } from "@/features/search-product";
+import type { Product } from "@/shared/model";
 import { SIZES } from "@/shared/model";
 
 const FILTER_LABEL_KEYS: Record<string, string> = {

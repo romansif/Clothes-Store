@@ -7,10 +7,12 @@
       props.orderItems.length > 1 ? 'h-77.5' : 'h-37.5',
     ]"
   >
-    <CheckoutOrderItem v-for="product in props.orderItems"
-                       :key="product.id"
-                       :product="product"
-                       :checkout-items="checkoutItems" />
+    <CheckoutOrderItem
+      v-for="product in props.orderItems"
+      :key="product.id"
+      :product="product"
+      :checkout-items="checkoutItems"
+    />
   </TransitionGroup>
 </template>
 

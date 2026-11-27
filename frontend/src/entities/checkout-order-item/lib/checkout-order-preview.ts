@@ -1,6 +1,6 @@
 import { computed } from "vue";
-import type { Product } from "@/shared/model";
-import type { CartItem } from "@/shared/model";
+
+import type { CartItem, Product } from "@/shared/model";
 
 export const useCheckoutOrder = (product: Product, checkoutItems: CartItem[]) => {
   const item = computed(() => checkoutItems.find((row) => row.id === product?.id) ?? (product as CartItem));

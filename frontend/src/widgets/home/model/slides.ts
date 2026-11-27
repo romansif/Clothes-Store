@@ -3,6 +3,7 @@ import autumn_slide from "@/assets/photos/home-slides/autumn_slide.png";
 import classic_slide from "@/assets/photos/home-slides/classic_slide.png";
 import month_slide from "@/assets/photos/main-slides/month-slide.png";
 import winter_slide from "@/assets/photos/main-slides/winter_slide.png";
+
 import type { Slide } from "@/shared/model";
 
 export const HOME_SLIDES: Slide[] = [

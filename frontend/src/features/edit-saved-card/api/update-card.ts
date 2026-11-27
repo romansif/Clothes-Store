@@ -1,69 +1,69 @@
-import { handler } from "@/shared/api";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
-import { useBaseModals } from "@/shared/ui/notification";
-import { card_id, closeEditCard } from "@/features/edit-saved-card";
-import { paymentForm } from "@/entities/checkout-payment-form";
-import { EDITABLE_CARD } from "@/features/edit-saved-card/model/edit-card.types";
+
 import { clearPaymentForm } from "@/features/checkout-payment-dashboard";
+import { card_id, closeEditCard } from "@/features/edit-saved-card";
+import { EDITABLE_CARD } from "@/features/edit-saved-card/model/edit-card.types";
+import { paymentForm } from "@/entities/checkout-payment-form";
+import { handler } from "@/shared/api";
+import { useBaseModals } from "@/shared/ui/notification";
 
 const { openNotify } = useBaseModals();
 
 const buildPatch = () => {
-    const patch: Record<string, string> = {};
-    for (const field of EDITABLE_CARD) {
-        const value = String(paymentForm.value[field] ?? "").trim();
-        if (value) patch[field] = value;
-    }
-    return patch;
+  const patch: Record<string, string> = {};
+  for (const field of EDITABLE_CARD) {
+    const value = String(paymentForm.value[field] ?? "").trim();
+    if (value) patch[field] = value;
+  }
+  return patch;
 };
 
 export const useUpdateCard = () => {
-    const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
-    const {
-        mutate: updateCard,
-        isPending,
-        isError
-    } = useMutation(({
-        mutationKey: ["updateCard"],
-        mutationFn: async () => {
-            if(!card_id) {
-                throw new Error("Card id is missing");
-            }
+  const {
+    mutate: updateCard,
+    isPending,
+    isError,
+  } = useMutation({
+    mutationKey: ["updateCard"],
+    mutationFn: async () => {
+      if (!card_id) {
+        throw new Error("Card id is missing");
+      }
 
-            const patch = buildPatch()
-            if (!Object.keys(patch).length) throw new Error("Nothing to update");
+      const patch = buildPatch();
+      if (!Object.keys(patch).length) throw new Error("Nothing to update");
 
+      await handler(`/payment/${card_id.value}`, {
+        method: "PATCH",
+        body: JSON.stringify(patch),
+      });
 
-            await handler(`/payment/${card_id.value}`, {
-                method: 'PATCH',
-                body: JSON.stringify(patch)
-            })
+      clearPaymentForm();
+      closeEditCard();
+    },
 
-            clearPaymentForm()
-            closeEditCard()
-        },
+    onSuccess: async () => {
+      await openNotify({ variant: "edit-payment", state: "success" });
 
-        onSuccess: async () => {
-            await openNotify({ variant: 'edit-payment', state: 'success' })
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: ["userPaymentCards"] }),
+        queryClient.invalidateQueries({ queryKey: ["userPaymentCard"] }),
+      ]);
 
-            await Promise.all([
-                queryClient.invalidateQueries({ queryKey: ['userPaymentCards'] }),
-                queryClient.invalidateQueries({ queryKey: ['userPaymentCard'] })
-            ])
+      clearPaymentForm();
+      closeEditCard();
+    },
 
-            clearPaymentForm()
-            closeEditCard()
-        },
+    onError: async () => {
+      await openNotify({ variant: "edit-payment", state: "error" });
+    },
+  });
 
-        onError: async () => {
-            await openNotify({ variant: 'edit-payment', state: 'error' })
-        }
-    }))
-
-    return {
-        updateCard,
-        isPending,
-        isError
-    }
-}
+  return {
+    updateCard,
+    isPending,
+    isError,
+  };
+};

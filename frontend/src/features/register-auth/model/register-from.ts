@@ -1,6 +1,6 @@
 import { ref } from "vue";
 
-import type { RegisterFormModel, RegisterFormErrorMessage } from "@/features/register-auth";
+import type { RegisterFormErrorMessage, RegisterFormModel } from "@/features/register-auth";
 
 export const registerForm = ref<RegisterFormModel>({
   name: "",

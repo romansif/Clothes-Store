@@ -136,7 +136,7 @@
 import { useI18n } from "vue-i18n";
 import { useOrder } from "@/features/order-item";
 import { orderStatusVariants } from "@/features/order-item";
-import { reviewFormModal } from "@/features/order-action";
+import { reviewFormModal } from "@/features/add-review";
 import { CreateReview } from "@/features/add-review";
 import { OrderItemActions } from "@/features/order-action";
 import { OrderStatus } from "@/entities/order";

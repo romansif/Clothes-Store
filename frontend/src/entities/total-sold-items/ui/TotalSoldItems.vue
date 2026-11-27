@@ -1,7 +1,7 @@
 <template>
   <section class="font-raleway flex w-xl flex-col gap-1.5">
     <h3 class="text-lg font-semibold">{{ t("myProduct.totalTitle") }}</h3>
-    <div class="flex flex-col gap-1.5  w-fit rounded-xl bg-white border-2 border-gray-300 py-1.5 font-medium">
+    <div class="flex w-fit flex-col gap-1.5 rounded-xl border-2 border-gray-300 bg-white py-1.5 font-medium">
       <div class="flex flex-col items-center gap-1.5 border-b-2 border-gray-300 px-5">
         <h4 class="text-[#A3A3A3]">{{ t("myProduct.sold") }}</h4>
         <div class="flex items-end gap-1.5">
@@ -21,8 +21,6 @@
 import { useI18n } from "vue-i18n";
 import { useSoldItems } from "@/shared/lib";
 
-const { t } = useI18n()
-const { totalSoldQuantity, totalSoldTotalPrice } = useSoldItems()
+const { t } = useI18n();
+const { totalSoldQuantity, totalSoldTotalPrice } = useSoldItems();
 </script>
-
-

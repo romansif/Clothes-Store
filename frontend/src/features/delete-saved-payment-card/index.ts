@@ -1,1 +1,1 @@
-export { useDeletePayment } from "./api/delete-payment"
+export { useDeletePayment } from "./api/delete-payment";

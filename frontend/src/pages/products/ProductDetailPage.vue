@@ -19,7 +19,7 @@ import { useCartData } from "@/widgets/cart-list";
 import { useFavoriteData } from "@/shared/lib";
 import { ProductInfo } from "@/features/product-info";
 import { ProductReviews } from "@/features/review-dashboard";
-import { useUserData } from "@/widgets/profile";
+import { useUserData } from "@/shared/lib";
 import { ErrorState, Loader } from "@/shared/ui/state";
 
 const route = useRoute();

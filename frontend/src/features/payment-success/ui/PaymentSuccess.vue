@@ -4,8 +4,8 @@
     {{ t("paymentSuccess.title") }}
   </h1>
   <span class="w-110 text-center font-medium text-[#555]">
-        {{ t("paymentSuccess.thanks") }}
-      </span>
+    {{ t("paymentSuccess.thanks") }}
+  </span>
   <div class="flex w-180 flex-col gap-5 border-2 bg-white p-7">
     <div class="flex flex-col gap-7 border-b-2 border-[#ccc] pb-7">
       <div class="flex items-center">
@@ -15,23 +15,23 @@
       <div v-if="userPaymentCard" class="flex items-center text-[#555]">
         <span> {{ t("paymentSuccess.date") }}</span>
         <span class="font-dm-sans ml-auto">
-              {{ userPaymentCard.created_at }}
-            </span>
+          {{ userPaymentCard.created_at }}
+        </span>
       </div>
       <div v-if="userPaymentCard" class="flex items-center text-[#555]">
         <span> {{ t("paymentSuccess.paymentMethod") }}</span>
         <span v-if="userPaymentCard.paymentMethod === 'card'" class="font-dm-sans ml-auto">
-              {{ userPaymentCard.paymentMethod }}
-            </span>
+          {{ userPaymentCard.paymentMethod }}
+        </span>
         <span v-else class="font-dm-sans ml-auto"
-        >{{ t("paymentSuccess.pay") }} {{ userPaymentCard.paymentMethod }}</span
+          >{{ t("paymentSuccess.pay") }} {{ userPaymentCard.paymentMethod }}</span
         >
       </div>
       <div v-if="userAddress" class="flex items-center text-[#555]">
         <span> {{ t("paymentSuccess.deliveryAddress") }}</span>
         <span class="font-dm-sans ml-auto">
-              {{ userAddress.address }}
-            </span>
+          {{ userAddress.address }}
+        </span>
       </div>
     </div>
     <div class="flex flex-col gap-3.5">
@@ -57,7 +57,7 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { useUserData } from "@/widgets/profile";
+import { useUserData } from "@/shared/lib";
 import { orderPriceInfo } from "@/features/checkout-order-info";
 import { useSavedAddressData } from "@/widgets/user-address-list";
 import { useSavedPaymentData } from "@/widgets/user-payment-card-list";

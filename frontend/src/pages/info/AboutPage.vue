@@ -1,21 +1,21 @@
 <template>
-  <div class="flex flex-col gap-15 py-10 px-10 md:px-11 lg:px-12">
+  <div class="flex flex-col gap-15 px-10 py-10 md:px-11 lg:px-12">
     <div class="flex flex-col gap-5">
       <h1 class="text-6xl font-extrabold">{{ t("footer.about") }}</h1>
-      <p class="text-xl text-[#A3A3A3] w-180 font-medium">{{ t("info.about.aboutHint")}}</p>
+      <p class="w-180 text-xl font-medium text-[#A3A3A3]">{{ t("info.about.aboutHint") }}</p>
     </div>
     <div class="flex items-center gap-25">
-      <div class="bg-[#151515] w-150 h-80 rounded-xl">
-        <img :src="collection" alt="" class="rounded-2xl">
+      <div class="h-80 w-150 rounded-xl bg-[#151515]">
+        <img :src="collection" alt="" class="rounded-2xl" />
       </div>
       <div class="flex flex-col gap-5">
         <h2 class="text-4xl font-extrabold">{{ t("info.about.ourHistory") }}</h2>
-        <p class="text-xl text-[#A3A3A3] w-180 font-medium">{{ t("info.about.history") }}</p>
-        <p class="text-xl text-[#A3A3A3] w-180 font-medium">{{ t("info.about.historyDifference") }}</p>
+        <p class="w-180 text-xl font-medium text-[#A3A3A3]">{{ t("info.about.history") }}</p>
+        <p class="w-180 text-xl font-medium text-[#A3A3A3]">{{ t("info.about.historyDifference") }}</p>
       </div>
     </div>
-    <ul class="grid grid-cols-3 gap-10 pb-15 border-b border-white/30">
-      <li v-for="item in CHERISH" class="flex flex-col gap-2.5 px-10 py-5 h-45 border border-white/30 rounded-xl">
+    <ul class="grid grid-cols-3 gap-10 border-b border-white/30 pb-15">
+      <li v-for="item in CHERISH" class="flex h-45 flex-col gap-2.5 rounded-xl border border-white/30 px-10 py-5">
         <span class="text-lg font-semibold text-[#A3A3A3]">
           {{ t(item.name) }}
         </span>
@@ -34,14 +34,14 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 
-import collection from "@/assets/photos/season-catalogs/collection.png"
-import {UiButton} from "@/shared/ui/button";
+import collection from "@/assets/photos/season-catalogs/collection.png";
+import { UiButton } from "@/shared/ui/button";
 
-const { t } = useI18n()
+const { t } = useI18n();
 
 const CHERISH = [
   { name: "info.about.quality", text: "info.about.qualityText" },
   { name: "info.about.minimalistic", text: "info.about.minimalisticText" },
-  { name: "info.about.service", text: "info.about.serviceText" }
-]
+  { name: "info.about.service", text: "info.about.serviceText" },
+];
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <li class="mt-5 flex h-fit flex-col rounded-xl border border-gray-200 p-2 shadow-lg font-dm-sans">
+  <li class="font-dm-sans mt-5 flex h-fit flex-col rounded-xl border border-gray-200 p-2 shadow-lg">
     <div class="flex flex-col gap-5">
       <div class="flex justify-between">
         <span class="text-sm font-semibold">
@@ -7,10 +7,10 @@
         </span>
         <div class="flex items-center gap-2.5">
           <img
-              @click="emit('updateAddress', props.address.id)"
-              :src="edit"
-              alt=""
-              class="w-5 cursor-pointer transition duration-400 hover:scale-110"
+            @click="emit('updateAddress', props.address.id)"
+            :src="edit"
+            alt=""
+            class="w-5 cursor-pointer transition duration-400 hover:scale-110"
           />
           <img
             @click="emit('deleteAddress', t('confirm.deleteAddress'), 'DELETE_SAVED_ADDRESS', props.address.id)"
@@ -48,7 +48,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   deleteAddress: [title: string, type: string, id: string];
-  updateAddress: [id: string]
+  updateAddress: [id: string];
 }>();
 
 const { t } = useI18n();

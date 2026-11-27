@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { useUserData } from "@/widgets/profile";
+import { useUserData } from "@/shared/lib";
 import { ProductList } from "@/widgets/product-list";
 import { HeaderFilter } from "@/widgets/filter-products";
 import { FilterProducts } from "@/widgets/filter-products";

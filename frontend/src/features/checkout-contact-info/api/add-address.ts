@@ -1,17 +1,17 @@
+import { useRouter } from "vue-router";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
-import { useBaseModals } from "@/shared/ui/notification";
+
 import { clearInformationForm } from "@/features/checkout-contact-info";
-import { informationForm, informationFormErrorMessages } from "@/entities/checkout-info-form";
-import { addContactInfoSchema } from "@/entities/checkout-info-form";
+import { addContactInfoSchema, informationForm, informationFormErrorMessages } from "@/entities/checkout-info-form";
 import { checkoutSession } from "@/entities/checkout-session";
 import { handler } from "@/shared/api";
 import { applyErrors, applyZodErrors } from "@/shared/lib";
-import { useRouter } from "vue-router";
+import { useBaseModals } from "@/shared/ui/notification";
 
 const { openNotify } = useBaseModals();
 
 export const useConfirmInformation = () => {
-  const router = useRouter()
+  const router = useRouter();
 
   const confirmInformation = async () => {
     if (!checkoutSession.contactId || !checkoutSession.addressId) {
@@ -31,7 +31,7 @@ export const useConfirmInformation = () => {
 
 export const useCreateInformation = () => {
   const queryClient = useQueryClient();
-  const router = useRouter()
+  const router = useRouter();
 
   const { mutate: createInformation } = useMutation({
     mutationKey: ["createInformation"],

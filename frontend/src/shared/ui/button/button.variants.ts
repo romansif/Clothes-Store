@@ -4,7 +4,7 @@ const base = "rounded-full transition duration-400 transform cursor-pointer";
 const baseSquare = "rounded-xl transition duration-400 transform cursor-pointer";
 const grow = "hover:scale-105";
 
-const info = "border border-white/30 text-white/70 hover:border-white hover:bg-white hover:text-black"
+const info = "border border-white/30 text-white/70 hover:border-white hover:bg-white hover:text-black";
 
 const navy = {
   solid: "bg-[#26334d] text-white hover:bg-[#1b2438]",
@@ -56,7 +56,7 @@ export const BUTTON_VARIANT_CLASSES: Record<ButtonVariant, string> = {
   viewMyOrders: `${base} ${wine.solid} ${grow} w-87 py-3 font-medium`,
   useItemOrder: `${base} ${wine.outline} ${grow} h-fit w-35 py-3 font-medium text-sm text-center`,
   paymentSuccess: `${base} ${wine.outline} ${grow} w-87 py-3 font-medium`,
-  'editAddress&Card': `${base} ${wine.solid} ${grow} w-56 py-4 ml-auto`,
+  "editAddress&Card": `${base} ${wine.solid} ${grow} w-56 py-4 ml-auto`,
 
   // gold
   exitClose: `${base} ${gold.solid} ${grow} w-fit h-fit ml-auto px-10 py-2 font-medium text-xs text-start`,

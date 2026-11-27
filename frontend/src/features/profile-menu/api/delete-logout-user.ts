@@ -1,14 +1,15 @@
-import { useMutation, useQueryClient } from "@tanstack/vue-query";
-import { useBaseModals } from "@/shared/ui/notification";
-import { handler } from "@/shared/api";
 import { useRouter } from "vue-router";
+import { useMutation, useQueryClient } from "@tanstack/vue-query";
+
+import { handler } from "@/shared/api";
+import { useBaseModals } from "@/shared/ui/notification";
 
 const { openNotify } = useBaseModals();
 
 export const useDeleteAccount = () => {
   const queryClient = useQueryClient();
   const userId = localStorage.getItem("userId");
-  const router = useRouter()
+  const router = useRouter();
 
   const {
     mutate: deleteAccount,
@@ -43,7 +44,7 @@ export const useDeleteAccount = () => {
 
 export const useLogout = () => {
   const queryClient = useQueryClient();
-  const router = useRouter()
+  const router = useRouter();
 
   const {
     mutate: logout,

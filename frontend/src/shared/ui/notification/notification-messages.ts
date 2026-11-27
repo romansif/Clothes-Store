@@ -18,7 +18,10 @@ export const notifyMessages: Record<NotificationVariants, NotificationMessage> =
   payment: { title: "notify.success.payment.title", text: "notify.success.payment.text" },
   "add-review": { title: "notify.success.addReview.title", text: "notify.success.addReview.text" },
   "replace-order": { title: "notify.success.replaceOrder.title", text: "notify.success.replaceOrder.text" },
-  "update-order-status": { title: "notify.success.updateOrderStatus.title", text: "notify.success.updateOrderStatus.text" },
+  "update-order-status": {
+    title: "notify.success.updateOrderStatus.title",
+    text: "notify.success.updateOrderStatus.text",
+  },
   "edit-address": { title: "notify.success.editAddress.title", text: "notify.success.editAddress.text" },
   "delete-address": { title: "notify.success.deleteAddress.title", text: "notify.success.deleteAddress.text" },
   "edit-payment": { title: "notify.success.editPayment.title", text: "notify.success.editPayment.text" },

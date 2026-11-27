@@ -1,19 +1,19 @@
 <template>
-  <li class="mt-5 flex h-fit flex-col rounded-xl border border-gray-200 p-2 shadow-lg font-dm-sans">
+  <li class="font-dm-sans mt-5 flex h-fit flex-col rounded-xl border border-gray-200 p-2 shadow-lg">
     <div class="flex flex-col gap-5">
       <div class="flex items-center justify-between">
-<!--        <span class="text-sm font-semibold">-->
-<!--          {{ t("checkout.card.itemCvv") }} <span class="font-normal">{{ props.payment.cardCvv }}</span>-->
-<!--        </span>-->
+        <!--        <span class="text-sm font-semibold">-->
+        <!--          {{ t("checkout.card.itemCvv") }} <span class="font-normal">{{ props.payment.cardCvv }}</span>-->
+        <!--        </span>-->
         <span class="text-sm font-semibold">
           {{ t("checkout.card.itemCardNumber") }} <span class="font-normal">{{ props.payment.cardNumber }}</span>
         </span>
         <div class="flex items-center gap-2.5">
           <img
-              @click="emit('updateCard', props.payment.id)"
-              :src="edit"
-              alt=""
-              class="w-5 cursor-pointer transition duration-400 hover:scale-110"
+            @click="emit('updateCard', props.payment.id)"
+            :src="edit"
+            alt=""
+            class="w-5 cursor-pointer transition duration-400 hover:scale-110"
           />
           <img
             @click="emit('deletePayment', t('confirm.deleteCard'), 'DELETE_SAVED_CARD', props.payment.id)"
@@ -48,7 +48,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   deletePayment: [title: string, type: string, id: string];
-  updateCard: [id: string]
+  updateCard: [id: string];
 }>();
 
 const { t } = useI18n();

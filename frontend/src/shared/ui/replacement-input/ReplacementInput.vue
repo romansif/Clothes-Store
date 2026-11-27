@@ -1,6 +1,9 @@
 <template>
   <div
-    :class="[BASE_REPLACEMENT_INPUT_CLASS, isChecked ? REPLACEMENT_INPUT_CLASSES.checked : REPLACEMENT_INPUT_CLASSES.default]"
+    :class="[
+      BASE_REPLACEMENT_INPUT_CLASS,
+      isChecked ? REPLACEMENT_INPUT_CLASSES.checked : REPLACEMENT_INPUT_CLASSES.default,
+    ]"
   >
     <input v-model="model" type="radio" :value="props.value" class="h-5 w-5 accent-black" v-bind="$attrs" />
     <span>{{ props.name }}</span>

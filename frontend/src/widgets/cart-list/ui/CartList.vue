@@ -26,7 +26,7 @@
 import { useCartData } from "@/widgets/cart-list";
 import { useToggleFavorite } from "@/shared/api";
 import { useFavoriteData } from "@/shared/lib";
-import { CartProduct } from "@/shared/model";
+import { CartProduct } from "@/entities/cart-item";
 import { UseCartItemActions } from "@/features/cart-item-action";
 import { EmptyState, ErrorState, Loader } from "@/shared/ui/state";
 import type { User } from "@/shared/model";

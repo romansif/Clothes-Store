@@ -36,7 +36,7 @@
 import { useI18n } from "vue-i18n";
 import { ratingHelper } from "@/entities/product-review";
 import { REVERSE_RATINGS } from "@/entities/product-review";
-import type { Review } from "@/entities/product-review";
+import type { Review } from "@/shared/model";
 
 import star from "@/assets/icons/review/full-star.png";
 

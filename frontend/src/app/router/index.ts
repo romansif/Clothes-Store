@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+
 import { getCheckoutItems } from "@/features/checkout-order-info";
 import { checkoutSession } from "@/entities/checkout-session";
 import { routes } from "@/shared/routes";

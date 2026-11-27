@@ -51,10 +51,10 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
-import { userAvatar } from "@/widgets/profile";
+import { userAvatar } from "@/shared/lib";
 import { routeClass, selectRouteClass } from "@/widgets/navigation";
 import { useMainNavBar } from "@/widgets/navigation";
-import { LanguageSwitcher } from "@/widgets/navigation";
+import { LanguageSwitcher } from "@/widgets/language-switcher";
 import type { User } from "@/shared/model";
 
 import cart from "@/assets/icons/nav/cart.png";

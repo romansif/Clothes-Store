@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import { productHelper } from "@/shared/lib";
-import { sizeClass, sizeUrl } from "@/shared/model";
+import { sizeClass, sizeUrl } from "@/entities/cart-item";
 import { AddToOrder, DeleteCartItemButton, UpdateQuantityItem } from "@/features/cart-item-action";
 import type { CartItem } from "@/shared/model";
 

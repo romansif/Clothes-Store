@@ -62,12 +62,12 @@
 import { onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
-import { userAvatar } from "@/widgets/profile";
-import { useUserData } from "@/widgets/profile";
+import { userAvatar } from "@/shared/lib";
+import { useUserData } from "@/shared/lib";
 import { useMainNavBar } from "@/widgets/navigation";
-import { cartStore } from "@/widgets/cart-list";
+import { cartStore } from "@/shared/model";
 import { routeClass, selectRouteClass } from "@/widgets/navigation";
-import { LanguageSwitcher } from "@/widgets/navigation";
+import { LanguageSwitcher } from "@/widgets/language-switcher";
 
 import cart from "@/assets/icons/nav/cart.png";
 import liked from "@/assets/icons/nav/favorite.jpeg";
@@ -83,5 +83,5 @@ const { unreadCount, reset } = cartStore();
 const { isHome, isCart, isFavorite, isProducts, isNewCollections, isSeasonCollections, isProfile } =
   useMainNavBar(route);
 
-onMounted(reset)
+onMounted(reset);
 </script>

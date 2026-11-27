@@ -1,1 +1,1 @@
-export { useDeleteAddress } from "./api/delete-address"
+export { useDeleteAddress } from "./api/delete-address";

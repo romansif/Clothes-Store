@@ -1,9 +1,9 @@
 import { computed } from "vue";
 import type { RouteLocationNormalizedLoaded } from "vue-router";
 import { useQuery, useQueryClient } from "@tanstack/vue-query";
-import type { Product } from "@/shared/model";
 
 import { getProduct } from "@/features/product-info/api/get-product";
+import type { Product } from "@/shared/model";
 
 export const useProductData = (route: RouteLocationNormalizedLoaded) => {
   const queryClient = useQueryClient();

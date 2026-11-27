@@ -1,16 +1,17 @@
+import { useRouter } from "vue-router";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
 import namer from "color-namer";
-import { useBaseModals } from "@/shared/ui/notification";
+
 import type {
   EditColorsPayload,
   EditImagesPayload,
   EditQuantityPayload,
 } from "@/features/product-edit-form/model/edit-product.types";
 import { createProductForm } from "@/features/product-form";
-import { useRouter } from "vue-router";
 import { handler } from "@/shared/api";
 import { currentFile } from "@/shared/lib";
 import type { Product } from "@/shared/model";
+import { useBaseModals } from "@/shared/ui/notification";
 
 const { openNotify } = useBaseModals();
 
@@ -64,7 +65,7 @@ export const useEditProductImages = () => {
 };
 
 export const useEditProductInfo = () => {
-  const router = useRouter()
+  const router = useRouter();
 
   const {
     mutate: editProductInfo,

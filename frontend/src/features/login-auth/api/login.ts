@@ -1,17 +1,17 @@
 import { useRoute, useRouter } from "vue-router";
 import { useMutation } from "@tanstack/vue-query";
-import { useBaseModals } from "@/shared/ui/notification";
+
 import { clearLoginForm, clearLoginFormMessages } from "@/features/login-auth";
-import { loginForm, loginFormErrorMessages } from "@/entities/login-form";
-import { loginSchema } from "@/entities/login-form";
+import { loginForm, loginFormErrorMessages, loginSchema } from "@/entities/login-form";
 import { handler } from "@/shared/api";
 import { applyErrors, applyZodErrors } from "@/shared/lib";
+import { useBaseModals } from "@/shared/ui/notification";
 
 const { openNotify } = useBaseModals();
 
 export const signIn = () => {
   const route = useRoute();
-  const router = useRouter()
+  const router = useRouter();
 
   const {
     mutate: login,

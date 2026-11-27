@@ -55,12 +55,7 @@ import { useI18n } from "vue-i18n";
 import { IMaskComponent as IMask } from "vue-imask";
 import { cardNumberMask, expiryDateMask, cardCvvMask } from "@/entities/checkout-payment-form";
 import { paymentForm, paymentFormErrorMessage } from "@/entities/checkout-payment-form";
-import {
-  cardNumberClass,
-  expiryDateClass,
-  cardCvvClass,
-  paymentCardErrorClass,
-} from "@/shared/model";
+import { cardNumberClass, expiryDateClass, cardCvvClass, paymentCardErrorClass } from "@/shared/model";
 import { CheckoutInput } from "@/shared/ui/checkout-input";
 
 const { t } = useI18n();

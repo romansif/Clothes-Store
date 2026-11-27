@@ -119,10 +119,7 @@ import {
   useEditUserPassword,
 } from "@/features/change-user-data-form";
 import { updateUserForm, updateUserFormErrorMessages } from "@/features/change-user-data-form";
-import {
-  PROFILE_FORM_PHONE_INPUT_CLASS,
-  PROFILE_FORM_SELECT_PHONE_CODE_CLASS,
-} from "@/features/change-user-data-form";
+import { PROFILE_FORM_PHONE_INPUT_CLASS, PROFILE_FORM_SELECT_PHONE_CODE_CLASS } from "@/features/change-user-data-form";
 import { UiButton } from "@/shared/ui/button";
 import { UiInput } from "@/shared/ui/input";
 import { UiPhoneInput } from "@/shared/ui/phone-input";

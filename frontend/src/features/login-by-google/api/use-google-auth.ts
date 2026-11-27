@@ -1,16 +1,16 @@
 import { useRoute, useRouter } from "vue-router";
 import { useMutation } from "@tanstack/vue-query";
 
-import { useBaseModals } from "@/shared/ui/notification";
 import { clearLoginForm, clearLoginFormMessages } from "@/features/login-auth";
 import { loginForm } from "@/entities/login-form";
 import { handler } from "@/shared/api";
+import { useBaseModals } from "@/shared/ui/notification";
 
 const { openNotify } = useBaseModals();
 
 export const signGoogleAuth = () => {
   const route = useRoute();
-  const router = useRouter()
+  const router = useRouter();
 
   const {
     mutate: OAuth,

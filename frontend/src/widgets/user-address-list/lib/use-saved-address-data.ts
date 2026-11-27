@@ -2,8 +2,8 @@ import { computed, toValue } from "vue";
 import { useQuery } from "@tanstack/vue-query";
 
 import { useGetAddress } from "@/widgets/user-address-list/api/get-address";
+import { address_id } from "@/features/edit-saved-address";
 import { checkoutSession } from "@/entities/checkout-session";
-import { address_id } from "@/features/edit-saved-address"
 
 const { getAddresses, getAddress } = useGetAddress();
 
@@ -54,7 +54,7 @@ export const useSavedAddressData = () => {
     queryFn: () => {
       if (!checkoutSession.addressId) {
         throw new Error("User is not authenticated");
-      }else if (!id.value) {
+      } else if (!id.value) {
         throw new Error("Address id is required");
       }
 

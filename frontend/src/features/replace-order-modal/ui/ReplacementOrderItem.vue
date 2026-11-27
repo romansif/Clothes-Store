@@ -20,7 +20,7 @@
 import { useI18n } from "vue-i18n";
 import { refClearErrorsOnChange } from "@/shared/lib";
 import { useReplaceOrderItem } from "@/features/order-action";
-import { closeReplaceItem } from "@/entities/order-action";
+import { closeReplaceItem } from "@/features/order-action";
 import { cancelChoiceForm, cancelChoiceMessage } from "@/features/order-action";
 import { ReplacementForm } from "@/features/order-action";
 import { UiButton } from "@/shared/ui/button";

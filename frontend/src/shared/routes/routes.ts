@@ -153,7 +153,7 @@ export const routes: RouteRecordRaw[] = [
     ],
   },
   {
-    path: '/info',
+    path: "/info",
     component: () => import("@/app/layouts/InfoLayout.vue"),
     children: [
       {
@@ -170,8 +170,8 @@ export const routes: RouteRecordRaw[] = [
         path: "contacts",
         name: "contacts",
         component: () => import("@/pages/info/ContactsPage.vue"),
-      }
-    ]
+      },
+    ],
   },
   {
     path: "/:pathMatch(.*)*",
@@ -184,5 +184,3 @@ export const routes: RouteRecordRaw[] = [
     component: () => import("@/pages/checkout/PaymentSuccessPage.vue"),
   },
 ];
-
-

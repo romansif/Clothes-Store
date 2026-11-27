@@ -35,7 +35,7 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { userAvatar } from "@/widgets/profile";
+import { userAvatar } from "@/shared/lib";
 import { openSelectAvatar, toggleAvatar } from "@/features/profile-change-avatar";
 import { useChangeAvatar } from "@/features/profile-change-avatar";
 import { fileInput } from "@/shared/lib";

@@ -1,0 +1,25 @@
+import { computed, toValue, type MaybeRefOrGetter } from "vue";
+import { useQuery } from "@tanstack/vue-query";
+
+import { useGetReviews } from "@/shared/api";
+import type { Review } from "@/shared/model";
+
+const { getReviews } = useGetReviews();
+
+export const useReviewButton = (productId: MaybeRefOrGetter<string | null | undefined>) => {
+  const { data: reviews } = useQuery({
+    queryKey: ["reviews"],
+    queryFn: () => getReviews(),
+  });
+
+  const hasReviewed = computed(() => {
+    const id = toValue(productId);
+    const userId = localStorage.getItem("userId");
+
+    return (reviews.value ?? []).some((review: Review) => review.productId === id && review.userId === userId);
+  });
+
+  return {
+    hasReviewed,
+  };
+};

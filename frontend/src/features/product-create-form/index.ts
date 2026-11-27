@@ -1,4 +1,4 @@
 export { default as CreateImageUpload } from "./ui/CreateImageUpload.vue";
 export { default as CreateVariants } from "./ui/CreateVariants.vue";
 
-export { useCreateProduct } from "./api/create-product"
+export { useCreateProduct } from "./api/create-product";

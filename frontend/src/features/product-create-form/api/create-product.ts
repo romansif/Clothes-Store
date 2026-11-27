@@ -1,22 +1,23 @@
+import { useRouter } from "vue-router";
 import { useMutation, useQueryClient } from "@tanstack/vue-query";
-import { useBaseModals } from "@/shared/ui/notification";
-import { clearProductForm } from "@/features/product-form";
+
 import {
+  clearProductForm,
   createProductForm,
   createProductFormErrorMessages,
+  createProductSchema,
   moreCreateItemForm,
   moreCreateItemFormErrorMessages,
+  moreCreateItemsSchema,
 } from "@/features/product-form";
-import { createProductSchema, moreCreateItemsSchema } from "@/features/product-form";
 import { handler } from "@/shared/api";
-import { applyErrors, applyZodErrors } from "@/shared/lib";
-import { imageFiles } from "@/shared/lib";
-import { useRouter } from "vue-router";
+import { applyErrors, applyZodErrors, imageFiles } from "@/shared/lib";
+import { useBaseModals } from "@/shared/ui/notification";
 
 const { openNotify } = useBaseModals();
 
 export const useCreateProduct = () => {
-  const router = useRouter()
+  const router = useRouter();
 
   const queryClient = useQueryClient();
   const userId = localStorage.getItem("userId");

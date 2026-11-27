@@ -65,10 +65,7 @@ import { SHOW_PASSWORD_CLASS, SHOW_PASSWORD_ERROR_CLASS } from "@/shared/ui/auth
 import { togglePassword } from "@/features/toggle-password";
 import { refClearErrorsOnChange } from "@/shared/lib";
 import { registerForm, registerFormErrorMessages } from "@/features/register-auth";
-import {
-  registerPhoneInputVariants,
-  registerSelectPhoneCode,
-} from "@/features/register-auth";
+import { registerPhoneInputVariants, registerSelectPhoneCode } from "@/features/register-auth";
 import { UiInput } from "@/shared/ui/input";
 import { UiPhoneInput } from "@/shared/ui/phone-input";
 

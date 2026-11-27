@@ -41,7 +41,7 @@
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
-import { userAvatar } from "@/widgets/profile";
+import { userAvatar } from "@/shared/lib";
 import { OpenProfileModals } from "@/widgets/profile";
 import { ProfileModals } from "@/widgets/profile";
 import { ProfileMenu } from "@/features/profile-menu";

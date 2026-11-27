@@ -9,7 +9,8 @@
         </span>
         <ul class="flex flex-col gap-5">
           <li v-for="item in LINKS" :key="item">
-            <router-link :to="{ name: item.link }"
+            <router-link
+              :to="{ name: item.link }"
               class="group inline-flex cursor-pointer items-center gap-3 text-3xl font-semibold text-white/80 transition-all duration-300 hover:translate-x-2 hover:text-white"
             >
               {{ t(item.name) }}
@@ -59,16 +60,16 @@
 
 <script setup>
 import { useI18n } from "vue-i18n";
-import { LanguageSwitcher } from "@/widgets/navigation/index.ts";
+import { LanguageSwitcher } from "@/widgets/language-switcher";
+import { UiButton } from "@/shared/ui/button/index.ts";
 
 import arrow_link from "@/assets/icons/footer/arrow-up-right.svg";
-import {UiButton} from "@/shared/ui/button/index.ts";
 
 const { t } = useI18n();
 
 const LINKS = [
-  { link: 'prices', name: "footer.about"},
-  { link: 'about', name: "footer.pricing" },
-  { link: 'contacts', name: "footer.contacts"}
+  { link: "prices", name: "footer.about" },
+  { link: "about", name: "footer.pricing" },
+  { link: "contacts", name: "footer.contacts" },
 ];
 </script>

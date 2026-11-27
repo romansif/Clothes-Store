@@ -18,13 +18,13 @@
 
 <script setup lang="ts">
 import { computed, watch } from "vue";
-import { userAvatar } from "@/widgets/profile";
-import { reviewsStore } from "@/features/review-dashboard";
+import { userAvatar } from "@/shared/lib";
+import { reviewsStore } from "@/shared/model";
 import { reviewsHelper } from "@/features/review-dashboard";
 import { reviewFilter } from "@/features/product-review-filter";
 import { toggleReviewPhotos } from "@/features/review-dashboard";
 import { ReviewItem } from "@/entities/product-review";
-import type { Review } from "@/entities/product-review";
+import type { Review } from "@/shared/model";
 
 const props = defineProps<{
   reviews: Review[];

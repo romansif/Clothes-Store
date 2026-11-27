@@ -1,13 +1,11 @@
 import { useMutation } from "@tanstack/vue-query";
-import { useBaseModals } from "@/shared/ui/notification";
-import { reviewsStore } from "@/features/review-dashboard";
-import { closeReviewModal } from "@/features/order-action";
-import type { User } from "@/shared/model";
-import { reviewForm, reviewFormMessages } from "@/features/add-review";
-import { reviewFormSchema } from "@/features/add-review";
+
+import { closeReviewModal, reviewForm, reviewFormMessages, reviewFormSchema } from "@/features/add-review";
 import { handler } from "@/shared/api";
-import { applyErrors, applyZodErrors } from "@/shared/lib";
-import { imageFiles } from "@/shared/lib";
+import { applyErrors, applyZodErrors, imageFiles } from "@/shared/lib";
+import { reviewsStore } from "@/shared/model";
+import type { User } from "@/shared/model";
+import { useBaseModals } from "@/shared/ui/notification";
 
 const { productId } = reviewsStore();
 const { openNotify } = useBaseModals();

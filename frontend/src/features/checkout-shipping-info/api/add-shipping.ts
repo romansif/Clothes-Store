@@ -1,14 +1,14 @@
-import { useBaseModals } from "@/shared/ui/notification";
-import { checkoutSession, type DeliveryMethod } from "@/entities/checkout-session";
-import { shippingForm, shippingFormErrorMessage } from "@/entities/checkout-shipping";
-import { addShippingSchema } from "@/entities/checkout-shipping";
-import { applyZodErrors } from "@/shared/lib";
 import { useRouter } from "vue-router";
+
+import { checkoutSession, type DeliveryMethod } from "@/entities/checkout-session";
+import { addShippingSchema, shippingForm, shippingFormErrorMessage } from "@/entities/checkout-shipping";
+import { applyZodErrors } from "@/shared/lib";
+import { useBaseModals } from "@/shared/ui/notification";
 
 const { openNotify } = useBaseModals();
 
 export const useSelectShipping = () => {
-  const router = useRouter()
+  const router = useRouter();
 
   const selectShipping = async () => {
     const result = addShippingSchema.safeParse(shippingForm.value);

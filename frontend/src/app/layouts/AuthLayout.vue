@@ -25,7 +25,7 @@ import { useI18n } from "vue-i18n";
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { AuthHeader } from "@/widgets/auth-header";
-import { LanguageSwitcher } from "@/widgets/navigation";
+import { LanguageSwitcher } from "@/widgets/language-switcher";
 
 const route = useRoute();
 

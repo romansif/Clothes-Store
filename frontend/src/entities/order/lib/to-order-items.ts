@@ -1,5 +1,4 @@
-import type { CartItem } from "@/shared/model";
-import type { NewOrderPosition } from "@/shared/model";
+import type { CartItem, NewOrderPosition } from "@/shared/model";
 
 export const toOrderItem = (c: CartItem): NewOrderPosition => ({
   id: c.id,
@@ -12,5 +11,5 @@ export const toOrderItem = (c: CartItem): NewOrderPosition => ({
   quantity: Number(c.quantity),
   size: c.size,
   color: c.color,
-  images: (c.images?.[0]) ?? undefined,
+  images: c.images?.[0] ?? undefined,
 });

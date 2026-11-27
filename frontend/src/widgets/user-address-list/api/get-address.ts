@@ -1,5 +1,5 @@
-import type { UserContactInfo } from "@/shared/model";
 import { handler } from "@/shared/api";
+import type { UserContactInfo } from "@/shared/model";
 
 export const useGetAddress = () => {
   const getAddresses = async (userId: string) => {

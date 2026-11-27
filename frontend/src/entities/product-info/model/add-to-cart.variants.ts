@@ -1,6 +1,5 @@
-import type { ColorItem, Product, Size } from "@/shared/model";
-
 import { addToCartForm } from "@/entities/product-info";
+import type { ColorItem, Product, Size } from "@/shared/model";
 
 export const addToCartVariants = () => {
   const isColorAvailable = (color: ColorItem, product: Product) =>

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex min-h-screen flex-col bg-black text-white font-montserrat">
+  <div class="font-montserrat flex min-h-screen flex-col bg-black text-white">
     <InfoNavBar />
     <main class="flex-1">
       <router-view />

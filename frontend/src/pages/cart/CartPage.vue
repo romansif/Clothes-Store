@@ -14,7 +14,7 @@
 import { onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useCartData } from "@/widgets/cart-list";
-import { useUserData } from "@/widgets/profile";
+import { useUserData } from "@/shared/lib";
 import { useResetCartSelection } from "@/features/cart-item-action";
 import { FavoriteCartHeader } from "@/widgets/favorite-cart-header";
 import { CartList } from "@/widgets/cart-list";

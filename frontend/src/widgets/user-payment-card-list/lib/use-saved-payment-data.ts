@@ -1,8 +1,9 @@
 import { computed, toValue } from "vue";
 import { useQuery } from "@tanstack/vue-query";
+
 import { useGetPayment } from "@/widgets/user-payment-card-list/api/get-payment";
-import { checkoutSession } from "@/entities/checkout-session";
 import { card_id } from "@/features/edit-saved-card";
+import { checkoutSession } from "@/entities/checkout-session";
 
 const { getPayments, getPayment } = useGetPayment();
 

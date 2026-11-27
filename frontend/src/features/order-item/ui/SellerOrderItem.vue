@@ -1,5 +1,5 @@
 <template>
-  <li class="flex flex-col gap-5 rounded-xl border-b border-gray-300 bg-white p-3 h-fit">
+  <li class="flex h-fit flex-col gap-5 rounded-xl border-b border-gray-300 bg-white p-3">
     <div class="flex items-center justify-between">
       <div class="flex flex-col gap-2.5">
         <h4 class="text-lg text-[#A3A3A3]">{{ t("orders.order") }}</h4>
@@ -79,7 +79,7 @@
       </router-link>
     </div>
     <div v-else class="flex flex-col gap-5">
-      <div class="flex flex-col gap-2.5 rounded-xl bg-rose-100 border border-rose-900 px-5 py-3 font-medium">
+      <div class="flex flex-col gap-2.5 rounded-xl border border-rose-900 bg-rose-100 px-5 py-3 font-medium">
         <h3 class="text-sm tracking-wide text-rose-900 uppercase">{{ t("orders.causeReplace") }}</h3>
         <span class="text-lg">{{ sellerItem.cause_replace }}</span>
         <OrderStatus :item="sellerItem" />

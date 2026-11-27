@@ -114,8 +114,7 @@
               <div class="flex gap-1">
                 <span>{{ priceLabel(priceName) }}</span>
                 <span>
-                  (<span class="font-dm-sans font-medium text-blue-700">
-                    {{ getStackCount(products, priceName) }} </span
+                  (<span class="font-dm-sans font-medium text-blue-700"> {{ getStackCount(products, priceName) }} </span
                   >)
                 </span>
               </div>
@@ -139,11 +138,7 @@ import {
   toggleGenderFilter,
   togglePriceFilter,
 } from "@/widgets/filter-products/lib/show-filter";
-import {
-  filterSizeClass,
-  filterClass,
-  selectedFilterAndSizeClass,
-} from "@/widgets/filter-products";
+import { filterSizeClass, filterClass, selectedFilterAndSizeClass } from "@/widgets/filter-products";
 import { showAvailability, showColor, showGender, showPrice } from "@/widgets/filter-products";
 
 import square from "@/assets/icons/squares/square.png";

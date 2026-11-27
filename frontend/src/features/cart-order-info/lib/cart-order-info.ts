@@ -1,9 +1,10 @@
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
+
 import { useCartData } from "@/widgets/cart-list";
-import type { CartItem } from "@/shared/model";
 import { isAgreeFormError, isAgreeFormErrorMessage } from "@/entities/product-info";
+import type { CartItem } from "@/shared/model";
 
 const COMMISSION_RATE = 0.08;
 const round2 = (n: number) => Math.round(n * 100) / 100;
@@ -11,7 +12,7 @@ const round2 = (n: number) => Math.round(n * 100) / 100;
 export const useCartOrderInfo = () => {
   const { t } = useI18n();
   const { cart } = useCartData();
-  const router = useRouter()
+  const router = useRouter();
 
   const checkedItems = computed(() => {
     return cart.value.filter((item: CartItem) => item.checked);

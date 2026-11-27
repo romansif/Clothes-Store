@@ -1,8 +1,9 @@
-export { handler } from './http'
-export { getFavoriteProducts } from './get-favorite'
-export { useGetOrder } from './get-order'
-export { useGetProducts } from './get-product'
-export { useGetReviews } from './get-reviews'
-export { getSoldStats } from './get-sold-stats'
-export { useToggleFavorite } from './toggle-to-favorite'
-export { queryClient } from "./query-client"
+export { handler } from "./http";
+export { getFavoriteProducts } from "./favorite/get-favorite";
+export { useGetOrder } from "./order/get-order";
+export { useGetProducts } from "./product/get-product";
+export { useGetReviews } from "./review/get-reviews";
+export { getSoldStats } from "./my-product/get-sold-stats";
+export { useToggleFavorite } from "./favorite/toggle-to-favorite";
+export { useGetUser } from "./user/get-users";
+export { queryClient } from "./query-client";

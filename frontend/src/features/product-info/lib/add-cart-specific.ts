@@ -1,7 +1,5 @@
-import type { ColorItem, Product, Size } from "@/shared/model";
-
 import { addToCartForm } from "@/entities/product-info";
-import type { User } from "@/shared/model";
+import type { ColorItem, Product, Size, User } from "@/shared/model";
 
 export const addColor = (color: ColorItem, user: User, product: Product) => {
   const isNotBuyer = user.role !== "Buyer";

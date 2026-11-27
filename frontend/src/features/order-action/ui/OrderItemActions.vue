@@ -18,9 +18,9 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { useOrder } from "@/features/order-item";
-import { useReviewButton } from "@/entities/order-action";
-import { openReviewModal } from "@/entities/order-action";
-import { openReplaceItem } from "@/entities/order-action";
+import { useReviewButton } from "@/features/add-review";
+import { openReviewModal } from "@/features/add-review";
+import { openReplaceItem } from "@/features/order-action";
 import { UiButton } from "@/shared/ui/button";
 import type { OrderPosition, OrderProps } from "@/shared/model";
 
