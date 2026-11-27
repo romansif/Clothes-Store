@@ -4,6 +4,8 @@ const base = "rounded-full transition duration-400 transform cursor-pointer";
 const baseSquare = "rounded-xl transition duration-400 transform cursor-pointer";
 const grow = "hover:scale-105";
 
+const info = "border border-white/30 text-white/70 hover:border-white hover:bg-white hover:text-black"
+
 const navy = {
   solid: "bg-[#26334d] text-white hover:bg-[#1b2438]",
   outline: "border border-[#26334d] text-[#26334d] hover:bg-[#26334d] hover:text-white",
@@ -66,6 +68,8 @@ export const BUTTON_VARIANT_CLASSES: Record<ButtonVariant, string> = {
   loadReviews: `${base} ${ink.soft} ${grow} w-150 p-2.5 font-semibold`,
   profileMenu: `${base} ${ink.link} ${grow} block px-4 py-2 text-sm`,
   outOfStack: `${base} ${ink.disabled} w-full py-4 font-semibold`,
+  nearField: `${base} ${info} px-8 py-4 font-semibold`,
+  socialMedia: `${base} ${info} px-6 py-3 font-medium`,
 
   // status
   cancel: `${base} ${status.danger} ${grow} text-center w-28 py-3.5 font-medium text-xs`,

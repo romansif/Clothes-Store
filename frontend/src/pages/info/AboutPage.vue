@@ -26,11 +26,7 @@
     </ul>
     <div class="flex items-center justify-between pb-15">
       <h2 class="text-4xl font-extrabold">{{ t("info.about.remainQuestion") }}</h2>
-      <button
-          class="rounded-full border border-white/30 px-8 py-4 font-semibold text-white/70 transition-all duration-500 hover:border-white hover:bg-white hover:text-black"
-      >
-        {{ t("footer.nfc") }}
-      </button>
+      <UiButton :name="t('footer.nfc')" variant="nearField" />
     </div>
   </div>
 </template>
@@ -39,6 +35,7 @@
 import { useI18n } from "vue-i18n";
 
 import collection from "@/assets/photos/season-catalogs/collection.png"
+import {UiButton} from "@/shared/ui/button";
 
 const { t } = useI18n()
 

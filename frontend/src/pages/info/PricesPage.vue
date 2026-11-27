@@ -20,7 +20,8 @@
     <div class="flex flex-col gap-10">
       <h2 class="text-4xl font-extrabold ">{{ t("info.aboutPrices.delivery") }}</h2>
       <ul class="flex items-center gap-15 pb-15 border-b border-white/30">
-        <li v-for="item in DELIVERY" class="flex flex-col gap-5 px-10 py-5 h-45 w-full border border-white/30 rounded-xl">
+        <li v-for="item in DELIVERY"
+            class="flex flex-col gap-5 px-10 py-5 h-45 w-full border border-white/30 rounded-xl">
           <span class="text-xl font-semibold text-[#A3A3A3]">
             {{ t(item.name) }}
           </span>
@@ -35,17 +36,14 @@
     </div>
     <div class="flex items-center justify-between pb-15">
       <h2 class="text-4xl font-extrabold">{{ t("info.aboutPrices.exactPrice") }}</h2>
-      <button
-          class="rounded-full border border-white/30 px-8 py-4 font-semibold text-white/70 transition-all duration-500 hover:border-white hover:bg-white hover:text-black"
-      >
-        {{ t("footer.nfc") }}
-      </button>
+      <UiButton :name="t('footer.nfc')" variant="nearField" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
+import {UiButton} from "@/shared/ui/button";
 
 const { t } = useI18n()
 

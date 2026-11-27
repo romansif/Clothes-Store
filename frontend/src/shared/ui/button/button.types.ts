@@ -26,7 +26,9 @@ export type ButtonVariant =
   | "useItemOrder"
   | "acceptStatus"
   | "sellerItemDetails"
-  | "editAddress&Card";
+  | "editAddress&Card"
+  | "nearField"
+  | "socialMedia";
 
 export interface ButtonProps {
   name: string;
